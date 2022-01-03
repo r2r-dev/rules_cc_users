@@ -1,0 +1,698 @@
+|-- .bazelrc
+|-- .gitignore
+|-- .travis.yml
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- app
+|  |-- BUILD
+|  |-- external
+|  |  |-- README.md
+|  |  |-- material-icons.css
+|  |  |-- material-icons.woff2
+|  |  |-- material.css
+|  |  |-- material.js
+|  |  |-- preact.js
+|  |-- image
+|  |  |-- appicon.ico
+|  |-- lib
+|  |  |-- docview.js
+|  |  |-- mdl.js
+|  |  |-- util.js
+|  |-- style
+|  |  |-- docview.css
+|-- data
+|  |-- nlp
+|  |  |-- schemas
+|  |  |  |-- catalog.sling
+|  |  |  |-- constituency.sling
+|  |  |  |-- document-schema.sling
+|  |  |  |-- meta-schema.sling
+|  |-- wiki
+|  |  |-- aliases.sling
+|  |  |-- calendar.sling
+|  |  |-- countries.sling
+|  |  |-- da
+|  |  |  |-- templates.sling
+|  |  |-- de
+|  |  |  |-- templates.sling
+|  |  |-- en
+|  |  |  |-- phrases.txt
+|  |  |  |-- templates.sling
+|  |  |-- es
+|  |  |  |-- templates.sling
+|  |  |-- fi
+|  |  |  |-- templates.sling
+|  |  |-- fr
+|  |  |  |-- templates.sling
+|  |  |-- it
+|  |  |  |-- templates.sling
+|  |  |-- languages.sling
+|  |  |-- nl
+|  |  |  |-- templates.sling
+|  |  |-- no
+|  |  |  |-- templates.sling
+|  |  |-- pl
+|  |  |  |-- templates.sling
+|  |  |-- pt
+|  |  |  |-- templates.sling
+|  |  |-- sv
+|  |  |  |-- templates.sling
+|  |  |-- units.sling
+|  |  |-- wikidata.sling
+|  |  |-- wikipedia.sling
+|-- doc
+|  |-- guide
+|  |  |-- README.md
+|  |  |-- caspar.md
+|  |  |-- flowasm.txt
+|  |  |-- flowin.svg
+|  |  |-- flowout.svg
+|  |  |-- frames.md
+|  |  |-- install.md
+|  |  |-- kb-browser.png
+|  |  |-- myelin.md
+|  |  |-- parsing.md
+|  |  |-- pyapi.md
+|  |  |-- training.md
+|  |  |-- wikiflow.md
+|  |  |-- wikiflow.svg
+|  |-- report
+|  |  |-- acl2017.sty
+|  |  |-- acl_natbib.bst
+|  |  |-- dev-eval.pdf
+|  |  |-- network.pdf
+|  |  |-- network.svg
+|  |  |-- runtime.pdf
+|  |  |-- runtime.svg
+|  |  |-- sling.bib
+|  |  |-- sling.tex
+|-- python
+|  |-- BUILD
+|  |-- __init__.py
+|  |-- flags.py
+|  |-- log.py
+|  |-- myelin
+|  |  |-- __init__.py
+|  |  |-- builder.py
+|  |  |-- flow.py
+|  |  |-- nn.py
+|  |  |-- simulator.py
+|  |  |-- tf.py
+|  |-- nlp
+|  |  |-- __init__.py
+|  |  |-- document.py
+|  |  |-- parser.py
+|  |-- pysling.so
+|  |-- run.py
+|  |-- task
+|  |  |-- __init__.py
+|  |  |-- corpora.py
+|  |  |-- download.py
+|  |  |-- embedding.py
+|  |  |-- silver.py
+|  |  |-- wiki.py
+|  |  |-- workflow.py
+|  |-- wikibot
+|  |  |-- en_wp_dates.py
+|  |  |-- extract_dates.py
+|  |  |-- wikibot.py
+|  |  |-- wikimonitor.py
+|-- run.sh
+|-- setup.sh
+|-- sling
+|  |-- base
+|  |  |-- BUILD
+|  |  |-- bitcast.h
+|  |  |-- clock.cc
+|  |  |-- clock.h
+|  |  |-- flags.cc
+|  |  |-- flags.h
+|  |  |-- init.cc
+|  |  |-- init.h
+|  |  |-- libinit.cc
+|  |  |-- logging.cc
+|  |  |-- logging.h
+|  |  |-- macros.h
+|  |  |-- perf.cc
+|  |  |-- perf.h
+|  |  |-- port.h
+|  |  |-- registry.cc
+|  |  |-- registry.h
+|  |  |-- slice.h
+|  |  |-- status.cc
+|  |  |-- status.h
+|  |  |-- types.h
+|  |-- file
+|  |  |-- BUILD
+|  |  |-- embed.cc
+|  |  |-- embed.h
+|  |  |-- file.cc
+|  |  |-- file.h
+|  |  |-- posix.cc
+|  |  |-- posix.h
+|  |  |-- recordio.cc
+|  |  |-- recordio.h
+|  |  |-- repository.cc
+|  |  |-- repository.h
+|  |  |-- textmap.cc
+|  |  |-- textmap.h
+|  |-- frame
+|  |  |-- BUILD
+|  |  |-- decoder.cc
+|  |  |-- decoder.h
+|  |  |-- encoder.cc
+|  |  |-- encoder.h
+|  |  |-- json.cc
+|  |  |-- json.h
+|  |  |-- object.cc
+|  |  |-- object.h
+|  |  |-- printer.cc
+|  |  |-- printer.h
+|  |  |-- reader.cc
+|  |  |-- reader.h
+|  |  |-- scanner.cc
+|  |  |-- scanner.h
+|  |  |-- serialization.cc
+|  |  |-- serialization.h
+|  |  |-- snapshot.cc
+|  |  |-- snapshot.h
+|  |  |-- store.cc
+|  |  |-- store.h
+|  |  |-- tokenizer.cc
+|  |  |-- tokenizer.h
+|  |  |-- turtle.cc
+|  |  |-- turtle.h
+|  |  |-- wire.h
+|  |  |-- xml.cc
+|  |  |-- xml.h
+|  |-- http
+|  |  |-- BUILD
+|  |  |-- http-server.cc
+|  |  |-- http-server.h
+|  |  |-- http-stream.cc
+|  |  |-- http-stream.h
+|  |  |-- http-utils.cc
+|  |  |-- http-utils.h
+|  |  |-- static-content.cc
+|  |  |-- static-content.h
+|  |  |-- web-service.cc
+|  |  |-- web-service.h
+|  |-- myelin
+|  |  |-- BUILD
+|  |  |-- analyze.cc
+|  |  |-- aot-linker.cc
+|  |  |-- aot-linker.h
+|  |  |-- builder.cc
+|  |  |-- builder.h
+|  |  |-- compiler.cc
+|  |  |-- compiler.h
+|  |  |-- compute.cc
+|  |  |-- compute.h
+|  |  |-- cuda
+|  |  |  |-- BUILD
+|  |  |  |-- cuda-api.cc
+|  |  |  |-- cuda-api.h
+|  |  |  |-- cuda-kernel.cc
+|  |  |  |-- cuda-kernel.h
+|  |  |  |-- cuda-runtime.cc
+|  |  |  |-- cuda-runtime.h
+|  |  |  |-- cuda.cc
+|  |  |  |-- cuda.h
+|  |  |-- elf-linker.cc
+|  |  |-- elf-linker.h
+|  |  |-- express.cc
+|  |  |-- express.h
+|  |  |-- flow.cc
+|  |  |-- flow.h
+|  |  |-- generator
+|  |  |  |-- BUILD
+|  |  |  |-- elementwise.cc
+|  |  |  |-- elementwise.h
+|  |  |  |-- expression.cc
+|  |  |  |-- expression.h
+|  |  |  |-- index.cc
+|  |  |  |-- index.h
+|  |  |  |-- scalar-flt-avx.cc
+|  |  |  |-- scalar-flt-sse.cc
+|  |  |  |-- scalar-int.cc
+|  |  |  |-- vector-flt-avx128.cc
+|  |  |  |-- vector-flt-avx256.cc
+|  |  |  |-- vector-flt-avx512.cc
+|  |  |  |-- vector-flt-sse.cc
+|  |  |  |-- vector-int-avx128.cc
+|  |  |  |-- vector-int-avx256.cc
+|  |  |  |-- vector-int-sse.cc
+|  |  |-- gradient.cc
+|  |  |-- gradient.h
+|  |  |-- graph.cc
+|  |  |-- graph.h
+|  |  |-- kernel
+|  |  |  |-- BUILD
+|  |  |  |-- arithmetic.cc
+|  |  |  |-- arithmetic.h
+|  |  |  |-- array.cc
+|  |  |  |-- avx-math.cc
+|  |  |  |-- avx-matmul.cc
+|  |  |  |-- avx-operators.cc
+|  |  |  |-- avx.cc
+|  |  |  |-- avx.h
+|  |  |  |-- cublas-matmul.cc
+|  |  |  |-- cuda-arithmetic.cc
+|  |  |  |-- cuda-array.cc
+|  |  |  |-- cuda-matmul.cc
+|  |  |  |-- cuda.cc
+|  |  |  |-- cuda.h
+|  |  |  |-- dragnn.cc
+|  |  |  |-- dragnn.h
+|  |  |  |-- generic-math.cc
+|  |  |  |-- generic-matmul.cc
+|  |  |  |-- generic-operators.cc
+|  |  |  |-- generic.cc
+|  |  |  |-- generic.h
+|  |  |  |-- gradients.cc
+|  |  |  |-- gradients.h
+|  |  |  |-- mkl.cc
+|  |  |  |-- mkl.h
+|  |  |  |-- precompute.cc
+|  |  |  |-- precompute.h
+|  |  |  |-- simd-matmul.cc
+|  |  |  |-- sse-matmul.cc
+|  |  |  |-- sse.cc
+|  |  |  |-- sse.h
+|  |  |  |-- tensorflow.cc
+|  |  |  |-- tensorflow.h
+|  |  |-- learning.cc
+|  |  |-- learning.h
+|  |  |-- macro-assembler.cc
+|  |  |-- macro-assembler.h
+|  |  |-- multi-process.cc
+|  |  |-- multi-process.h
+|  |  |-- nnc.cc
+|  |  |-- profile.cc
+|  |  |-- profile.h
+|  |  |-- rnn.cc
+|  |  |-- rnn.h
+|  |  |-- simd-assembler.cc
+|  |  |-- simd-assembler.h
+|  |  |-- tests
+|  |  |  |-- gradcheck.py
+|  |  |  |-- opcheck.py
+|  |  |  |-- runall.sh
+|  |-- nlp
+|  |  |-- document
+|  |  |  |-- BUILD
+|  |  |  |-- affix.cc
+|  |  |  |-- affix.h
+|  |  |  |-- analyzer.cc
+|  |  |  |-- annotator.cc
+|  |  |  |-- annotator.h
+|  |  |  |-- app
+|  |  |  |  |-- analyzer.css
+|  |  |  |  |-- analyzer.html
+|  |  |  |  |-- analyzer.js
+|  |  |  |  |-- corpus.css
+|  |  |  |  |-- corpus.html
+|  |  |  |  |-- corpus.js
+|  |  |  |-- corpus-browser.cc
+|  |  |  |-- document-corpus.cc
+|  |  |  |-- document-corpus.h
+|  |  |  |-- document-service.cc
+|  |  |  |-- document-service.h
+|  |  |  |-- document-tokenizer.cc
+|  |  |  |-- document-tokenizer.h
+|  |  |  |-- document.cc
+|  |  |  |-- document.h
+|  |  |  |-- features.cc
+|  |  |  |-- features.h
+|  |  |  |-- fingerprinter.cc
+|  |  |  |-- fingerprinter.h
+|  |  |  |-- lex.cc
+|  |  |  |-- lex.h
+|  |  |  |-- lexical-encoder.cc
+|  |  |  |-- lexical-encoder.h
+|  |  |  |-- lexicon.cc
+|  |  |  |-- lexicon.h
+|  |  |  |-- phrase-tokenizer.cc
+|  |  |  |-- phrase-tokenizer.h
+|  |  |  |-- text-tokenizer.cc
+|  |  |  |-- text-tokenizer.h
+|  |  |  |-- token-properties.h
+|  |  |  |-- vocabulary-builder.cc
+|  |  |-- embedding
+|  |  |  |-- BUILD
+|  |  |  |-- embedding-model.cc
+|  |  |  |-- embedding-model.h
+|  |  |  |-- fact-embeddings.cc
+|  |  |  |-- fact-plausibility.cc
+|  |  |  |-- plausibility-model.cc
+|  |  |  |-- plausibility-model.h
+|  |  |  |-- word-embeddings.cc
+|  |  |-- kb
+|  |  |  |-- BUILD
+|  |  |  |-- app
+|  |  |  |  |-- appicon.ico
+|  |  |  |  |-- index.html
+|  |  |  |  |-- kb.css
+|  |  |  |  |-- kb.js
+|  |  |  |-- calendar.cc
+|  |  |  |-- calendar.h
+|  |  |  |-- fact-lexicon.cc
+|  |  |  |-- facts.cc
+|  |  |  |-- facts.h
+|  |  |  |-- knowledge-server.cc
+|  |  |  |-- knowledge-service.cc
+|  |  |  |-- knowledge-service.h
+|  |  |  |-- name-table-builder.cc
+|  |  |  |-- name-table.cc
+|  |  |  |-- name-table.h
+|  |  |  |-- phrase-table-builder.cc
+|  |  |  |-- phrase-table.cc
+|  |  |  |-- phrase-table.h
+|  |  |  |-- resolver.cc
+|  |  |  |-- resolver.h
+|  |  |-- parser
+|  |  |  |-- BUILD
+|  |  |  |-- action-table.cc
+|  |  |  |-- action-table.h
+|  |  |  |-- caspar-trainer.cc
+|  |  |  |-- frame-evaluation.cc
+|  |  |  |-- frame-evaluation.h
+|  |  |  |-- multiclass-delegate.cc
+|  |  |  |-- ontonotes
+|  |  |  |  |-- annotations.py
+|  |  |  |  |-- head_finder.py
+|  |  |  |  |-- make_corpus.sh
+|  |  |  |  |-- ontonotesv5_to_sling.py
+|  |  |  |  |-- shuffle.py
+|  |  |  |  |-- statistics.py
+|  |  |  |-- parser-action.cc
+|  |  |  |-- parser-action.h
+|  |  |  |-- parser-annotator.cc
+|  |  |  |-- parser-features.cc
+|  |  |  |-- parser-features.h
+|  |  |  |-- parser-state.cc
+|  |  |  |-- parser-state.h
+|  |  |  |-- parser-trainer.cc
+|  |  |  |-- parser-trainer.h
+|  |  |  |-- parser.cc
+|  |  |  |-- parser.h
+|  |  |  |-- roles.cc
+|  |  |  |-- roles.h
+|  |  |  |-- tools
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- commons_from_corpora.py
+|  |  |  |  |-- parse.cc
+|  |  |  |  |-- parse.py
+|  |  |  |  |-- train.sh
+|  |  |  |  |-- train_caspar.py
+|  |  |  |  |-- train_pytorch.py
+|  |  |  |  |-- validate.py
+|  |  |  |  |-- viewmodel.py
+|  |  |  |-- trainer
+|  |  |  |  |-- action.py
+|  |  |  |  |-- action_table.py
+|  |  |  |  |-- cascade.py
+|  |  |  |  |-- corpora.py
+|  |  |  |  |-- lexical_encoder.py
+|  |  |  |  |-- lexicon.py
+|  |  |  |  |-- parser_state.py
+|  |  |  |  |-- pytorch_modules.py
+|  |  |  |  |-- spec.py
+|  |  |  |  |-- trace.py
+|  |  |  |  |-- train_util.py
+|  |  |  |  |-- trainer.py
+|  |  |  |  |-- transition_generator.py
+|  |  |  |-- transition-generator.cc
+|  |  |  |-- transition-generator.h
+|  |  |-- silver
+|  |  |  |-- BUILD
+|  |  |  |-- anaphora.cc
+|  |  |  |-- chart.cc
+|  |  |  |-- chart.h
+|  |  |  |-- corpus-split.cc
+|  |  |  |-- idf.cc
+|  |  |  |-- idf.h
+|  |  |  |-- mentions.cc
+|  |  |  |-- mentions.h
+|  |  |  |-- nominal-pruning.cc
+|  |  |  |-- parse-chart.cc
+|  |  |  |-- phrases.cc
+|  |  |  |-- relations.cc
+|  |  |  |-- types.cc
+|  |  |-- wiki
+|  |  |  |-- BUILD
+|  |  |  |-- aliases.cc
+|  |  |  |-- parse-wiki-text.cc
+|  |  |  |-- wiki-annotator.cc
+|  |  |  |-- wiki-annotator.h
+|  |  |  |-- wiki-extractor.cc
+|  |  |  |-- wiki-extractor.h
+|  |  |  |-- wiki-macros.cc
+|  |  |  |-- wiki-parser.cc
+|  |  |  |-- wiki-parser.h
+|  |  |  |-- wiki.cc
+|  |  |  |-- wiki.h
+|  |  |  |-- wikidata-converter.cc
+|  |  |  |-- wikidata-converter.h
+|  |  |  |-- wikidata-importer.cc
+|  |  |  |-- wikipedia-documents.cc
+|  |  |  |-- wikipedia-importer.cc
+|  |  |  |-- wikipedia-links.cc
+|  |  |  |-- wikipedia-map.cc
+|  |  |  |-- wikipedia-map.h
+|  |  |-- wikicat
+|  |  |  |-- app
+|  |  |  |  |-- appicon.ico
+|  |  |  |  |-- index.html
+|  |  |  |  |-- wikicat.css
+|  |  |  |  |-- wikicat.js
+|  |  |  |-- fact_matcher.py
+|  |  |  |-- generator.py
+|  |  |  |-- prelim_ranker.py
+|  |  |  |-- server.py
+|  |  |  |-- util.py
+|  |  |  |-- workflow.py
+|  |-- pyapi
+|  |  |-- BUILD
+|  |  |-- pyapi.cc
+|  |  |-- pyarray.cc
+|  |  |-- pyarray.h
+|  |  |-- pybase.cc
+|  |  |-- pybase.h
+|  |  |-- pydate.cc
+|  |  |-- pydate.h
+|  |  |-- pyframe.cc
+|  |  |-- pyframe.h
+|  |  |-- pymisc.cc
+|  |  |-- pymisc.h
+|  |  |-- pymyelin.cc
+|  |  |-- pymyelin.h
+|  |  |-- pyparser.cc
+|  |  |-- pyparser.h
+|  |  |-- pyphrase.cc
+|  |  |-- pyphrase.h
+|  |  |-- pyrecordio.cc
+|  |  |-- pyrecordio.h
+|  |  |-- pystore.cc
+|  |  |-- pystore.h
+|  |  |-- pytask.cc
+|  |  |-- pytask.h
+|  |  |-- pywiki.cc
+|  |  |-- pywiki.h
+|  |-- stream
+|  |  |-- BUILD
+|  |  |-- bounded.cc
+|  |  |-- bounded.h
+|  |  |-- bzip2.cc
+|  |  |-- bzip2.h
+|  |  |-- file-input.cc
+|  |  |-- file-input.h
+|  |  |-- file.cc
+|  |  |-- file.h
+|  |  |-- gzip.cc
+|  |  |-- gzip.h
+|  |  |-- input.cc
+|  |  |-- input.h
+|  |  |-- memory.cc
+|  |  |-- memory.h
+|  |  |-- output.cc
+|  |  |-- output.h
+|  |  |-- stream.h
+|  |  |-- unix-file.cc
+|  |  |-- unix-file.h
+|  |  |-- zipfile.cc
+|  |  |-- zipfile.h
+|  |-- string
+|  |  |-- BUILD
+|  |  |-- ctype.cc
+|  |  |-- ctype.h
+|  |  |-- numbers.cc
+|  |  |-- numbers.h
+|  |  |-- printf.cc
+|  |  |-- printf.h
+|  |  |-- strcat.cc
+|  |  |-- strcat.h
+|  |  |-- text.cc
+|  |  |-- text.h
+|  |-- task
+|  |  |-- BUILD
+|  |  |-- accumulator.cc
+|  |  |-- accumulator.h
+|  |  |-- app
+|  |  |  |-- appicon.ico
+|  |  |  |-- dashboard.css
+|  |  |  |-- dashboard.js
+|  |  |  |-- digital-7.mono.ttf
+|  |  |  |-- index.html
+|  |  |-- dashboard.cc
+|  |  |-- dashboard.h
+|  |  |-- documents.cc
+|  |  |-- documents.h
+|  |  |-- environment.h
+|  |  |-- frame-store-reader.cc
+|  |  |-- frame-store-writer.cc
+|  |  |-- frames.cc
+|  |  |-- frames.h
+|  |  |-- identity.cc
+|  |  |-- job.cc
+|  |  |-- job.h
+|  |  |-- learner.cc
+|  |  |-- learner.h
+|  |  |-- mapper.cc
+|  |  |-- mapper.h
+|  |  |-- message-printer.cc
+|  |  |-- message.cc
+|  |  |-- message.h
+|  |  |-- null-sink.cc
+|  |  |-- pipe-reader.cc
+|  |  |-- process.cc
+|  |  |-- process.h
+|  |  |-- record-file-reader.cc
+|  |  |-- record-file-writer.cc
+|  |  |-- reducer.cc
+|  |  |-- reducer.h
+|  |  |-- rekey.cc
+|  |  |-- sharder.cc
+|  |  |-- sorter.cc
+|  |  |-- task.cc
+|  |  |-- task.h
+|  |  |-- text-file-reader.cc
+|  |  |-- text-file-writer.cc
+|  |  |-- text-map-reader.cc
+|  |  |-- text-map-writer.cc
+|  |  |-- workers.cc
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- arena.h
+|  |  |-- asset.h
+|  |  |-- bloom.h
+|  |  |-- city.cc
+|  |  |-- city.h
+|  |  |-- elf-writer.cc
+|  |  |-- elf-writer.h
+|  |  |-- embeddings.cc
+|  |  |-- embeddings.h
+|  |  |-- fingerprint.cc
+|  |  |-- fingerprint.h
+|  |  |-- mutex.h
+|  |  |-- random.h
+|  |  |-- snappy.h
+|  |  |-- sortmap.h
+|  |  |-- thread.cc
+|  |  |-- thread.h
+|  |  |-- threadpool.cc
+|  |  |-- threadpool.h
+|  |  |-- top.h
+|  |  |-- unicode.cc
+|  |  |-- unicode.h
+|  |  |-- unicodetab.cc
+|  |  |-- varint.cc
+|  |  |-- varint.h
+|  |  |-- vocabulary.cc
+|  |  |-- vocabulary.h
+|  |-- web
+|  |  |-- BUILD
+|  |  |-- entity-ref.cc
+|  |  |-- entity-ref.h
+|  |  |-- xml-parser.cc
+|  |  |-- xml-parser.h
+|-- third_party
+|  |-- bz2lib
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- README
+|  |  |-- blocksort.c
+|  |  |-- bzlib.c
+|  |  |-- bzlib.h
+|  |  |-- bzlib_private.h
+|  |  |-- compress.c
+|  |  |-- crctable.c
+|  |  |-- decompress.c
+|  |  |-- huffman.c
+|  |  |-- randtable.c
+|  |-- jit
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- assembler.cc
+|  |  |-- assembler.h
+|  |  |-- avx512.inc
+|  |  |-- avx512ops.txt
+|  |  |-- code.cc
+|  |  |-- code.h
+|  |  |-- cpu.cc
+|  |  |-- cpu.h
+|  |  |-- instructions.h
+|  |  |-- memory.h
+|  |  |-- registers.h
+|  |  |-- types.h
+|  |-- snappy
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- bits.h
+|  |  |-- endian.h
+|  |  |-- snappy-sinksource.cc
+|  |  |-- snappy-sinksource.h
+|  |  |-- snappy.cc
+|  |  |-- snappy.h
+|  |-- zlib
+|  |  |-- BUILD
+|  |  |-- README
+|  |  |-- adler32.c
+|  |  |-- compress.c
+|  |  |-- crc32.c
+|  |  |-- crc32.h
+|  |  |-- deflate.c
+|  |  |-- deflate.h
+|  |  |-- gzclose.c
+|  |  |-- gzguts.h
+|  |  |-- gzlib.c
+|  |  |-- gzread.c
+|  |  |-- gzwrite.c
+|  |  |-- infback.c
+|  |  |-- inffast.c
+|  |  |-- inffast.h
+|  |  |-- inffixed.h
+|  |  |-- inflate.c
+|  |  |-- inflate.h
+|  |  |-- inftrees.c
+|  |  |-- inftrees.h
+|  |  |-- trees.c
+|  |  |-- trees.h
+|  |  |-- uncompr.c
+|  |  |-- zconf.h
+|  |  |-- zlib.h
+|  |  |-- zutil.c
+|  |  |-- zutil.h
+|-- tools
+|  |-- BUILD
+|  |-- build-wheel.py
+|  |-- buildall.sh
+|  |-- codex.cc
+|  |-- docv1to2.py
+|  |-- embed-data.cc
+|  |-- embed.bzl
+|  |-- index.cc
+|  |-- optohdr.py
+|  |-- snaps.cc

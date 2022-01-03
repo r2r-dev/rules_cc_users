@@ -1,0 +1,808 @@
+|-- .bazelci
+|  |-- presubmit.yml
+|-- .bazelrc
+|-- .github
+|  |-- ISSUE_TEMPLATE
+|  |-- PULL_REQUEST_TEMPLATE.md
+|-- .gitignore
+|-- AUTHORS
+|-- BUILD.bazel
+|-- CODEOWNERS
+|-- CONTRIBUTING.md
+|-- CONTRIBUTORS
+|-- LICENSE.txt
+|-- README.rst
+|-- WORKSPACE
+|-- extras
+|  |-- BUILD.bazel
+|  |-- bindata.bzl
+|  |-- embed_data.bzl
+|  |-- embed_data_deps.bzl
+|-- go
+|  |-- BUILD.bazel
+|  |-- config
+|  |  |-- BUILD.bazel
+|  |-- core.rst
+|  |-- crosstool.rst
+|  |-- def.bzl
+|  |-- dependencies.rst
+|  |-- deps.bzl
+|  |-- extras.rst
+|  |-- modes.rst
+|  |-- nogo.rst
+|  |-- nogo_logo.png
+|  |-- platform
+|  |  |-- BUILD.bazel
+|  |  |-- apple.bzl
+|  |  |-- crosstool.bzl
+|  |  |-- list.bzl
+|  |-- private
+|  |  |-- BUILD.bazel
+|  |  |-- BUILD.nogo.bazel
+|  |  |-- BUILD.sdk.bazel
+|  |  |-- actions
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- archive.bzl
+|  |  |  |-- asm.bzl
+|  |  |  |-- binary.bzl
+|  |  |  |-- compile.bzl
+|  |  |  |-- compilepkg.bzl
+|  |  |  |-- cover.bzl
+|  |  |  |-- link.bzl
+|  |  |  |-- pack.bzl
+|  |  |  |-- stdlib.bzl
+|  |  |-- common.bzl
+|  |  |-- context.bzl
+|  |  |-- go_toolchain.bzl
+|  |  |-- mode.bzl
+|  |  |-- nogo.bzl
+|  |  |-- platforms.bzl
+|  |  |-- providers.bzl
+|  |  |-- repositories.bzl
+|  |  |-- rpath.bzl
+|  |  |-- rules
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- binary.bzl
+|  |  |  |-- cgo.bzl
+|  |  |  |-- info.bzl
+|  |  |  |-- library.bzl
+|  |  |  |-- nogo.bzl
+|  |  |  |-- sdk.bzl
+|  |  |  |-- source.bzl
+|  |  |  |-- stdlib.bzl
+|  |  |  |-- test.bzl
+|  |  |  |-- transition.bzl
+|  |  |  |-- wrappers.bzl
+|  |  |-- sdk.bzl
+|  |  |-- skylib
+|  |  |  |-- README.rst
+|  |  |  |-- lib
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- versions.bzl
+|  |  |-- tools
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- files_equal_test.bzl
+|  |  |  |-- lines_sorted_test.bzl
+|  |  |  |-- path.bzl
+|  |  |  |-- single_output_test.bzl
+|  |-- providers.rst
+|  |-- toolchain
+|  |  |-- BUILD.bazel
+|  |  |-- toolchains.bzl
+|  |-- toolchains.rst
+|  |-- tools
+|  |  |-- BUILD.bazel
+|  |  |-- bazel
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bazel.go
+|  |  |  |-- bazel_test.go
+|  |  |  |-- empty.txt
+|  |  |  |-- runfiles.go
+|  |  |-- bazel_benchmark
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILD.bazel.in
+|  |  |  |-- WORKSPACE.in
+|  |  |  |-- bazel_benchmark.go
+|  |  |  |-- bazel_benchmark.sh
+|  |  |  |-- hello.go.in
+|  |  |-- bazel_testing
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bazel_testing.go
+|  |  |  |-- def.bzl
+|  |  |-- builders
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ar.go
+|  |  |  |-- asm.go
+|  |  |  |-- builder.go
+|  |  |  |-- cgo2.go
+|  |  |  |-- compile.go
+|  |  |  |-- compilepkg.go
+|  |  |  |-- cover.go
+|  |  |  |-- embed.go
+|  |  |  |-- embedcfg.go
+|  |  |  |-- env.go
+|  |  |  |-- filter.go
+|  |  |  |-- filter_buildid.go
+|  |  |  |-- filter_test.go
+|  |  |  |-- flags.go
+|  |  |  |-- generate_nogo_main.go
+|  |  |  |-- generate_test_main.go
+|  |  |  |-- go_path.go
+|  |  |  |-- importcfg.go
+|  |  |  |-- imports.go
+|  |  |  |-- info.go
+|  |  |  |-- lcov_merger.sh
+|  |  |  |-- link.go
+|  |  |  |-- md5sum.go
+|  |  |  |-- nogo_main.go
+|  |  |  |-- pack.go
+|  |  |  |-- path.go
+|  |  |  |-- path_windows.go
+|  |  |  |-- protoc.go
+|  |  |  |-- read.go
+|  |  |  |-- replicate.go
+|  |  |  |-- stdlib.go
+|  |  |  |-- stdliblist.go
+|  |  |-- bzltestutil
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- init.go
+|  |  |  |-- test2json.go
+|  |  |  |-- testdata
+|  |  |  |  |-- empty.json
+|  |  |  |  |-- empty.xml
+|  |  |  |  |-- report.json
+|  |  |  |  |-- report.xml
+|  |  |  |-- wrap.go
+|  |  |  |-- wrap_test.go
+|  |  |  |-- xml.go
+|  |  |  |-- xml_test.go
+|  |  |-- coverdata
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- coverdata.go
+|  |  |-- fetch_repo
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- fetch_repo_test.go
+|  |  |  |-- main.go
+|  |  |-- gazelle
+|  |  |  |-- README.rst
+|  |  |-- gopackagesdriver
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- aspect.bzl
+|  |  |  |-- bazel.go
+|  |  |  |-- bazel_json_builder.go
+|  |  |  |-- driver_request.go
+|  |  |  |-- flatpackage.go
+|  |  |  |-- json_packages_driver.go
+|  |  |  |-- main.go
+|  |  |  |-- packageregistry.go
+|  |  |-- internal
+|  |  |  |-- txtar
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- archive.go
+|  |  |  |  |-- archive_test.go
+|  |  |-- releaser
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- file.go
+|  |  |  |-- github.go
+|  |  |  |-- releaser.go
+|  |  |  |-- run.go
+|  |  |  |-- upgradedep.go
+|  |  |-- windows-testrunner
+|  |  |  |-- windows-testrunner.go
+|-- proto
+|  |-- BUILD.bazel
+|  |-- compiler.bzl
+|  |-- core.rst
+|  |-- def.bzl
+|  |-- gogo.bzl
+|  |-- wkt
+|  |  |-- BUILD.bazel
+|  |  |-- well_known_types.bzl
+|-- tests
+|  |-- BUILD.bazel
+|  |-- README.rst
+|  |-- buildifier_test.bzl
+|  |-- core
+|  |  |-- README.rst
+|  |  |-- c_linkmodes
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- add.go
+|  |  |  |-- add_sandwich.c
+|  |  |  |-- add_sandwich.go
+|  |  |  |-- add_sandwich.h
+|  |  |  |-- add_test_archive.c
+|  |  |  |-- add_test_sandwich.c
+|  |  |  |-- add_test_shared.c
+|  |  |  |-- c-archive_empty_hdr_test.c
+|  |  |  |-- crypto.go
+|  |  |  |-- crypto_test_dl.c
+|  |  |  |-- empty.go
+|  |  |  |-- skip.c
+|  |  |-- cgo
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- add.c
+|  |  |  |-- add.cpp
+|  |  |  |-- add.h
+|  |  |  |-- add.m
+|  |  |  |-- add.mm
+|  |  |  |-- adder.go
+|  |  |  |-- adder_test.go
+|  |  |  |-- bar.cc
+|  |  |  |-- bar.go
+|  |  |  |-- cc_libs_darwin_test.go
+|  |  |  |-- cc_libs_linux_test.go
+|  |  |  |-- cgo_link_dep.c
+|  |  |  |-- cgo_link_test.go
+|  |  |  |-- cgo_ref.go
+|  |  |  |-- dylib_client.go
+|  |  |  |-- dylib_test.go
+|  |  |  |-- foo.c
+|  |  |  |-- foo.go
+|  |  |  |-- generate_imported_dylib.sh
+|  |  |  |-- imported.c
+|  |  |  |-- objc
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- README.rst
+|  |  |  |  |-- add_darwin.go
+|  |  |  |  |-- add_darwin.h
+|  |  |  |  |-- add_darwin.m
+|  |  |  |  |-- objc_darwin_test.go
+|  |  |  |  |-- sub.m
+|  |  |  |  |-- sub_darwin.go
+|  |  |  |-- pure.go
+|  |  |  |-- race_off.c
+|  |  |  |-- race_off.go
+|  |  |  |-- race_on.c
+|  |  |  |-- race_on.go
+|  |  |  |-- race_test.go
+|  |  |  |-- split_import_a.go
+|  |  |  |-- split_import_b.go
+|  |  |  |-- split_import_c.c
+|  |  |  |-- split_import_c.h
+|  |  |  |-- split_import_cgo.go
+|  |  |  |-- split_import_i_test.go
+|  |  |  |-- split_import_x_test.go
+|  |  |  |-- tag_cgo.go
+|  |  |  |-- tag_cgo_err.go
+|  |  |  |-- tag_pure.go
+|  |  |  |-- tag_pure_err.c
+|  |  |  |-- tag_pure_err.go
+|  |  |  |-- tag_test.go
+|  |  |-- coverage
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- binary_coverage_test.go
+|  |  |  |-- coverage_test.go
+|  |  |-- cross
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- cross_test.go
+|  |  |  |-- def.bzl
+|  |  |  |-- ios_select_test.go
+|  |  |  |-- lib_darwin.go
+|  |  |  |-- lib_linux.go
+|  |  |  |-- lib_windows.go
+|  |  |  |-- main.go
+|  |  |  |-- proto_test.go
+|  |  |-- go_bazel_test
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- dataargtest_test.go
+|  |  |-- go_binary
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- broken_cgo.go
+|  |  |  |-- custom_bin.go
+|  |  |  |-- hello.go
+|  |  |  |-- many_deps.bzl
+|  |  |  |-- out_test.go
+|  |  |  |-- package_conflict_test.go
+|  |  |  |-- pie_darwin_amd64_test.go
+|  |  |  |-- pie_darwin_test.go
+|  |  |  |-- pie_linux_test.go
+|  |  |  |-- prefix
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- prefix.go
+|  |  |  |-- stamp_bin.go
+|  |  |  |-- stamp_dep.go
+|  |  |  |-- stamp_embed.go
+|  |  |  |-- stamp_test.go
+|  |  |  |-- static_bin.go
+|  |  |  |-- static_cgo_bin.go
+|  |  |  |-- static_pure_bin.go
+|  |  |  |-- static_test.go
+|  |  |  |-- tags_lib_bad.go
+|  |  |  |-- tags_lib_good.go
+|  |  |  |-- tags_main_bad.go
+|  |  |  |-- tags_main_good.go
+|  |  |-- go_download_sdk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- go_download_sdk_test.go
+|  |  |-- go_embed_data
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- embed_test.go
+|  |  |  |-- error.c
+|  |  |-- go_library
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- def.bzl
+|  |  |  |-- embedsrcs_error_test.go
+|  |  |  |-- embedsrcs_gen_test.go.in
+|  |  |  |-- embedsrcs_static
+|  |  |  |  |-- dir
+|  |  |  |  |  |-- _no
+|  |  |  |  |  |-- f
+|  |  |  |  |-- file
+|  |  |  |  |-- glob
+|  |  |  |  |  |-- _hidden
+|  |  |  |  |  |-- f
+|  |  |  |  |-- no
+|  |  |  |-- embedsrcs_test.go
+|  |  |  |-- empty_bar.go
+|  |  |  |-- empty_baz.s
+|  |  |  |-- empty_foo.go
+|  |  |  |-- gen_embedsrcs_files.go
+|  |  |  |-- import_alias_a_v2.go
+|  |  |  |-- import_alias_b.go
+|  |  |  |-- import_alias_test.go
+|  |  |  |-- inc.go
+|  |  |  |-- inc_asmhdr.s
+|  |  |  |-- inc_bar.s
+|  |  |  |-- inc_foo.s
+|  |  |  |-- package_height.go
+|  |  |  |-- package_height_dep_deep.go
+|  |  |  |-- package_height_dep_shallow.go
+|  |  |  |-- package_height_embeddee.go
+|  |  |  |-- package_height_embedder.go
+|  |  |-- go_path
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- cmd
+|  |  |  |  |-- bin
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- bin.go
+|  |  |  |-- extra.txt
+|  |  |  |-- go_path_test.go
+|  |  |  |-- pkg
+|  |  |  |  |-- lib
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- data.txt
+|  |  |  |  |  |-- embed_test.go
+|  |  |  |  |  |-- external_test.go
+|  |  |  |  |  |-- internal_test.go
+|  |  |  |  |  |-- lib.go
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- testdata.txt
+|  |  |  |  |  |-- transitive.go
+|  |  |  |  |  |-- vendored.go
+|  |  |-- go_plugin
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- all_test.go
+|  |  |  |-- plugin.go
+|  |  |-- go_proto_library
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- adjusted_a.proto
+|  |  |  |-- adjusted_b.proto
+|  |  |  |-- adjusted_c.proto
+|  |  |  |-- adjusted_import_test.go
+|  |  |  |-- bar.proto
+|  |  |  |-- embed_test.go
+|  |  |  |-- extra.go
+|  |  |  |-- foo.proto
+|  |  |  |-- gofast_grpc_test.go
+|  |  |  |-- gofast_test.go
+|  |  |  |-- gogofast_grpc_test.go
+|  |  |  |-- gogofast_test.go
+|  |  |  |-- grpc.proto
+|  |  |  |-- no_go_package.proto
+|  |  |  |-- proto_package_test.go
+|  |  |  |-- protos_a.proto
+|  |  |  |-- protos_alias_test.go
+|  |  |  |-- protos_b.proto
+|  |  |  |-- protos_test.go
+|  |  |  |-- proxy_a.proto
+|  |  |  |-- proxy_b.proto
+|  |  |  |-- proxy_test.go
+|  |  |  |-- transitive_test.go
+|  |  |  |-- wkt_wrapper_test.go
+|  |  |-- go_proto_library_importmap
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- foo.proto
+|  |  |  |-- importmap_test.go
+|  |  |-- go_test
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- data_test.go
+|  |  |  |-- data_test_dep.go
+|  |  |  |-- data_test_embed.go
+|  |  |  |-- example_test.go
+|  |  |  |-- external_importmap_dep.go
+|  |  |  |-- external_importmap_lib.go
+|  |  |  |-- external_importmap_test.go
+|  |  |  |-- external_test.go
+|  |  |  |-- flag_test.go
+|  |  |  |-- indirect_import_dep.go
+|  |  |  |-- indirect_import_i_test.go
+|  |  |  |-- indirect_import_lib.go
+|  |  |  |-- indirect_import_x_test.go
+|  |  |  |-- internal_test.go
+|  |  |  |-- lib.go
+|  |  |  |-- only_testmain_test.go
+|  |  |  |-- pwd_test.go
+|  |  |  |-- tags_bad_test.go
+|  |  |  |-- tags_good_test.go
+|  |  |  |-- test_filter_test.go
+|  |  |  |-- testmain_import_indirect_test.go
+|  |  |  |-- testmain_import_main_test.go
+|  |  |  |-- testmain_without_exit_test.go
+|  |  |  |-- wrapped_test.go
+|  |  |  |-- wrapper_test.go
+|  |  |  |-- x
+|  |  |  |-- xmlreport_test.go
+|  |  |  |-- y
+|  |  |  |-- z
+|  |  |-- importmap
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- import.go
+|  |  |  |-- importmap_test.go
+|  |  |  |-- lib.go
+|  |  |-- nogo
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- common.bzl
+|  |  |  |-- config
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- README.rst
+|  |  |  |  |-- config_test.go
+|  |  |  |-- coverage
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- README.rst
+|  |  |  |  |-- coverage_test.go
+|  |  |  |-- custom
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- README.rst
+|  |  |  |  |-- custom_test.go
+|  |  |  |-- deps
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- README.rst
+|  |  |  |  |-- deps_test.go
+|  |  |  |-- vet
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- README.rst
+|  |  |  |  |-- vet_test.go
+|  |  |-- output_groups
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- bin.go
+|  |  |  |-- compilation_outputs_test.go
+|  |  |  |-- lib.go
+|  |  |  |-- lib_test.go
+|  |  |-- race
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- race_test.go
+|  |  |-- runfiles
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- bin.go
+|  |  |  |-- check_runfiles.go
+|  |  |  |-- empty_bin.go
+|  |  |  |-- local_file.txt
+|  |  |  |-- local_group.txt
+|  |  |  |-- runfiles_cmd.go
+|  |  |  |-- runfiles_remote_test
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- WORKSPACE
+|  |  |  |  |-- remote_file.txt
+|  |  |  |  |-- remote_group.txt
+|  |  |  |-- runfiles_test.go
+|  |  |-- starlark
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- common_tests.bzl
+|  |  |-- stdlib
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- buildid_test.go
+|  |  |  |-- reproduce_test.sh
+|  |  |  |-- stdlib_files.bzl
+|  |  |-- transition
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- cmdline_test.go
+|  |-- examples
+|  |  |-- README.rst
+|  |  |-- executable_name
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- main.go
+|  |  |  |-- name_test.sh
+|  |-- grpc_repos.bzl
+|  |-- integration
+|  |  |-- README.rst
+|  |  |-- gazelle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- gazelle_test.go
+|  |  |-- googleapis
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- color_service.go
+|  |  |  |-- color_service.proto
+|  |  |  |-- color_service_test.go
+|  |  |-- popular_repos
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- popular_repos.bzl
+|  |  |  |-- popular_repos.py
+|  |  |-- reproducibility
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.rst
+|  |  |  |-- reproducibility_test.go
+|  |-- legacy
+|  |  |-- README.rst
+|  |  |-- asm_include
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- foo_amd64.go
+|  |  |  |-- foo_amd64.h
+|  |  |  |-- foo_amd64.s
+|  |  |  |-- foo_other.go
+|  |  |  |-- foo_test.go
+|  |  |-- binary_test_outputs
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bin.go
+|  |  |  |-- test.go
+|  |  |-- build_constraints
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- asm_arm64.s
+|  |  |  |-- asm_linux_amd64.s
+|  |  |  |-- asm_unknown.s
+|  |  |  |-- build_constraints_test.go
+|  |  |  |-- cgo_group_linux.c
+|  |  |  |-- cgo_group_unknown.c
+|  |  |  |-- cgo_linux.c
+|  |  |  |-- cgo_linux.go
+|  |  |  |-- cgo_unknown.c
+|  |  |  |-- cgo_unknown.go
+|  |  |  |-- suffix_linux.go
+|  |  |  |-- suffix_unknown.go
+|  |  |  |-- tag_l.go
+|  |  |  |-- tag_unknown.go
+|  |  |-- cgo_filtered
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- pure.go
+|  |  |  |-- pure_test.go
+|  |  |-- cgo_multi_dir
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bar
+|  |  |  |  |-- bar.go
+|  |  |  |-- cgo_multi_dir_test.go
+|  |  |  |-- foo
+|  |  |  |  |-- foo.go
+|  |  |-- cgo_opts
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cgo_opts.go
+|  |  |  |-- cgo_opts_test.go
+|  |  |-- cgo_pthread_flag
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cgo_pthread_flag.go
+|  |  |  |-- cgo_pthread_flag_test.go
+|  |  |-- cgo_pure
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cgo.c
+|  |  |  |-- cgo.go
+|  |  |  |-- cgo_no_tag.go
+|  |  |  |-- cgo_pure_test.go
+|  |  |  |-- pure.go
+|  |  |-- cgo_select
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cgo_darwin.go
+|  |  |  |-- cgo_linux.go
+|  |  |  |-- cgo_select_test.go
+|  |  |  |-- cgo_windows.go
+|  |  |  |-- darwin.c
+|  |  |  |-- linux.c
+|  |  |  |-- windows.c
+|  |  |-- cgo_sys_hdr
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- foo.go
+|  |  |  |-- foo_test.go
+|  |  |  |-- sub
+|  |  |  |  |-- foo.h
+|  |  |-- cgo_trans_deps
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cgo_lib.go
+|  |  |  |-- cgo_test.go
+|  |  |  |-- dep
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- dep.go
+|  |  |-- empty_package
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cgo.c
+|  |  |  |-- cgo.go
+|  |  |  |-- empty_package_test.go
+|  |  |  |-- mixed_cgo.go
+|  |  |  |-- mixed_pure.go
+|  |  |-- examples
+|  |  |  |-- bin
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- bin.go
+|  |  |  |-- bindata
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- bindata_test.go
+|  |  |  |  |-- data
+|  |  |  |  |  |-- message.txt
+|  |  |  |-- cgo
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- cc_dependency
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- c_version.c
+|  |  |  |  |  |-- c_version.h
+|  |  |  |  |  |-- cxx_version.cc
+|  |  |  |  |  |-- version.h
+|  |  |  |  |-- cgo_lib_test.go
+|  |  |  |  |-- example_command
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- generate_test.bzl
+|  |  |  |  |  |-- main.go
+|  |  |  |  |-- export_example.go
+|  |  |  |  |-- generated.go.tpl
+|  |  |  |  |-- import_example.go
+|  |  |  |  |-- pure_go.go
+|  |  |  |  |-- skip_go_library
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- cgo_foo.go
+|  |  |  |  |  |-- types.go
+|  |  |  |  |-- sub
+|  |  |  |  |  |-- floor.go
+|  |  |  |  |-- use_exported.c
+|  |  |  |  |-- use_exported.h
+|  |  |  |-- external
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- lib
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- add_amd64.s
+|  |  |  |  |-- add_arm64.s
+|  |  |  |  |-- asm.go
+|  |  |  |  |-- deep
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- doc.go
+|  |  |  |  |  |-- thought.go
+|  |  |  |  |-- lib.go
+|  |  |  |  |-- lib_test.go
+|  |  |  |  |-- lib_x_test.go
+|  |  |  |  |-- sub_amd64.s
+|  |  |  |  |-- sub_arm64.s
+|  |  |  |-- monobuild
+|  |  |  |  |-- cmd
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- mycmd.go
+|  |  |  |  |-- lib1
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- lib1.go
+|  |  |  |  |-- lib2
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- lib2.go
+|  |  |  |-- proto
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- dep
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- useful.proto
+|  |  |  |  |-- embed
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- embed.go
+|  |  |  |  |  |-- embed.proto
+|  |  |  |  |-- gogo
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- gogo_test.go
+|  |  |  |  |  |-- values.proto
+|  |  |  |  |-- gostyle
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- gostyle.proto
+|  |  |  |  |-- grpc
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- main.go
+|  |  |  |  |  |-- my_svc.proto
+|  |  |  |  |-- gs.go
+|  |  |  |  |-- lib
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- lib.proto
+|  |  |  |  |  |-- lib2.proto
+|  |  |  |  |-- proto_test.go
+|  |  |  |-- stamped_bin
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- stamped_test.go
+|  |  |  |-- vendor
+|  |  |  |  |-- github.com
+|  |  |  |  |  |-- user
+|  |  |  |  |  |  |-- vendored
+|  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |-- vendored.go
+|  |  |-- extldflags_rpath
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- extldflags_rpath_test.sh
+|  |  |  |-- main.go
+|  |  |-- info
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- info_test.sh
+|  |  |-- no_prefix
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- no_prefix_test.go
+|  |  |-- package_named_build
+|  |  |  |-- build
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- build.go
+|  |  |  |  |-- build_test.go
+|  |  |-- proto_ignore_go_package_option
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- a.proto
+|  |  |  |-- b.proto
+|  |  |-- providers
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- test.bzl
+|  |  |  |-- test.go
+|  |  |  |-- test.sh
+|  |  |-- slash_names
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- a
+|  |  |  |  |-- pkg
+|  |  |  |  |  |-- pkg.go
+|  |  |  |-- b
+|  |  |  |  |-- pkg
+|  |  |  |  |  |-- pkg.go
+|  |  |  |-- slash_test.go
+|  |  |-- test_build_constraints
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bar_l_test.go
+|  |  |  |-- bar_unknown_test.go
+|  |  |  |-- baz_linux_test.go
+|  |  |  |-- baz_unknown_test.go
+|  |  |  |-- foo_linux_test.go
+|  |  |  |-- foo_unknown_test.go
+|  |  |-- test_chdir
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- data.txt
+|  |  |  |-- data_test.go
+|  |  |  |-- remote.bzl
+|  |  |-- test_rundir
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- rundir_test.go
+|  |  |-- transitive_data
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- c_data.txt
+|  |  |  |-- cgo_data.txt
+|  |  |  |-- empty.go
+|  |  |  |-- empty_cgo.go
+|  |  |  |-- go_data.txt
+|  |  |  |-- transitive_data_test.go
+|  |  |-- visibility
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- foo.go
+|  |-- update.py
+|-- third_party
+|  |-- BUILD.bazel
+|  |-- README.txt
+|  |-- com_github_gogo_protobuf-gazelle.patch
+|  |-- com_github_golang_protobuf-gazelle.patch
+|  |-- com_github_kevinburke_go_bindata-gazelle.patch
+|  |-- go_googleapis-deletebuild.patch
+|  |-- go_googleapis-directives.patch
+|  |-- go_googleapis-gazelle.patch
+|  |-- org_golang_google_genproto-gazelle.patch
+|  |-- org_golang_google_protobuf-gazelle.patch
+|  |-- org_golang_x_sys-gazelle.patch
+|  |-- org_golang_x_tools-deletegopls.patch
+|  |-- org_golang_x_tools-gazelle.patch
+|  |-- org_golang_x_xerrors-gazelle.patch
+|  |-- sanitize_patch_dates.go
+|-- windows.rst

@@ -1,0 +1,501 @@
+|-- .clang-format
+|-- .gitignore
+|-- .gitmodules
+|-- BUILD
+|-- DRAMSim2
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- benchmarks.cfg
+|-- mem-repeater
+|-- run.sh
+|-- scripts
+|  |-- BUILD
+|  |-- bmk.py
+|  |-- compare_stat.py
+|  |-- counters.py
+|  |-- molecool.py
+|  |-- parse_res.py
+|  |-- perfmon.py
+|  |-- run_spec.py
+|  |-- run_tests.py
+|  |-- spec.py
+|  |-- vtl.py
+|  |-- xiosim_driver.py
+|  |-- xiosim_stat.py
+|-- tests
+|  |-- BUILD
+|  |-- Makefile
+|  |-- atomics.cpp
+|  |-- cmpjmp.cpp
+|  |-- fib.cpp
+|  |-- ignore.cpp
+|  |-- k8
+|  |  |-- atomics
+|  |  |-- chase
+|  |  |-- fib
+|  |  |-- fib..pintool.1.pp
+|  |  |-- fib..pintool.2.pp
+|  |  |-- ignore
+|  |  |-- loop
+|  |  |-- misses
+|  |  |-- prefetch
+|  |  |-- rdtsc
+|  |  |-- rep
+|  |  |-- repl
+|  |  |-- roi
+|  |  |-- segf
+|  |  |-- step
+|  |  |-- time
+|  |  |-- time_vdso
+|  |-- loop.cpp
+|  |-- misses.cpp
+|  |-- piii
+|  |  |-- chase
+|  |  |-- fib
+|  |  |-- fib..pintool.1.pp
+|  |  |-- fib..pintool.2.pp
+|  |  |-- ignore
+|  |  |-- loop
+|  |  |-- misses
+|  |  |-- prefetch
+|  |  |-- rdtsc
+|  |  |-- rep
+|  |  |-- repl
+|  |  |-- roi
+|  |  |-- segf
+|  |  |-- step
+|  |  |-- time
+|  |-- prefetch.cpp
+|  |-- rdtsc.cpp
+|  |-- rep.cpp
+|  |-- repl.cpp
+|  |-- roi.cpp
+|  |-- segf.cpp
+|  |-- step.cpp
+|  |-- time.cpp
+|-- third_party
+|  |-- InstLib
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- alarm.H
+|  |  |-- control.H
+|  |  |-- control_stats.H
+|  |  |-- debugger-shell.H
+|  |  |-- debugger-shell.cpp
+|  |  |-- filter.H
+|  |  |-- follow_child.H
+|  |  |-- icount.H
+|  |  |-- legacy_instlib.H
+|  |  |-- parse_address_count.H
+|  |  |-- pinpoint_alarm.H
+|  |  |-- pinpoint_control.H
+|  |  |-- regions_control.H
+|  |  |-- skipper.H
+|  |  |-- time_warp.H
+|  |-- boost
+|  |  |-- BUILD
+|  |  |-- BUILD.external
+|  |-- catch
+|  |  |-- BUILD
+|  |  |-- BUILD.external
+|  |-- confuse
+|  |  |-- BUILD
+|  |  |-- BUILD.external
+|  |  |-- config.h
+|  |  |-- lexer.c
+|  |-- ezOptionParser
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- ezOptionParser.hpp
+|  |  |-- ezOptionParser_clean.hpp
+|  |-- mcpat
+|  |  |-- Alpha21364.xml
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- Niagara1.xml
+|  |  |-- Niagara1_sharing.xml
+|  |  |-- Niagara1_sharing_DC.xml
+|  |  |-- Niagara1_sharing_SBT.xml
+|  |  |-- Niagara1_sharing_ST.xml
+|  |  |-- Niagara2.xml
+|  |  |-- Penryn.xml
+|  |  |-- README
+|  |  |-- XML_Parse.cc
+|  |  |-- XML_Parse.h
+|  |  |-- Xeon.xml
+|  |  |-- arch_const.h
+|  |  |-- array.cc
+|  |  |-- array.h
+|  |  |-- basic_components.cc
+|  |  |-- basic_components.h
+|  |  |-- cacti
+|  |  |  |-- BUILD
+|  |  |  |-- README
+|  |  |  |-- Ucache.cc
+|  |  |  |-- Ucache.h
+|  |  |  |-- arbiter.cc
+|  |  |  |-- arbiter.h
+|  |  |  |-- area.cc
+|  |  |  |-- area.h
+|  |  |  |-- bank.cc
+|  |  |  |-- bank.h
+|  |  |  |-- basic_circuit.cc
+|  |  |  |-- basic_circuit.h
+|  |  |  |-- batch_tests
+|  |  |  |-- cache.cfg
+|  |  |  |-- cacti.i
+|  |  |  |-- cacti_interface.cc
+|  |  |  |-- cacti_interface.h
+|  |  |  |-- component.cc
+|  |  |  |-- component.h
+|  |  |  |-- const.h
+|  |  |  |-- contention.dat
+|  |  |  |-- crossbar.cc
+|  |  |  |-- crossbar.h
+|  |  |  |-- decoder.cc
+|  |  |  |-- decoder.h
+|  |  |  |-- globalvar.h
+|  |  |  |-- highradix.cc
+|  |  |  |-- highradix.h
+|  |  |  |-- htree2.cc
+|  |  |  |-- htree2.h
+|  |  |  |-- io.cc
+|  |  |  |-- io.h
+|  |  |  |-- main.cc
+|  |  |  |-- makefile
+|  |  |  |-- mat.cc
+|  |  |  |-- mat.h
+|  |  |  |-- nuca.cc
+|  |  |  |-- nuca.h
+|  |  |  |-- out_batch_test_result.csv
+|  |  |  |-- parameter.cc
+|  |  |  |-- parameter.h
+|  |  |  |-- powergating.cc
+|  |  |  |-- powergating.h
+|  |  |  |-- router.cc
+|  |  |  |-- router.h
+|  |  |  |-- subarray.cc
+|  |  |  |-- subarray.h
+|  |  |  |-- technology.cc
+|  |  |  |-- uca.cc
+|  |  |  |-- uca.h
+|  |  |  |-- version_cacti.h
+|  |  |  |-- wire.cc
+|  |  |  |-- wire.h
+|  |  |-- core.cc
+|  |  |-- core.h
+|  |  |-- globalvar.h
+|  |  |-- interconnect.cc
+|  |  |-- interconnect.h
+|  |  |-- iocontrollers.cc
+|  |  |-- iocontrollers.h
+|  |  |-- logic.cc
+|  |  |-- logic.h
+|  |  |-- main.cc
+|  |  |-- makefile
+|  |  |-- mcpat.h
+|  |  |-- mcpatXeonCore.mk
+|  |  |-- memoryctrl.cc
+|  |  |-- memoryctrl.h
+|  |  |-- noc.cc
+|  |  |-- noc.h
+|  |  |-- processor.cc
+|  |  |-- processor.h
+|  |  |-- results
+|  |  |  |-- Alpha21364
+|  |  |  |-- Alpha21364_90nm
+|  |  |  |-- Penryn
+|  |  |  |-- T1
+|  |  |  |-- T1_DC_64
+|  |  |  |-- T1_SBT_64
+|  |  |  |-- T1_ST_64
+|  |  |  |-- T2
+|  |  |  |-- Xeon_core
+|  |  |  |-- Xeon_uncore
+|  |  |-- sharedcache.cc
+|  |  |-- sharedcache.h
+|  |  |-- slave.cc
+|  |  |-- technology_xeon_core.cc
+|  |  |-- version.h
+|  |  |-- xmlParser.cc
+|  |  |-- xmlParser.h
+|  |-- pin
+|  |  |-- BUILD
+|  |  |-- BUILD.external
+|  |  |-- weaken.bzl
+|-- tools
+|  |-- bazel.rc
+|-- tools_local
+|  |-- cpp
+|  |  |-- BUILD
+|  |  |-- CROSSTOOL
+|-- xiosim
+|  |-- 2bitc.h
+|  |-- BUILD
+|  |-- LICENSE.zesto
+|  |-- ZCOMPS-MC
+|  |  |-- MC-dramsim.cpp
+|  |  |-- MC-ideal.cpp
+|  |  |-- MC-simple.cpp
+|  |-- ZCOMPS-bpred
+|  |  |-- bpred-2bc.cpp
+|  |  |-- bpred-2lev.cpp
+|  |  |-- bpred-alloyedperceptron.cpp
+|  |  |-- bpred-bimode.cpp
+|  |  |-- bpred-blg.cpp
+|  |  |-- bpred-btfnt.cpp
+|  |  |-- bpred-magic.cpp
+|  |  |-- bpred-nottaken.cpp
+|  |  |-- bpred-pathneural.cpp
+|  |  |-- bpred-perceptron.cpp
+|  |  |-- bpred-perfect.cpp
+|  |  |-- bpred-pwl.cpp
+|  |  |-- bpred-random.cpp
+|  |  |-- bpred-skewed.cpp
+|  |  |-- bpred-tage.cpp
+|  |  |-- bpred-taken.cpp
+|  |  |-- bpred-yags.cpp
+|  |-- ZCOMPS-btb
+|  |  |-- btb-2levbtac.cpp
+|  |  |-- btb-btac.cpp
+|  |  |-- btb-perfect.cpp
+|  |-- ZCOMPS-coherence
+|  |  |-- const.cpp
+|  |  |-- none.cpp
+|  |-- ZCOMPS-dram
+|  |  |-- dram-simplescalar.cpp
+|  |  |-- dram-simplesdram-infbw.cpp
+|  |  |-- dram-simplesdram.cpp
+|  |-- ZCOMPS-dvfs
+|  |  |-- none.cpp
+|  |  |-- sample.cpp
+|  |-- ZCOMPS-fusion
+|  |  |-- fusion-colt.cpp
+|  |  |-- fusion-mcfarling.cpp
+|  |  |-- fusion-multihybrid.cpp
+|  |  |-- fusion-oracle.cpp
+|  |  |-- fusion-priority.cpp
+|  |  |-- fusion-random.cpp
+|  |  |-- fusion-singleton.cpp
+|  |-- ZCOMPS-memdep
+|  |  |-- memdep-blind.cpp
+|  |  |-- memdep-lwt.cpp
+|  |  |-- memdep-none.cpp
+|  |  |-- memdep-oracle.cpp
+|  |-- ZCOMPS-prefetch
+|  |  |-- prefetch-2lev-IP.cpp
+|  |  |-- prefetch-IP.cpp
+|  |  |-- prefetch-context.cpp
+|  |  |-- prefetch-nextline.cpp
+|  |  |-- prefetch-stream.cpp
+|  |-- ZCOMPS-ras
+|  |  |-- ras-multistack.cpp
+|  |  |-- ras-perfect.cpp
+|  |  |-- ras-stack.cpp
+|  |-- ZCOMPS-repeater
+|  |  |-- repeater-default.cpp
+|  |  |-- repeater-none.cpp
+|  |-- ZCORE-power
+|  |  |-- power-DPM.cpp
+|  |  |-- power-IO-DPM.cpp
+|  |  |-- power-none.cpp
+|  |-- ZPIPE-alloc
+|  |  |-- alloc-DPM.cpp
+|  |  |-- alloc-IO-DPM.cpp
+|  |  |-- alloc-STM.cpp
+|  |  |-- alloc-none.cpp
+|  |-- ZPIPE-commit
+|  |  |-- commit-DPM.cpp
+|  |  |-- commit-IO-DPM.cpp
+|  |  |-- commit-STM.cpp
+|  |  |-- commit-none.cpp
+|  |-- ZPIPE-decode
+|  |  |-- decode-DPM.cpp
+|  |  |-- decode-STM.cpp
+|  |  |-- decode-none.cpp
+|  |-- ZPIPE-exec
+|  |  |-- exec-DPM.cpp
+|  |  |-- exec-IO-DPM.cpp
+|  |  |-- exec-STM.cpp
+|  |  |-- exec-none.cpp
+|  |-- ZPIPE-fetch
+|  |  |-- fetch-DPM.cpp
+|  |  |-- fetch-STM.cpp
+|  |  |-- fetch-none.cpp
+|  |-- boost_statistics.h
+|  |-- catch_impl.cpp
+|  |-- components.bzl
+|  |-- config
+|  |  |-- A.cfg
+|  |  |-- H.cfg
+|  |  |-- N.cfg
+|  |  |-- default.cfg
+|  |  |-- none.cfg
+|  |-- core-set.h
+|  |-- core_const.h
+|  |-- decode.cpp
+|  |-- decode.h
+|  |-- expression.h
+|  |-- expression_impl.cpp
+|  |-- expression_impl.h
+|  |-- fu.cpp
+|  |-- fu.h
+|  |-- helix.h
+|  |-- host.h
+|  |-- knobs.h
+|  |-- libsim.h
+|  |-- memory.cpp
+|  |-- memory.h
+|  |-- misc.cpp
+|  |-- misc.h
+|  |-- misc_test.cpp
+|  |-- pintool
+|  |  |-- BUILD
+|  |  |-- BufferManager.cpp
+|  |  |-- BufferManager.h
+|  |  |-- BufferManagerConsumer.cpp
+|  |  |-- BufferManagerConsumer.h
+|  |  |-- BufferManagerProducer.cpp
+|  |  |-- BufferManagerProducer.h
+|  |  |-- allocators_impl.h
+|  |  |-- base_allocator.cpp
+|  |  |-- base_allocator.h
+|  |  |-- base_speedup_model.cpp
+|  |  |-- base_speedup_model.h
+|  |  |-- boost_interprocess.h
+|  |  |-- buffer.h
+|  |  |-- feeder.h
+|  |  |-- feeder_zesto.cpp
+|  |  |-- gang_allocator.cpp
+|  |  |-- handshake_container.h
+|  |  |-- harness.cpp
+|  |  |-- ignore_ins.cpp
+|  |  |-- ignore_ins.h
+|  |  |-- ildjit.cpp
+|  |  |-- ildjit.h
+|  |  |-- ipc_queues.cpp
+|  |  |-- ipc_queues.h
+|  |  |-- linear_speedup_model.cpp
+|  |  |-- linreg.cpp
+|  |  |-- linreg.h
+|  |  |-- local_opt_allocator.cpp
+|  |  |-- log_speedup_model.cpp
+|  |  |-- mpkeys.h
+|  |  |-- mpkeys_impl.cpp
+|  |  |-- multiprocess_shared.cpp
+|  |  |-- multiprocess_shared.h
+|  |  |-- optimization_targets.cpp
+|  |  |-- optimization_targets.h
+|  |  |-- paravirt.cpp
+|  |  |-- paravirt.h
+|  |  |-- parse_speedup.cpp
+|  |  |-- parse_speedup.h
+|  |  |-- penalty_allocator.cpp
+|  |  |-- profiling.cpp
+|  |  |-- profiling.h
+|  |  |-- replace_function.cpp
+|  |  |-- replace_function.h
+|  |  |-- roi.cpp
+|  |  |-- roi.h
+|  |  |-- scheduler.cpp
+|  |  |-- scheduler.h
+|  |  |-- shared_common.h
+|  |  |-- shared_map.h
+|  |  |-- shared_map_example.cpp
+|  |  |-- shared_unordered_common.h
+|  |  |-- shared_unordered_map.h
+|  |  |-- speculation.cpp
+|  |  |-- speculation.h
+|  |  |-- speedup_models.h
+|  |  |-- sync_pthreads.cpp
+|  |  |-- sync_pthreads.h
+|  |  |-- syscall_handling.cpp
+|  |  |-- syscall_handling.h
+|  |  |-- test_allocation.cpp
+|  |  |-- test_data
+|  |  |  |-- loop_speedup_data.csv
+|  |  |-- test_handshake_serialization.cpp
+|  |  |-- test_parse_speedup.cpp
+|  |  |-- test_speedup_models.cpp
+|  |  |-- timing_sim.cpp
+|  |  |-- timing_sim.h
+|  |  |-- utils.cpp
+|  |  |-- utils.h
+|  |  |-- vdso.cpp
+|  |  |-- vdso.h
+|  |-- regs.h
+|  |-- shadow_MopQ.cpp
+|  |-- shadow_MopQ.h
+|  |-- sim-loop.cpp
+|  |-- sim-loop.h
+|  |-- sim.cpp
+|  |-- sim.h
+|  |-- slices.cpp
+|  |-- slices.h
+|  |-- stat_database.h
+|  |-- statistic.h
+|  |-- stats.cpp
+|  |-- stats.h
+|  |-- synchronization.h
+|  |-- test_data
+|  |  |-- gzopen.gz
+|  |  |-- test_stat.database.out
+|  |  |-- test_stat.distribution.labeled.out
+|  |  |-- test_stat.distribution.unlabeled.out
+|  |  |-- test_stat.histogram.out
+|  |  |-- test_stat.histogram_scaled.out
+|  |  |-- test_stat.reg_api.out
+|  |  |-- test_stat.singlevalue_int.out
+|  |-- test_decoder.cpp
+|  |-- test_parse_configs.cpp
+|  |-- test_stat_database.cpp
+|  |-- test_uop_cracker.cpp
+|  |-- test_xed_context.h
+|  |-- uop_cracker.cpp
+|  |-- uop_cracker.h
+|  |-- valcheck.h
+|  |-- zesto-MC.cpp
+|  |-- zesto-MC.h
+|  |-- zesto-alloc.cpp
+|  |-- zesto-alloc.h
+|  |-- zesto-bpred.cpp
+|  |-- zesto-bpred.h
+|  |-- zesto-cache.cpp
+|  |-- zesto-cache.h
+|  |-- zesto-coherence.cpp
+|  |-- zesto-coherence.h
+|  |-- zesto-commit.cpp
+|  |-- zesto-commit.h
+|  |-- zesto-config-params.cpp
+|  |-- zesto-config.cpp
+|  |-- zesto-config.h
+|  |-- zesto-core.cpp
+|  |-- zesto-core.h
+|  |-- zesto-decode.cpp
+|  |-- zesto-decode.h
+|  |-- zesto-dram.cpp
+|  |-- zesto-dram.h
+|  |-- zesto-dvfs.cpp
+|  |-- zesto-dvfs.h
+|  |-- zesto-exec.cpp
+|  |-- zesto-exec.h
+|  |-- zesto-fetch.cpp
+|  |-- zesto-fetch.h
+|  |-- zesto-memdep.cpp
+|  |-- zesto-memdep.h
+|  |-- zesto-noc.cpp
+|  |-- zesto-noc.h
+|  |-- zesto-oracle.cpp
+|  |-- zesto-oracle.h
+|  |-- zesto-power.cpp
+|  |-- zesto-power.h
+|  |-- zesto-prefetch.cpp
+|  |-- zesto-prefetch.h
+|  |-- zesto-repeater.cpp
+|  |-- zesto-repeater.h
+|  |-- zesto-structs.h
+|  |-- zesto-uncore.cpp
+|  |-- zesto-uncore.h
+|  |-- ztrace.cpp
+|  |-- ztrace.h

@@ -1,0 +1,442 @@
+|-- .dockerignore
+|-- .github
+|  |-- CODEOWNERS
+|  |-- ISSUE_TEMPLATE
+|  |  |-- bug-performance-report.md
+|  |  |-- feature-request.md
+|  |-- boring-cyborg.yml
+|  |-- pull_request_template.md
+|  |-- release-template.yml
+|  |-- workflows
+|  |  |-- backport.yml
+|  |  |-- ci_test.yml
+|  |  |-- github_build_dev_container.sh
+|  |  |-- make_wheel_Linux.sh
+|  |  |-- make_wheel_Windows.sh
+|  |  |-- make_wheel_macOS.sh
+|  |  |-- notify_codeowners.py
+|  |  |-- notify_codeowners.yml
+|  |  |-- release-drafter.yml
+|  |  |-- release.yml
+|-- .gitignore
+|-- .yapf
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- MANIFEST.in
+|-- README.md
+|-- STYLE_GUIDE.md
+|-- WORKSPACE
+|-- assets
+|  |-- SIGRecommendersAddons.png
+|-- build_deps
+|  |-- build_pip_pkg.sh
+|  |-- tf_dependency
+|  |  |-- BUILD
+|  |  |-- BUILD.tpl
+|  |  |-- build_defs.bzl.tpl
+|  |  |-- tf_configure.bzl
+|  |-- tf_header
+|  |  |-- 1.15.2.tar.gz
+|  |  |-- README.md
+|  |  |-- env.sh
+|  |  |-- mkinclude.sh
+|  |-- toolchains
+|  |  |-- gcc7_manylinux2010-nvcc-cuda11
+|  |  |  |-- BUILD
+|  |  |  |-- cc_toolchain_config.bzl
+|  |  |  |-- clang
+|  |  |  |  |-- bin
+|  |  |  |  |  |-- crosstool_wrapper_driver_is_not_gcc
+|  |  |-- gpu
+|  |  |  |-- BUILD
+|  |  |  |-- crosstool
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- BUILD.tpl
+|  |  |  |  |-- CROSSTOOL.tpl
+|  |  |  |  |-- cc_toolchain_config.bzl.tpl
+|  |  |  |  |-- clang
+|  |  |  |  |  |-- bin
+|  |  |  |  |  |  |-- crosstool_wrapper_driver_is_not_gcc.tpl
+|  |  |  |  |-- windows
+|  |  |  |  |  |-- msvc_wrapper_for_nvcc.py.tpl
+|  |  |  |-- cub.BUILD
+|  |  |  |-- cuda
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- BUILD.tpl
+|  |  |  |  |-- BUILD.windows.tpl
+|  |  |  |  |-- build_defs.bzl.tpl
+|  |  |  |  |-- cuda_config.h.tpl
+|  |  |  |-- cuda_configure.bzl
+|  |  |  |-- find_cuda_config.py
+|-- configure.py
+|-- demo
+|  |-- movielens-100k-estimator
+|  |  |-- README.md
+|  |  |-- export.sh
+|  |  |-- movielens-100k-estimator.py
+|  |  |-- stop.sh
+|  |  |-- train.sh
+|  |-- movielens-1m-ps
+|  |  |-- README.md
+|  |  |-- movielens-1m-ps.py
+|  |  |-- start.sh
+|  |  |-- stop.sh
+|-- docs
+|  |-- README.md
+|  |-- api_docs
+|  |  |-- tfra.md
+|  |  |-- tfra
+|  |  |  |-- dynamic_embedding.md
+|  |  |  |-- dynamic_embedding
+|  |  |  |  |-- CuckooHashTable.md
+|  |  |  |  |-- DynamicEmbeddingOptimizer.md
+|  |  |  |  |-- FrequencyRestrictPolicy.md
+|  |  |  |  |-- GraphKeys.md
+|  |  |  |  |-- ModelMode.md
+|  |  |  |  |-- RestrictPolicy.md
+|  |  |  |  |-- TimestampRestrictPolicy.md
+|  |  |  |  |-- TrainableWrapper.md
+|  |  |  |  |-- TrainableWrapper
+|  |  |  |  |  |-- SaveSliceInfo.md
+|  |  |  |  |-- Variable.md
+|  |  |  |  |-- embedding_lookup.md
+|  |  |  |  |-- embedding_lookup_sparse.md
+|  |  |  |  |-- embedding_lookup_unique.md
+|  |  |  |  |-- enable_inference_mode.md
+|  |  |  |  |-- enable_train_mode.md
+|  |  |  |  |-- get_model_mode.md
+|  |  |  |  |-- get_variable.md
+|  |  |  |  |-- math.md
+|  |  |  |  |-- math
+|  |  |  |  |  |-- sparse_segment_sum.md
+|  |  |  |  |-- safe_embedding_lookup_sparse.md
+|  |-- tutorials
+|  |  |-- _toc.yaml
+|  |  |-- dynamic_embedding_tutorial.ipynb
+|  |  |-- embedding_variable_tutorial.ipynb
+|-- pytest.ini
+|-- requirements.txt
+|-- rfcs
+|  |-- 20191101-embedding-variable.md
+|  |-- 20191101-embedding-variable
+|  |  |-- class_diagrams.png
+|  |  |-- graph.png
+|  |  |-- memory.png
+|  |-- 20200424-sparse-domain-isolation.md
+|  |-- 20200424-sparse-domain-isolation
+|  |  |-- architecture.png
+|  |  |-- expression-weights-hierarchically.png
+|  |  |-- models-weights-compare.png
+|  |  |-- optimizers-reuse-scheme.png
+|  |  |-- overview-flow-chart.png
+|-- setup.py
+|-- tensorflow_recommenders_addons
+|  |-- BUILD
+|  |-- __init__.py
+|  |-- conftest.py
+|  |-- dynamic_embedding
+|  |  |-- __init__.py
+|  |  |-- core
+|  |  |  |-- BUILD
+|  |  |  |-- kernels
+|  |  |  |  |-- cuckoo_hashtable_op.cc
+|  |  |  |  |-- cuckoo_hashtable_op.h
+|  |  |  |  |-- cuckoo_hashtable_op_gpu.cu.cc
+|  |  |  |  |-- cuckoo_hashtable_op_gpu.h
+|  |  |  |  |-- lookup_impl
+|  |  |  |  |  |-- lookup_table_op_cpu.h
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_int32_double.cc
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_int32_float.cc
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_int32_int32.cc
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_int64_double.cc
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_int64_float.cc
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_int64_half.cc
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_int64_int32.cc
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_int64_int64.cc
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_int64_int8.cc
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_int64_tstring.cc
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_tstring_bool.cc
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_tstring_double.cc
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_tstring_float.cc
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_tstring_half.cc
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_tstring_int32.cc
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_tstring_int64.cc
+|  |  |  |  |  |-- lookup_table_op_cpu_impl_tstring_int8.cc
+|  |  |  |  |  |-- lookup_table_op_gpu.h
+|  |  |  |  |  |-- lookup_table_op_gpu_impl_float_0.cu.cc
+|  |  |  |  |  |-- lookup_table_op_gpu_impl_float_1.cu.cc
+|  |  |  |  |  |-- lookup_table_op_gpu_impl_float_2.cu.cc
+|  |  |  |  |  |-- lookup_table_op_gpu_impl_float_3.cu.cc
+|  |  |  |  |  |-- lookup_table_op_gpu_impl_half_0.cu.cc
+|  |  |  |  |  |-- lookup_table_op_gpu_impl_half_1.cu.cc
+|  |  |  |  |  |-- lookup_table_op_gpu_impl_half_2.cu.cc
+|  |  |  |  |  |-- lookup_table_op_gpu_impl_half_3.cu.cc
+|  |  |  |  |  |-- lookup_table_op_gpu_impl_int32_0.cu.cc
+|  |  |  |  |  |-- lookup_table_op_gpu_impl_int32_1.cu.cc
+|  |  |  |  |  |-- lookup_table_op_gpu_impl_int32_2.cu.cc
+|  |  |  |  |  |-- lookup_table_op_gpu_impl_int32_3.cu.cc
+|  |  |  |  |  |-- lookup_table_op_gpu_impl_int8_0.cu.cc
+|  |  |  |  |  |-- lookup_table_op_gpu_impl_int8_1.cu.cc
+|  |  |  |  |  |-- lookup_table_op_gpu_impl_int8_2.cu.cc
+|  |  |  |  |  |-- lookup_table_op_gpu_impl_int8_3.cu.cc
+|  |  |  |  |-- segment_reduction_ops.h
+|  |  |  |  |-- segment_reduction_ops_gpu.cu.cc
+|  |  |  |  |-- segment_reduction_ops_impl.cc
+|  |  |  |  |-- segment_reduction_ops_impl.h
+|  |  |  |  |-- sparse_fill_empty_rows_op.cc
+|  |  |  |  |-- sparse_fill_empty_rows_op.cu.cc
+|  |  |  |  |-- sparse_fill_empty_rows_op.h
+|  |  |  |  |-- sparse_reshape_op.cc
+|  |  |  |  |-- sparse_reshape_op.cu.cc
+|  |  |  |  |-- sparse_reshape_op.h
+|  |  |  |-- lib
+|  |  |  |  |-- cuckoo
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- cuckoohash_config.hh
+|  |  |  |  |  |-- cuckoohash_map.hh
+|  |  |  |  |  |-- cuckoohash_util.hh
+|  |  |  |  |  |-- libcuckoo_bucket_container.hh
+|  |  |  |  |-- nvhash
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- cub
+|  |  |  |  |  |  |-- cub
+|  |  |  |  |  |  |  |-- agent
+|  |  |  |  |  |  |  |  |-- agent_histogram.cuh
+|  |  |  |  |  |  |  |  |-- agent_radix_sort_downsweep.cuh
+|  |  |  |  |  |  |  |  |-- agent_radix_sort_upsweep.cuh
+|  |  |  |  |  |  |  |  |-- agent_reduce.cuh
+|  |  |  |  |  |  |  |  |-- agent_reduce_by_key.cuh
+|  |  |  |  |  |  |  |  |-- agent_rle.cuh
+|  |  |  |  |  |  |  |  |-- agent_scan.cuh
+|  |  |  |  |  |  |  |  |-- agent_segment_fixup.cuh
+|  |  |  |  |  |  |  |  |-- agent_select_if.cuh
+|  |  |  |  |  |  |  |  |-- agent_spmv_orig.cuh
+|  |  |  |  |  |  |  |  |-- single_pass_scan_operators.cuh
+|  |  |  |  |  |  |  |-- block
+|  |  |  |  |  |  |  |  |-- block_adjacent_difference.cuh
+|  |  |  |  |  |  |  |  |-- block_discontinuity.cuh
+|  |  |  |  |  |  |  |  |-- block_exchange.cuh
+|  |  |  |  |  |  |  |  |-- block_histogram.cuh
+|  |  |  |  |  |  |  |  |-- block_load.cuh
+|  |  |  |  |  |  |  |  |-- block_radix_rank.cuh
+|  |  |  |  |  |  |  |  |-- block_radix_sort.cuh
+|  |  |  |  |  |  |  |  |-- block_raking_layout.cuh
+|  |  |  |  |  |  |  |  |-- block_reduce.cuh
+|  |  |  |  |  |  |  |  |-- block_scan.cuh
+|  |  |  |  |  |  |  |  |-- block_shuffle.cuh
+|  |  |  |  |  |  |  |  |-- block_store.cuh
+|  |  |  |  |  |  |  |  |-- specializations
+|  |  |  |  |  |  |  |  |  |-- block_histogram_atomic.cuh
+|  |  |  |  |  |  |  |  |  |-- block_histogram_sort.cuh
+|  |  |  |  |  |  |  |  |  |-- block_reduce_raking.cuh
+|  |  |  |  |  |  |  |  |  |-- block_reduce_raking_commutative_only.cuh
+|  |  |  |  |  |  |  |  |  |-- block_reduce_warp_reductions.cuh
+|  |  |  |  |  |  |  |  |  |-- block_scan_raking.cuh
+|  |  |  |  |  |  |  |  |  |-- block_scan_warp_scans.cuh
+|  |  |  |  |  |  |  |  |  |-- block_scan_warp_scans2.cuh
+|  |  |  |  |  |  |  |  |  |-- block_scan_warp_scans3.cuh
+|  |  |  |  |  |  |  |-- cub.cuh
+|  |  |  |  |  |  |  |-- device
+|  |  |  |  |  |  |  |  |-- device_histogram.cuh
+|  |  |  |  |  |  |  |  |-- device_partition.cuh
+|  |  |  |  |  |  |  |  |-- device_radix_sort.cuh
+|  |  |  |  |  |  |  |  |-- device_reduce.cuh
+|  |  |  |  |  |  |  |  |-- device_run_length_encode.cuh
+|  |  |  |  |  |  |  |  |-- device_scan.cuh
+|  |  |  |  |  |  |  |  |-- device_segmented_radix_sort.cuh
+|  |  |  |  |  |  |  |  |-- device_segmented_reduce.cuh
+|  |  |  |  |  |  |  |  |-- device_select.cuh
+|  |  |  |  |  |  |  |  |-- device_spmv.cuh
+|  |  |  |  |  |  |  |  |-- dispatch
+|  |  |  |  |  |  |  |  |  |-- dispatch_histogram.cuh
+|  |  |  |  |  |  |  |  |  |-- dispatch_radix_sort.cuh
+|  |  |  |  |  |  |  |  |  |-- dispatch_reduce.cuh
+|  |  |  |  |  |  |  |  |  |-- dispatch_reduce_by_key.cuh
+|  |  |  |  |  |  |  |  |  |-- dispatch_rle.cuh
+|  |  |  |  |  |  |  |  |  |-- dispatch_scan.cuh
+|  |  |  |  |  |  |  |  |  |-- dispatch_select_if.cuh
+|  |  |  |  |  |  |  |  |  |-- dispatch_spmv_orig.cuh
+|  |  |  |  |  |  |  |-- grid
+|  |  |  |  |  |  |  |  |-- grid_barrier.cuh
+|  |  |  |  |  |  |  |  |-- grid_even_share.cuh
+|  |  |  |  |  |  |  |  |-- grid_mapping.cuh
+|  |  |  |  |  |  |  |  |-- grid_queue.cuh
+|  |  |  |  |  |  |  |-- host
+|  |  |  |  |  |  |  |  |-- mutex.cuh
+|  |  |  |  |  |  |  |-- iterator
+|  |  |  |  |  |  |  |  |-- arg_index_input_iterator.cuh
+|  |  |  |  |  |  |  |  |-- cache_modified_input_iterator.cuh
+|  |  |  |  |  |  |  |  |-- cache_modified_output_iterator.cuh
+|  |  |  |  |  |  |  |  |-- constant_input_iterator.cuh
+|  |  |  |  |  |  |  |  |-- counting_input_iterator.cuh
+|  |  |  |  |  |  |  |  |-- discard_output_iterator.cuh
+|  |  |  |  |  |  |  |  |-- tex_obj_input_iterator.cuh
+|  |  |  |  |  |  |  |  |-- tex_ref_input_iterator.cuh
+|  |  |  |  |  |  |  |  |-- transform_input_iterator.cuh
+|  |  |  |  |  |  |  |-- thread
+|  |  |  |  |  |  |  |  |-- thread_load.cuh
+|  |  |  |  |  |  |  |  |-- thread_operators.cuh
+|  |  |  |  |  |  |  |  |-- thread_reduce.cuh
+|  |  |  |  |  |  |  |  |-- thread_scan.cuh
+|  |  |  |  |  |  |  |  |-- thread_search.cuh
+|  |  |  |  |  |  |  |  |-- thread_store.cuh
+|  |  |  |  |  |  |  |-- util_allocator.cuh
+|  |  |  |  |  |  |  |-- util_arch.cuh
+|  |  |  |  |  |  |  |-- util_debug.cuh
+|  |  |  |  |  |  |  |-- util_device.cuh
+|  |  |  |  |  |  |  |-- util_macro.cuh
+|  |  |  |  |  |  |  |-- util_namespace.cuh
+|  |  |  |  |  |  |  |-- util_ptx.cuh
+|  |  |  |  |  |  |  |-- util_type.cuh
+|  |  |  |  |  |  |  |-- warp
+|  |  |  |  |  |  |  |  |-- specializations
+|  |  |  |  |  |  |  |  |  |-- warp_reduce_shfl.cuh
+|  |  |  |  |  |  |  |  |  |-- warp_reduce_smem.cuh
+|  |  |  |  |  |  |  |  |  |-- warp_scan_shfl.cuh
+|  |  |  |  |  |  |  |  |  |-- warp_scan_smem.cuh
+|  |  |  |  |  |  |  |  |-- warp_reduce.cuh
+|  |  |  |  |  |  |  |  |-- warp_scan.cuh
+|  |  |  |  |  |-- cudf
+|  |  |  |  |  |  |-- concurrent_unordered_map.cuh
+|  |  |  |  |  |  |-- hash_functions.cuh
+|  |  |  |  |  |  |-- managed.cuh
+|  |  |  |  |  |  |-- managed_allocator.cuh
+|  |  |  |  |  |-- nv_allocator.h
+|  |  |  |  |  |-- nv_hashtable.cuh
+|  |  |  |  |  |-- nv_multigpu.cuh
+|  |  |  |  |  |-- nv_multisplit.cuh
+|  |  |  |  |  |-- nv_util.h
+|  |  |  |-- ops
+|  |  |  |  |-- cuckoo_hashtable_ops.cc
+|  |  |  |  |-- math_ops.cc
+|  |  |  |-- utils
+|  |  |  |  |-- types.h
+|  |  |  |  |-- utils.h
+|  |  |-- python
+|  |  |  |-- __init__.py
+|  |  |  |-- kernel_tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- cuckoo_hashtable_ops_test.py
+|  |  |  |  |-- dynamic_embedding_ops_test.py
+|  |  |  |  |-- dynamic_embedding_optimizer_test.py
+|  |  |  |  |-- dynamic_embedding_variable_test.py
+|  |  |  |  |-- math_grad_test.py
+|  |  |  |  |-- math_ops_test.py
+|  |  |  |  |-- restrict_policies_test.py
+|  |  |  |-- ops
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- cuckoo_hashtable_ops.py
+|  |  |  |  |-- dynamic_embedding_ops.py
+|  |  |  |  |-- dynamic_embedding_optimizer.py
+|  |  |  |  |-- dynamic_embedding_variable.py
+|  |  |  |  |-- math_grad.py
+|  |  |  |  |-- math_ops.py
+|  |  |  |  |-- restrict_policies.py
+|  |  |  |  |-- tf_patch.py
+|  |-- embedding_variable
+|  |  |-- __init__.py
+|  |  |-- core
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- kernels
+|  |  |  |  |-- embedding_var.h
+|  |  |  |  |-- ev_op_helpers.h
+|  |  |  |  |-- ev_ops.cc
+|  |  |  |-- ops
+|  |  |  |  |-- ev_ops.cc
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- ops
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- embedding_variable_ops.py
+|  |  |  |  |-- embedding_variable_ops_test.py
+|  |  |  |-- optimizers
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- adagrad.py
+|  |  |  |  |-- adam.py
+|  |  |  |  |-- gradient_descent.py
+|  |-- register.py
+|  |-- tensorflow_recommenders_addons.bzl
+|  |-- tests
+|  |  |-- __init__.py
+|  |  |-- register_test.py
+|  |  |-- run_all_test.py
+|  |-- utils
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- ensure_tf_install.py
+|  |  |-- resource_loader.py
+|  |  |-- test_utils.py
+|  |  |-- tests
+|  |  |  |-- __init__.py
+|  |  |  |-- run_all_test.py
+|  |  |  |-- test_utils_test.py
+|  |  |-- types.py
+|  |-- version.py
+|-- third_party
+|  |-- BUILD
+|  |-- sparsehash_c11.BUILD
+|  |-- toolchains
+|  |  |-- tf
+|  |  |  |-- BUILD
+|  |  |  |-- BUILD.tpl
+|  |  |  |-- tf_configure.bzl
+|-- tools
+|  |-- build_dev_container.sh
+|  |-- check_python_format.py
+|  |-- docker
+|  |  |-- build_wheel.Dockerfile
+|  |  |-- cpu_tests.Dockerfile
+|  |  |-- cuda10.0-cudnn7-ubuntu16.04-manylinux2010-multipython.Dockerfile
+|  |  |-- cuda11.0-cudnn8-ubuntu18.04-manylinux2010-multipython.Dockerfile
+|  |  |-- dev_container.Dockerfile
+|  |  |-- devtoolset
+|  |  |  |-- build_devtoolset.sh
+|  |  |  |-- fixlinks.sh
+|  |  |  |-- platlib.patch
+|  |  |  |-- rpm-patch.sh
+|  |  |-- install
+|  |  |  |-- build_and_install_python.sh
+|  |  |  |-- install_bazel.sh
+|  |  |  |-- install_bootstrap_deb_packages.sh
+|  |  |  |-- install_deb_packages.sh
+|  |  |  |-- install_latest_clang.sh
+|  |  |  |-- install_patchelf.sh
+|  |  |  |-- install_pip_packages_by_version.sh
+|  |  |-- pre-commit.Dockerfile
+|  |  |-- sanity_check.Dockerfile
+|  |-- docs
+|  |  |-- BUILD
+|  |  |-- Readme.md
+|  |  |-- build_docs.py
+|  |-- install_deps
+|  |  |-- buildifier.sh
+|  |  |-- clang-format.sh
+|  |  |-- doc_requirements.txt
+|  |  |-- install_bazelisk.sh
+|  |  |-- pytest.txt
+|  |  |-- tensorflow-cpu.txt
+|  |  |-- tensorflow.txt
+|  |  |-- typedapi.txt
+|  |  |-- yapf.txt
+|  |-- install_so_files.sh
+|  |-- pre-commit.sh
+|  |-- pre_commit_format.py
+|  |-- releases
+|  |  |-- tf_auditwheel_patch.sh
+|  |-- run_build.sh
+|  |-- run_cpu_tests.sh
+|  |-- run_google_cloud_tests.sh
+|  |-- run_gpu_tests.sh
+|  |-- run_sanity_check.sh
+|  |-- testing
+|  |  |-- build_and_run_tests.sh
+|  |  |-- parallel_gpu_execute.sh
+|  |  |-- source_code_test.py
+|  |-- update_release_version.sh

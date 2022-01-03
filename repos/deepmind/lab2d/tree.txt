@@ -1,0 +1,375 @@
+|-- .bazelrc
+|-- .github
+|  |-- workflows
+|  |  |-- make_wheel.yml
+|  |  |-- precommit.yml
+|-- .gitignore
+|-- AUTHORS
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- bazel
+|  |-- BUILD
+|  |-- dm_env.BUILD
+|  |-- eigen.BUILD
+|  |-- enum34.BUILD
+|  |-- funcsigs.BUILD
+|  |-- lua5_1.BUILD
+|  |-- lua5_2.BUILD
+|  |-- luajit.BUILD
+|  |-- png.BUILD
+|  |-- pybind11.BUILD
+|  |-- six.BUILD
+|  |-- tree.BUILD
+|  |-- zlib.BUILD
+|-- build_defs.bzl
+|-- dmlab2d
+|  |-- BUILD
+|  |-- __init__.py
+|  |-- dmlab2d_env.py
+|  |-- dmlab2d_pybind.cc
+|  |-- dmlab2d_test.py
+|  |-- lib
+|  |  |-- BUILD
+|  |  |-- command_line_interface
+|  |  |  |-- BUILD
+|  |  |  |-- command_line_interface_main.cc
+|  |  |-- dmlab2d.cc
+|  |  |-- dmlab2d.h
+|  |  |-- dmlab2d_test.cc
+|  |  |-- env_lua_api
+|  |  |  |-- BUILD
+|  |  |  |-- actions.cc
+|  |  |  |-- actions.h
+|  |  |  |-- actions_test.cc
+|  |  |  |-- env_lua_api.cc
+|  |  |  |-- env_lua_api.h
+|  |  |  |-- env_lua_api_test.cc
+|  |  |  |-- episode.cc
+|  |  |  |-- episode.h
+|  |  |  |-- episode_test.cc
+|  |  |  |-- events.cc
+|  |  |  |-- events.h
+|  |  |  |-- events_test.cc
+|  |  |  |-- observations.cc
+|  |  |  |-- observations.h
+|  |  |  |-- observations_test.cc
+|  |  |  |-- properties.cc
+|  |  |  |-- properties.h
+|  |  |  |-- properties_test.cc
+|  |  |-- game_scripts
+|  |  |  |-- common
+|  |  |  |  |-- args.lua
+|  |  |  |  |-- args_test.lua
+|  |  |  |  |-- class.lua
+|  |  |  |  |-- class_test.lua
+|  |  |  |  |-- helpers.lua
+|  |  |  |  |-- image_helpers.lua
+|  |  |  |  |-- image_helpers_test.lua
+|  |  |  |  |-- log.lua
+|  |  |  |  |-- log_test.lua
+|  |  |  |  |-- paths.lua
+|  |  |  |  |-- paths_test.lua
+|  |  |  |  |-- properties.lua
+|  |  |  |  |-- properties_test.lua
+|  |  |  |  |-- read_settings.lua
+|  |  |  |  |-- read_settings_test.lua
+|  |  |  |  |-- set.lua
+|  |  |  |  |-- set_test.lua
+|  |  |  |  |-- strings.lua
+|  |  |  |  |-- strings_test.lua
+|  |  |  |  |-- tables.lua
+|  |  |  |  |-- tables_test.lua
+|  |  |  |  |-- tile_set.lua
+|  |  |  |-- levels
+|  |  |  |  |-- chase_eat
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- images.lua
+|  |  |  |  |  |-- init.lua
+|  |  |  |  |  |-- level.lua
+|  |  |  |  |  |-- maps.lua
+|  |  |  |  |  |-- play.py
+|  |  |  |  |-- clean_up
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- avatar.lua
+|  |  |  |  |  |-- avatar_list.lua
+|  |  |  |  |  |-- images.lua
+|  |  |  |  |  |-- images
+|  |  |  |  |  |  |-- entities
+|  |  |  |  |  |  |  |-- apple.png
+|  |  |  |  |  |  |  |-- banana.png
+|  |  |  |  |  |  |  |-- diamond.png
+|  |  |  |  |  |  |-- environment
+|  |  |  |  |  |  |  |-- mud.png
+|  |  |  |  |  |  |  |-- wall.png
+|  |  |  |  |  |  |  |-- water.png
+|  |  |  |  |  |-- init.lua
+|  |  |  |  |  |-- maps.lua
+|  |  |  |  |  |-- play.py
+|  |  |  |  |  |-- simulation.lua
+|  |  |  |  |-- commons_harvest
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- avatar.lua
+|  |  |  |  |  |-- avatar_list.lua
+|  |  |  |  |  |-- images.lua
+|  |  |  |  |  |-- init.lua
+|  |  |  |  |  |-- maps.lua
+|  |  |  |  |  |-- play.py
+|  |  |  |  |  |-- simulation.lua
+|  |  |  |  |-- examples
+|  |  |  |  |  |-- level_api.lua
+|  |  |  |  |  |-- level_api_discrete_only.lua
+|  |  |  |  |-- pushbox
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- api_factory.lua
+|  |  |  |  |  |-- images.lua
+|  |  |  |  |  |-- init.lua
+|  |  |  |  |  |-- play.py
+|  |  |  |  |-- running_with_scissors
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- avatar.lua
+|  |  |  |  |  |-- avatar_list.lua
+|  |  |  |  |  |-- images.lua
+|  |  |  |  |  |-- init.lua
+|  |  |  |  |  |-- maps.lua
+|  |  |  |  |  |-- play.py
+|  |  |  |  |  |-- simulation.lua
+|  |  |  |-- testing
+|  |  |  |  |-- asserts.lua
+|  |  |  |  |-- asserts_test.lua
+|  |  |  |  |-- mocking.lua
+|  |  |  |  |-- mocking_test.lua
+|  |  |  |  |-- test_runner.lua
+|  |  |  |-- worlds
+|  |  |  |  |-- common
+|  |  |  |  |  |-- api_factory.lua
+|  |  |  |  |  |-- tile_set.lua
+|  |  |-- lua
+|  |  |  |-- BUILD
+|  |  |  |-- bind.h
+|  |  |  |-- bind_test.cc
+|  |  |  |-- call.cc
+|  |  |  |-- call.h
+|  |  |  |-- call_test.cc
+|  |  |  |-- class.h
+|  |  |  |-- class_test.cc
+|  |  |  |-- lua.h
+|  |  |  |-- n_results_or.h
+|  |  |  |-- n_results_or_test_util.h
+|  |  |  |-- push.h
+|  |  |  |-- push_script.cc
+|  |  |  |-- push_script.h
+|  |  |  |-- push_script_test.cc
+|  |  |  |-- push_test.cc
+|  |  |  |-- read.h
+|  |  |  |-- read_test.cc
+|  |  |  |-- ref.cc
+|  |  |  |-- ref.h
+|  |  |  |-- ref_test.cc
+|  |  |  |-- stack_resetter.h
+|  |  |  |-- stack_resetter_test.cc
+|  |  |  |-- table_ref.cc
+|  |  |  |-- table_ref.h
+|  |  |  |-- table_ref_test.cc
+|  |  |  |-- vm.cc
+|  |  |  |-- vm.h
+|  |  |  |-- vm_test.cc
+|  |  |  |-- vm_test_data
+|  |  |  |  |-- module.lua
+|  |  |  |  |-- module_as_dir
+|  |  |  |  |  |-- init.lua
+|  |  |  |-- vm_test_util.h
+|  |  |-- support
+|  |  |  |-- BUILD
+|  |  |  |-- logging.h
+|  |  |-- system
+|  |  |  |-- file_system
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- file_system.h
+|  |  |  |  |-- lua
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- file_system.cc
+|  |  |  |  |  |-- file_system.h
+|  |  |  |  |  |-- file_system_test.cc
+|  |  |  |  |  |-- file_system_test.lua
+|  |  |  |  |  |-- file_system_test_data
+|  |  |  |  |  |  |-- empty_test_file
+|  |  |  |  |  |  |-- file_with_text.txt
+|  |  |  |-- generators
+|  |  |  |  |-- pushbox
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- constants.h
+|  |  |  |  |  |-- lua
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- pushbox.cc
+|  |  |  |  |  |  |-- pushbox.h
+|  |  |  |  |  |  |-- pushbox_test.lua
+|  |  |  |  |  |-- pushbox.cc
+|  |  |  |  |  |-- pushbox.h
+|  |  |  |  |  |-- python
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- pushbox.cc
+|  |  |  |  |  |  |-- pushbox_test.py
+|  |  |  |  |  |-- random_room_generator.cc
+|  |  |  |  |  |-- random_room_generator.h
+|  |  |  |  |  |-- room.cc
+|  |  |  |  |  |-- room.h
+|  |  |  |  |  |-- room_candidate_generator.cc
+|  |  |  |  |  |-- room_candidate_generator.h
+|  |  |  |-- grid_world
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- collections
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- fixed_handle_map.h
+|  |  |  |  |  |-- fixed_handle_map_test.cc
+|  |  |  |  |  |-- handle.h
+|  |  |  |  |  |-- handle_names.h
+|  |  |  |  |  |-- handle_names_test.cc
+|  |  |  |  |  |-- handle_test.cc
+|  |  |  |  |  |-- object_pool.h
+|  |  |  |  |  |-- object_pool_test.cc
+|  |  |  |  |  |-- shuffled_membership.h
+|  |  |  |  |  |-- shuffled_membership_test.cc
+|  |  |  |  |  |-- shuffled_set.h
+|  |  |  |  |  |-- shuffled_set_test.cc
+|  |  |  |  |-- grid.cc
+|  |  |  |  |-- grid.h
+|  |  |  |  |-- grid_shape.h
+|  |  |  |  |-- grid_shape_test.cc
+|  |  |  |  |-- grid_test.cc
+|  |  |  |  |-- grid_view.cc
+|  |  |  |  |-- grid_view.h
+|  |  |  |  |-- grid_view_test.cc
+|  |  |  |  |-- grid_window.h
+|  |  |  |  |-- handles.h
+|  |  |  |  |-- lua
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- grid_test.lua
+|  |  |  |  |  |-- lua_grid.cc
+|  |  |  |  |  |-- lua_grid.h
+|  |  |  |  |  |-- lua_grid_view.cc
+|  |  |  |  |  |-- lua_grid_view.h
+|  |  |  |  |  |-- lua_grid_view_test.cc
+|  |  |  |  |  |-- lua_handle.h
+|  |  |  |  |  |-- lua_world.cc
+|  |  |  |  |  |-- lua_world.h
+|  |  |  |  |  |-- lua_world_test.cc
+|  |  |  |  |  |-- world_test.lua
+|  |  |  |  |-- sprite_instance.h
+|  |  |  |  |-- text_tools.cc
+|  |  |  |  |-- text_tools.h
+|  |  |  |  |-- text_tools_test.cc
+|  |  |  |  |-- world.cc
+|  |  |  |  |-- world.h
+|  |  |  |  |-- world_test.cc
+|  |  |  |-- image
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- image_test.lua
+|  |  |  |  |-- image_test_data
+|  |  |  |  |  |-- testL.png
+|  |  |  |  |  |-- testRGB.png
+|  |  |  |  |  |-- testRGBA.png
+|  |  |  |  |-- lua_image.cc
+|  |  |  |  |-- lua_image.h
+|  |  |  |  |-- lua_image_test.cc
+|  |  |  |-- math
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- lua
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- math2d.cc
+|  |  |  |  |  |-- math2d.h
+|  |  |  |  |  |-- math2d_test.cc
+|  |  |  |  |-- math2d.h
+|  |  |  |  |-- math2d_algorithms.h
+|  |  |  |  |-- math2d_algorithms_test.cc
+|  |  |  |  |-- math2d_test.cc
+|  |  |  |-- random
+|  |  |  |  |-- lua
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- random.cc
+|  |  |  |  |  |-- random.h
+|  |  |  |  |  |-- random_test.cc
+|  |  |  |-- tensor
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- lua
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- tensor.cc
+|  |  |  |  |  |-- tensor.h
+|  |  |  |  |  |-- tensor_benchmark.cc
+|  |  |  |  |  |-- tensor_test.cc
+|  |  |  |  |-- tensor_view.cc
+|  |  |  |  |-- tensor_view.h
+|  |  |  |  |-- tensor_view_test.cc
+|  |  |  |-- tile
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- lua
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- tile.cc
+|  |  |  |  |  |-- tile.h
+|  |  |  |  |  |-- tile_scene.cc
+|  |  |  |  |  |-- tile_scene.h
+|  |  |  |  |  |-- tile_scene_test.cc
+|  |  |  |  |  |-- tile_set.cc
+|  |  |  |  |  |-- tile_set.h
+|  |  |  |  |  |-- tile_set_test.cc
+|  |  |  |  |  |-- tile_test.lua
+|  |  |  |  |-- pixel.h
+|  |  |  |  |-- pixel_test.cc
+|  |  |  |  |-- tile_renderer.cc
+|  |  |  |  |-- tile_renderer.h
+|  |  |  |  |-- tile_renderer_test.cc
+|  |  |  |  |-- tile_set.cc
+|  |  |  |  |-- tile_set.h
+|  |  |  |  |-- tile_set_test.cc
+|  |  |-- testing
+|  |  |  |-- BUILD
+|  |  |  |-- lua_level_test.cc
+|  |  |  |-- lua_testing.bzl
+|  |  |  |-- lua_unit_test.cc
+|  |  |-- util
+|  |  |  |-- BUILD
+|  |  |  |-- default_read_only_file_system.cc
+|  |  |  |-- default_read_only_file_system.h
+|  |  |  |-- file_reader.cc
+|  |  |  |-- file_reader.h
+|  |  |  |-- file_reader_test.cc
+|  |  |  |-- file_reader_types.h
+|  |  |  |-- files.cc
+|  |  |  |-- files.h
+|  |  |  |-- files_test.cc
+|  |  |  |-- test_srcdir.cc
+|  |  |  |-- test_srcdir.h
+|  |  |  |-- visit_set_difference_and_intersection.h
+|  |  |  |-- visit_set_difference_and_intersection_test.cc
+|  |-- random_agent.py
+|  |-- runfiles_helper.py
+|  |-- settings_helper.py
+|  |-- settings_helper_test.py
+|  |-- ui_renderer.py
+|-- docs
+|  |-- lua_levels_api.md
+|  |-- screenshot.png
+|  |-- system
+|  |  |-- file_system.md
+|  |  |-- generators_pushbox.md
+|  |  |-- grid_world.md
+|  |  |-- image.md
+|  |  |-- random.md
+|  |  |-- tensor.md
+|  |  |-- tile.md
+|-- python_system.bzl
+|-- third_party
+|  |-- rl_api
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- env_c_api.h
+|  |  |-- env_c_api_bind.h
+|  |  |-- env_c_api_example.cc
+|  |  |-- env_c_api_example.h
+|  |  |-- env_c_api_example.lds
+|  |  |-- env_c_api_example_test.cc
+|  |  |-- env_c_api_test_suite.cc
+|  |  |-- env_c_api_test_suite.h
+|-- wheel_defs.bzl

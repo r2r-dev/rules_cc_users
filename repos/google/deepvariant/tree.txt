@@ -1,0 +1,702 @@
+|-- .bazelrc
+|-- .github
+|  |-- ISSUE_TEMPLATE
+|  |  |-- problem_report.md
+|  |  |-- question.md
+|  |-- PULL_REQUEST_TEMPLATE
+|-- .gitignore
+|-- AUTHORS
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- Dockerfile
+|-- Dockerfile.deeptrio
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- build-prereq.sh
+|-- build_and_test.sh
+|-- build_release_binaries.sh
+|-- deeptrio
+|  |-- BUILD
+|  |-- README.md
+|  |-- dt_constants.py
+|  |-- make_examples.py
+|  |-- make_examples_test.py
+|  |-- protos
+|  |  |-- BUILD
+|  |  |-- deeptrio.proto
+|  |-- python
+|  |  |-- BUILD
+|  |  |-- variant_calling_deeptrio.clif
+|  |  |-- variant_calling_deeptrio_wrap_test.py
+|  |-- testdata.py
+|  |-- testdata
+|  |  |-- alt_aligned_pileup.golden.training_examples.tfrecord.gz
+|  |  |-- customized_classes.golden.training_examples.tfrecord.gz
+|  |  |-- golden.postprocess_gvcf_output.g.vcf
+|  |  |-- golden.postprocess_single_site_input.tfrecord.gz
+|  |  |-- golden.postprocess_single_site_output.vcf
+|  |  |-- golden.postprocess_single_site_output.vcf.gz
+|  |  |-- golden.postprocess_single_site_output.vcf.gz.tbi
+|  |  |-- golden.postprocess_single_site_output.visual_report.html
+|  |  |-- golden.training_examples.tfrecord
+|  |  |-- golden.training_examples.tfrecord.gz
+|  |  |-- golden.training_examples.tfrecord.gz-00000-of-00003
+|  |  |-- golden.training_examples.tfrecord.gz-00001-of-00003
+|  |  |-- golden.training_examples.tfrecord.gz-00002-of-00003
+|  |  |-- golden.training_examples.tfrecord.gz.run_info.pbtxt
+|  |  |-- golden.training_examples.vcf
+|  |  |-- golden_child.calling_candidates.tfrecord.gz
+|  |  |-- golden_child.calling_examples.tfrecord.gz
+|  |  |-- golden_child.calling_examples.tfrecord.gz-00000-of-00003
+|  |  |-- golden_child.calling_examples.tfrecord.gz-00001-of-00003
+|  |  |-- golden_child.calling_examples.tfrecord.gz-00002-of-00003
+|  |  |-- golden_child.postprocess_gvcf_input.tfrecord.gz
+|  |  |-- golden_child.postprocess_gvcf_input.tfrecord.gz-00000-of-00003
+|  |  |-- golden_child.postprocess_gvcf_input.tfrecord.gz-00001-of-00003
+|  |  |-- golden_child.postprocess_gvcf_input.tfrecord.gz-00002-of-00003
+|  |  |-- input
+|  |  |  |-- HG001.chr20.10_10p1mb_sorted.bam
+|  |  |  |-- HG001.chr20.10_10p1mb_sorted.bam.bai
+|  |  |  |-- HG001_chr20_GRCh37_GIAB_highconf_CG-IllFB-IllGATKHC-Ion-10X-SOLID_CHROM1-X_v.3.3.2_highconf_PGandRTGphasetransfer.vcf.gz
+|  |  |  |-- HG001_chr20_GRCh37_GIAB_highconf_CG-IllFB-IllGATKHC-Ion-10X-SOLID_CHROM1-X_v.3.3.2_highconf_PGandRTGphasetransfer.vcf.gz.tbi
+|  |  |  |-- NA12891.chr20.10_10p1mb_sorted.bam
+|  |  |  |-- NA12891.chr20.10_10p1mb_sorted.bam.bai
+|  |  |  |-- NA12892.chr20.10_10p1mb_sorted.bam
+|  |  |  |-- NA12892.chr20.10_10p1mb_sorted.bam.bai
+|  |  |  |-- hs37d5.chr20.fa.gz
+|  |  |  |-- hs37d5.chr20.fa.gz.fai
+|  |  |  |-- hs37d5.chr20.fa.gz.gzi
+|  |  |  |-- test_giab.b37_chr20_100kbp_at_10mb.bed
+|  |  |  |-- test_hg001_giab_grch37_chr20_100kbp_at_10mb.vcf.gz
+|  |  |  |-- test_hg001_giab_grch37_chr20_100kbp_at_10mb.vcf.gz.tbi
+|  |  |  |-- with_types.test_nist.b37_chr20_4kbp_at_10mb.vcf.gz
+|  |  |  |-- with_types.test_nist.b37_chr20_4kbp_at_10mb.vcf.gz.tbi
+|  |-- variant_caller.py
+|  |-- variant_caller_test.py
+|  |-- variant_calling_deeptrio.cc
+|  |-- variant_calling_deeptrio.h
+|  |-- variant_calling_deeptrio_test.cc
+|  |-- very_sensitive_caller.py
+|  |-- very_sensitive_caller_test.py
+|-- deepvariant
+|  |-- BUILD
+|  |-- allelecounter.cc
+|  |-- allelecounter.h
+|  |-- allelecounter_test.cc
+|  |-- attention_inception_v3.py
+|  |-- attention_module.py
+|  |-- attention_module_test.py
+|  |-- call_variants.py
+|  |-- call_variants_accelerator_test.py
+|  |-- call_variants_test.py
+|  |-- cohort_best_practice
+|  |  |-- DeepVariantWES_v1.yml
+|  |  |-- DeepVariantWGS_v1.yml
+|  |  |-- DeepVariant_unfiltered_v1.yml
+|  |-- data_providers.py
+|  |-- data_providers_test.py
+|  |-- dv_constants.py
+|  |-- dv_vcf_constants.py
+|  |-- dv_vcf_constants_test.py
+|  |-- environment_tests
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- env_smoke_test.py
+|  |  |-- protobuf_implementation_test.py
+|  |-- exclude_contigs.py
+|  |-- exclude_contigs_test.py
+|  |-- haplotypes.py
+|  |-- haplotypes_test.py
+|  |-- labeler
+|  |  |-- BUILD
+|  |  |-- customized_classes_labeler.py
+|  |  |-- customized_classes_labeler_test.py
+|  |  |-- haplotype_labeler.py
+|  |  |-- haplotype_labeler_test.py
+|  |  |-- labeled_examples_to_vcf.py
+|  |  |-- labeled_examples_to_vcf_test.py
+|  |  |-- positional_labeler.py
+|  |  |-- positional_labeler_test.py
+|  |  |-- variant_labeler.py
+|  |  |-- variant_labeler_test.py
+|  |-- logging_level.py
+|  |-- make_examples.py
+|  |-- make_examples_test.py
+|  |-- make_examples_utils.py
+|  |-- make_examples_utils_test.py
+|  |-- model_eval.py
+|  |-- model_eval_test.py
+|  |-- model_train.py
+|  |-- model_train_test.py
+|  |-- modeling.py
+|  |-- modeling_test.py
+|  |-- multiallelic_model
+|  |  |-- saved_model.pb
+|  |  |-- variables
+|  |  |  |-- variables.data-00000-of-00002
+|  |  |  |-- variables.data-00001-of-00002
+|  |  |  |-- variables.index
+|  |-- openvino_estimator.py
+|  |-- pileup_image.py
+|  |-- pileup_image_native.cc
+|  |-- pileup_image_native.h
+|  |-- pileup_image_test.py
+|  |-- postprocess_variants.cc
+|  |-- postprocess_variants.h
+|  |-- postprocess_variants.py
+|  |-- postprocess_variants_test.cc
+|  |-- postprocess_variants_test.py
+|  |-- protos
+|  |  |-- BUILD
+|  |  |-- deepvariant.proto
+|  |  |-- realigner.proto
+|  |  |-- resources.proto
+|  |-- python
+|  |  |-- BUILD
+|  |  |-- allelecounter.clif
+|  |  |-- allelecounter_wrap_test.py
+|  |  |-- clif_converters.cc
+|  |  |-- clif_converters.h
+|  |  |-- pileup_image_native.clif
+|  |  |-- postprocess_variants.clif
+|  |  |-- variant_calling.clif
+|  |  |-- variant_calling_wrap_test.py
+|  |-- realigner
+|  |  |-- BUILD
+|  |  |-- debruijn_graph.cc
+|  |  |-- debruijn_graph.h
+|  |  |-- fast_pass_aligner.cc
+|  |  |-- fast_pass_aligner.h
+|  |  |-- fast_pass_aligner_test.cc
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- debruijn_graph.clif
+|  |  |  |-- debruijn_graph_wrap_test.py
+|  |  |  |-- fast_pass_aligner.clif
+|  |  |  |-- ssw.clif
+|  |  |  |-- ssw_misc_test.py
+|  |  |  |-- ssw_wrap_test.py
+|  |  |  |-- window_selector.clif
+|  |  |-- realigner.py
+|  |  |-- realigner_test.py
+|  |  |-- ssw.cc
+|  |  |-- ssw.h
+|  |  |-- ssw_test.cc
+|  |  |-- utils.py
+|  |  |-- window_selector.cc
+|  |  |-- window_selector.h
+|  |  |-- window_selector.py
+|  |  |-- window_selector_test.py
+|  |-- resources.py
+|  |-- resources_test.py
+|  |-- runtime_by_region_vis.py
+|  |-- runtime_by_region_vis_test.py
+|  |-- show_examples.py
+|  |-- show_examples_test.py
+|  |-- testdata.py
+|  |-- testdata
+|  |  |-- customized_classes.golden.training_examples.tfrecord.gz
+|  |  |-- golden.alt_aligned_pileup_diff_channels_examples.tfrecord.gz
+|  |  |-- golden.alt_aligned_pileup_rows_examples.tfrecord.gz
+|  |  |-- golden.calling_candidates.tfrecord.gz
+|  |  |-- golden.calling_examples.tfrecord.gz
+|  |  |-- golden.calling_examples.tfrecord.gz-00000-of-00003
+|  |  |-- golden.calling_examples.tfrecord.gz-00001-of-00003
+|  |  |-- golden.calling_examples.tfrecord.gz-00002-of-00003
+|  |  |-- golden.postprocess_gvcf_input.tfrecord.gz
+|  |  |-- golden.postprocess_gvcf_input.tfrecord.gz-00000-of-00003
+|  |  |-- golden.postprocess_gvcf_input.tfrecord.gz-00001-of-00003
+|  |  |-- golden.postprocess_gvcf_input.tfrecord.gz-00002-of-00003
+|  |  |-- golden.postprocess_gvcf_output.g.vcf
+|  |  |-- golden.postprocess_single_site_input.tfrecord.gz
+|  |  |-- golden.postprocess_single_site_output.pass_only.vcf
+|  |  |-- golden.postprocess_single_site_output.vcf
+|  |  |-- golden.postprocess_single_site_output.vcf.gz
+|  |  |-- golden.postprocess_single_site_output.vcf.gz.tbi
+|  |  |-- golden.training_examples.tfrecord
+|  |  |-- golden.training_examples.tfrecord.gz
+|  |  |-- golden.training_examples.tfrecord.gz-00000-of-00003
+|  |  |-- golden.training_examples.tfrecord.gz-00001-of-00003
+|  |  |-- golden.training_examples.tfrecord.gz-00002-of-00003
+|  |  |-- golden.training_examples.tfrecord.gz.run_info.pbtxt
+|  |  |-- golden.training_examples.vcf
+|  |  |-- golden.vcf_candidate_importer.training_examples.tfrecord.gz
+|  |  |-- golden.vcf_candidate_importer_calling_examples.tfrecord
+|  |  |-- golden.vcf_candidate_importer_postprocess_single_site_input.tfrecord.gz
+|  |  |-- golden.vcf_candidate_importer_postprocess_single_site_output.vcf
+|  |  |-- input
+|  |  |  |-- HG002_NIST_150bp_downsampled_30x.chr20.10_10p1mb.bam
+|  |  |  |-- HG002_NIST_150bp_downsampled_30x.chr20.10_10p1mb.bam.bai
+|  |  |  |-- NA12878_S1.chr20.10_10p1mb.bam
+|  |  |  |-- NA12878_S1.chr20.10_10p1mb.bam.bai
+|  |  |  |-- NA12878_S1.chr20.10_10p1mb.cram
+|  |  |  |-- NA12878_S1.chr20.10_10p1mb.cram.crai
+|  |  |  |-- NA12878_S1.chr20.10_10p1mb.first_half.bam
+|  |  |  |-- NA12878_S1.chr20.10_10p1mb.first_half.bam.bai
+|  |  |  |-- NA12878_S1.chr20.10_10p1mb.second_half.bam
+|  |  |  |-- NA12878_S1.chr20.10_10p1mb.second_half.bam.bai
+|  |  |  |-- allele_frequencies_vcf.vcf.gz
+|  |  |  |-- allele_frequencies_vcf.vcf.gz.tbi
+|  |  |  |-- grch38.chr20_10M.fa.gz
+|  |  |  |-- grch38.chr20_10M.fa.gz.fai
+|  |  |  |-- grch38.chr20_10M.fa.gz.gzi
+|  |  |  |-- haplotypes.pbtxt
+|  |  |  |-- make_examples_runtime-00000-of-00002.tsv
+|  |  |  |-- make_examples_runtime-00001-of-00002.tsv
+|  |  |  |-- make_examples_runtime.tsv
+|  |  |  |-- reads.pbtxt
+|  |  |  |-- realigned_reads.pbtxt
+|  |  |  |-- reference.pbtxt
+|  |  |  |-- test_nist.b37_chr20_100kbp_at_10mb.bed
+|  |  |  |-- test_nist.b37_chr20_100kbp_at_10mb.vcf.gz
+|  |  |  |-- test_nist.b37_chr20_100kbp_at_10mb.vcf.gz.tbi
+|  |  |  |-- ucsc.hg19.chr20.unittest.fasta.gz
+|  |  |  |-- ucsc.hg19.chr20.unittest.fasta.gz.fai
+|  |  |  |-- ucsc.hg19.chr20.unittest.fasta.gz.gzi
+|  |  |  |-- vcf_candidate_importer.indels.chr20.vcf.gz
+|  |  |  |-- vcf_candidate_importer.indels.chr20.vcf.gz.tbi
+|  |  |  |-- with_types.test_nist.b37_chr20_4kbp_at_10mb.vcf.gz
+|  |  |  |-- with_types.test_nist.b37_chr20_4kbp_at_10mb.vcf.gz.tbi
+|  |  |-- obsolete
+|  |  |  |-- window_selector_allele_count_linear.pbtxt
+|  |  |  |-- window_selector_allele_count_linear.pckl
+|  |  |  |-- window_selector_variant_read_threshold.pbtxt
+|  |-- testing
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- tf_test_utils.py
+|  |-- tf_utils.py
+|  |-- tf_utils_test.py
+|  |-- utils.cc
+|  |-- utils.h
+|  |-- utils_test.cc
+|  |-- variant_caller.py
+|  |-- variant_caller_test.py
+|  |-- variant_calling.cc
+|  |-- variant_calling.h
+|  |-- variant_calling_test.cc
+|  |-- vcf_candidate_importer.py
+|  |-- vcf_candidate_importer_test.py
+|  |-- vcf_stats.py
+|  |-- vcf_stats_report.py
+|  |-- vcf_stats_test.py
+|  |-- vcf_stats_vis.py
+|  |-- vcf_stats_vis_test.py
+|  |-- vendor
+|  |  |-- BUILD
+|  |  |-- README
+|  |  |-- timer.py
+|  |  |-- timer_test.py
+|  |-- very_sensitive_caller.py
+|  |-- very_sensitive_caller_test.py
+|-- docs
+|  |-- FAQ.md
+|  |-- README.md
+|  |-- cybdv_notebook.ipynb
+|  |-- deeptrio-build-test.md
+|  |-- deeptrio-details-training-data.md
+|  |-- deeptrio-details.md
+|  |-- deeptrio-pacbio-case-study.md
+|  |-- deeptrio-quick-start.md
+|  |-- deeptrio-wgs-case-study.md
+|  |-- deepvariant-build-test.md
+|  |-- deepvariant-case-study.md
+|  |-- deepvariant-details-training-data.md
+|  |-- deepvariant-details.md
+|  |-- deepvariant-exome-case-study.md
+|  |-- deepvariant-gcp-info.md
+|  |-- deepvariant-gvcf-support.md
+|  |-- deepvariant-hybrid-case-study.md
+|  |-- deepvariant-pacbio-model-case-study.md
+|  |-- deepvariant-quick-start.md
+|  |-- deepvariant-training-case-study.md
+|  |-- deepvariant-vcf-stats-report.md
+|  |-- images
+|  |  |-- ActivateShell.png
+|  |  |-- DeepVariant-gvcf-sizes-figure.png
+|  |  |-- DeepVariant-workflow-figure.png
+|  |  |-- PacBio_HG002.v0.10.0_visual_report.png
+|  |  |-- PreviewOnPort.png
+|  |  |-- TensorBoardAccuracy.png
+|  |  |-- TensorBoardSpeed.png
+|  |  |-- WES_HG002.v0.10.0_visual_report.png
+|  |  |-- WGS_HG002.v0.10.0_visual_report.png
+|  |  |-- WebPreview.png
+|  |  |-- cohort-workflow.png
+|  |  |-- dataflow.png
+|  |  |-- example_0.10.0.png
+|  |  |-- hybrid_pileup.png
+|  |  |-- inference_flow_diagram.svg
+|  |  |-- runtime_by_region_wgs.png
+|  |-- metrics-deeptrio.md
+|  |-- metrics.md
+|  |-- runtime-by-region.md
+|  |-- show-examples.md
+|  |-- trio-merge-case-study.md
+|  |-- visualizing_examples.ipynb
+|-- run-prereq.sh
+|-- scripts
+|  |-- freeze_graph.py
+|  |-- inference_deeptrio_pacbio.sh
+|  |-- inference_deeptrio_pacbio_chr20.sh
+|  |-- inference_deeptrio_wes.sh
+|  |-- inference_deeptrio_wgs.sh
+|  |-- inference_deeptrio_wgs_chr20.sh
+|  |-- inference_hybrid_pacbio_illumina.sh
+|  |-- inference_pacbio.sh
+|  |-- inference_wes.sh
+|  |-- inference_wgs.sh
+|  |-- install_nvidia_docker.sh
+|  |-- install_singularity.sh
+|  |-- run_deeptrio.py
+|  |-- run_deeptrio_test.py
+|  |-- run_deeptrio_wgs_case_study_binaries.sh
+|  |-- run_deepvariant.py
+|  |-- run_hybrid_pacbio_illumina_case_study_docker.sh
+|  |-- run_pacbio_case_study_docker.sh
+|  |-- run_wes_case_study_docker.sh
+|  |-- run_wes_case_study_docker_gpu.sh
+|  |-- run_wgs_case_study_docker.sh
+|  |-- run_wgs_case_study_docker_gpu.sh
+|  |-- run_wgs_cram_runtime_test_docker.sh
+|-- settings.sh
+|-- third_party
+|  |-- BUILD
+|  |-- abseil_cpp.LICENSE
+|  |-- boost.LICENSE
+|  |-- clif.BUILD
+|  |-- clif.bzl
+|  |-- htslib.BUILD
+|  |-- libssw.BUILD
+|  |-- nucleus
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- _github
+|  |  |  |-- workflows
+|  |  |  |  |-- test.yml
+|  |  |-- io
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- bed.py
+|  |  |  |-- bed_reader.cc
+|  |  |  |-- bed_reader.h
+|  |  |  |-- bed_reader_test.cc
+|  |  |  |-- bed_test.py
+|  |  |  |-- bed_writer.cc
+|  |  |  |-- bed_writer.h
+|  |  |  |-- bed_writer_test.cc
+|  |  |  |-- bedgraph.py
+|  |  |  |-- bedgraph_reader.cc
+|  |  |  |-- bedgraph_reader.h
+|  |  |  |-- bedgraph_reader_test.cc
+|  |  |  |-- bedgraph_test.py
+|  |  |  |-- bedgraph_writer.cc
+|  |  |  |-- bedgraph_writer.h
+|  |  |  |-- bedgraph_writer_test.cc
+|  |  |  |-- clif_postproc.py
+|  |  |  |-- converter.py
+|  |  |  |-- converter_test.py
+|  |  |  |-- fasta.py
+|  |  |  |-- fasta_test.py
+|  |  |  |-- fastq.py
+|  |  |  |-- fastq_reader.cc
+|  |  |  |-- fastq_reader.h
+|  |  |  |-- fastq_reader_test.cc
+|  |  |  |-- fastq_test.py
+|  |  |  |-- fastq_writer.cc
+|  |  |  |-- fastq_writer.h
+|  |  |  |-- fastq_writer_test.cc
+|  |  |  |-- genomics_io_noplugin_test.py
+|  |  |  |-- genomics_reader.py
+|  |  |  |-- genomics_reader_test.py
+|  |  |  |-- genomics_writer.py
+|  |  |  |-- gff.py
+|  |  |  |-- gff_reader.cc
+|  |  |  |-- gff_reader.h
+|  |  |  |-- gff_reader_test.cc
+|  |  |  |-- gff_test.py
+|  |  |  |-- gff_writer.cc
+|  |  |  |-- gff_writer.h
+|  |  |  |-- gff_writer_test.cc
+|  |  |  |-- gfile.cc
+|  |  |  |-- gfile.h
+|  |  |  |-- gfile.py
+|  |  |  |-- gfile_test.py
+|  |  |  |-- hts_path.cc
+|  |  |  |-- hts_path.h
+|  |  |  |-- hts_test.cc
+|  |  |  |-- hts_verbose.cc
+|  |  |  |-- hts_verbose.h
+|  |  |  |-- hts_verbose_test.cc
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- bed_reader.clif
+|  |  |  |  |-- bed_reader_wrap_test.py
+|  |  |  |  |-- bed_writer.clif
+|  |  |  |  |-- bed_writer_wrap_test.py
+|  |  |  |  |-- bedgraph_reader.clif
+|  |  |  |  |-- bedgraph_writer.clif
+|  |  |  |  |-- fastq_reader.clif
+|  |  |  |  |-- fastq_reader_wrap_test.py
+|  |  |  |  |-- fastq_writer.clif
+|  |  |  |  |-- fastq_writer_wrap_test.py
+|  |  |  |  |-- gff_reader.clif
+|  |  |  |  |-- gff_reader_wrap_test.py
+|  |  |  |  |-- gff_writer.clif
+|  |  |  |  |-- gff_writer_wrap_test.py
+|  |  |  |  |-- gfile.clif
+|  |  |  |  |-- hts_verbose.clif
+|  |  |  |  |-- hts_verbose_test.py
+|  |  |  |  |-- reference.clif
+|  |  |  |  |-- reference_wrap_test.py
+|  |  |  |  |-- sam_reader.clif
+|  |  |  |  |-- sam_reader_wrap_test.py
+|  |  |  |  |-- sam_writer.clif
+|  |  |  |  |-- tabix_indexer.clif
+|  |  |  |  |-- tfrecord_reader.clif
+|  |  |  |  |-- tfrecord_writer.clif
+|  |  |  |  |-- vcf_reader.clif
+|  |  |  |  |-- vcf_reader_wrap_test.py
+|  |  |  |  |-- vcf_writer.clif
+|  |  |  |  |-- vcf_writer_wrap_test.py
+|  |  |  |-- reader_base.cc
+|  |  |  |-- reader_base.h
+|  |  |  |-- reader_base_test.cc
+|  |  |  |-- reference.cc
+|  |  |  |-- reference.h
+|  |  |  |-- reference_test.cc
+|  |  |  |-- sam.py
+|  |  |  |-- sam_reader.cc
+|  |  |  |-- sam_reader.h
+|  |  |  |-- sam_reader_test.cc
+|  |  |  |-- sam_test.py
+|  |  |  |-- sam_utils.cc
+|  |  |  |-- sam_utils.h
+|  |  |  |-- sam_utils_test.cc
+|  |  |  |-- sam_writer.cc
+|  |  |  |-- sam_writer.h
+|  |  |  |-- sam_writer_test.cc
+|  |  |  |-- sharded_file_utils.py
+|  |  |  |-- sharded_file_utils_test.py
+|  |  |  |-- tabix.py
+|  |  |  |-- tabix_indexer.cc
+|  |  |  |-- tabix_indexer.h
+|  |  |  |-- tabix_indexer_test.cc
+|  |  |  |-- tabix_test.py
+|  |  |  |-- text_io_test.cc
+|  |  |  |-- text_reader.cc
+|  |  |  |-- text_reader.h
+|  |  |  |-- text_writer.cc
+|  |  |  |-- text_writer.h
+|  |  |  |-- tfrecord.py
+|  |  |  |-- tfrecord_reader.cc
+|  |  |  |-- tfrecord_reader.h
+|  |  |  |-- tfrecord_reader_test.cc
+|  |  |  |-- tfrecord_test.py
+|  |  |  |-- tfrecord_writer.cc
+|  |  |  |-- tfrecord_writer.h
+|  |  |  |-- vcf.py
+|  |  |  |-- vcf_conversion.cc
+|  |  |  |-- vcf_conversion.h
+|  |  |  |-- vcf_reader.cc
+|  |  |  |-- vcf_reader.h
+|  |  |  |-- vcf_reader_test.cc
+|  |  |  |-- vcf_roundtrip_test.cc
+|  |  |  |-- vcf_test.py
+|  |  |  |-- vcf_writer.cc
+|  |  |  |-- vcf_writer.h
+|  |  |  |-- vcf_writer_test.cc
+|  |  |-- pip_package
+|  |  |  |-- BUILD
+|  |  |  |-- MANIFEST.in
+|  |  |  |-- build_pip_package.sh
+|  |  |  |-- egg_files
+|  |  |  |  |-- PKG-INFO
+|  |  |  |  |-- dependency_links.txt
+|  |  |  |  |-- namespace_packages.txt
+|  |  |  |  |-- not-zip-safe
+|  |  |  |  |-- requires.txt
+|  |  |  |  |-- top_level.txt
+|  |  |  |-- setup.cfg
+|  |  |  |-- setup.py
+|  |  |-- platform
+|  |  |  |-- BUILD
+|  |  |  |-- types.h
+|  |  |-- protos
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- bed.proto
+|  |  |  |-- bedgraph.proto
+|  |  |  |-- cigar.proto
+|  |  |  |-- example.proto
+|  |  |  |-- fasta.proto
+|  |  |  |-- fastq.proto
+|  |  |  |-- feature.proto
+|  |  |  |-- gff.proto
+|  |  |  |-- position.proto
+|  |  |  |-- range.proto
+|  |  |  |-- reads.proto
+|  |  |  |-- reference.proto
+|  |  |  |-- struct.proto
+|  |  |  |-- variants.proto
+|  |  |-- testdata
+|  |  |  |-- 5col.bed
+|  |  |  |-- BUILD
+|  |  |  |-- NA12878_small.bam
+|  |  |  |-- NA12878_small.bam.bai
+|  |  |  |-- header_format_mixed_order.vcf
+|  |  |  |-- headerless.sam
+|  |  |  |-- malformed.bed
+|  |  |  |-- malformed.fasta
+|  |  |  |-- malformed.fastq
+|  |  |  |-- malformed.sam
+|  |  |  |-- malformed.vcf
+|  |  |  |-- malformed2.bed
+|  |  |  |-- malformed2.fastq
+|  |  |  |-- test.bam
+|  |  |  |-- test.bam.bai
+|  |  |  |-- test.bed
+|  |  |  |-- test.bed.gz
+|  |  |  |-- test.fasta
+|  |  |  |-- test.fasta.fai
+|  |  |  |-- test.fasta.gz
+|  |  |  |-- test.fasta.gz.fai
+|  |  |  |-- test.fasta.gz.gzi
+|  |  |  |-- test.sam
+|  |  |  |-- test.sam.golden.tfrecord
+|  |  |  |-- test_allele_depth.vcf
+|  |  |  |-- test_allele_depth.vcf.golden.tfrecord
+|  |  |  |-- test_alternate_index.bai
+|  |  |  |-- test_alternate_index.bam
+|  |  |  |-- test_cram.embed_ref_0_version_3.0.cram
+|  |  |  |-- test_cram.embed_ref_0_version_3.0.cram.crai
+|  |  |  |-- test_cram.embed_ref_1_version_3.0.cram
+|  |  |  |-- test_cram.embed_ref_1_version_3.0.cram.crai
+|  |  |  |-- test_cram.sam
+|  |  |  |-- test_features.gff
+|  |  |  |-- test_features.gff.gz
+|  |  |  |-- test_features.gff.tfrecord
+|  |  |  |-- test_features.gff.tfrecord.gz
+|  |  |  |-- test_likelihoods.vcf.golden.tfrecord
+|  |  |  |-- test_likelihoods_input.vcf
+|  |  |  |-- test_likelihoods_output.vcf
+|  |  |  |-- test_nist.b37_chr20_100kbp_at_10mb.bed
+|  |  |  |-- test_nist.b37_chr20_100kbp_at_10mb.vcf.gz
+|  |  |  |-- test_nist.b37_chr20_100kbp_at_10mb.vcf.gz.tbi
+|  |  |  |-- test_oq.sam
+|  |  |  |-- test_phaseset.vcf
+|  |  |  |-- test_phaseset.vcf.golden.tfrecord
+|  |  |  |-- test_py_roundtrip.vcf
+|  |  |  |-- test_reads.bgzip.fastq.gz
+|  |  |  |-- test_reads.fastq
+|  |  |  |-- test_reads.fastq.gz
+|  |  |  |-- test_reads.fastq.tfrecord
+|  |  |  |-- test_reads.fastq.tfrecord.gz
+|  |  |  |-- test_redefined_formats.vcf
+|  |  |  |-- test_regions.bed
+|  |  |  |-- test_regions.bed.gz
+|  |  |  |-- test_regions.bed.tfrecord
+|  |  |  |-- test_regions.bed.tfrecord.gz
+|  |  |  |-- test_regions.bedgraph
+|  |  |  |-- test_regions.bedgraph.gz
+|  |  |  |-- test_samples.vcf
+|  |  |  |-- test_samples.vcf.golden.tfrecord
+|  |  |  |-- test_samples.vcf.gz
+|  |  |  |-- test_samples.vcf.gz.tbi
+|  |  |  |-- test_sites.vcf
+|  |  |  |-- test_sites.vcf.golden.tfrecord
+|  |  |  |-- test_vaf.vcf
+|  |  |  |-- test_vaf.vcf.golden.tfrecord
+|  |  |  |-- test_valid_vcf_header_parsing.vcf
+|  |  |  |-- ucsc.hg19.chr20.unittest.fasta.gz
+|  |  |  |-- ucsc.hg19.chr20.unittest.fasta.gz.fai
+|  |  |  |-- ucsc.hg19.chr20.unittest.fasta.gz.gzi
+|  |  |  |-- unindexed.bam
+|  |  |  |-- unindexed.fasta
+|  |  |  |-- unindexed_emptylines.fasta
+|  |  |  |-- vcf_no_header.vcf
+|  |  |-- testing
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- gunit_extras_test.cc
+|  |  |  |-- protobuf_implementation_test.py
+|  |  |  |-- protocol-buffer-matchers.cc
+|  |  |  |-- protocol-buffer-matchers.h
+|  |  |  |-- tensorflow_smoke_test.py
+|  |  |  |-- test_utils.cc
+|  |  |  |-- test_utils.h
+|  |  |  |-- test_utils.py
+|  |  |  |-- test_utils_test.py
+|  |  |-- tools
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- make_cram_testdata.sh
+|  |  |  |-- md_extract_cmd.sh
+|  |  |  |-- zip_dir.bzl
+|  |  |-- util
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- cigar.py
+|  |  |  |-- cigar_test.py
+|  |  |  |-- errors.py
+|  |  |  |-- errors_test.py
+|  |  |  |-- genomics_math.py
+|  |  |  |-- genomics_math_test.py
+|  |  |  |-- math.cc
+|  |  |  |-- math.h
+|  |  |  |-- math_test.cc
+|  |  |  |-- port.h
+|  |  |  |-- proto_clif_converter.cc
+|  |  |  |-- proto_clif_converter.h
+|  |  |  |-- proto_ptr.h
+|  |  |  |-- proto_utils.py
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- math.clif
+|  |  |  |  |-- math_wrap_test.py
+|  |  |  |  |-- utils.clif
+|  |  |  |-- ranges.py
+|  |  |  |-- ranges_test.py
+|  |  |  |-- samplers.h
+|  |  |  |-- samplers_test.cc
+|  |  |  |-- sequence_utils.py
+|  |  |  |-- sequence_utils_test.py
+|  |  |  |-- struct_utils.py
+|  |  |  |-- struct_utils_test.py
+|  |  |  |-- utils.cc
+|  |  |  |-- utils.h
+|  |  |  |-- utils.py
+|  |  |  |-- utils_test.cc
+|  |  |  |-- utils_test.py
+|  |  |  |-- variant_utils.py
+|  |  |  |-- variant_utils_test.py
+|  |  |  |-- variantcall_utils.py
+|  |  |  |-- variantcall_utils_test.py
+|  |  |  |-- vcf_constants.py
+|  |  |  |-- vcf_constants_test.py
+|  |  |  |-- vis.py
+|  |  |  |-- vis_test.py
+|  |  |-- vendor
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- message_module.cc
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- statusor_examples.clif
+|  |  |  |  |-- statusor_examples_test.py
+|  |  |  |-- status_matchers.h
+|  |  |  |-- statusor.h
+|  |  |  |-- statusor_clif_converters.cc
+|  |  |  |-- statusor_clif_converters.h
+|  |  |  |-- statusor_examples.h
+|  |  |  |-- statusor_test.cc
+|  |-- protobuf.BUILD
+|  |-- tensorflow_models.LICENSE
+|-- tools
+|  |-- build_clif_package.sh
+|  |-- print_f1.py
+|  |-- shuffle_tfrecords_beam.py

@@ -1,0 +1,462 @@
+|-- .bazelci
+|  |-- presubmit.yml
+|-- .bazelignore
+|-- .bazelrc
+|-- .clang-format
+|-- .clang-tidy
+|-- .cmake-format.py
+|-- .codecov.yml
+|-- .dockerignore
+|-- .github
+|  |-- ISSUE_TEMPLATE
+|  |  |-- bug_report.md
+|  |  |-- feature_request.md
+|-- .gitignore
+|-- BUILD
+|-- CHANGELOG.md
+|-- CMakeLists.txt
+|-- CODE_OF_CONDUCT.md
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- bazel
+|  |-- BUILD
+|  |-- google_cloud_cpp_spanner_deps.bzl
+|  |-- googleapis.BUILD
+|-- ci
+|  |-- check-include-guards.gawk
+|  |-- check-markdown.sh
+|  |-- check-style.sh
+|  |-- colors.sh
+|  |-- define-dump-log.sh
+|  |-- etc
+|  |  |-- install-config.sh
+|  |  |-- kokoro
+|  |  |  |-- install
+|  |  |  |  |-- project-config.sh
+|  |  |  |  |-- run-installed-programs.sh
+|  |  |  |  |-- version-config.sh
+|  |  |-- publish-refdocs.sh
+|  |  |-- repo-config.sh
+|  |-- generate-markdown
+|  |  |-- README.md
+|  |  |-- dockerfile2markdown.sh
+|  |  |-- extract-install.sh
+|  |  |-- generate-packaging.sh
+|  |  |-- generate-readme.sh
+|  |  |-- generate-spanner-readme.sh
+|  |-- install-bazel.sh
+|  |-- kokoro
+|  |  |-- Dockerfile.centos
+|  |  |-- Dockerfile.fedora-install
+|  |  |-- Dockerfile.fedora-libcxx-msan
+|  |  |-- Dockerfile.ubuntu
+|  |  |-- Dockerfile.ubuntu-xenial
+|  |  |-- define-docker-variables.sh
+|  |  |-- docker
+|  |  |  |-- README.md
+|  |  |  |-- asan-presubmit.cfg
+|  |  |  |-- asan.cfg
+|  |  |  |-- bazel-dependency-presubmit.cfg
+|  |  |  |-- bazel-dependency.cfg
+|  |  |  |-- build-in-docker-bazel-dependency.sh
+|  |  |  |-- build-in-docker-bazel.sh
+|  |  |  |-- build-in-docker-cmake.sh
+|  |  |  |-- build.sh
+|  |  |  |-- check-api-presubmit.cfg
+|  |  |  |-- check-api.cfg
+|  |  |  |-- check-api.sh
+|  |  |  |-- clang-3.8-presubmit.cfg
+|  |  |  |-- clang-3.8.cfg
+|  |  |  |-- clang-tidy-presubmit.cfg
+|  |  |  |-- clang-tidy.cfg
+|  |  |  |-- cmake-presubmit.cfg
+|  |  |  |-- cmake-super-presubmit.cfg
+|  |  |  |-- cmake-super.cfg
+|  |  |  |-- cmake.cfg
+|  |  |  |-- common.cfg
+|  |  |  |-- coverage-presubmit.cfg
+|  |  |  |-- coverage.cfg
+|  |  |  |-- cxx17-presubmit.cfg
+|  |  |  |-- cxx17.cfg
+|  |  |  |-- download-cache.sh
+|  |  |  |-- dump-reports.sh
+|  |  |  |-- gcc-4.8-presubmit.cfg
+|  |  |  |-- gcc-4.8.cfg
+|  |  |  |-- integration-presubmit.cfg
+|  |  |  |-- integration.cfg
+|  |  |  |-- msan-presubmit.cfg
+|  |  |  |-- msan.cfg
+|  |  |  |-- ninja-presubmit.cfg
+|  |  |  |-- ninja.cfg
+|  |  |  |-- noex-presubmit.cfg
+|  |  |  |-- noex.cfg
+|  |  |  |-- publish-refdocs.cfg
+|  |  |  |-- publish-refdocs.sh
+|  |  |  |-- tsan-presubmit.cfg
+|  |  |  |-- tsan.cfg
+|  |  |  |-- ubsan-presubmit.cfg
+|  |  |  |-- ubsan.cfg
+|  |  |  |-- upload-cache.sh
+|  |  |  |-- upload-coverage.sh
+|  |  |  |-- upload-docs.sh
+|  |  |-- dump-logs.sh
+|  |  |-- gcloud-functions.sh
+|  |  |-- install
+|  |  |  |-- Dockerfile.centos-7
+|  |  |  |-- Dockerfile.centos-8
+|  |  |  |-- Dockerfile.debian-buster
+|  |  |  |-- Dockerfile.debian-stretch
+|  |  |  |-- Dockerfile.fedora
+|  |  |  |-- Dockerfile.opensuse-leap
+|  |  |  |-- Dockerfile.opensuse-tumbleweed
+|  |  |  |-- Dockerfile.ubuntu-bionic
+|  |  |  |-- Dockerfile.ubuntu-xenial
+|  |  |  |-- build.sh
+|  |  |  |-- centos-7-presubmit.cfg
+|  |  |  |-- centos-7.cfg
+|  |  |  |-- centos-8-presubmit.cfg
+|  |  |  |-- centos-8.cfg
+|  |  |  |-- common.cfg
+|  |  |  |-- debian-buster-presubmit.cfg
+|  |  |  |-- debian-buster.cfg
+|  |  |  |-- debian-stretch-presubmit.cfg
+|  |  |  |-- debian-stretch.cfg
+|  |  |  |-- fedora-presubmit.cfg
+|  |  |  |-- fedora.cfg
+|  |  |  |-- opensuse-leap-presubmit.cfg
+|  |  |  |-- opensuse-leap.cfg
+|  |  |  |-- opensuse-tumbleweed-presubmit.cfg
+|  |  |  |-- opensuse-tumbleweed.cfg
+|  |  |  |-- ubuntu-bionic-presubmit.cfg
+|  |  |  |-- ubuntu-bionic.cfg
+|  |  |  |-- ubuntu-xenial-presubmit.cfg
+|  |  |  |-- ubuntu-xenial.cfg
+|  |  |-- macos
+|  |  |  |-- bazel-presubmit.cfg
+|  |  |  |-- bazel.cfg
+|  |  |  |-- build-bazel.sh
+|  |  |  |-- build-cmake.sh
+|  |  |  |-- build.sh
+|  |  |  |-- cmake-super-presubmit.cfg
+|  |  |  |-- cmake-super.cfg
+|  |  |  |-- common.cfg
+|  |  |-- windows
+|  |  |  |-- bazel-presubmit.cfg
+|  |  |  |-- bazel.cfg
+|  |  |  |-- build-bazel-dependencies.ps1
+|  |  |  |-- build-bazel.ps1
+|  |  |  |-- build-cmake-dependencies.ps1
+|  |  |  |-- build-cmake.ps1
+|  |  |  |-- build.bat
+|  |  |  |-- build.ps1
+|  |  |  |-- cmake-presubmit.cfg
+|  |  |  |-- cmake.cfg
+|  |  |  |-- common.cfg
+|  |  |  |-- vcpkg-ports
+|  |  |  |  |-- google-cloud-cpp-common
+|  |  |  |  |  |-- CONTROL
+|  |  |  |  |  |-- portfile.cmake
+|  |  |  |  |-- googleapis
+|  |  |  |  |  |-- CONTROL
+|  |  |  |  |  |-- portfile.cmake
+|  |  |  |  |  |-- usage
+|  |-- retry-command.sh
+|  |-- test-api
+|  |  |-- spanner_client.expected.abi.dump.gz
+|-- cmake
+|  |-- CreateBazelConfig.cmake
+|  |-- EnableClangTidy.cmake
+|  |-- EnableCoverage.cmake
+|  |-- EnableCxxExceptions.cmake
+|  |-- EnableDoxygen.cmake
+|  |-- EnableWerror.cmake
+|  |-- GoogleCloudCppCommon.cmake
+|  |-- SelectMSVCRuntime.cmake
+|-- doc
+|  |-- cutting-a-release.md
+|  |-- doxygen-style-guide.md
+|  |-- packaging.md
+|  |-- setup-cmake-environment.md
+|  |-- testing-resources.md
+|-- google
+|  |-- cloud
+|  |  |-- spanner
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- backoff_policy.h
+|  |  |  |-- backup.cc
+|  |  |  |-- backup.h
+|  |  |  |-- backup_test.cc
+|  |  |  |-- batch_dml_result.h
+|  |  |  |-- benchmarks
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- benchmarks_config.cc
+|  |  |  |  |-- benchmarks_config.h
+|  |  |  |  |-- benchmarks_config_test.cc
+|  |  |  |  |-- multiple_rows_cpu_benchmark.cc
+|  |  |  |  |-- single_row_throughput_benchmark.cc
+|  |  |  |  |-- single_row_throughput_plots.py
+|  |  |  |  |-- spanner_client_benchmark_programs.bzl
+|  |  |  |  |-- spanner_client_benchmarks.bzl
+|  |  |  |-- bytes.cc
+|  |  |  |-- bytes.h
+|  |  |  |-- bytes_benchmark.cc
+|  |  |  |-- bytes_test.cc
+|  |  |  |-- client.cc
+|  |  |  |-- client.h
+|  |  |  |-- client_options.h
+|  |  |  |-- client_options_test.cc
+|  |  |  |-- client_test.cc
+|  |  |  |-- commit_result.h
+|  |  |  |-- config-version.cmake.in
+|  |  |  |-- config.cmake.in
+|  |  |  |-- config.pc.in
+|  |  |  |-- connection.h
+|  |  |  |-- connection_options.cc
+|  |  |  |-- connection_options.h
+|  |  |  |-- connection_options_test.cc
+|  |  |  |-- create_instance_request_builder.h
+|  |  |  |-- create_instance_request_builder_test.cc
+|  |  |  |-- database.cc
+|  |  |  |-- database.h
+|  |  |  |-- database_admin_client.cc
+|  |  |  |-- database_admin_client.h
+|  |  |  |-- database_admin_client_test.cc
+|  |  |  |-- database_admin_connection.cc
+|  |  |  |-- database_admin_connection.h
+|  |  |  |-- database_admin_connection_test.cc
+|  |  |  |-- database_test.cc
+|  |  |  |-- date.cc
+|  |  |  |-- date.h
+|  |  |  |-- date_test.cc
+|  |  |  |-- doc
+|  |  |  |  |-- spanner-main.dox
+|  |  |  |  |-- spanner-mocking.dox
+|  |  |  |-- iam_updater.h
+|  |  |  |-- instance.cc
+|  |  |  |-- instance.h
+|  |  |  |-- instance_admin_client.cc
+|  |  |  |-- instance_admin_client.h
+|  |  |  |-- instance_admin_client_test.cc
+|  |  |  |-- instance_admin_connection.cc
+|  |  |  |-- instance_admin_connection.h
+|  |  |  |-- instance_admin_connection_test.cc
+|  |  |  |-- instance_test.cc
+|  |  |  |-- integration_tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- backup_integration_test.cc
+|  |  |  |  |-- client_integration_test.cc
+|  |  |  |  |-- client_stress_test.cc
+|  |  |  |  |-- data_types_integration_test.cc
+|  |  |  |  |-- database_admin_integration_test.cc
+|  |  |  |  |-- instance_admin_integration_test.cc
+|  |  |  |  |-- rpc_failure_threshold_integration_test.cc
+|  |  |  |  |-- session_pool_integration_test.cc
+|  |  |  |  |-- spanner_client_integration_tests.bzl
+|  |  |  |-- internal
+|  |  |  |  |-- README.md
+|  |  |  |  |-- api_client_header.cc
+|  |  |  |  |-- api_client_header.h
+|  |  |  |  |-- api_client_header_test.cc
+|  |  |  |  |-- build_info.cc.in
+|  |  |  |  |-- build_info.h
+|  |  |  |  |-- build_info_test.cc
+|  |  |  |  |-- channel.h
+|  |  |  |  |-- clock.h
+|  |  |  |  |-- clock_test.cc
+|  |  |  |  |-- compiler_info.cc
+|  |  |  |  |-- compiler_info.h
+|  |  |  |  |-- compiler_info_test.cc
+|  |  |  |  |-- connection_impl.cc
+|  |  |  |  |-- connection_impl.h
+|  |  |  |  |-- connection_impl_test.cc
+|  |  |  |  |-- database_admin_logging.cc
+|  |  |  |  |-- database_admin_logging.h
+|  |  |  |  |-- database_admin_logging_test.cc
+|  |  |  |  |-- database_admin_metadata.cc
+|  |  |  |  |-- database_admin_metadata.h
+|  |  |  |  |-- database_admin_metadata_test.cc
+|  |  |  |  |-- database_admin_stub.cc
+|  |  |  |  |-- database_admin_stub.h
+|  |  |  |  |-- date.cc
+|  |  |  |  |-- date.h
+|  |  |  |  |-- date_benchmark.cc
+|  |  |  |  |-- date_test.cc
+|  |  |  |  |-- instance_admin_logging.cc
+|  |  |  |  |-- instance_admin_logging.h
+|  |  |  |  |-- instance_admin_logging_test.cc
+|  |  |  |  |-- instance_admin_metadata.cc
+|  |  |  |  |-- instance_admin_metadata.h
+|  |  |  |  |-- instance_admin_metadata_test.cc
+|  |  |  |  |-- instance_admin_stub.cc
+|  |  |  |  |-- instance_admin_stub.h
+|  |  |  |  |-- log_wrapper.cc
+|  |  |  |  |-- log_wrapper.h
+|  |  |  |  |-- log_wrapper_test.cc
+|  |  |  |  |-- logging_result_set_reader.cc
+|  |  |  |  |-- logging_result_set_reader.h
+|  |  |  |  |-- logging_result_set_reader_test.cc
+|  |  |  |  |-- logging_spanner_stub.cc
+|  |  |  |  |-- logging_spanner_stub.h
+|  |  |  |  |-- logging_spanner_stub_test.cc
+|  |  |  |  |-- merge_chunk.cc
+|  |  |  |  |-- merge_chunk.h
+|  |  |  |  |-- merge_chunk_benchmark.cc
+|  |  |  |  |-- merge_chunk_test.cc
+|  |  |  |  |-- metadata_spanner_stub.cc
+|  |  |  |  |-- metadata_spanner_stub.h
+|  |  |  |  |-- metadata_spanner_stub_test.cc
+|  |  |  |  |-- partial_result_set_reader.h
+|  |  |  |  |-- partial_result_set_resume.cc
+|  |  |  |  |-- partial_result_set_resume.h
+|  |  |  |  |-- partial_result_set_resume_test.cc
+|  |  |  |  |-- partial_result_set_source.cc
+|  |  |  |  |-- partial_result_set_source.h
+|  |  |  |  |-- partial_result_set_source_test.cc
+|  |  |  |  |-- polling_loop.h
+|  |  |  |  |-- polling_loop_test.cc
+|  |  |  |  |-- retry_loop.cc
+|  |  |  |  |-- retry_loop.h
+|  |  |  |  |-- retry_loop_test.cc
+|  |  |  |  |-- session.cc
+|  |  |  |  |-- session.h
+|  |  |  |  |-- session_pool.cc
+|  |  |  |  |-- session_pool.h
+|  |  |  |  |-- session_pool_test.cc
+|  |  |  |  |-- spanner_stub.cc
+|  |  |  |  |-- spanner_stub.h
+|  |  |  |  |-- spanner_stub_test.cc
+|  |  |  |  |-- status_utils.cc
+|  |  |  |  |-- status_utils.h
+|  |  |  |  |-- status_utils_test.cc
+|  |  |  |  |-- time_format.cc
+|  |  |  |  |-- time_format.h
+|  |  |  |  |-- time_format_benchmark.cc
+|  |  |  |  |-- time_format_test.cc
+|  |  |  |  |-- time_utils.h
+|  |  |  |  |-- time_utils_test.cc
+|  |  |  |  |-- transaction_impl.cc
+|  |  |  |  |-- transaction_impl.h
+|  |  |  |  |-- transaction_impl_test.cc
+|  |  |  |  |-- tuple_utils.h
+|  |  |  |  |-- tuple_utils_test.cc
+|  |  |  |-- keys.cc
+|  |  |  |-- keys.h
+|  |  |  |-- keys_test.cc
+|  |  |  |-- mocks
+|  |  |  |  |-- mock_database_admin_connection.h
+|  |  |  |  |-- mock_instance_admin_connection.h
+|  |  |  |  |-- mock_spanner_connection.h
+|  |  |  |-- mutations.cc
+|  |  |  |-- mutations.h
+|  |  |  |-- mutations_test.cc
+|  |  |  |-- partition_options.cc
+|  |  |  |-- partition_options.h
+|  |  |  |-- partition_options_test.cc
+|  |  |  |-- partitioned_dml_result.h
+|  |  |  |-- polling_policy.h
+|  |  |  |-- query_options.h
+|  |  |  |-- query_options_test.cc
+|  |  |  |-- query_partition.cc
+|  |  |  |-- query_partition.h
+|  |  |  |-- query_partition_test.cc
+|  |  |  |-- quickstart
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- WORKSPACE
+|  |  |  |  |-- quickstart.cc
+|  |  |  |-- read_options.h
+|  |  |  |-- read_options_test.cc
+|  |  |  |-- read_partition.cc
+|  |  |  |-- read_partition.h
+|  |  |  |-- read_partition_test.cc
+|  |  |  |-- results.cc
+|  |  |  |-- results.h
+|  |  |  |-- results_test.cc
+|  |  |  |-- retry_policy.h
+|  |  |  |-- retry_policy_test.cc
+|  |  |  |-- row.cc
+|  |  |  |-- row.h
+|  |  |  |-- row_benchmark.cc
+|  |  |  |-- row_test.cc
+|  |  |  |-- samples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- mock_execute_query.cc
+|  |  |  |  |-- samples.cc
+|  |  |  |  |-- spanner_client_integration_samples.bzl
+|  |  |  |  |-- spanner_client_unit_samples.bzl
+|  |  |  |-- session_pool_options.h
+|  |  |  |-- session_pool_options_test.cc
+|  |  |  |-- spanner_client.bzl
+|  |  |  |-- spanner_client_benchmarks.bzl
+|  |  |  |-- spanner_client_mocks.bzl
+|  |  |  |-- spanner_client_testing.bzl
+|  |  |  |-- spanner_client_unit_tests.bzl
+|  |  |  |-- spanner_version_test.cc
+|  |  |  |-- sql_statement.cc
+|  |  |  |-- sql_statement.h
+|  |  |  |-- sql_statement_test.cc
+|  |  |  |-- testing
+|  |  |  |  |-- cleanup_stale_instances.cc
+|  |  |  |  |-- cleanup_stale_instances.h
+|  |  |  |  |-- compiler_supports_regexp.h
+|  |  |  |  |-- database_integration_test.cc
+|  |  |  |  |-- database_integration_test.h
+|  |  |  |  |-- fake_clock.h
+|  |  |  |  |-- matchers.h
+|  |  |  |  |-- mock_database_admin_stub.h
+|  |  |  |  |-- mock_instance_admin_stub.h
+|  |  |  |  |-- mock_partial_result_set_reader.h
+|  |  |  |  |-- mock_spanner_stub.h
+|  |  |  |  |-- pick_instance_config.cc
+|  |  |  |  |-- pick_instance_config.h
+|  |  |  |  |-- pick_random_instance.cc
+|  |  |  |  |-- pick_random_instance.h
+|  |  |  |  |-- policies.h
+|  |  |  |  |-- random_backup_name.cc
+|  |  |  |  |-- random_backup_name.h
+|  |  |  |  |-- random_database_name.cc
+|  |  |  |  |-- random_database_name.h
+|  |  |  |  |-- random_instance_name.cc
+|  |  |  |  |-- random_instance_name.h
+|  |  |  |  |-- validate_metadata.cc
+|  |  |  |  |-- validate_metadata.h
+|  |  |  |-- timestamp.cc
+|  |  |  |-- timestamp.h
+|  |  |  |-- timestamp_test.cc
+|  |  |  |-- tracing_options.h
+|  |  |  |-- transaction.cc
+|  |  |  |-- transaction.h
+|  |  |  |-- transaction_test.cc
+|  |  |  |-- update_instance_request_builder.h
+|  |  |  |-- update_instance_request_builder_test.cc
+|  |  |  |-- value.cc
+|  |  |  |-- value.h
+|  |  |  |-- value_test.cc
+|  |  |  |-- version.cc
+|  |  |  |-- version.h
+|  |  |  |-- version_info.h
+|  |  |  |-- version_info.h.in
+|-- super
+|  |-- CMakeLists.txt
+|  |-- ExternalProjectHelper.cmake
+|  |-- external
+|  |  |-- benchmark.cmake
+|  |  |-- c-ares.cmake
+|  |  |-- google-cloud-cpp-common.cmake
+|  |  |-- googleapis.cmake
+|  |  |-- googletest.cmake
+|  |  |-- grpc.cmake
+|  |  |-- protobuf.cmake
+|  |  |-- ssl.cmake
+|  |  |-- zlib.cmake

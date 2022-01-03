@@ -1,0 +1,335 @@
+|-- .bazelrc
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- MANIFEST.in
+|-- README.md
+|-- WORKSPACE
+|-- configure
+|-- doc
+|  |-- index.md
+|  |-- record_writer_options.md
+|  |-- riegeli_records_file_format.md
+|-- python
+|  |-- BUILD
+|  |-- MANIFEST.in
+|  |-- README.md
+|  |-- __init__.py
+|  |-- build_pip_package.sh
+|  |-- dummy_binary.py
+|  |-- riegeli
+|  |  |-- BUILD
+|  |  |-- BUILD.tpl
+|  |  |-- __init__.py
+|  |  |-- base
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- riegeli_error.py
+|  |  |  |-- utils.cc
+|  |  |  |-- utils.h
+|  |  |-- bytes
+|  |  |  |-- BUILD
+|  |  |  |-- python_reader.cc
+|  |  |  |-- python_reader.h
+|  |  |  |-- python_writer.cc
+|  |  |  |-- python_writer.h
+|  |  |-- py_extension.bzl
+|  |  |-- python_configure.bzl
+|  |  |-- records
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- examples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- write_read_records.py
+|  |  |  |-- record_position.cc
+|  |  |  |-- record_position.h
+|  |  |  |-- record_reader.cc
+|  |  |  |-- record_writer.cc
+|  |  |  |-- records_metadata.proto
+|  |  |  |-- skipped_region.py
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- records_test.proto
+|  |  |  |  |-- records_test.py
+|  |  |-- tensorflow
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- kernel_tests
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- riegeli_dataset_test.py
+|  |  |  |-- ops
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- riegeli_dataset_ops.py
+|  |-- setup.py
+|-- riegeli
+|  |-- BUILD
+|  |-- base
+|  |  |-- BUILD
+|  |  |-- base.cc
+|  |  |-- base.h
+|  |  |-- binary_search.h
+|  |  |-- buffer.cc
+|  |  |-- buffer.h
+|  |  |-- chain.cc
+|  |  |-- chain.h
+|  |  |-- dependency.h
+|  |  |-- errno_mapping.cc
+|  |  |-- errno_mapping.h
+|  |  |-- intrusive_ref_count.h
+|  |  |-- memory.cc
+|  |  |-- memory.h
+|  |  |-- memory_estimator.cc
+|  |  |-- memory_estimator.h
+|  |  |-- object.cc
+|  |  |-- object.h
+|  |  |-- options_parser.cc
+|  |  |-- options_parser.h
+|  |  |-- parallelism.cc
+|  |  |-- parallelism.h
+|  |  |-- port.h
+|  |  |-- recycling_pool.h
+|  |  |-- reset.h
+|  |  |-- shared_buffer.cc
+|  |  |-- shared_buffer.h
+|  |  |-- stable_dependency.h
+|  |  |-- status.cc
+|  |  |-- status.h
+|  |-- brotli
+|  |  |-- BUILD
+|  |  |-- brotli_allocator.cc
+|  |  |-- brotli_allocator.h
+|  |  |-- brotli_reader.cc
+|  |  |-- brotli_reader.h
+|  |  |-- brotli_writer.cc
+|  |  |-- brotli_writer.h
+|  |-- bytes
+|  |  |-- BUILD
+|  |  |-- array_backward_writer.cc
+|  |  |-- array_backward_writer.h
+|  |  |-- array_writer.cc
+|  |  |-- array_writer.h
+|  |  |-- backward_writer.cc
+|  |  |-- backward_writer.h
+|  |  |-- buffered_reader.cc
+|  |  |-- buffered_reader.h
+|  |  |-- buffered_writer.cc
+|  |  |-- buffered_writer.h
+|  |  |-- chain_backward_writer.cc
+|  |  |-- chain_backward_writer.h
+|  |  |-- chain_reader.cc
+|  |  |-- chain_reader.h
+|  |  |-- chain_writer.cc
+|  |  |-- chain_writer.h
+|  |  |-- cord_backward_writer.cc
+|  |  |-- cord_backward_writer.h
+|  |  |-- cord_reader.cc
+|  |  |-- cord_reader.h
+|  |  |-- cord_writer.cc
+|  |  |-- cord_writer.h
+|  |  |-- digesting_common.h
+|  |  |-- digesting_reader.cc
+|  |  |-- digesting_reader.h
+|  |  |-- digesting_writer.cc
+|  |  |-- digesting_writer.h
+|  |  |-- fd_dependency.h
+|  |  |-- fd_reader.cc
+|  |  |-- fd_reader.h
+|  |  |-- fd_writer.cc
+|  |  |-- fd_writer.h
+|  |  |-- istream_reader.cc
+|  |  |-- istream_reader.h
+|  |  |-- limiting_backward_writer.cc
+|  |  |-- limiting_backward_writer.h
+|  |  |-- limiting_reader.cc
+|  |  |-- limiting_reader.h
+|  |  |-- limiting_writer.cc
+|  |  |-- limiting_writer.h
+|  |  |-- null_backward_writer.cc
+|  |  |-- null_backward_writer.h
+|  |  |-- null_writer.cc
+|  |  |-- null_writer.h
+|  |  |-- ostream_writer.cc
+|  |  |-- ostream_writer.h
+|  |  |-- pullable_reader.cc
+|  |  |-- pullable_reader.h
+|  |  |-- pushable_backward_writer.cc
+|  |  |-- pushable_backward_writer.h
+|  |  |-- pushable_writer.cc
+|  |  |-- pushable_writer.h
+|  |  |-- reader.cc
+|  |  |-- reader.h
+|  |  |-- reader_istream.cc
+|  |  |-- reader_istream.h
+|  |  |-- span_dependency.h
+|  |  |-- std_io.cc
+|  |  |-- std_io.h
+|  |  |-- stream_dependency.h
+|  |  |-- string_reader.cc
+|  |  |-- string_reader.h
+|  |  |-- string_view_dependency.h
+|  |  |-- string_writer.cc
+|  |  |-- string_writer.h
+|  |  |-- wrapped_backward_writer.cc
+|  |  |-- wrapped_backward_writer.h
+|  |  |-- wrapped_reader.cc
+|  |  |-- wrapped_reader.h
+|  |  |-- wrapped_writer.cc
+|  |  |-- wrapped_writer.h
+|  |  |-- writer.cc
+|  |  |-- writer.h
+|  |  |-- writer_ostream.cc
+|  |  |-- writer_ostream.h
+|  |-- chunk_encoding
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- chunk.cc
+|  |  |-- chunk.h
+|  |  |-- chunk_decoder.cc
+|  |  |-- chunk_decoder.h
+|  |  |-- chunk_encoder.cc
+|  |  |-- chunk_encoder.h
+|  |  |-- compressor.cc
+|  |  |-- compressor.h
+|  |  |-- compressor_options.cc
+|  |  |-- compressor_options.h
+|  |  |-- constants.h
+|  |  |-- decompressor.cc
+|  |  |-- decompressor.h
+|  |  |-- deferred_encoder.cc
+|  |  |-- deferred_encoder.h
+|  |  |-- field_projection.cc
+|  |  |-- field_projection.h
+|  |  |-- hash.cc
+|  |  |-- hash.h
+|  |  |-- simple_decoder.cc
+|  |  |-- simple_decoder.h
+|  |  |-- simple_encoder.cc
+|  |  |-- simple_encoder.h
+|  |  |-- transpose_decoder.cc
+|  |  |-- transpose_decoder.h
+|  |  |-- transpose_encoder.cc
+|  |  |-- transpose_encoder.h
+|  |  |-- transpose_internal.h
+|  |-- csv
+|  |  |-- BUILD
+|  |  |-- containers.h
+|  |  |-- csv_reader.cc
+|  |  |-- csv_reader.h
+|  |  |-- csv_record.cc
+|  |  |-- csv_record.h
+|  |  |-- csv_writer.cc
+|  |  |-- csv_writer.h
+|  |-- endian
+|  |  |-- BUILD
+|  |  |-- endian_reading.h
+|  |  |-- endian_writing.h
+|  |-- lines
+|  |  |-- BUILD
+|  |  |-- line_reading.cc
+|  |  |-- line_reading.h
+|  |  |-- line_writing.h
+|  |-- messages
+|  |  |-- BUILD
+|  |  |-- message_parse.cc
+|  |  |-- message_parse.h
+|  |  |-- message_serialize.cc
+|  |  |-- message_serialize.h
+|  |  |-- message_wire_format.h
+|  |-- ordered_varint
+|  |  |-- BUILD
+|  |  |-- ordered_varint.h
+|  |  |-- ordered_varint_reading.cc
+|  |  |-- ordered_varint_reading.h
+|  |  |-- ordered_varint_writing.cc
+|  |  |-- ordered_varint_writing.h
+|  |-- records
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- block.h
+|  |  |-- chunk_reader.cc
+|  |  |-- chunk_reader.h
+|  |  |-- chunk_reader_dependency.h
+|  |  |-- chunk_writer.cc
+|  |  |-- chunk_writer.h
+|  |  |-- chunk_writer_dependency.h
+|  |  |-- record_position.cc
+|  |  |-- record_position.h
+|  |  |-- record_reader.cc
+|  |  |-- record_reader.h
+|  |  |-- record_writer.cc
+|  |  |-- record_writer.h
+|  |  |-- records_metadata.proto
+|  |  |-- skipped_region.cc
+|  |  |-- skipped_region.h
+|  |  |-- tools
+|  |  |  |-- BUILD
+|  |  |  |-- describe_riegeli_file.cc
+|  |  |  |-- records_benchmark.cc
+|  |  |  |-- riegeli_summary.proto
+|  |  |  |-- tfrecord_recognizer.cc
+|  |  |  |-- tfrecord_recognizer.h
+|  |-- snappy
+|  |  |-- BUILD
+|  |  |-- framed
+|  |  |  |-- BUILD
+|  |  |  |-- framed_snappy_reader.cc
+|  |  |  |-- framed_snappy_reader.h
+|  |  |  |-- framed_snappy_writer.cc
+|  |  |  |-- framed_snappy_writer.h
+|  |  |-- hadoop
+|  |  |  |-- BUILD
+|  |  |  |-- hadoop_snappy_reader.cc
+|  |  |  |-- hadoop_snappy_reader.h
+|  |  |  |-- hadoop_snappy_writer.cc
+|  |  |  |-- hadoop_snappy_writer.h
+|  |  |-- snappy_reader.cc
+|  |  |-- snappy_reader.h
+|  |  |-- snappy_streams.cc
+|  |  |-- snappy_streams.h
+|  |  |-- snappy_writer.cc
+|  |  |-- snappy_writer.h
+|  |-- tensorflow
+|  |  |-- BUILD
+|  |  |-- io
+|  |  |  |-- BUILD
+|  |  |  |-- file_reader.cc
+|  |  |  |-- file_reader.h
+|  |  |  |-- file_writer.cc
+|  |  |  |-- file_writer.h
+|  |  |-- kernels
+|  |  |  |-- riegeli_dataset_ops.cc
+|  |  |-- ops
+|  |  |  |-- riegeli_dataset_ops.cc
+|  |-- varint
+|  |  |-- BUILD
+|  |  |-- varint.h
+|  |  |-- varint_reading.cc
+|  |  |-- varint_reading.h
+|  |  |-- varint_writing.h
+|  |-- zlib
+|  |  |-- BUILD
+|  |  |-- zlib_dictionary.h
+|  |  |-- zlib_reader.cc
+|  |  |-- zlib_reader.h
+|  |  |-- zlib_writer.cc
+|  |  |-- zlib_writer.h
+|  |-- zstd
+|  |  |-- BUILD
+|  |  |-- zstd_reader.cc
+|  |  |-- zstd_reader.h
+|  |  |-- zstd_writer.cc
+|  |  |-- zstd_writer.h
+|-- tf_dependency
+|  |-- BUILD
+|  |-- BUILD.tpl
+|  |-- tf_configure.bzl
+|-- third_party
+|  |-- BUILD
+|  |-- absl_py.BUILD
+|  |-- crc32.BUILD
+|  |-- highwayhash.BUILD
+|  |-- net_zstd.BUILD
+|  |-- six.BUILD
+|  |-- snappy.BUILD
+|  |-- zlib.BUILD

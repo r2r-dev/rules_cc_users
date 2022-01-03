@@ -1,0 +1,458 @@
+|-- .bazelrc
+|-- .clang-format
+|-- .gitignore
+|-- .vs
+|  |-- ProjectSettings.json
+|  |-- VSWorkspaceState.json
+|  |-- launch.vs.json
+|-- .vscode
+|  |-- c_cpp_properties.json
+|  |-- launch.json
+|  |-- settings.json
+|  |-- tasks.json
+|-- CppProperties.json
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- benchmarks
+|  |-- BUILD
+|  |-- core
+|  |  |-- bench_coroutine.cpp
+|  |  |-- bench_simple.cpp
+|  |-- data
+|  |  |-- notempty
+|  |-- macros.bzl
+|  |-- main.cpp
+|-- build.bat
+|-- buildDXC.bat
+|-- clean.bat
+|-- configureDataPaths.bat
+|-- configureDataPaths.py
+|-- core
+|  |-- BUILD
+|  |-- src
+|  |  |-- higanbana
+|  |  |  |-- core
+|  |  |  |  |-- allocators
+|  |  |  |  |  |-- heap_allocator_raw.cpp
+|  |  |  |  |  |-- heap_allocator_raw.hpp
+|  |  |  |  |-- audio
+|  |  |  |  |  |-- audio.hpp
+|  |  |  |  |-- datastructures
+|  |  |  |  |  |-- deque.hpp
+|  |  |  |  |  |-- enum_array.hpp
+|  |  |  |  |  |-- fixed_size_deque.hpp
+|  |  |  |  |  |-- hashmap.hpp
+|  |  |  |  |  |-- vector.hpp
+|  |  |  |  |-- entity
+|  |  |  |  |  |-- bitfield.cpp
+|  |  |  |  |  |-- bitfield.hpp
+|  |  |  |  |  |-- database.hpp
+|  |  |  |  |  |-- query.hpp
+|  |  |  |  |  |-- sparsetable.hpp
+|  |  |  |  |  |-- tagtable.hpp
+|  |  |  |  |-- external
+|  |  |  |  |  |-- SpookyV2.cpp
+|  |  |  |  |  |-- SpookyV2.hpp
+|  |  |  |  |  |-- robinhashmap.hpp
+|  |  |  |  |-- filesystem
+|  |  |  |  |  |-- filesystem.cpp
+|  |  |  |  |  |-- filesystem.hpp
+|  |  |  |  |-- global_debug.cpp
+|  |  |  |  |-- global_debug.hpp
+|  |  |  |  |-- input
+|  |  |  |  |  |-- InputBuffer.cpp
+|  |  |  |  |  |-- InputBuffer.hpp
+|  |  |  |  |  |-- gamepad.cpp
+|  |  |  |  |  |-- gamepad.hpp
+|  |  |  |  |  |-- input_plat_tools.cpp
+|  |  |  |  |  |-- input_plat_tools.hpp
+|  |  |  |  |-- math
+|  |  |  |  |  |-- math.cpp
+|  |  |  |  |  |-- math.hpp
+|  |  |  |  |  |-- utils.cpp
+|  |  |  |  |  |-- utils.hpp
+|  |  |  |  |-- neural
+|  |  |  |  |  |-- network.cpp
+|  |  |  |  |  |-- network.hpp
+|  |  |  |  |-- platform
+|  |  |  |  |  |-- EntryPoint.hpp
+|  |  |  |  |  |-- ProgramParams.hpp
+|  |  |  |  |  |-- Window.cpp
+|  |  |  |  |  |-- Window.hpp
+|  |  |  |  |  |-- definitions.hpp
+|  |  |  |  |-- profiling
+|  |  |  |  |  |-- profiling.cpp
+|  |  |  |  |  |-- profiling.hpp
+|  |  |  |  |-- ranges
+|  |  |  |  |  |-- number_spiral.hpp
+|  |  |  |  |  |-- rectangle.hpp
+|  |  |  |  |-- system
+|  |  |  |  |  |-- AtomicBuffered.hpp
+|  |  |  |  |  |-- FreelistAllocator.hpp
+|  |  |  |  |  |-- HighResClock.cpp
+|  |  |  |  |  |-- HighResClock.hpp
+|  |  |  |  |  |-- LBS.hpp
+|  |  |  |  |  |-- MemoryPools.hpp
+|  |  |  |  |  |-- MovePtr.hpp
+|  |  |  |  |  |-- PageAllocator.hpp
+|  |  |  |  |  |-- RangeBlockAllocator.hpp
+|  |  |  |  |  |-- SequenceRingBuffer.hpp
+|  |  |  |  |  |-- SequenceRingRangeAllocator.cpp
+|  |  |  |  |  |-- SequenceRingRangeAllocator.hpp
+|  |  |  |  |  |-- SequenceTracker.cpp
+|  |  |  |  |  |-- SequenceTracker.hpp
+|  |  |  |  |  |-- TaskNode.hpp
+|  |  |  |  |  |-- bitpacking.cpp
+|  |  |  |  |  |-- bitpacking.hpp
+|  |  |  |  |  |-- fazmesg.hpp
+|  |  |  |  |  |-- heap_allocator.cpp
+|  |  |  |  |  |-- heap_allocator.hpp
+|  |  |  |  |  |-- helperMacros.hpp
+|  |  |  |  |  |-- histopyramid.cpp
+|  |  |  |  |  |-- histopyramid.hpp
+|  |  |  |  |  |-- logger.cpp
+|  |  |  |  |  |-- logger.hpp
+|  |  |  |  |  |-- memview.hpp
+|  |  |  |  |  |-- misc.hpp
+|  |  |  |  |  |-- ringbuffer.hpp
+|  |  |  |  |  |-- time.cpp
+|  |  |  |  |  |-- time.hpp
+|  |  |  |  |  |-- vector_utils.hpp
+|  |  |  |  |-- tests
+|  |  |  |  |  |-- TestWorks.hpp
+|  |  |  |  |  |-- bitfield_tests.cpp
+|  |  |  |  |  |-- bitfield_tests.hpp
+|  |  |  |  |  |-- schedulertests.cpp
+|  |  |  |  |  |-- schedulertests.hpp
+|  |  |  |  |-- thread
+|  |  |  |  |  |-- cpu_info.hpp
+|  |  |  |  |  |-- this_thread.cpp
+|  |  |  |  |  |-- this_thread.hpp
+|  |  |  |  |  |-- threadpool.hpp
+|  |  |  |  |-- tools
+|  |  |  |  |  |-- bentsumaakaa.cpp
+|  |  |  |  |  |-- bentsumaakaa.hpp
+|  |  |  |  |  |-- renderdoc.hpp
+|-- data
+|  |-- BUILD
+|  |-- shaders
+|  |  |-- Triangle.if.hlsl
+|  |  |-- Triangle.ps.hlsl
+|  |  |-- Triangle.vs.hlsl
+|  |  |-- blit.if.hlsl
+|  |  |-- blit.ps.hlsl
+|  |  |-- blit.vs.hlsl
+|  |  |-- blitter.if.hlsl
+|  |  |-- blitter.ps.hlsl
+|  |  |-- blitter.vs.hlsl
+|  |  |-- blocksSimple.if.hlsl
+|  |  |-- blocksSimple.ps.hlsl
+|  |  |-- blocksSimple.vs.hlsl
+|  |  |-- draw_particles.if.hlsl
+|  |  |-- draw_particles.ps.hlsl
+|  |  |-- draw_particles.vs.hlsl
+|  |  |-- ebinShader.cs.hlsl
+|  |  |-- ebinShader.if.hlsl
+|  |  |-- generate_mips.cs.hlsl
+|  |  |-- generate_mips.if.hlsl
+|  |  |-- imgui.if.hlsl
+|  |  |-- imgui.ps.hlsl
+|  |  |-- imgui.vs.hlsl
+|  |  |-- lib
+|  |  |  |-- aces.hlsl
+|  |  |  |-- aces12.hlsl
+|  |  |  |-- aces_constants.hlsl
+|  |  |  |-- aces_lib_ssts.hlsl
+|  |  |  |-- aces_odt.hlsl
+|  |  |  |-- aces_odt_adv.hlsl
+|  |  |  |-- aces_output_transforms.hlsl
+|  |  |  |-- aces_transforms.hlsl
+|  |  |  |-- aces_utilities_color.hlsl
+|  |  |  |-- color.hlsl
+|  |  |  |-- matrix_utils.hlsl
+|  |  |  |-- tonemap_config.hlsl
+|  |  |-- oldRaymarch.cs.hlsl
+|  |  |-- oldRaymarch.if.hlsl
+|  |  |-- opaquePass.if.hlsl
+|  |  |-- opaquePass.ps.hlsl
+|  |  |-- opaquePass.vs.hlsl
+|  |  |-- particles.cs.hlsl
+|  |  |-- particles.if.hlsl
+|  |  |-- simpleEffect.cs.hlsl
+|  |  |-- simpleEffect.if.hlsl
+|  |  |-- simpleEffectAssyt.cs.hlsl
+|  |  |-- simpleEffectAssyt.if.hlsl
+|  |  |-- testMeshShaders.as.hlsl
+|  |  |-- testMeshShaders.if.hlsl
+|  |  |-- testMeshShaders.ms.hlsl
+|  |  |-- testMeshShaders.ps.hlsl
+|  |  |-- testMesh_payload.hlsl
+|  |  |-- tonemapper.if.hlsl
+|  |  |-- tonemapper.ps.hlsl
+|  |  |-- tonemapper.vs.hlsl
+|  |  |-- tsaa.cs.hlsl
+|  |  |-- tsaa.if.hlsl
+|  |  |-- world.if.hlsl
+|  |  |-- world.ps.hlsl
+|  |  |-- world.vs.hlsl
+|  |-- working directory.txt
+|-- delete_shader_binaries.bat
+|-- ext
+|  |-- BUILD
+|-- fetchExternalsAndBuildDXC.bat
+|-- fetchExternalsAndBuildDXC.sh
+|-- graphics
+|  |-- BUILD
+|  |-- src
+|  |  |-- higanbana
+|  |  |  |-- graphics
+|  |  |  |  |-- GraphicsCore.hpp
+|  |  |  |  |-- common
+|  |  |  |  |  |-- allocators.hpp
+|  |  |  |  |  |-- backend.cpp
+|  |  |  |  |  |-- backend.hpp
+|  |  |  |  |  |-- barrier_solver.cpp
+|  |  |  |  |  |-- barrier_solver.hpp
+|  |  |  |  |  |-- buffer.hpp
+|  |  |  |  |  |-- command_buffer.hpp
+|  |  |  |  |  |-- command_packets.cpp
+|  |  |  |  |  |-- command_packets.hpp
+|  |  |  |  |  |-- commandgraph.cpp
+|  |  |  |  |  |-- commandgraph.hpp
+|  |  |  |  |  |-- commandlist.hpp
+|  |  |  |  |  |-- cpuimage.hpp
+|  |  |  |  |  |-- device_group_data.cpp
+|  |  |  |  |  |-- device_group_data.hpp
+|  |  |  |  |  |-- gpu_group.hpp
+|  |  |  |  |  |-- graphicssurface.hpp
+|  |  |  |  |  |-- handle.cpp
+|  |  |  |  |  |-- handle.hpp
+|  |  |  |  |  |-- heap_descriptor.hpp
+|  |  |  |  |  |-- heap_manager.cpp
+|  |  |  |  |  |-- heap_manager.hpp
+|  |  |  |  |  |-- helpers
+|  |  |  |  |  |  |-- gpu_heap_allocation.hpp
+|  |  |  |  |  |  |-- heap_allocation.hpp
+|  |  |  |  |  |  |-- memory_requirements.hpp
+|  |  |  |  |  |  |-- shared_handle.hpp
+|  |  |  |  |  |  |-- shared_state.hpp
+|  |  |  |  |  |-- image_loaders.cpp
+|  |  |  |  |  |-- image_loaders.hpp
+|  |  |  |  |  |-- implementation.hpp
+|  |  |  |  |  |-- intermediatelist.cpp
+|  |  |  |  |  |-- intermediatelist.hpp
+|  |  |  |  |  |-- pipeline.hpp
+|  |  |  |  |  |-- pipeline_descriptor.cpp
+|  |  |  |  |  |-- pipeline_descriptor.hpp
+|  |  |  |  |  |-- prototypes.hpp
+|  |  |  |  |  |-- raytracing_descriptors.cpp
+|  |  |  |  |  |-- raytracing_descriptors.hpp
+|  |  |  |  |  |-- readback.hpp
+|  |  |  |  |  |-- renderpass.hpp
+|  |  |  |  |  |-- resource_descriptor.hpp
+|  |  |  |  |  |-- resources.hpp
+|  |  |  |  |  |-- resources
+|  |  |  |  |  |  |-- gpu_info.cpp
+|  |  |  |  |  |  |-- gpu_info.hpp
+|  |  |  |  |  |  |-- graphics_api.cpp
+|  |  |  |  |  |  |-- graphics_api.hpp
+|  |  |  |  |  |  |-- shader_arguments.hpp
+|  |  |  |  |  |-- semaphore.hpp
+|  |  |  |  |  |-- shader_arguments_binding.hpp
+|  |  |  |  |  |-- shader_arguments_descriptor.hpp
+|  |  |  |  |  |-- subsystem.hpp
+|  |  |  |  |  |-- subsystem_data.cpp
+|  |  |  |  |  |-- subsystem_data.hpp
+|  |  |  |  |  |-- swapchain.hpp
+|  |  |  |  |  |-- texture.hpp
+|  |  |  |  |  |-- tiled_image.hpp
+|  |  |  |  |-- definitions.cpp
+|  |  |  |  |-- definitions.hpp
+|  |  |  |  |-- desc
+|  |  |  |  |  |-- device_stats.hpp
+|  |  |  |  |  |-- formats.cpp
+|  |  |  |  |  |-- formats.hpp
+|  |  |  |  |  |-- pipeline_interface_descriptor.cpp
+|  |  |  |  |  |-- pipeline_interface_descriptor.hpp
+|  |  |  |  |  |-- renderpass_descriptor.hpp
+|  |  |  |  |  |-- resource_state.cpp
+|  |  |  |  |  |-- resource_state.hpp
+|  |  |  |  |  |-- shader_arguments_layout_descriptor.cpp
+|  |  |  |  |  |-- shader_arguments_layout_descriptor.hpp
+|  |  |  |  |  |-- shader_desc.hpp
+|  |  |  |  |  |-- shader_input_descriptor.cpp
+|  |  |  |  |  |-- shader_input_descriptor.hpp
+|  |  |  |  |  |-- timing.cpp
+|  |  |  |  |  |-- timing.hpp
+|  |  |  |  |-- dx12
+|  |  |  |  |  |-- dx12.hpp
+|  |  |  |  |  |-- dx12commandbuffer.cpp
+|  |  |  |  |  |-- dx12commandlist.cpp
+|  |  |  |  |  |-- dx12commandlist.hpp
+|  |  |  |  |  |-- dx12device.cpp
+|  |  |  |  |  |-- dx12device.hpp
+|  |  |  |  |  |-- dx12resources.hpp
+|  |  |  |  |  |-- dx12subsystem.cpp
+|  |  |  |  |  |-- dx12subsystem.hpp
+|  |  |  |  |  |-- util
+|  |  |  |  |  |  |-- formats.cpp
+|  |  |  |  |  |  |-- formats.hpp
+|  |  |  |  |  |  |-- pipeline_helpers.cpp
+|  |  |  |  |  |  |-- pipeline_helpers.hpp
+|  |  |  |  |  |  |-- pipeline_stream_builder.cpp
+|  |  |  |  |  |  |-- pipeline_stream_builder.hpp
+|  |  |  |  |  |  |-- raytracing_helpers.cpp
+|  |  |  |  |  |  |-- raytracing_helpers.hpp
+|  |  |  |  |  |-- view_descriptor.cpp
+|  |  |  |  |  |-- view_descriptor.hpp
+|  |  |  |  |-- helpers
+|  |  |  |  |  |-- multi_pipeline.hpp
+|  |  |  |  |  |-- pingpongBuffer.hpp
+|  |  |  |  |  |-- pingpongTexture.cpp
+|  |  |  |  |  |-- pingpongTexture.hpp
+|  |  |  |  |-- shaders
+|  |  |  |  |  |-- DXCompiler.cpp
+|  |  |  |  |  |-- DXCompiler.hpp
+|  |  |  |  |  |-- ShaderStorage.cpp
+|  |  |  |  |  |-- ShaderStorage.hpp
+|  |  |  |  |-- vk
+|  |  |  |  |  |-- util
+|  |  |  |  |  |  |-- AllocStuff.cpp
+|  |  |  |  |  |  |-- AllocStuff.hpp
+|  |  |  |  |  |  |-- formats.cpp
+|  |  |  |  |  |  |-- formats.hpp
+|  |  |  |  |  |  |-- pipeline_helpers.cpp
+|  |  |  |  |  |  |-- pipeline_helpers.hpp
+|  |  |  |  |  |-- vkcommandbuffer.cpp
+|  |  |  |  |  |-- vkdevice.cpp
+|  |  |  |  |  |-- vkdevice.hpp
+|  |  |  |  |  |-- vkresources.cpp
+|  |  |  |  |  |-- vkresources.hpp
+|  |  |  |  |  |-- vksubsystem.cpp
+|  |  |  |  |  |-- vksubsystem.hpp
+|  |  |  |  |  |-- vulkan.hpp
+|-- onlyCompileDXC.bat
+|-- runDX12.bat
+|-- runDX12_RGP.bat
+|-- runQuad.bat
+|-- runTests.bat
+|-- runVulkan.bat
+|-- runVulkan_RGP.bat
+|-- startCmdWithClang.bat
+|-- startCmdWithCorrectVisualStudio.bat
+|-- test_main
+|  |-- BUILD
+|  |-- src
+|  |  |-- EntryPoint.cpp
+|  |  |-- entity_test.cpp
+|  |  |-- entity_test.hpp
+|  |  |-- main.cpp
+|  |  |-- raytrace
+|  |  |  |-- camera.hpp
+|  |  |  |-- hittable.hpp
+|  |  |  |-- hittable_list.cpp
+|  |  |  |-- hittable_list.hpp
+|  |  |  |-- material.cpp
+|  |  |  |-- material.hpp
+|  |  |  |-- ray.hpp
+|  |  |  |-- rtweekend.hpp
+|  |  |  |-- rtworld.cpp
+|  |  |  |-- rtworld.hpp
+|  |  |  |-- sphere.cpp
+|  |  |  |-- sphere.hpp
+|  |  |-- renderer
+|  |  |  |-- blitter.cpp
+|  |  |  |-- blitter.hpp
+|  |  |  |-- blocks.cpp
+|  |  |  |-- blocks.hpp
+|  |  |  |-- camera.hpp
+|  |  |  |-- cubes.cpp
+|  |  |  |-- cubes.hpp
+|  |  |  |-- depth_pyramid.cpp
+|  |  |  |-- depth_pyramid.hpp
+|  |  |  |-- generate_image.cpp
+|  |  |  |-- generate_image.hpp
+|  |  |  |-- generate_mips.cpp
+|  |  |  |-- generate_mips.hpp
+|  |  |  |-- gpu_buffer.hpp
+|  |  |  |-- imgui.cpp
+|  |  |  |-- imgui.hpp
+|  |  |  |-- materials.cpp
+|  |  |  |-- materials.hpp
+|  |  |  |-- mesh_test.cpp
+|  |  |  |-- mesh_test.hpp
+|  |  |  |-- meshes.cpp
+|  |  |  |-- meshes.hpp
+|  |  |  |-- particles.cpp
+|  |  |  |-- particles.hpp
+|  |  |  |-- textures.cpp
+|  |  |  |-- textures.hpp
+|  |  |  |-- tonemapper.cpp
+|  |  |  |-- tonemapper.hpp
+|  |  |  |-- tsaa.cpp
+|  |  |  |-- tsaa.hpp
+|  |  |  |-- viewport.cpp
+|  |  |  |-- viewport.hpp
+|  |  |  |-- world_renderer.cpp
+|  |  |  |-- world_renderer.hpp
+|  |  |-- rendering.cpp
+|  |  |-- rendering.hpp
+|  |  |-- timeline.hpp
+|  |  |-- windowMain.cpp
+|  |  |-- windowMain.hpp
+|  |  |-- world
+|  |  |  |-- chunk_world.hpp
+|  |  |  |-- components.cpp
+|  |  |  |-- components.hpp
+|  |  |  |-- entity_editor.cpp
+|  |  |  |-- entity_editor.hpp
+|  |  |  |-- entity_viewer.cpp
+|  |  |  |-- entity_viewer.hpp
+|  |  |  |-- map_data_extractor.cpp
+|  |  |  |-- map_data_extractor.hpp
+|  |  |  |-- scene_editor.cpp
+|  |  |  |-- scene_editor.hpp
+|  |  |  |-- visual_data_structures.hpp
+|  |  |  |-- world.cpp
+|  |  |  |-- world.hpp
+|-- tests
+|  |-- BUILD
+|  |-- core
+|  |  |-- test_bitfield.cpp
+|  |  |-- test_camera_math.cpp
+|  |  |-- test_delta_buffer.cpp
+|  |  |-- test_entity.cpp
+|  |  |-- test_experimental_threading.cpp
+|  |  |-- test_experimental_threading2.cpp
+|  |  |-- test_tlsf.cpp
+|  |  |-- test_tlsf_heap.cpp
+|  |-- data
+|  |  |-- BUILD
+|  |  |-- mapping
+|  |  |-- notempty
+|  |  |-- shaders
+|  |  |  |-- addTogether.cs.hlsl
+|  |  |  |-- addTogether.if.hlsl
+|  |  |  |-- matrix_multiplication.cs.hlsl
+|  |  |  |-- matrix_multiplication.if.hlsl
+|  |  |  |-- vec3 copy.cs.hlsl
+|  |  |  |-- vec3 copy.if.hlsl
+|  |  |  |-- verify_matrix_upload.cs.hlsl
+|  |  |  |-- verify_matrix_upload.if.hlsl
+|  |-- graphics
+|  |  |-- graphics_config.cpp
+|  |  |-- graphics_config.hpp
+|  |  |-- test_basics.cpp
+|  |  |-- test_commandbuffer.cpp
+|  |  |-- test_device_creation.cpp
+|  |  |-- test_raytracing_basics.cpp
+|  |  |-- test_readback_future.cpp
+|  |  |-- test_readback_future.hpp
+|  |  |-- test_resource_creation.cpp
+|  |  |-- test_shader_matrix_math.cpp
+|  |-- macros.bzl
+|-- utils
+|  |-- createRelease.bat
+|  |-- createRelease_clang.bat
+|  |-- setEnv.bat

@@ -1,0 +1,1813 @@
+|-- .gitattributes
+|-- .github
+|  |-- FUNDING.yml
+|  |-- issue_template.md
+|-- .gitignore
+|-- .gitmodules
+|-- .travis.yml
+|-- CMakeLists.txt
+|-- CODE_OF_CONDUCT.md
+|-- COPYING
+|-- README.md
+|-- build
+|  |-- batch
+|  |  |-- batch_build_win.bat
+|  |  |-- build-docker-linux-local.bat
+|  |  |-- build-docker-linux.bat
+|  |  |-- postbuild.bat
+|  |-- cmake
+|  |  |-- FindCSharp.cmake
+|  |  |-- FindCryptoPP.cmake
+|  |  |-- FindDotNetFrameworkSdk.cmake
+|  |  |-- FindGoogleBreakpad.cmake
+|  |  |-- FindGoogleProtoBuf.cmake
+|  |  |-- FindGoogleTest.cmake
+|  |  |-- FindIconv.cmake
+|  |  |-- FindJson_Spirit.cmake
+|  |  |-- FindLUASource.cmake
+|  |  |-- FindMiniz.cmake
+|  |  |-- FindMkdocs.cmake
+|  |  |-- FindMongoose.cmake
+|  |  |-- FindMono.cmake
+|  |  |-- FindNetlib.cmake
+|  |  |-- FindPROTOC_GEN_JSON.cmake
+|  |  |-- FindPROTOC_GEN_LUA.cmake
+|  |  |-- FindProtocGenMd.cmake
+|  |  |-- FindSCP.cmake
+|  |  |-- FindTinyXML2.cmake
+|  |  |-- GoogleBreakpad.cmake
+|  |  |-- GoogleProtoBuf.cmake
+|  |  |-- SetMultiThread.cmake
+|  |  |-- UseCSharp.cmake
+|  |  |-- UseDotNetFrameworkSdk.cmake
+|  |  |-- UseMono.cmake
+|  |  |-- dependencies.cmake
+|  |  |-- functions.cmake
+|  |  |-- module.cmake
+|  |  |-- wix.cmake
+|  |-- docker
+|  |  |-- alpine-3.4
+|  |  |  |-- Dockerfile
+|  |  |-- centos-6.9
+|  |  |  |-- Dockerfile
+|  |  |-- centos-7
+|  |  |  |-- Dockerfile
+|  |  |-- debian-8
+|  |  |  |-- Dockerfile
+|  |  |-- debian-9
+|  |  |  |-- Dockerfile
+|  |  |-- debian-jessie
+|  |  |  |-- Dockerfile
+|  |  |-- files
+|  |  |  |-- plugin_pb2.py
+|  |  |-- ubuntu-14.04
+|  |  |  |-- Dockerfile
+|  |  |-- ubuntu-16.04
+|  |  |  |-- Dockerfile
+|  |  |-- ubuntu-16.10
+|  |  |  |-- Dockerfile
+|  |  |-- ubuntu-17.04
+|  |  |  |-- Dockerfile
+|  |-- perl
+|  |  |-- echo_date.pl
+|  |  |-- echo_version.pl
+|  |  |-- postbuild.pl
+|  |-- python
+|  |  |-- VersionHandler.py
+|  |  |-- __init__.py
+|  |  |-- config.py
+|  |  |-- create_plugin_module.py
+|  |  |-- create_zip_module.py
+|  |  |-- fetchdeps.py
+|  |  |-- mk_pyzip.py
+|  |  |-- msdev-to-dynamic.py
+|  |  |-- msdev-to-static.py
+|  |  |-- msdev-to-x.py
+|  |  |-- msdev-to-x64.py
+|  |  |-- openssl_xp_patch.py
+|  |  |-- postbuild.py
+|  |  |-- requirements.json
+|  |  |-- upload.py
+|  |  |-- version.py
+|  |-- sh
+|  |  |-- build-centos.sh
+|  |  |-- build-debian.sh
+|  |  |-- build-local.sh
+|  |  |-- copy_package.sh.in
+|  |  |-- run-vagrant.sh
+|-- changelog
+|-- check_deps.cmake
+|-- clients
+|  |-- nrpe
+|  |  |-- CMakeLists.txt
+|  |  |-- check_nrpe.cpp
+|  |  |-- check_nrpe.hpp
+|  |  |-- module.cmake
+|  |-- nscp
+|  |  |-- CMakeLists.txt
+|  |  |-- check_nscp.cpp
+|  |  |-- check_nscp.hpp
+|  |  |-- module.cmake
+|-- debian
+|  |-- README.Debian
+|  |-- README.source
+|  |-- changelog
+|  |-- compat
+|  |-- control
+|  |-- copyright
+|  |-- nsclient++-bin.install
+|  |-- nsclient++-doc.install
+|  |-- nsclient++-nsca.install
+|  |-- nsclient++-server.install
+|  |-- postinst.ex
+|  |-- postrm.ex
+|  |-- preinst.ex
+|  |-- prerm.ex
+|  |-- rules
+|  |-- source
+|  |  |-- format
+|-- docs
+|  |-- CMakeLists.txt
+|  |-- README.md
+|  |-- custom_theme
+|  |  |-- header.html
+|  |  |-- main.html
+|  |  |-- partials
+|  |  |  |-- footer.html
+|  |-- docs
+|  |  |-- about
+|  |  |  |-- build.md
+|  |  |  |-- index.md
+|  |  |  |-- license.md
+|  |  |  |-- reporting-bugs.md
+|  |  |  |-- whatsnew
+|  |  |  |  |-- 0.4.0.md
+|  |  |  |  |-- 0.4.1.md
+|  |  |  |  |-- 0.4.2.md
+|  |  |  |  |-- 0.4.3.md
+|  |  |  |  |-- 0.4.4.md
+|  |  |  |  |-- 0.5.0.md
+|  |  |  |  |-- 0.5.1.md
+|  |  |  |  |-- 0.5.2.md
+|  |  |  |  |-- images
+|  |  |  |  |  |-- webui.png
+|  |  |  |  |-- index.md
+|  |  |-- api
+|  |  |  |-- common.md
+|  |  |  |-- images
+|  |  |  |  |-- api_nscp_setup_webserver.png
+|  |  |  |-- metrics.md
+|  |  |  |-- plugin.md
+|  |  |  |-- rest
+|  |  |  |  |-- index.md
+|  |  |  |  |-- info.md
+|  |  |  |  |-- legacy.md
+|  |  |  |  |-- logs.md
+|  |  |  |  |-- modules.md
+|  |  |  |  |-- queries.md
+|  |  |  |  |-- scripts.md
+|  |  |-- checks.md
+|  |  |-- custom.css
+|  |  |-- extending
+|  |  |  |-- index.md
+|  |  |  |-- python.md
+|  |  |  |-- zip-modules.md
+|  |  |-- faq.md
+|  |  |-- getting_started.md
+|  |  |-- howto
+|  |  |  |-- 03x_migration.md
+|  |  |  |-- checks.md
+|  |  |  |-- counters.md
+|  |  |  |-- external_scripts.md
+|  |  |  |-- images
+|  |  |  |  |-- external-scripts-args-1.png
+|  |  |  |  |-- external-scripts-args-2.png
+|  |  |  |  |-- external-scripts-args-3.png
+|  |  |  |  |-- external-scripts.png
+|  |  |  |  |-- nagios-active-nrpe-001.png
+|  |  |  |  |-- nagios-active-nrpe-002.png
+|  |  |  |  |-- nagios-active-nrpe-003.png
+|  |  |  |  |-- nagios-active-nrpe.png
+|  |  |  |  |-- nagios-configuration-inheritance.png
+|  |  |  |  |-- nagios-passive-nsca-001.png
+|  |  |  |  |-- nagios-passive-nsca-002.png
+|  |  |  |  |-- nagios-passive-nsca-003.png
+|  |  |  |  |-- nagios-passive-nsca.png
+|  |  |  |  |-- nrpe-overview.png
+|  |  |  |  |-- nsca-nsclient-internals.png
+|  |  |  |  |-- nsca-overview.png
+|  |  |  |  |-- test-client.png
+|  |  |  |-- nrpe.md
+|  |  |  |-- nsca.md
+|  |  |  |-- run_commands.md
+|  |  |-- images
+|  |  |  |-- FAVICON.PNG
+|  |  |  |-- api_web_changes.png
+|  |  |  |-- api_web_console.png
+|  |  |  |-- api_web_control.png
+|  |  |  |-- api_web_home.png
+|  |  |  |-- api_web_log.png
+|  |  |  |-- api_web_modules_checkdisk.png
+|  |  |  |-- api_web_modules_checkdisk_queries.png
+|  |  |  |-- api_web_modules_checkdisk_queries_check_drivesize.png
+|  |  |  |-- api_web_modules_overview.png
+|  |  |  |-- api_web_queries.png
+|  |  |  |-- api_web_queries_check_drivesize.png
+|  |  |  |-- api_web_queries_check_drivesize_run.png
+|  |  |  |-- api_web_settings.png
+|  |  |  |-- elevated.png
+|  |  |  |-- eventlog-channel-names.png
+|  |  |  |-- eventlog-find-event.png
+|  |  |  |-- eventlog-realtime-log.png
+|  |  |  |-- folder.png
+|  |  |  |-- nsclient-logo.png
+|  |  |  |-- nscp-test.png
+|  |  |  |-- realtime-monitoring.png
+|  |  |  |-- registry.png
+|  |  |  |-- timeouts.png
+|  |  |-- img
+|  |  |  |-- favicon.png
+|  |  |-- index.md
+|  |  |-- installing.md
+|  |  |-- pygments.css
+|  |  |-- reference
+|  |  |  |-- check
+|  |  |  |  |-- CheckExternalScripts.md
+|  |  |  |  |-- CheckHelpers.md
+|  |  |  |  |-- CheckLogFile.md
+|  |  |  |  |-- CheckMKClient.md
+|  |  |  |  |-- CheckMKServer.md
+|  |  |  |  |-- CheckNSCP.md
+|  |  |  |-- client
+|  |  |  |  |-- GraphiteClient.md
+|  |  |  |  |-- NRDPClient.md
+|  |  |  |  |-- NRPEClient.md
+|  |  |  |  |-- NRPEServer.md
+|  |  |  |  |-- NSCAClient.md
+|  |  |  |  |-- NSCAServer.md
+|  |  |  |  |-- SMTPClient.md
+|  |  |  |  |-- SyslogClient.md
+|  |  |  |-- generic
+|  |  |  |  |-- CommandClient.md
+|  |  |  |  |-- LUAScript.md
+|  |  |  |  |-- PythonScript.md
+|  |  |  |  |-- Scheduler.md
+|  |  |  |  |-- SimpleCache.md
+|  |  |  |  |-- SimpleFileWriter.md
+|  |  |  |  |-- WEBServer.md
+|  |  |  |-- index.md
+|  |  |  |-- misc
+|  |  |  |  |-- CauseCrashes.md
+|  |  |  |  |-- CheckNet.md
+|  |  |  |  |-- CheckPowershell.md
+|  |  |  |  |-- CollectdClient.md
+|  |  |  |  |-- DotnetPlugin.md
+|  |  |  |  |-- ElasticClient.md
+|  |  |  |  |-- NSCPClient.md
+|  |  |  |  |-- Op5Client.md
+|  |  |  |  |-- SamplePluginSimple.md
+|  |  |  |  |-- WEBClient.md
+|  |  |  |-- unix
+|  |  |  |  |-- CheckSystemUnix.md
+|  |  |  |-- windows
+|  |  |  |  |-- CheckDisk.md
+|  |  |  |  |-- CheckEventLog.md
+|  |  |  |  |-- CheckSystem.md
+|  |  |  |  |-- CheckTaskSched.md
+|  |  |  |  |-- CheckWMI.md
+|  |  |  |  |-- DotnetPlugins.md
+|  |  |  |  |-- NSClientServer.md
+|  |  |-- settings.md
+|  |  |-- theory.md
+|  |  |-- tutorial
+|  |  |  |-- images
+|  |  |  |  |-- nagios-active-nrpe.png
+|  |  |  |  |-- nagios-active-nsclient-001.png
+|  |  |  |  |-- nagios-active-nsclient-002.png
+|  |  |  |  |-- nagios-active-nsclient-003.png
+|  |  |  |  |-- nagios-active-nsclient-and-nrpe.png
+|  |  |  |  |-- nagios-active-nsclient.png
+|  |  |  |  |-- nagios-active-passive-roll-your-own.png
+|  |  |  |  |-- nagios-passive-nsca-001.png
+|  |  |  |  |-- nagios-passive-nsca-002.png
+|  |  |  |  |-- nagios-passive-nsca-003.png
+|  |  |  |  |-- nagios-passive-nsca.png
+|  |  |  |  |-- nagios-server-check-nt.png
+|  |  |  |  |-- normal-nrpe.png
+|  |  |  |  |-- notepad-administrator.png
+|  |  |  |  |-- nsca-nsclient-internals.png
+|  |  |  |  |-- nsca-overview.png
+|  |  |  |  |-- pdq_msifolder.png
+|  |  |  |  |-- pdq_package.png
+|  |  |  |  |-- windows-computer-active.png
+|  |  |  |-- index.md
+|  |  |-- web.md
+|  |-- mkdocs.yml
+|  |-- samples
+|  |  |-- CauseCrashes_crash_client_samples.md
+|  |  |-- CheckDisk_check_drivesize_samples.md
+|  |  |-- CheckDisk_check_files_samples.md
+|  |  |-- CheckDisk_desc.md
+|  |  |-- CheckEventLog_samples.md
+|  |  |-- CheckExternalScripts_desc.md
+|  |  |-- CheckExternalScripts_samples.md
+|  |  |-- CheckSystemUnix_check_memory_samples.md
+|  |  |-- CheckSystem_check_cpu_samples.md
+|  |  |-- CheckSystem_check_memory_samples.md
+|  |  |-- CheckSystem_check_os_version_samples.md
+|  |  |-- CheckSystem_check_pagefile_samples.md
+|  |  |-- CheckSystem_check_pdh_samples.md
+|  |  |-- CheckSystem_check_process_samples.md
+|  |  |-- CheckSystem_check_service_samples.md
+|  |  |-- CheckSystem_check_uptime_samples.md
+|  |  |-- CheckTaskSched_check_tasksched_samples.md
+|  |  |-- CheckWMI_check_wmi_samples.md
+|  |  |-- Scheduler_samples.md
+|  |-- source
+|  |  |-- realtime-monitoring.vsdx
+|-- ext
+|  |-- google-breakpad
+|  |-- gtest
+|  |  |-- CHANGES
+|  |  |-- CMakeLists.txt
+|  |  |-- CONTRIBUTORS
+|  |  |-- LICENSE
+|  |  |-- Makefile.am
+|  |  |-- README.md
+|  |  |-- cmake
+|  |  |  |-- Config.cmake.in
+|  |  |  |-- gtest.pc.in
+|  |  |  |-- gtest_main.pc.in
+|  |  |  |-- internal_utils.cmake
+|  |  |-- codegear
+|  |  |  |-- gtest.cbproj
+|  |  |  |-- gtest.groupproj
+|  |  |  |-- gtest_all.cc
+|  |  |  |-- gtest_link.cc
+|  |  |  |-- gtest_main.cbproj
+|  |  |  |-- gtest_unittest.cbproj
+|  |  |-- configure.ac
+|  |  |-- docs
+|  |  |  |-- Pkgconfig.md
+|  |  |  |-- PumpManual.md
+|  |  |  |-- XcodeGuide.md
+|  |  |  |-- advanced.md
+|  |  |  |-- faq.md
+|  |  |  |-- primer.md
+|  |  |  |-- samples.md
+|  |  |-- include
+|  |  |  |-- gtest
+|  |  |  |  |-- gtest-death-test.h
+|  |  |  |  |-- gtest-message.h
+|  |  |  |  |-- gtest-param-test.h
+|  |  |  |  |-- gtest-param-test.h.pump
+|  |  |  |  |-- gtest-printers.h
+|  |  |  |  |-- gtest-spi.h
+|  |  |  |  |-- gtest-test-part.h
+|  |  |  |  |-- gtest-typed-test.h
+|  |  |  |  |-- gtest.h
+|  |  |  |  |-- gtest_pred_impl.h
+|  |  |  |  |-- gtest_prod.h
+|  |  |  |  |-- internal
+|  |  |  |  |  |-- custom
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- gtest-port.h
+|  |  |  |  |  |  |-- gtest-printers.h
+|  |  |  |  |  |  |-- gtest.h
+|  |  |  |  |  |-- gtest-death-test-internal.h
+|  |  |  |  |  |-- gtest-filepath.h
+|  |  |  |  |  |-- gtest-internal.h
+|  |  |  |  |  |-- gtest-linked_ptr.h
+|  |  |  |  |  |-- gtest-param-util-generated.h
+|  |  |  |  |  |-- gtest-param-util-generated.h.pump
+|  |  |  |  |  |-- gtest-param-util.h
+|  |  |  |  |  |-- gtest-port-arch.h
+|  |  |  |  |  |-- gtest-port.h
+|  |  |  |  |  |-- gtest-string.h
+|  |  |  |  |  |-- gtest-tuple.h
+|  |  |  |  |  |-- gtest-tuple.h.pump
+|  |  |  |  |  |-- gtest-type-util.h
+|  |  |  |  |  |-- gtest-type-util.h.pump
+|  |  |-- m4
+|  |  |  |-- acx_pthread.m4
+|  |  |  |-- gtest.m4
+|  |  |-- make
+|  |  |  |-- Makefile
+|  |  |-- msvc
+|  |  |  |-- 2010
+|  |  |  |  |-- gtest-md.sln
+|  |  |  |  |-- gtest-md.vcxproj
+|  |  |  |  |-- gtest-md.vcxproj.filters
+|  |  |  |  |-- gtest.sln
+|  |  |  |  |-- gtest.vcxproj
+|  |  |  |  |-- gtest.vcxproj.filters
+|  |  |  |  |-- gtest_main-md.vcxproj
+|  |  |  |  |-- gtest_main-md.vcxproj.filters
+|  |  |  |  |-- gtest_main.vcxproj
+|  |  |  |  |-- gtest_main.vcxproj.filters
+|  |  |  |  |-- gtest_prod_test-md.vcxproj
+|  |  |  |  |-- gtest_prod_test-md.vcxproj.filters
+|  |  |  |  |-- gtest_prod_test.vcxproj
+|  |  |  |  |-- gtest_prod_test.vcxproj.filters
+|  |  |  |  |-- gtest_unittest-md.vcxproj
+|  |  |  |  |-- gtest_unittest-md.vcxproj.filters
+|  |  |  |  |-- gtest_unittest.vcxproj
+|  |  |  |  |-- gtest_unittest.vcxproj.filters
+|  |  |-- samples
+|  |  |  |-- prime_tables.h
+|  |  |  |-- sample1.cc
+|  |  |  |-- sample1.h
+|  |  |  |-- sample10_unittest.cc
+|  |  |  |-- sample1_unittest.cc
+|  |  |  |-- sample2.cc
+|  |  |  |-- sample2.h
+|  |  |  |-- sample2_unittest.cc
+|  |  |  |-- sample3-inl.h
+|  |  |  |-- sample3_unittest.cc
+|  |  |  |-- sample4.cc
+|  |  |  |-- sample4.h
+|  |  |  |-- sample4_unittest.cc
+|  |  |  |-- sample5_unittest.cc
+|  |  |  |-- sample6_unittest.cc
+|  |  |  |-- sample7_unittest.cc
+|  |  |  |-- sample8_unittest.cc
+|  |  |  |-- sample9_unittest.cc
+|  |  |-- scripts
+|  |  |  |-- common.py
+|  |  |  |-- fuse_gtest_files.py
+|  |  |  |-- gen_gtest_pred_impl.py
+|  |  |  |-- gtest-config.in
+|  |  |  |-- pump.py
+|  |  |  |-- release_docs.py
+|  |  |  |-- test
+|  |  |  |  |-- Makefile
+|  |  |  |-- upload.py
+|  |  |  |-- upload_gtest.py
+|  |  |-- src
+|  |  |  |-- gtest-all.cc
+|  |  |  |-- gtest-death-test.cc
+|  |  |  |-- gtest-filepath.cc
+|  |  |  |-- gtest-internal-inl.h
+|  |  |  |-- gtest-port.cc
+|  |  |  |-- gtest-printers.cc
+|  |  |  |-- gtest-test-part.cc
+|  |  |  |-- gtest-typed-test.cc
+|  |  |  |-- gtest.cc
+|  |  |  |-- gtest_main.cc
+|  |  |-- test
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- googletest-break-on-failure-unittest.py
+|  |  |  |-- googletest-break-on-failure-unittest_.cc
+|  |  |  |-- googletest-catch-exceptions-test.py
+|  |  |  |-- googletest-catch-exceptions-test_.cc
+|  |  |  |-- googletest-color-test.py
+|  |  |  |-- googletest-color-test_.cc
+|  |  |  |-- googletest-death-test-test.cc
+|  |  |  |-- googletest-death-test_ex_test.cc
+|  |  |  |-- googletest-env-var-test.py
+|  |  |  |-- googletest-env-var-test_.cc
+|  |  |  |-- googletest-filepath-test.cc
+|  |  |  |-- googletest-filter-unittest.py
+|  |  |  |-- googletest-filter-unittest_.cc
+|  |  |  |-- googletest-json-outfiles-test.py
+|  |  |  |-- googletest-json-output-unittest.py
+|  |  |  |-- googletest-linked-ptr-test.cc
+|  |  |  |-- googletest-list-tests-unittest.py
+|  |  |  |-- googletest-list-tests-unittest_.cc
+|  |  |  |-- googletest-listener-test.cc
+|  |  |  |-- googletest-message-test.cc
+|  |  |  |-- googletest-options-test.cc
+|  |  |  |-- googletest-output-test-golden-lin.txt
+|  |  |  |-- googletest-output-test.py
+|  |  |  |-- googletest-output-test_.cc
+|  |  |  |-- googletest-param-test-invalid-name1-test.py
+|  |  |  |-- googletest-param-test-invalid-name1-test_.cc
+|  |  |  |-- googletest-param-test-invalid-name2-test.py
+|  |  |  |-- googletest-param-test-invalid-name2-test_.cc
+|  |  |  |-- googletest-param-test-test.cc
+|  |  |  |-- googletest-param-test-test.h
+|  |  |  |-- googletest-param-test2-test.cc
+|  |  |  |-- googletest-port-test.cc
+|  |  |  |-- googletest-printers-test.cc
+|  |  |  |-- googletest-shuffle-test.py
+|  |  |  |-- googletest-shuffle-test_.cc
+|  |  |  |-- googletest-test-part-test.cc
+|  |  |  |-- googletest-test2_test.cc
+|  |  |  |-- googletest-throw-on-failure-test.py
+|  |  |  |-- googletest-throw-on-failure-test_.cc
+|  |  |  |-- googletest-tuple-test.cc
+|  |  |  |-- googletest-uninitialized-test.py
+|  |  |  |-- googletest-uninitialized-test_.cc
+|  |  |  |-- gtest-typed-test2_test.cc
+|  |  |  |-- gtest-typed-test_test.cc
+|  |  |  |-- gtest-typed-test_test.h
+|  |  |  |-- gtest-unittest-api_test.cc
+|  |  |  |-- gtest_all_test.cc
+|  |  |  |-- gtest_assert_by_exception_test.cc
+|  |  |  |-- gtest_environment_test.cc
+|  |  |  |-- gtest_help_test.py
+|  |  |  |-- gtest_help_test_.cc
+|  |  |  |-- gtest_json_test_utils.py
+|  |  |  |-- gtest_list_output_unittest.py
+|  |  |  |-- gtest_list_output_unittest_.cc
+|  |  |  |-- gtest_main_unittest.cc
+|  |  |  |-- gtest_no_test_unittest.cc
+|  |  |  |-- gtest_pred_impl_unittest.cc
+|  |  |  |-- gtest_premature_exit_test.cc
+|  |  |  |-- gtest_prod_test.cc
+|  |  |  |-- gtest_repeat_test.cc
+|  |  |  |-- gtest_sole_header_test.cc
+|  |  |  |-- gtest_stress_test.cc
+|  |  |  |-- gtest_test_macro_stack_footprint_test.cc
+|  |  |  |-- gtest_test_utils.py
+|  |  |  |-- gtest_testbridge_test.py
+|  |  |  |-- gtest_testbridge_test_.cc
+|  |  |  |-- gtest_throw_on_failure_ex_test.cc
+|  |  |  |-- gtest_unittest.cc
+|  |  |  |-- gtest_xml_outfile1_test_.cc
+|  |  |  |-- gtest_xml_outfile2_test_.cc
+|  |  |  |-- gtest_xml_outfiles_test.py
+|  |  |  |-- gtest_xml_output_unittest.py
+|  |  |  |-- gtest_xml_output_unittest_.cc
+|  |  |  |-- gtest_xml_test_utils.py
+|  |  |  |-- production.cc
+|  |  |  |-- production.h
+|  |  |-- xcode
+|  |  |  |-- Config
+|  |  |  |  |-- DebugProject.xcconfig
+|  |  |  |  |-- FrameworkTarget.xcconfig
+|  |  |  |  |-- General.xcconfig
+|  |  |  |  |-- ReleaseProject.xcconfig
+|  |  |  |  |-- StaticLibraryTarget.xcconfig
+|  |  |  |  |-- TestTarget.xcconfig
+|  |  |  |-- Resources
+|  |  |  |  |-- Info.plist
+|  |  |  |-- Samples
+|  |  |  |  |-- FrameworkSample
+|  |  |  |  |  |-- Info.plist
+|  |  |  |  |  |-- WidgetFramework.xcodeproj
+|  |  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |-- runtests.sh
+|  |  |  |  |  |-- widget.cc
+|  |  |  |  |  |-- widget.h
+|  |  |  |  |  |-- widget_test.cc
+|  |  |  |-- Scripts
+|  |  |  |  |-- runtests.sh
+|  |  |  |  |-- versiongenerate.py
+|  |  |  |-- gtest.xcodeproj
+|  |  |  |  |-- project.pbxproj
+|  |-- json-spirit
+|  |-- miniz
+|  |-- tinyxml2
+|-- files
+|  |-- CMakeLists.txt
+|  |-- NSC.dist
+|  |-- boot.dist
+|  |-- deb
+|  |  |-- postinst
+|  |  |-- prerm
+|  |-- init.centos.sh
+|  |-- init.debian.sh
+|  |-- license.txt
+|  |-- nrpe_dh_512.pem
+|  |-- nsclient.dist
+|  |-- nsclient.service
+|  |-- nsclient
+|  |  |-- nsclient.log
+|  |-- nscp.spec.in
+|  |-- old-settings.map
+|  |-- unix-nsclient.conf.in
+|-- include
+|  |-- CheckMemory.h
+|  |-- EnumNtSrv.cpp
+|  |-- EnumNtSrv.h
+|  |-- EnumProcess.cpp
+|  |-- EnumProcess.h
+|  |-- NSCAPI.h
+|  |-- ServiceCmd.cpp
+|  |-- ServiceCmd.h
+|  |-- b64
+|  |  |-- b64.c
+|  |  |-- b64.h
+|  |  |-- b64.hpp
+|  |-- breakpad
+|  |  |-- breakpad_config.cpp
+|  |  |-- breakpad_config.hpp
+|  |  |-- crash_sender_win32.cpp
+|  |  |-- exception_handler_win32.cpp
+|  |  |-- exception_handler_win32.hpp
+|  |-- buffer.hpp
+|  |-- char_buffer.hpp
+|  |-- check_mk
+|  |  |-- client
+|  |  |  |-- client_protocol.hpp
+|  |  |-- data.hpp
+|  |  |-- lua
+|  |  |  |-- lua_check_mk.cpp
+|  |  |  |-- lua_check_mk.hpp
+|  |  |-- parser.hpp
+|  |  |-- server
+|  |  |  |-- server_handler.hpp
+|  |  |  |-- server_protocol.hpp
+|  |-- check_nt
+|  |  |-- client
+|  |  |  |-- socket.hpp
+|  |  |-- packet.cpp
+|  |  |-- packet.hpp
+|  |  |-- server
+|  |  |  |-- handler.hpp
+|  |  |  |-- parser.hpp
+|  |  |  |-- protocol.hpp
+|  |-- client
+|  |  |-- command_line_parser.cpp
+|  |  |-- command_line_parser.hpp
+|  |  |-- simple_client.cpp
+|  |  |-- simple_client.hpp
+|  |-- clr
+|  |  |-- clr_scoped_ptr.hpp
+|  |-- collectd
+|  |  |-- collectd_packet.cpp
+|  |  |-- collectd_packet.hpp
+|  |-- com_helpers.hpp
+|  |-- compat.cpp
+|  |-- compat.hpp
+|  |-- concurrent_queue.hpp
+|  |-- config.h.in
+|  |-- dll
+|  |  |-- dll.hpp
+|  |  |-- impl_unix.hpp
+|  |  |-- impl_w32.hpp
+|  |-- error
+|  |  |-- error.hpp
+|  |  |-- error_com.hpp
+|  |  |-- error_w32.cpp
+|  |  |-- error_w32.hpp
+|  |-- event_handler.hpp
+|  |-- file
+|  |  |-- file_finder.cpp
+|  |  |-- file_finder.hpp
+|  |-- file_helpers.hpp
+|  |-- firewall_helpers.hpp
+|  |-- handle.hpp
+|  |-- has-threads.cpp
+|  |-- has-threads.hpp
+|  |-- http
+|  |  |-- client.hpp
+|  |-- lua
+|  |  |-- lua_core.hpp
+|  |  |-- lua_cpp.hpp
+|  |  |-- lua_script.hpp
+|  |-- luna.h
+|  |-- managed
+|  |  |-- convert.cpp
+|  |  |-- convert.hpp
+|  |  |-- core_impl.cpp
+|  |  |-- core_impl.hpp
+|  |-- metrics
+|  |  |-- metrics_store_map.cpp
+|  |  |-- metrics_store_map.hpp
+|  |-- net
+|  |  |-- icmp_header.hpp
+|  |  |-- ipv4_header.hpp
+|  |  |-- net.hpp
+|  |  |-- pinger.hpp
+|  |-- network_types.hpp
+|  |-- nrpe
+|  |  |-- client
+|  |  |  |-- nrpe_client_protocol.hpp
+|  |  |-- packet.cpp
+|  |  |-- packet.hpp
+|  |  |-- server
+|  |  |  |-- handler.hpp
+|  |  |  |-- parser.hpp
+|  |  |  |-- protocol.hpp
+|  |-- nsca
+|  |  |-- client
+|  |  |  |-- nsca_client_protocol.hpp
+|  |  |-- nsca_packet.cpp
+|  |  |-- nsca_packet.hpp
+|  |  |-- server
+|  |  |  |-- handler.hpp
+|  |  |  |-- parser.hpp
+|  |  |  |-- protocol.hpp
+|  |-- nscapi
+|  |  |-- command_client.cpp
+|  |  |-- command_client.hpp
+|  |  |-- command_proxy.hpp
+|  |  |-- dll_defines.hpp
+|  |  |-- dll_defines_protobuf.hpp
+|  |  |-- functions.hpp
+|  |  |-- log_handler.hpp
+|  |  |-- macros.hpp
+|  |  |-- nscapi_common_options.hpp
+|  |  |-- nscapi_core_helper.cpp
+|  |  |-- nscapi_core_helper.hpp
+|  |  |-- nscapi_core_wrapper.cpp
+|  |  |-- nscapi_core_wrapper.hpp
+|  |  |-- nscapi_helper.cpp
+|  |  |-- nscapi_helper.hpp
+|  |  |-- nscapi_helper_singleton.cpp
+|  |  |-- nscapi_helper_singleton.hpp
+|  |  |-- nscapi_metrics_helper.cpp
+|  |  |-- nscapi_metrics_helper.hpp
+|  |  |-- nscapi_plugin_impl.cpp
+|  |  |-- nscapi_plugin_impl.hpp
+|  |  |-- nscapi_plugin_wrapper.hpp
+|  |  |-- nscapi_program_options.hpp
+|  |  |-- nscapi_protobuf_command.hpp
+|  |  |-- nscapi_protobuf_functions.cpp
+|  |  |-- nscapi_protobuf_functions.hpp
+|  |  |-- nscapi_protobuf_log.hpp
+|  |  |-- nscapi_protobuf_metrics.hpp
+|  |  |-- nscapi_protobuf_nagios.hpp
+|  |  |-- nscapi_protobuf_registry.hpp
+|  |  |-- nscapi_protobuf_settings.hpp
+|  |  |-- nscapi_protobuf_settings_functions.cpp
+|  |  |-- nscapi_protobuf_settings_functions.hpp
+|  |  |-- nscapi_protobuf_storage.hpp
+|  |  |-- nscapi_settings_filter.cpp
+|  |  |-- nscapi_settings_filter.hpp
+|  |  |-- nscapi_settings_helper.cpp
+|  |  |-- nscapi_settings_helper.hpp
+|  |  |-- nscapi_settings_object.cpp
+|  |  |-- nscapi_settings_object.hpp
+|  |  |-- nscapi_settings_proxy.cpp
+|  |  |-- nscapi_settings_proxy.hpp
+|  |  |-- nscapi_targets.cpp
+|  |  |-- nscapi_targets.hpp
+|  |  |-- nscapi_thin_plugin_impl.cpp
+|  |  |-- nscapi_thin_plugin_impl.hpp
+|  |  |-- plugin.hpp
+|  |-- nsclient
+|  |  |-- logger
+|  |  |  |-- base_logger_impl.cpp
+|  |  |  |-- base_logger_impl.hpp
+|  |  |  |-- log_driver_interface.hpp
+|  |  |  |-- log_level.cpp
+|  |  |  |-- log_level.hpp
+|  |  |  |-- log_message_factory.cpp
+|  |  |  |-- log_message_factory.hpp
+|  |  |  |-- logger.hpp
+|  |  |  |-- logger_helper.cpp
+|  |  |  |-- logger_helper.hpp
+|  |  |-- nsclient_exception.hpp
+|  |-- nsclient_session.hpp
+|  |-- nscpcrypt
+|  |  |-- nscpcrypt.hpp
+|  |-- parsers
+|  |  |-- cron
+|  |  |  |-- cron_parser.hpp
+|  |  |-- expression
+|  |  |  |-- expression.cpp
+|  |  |  |-- expression.hpp
+|  |  |-- filter
+|  |  |  |-- cli_helper.hpp
+|  |  |  |-- modern_filter.cpp
+|  |  |  |-- modern_filter.hpp
+|  |  |  |-- realtime_helper.hpp
+|  |  |-- helpers.cpp
+|  |  |-- helpers.hpp
+|  |  |-- operators.cpp
+|  |  |-- operators.hpp
+|  |  |-- perfconfig
+|  |  |  |-- perfconfig.cpp
+|  |  |  |-- perfconfig.hpp
+|  |  |-- perfdata.hpp
+|  |  |-- where.cpp
+|  |  |-- where.hpp
+|  |  |-- where
+|  |  |  |-- binary_op.cpp
+|  |  |  |-- binary_op.hpp
+|  |  |  |-- dll_defines.hpp
+|  |  |  |-- engine.cpp
+|  |  |  |-- engine.hpp
+|  |  |  |-- engine_impl.hpp
+|  |  |  |-- filter_handler_impl.hpp
+|  |  |  |-- grammar
+|  |  |  |  |-- grammar.cpp
+|  |  |  |  |-- grammar.hpp
+|  |  |  |-- helpers.cpp
+|  |  |  |-- helpers.hpp
+|  |  |  |-- list_node.cpp
+|  |  |  |-- list_node.hpp
+|  |  |  |-- node.cpp
+|  |  |  |-- node.hpp
+|  |  |  |-- unary_fun.cpp
+|  |  |  |-- unary_fun.hpp
+|  |  |  |-- unary_op.cpp
+|  |  |  |-- unary_op.hpp
+|  |  |  |-- value_node.cpp
+|  |  |  |-- value_node.hpp
+|  |  |  |-- variable.cpp
+|  |  |  |-- variable.hpp
+|  |-- pdh
+|  |  |-- basic_impl.cpp
+|  |  |-- basic_impl.hpp
+|  |  |-- pdh_collectors.cpp
+|  |  |-- pdh_collectors.hpp
+|  |  |-- pdh_counters.cpp
+|  |  |-- pdh_counters.hpp
+|  |  |-- pdh_enumerations.cpp
+|  |  |-- pdh_enumerations.hpp
+|  |  |-- pdh_interface.cpp
+|  |  |-- pdh_interface.hpp
+|  |  |-- pdh_query.cpp
+|  |  |-- pdh_query.hpp
+|  |  |-- pdh_resolver.cpp
+|  |  |-- pdh_resolver.hpp
+|  |  |-- thread_safe_impl.cpp
+|  |  |-- thread_safe_impl.hpp
+|  |-- pid_file.cpp
+|  |-- pid_file.hpp
+|  |-- process
+|  |  |-- execute_process.hpp
+|  |  |-- execute_process_unix.cpp
+|  |  |-- execute_process_w32.cpp
+|  |-- program_options_ex.hpp
+|  |-- remote_processes.hpp
+|  |-- rrd_buffer.hpp
+|  |-- scheduler
+|  |  |-- simple_scheduler.cpp
+|  |  |-- simple_scheduler.hpp
+|  |-- scripts
+|  |  |-- functions.hpp
+|  |  |-- script_interface.hpp
+|  |  |-- script_nscp.cpp
+|  |  |-- script_nscp.hpp
+|  |-- service
+|  |  |-- system_service.hpp
+|  |  |-- unix_service.hpp
+|  |  |-- win32_service.hpp
+|  |-- settings
+|  |  |-- client
+|  |  |  |-- settings_client_interface.hpp
+|  |  |  |-- settings_proxy.cpp
+|  |  |  |-- settings_proxy.hpp
+|  |  |  |-- targets.hpp
+|  |  |-- impl
+|  |  |  |-- settings_dummy.hpp
+|  |  |  |-- settings_http.hpp
+|  |  |  |-- settings_ini.hpp
+|  |  |  |-- settings_old.hpp
+|  |  |  |-- settings_registry.hpp
+|  |  |-- settings_core.hpp
+|  |  |-- settings_interface.hpp
+|  |  |-- settings_interface_impl.hpp
+|  |  |-- settings_value.hpp
+|  |-- shared_memory.hpp
+|  |-- simple_registry.hpp
+|  |-- simple_timer.hpp
+|  |-- simpleini
+|  |  |-- ConvertUTF.c
+|  |  |-- ConvertUTF.h
+|  |  |-- simpleini.h
+|  |-- socket
+|  |  |-- allowed_hosts.hpp
+|  |  |-- client.hpp
+|  |  |-- clients
+|  |  |  |-- http
+|  |  |  |  |-- http_client_protocol.hpp
+|  |  |  |  |-- http_packet.hpp
+|  |  |-- connection.hpp
+|  |  |-- server.hpp
+|  |  |-- socket_helpers.cpp
+|  |  |-- socket_helpers.hpp
+|  |  |-- socket_settings_helper.hpp
+|  |-- str
+|  |  |-- format.hpp
+|  |  |-- nscp_string.hpp
+|  |  |-- utils.hpp
+|  |  |-- utils_no_boost.hpp
+|  |  |-- wstring.hpp
+|  |  |-- xtos.hpp
+|  |-- swap_bytes.hpp
+|  |-- sysinfo.cpp
+|  |-- sysinfo.h
+|  |-- threads
+|  |  |-- queue.hpp
+|  |-- timer.hpp
+|  |-- types.hpp
+|  |-- utf8.cpp
+|  |-- utf8.hpp
+|  |-- utils.cpp
+|  |-- utils.h
+|  |-- win_sysinfo
+|  |  |-- win_defines.hpp
+|  |  |-- win_sysinfo.cpp
+|  |  |-- win_sysinfo.hpp
+|  |-- wmi
+|  |  |-- wmi_query.cpp
+|  |  |-- wmi_query.hpp
+|  |-- zip
+|  |  |-- miniz.hpp
+|-- installers
+|  |-- common
+|  |  |-- CMakeLists.txt
+|  |  |-- html_help.wxs
+|  |  |-- op5_config.wxs
+|  |  |-- op5_scripts.wxs
+|  |  |-- re-generate.bat
+|  |  |-- re-generate.bat.in
+|  |  |-- scripts.wxs
+|  |  |-- web.wxs
+|  |-- installer-NSCP
+|  |  |-- Bitmaps
+|  |  |  |-- Thumbs.db
+|  |  |  |-- bannrbmp.bmp
+|  |  |  |-- bannrbmp.psd
+|  |  |  |-- dlgbmp.bmp
+|  |  |  |-- dlgbmp.psd
+|  |  |  |-- exclamic.ico
+|  |  |  |-- generic-small.bmp
+|  |  |  |-- info.ico
+|  |  |  |-- new.ico
+|  |  |  |-- op5-small.bmp
+|  |  |  |-- up.ico
+|  |  |-- CMakeLists.txt
+|  |  |-- License.rtf
+|  |  |-- Product.wxs
+|  |  |-- RUNTIME_DLL.wxs
+|  |  |-- WixUI_en-us.wxl
+|  |  |-- config.wxs
+|  |  |-- properties.wxs
+|  |  |-- setup.wxs
+|  |  |-- wixca.dll
+|  |-- installer-secondary
+|  |  |-- Bitmaps
+|  |  |  |-- bannrbmp.bmp
+|  |  |  |-- bannrbmp.psd
+|  |  |  |-- dlgbmp.bmp
+|  |  |  |-- dlgbmp.psd
+|  |  |  |-- exclamic.ico
+|  |  |  |-- generic-small.bmp
+|  |  |  |-- info.ico
+|  |  |  |-- new.ico
+|  |  |  |-- op5-small.bmp
+|  |  |  |-- up.ico
+|  |  |-- CMakeLists.txt
+|  |-- ui
+|  |  |-- ConfigureDlg.wxs
+|  |  |-- InvalidConfigureationDlg.wxs
+|  |  |-- MonitoringToolDlg.wxs
+|  |  |-- SelectConfigurationDlg.wxs
+|  |  |-- WixUI_MondoNSCP.wxs
+|-- libs
+|  |-- dotnet-plugin-api
+|  |  |-- AssemblyInfo.cpp
+|  |  |-- CMakeLists.txt
+|  |  |-- NSCP.h
+|  |-- expression_parser
+|  |  |-- CMakeLists.txt
+|  |  |-- expression_test.cpp
+|  |-- installer_lib
+|  |  |-- CMakeLists.txt
+|  |  |-- installer_helper.hpp
+|  |  |-- installer_lib.cpp
+|  |  |-- installer_lib.def
+|  |-- lua
+|  |  |-- CMakeLists.txt
+|  |-- lua_nscp
+|  |  |-- CMakeLists.txt
+|  |  |-- lua_core.cpp
+|  |  |-- lua_cpp.cpp
+|  |  |-- lua_script.cpp
+|  |-- minizip
+|  |  |-- CMakeLists.txt
+|  |-- mongoose-cpp
+|  |  |-- CMakeLists.txt
+|  |  |-- Client.cpp
+|  |  |-- Client.hpp
+|  |  |-- Controller.cpp
+|  |  |-- Controller.h
+|  |  |-- Helpers.cpp
+|  |  |-- Helpers.h
+|  |  |-- LICENSE
+|  |  |-- MatchController.cpp
+|  |  |-- MatchController.h
+|  |  |-- RegexController.cpp
+|  |  |-- RegexController.h
+|  |  |-- RegexRequestHandler.h
+|  |  |-- Request.cpp
+|  |  |-- Request.h
+|  |  |-- RequestHandler.h
+|  |  |-- Response.cpp
+|  |  |-- Response.h
+|  |  |-- Server.cpp
+|  |  |-- Server.h
+|  |  |-- ServerImpl.cpp
+|  |  |-- ServerImpl.h
+|  |  |-- StreamResponse.cpp
+|  |  |-- StreamResponse.h
+|  |  |-- dll_defines.hpp
+|  |  |-- ext
+|  |  |  |-- mongoose.c
+|  |  |  |-- mongoose.h
+|  |  |-- mcp_exception.hpp
+|  |  |-- string_response.cpp
+|  |  |-- string_response.hpp
+|  |-- nscpcrypt
+|  |  |-- CMakeLists.txt
+|  |  |-- nscpcrypt.cpp
+|  |-- perfconfig_parser
+|  |  |-- CMakeLists.txt
+|  |  |-- perfconfig_test.cpp
+|  |-- plugin_api
+|  |  |-- CMakeLists.txt
+|  |  |-- nscapi_helper_test.cpp
+|  |-- protobuf
+|  |  |-- CMakeLists.txt
+|  |  |-- common.proto
+|  |  |-- log.proto
+|  |  |-- metrics.proto
+|  |  |-- plugin.proto
+|  |  |-- registry.proto
+|  |  |-- settings.proto
+|  |  |-- storage.proto
+|  |-- protobuf_net
+|  |  |-- CMakeLists.txt
+|  |  |-- Google.Protobuf.dll
+|  |  |-- Helpers.cs
+|  |-- settings_manager
+|  |  |-- CMakeLists.txt
+|  |  |-- settings_handler_impl.cpp
+|  |  |-- settings_handler_impl.hpp
+|  |  |-- settings_manager_impl.cpp
+|  |  |-- settings_manager_impl.h
+|  |-- where_filter
+|  |  |-- CMakeLists.txt
+|  |-- win_sysinfo
+|  |  |-- CMakeLists.txt
+|-- modules
+|  |-- CSharpSamplePlugin
+|  |  |-- CMakeLists.txt
+|  |  |-- Properties
+|  |  |  |-- AssemblyInfo.cs
+|  |  |-- SamplePlugin.cs
+|  |  |-- module.cmake
+|  |  |-- packages.config
+|  |-- CauseCrashes
+|  |  |-- CMakeLists.txt
+|  |  |-- CauseCrashes.cpp
+|  |  |-- CauseCrashes.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- CheckDisk
+|  |  |-- CMakeLists.txt
+|  |  |-- CheckDisk.cpp
+|  |  |-- CheckDisk.h
+|  |  |-- check_drive.cpp
+|  |  |-- check_drive.hpp
+|  |  |-- file_finder.cpp
+|  |  |-- file_finder.hpp
+|  |  |-- filter.cpp
+|  |  |-- filter.hpp
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- CheckDocker
+|  |  |-- CMakeLists.txt
+|  |  |-- CheckDocker.cpp
+|  |  |-- CheckDocker.h
+|  |  |-- check_docker.cpp
+|  |  |-- check_docker.hpp
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- CheckEventLog
+|  |  |-- CMakeLists.txt
+|  |  |-- CheckEventLog.cpp
+|  |  |-- CheckEventLog.h
+|  |  |-- bookmarks.cpp
+|  |  |-- bookmarks.hpp
+|  |  |-- eventlog_record.hpp
+|  |  |-- eventlog_wrapper.cpp
+|  |  |-- eventlog_wrapper.hpp
+|  |  |-- filter.cpp
+|  |  |-- filter.hpp
+|  |  |-- filter_config_object.cpp
+|  |  |-- filter_config_object.hpp
+|  |  |-- modern_eventlog.cpp
+|  |  |-- modern_eventlog.hpp
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |  |-- realtime_data.cpp
+|  |  |-- realtime_data.hpp
+|  |  |-- realtime_thread.cpp
+|  |  |-- realtime_thread.hpp
+|  |  |-- simple_registry.hpp
+|  |-- CheckExternalScripts
+|  |  |-- CMakeLists.txt
+|  |  |-- CheckExternalScripts.cpp
+|  |  |-- CheckExternalScripts.h
+|  |  |-- alias.hpp
+|  |  |-- commands.hpp
+|  |  |-- extscr_cli.cpp
+|  |  |-- extscr_cli.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |  |-- script_interface.hpp
+|  |  |-- script_provider.cpp
+|  |  |-- script_provider.hpp
+|  |-- CheckHelpers
+|  |  |-- CMakeLists.txt
+|  |  |-- CheckHelpers.cpp
+|  |  |-- CheckHelpers.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- CheckLogFile
+|  |  |-- CMakeLists.txt
+|  |  |-- CheckLogFile.cpp
+|  |  |-- CheckLogFile.h
+|  |  |-- filter.cpp
+|  |  |-- filter.hpp
+|  |  |-- filter_config_object.cpp
+|  |  |-- filter_config_object.hpp
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |  |-- realtime_data.cpp
+|  |  |-- realtime_data.hpp
+|  |  |-- realtime_thread.cpp
+|  |  |-- realtime_thread.hpp
+|  |-- CheckMKClient
+|  |  |-- CMakeLists.txt
+|  |  |-- CheckMKClient.cpp
+|  |  |-- CheckMKClient.h
+|  |  |-- check_mk_client.hpp
+|  |  |-- check_mk_handler.hpp
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- CheckMKServer
+|  |  |-- CMakeLists.txt
+|  |  |-- CheckMKServer.cpp
+|  |  |-- CheckMKServer.h
+|  |  |-- handler_impl.cpp
+|  |  |-- handler_impl.hpp
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- CheckNSCP
+|  |  |-- CMakeLists.txt
+|  |  |-- CheckNSCP.cpp
+|  |  |-- CheckNSCP.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- CheckNet
+|  |  |-- CMakeLists.txt
+|  |  |-- CheckNet.cpp
+|  |  |-- CheckNet.h
+|  |  |-- filter.cpp
+|  |  |-- filter.hpp
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- CheckPowershell
+|  |  |-- AssemblyInfo.cpp
+|  |  |-- CMakeLists.txt
+|  |  |-- CheckPowershell.cpp
+|  |  |-- CheckPowershell.def
+|  |  |-- CheckPowershell.h
+|  |  |-- block_allocator.cpp
+|  |  |-- block_allocator.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- CheckSystem
+|  |  |-- CMakeLists.txt
+|  |  |-- CheckSystem.cpp
+|  |  |-- CheckSystem.h
+|  |  |-- check_memory.cpp
+|  |  |-- check_memory.hpp
+|  |  |-- check_network.cpp
+|  |  |-- check_network.hpp
+|  |  |-- check_pdh.cpp
+|  |  |-- check_pdh.hpp
+|  |  |-- check_process.cpp
+|  |  |-- check_process.hpp
+|  |  |-- counter_filter.cpp
+|  |  |-- counter_filter.hpp
+|  |  |-- filter.cpp
+|  |  |-- filter.hpp
+|  |  |-- filter_config_object.cpp
+|  |  |-- filter_config_object.hpp
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |  |-- pdh_thread.cpp
+|  |  |-- pdh_thread.hpp
+|  |  |-- realtime_data.cpp
+|  |  |-- realtime_data.hpp
+|  |  |-- settings.hpp
+|  |-- CheckSystemUnix
+|  |  |-- CMakeLists.txt
+|  |  |-- CheckSystem.cpp
+|  |  |-- CheckSystem.h
+|  |  |-- filter.cpp
+|  |  |-- filter.hpp
+|  |  |-- filter_config_object.cpp
+|  |  |-- filter_config_object.hpp
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |  |-- realtime_data.cpp
+|  |  |-- realtime_data.hpp
+|  |  |-- realtime_thread.cpp
+|  |  |-- realtime_thread.hpp
+|  |-- CheckTaskSched
+|  |  |-- CMakeLists.txt
+|  |  |-- CheckTaskSched.cpp
+|  |  |-- CheckTaskSched.h
+|  |  |-- TaskSched.cpp
+|  |  |-- TaskSched.h
+|  |  |-- filter.cpp
+|  |  |-- filter.hpp
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- CheckWMI
+|  |  |-- CMakeLists.txt
+|  |  |-- CheckWMI.cpp
+|  |  |-- CheckWMI.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- CollectdClient
+|  |  |-- CMakeLists.txt
+|  |  |-- CollectdClient.cpp
+|  |  |-- CollectdClient.h
+|  |  |-- collectd_client.hpp
+|  |  |-- collectd_handler.hpp
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- CommandClient
+|  |  |-- CMakeLists.txt
+|  |  |-- CommandClient.cpp
+|  |  |-- CommandClient.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- DotnetPlugins
+|  |  |-- AssemblyInfo.cpp
+|  |  |-- CMakeLists.txt
+|  |  |-- DotnetPlugins.cpp
+|  |  |-- DotnetPlugins.def
+|  |  |-- DotnetPlugins.h
+|  |  |-- block_allocator.cpp
+|  |  |-- block_allocator.h
+|  |  |-- json.cpp
+|  |  |-- json.h
+|  |  |-- json_writer.cpp
+|  |  |-- json_writer.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |  |-- plugin_instance.cpp
+|  |  |-- plugin_instance.hpp
+|  |-- ElasticClient
+|  |  |-- CMakeLists.txt
+|  |  |-- ElasticClient.cpp
+|  |  |-- ElasticClient.h
+|  |  |-- elastic_handler.hpp
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- GraphiteClient
+|  |  |-- CMakeLists.txt
+|  |  |-- GraphiteClient.cpp
+|  |  |-- GraphiteClient.h
+|  |  |-- graphite_client.hpp
+|  |  |-- graphite_handler.hpp
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- LUAScript
+|  |  |-- CMakeLists.txt
+|  |  |-- LUAScript.cpp
+|  |  |-- LUAScript.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- NRDPClient
+|  |  |-- CMakeLists.txt
+|  |  |-- NRDPClient.cpp
+|  |  |-- NRDPClient.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |  |-- nrdp.cpp
+|  |  |-- nrdp.hpp
+|  |  |-- nrdp_client.hpp
+|  |  |-- nrdp_handler.hpp
+|  |-- NRPEClient
+|  |  |-- CMakeLists.txt
+|  |  |-- NRPEClient.cpp
+|  |  |-- NRPEClient.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |  |-- nrpe_client.hpp
+|  |  |-- nrpe_handler.hpp
+|  |-- NRPEServer
+|  |  |-- CMakeLists.txt
+|  |  |-- NRPEServer.cpp
+|  |  |-- NRPEServer.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- NSCAClient
+|  |  |-- CMakeLists.txt
+|  |  |-- NSCAClient.cpp
+|  |  |-- NSCAClient.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |  |-- nsca_client.hpp
+|  |  |-- nsca_handler.hpp
+|  |-- NSCAServer
+|  |  |-- CMakeLists.txt
+|  |  |-- NSCAServer.cpp
+|  |  |-- NSCAServer.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- NSCPClient
+|  |  |-- CMakeLists.txt
+|  |  |-- NSCPClient.cpp
+|  |  |-- NSCPClient.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |  |-- nscp_client.hpp
+|  |  |-- nscp_handler.hpp
+|  |-- NSClientServer
+|  |  |-- CMakeLists.txt
+|  |  |-- NSClientServer.cpp
+|  |  |-- NSClientServer.h
+|  |  |-- NSClientSocket.cpp
+|  |  |-- NSClientSocket.h
+|  |  |-- handler_impl.cpp
+|  |  |-- handler_impl.hpp
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- Op5Client
+|  |  |-- CMakeLists.txt
+|  |  |-- Op5Client.cpp
+|  |  |-- Op5Client.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |  |-- op5_client.cpp
+|  |  |-- op5_client.hpp
+|  |-- PythonScript
+|  |  |-- CMakeLists.txt
+|  |  |-- PythonScript.cpp
+|  |  |-- PythonScript.h
+|  |  |-- extscr_cli.cpp
+|  |  |-- extscr_cli.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |  |-- python_script.cpp
+|  |  |-- python_script.hpp
+|  |  |-- script_interface.hpp
+|  |  |-- script_provider.cpp
+|  |  |-- script_provider.hpp
+|  |  |-- script_wrapper.cpp
+|  |  |-- script_wrapper.hpp
+|  |-- SMTPClient
+|  |  |-- CMakeLists.txt
+|  |  |-- SMTPClient.cpp
+|  |  |-- SMTPClient.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |  |-- smtp.cpp
+|  |  |-- smtp.hpp
+|  |  |-- smtp_client.hpp
+|  |  |-- smtp_handler.hpp
+|  |-- SamplePluginSimple
+|  |  |-- CMakeLists.txt
+|  |  |-- SamplePluginSimple.cpp
+|  |  |-- SamplePluginSimple.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- Scheduler
+|  |  |-- CMakeLists.txt
+|  |  |-- Scheduler.cpp
+|  |  |-- Scheduler.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |  |-- schedules_handler.cpp
+|  |  |-- schedules_handler.hpp
+|  |-- SimpleCache
+|  |  |-- CMakeLists.txt
+|  |  |-- SimpleCache.cpp
+|  |  |-- SimpleCache.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- SimpleFileWriter
+|  |  |-- CMakeLists.txt
+|  |  |-- SimpleFileWriter.cpp
+|  |  |-- SimpleFileWriter.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |-- SyslogClient
+|  |  |-- CMakeLists.txt
+|  |  |-- SyslogClient.cpp
+|  |  |-- SyslogClient.h
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |  |-- syslog_client.hpp
+|  |  |-- syslog_handler.hpp
+|  |-- WEBServer
+|  |  |-- CMakeLists.txt
+|  |  |-- WEBServer.cpp
+|  |  |-- WEBServer.h
+|  |  |-- api_controller.cpp
+|  |  |-- api_controller.hpp
+|  |  |-- error_handler.cpp
+|  |  |-- error_handler.hpp
+|  |  |-- error_handler_interface.hpp
+|  |  |-- grant_store.cpp
+|  |  |-- grant_store.hpp
+|  |  |-- helpers.hpp
+|  |  |-- info_controller.cpp
+|  |  |-- info_controller.hpp
+|  |  |-- legacy_command_controller.cpp
+|  |  |-- legacy_command_controller.hpp
+|  |  |-- legacy_controller.cpp
+|  |  |-- legacy_controller.hpp
+|  |  |-- log_controller.cpp
+|  |  |-- log_controller.hpp
+|  |  |-- login_controller.cpp
+|  |  |-- login_controller.hpp
+|  |  |-- metrics_controller.cpp
+|  |  |-- metrics_controller.hpp
+|  |  |-- metrics_handler.cpp
+|  |  |-- metrics_handler.hpp
+|  |  |-- module.cmake
+|  |  |-- module.json
+|  |  |-- modules_controller.cpp
+|  |  |-- modules_controller.hpp
+|  |  |-- openmetrics_controller.cpp
+|  |  |-- openmetrics_controller.hpp
+|  |  |-- query_controller.cpp
+|  |  |-- query_controller.hpp
+|  |  |-- scripts_controller.cpp
+|  |  |-- scripts_controller.hpp
+|  |  |-- session_manager_interface.cpp
+|  |  |-- session_manager_interface.hpp
+|  |  |-- settings_controller.cpp
+|  |  |-- settings_controller.hpp
+|  |  |-- static_controller.cpp
+|  |  |-- static_controller.hpp
+|  |  |-- token_store.cpp
+|  |  |-- token_store.hpp
+|  |  |-- user_config.hpp
+|  |  |-- web_cli_handler.hpp
+|-- nscp.spec.in
+|-- op5
+|  |-- config
+|  |  |-- CMakeLists.txt
+|  |  |-- op5.ini
+|  |-- scripts
+|  |  |-- CMakeLists.txt
+|  |  |-- check_ad.vbs
+|  |  |-- check_time.vbs
+|  |  |-- restart_service.ps1
+|  |  |-- services.vbs
+|-- packages
+|  |-- dummy.txt
+|-- patches
+|  |-- gtest-1.6.0
+|  |  |-- cmake
+|  |  |  |-- internal_utils.cmake
+|-- resources
+|  |-- CMakeLists.txt
+|  |-- help.ico
+|  |-- help.png
+|  |-- nsclient.ico
+|  |-- nsclient.png
+|-- scripts
+|  |-- CMakeLists.txt
+|  |-- check_60s.bat
+|  |-- check_battery.vbs
+|  |-- check_files.vbs
+|  |-- check_long.bat
+|  |-- check_no_rdp.bat
+|  |-- check_ok.bat
+|  |-- check_ok.sh
+|  |-- check_ping.bat
+|  |-- check_printer.vbs
+|  |-- check_test.bat
+|  |-- check_test.ps1
+|  |-- check_test.sh
+|  |-- check_test.vbs
+|  |-- check_updates.vbs
+|  |-- custom
+|  |  |-- my_custom_script.bat
+|  |-- helper
+|  |  |-- stress_test_web.py
+|  |-- lib
+|  |  |-- NagiosPlugins.vbs
+|  |  |-- wrapper.vbs
+|  |-- lua
+|  |  |-- check_cpu_ex.lua
+|  |  |-- default_check_mk.lua
+|  |  |-- lib
+|  |  |  |-- test_helper.lua
+|  |  |-- noperf.lua
+|  |  |-- test.lua
+|  |  |-- test_ext_script.lua
+|  |  |-- test_nrpe.lua
+|  |-- modules
+|  |  |-- icamp
+|  |  |  |-- module.json
+|  |  |  |-- scripts
+|  |  |  |  |-- python
+|  |  |  |  |  |-- icamp.py
+|  |  |-- icinga-client
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- module.json
+|  |  |  |-- scripts
+|  |  |  |  |-- python
+|  |  |  |  |  |-- icinga.py
+|  |  |-- remote-modules
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- module.json
+|  |  |  |-- scripts
+|  |  |  |  |-- python
+|  |  |  |  |  |-- remote-modules.py
+|  |-- powershell.ps1
+|  |-- python
+|  |  |-- __init__.py
+|  |  |-- badapp.py
+|  |  |-- docs.py
+|  |  |-- lib
+|  |  |  |-- __init__.py
+|  |  |  |-- google
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- protobuf
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- compiler
+|  |  |  |  |  |  |-- plugin_pb2.py
+|  |  |  |  |  |-- descriptor.py
+|  |  |  |  |  |-- descriptor_pb2.py
+|  |  |  |  |  |-- internal
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- api_implementation.py
+|  |  |  |  |  |  |-- containers.py
+|  |  |  |  |  |  |-- cpp_message.py
+|  |  |  |  |  |  |-- decoder.py
+|  |  |  |  |  |  |-- encoder.py
+|  |  |  |  |  |  |-- message_listener.py
+|  |  |  |  |  |  |-- python_message.py
+|  |  |  |  |  |  |-- type_checkers.py
+|  |  |  |  |  |  |-- wire_format.py
+|  |  |  |  |  |-- message.py
+|  |  |  |  |  |-- reflection.py
+|  |  |  |  |  |-- service.py
+|  |  |  |  |  |-- service_reflection.py
+|  |  |  |  |  |-- text_format.py
+|  |  |  |-- test_helper.py
+|  |  |-- sample.py
+|  |  |-- sample
+|  |  |  |-- list_all_wmi_objects.py
+|  |  |-- test.py
+|  |  |-- test_all.py
+|  |  |-- test_eventlog.py
+|  |  |-- test_external_script.py
+|  |  |-- test_log_file.py
+|  |  |-- test_nrpe.py
+|  |  |-- test_nsca.py
+|  |  |-- test_nscp.py
+|  |  |-- test_pb.py
+|  |  |-- test_python.py
+|  |  |-- test_sample.py
+|  |  |-- test_scheduler.py
+|  |  |-- test_stress.py
+|  |  |-- test_w32_file.py
+|  |  |-- test_w32_schetask.py
+|  |  |-- test_w32_system.py
+|  |  |-- test_w32_wmi.py
+|  |-- test.lua
+|-- service
+|  |-- CMakeLists.txt
+|  |-- NSClient++.aps
+|  |-- NSClient++.cpp
+|  |-- NSClient++.h
+|  |-- NSClient++.manifest
+|  |-- NSClient++.rc
+|  |-- channels.hpp
+|  |-- cli_parser.cpp
+|  |-- cli_parser.hpp
+|  |-- commands.hpp
+|  |-- config.h.in
+|  |-- core_api.cpp
+|  |-- core_api.h
+|  |-- cron_test.cpp
+|  |-- dll_plugin.cpp
+|  |-- dll_plugin.h
+|  |-- logger
+|  |  |-- nsclient_logger.cpp
+|  |  |-- nsclient_logger.hpp
+|  |  |-- simple_console_logger.cpp
+|  |  |-- simple_console_logger.hpp
+|  |  |-- simple_file_logger.cpp
+|  |  |-- simple_file_logger.hpp
+|  |  |-- threaded_logger.cpp
+|  |  |-- threaded_logger.hpp
+|  |-- master_plugin_list.cpp
+|  |-- master_plugin_list.hpp
+|  |-- nsclient_core_interface.hpp
+|  |-- path_manager.cpp
+|  |-- path_manager.hpp
+|  |-- performance_data_test.cpp
+|  |-- plugin_cache.cpp
+|  |-- plugin_cache.hpp
+|  |-- plugin_interface.hpp
+|  |-- plugin_list.hpp
+|  |-- plugin_manager.cpp
+|  |-- plugin_manager.hpp
+|  |-- registry_query_handler.cpp
+|  |-- registry_query_handler.hpp
+|  |-- res
+|  |  |-- nscp.ico
+|  |-- resource.h
+|  |-- routers.hpp
+|  |-- scheduler_handler.cpp
+|  |-- scheduler_handler.hpp
+|  |-- service_manager.hpp
+|  |-- settings_client.cpp
+|  |-- settings_client.hpp
+|  |-- settings_query_handler.cpp
+|  |-- settings_query_handler.hpp
+|  |-- storage_manager.cpp
+|  |-- storage_manager.hpp
+|  |-- storage_query_handler.cpp
+|  |-- storage_query_handler.hpp
+|  |-- tray_manager.hpp
+|  |-- various_test.cpp
+|  |-- zip_plugin.cpp
+|  |-- zip_plugin.h
+|-- tools
+|  |-- error_reporter
+|  |  |-- CMakeLists.txt
+|  |  |-- Resource.h
+|  |  |-- module.cmake
+|  |  |-- reporter.cpp
+|  |  |-- reporter.h
+|  |  |-- reporter.rc
+|  |  |-- res
+|  |  |  |-- error-report.ico
+|-- vagrant
+|  |-- debian
+|  |  |-- jessie
+|  |  |  |-- Vagrantfile
+|  |  |-- wheezy-64
+|  |  |  |-- Vagrantfile
+|  |-- files
+|  |  |-- CPackRPM.cmake
+|  |  |-- build-cryptopp.sh
+|  |  |-- build-debian.sh
+|  |  |-- build-protobuf.sh
+|  |  |-- deb-puppet.sh
+|  |  |-- plugin_pb2.py
+|  |-- ubuntu
+|  |  |-- precise32
+|  |  |  |-- Vagrantfile
+|  |  |-- precise64
+|  |  |  |-- Vagrantfile
+|  |  |-- trusty32
+|  |  |  |-- Vagrantfile
+|  |  |-- trusty64
+|  |  |  |-- Vagrantfile
+|-- version.txt
+|-- web
+|  |-- CMakeLists.txt
+|  |-- build
+|  |  |-- asset-manifest.json
+|  |  |-- favicon.png
+|  |  |-- index.html
+|  |  |-- manifest.json
+|  |  |-- static
+|  |  |  |-- js
+|  |  |  |  |-- 2.chunk.js
+|  |  |  |  |-- 2.chunk.js.map
+|  |  |  |  |-- bundle.js
+|  |  |  |  |-- bundle.js.map
+|  |  |  |  |-- main.chunk.js
+|  |  |  |  |-- main.chunk.js.map
+|  |-- config
+|  |  |-- env.js
+|  |  |-- jest
+|  |  |  |-- cssTransform.js
+|  |  |  |-- fileTransform.js
+|  |  |-- modules.js
+|  |  |-- paths.js
+|  |  |-- webpack.config.js
+|  |  |-- webpackDevServer.config.js
+|  |-- dist
+|  |  |-- asset-manifest.json
+|  |  |-- favicon.png
+|  |  |-- index.html
+|  |  |-- manifest.json
+|  |  |-- static
+|  |  |  |-- js
+|  |  |  |  |-- 2.chunk.js
+|  |  |  |  |-- 2.chunk.js.map
+|  |  |  |  |-- bundle.js
+|  |  |  |  |-- bundle.js.map
+|  |  |  |  |-- main.chunk.js
+|  |  |  |  |-- main.chunk.js.map
+|  |-- package-lock.json
+|  |-- package.json
+|  |-- public
+|  |  |-- favicon.png
+|  |  |-- index.html
+|  |  |-- manifest.json
+|  |-- scripts
+|  |  |-- build.js
+|  |  |-- start.js
+|  |  |-- test.js
+|  |-- src
+|  |  |-- App.css
+|  |  |-- App.test.tsx
+|  |  |-- App.tsx
+|  |  |-- actions
+|  |  |  |-- alert.actions.ts
+|  |  |  |-- common.actions.ts
+|  |  |  |-- index.ts
+|  |  |  |-- log.actions.ts
+|  |  |  |-- metric.actions.ts
+|  |  |  |-- module.actions.ts
+|  |  |  |-- query.actions.ts
+|  |  |  |-- user.actions.ts
+|  |  |-- components
+|  |  |  |-- account
+|  |  |  |  |-- index.tsx
+|  |  |  |-- common
+|  |  |  |  |-- page.tsx
+|  |  |  |-- log
+|  |  |  |  |-- index.tsx
+|  |  |  |  |-- list.log.tsx
+|  |  |  |  |-- toolbar.log.tsx
+|  |  |  |-- login.tsx
+|  |  |  |-- main.tsx
+|  |  |  |-- messages.tsx
+|  |  |  |-- metric
+|  |  |  |  |-- index.tsx
+|  |  |  |  |-- list.metric.tsx
+|  |  |  |  |-- toolbar.metric.tsx
+|  |  |  |-- module
+|  |  |  |  |-- enable.module.switch.tsx
+|  |  |  |  |-- index.tsx
+|  |  |  |  |-- list.module.tsx
+|  |  |  |  |-- load.module.switch.tsx
+|  |  |  |  |-- show.module.tsx
+|  |  |  |  |-- toolbar.module.tsx
+|  |  |  |-- navigation
+|  |  |  |  |-- account-button.tsx
+|  |  |  |  |-- drawer-link.tsx
+|  |  |  |  |-- drawer.tsx
+|  |  |  |  |-- index.tsx
+|  |  |  |  |-- navbar.tsx
+|  |  |  |-- private-router.tsx
+|  |  |  |-- query
+|  |  |  |  |-- index.tsx
+|  |  |  |  |-- list.query.tsx
+|  |  |  |  |-- show.query.tsx
+|  |  |  |  |-- toolbar.query.tsx
+|  |  |  |-- welcome.tsx
+|  |  |-- constants
+|  |  |  |-- alert.constants.ts
+|  |  |  |-- common.constants.ts
+|  |  |  |-- index.ts
+|  |  |  |-- log.constants.ts
+|  |  |  |-- metric.constants.ts
+|  |  |  |-- module.constants.ts
+|  |  |  |-- query.constants.ts
+|  |  |  |-- user.constants.ts
+|  |  |-- dummy-posts.ts
+|  |  |-- helpers
+|  |  |  |-- auth-header.ts
+|  |  |  |-- history.ts
+|  |  |  |-- index.ts
+|  |  |  |-- store.ts
+|  |  |-- index.css
+|  |  |-- index.tsx
+|  |  |-- logo.svg
+|  |  |-- react-app-env.d.ts
+|  |  |-- reducers
+|  |  |  |-- alert.reducer.ts
+|  |  |  |-- authentication.reducer.ts
+|  |  |  |-- common.reducers.ts
+|  |  |  |-- index.ts
+|  |  |  |-- log.reducer.ts
+|  |  |  |-- metric.reducer.ts
+|  |  |  |-- module.reducer.ts
+|  |  |  |-- query.reducer.ts
+|  |  |  |-- registration.reducer.ts
+|  |  |  |-- users.reducer.ts
+|  |  |-- selectors
+|  |  |  |-- index.ts
+|  |  |  |-- log.selector.ts
+|  |  |  |-- metric.selector.ts
+|  |  |  |-- module.selector.ts
+|  |  |  |-- query.selector.ts
+|  |  |-- serviceWorker.ts
+|  |  |-- services
+|  |  |  |-- common.service.tsx
+|  |  |  |-- index.ts
+|  |  |  |-- log.service.ts
+|  |  |  |-- metric.service.ts
+|  |  |  |-- module.service.ts
+|  |  |  |-- query.service.ts
+|  |  |  |-- user.service.ts
+|  |  |-- state
+|  |  |  |-- alert.state.ts
+|  |  |  |-- authentication.state.ts
+|  |  |  |-- index.ts
+|  |  |  |-- log.state.ts
+|  |  |  |-- metric.state.ts
+|  |  |  |-- module.state.ts
+|  |  |  |-- query.state.ts
+|  |  |  |-- registration.state.ts
+|  |  |  |-- user.state.ts
+|  |-- tsconfig.json

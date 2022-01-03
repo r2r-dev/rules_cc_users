@@ -1,0 +1,363 @@
+|-- .gitignore
+|-- .test-bazelrc
+|-- .travis.yml
+|-- AUTHORS
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- CONTRIBUTORS
+|-- LICENSE.txt
+|-- README.md
+|-- Vendoring.md
+|-- WORKSPACE
+|-- examples
+|  |-- bin
+|  |  |-- BUILD
+|  |  |-- bin.go
+|  |-- cgo
+|  |  |-- BUILD
+|  |  |-- cc_dependency
+|  |  |  |-- BUILD
+|  |  |  |-- c_version.c
+|  |  |  |-- c_version.h
+|  |  |  |-- cxx_version.cc
+|  |  |  |-- version.h
+|  |  |-- cgo_lib_test.go
+|  |  |-- example_command
+|  |  |  |-- BUILD
+|  |  |  |-- example_command_test.sh
+|  |  |  |-- main.go
+|  |  |-- export_example.go
+|  |  |-- generated.go.tpl
+|  |  |-- import_example.go
+|  |  |-- pure_go.go
+|  |  |-- skip_go_library
+|  |  |  |-- BUILD
+|  |  |  |-- cgo_foo.go
+|  |  |  |-- types.go
+|  |  |-- sub
+|  |  |  |-- floor.go
+|  |  |-- use_exported.c
+|  |  |-- use_exported.h
+|  |-- external
+|  |  |-- BUILD
+|  |  |-- main.go
+|  |-- lib
+|  |  |-- BUILD
+|  |  |-- add.s
+|  |  |-- asm.go
+|  |  |-- deep
+|  |  |  |-- BUILD
+|  |  |  |-- doc.go
+|  |  |  |-- thought.go
+|  |  |-- lib.go
+|  |  |-- lib_test.go
+|  |  |-- lib_x_test.go
+|  |  |-- sub.s
+|  |-- monobuild
+|  |  |-- cmd
+|  |  |  |-- BUILD
+|  |  |  |-- mycmd.go
+|  |  |-- lib1
+|  |  |  |-- BUILD
+|  |  |  |-- lib1.go
+|  |  |-- lib2
+|  |  |  |-- BUILD
+|  |  |  |-- lib2.go
+|  |-- proto
+|  |  |-- BUILD
+|  |  |-- dep
+|  |  |  |-- BUILD
+|  |  |  |-- useful.proto
+|  |  |-- gostyle
+|  |  |  |-- BUILD
+|  |  |  |-- gostyle.proto
+|  |  |-- grpc
+|  |  |  |-- BUILD
+|  |  |  |-- main.go
+|  |  |  |-- my_svc.proto
+|  |  |-- gs.go
+|  |  |-- lib
+|  |  |  |-- BUILD
+|  |  |  |-- lib.proto
+|  |  |  |-- lib2.proto
+|  |  |-- proto_test.go
+|  |-- stamped_bin
+|  |  |-- BUILD
+|  |  |-- stamp
+|  |  |  |-- BUILD
+|  |  |  |-- stamp.go
+|  |  |-- stamped_bin_test.go
+|  |-- vendor
+|  |  |-- github.com
+|  |  |  |-- user
+|  |  |  |  |-- vendored
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- vendored.go
+|-- go
+|  |-- BUILD
+|  |-- DESIGN.md
+|  |-- def.bzl
+|  |-- platform
+|  |  |-- BUILD
+|  |-- private
+|  |  |-- BUILD
+|  |  |-- BUILD.sdk.bazel
+|  |  |-- asm.bzl
+|  |  |-- binary.bzl
+|  |  |-- bzl_format.bzl
+|  |  |-- cgo.bzl
+|  |  |-- common.bzl
+|  |  |-- files_equal_test.bzl
+|  |  |-- go_prefix.bzl
+|  |  |-- go_repository.bzl
+|  |  |-- go_root.bzl
+|  |  |-- go_tool_binary.bzl
+|  |  |-- go_toolchain.bzl
+|  |  |-- json.bzl
+|  |  |-- library.bzl
+|  |  |-- lines_sorted_test.bzl
+|  |  |-- repositories.bzl
+|  |  |-- repository_tools.bzl
+|  |  |-- single_output_test.bzl
+|  |  |-- test.bzl
+|  |  |-- toolchain.bzl
+|  |-- toolchain
+|  |  |-- BUILD
+|  |  |-- toolchains.bzl
+|  |-- tools
+|  |  |-- BUILD
+|  |  |-- bazel
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- bazel.go
+|  |  |  |-- bazel_test.go
+|  |  |-- builders
+|  |  |  |-- BUILD
+|  |  |  |-- asm.go
+|  |  |  |-- filter.go
+|  |  |-- extract_package
+|  |  |  |-- BUILD
+|  |  |  |-- extract.go
+|  |  |  |-- extract_test.go
+|  |  |-- fetch_repo
+|  |  |  |-- BUILD
+|  |  |  |-- fetch_repo_test.go
+|  |  |  |-- main.go
+|  |  |-- filter_exec
+|  |  |  |-- BUILD
+|  |  |  |-- filter_exec.go
+|  |  |-- filter_tags
+|  |  |  |-- BUILD
+|  |  |  |-- filter_tags.go
+|  |  |  |-- filter_tags_test.go
+|  |  |-- gazelle
+|  |  |  |-- README.md
+|  |  |  |-- gazelle
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- diff.go
+|  |  |  |  |-- fix.go
+|  |  |  |  |-- fix_test.go
+|  |  |  |  |-- main.go
+|  |  |  |  |-- print.go
+|  |  |  |-- generator
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- generator.go
+|  |  |  |  |-- generator_test.go
+|  |  |  |-- merger
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- merger.go
+|  |  |  |  |-- merger_test.go
+|  |  |  |-- packages
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- fileinfo.go
+|  |  |  |  |-- fileinfo_test.go
+|  |  |  |  |-- package.go
+|  |  |  |  |-- package_test.go
+|  |  |  |  |-- walk.go
+|  |  |  |  |-- walk_test.go
+|  |  |  |-- rules
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- construct.go
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- generator.go
+|  |  |  |  |-- generator_test.go
+|  |  |  |  |-- resolve.go
+|  |  |  |  |-- resolve_external.go
+|  |  |  |  |-- resolve_external_test.go
+|  |  |  |  |-- resolve_structured.go
+|  |  |  |  |-- resolve_structured_test.go
+|  |  |  |  |-- resolve_test.go
+|  |  |  |  |-- resolve_vendored.go
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- repo
+|  |  |  |  |  |-- allcgolib
+|  |  |  |  |  |  |-- foo.c
+|  |  |  |  |  |  |-- foo.go
+|  |  |  |  |  |  |-- foo_test.go
+|  |  |  |  |  |-- bin
+|  |  |  |  |  |  |-- main.go
+|  |  |  |  |  |-- bin_with_tests
+|  |  |  |  |  |  |-- bin_test.go
+|  |  |  |  |  |  |-- main.go
+|  |  |  |  |  |-- cgolib
+|  |  |  |  |  |  |-- asm.S
+|  |  |  |  |  |  |-- foo.c
+|  |  |  |  |  |  |-- foo.go
+|  |  |  |  |  |  |-- foo.h
+|  |  |  |  |  |  |-- foo_test.go
+|  |  |  |  |  |  |-- pure.go
+|  |  |  |  |  |-- cgolib_with_build_tags
+|  |  |  |  |  |  |-- asm_linux.S
+|  |  |  |  |  |  |-- asm_other.S
+|  |  |  |  |  |  |-- foo.go
+|  |  |  |  |  |  |-- foo.h
+|  |  |  |  |  |  |-- foo_linux.c
+|  |  |  |  |  |  |-- foo_other.c
+|  |  |  |  |  |  |-- foo_test.go
+|  |  |  |  |  |  |-- pure_linux.go
+|  |  |  |  |  |  |-- pure_other.go
+|  |  |  |  |  |-- lib
+|  |  |  |  |  |  |-- asm.h
+|  |  |  |  |  |  |-- asm.s
+|  |  |  |  |  |  |-- doc.go
+|  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |-- deep
+|  |  |  |  |  |  |  |  |-- thought.go
+|  |  |  |  |  |  |-- lib.go
+|  |  |  |  |  |  |-- lib_external_test.go
+|  |  |  |  |  |  |-- lib_test.go
+|  |  |  |  |  |  |-- relativeimporter
+|  |  |  |  |  |  |  |-- importer.go
+|  |  |  |  |  |-- tests_with_testdata
+|  |  |  |  |  |  |-- external_test.go
+|  |  |  |  |  |  |-- internal_test.go
+|  |  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |  |-- data.txt
+|  |  |  |  |-- testdata.go
+|  |  |  |-- wspace
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- finder.go
+|  |  |  |  |-- finder_test.go
+|  |  |-- generate_test_main.go
+|  |  |-- wtool
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- main.go
+|-- proto
+|  |-- BUILD
+|  |-- go_proto_library.bzl
+|-- tests
+|  |-- asm_include
+|  |  |-- BUILD
+|  |  |-- foo_amd64.go
+|  |  |-- foo_amd64.h
+|  |  |-- foo_amd64.s
+|  |  |-- foo_other.go
+|  |  |-- foo_test.go
+|  |-- binary_test_outputs
+|  |  |-- BUILD
+|  |  |-- bin.go
+|  |  |-- test.go
+|  |-- build_constraints
+|  |  |-- BUILD
+|  |  |-- asm_linux.s
+|  |  |-- asm_unknown.s
+|  |  |-- build_constraints_test.go
+|  |  |-- cgo_group_linux.c
+|  |  |-- cgo_group_unknown.c
+|  |  |-- cgo_linux.c
+|  |  |-- cgo_linux.go
+|  |  |-- cgo_unknown.c
+|  |  |-- cgo_unknown.go
+|  |  |-- suffix_linux.go
+|  |  |-- suffix_unknown.go
+|  |  |-- tag_l.go
+|  |  |-- tag_unknown.go
+|  |-- build_gazelle_with_1.7
+|  |  |-- WORKSPACE.in
+|  |  |-- build_gazelle_with_1.7.bash
+|  |-- cgo_library_root_dir
+|  |  |-- BUILD
+|  |  |-- WORKSPACE.in
+|  |  |-- cgo.go
+|  |  |-- cgo_library_root_dir.bash
+|  |  |-- cgo_test.go
+|  |  |-- foo.c
+|  |-- cgo_pthread_flag
+|  |  |-- BUILD
+|  |  |-- cgo_pthread_flag.go
+|  |  |-- cgo_pthread_flag_test.go
+|  |-- coverage
+|  |  |-- BUILD
+|  |  |-- coverage.bash
+|  |  |-- coverage_test.go
+|  |  |-- lib.go
+|  |-- custom_go_toolchain
+|  |  |-- BUILD
+|  |  |-- custom_go_toolchain.bash
+|  |  |-- print_version.go
+|  |-- extldflags_rpath
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- extldflags_rpath_test.sh
+|  |  |-- main.go
+|  |-- gc_opts_unsafe
+|  |  |-- BUILD
+|  |  |-- empty_main.go
+|  |  |-- empty_test.go
+|  |  |-- gc_opts_unsafe.bash
+|  |  |-- unsafe.go
+|  |  |-- unsafe_cgo.go
+|  |-- new_go_repository_build_name
+|  |  |-- local
+|  |  |  |-- BUILD
+|  |  |  |-- WORKSPACE.in
+|  |  |  |-- local_test.go
+|  |  |-- new_go_repository_build_name.bash
+|  |  |-- remote
+|  |  |  |-- build
+|  |  |  |  |-- build.go
+|  |-- non_bazel_tests_common.bash
+|  |-- popular_repos
+|  |  |-- WORKSPACE.in
+|  |  |-- popular_repos.bash
+|  |-- proto_ignore_go_package_option
+|  |  |-- BUILD
+|  |  |-- a.proto
+|  |  |-- b.proto
+|  |-- run_non_bazel_tests.bash
+|  |-- slash_names
+|  |  |-- BUILD
+|  |  |-- a
+|  |  |  |-- pkg
+|  |  |  |  |-- pkg.go
+|  |  |-- b
+|  |  |  |-- pkg
+|  |  |  |  |-- pkg.go
+|  |  |-- slash_test.go
+|  |-- test_build_constraints
+|  |  |-- BUILD
+|  |  |-- bar_l_test.go
+|  |  |-- bar_unknown_test.go
+|  |  |-- baz_linux_test.go
+|  |  |-- baz_unknown_test.go
+|  |  |-- foo_linux_test.go
+|  |  |-- foo_unknown_test.go
+|  |-- test_filter_test
+|  |  |-- BUILD
+|  |  |-- test_filter_test.bash
+|  |  |-- test_filter_test.go
+|  |-- test_filter_test_1.7.5
+|  |  |-- BUILD
+|  |  |-- test_filter_test.go
+|  |  |-- test_filter_test_1.7.5.bash
+|  |-- transitive_data
+|  |  |-- BUILD
+|  |  |-- c_data.txt
+|  |  |-- cgo_data.txt
+|  |  |-- empty.go
+|  |  |-- empty_cgo.go
+|  |  |-- go_data.txt
+|  |  |-- transitive_data_test.go

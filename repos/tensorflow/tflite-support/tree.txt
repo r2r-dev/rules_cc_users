@@ -1,0 +1,947 @@
+|-- .bazelrc
+|-- .bazelversion
+|-- BUILD
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- tensorflow_lite_support
+|  |-- BUILD
+|  |-- acceleration
+|  |  |-- README.md
+|  |  |-- configuration
+|  |  |  |-- BUILD
+|  |  |  |-- edgetpu_coral_plugin.cc
+|  |  |  |-- edgetpu_coral_plugin_test.cc
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- burger.jpg
+|  |  |  |  |-- mobilenet_v1_1.0_224_quant.tflite
+|  |  |  |  |-- mobilenet_v1_1.0_224_quant_edgetpu.tflite
+|  |-- cc
+|  |  |-- BUILD
+|  |  |-- common.cc
+|  |  |-- common.h
+|  |  |-- port
+|  |  |  |-- BUILD
+|  |  |  |-- benchmark.h
+|  |  |  |-- build_defs.bzl
+|  |  |  |-- configuration_proto_inc.h
+|  |  |  |-- default
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- status_macros.h
+|  |  |  |  |-- status_matchers.h
+|  |  |  |  |-- statusor.cc
+|  |  |  |  |-- statusor.h
+|  |  |  |  |-- statusor_internals.h
+|  |  |  |  |-- tflite_wrapper.cc
+|  |  |  |  |-- tflite_wrapper.h
+|  |  |  |-- gmock.h
+|  |  |  |-- gtest.h
+|  |  |  |-- integral_types.h
+|  |  |  |-- status_macros.h
+|  |  |  |-- status_matchers.h
+|  |  |  |-- statusor.h
+|  |  |  |-- tflite_wrapper.h
+|  |  |-- task
+|  |  |  |-- README.md
+|  |  |  |-- audio
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- audio_classifier.cc
+|  |  |  |  |-- audio_classifier.h
+|  |  |  |  |-- core
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- audio_buffer.h
+|  |  |  |  |-- proto
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- audio_classifier_options.proto
+|  |  |  |  |  |-- class_proto_inc.h
+|  |  |  |  |  |-- classifications_proto_inc.h
+|  |  |  |-- core
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- base_task_api.h
+|  |  |  |  |-- category.h
+|  |  |  |  |-- classification_head.cc
+|  |  |  |  |-- classification_head.h
+|  |  |  |  |-- error_reporter.cc
+|  |  |  |  |-- error_reporter.h
+|  |  |  |  |-- external_file_handler.cc
+|  |  |  |  |-- external_file_handler.h
+|  |  |  |  |-- label_map_item.cc
+|  |  |  |  |-- label_map_item.h
+|  |  |  |  |-- proto
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- base_options.proto
+|  |  |  |  |  |-- base_options_proto_inc.h
+|  |  |  |  |  |-- class.proto
+|  |  |  |  |  |-- classifications.proto
+|  |  |  |  |  |-- external_file.proto
+|  |  |  |  |  |-- external_file_proto_inc.h
+|  |  |  |  |-- score_calibration.cc
+|  |  |  |  |-- score_calibration.h
+|  |  |  |  |-- task_api_factory.h
+|  |  |  |  |-- task_utils.cc
+|  |  |  |  |-- task_utils.h
+|  |  |  |  |-- tflite_engine.cc
+|  |  |  |  |-- tflite_engine.h
+|  |  |  |-- processor
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- classification_postprocessor.cc
+|  |  |  |  |-- classification_postprocessor.h
+|  |  |  |  |-- embedding_postprocessor.cc
+|  |  |  |  |-- embedding_postprocessor.h
+|  |  |  |  |-- image_preprocessor.cc
+|  |  |  |  |-- image_preprocessor.h
+|  |  |  |  |-- processor.cc
+|  |  |  |  |-- processor.h
+|  |  |  |  |-- proto
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- class.proto
+|  |  |  |  |  |-- classification_options.proto
+|  |  |  |  |  |-- classifications.proto
+|  |  |  |  |  |-- embedding.proto
+|  |  |  |  |  |-- embedding_options.proto
+|  |  |  |-- text
+|  |  |  |  |-- nlclassifier
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- bert_nl_classifier.cc
+|  |  |  |  |  |-- bert_nl_classifier.h
+|  |  |  |  |  |-- bert_nl_classifier_c_api.cc
+|  |  |  |  |  |-- bert_nl_classifier_c_api.h
+|  |  |  |  |  |-- nl_classifier.cc
+|  |  |  |  |  |-- nl_classifier.h
+|  |  |  |  |  |-- nl_classifier_c_api.cc
+|  |  |  |  |  |-- nl_classifier_c_api.h
+|  |  |  |  |  |-- nl_classifier_c_api_common.cc
+|  |  |  |  |  |-- nl_classifier_c_api_common.h
+|  |  |  |  |-- proto
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- bert_nl_classifier_options.proto
+|  |  |  |  |  |-- bert_nl_classifier_options_proto_inc.h
+|  |  |  |  |  |-- bert_question_answerer_options.proto
+|  |  |  |  |  |-- bert_question_answerer_options_proto_inc.h
+|  |  |  |  |  |-- nl_classifier_options.proto
+|  |  |  |  |  |-- nl_classifier_options_proto_inc.h
+|  |  |  |  |-- qa
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- bert_qa_c_api.cc
+|  |  |  |  |  |-- bert_qa_c_api.h
+|  |  |  |  |  |-- bert_question_answerer.cc
+|  |  |  |  |  |-- bert_question_answerer.h
+|  |  |  |  |  |-- question_answerer.h
+|  |  |  |-- vision
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- core
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- base_vision_task_api.h
+|  |  |  |  |  |-- classification_head.cc
+|  |  |  |  |  |-- classification_head.h
+|  |  |  |  |  |-- frame_buffer.cc
+|  |  |  |  |  |-- frame_buffer.h
+|  |  |  |  |  |-- label_map_item.cc
+|  |  |  |  |  |-- label_map_item.h
+|  |  |  |  |-- image_classifier.cc
+|  |  |  |  |-- image_classifier.h
+|  |  |  |  |-- image_embedder.cc
+|  |  |  |  |-- image_embedder.h
+|  |  |  |  |-- image_segmenter.cc
+|  |  |  |  |-- image_segmenter.h
+|  |  |  |  |-- object_detector.cc
+|  |  |  |  |-- object_detector.h
+|  |  |  |  |-- proto
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- bounding_box.proto
+|  |  |  |  |  |-- bounding_box_proto_inc.h
+|  |  |  |  |  |-- class.proto
+|  |  |  |  |  |-- class_proto_inc.h
+|  |  |  |  |  |-- classifications.proto
+|  |  |  |  |  |-- classifications_proto_inc.h
+|  |  |  |  |  |-- detections.proto
+|  |  |  |  |  |-- detections_proto_inc.h
+|  |  |  |  |  |-- embeddings.proto
+|  |  |  |  |  |-- embeddings_proto_inc.h
+|  |  |  |  |  |-- image_classifier_options.proto
+|  |  |  |  |  |-- image_classifier_options_proto_inc.h
+|  |  |  |  |  |-- image_embedder_options.proto
+|  |  |  |  |  |-- image_embedder_options_proto_inc.h
+|  |  |  |  |  |-- image_segmenter_options.proto
+|  |  |  |  |  |-- image_segmenter_options_proto_inc.h
+|  |  |  |  |  |-- object_detector_options.proto
+|  |  |  |  |  |-- object_detector_options_proto_inc.h
+|  |  |  |  |  |-- segmentations.proto
+|  |  |  |  |  |-- segmentations_proto_inc.h
+|  |  |  |  |-- utils
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- frame_buffer_common_utils.cc
+|  |  |  |  |  |-- frame_buffer_common_utils.h
+|  |  |  |  |  |-- frame_buffer_utils.cc
+|  |  |  |  |  |-- frame_buffer_utils.h
+|  |  |  |  |  |-- frame_buffer_utils_interface.h
+|  |  |  |  |  |-- image_tensor_specs.cc
+|  |  |  |  |  |-- image_tensor_specs.h
+|  |  |  |  |  |-- libyuv_frame_buffer_utils.cc
+|  |  |  |  |  |-- libyuv_frame_buffer_utils.h
+|  |  |  |  |  |-- score_calibration.cc
+|  |  |  |  |  |-- score_calibration.h
+|  |  |-- test
+|  |  |  |-- BUILD
+|  |  |  |-- common_test.cc
+|  |  |  |-- task
+|  |  |  |  |-- vision
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- image_classifier_coral_test.cc
+|  |  |  |  |  |-- image_classifier_test.cc
+|  |  |  |  |  |-- image_embedder_test.cc
+|  |  |  |  |  |-- image_segmenter_test.cc
+|  |  |  |  |  |-- object_detector_test.cc
+|  |  |  |-- test_utils.cc
+|  |  |  |-- test_utils.h
+|  |  |  |-- testdata
+|  |  |  |  |-- task
+|  |  |  |  |  |-- vision
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- automl_labeler_model.tflite
+|  |  |  |  |  |  |-- burger-224.png
+|  |  |  |  |  |  |-- burger.jpg
+|  |  |  |  |  |  |-- burger_crop.jpg
+|  |  |  |  |  |  |-- burger_rotation180.jpg
+|  |  |  |  |  |  |-- cats_and_dogs.jpg
+|  |  |  |  |  |  |-- cats_and_dogs_rotation180.jpg
+|  |  |  |  |  |  |-- coco_ssd_mobilenet_v1_1.0_quant_2018_06_29.tflite
+|  |  |  |  |  |  |-- deeplabv3.tflite
+|  |  |  |  |  |  |-- mobilenet_v1_0.25_224_1_default_1.tflite
+|  |  |  |  |  |  |-- mobilenet_v1_0.25_224_1_metadata_1.tflite
+|  |  |  |  |  |  |-- mobilenet_v1_0.25_224_quant.tflite
+|  |  |  |  |  |  |-- mobilenet_v1_0.25_224_quant_without_subgraph_metadata.tflite
+|  |  |  |  |  |  |-- mobilenet_v2_1.0_224.tflite
+|  |  |  |  |  |  |-- mobilenet_v2_1.0_224_without_labels.json
+|  |  |  |  |  |  |-- mobilenet_v2_1.0_224_without_labels.tflite
+|  |  |  |  |  |  |-- mobilenet_v3_small_100_224_embedder.tflite
+|  |  |  |  |  |  |-- multi_objects.jpg
+|  |  |  |  |  |  |-- segmentation_golden_rotation0.png
+|  |  |  |  |  |  |-- segmentation_golden_rotation0_yuv.png
+|  |  |  |  |  |  |-- segmentation_golden_rotation90_flop.png
+|  |  |  |  |  |  |-- segmentation_input_rotation0.jpg
+|  |  |  |  |  |  |-- segmentation_input_rotation90_flop.jpg
+|  |  |-- text
+|  |  |  |-- tokenizers
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- DummyManifest.xml
+|  |  |  |  |-- bert_tokenizer.cc
+|  |  |  |  |-- bert_tokenizer.h
+|  |  |  |  |-- bert_tokenizer_jni.cc
+|  |  |  |  |-- regex_tokenizer.cc
+|  |  |  |  |-- regex_tokenizer.h
+|  |  |  |  |-- sentencepiece_jni.cc
+|  |  |  |  |-- sentencepiece_tokenizer.h
+|  |  |  |  |-- tokenizer.h
+|  |  |  |  |-- tokenizer_jni_lib.cc
+|  |  |  |  |-- tokenizer_jni_lib.h
+|  |  |  |  |-- tokenizer_utils.cc
+|  |  |  |  |-- tokenizer_utils.h
+|  |  |-- utils
+|  |  |  |-- BUILD
+|  |  |  |-- common_utils.cc
+|  |  |  |-- common_utils.h
+|  |  |  |-- jni_utils.cc
+|  |  |  |-- jni_utils.h
+|  |-- codegen
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- android_java_generator.cc
+|  |  |-- android_java_generator.h
+|  |  |-- code_generator.cc
+|  |  |-- code_generator.h
+|  |  |-- code_generator_test.cc
+|  |  |-- metadata_helper.cc
+|  |  |-- metadata_helper.h
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- codegen.py
+|  |  |  |-- codegen_lib.cc
+|  |  |-- utils.cc
+|  |  |-- utils.h
+|  |  |-- utils_test.cc
+|  |-- custom_ops
+|  |  |-- BUILD
+|  |  |-- kernel
+|  |  |  |-- BUILD
+|  |  |  |-- ngrams.cc
+|  |  |  |-- ngrams.h
+|  |  |  |-- ngrams_op_resolver.cc
+|  |  |  |-- ngrams_op_resolver.h
+|  |  |  |-- ngrams_op_resolver_wrapper.cc
+|  |  |  |-- ngrams_test.cc
+|  |  |  |-- ngrams_test.py
+|  |  |  |-- ragged
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- py
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- pywrap_tflite_registerer.cc
+|  |  |  |  |-- py_tflite_registerer.cc
+|  |  |  |  |-- py_tflite_registerer.h
+|  |  |  |  |-- ragged_range_tflite.cc
+|  |  |  |  |-- ragged_range_tflite_test.cc
+|  |  |  |  |-- ragged_tensor_to_tensor_tflite.cc
+|  |  |  |  |-- ragged_tensor_to_tensor_tflite_test.cc
+|  |  |  |-- sentencepiece
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- config.fbs
+|  |  |  |  |-- decoder_config.fbs
+|  |  |  |  |-- double_array_trie.h
+|  |  |  |  |-- double_array_trie_builder.cc
+|  |  |  |  |-- double_array_trie_builder.h
+|  |  |  |  |-- double_array_trie_test.cc
+|  |  |  |  |-- encoder_config.fbs
+|  |  |  |  |-- model_converter.cc
+|  |  |  |  |-- model_converter.h
+|  |  |  |  |-- native.bzl
+|  |  |  |  |-- optimized_decoder.cc
+|  |  |  |  |-- optimized_decoder.h
+|  |  |  |  |-- optimized_decoder_test.cc
+|  |  |  |  |-- optimized_encoder.cc
+|  |  |  |  |-- optimized_encoder.h
+|  |  |  |  |-- optimized_encoder_test.cc
+|  |  |  |  |-- py_tflite_registerer.cc
+|  |  |  |  |-- py_tflite_registerer.h
+|  |  |  |  |-- sentencepiece_constants.h
+|  |  |  |  |-- sentencepiece_detokenizer.h
+|  |  |  |  |-- sentencepiece_detokenizer_op.cc
+|  |  |  |  |-- sentencepiece_detokenizer_tflite.cc
+|  |  |  |  |-- sentencepiece_tokenizer.h
+|  |  |  |  |-- sentencepiece_tokenizer_op.cc
+|  |  |  |  |-- sentencepiece_tokenizer_tflite.cc
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- sentencepiece.model
+|  |  |  |  |-- utils.h
+|  |  |  |-- testdata
+|  |  |  |  |-- whitespace_tokenizer_flex_delegate.tflite
+|  |  |  |  |-- whitespace_tokenizer_to_ragged_1d_input.tflite
+|  |  |  |  |-- whitespace_tokenizer_to_ragged_2d_input.tflite
+|  |  |  |  |-- whitespace_tokenizer_to_tensor.tflite
+|  |  |  |-- whitespace_tokenizer.cc
+|  |  |  |-- whitespace_tokenizer.h
+|  |  |  |-- whitespace_tokenizer_op_resolver.cc
+|  |  |  |-- whitespace_tokenizer_op_resolver.h
+|  |  |  |-- whitespace_tokenizer_op_resolver_wrapper.cc
+|  |  |  |-- whitespace_tokenizer_test.cc
+|  |  |  |-- whitespace_tokenizer_test.py
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- ragged_tensor_to_tensor_test.py
+|  |  |  |-- sentencepiece_tokenizer.py
+|  |  |  |-- sentencepiece_tokenizer_test.py
+|  |  |  |-- tflite_text_api.py
+|  |  |-- testdata
+|  |  |  |-- sentencepiece_tokenizer_flex_op.tflite
+|  |  |  |-- wiki40b-lm-en.tflite
+|  |  |-- tf_configure.sh
+|  |  |-- tflite_inference_test.cc
+|  |-- examples
+|  |  |-- task
+|  |  |  |-- BUILD
+|  |  |  |-- audio
+|  |  |  |  |-- desktop
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- audio_classifier_demo.cc
+|  |  |  |  |  |-- audio_classifier_lib.cc
+|  |  |  |  |  |-- audio_classifier_lib.h
+|  |  |  |  |  |-- wav
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- wav_io.cc
+|  |  |  |  |  |  |-- wav_io.h
+|  |  |  |-- text
+|  |  |  |  |-- desktop
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- bert_nl_classifier_demo.cc
+|  |  |  |  |  |-- bert_question_answerer_demo.cc
+|  |  |  |  |  |-- nl_classifier_demo.cc
+|  |  |  |  |  |-- python
+|  |  |  |  |  |  |-- README.md
+|  |  |  |-- vision
+|  |  |  |  |-- desktop
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- g3doc
+|  |  |  |  |  |  |-- cat.jpg
+|  |  |  |  |  |  |-- detection-output.png
+|  |  |  |  |  |  |-- dogs.jpg
+|  |  |  |  |  |  |-- segmentation-output.png
+|  |  |  |  |  |  |-- sparrow.jpg
+|  |  |  |  |  |-- image_classifier_demo.cc
+|  |  |  |  |  |-- image_embedder_demo.cc
+|  |  |  |  |  |-- image_segmenter_demo.cc
+|  |  |  |  |  |-- object_detector_demo.cc
+|  |  |  |  |  |-- utils
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- image_utils.cc
+|  |  |  |  |  |  |-- image_utils.h
+|  |-- ios
+|  |  |-- BUILD
+|  |  |-- TensorFlowLiteTaskText.podspec.template
+|  |  |-- allowlist_TensorFlowLiteTaskText.txt
+|  |  |-- ios.bzl
+|  |  |-- task
+|  |  |  |-- text
+|  |  |  |  |-- apis
+|  |  |  |  |  |-- TFLTaskText.h
+|  |  |  |  |  |-- framework.modulemap
+|  |  |  |  |-- nlclassifier
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- Sources
+|  |  |  |  |  |  |-- TFLBertNLClassifier.h
+|  |  |  |  |  |  |-- TFLBertNLClassifier.m
+|  |  |  |  |  |  |-- TFLNLClassifier.h
+|  |  |  |  |  |  |-- TFLNLClassifier.m
+|  |  |  |  |  |-- Tests
+|  |  |  |  |  |  |-- TFLBertNLClassifierTest.m
+|  |  |  |  |  |  |-- TFLBertNLClassifierTest.swift
+|  |  |  |  |  |  |-- TFLNLClassifierTest.m
+|  |  |  |  |  |  |-- TFLNLClassifierTest.swift
+|  |  |  |  |-- qa
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- Sources
+|  |  |  |  |  |  |-- TFLBertQuestionAnswerer.h
+|  |  |  |  |  |  |-- TFLBertQuestionAnswerer.m
+|  |  |  |  |  |-- Tests
+|  |  |  |  |  |  |-- TFLBertQuestionAnswererTest.m
+|  |  |  |  |  |  |-- TFLBertQuestionAnswererTest.swift
+|  |  |-- text
+|  |  |  |-- tokenizers
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Sources
+|  |  |  |  |  |-- TFLBertTokenizer.h
+|  |  |  |  |  |-- TFLBertTokenizer.mm
+|  |  |  |  |  |-- TFLSentencepieceTokenizer.h
+|  |  |  |  |  |-- TFLSentencepieceTokenizer.mm
+|  |  |  |  |  |-- TFLTokenizer.h
+|  |  |  |  |  |-- TFLTokenizerUtil.h
+|  |  |  |  |  |-- TFLTokenizerUtil.mm
+|  |  |  |  |-- Tests
+|  |  |  |  |  |-- TFLBertTokenizerTest.swift
+|  |  |  |  |  |-- TFLSentencepieceTokenizerTest.swift
+|  |  |-- utils
+|  |  |  |-- BUILD
+|  |  |  |-- Sources
+|  |  |  |  |-- TFLStringUtil.h
+|  |  |  |  |-- TFLStringUtil.mm
+|  |-- java
+|  |  |-- AndroidManifest.xml
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- debug_version_script.lds
+|  |  |-- default_version_script.lds
+|  |  |-- jni
+|  |  |  |-- BUILD
+|  |  |-- src
+|  |  |  |-- java
+|  |  |  |  |-- org
+|  |  |  |  |  |-- tensorflow
+|  |  |  |  |  |  |-- lite
+|  |  |  |  |  |  |  |-- support
+|  |  |  |  |  |  |  |  |-- audio
+|  |  |  |  |  |  |  |  |  |-- TensorAudio.java
+|  |  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |  |-- FileUtil.java
+|  |  |  |  |  |  |  |  |  |-- Operator.java
+|  |  |  |  |  |  |  |  |  |-- Processor.java
+|  |  |  |  |  |  |  |  |  |-- SequentialProcessor.java
+|  |  |  |  |  |  |  |  |  |-- SupportPreconditions.java
+|  |  |  |  |  |  |  |  |  |-- TensorOperator.java
+|  |  |  |  |  |  |  |  |  |-- TensorProcessor.java
+|  |  |  |  |  |  |  |  |  |-- ops
+|  |  |  |  |  |  |  |  |  |  |-- CastOp.java
+|  |  |  |  |  |  |  |  |  |  |-- DequantizeOp.java
+|  |  |  |  |  |  |  |  |  |  |-- NormalizeOp.java
+|  |  |  |  |  |  |  |  |  |  |-- QuantizeOp.java
+|  |  |  |  |  |  |  |  |-- image
+|  |  |  |  |  |  |  |  |  |-- BitmapContainer.java
+|  |  |  |  |  |  |  |  |  |-- BoundingBoxUtil.java
+|  |  |  |  |  |  |  |  |  |-- ColorSpaceType.java
+|  |  |  |  |  |  |  |  |  |-- ImageContainer.java
+|  |  |  |  |  |  |  |  |  |-- ImageConversions.java
+|  |  |  |  |  |  |  |  |  |-- ImageOperator.java
+|  |  |  |  |  |  |  |  |  |-- ImageProcessor.java
+|  |  |  |  |  |  |  |  |  |-- ImageProperties.java
+|  |  |  |  |  |  |  |  |  |-- MediaImageContainer.java
+|  |  |  |  |  |  |  |  |  |-- MlImageAdapter.java
+|  |  |  |  |  |  |  |  |  |-- TensorBufferContainer.java
+|  |  |  |  |  |  |  |  |  |-- TensorImage.java
+|  |  |  |  |  |  |  |  |  |-- ops
+|  |  |  |  |  |  |  |  |  |  |-- ResizeOp.java
+|  |  |  |  |  |  |  |  |  |  |-- ResizeWithCropOrPadOp.java
+|  |  |  |  |  |  |  |  |  |  |-- Rot90Op.java
+|  |  |  |  |  |  |  |  |  |  |-- TensorOperatorWrapper.java
+|  |  |  |  |  |  |  |  |  |  |-- TransformToGrayscaleOp.java
+|  |  |  |  |  |  |  |  |-- label
+|  |  |  |  |  |  |  |  |  |-- Category.java
+|  |  |  |  |  |  |  |  |  |-- LabelUtil.java
+|  |  |  |  |  |  |  |  |  |-- TensorLabel.java
+|  |  |  |  |  |  |  |  |  |-- ops
+|  |  |  |  |  |  |  |  |  |  |-- LabelAxisOp.java
+|  |  |  |  |  |  |  |  |-- model
+|  |  |  |  |  |  |  |  |  |-- GpuDelegateProxy.java
+|  |  |  |  |  |  |  |  |  |-- Model.java
+|  |  |  |  |  |  |  |  |-- tensorbuffer
+|  |  |  |  |  |  |  |  |  |-- TensorBuffer.java
+|  |  |  |  |  |  |  |  |  |-- TensorBufferFloat.java
+|  |  |  |  |  |  |  |  |  |-- TensorBufferUint8.java
+|  |  |  |  |  |  |  |-- task
+|  |  |  |  |  |  |  |  |-- audio
+|  |  |  |  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- classifier
+|  |  |  |  |  |  |  |  |  |  |-- AudioClassifier.java
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- Classifications.java
+|  |  |  |  |  |  |  |  |-- core
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- BaseOptions.java
+|  |  |  |  |  |  |  |  |  |-- BaseTaskApi.java
+|  |  |  |  |  |  |  |  |  |-- ComputeSettings.java
+|  |  |  |  |  |  |  |  |  |-- TaskJniUtils.java
+|  |  |  |  |  |  |  |  |  |-- vision
+|  |  |  |  |  |  |  |  |  |  |-- ImageProcessingOptions.java
+|  |  |  |  |  |  |  |  |-- text
+|  |  |  |  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- nlclassifier
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- BertNLClassifier.java
+|  |  |  |  |  |  |  |  |  |  |-- NLClassifier.java
+|  |  |  |  |  |  |  |  |  |-- qa
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- BertQuestionAnswerer.java
+|  |  |  |  |  |  |  |  |  |  |-- QaAnswer.java
+|  |  |  |  |  |  |  |  |  |  |-- QuestionAnswerer.java
+|  |  |  |  |  |  |  |  |-- vision
+|  |  |  |  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- classifier
+|  |  |  |  |  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- Classifications.java
+|  |  |  |  |  |  |  |  |  |  |-- ImageClassifier.java
+|  |  |  |  |  |  |  |  |  |-- core
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- BaseVisionTaskApi.java
+|  |  |  |  |  |  |  |  |  |-- detector
+|  |  |  |  |  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- Detection.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjectDetector.java
+|  |  |  |  |  |  |  |  |  |-- segmenter
+|  |  |  |  |  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- ColoredLabel.java
+|  |  |  |  |  |  |  |  |  |  |-- ImageSegmenter.java
+|  |  |  |  |  |  |  |  |  |  |-- OutputType.java
+|  |  |  |  |  |  |  |  |  |  |-- Segmentation.java
+|  |  |  |-- javatests
+|  |  |  |  |-- org
+|  |  |  |  |  |-- tensorflow
+|  |  |  |  |  |  |-- lite
+|  |  |  |  |  |  |  |-- support
+|  |  |  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- assets
+|  |  |  |  |  |  |  |  |  |-- color_grid.png
+|  |  |  |  |  |  |  |  |  |-- flower_labels.txt
+|  |  |  |  |  |  |  |  |  |-- grey_grid.png
+|  |  |  |  |  |  |  |  |  |-- labels.txt
+|  |  |  |  |  |  |  |  |  |-- mobilenet_v1_1.0_224_info.txt
+|  |  |  |  |  |  |  |  |-- audio
+|  |  |  |  |  |  |  |  |  |-- TensorAudioTest.java
+|  |  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |  |-- FileUtilTest.java
+|  |  |  |  |  |  |  |  |  |-- TensorProcessorTest.java
+|  |  |  |  |  |  |  |  |  |-- ops
+|  |  |  |  |  |  |  |  |  |  |-- CastOpTest.java
+|  |  |  |  |  |  |  |  |  |  |-- DequantizeOpTest.java
+|  |  |  |  |  |  |  |  |  |  |-- NormalizeOpTest.java
+|  |  |  |  |  |  |  |  |  |  |-- QuantizeOpTest.java
+|  |  |  |  |  |  |  |  |-- image
+|  |  |  |  |  |  |  |  |  |-- BoundingBoxUtilTest.java
+|  |  |  |  |  |  |  |  |  |-- ColorSpaceTypeInstrumentedTest.java
+|  |  |  |  |  |  |  |  |  |-- ColorSpaceTypeTest.java
+|  |  |  |  |  |  |  |  |  |-- ImageConversionsInstrumentedTest.java
+|  |  |  |  |  |  |  |  |  |-- ImageConversionsTest.java
+|  |  |  |  |  |  |  |  |  |-- ImageProcessorInstrumentedTest.java
+|  |  |  |  |  |  |  |  |  |-- ImageProcessorTest.java
+|  |  |  |  |  |  |  |  |  |-- MlImageAdapterTest.java
+|  |  |  |  |  |  |  |  |  |-- TensorImageInstrumentedTest.java
+|  |  |  |  |  |  |  |  |  |-- TensorImageTest.java
+|  |  |  |  |  |  |  |  |  |-- TestImageCreator.java
+|  |  |  |  |  |  |  |  |  |-- ops
+|  |  |  |  |  |  |  |  |  |  |-- ResizeOpInstrumentedTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ResizeWithCropOrPadOpInstrumentedTest.java
+|  |  |  |  |  |  |  |  |  |  |-- Rot90OpInstrumentedTest.java
+|  |  |  |  |  |  |  |  |  |  |-- TransformToGrayScaleOpInstrumentedTest.java
+|  |  |  |  |  |  |  |  |-- label
+|  |  |  |  |  |  |  |  |  |-- CategoryTest.java
+|  |  |  |  |  |  |  |  |  |-- LabelUtilTest.java
+|  |  |  |  |  |  |  |  |  |-- TensorLabelTest.java
+|  |  |  |  |  |  |  |  |  |-- ops
+|  |  |  |  |  |  |  |  |  |  |-- LabelAxisOpTest.java
+|  |  |  |  |  |  |  |  |-- model
+|  |  |  |  |  |  |  |  |  |-- GpuDelegateProxyInstrumentedTest.java
+|  |  |  |  |  |  |  |  |  |-- GpuDelegateProxyTest.java
+|  |  |  |  |  |  |  |  |  |-- ModelTest.java
+|  |  |  |  |  |  |  |  |-- tensorbuffer
+|  |  |  |  |  |  |  |  |  |-- TensorBufferFloatTest.java
+|  |  |  |  |  |  |  |  |  |-- TensorBufferTest.java
+|  |  |  |  |  |  |  |  |  |-- TensorBufferUint8Test.java
+|  |  |  |-- native
+|  |  |  |  |-- task
+|  |  |  |  |  |-- audio
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- classifier
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- audio_classifier_jni.cc
+|  |  |  |  |  |-- core
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- builtin_op_resolver.cc
+|  |  |  |  |  |  |-- task_jni_utils.cc
+|  |  |  |  |  |-- text
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- nlclassifier
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- bert
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- bert_nl_classifier_jni.cc
+|  |  |  |  |  |  |  |-- nl_classifier_jni.cc
+|  |  |  |  |  |  |  |-- nl_classifier_jni_utils.cc
+|  |  |  |  |  |  |  |-- nl_classifier_jni_utils.h
+|  |  |  |  |  |  |-- qa
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- bert_question_answerer_jni.cc
+|  |  |  |  |  |-- vision
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- classifier
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- image_classifier_jni.cc
+|  |  |  |  |  |  |-- core
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- base_vision_task_api_jni.cc
+|  |  |  |  |  |  |-- detector
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- object_detector_jni.cc
+|  |  |  |  |  |  |-- jni_utils.cc
+|  |  |  |  |  |  |-- jni_utils.h
+|  |  |  |  |  |  |-- segmenter
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- image_segmenter_jni.cc
+|  |-- metadata
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- build_defs.bzl
+|  |  |-- cc
+|  |  |  |-- BUILD
+|  |  |  |-- metadata_extractor.cc
+|  |  |  |-- metadata_extractor.h
+|  |  |  |-- metadata_parser.h.template
+|  |  |  |-- metadata_populator.cc
+|  |  |  |-- metadata_populator.h
+|  |  |  |-- metadata_version.cc
+|  |  |  |-- metadata_version.h
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- metadata_version.cc
+|  |  |  |-- utils
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- zip_mem_file.cc
+|  |  |  |  |-- zip_mem_file.h
+|  |  |-- flatbuffers_lib
+|  |  |  |-- BUILD
+|  |  |  |-- flatbuffers_lib.cc
+|  |  |-- java
+|  |  |  |-- AndroidManifest.xml
+|  |  |  |-- BUILD
+|  |  |  |-- src
+|  |  |  |  |-- java
+|  |  |  |  |  |-- org
+|  |  |  |  |  |  |-- tensorflow
+|  |  |  |  |  |  |  |-- lite
+|  |  |  |  |  |  |  |  |-- support
+|  |  |  |  |  |  |  |  |  |-- metadata
+|  |  |  |  |  |  |  |  |  |  |-- BoundedInputStream.java
+|  |  |  |  |  |  |  |  |  |  |-- ByteBufferChannel.java
+|  |  |  |  |  |  |  |  |  |  |-- MetadataExtractor.java
+|  |  |  |  |  |  |  |  |  |  |-- MetadataParser.java
+|  |  |  |  |  |  |  |  |  |  |-- ModelInfo.java
+|  |  |  |  |  |  |  |  |  |  |-- ModelMetadataInfo.java
+|  |  |  |  |  |  |  |  |  |  |-- Preconditions.java
+|  |  |  |  |  |  |  |  |  |  |-- SeekableByteChannelCompat.java
+|  |  |  |  |  |  |  |  |  |  |-- ZipFile.java
+|  |  |  |  |-- javatests
+|  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- org
+|  |  |  |  |  |  |-- tensorflow
+|  |  |  |  |  |  |  |-- lite
+|  |  |  |  |  |  |  |  |-- support
+|  |  |  |  |  |  |  |  |  |-- assets
+|  |  |  |  |  |  |  |  |  |  |-- labels.txt
+|  |  |  |  |  |  |  |  |  |  |-- mobilenet_v1_1.0_224_quant.tflite
+|  |  |  |  |  |  |  |  |  |-- metadata
+|  |  |  |  |  |  |  |  |  |  |-- BoundedInputStreamTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ByteBufferChannelTest.java
+|  |  |  |  |  |  |  |  |  |  |-- MetadataExtractorTest.java
+|  |  |  |  |  |  |  |  |  |  |-- MetadataParserTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ZipFileTest.java
+|  |  |  |  |  |  |  |  |  |  |-- labels.txt
+|  |  |-- metadata_schema.fbs
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- metadata.py
+|  |  |  |-- metadata_displayer.py
+|  |  |  |-- metadata_parser.py.template
+|  |  |  |-- metadata_writers
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- audio_classifier.py
+|  |  |  |  |-- image_classifier.py
+|  |  |  |  |-- image_segmenter.py
+|  |  |  |  |-- metadata_info.py
+|  |  |  |  |-- metadata_writer.py
+|  |  |  |  |-- nl_classifier.py
+|  |  |  |  |-- object_detector.py
+|  |  |  |  |-- writer_utils.py
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- metadata_parser_test.py
+|  |  |  |  |-- metadata_test.py
+|  |  |  |  |-- metadata_writers
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- audio_classifier_test.py
+|  |  |  |  |  |-- image_classifier_test.py
+|  |  |  |  |  |-- image_segmenter_test.py
+|  |  |  |  |  |-- metadata_info_test.py
+|  |  |  |  |  |-- metadata_writer_test.py
+|  |  |  |  |  |-- nl_classifier_test.py
+|  |  |  |  |  |-- object_detector_test.py
+|  |  |  |  |  |-- test_utils.py
+|  |  |  |  |  |-- writer_utils_test.py
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- associated_file_meta.json
+|  |  |  |  |  |-- audio_classifier
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- daredevil_sound_recognizer_320ms.json
+|  |  |  |  |  |  |-- labelmap.txt
+|  |  |  |  |  |  |-- two_heads.json
+|  |  |  |  |  |  |-- two_heads.tflite
+|  |  |  |  |  |  |-- two_heads_default.json
+|  |  |  |  |  |  |-- yamnet_521_labels.txt
+|  |  |  |  |  |  |-- yamnet_tfhub.json
+|  |  |  |  |  |  |-- yamnet_tfhub.tflite
+|  |  |  |  |  |  |-- yamnet_wavin_quantized_mel_relu6.json
+|  |  |  |  |  |  |-- yamnet_wavin_quantized_mel_relu6.tflite
+|  |  |  |  |  |  |-- yamnet_wavin_quantized_mel_relu6_default.json
+|  |  |  |  |  |-- bert_tokenizer_meta.json
+|  |  |  |  |  |-- bounding_box_tensor_meta.json
+|  |  |  |  |  |-- category_tensor_float_meta.json
+|  |  |  |  |  |-- classification_tensor_float_meta.json
+|  |  |  |  |  |-- classification_tensor_uint8_meta.json
+|  |  |  |  |  |-- classification_tensor_unsupported_meta.json
+|  |  |  |  |  |-- feature_tensor_meta.json
+|  |  |  |  |  |-- general_meta.json
+|  |  |  |  |  |-- golden_json.json
+|  |  |  |  |  |-- image_classifier
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- labels.txt
+|  |  |  |  |  |  |-- mobilenet_v2_1.0_224.json
+|  |  |  |  |  |  |-- mobilenet_v2_1.0_224.tflite
+|  |  |  |  |  |  |-- mobilenet_v2_1.0_224_default.json
+|  |  |  |  |  |  |-- mobilenet_v2_1.0_224_quant.json
+|  |  |  |  |  |  |-- mobilenet_v2_1.0_224_quant.tflite
+|  |  |  |  |  |-- image_segmenter
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- deeplabv3.json
+|  |  |  |  |  |  |-- deeplabv3.tflite
+|  |  |  |  |  |  |-- deeplabv3_default.json
+|  |  |  |  |  |  |-- labelmap.txt
+|  |  |  |  |  |-- image_tensor_meta.json
+|  |  |  |  |  |-- input_audio_tesnor_default_meta.json
+|  |  |  |  |  |-- input_audio_tesnor_meta.json
+|  |  |  |  |  |-- input_image_tensor_float_meta.json
+|  |  |  |  |  |-- input_image_tensor_uint8_meta.json
+|  |  |  |  |  |-- input_image_tensor_unsupported_meta.json
+|  |  |  |  |  |-- input_text_tesnor_default_meta.json
+|  |  |  |  |  |-- input_text_tesnor_meta.json
+|  |  |  |  |  |-- labels.txt
+|  |  |  |  |  |-- mobilenet_v2_1.0_224_quant.json
+|  |  |  |  |  |-- mobilenet_v2_1.0_224_quant.tflite
+|  |  |  |  |  |-- mobilenet_v2_1.0_224_quant_default.json
+|  |  |  |  |  |-- mobilenet_v2_1.0_224_quant_dummy.json
+|  |  |  |  |  |-- mobilenet_v2_1.0_224_quant_dummy_no_version.json
+|  |  |  |  |  |-- mobilenet_v2_1.0_224_quant_meta_info_.json
+|  |  |  |  |  |-- multi_inputs.json
+|  |  |  |  |  |-- multi_outputs.json
+|  |  |  |  |  |-- nl_classifier
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- labels.txt
+|  |  |  |  |  |  |-- movie_review.tflite
+|  |  |  |  |  |  |-- movie_review_default.json
+|  |  |  |  |  |  |-- movie_review_regex.json
+|  |  |  |  |  |  |-- vocab.txt
+|  |  |  |  |  |-- object_detector
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- labelmap.txt
+|  |  |  |  |  |  |-- ssd_mobilenet_v1.json
+|  |  |  |  |  |  |-- ssd_mobilenet_v1.tflite
+|  |  |  |  |  |  |-- ssd_mobilenet_v1_default.json
+|  |  |  |  |  |-- question_answerer
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- regex_tokenizer_meta.json
+|  |  |  |  |  |-- score_calibration_file_meta.json
+|  |  |  |  |  |-- score_calibration_tensor_meta.json
+|  |  |  |  |  |-- sentence_piece_tokenizer_meta.json
+|  |-- odml
+|  |  |-- README.md
+|  |  |-- ios
+|  |  |  |-- image
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- MLImage.tulsiproj
+|  |  |  |  |  |-- Configs
+|  |  |  |  |  |  |-- MLImage.tulsigen
+|  |  |  |  |  |-- project.tulsiconf
+|  |  |  |  |-- README.md
+|  |  |  |  |-- apis
+|  |  |  |  |  |-- GMLImage.h
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- grace_hopper.jpg
+|  |  |  |  |-- sources
+|  |  |  |  |  |-- GMLImage.m
+|  |  |  |  |-- tests
+|  |  |  |  |  |-- GMLImageTests.m
+|  |  |-- java
+|  |  |  |-- image
+|  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- src
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |-- odml
+|  |  |  |  |  |  |  |  |  |-- image
+|  |  |  |  |  |  |  |  |  |  |-- BitmapExtractor.java
+|  |  |  |  |  |  |  |  |  |  |-- BitmapImageContainer.java
+|  |  |  |  |  |  |  |  |  |  |-- BitmapMlImageBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- ByteBufferExtractor.java
+|  |  |  |  |  |  |  |  |  |  |-- ByteBufferImageContainer.java
+|  |  |  |  |  |  |  |  |  |  |-- ByteBufferMlImageBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- ImageContainer.java
+|  |  |  |  |  |  |  |  |  |  |-- ImageProperties.java
+|  |  |  |  |  |  |  |  |  |  |-- MediaImageContainer.java
+|  |  |  |  |  |  |  |  |  |  |-- MediaImageExtractor.java
+|  |  |  |  |  |  |  |  |  |  |-- MediaMlImageBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- MlImage.java
+|  |  |  |  |-- tests
+|  |  |  |  |  |-- src
+|  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |  |-- odml
+|  |  |  |  |  |  |  |  |  |  |-- image
+|  |  |  |  |  |  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- BitmapExtractorTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BitmapMlImageBuilderTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- ByteBufferExtractorTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- ByteBufferMlImageBuilderTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- MediaImageExtractorTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- MediaMlImageBuilderTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- TestImageCreator.java
+|  |  |  |  |-- third_party_licenses
+|  |  |  |  |  |-- BUILD
+|  |-- opensource
+|  |  |-- opensource_only.files
+|  |-- tools
+|  |  |-- BUILD
+|  |  |-- build_rules
+|  |  |  |-- BUILD
+|  |  |  |-- android_test
+|  |  |  |  |-- AndroidManifest_instrumentation_test_template.xml
+|  |  |  |  |-- AndroidManifest_target_stub.xml
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- android_library_instrumentation_tests.bzl
+|  |  |  |  |-- android_multidevice_instrumentation_test.bzl
+|  |  |  |  |-- generate_instrumentation_tests.bzl
+|  |  |  |  |-- infer_java_package_name.bzl
+|  |  |  |-- expand_template.bzl
+|  |  |  |-- http_files.bzl
+|  |  |-- ci_build
+|  |  |  |-- build_all.sh
+|  |  |  |-- builds
+|  |  |  |  |-- build_ios_framework.sh
+|  |  |  |  |-- pip_smoke_test.sh
+|  |  |  |-- common.sh
+|  |  |  |-- common_win.bat
+|  |  |  |-- test_all.sh
+|  |  |  |-- tests
+|  |  |  |  |-- run_metadata_tests.sh
+|  |  |  |  |-- run_support_lib_tests.sh
+|  |  |  |-- update_version.py
+|  |  |-- pip_package
+|  |  |  |-- BUILD
+|  |  |  |-- MANIFEST.in
+|  |  |  |-- README
+|  |  |  |-- build_pip_package.sh
+|  |  |  |-- metadata_writers.__init__.py
+|  |  |  |-- setup.py
+|  |  |  |-- simple_console_for_windows.py
+|  |  |  |-- tflite_support.__init__.py
+|  |  |-- zip_files.py
+|-- third_party
+|  |-- BUILD
+|  |-- android
+|  |  |-- BUILD
+|  |  |-- android.bzl.tpl
+|  |  |-- android_configure.BUILD.tpl
+|  |  |-- android_configure.bzl
+|  |-- com_google_absl.BUILD
+|  |-- com_google_absl_f863b622fe13612433fdf43f76547d5edda0c93001.diff
+|  |-- darts_clone.BUILD
+|  |-- fft2d
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- fft.h
+|  |  |-- fft2d.BUILD
+|  |  |-- fft2d.h
+|  |-- flatbuffers
+|  |  |-- BUILD
+|  |  |-- BUILD.bazel
+|  |  |-- build_defs.bzl
+|  |  |-- workspace.bzl
+|  |-- gflags
+|  |  |-- BUILD
+|  |  |-- fix_android_pthread_link.patch
+|  |  |-- workspace.bzl
+|  |-- google_toolbox_for_mac.BUILD
+|  |-- icu.BUILD
+|  |-- libyuv.BUILD
+|  |-- libzip.BUILD
+|  |-- py
+|  |  |-- BUILD
+|  |  |-- BUILD.tpl
+|  |  |-- python_configure.bzl
+|  |-- pybind11.BUILD
+|  |-- python_runtime
+|  |  |-- BUILD
+|  |-- repo.bzl
+|  |-- six.BUILD
+|  |-- stblib.BUILD
+|  |-- tensorflow
+|  |  |-- BUILD
+|  |  |-- BUILD.tpl
+|  |  |-- tf_configure.bzl
+|  |-- tensorflow_lite_ios_build.patch
+|  |-- tensorflow_text_remove_tf_deps.patch
+|  |-- toolchains
+|  |  |-- java
+|  |  |  |-- BUILD
+|  |-- utf.BUILD
+|  |-- zlib.BUILD

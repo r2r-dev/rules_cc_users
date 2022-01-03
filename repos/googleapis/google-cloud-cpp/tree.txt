@@ -1,0 +1,2258 @@
+|-- .bazelci
+|  |-- presubmit.yml
+|-- .bazelignore
+|-- .bazelrc
+|-- .clang-format
+|-- .clang-tidy
+|-- .cmake-format.py
+|-- .codecov.yml
+|-- .dockerignore
+|-- .editorconfig
+|-- .github
+|  |-- CODEOWNERS
+|  |-- ISSUE_TEMPLATE
+|  |  |-- bug_report.md
+|  |  |-- feature_request.md
+|  |  |-- internal-cleanup.md
+|  |-- renovate.json
+|  |-- snippet-bot.yml
+|  |-- trusted-contribution.yml
+|-- .gitignore
+|-- ARCHITECTURE.md
+|-- BUILD
+|-- CHANGELOG.md
+|-- CMakeLists.txt
+|-- CODE_OF_CONDUCT.md
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- SECURITY.md
+|-- WORKSPACE
+|-- bazel
+|  |-- BUILD
+|  |-- crc32c.BUILD
+|  |-- curl.BUILD
+|  |-- google_cloud_cpp_deps.bzl
+|  |-- googleapis.BUILD
+|  |-- nlohmann_json.BUILD
+|-- ci
+|  |-- .dockerignore
+|  |-- abi-dumps
+|  |  |-- google_cloud_cpp_bigtable.expected.abi.dump.gz
+|  |  |-- google_cloud_cpp_common.expected.abi.dump.gz
+|  |  |-- google_cloud_cpp_grpc_utils.expected.abi.dump.gz
+|  |  |-- google_cloud_cpp_pubsub.expected.abi.dump.gz
+|  |  |-- google_cloud_cpp_spanner.expected.abi.dump.gz
+|  |  |-- google_cloud_cpp_storage.expected.abi.dump.gz
+|  |-- check-include-guards.gawk
+|  |-- cloudbuild
+|  |  |-- README.md
+|  |  |-- build.sh
+|  |  |-- builds
+|  |  |  |-- asan.sh
+|  |  |  |-- bazel-targets.sh
+|  |  |  |-- check-api.sh
+|  |  |  |-- checkers.sh
+|  |  |  |-- clang-60.sh
+|  |  |  |-- clang-tidy.sh
+|  |  |  |-- cmake-install.sh
+|  |  |  |-- cmake-oldest-deps.sh
+|  |  |  |-- coverage.sh
+|  |  |  |-- cxx17.sh
+|  |  |  |-- demo-install.sh
+|  |  |  |-- gcc-54.sh
+|  |  |  |-- gcs-grpc.sh
+|  |  |  |-- generate-libraries.sh
+|  |  |  |-- install-gcs-grpc.sh
+|  |  |  |-- integration-daily.sh
+|  |  |  |-- lib
+|  |  |  |  |-- bazel.sh
+|  |  |  |  |-- cmake.sh
+|  |  |  |  |-- git.sh
+|  |  |  |  |-- integration.sh
+|  |  |  |  |-- quickstart.sh
+|  |  |  |  |-- vcpkg.sh
+|  |  |  |-- libcxx.sh
+|  |  |  |-- log-linker.sh
+|  |  |  |-- msan.sh
+|  |  |  |-- noex.sh
+|  |  |  |-- publish-docs.sh
+|  |  |  |-- quickstart-bazel.sh
+|  |  |  |-- quickstart-cmake.sh
+|  |  |  |-- rotate-keys.sh
+|  |  |  |-- scan-build.sh
+|  |  |  |-- shared.sh
+|  |  |  |-- tsan.sh
+|  |  |  |-- ubsan.sh
+|  |  |  |-- xsan.sh
+|  |  |-- cache.sh
+|  |  |-- cloudbuild.yaml
+|  |  |-- dockerfiles
+|  |  |  |-- checkers.Dockerfile
+|  |  |  |-- debian-github.Dockerfile
+|  |  |  |-- demo-centos-7.Dockerfile
+|  |  |  |-- demo-debian-buster.Dockerfile
+|  |  |  |-- demo-debian-stretch.Dockerfile
+|  |  |  |-- demo-fedora.Dockerfile
+|  |  |  |-- demo-opensuse-leap.Dockerfile
+|  |  |  |-- demo-rockylinux-8.Dockerfile
+|  |  |  |-- demo-ubuntu-bionic.Dockerfile
+|  |  |  |-- demo-ubuntu-focal.Dockerfile
+|  |  |  |-- demo-ubuntu-xenial.Dockerfile
+|  |  |  |-- fedora-34.Dockerfile
+|  |  |  |-- fedora-msan.Dockerfile
+|  |  |  |-- ubuntu-bionic-install.Dockerfile
+|  |  |  |-- ubuntu-bionic.Dockerfile
+|  |  |  |-- ubuntu-focal.Dockerfile
+|  |  |  |-- ubuntu-xenial.Dockerfile
+|  |  |-- notifiers
+|  |  |  |-- alerts
+|  |  |  |  |-- README.md
+|  |  |  |  |-- deploy.sh
+|  |  |  |  |-- function
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- function.cc
+|  |  |  |  |  |-- vcpkg.json
+|  |  |  |-- bigquery
+|  |  |  |  |-- README.md
+|  |  |  |  |-- bigquery.yaml
+|  |  |  |  |-- deploy.sh
+|  |  |  |-- logs
+|  |  |  |  |-- README.md
+|  |  |  |  |-- function
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- function.cc
+|  |  |  |  |  |-- generate_svg_badge.cc
+|  |  |  |  |  |-- generate_svg_badge.h
+|  |  |  |  |  |-- print_svg_badge.cc
+|  |  |  |  |  |-- vcpkg.json
+|  |  |-- trigger.sh
+|  |  |-- triggers
+|  |  |  |-- asan-ci.yaml
+|  |  |  |-- asan-pr.yaml
+|  |  |  |-- bazel-targets-ci.yaml
+|  |  |  |-- bazel-targets-pr.yaml
+|  |  |  |-- check-api-ci.yaml
+|  |  |  |-- check-api-pr.yaml
+|  |  |  |-- checkers-ci.yaml
+|  |  |  |-- checkers-pr.yaml
+|  |  |  |-- clang-60-ci.yaml
+|  |  |  |-- clang-60-pr.yaml
+|  |  |  |-- clang-tidy-ci.yaml
+|  |  |  |-- clang-tidy-pr.yaml
+|  |  |  |-- cmake-install-ci.yaml
+|  |  |  |-- cmake-install-pr.yaml
+|  |  |  |-- cmake-oldest-deps-ci.yaml
+|  |  |  |-- cmake-oldest-deps-pr.yaml
+|  |  |  |-- coverage-ci.yaml
+|  |  |  |-- coverage-pr.yaml
+|  |  |  |-- cxx17-ci.yaml
+|  |  |  |-- cxx17-pr.yaml
+|  |  |  |-- demo-centos-7-ci.yaml
+|  |  |  |-- demo-centos-7-pr.yaml
+|  |  |  |-- demo-debian-buster-ci.yaml
+|  |  |  |-- demo-debian-buster-pr.yaml
+|  |  |  |-- demo-debian-stretch-ci.yaml
+|  |  |  |-- demo-debian-stretch-pr.yaml
+|  |  |  |-- demo-fedora-ci.yaml
+|  |  |  |-- demo-fedora-pr.yaml
+|  |  |  |-- demo-opensuse-leap-ci.yaml
+|  |  |  |-- demo-opensuse-leap-pr.yaml
+|  |  |  |-- demo-rockylinux-8-ci.yaml
+|  |  |  |-- demo-rockylinux-8-pr.yaml
+|  |  |  |-- demo-ubuntu-bionic-ci.yaml
+|  |  |  |-- demo-ubuntu-bionic-pr.yaml
+|  |  |  |-- demo-ubuntu-focal-ci.yaml
+|  |  |  |-- demo-ubuntu-focal-pr.yaml
+|  |  |  |-- demo-ubuntu-xenial-ci.yaml
+|  |  |  |-- demo-ubuntu-xenial-pr.yaml
+|  |  |  |-- gcc-54-ci.yaml
+|  |  |  |-- gcc-54-pr.yaml
+|  |  |  |-- gcs-grpc-ci.yaml
+|  |  |  |-- gcs-grpc-pr.yaml
+|  |  |  |-- generate-libraries-ci.yaml
+|  |  |  |-- generate-libraries-pr.yaml
+|  |  |  |-- install-gcs-grpc-ci.yaml
+|  |  |  |-- install-gcs-grpc-pr.yaml
+|  |  |  |-- libcxx-ci.yaml
+|  |  |  |-- libcxx-pr.yaml
+|  |  |  |-- log-linker-pr.yaml
+|  |  |  |-- msan-ci.yaml
+|  |  |  |-- msan-pr.yaml
+|  |  |  |-- noex-ci.yaml
+|  |  |  |-- noex-pr.yaml
+|  |  |  |-- publish-docs-ci.yaml
+|  |  |  |-- publish-docs-pr.yaml
+|  |  |  |-- quickstart-bazel-ci.yaml
+|  |  |  |-- quickstart-bazel-pr.yaml
+|  |  |  |-- quickstart-cmake-ci.yaml
+|  |  |  |-- quickstart-cmake-pr.yaml
+|  |  |  |-- shared-ci.yaml
+|  |  |  |-- shared-pr.yaml
+|  |  |  |-- tsan-ci.yaml
+|  |  |  |-- tsan-pr.yaml
+|  |  |  |-- ubsan-ci.yaml
+|  |  |  |-- ubsan-pr.yaml
+|  |  |  |-- xsan-ci.yaml
+|  |  |  |-- xsan-pr.yaml
+|  |-- coverity-scan.sh
+|  |-- etc
+|  |  |-- README.md
+|  |  |-- doxygen
+|  |  |  |-- DoxygenLayout.xml
+|  |  |-- integration-tests-config.ps1
+|  |  |-- integration-tests-config.sh
+|  |  |-- oldest-deps
+|  |  |  |-- vcpkg.json
+|  |  |-- quickstart-config.sh
+|  |  |-- repo-config.sh
+|  |-- generate-markdown
+|  |  |-- README.md
+|  |  |-- dockerfile2markdown.sh
+|  |  |-- generate-bigtable-readme.sh
+|  |  |-- generate-iam-readme.sh
+|  |  |-- generate-packaging.sh
+|  |  |-- generate-pubsub-readme.sh
+|  |  |-- generate-readme.sh
+|  |  |-- generate-spanner-readme.sh
+|  |  |-- generate-storage-readme.sh
+|  |-- install-cloud-sdk.sh
+|  |-- kokoro
+|  |  |-- README.md
+|  |  |-- lib
+|  |  |  |-- cache.sh
+|  |  |  |-- gcloud.sh
+|  |  |-- macos
+|  |  |  |-- bazel-presubmit.cfg
+|  |  |  |-- bazel.cfg
+|  |  |  |-- build.sh
+|  |  |  |-- builds
+|  |  |  |  |-- bazel.sh
+|  |  |  |  |-- cmake-vcpkg.sh
+|  |  |  |  |-- quickstart-bazel.sh
+|  |  |  |  |-- quickstart-cmake.sh
+|  |  |  |-- cmake-vcpkg-presubmit.cfg
+|  |  |  |-- cmake-vcpkg.cfg
+|  |  |  |-- common.cfg
+|  |  |  |-- download-cache.sh
+|  |  |  |-- quickstart-bazel-presubmit.cfg
+|  |  |  |-- quickstart-bazel.cfg
+|  |  |  |-- quickstart-cmake-presubmit.cfg
+|  |  |  |-- quickstart-cmake.cfg
+|  |  |  |-- upload-cache.sh
+|  |  |-- windows
+|  |  |  |-- bazel-debug-2017-presubmit.cfg
+|  |  |  |-- bazel-debug-2017.cfg
+|  |  |  |-- bazel-presubmit.cfg
+|  |  |  |-- bazel-release-2017-presubmit.cfg
+|  |  |  |-- bazel-release-2017.cfg
+|  |  |  |-- bazel-release-presubmit.cfg
+|  |  |  |-- bazel-release.cfg
+|  |  |  |-- bazel.cfg
+|  |  |  |-- build-32.bat
+|  |  |  |-- build-bazel-dependencies.ps1
+|  |  |  |-- build-bazel.ps1
+|  |  |  |-- build-cmake-dependencies.ps1
+|  |  |  |-- build-cmake.ps1
+|  |  |  |-- build-quickstart-bazel.ps1
+|  |  |  |-- build-quickstart-cmake.ps1
+|  |  |  |-- build.bat
+|  |  |  |-- build.ps1
+|  |  |  |-- cmake-presubmit.cfg
+|  |  |  |-- cmake-release-x86.cfg
+|  |  |  |-- cmake-release.cfg
+|  |  |  |-- cmake.cfg
+|  |  |  |-- common.cfg
+|  |  |  |-- quickstart-bazel-presubmit.cfg
+|  |  |  |-- quickstart-bazel.cfg
+|  |  |  |-- quickstart-cmake-dll-presubmit.cfg
+|  |  |  |-- quickstart-cmake-dll.cfg
+|  |  |  |-- quickstart-cmake-static-presubmit.cfg
+|  |  |  |-- quickstart-cmake-static.cfg
+|  |-- lib
+|  |  |-- init.sh
+|  |  |-- io.sh
+|  |  |-- module
+|  |-- retry-command.sh
+|  |-- verify_current_targets
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- README.md
+|  |  |-- WORKSPACE
+|  |  |-- verify_current_targets.cc
+|  |-- verify_deprecated_targets
+|  |  |-- .bazelrc
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- README.md
+|  |  |-- WORKSPACE
+|  |  |-- verify_deprecated_proto_targets.cc
+|  |  |-- verify_deprecated_targets.cc
+|-- cmake
+|  |-- CompileProtos.cmake
+|  |-- CreateBazelConfig.cmake
+|  |-- EnableCxxExceptions.cmake
+|  |-- EnableWerror.cmake
+|  |-- FindCurlWithTargets.cmake
+|  |-- FindGMockWithTargets.cmake
+|  |-- FindProtobufWithTargets.cmake
+|  |-- FindgRPC.cmake
+|  |-- GoogleCloudCppCommon.cmake
+|  |-- IncludeNlohmannJson.cmake
+|  |-- SelectMSVCRuntime.cmake
+|-- doc
+|  |-- adr
+|  |  |-- 2018-06-13-storage-always-retries.md
+|  |  |-- 2018-06-18-storage-request-parameters-are-function-arguments.md
+|  |  |-- 2018-06-19-do-not-duplicate-server-side-validation.md
+|  |  |-- 2018-10-30-storage-metadata-fields-and-optional.md
+|  |  |-- 2019-01-04-error-reporting-with-statusor.md
+|  |  |-- 2019-03-26-binary-distributions.md
+|  |  |-- 2021-03-01-deprecated-functions-do-not-have-examples.md
+|  |  |-- 2021-05-18-credential-failures-participate-in-retry-loop.md
+|  |  |-- adr-template.md
+|  |-- contributor
+|  |  |-- README.md
+|  |  |-- howto-guide-forks-and-pull-requests.md
+|  |  |-- howto-guide-running-ci-builds-locally.md
+|  |  |-- howto-guide-setup-cmake-environment.md
+|  |  |-- howto-guide-setup-development-workstation.md
+|  |  |-- working-with-bazel-and-cmake.md
+|  |-- cpp-style-guide.md
+|  |-- packaging.md
+|-- external
+|  |-- googleapis
+|  |  |-- CMakeLists.txt
+|  |  |-- config-version.cmake.in
+|  |  |-- config.cmake.in
+|  |  |-- config.pc.in
+|  |  |-- legacy.cmake.in
+|-- generator
+|  |-- BUILD
+|  |-- CMakeLists.txt
+|  |-- generator.cc
+|  |-- generator.h
+|  |-- generator_config.proto
+|  |-- generator_config.textproto
+|  |-- generator_test.cc
+|  |-- google_cloud_cpp_generator.bzl
+|  |-- google_cloud_cpp_generator_testing.bzl
+|  |-- google_cloud_cpp_generator_unit_tests.bzl
+|  |-- integration_tests
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- backup.proto
+|  |  |-- common.proto
+|  |  |-- generator_integration_test.cc
+|  |  |-- golden
+|  |  |  |-- .clang-format
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- golden_kitchen_sink_client.cc
+|  |  |  |-- golden_kitchen_sink_client.h
+|  |  |  |-- golden_kitchen_sink_connection.cc
+|  |  |  |-- golden_kitchen_sink_connection.h
+|  |  |  |-- golden_kitchen_sink_connection_idempotency_policy.cc
+|  |  |  |-- golden_kitchen_sink_connection_idempotency_policy.h
+|  |  |  |-- golden_kitchen_sink_options.h
+|  |  |  |-- golden_thing_admin_client.cc
+|  |  |  |-- golden_thing_admin_client.h
+|  |  |  |-- golden_thing_admin_connection.cc
+|  |  |  |-- golden_thing_admin_connection.h
+|  |  |  |-- golden_thing_admin_connection_idempotency_policy.cc
+|  |  |  |-- golden_thing_admin_connection_idempotency_policy.h
+|  |  |  |-- golden_thing_admin_options.h
+|  |  |  |-- google_cloud_cpp_generator_golden_files.bzl
+|  |  |  |-- google_cloud_cpp_generator_golden_tests.bzl
+|  |  |  |-- internal
+|  |  |  |  |-- golden_kitchen_sink_auth_decorator.cc
+|  |  |  |  |-- golden_kitchen_sink_auth_decorator.h
+|  |  |  |  |-- golden_kitchen_sink_logging_decorator.cc
+|  |  |  |  |-- golden_kitchen_sink_logging_decorator.h
+|  |  |  |  |-- golden_kitchen_sink_metadata_decorator.cc
+|  |  |  |  |-- golden_kitchen_sink_metadata_decorator.h
+|  |  |  |  |-- golden_kitchen_sink_option_defaults.cc
+|  |  |  |  |-- golden_kitchen_sink_option_defaults.h
+|  |  |  |  |-- golden_kitchen_sink_stub.cc
+|  |  |  |  |-- golden_kitchen_sink_stub.h
+|  |  |  |  |-- golden_kitchen_sink_stub_factory.cc
+|  |  |  |  |-- golden_kitchen_sink_stub_factory.h
+|  |  |  |  |-- golden_thing_admin_auth_decorator.cc
+|  |  |  |  |-- golden_thing_admin_auth_decorator.h
+|  |  |  |  |-- golden_thing_admin_logging_decorator.cc
+|  |  |  |  |-- golden_thing_admin_logging_decorator.h
+|  |  |  |  |-- golden_thing_admin_metadata_decorator.cc
+|  |  |  |  |-- golden_thing_admin_metadata_decorator.h
+|  |  |  |  |-- golden_thing_admin_option_defaults.cc
+|  |  |  |  |-- golden_thing_admin_option_defaults.h
+|  |  |  |  |-- golden_thing_admin_stub.cc
+|  |  |  |  |-- golden_thing_admin_stub.h
+|  |  |  |  |-- golden_thing_admin_stub_factory.cc
+|  |  |  |  |-- golden_thing_admin_stub_factory.h
+|  |  |  |-- mocks
+|  |  |  |  |-- mock_golden_kitchen_sink_connection.h
+|  |  |  |  |-- mock_golden_kitchen_sink_stub.h
+|  |  |  |  |-- mock_golden_thing_admin_connection.h
+|  |  |  |  |-- mock_golden_thing_admin_stub.h
+|  |  |  |-- retry_traits.h
+|  |  |  |-- streaming.cc
+|  |  |  |-- tests
+|  |  |  |  |-- .clang-format
+|  |  |  |  |-- golden_kitchen_sink_auth_decorator_test.cc
+|  |  |  |  |-- golden_kitchen_sink_client_test.cc
+|  |  |  |  |-- golden_kitchen_sink_connection_test.cc
+|  |  |  |  |-- golden_kitchen_sink_idempotency_policy_test.cc
+|  |  |  |  |-- golden_kitchen_sink_logging_decorator_test.cc
+|  |  |  |  |-- golden_kitchen_sink_metadata_decorator_test.cc
+|  |  |  |  |-- golden_kitchen_sink_option_defaults_test.cc
+|  |  |  |  |-- golden_kitchen_sink_stub_factory_test.cc
+|  |  |  |  |-- golden_kitchen_sink_stub_test.cc
+|  |  |  |  |-- golden_thing_admin_auth_decorator_test.cc
+|  |  |  |  |-- golden_thing_admin_client_test.cc
+|  |  |  |  |-- golden_thing_admin_connection_test.cc
+|  |  |  |  |-- golden_thing_admin_idempotency_policy_test.cc
+|  |  |  |  |-- golden_thing_admin_logging_decorator_test.cc
+|  |  |  |  |-- golden_thing_admin_metadata_decorator_test.cc
+|  |  |  |  |-- golden_thing_admin_option_defaults_test.cc
+|  |  |  |  |-- golden_thing_admin_stub_factory_test.cc
+|  |  |  |  |-- golden_thing_admin_stub_test.cc
+|  |  |-- google_cloud_cpp_generator_integration_tests.bzl
+|  |  |-- spanner_client_integration_tests.bzl
+|  |  |-- test.proto
+|  |-- internal
+|  |  |-- auth_decorator_generator.cc
+|  |  |-- auth_decorator_generator.h
+|  |  |-- client_generator.cc
+|  |  |-- client_generator.h
+|  |  |-- codegen_utils.cc
+|  |  |-- codegen_utils.h
+|  |  |-- codegen_utils_test.cc
+|  |  |-- connection_generator.cc
+|  |  |-- connection_generator.h
+|  |  |-- descriptor_utils.cc
+|  |  |-- descriptor_utils.h
+|  |  |-- descriptor_utils_test.cc
+|  |  |-- generator_interface.h
+|  |  |-- idempotency_policy_generator.cc
+|  |  |-- idempotency_policy_generator.h
+|  |  |-- logging_decorator_generator.cc
+|  |  |-- logging_decorator_generator.h
+|  |  |-- metadata_decorator_generator.cc
+|  |  |-- metadata_decorator_generator.h
+|  |  |-- mock_connection_generator.cc
+|  |  |-- mock_connection_generator.h
+|  |  |-- option_defaults_generator.cc
+|  |  |-- option_defaults_generator.h
+|  |  |-- options_generator.cc
+|  |  |-- options_generator.h
+|  |  |-- predicate_utils.cc
+|  |  |-- predicate_utils.h
+|  |  |-- predicate_utils_test.cc
+|  |  |-- printer.h
+|  |  |-- printer_test.cc
+|  |  |-- retry_policy_generator.cc
+|  |  |-- retry_policy_generator.h
+|  |  |-- service_code_generator.cc
+|  |  |-- service_code_generator.h
+|  |  |-- service_code_generator_test.cc
+|  |  |-- stub_factory_generator.cc
+|  |  |-- stub_factory_generator.h
+|  |  |-- stub_generator.cc
+|  |  |-- stub_generator.h
+|  |-- plugin_main.cc
+|  |-- standalone_main.cc
+|  |-- testing
+|  |  |-- printer_mocks.h
+|-- google
+|  |-- cloud
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- README.md
+|  |  |-- async_operation.h
+|  |  |-- background_threads.h
+|  |  |-- backoff_policy.h
+|  |  |-- bigquery
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- bigquery_read_client.cc
+|  |  |  |-- bigquery_read_client.h
+|  |  |  |-- bigquery_read_connection.cc
+|  |  |  |-- bigquery_read_connection.h
+|  |  |  |-- bigquery_read_connection_idempotency_policy.cc
+|  |  |  |-- bigquery_read_connection_idempotency_policy.h
+|  |  |  |-- bigquery_read_options.h
+|  |  |  |-- config.cmake.in
+|  |  |  |-- config.pc.in
+|  |  |  |-- doc
+|  |  |  |  |-- bigquery-main.dox
+|  |  |  |  |-- bigquery-read-mock.dox
+|  |  |  |-- google_cloud_cpp_bigquery.bzl
+|  |  |  |-- google_cloud_cpp_bigquery_mocks.bzl
+|  |  |  |-- integration_tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- bigquery_client_integration_tests.bzl
+|  |  |  |  |-- bigquery_read_integration_test.cc
+|  |  |  |-- internal
+|  |  |  |  |-- bigquery_read_auth_decorator.cc
+|  |  |  |  |-- bigquery_read_auth_decorator.h
+|  |  |  |  |-- bigquery_read_logging_decorator.cc
+|  |  |  |  |-- bigquery_read_logging_decorator.h
+|  |  |  |  |-- bigquery_read_metadata_decorator.cc
+|  |  |  |  |-- bigquery_read_metadata_decorator.h
+|  |  |  |  |-- bigquery_read_option_defaults.cc
+|  |  |  |  |-- bigquery_read_option_defaults.h
+|  |  |  |  |-- bigquery_read_stub.cc
+|  |  |  |  |-- bigquery_read_stub.h
+|  |  |  |  |-- bigquery_read_stub_factory.cc
+|  |  |  |  |-- bigquery_read_stub_factory.h
+|  |  |  |-- mocks
+|  |  |  |  |-- mock_bigquery_read_connection.h
+|  |  |  |-- quickstart
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Makefile
+|  |  |  |  |-- README.md
+|  |  |  |  |-- WORKSPACE
+|  |  |  |  |-- quickstart.cc
+|  |  |  |-- retry_traits.h
+|  |  |  |-- samples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- bigquery_client_mock_samples.bzl
+|  |  |  |  |-- bigquery_client_samples.bzl
+|  |  |  |  |-- bigquery_read_samples.cc
+|  |  |  |  |-- mock_bigquery_read.cc
+|  |  |  |-- streaming.cc
+|  |  |-- bigtable
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- admin_client.cc
+|  |  |  |-- admin_client.h
+|  |  |  |-- admin_client_test.cc
+|  |  |  |-- app_profile_config.cc
+|  |  |  |-- app_profile_config.h
+|  |  |  |-- app_profile_config_test.cc
+|  |  |  |-- async_read_stream_test.cc
+|  |  |  |-- async_row_reader.h
+|  |  |  |-- async_row_reader_test.cc
+|  |  |  |-- benchmarks
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- apply_read_latency_benchmark.cc
+|  |  |  |  |-- benchmark.cc
+|  |  |  |  |-- benchmark.h
+|  |  |  |  |-- bigtable_benchmark_common.bzl
+|  |  |  |  |-- bigtable_benchmark_programs.bzl
+|  |  |  |  |-- bigtable_benchmark_test.cc
+|  |  |  |  |-- bigtable_benchmarks_unit_tests.bzl
+|  |  |  |  |-- constants.h
+|  |  |  |  |-- embedded_server.cc
+|  |  |  |  |-- embedded_server.h
+|  |  |  |  |-- embedded_server_test.cc
+|  |  |  |  |-- endurance_benchmark.cc
+|  |  |  |  |-- format_duration_test.cc
+|  |  |  |  |-- random_mutation.cc
+|  |  |  |  |-- random_mutation.h
+|  |  |  |  |-- random_mutation_test.cc
+|  |  |  |  |-- read_sync_vs_async_benchmark.cc
+|  |  |  |  |-- scan_throughput_benchmark.cc
+|  |  |  |  |-- setup.cc
+|  |  |  |  |-- setup.h
+|  |  |  |  |-- setup_test.cc
+|  |  |  |-- bigtable_client_testing.bzl
+|  |  |  |-- bigtable_client_unit_tests.bzl
+|  |  |  |-- bigtable_version_test.cc
+|  |  |  |-- cell.h
+|  |  |  |-- cell_test.cc
+|  |  |  |-- ci
+|  |  |  |  |-- run_integration_tests_emulator_bazel.sh
+|  |  |  |  |-- run_integration_tests_emulator_cmake.sh
+|  |  |  |-- client_options.cc
+|  |  |  |-- client_options.h
+|  |  |  |-- client_options_test.cc
+|  |  |  |-- cluster_config.cc
+|  |  |  |-- cluster_config.h
+|  |  |  |-- cluster_config_test.cc
+|  |  |  |-- cluster_list_responses.h
+|  |  |  |-- column_family.h
+|  |  |  |-- column_family_test.cc
+|  |  |  |-- completion_queue.h
+|  |  |  |-- config.cmake.in
+|  |  |  |-- data_client.cc
+|  |  |  |-- data_client.h
+|  |  |  |-- data_client_test.cc
+|  |  |  |-- doc
+|  |  |  |  |-- bigtable-hello-instance-admin.dox
+|  |  |  |  |-- bigtable-hello-table-admin.dox
+|  |  |  |  |-- bigtable-hello-world.dox
+|  |  |  |  |-- bigtable-main.dox
+|  |  |  |  |-- bigtable-samples-data-client.dox
+|  |  |  |  |-- bigtable-samples-grpc-credentials.dox
+|  |  |  |  |-- environment-variables.dox
+|  |  |  |-- examples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- bigtable_examples.bzl
+|  |  |  |  |-- bigtable_examples_common.bzl
+|  |  |  |  |-- bigtable_examples_common.cc
+|  |  |  |  |-- bigtable_examples_common.h
+|  |  |  |  |-- bigtable_examples_common_test.cc
+|  |  |  |  |-- bigtable_examples_unit_tests.bzl
+|  |  |  |  |-- bigtable_grpc_credentials.cc
+|  |  |  |  |-- bigtable_hello_app_profile.cc
+|  |  |  |  |-- bigtable_hello_instance_admin.cc
+|  |  |  |  |-- bigtable_hello_table_admin.cc
+|  |  |  |  |-- bigtable_hello_world.cc
+|  |  |  |  |-- bigtable_instance_admin_snippets.cc
+|  |  |  |  |-- bigtable_table_admin_backup_snippets.cc
+|  |  |  |  |-- data_async_snippets.cc
+|  |  |  |  |-- data_filter_snippets.cc
+|  |  |  |  |-- data_snippets.cc
+|  |  |  |  |-- read_snippets.cc
+|  |  |  |  |-- table_admin_iam_policy_snippets.cc
+|  |  |  |  |-- table_admin_snippets.cc
+|  |  |  |-- expr.cc
+|  |  |  |-- expr.h
+|  |  |  |-- expr_test.cc
+|  |  |  |-- filters.h
+|  |  |  |-- filters_test.cc
+|  |  |  |-- force_sanitizer_failures_test.cc
+|  |  |  |-- google_cloud_cpp_bigtable.bzl
+|  |  |  |-- iam_binding.cc
+|  |  |  |-- iam_binding.h
+|  |  |  |-- iam_binding_test.cc
+|  |  |  |-- iam_policy.cc
+|  |  |  |-- iam_policy.h
+|  |  |  |-- iam_policy_test.cc
+|  |  |  |-- idempotent_mutation_policy.cc
+|  |  |  |-- idempotent_mutation_policy.h
+|  |  |  |-- idempotent_mutation_policy_test.cc
+|  |  |  |-- instance_admin.cc
+|  |  |  |-- instance_admin.h
+|  |  |  |-- instance_admin_client.cc
+|  |  |  |-- instance_admin_client.h
+|  |  |  |-- instance_admin_client_test.cc
+|  |  |  |-- instance_admin_test.cc
+|  |  |  |-- instance_config.cc
+|  |  |  |-- instance_config.h
+|  |  |  |-- instance_config_test.cc
+|  |  |  |-- instance_list_responses.h
+|  |  |  |-- instance_update_config.cc
+|  |  |  |-- instance_update_config.h
+|  |  |  |-- instance_update_config_test.cc
+|  |  |  |-- internal
+|  |  |  |  |-- README.md
+|  |  |  |  |-- async_bulk_apply.cc
+|  |  |  |  |-- async_bulk_apply.h
+|  |  |  |  |-- async_bulk_apply_test.cc
+|  |  |  |  |-- async_longrunning_op.h
+|  |  |  |  |-- async_longrunning_op_test.cc
+|  |  |  |  |-- async_poll_op.h
+|  |  |  |  |-- async_poll_op_test.cc
+|  |  |  |  |-- async_retry_multi_page.h
+|  |  |  |  |-- async_retry_multi_page_test.cc
+|  |  |  |  |-- async_retry_op.h
+|  |  |  |  |-- async_retry_unary_rpc_and_poll.h
+|  |  |  |  |-- async_retry_unary_rpc_and_poll_test.cc
+|  |  |  |  |-- async_row_sampler.cc
+|  |  |  |  |-- async_row_sampler.h
+|  |  |  |  |-- async_row_sampler_test.cc
+|  |  |  |  |-- bulk_mutator.cc
+|  |  |  |  |-- bulk_mutator.h
+|  |  |  |  |-- bulk_mutator_test.cc
+|  |  |  |  |-- client_options_defaults.h
+|  |  |  |  |-- common_client.cc
+|  |  |  |  |-- common_client.h
+|  |  |  |  |-- common_client_test.cc
+|  |  |  |  |-- defaults.cc
+|  |  |  |  |-- defaults.h
+|  |  |  |  |-- google_bytes_traits.cc
+|  |  |  |  |-- google_bytes_traits.h
+|  |  |  |  |-- google_bytes_traits_test.cc
+|  |  |  |  |-- logging_admin_client.cc
+|  |  |  |  |-- logging_admin_client.h
+|  |  |  |  |-- logging_admin_client_test.cc
+|  |  |  |  |-- logging_data_client.cc
+|  |  |  |  |-- logging_data_client.h
+|  |  |  |  |-- logging_data_client_test.cc
+|  |  |  |  |-- logging_instance_admin_client.cc
+|  |  |  |  |-- logging_instance_admin_client.h
+|  |  |  |  |-- logging_instance_admin_client_test.cc
+|  |  |  |  |-- prefix_range_end.cc
+|  |  |  |  |-- prefix_range_end.h
+|  |  |  |  |-- prefix_range_end_test.cc
+|  |  |  |  |-- readrowsparser.cc
+|  |  |  |  |-- readrowsparser.h
+|  |  |  |  |-- readrowsparser_acceptance_tests.inc
+|  |  |  |  |-- readrowsparser_test.cc
+|  |  |  |  |-- rowreaderiterator.cc
+|  |  |  |  |-- rowreaderiterator.h
+|  |  |  |  |-- rpc_policy_parameters.h
+|  |  |  |  |-- rpc_policy_parameters.inc
+|  |  |  |  |-- unary_client_utils.h
+|  |  |  |-- legacy.cmake.in
+|  |  |  |-- metadata_update_policy.cc
+|  |  |  |-- metadata_update_policy.h
+|  |  |  |-- metadata_update_policy_test.cc
+|  |  |  |-- mutation_batcher.cc
+|  |  |  |-- mutation_batcher.h
+|  |  |  |-- mutation_batcher_test.cc
+|  |  |  |-- mutations.cc
+|  |  |  |-- mutations.h
+|  |  |  |-- mutations_test.cc
+|  |  |  |-- options.h
+|  |  |  |-- polling_policy.cc
+|  |  |  |-- polling_policy.h
+|  |  |  |-- polling_policy_test.cc
+|  |  |  |-- quickstart
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Makefile
+|  |  |  |  |-- README.md
+|  |  |  |  |-- WORKSPACE
+|  |  |  |  |-- quickstart.cc
+|  |  |  |-- read_modify_write_rule.h
+|  |  |  |-- read_modify_write_rule_test.cc
+|  |  |  |-- resource_names.cc
+|  |  |  |-- resource_names.h
+|  |  |  |-- row.h
+|  |  |  |-- row_key.h
+|  |  |  |-- row_key_sample.h
+|  |  |  |-- row_range.cc
+|  |  |  |-- row_range.h
+|  |  |  |-- row_range_test.cc
+|  |  |  |-- row_reader.cc
+|  |  |  |-- row_reader.h
+|  |  |  |-- row_reader_test.cc
+|  |  |  |-- row_set.cc
+|  |  |  |-- row_set.h
+|  |  |  |-- row_set_test.cc
+|  |  |  |-- row_test.cc
+|  |  |  |-- rpc_backoff_policy.cc
+|  |  |  |-- rpc_backoff_policy.h
+|  |  |  |-- rpc_backoff_policy_test.cc
+|  |  |  |-- rpc_retry_policy.cc
+|  |  |  |-- rpc_retry_policy.h
+|  |  |  |-- rpc_retry_policy_test.cc
+|  |  |  |-- table.cc
+|  |  |  |-- table.h
+|  |  |  |-- table_admin.cc
+|  |  |  |-- table_admin.h
+|  |  |  |-- table_admin_test.cc
+|  |  |  |-- table_apply_test.cc
+|  |  |  |-- table_bulk_apply_test.cc
+|  |  |  |-- table_check_and_mutate_row_test.cc
+|  |  |  |-- table_config.cc
+|  |  |  |-- table_config.h
+|  |  |  |-- table_config_test.cc
+|  |  |  |-- table_readmodifywriterow_test.cc
+|  |  |  |-- table_readrow_test.cc
+|  |  |  |-- table_readrows_test.cc
+|  |  |  |-- table_sample_row_keys_test.cc
+|  |  |  |-- table_test.cc
+|  |  |  |-- testing
+|  |  |  |  |-- README.md
+|  |  |  |  |-- cleanup_stale_resources.cc
+|  |  |  |  |-- cleanup_stale_resources.h
+|  |  |  |  |-- cleanup_stale_resources_test.cc
+|  |  |  |  |-- embedded_server_test_fixture.cc
+|  |  |  |  |-- embedded_server_test_fixture.h
+|  |  |  |  |-- inprocess_admin_client.cc
+|  |  |  |  |-- inprocess_admin_client.h
+|  |  |  |  |-- inprocess_data_client.cc
+|  |  |  |  |-- inprocess_data_client.h
+|  |  |  |  |-- mock_admin_client.h
+|  |  |  |  |-- mock_async_failing_rpc_factory.h
+|  |  |  |  |-- mock_backoff_policy.h
+|  |  |  |  |-- mock_data_client.h
+|  |  |  |  |-- mock_instance_admin_client.h
+|  |  |  |  |-- mock_mutate_rows_reader.h
+|  |  |  |  |-- mock_read_rows_reader.h
+|  |  |  |  |-- mock_response_reader.h
+|  |  |  |  |-- mock_sample_row_keys_reader.h
+|  |  |  |  |-- random_names.cc
+|  |  |  |  |-- random_names.h
+|  |  |  |  |-- random_names_test.cc
+|  |  |  |  |-- table_integration_test.cc
+|  |  |  |  |-- table_integration_test.h
+|  |  |  |  |-- table_test_fixture.cc
+|  |  |  |  |-- table_test_fixture.h
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- admin_backup_integration_test.cc
+|  |  |  |  |-- admin_iam_policy_integration_test.cc
+|  |  |  |  |-- admin_integration_test.cc
+|  |  |  |  |-- bigtable_client_integration_tests.bzl
+|  |  |  |  |-- data_async_future_integration_test.cc
+|  |  |  |  |-- data_integration_test.cc
+|  |  |  |  |-- filters_integration_test.cc
+|  |  |  |  |-- instance_admin_emulator.cc
+|  |  |  |  |-- instance_admin_integration_test.cc
+|  |  |  |  |-- mutations_integration_test.cc
+|  |  |  |  |-- table_sample_rows_integration_test.cc
+|  |  |  |-- tools
+|  |  |  |  |-- convert_acceptance_tests.py
+|  |  |  |  |-- generate_rpc_policy_parameters.py
+|  |  |  |  |-- run_emulator_utils.sh
+|  |  |  |-- version.cc
+|  |  |  |-- version.h
+|  |  |  |-- version_info.h
+|  |  |-- common_options.h
+|  |  |-- common_options_test.cc
+|  |  |-- completion_queue.cc
+|  |  |-- completion_queue.h
+|  |  |-- completion_queue_benchmark.cc
+|  |  |-- completion_queue_test.cc
+|  |  |-- config.cmake.in
+|  |  |-- config.pc.in
+|  |  |-- connection_options.cc
+|  |  |-- connection_options.h
+|  |  |-- connection_options_test.cc
+|  |  |-- credentials.cc
+|  |  |-- credentials.h
+|  |  |-- doc
+|  |  |  |-- common-main.dox
+|  |  |-- examples
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- gcs2cbt.cc
+|  |  |  |-- grpc_credential_types.cc
+|  |  |  |-- hello_world_grpc
+|  |  |  |  |-- .dockerignore
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Dockerfile
+|  |  |  |  |-- hello_world.proto
+|  |  |  |  |-- hello_world_grpc.cc
+|  |  |  |  |-- vcpkg.json
+|  |  |  |-- hello_world_http
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- hello_world_http.cc
+|  |  |  |  |-- vcpkg.json
+|  |  |-- firestore
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- config.cmake.in
+|  |  |  |-- field_path.cc
+|  |  |  |-- field_path.h
+|  |  |  |-- field_path_test.cc
+|  |  |  |-- firestore_client.pc
+|  |  |  |-- firestore_client_unit_tests.bzl
+|  |  |  |-- google_cloud_cpp_firestore.bzl
+|  |  |  |-- legacy.cmake.in
+|  |  |-- future.h
+|  |  |-- future_generic.h
+|  |  |-- future_generic_test.cc
+|  |  |-- future_generic_then_test.cc
+|  |  |-- future_void.h
+|  |  |-- future_void_test.cc
+|  |  |-- future_void_then_test.cc
+|  |  |-- google_cloud_cpp_common.bzl
+|  |  |-- google_cloud_cpp_common_benchmarks.bzl
+|  |  |-- google_cloud_cpp_common_unit_tests.bzl
+|  |  |-- google_cloud_cpp_grpc_utils.bzl
+|  |  |-- google_cloud_cpp_grpc_utils_benchmarks.bzl
+|  |  |-- google_cloud_cpp_grpc_utils_integration_tests.bzl
+|  |  |-- google_cloud_cpp_grpc_utils_unit_tests.bzl
+|  |  |-- grpc_error_delegate.cc
+|  |  |-- grpc_error_delegate.h
+|  |  |-- grpc_error_delegate_test.cc
+|  |  |-- grpc_options.cc
+|  |  |-- grpc_options.h
+|  |  |-- grpc_options_test.cc
+|  |  |-- grpc_utils
+|  |  |  |-- BUILD
+|  |  |  |-- async_operation.h
+|  |  |  |-- completion_queue.h
+|  |  |  |-- config.cmake.in
+|  |  |  |-- grpc_error_delegate.h
+|  |  |  |-- version.h
+|  |  |-- iam
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- config.cmake.in
+|  |  |  |-- config.pc.in
+|  |  |  |-- doc
+|  |  |  |  |-- iam-credentials-mock.dox
+|  |  |  |  |-- iam-main.dox
+|  |  |  |  |-- iam-mock.dox
+|  |  |  |-- google_cloud_cpp_iam.bzl
+|  |  |  |-- google_cloud_cpp_iam_mocks.bzl
+|  |  |  |-- iam_client.cc
+|  |  |  |-- iam_client.h
+|  |  |  |-- iam_connection.cc
+|  |  |  |-- iam_connection.h
+|  |  |  |-- iam_connection_idempotency_policy.cc
+|  |  |  |-- iam_connection_idempotency_policy.h
+|  |  |  |-- iam_credentials_client.cc
+|  |  |  |-- iam_credentials_client.h
+|  |  |  |-- iam_credentials_connection.cc
+|  |  |  |-- iam_credentials_connection.h
+|  |  |  |-- iam_credentials_connection_idempotency_policy.cc
+|  |  |  |-- iam_credentials_connection_idempotency_policy.h
+|  |  |  |-- iam_credentials_options.h
+|  |  |  |-- iam_options.h
+|  |  |  |-- integration_tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- iam_client_integration_tests.bzl
+|  |  |  |  |-- iam_credentials_integration_test.cc
+|  |  |  |  |-- iam_integration_test.cc
+|  |  |  |-- internal
+|  |  |  |  |-- iam_auth_decorator.cc
+|  |  |  |  |-- iam_auth_decorator.h
+|  |  |  |  |-- iam_credentials_auth_decorator.cc
+|  |  |  |  |-- iam_credentials_auth_decorator.h
+|  |  |  |  |-- iam_credentials_logging_decorator.cc
+|  |  |  |  |-- iam_credentials_logging_decorator.h
+|  |  |  |  |-- iam_credentials_metadata_decorator.cc
+|  |  |  |  |-- iam_credentials_metadata_decorator.h
+|  |  |  |  |-- iam_credentials_option_defaults.cc
+|  |  |  |  |-- iam_credentials_option_defaults.h
+|  |  |  |  |-- iam_credentials_stub.cc
+|  |  |  |  |-- iam_credentials_stub.h
+|  |  |  |  |-- iam_credentials_stub_factory.cc
+|  |  |  |  |-- iam_credentials_stub_factory.h
+|  |  |  |  |-- iam_logging_decorator.cc
+|  |  |  |  |-- iam_logging_decorator.h
+|  |  |  |  |-- iam_metadata_decorator.cc
+|  |  |  |  |-- iam_metadata_decorator.h
+|  |  |  |  |-- iam_option_defaults.cc
+|  |  |  |  |-- iam_option_defaults.h
+|  |  |  |  |-- iam_stub.cc
+|  |  |  |  |-- iam_stub.h
+|  |  |  |  |-- iam_stub_factory.cc
+|  |  |  |  |-- iam_stub_factory.h
+|  |  |  |-- mocks
+|  |  |  |  |-- mock_iam_connection.h
+|  |  |  |  |-- mock_iam_credentials_connection.h
+|  |  |  |-- quickstart
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Makefile
+|  |  |  |  |-- README.md
+|  |  |  |  |-- WORKSPACE
+|  |  |  |  |-- quickstart.cc
+|  |  |  |-- retry_traits.h
+|  |  |  |-- samples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- iam_client_mock_samples.bzl
+|  |  |  |  |-- iam_client_samples.bzl
+|  |  |  |  |-- iam_samples.cc
+|  |  |  |  |-- mock_iam.cc
+|  |  |  |  |-- mock_iam_credentials.cc
+|  |  |-- iam_binding.h
+|  |  |-- iam_bindings.cc
+|  |  |-- iam_bindings.h
+|  |  |-- iam_bindings_test.cc
+|  |  |-- iam_policy.cc
+|  |  |-- iam_policy.h
+|  |  |-- internal
+|  |  |  |-- README.md
+|  |  |  |-- absl_flat_hash_map_quiet.h
+|  |  |  |-- absl_str_cat_quiet.h
+|  |  |  |-- absl_str_join_quiet.h
+|  |  |  |-- absl_str_replace_quiet.h
+|  |  |  |-- algorithm.h
+|  |  |  |-- algorithm_test.cc
+|  |  |  |-- api_client_header.cc
+|  |  |  |-- api_client_header.h
+|  |  |  |-- api_client_header_test.cc
+|  |  |  |-- async_connection_ready.cc
+|  |  |  |-- async_connection_ready.h
+|  |  |  |-- async_connection_ready_test.cc
+|  |  |  |-- async_long_running_operation.h
+|  |  |  |-- async_long_running_operation_test.cc
+|  |  |  |-- async_polling_loop.cc
+|  |  |  |-- async_polling_loop.h
+|  |  |  |-- async_polling_loop_test.cc
+|  |  |  |-- async_read_stream_impl.h
+|  |  |  |-- async_read_write_stream_impl.h
+|  |  |  |-- async_read_write_stream_impl_test.cc
+|  |  |  |-- async_retry_loop.h
+|  |  |  |-- async_retry_loop_test.cc
+|  |  |  |-- async_retry_unary_rpc.h
+|  |  |  |-- async_retry_unary_rpc_test.cc
+|  |  |  |-- async_rpc_details.h
+|  |  |  |-- attributes.h
+|  |  |  |-- background_threads_impl.cc
+|  |  |  |-- background_threads_impl.h
+|  |  |  |-- background_threads_impl_test.cc
+|  |  |  |-- backoff_policy.cc
+|  |  |  |-- backoff_policy.h
+|  |  |  |-- backoff_policy_test.cc
+|  |  |  |-- base64_transforms.cc
+|  |  |  |-- base64_transforms.h
+|  |  |  |-- base64_transforms_test.cc
+|  |  |  |-- big_endian.h
+|  |  |  |-- big_endian_test.cc
+|  |  |  |-- build_info.cc.in
+|  |  |  |-- build_info.h
+|  |  |  |-- compiler_info.cc
+|  |  |  |-- compiler_info.h
+|  |  |  |-- compiler_info_test.cc
+|  |  |  |-- completion_queue_impl.h
+|  |  |  |-- credentials_impl.cc
+|  |  |  |-- credentials_impl.h
+|  |  |  |-- credentials_impl_test.cc
+|  |  |  |-- default_completion_queue_impl.cc
+|  |  |  |-- default_completion_queue_impl.h
+|  |  |  |-- diagnostics_pop.inc
+|  |  |  |-- diagnostics_push.inc
+|  |  |  |-- disable_deprecation_warnings.inc
+|  |  |  |-- disable_msvc_crt_secure_warnings.inc
+|  |  |  |-- env_test.cc
+|  |  |  |-- extract_long_running_result.cc
+|  |  |  |-- extract_long_running_result.h
+|  |  |  |-- extract_long_running_result_test.cc
+|  |  |  |-- filesystem.cc
+|  |  |  |-- filesystem.h
+|  |  |  |-- filesystem_test.cc
+|  |  |  |-- format_time_point.cc
+|  |  |  |-- format_time_point.h
+|  |  |  |-- format_time_point_test.cc
+|  |  |  |-- future_base.h
+|  |  |  |-- future_fwd.h
+|  |  |  |-- future_impl.cc
+|  |  |  |-- future_impl.h
+|  |  |  |-- future_impl_test.cc
+|  |  |  |-- future_then_impl.h
+|  |  |  |-- future_then_meta.h
+|  |  |  |-- getenv.cc
+|  |  |  |-- getenv.h
+|  |  |  |-- grpc_access_token_authentication.cc
+|  |  |  |-- grpc_access_token_authentication.h
+|  |  |  |-- grpc_access_token_authentication_test.cc
+|  |  |  |-- grpc_async_access_token_cache.cc
+|  |  |  |-- grpc_async_access_token_cache.h
+|  |  |  |-- grpc_async_access_token_cache_test.cc
+|  |  |  |-- grpc_channel_credentials_authentication.cc
+|  |  |  |-- grpc_channel_credentials_authentication.h
+|  |  |  |-- grpc_channel_credentials_authentication_test.cc
+|  |  |  |-- grpc_impersonate_service_account.cc
+|  |  |  |-- grpc_impersonate_service_account.h
+|  |  |  |-- grpc_impersonate_service_account_integration_test.cc
+|  |  |  |-- grpc_service_account_authentication.cc
+|  |  |  |-- grpc_service_account_authentication.h
+|  |  |  |-- grpc_service_account_authentication_test.cc
+|  |  |  |-- invoke_result.h
+|  |  |  |-- invoke_result_test.cc
+|  |  |  |-- ios_flags_saver.h
+|  |  |  |-- log_impl.cc
+|  |  |  |-- log_impl.h
+|  |  |  |-- log_impl_test.cc
+|  |  |  |-- log_wrapper.cc
+|  |  |  |-- log_wrapper.h
+|  |  |  |-- log_wrapper_test.cc
+|  |  |  |-- minimal_iam_credentials_stub.cc
+|  |  |  |-- minimal_iam_credentials_stub.h
+|  |  |  |-- minimal_iam_credentials_stub_test.cc
+|  |  |  |-- pagination_range.h
+|  |  |  |-- pagination_range_test.cc
+|  |  |  |-- parse_rfc3339.cc
+|  |  |  |-- parse_rfc3339.h
+|  |  |  |-- parse_rfc3339_test.cc
+|  |  |  |-- polling_loop.h
+|  |  |  |-- polling_loop_test.cc
+|  |  |  |-- port_platform.h
+|  |  |  |-- random.cc
+|  |  |  |-- random.h
+|  |  |  |-- random_test.cc
+|  |  |  |-- resumable_streaming_read_rpc.h
+|  |  |  |-- resumable_streaming_read_rpc_test.cc
+|  |  |  |-- retry_loop.h
+|  |  |  |-- retry_loop_helpers.cc
+|  |  |  |-- retry_loop_helpers.h
+|  |  |  |-- retry_loop_test.cc
+|  |  |  |-- retry_policy.h
+|  |  |  |-- retry_policy_test.cc
+|  |  |  |-- setenv.cc
+|  |  |  |-- setenv.h
+|  |  |  |-- setup_context.h
+|  |  |  |-- streaming_read_rpc.cc
+|  |  |  |-- streaming_read_rpc.h
+|  |  |  |-- streaming_read_rpc_logging.cc
+|  |  |  |-- streaming_read_rpc_logging.h
+|  |  |  |-- streaming_read_rpc_logging_test.cc
+|  |  |  |-- streaming_read_rpc_test.cc
+|  |  |  |-- streaming_write_rpc.cc
+|  |  |  |-- streaming_write_rpc.h
+|  |  |  |-- streaming_write_rpc_test.cc
+|  |  |  |-- strerror.cc
+|  |  |  |-- strerror.h
+|  |  |  |-- strerror_test.cc
+|  |  |  |-- throw_delegate.cc
+|  |  |  |-- throw_delegate.h
+|  |  |  |-- throw_delegate_test.cc
+|  |  |  |-- time_utils.cc
+|  |  |  |-- time_utils.h
+|  |  |  |-- time_utils_test.cc
+|  |  |  |-- tuple.h
+|  |  |  |-- tuple_test.cc
+|  |  |  |-- type_list.h
+|  |  |  |-- type_list_test.cc
+|  |  |  |-- unified_grpc_credentials.cc
+|  |  |  |-- unified_grpc_credentials.h
+|  |  |  |-- unified_grpc_credentials_test.cc
+|  |  |  |-- user_agent_prefix.cc
+|  |  |  |-- user_agent_prefix.h
+|  |  |  |-- user_agent_prefix_test.cc
+|  |  |  |-- utility.h
+|  |  |  |-- utility_test.cc
+|  |  |  |-- version_info.h
+|  |  |  |-- version_info.h.in
+|  |  |-- kms_key_name.cc
+|  |  |-- kms_key_name.h
+|  |  |-- kms_key_name_test.cc
+|  |  |-- log.cc
+|  |  |-- log.h
+|  |  |-- log_test.cc
+|  |  |-- logging
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- config.cmake.in
+|  |  |  |-- config.pc.in
+|  |  |  |-- google_cloud_cpp_logging.bzl
+|  |  |  |-- google_cloud_cpp_logging_mocks.bzl
+|  |  |  |-- integration_tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- logging_client_integration_tests.bzl
+|  |  |  |  |-- logging_integration_test.cc
+|  |  |  |-- internal
+|  |  |  |  |-- logging_service_v2_auth_decorator.cc
+|  |  |  |  |-- logging_service_v2_auth_decorator.h
+|  |  |  |  |-- logging_service_v2_logging_decorator.cc
+|  |  |  |  |-- logging_service_v2_logging_decorator.h
+|  |  |  |  |-- logging_service_v2_metadata_decorator.cc
+|  |  |  |  |-- logging_service_v2_metadata_decorator.h
+|  |  |  |  |-- logging_service_v2_option_defaults.cc
+|  |  |  |  |-- logging_service_v2_option_defaults.h
+|  |  |  |  |-- logging_service_v2_stub.cc
+|  |  |  |  |-- logging_service_v2_stub.h
+|  |  |  |  |-- logging_service_v2_stub_factory.cc
+|  |  |  |  |-- logging_service_v2_stub_factory.h
+|  |  |  |-- logging_service_v2_client.cc
+|  |  |  |-- logging_service_v2_client.h
+|  |  |  |-- logging_service_v2_connection.cc
+|  |  |  |-- logging_service_v2_connection.h
+|  |  |  |-- logging_service_v2_connection_idempotency_policy.cc
+|  |  |  |-- logging_service_v2_connection_idempotency_policy.h
+|  |  |  |-- logging_service_v2_options.h
+|  |  |  |-- mocks
+|  |  |  |  |-- mock_logging_service_v2_connection.h
+|  |  |  |-- retry_traits.h
+|  |  |-- optional.h
+|  |  |-- options.cc
+|  |  |-- options.h
+|  |  |-- options_test.cc
+|  |  |-- polling_policy.h
+|  |  |-- pubsub
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- ack_handler.cc
+|  |  |  |-- ack_handler.h
+|  |  |  |-- ack_handler_test.cc
+|  |  |  |-- application_callback.h
+|  |  |  |-- backoff_policy.h
+|  |  |  |-- benchmarks
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- endurance.cc
+|  |  |  |  |-- pubsub_client_benchmark_programs.bzl
+|  |  |  |  |-- throughput.cc
+|  |  |  |-- ci
+|  |  |  |  |-- lib
+|  |  |  |  |  |-- pubsub_emulator.sh
+|  |  |  |  |-- run_integration_tests_emulator_bazel.sh
+|  |  |  |  |-- run_integration_tests_emulator_cmake.sh
+|  |  |  |-- config-version.cmake.in
+|  |  |  |-- config.cmake.in
+|  |  |  |-- config.pc.in
+|  |  |  |-- connection_options.cc
+|  |  |  |-- connection_options.h
+|  |  |  |-- doc
+|  |  |  |  |-- publisher-mock.dox
+|  |  |  |  |-- pubsub-main.dox
+|  |  |  |  |-- subscriber-mock.dox
+|  |  |  |-- google_cloud_cpp_pubsub.bzl
+|  |  |  |-- google_cloud_cpp_pubsub_mocks.bzl
+|  |  |  |-- integration_tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- pubsub_client_integration_tests.bzl
+|  |  |  |  |-- schema_admin_integration_test.cc
+|  |  |  |  |-- subscriber_integration_test.cc
+|  |  |  |  |-- subscription_admin_integration_test.cc
+|  |  |  |  |-- topic_admin_integration_test.cc
+|  |  |  |-- internal
+|  |  |  |  |-- batch_sink.h
+|  |  |  |  |-- batching_publisher_connection.cc
+|  |  |  |  |-- batching_publisher_connection.h
+|  |  |  |  |-- batching_publisher_connection_test.cc
+|  |  |  |  |-- create_channel.cc
+|  |  |  |  |-- create_channel.h
+|  |  |  |  |-- default_batch_sink.cc
+|  |  |  |  |-- default_batch_sink.h
+|  |  |  |  |-- default_batch_sink_test.cc
+|  |  |  |  |-- default_retry_policies.cc
+|  |  |  |  |-- default_retry_policies.h
+|  |  |  |  |-- emulator_overrides.cc
+|  |  |  |  |-- emulator_overrides.h
+|  |  |  |  |-- emulator_overrides_test.cc
+|  |  |  |  |-- flow_controlled_publisher_connection.cc
+|  |  |  |  |-- flow_controlled_publisher_connection.h
+|  |  |  |  |-- flow_controlled_publisher_connection_test.cc
+|  |  |  |  |-- ordering_key_publisher_connection.cc
+|  |  |  |  |-- ordering_key_publisher_connection.h
+|  |  |  |  |-- ordering_key_publisher_connection_test.cc
+|  |  |  |  |-- publisher_logging.cc
+|  |  |  |  |-- publisher_logging.h
+|  |  |  |  |-- publisher_logging_test.cc
+|  |  |  |  |-- publisher_metadata.cc
+|  |  |  |  |-- publisher_metadata.h
+|  |  |  |  |-- publisher_metadata_test.cc
+|  |  |  |  |-- publisher_round_robin.cc
+|  |  |  |  |-- publisher_round_robin.h
+|  |  |  |  |-- publisher_round_robin_test.cc
+|  |  |  |  |-- publisher_stub.cc
+|  |  |  |  |-- publisher_stub.h
+|  |  |  |  |-- rejects_with_ordering_key.cc
+|  |  |  |  |-- rejects_with_ordering_key.h
+|  |  |  |  |-- rejects_with_ordering_key_test.cc
+|  |  |  |  |-- schema_logging.cc
+|  |  |  |  |-- schema_logging.h
+|  |  |  |  |-- schema_logging_test.cc
+|  |  |  |  |-- schema_metadata.cc
+|  |  |  |  |-- schema_metadata.h
+|  |  |  |  |-- schema_metadata_test.cc
+|  |  |  |  |-- schema_stub.cc
+|  |  |  |  |-- schema_stub.h
+|  |  |  |  |-- sequential_batch_sink.cc
+|  |  |  |  |-- sequential_batch_sink.h
+|  |  |  |  |-- sequential_batch_sink_test.cc
+|  |  |  |  |-- session_shutdown_manager.cc
+|  |  |  |  |-- session_shutdown_manager.h
+|  |  |  |  |-- session_shutdown_manager_test.cc
+|  |  |  |  |-- streaming_subscription_batch_source.cc
+|  |  |  |  |-- streaming_subscription_batch_source.h
+|  |  |  |  |-- streaming_subscription_batch_source_test.cc
+|  |  |  |  |-- subscriber_logging.cc
+|  |  |  |  |-- subscriber_logging.h
+|  |  |  |  |-- subscriber_logging_test.cc
+|  |  |  |  |-- subscriber_metadata.cc
+|  |  |  |  |-- subscriber_metadata.h
+|  |  |  |  |-- subscriber_metadata_test.cc
+|  |  |  |  |-- subscriber_round_robin.cc
+|  |  |  |  |-- subscriber_round_robin.h
+|  |  |  |  |-- subscriber_round_robin_test.cc
+|  |  |  |  |-- subscriber_stub.cc
+|  |  |  |  |-- subscriber_stub.h
+|  |  |  |  |-- subscription_batch_source.h
+|  |  |  |  |-- subscription_concurrency_control.cc
+|  |  |  |  |-- subscription_concurrency_control.h
+|  |  |  |  |-- subscription_concurrency_control_test.cc
+|  |  |  |  |-- subscription_lease_management.cc
+|  |  |  |  |-- subscription_lease_management.h
+|  |  |  |  |-- subscription_lease_management_test.cc
+|  |  |  |  |-- subscription_message_queue.cc
+|  |  |  |  |-- subscription_message_queue.h
+|  |  |  |  |-- subscription_message_queue_test.cc
+|  |  |  |  |-- subscription_message_source.h
+|  |  |  |  |-- subscription_session.cc
+|  |  |  |  |-- subscription_session.h
+|  |  |  |  |-- subscription_session_test.cc
+|  |  |  |-- legacy.cmake.in
+|  |  |  |-- message.cc
+|  |  |  |-- message.h
+|  |  |  |-- message_test.cc
+|  |  |  |-- mocks
+|  |  |  |  |-- mock_ack_handler.h
+|  |  |  |  |-- mock_publisher_connection.h
+|  |  |  |  |-- mock_schema_admin_connection.h
+|  |  |  |  |-- mock_subscriber_connection.h
+|  |  |  |  |-- mock_subscription_admin_connection.h
+|  |  |  |  |-- mock_topic_admin_connection.h
+|  |  |  |-- publisher.cc
+|  |  |  |-- publisher.h
+|  |  |  |-- publisher_connection.cc
+|  |  |  |-- publisher_connection.h
+|  |  |  |-- publisher_connection_test.cc
+|  |  |  |-- publisher_options.cc
+|  |  |  |-- publisher_options.h
+|  |  |  |-- publisher_options_test.cc
+|  |  |  |-- publisher_test.cc
+|  |  |  |-- pubsub_client_testing.bzl
+|  |  |  |-- pubsub_client_unit_tests.bzl
+|  |  |  |-- quickstart
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Makefile
+|  |  |  |  |-- README.md
+|  |  |  |  |-- WORKSPACE
+|  |  |  |  |-- quickstart.cc
+|  |  |  |-- retry_policy.h
+|  |  |  |-- samples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- mock_publisher.cc
+|  |  |  |  |-- mock_subscriber.cc
+|  |  |  |  |-- pubsub_client_integration_samples.bzl
+|  |  |  |  |-- pubsub_client_unit_samples.bzl
+|  |  |  |  |-- pubsub_samples_common.bzl
+|  |  |  |  |-- pubsub_samples_common.cc
+|  |  |  |  |-- pubsub_samples_common.h
+|  |  |  |  |-- pubsub_samples_common_test.cc
+|  |  |  |  |-- pubsub_samples_unit_tests.bzl
+|  |  |  |  |-- samples.cc
+|  |  |  |  |-- samples.proto
+|  |  |  |-- schema.cc
+|  |  |  |-- schema.h
+|  |  |  |-- schema_admin_client.cc
+|  |  |  |-- schema_admin_client.h
+|  |  |  |-- schema_admin_client_test.cc
+|  |  |  |-- schema_admin_connection.cc
+|  |  |  |-- schema_admin_connection.h
+|  |  |  |-- schema_admin_connection_test.cc
+|  |  |  |-- schema_test.cc
+|  |  |  |-- snapshot.cc
+|  |  |  |-- snapshot.h
+|  |  |  |-- snapshot_builder.cc
+|  |  |  |-- snapshot_builder.h
+|  |  |  |-- snapshot_builder_test.cc
+|  |  |  |-- snapshot_test.cc
+|  |  |  |-- subscriber.h
+|  |  |  |-- subscriber_connection.cc
+|  |  |  |-- subscriber_connection.h
+|  |  |  |-- subscriber_connection_test.cc
+|  |  |  |-- subscriber_options.cc
+|  |  |  |-- subscriber_options.h
+|  |  |  |-- subscriber_options_test.cc
+|  |  |  |-- subscriber_test.cc
+|  |  |  |-- subscription.cc
+|  |  |  |-- subscription.h
+|  |  |  |-- subscription_admin_client.cc
+|  |  |  |-- subscription_admin_client.h
+|  |  |  |-- subscription_admin_client_test.cc
+|  |  |  |-- subscription_admin_connection.cc
+|  |  |  |-- subscription_admin_connection.h
+|  |  |  |-- subscription_admin_connection_test.cc
+|  |  |  |-- subscription_builder.cc
+|  |  |  |-- subscription_builder.h
+|  |  |  |-- subscription_builder_test.cc
+|  |  |  |-- subscription_test.cc
+|  |  |  |-- testing
+|  |  |  |  |-- README.md
+|  |  |  |  |-- fake_streaming_pull.cc
+|  |  |  |  |-- fake_streaming_pull.h
+|  |  |  |  |-- mock_batch_sink.h
+|  |  |  |  |-- mock_publisher_stub.h
+|  |  |  |  |-- mock_schema_stub.h
+|  |  |  |  |-- mock_subscriber_stub.h
+|  |  |  |  |-- mock_subscription_batch_source.h
+|  |  |  |  |-- mock_subscription_message_source.h
+|  |  |  |  |-- random_names.cc
+|  |  |  |  |-- random_names.h
+|  |  |  |  |-- test_retry_policies.cc
+|  |  |  |  |-- test_retry_policies.h
+|  |  |  |-- topic.cc
+|  |  |  |-- topic.h
+|  |  |  |-- topic_admin_client.cc
+|  |  |  |-- topic_admin_client.h
+|  |  |  |-- topic_admin_client_test.cc
+|  |  |  |-- topic_admin_connection.cc
+|  |  |  |-- topic_admin_connection.h
+|  |  |  |-- topic_admin_connection_test.cc
+|  |  |  |-- topic_builder.cc
+|  |  |  |-- topic_builder.h
+|  |  |  |-- topic_builder_test.cc
+|  |  |  |-- topic_test.cc
+|  |  |  |-- version.h
+|  |  |  |-- version_info.h
+|  |  |-- spanner
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- backoff_policy.h
+|  |  |  |-- backup.cc
+|  |  |  |-- backup.h
+|  |  |  |-- backup_test.cc
+|  |  |  |-- batch_dml_result.h
+|  |  |  |-- benchmarks
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- benchmarks_config.cc
+|  |  |  |  |-- benchmarks_config.h
+|  |  |  |  |-- benchmarks_config_test.cc
+|  |  |  |  |-- multiple_rows_cpu_benchmark.cc
+|  |  |  |  |-- single_row_throughput_benchmark.cc
+|  |  |  |  |-- single_row_throughput_plots.py
+|  |  |  |  |-- spanner_client_benchmark_programs.bzl
+|  |  |  |  |-- spanner_client_benchmarks.bzl
+|  |  |  |-- bytes.cc
+|  |  |  |-- bytes.h
+|  |  |  |-- bytes_benchmark.cc
+|  |  |  |-- bytes_test.cc
+|  |  |  |-- ci
+|  |  |  |  |-- lib
+|  |  |  |  |  |-- spanner_emulator.sh
+|  |  |  |  |-- run_integration_tests_emulator_bazel.sh
+|  |  |  |  |-- run_integration_tests_emulator_cmake.sh
+|  |  |  |-- client.cc
+|  |  |  |-- client.h
+|  |  |  |-- client_options.h
+|  |  |  |-- client_options_test.cc
+|  |  |  |-- client_test.cc
+|  |  |  |-- commit_options.h
+|  |  |  |-- commit_options_test.cc
+|  |  |  |-- commit_result.h
+|  |  |  |-- config.cmake.in
+|  |  |  |-- config.pc.in
+|  |  |  |-- connection.h
+|  |  |  |-- connection_options.cc
+|  |  |  |-- connection_options.h
+|  |  |  |-- connection_options_test.cc
+|  |  |  |-- create_instance_request_builder.h
+|  |  |  |-- create_instance_request_builder_test.cc
+|  |  |  |-- database.cc
+|  |  |  |-- database.h
+|  |  |  |-- database_admin_client.cc
+|  |  |  |-- database_admin_client.h
+|  |  |  |-- database_admin_client_test.cc
+|  |  |  |-- database_admin_connection.cc
+|  |  |  |-- database_admin_connection.h
+|  |  |  |-- database_admin_connection_test.cc
+|  |  |  |-- database_test.cc
+|  |  |  |-- date.h
+|  |  |  |-- doc
+|  |  |  |  |-- spanner-main.dox
+|  |  |  |  |-- spanner-mocking.dox
+|  |  |  |-- encryption_config.h
+|  |  |  |-- google_cloud_cpp_spanner.bzl
+|  |  |  |-- google_cloud_cpp_spanner_mocks.bzl
+|  |  |  |-- iam_updater.h
+|  |  |  |-- instance.cc
+|  |  |  |-- instance.h
+|  |  |  |-- instance_admin_client.cc
+|  |  |  |-- instance_admin_client.h
+|  |  |  |-- instance_admin_client_test.cc
+|  |  |  |-- instance_admin_connection.cc
+|  |  |  |-- instance_admin_connection.h
+|  |  |  |-- instance_admin_connection_test.cc
+|  |  |  |-- instance_test.cc
+|  |  |  |-- integration_tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- backup_integration_test.cc
+|  |  |  |  |-- client_integration_test.cc
+|  |  |  |  |-- client_stress_test.cc
+|  |  |  |  |-- data_types_integration_test.cc
+|  |  |  |  |-- database_admin_integration_test.cc
+|  |  |  |  |-- instance_admin_integration_test.cc
+|  |  |  |  |-- rpc_failure_threshold_integration_test.cc
+|  |  |  |  |-- session_pool_integration_test.cc
+|  |  |  |  |-- spanner_client_integration_tests.bzl
+|  |  |  |-- internal
+|  |  |  |  |-- README.md
+|  |  |  |  |-- channel.h
+|  |  |  |  |-- clock.h
+|  |  |  |  |-- clock_test.cc
+|  |  |  |  |-- connection_impl.cc
+|  |  |  |  |-- connection_impl.h
+|  |  |  |  |-- connection_impl_test.cc
+|  |  |  |  |-- database_admin_logging.cc
+|  |  |  |  |-- database_admin_logging.h
+|  |  |  |  |-- database_admin_logging_test.cc
+|  |  |  |  |-- database_admin_metadata.cc
+|  |  |  |  |-- database_admin_metadata.h
+|  |  |  |  |-- database_admin_metadata_test.cc
+|  |  |  |  |-- database_admin_stub.cc
+|  |  |  |  |-- database_admin_stub.h
+|  |  |  |  |-- defaults.cc
+|  |  |  |  |-- defaults.h
+|  |  |  |  |-- defaults_test.cc
+|  |  |  |  |-- instance_admin_logging.cc
+|  |  |  |  |-- instance_admin_logging.h
+|  |  |  |  |-- instance_admin_logging_test.cc
+|  |  |  |  |-- instance_admin_metadata.cc
+|  |  |  |  |-- instance_admin_metadata.h
+|  |  |  |  |-- instance_admin_metadata_test.cc
+|  |  |  |  |-- instance_admin_stub.cc
+|  |  |  |  |-- instance_admin_stub.h
+|  |  |  |  |-- logging_result_set_reader.cc
+|  |  |  |  |-- logging_result_set_reader.h
+|  |  |  |  |-- logging_result_set_reader_test.cc
+|  |  |  |  |-- logging_spanner_stub.cc
+|  |  |  |  |-- logging_spanner_stub.h
+|  |  |  |  |-- logging_spanner_stub_test.cc
+|  |  |  |  |-- merge_chunk.cc
+|  |  |  |  |-- merge_chunk.h
+|  |  |  |  |-- merge_chunk_benchmark.cc
+|  |  |  |  |-- merge_chunk_test.cc
+|  |  |  |  |-- metadata_spanner_stub.cc
+|  |  |  |  |-- metadata_spanner_stub.h
+|  |  |  |  |-- metadata_spanner_stub_test.cc
+|  |  |  |  |-- partial_result_set_reader.h
+|  |  |  |  |-- partial_result_set_resume.cc
+|  |  |  |  |-- partial_result_set_resume.h
+|  |  |  |  |-- partial_result_set_resume_test.cc
+|  |  |  |  |-- partial_result_set_source.cc
+|  |  |  |  |-- partial_result_set_source.h
+|  |  |  |  |-- partial_result_set_source_test.cc
+|  |  |  |  |-- session.cc
+|  |  |  |  |-- session.h
+|  |  |  |  |-- session_pool.cc
+|  |  |  |  |-- session_pool.h
+|  |  |  |  |-- session_pool_test.cc
+|  |  |  |  |-- spanner_stub.cc
+|  |  |  |  |-- spanner_stub.h
+|  |  |  |  |-- spanner_stub_test.cc
+|  |  |  |  |-- status_utils.cc
+|  |  |  |  |-- status_utils.h
+|  |  |  |  |-- status_utils_test.cc
+|  |  |  |  |-- transaction_impl.cc
+|  |  |  |  |-- transaction_impl.h
+|  |  |  |  |-- transaction_impl_test.cc
+|  |  |  |  |-- tuple_utils.h
+|  |  |  |  |-- tuple_utils_test.cc
+|  |  |  |-- keys.cc
+|  |  |  |-- keys.h
+|  |  |  |-- keys_test.cc
+|  |  |  |-- legacy.cmake.in
+|  |  |  |-- mocks
+|  |  |  |  |-- mock_database_admin_connection.h
+|  |  |  |  |-- mock_instance_admin_connection.h
+|  |  |  |  |-- mock_spanner_connection.h
+|  |  |  |-- mutations.cc
+|  |  |  |-- mutations.h
+|  |  |  |-- mutations_test.cc
+|  |  |  |-- numeric.cc
+|  |  |  |-- numeric.h
+|  |  |  |-- numeric_benchmark.cc
+|  |  |  |-- numeric_test.cc
+|  |  |  |-- options.h
+|  |  |  |-- partition_options.cc
+|  |  |  |-- partition_options.h
+|  |  |  |-- partition_options_test.cc
+|  |  |  |-- partitioned_dml_result.h
+|  |  |  |-- polling_policy.h
+|  |  |  |-- query_options.h
+|  |  |  |-- query_options_test.cc
+|  |  |  |-- query_partition.cc
+|  |  |  |-- query_partition.h
+|  |  |  |-- query_partition_test.cc
+|  |  |  |-- quickstart
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Makefile
+|  |  |  |  |-- README.md
+|  |  |  |  |-- WORKSPACE
+|  |  |  |  |-- quickstart.cc
+|  |  |  |-- read_options.h
+|  |  |  |-- read_options_test.cc
+|  |  |  |-- read_partition.cc
+|  |  |  |-- read_partition.h
+|  |  |  |-- read_partition_test.cc
+|  |  |  |-- request_priority.h
+|  |  |  |-- results.cc
+|  |  |  |-- results.h
+|  |  |  |-- results_test.cc
+|  |  |  |-- retry_policy.h
+|  |  |  |-- retry_policy_test.cc
+|  |  |  |-- row.cc
+|  |  |  |-- row.h
+|  |  |  |-- row_benchmark.cc
+|  |  |  |-- row_test.cc
+|  |  |  |-- samples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- mock_execute_query.cc
+|  |  |  |  |-- samples.cc
+|  |  |  |  |-- spanner_client_integration_samples.bzl
+|  |  |  |  |-- spanner_client_unit_samples.bzl
+|  |  |  |-- session_pool_options.h
+|  |  |  |-- session_pool_options_test.cc
+|  |  |  |-- spanner_client_benchmarks.bzl
+|  |  |  |-- spanner_client_testing.bzl
+|  |  |  |-- spanner_client_unit_tests.bzl
+|  |  |  |-- spanner_version_test.cc
+|  |  |  |-- sql_statement.cc
+|  |  |  |-- sql_statement.h
+|  |  |  |-- sql_statement_test.cc
+|  |  |  |-- testing
+|  |  |  |  |-- cleanup_stale_databases.cc
+|  |  |  |  |-- cleanup_stale_databases.h
+|  |  |  |  |-- cleanup_stale_databases_test.cc
+|  |  |  |  |-- cleanup_stale_instances.cc
+|  |  |  |  |-- cleanup_stale_instances.h
+|  |  |  |  |-- database_integration_test.cc
+|  |  |  |  |-- database_integration_test.h
+|  |  |  |  |-- fake_clock.h
+|  |  |  |  |-- instance_location.cc
+|  |  |  |  |-- instance_location.h
+|  |  |  |  |-- matchers.h
+|  |  |  |  |-- mock_database_admin_stub.h
+|  |  |  |  |-- mock_instance_admin_stub.h
+|  |  |  |  |-- mock_partial_result_set_reader.h
+|  |  |  |  |-- mock_spanner_stub.h
+|  |  |  |  |-- pick_instance_config.cc
+|  |  |  |  |-- pick_instance_config.h
+|  |  |  |  |-- pick_random_instance.cc
+|  |  |  |  |-- pick_random_instance.h
+|  |  |  |  |-- policies.h
+|  |  |  |  |-- random_backup_name.cc
+|  |  |  |  |-- random_backup_name.h
+|  |  |  |  |-- random_database_name.cc
+|  |  |  |  |-- random_database_name.h
+|  |  |  |  |-- random_database_name_test.cc
+|  |  |  |  |-- random_instance_name.cc
+|  |  |  |  |-- random_instance_name.h
+|  |  |  |-- timestamp.cc
+|  |  |  |-- timestamp.h
+|  |  |  |-- timestamp_test.cc
+|  |  |  |-- tracing_options.h
+|  |  |  |-- transaction.cc
+|  |  |  |-- transaction.h
+|  |  |  |-- transaction_test.cc
+|  |  |  |-- update_instance_request_builder.h
+|  |  |  |-- update_instance_request_builder_test.cc
+|  |  |  |-- value.cc
+|  |  |  |-- value.h
+|  |  |  |-- value_test.cc
+|  |  |  |-- version.cc
+|  |  |  |-- version.h
+|  |  |  |-- version_info.h
+|  |  |-- status.cc
+|  |  |-- status.h
+|  |  |-- status_or.h
+|  |  |-- status_or_test.cc
+|  |  |-- status_test.cc
+|  |  |-- storage
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- auto_finalize.cc
+|  |  |  |-- auto_finalize.h
+|  |  |  |-- auto_finalize_test.cc
+|  |  |  |-- benchmarks
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- aggregate_throughput_benchmark.cc
+|  |  |  |  |-- aggregate_throughput_options.cc
+|  |  |  |  |-- aggregate_throughput_options.h
+|  |  |  |  |-- aggregate_throughput_options_test.cc
+|  |  |  |  |-- benchmark_make_random_test.cc
+|  |  |  |  |-- benchmark_parser_test.cc
+|  |  |  |  |-- benchmark_utils.cc
+|  |  |  |  |-- benchmark_utils.h
+|  |  |  |  |-- bounded_queue.h
+|  |  |  |  |-- create_dataset.cc
+|  |  |  |  |-- create_dataset_options.cc
+|  |  |  |  |-- create_dataset_options.h
+|  |  |  |  |-- create_dataset_options_test.cc
+|  |  |  |  |-- storage_benchmark_programs.bzl
+|  |  |  |  |-- storage_benchmarks.bzl
+|  |  |  |  |-- storage_benchmarks_unit_tests.bzl
+|  |  |  |  |-- storage_file_transfer_benchmark.cc
+|  |  |  |  |-- storage_parallel_uploads_benchmark.cc
+|  |  |  |  |-- storage_parallel_uploads_plots.py
+|  |  |  |  |-- storage_throughput_vs_cpu_benchmark.cc
+|  |  |  |  |-- storage_throughput_vs_cpu_plots.py
+|  |  |  |  |-- throughput_experiment.cc
+|  |  |  |  |-- throughput_experiment.h
+|  |  |  |  |-- throughput_experiment_test.cc
+|  |  |  |  |-- throughput_options.cc
+|  |  |  |  |-- throughput_options.h
+|  |  |  |  |-- throughput_options_test.cc
+|  |  |  |  |-- throughput_result.cc
+|  |  |  |  |-- throughput_result.h
+|  |  |  |  |-- throughput_result_test.cc
+|  |  |  |-- bucket_access_control.cc
+|  |  |  |-- bucket_access_control.h
+|  |  |  |-- bucket_access_control_test.cc
+|  |  |  |-- bucket_metadata.cc
+|  |  |  |-- bucket_metadata.h
+|  |  |  |-- bucket_metadata_test.cc
+|  |  |  |-- bucket_test.cc
+|  |  |  |-- ci
+|  |  |  |  |-- run_integration_tests_emulator_bazel.sh
+|  |  |  |  |-- run_integration_tests_emulator_cmake.sh
+|  |  |  |-- client.cc
+|  |  |  |-- client.h
+|  |  |  |-- client_bucket_acl_test.cc
+|  |  |  |-- client_default_object_acl_test.cc
+|  |  |  |-- client_notifications_test.cc
+|  |  |  |-- client_object_acl_test.cc
+|  |  |  |-- client_object_copy_test.cc
+|  |  |  |-- client_options.cc
+|  |  |  |-- client_options.h
+|  |  |  |-- client_options_test.cc
+|  |  |  |-- client_service_account_test.cc
+|  |  |  |-- client_sign_policy_document_test.cc
+|  |  |  |-- client_sign_url_test.cc
+|  |  |  |-- client_test.cc
+|  |  |  |-- client_write_object_test.cc
+|  |  |  |-- config-grpc.cmake.in
+|  |  |  |-- config.cmake.in
+|  |  |  |-- doc
+|  |  |  |  |-- parallel-uploads-design.md
+|  |  |  |  |-- setup-test-resources.md
+|  |  |  |  |-- storage-main.dox
+|  |  |  |  |-- storage-mocking.dox
+|  |  |  |-- download_options.h
+|  |  |  |-- emulator
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- ci
+|  |  |  |  |  |-- run_integration_tests_bazel.sh
+|  |  |  |  |-- database.py
+|  |  |  |  |-- emulator.py
+|  |  |  |  |-- gcs
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- bucket.py
+|  |  |  |  |  |-- holder.py
+|  |  |  |  |  |-- iam.py
+|  |  |  |  |  |-- object.py
+|  |  |  |  |  |-- project.py
+|  |  |  |  |-- grpc_server.py
+|  |  |  |  |-- requirements.txt
+|  |  |  |  |-- tests
+|  |  |  |  |  |-- test_bucket.py
+|  |  |  |  |  |-- test_holder.py
+|  |  |  |  |  |-- test_object.py
+|  |  |  |  |  |-- test_utils.py
+|  |  |  |  |-- utils
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- acl.py
+|  |  |  |  |  |-- common.py
+|  |  |  |  |  |-- csek.py
+|  |  |  |  |  |-- error.py
+|  |  |  |  |  |-- generation.py
+|  |  |  |  |  |-- handle_gzip.py
+|  |  |  |-- examples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- storage_auth_samples.cc
+|  |  |  |  |-- storage_bucket_acl_samples.cc
+|  |  |  |  |-- storage_bucket_cors_samples.cc
+|  |  |  |  |-- storage_bucket_default_kms_key_samples.cc
+|  |  |  |  |-- storage_bucket_iam_samples.cc
+|  |  |  |  |-- storage_bucket_requester_pays_samples.cc
+|  |  |  |  |-- storage_bucket_samples.cc
+|  |  |  |  |-- storage_client_mock_samples.cc
+|  |  |  |  |-- storage_default_object_acl_samples.cc
+|  |  |  |  |-- storage_event_based_hold_samples.cc
+|  |  |  |  |-- storage_examples.bzl
+|  |  |  |  |-- storage_examples_common.bzl
+|  |  |  |  |-- storage_examples_common.cc
+|  |  |  |  |-- storage_examples_common.h
+|  |  |  |  |-- storage_examples_common_test.cc
+|  |  |  |  |-- storage_examples_unit_tests.bzl
+|  |  |  |  |-- storage_grpc_samples.cc
+|  |  |  |  |-- storage_lifecycle_management_samples.cc
+|  |  |  |  |-- storage_notification_samples.cc
+|  |  |  |  |-- storage_object_acl_samples.cc
+|  |  |  |  |-- storage_object_cmek_samples.cc
+|  |  |  |  |-- storage_object_csek_samples.cc
+|  |  |  |  |-- storage_object_file_transfer_samples.cc
+|  |  |  |  |-- storage_object_hold_samples.cc
+|  |  |  |  |-- storage_object_preconditions_samples.cc
+|  |  |  |  |-- storage_object_resumable_write_samples.cc
+|  |  |  |  |-- storage_object_rewrite_samples.cc
+|  |  |  |  |-- storage_object_samples.cc
+|  |  |  |  |-- storage_object_versioning_samples.cc
+|  |  |  |  |-- storage_policy_doc_samples.cc
+|  |  |  |  |-- storage_public_object_samples.cc
+|  |  |  |  |-- storage_quickstart.cc
+|  |  |  |  |-- storage_retention_policy_samples.cc
+|  |  |  |  |-- storage_service_account_samples.cc
+|  |  |  |  |-- storage_signed_url_v2_samples.cc
+|  |  |  |  |-- storage_signed_url_v4_samples.cc
+|  |  |  |  |-- storage_website_samples.cc
+|  |  |  |-- google_cloud_cpp_storage.bzl
+|  |  |  |-- google_cloud_cpp_storage_grpc.bzl
+|  |  |  |-- grpc_plugin.cc
+|  |  |  |-- grpc_plugin.h
+|  |  |  |-- hash_mismatch_error.h
+|  |  |  |-- hashing_options.cc
+|  |  |  |-- hashing_options.h
+|  |  |  |-- hashing_options_test.cc
+|  |  |  |-- hmac_key_metadata.cc
+|  |  |  |-- hmac_key_metadata.h
+|  |  |  |-- hmac_key_metadata_test.cc
+|  |  |  |-- iam_policy.cc
+|  |  |  |-- iam_policy.h
+|  |  |  |-- idempotency_policy.cc
+|  |  |  |-- idempotency_policy.h
+|  |  |  |-- idempotency_policy_test.cc
+|  |  |  |-- internal
+|  |  |  |  |-- access_control_common.h
+|  |  |  |  |-- access_control_common_parser.cc
+|  |  |  |  |-- access_control_common_parser.h
+|  |  |  |  |-- access_control_common_parser_test.cc
+|  |  |  |  |-- access_control_common_test.cc
+|  |  |  |  |-- access_token_credentials.cc
+|  |  |  |  |-- access_token_credentials.h
+|  |  |  |  |-- access_token_credentials_test.cc
+|  |  |  |  |-- binary_data_as_debug_string.cc
+|  |  |  |  |-- binary_data_as_debug_string.h
+|  |  |  |  |-- binary_data_as_debug_string_test.cc
+|  |  |  |  |-- bucket_access_control_parser.cc
+|  |  |  |  |-- bucket_access_control_parser.h
+|  |  |  |  |-- bucket_acl_requests.cc
+|  |  |  |  |-- bucket_acl_requests.h
+|  |  |  |  |-- bucket_acl_requests_test.cc
+|  |  |  |  |-- bucket_metadata_parser.cc
+|  |  |  |  |-- bucket_metadata_parser.h
+|  |  |  |  |-- bucket_requests.cc
+|  |  |  |  |-- bucket_requests.h
+|  |  |  |  |-- bucket_requests_test.cc
+|  |  |  |  |-- common_metadata.h
+|  |  |  |  |-- common_metadata_parser.h
+|  |  |  |  |-- complex_option.h
+|  |  |  |  |-- complex_option_test.cc
+|  |  |  |  |-- compute_engine_util.cc
+|  |  |  |  |-- compute_engine_util.h
+|  |  |  |  |-- compute_engine_util_test.cc
+|  |  |  |  |-- const_buffer.cc
+|  |  |  |  |-- const_buffer.h
+|  |  |  |  |-- const_buffer_test.cc
+|  |  |  |  |-- curl_client.cc
+|  |  |  |  |-- curl_client.h
+|  |  |  |  |-- curl_client_test.cc
+|  |  |  |  |-- curl_download_request.cc
+|  |  |  |  |-- curl_download_request.h
+|  |  |  |  |-- curl_handle.cc
+|  |  |  |  |-- curl_handle.h
+|  |  |  |  |-- curl_handle_factory.cc
+|  |  |  |  |-- curl_handle_factory.h
+|  |  |  |  |-- curl_handle_factory_test.cc
+|  |  |  |  |-- curl_handle_test.cc
+|  |  |  |  |-- curl_request.cc
+|  |  |  |  |-- curl_request.h
+|  |  |  |  |-- curl_request_builder.cc
+|  |  |  |  |-- curl_request_builder.h
+|  |  |  |  |-- curl_resumable_upload_session.cc
+|  |  |  |  |-- curl_resumable_upload_session.h
+|  |  |  |  |-- curl_resumable_upload_session_test.cc
+|  |  |  |  |-- curl_wrappers.cc
+|  |  |  |  |-- curl_wrappers.h
+|  |  |  |  |-- curl_wrappers_disable_sigpipe_handler_test.cc
+|  |  |  |  |-- curl_wrappers_enable_sigpipe_handler_test.cc
+|  |  |  |  |-- curl_wrappers_locking_already_present_test.cc
+|  |  |  |  |-- curl_wrappers_locking_disabled_test.cc
+|  |  |  |  |-- curl_wrappers_locking_enabled_test.cc
+|  |  |  |  |-- default_object_acl_requests.cc
+|  |  |  |  |-- default_object_acl_requests.h
+|  |  |  |  |-- default_object_acl_requests_test.cc
+|  |  |  |  |-- empty_response.cc
+|  |  |  |  |-- empty_response.h
+|  |  |  |  |-- error_credentials.cc
+|  |  |  |  |-- error_credentials.h
+|  |  |  |  |-- generate_message_boundary.h
+|  |  |  |  |-- generate_message_boundary_test.cc
+|  |  |  |  |-- generic_object_request.h
+|  |  |  |  |-- generic_request.h
+|  |  |  |  |-- generic_request_test.cc
+|  |  |  |  |-- grpc_client.cc
+|  |  |  |  |-- grpc_client.h
+|  |  |  |  |-- grpc_client_bucket_metadata_test.cc
+|  |  |  |  |-- grpc_client_bucket_request_test.cc
+|  |  |  |  |-- grpc_client_failures_test.cc
+|  |  |  |  |-- grpc_client_insert_object_media_test.cc
+|  |  |  |  |-- grpc_client_object_request_test.cc
+|  |  |  |  |-- grpc_client_test.cc
+|  |  |  |  |-- grpc_object_read_source.cc
+|  |  |  |  |-- grpc_object_read_source.h
+|  |  |  |  |-- grpc_object_read_source_test.cc
+|  |  |  |  |-- grpc_resumable_upload_session.cc
+|  |  |  |  |-- grpc_resumable_upload_session.h
+|  |  |  |  |-- grpc_resumable_upload_session_test.cc
+|  |  |  |  |-- grpc_resumable_upload_session_url.cc
+|  |  |  |  |-- grpc_resumable_upload_session_url.h
+|  |  |  |  |-- grpc_resumable_upload_session_url.proto
+|  |  |  |  |-- grpc_resumable_upload_session_url_test.cc
+|  |  |  |  |-- hash_function.cc
+|  |  |  |  |-- hash_function.h
+|  |  |  |  |-- hash_function_impl.cc
+|  |  |  |  |-- hash_function_impl.h
+|  |  |  |  |-- hash_function_impl_test.cc
+|  |  |  |  |-- hash_validator.cc
+|  |  |  |  |-- hash_validator.h
+|  |  |  |  |-- hash_validator_impl.cc
+|  |  |  |  |-- hash_validator_impl.h
+|  |  |  |  |-- hash_validator_test.cc
+|  |  |  |  |-- hash_values.cc
+|  |  |  |  |-- hash_values.h
+|  |  |  |  |-- hash_values_test.cc
+|  |  |  |  |-- hmac_key_metadata_parser.cc
+|  |  |  |  |-- hmac_key_metadata_parser.h
+|  |  |  |  |-- hmac_key_requests.cc
+|  |  |  |  |-- hmac_key_requests.h
+|  |  |  |  |-- hmac_key_requests_test.cc
+|  |  |  |  |-- http_response.cc
+|  |  |  |  |-- http_response.h
+|  |  |  |  |-- http_response_test.cc
+|  |  |  |  |-- hybrid_client.cc
+|  |  |  |  |-- hybrid_client.h
+|  |  |  |  |-- impersonate_service_account_credentials.cc
+|  |  |  |  |-- impersonate_service_account_credentials.h
+|  |  |  |  |-- impersonate_service_account_credentials_test.cc
+|  |  |  |  |-- lifecycle_rule_parser.cc
+|  |  |  |  |-- lifecycle_rule_parser.h
+|  |  |  |  |-- logging_client.cc
+|  |  |  |  |-- logging_client.h
+|  |  |  |  |-- logging_client_test.cc
+|  |  |  |  |-- logging_resumable_upload_session.cc
+|  |  |  |  |-- logging_resumable_upload_session.h
+|  |  |  |  |-- logging_resumable_upload_session_test.cc
+|  |  |  |  |-- make_jwt_assertion.cc
+|  |  |  |  |-- make_jwt_assertion.h
+|  |  |  |  |-- make_jwt_assertion_test.cc
+|  |  |  |  |-- metadata_parser.cc
+|  |  |  |  |-- metadata_parser.h
+|  |  |  |  |-- metadata_parser_test.cc
+|  |  |  |  |-- minimal_iam_credentials_rest.cc
+|  |  |  |  |-- minimal_iam_credentials_rest.h
+|  |  |  |  |-- notification_metadata_parser.cc
+|  |  |  |  |-- notification_metadata_parser.h
+|  |  |  |  |-- notification_requests.cc
+|  |  |  |  |-- notification_requests.h
+|  |  |  |  |-- notification_requests_test.cc
+|  |  |  |  |-- object_access_control_parser.cc
+|  |  |  |  |-- object_access_control_parser.h
+|  |  |  |  |-- object_acl_requests.cc
+|  |  |  |  |-- object_acl_requests.h
+|  |  |  |  |-- object_acl_requests_test.cc
+|  |  |  |  |-- object_metadata_parser.cc
+|  |  |  |  |-- object_metadata_parser.h
+|  |  |  |  |-- object_read_source.h
+|  |  |  |  |-- object_read_streambuf.cc
+|  |  |  |  |-- object_read_streambuf.h
+|  |  |  |  |-- object_read_streambuf_test.cc
+|  |  |  |  |-- object_requests.cc
+|  |  |  |  |-- object_requests.h
+|  |  |  |  |-- object_requests_test.cc
+|  |  |  |  |-- object_write_streambuf.cc
+|  |  |  |  |-- object_write_streambuf.h
+|  |  |  |  |-- object_write_streambuf_test.cc
+|  |  |  |  |-- openssl_util.cc
+|  |  |  |  |-- openssl_util.h
+|  |  |  |  |-- openssl_util_test.cc
+|  |  |  |  |-- parameter_pack_validation.h
+|  |  |  |  |-- parameter_pack_validation_test.cc
+|  |  |  |  |-- patch_builder.cc
+|  |  |  |  |-- patch_builder.h
+|  |  |  |  |-- patch_builder_test.cc
+|  |  |  |  |-- policy_document_request.cc
+|  |  |  |  |-- policy_document_request.h
+|  |  |  |  |-- policy_document_request_test.cc
+|  |  |  |  |-- raw_client.h
+|  |  |  |  |-- raw_client_wrapper_utils.h
+|  |  |  |  |-- resumable_upload_session.cc
+|  |  |  |  |-- resumable_upload_session.h
+|  |  |  |  |-- resumable_upload_session_test.cc
+|  |  |  |  |-- retry_client.cc
+|  |  |  |  |-- retry_client.h
+|  |  |  |  |-- retry_client_test.cc
+|  |  |  |  |-- retry_object_read_source.cc
+|  |  |  |  |-- retry_object_read_source.h
+|  |  |  |  |-- retry_object_read_source_test.cc
+|  |  |  |  |-- retry_resumable_upload_session.cc
+|  |  |  |  |-- retry_resumable_upload_session.h
+|  |  |  |  |-- retry_resumable_upload_session_test.cc
+|  |  |  |  |-- self_signing_service_account_credentials.cc
+|  |  |  |  |-- self_signing_service_account_credentials.h
+|  |  |  |  |-- self_signing_service_account_credentials_test.cc
+|  |  |  |  |-- service_account_parser.cc
+|  |  |  |  |-- service_account_parser.h
+|  |  |  |  |-- service_account_requests.cc
+|  |  |  |  |-- service_account_requests.h
+|  |  |  |  |-- service_account_requests_test.cc
+|  |  |  |  |-- sha256_hash.cc
+|  |  |  |  |-- sha256_hash.h
+|  |  |  |  |-- sha256_hash_test.cc
+|  |  |  |  |-- sign_blob_requests.cc
+|  |  |  |  |-- sign_blob_requests.h
+|  |  |  |  |-- sign_blob_requests_test.cc
+|  |  |  |  |-- signed_url_requests.cc
+|  |  |  |  |-- signed_url_requests.h
+|  |  |  |  |-- signed_url_requests_test.cc
+|  |  |  |  |-- storage_auth.cc
+|  |  |  |  |-- storage_auth.h
+|  |  |  |  |-- storage_auth_test.cc
+|  |  |  |  |-- storage_round_robin.cc
+|  |  |  |  |-- storage_round_robin.h
+|  |  |  |  |-- storage_round_robin_test.cc
+|  |  |  |  |-- storage_stub.cc
+|  |  |  |  |-- storage_stub.h
+|  |  |  |  |-- tuple_filter.h
+|  |  |  |  |-- tuple_filter_test.cc
+|  |  |  |  |-- unified_rest_credentials.cc
+|  |  |  |  |-- unified_rest_credentials.h
+|  |  |  |  |-- unified_rest_credentials_test.cc
+|  |  |  |-- legacy.cmake.in
+|  |  |  |-- lifecycle_rule.cc
+|  |  |  |-- lifecycle_rule.h
+|  |  |  |-- lifecycle_rule_test.cc
+|  |  |  |-- list_buckets_reader.cc
+|  |  |  |-- list_buckets_reader.h
+|  |  |  |-- list_buckets_reader_test.cc
+|  |  |  |-- list_hmac_keys_reader.cc
+|  |  |  |-- list_hmac_keys_reader.h
+|  |  |  |-- list_hmac_keys_reader_test.cc
+|  |  |  |-- list_objects_and_prefixes_reader.h
+|  |  |  |-- list_objects_and_prefixes_reader_test.cc
+|  |  |  |-- list_objects_reader.cc
+|  |  |  |-- list_objects_reader.h
+|  |  |  |-- list_objects_reader_test.cc
+|  |  |  |-- notification_event_type.h
+|  |  |  |-- notification_metadata.cc
+|  |  |  |-- notification_metadata.h
+|  |  |  |-- notification_metadata_test.cc
+|  |  |  |-- notification_payload_format.h
+|  |  |  |-- oauth2
+|  |  |  |  |-- anonymous_credentials.cc
+|  |  |  |  |-- anonymous_credentials.h
+|  |  |  |  |-- anonymous_credentials_test.cc
+|  |  |  |  |-- authorized_user_credentials.cc
+|  |  |  |  |-- authorized_user_credentials.h
+|  |  |  |  |-- authorized_user_credentials_test.cc
+|  |  |  |  |-- compute_engine_credentials.cc
+|  |  |  |  |-- compute_engine_credentials.h
+|  |  |  |  |-- compute_engine_credentials_test.cc
+|  |  |  |  |-- credential_constants.h
+|  |  |  |  |-- credentials.cc
+|  |  |  |  |-- credentials.h
+|  |  |  |  |-- google_application_default_credentials_file.cc
+|  |  |  |  |-- google_application_default_credentials_file.h
+|  |  |  |  |-- google_application_default_credentials_file_test.cc
+|  |  |  |  |-- google_credentials.cc
+|  |  |  |  |-- google_credentials.h
+|  |  |  |  |-- google_credentials_test.cc
+|  |  |  |  |-- refreshing_credentials_wrapper.cc
+|  |  |  |  |-- refreshing_credentials_wrapper.h
+|  |  |  |  |-- service_account_credentials.cc
+|  |  |  |  |-- service_account_credentials.h
+|  |  |  |  |-- service_account_credentials_test.cc
+|  |  |  |-- object_access_control.cc
+|  |  |  |-- object_access_control.h
+|  |  |  |-- object_access_control_test.cc
+|  |  |  |-- object_metadata.cc
+|  |  |  |-- object_metadata.h
+|  |  |  |-- object_metadata_test.cc
+|  |  |  |-- object_read_stream.cc
+|  |  |  |-- object_read_stream.h
+|  |  |  |-- object_rewriter.cc
+|  |  |  |-- object_rewriter.h
+|  |  |  |-- object_stream.h
+|  |  |  |-- object_stream_test.cc
+|  |  |  |-- object_test.cc
+|  |  |  |-- object_write_stream.cc
+|  |  |  |-- object_write_stream.h
+|  |  |  |-- options.h
+|  |  |  |-- override_default_project.h
+|  |  |  |-- parallel_upload.cc
+|  |  |  |-- parallel_upload.h
+|  |  |  |-- parallel_uploads_test.cc
+|  |  |  |-- policy_document.cc
+|  |  |  |-- policy_document.h
+|  |  |  |-- policy_document_test.cc
+|  |  |  |-- quickstart
+|  |  |  |  |-- .bazelignore
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Makefile
+|  |  |  |  |-- README.md
+|  |  |  |  |-- WORKSPACE
+|  |  |  |  |-- grpc
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- Makefile
+|  |  |  |  |  |-- WORKSPACE
+|  |  |  |  |  |-- quickstart.cc
+|  |  |  |  |-- quickstart.cc
+|  |  |  |-- retry_policy.h
+|  |  |  |-- retry_policy_test.cc
+|  |  |  |-- service_account.cc
+|  |  |  |-- service_account.h
+|  |  |  |-- service_account_test.cc
+|  |  |  |-- signed_url_options.h
+|  |  |  |-- signed_url_options_test.cc
+|  |  |  |-- storage_class.h
+|  |  |  |-- storage_class_test.cc
+|  |  |  |-- storage_client_grpc_unit_tests.bzl
+|  |  |  |-- storage_client_testing.bzl
+|  |  |  |-- storage_client_unit_tests.bzl
+|  |  |  |-- storage_iam_policy_test.cc
+|  |  |  |-- storage_version_test.cc
+|  |  |  |-- testing
+|  |  |  |  |-- canonical_errors.h
+|  |  |  |  |-- client_unit_test.cc
+|  |  |  |  |-- client_unit_test.h
+|  |  |  |  |-- constants.h
+|  |  |  |  |-- mock_client.h
+|  |  |  |  |-- mock_fake_clock.cc
+|  |  |  |  |-- mock_fake_clock.h
+|  |  |  |  |-- mock_http_request.cc
+|  |  |  |  |-- mock_http_request.h
+|  |  |  |  |-- mock_storage_stub.h
+|  |  |  |  |-- object_integration_test.cc
+|  |  |  |  |-- object_integration_test.h
+|  |  |  |  |-- random_names.cc
+|  |  |  |  |-- random_names.h
+|  |  |  |  |-- remove_stale_buckets.cc
+|  |  |  |  |-- remove_stale_buckets.h
+|  |  |  |  |-- remove_stale_buckets_test.cc
+|  |  |  |  |-- retry_tests.h
+|  |  |  |  |-- storage_integration_test.cc
+|  |  |  |  |-- storage_integration_test.h
+|  |  |  |  |-- temp_file.cc
+|  |  |  |  |-- temp_file.h
+|  |  |  |  |-- write_base64.cc
+|  |  |  |  |-- write_base64.h
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- alternative_endpoint_integration_test.cc
+|  |  |  |  |-- auto_finalize_integration_test.cc
+|  |  |  |  |-- bucket_integration_test.cc
+|  |  |  |  |-- conformance_tests.proto
+|  |  |  |  |-- create_client_integration_test.cc
+|  |  |  |  |-- curl_download_request_integration_test.cc
+|  |  |  |  |-- curl_request_integration_test.cc
+|  |  |  |  |-- curl_resumable_upload_session_integration_test.cc
+|  |  |  |  |-- curl_sign_blob_integration_test.cc
+|  |  |  |  |-- error_injection_integration_test.cc
+|  |  |  |  |-- grpc_integration_test.cc
+|  |  |  |  |-- key_file_integration_test.cc
+|  |  |  |  |-- minimal_iam_credentials_rest_integration_test.cc
+|  |  |  |  |-- object_basic_crud_integration_test.cc
+|  |  |  |  |-- object_checksum_integration_test.cc
+|  |  |  |  |-- object_compose_many_integration_test.cc
+|  |  |  |  |-- object_file_integration_test.cc
+|  |  |  |  |-- object_file_multi_threaded_test.cc
+|  |  |  |  |-- object_hash_integration_test.cc
+|  |  |  |  |-- object_insert_integration_test.cc
+|  |  |  |  |-- object_insert_preconditions_integration_test.cc
+|  |  |  |  |-- object_integration_test.cc
+|  |  |  |  |-- object_list_objects_versions_integration_test.cc
+|  |  |  |  |-- object_media_integration_test.cc
+|  |  |  |  |-- object_parallel_upload_integration_test.cc
+|  |  |  |  |-- object_plenty_clients_serially_integration_test.cc
+|  |  |  |  |-- object_plenty_clients_simultaneously_integration_test.cc
+|  |  |  |  |-- object_read_headers_integration_test.cc
+|  |  |  |  |-- object_read_preconditions_integration_test.cc
+|  |  |  |  |-- object_read_range_integration_test.cc
+|  |  |  |  |-- object_read_stream_integration_test.cc
+|  |  |  |  |-- object_resumable_parallel_upload_integration_test.cc
+|  |  |  |  |-- object_resumable_write_integration_test.cc
+|  |  |  |  |-- object_rewrite_integration_test.cc
+|  |  |  |  |-- object_write_preconditions_integration_test.cc
+|  |  |  |  |-- object_write_stream_integration_test.cc
+|  |  |  |  |-- object_write_streambuf_integration_test.cc
+|  |  |  |  |-- service_account_integration_test.cc
+|  |  |  |  |-- signed_url_conformance_test.cc
+|  |  |  |  |-- signed_url_integration_test.cc
+|  |  |  |  |-- slow_reader_chunk_integration_test.cc
+|  |  |  |  |-- slow_reader_stream_integration_test.cc
+|  |  |  |  |-- small_reads_integration_test.cc
+|  |  |  |  |-- storage_client_integration_tests.bzl
+|  |  |  |  |-- storage_include_test.cc
+|  |  |  |  |-- test_service_account.not-a-test.json
+|  |  |  |  |-- thread_integration_test.cc
+|  |  |  |  |-- tracing_integration_test.cc
+|  |  |  |  |-- unified_credentials_integration_test.cc
+|  |  |  |  |-- v4_signatures.json
+|  |  |  |-- tools
+|  |  |  |  |-- make_jwt_assertion_for_test_data.py
+|  |  |  |  |-- run_emulator_utils.sh
+|  |  |  |-- upload_options.h
+|  |  |  |-- version.cc
+|  |  |  |-- version.h
+|  |  |  |-- version_info.h
+|  |  |  |-- well_known_headers.cc
+|  |  |  |-- well_known_headers.h
+|  |  |  |-- well_known_headers_test.cc
+|  |  |  |-- well_known_parameters.cc
+|  |  |  |-- well_known_parameters.h
+|  |  |  |-- well_known_parameters_test.cc
+|  |  |-- stream_range.h
+|  |  |-- stream_range_test.cc
+|  |  |-- terminate_handler.cc
+|  |  |-- terminate_handler.h
+|  |  |-- terminate_handler_test.cc
+|  |  |-- testing_util
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- async_sequencer.h
+|  |  |  |-- check_predicate_becomes_false.h
+|  |  |  |-- chrono_literals.h
+|  |  |  |-- command_line_parsing.cc
+|  |  |  |-- command_line_parsing.h
+|  |  |  |-- command_line_parsing_test.cc
+|  |  |  |-- contains_once.h
+|  |  |  |-- contains_once_test.cc
+|  |  |  |-- crash_handler.cc
+|  |  |  |-- crash_handler.h
+|  |  |  |-- crash_handler_test.cc
+|  |  |  |-- example_driver.cc
+|  |  |  |-- example_driver.h
+|  |  |  |-- example_driver_test.cc
+|  |  |  |-- expect_exception.h
+|  |  |  |-- expect_future_error.h
+|  |  |  |-- fake_completion_queue_impl.cc
+|  |  |  |-- fake_completion_queue_impl.h
+|  |  |  |-- google_cloud_cpp_testing.bzl
+|  |  |  |-- google_cloud_cpp_testing_grpc.bzl
+|  |  |  |-- google_cloud_cpp_testing_grpc_unit_tests.bzl
+|  |  |  |-- google_cloud_cpp_testing_unit_tests.bzl
+|  |  |  |-- integration_test.cc
+|  |  |  |-- integration_test.h
+|  |  |  |-- is_proto_equal.cc
+|  |  |  |-- is_proto_equal.h
+|  |  |  |-- is_proto_equal_test.cc
+|  |  |  |-- mock_async_response_reader.h
+|  |  |  |-- mock_completion_queue_impl.h
+|  |  |  |-- mock_grpc_authentication_strategy.h
+|  |  |  |-- scoped_environment.cc
+|  |  |  |-- scoped_environment.h
+|  |  |  |-- scoped_environment_test.cc
+|  |  |  |-- scoped_log.cc
+|  |  |  |-- scoped_log.h
+|  |  |  |-- scoped_thread.h
+|  |  |  |-- status_matchers.cc
+|  |  |  |-- status_matchers.h
+|  |  |  |-- status_matchers_test.cc
+|  |  |  |-- testing_types.cc
+|  |  |  |-- testing_types.h
+|  |  |  |-- timer.cc
+|  |  |  |-- timer.h
+|  |  |  |-- validate_metadata.cc
+|  |  |  |-- validate_metadata.h
+|  |  |-- tracing_options.cc
+|  |  |-- tracing_options.h
+|  |  |-- tracing_options_test.cc
+|  |  |-- version.cc
+|  |  |-- version.h
+|-- release
+|  |-- README.md
+|  |-- release.sh
+|-- vcpkg.json

@@ -1,0 +1,452 @@
+|-- .bazelrc
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- RELEASE.md
+|-- WORKSPACE
+|-- g3doc
+|  |-- _book.yaml
+|  |-- _index.yaml
+|  |-- framework.md
+|  |-- images
+|  |  |-- nlink_figure.png
+|  |  |-- nsl_overview.png
+|  |  |-- two_types_edges.png
+|  |  |-- workflow_overview.png
+|  |-- install.md
+|  |-- tutorials
+|  |  |-- adversarial_keras_cnn_mnist.ipynb
+|  |  |-- graph_keras_lstm_imdb.ipynb
+|  |  |-- graph_keras_mlp_cora.ipynb
+|-- neural_structured_learning
+|  |-- BUILD
+|  |-- __init__.py
+|  |-- configs
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- configs.py
+|  |-- estimator
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- adversarial_regularization.py
+|  |  |-- adversarial_regularization_test.py
+|  |  |-- graph_regularization.py
+|  |  |-- graph_regularization_test.py
+|  |-- examples
+|  |  |-- adv_keras_cnn_mnist.py
+|  |  |-- graph_keras_mlp_cora.py
+|  |  |-- notebooks
+|  |  |  |-- adversarial_cnn_transfer_learning_fashionmnist.ipynb
+|  |  |-- preprocess
+|  |  |  |-- cora
+|  |  |  |  |-- prep_data.sh
+|  |  |  |  |-- preprocess_cora_dataset.py
+|  |-- keras
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- adversarial_regularization.py
+|  |  |-- adversarial_regularization_multi_device_test.py
+|  |  |-- adversarial_regularization_test.py
+|  |  |-- graph_regularization.py
+|  |  |-- graph_regularization_test.py
+|  |  |-- layers
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- layers_test.py
+|  |  |  |-- neighbor_features.py
+|  |  |  |-- neighbor_features_test.py
+|  |  |  |-- pairwise_distance.py
+|  |  |  |-- pairwise_distance_test.py
+|  |-- lib
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- abstract_gen_neighbor.py
+|  |  |-- adversarial_neighbor.py
+|  |  |-- adversarial_neighbor_test.py
+|  |  |-- distances.py
+|  |  |-- distances_test.py
+|  |  |-- regularizer.py
+|  |  |-- regularizer_test.py
+|  |  |-- utils.py
+|  |  |-- utils_test.py
+|  |-- requirements.txt
+|  |-- tools
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- build_docs.py
+|  |  |-- build_graph.py
+|  |  |-- build_graph_test.py
+|  |  |-- graph_utils.py
+|  |  |-- graph_utils_test.py
+|  |  |-- pack_nbrs.py
+|  |  |-- pack_nbrs_test.py
+|  |-- version.py
+|-- research
+|  |-- README.md
+|  |-- a2n
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- dataset.py
+|  |  |-- encoders.py
+|  |  |-- generate_random_graph.py
+|  |  |-- graph.py
+|  |  |-- losses.py
+|  |  |-- metrics.py
+|  |  |-- models.py
+|  |  |-- train.py
+|  |  |-- utils.py
+|  |-- carls
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- base
+|  |  |  |-- BUILD
+|  |  |  |-- async_node_hash_map.h
+|  |  |  |-- async_node_hash_map_test.cc
+|  |  |  |-- embedding_helper.cc
+|  |  |  |-- embedding_helper.h
+|  |  |  |-- embedding_helper_test.cc
+|  |  |  |-- file_helper.cc
+|  |  |  |-- file_helper.h
+|  |  |  |-- file_helper_test.cc
+|  |  |  |-- input_context_helper.cc
+|  |  |  |-- input_context_helper.h
+|  |  |  |-- input_context_helper_test.cc
+|  |  |  |-- proto_factory.h
+|  |  |  |-- proto_factory_test.cc
+|  |  |  |-- proto_helper.cc
+|  |  |  |-- proto_helper.h
+|  |  |  |-- proto_helper_test.cc
+|  |  |  |-- status_helper.cc
+|  |  |  |-- status_helper.h
+|  |  |  |-- status_helper_test.cc
+|  |  |  |-- thread_bundle.cc
+|  |  |  |-- thread_bundle.h
+|  |  |  |-- thread_bundle_test.cc
+|  |  |  |-- top_n.h
+|  |  |  |-- top_n_test.cc
+|  |  |-- bazel
+|  |  |  |-- build_rules.bzl
+|  |  |  |-- repo.bzl
+|  |  |-- candidate_sampling
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- brute_force_topk_sampler.cc
+|  |  |  |-- brute_force_topk_sampler_test.cc
+|  |  |  |-- candidate_sampler.cc
+|  |  |  |-- candidate_sampler.h
+|  |  |  |-- candidate_sampler_config.proto
+|  |  |  |-- candidate_sampler_config_builder.py
+|  |  |  |-- candidate_sampler_config_builder_test.py
+|  |  |  |-- candidate_sampler_test.cc
+|  |  |  |-- negative_sampler.cc
+|  |  |  |-- negative_sampler_test.cc
+|  |  |-- candidate_sampling_ops.py
+|  |  |-- candidate_sampling_ops_test.py
+|  |  |-- constants.h
+|  |  |-- context.py
+|  |  |-- context_test.py
+|  |  |-- dynamic_embedding_config.proto
+|  |  |-- dynamic_embedding_manager.cc
+|  |  |-- dynamic_embedding_manager.h
+|  |  |-- dynamic_embedding_manager_test.cc
+|  |  |-- dynamic_embedding_neighbor_cache.py
+|  |  |-- dynamic_embedding_neighbor_cache_test.py
+|  |  |-- dynamic_embedding_ops.py
+|  |  |-- dynamic_embedding_ops_test.py
+|  |  |-- dynamic_memory_ops.py
+|  |  |-- dynamic_memory_ops_test.py
+|  |  |-- dynamic_normalization.py
+|  |  |-- dynamic_normalization_test.py
+|  |  |-- embedding.proto
+|  |  |-- examples
+|  |  |  |-- dynamic_normalization
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- image_dataset_eval_main.py
+|  |  |  |-- graph_regularization
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- graph_keras_mlp_cora.py
+|  |  |  |-- notebooks
+|  |  |  |  |-- carls_mlp_cora.ipynb
+|  |  |-- g3doc
+|  |  |  |-- images
+|  |  |  |  |-- caml_sparse_feature_model.png
+|  |  |  |  |-- carls_overview.png
+|  |  |  |  |-- dynamic_memory_logo.png
+|  |  |  |  |-- knowledge_bank_server.png
+|  |  |-- gradient_descent
+|  |  |  |-- BUILD
+|  |  |  |-- gradient_descent_config.proto
+|  |  |  |-- gradient_descent_optimizer.cc
+|  |  |  |-- gradient_descent_optimizer.h
+|  |  |  |-- gradient_descent_optimizer_test.cc
+|  |  |-- graph_regularization.py
+|  |  |-- graph_regularization_test.py
+|  |  |-- input_context.proto
+|  |  |-- io_ops.py
+|  |  |-- io_ops_test.py
+|  |  |-- kbs_server_helper.cc
+|  |  |-- kbs_server_helper.clif
+|  |  |-- kbs_server_helper.h
+|  |  |-- kbs_server_helper_pybind.cc
+|  |  |-- kbs_server_helper_test.cc
+|  |  |-- kbs_server_helper_test.py
+|  |  |-- kernels
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- dynamic_embedding_manager_resource.cc
+|  |  |  |-- dynamic_embedding_manager_resource.h
+|  |  |  |-- dynamic_embedding_manager_resource_test.cc
+|  |  |  |-- dynamic_embedding_ops.cc
+|  |  |  |-- dynamic_memory_ops.cc
+|  |  |  |-- io_ops.cc
+|  |  |  |-- sampled_logits_ops.cc
+|  |  |  |-- topk_ops.cc
+|  |  |-- knowledge_bank
+|  |  |  |-- BUILD
+|  |  |  |-- in_proto_knowledge_bank.cc
+|  |  |  |-- in_proto_knowledge_bank_test.cc
+|  |  |  |-- initializer.proto
+|  |  |  |-- initializer_helper.cc
+|  |  |  |-- initializer_helper.h
+|  |  |  |-- initializer_helper_test.cc
+|  |  |  |-- knowledge_bank.cc
+|  |  |  |-- knowledge_bank.h
+|  |  |  |-- knowledge_bank_config.proto
+|  |  |  |-- knowledge_bank_test.cc
+|  |  |  |-- leveldb_knowledge_bank.cc
+|  |  |  |-- leveldb_knowledge_bank_test.cc
+|  |  |-- knowledge_bank_grpc_service.cc
+|  |  |-- knowledge_bank_grpc_service.h
+|  |  |-- knowledge_bank_grpc_service_test.cc
+|  |  |-- knowledge_bank_service.proto
+|  |  |-- memory_store
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- distance_helper.cc
+|  |  |  |-- distance_helper.h
+|  |  |  |-- distance_helper_test.cc
+|  |  |  |-- gaussian_memory.cc
+|  |  |  |-- gaussian_memory_config.proto
+|  |  |  |-- gaussian_memory_test.cc
+|  |  |  |-- memory_distance_config.proto
+|  |  |  |-- memory_store.cc
+|  |  |  |-- memory_store.h
+|  |  |  |-- memory_store_config.proto
+|  |  |  |-- memory_store_test.cc
+|  |  |-- models
+|  |  |  |-- caml
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- sparse_features.py
+|  |  |  |  |-- sparse_features_config.proto
+|  |  |  |  |-- sparse_features_test.py
+|  |  |-- neighbor_cache_client.py
+|  |  |-- testing
+|  |  |  |-- BUILD
+|  |  |  |-- test_helper.cc
+|  |  |  |-- test_helper.h
+|  |  |  |-- test_helper_test.cc
+|  |  |  |-- test_proto2.proto
+|  |  |  |-- test_proto3.proto
+|  |  |  |-- test_util.py
+|  |  |-- third_party
+|  |  |  |-- BUILD
+|  |  |  |-- farmhash
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- farmhash.BUILD
+|  |  |  |  |-- workspace.bzl
+|  |  |  |-- leveldb
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- leveldb.BUILD
+|  |  |  |  |-- workspace.bzl
+|  |  |  |-- protobuf.BUILD
+|  |  |  |-- rocksdb
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- rocksdb.BUILD
+|  |  |  |  |-- tbb.BUILD
+|  |  |  |  |-- workspace.bzl
+|  |  |-- util
+|  |  |  |-- BUILD
+|  |  |  |-- BUILD.oss
+|  |  |  |-- array_ops.py
+|  |  |  |-- array_ops_test.py
+|  |-- gam
+|  |  |-- README.md
+|  |  |-- gam
+|  |  |  |-- __init__.py
+|  |  |  |-- data
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- dataset.py
+|  |  |  |  |-- loaders.py
+|  |  |  |  |-- preprocessing.py
+|  |  |  |  |-- robustness.py
+|  |  |  |-- experiments
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- helper.py
+|  |  |  |  |-- run_train_gam.py
+|  |  |  |  |-- run_train_gam_graph.py
+|  |  |  |-- models
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- cnn.py
+|  |  |  |  |-- gcn.py
+|  |  |  |  |-- mlp.py
+|  |  |  |  |-- models_base.py
+|  |  |  |  |-- wide_resnet.py
+|  |  |  |-- trainer
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- adversarial_dense.py
+|  |  |  |  |-- adversarial_sparse.py
+|  |  |  |  |-- trainer_agreement.py
+|  |  |  |  |-- trainer_base.py
+|  |  |  |  |-- trainer_classification.py
+|  |  |  |  |-- trainer_classification_gcn.py
+|  |  |  |  |-- trainer_cotrain.py
+|  |  |-- gam_gcn_cora_multiple_seeds.png
+|  |  |-- gam_gcn_pubmed.png
+|  |  |-- run_configs.txt
+|  |-- gnn-survey
+|  |  |-- README.md
+|  |  |-- download_dataset.sh
+|  |  |-- layers.py
+|  |  |-- models.py
+|  |  |-- train.py
+|  |  |-- utils.py
+|  |-- kg_hyp_emb
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- config.py
+|  |  |-- datasets
+|  |  |  |-- __init__.py
+|  |  |  |-- datasets.py
+|  |  |  |-- download.sh
+|  |  |  |-- process.py
+|  |  |-- learning
+|  |  |  |-- __init__.py
+|  |  |  |-- losses.py
+|  |  |  |-- regularizers.py
+|  |  |  |-- trainer.py
+|  |  |-- models
+|  |  |  |-- __init__.py
+|  |  |  |-- base.py
+|  |  |  |-- complex.py
+|  |  |  |-- euclidean.py
+|  |  |  |-- hyperbolic.py
+|  |  |-- requirements.txt
+|  |  |-- train.py
+|  |  |-- utils
+|  |  |  |-- __init__.py
+|  |  |  |-- euclidean.py
+|  |  |  |-- hyperbolic.py
+|  |  |  |-- train.py
+|  |-- multi_representation_adversary
+|  |  |-- README.md
+|  |  |-- configs
+|  |  |  |-- cifar10_adversary_eval.gin
+|  |  |  |-- cifar10_adversary_train.gin
+|  |  |  |-- cifar10_base.gin
+|  |  |  |-- exp01_l1_dct.gin
+|  |  |  |-- exp01_l1_pixel.gin
+|  |  |  |-- exp01_l2_dct.gin
+|  |  |  |-- exp01_l2_pixel.gin
+|  |  |  |-- exp01_linf_dct.gin
+|  |  |  |-- exp01_linf_pixel.gin
+|  |  |  |-- exp02_greedy.gin
+|  |  |  |-- exp02_multiweight.gin
+|  |  |  |-- exp02_roundrobin.gin
+|  |  |  |-- exp03_greedy.gin
+|  |  |  |-- exp03_multiweight.gin
+|  |  |  |-- exp03_roundrobin.gin
+|  |  |  |-- mnist_adversary_eval.gin
+|  |  |  |-- mnist_adversary_train.gin
+|  |  |  |-- mnist_base.gin
+|  |  |  |-- tiny_imagenet_adversary_eval.gin
+|  |  |  |-- tiny_imagenet_adversary_train.gin
+|  |  |  |-- tiny_imagenet_base.gin
+|  |  |-- dct_perturbations.png
+|  |  |-- multi_representation_adversary
+|  |  |  |-- __init__.py
+|  |  |  |-- attacks.py
+|  |  |  |-- attacks_test.py
+|  |  |  |-- cleverhans_adapter.py
+|  |  |  |-- data.py
+|  |  |  |-- evaluator.py
+|  |  |  |-- evaluator_test.py
+|  |  |  |-- helper.py
+|  |  |  |-- main.py
+|  |  |  |-- resnet.py
+|  |  |  |-- resnet_test.py
+|  |  |  |-- selectors.py
+|  |  |  |-- selectors_test.py
+|  |  |  |-- trainer.py
+|  |  |  |-- trainer_test.py
+|  |  |  |-- transforms.py
+|  |  |  |-- transforms_test.py
+|  |  |-- requirements.txt
+|  |-- neural_clustering
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- data_generators
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- mog.py
+|  |  |  |-- mog_test.py
+|  |  |  |-- partition.py
+|  |  |  |-- partition_test.py
+|  |  |-- examples
+|  |  |  |-- ncp_demo_with_mog_data.ipynb
+|  |  |-- models
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- ncp_base.py
+|  |  |  |-- ncp_models.py
+|  |  |  |-- ncp_test.py
+|  |  |  |-- ncp_wrapper.py
+|  |  |-- requirements.txt
+|  |  |-- setup.py
+|  |  |-- utils
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- data_utils.py
+|  |  |  |-- data_utils_test.py
+|-- setup.cfg
+|-- setup.py
+|-- workshops
+|  |-- kdd_2020
+|  |  |-- README.md
+|  |  |-- adversarial_regularization_mnist.ipynb
+|  |  |-- graph_regularization_pheme_natural_graph.ipynb
+|  |  |-- slides
+|  |  |  |-- Adversarial_Learning.pdf
+|  |  |  |-- Data_Preprocessing.pdf
+|  |  |  |-- Introduction.pdf
+|  |  |  |-- NSL_in_TFX.pdf
+|  |  |  |-- Natural_Graphs.pdf
+|  |  |  |-- Research_and_Future_Directions.pdf
+|  |  |  |-- Summary.pdf
+|  |  |  |-- Synthesized_Graphs.pdf
+|  |-- webconf_2021
+|  |  |-- README.md
+|  |  |-- slides
+|  |  |  |-- Adversarial_Learning.pdf
+|  |  |  |-- CARLS.pdf
+|  |  |  |-- Data_Preprocessing.pdf
+|  |  |  |-- Introduction.pdf
+|  |  |  |-- Natural_Graphs.pdf
+|  |  |  |-- Neural_Clustering.pdf
+|  |  |  |-- Research_and_Future_Directions.pdf
+|  |  |  |-- Synthesized_Graphs.pdf
+|  |-- wsdm_2021
+|  |  |-- README.md
+|  |  |-- slides
+|  |  |  |-- Adversarial_Learning.pdf
+|  |  |  |-- CARLS.pdf
+|  |  |  |-- Data_Preprocessing.pdf
+|  |  |  |-- Introduction.pdf
+|  |  |  |-- Natural_Graphs.pdf
+|  |  |  |-- Neural_Clustering.pdf
+|  |  |  |-- Research_and_Future_Directions.pdf
+|  |  |  |-- Synthesized_Graphs.pdf

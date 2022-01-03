@@ -1,0 +1,614 @@
+|-- .bazelci
+|  |-- presubmit.yml
+|-- .bazelignore
+|-- .bazelrc
+|-- .github
+|  |-- CODEOWNERS
+|  |-- ISSUE_TEMPLATE
+|  |  |-- bug_report.md
+|  |  |-- feature_request.md
+|  |-- PULL_REQUEST_TEMPLATE.md
+|  |-- workflows
+|  |  |-- stale.yml
+|-- .gitignore
+|-- .pre-commit-config.yaml
+|-- AUTHORS
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- CONTRIBUTORS
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- cc
+|  |-- BUILD
+|  |-- cc.bzl
+|  |-- image.bzl
+|-- cloudbuild.yaml
+|-- container
+|  |-- BUILD
+|  |-- archive.py
+|  |-- build_tar.py
+|  |-- bundle.bzl
+|  |-- container.bzl
+|  |-- container.docs.bzl
+|  |-- flatten.bzl
+|  |-- go
+|  |  |-- cloudbuild.yaml
+|  |  |-- cmd
+|  |  |  |-- create_image_config
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- create_image_config.go
+|  |  |  |-- digester
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- digester.go
+|  |  |  |-- extract_config
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- extract_config.go
+|  |  |  |-- flattener
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- flattener.go
+|  |  |  |-- join_layers
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- join_layers.go
+|  |  |  |-- loader
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- loader.go
+|  |  |  |-- puller
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- puller.go
+|  |  |  |-- pusher
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- pusher.go
+|  |  |  |-- update_deps
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- update_deps.go
+|  |  |  |-- zipper
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- zipper.go
+|  |  |-- pkg
+|  |  |  |-- compat
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- config.go
+|  |  |  |  |-- config_test.go
+|  |  |  |  |-- image.go
+|  |  |  |  |-- reader.go
+|  |  |  |  |-- write.go
+|  |  |  |  |-- write_test.go
+|  |  |  |-- oci
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- image.go
+|  |  |  |  |-- reader.go
+|  |  |  |  |-- reader_test.go
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- test_index1
+|  |  |  |  |  |  |-- blobs
+|  |  |  |  |  |  |  |-- sha256
+|  |  |  |  |  |  |  |  |-- 26c668c40574f4fefe17ddfbc3a8744a5b83b8c00a03dff790cbe6a397f66d79
+|  |  |  |  |  |  |  |  |-- 2cbd3e7a7cca7df9201e626abe080efe75e0588dda3c0188b1caf3a011f300ca
+|  |  |  |  |  |  |  |  |-- 3d4d5ef7eb586de880424d1613e36bc25a1617239ff81d8cf961c6481e6193af
+|  |  |  |  |  |  |  |  |-- 4817a495758a70edcaa9ed6723cd927f21c44e2061313b03aaf5d5ae2c1bff46
+|  |  |  |  |  |  |  |  |-- 93cd8b73a9da05da6e1a9739e3610cbb0f19439d693931d3bf011d1d92b9e569
+|  |  |  |  |  |  |-- index.json
+|  |  |  |  |  |  |-- oci-layout
+|  |  |  |  |  |-- test_index2
+|  |  |  |  |  |  |-- blobs
+|  |  |  |  |  |  |  |-- sha256
+|  |  |  |  |  |  |  |  |-- 26c668c40574f4fefe17ddfbc3a8744a5b83b8c00a03dff790cbe6a397f66d79
+|  |  |  |  |  |  |  |  |-- 2cbd3e7a7cca7df9201e626abe080efe75e0588dda3c0188b1caf3a011f300ca
+|  |  |  |  |  |  |  |  |-- 3d4d5ef7eb586de880424d1613e36bc25a1617239ff81d8cf961c6481e6193af
+|  |  |  |  |  |  |  |  |-- 4817a495758a70edcaa9ed6723cd927f21c44e2061313b03aaf5d5ae2c1bff46
+|  |  |  |  |  |  |  |  |-- 93cd8b73a9da05da6e1a9739e3610cbb0f19439d693931d3bf011d1d92b9e569
+|  |  |  |  |  |  |-- oci-layout
+|  |  |  |  |  |-- test_index3
+|  |  |  |  |  |  |-- blobs
+|  |  |  |  |  |  |  |-- sha256
+|  |  |  |  |  |  |  |  |-- 26c668c40574f4fefe17ddfbc3a8744a5b83b8c00a03dff790cbe6a397f66d79
+|  |  |  |  |  |  |  |  |-- 2cbd3e7a7cca7df9201e626abe080efe75e0588dda3c0188b1caf3a011f300ca
+|  |  |  |  |  |  |  |  |-- 3d4d5ef7eb586de880424d1613e36bc25a1617239ff81d8cf961c6481e6193af
+|  |  |  |  |  |  |  |  |-- 93cd8b73a9da05da6e1a9739e3610cbb0f19439d693931d3bf011d1d92b9e569
+|  |  |  |  |  |  |-- index.json
+|  |  |  |  |  |  |-- oci-layout
+|  |  |  |  |  |-- test_index4
+|  |  |  |  |  |  |-- blobs
+|  |  |  |  |  |  |  |-- sha256
+|  |  |  |  |  |  |  |  |-- 26c668c40574f4fefe17ddfbc3a8744a5b83b8c00a03dff790cbe6a397f66d79
+|  |  |  |  |  |  |  |  |-- 2cbd3e7a7cca7df9201e626abe080efe75e0588dda3c0188b1caf3a011f300ca
+|  |  |  |  |  |  |  |  |-- 3d4d5ef7eb586de880424d1613e36bc25a1617239ff81d8cf961c6481e6193af
+|  |  |  |  |  |  |  |  |-- 4817a495758a70edcaa9ed6723cd927f21c44e2061313b03aaf5d5ae2c1bff46
+|  |  |  |  |  |  |-- index.json
+|  |  |  |  |  |  |-- oci-layout
+|  |  |  |  |  |-- test_index5
+|  |  |  |  |  |  |-- blobs
+|  |  |  |  |  |  |  |-- sha256
+|  |  |  |  |  |  |  |  |-- 2cbd3e7a7cca7df9201e626abe080efe75e0588dda3c0188b1caf3a011f300ca
+|  |  |  |  |  |  |  |  |-- 3d4d5ef7eb586de880424d1613e36bc25a1617239ff81d8cf961c6481e6193af
+|  |  |  |  |  |  |  |  |-- 4817a495758a70edcaa9ed6723cd927f21c44e2061313b03aaf5d5ae2c1bff46
+|  |  |  |  |  |  |  |  |-- 93cd8b73a9da05da6e1a9739e3610cbb0f19439d693931d3bf011d1d92b9e569
+|  |  |  |  |  |  |-- index.json
+|  |  |  |  |  |  |-- oci-layout
+|  |  |  |  |  |-- test_write1
+|  |  |  |  |  |  |-- small_linux.tar
+|  |  |  |  |-- write.go
+|  |  |  |  |-- write_test.go
+|  |  |  |-- utils
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- utils.go
+|  |-- image.bzl
+|  |-- import.bzl
+|  |-- incremental_load.sh.tpl
+|  |-- layer.bzl
+|  |-- layer_tools.bzl
+|  |-- load.bzl
+|  |-- providers.bzl
+|  |-- pull.bzl
+|  |-- push-tag.bat.tpl
+|  |-- push-tag.sh.tpl
+|  |-- push.bzl
+|  |-- testenv.sh
+|-- contrib
+|  |-- BUILD
+|  |-- automatic_container_release
+|  |  |-- BUILD
+|  |  |-- configs_test.bzl
+|  |  |-- metadata_merge.bzl
+|  |  |-- packages_metadata.bzl
+|  |  |-- run_checker.sh.tpl
+|  |-- cmp_images.sh.tpl
+|  |-- compare_ids_test.bzl
+|  |-- compare_ids_test.py
+|  |-- dockerfile_build.bzl
+|  |-- extract_image_id.py
+|  |-- extract_last_layer.py
+|  |-- go
+|  |  |-- cmd
+|  |  |  |-- metadata_merge
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- metadata_merge.go
+|  |  |  |-- packages_metadata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- packages_metadata.go
+|  |  |-- pkg
+|  |  |  |-- metadata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- packages.go
+|  |-- group.bzl
+|  |-- passwd.bzl
+|  |-- push-all.bzl
+|  |-- push-all.sh.tpl
+|  |-- rename_image.bzl
+|  |-- repro_test.bzl
+|  |-- structure-test.sh.tpl
+|  |-- test.bzl
+|  |-- with-defaults.bzl
+|  |-- with-tag.bzl
+|-- d
+|  |-- BUILD
+|  |-- image.bzl
+|-- docker
+|  |-- BUILD
+|  |-- docker.bzl
+|  |-- package_managers
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- apt_key.bzl
+|  |  |-- download_pkgs.bzl
+|  |  |-- install_pkgs.bzl
+|  |  |-- installer.sh.tpl
+|  |  |-- run_download.sh.tpl
+|  |  |-- run_install.sh.tpl
+|  |-- security
+|  |  |-- BUILD
+|  |  |-- cmd
+|  |  |  |-- json_to_yaml
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- json_to_yaml.go
+|  |  |-- security_check.bzl
+|  |  |-- security_check.py
+|  |  |-- security_check_whitelist.json
+|  |-- toolchain_container
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- debian_pkg_tar.bzl
+|  |  |-- toolchain_container.bzl
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- commit.sh.tpl
+|  |  |-- commit_layer.sh.tpl
+|  |  |-- config_stripper.py
+|  |  |-- config_stripper_test.py
+|  |  |-- extract.sh.tpl
+|  |  |-- image_util.sh.tpl
+|  |  |-- run.bzl
+|  |  |-- testdata
+|  |  |  |-- BUILD
+|  |  |  |-- image_with_symlinked_layer.tar
+|  |  |-- to_json.py
+|-- docs
+|  |-- BUILD
+|  |-- container.md
+|-- go
+|  |-- BUILD
+|  |-- go.bzl
+|  |-- image.bzl
+|  |-- static.bzl
+|-- groovy
+|  |-- BUILD
+|  |-- image.bzl
+|-- intermediate-form.md
+|-- java
+|  |-- BUILD
+|  |-- image.bzl
+|  |-- java.bzl
+|  |-- jetty.bzl
+|-- kotlin
+|  |-- BUILD
+|  |-- image.bzl
+|-- lang
+|  |-- BUILD
+|  |-- image.bzl
+|-- nodejs
+|  |-- BUILD
+|  |-- image.bzl
+|  |-- nodejs.bzl
+|-- oci
+|  |-- BUILD
+|  |-- oci.bzl
+|-- platforms
+|  |-- BUILD
+|-- python
+|  |-- BUILD
+|  |-- image.bzl
+|  |-- python.bzl
+|-- python3
+|  |-- BUILD
+|  |-- image.bzl
+|  |-- python3.bzl
+|-- renovate.json
+|-- repositories
+|  |-- BUILD
+|  |-- deps.bzl
+|  |-- go_repositories.bzl
+|  |-- images.bzl
+|  |-- py_repositories.bzl
+|  |-- repositories.bzl
+|  |-- requirements-pip.txt
+|-- run-bazel-in-docker.sh
+|-- rust
+|  |-- BUILD
+|  |-- image.bzl
+|-- scala
+|  |-- BUILD
+|  |-- image.bzl
+|-- skylib
+|  |-- BUILD
+|  |-- filetype.bzl
+|  |-- label.bzl
+|  |-- path.bzl
+|  |-- zip.bzl
+|-- testdata
+|  |-- ArgEcho.java
+|  |-- BUILD
+|  |-- Binary.groovy
+|  |-- Binary.java
+|  |-- Binary.kt
+|  |-- Binary.scala
+|  |-- Library.groovy
+|  |-- Library.java
+|  |-- Library.kt
+|  |-- Library.scala
+|  |-- Runfiles.java
+|  |-- Servlet.java
+|  |-- bar
+|  |-- baz
+|  |-- cc_image.cc
+|  |-- cc_image_library.cc
+|  |-- cc_image_library.h
+|  |-- cc_image_wrapper.sh
+|  |-- dockerfile_build
+|  |  |-- BUILD
+|  |  |-- Data_file.txt
+|  |  |-- Dockerfile
+|  |  |-- More_data.txt
+|  |  |-- file_to_copy.txt
+|  |-- extras_gen.py
+|  |-- flag_main.go
+|  |-- foo
+|  |-- gen_deb.py
+|  |-- launcher_main.go
+|  |-- main.d
+|  |-- main.go
+|  |-- main.rs
+|  |-- nodejs_image.js
+|  |-- nodejs_image_lib.ts
+|  |-- one.tar
+|  |-- package.json
+|  |-- pause.tar
+|  |-- pause_piecemeal
+|  |  |-- BUILD
+|  |  |-- layers.bzl
+|  |-- pause_piecemeal_gz
+|  |  |-- BUILD
+|  |-- py3_image.py
+|  |-- py_image.py
+|  |-- py_image_complex.py
+|  |-- py_image_complex_library.py
+|  |-- py_image_library.py
+|  |-- py_image_library_using_six.py
+|  |-- stamp_info.bzl
+|  |-- test
+|  |  |-- BUILD
+|  |  |-- py_image_library_using_addict.py
+|  |  |-- py_image_using_layers.py
+|  |  |-- test
+|  |-- three.tar
+|  |-- tsconfig.json
+|  |-- two.tar
+|  |-- utils.bzl
+|  |-- yarn.lock
+|-- testing
+|  |-- custom_toolchain_auth
+|  |  |-- .gitignore
+|  |  |-- BUILD
+|  |  |-- WORKSPACE
+|  |-- custom_toolchain_flags
+|  |  |-- BUILD
+|  |  |-- WORKSPACE
+|  |  |-- cloudbuild.yaml
+|  |-- default_toolchain
+|  |  |-- .gitignore
+|  |  |-- BUILD
+|  |  |-- WORKSPACE
+|  |  |-- local_tool.bzl
+|  |-- docker-config
+|  |  |-- config.json
+|  |  |-- config.yml
+|  |  |-- htpasswd
+|  |-- download_pkgs_at_root
+|  |  |-- BUILD
+|  |  |-- WORKSPACE
+|  |  |-- cloudbuild.yaml
+|  |  |-- download_pkgs_at_root_run_test.sh
+|  |-- e2e.sh
+|  |-- e2e
+|  |  |-- bazel_run_docker.sh
+|  |  |-- cc_image.sh
+|  |  |-- docker_run_flags.sh
+|  |  |-- flag.sh
+|  |  |-- go_image.sh
+|  |  |-- groovy_image.sh
+|  |  |-- java_image.sh
+|  |  |-- kt_jvm_image.sh
+|  |  |-- launcher.sh
+|  |  |-- nodejs_image.sh
+|  |  |-- puller.sh
+|  |  |-- pusher.sh
+|  |  |-- py_image.sh
+|  |  |-- scala_image.sh
+|  |  |-- test_bazel_run_docker.yaml
+|  |  |-- test_cc_image.yaml
+|  |  |-- test_docker_run_flags.yaml
+|  |  |-- test_flag.yaml
+|  |  |-- test_go_image.yaml
+|  |  |-- test_groovy_image.yaml
+|  |  |-- test_java_image.yaml
+|  |  |-- test_kt_jvm_image.yaml
+|  |  |-- test_launcher.yaml
+|  |  |-- test_nodejs_image.yaml
+|  |  |-- test_puller.yaml
+|  |  |-- test_pusher.yaml
+|  |  |-- test_py_image.yaml
+|  |  |-- test_scala_image.yaml
+|  |  |-- test_top_level.yaml
+|  |  |-- top_level.sh
+|  |  |-- util.sh
+|  |-- examples
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- WORKSPACE
+|  |  |-- basic
+|  |  |  |-- BUILD
+|  |  |  |-- Dockerfile
+|  |  |  |-- cloudbuild.yaml
+|  |  |  |-- test_configs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- basic_alpine.yaml
+|  |  |-- extended
+|  |  |  |-- BUILD
+|  |  |  |-- Dockerfile
+|  |  |  |-- cloudbuild.yaml
+|  |  |  |-- image_data
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Data_file.txt
+|  |  |  |  |-- More_data.txt
+|  |  |  |  |-- file_to_copy.txt
+|  |  |  |  |-- tarfile.tar
+|  |  |  |-- test_configs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- extended_alpine.yaml
+|  |  |-- java_app
+|  |  |  |-- BUILD
+|  |  |  |-- Dockerfile
+|  |  |  |-- cloudbuild.yaml
+|  |  |  |-- image_data
+|  |  |  |  |-- Greeting.java
+|  |  |  |  |-- ProjectRunner.java
+|  |  |  |-- test_configs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- java_app_bazel.yaml
+|  |  |  |  |-- java_app_dockerfile.yaml
+|  |  |-- run_instruction_apt_pkgs
+|  |  |  |-- BUILD
+|  |  |  |-- Dockerfile
+|  |  |  |-- cloudbuild.yaml
+|  |  |  |-- test_configs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- java_python.yaml
+|  |  |-- run_instruction_arbitrary
+|  |  |  |-- BUILD
+|  |  |  |-- Dockerfile
+|  |  |  |-- cloudbuild.yaml
+|  |  |  |-- test_configs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- bazel_gcloud.yaml
+|  |-- java_image
+|  |  |-- BUILD
+|  |  |-- Gzip.java
+|  |  |-- Runfiles.java
+|  |  |-- WORKSPACE
+|  |  |-- cloudbuild.yaml
+|  |  |-- foo
+|  |-- new_pusher_tests
+|  |  |-- BUILD
+|  |  |-- WORKSPACE
+|-- tests
+|  |-- BUILD
+|  |-- container
+|  |  |-- BUILD
+|  |  |-- apple.bzl
+|  |  |-- architecture_test.sh
+|  |  |-- build_tar_test.py
+|  |  |-- cc
+|  |  |  |-- BUILD
+|  |  |  |-- configs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- cc_image.yaml
+|  |  |-- cloudbuild.yaml
+|  |  |-- configs
+|  |  |  |-- BUILD
+|  |  |  |-- alpine_amd64.yaml
+|  |  |  |-- alpine_arm.yaml
+|  |  |  |-- alpine_ppc64le.yaml
+|  |  |  |-- deb_image_with_dpkgs.yaml
+|  |  |  |-- null_cmd_and_entrypoint.yaml
+|  |  |  |-- set_cmd.yaml
+|  |  |  |-- set_cmd_and_entrypoint.yaml
+|  |  |  |-- set_entrypoint.yaml
+|  |  |  |-- set_env_csv.yaml
+|  |  |  |-- set_env_equals.yaml
+|  |  |  |-- set_env_make_vars.yaml
+|  |  |  |-- special_characters.yaml
+|  |  |  |-- stripped_directory_name.yaml
+|  |  |  |-- test.yaml
+|  |  |  |-- verify_new_pusher.yaml
+|  |  |  |-- windows_image.yaml
+|  |  |-- empty_layers.bzl
+|  |  |-- go
+|  |  |  |-- BUILD
+|  |  |  |-- configs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- go_image.yaml
+|  |  |  |  |-- go_static_image.yaml
+|  |  |-- groovy
+|  |  |  |-- BUILD
+|  |  |  |-- configs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- groovy_image.yaml
+|  |  |-- image_test.py
+|  |  |-- java
+|  |  |  |-- BUILD
+|  |  |  |-- configs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- java_image.yaml
+|  |  |  |  |-- java_partial_entrypoint.yaml
+|  |  |  |  |-- java_runfiles_as_lib_image.yaml
+|  |  |  |  |-- java_runfiles_image.yaml
+|  |  |  |  |-- simple_java_entrypoint.yaml
+|  |  |-- kotlin
+|  |  |  |-- BUILD
+|  |  |  |-- configs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- kt_jvm_image.yaml
+|  |  |-- nodejs
+|  |  |  |-- BUILD
+|  |  |  |-- configs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- nodejs_image.yaml
+|  |  |  |  |-- nodejs_image_custom_binary.yaml
+|  |  |  |  |-- nodejs_image_custom_binary_with_args.yaml
+|  |  |  |  |-- nodejs_image_empty_list_args.yaml
+|  |  |  |  |-- nodejs_image_list_with_empty_string_args.yaml
+|  |  |  |  |-- nodejs_image_no_args.yaml
+|  |  |  |  |-- nodejs_image_none_args.yaml
+|  |  |  |  |-- nodejs_image_with_launcher.yaml
+|  |  |  |  |-- nodejs_image_with_launcher_args.yaml
+|  |  |  |-- launcher.sh
+|  |  |-- pull_info_validation_test.bzl
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- configs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- py_image.yaml
+|  |  |-- python3
+|  |  |  |-- BUILD
+|  |  |  |-- configs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- py3_image.yaml
+|  |  |-- rust
+|  |  |  |-- BUILD
+|  |  |  |-- configs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- rust_image.yaml
+|  |  |-- scala
+|  |  |  |-- BUILD
+|  |  |  |-- configs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- scala_image.yaml
+|  |  |-- testdata
+|  |  |  |-- BUILD
+|  |  |  |-- files
+|  |  |  |  |-- aaaa
+|  |  |  |  |-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+|  |  |-- windowsservercore.1803.config.json
+|  |  |-- windowsservercore.1803.manifest.json
+|  |-- contrib
+|  |  |-- BUILD
+|  |  |-- automatic_container_release
+|  |  |  |-- BUILD
+|  |  |  |-- deps_spec.yaml
+|  |  |  |-- deps_spec_no_fus_deps.yaml
+|  |  |  |-- file_updates.yaml
+|  |  |  |-- metadata_merge_file1.yaml
+|  |  |  |-- metadata_merge_file2.yaml
+|  |  |  |-- metadata_merge_file3.yaml
+|  |  |  |-- metadata_merge_file4.yaml
+|  |  |  |-- packages_metadata.csv
+|  |  |-- cloudbuild.yaml
+|  |  |-- compare_ids_fail_test.bzl
+|  |  |-- compare_ids_fail_test.sh.tpl
+|  |  |-- configs
+|  |  |  |-- BUILD
+|  |  |  |-- dockerfile_image.yaml
+|  |  |-- mv_project_root.sh
+|  |  |-- rename_image_test.sh
+|  |  |-- repro_imgs.yaml
+|  |-- docker
+|  |  |-- BUILD
+|  |  |-- cloudbuild.yaml
+|  |  |-- launchpad_openjdk_gpg.pub
+|  |  |-- package_managers
+|  |  |  |-- BUILD
+|  |  |  |-- download_pkgs_run_test.sh
+|  |  |  |-- download_pkgs_with_additional_repos_run_test.sh
+|  |  |  |-- gpg_test.yaml
+|  |  |  |-- test_complex_packages.sh
+|  |  |  |-- test_complex_packages.yaml
+|  |  |-- security
+|  |  |  |-- BUILD
+|  |  |  |-- cloudbuild.yaml
+|  |  |-- toolchain_container
+|  |  |  |-- BUILD
+|  |  |  |-- tests.yaml
+|  |  |-- util
+|  |  |  |-- BUILD
+|  |  |  |-- container_commit.yaml
+|  |  |  |-- container_commit_layer.yaml
+|-- toolchains
+|  |-- BUILD
+|  |-- docker
+|  |  |-- BUILD
+|  |  |-- BUILD.tpl
+|  |  |-- pull.bzl.tpl
+|  |  |-- readme.md
+|  |  |-- toolchain.bzl
+|-- update_deps.sh

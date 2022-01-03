@@ -1,0 +1,390 @@
+|-- .gitignore
+|-- .travis.yml
+|-- CONTRIBUTING.md
+|-- CoreProxygenArchitecture.png
+|-- Dockerfile
+|-- Doxyfile
+|-- LICENSE
+|-- PATENTS
+|-- README.md
+|-- proxygen
+|  |-- Makefile.am
+|  |-- VERSION
+|  |-- configure.ac
+|  |-- deps.sh
+|  |-- external
+|  |  |-- http_parser
+|  |  |  |-- CONTRIBUTIONS
+|  |  |  |-- LICENSE-MIT
+|  |  |  |-- README.md
+|  |  |  |-- http_parser.c
+|  |  |  |-- http_parser.h
+|  |  |  |-- http_parser_cpp.cpp
+|  |  |  |-- test.c
+|  |-- httpserver
+|  |  |-- BUILD
+|  |  |-- Filters.h
+|  |  |-- HTTPServer.cpp
+|  |  |-- HTTPServer.h
+|  |  |-- HTTPServerAcceptor.cpp
+|  |  |-- HTTPServerAcceptor.h
+|  |  |-- HTTPServerOptions.h
+|  |  |-- Makefile.am
+|  |  |-- Mocks.h
+|  |  |-- RequestHandler.h
+|  |  |-- RequestHandlerAdaptor.cpp
+|  |  |-- RequestHandlerAdaptor.h
+|  |  |-- RequestHandlerFactory.h
+|  |  |-- ResponseBuilder.h
+|  |  |-- ResponseHandler.h
+|  |  |-- ScopedHTTPServer.h
+|  |  |-- SignalHandler.cpp
+|  |  |-- SignalHandler.h
+|  |  |-- WebSocket.cpp
+|  |  |-- WebSocket.h
+|  |  |-- filters
+|  |  |  |-- DirectResponseHandler.h
+|  |  |  |-- RejectConnectFilter.h
+|  |  |  |-- ZlibServerFilter.h
+|  |  |  |-- tests
+|  |  |  |  |-- Makefile.am
+|  |  |  |  |-- ZlibServerFilterTest.cpp
+|  |  |-- samples
+|  |  |  |-- Makefile.am
+|  |  |  |-- echo
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- EchoHandler.cpp
+|  |  |  |  |-- EchoHandler.h
+|  |  |  |  |-- EchoServer.cpp
+|  |  |  |  |-- EchoStats.h
+|  |  |  |  |-- Makefile.am
+|  |  |  |  |-- test
+|  |  |  |  |  |-- EchoHandlerTest.cpp
+|  |  |-- tests
+|  |  |  |-- BUILD
+|  |  |  |-- HTTPServerTest.cpp
+|  |  |  |-- Makefile.am
+|  |  |  |-- certs
+|  |  |  |  |-- ca_cert.pem
+|  |  |  |  |-- ca_key.pem
+|  |  |  |  |-- test_cert1.pem
+|  |  |  |  |-- test_cert2.pem
+|  |  |  |  |-- test_cert3.pem
+|  |  |  |  |-- test_cert4.pem
+|  |  |  |  |-- test_cert5.pem
+|  |  |  |  |-- test_ecdsa_cert1.pem
+|  |  |  |  |-- test_ecdsa_cert2.pem
+|  |  |  |  |-- test_ecdsa_cert3.pem
+|  |  |  |  |-- test_ecdsa_key1.pem
+|  |  |  |  |-- test_ecdsa_key2.pem
+|  |  |  |  |-- test_ecdsa_key3.pem
+|  |  |  |  |-- test_key1.pem
+|  |  |  |  |-- test_key2.pem
+|  |  |  |  |-- test_key3.pem
+|  |  |  |  |-- test_key4.pem
+|  |  |  |  |-- test_key5.pem
+|  |-- lib
+|  |  |-- BUILD
+|  |  |-- Makefile.am
+|  |  |-- http
+|  |  |  |-- BUILD
+|  |  |  |-- HTTPCommonHeaders.cpp
+|  |  |  |-- HTTPCommonHeaders.h
+|  |  |  |-- HTTPCommonHeaders.template.gperf
+|  |  |  |-- HTTPCommonHeaders.template.h
+|  |  |  |-- HTTPCommonHeaders.txt
+|  |  |  |-- HTTPConnector.cpp
+|  |  |  |-- HTTPConnector.h
+|  |  |  |-- HTTPConstants.cpp
+|  |  |  |-- HTTPConstants.h
+|  |  |  |-- HTTPException.cpp
+|  |  |  |-- HTTPException.h
+|  |  |  |-- HTTPHeaderSize.h
+|  |  |  |-- HTTPHeaders.cpp
+|  |  |  |-- HTTPHeaders.h
+|  |  |  |-- HTTPMessage.cpp
+|  |  |  |-- HTTPMessage.h
+|  |  |  |-- HTTPMessageFilters.h
+|  |  |  |-- HTTPMethod.cpp
+|  |  |  |-- HTTPMethod.h
+|  |  |  |-- Makefile.am
+|  |  |  |-- ProxygenErrorEnum.cpp
+|  |  |  |-- ProxygenErrorEnum.h
+|  |  |  |-- RFC2616.cpp
+|  |  |  |-- RFC2616.h
+|  |  |  |-- Window.cpp
+|  |  |  |-- Window.h
+|  |  |  |-- codec
+|  |  |  |  |-- CodecDictionaries.h
+|  |  |  |  |-- CodecProtocol.cpp
+|  |  |  |  |-- CodecProtocol.h
+|  |  |  |  |-- ErrorCode.cpp
+|  |  |  |  |-- ErrorCode.h
+|  |  |  |  |-- FlowControlFilter.cpp
+|  |  |  |  |-- FlowControlFilter.h
+|  |  |  |  |-- HTTP1xCodec.cpp
+|  |  |  |  |-- HTTP1xCodec.h
+|  |  |  |  |-- HTTPChecks.cpp
+|  |  |  |  |-- HTTPChecks.h
+|  |  |  |  |-- HTTPCodec.h
+|  |  |  |  |-- HTTPCodecFilter.cpp
+|  |  |  |  |-- HTTPCodecFilter.h
+|  |  |  |  |-- HTTPCodecPrinter.cpp
+|  |  |  |  |-- HTTPCodecPrinter.h
+|  |  |  |  |-- HTTPParallelCodec.cpp
+|  |  |  |  |-- HTTPParallelCodec.h
+|  |  |  |  |-- HTTPSettings.cpp
+|  |  |  |  |-- HTTPSettings.h
+|  |  |  |  |-- Makefile.am
+|  |  |  |  |-- SPDYCodec.cpp
+|  |  |  |  |-- SPDYCodec.h
+|  |  |  |  |-- SPDYConstants.cpp
+|  |  |  |  |-- SPDYConstants.h
+|  |  |  |  |-- SPDYUtil.cpp
+|  |  |  |  |-- SPDYUtil.h
+|  |  |  |  |-- SPDYVersion.h
+|  |  |  |  |-- SPDYVersionSettings.h
+|  |  |  |  |-- SettingsId.cpp
+|  |  |  |  |-- SettingsId.h
+|  |  |  |  |-- TransportDirection.cpp
+|  |  |  |  |-- TransportDirection.h
+|  |  |  |  |-- compress
+|  |  |  |  |  |-- GzipHeaderCodec.cpp
+|  |  |  |  |  |-- GzipHeaderCodec.h
+|  |  |  |  |  |-- HPACKCodec.cpp
+|  |  |  |  |  |-- HPACKCodec.h
+|  |  |  |  |  |-- HPACKConstants.h
+|  |  |  |  |  |-- HPACKContext.cpp
+|  |  |  |  |  |-- HPACKContext.h
+|  |  |  |  |  |-- HPACKDecodeBuffer.cpp
+|  |  |  |  |  |-- HPACKDecodeBuffer.h
+|  |  |  |  |  |-- HPACKDecoder.cpp
+|  |  |  |  |  |-- HPACKDecoder.h
+|  |  |  |  |  |-- HPACKEncodeBuffer.cpp
+|  |  |  |  |  |-- HPACKEncodeBuffer.h
+|  |  |  |  |  |-- HPACKEncoder.cpp
+|  |  |  |  |  |-- HPACKEncoder.h
+|  |  |  |  |  |-- HPACKHeader.cpp
+|  |  |  |  |  |-- HPACKHeader.h
+|  |  |  |  |  |-- Header.h
+|  |  |  |  |  |-- HeaderCodec.h
+|  |  |  |  |  |-- HeaderPiece.h
+|  |  |  |  |  |-- HeaderTable.cpp
+|  |  |  |  |  |-- HeaderTable.h
+|  |  |  |  |  |-- Huffman.cpp
+|  |  |  |  |  |-- Huffman.h
+|  |  |  |  |  |-- Logging.cpp
+|  |  |  |  |  |-- Logging.h
+|  |  |  |  |  |-- StaticHeaderTable.cpp
+|  |  |  |  |  |-- StaticHeaderTable.h
+|  |  |  |  |  |-- experimental
+|  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |-- hpack9
+|  |  |  |  |  |  |  |-- HPACKCodec.cpp
+|  |  |  |  |  |  |  |-- HPACKCodec.h
+|  |  |  |  |  |  |  |-- HPACKConstants.h
+|  |  |  |  |  |  |  |-- HPACKContextImpl.h
+|  |  |  |  |  |  |  |-- HPACKDecoder.cpp
+|  |  |  |  |  |  |  |-- HPACKDecoder.h
+|  |  |  |  |  |  |  |-- HPACKEncoder.cpp
+|  |  |  |  |  |  |  |-- HPACKEncoder.h
+|  |  |  |  |  |  |  |-- Huffman.cpp
+|  |  |  |  |  |  |  |-- Huffman.h
+|  |  |  |  |  |  |  |-- StaticHeaderTable.cpp
+|  |  |  |  |  |  |  |-- StaticHeaderTable.h
+|  |  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |  |-- HPACKBufferTests.cpp
+|  |  |  |  |  |  |  |  |-- HPACKCodecTests.cpp
+|  |  |  |  |  |  |  |  |-- HPACKContextTests.cpp
+|  |  |  |  |  |  |  |  |-- HuffmanTests.cpp
+|  |  |  |  |  |  |  |  |-- RFCExamplesTests.cpp
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- HPACKBufferTests.cpp
+|  |  |  |  |  |  |-- HPACKCodecTests.cpp
+|  |  |  |  |  |  |-- HPACKContextTests.cpp
+|  |  |  |  |  |  |-- HPACKHeaderTests.cpp
+|  |  |  |  |  |  |-- HTTPArchive.cpp
+|  |  |  |  |  |  |-- HTTPArchive.h
+|  |  |  |  |  |  |-- HeaderPieceTests.cpp
+|  |  |  |  |  |  |-- HeaderTableTests.cpp
+|  |  |  |  |  |  |-- HuffmanTests.cpp
+|  |  |  |  |  |  |-- LoggingTests.cpp
+|  |  |  |  |  |  |-- RFCExamplesTests.cpp
+|  |  |  |  |  |  |-- TestUtil.cpp
+|  |  |  |  |  |  |-- TestUtil.h
+|  |  |  |  |-- experimental
+|  |  |  |  |  |-- HTTP2Codec.cpp
+|  |  |  |  |  |-- HTTP2Codec.h
+|  |  |  |  |  |-- HTTP2Constants.cpp
+|  |  |  |  |  |-- HTTP2Constants.h
+|  |  |  |  |  |-- HTTP2Framer.cpp
+|  |  |  |  |  |-- HTTP2Framer.h
+|  |  |  |  |  |-- HTTPRequestVerifier.h
+|  |  |  |  |  |-- README
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- HTTP2CodecTest.cpp
+|  |  |  |  |  |  |-- HTTP2FramerTest.cpp
+|  |  |  |  |  |  |-- HTTP2FramerTest.h
+|  |  |  |  |-- test
+|  |  |  |  |  |-- FilterTests.cpp
+|  |  |  |  |  |-- HTTP1xCodecTest.cpp
+|  |  |  |  |  |-- Makefile.am
+|  |  |  |  |  |-- MockHTTPCodec.h
+|  |  |  |  |  |-- SPDYCodecTest.cpp
+|  |  |  |  |  |-- TestUtils.cpp
+|  |  |  |  |  |-- TestUtils.h
+|  |  |  |-- gen_HTTPCommonHeaders.cpp.sh
+|  |  |  |-- gen_HTTPCommonHeaders.h.sh
+|  |  |  |-- session
+|  |  |  |  |-- AckLatencyEvent.h
+|  |  |  |  |-- ByteEventTracker.cpp
+|  |  |  |  |-- ByteEventTracker.h
+|  |  |  |  |-- ByteEvents.cpp
+|  |  |  |  |-- ByteEvents.h
+|  |  |  |  |-- CodecErrorResponseHandler.cpp
+|  |  |  |  |-- CodecErrorResponseHandler.h
+|  |  |  |  |-- HTTP2PriorityQueue.cpp
+|  |  |  |  |-- HTTP2PriorityQueue.h
+|  |  |  |  |-- HTTPDirectResponseHandler.cpp
+|  |  |  |  |-- HTTPDirectResponseHandler.h
+|  |  |  |  |-- HTTPDownstreamSession.cpp
+|  |  |  |  |-- HTTPDownstreamSession.h
+|  |  |  |  |-- HTTPErrorPage.cpp
+|  |  |  |  |-- HTTPErrorPage.h
+|  |  |  |  |-- HTTPEvent.cpp
+|  |  |  |  |-- HTTPEvent.h
+|  |  |  |  |-- HTTPSession.cpp
+|  |  |  |  |-- HTTPSession.h
+|  |  |  |  |-- HTTPSessionAcceptor.cpp
+|  |  |  |  |-- HTTPSessionAcceptor.h
+|  |  |  |  |-- HTTPSessionController.h
+|  |  |  |  |-- HTTPSessionStats.h
+|  |  |  |  |-- HTTPTransaction.cpp
+|  |  |  |  |-- HTTPTransaction.h
+|  |  |  |  |-- HTTPTransactionEgressSM.cpp
+|  |  |  |  |-- HTTPTransactionEgressSM.h
+|  |  |  |  |-- HTTPTransactionIngressSM.cpp
+|  |  |  |  |-- HTTPTransactionIngressSM.h
+|  |  |  |  |-- HTTPUpstreamSession.cpp
+|  |  |  |  |-- HTTPUpstreamSession.h
+|  |  |  |  |-- Makefile.am
+|  |  |  |  |-- SimpleController.cpp
+|  |  |  |  |-- SimpleController.h
+|  |  |  |  |-- TTLBAStats.h
+|  |  |  |  |-- TransportFilter.cpp
+|  |  |  |  |-- TransportFilter.h
+|  |  |  |  |-- test
+|  |  |  |  |  |-- DownstreamTransactionTest.cpp
+|  |  |  |  |  |-- HTTP2PriorityQueueTest.cpp
+|  |  |  |  |  |-- HTTPDownstreamSessionTest.cpp
+|  |  |  |  |  |-- HTTPSessionAcceptorTest.cpp
+|  |  |  |  |  |-- HTTPSessionMocks.h
+|  |  |  |  |  |-- HTTPSessionTest.h
+|  |  |  |  |  |-- HTTPTransactionMocks.h
+|  |  |  |  |  |-- HTTPTransactionSMTest.cpp
+|  |  |  |  |  |-- HTTPUpstreamSessionTest.cpp
+|  |  |  |  |  |-- Makefile.am
+|  |  |  |  |  |-- MockByteEventTracker.h
+|  |  |  |  |  |-- MockCodecDownstreamTest.cpp
+|  |  |  |  |  |-- TestUtils.cpp
+|  |  |  |  |  |-- TestUtils.h
+|  |  |  |  |  |-- test_cert1.key
+|  |  |  |  |  |-- test_cert1.pem
+|  |  |  |-- test
+|  |  |  |  |-- HTTPMessageTest.cpp
+|  |  |  |  |-- Makefile.am
+|  |  |  |  |-- MockHTTPMessageFilter.h
+|  |  |  |  |-- RFC2616Test.cpp
+|  |  |  |  |-- WindowTest.cpp
+|  |  |-- services
+|  |  |  |-- AcceptorConfiguration.h
+|  |  |  |-- BUILD
+|  |  |  |-- HTTPAcceptor.h
+|  |  |  |-- Makefile.am
+|  |  |  |-- RequestWorker.cpp
+|  |  |  |-- RequestWorker.h
+|  |  |  |-- Service.cpp
+|  |  |  |-- Service.h
+|  |  |  |-- ServiceConfiguration.h
+|  |  |  |-- ServiceWorker.h
+|  |  |  |-- WorkerThread.cpp
+|  |  |  |-- WorkerThread.h
+|  |  |  |-- test
+|  |  |  |  |-- AcceptorTest.cpp
+|  |  |-- ssl
+|  |  |  |-- BUILD
+|  |  |  |-- Makefile.am
+|  |  |  |-- SSLContextConfig.h
+|  |  |-- test
+|  |  |  |-- BUILD
+|  |  |  |-- Makefile.am
+|  |  |  |-- TestAsyncTransport.cpp
+|  |  |  |-- TestAsyncTransport.h
+|  |  |  |-- TestMain.cpp
+|  |  |-- utils
+|  |  |  |-- AsyncTimeoutSet.cpp
+|  |  |  |-- AsyncTimeoutSet.h
+|  |  |  |-- BUILD
+|  |  |  |-- ChromeUtils.cpp
+|  |  |  |-- ChromeUtils.h
+|  |  |  |-- CobHelper.h
+|  |  |  |-- ConsistentHash.h
+|  |  |  |-- CryptUtil.cpp
+|  |  |  |-- CryptUtil.h
+|  |  |  |-- DestructorCheck.h
+|  |  |  |-- Exception.cpp
+|  |  |  |-- Exception.h
+|  |  |  |-- FilterChain.h
+|  |  |  |-- HTTPTime.cpp
+|  |  |  |-- HTTPTime.h
+|  |  |  |-- Logging.cpp
+|  |  |  |-- Logging.h
+|  |  |  |-- Makefile.am
+|  |  |  |-- NullTraceEventObserver.h
+|  |  |  |-- ParseURL.cpp
+|  |  |  |-- ParseURL.h
+|  |  |  |-- RendezvousHash.cpp
+|  |  |  |-- RendezvousHash.h
+|  |  |  |-- Result.h
+|  |  |  |-- StateMachine.h
+|  |  |  |-- TestUtils.h
+|  |  |  |-- Time.h
+|  |  |  |-- TraceEvent.cpp
+|  |  |  |-- TraceEvent.h
+|  |  |  |-- TraceEventContext.cpp
+|  |  |  |-- TraceEventContext.h
+|  |  |  |-- TraceEventObserver.h
+|  |  |  |-- TraceEventType.cpp
+|  |  |  |-- TraceEventType.h
+|  |  |  |-- TraceEventType.txt
+|  |  |  |-- TraceFieldType.cpp
+|  |  |  |-- TraceFieldType.h
+|  |  |  |-- TraceFieldType.txt
+|  |  |  |-- UnionBasedStatic.h
+|  |  |  |-- UtilInl.h
+|  |  |  |-- ZlibStreamCompressor.cpp
+|  |  |  |-- ZlibStreamCompressor.h
+|  |  |  |-- ZlibStreamDecompressor.cpp
+|  |  |  |-- ZlibStreamDecompressor.h
+|  |  |  |-- gen_trace_event_constants.py
+|  |  |  |-- http_parser_cpp.cpp
+|  |  |  |-- test
+|  |  |  |  |-- AsyncTimeoutSetTest.cpp
+|  |  |  |  |-- CryptUtilTest.cpp
+|  |  |  |  |-- GenericFilterTest.cpp
+|  |  |  |  |-- HTTPTimeTest.cpp
+|  |  |  |  |-- LoggingTests.cpp
+|  |  |  |  |-- Makefile.am
+|  |  |  |  |-- MockTime.h
+|  |  |  |  |-- MockTimeoutManager.h
+|  |  |  |  |-- ParseURLTest.cpp
+|  |  |  |  |-- RendezvousHashTest.cpp
+|  |  |  |  |-- ResultBenchmark.cpp
+|  |  |  |  |-- ResultTest.cpp
+|  |  |  |  |-- UtilTest.cpp
+|  |  |  |  |-- ZlibTests.cpp
+|  |-- m4
+|  |  |-- ac_cxx_compile_stdcxx_0x.m4
+|  |  |-- ax_boost_base.m4
+|  |  |-- ax_boost_regex.m4
+|  |-- reinstall.sh

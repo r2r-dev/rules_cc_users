@@ -1,0 +1,372 @@
+|-- .gitignore
+|-- .travis.yml
+|-- BUILD
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- base
+|  |-- config
+|  |  |-- BUILD
+|  |  |-- config.cc
+|  |  |-- config.h
+|  |-- context
+|  |  |-- BUILD
+|  |  |-- context.cc
+|  |  |-- context.h
+|  |  |-- context.proto
+|  |  |-- context_test.cc
+|  |  |-- eventlog.cc
+|  |  |-- eventlog.h
+|  |  |-- gate.cc
+|  |  |-- gate.h
+|  |  |-- gate_test.cc
+|  |-- eventing
+|  |  |-- file
+|  |  |  |-- BUILD
+|  |  |  |-- eventlog.cc
+|  |  |  |-- eventlog.h
+|  |  |  |-- eventlog.proto
+|  |  |  |-- eventlog_test.cc
+|  |  |  |-- factory.cc
+|  |  |  |-- factory.h
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- any_factory.h
+|  |  |-- any_factory_map.h
+|  |  |-- astgen
+|  |  |  |-- BUILD
+|  |  |  |-- astgen.py
+|  |  |  |-- base.template
+|  |  |  |-- test_ast.cc
+|  |  |  |-- test_ast.yaml
+|  |  |-- catch.h
+|  |  |-- compat.h
+|  |  |-- error.cc
+|  |  |-- error.h
+|  |  |-- intern.h
+|  |  |-- iterator_util.h
+|  |  |-- json_transfer.cc
+|  |  |-- json_transfer.h
+|  |  |-- logging.cc
+|  |  |-- logging.h
+|  |  |-- pdebug.h
+|  |  |-- perf_counter.cc
+|  |  |-- perf_counter.h
+|  |  |-- printstring.cc
+|  |  |-- printstring.h
+|  |  |-- protoc-gen-cc11
+|  |  |  |-- BUILD
+|  |  |  |-- protoc-gen-cc11.cc
+|  |  |-- sync.h
+|  |  |-- transfer_object.h
+|  |  |-- type_url.h
+|  |  |-- uuid.cc
+|  |  |-- uuid.h
+|-- bzl
+|  |-- BUILD
+|  |-- boost.BUILD
+|  |-- deps.bzl
+|  |-- easylogging.BUILD
+|  |-- gflags.BUILD
+|  |-- gmock.BUILD
+|  |-- half.BUILD
+|  |-- jsoncpp.BUILD
+|  |-- minizip.BUILD
+|  |-- opencl_headers.BUILD
+|  |-- opencl_icd_loader.BUILD
+|  |-- plaidml.bzl
+|  |-- protobuf.BUILD
+|  |-- protobuf.bzl
+|  |-- setup.tpl.py
+|  |-- six.BUILD
+|  |-- version.cc.tpl
+|  |-- zlib.BUILD
+|-- external
+|  |-- opengl
+|  |  |-- BUILD
+|  |  |-- CPPLINT.cfg
+|  |  |-- WORKSPACE
+|  |  |-- inc
+|  |  |  |-- GL
+|  |  |  |  |-- gl.h
+|  |  |  |  |-- gl_mangle.h
+|  |  |  |  |-- glext.h
+|-- images
+|  |-- LICENSE
+|  |-- plaid-final-black-and-white.png
+|  |-- plaid-final.png
+|-- plaidml
+|  |-- BUILD
+|  |-- __init__.py
+|  |-- base
+|  |  |-- BUILD
+|  |  |-- base.h
+|  |  |-- base_cpp.h
+|  |  |-- context.cc
+|  |  |-- context.h
+|  |  |-- feature.cc
+|  |  |-- feature_test.cc
+|  |  |-- logging.cc
+|  |  |-- perf_counter.cc
+|  |  |-- status.cc
+|  |  |-- status.h
+|  |  |-- status_strings.cc
+|  |  |-- status_strings.h
+|  |  |-- status_test.cc
+|  |-- config.json
+|  |-- context.py
+|  |-- cpp_test.cc
+|  |-- dtype_vec_test.cc
+|  |-- event
+|  |  |-- BUILD
+|  |  |-- buffer_diff.py
+|  |  |-- event.proto
+|  |  |-- events.py
+|  |  |-- filelog.py
+|  |-- exceptions.py
+|  |-- experimental.json
+|  |-- keras
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- backend.py
+|  |  |-- backend_test.py
+|  |  |-- example_vgg.py
+|  |  |-- mnist_mlp_test.py
+|  |  |-- setup.cfg
+|  |  |-- trivial_model_test.py
+|  |-- library.py
+|  |-- matmul_fuzz_test.cc
+|  |-- network_test.cc
+|  |-- plaidml++.h
+|  |-- plaidml.cc
+|  |-- plaidml.h
+|  |-- plaidml.proto
+|  |-- plaidml_setup.py
+|  |-- plaidml_test.cc
+|  |-- plaidml_test.py
+|  |-- settings.py
+|  |-- settings_test.py
+|  |-- setup.cfg
+|  |-- testdata
+|  |  |-- resnet50.tpb
+|  |  |-- xception.tpb
+|  |-- uint8_test.cc
+|-- testing
+|  |-- BUILD
+|  |-- __init__.py
+|  |-- configs_test.py
+|  |-- gtest_main.cc
+|  |-- matchers.h
+|  |-- plaidml_config.cc
+|  |-- plaidml_config.h
+|  |-- plaidml_config.py
+|  |-- runfiles_db.cc
+|  |-- runfiles_db.h
+|  |-- tile_amd.json
+|  |-- tile_amd_ellesmere.json
+|  |-- tile_generic_cpu.json
+|  |-- tile_intel_cpu.json
+|  |-- tile_llvm.json
+|  |-- tile_mali.json
+|  |-- tile_nvidia.json
+|  |-- tile_vivante.json
+|-- tile
+|  |-- BUILD
+|  |-- base
+|  |  |-- BUILD
+|  |  |-- buffer.h
+|  |  |-- dbgsync.cc
+|  |  |-- dbgsync.h
+|  |  |-- hal.h
+|  |  |-- lru_cache.h
+|  |  |-- namespaces.h
+|  |  |-- platform.h
+|  |  |-- platform_test.cc
+|  |  |-- platform_test.h
+|  |  |-- program.h
+|  |  |-- program_cache.cc
+|  |  |-- program_cache.h
+|  |  |-- validate.cc
+|  |  |-- validate.h
+|  |-- hal
+|  |  |-- opencl
+|  |  |  |-- BUILD
+|  |  |  |-- buffer.cc
+|  |  |  |-- buffer.h
+|  |  |  |-- cl_mem_arena.cc
+|  |  |  |-- cl_mem_arena.h
+|  |  |  |-- cl_mem_buffer.cc
+|  |  |  |-- cl_mem_buffer.h
+|  |  |  |-- compiler.cc
+|  |  |  |-- compiler.h
+|  |  |  |-- device.cc
+|  |  |  |-- device.h
+|  |  |  |-- device_set.cc
+|  |  |  |-- device_set.h
+|  |  |  |-- device_state.cc
+|  |  |  |-- device_state.h
+|  |  |  |-- driver.cc
+|  |  |  |-- driver.h
+|  |  |  |-- emitocl.cc
+|  |  |  |-- emitocl.h
+|  |  |  |-- event.cc
+|  |  |  |-- event.h
+|  |  |  |-- executor.cc
+|  |  |  |-- executor.h
+|  |  |  |-- exprtype.cc
+|  |  |  |-- exprtype.h
+|  |  |  |-- exprtype_test.cc
+|  |  |  |-- global_memory.cc
+|  |  |  |-- global_memory.h
+|  |  |  |-- info.cc
+|  |  |  |-- info.h
+|  |  |  |-- kernel.cc
+|  |  |  |-- kernel.h
+|  |  |  |-- library.cc
+|  |  |  |-- library.h
+|  |  |  |-- local_memory.cc
+|  |  |  |-- local_memory.h
+|  |  |  |-- ocl.cc
+|  |  |  |-- ocl.h
+|  |  |  |-- opencl.cc
+|  |  |  |-- opencl.h
+|  |  |  |-- opencl.proto
+|  |  |  |-- result.cc
+|  |  |  |-- result.h
+|  |  |  |-- shared_memory.cc
+|  |  |  |-- shared_memory_disabled.cc
+|  |  |  |-- zero_kernel.cc
+|  |  |  |-- zero_kernel.h
+|  |  |  |-- zero_kernel_svm.cc
+|  |  |  |-- zero_kernel_svm_disabled.cc
+|  |  |-- util
+|  |  |  |-- BUILD
+|  |  |  |-- selector.cc
+|  |  |  |-- selector.h
+|  |  |  |-- settings.cc
+|  |  |  |-- settings.h
+|  |-- lang
+|  |  |-- BUILD
+|  |  |-- basis.cc
+|  |  |-- basis.h
+|  |  |-- bignum.cc
+|  |  |-- bignum.h
+|  |  |-- bilp
+|  |  |  |-- BUILD
+|  |  |  |-- ilp_solver.cc
+|  |  |  |-- ilp_solver.h
+|  |  |  |-- tableau.cc
+|  |  |  |-- tableau.h
+|  |  |  |-- test.cc
+|  |  |-- bound.cc
+|  |  |-- bound.h
+|  |  |-- builtins.cc
+|  |  |-- builtins.h
+|  |  |-- compile.cc
+|  |  |-- compile.h
+|  |  |-- compose.cc
+|  |  |-- compose.h
+|  |  |-- defract.cc
+|  |  |-- defract.h
+|  |  |-- emitc.cc
+|  |  |-- emitc.h
+|  |  |-- emitmetal.cc
+|  |  |-- emitmetal.h
+|  |  |-- flat.cc
+|  |  |-- flat.h
+|  |  |-- fnv1a64.h
+|  |  |-- fpconv.cc
+|  |  |-- fpconv.h
+|  |  |-- gen_contract.cc
+|  |  |-- gen_contract.h
+|  |  |-- gen_special.cc
+|  |  |-- gen_special.h
+|  |  |-- gen_zero.cc
+|  |  |-- gen_zero.h
+|  |  |-- generate.cc
+|  |  |-- generate.h
+|  |  |-- gid.cc
+|  |  |-- gid.h
+|  |  |-- gid_test.cc
+|  |  |-- lang.proto
+|  |  |-- lang_test.cc
+|  |  |-- loop.cc
+|  |  |-- loop.h
+|  |  |-- math_test.cc
+|  |  |-- matrix.cc
+|  |  |-- matrix.h
+|  |  |-- mutil.h
+|  |  |-- ops.cc
+|  |  |-- ops.h
+|  |  |-- out_plan.cc
+|  |  |-- out_plan.h
+|  |  |-- parser.cc
+|  |  |-- parser.h
+|  |  |-- polynomial.cc
+|  |  |-- polynomial.h
+|  |  |-- read_plan.cc
+|  |  |-- read_plan.h
+|  |  |-- reduce.cc
+|  |  |-- reduce.h
+|  |  |-- replace.cc
+|  |  |-- replace.h
+|  |  |-- scope.h
+|  |  |-- sembuilder.h
+|  |  |-- semprinter.cc
+|  |  |-- semprinter.h
+|  |  |-- semtree.cc
+|  |  |-- semtree.h
+|  |  |-- shape.h
+|  |  |-- sim_test.cc
+|  |  |-- simulate.h
+|  |  |-- sym_poly.cc
+|  |  |-- sym_poly.h
+|  |  |-- symbolic.cc
+|  |  |-- symbolic.h
+|  |  |-- test.cc
+|  |  |-- tile.l
+|  |  |-- tile.y
+|  |  |-- tile_cache.cc
+|  |  |-- tile_cache.h
+|  |  |-- tile_opt.cc
+|  |  |-- tile_opt.h
+|  |  |-- tile_parse_test.txt
+|  |  |-- type.cc
+|  |  |-- type.h
+|  |  |-- usedef.cc
+|  |  |-- usedef.h
+|  |-- platform
+|  |  |-- local_machine
+|  |  |  |-- BUILD
+|  |  |  |-- buffer.cc
+|  |  |  |-- buffer.h
+|  |  |  |-- copy_mem_strategy.cc
+|  |  |  |-- copy_mem_strategy.h
+|  |  |  |-- devinfo.h
+|  |  |  |-- direct_mem_strategy.cc
+|  |  |  |-- direct_mem_strategy.h
+|  |  |  |-- factory.cc
+|  |  |  |-- local_machine.h
+|  |  |  |-- local_machine.proto
+|  |  |  |-- mem_cache.cc
+|  |  |  |-- mem_cache.h
+|  |  |  |-- mem_chunk.h
+|  |  |  |-- mem_deps.cc
+|  |  |  |-- mem_deps.h
+|  |  |  |-- mem_strategy.h
+|  |  |  |-- platform.cc
+|  |  |  |-- platform.h
+|  |  |  |-- platform_test.cc
+|  |  |  |-- program.cc
+|  |  |  |-- program.h
+|  |  |  |-- tmp_mem_strategy.cc
+|  |  |  |-- tmp_mem_strategy.h
+|  |-- proto
+|  |  |-- BUILD
+|  |  |-- hal.proto
+|  |  |-- support.cc
+|  |  |-- support.h
+|  |  |-- tile.proto
+|-- tools
+|  |-- bazel.rc
+|  |-- intel-ocl-silent

@@ -1,0 +1,993 @@
+|-- .bazelrc
+|-- .clang-format
+|-- .editorconfig
+|-- .github
+|  |-- ISSUE_TEMPLATE
+|  |  |-- formatter-issue.md
+|  |  |-- kythe-issues.md
+|  |  |-- lexer-parser-issue.md
+|  |  |-- style-linter-bug.md
+|  |  |-- style-linter-feature-request.md
+|  |-- bin
+|  |  |-- build-and-test.sh
+|  |  |-- generate-matrix.py
+|  |  |-- github-pages-setup.sh
+|  |  |-- github-releases-setup.sh
+|  |  |-- install-bazel.sh
+|  |  |-- install-kythe.sh
+|  |  |-- install-python.sh
+|  |  |-- run-clang-format.sh
+|  |  |-- run-kythe.sh
+|  |  |-- set-compiler.sh
+|  |  |-- verify-kythe-extraction.sh
+|  |-- settings.sh
+|  |-- workflows
+|  |  |-- macos-compile.yml
+|  |  |-- verible-ci.yml
+|  |  |-- windows-compile.yml
+|-- .gitignore
+|-- .pylintrc
+|-- AUTHORS
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- bazel
+|  |-- BUILD
+|  |-- absl.patch
+|  |-- bison.bzl
+|  |-- build-version.py
+|  |-- flex.bzl
+|  |-- jsoncpp.BUILD
+|  |-- python_anytree.BUILD
+|  |-- python_six.BUILD
+|  |-- sh_test_with_runfiles_lib.bzl
+|  |-- sh_test_with_runfiles_lib.sh
+|  |-- win_flex_bison.BUILD
+|  |-- win_flex_bison.bzl
+|-- common
+|  |-- README.md
+|  |-- analysis
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- citation.cc
+|  |  |-- citation.h
+|  |  |-- command_file.lex
+|  |  |-- command_file_lexer.cc
+|  |  |-- command_file_lexer.h
+|  |  |-- command_file_lexer_test.cc
+|  |  |-- file_analyzer.cc
+|  |  |-- file_analyzer.h
+|  |  |-- file_analyzer_test.cc
+|  |  |-- line_lint_rule.h
+|  |  |-- line_linter.cc
+|  |  |-- line_linter.h
+|  |  |-- line_linter_test.cc
+|  |  |-- line_linter_test_utils.h
+|  |  |-- lint_rule.h
+|  |  |-- lint_rule_status.cc
+|  |  |-- lint_rule_status.h
+|  |  |-- lint_rule_status_test.cc
+|  |  |-- lint_waiver.cc
+|  |  |-- lint_waiver.h
+|  |  |-- lint_waiver_test.cc
+|  |  |-- linter_test_utils.cc
+|  |  |-- linter_test_utils.h
+|  |  |-- linter_test_utils_test.cc
+|  |  |-- matcher
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- bound_symbol_manager.cc
+|  |  |  |-- bound_symbol_manager.h
+|  |  |  |-- core_matchers.h
+|  |  |  |-- core_matchers_test.cc
+|  |  |  |-- descent_path.cc
+|  |  |  |-- descent_path.h
+|  |  |  |-- descent_path_test.cc
+|  |  |  |-- inner_match_handlers.cc
+|  |  |  |-- inner_match_handlers.h
+|  |  |  |-- matcher.cc
+|  |  |  |-- matcher.h
+|  |  |  |-- matcher_builders.h
+|  |  |  |-- matcher_builders_test.cc
+|  |  |  |-- matcher_test.cc
+|  |  |  |-- matcher_test_utils.cc
+|  |  |  |-- matcher_test_utils.h
+|  |  |-- syntax_tree_lint_rule.h
+|  |  |-- syntax_tree_linter.cc
+|  |  |-- syntax_tree_linter.h
+|  |  |-- syntax_tree_linter_test.cc
+|  |  |-- syntax_tree_linter_test_utils.h
+|  |  |-- syntax_tree_search.cc
+|  |  |-- syntax_tree_search.h
+|  |  |-- syntax_tree_search_test.cc
+|  |  |-- syntax_tree_search_test_utils.cc
+|  |  |-- syntax_tree_search_test_utils.h
+|  |  |-- syntax_tree_search_test_utils_test.cc
+|  |  |-- text_structure_lint_rule.h
+|  |  |-- text_structure_linter.cc
+|  |  |-- text_structure_linter.h
+|  |  |-- text_structure_linter_test.cc
+|  |  |-- text_structure_linter_test_utils.h
+|  |  |-- token_stream_lint_rule.h
+|  |  |-- token_stream_linter.cc
+|  |  |-- token_stream_linter.h
+|  |  |-- token_stream_linter_test.cc
+|  |  |-- token_stream_linter_test_utils.h
+|  |-- formatting
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- align.cc
+|  |  |-- align.h
+|  |  |-- align_test.cc
+|  |  |-- basic_format_style.cc
+|  |  |-- basic_format_style.h
+|  |  |-- basic_format_style_test.cc
+|  |  |-- format_token.cc
+|  |  |-- format_token.h
+|  |  |-- format_token_test.cc
+|  |  |-- line_wrap_searcher.cc
+|  |  |-- line_wrap_searcher.h
+|  |  |-- line_wrap_searcher_test.cc
+|  |  |-- state_node.cc
+|  |  |-- state_node.h
+|  |  |-- state_node_test.cc
+|  |  |-- token_partition_tree.cc
+|  |  |-- token_partition_tree.h
+|  |  |-- token_partition_tree_test.cc
+|  |  |-- tree_annotator.cc
+|  |  |-- tree_annotator.h
+|  |  |-- tree_annotator_test.cc
+|  |  |-- tree_unwrapper.cc
+|  |  |-- tree_unwrapper.h
+|  |  |-- tree_unwrapper_test.cc
+|  |  |-- unwrapped_line.cc
+|  |  |-- unwrapped_line.h
+|  |  |-- unwrapped_line_test.cc
+|  |  |-- unwrapped_line_test_utils.cc
+|  |  |-- unwrapped_line_test_utils.h
+|  |  |-- verification.cc
+|  |  |-- verification.h
+|  |  |-- verification_test.cc
+|  |-- lexer
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- flex_lexer_adapter.h
+|  |  |-- lexer.h
+|  |  |-- lexer_test_util.cc
+|  |  |-- lexer_test_util.h
+|  |  |-- lexer_test_util_test.cc
+|  |  |-- token_generator.h
+|  |  |-- token_stream_adapter.cc
+|  |  |-- token_stream_adapter.h
+|  |  |-- token_stream_adapter_test.cc
+|  |-- parser
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- bison_parser_adapter.h
+|  |  |-- bison_parser_common.cc
+|  |  |-- bison_parser_common.h
+|  |  |-- bison_parser_common_test.cc
+|  |  |-- move_yacc_stack_symbols.sh
+|  |  |-- parse.h
+|  |  |-- parser_param.cc
+|  |  |-- parser_param.h
+|  |  |-- parser_test_util.h
+|  |  |-- record_syntax_error.sh
+|  |  |-- yacc.bzl
+|  |-- strings
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- comment_utils.cc
+|  |  |-- comment_utils.h
+|  |  |-- comment_utils_test.cc
+|  |  |-- compare.h
+|  |  |-- compare_test.cc
+|  |  |-- diff.cc
+|  |  |-- diff.h
+|  |  |-- diff_test.cc
+|  |  |-- display_utils.cc
+|  |  |-- display_utils.h
+|  |  |-- display_utils_test.cc
+|  |  |-- line_column_map.cc
+|  |  |-- line_column_map.h
+|  |  |-- line_column_map_test.cc
+|  |  |-- naming_utils.cc
+|  |  |-- naming_utils.h
+|  |  |-- naming_utils_test.cc
+|  |  |-- obfuscator.cc
+|  |  |-- obfuscator.h
+|  |  |-- obfuscator_test.cc
+|  |  |-- patch.cc
+|  |  |-- patch.h
+|  |  |-- patch_test.cc
+|  |  |-- position.cc
+|  |  |-- position.h
+|  |  |-- position_test.cc
+|  |  |-- random.cc
+|  |  |-- random.h
+|  |  |-- random_test.cc
+|  |  |-- range.cc
+|  |  |-- range.h
+|  |  |-- range_test.cc
+|  |  |-- rebase.cc
+|  |  |-- rebase.h
+|  |  |-- rebase_test.cc
+|  |  |-- split.cc
+|  |  |-- split.h
+|  |  |-- split_test.cc
+|  |  |-- string_memory_map.h
+|  |  |-- string_memory_map_test.cc
+|  |  |-- utf8.h
+|  |  |-- utf8_test.cc
+|  |-- text
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- concrete_syntax_leaf.cc
+|  |  |-- concrete_syntax_leaf.h
+|  |  |-- concrete_syntax_leaf_test.cc
+|  |  |-- concrete_syntax_tree.cc
+|  |  |-- concrete_syntax_tree.h
+|  |  |-- concrete_syntax_tree_test.cc
+|  |  |-- config_utils.cc
+|  |  |-- config_utils.h
+|  |  |-- config_utils_test.cc
+|  |  |-- constants.h
+|  |  |-- macro_definition.cc
+|  |  |-- macro_definition.h
+|  |  |-- macro_definition_test.cc
+|  |  |-- parser_verifier.cc
+|  |  |-- parser_verifier.h
+|  |  |-- parser_verifier_test.cc
+|  |  |-- symbol.cc
+|  |  |-- symbol.h
+|  |  |-- syntax_tree_context.h
+|  |  |-- syntax_tree_context_test.cc
+|  |  |-- text_structure.cc
+|  |  |-- text_structure.h
+|  |  |-- text_structure_test.cc
+|  |  |-- text_structure_test_utils.cc
+|  |  |-- text_structure_test_utils.h
+|  |  |-- token_info.cc
+|  |  |-- token_info.h
+|  |  |-- token_info_json.cc
+|  |  |-- token_info_json.h
+|  |  |-- token_info_json_test.cc
+|  |  |-- token_info_test.cc
+|  |  |-- token_info_test_util.cc
+|  |  |-- token_info_test_util.h
+|  |  |-- token_info_test_util_test.cc
+|  |  |-- token_stream_view.cc
+|  |  |-- token_stream_view.h
+|  |  |-- token_stream_view_test.cc
+|  |  |-- tree_builder_test_util.cc
+|  |  |-- tree_builder_test_util.h
+|  |  |-- tree_builder_test_util_test.cc
+|  |  |-- tree_compare.cc
+|  |  |-- tree_compare.h
+|  |  |-- tree_compare_test.cc
+|  |  |-- tree_context_visitor.cc
+|  |  |-- tree_context_visitor.h
+|  |  |-- tree_context_visitor_test.cc
+|  |  |-- tree_utils.cc
+|  |  |-- tree_utils.h
+|  |  |-- tree_utils_test.cc
+|  |  |-- visitors.h
+|  |-- tools
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- patch_tool.cc
+|  |  |-- patch_tool_test.sh
+|  |  |-- verible-transform-interactive-test.sh
+|  |  |-- verible-transform-interactive.sh
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- algorithm.h
+|  |  |-- algorithm_test.cc
+|  |  |-- auto_iterator.h
+|  |  |-- auto_iterator_test.cc
+|  |  |-- auto_pop_stack.h
+|  |  |-- auto_pop_stack_test.cc
+|  |  |-- bijective_map.h
+|  |  |-- bijective_map_test.cc
+|  |  |-- casts.h
+|  |  |-- container_iterator_range.h
+|  |  |-- container_iterator_range_test.cc
+|  |  |-- container_util.h
+|  |  |-- create_version_header.sh
+|  |  |-- enum_flags.h
+|  |  |-- enum_flags_test.cc
+|  |  |-- expandable_tree_view.h
+|  |  |-- expandable_tree_view_test.cc
+|  |  |-- file_util.cc
+|  |  |-- file_util.h
+|  |  |-- file_util_test.cc
+|  |  |-- forward.h
+|  |  |-- forward_test.cc
+|  |  |-- init_command_line.cc
+|  |  |-- init_command_line.h
+|  |  |-- interval.h
+|  |  |-- interval_map.h
+|  |  |-- interval_map_test.cc
+|  |  |-- interval_set.h
+|  |  |-- interval_set_test.cc
+|  |  |-- interval_test.cc
+|  |  |-- iterator_adaptors.h
+|  |  |-- iterator_adaptors_test.cc
+|  |  |-- iterator_range.h
+|  |  |-- iterator_range_test.cc
+|  |  |-- logging.h
+|  |  |-- map_tree.h
+|  |  |-- map_tree_test.cc
+|  |  |-- range.h
+|  |  |-- range_test.cc
+|  |  |-- spacer.cc
+|  |  |-- spacer.h
+|  |  |-- spacer_test.cc
+|  |  |-- status_macros.h
+|  |  |-- subcommand.cc
+|  |  |-- subcommand.h
+|  |  |-- subcommand_test.cc
+|  |  |-- top_n.h
+|  |  |-- top_n_test.cc
+|  |  |-- type_traits.h
+|  |  |-- type_traits_test.cc
+|  |  |-- user_interaction.cc
+|  |  |-- user_interaction.h
+|  |  |-- user_interaction_test.cc
+|  |  |-- value_saver.h
+|  |  |-- value_saver_test.cc
+|  |  |-- vector_tree.cc
+|  |  |-- vector_tree.h
+|  |  |-- vector_tree_test.cc
+|  |  |-- vector_tree_test_util.cc
+|  |  |-- vector_tree_test_util.h
+|  |  |-- with_reason.h
+|  |  |-- with_reason_test.cc
+|-- doc
+|  |-- development.md
+|  |-- formatter.md
+|  |-- formatter_simplified_class_diagram.graphml
+|  |-- formatter_simplified_class_diagram.png
+|  |-- indexing.md
+|  |-- parser_design.md
+|  |-- style_lint.md
+|-- external_libs
+|  |-- BUILD
+|  |-- README.md
+|  |-- editscript.h
+|  |-- editscript_test.cc
+|-- kythe-browse.sh
+|-- releasing
+|  |-- README.md
+|  |-- build.sh
+|  |-- centos.dockerfile
+|  |-- centos
+|  |  |-- 6
+|  |  |  |-- bazel.dockerstage
+|  |  |-- 8
+|  |  |  |-- compiler.dockerstage
+|  |  |-- common
+|  |  |  |-- bazel.dockerstage
+|  |  |  |-- compiler.dockerstage
+|  |-- docker-run.sh
+|  |-- gflags2man.dockerstage
+|  |-- supported_bases.txt
+|  |-- ubuntu.dockerfile
+|  |-- ubuntu
+|  |  |-- bionic
+|  |  |  |-- compiler.dockerstage
+|  |  |-- common
+|  |  |  |-- bazel.dockerstage
+|  |  |  |-- compiler.dockerstage
+|  |  |-- xenial
+|  |  |  |-- compiler.dockerstage
+|-- third_party
+|  |-- proto
+|  |  |-- kythe
+|  |  |  |-- BUILD
+|  |  |  |-- LICENSE
+|  |  |  |-- README.md
+|  |  |  |-- storage.proto
+|  |-- py
+|  |  |-- dataclasses
+|  |  |  |-- BUILD
+|  |  |  |-- LICENSE
+|  |  |  |-- README.md
+|  |  |  |-- dataclasses
+|  |  |  |  |-- __init__.py
+|-- verilog
+|  |-- CST
+|  |  |-- BUILD
+|  |  |-- DPI.cc
+|  |  |-- DPI.h
+|  |  |-- DPI_test.cc
+|  |  |-- README.md
+|  |  |-- class.cc
+|  |  |-- class.h
+|  |  |-- class_test.cc
+|  |  |-- constraints.cc
+|  |  |-- constraints.h
+|  |  |-- constraints_test.cc
+|  |  |-- context_functions.h
+|  |  |-- context_functions_test.cc
+|  |  |-- data.cc
+|  |  |-- data.h
+|  |  |-- data_test.cc
+|  |  |-- declaration.cc
+|  |  |-- declaration.h
+|  |  |-- declaration_test.cc
+|  |  |-- dimensions.cc
+|  |  |-- dimensions.h
+|  |  |-- dimensions_test.cc
+|  |  |-- expression.cc
+|  |  |-- expression.h
+|  |  |-- expression_test.cc
+|  |  |-- functions.cc
+|  |  |-- functions.h
+|  |  |-- functions_test.cc
+|  |  |-- identifier.cc
+|  |  |-- identifier.h
+|  |  |-- identifier_test.cc
+|  |  |-- macro.cc
+|  |  |-- macro.h
+|  |  |-- macro_test.cc
+|  |  |-- match_test_utils.cc
+|  |  |-- match_test_utils.h
+|  |  |-- module.cc
+|  |  |-- module.h
+|  |  |-- module_test.cc
+|  |  |-- net.cc
+|  |  |-- net.h
+|  |  |-- net_test.cc
+|  |  |-- numbers.cc
+|  |  |-- numbers.h
+|  |  |-- numbers_test.cc
+|  |  |-- package.cc
+|  |  |-- package.h
+|  |  |-- package_test.cc
+|  |  |-- parameters.cc
+|  |  |-- parameters.h
+|  |  |-- parameters_test.cc
+|  |  |-- port.cc
+|  |  |-- port.h
+|  |  |-- port_test.cc
+|  |  |-- seq_block.cc
+|  |  |-- seq_block.h
+|  |  |-- seq_block_test.cc
+|  |  |-- statement.cc
+|  |  |-- statement.h
+|  |  |-- statement_test.cc
+|  |  |-- tasks.cc
+|  |  |-- tasks.h
+|  |  |-- tasks_test.cc
+|  |  |-- type.cc
+|  |  |-- type.h
+|  |  |-- type_test.cc
+|  |  |-- verilog_matchers.cc
+|  |  |-- verilog_matchers.h
+|  |  |-- verilog_matchers_test.cc
+|  |  |-- verilog_nonterminals.cc
+|  |  |-- verilog_nonterminals.h
+|  |  |-- verilog_nonterminals_foreach.inc
+|  |  |-- verilog_nonterminals_test.cc
+|  |  |-- verilog_tree_json.cc
+|  |  |-- verilog_tree_json.h
+|  |  |-- verilog_tree_json_test.cc
+|  |  |-- verilog_tree_print.cc
+|  |  |-- verilog_tree_print.h
+|  |  |-- verilog_tree_print_test.cc
+|  |  |-- verilog_treebuilder_utils.cc
+|  |  |-- verilog_treebuilder_utils.h
+|  |  |-- verilog_treebuilder_utils_test.cc
+|  |-- README.md
+|  |-- analysis
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- checkers
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- always_comb_blocking_rule.cc
+|  |  |  |-- always_comb_blocking_rule.h
+|  |  |  |-- always_comb_blocking_rule_test.cc
+|  |  |  |-- always_comb_rule.cc
+|  |  |  |-- always_comb_rule.h
+|  |  |  |-- always_comb_rule_test.cc
+|  |  |  |-- always_ff_non_blocking_rule.cc
+|  |  |  |-- always_ff_non_blocking_rule.h
+|  |  |  |-- always_ff_non_blocking_rule_test.cc
+|  |  |  |-- banned_declared_name_patterns_rule.cc
+|  |  |  |-- banned_declared_name_patterns_rule.h
+|  |  |  |-- banned_declared_name_patterns_rule_test.cc
+|  |  |  |-- case_missing_default_rule.cc
+|  |  |  |-- case_missing_default_rule.h
+|  |  |  |-- case_missing_default_rule_test.cc
+|  |  |  |-- constraint_name_style_rule.cc
+|  |  |  |-- constraint_name_style_rule.h
+|  |  |  |-- constraint_name_style_rule_test.cc
+|  |  |  |-- create_object_name_match_rule.cc
+|  |  |  |-- create_object_name_match_rule.h
+|  |  |  |-- create_object_name_match_rule_test.cc
+|  |  |  |-- disable_statement_rule.cc
+|  |  |  |-- disable_statement_rule.h
+|  |  |  |-- disable_statement_rule_test.cc
+|  |  |  |-- endif_comment_rule.cc
+|  |  |  |-- endif_comment_rule.h
+|  |  |  |-- endif_comment_rule_test.cc
+|  |  |  |-- enum_name_style_rule.cc
+|  |  |  |-- enum_name_style_rule.h
+|  |  |  |-- enum_name_style_rule_test.cc
+|  |  |  |-- explicit_function_lifetime_rule.cc
+|  |  |  |-- explicit_function_lifetime_rule.h
+|  |  |  |-- explicit_function_lifetime_rule_test.cc
+|  |  |  |-- explicit_function_task_parameter_type_rule.cc
+|  |  |  |-- explicit_function_task_parameter_type_rule.h
+|  |  |  |-- explicit_function_task_parameter_type_rule_test.cc
+|  |  |  |-- explicit_parameter_storage_type_rule.cc
+|  |  |  |-- explicit_parameter_storage_type_rule.h
+|  |  |  |-- explicit_parameter_storage_type_rule_test.cc
+|  |  |  |-- explicit_task_lifetime_rule.cc
+|  |  |  |-- explicit_task_lifetime_rule.h
+|  |  |  |-- explicit_task_lifetime_rule_test.cc
+|  |  |  |-- forbid_consecutive_null_statements_rule.cc
+|  |  |  |-- forbid_consecutive_null_statements_rule.h
+|  |  |  |-- forbid_consecutive_null_statements_rule_test.cc
+|  |  |  |-- forbid_defparam_rule.cc
+|  |  |  |-- forbid_defparam_rule.h
+|  |  |  |-- forbid_defparam_rule_test.cc
+|  |  |  |-- forbidden_anonymous_enums_rule.cc
+|  |  |  |-- forbidden_anonymous_enums_rule.h
+|  |  |  |-- forbidden_anonymous_enums_rule_test.cc
+|  |  |  |-- forbidden_anonymous_structs_unions_rule.cc
+|  |  |  |-- forbidden_anonymous_structs_unions_rule.h
+|  |  |  |-- forbidden_anonymous_structs_unions_rule_test.cc
+|  |  |  |-- forbidden_macro_rule.cc
+|  |  |  |-- forbidden_macro_rule.h
+|  |  |  |-- forbidden_macro_rule_test.cc
+|  |  |  |-- forbidden_symbol_rule.cc
+|  |  |  |-- forbidden_symbol_rule.h
+|  |  |  |-- forbidden_symbol_rule_test.cc
+|  |  |  |-- generate_label_prefix_rule.cc
+|  |  |  |-- generate_label_prefix_rule.h
+|  |  |  |-- generate_label_prefix_rule_test.cc
+|  |  |  |-- generate_label_rule.cc
+|  |  |  |-- generate_label_rule.h
+|  |  |  |-- generate_label_rule_test.cc
+|  |  |  |-- interface_name_style_rule.cc
+|  |  |  |-- interface_name_style_rule.h
+|  |  |  |-- interface_name_style_rule_test.cc
+|  |  |  |-- legacy_generate_region_rule.cc
+|  |  |  |-- legacy_generate_region_rule.h
+|  |  |  |-- legacy_generate_region_rule_test.cc
+|  |  |  |-- legacy_genvar_declaration_rule.cc
+|  |  |  |-- legacy_genvar_declaration_rule.h
+|  |  |  |-- legacy_genvar_declaration_rule_test.cc
+|  |  |  |-- line_length_rule.cc
+|  |  |  |-- line_length_rule.h
+|  |  |  |-- line_length_rule_test.cc
+|  |  |  |-- macro_name_style_rule.cc
+|  |  |  |-- macro_name_style_rule.h
+|  |  |  |-- macro_name_style_rule_test.cc
+|  |  |  |-- macro_string_concatenation_rule.cc
+|  |  |  |-- macro_string_concatenation_rule.h
+|  |  |  |-- macro_string_concatenation_rule_test.cc
+|  |  |  |-- mismatched_labels_rule.cc
+|  |  |  |-- mismatched_labels_rule.h
+|  |  |  |-- mismatched_labels_rule_test.cc
+|  |  |  |-- module_begin_block_rule.cc
+|  |  |  |-- module_begin_block_rule.h
+|  |  |  |-- module_begin_block_rule_test.cc
+|  |  |  |-- module_filename_rule.cc
+|  |  |  |-- module_filename_rule.h
+|  |  |  |-- module_filename_rule_test.cc
+|  |  |  |-- module_instantiation_rules.cc
+|  |  |  |-- module_instantiation_rules.h
+|  |  |  |-- module_instantiation_rules_test.cc
+|  |  |  |-- no_tabs_rule.cc
+|  |  |  |-- no_tabs_rule.h
+|  |  |  |-- no_tabs_rule_test.cc
+|  |  |  |-- no_trailing_spaces_rule.cc
+|  |  |  |-- no_trailing_spaces_rule.h
+|  |  |  |-- no_trailing_spaces_rule_test.cc
+|  |  |  |-- numeric_format_string_style_rule.cc
+|  |  |  |-- numeric_format_string_style_rule.h
+|  |  |  |-- numeric_format_string_style_rule_test.cc
+|  |  |  |-- one_module_per_file_rule.cc
+|  |  |  |-- one_module_per_file_rule.h
+|  |  |  |-- one_module_per_file_rule_test.cc
+|  |  |  |-- package_filename_rule.cc
+|  |  |  |-- package_filename_rule.h
+|  |  |  |-- package_filename_rule_test.cc
+|  |  |  |-- packed_dimensions_rule.cc
+|  |  |  |-- packed_dimensions_rule.h
+|  |  |  |-- packed_dimensions_rule_test.cc
+|  |  |  |-- parameter_name_style_rule.cc
+|  |  |  |-- parameter_name_style_rule.h
+|  |  |  |-- parameter_name_style_rule_test.cc
+|  |  |  |-- parameter_type_name_style_rule.cc
+|  |  |  |-- parameter_type_name_style_rule.h
+|  |  |  |-- parameter_type_name_style_rule_test.cc
+|  |  |  |-- plusarg_assignment_rule.cc
+|  |  |  |-- plusarg_assignment_rule.h
+|  |  |  |-- plusarg_assignment_rule_test.cc
+|  |  |  |-- port_name_suffix_rule.cc
+|  |  |  |-- port_name_suffix_rule.h
+|  |  |  |-- port_name_suffix_rule_test.cc
+|  |  |  |-- positive_meaning_parameter_name_rule.cc
+|  |  |  |-- positive_meaning_parameter_name_rule.h
+|  |  |  |-- positive_meaning_parameter_name_rule_test.cc
+|  |  |  |-- posix_eof_rule.cc
+|  |  |  |-- posix_eof_rule.h
+|  |  |  |-- posix_eof_rule_test.cc
+|  |  |  |-- proper_parameter_declaration_rule.cc
+|  |  |  |-- proper_parameter_declaration_rule.h
+|  |  |  |-- proper_parameter_declaration_rule_test.cc
+|  |  |  |-- signal_name_style_rule.cc
+|  |  |  |-- signal_name_style_rule.h
+|  |  |  |-- signal_name_style_rule_test.cc
+|  |  |  |-- struct_union_name_style_rule.cc
+|  |  |  |-- struct_union_name_style_rule.h
+|  |  |  |-- struct_union_name_style_rule_test.cc
+|  |  |  |-- suggest_parentheses_rule.cc
+|  |  |  |-- suggest_parentheses_rule.h
+|  |  |  |-- suggest_parentheses_rule_test.cc
+|  |  |  |-- token_stream_lint_rule.cc
+|  |  |  |-- token_stream_lint_rule.h
+|  |  |  |-- token_stream_lint_rule_test.cc
+|  |  |  |-- undersized_binary_literal_rule.cc
+|  |  |  |-- undersized_binary_literal_rule.h
+|  |  |  |-- undersized_binary_literal_rule_test.cc
+|  |  |  |-- unpacked_dimensions_rule.cc
+|  |  |  |-- unpacked_dimensions_rule.h
+|  |  |  |-- unpacked_dimensions_rule_test.cc
+|  |  |  |-- uvm_macro_semicolon_rule.cc
+|  |  |  |-- uvm_macro_semicolon_rule.h
+|  |  |  |-- uvm_macro_semicolon_rule_test.cc
+|  |  |  |-- v2001_generate_begin_rule.cc
+|  |  |  |-- v2001_generate_begin_rule.h
+|  |  |  |-- v2001_generate_begin_rule_test.cc
+|  |  |  |-- void_cast_rule.cc
+|  |  |  |-- void_cast_rule.h
+|  |  |  |-- void_cast_rule_test.cc
+|  |  |-- default_rules.h
+|  |  |-- default_rules_test.cc
+|  |  |-- dependencies.cc
+|  |  |-- dependencies.h
+|  |  |-- dependencies_test.cc
+|  |  |-- descriptions.cc
+|  |  |-- descriptions.h
+|  |  |-- descriptions_test.cc
+|  |  |-- extractors.cc
+|  |  |-- extractors.h
+|  |  |-- extractors_test.cc
+|  |  |-- json_diagnostics.cc
+|  |  |-- json_diagnostics.h
+|  |  |-- json_diagnostics_test.cc
+|  |  |-- lint_rule_registry.cc
+|  |  |-- lint_rule_registry.h
+|  |  |-- lint_rule_registry_test.cc
+|  |  |-- symbol_table.cc
+|  |  |-- symbol_table.h
+|  |  |-- symbol_table_test.cc
+|  |  |-- verilog_analyzer.cc
+|  |  |-- verilog_analyzer.h
+|  |  |-- verilog_analyzer_test.cc
+|  |  |-- verilog_equivalence.cc
+|  |  |-- verilog_equivalence.h
+|  |  |-- verilog_equivalence_test.cc
+|  |  |-- verilog_excerpt_parse.cc
+|  |  |-- verilog_excerpt_parse.h
+|  |  |-- verilog_linter.cc
+|  |  |-- verilog_linter.h
+|  |  |-- verilog_linter_configuration.cc
+|  |  |-- verilog_linter_configuration.h
+|  |  |-- verilog_linter_configuration_test.cc
+|  |  |-- verilog_linter_constants.h
+|  |  |-- verilog_linter_test.cc
+|  |  |-- verilog_project.cc
+|  |  |-- verilog_project.h
+|  |  |-- verilog_project_test.cc
+|  |-- formatting
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- align.cc
+|  |  |-- align.h
+|  |  |-- comment_controls.cc
+|  |  |-- comment_controls.h
+|  |  |-- comment_controls_test.cc
+|  |  |-- format_style.h
+|  |  |-- formatter.cc
+|  |  |-- formatter.h
+|  |  |-- formatter_test.cc
+|  |  |-- formatter_tuning_test.cc
+|  |  |-- token_annotator.cc
+|  |  |-- token_annotator.h
+|  |  |-- token_annotator_test.cc
+|  |  |-- tree_unwrapper.cc
+|  |  |-- tree_unwrapper.h
+|  |  |-- tree_unwrapper_test.cc
+|  |  |-- verilog_token.cc
+|  |  |-- verilog_token.h
+|  |  |-- verilog_token_test.cc
+|  |-- parser
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- verilog.lex
+|  |  |-- verilog.y
+|  |  |-- verilog_lexer.cc
+|  |  |-- verilog_lexer.h
+|  |  |-- verilog_lexer_unittest.cc
+|  |  |-- verilog_lexical_context.cc
+|  |  |-- verilog_lexical_context.h
+|  |  |-- verilog_lexical_context_test.cc
+|  |  |-- verilog_parser.cc
+|  |  |-- verilog_parser.h
+|  |  |-- verilog_parser_unittest.cc
+|  |  |-- verilog_token.cc
+|  |  |-- verilog_token.h
+|  |  |-- verilog_token_classifications.cc
+|  |  |-- verilog_token_classifications.h
+|  |  |-- verilog_token_classifications_test.cc
+|  |-- preprocessor
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- verilog_preprocess.cc
+|  |  |-- verilog_preprocess.h
+|  |  |-- verilog_preprocess_test.cc
+|  |-- tools
+|  |  |-- README.md
+|  |  |-- diff
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- diff_format_lex_error_test.sh
+|  |  |  |-- diff_format_match_test.sh
+|  |  |  |-- diff_format_mismatch_test.sh
+|  |  |  |-- diff_obfuscate_match_test.sh
+|  |  |  |-- diff_obfuscate_mismatch_test.sh
+|  |  |  |-- diff_user_errors_test.sh
+|  |  |  |-- verilog_diff.cc
+|  |  |-- formatter
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- diff-to-changed-lines.awk
+|  |  |  |-- diff_formatter.sh
+|  |  |  |-- format_file_badlines_test.sh
+|  |  |  |-- format_file_lex_error_test.sh
+|  |  |  |-- format_file_lines_test.sh
+|  |  |  |-- format_file_syntax_error_test.sh
+|  |  |  |-- format_file_test.sh
+|  |  |  |-- format_inplace_test.sh
+|  |  |  |-- format_stdin_inplace_test.sh
+|  |  |  |-- format_stdin_test.sh
+|  |  |  |-- git-verible-verilog-format.sh
+|  |  |  |-- triage_formatter.sh
+|  |  |  |-- verible-verilog-format-changed-lines-interactive.sh
+|  |  |  |-- verilog_format.cc
+|  |  |-- kythe
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- indexing_facts_tree.cc
+|  |  |  |-- indexing_facts_tree.h
+|  |  |  |-- indexing_facts_tree_context.h
+|  |  |  |-- indexing_facts_tree_extractor.cc
+|  |  |  |-- indexing_facts_tree_extractor.h
+|  |  |  |-- indexing_facts_tree_extractor_test.cc
+|  |  |  |-- indexing_facts_tree_test.cc
+|  |  |  |-- kythe_facts.cc
+|  |  |  |-- kythe_facts.h
+|  |  |  |-- kythe_facts_extractor.cc
+|  |  |  |-- kythe_facts_extractor.h
+|  |  |  |-- kythe_facts_test.cc
+|  |  |  |-- kythe_proto_output.cc
+|  |  |  |-- kythe_proto_output.h
+|  |  |  |-- kythe_schema_constants.h
+|  |  |  |-- scope_resolver.cc
+|  |  |  |-- scope_resolver.h
+|  |  |  |-- scope_resolver_test.cc
+|  |  |  |-- testdata
+|  |  |  |  |-- array.sv
+|  |  |  |  |-- case.sv
+|  |  |  |  |-- class.sv
+|  |  |  |  |-- class_constructor.sv
+|  |  |  |  |-- class_extends.sv
+|  |  |  |  |-- class_extends_with_package.sv
+|  |  |  |  |-- class_member.sv
+|  |  |  |  |-- class_parameter.sv
+|  |  |  |  |-- conditional_generate.sv
+|  |  |  |  |-- declarations.sv
+|  |  |  |  |-- different_primitive_types.sv
+|  |  |  |  |-- do_while_loop.sv
+|  |  |  |  |-- enum.sv
+|  |  |  |  |-- event_control.sv
+|  |  |  |  |-- final.sv
+|  |  |  |  |-- for_loop.sv
+|  |  |  |  |-- for_loop_uint.sv
+|  |  |  |  |-- foreach.sv
+|  |  |  |  |-- forever.sv
+|  |  |  |  |-- function_and_task.sv
+|  |  |  |  |-- function_call_hierarchy.sv
+|  |  |  |  |-- function_call_inside_loop.sv
+|  |  |  |  |-- function_named_args.sv
+|  |  |  |  |-- function_overrides.sv
+|  |  |  |  |-- function_port_dimensions.sv
+|  |  |  |  |-- function_scoping.sv
+|  |  |  |  |-- function_user_defined_port.sv
+|  |  |  |  |-- if_condition.sv
+|  |  |  |  |-- include_file_test
+|  |  |  |  |  |-- A.svh
+|  |  |  |  |  |-- B.svh
+|  |  |  |  |  |-- C.sv
+|  |  |  |  |  |-- file_list.txt
+|  |  |  |  |  |-- included-file-1.svh
+|  |  |  |  |  |-- included-file-2.svh
+|  |  |  |  |  |-- module.sv
+|  |  |  |  |  |-- module2.sv
+|  |  |  |  |  |-- package_with_include.sv
+|  |  |  |  |  |-- package_with_include_class.svh
+|  |  |  |  |-- include_with_dir_test
+|  |  |  |  |  |-- E.sv
+|  |  |  |  |  |-- file_list.txt
+|  |  |  |  |  |-- include_dir
+|  |  |  |  |  |  |-- D.svh
+|  |  |  |  |  |-- module3.sv
+|  |  |  |  |  |-- module4.sv
+|  |  |  |  |-- initial_block.sv
+|  |  |  |  |-- interface.sv
+|  |  |  |  |-- interface_with_module.sv
+|  |  |  |  |-- interface_with_parameter.sv
+|  |  |  |  |-- macro.sv
+|  |  |  |  |-- macro_call_test.sv
+|  |  |  |  |-- macro_with_function.sv
+|  |  |  |  |-- module.sv
+|  |  |  |  |-- module_actual_and_implicit_port.sv
+|  |  |  |  |-- module_extra_test.sv
+|  |  |  |  |-- module_instance_in_conditional_generate.sv
+|  |  |  |  |-- module_parameter.sv
+|  |  |  |  |-- module_port_type_forwarding.sv
+|  |  |  |  |-- module_with_same_prefix.sv
+|  |  |  |  |-- multi_file_test
+|  |  |  |  |  |-- file_list.txt
+|  |  |  |  |  |-- multi-file-1.sv
+|  |  |  |  |  |-- multi-file-2.sv
+|  |  |  |  |  |-- multi-file-3.sv
+|  |  |  |  |  |-- multi-file-4.sv
+|  |  |  |  |-- nested_member_access.sv
+|  |  |  |  |-- package.sv
+|  |  |  |  |-- package_with_primitive.sv
+|  |  |  |  |-- primitive_type_with_dimensions.sv
+|  |  |  |  |-- primitive_types.sv
+|  |  |  |  |-- program.sv
+|  |  |  |  |-- propagate_data_type_module_port.sv
+|  |  |  |  |-- pure_virtual_function.sv
+|  |  |  |  |-- pure_virtual_task.sv
+|  |  |  |  |-- qualified_variable_type.sv
+|  |  |  |  |-- repeat.sv
+|  |  |  |  |-- reversed_definition.sv
+|  |  |  |  |-- struct.sv
+|  |  |  |  |-- struct_declaration_function_argument.sv
+|  |  |  |  |-- struct_inside_union.sv
+|  |  |  |  |-- task_scoping.sv
+|  |  |  |  |-- two_definitions.sv
+|  |  |  |  |-- type_declaration.sv
+|  |  |  |  |-- union.sv
+|  |  |  |  |-- union_inside_struct.sv
+|  |  |  |  |-- while_loop.sv
+|  |  |  |-- verification_test.sh
+|  |  |  |-- verilog_extractor_indexing_fact_type.cc
+|  |  |  |-- verilog_extractor_indexing_fact_type.h
+|  |  |  |-- verilog_extractor_indexing_fact_type_foreach.inc
+|  |  |  |-- verilog_kythe_extractor.cc
+|  |  |  |-- verilog_kythe_extractor_test.sh
+|  |  |-- lint
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- lint_tool_test.sh
+|  |  |  |-- show_line_col.sh
+|  |  |  |-- testdata
+|  |  |  |  |-- always_comb_blocking.sv
+|  |  |  |  |-- always_comb_module.sv
+|  |  |  |  |-- always_ff_non_blocking.sv
+|  |  |  |  |-- bad-id-lex.sv
+|  |  |  |  |-- banned_declared_name_patterns.sv
+|  |  |  |  |-- case_missing_default.sv
+|  |  |  |  |-- constraint_name_style.sv
+|  |  |  |  |-- defparam_usage.sv
+|  |  |  |  |-- disable_statement.sv
+|  |  |  |  |-- endif_comment.sv
+|  |  |  |  |-- enum_name_style.sv
+|  |  |  |  |-- explicit_function_lifetime.sv
+|  |  |  |  |-- explicit_function_parameter_type.sv
+|  |  |  |  |-- explicit_parameter_storage_type.sv
+|  |  |  |  |-- explicit_task_lifetime.sv
+|  |  |  |  |-- explicit_task_parameter_type.sv
+|  |  |  |  |-- forbid_consecutive_null_statements.sv
+|  |  |  |  |-- forbid_line_continuations.sv
+|  |  |  |  |-- generate-label-module-body.sv
+|  |  |  |  |-- generate_begin_module.sv
+|  |  |  |  |-- generate_label_module.sv
+|  |  |  |  |-- generate_label_prefix.sv
+|  |  |  |  |-- instance-ports-module-body.sv
+|  |  |  |  |-- instance_parameters.sv
+|  |  |  |  |-- instance_ports.sv
+|  |  |  |  |-- interface_type_name_style.sv
+|  |  |  |  |-- legacy_generate_region.sv
+|  |  |  |  |-- legacy_genvar_declaration.sv
+|  |  |  |  |-- line-length-in-module-body.sv
+|  |  |  |  |-- localparam_name_style.sv
+|  |  |  |  |-- localparam_name_style_all_caps.sv
+|  |  |  |  |-- localparam_name_style_camel_case.sv
+|  |  |  |  |-- localparam_type_name_style.sv
+|  |  |  |  |-- long_line.sv
+|  |  |  |  |-- macro_name_style.sv
+|  |  |  |  |-- macro_string_concatenation.sv
+|  |  |  |  |-- mismatched_labels.sv
+|  |  |  |  |-- module_begin_block.sv
+|  |  |  |  |-- module_filename.sv
+|  |  |  |  |-- numeric_format_string_style.sv
+|  |  |  |  |-- object_creation_name.sv
+|  |  |  |  |-- one_module_per_file.sv
+|  |  |  |  |-- package_filename_pkg.sv
+|  |  |  |  |-- packed_dimensions.sv
+|  |  |  |  |-- parameter_name_style.sv
+|  |  |  |  |-- parameter_type_name_style.sv
+|  |  |  |  |-- plusarg_assignment.sv
+|  |  |  |  |-- port_name_suffix.sv
+|  |  |  |  |-- positive_meaning_parameter_name.sv
+|  |  |  |  |-- posix_eof.sv
+|  |  |  |  |-- proper_localparam_declaration.sv
+|  |  |  |  |-- proper_parameter_declaration.sv
+|  |  |  |  |-- psprintf.sv
+|  |  |  |  |-- signal_name_style.sv
+|  |  |  |  |-- struct_name_style.sv
+|  |  |  |  |-- suggest_parentheses_example.sv
+|  |  |  |  |-- tabs.sv
+|  |  |  |  |-- trailing_spaces.sv
+|  |  |  |  |-- typedef_enums.sv
+|  |  |  |  |-- typedef_structs.sv
+|  |  |  |  |-- typedef_unions.sv
+|  |  |  |  |-- undersized_binary_literal.sv
+|  |  |  |  |-- union_name_style.sv
+|  |  |  |  |-- unpacked_dimensions.sv
+|  |  |  |  |-- uvm_macro_semicolon.sv
+|  |  |  |  |-- uvm_warning.sv
+|  |  |  |  |-- void-cast.sv
+|  |  |  |-- verilog_lint.cc
+|  |  |  |-- verilog_style_lint.bzl
+|  |  |-- obfuscator
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- obfuscate_test.sh
+|  |  |  |-- verilog_obfuscate.cc
+|  |  |-- preprocessor
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- verilog_preprocessor.cc
+|  |  |  |-- verilog_preprocessor_test.sh
+|  |  |-- project
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- project_tool.cc
+|  |  |  |-- project_tool_test.sh
+|  |  |-- syntax
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- export_json_examples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- print_modules.py
+|  |  |  |  |-- print_tree.py
+|  |  |  |  |-- verible_verilog_syntax.py
+|  |  |  |  |-- verible_verilog_syntax_test.py
+|  |  |  |-- triage_parser.sh
+|  |  |  |-- verilog_syntax.cc
+|  |  |  |-- verilog_syntax_test.sh
+|  |-- transform
+|  |  |-- BUILD
+|  |  |-- obfuscate.cc
+|  |  |-- obfuscate.h
+|  |  |-- obfuscate_test.cc
+|  |  |-- strip_comments.cc
+|  |  |-- strip_comments.h
+|  |  |-- strip_comments_test.cc
+|-- vnames.json

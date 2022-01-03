@@ -1,0 +1,762 @@
+|-- .gitignore
+|-- .travis.yml
+|-- AUTHORS
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- bazel
+|-- catalog.capnp
+|-- docs
+|  |-- .gitignore
+|  |-- 404.html
+|  |-- Gemfile
+|  |-- Gemfile.lock
+|  |-- LICENSE.md
+|  |-- README.md
+|  |-- _config.yml
+|  |-- _includes
+|  |  |-- head.html
+|  |  |-- sidebar.html
+|  |-- _layouts
+|  |  |-- default.html
+|  |  |-- page.html
+|  |  |-- post.html
+|  |-- _posts
+|  |  |-- 2016-12-14-why-mcm.md
+|  |  |-- 2017-02-07-v0.2-release.md
+|  |-- atom.xml
+|  |-- getting-started.md
+|  |-- index.md
+|  |-- news
+|  |  |-- index.html
+|  |-- public
+|  |  |-- apple-touch-icon-144-precomposed.png
+|  |  |-- css
+|  |  |  |-- hyde.css
+|  |  |  |-- poole.css
+|  |  |  |-- syntax.css
+|  |  |-- favicon.ico
+|-- dot
+|  |-- BUILD
+|  |-- README.md
+|  |-- dot.go
+|-- exec
+|  |-- BUILD
+|  |-- README.md
+|  |-- exec.go
+|  |-- execlib
+|  |  |-- BUILD
+|  |  |-- apply.go
+|  |  |-- errors.go
+|  |  |-- execlib.go
+|  |  |-- execlib_test.go
+|-- gtest.BUILD
+|-- internal
+|  |-- applytests
+|  |  |-- BUILD
+|  |  |-- applytests.go
+|  |-- catpogs
+|  |  |-- BUILD
+|  |  |-- catpogs.go
+|  |  |-- catpogs_test.go
+|  |-- depgraph
+|  |  |-- BUILD
+|  |  |-- depgraph.go
+|  |  |-- depgraph_test.go
+|  |-- system
+|  |  |-- BUILD
+|  |  |-- fakesystem
+|  |  |  |-- BUILD
+|  |  |  |-- fakesystem.go
+|  |  |  |-- fakesystem_test.go
+|  |  |-- local.go
+|  |  |-- system.go
+|  |  |-- unix.go
+|  |  |-- windows.go
+|  |-- version
+|  |  |-- BUILD
+|  |  |-- doc.go
+|  |  |-- gen.sh
+|  |  |-- show.go
+|-- luacat
+|  |-- BUILD
+|  |-- README.md
+|  |-- convert-test.c++
+|  |-- convert.c++
+|  |-- convert.h
+|  |-- genversion.sh
+|  |-- lib.c++
+|  |-- lib.h
+|  |-- lib
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- apt.lua
+|  |  |-- configs.lua
+|  |  |-- configs_test.lua
+|  |  |-- configs_test.sh
+|  |  |-- shlib.lua
+|  |  |-- shlib_test.lua
+|  |  |-- shlib_test.sh
+|  |-- luacat.c++
+|  |-- main-test.c++
+|  |-- main.c++
+|  |-- main.h
+|  |-- path-test.c++
+|  |-- path.c++
+|  |-- path.h
+|  |-- sample.lua
+|  |-- samplelib.lua
+|  |-- testdata
+|  |  |-- depschanged.lua
+|  |  |-- file.lua
+|  |-- testsuite.capnp
+|  |-- types.c++
+|  |-- types.h
+|-- shellify
+|  |-- BUILD
+|  |-- README.md
+|  |-- shellify.go
+|  |-- shlib
+|  |  |-- BUILD
+|  |  |-- integration_test.go
+|  |  |-- shlib.go
+|  |  |-- shlib_test.go
+|  |  |-- writer.go
+|-- third_party
+|  |-- capnproto
+|  |  |-- .gitignore
+|  |  |-- BUILD
+|  |  |-- CONTRIBUTORS
+|  |  |-- LICENSE
+|  |  |-- README.md
+|  |  |-- README.third_party
+|  |  |-- RELEASE-PROCESS.md
+|  |  |-- c++
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- Makefile.am
+|  |  |  |-- Makefile.ekam
+|  |  |  |-- README.txt
+|  |  |  |-- capnp-rpc.pc.in
+|  |  |  |-- capnp.pc.in
+|  |  |  |-- cmake
+|  |  |  |  |-- FindCapnProto.cmake
+|  |  |  |-- configure.ac
+|  |  |  |-- ekam-provider
+|  |  |  |  |-- this-dir-is-to-trick-gdb.txt
+|  |  |  |-- m4
+|  |  |  |  |-- acx_pthread.m4
+|  |  |  |  |-- ax_cxx_compile_stdcxx_11.m4
+|  |  |  |-- regenerate-bootstraps.sh
+|  |  |  |-- samples
+|  |  |  |  |-- addressbook.c++
+|  |  |  |  |-- addressbook.capnp
+|  |  |  |  |-- calculator-client.c++
+|  |  |  |  |-- calculator-server.c++
+|  |  |  |  |-- calculator.capnp
+|  |  |  |  |-- test.sh
+|  |  |  |-- setup-autotools.sh
+|  |  |  |-- setup-ekam.sh
+|  |  |  |-- src
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- benchmark
+|  |  |  |  |  |-- capnproto-carsales.c++
+|  |  |  |  |  |-- capnproto-catrank.c++
+|  |  |  |  |  |-- capnproto-common.h
+|  |  |  |  |  |-- capnproto-eval.c++
+|  |  |  |  |  |-- carsales.capnp
+|  |  |  |  |  |-- carsales.proto
+|  |  |  |  |  |-- catrank.capnp
+|  |  |  |  |  |-- catrank.proto
+|  |  |  |  |  |-- common.h
+|  |  |  |  |  |-- eval.capnp
+|  |  |  |  |  |-- eval.proto
+|  |  |  |  |  |-- null-carsales.c++
+|  |  |  |  |  |-- null-catrank.c++
+|  |  |  |  |  |-- null-common.h
+|  |  |  |  |  |-- null-eval.c++
+|  |  |  |  |  |-- protobuf-carsales.c++
+|  |  |  |  |  |-- protobuf-catrank.c++
+|  |  |  |  |  |-- protobuf-common.h
+|  |  |  |  |  |-- protobuf-eval.c++
+|  |  |  |  |  |-- runner.c++
+|  |  |  |  |-- capnp
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- any-test.c++
+|  |  |  |  |  |-- any.c++
+|  |  |  |  |  |-- any.h
+|  |  |  |  |  |-- arena.c++
+|  |  |  |  |  |-- arena.h
+|  |  |  |  |  |-- blob-test.c++
+|  |  |  |  |  |-- blob.c++
+|  |  |  |  |  |-- blob.h
+|  |  |  |  |  |-- bootstrap-test.ekam-rule
+|  |  |  |  |  |-- c++.capnp
+|  |  |  |  |  |-- c++.capnp.c++
+|  |  |  |  |  |-- c++.capnp.h
+|  |  |  |  |  |-- capability-test.c++
+|  |  |  |  |  |-- capability.c++
+|  |  |  |  |  |-- capability.h
+|  |  |  |  |  |-- capnpc.ekam-rule
+|  |  |  |  |  |-- common-test.c++
+|  |  |  |  |  |-- common.h
+|  |  |  |  |  |-- compat
+|  |  |  |  |  |  |-- json-test.c++
+|  |  |  |  |  |  |-- json.c++
+|  |  |  |  |  |  |-- json.capnp
+|  |  |  |  |  |  |-- json.h
+|  |  |  |  |  |-- compiler
+|  |  |  |  |  |  |-- capnp-test.ekam-rule
+|  |  |  |  |  |  |-- capnp-test.sh
+|  |  |  |  |  |  |-- capnp.c++
+|  |  |  |  |  |  |-- capnp.ekam-manifest
+|  |  |  |  |  |  |-- capnpc-c++.c++
+|  |  |  |  |  |  |-- capnpc-capnp.c++
+|  |  |  |  |  |  |-- compiler.c++
+|  |  |  |  |  |  |-- compiler.h
+|  |  |  |  |  |  |-- error-reporter.c++
+|  |  |  |  |  |  |-- error-reporter.h
+|  |  |  |  |  |  |-- evolution-test.c++
+|  |  |  |  |  |  |-- grammar.capnp
+|  |  |  |  |  |  |-- grammar.capnp.c++
+|  |  |  |  |  |  |-- grammar.capnp.h
+|  |  |  |  |  |  |-- lexer-test.c++
+|  |  |  |  |  |  |-- lexer.c++
+|  |  |  |  |  |  |-- lexer.capnp
+|  |  |  |  |  |  |-- lexer.capnp.c++
+|  |  |  |  |  |  |-- lexer.capnp.h
+|  |  |  |  |  |  |-- lexer.h
+|  |  |  |  |  |  |-- md5-test.c++
+|  |  |  |  |  |  |-- md5.c++
+|  |  |  |  |  |  |-- md5.h
+|  |  |  |  |  |  |-- module-loader.c++
+|  |  |  |  |  |  |-- module-loader.h
+|  |  |  |  |  |  |-- node-translator.c++
+|  |  |  |  |  |  |-- node-translator.h
+|  |  |  |  |  |  |-- parser.c++
+|  |  |  |  |  |  |-- parser.h
+|  |  |  |  |  |-- dynamic-capability.c++
+|  |  |  |  |  |-- dynamic-test.c++
+|  |  |  |  |  |-- dynamic.c++
+|  |  |  |  |  |-- dynamic.h
+|  |  |  |  |  |-- encoding-test.c++
+|  |  |  |  |  |-- endian-fallback-test.c++
+|  |  |  |  |  |-- endian-reverse-test.c++
+|  |  |  |  |  |-- endian-test.c++
+|  |  |  |  |  |-- endian.h
+|  |  |  |  |  |-- ez-rpc-test.c++
+|  |  |  |  |  |-- ez-rpc.c++
+|  |  |  |  |  |-- ez-rpc.h
+|  |  |  |  |  |-- fuzz-test.c++
+|  |  |  |  |  |-- generated-header-support.h
+|  |  |  |  |  |-- layout-test.c++
+|  |  |  |  |  |-- layout.c++
+|  |  |  |  |  |-- layout.h
+|  |  |  |  |  |-- list.c++
+|  |  |  |  |  |-- list.h
+|  |  |  |  |  |-- membrane-test.c++
+|  |  |  |  |  |-- membrane.c++
+|  |  |  |  |  |-- membrane.h
+|  |  |  |  |  |-- message-test.c++
+|  |  |  |  |  |-- message.c++
+|  |  |  |  |  |-- message.h
+|  |  |  |  |  |-- orphan-test.c++
+|  |  |  |  |  |-- orphan.h
+|  |  |  |  |  |-- persistent.capnp
+|  |  |  |  |  |-- persistent.capnp.c++
+|  |  |  |  |  |-- persistent.capnp.h
+|  |  |  |  |  |-- pointer-helpers.h
+|  |  |  |  |  |-- pretty-print.h
+|  |  |  |  |  |-- rpc-prelude.h
+|  |  |  |  |  |-- rpc-test.c++
+|  |  |  |  |  |-- rpc-twoparty-test.c++
+|  |  |  |  |  |-- rpc-twoparty.c++
+|  |  |  |  |  |-- rpc-twoparty.capnp
+|  |  |  |  |  |-- rpc-twoparty.capnp.c++
+|  |  |  |  |  |-- rpc-twoparty.capnp.h
+|  |  |  |  |  |-- rpc-twoparty.h
+|  |  |  |  |  |-- rpc.c++
+|  |  |  |  |  |-- rpc.capnp
+|  |  |  |  |  |-- rpc.capnp.c++
+|  |  |  |  |  |-- rpc.capnp.h
+|  |  |  |  |  |-- rpc.h
+|  |  |  |  |  |-- schema-lite.h
+|  |  |  |  |  |-- schema-loader-test.c++
+|  |  |  |  |  |-- schema-loader.c++
+|  |  |  |  |  |-- schema-loader.h
+|  |  |  |  |  |-- schema-parser-test.c++
+|  |  |  |  |  |-- schema-parser.c++
+|  |  |  |  |  |-- schema-parser.h
+|  |  |  |  |  |-- schema-test.c++
+|  |  |  |  |  |-- schema.c++
+|  |  |  |  |  |-- schema.capnp
+|  |  |  |  |  |-- schema.capnp.c++
+|  |  |  |  |  |-- schema.capnp.h
+|  |  |  |  |  |-- schema.h
+|  |  |  |  |  |-- serialize-async-test.c++
+|  |  |  |  |  |-- serialize-async.c++
+|  |  |  |  |  |-- serialize-async.h
+|  |  |  |  |  |-- serialize-packed-test.c++
+|  |  |  |  |  |-- serialize-packed.c++
+|  |  |  |  |  |-- serialize-packed.h
+|  |  |  |  |  |-- serialize-test.c++
+|  |  |  |  |  |-- serialize-text-test.c++
+|  |  |  |  |  |-- serialize-text.c++
+|  |  |  |  |  |-- serialize-text.h
+|  |  |  |  |  |-- serialize.c++
+|  |  |  |  |  |-- serialize.h
+|  |  |  |  |  |-- stringify-test.c++
+|  |  |  |  |  |-- stringify.c++
+|  |  |  |  |  |-- test-import.capnp
+|  |  |  |  |  |-- test-import2.capnp
+|  |  |  |  |  |-- test-util.c++
+|  |  |  |  |  |-- test-util.h
+|  |  |  |  |  |-- test.capnp
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- binary
+|  |  |  |  |  |  |-- errors.capnp.nobuild
+|  |  |  |  |  |  |-- errors.txt
+|  |  |  |  |  |  |-- flat
+|  |  |  |  |  |  |-- packed
+|  |  |  |  |  |  |-- pretty.txt
+|  |  |  |  |  |  |-- segmented
+|  |  |  |  |  |  |-- segmented-packed
+|  |  |  |  |  |  |-- short.txt
+|  |  |  |  |-- kj
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- arena-test.c++
+|  |  |  |  |  |-- arena.c++
+|  |  |  |  |  |-- arena.h
+|  |  |  |  |  |-- array-test.c++
+|  |  |  |  |  |-- array.c++
+|  |  |  |  |  |-- array.h
+|  |  |  |  |  |-- async-inl.h
+|  |  |  |  |  |-- async-io-test.c++
+|  |  |  |  |  |-- async-io.c++
+|  |  |  |  |  |-- async-io.h
+|  |  |  |  |  |-- async-prelude.h
+|  |  |  |  |  |-- async-test.c++
+|  |  |  |  |  |-- async-unix-test.c++
+|  |  |  |  |  |-- async-unix.c++
+|  |  |  |  |  |-- async-unix.h
+|  |  |  |  |  |-- async.c++
+|  |  |  |  |  |-- async.h
+|  |  |  |  |  |-- common-test.c++
+|  |  |  |  |  |-- common.c++
+|  |  |  |  |  |-- common.h
+|  |  |  |  |  |-- compat
+|  |  |  |  |  |  |-- gtest.h
+|  |  |  |  |  |-- debug-test.c++
+|  |  |  |  |  |-- debug.c++
+|  |  |  |  |  |-- debug.h
+|  |  |  |  |  |-- exception-test.c++
+|  |  |  |  |  |-- exception.c++
+|  |  |  |  |  |-- exception.h
+|  |  |  |  |  |-- function-test.c++
+|  |  |  |  |  |-- function.h
+|  |  |  |  |  |-- io-test.c++
+|  |  |  |  |  |-- io.c++
+|  |  |  |  |  |-- io.h
+|  |  |  |  |  |-- main.c++
+|  |  |  |  |  |-- main.h
+|  |  |  |  |  |-- memory-test.c++
+|  |  |  |  |  |-- memory.c++
+|  |  |  |  |  |-- memory.h
+|  |  |  |  |  |-- miniposix.h
+|  |  |  |  |  |-- mutex-test.c++
+|  |  |  |  |  |-- mutex.c++
+|  |  |  |  |  |-- mutex.h
+|  |  |  |  |  |-- one-of-test.c++
+|  |  |  |  |  |-- one-of.h
+|  |  |  |  |  |-- parse
+|  |  |  |  |  |  |-- char-test.c++
+|  |  |  |  |  |  |-- char.c++
+|  |  |  |  |  |  |-- char.h
+|  |  |  |  |  |  |-- common-test.c++
+|  |  |  |  |  |  |-- common.h
+|  |  |  |  |  |-- refcount-test.c++
+|  |  |  |  |  |-- refcount.c++
+|  |  |  |  |  |-- refcount.h
+|  |  |  |  |  |-- std
+|  |  |  |  |  |  |-- iostream-test.c++
+|  |  |  |  |  |  |-- iostream.h
+|  |  |  |  |  |-- string-test.c++
+|  |  |  |  |  |-- string-tree-test.c++
+|  |  |  |  |  |-- string-tree.c++
+|  |  |  |  |  |-- string-tree.h
+|  |  |  |  |  |-- string.c++
+|  |  |  |  |  |-- string.h
+|  |  |  |  |  |-- test-test.c++
+|  |  |  |  |  |-- test.c++
+|  |  |  |  |  |-- test.h
+|  |  |  |  |  |-- thread.c++
+|  |  |  |  |  |-- thread.h
+|  |  |  |  |  |-- threadlocal-pthread-test.c++
+|  |  |  |  |  |-- threadlocal-test.c++
+|  |  |  |  |  |-- threadlocal.h
+|  |  |  |  |  |-- time.c++
+|  |  |  |  |  |-- time.h
+|  |  |  |  |  |-- tuple-test.c++
+|  |  |  |  |  |-- tuple.h
+|  |  |  |  |  |-- units-test.c++
+|  |  |  |  |  |-- units.c++
+|  |  |  |  |  |-- units.h
+|  |  |  |  |  |-- vector.h
+|  |  |  |  |  |-- windows-sanity.h
+|  |  |-- doc
+|  |  |  |-- README.md
+|  |  |  |-- _config.yml
+|  |  |  |-- _config_next.yml
+|  |  |  |-- _includes
+|  |  |  |  |-- buttons.html
+|  |  |  |  |-- footer.html
+|  |  |  |  |-- header.html
+|  |  |  |-- _layouts
+|  |  |  |  |-- page.html
+|  |  |  |  |-- post.html
+|  |  |  |-- _plugins
+|  |  |  |  |-- capnp_lexer.py
+|  |  |  |-- _posts
+|  |  |  |  |-- 2013-04-01-announcing-capn-proto.md
+|  |  |  |  |-- 2013-06-27-capn-proto-beta-release.md
+|  |  |  |  |-- 2013-08-12-capnproto-0.2-no-more-haskell.md
+|  |  |  |  |-- 2013-08-19-capnproto-0.2.1.md
+|  |  |  |  |-- 2013-09-04-capnproto-0.3-python-tools-features.md
+|  |  |  |  |-- 2013-12-12-capnproto-0.4-time-travel.md
+|  |  |  |  |-- 2013-12-13-promise-pipelining-capnproto-vs-ice.md
+|  |  |  |  |-- 2014-03-11-capnproto-0.4.1-bugfixes.md
+|  |  |  |  |-- 2014-06-17-capnproto-flatbuffers-sbe.md
+|  |  |  |  |-- 2014-12-15-capnproto-0.5-generics-msvc-java-csharp.md
+|  |  |  |  |-- 2015-01-23-capnproto-0.5.1-bugfixes.md
+|  |  |  |  |-- 2015-03-02-security-advisory-and-integer-overflow-protection.md
+|  |  |  |  |-- 2015-03-05-another-cpu-amplification.md
+|  |  |  |-- capnp-tool.md
+|  |  |  |-- cxx.md
+|  |  |  |-- cxxrpc.md
+|  |  |  |-- encoding.md
+|  |  |  |-- faq.md
+|  |  |  |-- images
+|  |  |  |  |-- bg_hr.png
+|  |  |  |  |-- blacktocat.png
+|  |  |  |  |-- capnp-vs-ice.png
+|  |  |  |  |-- capnp-vs-thrift-vs-ice.png
+|  |  |  |  |-- gittip.png
+|  |  |  |  |-- gittip15.png
+|  |  |  |  |-- groups-logo.png
+|  |  |  |  |-- icon_download.png
+|  |  |  |  |-- infinitely_faster.png
+|  |  |  |  |-- infinity-times-faster.png
+|  |  |  |  |-- logo.png
+|  |  |  |  |-- sprite_download.png
+|  |  |  |  |-- time-travel.png
+|  |  |  |  |-- twitter.svg
+|  |  |  |-- index.md
+|  |  |  |-- install.md
+|  |  |  |-- javascripts
+|  |  |  |  |-- main.js
+|  |  |  |-- language.md
+|  |  |  |-- news
+|  |  |  |  |-- index.html
+|  |  |  |-- otherlang.md
+|  |  |  |-- push-site.sh
+|  |  |  |-- roadmap.md
+|  |  |  |-- rpc.md
+|  |  |  |-- stylesheets
+|  |  |  |  |-- pygment_trac.css
+|  |  |  |  |-- stylesheet.css
+|  |  |-- highlighting
+|  |  |  |-- emacs
+|  |  |  |  |-- README.md
+|  |  |  |  |-- capnp-mode.el
+|  |  |  |-- qtcreator
+|  |  |  |  |-- capnp.xml
+|  |  |-- mega-test-quick.cfg
+|  |  |-- mega-test.cfg
+|  |  |-- mega-test.py
+|  |  |-- release.sh
+|  |  |-- security-advisories
+|  |  |  |-- 2015-03-02-0-c++-integer-overflow.md
+|  |  |  |-- 2015-03-02-1-c++-integer-underflow.md
+|  |  |  |-- 2015-03-02-2-all-cpu-amplification.md
+|  |  |  |-- 2015-03-05-0-c++-addl-cpu-amplification.md
+|  |  |  |-- README.md
+|  |  |-- style-guide.md
+|  |  |-- super-test.sh
+|  |-- golang
+|  |  |-- capnproto
+|  |  |  |-- .gitignore
+|  |  |  |-- .travis.yml
+|  |  |  |-- AUTHORS
+|  |  |  |-- BUILD
+|  |  |  |-- CONTRIBUTORS
+|  |  |  |-- LICENSE
+|  |  |  |-- README.md
+|  |  |  |-- README.third_party
+|  |  |  |-- address.go
+|  |  |  |-- address_test.go
+|  |  |  |-- capability.go
+|  |  |  |-- capability_test.go
+|  |  |  |-- capn.go
+|  |  |  |-- capn_test.go
+|  |  |  |-- capnpc-go
+|  |  |  |  |-- .gitignore
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- capnpc-go.go
+|  |  |  |  |-- capnpc-go_test.go
+|  |  |  |  |-- fileparts.go
+|  |  |  |  |-- nodes.go
+|  |  |  |  |-- templateparams.go
+|  |  |  |  |-- templates
+|  |  |  |  |  |-- _hasfield
+|  |  |  |  |  |-- _interfaceMethod
+|  |  |  |  |  |-- _settag
+|  |  |  |  |  |-- annotation
+|  |  |  |  |  |-- baseStructFuncs
+|  |  |  |  |  |-- constants
+|  |  |  |  |  |-- enum
+|  |  |  |  |  |-- interfaceClient
+|  |  |  |  |  |-- interfaceServer
+|  |  |  |  |  |-- listValue
+|  |  |  |  |  |-- pointerValue
+|  |  |  |  |  |-- promise
+|  |  |  |  |  |-- promiseFieldAnyPointer
+|  |  |  |  |  |-- promiseFieldInterface
+|  |  |  |  |  |-- promiseFieldStruct
+|  |  |  |  |  |-- promiseGroup
+|  |  |  |  |  |-- schemaVar
+|  |  |  |  |  |-- structBoolField
+|  |  |  |  |  |-- structDataField
+|  |  |  |  |  |-- structEnums
+|  |  |  |  |  |-- structFloatField
+|  |  |  |  |  |-- structFuncs
+|  |  |  |  |  |-- structGroup
+|  |  |  |  |  |-- structIntField
+|  |  |  |  |  |-- structInterfaceField
+|  |  |  |  |  |-- structList
+|  |  |  |  |  |-- structListField
+|  |  |  |  |  |-- structPointerField
+|  |  |  |  |  |-- structStructField
+|  |  |  |  |  |-- structTextField
+|  |  |  |  |  |-- structTypes
+|  |  |  |  |  |-- structUintField
+|  |  |  |  |  |-- structValue
+|  |  |  |  |  |-- structVoidField
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- aircraft.capnp.out
+|  |  |  |  |  |-- const.capnp
+|  |  |  |  |  |-- const.capnp.out
+|  |  |  |  |  |-- go.capnp
+|  |  |  |  |  |-- go.capnp.out
+|  |  |  |  |  |-- group.capnp
+|  |  |  |  |  |-- group.capnp.out
+|  |  |  |  |  |-- otherscopes.capnp
+|  |  |  |  |  |-- rpc.capnp.out
+|  |  |  |  |  |-- scopes.capnp
+|  |  |  |  |  |-- scopes.capnp.out
+|  |  |  |  |  |-- util.capnp
+|  |  |  |  |  |-- util.capnp.out
+|  |  |  |-- doc.go
+|  |  |  |-- encoding
+|  |  |  |  |-- text
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- marshal.go
+|  |  |  |  |  |-- marshal_test.go
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- txt.capnp
+|  |  |  |  |  |  |-- txt.capnp.out
+|  |  |  |-- example_test.go
+|  |  |  |-- integration_test.go
+|  |  |  |-- integrationutil_test.go
+|  |  |  |-- internal
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- aircraftlib
+|  |  |  |  |  |-- aircraft.capnp
+|  |  |  |  |  |-- generate.go
+|  |  |  |  |-- capnptool
+|  |  |  |  |  |-- capnptool.go
+|  |  |  |  |-- cmd
+|  |  |  |  |  |-- mktemplates
+|  |  |  |  |  |  |-- mktemplates.go
+|  |  |  |  |-- fulfiller
+|  |  |  |  |  |-- fulfiller.go
+|  |  |  |  |  |-- fulfiller_test.go
+|  |  |  |  |-- nodemap
+|  |  |  |  |  |-- nodemap.go
+|  |  |  |  |-- packed
+|  |  |  |  |  |-- discard.go
+|  |  |  |  |  |-- discard_go14.go
+|  |  |  |  |  |-- packed.go
+|  |  |  |  |  |-- packed_test.go
+|  |  |  |  |-- queue
+|  |  |  |  |  |-- queue.go
+|  |  |  |  |  |-- queue_test.go
+|  |  |  |-- list.go
+|  |  |  |-- list_test.go
+|  |  |  |-- mem.go
+|  |  |  |-- mem_test.go
+|  |  |  |-- pogs
+|  |  |  |  |-- bench_test.go
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- embed_test.go
+|  |  |  |  |-- example_test.go
+|  |  |  |  |-- extract.go
+|  |  |  |  |-- fields.go
+|  |  |  |  |-- insert.go
+|  |  |  |  |-- pogs_test.go
+|  |  |  |-- pointer.go
+|  |  |  |-- rawpointer.go
+|  |  |  |-- rawpointer_test.go
+|  |  |  |-- readlimit.go
+|  |  |  |-- readlimit_test.go
+|  |  |  |-- regen.sh
+|  |  |  |-- rpc
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- answer.go
+|  |  |  |  |-- bench_test.go
+|  |  |  |  |-- cancel_test.go
+|  |  |  |  |-- embargo_test.go
+|  |  |  |  |-- errors.go
+|  |  |  |  |-- example_test.go
+|  |  |  |  |-- internal
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- logtransport
+|  |  |  |  |  |  |-- logtransport.go
+|  |  |  |  |  |-- logutil
+|  |  |  |  |  |  |-- logutil.go
+|  |  |  |  |  |-- pipetransport
+|  |  |  |  |  |  |-- pipetransport.go
+|  |  |  |  |  |-- refcount
+|  |  |  |  |  |  |-- refcount.go
+|  |  |  |  |  |  |-- refcount_test.go
+|  |  |  |  |  |-- testcapnp
+|  |  |  |  |  |  |-- generate.go
+|  |  |  |  |  |  |-- test.capnp
+|  |  |  |  |  |  |-- test.capnp.go
+|  |  |  |  |-- introspect.go
+|  |  |  |  |-- issue3_test.go
+|  |  |  |  |-- log.go
+|  |  |  |  |-- promise_test.go
+|  |  |  |  |-- question.go
+|  |  |  |  |-- release_test.go
+|  |  |  |  |-- rpc.go
+|  |  |  |  |-- rpc_test.go
+|  |  |  |  |-- tables.go
+|  |  |  |  |-- transport.go
+|  |  |  |-- schemas
+|  |  |  |  |-- schemas.go
+|  |  |  |  |-- schemas_test.go
+|  |  |  |-- server
+|  |  |  |  |-- server.go
+|  |  |  |  |-- server_test.go
+|  |  |  |-- std
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- capnp
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- gen.sh
+|  |  |  |  |  |-- schema
+|  |  |  |  |  |  |-- schema.capnp.go
+|  |  |  |  |-- go.capnp
+|  |  |  |-- strings.go
+|  |  |  |-- struct.go
+|  |  |-- rbtree
+|  |  |  |-- BUILD
+|  |  |  |-- LICENSE
+|  |  |  |-- README
+|  |  |  |-- README.third_party
+|  |  |  |-- rbtree.go
+|  |  |  |-- rbtree_test.go
+|  |-- lua
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- Makefile
+|  |  |-- README
+|  |  |-- README.third_party
+|  |  |-- doc
+|  |  |  |-- contents.html
+|  |  |  |-- index.css
+|  |  |  |-- logo.gif
+|  |  |  |-- lua.1
+|  |  |  |-- lua.css
+|  |  |  |-- luac.1
+|  |  |  |-- manual.css
+|  |  |  |-- manual.html
+|  |  |  |-- osi-certified-72x60.png
+|  |  |  |-- readme.html
+|  |  |-- src
+|  |  |  |-- Makefile
+|  |  |  |-- lapi.c
+|  |  |  |-- lapi.h
+|  |  |  |-- lauxlib.c
+|  |  |  |-- lauxlib.h
+|  |  |  |-- lbaselib.c
+|  |  |  |-- lbitlib.c
+|  |  |  |-- lcode.c
+|  |  |  |-- lcode.h
+|  |  |  |-- lcorolib.c
+|  |  |  |-- lctype.c
+|  |  |  |-- lctype.h
+|  |  |  |-- ldblib.c
+|  |  |  |-- ldebug.c
+|  |  |  |-- ldebug.h
+|  |  |  |-- ldo.c
+|  |  |  |-- ldo.h
+|  |  |  |-- ldump.c
+|  |  |  |-- lfunc.c
+|  |  |  |-- lfunc.h
+|  |  |  |-- lgc.c
+|  |  |  |-- lgc.h
+|  |  |  |-- linit.c
+|  |  |  |-- liolib.c
+|  |  |  |-- llex.c
+|  |  |  |-- llex.h
+|  |  |  |-- llimits.h
+|  |  |  |-- lmathlib.c
+|  |  |  |-- lmem.c
+|  |  |  |-- lmem.h
+|  |  |  |-- loadlib.c
+|  |  |  |-- lobject.c
+|  |  |  |-- lobject.h
+|  |  |  |-- lopcodes.c
+|  |  |  |-- lopcodes.h
+|  |  |  |-- loslib.c
+|  |  |  |-- lparser.c
+|  |  |  |-- lparser.h
+|  |  |  |-- lprefix.h
+|  |  |  |-- lstate.c
+|  |  |  |-- lstate.h
+|  |  |  |-- lstring.c
+|  |  |  |-- lstring.h
+|  |  |  |-- lstrlib.c
+|  |  |  |-- ltable.c
+|  |  |  |-- ltable.h
+|  |  |  |-- ltablib.c
+|  |  |  |-- ltm.c
+|  |  |  |-- ltm.h
+|  |  |  |-- lua.c
+|  |  |  |-- lua.h
+|  |  |  |-- lua.hpp
+|  |  |  |-- luac.c
+|  |  |  |-- luaconf.h
+|  |  |  |-- lualib.h
+|  |  |  |-- lundump.c
+|  |  |  |-- lundump.h
+|  |  |  |-- lutf8lib.c
+|  |  |  |-- lvm.c
+|  |  |  |-- lvm.h
+|  |  |  |-- lzio.c
+|  |  |  |-- lzio.h
+|-- tools
+|  |-- bazel.rc
+|  |-- build_rules
+|  |  |-- BUILD
+|  |  |-- capnproto.bzl
+|  |  |-- go_default.bzl
+|  |  |-- prelude_bazel
+|  |-- buildstamp
+|  |  |-- get_workspace_status
+|-- travis
+|  |-- bazelrc
+|  |-- deploy.sh
+|  |-- service-account.json.enc

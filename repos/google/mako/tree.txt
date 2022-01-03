@@ -1,0 +1,327 @@
+|-- .bazelrc
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- SUPPORT.md
+|-- WORKSPACE
+|-- cli
+|  |-- BUILD
+|  |-- lib.go
+|  |-- lib_test.go
+|  |-- mako.go
+|-- curl.BUILD
+|-- cxx
+|  |-- clients
+|  |  |-- aggregator
+|  |  |  |-- BUILD
+|  |  |  |-- standard_aggregator.cc
+|  |  |  |-- standard_aggregator.h
+|  |  |  |-- standard_aggregator_test.cc
+|  |  |  |-- threadsafe_running_stats.h
+|  |  |-- analyzers
+|  |  |  |-- BUILD
+|  |  |  |-- threshold_analyzer.cc
+|  |  |  |-- threshold_analyzer.h
+|  |  |  |-- threshold_analyzer_test.cc
+|  |  |  |-- utest_analyzer.cc
+|  |  |  |-- utest_analyzer.h
+|  |  |  |-- utest_analyzer_test.cc
+|  |  |  |-- util.cc
+|  |  |  |-- util.h
+|  |  |  |-- util_test.cc
+|  |  |  |-- window_deviation.cc
+|  |  |  |-- window_deviation.h
+|  |  |  |-- window_deviation_test.cc
+|  |  |-- dashboard
+|  |  |  |-- BUILD
+|  |  |  |-- standard_dashboard.cc
+|  |  |  |-- standard_dashboard.h
+|  |  |  |-- standard_dashboard_test.cc
+|  |  |-- downsampler
+|  |  |  |-- BUILD
+|  |  |  |-- metric_set.h
+|  |  |  |-- metric_set_test.cc
+|  |  |  |-- standard_downsampler.cc
+|  |  |  |-- standard_downsampler.h
+|  |  |  |-- standard_downsampler_test.cc
+|  |  |-- fileio
+|  |  |  |-- BUILD
+|  |  |  |-- memory_fileio.cc
+|  |  |  |-- memory_fileio.h
+|  |  |  |-- memory_fileio_test.cc
+|  |  |-- storage
+|  |  |  |-- BUILD
+|  |  |  |-- base_storage_client.h
+|  |  |  |-- fake_google3_storage.cc
+|  |  |  |-- fake_google3_storage.h
+|  |  |  |-- fake_google3_storage_test.cc
+|  |  |  |-- go
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- fake_storage.swig
+|  |  |  |  |-- google3_storage.swig
+|  |  |  |  |-- mako_client.swig
+|  |  |  |-- google3_storage.cc
+|  |  |  |-- google3_storage.h
+|  |  |  |-- google3_storage_test.cc
+|  |  |  |-- mako_client.cc
+|  |  |  |-- mako_client.h
+|  |  |  |-- mako_client_internal.h
+|  |  |  |-- mako_client_test.cc
+|  |-- helpers
+|  |  |-- rolling_window_reducer
+|  |  |  |-- BUILD
+|  |  |  |-- rolling_window_reducer.cc
+|  |  |  |-- rolling_window_reducer.h
+|  |  |  |-- rolling_window_reducer_internal.cc
+|  |  |  |-- rolling_window_reducer_internal.h
+|  |  |  |-- rolling_window_reducer_test.cc
+|  |  |-- status
+|  |  |  |-- BUILD
+|  |  |  |-- canonical_errors.cc
+|  |  |  |-- canonical_errors.h
+|  |  |  |-- status.cc
+|  |  |  |-- status.h
+|  |  |  |-- status_matchers.cc
+|  |  |  |-- status_matchers.h
+|  |  |  |-- status_matchers_test.cc
+|  |  |  |-- statusor.h
+|  |-- internal
+|  |  |-- BUILD
+|  |  |-- analyzer_common.cc
+|  |  |-- analyzer_common.h
+|  |  |-- analyzer_optimizer.cc
+|  |  |-- analyzer_optimizer.h
+|  |  |-- analyzer_optimizer_test.cc
+|  |  |-- backoff.cc
+|  |  |-- backoff.h
+|  |  |-- backoff_test.cc
+|  |  |-- clock.h
+|  |  |-- clock_external.cc
+|  |  |-- clock_external.h
+|  |  |-- clock_mock.h
+|  |  |-- filter_utils.cc
+|  |  |-- filter_utils.h
+|  |  |-- filter_utils_test.cc
+|  |  |-- grpc
+|  |  |  |-- BUILD
+|  |  |  |-- grpc.h
+|  |  |-- load
+|  |  |  |-- common
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- executor.h
+|  |  |  |  |-- executor_test.cc
+|  |  |  |  |-- run_analyzers.cc
+|  |  |  |  |-- run_analyzers.h
+|  |  |  |  |-- run_analyzers_test.cc
+|  |  |  |  |-- thread_pool.h
+|  |  |  |  |-- thread_pool_factory.cc
+|  |  |  |  |-- thread_pool_factory.h
+|  |  |  |  |-- thread_pool_test.cc
+|  |  |-- pgmath.cc
+|  |  |-- pgmath.h
+|  |  |-- pgmath_test.cc
+|  |  |-- proto_cache.h
+|  |  |-- proto_cache_test.cc
+|  |  |-- proto_validation.cc
+|  |  |-- proto_validation.h
+|  |  |-- proto_validation_test.cc
+|  |  |-- queue.h
+|  |  |-- queue_ifc.h
+|  |  |-- queue_test.cc
+|  |  |-- storage_client
+|  |  |  |-- BUILD
+|  |  |  |-- google_oauth_fetcher.cc
+|  |  |  |-- google_oauth_fetcher.h
+|  |  |  |-- google_oauth_fetcher_test.cc
+|  |  |  |-- http_client.cc
+|  |  |  |-- http_client.h
+|  |  |  |-- http_paths.cc
+|  |  |  |-- http_paths.h
+|  |  |  |-- http_transport.cc
+|  |  |  |-- http_transport.h
+|  |  |  |-- mock_transport.h
+|  |  |  |-- oauth_token_provider.h
+|  |  |  |-- retry_strategy.h
+|  |  |  |-- retry_strategy_test.cc
+|  |  |  |-- retrying_storage_request.h
+|  |  |  |-- transport.h
+|  |  |  |-- url.cc
+|  |  |  |-- url.h
+|  |  |  |-- url_test.cc
+|  |  |-- utils
+|  |  |  |-- BUILD
+|  |  |  |-- cleanup.h
+|  |  |  |-- cleanup_test.cc
+|  |  |  |-- googleinit.h
+|  |  |  |-- stringutil.cc
+|  |  |  |-- stringutil.h
+|  |  |  |-- stringutil_test.cc
+|  |-- quickstore
+|  |  |-- BUILD
+|  |  |-- internal
+|  |  |  |-- BUILD
+|  |  |  |-- store.cc
+|  |  |  |-- store.h
+|  |  |  |-- store_test.cc
+|  |  |-- mock_quickstore.h
+|  |  |-- quickstore.cc
+|  |  |-- quickstore.h
+|  |  |-- quickstore_example_test.cc
+|  |-- spec
+|  |  |-- BUILD
+|  |  |-- aggregator.h
+|  |  |-- analyzer.cc
+|  |  |-- analyzer.h
+|  |  |-- dashboard.cc
+|  |  |-- dashboard.h
+|  |  |-- downsampler.h
+|  |  |-- fileio.h
+|  |  |-- mock_analyzer.h
+|  |  |-- mock_storage.h
+|  |  |-- storage.h
+|  |-- testing
+|  |  |-- BUILD
+|  |  |-- protocol-buffer-matchers.cc
+|  |  |-- protocol-buffer-matchers.h
+|-- docs
+|  |-- ACCESS.md
+|  |-- ANALYZERS.md
+|  |-- AUTHENTICATION.md
+|  |-- BUILDING.md
+|  |-- CLI.md
+|  |-- CONCEPTS.md
+|  |-- GUIDE.md
+|  |-- ROLLING_WINDOW_REDUCER.md
+|  |-- STORAGE_LIBRARY.md
+|  |-- TAGS.md
+|  |-- THRESHOLD_ANALYZER.md
+|  |-- UTEST_ANALYZER.md
+|  |-- WDA_ANALYZER.md
+|  |-- images
+|  |  |-- analyzer_failure_from_aggregate_chart.png
+|  |  |-- analyzer_failure_from_run_chart.png
+|  |  |-- benchmark_example.png
+|  |  |-- mako_triage_banner.png
+|  |  |-- mako_vertical_round_hdpi.png
+|  |  |-- run_example.png
+|  |  |-- wda_visualization.png
+|-- examples
+|  |-- benchmark_info
+|  |  |-- BUILD
+|  |  |-- create_benchmark.config
+|  |  |-- update_benchmark.config
+|  |-- cxx_quickstore
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- example_test.cc
+|  |  |-- perf_data.proto
+|  |-- go_quickstore
+|  |  |-- README.md
+|  |  |-- example_test.go
+|  |  |-- go.mod
+|  |  |-- go.sum
+|  |  |-- performance_test_data.json
+|  |-- project_info
+|  |  |-- project.config
+|-- go.mod
+|-- go
+|  |-- clients
+|  |  |-- dashboard
+|  |  |  |-- BUILD
+|  |  |  |-- standard_dashboard.go
+|  |  |  |-- standard_dashboard_test.go
+|  |  |-- storage
+|  |  |  |-- fakestorage
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- fake_storage.go
+|  |  |  |  |-- fake_storage_test.go
+|  |  |  |-- g3storage
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- google3_storage.go
+|  |  |  |-- mako
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- mako.go
+|  |-- internal
+|  |  |-- common
+|  |  |  |-- BUILD
+|  |  |  |-- common_deps.go
+|  |  |-- quickstore_microservice
+|  |  |  |-- BUILD
+|  |  |  |-- main.cc
+|  |  |  |-- proto
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- quickstore.proto
+|  |  |  |  |-- quickstore_go_grpc_pb
+|  |  |  |  |  |-- quickstore.pb.go
+|  |  |  |  |-- quickstore_go_proto
+|  |  |  |  |  |-- quickstore.pb.go
+|  |  |  |-- quickstore_service.cc
+|  |  |  |-- quickstore_service.h
+|  |  |  |-- quickstore_service_test.cc
+|  |  |-- wrappedstorage
+|  |  |  |-- BUILD
+|  |  |  |-- wrappedstorage.go
+|  |-- quickstore
+|  |  |-- BUILD
+|  |  |-- quickstore.go
+|  |-- spec
+|  |  |-- BUILD
+|  |  |-- dashboard.go
+|  |  |-- perfgate.go
+|  |  |-- storage.go
+|-- pcre.BUILD
+|-- proto
+|  |-- clients
+|  |  |-- analyzers
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- threshold_analyzer.proto
+|  |  |  |-- threshold_analyzer_go_proto
+|  |  |  |  |-- threshold_analyzer.pb.go
+|  |  |  |-- utest_analyzer.proto
+|  |  |  |-- utest_analyzer_go_proto
+|  |  |  |  |-- utest_analyzer.pb.go
+|  |  |  |-- window_deviation.proto
+|  |  |  |-- window_deviation_go_proto
+|  |  |  |  |-- window_deviation.pb.go
+|  |-- helpers
+|  |  |-- rolling_window_reducer
+|  |  |  |-- BUILD
+|  |  |  |-- rolling_window_reducer.proto
+|  |  |  |-- rolling_window_reducer_go_proto
+|  |  |  |  |-- rolling_window_reducer.pb.go
+|  |-- internal
+|  |  |-- BUILD
+|  |  |-- mako_internal.proto
+|  |  |-- storage_client
+|  |  |  |-- BUILD
+|  |  |  |-- storage.proto
+|  |  |  |-- storage_go_proto
+|  |  |  |  |-- storage.pb.go
+|  |-- quickstore
+|  |  |-- BUILD
+|  |  |-- quickstore.proto
+|  |  |-- quickstore_go_proto
+|  |  |  |-- quickstore.pb.go
+|-- spec
+|  |-- proto
+|  |  |-- BUILD
+|  |  |-- mako.proto
+|  |  |-- mako_go_proto
+|  |  |  |-- mako.pb.go
+|-- swig.BUILD
+|-- swig
+|  |-- BUILD
+|  |-- base.swig
+|  |-- go
+|  |  |-- BUILD
+|  |  |-- protofunc.swig
+|  |  |-- strings.swig
+|  |-- swig.bzl
+|-- testing
+|  |-- utils.sh
+|  |-- verify_all.sh
+|  |-- verify_bazel_build.sh
+|  |-- verify_bazel_test.sh
+|  |-- verify_generated_files.sh

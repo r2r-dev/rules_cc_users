@@ -1,0 +1,3774 @@
+|-- .gitignore
+|-- .gitlab-ci.yml
+|-- .travis.yml
+|-- .vscode
+|  |-- settings.json
+|-- LICENSE
+|-- Makefile
+|-- Makefile.common
+|-- README.md
+|-- WorkDir
+|  |-- data
+|  |  |-- dc_nvmem.bin
+|  |  |-- fsca-table.bin
+|  |  |-- vmu_default.bin
+|-- core
+|  |-- README.md
+|  |-- archive
+|  |  |-- 7zArchive.cpp
+|  |  |-- 7zArchive.h
+|  |  |-- ZipArchive.cpp
+|  |  |-- ZipArchive.h
+|  |  |-- archive.cpp
+|  |  |-- archive.h
+|  |-- build.h
+|  |-- cheats.cpp
+|  |-- cheats.h
+|  |-- deps
+|  |  |-- chdpsr
+|  |  |  |-- cdipsr.cpp
+|  |  |  |-- cdipsr.h
+|  |  |-- coreio
+|  |  |  |-- coreio.cpp
+|  |  |  |-- coreio.h
+|  |  |-- crypto
+|  |  |  |-- md5.cpp
+|  |  |  |-- md5.h
+|  |  |  |-- sha1.cpp
+|  |  |  |-- sha1.h
+|  |  |  |-- sha256.cpp
+|  |  |  |-- sha256.h
+|  |  |-- glm
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- common.hpp
+|  |  |  |-- detail
+|  |  |  |  |-- _features.hpp
+|  |  |  |  |-- _fixes.hpp
+|  |  |  |  |-- _noise.hpp
+|  |  |  |  |-- _swizzle.hpp
+|  |  |  |  |-- _swizzle_func.hpp
+|  |  |  |  |-- _vectorize.hpp
+|  |  |  |  |-- compute_common.hpp
+|  |  |  |  |-- compute_vector_relational.hpp
+|  |  |  |  |-- func_common.inl
+|  |  |  |  |-- func_common_simd.inl
+|  |  |  |  |-- func_exponential.inl
+|  |  |  |  |-- func_exponential_simd.inl
+|  |  |  |  |-- func_geometric.inl
+|  |  |  |  |-- func_geometric_simd.inl
+|  |  |  |  |-- func_integer.inl
+|  |  |  |  |-- func_integer_simd.inl
+|  |  |  |  |-- func_matrix.inl
+|  |  |  |  |-- func_matrix_simd.inl
+|  |  |  |  |-- func_packing.inl
+|  |  |  |  |-- func_packing_simd.inl
+|  |  |  |  |-- func_trigonometric.inl
+|  |  |  |  |-- func_trigonometric_simd.inl
+|  |  |  |  |-- func_vector_relational.inl
+|  |  |  |  |-- func_vector_relational_simd.inl
+|  |  |  |  |-- glm.cpp
+|  |  |  |  |-- qualifier.hpp
+|  |  |  |  |-- setup.hpp
+|  |  |  |  |-- type_float.hpp
+|  |  |  |  |-- type_half.hpp
+|  |  |  |  |-- type_half.inl
+|  |  |  |  |-- type_mat2x2.hpp
+|  |  |  |  |-- type_mat2x2.inl
+|  |  |  |  |-- type_mat2x3.hpp
+|  |  |  |  |-- type_mat2x3.inl
+|  |  |  |  |-- type_mat2x4.hpp
+|  |  |  |  |-- type_mat2x4.inl
+|  |  |  |  |-- type_mat3x2.hpp
+|  |  |  |  |-- type_mat3x2.inl
+|  |  |  |  |-- type_mat3x3.hpp
+|  |  |  |  |-- type_mat3x3.inl
+|  |  |  |  |-- type_mat3x4.hpp
+|  |  |  |  |-- type_mat3x4.inl
+|  |  |  |  |-- type_mat4x2.hpp
+|  |  |  |  |-- type_mat4x2.inl
+|  |  |  |  |-- type_mat4x3.hpp
+|  |  |  |  |-- type_mat4x3.inl
+|  |  |  |  |-- type_mat4x4.hpp
+|  |  |  |  |-- type_mat4x4.inl
+|  |  |  |  |-- type_mat4x4_simd.inl
+|  |  |  |  |-- type_quat.hpp
+|  |  |  |  |-- type_quat.inl
+|  |  |  |  |-- type_quat_simd.inl
+|  |  |  |  |-- type_vec1.hpp
+|  |  |  |  |-- type_vec1.inl
+|  |  |  |  |-- type_vec2.hpp
+|  |  |  |  |-- type_vec2.inl
+|  |  |  |  |-- type_vec3.hpp
+|  |  |  |  |-- type_vec3.inl
+|  |  |  |  |-- type_vec4.hpp
+|  |  |  |  |-- type_vec4.inl
+|  |  |  |  |-- type_vec4_simd.inl
+|  |  |  |-- exponential.hpp
+|  |  |  |-- ext.hpp
+|  |  |  |-- ext
+|  |  |  |  |-- matrix_clip_space.hpp
+|  |  |  |  |-- matrix_clip_space.inl
+|  |  |  |  |-- matrix_common.hpp
+|  |  |  |  |-- matrix_common.inl
+|  |  |  |  |-- matrix_double2x2.hpp
+|  |  |  |  |-- matrix_double2x2_precision.hpp
+|  |  |  |  |-- matrix_double2x3.hpp
+|  |  |  |  |-- matrix_double2x3_precision.hpp
+|  |  |  |  |-- matrix_double2x4.hpp
+|  |  |  |  |-- matrix_double2x4_precision.hpp
+|  |  |  |  |-- matrix_double3x2.hpp
+|  |  |  |  |-- matrix_double3x2_precision.hpp
+|  |  |  |  |-- matrix_double3x3.hpp
+|  |  |  |  |-- matrix_double3x3_precision.hpp
+|  |  |  |  |-- matrix_double3x4.hpp
+|  |  |  |  |-- matrix_double3x4_precision.hpp
+|  |  |  |  |-- matrix_double4x2.hpp
+|  |  |  |  |-- matrix_double4x2_precision.hpp
+|  |  |  |  |-- matrix_double4x3.hpp
+|  |  |  |  |-- matrix_double4x3_precision.hpp
+|  |  |  |  |-- matrix_double4x4.hpp
+|  |  |  |  |-- matrix_double4x4_precision.hpp
+|  |  |  |  |-- matrix_float2x2.hpp
+|  |  |  |  |-- matrix_float2x2_precision.hpp
+|  |  |  |  |-- matrix_float2x3.hpp
+|  |  |  |  |-- matrix_float2x3_precision.hpp
+|  |  |  |  |-- matrix_float2x4.hpp
+|  |  |  |  |-- matrix_float2x4_precision.hpp
+|  |  |  |  |-- matrix_float3x2.hpp
+|  |  |  |  |-- matrix_float3x2_precision.hpp
+|  |  |  |  |-- matrix_float3x3.hpp
+|  |  |  |  |-- matrix_float3x3_precision.hpp
+|  |  |  |  |-- matrix_float3x4.hpp
+|  |  |  |  |-- matrix_float3x4_precision.hpp
+|  |  |  |  |-- matrix_float4x2.hpp
+|  |  |  |  |-- matrix_float4x2_precision.hpp
+|  |  |  |  |-- matrix_float4x3.hpp
+|  |  |  |  |-- matrix_float4x3_precision.hpp
+|  |  |  |  |-- matrix_float4x4.hpp
+|  |  |  |  |-- matrix_float4x4_precision.hpp
+|  |  |  |  |-- matrix_projection.hpp
+|  |  |  |  |-- matrix_projection.inl
+|  |  |  |  |-- matrix_relational.hpp
+|  |  |  |  |-- matrix_relational.inl
+|  |  |  |  |-- matrix_transform.hpp
+|  |  |  |  |-- matrix_transform.inl
+|  |  |  |  |-- quaternion_common.hpp
+|  |  |  |  |-- quaternion_common.inl
+|  |  |  |  |-- quaternion_common_simd.inl
+|  |  |  |  |-- quaternion_double.hpp
+|  |  |  |  |-- quaternion_double_precision.hpp
+|  |  |  |  |-- quaternion_exponential.hpp
+|  |  |  |  |-- quaternion_exponential.inl
+|  |  |  |  |-- quaternion_float.hpp
+|  |  |  |  |-- quaternion_float_precision.hpp
+|  |  |  |  |-- quaternion_geometric.hpp
+|  |  |  |  |-- quaternion_geometric.inl
+|  |  |  |  |-- quaternion_relational.hpp
+|  |  |  |  |-- quaternion_relational.inl
+|  |  |  |  |-- quaternion_transform.hpp
+|  |  |  |  |-- quaternion_transform.inl
+|  |  |  |  |-- quaternion_trigonometric.hpp
+|  |  |  |  |-- quaternion_trigonometric.inl
+|  |  |  |  |-- scalar_common.hpp
+|  |  |  |  |-- scalar_common.inl
+|  |  |  |  |-- scalar_constants.hpp
+|  |  |  |  |-- scalar_constants.inl
+|  |  |  |  |-- scalar_int_sized.hpp
+|  |  |  |  |-- scalar_relational.hpp
+|  |  |  |  |-- scalar_relational.inl
+|  |  |  |  |-- scalar_uint_sized.hpp
+|  |  |  |  |-- scalar_ulp.hpp
+|  |  |  |  |-- scalar_ulp.inl
+|  |  |  |  |-- vector_bool1.hpp
+|  |  |  |  |-- vector_bool1_precision.hpp
+|  |  |  |  |-- vector_bool2.hpp
+|  |  |  |  |-- vector_bool2_precision.hpp
+|  |  |  |  |-- vector_bool3.hpp
+|  |  |  |  |-- vector_bool3_precision.hpp
+|  |  |  |  |-- vector_bool4.hpp
+|  |  |  |  |-- vector_bool4_precision.hpp
+|  |  |  |  |-- vector_common.hpp
+|  |  |  |  |-- vector_common.inl
+|  |  |  |  |-- vector_double1.hpp
+|  |  |  |  |-- vector_double1_precision.hpp
+|  |  |  |  |-- vector_double2.hpp
+|  |  |  |  |-- vector_double2_precision.hpp
+|  |  |  |  |-- vector_double3.hpp
+|  |  |  |  |-- vector_double3_precision.hpp
+|  |  |  |  |-- vector_double4.hpp
+|  |  |  |  |-- vector_double4_precision.hpp
+|  |  |  |  |-- vector_float1.hpp
+|  |  |  |  |-- vector_float1_precision.hpp
+|  |  |  |  |-- vector_float2.hpp
+|  |  |  |  |-- vector_float2_precision.hpp
+|  |  |  |  |-- vector_float3.hpp
+|  |  |  |  |-- vector_float3_precision.hpp
+|  |  |  |  |-- vector_float4.hpp
+|  |  |  |  |-- vector_float4_precision.hpp
+|  |  |  |  |-- vector_int1.hpp
+|  |  |  |  |-- vector_int1_precision.hpp
+|  |  |  |  |-- vector_int2.hpp
+|  |  |  |  |-- vector_int2_precision.hpp
+|  |  |  |  |-- vector_int3.hpp
+|  |  |  |  |-- vector_int3_precision.hpp
+|  |  |  |  |-- vector_int4.hpp
+|  |  |  |  |-- vector_int4_precision.hpp
+|  |  |  |  |-- vector_relational.hpp
+|  |  |  |  |-- vector_relational.inl
+|  |  |  |  |-- vector_uint1.hpp
+|  |  |  |  |-- vector_uint1_precision.hpp
+|  |  |  |  |-- vector_uint2.hpp
+|  |  |  |  |-- vector_uint2_precision.hpp
+|  |  |  |  |-- vector_uint3.hpp
+|  |  |  |  |-- vector_uint3_precision.hpp
+|  |  |  |  |-- vector_uint4.hpp
+|  |  |  |  |-- vector_uint4_precision.hpp
+|  |  |  |  |-- vector_ulp.hpp
+|  |  |  |  |-- vector_ulp.inl
+|  |  |  |-- fwd.hpp
+|  |  |  |-- geometric.hpp
+|  |  |  |-- glm.hpp
+|  |  |  |-- gtc
+|  |  |  |  |-- bitfield.hpp
+|  |  |  |  |-- bitfield.inl
+|  |  |  |  |-- color_space.hpp
+|  |  |  |  |-- color_space.inl
+|  |  |  |  |-- constants.hpp
+|  |  |  |  |-- constants.inl
+|  |  |  |  |-- epsilon.hpp
+|  |  |  |  |-- epsilon.inl
+|  |  |  |  |-- integer.hpp
+|  |  |  |  |-- integer.inl
+|  |  |  |  |-- matrix_access.hpp
+|  |  |  |  |-- matrix_access.inl
+|  |  |  |  |-- matrix_integer.hpp
+|  |  |  |  |-- matrix_inverse.hpp
+|  |  |  |  |-- matrix_inverse.inl
+|  |  |  |  |-- matrix_transform.hpp
+|  |  |  |  |-- matrix_transform.inl
+|  |  |  |  |-- noise.hpp
+|  |  |  |  |-- noise.inl
+|  |  |  |  |-- packing.hpp
+|  |  |  |  |-- packing.inl
+|  |  |  |  |-- quaternion.hpp
+|  |  |  |  |-- quaternion.inl
+|  |  |  |  |-- quaternion_simd.inl
+|  |  |  |  |-- random.hpp
+|  |  |  |  |-- random.inl
+|  |  |  |  |-- reciprocal.hpp
+|  |  |  |  |-- reciprocal.inl
+|  |  |  |  |-- round.hpp
+|  |  |  |  |-- round.inl
+|  |  |  |  |-- type_aligned.hpp
+|  |  |  |  |-- type_precision.hpp
+|  |  |  |  |-- type_precision.inl
+|  |  |  |  |-- type_ptr.hpp
+|  |  |  |  |-- type_ptr.inl
+|  |  |  |  |-- ulp.hpp
+|  |  |  |  |-- ulp.inl
+|  |  |  |  |-- vec1.hpp
+|  |  |  |-- gtx
+|  |  |  |  |-- associated_min_max.hpp
+|  |  |  |  |-- associated_min_max.inl
+|  |  |  |  |-- bit.hpp
+|  |  |  |  |-- bit.inl
+|  |  |  |  |-- closest_point.hpp
+|  |  |  |  |-- closest_point.inl
+|  |  |  |  |-- color_encoding.hpp
+|  |  |  |  |-- color_encoding.inl
+|  |  |  |  |-- color_space.hpp
+|  |  |  |  |-- color_space.inl
+|  |  |  |  |-- color_space_YCoCg.hpp
+|  |  |  |  |-- color_space_YCoCg.inl
+|  |  |  |  |-- common.hpp
+|  |  |  |  |-- common.inl
+|  |  |  |  |-- compatibility.hpp
+|  |  |  |  |-- compatibility.inl
+|  |  |  |  |-- component_wise.hpp
+|  |  |  |  |-- component_wise.inl
+|  |  |  |  |-- dual_quaternion.hpp
+|  |  |  |  |-- dual_quaternion.inl
+|  |  |  |  |-- easing.hpp
+|  |  |  |  |-- easing.inl
+|  |  |  |  |-- euler_angles.hpp
+|  |  |  |  |-- euler_angles.inl
+|  |  |  |  |-- extend.hpp
+|  |  |  |  |-- extend.inl
+|  |  |  |  |-- extended_min_max.hpp
+|  |  |  |  |-- extended_min_max.inl
+|  |  |  |  |-- exterior_product.hpp
+|  |  |  |  |-- exterior_product.inl
+|  |  |  |  |-- fast_exponential.hpp
+|  |  |  |  |-- fast_exponential.inl
+|  |  |  |  |-- fast_square_root.hpp
+|  |  |  |  |-- fast_square_root.inl
+|  |  |  |  |-- fast_trigonometry.hpp
+|  |  |  |  |-- fast_trigonometry.inl
+|  |  |  |  |-- float_notmalize.inl
+|  |  |  |  |-- functions.hpp
+|  |  |  |  |-- functions.inl
+|  |  |  |  |-- gradient_paint.hpp
+|  |  |  |  |-- gradient_paint.inl
+|  |  |  |  |-- handed_coordinate_space.hpp
+|  |  |  |  |-- handed_coordinate_space.inl
+|  |  |  |  |-- hash.hpp
+|  |  |  |  |-- hash.inl
+|  |  |  |  |-- integer.hpp
+|  |  |  |  |-- integer.inl
+|  |  |  |  |-- intersect.hpp
+|  |  |  |  |-- intersect.inl
+|  |  |  |  |-- io.hpp
+|  |  |  |  |-- io.inl
+|  |  |  |  |-- log_base.hpp
+|  |  |  |  |-- log_base.inl
+|  |  |  |  |-- matrix_cross_product.hpp
+|  |  |  |  |-- matrix_cross_product.inl
+|  |  |  |  |-- matrix_decompose.hpp
+|  |  |  |  |-- matrix_decompose.inl
+|  |  |  |  |-- matrix_factorisation.hpp
+|  |  |  |  |-- matrix_factorisation.inl
+|  |  |  |  |-- matrix_interpolation.hpp
+|  |  |  |  |-- matrix_interpolation.inl
+|  |  |  |  |-- matrix_major_storage.hpp
+|  |  |  |  |-- matrix_major_storage.inl
+|  |  |  |  |-- matrix_operation.hpp
+|  |  |  |  |-- matrix_operation.inl
+|  |  |  |  |-- matrix_query.hpp
+|  |  |  |  |-- matrix_query.inl
+|  |  |  |  |-- matrix_transform_2d.hpp
+|  |  |  |  |-- matrix_transform_2d.inl
+|  |  |  |  |-- mixed_product.hpp
+|  |  |  |  |-- mixed_product.inl
+|  |  |  |  |-- norm.hpp
+|  |  |  |  |-- norm.inl
+|  |  |  |  |-- normal.hpp
+|  |  |  |  |-- normal.inl
+|  |  |  |  |-- normalize_dot.hpp
+|  |  |  |  |-- normalize_dot.inl
+|  |  |  |  |-- number_precision.hpp
+|  |  |  |  |-- number_precision.inl
+|  |  |  |  |-- optimum_pow.hpp
+|  |  |  |  |-- optimum_pow.inl
+|  |  |  |  |-- orthonormalize.hpp
+|  |  |  |  |-- orthonormalize.inl
+|  |  |  |  |-- perpendicular.hpp
+|  |  |  |  |-- perpendicular.inl
+|  |  |  |  |-- polar_coordinates.hpp
+|  |  |  |  |-- polar_coordinates.inl
+|  |  |  |  |-- projection.hpp
+|  |  |  |  |-- projection.inl
+|  |  |  |  |-- quaternion.hpp
+|  |  |  |  |-- quaternion.inl
+|  |  |  |  |-- range.hpp
+|  |  |  |  |-- raw_data.hpp
+|  |  |  |  |-- raw_data.inl
+|  |  |  |  |-- rotate_normalized_axis.hpp
+|  |  |  |  |-- rotate_normalized_axis.inl
+|  |  |  |  |-- rotate_vector.hpp
+|  |  |  |  |-- rotate_vector.inl
+|  |  |  |  |-- scalar_multiplication.hpp
+|  |  |  |  |-- scalar_relational.hpp
+|  |  |  |  |-- scalar_relational.inl
+|  |  |  |  |-- spline.hpp
+|  |  |  |  |-- spline.inl
+|  |  |  |  |-- std_based_type.hpp
+|  |  |  |  |-- std_based_type.inl
+|  |  |  |  |-- string_cast.hpp
+|  |  |  |  |-- string_cast.inl
+|  |  |  |  |-- texture.hpp
+|  |  |  |  |-- texture.inl
+|  |  |  |  |-- transform.hpp
+|  |  |  |  |-- transform.inl
+|  |  |  |  |-- transform2.hpp
+|  |  |  |  |-- transform2.inl
+|  |  |  |  |-- type_aligned.hpp
+|  |  |  |  |-- type_aligned.inl
+|  |  |  |  |-- type_trait.hpp
+|  |  |  |  |-- type_trait.inl
+|  |  |  |  |-- vec_swizzle.hpp
+|  |  |  |  |-- vector_angle.hpp
+|  |  |  |  |-- vector_angle.inl
+|  |  |  |  |-- vector_query.hpp
+|  |  |  |  |-- vector_query.inl
+|  |  |  |  |-- wrap.hpp
+|  |  |  |  |-- wrap.inl
+|  |  |  |-- integer.hpp
+|  |  |  |-- mat2x2.hpp
+|  |  |  |-- mat2x3.hpp
+|  |  |  |-- mat2x4.hpp
+|  |  |  |-- mat3x2.hpp
+|  |  |  |-- mat3x3.hpp
+|  |  |  |-- mat3x4.hpp
+|  |  |  |-- mat4x2.hpp
+|  |  |  |-- mat4x3.hpp
+|  |  |  |-- mat4x4.hpp
+|  |  |  |-- matrix.hpp
+|  |  |  |-- packing.hpp
+|  |  |  |-- simd
+|  |  |  |  |-- common.h
+|  |  |  |  |-- exponential.h
+|  |  |  |  |-- geometric.h
+|  |  |  |  |-- integer.h
+|  |  |  |  |-- matrix.h
+|  |  |  |  |-- packing.h
+|  |  |  |  |-- platform.h
+|  |  |  |  |-- trigonometric.h
+|  |  |  |  |-- vector_relational.h
+|  |  |  |-- trigonometric.hpp
+|  |  |  |-- vec2.hpp
+|  |  |  |-- vec3.hpp
+|  |  |  |-- vec4.hpp
+|  |  |  |-- vector_relational.hpp
+|  |  |-- glslang
+|  |  |  |-- .appveyor.yml
+|  |  |  |-- .clang-format
+|  |  |  |-- .gitattributes
+|  |  |  |-- .gitignore
+|  |  |  |-- .travis.yml
+|  |  |  |-- Android.mk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILD.gn
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- CODE_OF_CONDUCT.md
+|  |  |  |-- ChooseMSVCCRT.cmake
+|  |  |  |-- External
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |-- LICENSE.txt
+|  |  |  |-- OGLCompilersDLL
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- InitializeDll.cpp
+|  |  |  |  |-- InitializeDll.h
+|  |  |  |-- README-spirv-remap.txt
+|  |  |  |-- README.md
+|  |  |  |-- SPIRV
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- GLSL.ext.AMD.h
+|  |  |  |  |-- GLSL.ext.EXT.h
+|  |  |  |  |-- GLSL.ext.KHR.h
+|  |  |  |  |-- GLSL.ext.NV.h
+|  |  |  |  |-- GLSL.std.450.h
+|  |  |  |  |-- GlslangToSpv.cpp
+|  |  |  |  |-- GlslangToSpv.h
+|  |  |  |  |-- InReadableOrder.cpp
+|  |  |  |  |-- Logger.cpp
+|  |  |  |  |-- Logger.h
+|  |  |  |  |-- NonSemanticDebugPrintf.h
+|  |  |  |  |-- SPVRemapper.cpp
+|  |  |  |  |-- SPVRemapper.h
+|  |  |  |  |-- SpvBuilder.cpp
+|  |  |  |  |-- SpvBuilder.h
+|  |  |  |  |-- SpvPostProcess.cpp
+|  |  |  |  |-- SpvTools.cpp
+|  |  |  |  |-- SpvTools.h
+|  |  |  |  |-- bitutils.h
+|  |  |  |  |-- disassemble.cpp
+|  |  |  |  |-- disassemble.h
+|  |  |  |  |-- doc.cpp
+|  |  |  |  |-- doc.h
+|  |  |  |  |-- hex_float.h
+|  |  |  |  |-- spirv.hpp
+|  |  |  |  |-- spvIR.h
+|  |  |  |-- StandAlone
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- DirStackFileIncluder.h
+|  |  |  |  |-- ResourceLimits.cpp
+|  |  |  |  |-- ResourceLimits.h
+|  |  |  |  |-- StandAlone.cpp
+|  |  |  |  |-- Worklist.h
+|  |  |  |  |-- resource_limits_c.cpp
+|  |  |  |  |-- resource_limits_c.h
+|  |  |  |  |-- spirv-remap.cpp
+|  |  |  |-- Test
+|  |  |  |  |-- 100.conf
+|  |  |  |  |-- 100.frag
+|  |  |  |  |-- 100Limits.vert
+|  |  |  |  |-- 100samplerExternal.frag
+|  |  |  |  |-- 100scope.vert
+|  |  |  |  |-- 110scope.vert
+|  |  |  |  |-- 120.frag
+|  |  |  |  |-- 120.vert
+|  |  |  |  |-- 130.frag
+|  |  |  |  |-- 130.vert
+|  |  |  |  |-- 140.frag
+|  |  |  |  |-- 140.vert
+|  |  |  |  |-- 150.frag
+|  |  |  |  |-- 150.geom
+|  |  |  |  |-- 150.tesc
+|  |  |  |  |-- 150.tese
+|  |  |  |  |-- 150.vert
+|  |  |  |  |-- 300.frag
+|  |  |  |  |-- 300.vert
+|  |  |  |  |-- 300BuiltIns.frag
+|  |  |  |  |-- 300block.frag
+|  |  |  |  |-- 300layout.frag
+|  |  |  |  |-- 300layout.vert
+|  |  |  |  |-- 300link.frag
+|  |  |  |  |-- 300link2.frag
+|  |  |  |  |-- 300link3.frag
+|  |  |  |  |-- 300operations.frag
+|  |  |  |  |-- 300samplerExternal.frag
+|  |  |  |  |-- 300samplerExternalYUV.frag
+|  |  |  |  |-- 300scope.vert
+|  |  |  |  |-- 310.comp
+|  |  |  |  |-- 310.frag
+|  |  |  |  |-- 310.geom
+|  |  |  |  |-- 310.inheritMemory.frag
+|  |  |  |  |-- 310.tesc
+|  |  |  |  |-- 310.tese
+|  |  |  |  |-- 310.vert
+|  |  |  |  |-- 310AofA.vert
+|  |  |  |  |-- 310implicitSizeArrayError.vert
+|  |  |  |  |-- 310runtimeArray.vert
+|  |  |  |  |-- 320.comp
+|  |  |  |  |-- 320.frag
+|  |  |  |  |-- 320.geom
+|  |  |  |  |-- 320.tesc
+|  |  |  |  |-- 320.tese
+|  |  |  |  |-- 320.vert
+|  |  |  |  |-- 330.frag
+|  |  |  |  |-- 330comp.frag
+|  |  |  |  |-- 400.frag
+|  |  |  |  |-- 400.geom
+|  |  |  |  |-- 400.tesc
+|  |  |  |  |-- 400.tese
+|  |  |  |  |-- 400.vert
+|  |  |  |  |-- 410.geom
+|  |  |  |  |-- 410.tesc
+|  |  |  |  |-- 410.vert
+|  |  |  |  |-- 420.comp
+|  |  |  |  |-- 420.frag
+|  |  |  |  |-- 420.geom
+|  |  |  |  |-- 420.tesc
+|  |  |  |  |-- 420.tese
+|  |  |  |  |-- 420.vert
+|  |  |  |  |-- 420_size_gl_in.geom
+|  |  |  |  |-- 430.comp
+|  |  |  |  |-- 430.vert
+|  |  |  |  |-- 430AofA.frag
+|  |  |  |  |-- 430scope.vert
+|  |  |  |  |-- 435.vert
+|  |  |  |  |-- 440.frag
+|  |  |  |  |-- 440.vert
+|  |  |  |  |-- 450.comp
+|  |  |  |  |-- 450.frag
+|  |  |  |  |-- 450.geom
+|  |  |  |  |-- 450.tesc
+|  |  |  |  |-- 450.tese
+|  |  |  |  |-- 450.vert
+|  |  |  |  |-- 460.frag
+|  |  |  |  |-- 460.vert
+|  |  |  |  |-- Operations.frag
+|  |  |  |  |-- aggOps.frag
+|  |  |  |  |-- always-discard.frag
+|  |  |  |  |-- always-discard2.frag
+|  |  |  |  |-- array.frag
+|  |  |  |  |-- array100.frag
+|  |  |  |  |-- atomic_uint.frag
+|  |  |  |  |-- badChars.frag
+|  |  |  |  |-- badMacroArgs.frag
+|  |  |  |  |-- bar.h
+|  |  |  |  |-- baseLegalResults
+|  |  |  |  |  |-- hlsl.aliasOpaque.frag.out
+|  |  |  |  |  |-- hlsl.flattenOpaque.frag.out
+|  |  |  |  |  |-- hlsl.flattenOpaqueInit.vert.out
+|  |  |  |  |  |-- hlsl.flattenOpaqueInitMix.vert.out
+|  |  |  |  |  |-- hlsl.flattenSubset.frag.out
+|  |  |  |  |  |-- hlsl.flattenSubset2.frag.out
+|  |  |  |  |  |-- hlsl.partialFlattenLocal.vert.out
+|  |  |  |  |  |-- hlsl.partialFlattenMixed.vert.out
+|  |  |  |  |-- baseResults
+|  |  |  |  |  |-- 100.frag.out
+|  |  |  |  |  |-- 100Limits.vert.out
+|  |  |  |  |  |-- 100LimitsConf.vert.out
+|  |  |  |  |  |-- 100samplerExternal.frag.out
+|  |  |  |  |  |-- 100scope.vert.out
+|  |  |  |  |  |-- 110scope.vert.out
+|  |  |  |  |  |-- 120.frag.out
+|  |  |  |  |  |-- 120.vert.out
+|  |  |  |  |  |-- 130.frag.out
+|  |  |  |  |  |-- 130.vert.out
+|  |  |  |  |  |-- 140.frag.out
+|  |  |  |  |  |-- 140.vert.out
+|  |  |  |  |  |-- 150.frag.out
+|  |  |  |  |  |-- 150.geom.out
+|  |  |  |  |  |-- 150.tesc.out
+|  |  |  |  |  |-- 150.vert.out
+|  |  |  |  |  |-- 300.frag.out
+|  |  |  |  |  |-- 300.vert.out
+|  |  |  |  |  |-- 300BuiltIns.frag.out
+|  |  |  |  |  |-- 300block.frag.out
+|  |  |  |  |  |-- 300layout.frag.out
+|  |  |  |  |  |-- 300layout.vert.out
+|  |  |  |  |  |-- 300link.frag.out
+|  |  |  |  |  |-- 300link2.frag.out
+|  |  |  |  |  |-- 300link3.frag.out
+|  |  |  |  |  |-- 300operations.frag.out
+|  |  |  |  |  |-- 300samplerExternal.frag.out
+|  |  |  |  |  |-- 300samplerExternalYUV.frag.out
+|  |  |  |  |  |-- 300scope.vert.out
+|  |  |  |  |  |-- 310.comp.out
+|  |  |  |  |  |-- 310.frag.out
+|  |  |  |  |  |-- 310.geom.out
+|  |  |  |  |  |-- 310.inheritMemory.frag.out
+|  |  |  |  |  |-- 310.tesc.out
+|  |  |  |  |  |-- 310.tese.out
+|  |  |  |  |  |-- 310.vert.out
+|  |  |  |  |  |-- 310AofA.vert.out
+|  |  |  |  |  |-- 310implicitSizeArrayError.vert.out
+|  |  |  |  |  |-- 310runtimeArray.vert.out
+|  |  |  |  |  |-- 320.comp.out
+|  |  |  |  |  |-- 320.frag.out
+|  |  |  |  |  |-- 320.geom.out
+|  |  |  |  |  |-- 320.tesc.out
+|  |  |  |  |  |-- 320.tese.out
+|  |  |  |  |  |-- 320.vert.out
+|  |  |  |  |  |-- 330.frag.out
+|  |  |  |  |  |-- 330comp.frag.out
+|  |  |  |  |  |-- 400.frag.out
+|  |  |  |  |  |-- 400.geom.out
+|  |  |  |  |  |-- 400.tesc.out
+|  |  |  |  |  |-- 400.tese.out
+|  |  |  |  |  |-- 400.vert.out
+|  |  |  |  |  |-- 410.geom.out
+|  |  |  |  |  |-- 410.tesc.out
+|  |  |  |  |  |-- 410.vert.out
+|  |  |  |  |  |-- 420.comp.out
+|  |  |  |  |  |-- 420.frag.out
+|  |  |  |  |  |-- 420.geom.out
+|  |  |  |  |  |-- 420.tesc.out
+|  |  |  |  |  |-- 420.tese.out
+|  |  |  |  |  |-- 420.vert.out
+|  |  |  |  |  |-- 420_size_gl_in.geom.out
+|  |  |  |  |  |-- 430.comp.out
+|  |  |  |  |  |-- 430.vert.out
+|  |  |  |  |  |-- 430AofA.frag.out
+|  |  |  |  |  |-- 430scope.vert.out
+|  |  |  |  |  |-- 435.vert.out
+|  |  |  |  |  |-- 440.frag.out
+|  |  |  |  |  |-- 440.vert.out
+|  |  |  |  |  |-- 450.comp.out
+|  |  |  |  |  |-- 450.frag.out
+|  |  |  |  |  |-- 450.geom.out
+|  |  |  |  |  |-- 450.tesc.out
+|  |  |  |  |  |-- 450.tese.out
+|  |  |  |  |  |-- 450.vert.out
+|  |  |  |  |  |-- 460.frag.out
+|  |  |  |  |  |-- 460.vert.out
+|  |  |  |  |  |-- Operations.frag.out
+|  |  |  |  |  |-- aggOps.frag.out
+|  |  |  |  |  |-- always-discard.frag.out
+|  |  |  |  |  |-- always-discard2.frag.out
+|  |  |  |  |  |-- array.frag.out
+|  |  |  |  |  |-- array100.frag.out
+|  |  |  |  |  |-- atomic_uint.frag.out
+|  |  |  |  |  |-- badChars.frag.out
+|  |  |  |  |  |-- badMacroArgs.frag.out
+|  |  |  |  |  |-- comment.frag.out
+|  |  |  |  |  |-- compoundsuffix.frag.hlsl
+|  |  |  |  |  |-- compoundsuffix.vert.glsl
+|  |  |  |  |  |-- conditionalDiscard.frag.out
+|  |  |  |  |  |-- constErrors.frag.out
+|  |  |  |  |  |-- constFold.frag.out
+|  |  |  |  |  |-- constFoldIntMin.frag.out
+|  |  |  |  |  |-- constantUnaryConversion.comp.out
+|  |  |  |  |  |-- conversion.frag.out
+|  |  |  |  |  |-- cppBad.vert.out
+|  |  |  |  |  |-- cppBad2.vert.out
+|  |  |  |  |  |-- cppBad3.vert.out
+|  |  |  |  |  |-- cppBad4.vert.out
+|  |  |  |  |  |-- cppBad5.vert.out
+|  |  |  |  |  |-- cppComplexExpr.vert.out
+|  |  |  |  |  |-- cppDeepNest.frag.out
+|  |  |  |  |  |-- cppIndent.vert.out
+|  |  |  |  |  |-- cppIntMinOverNegativeOne.frag.out
+|  |  |  |  |  |-- cppMerge.frag.out
+|  |  |  |  |  |-- cppNest.vert.out
+|  |  |  |  |  |-- cppPassMacroName.frag.out
+|  |  |  |  |  |-- cppRelaxSkipTokensErrors.vert.out
+|  |  |  |  |  |-- cppSimple.vert.out
+|  |  |  |  |  |-- dataOut.frag.out
+|  |  |  |  |  |-- dataOutIndirect.frag.out
+|  |  |  |  |  |-- dce.frag.out
+|  |  |  |  |  |-- decls.frag.out
+|  |  |  |  |  |-- deepRvalue.frag.out
+|  |  |  |  |  |-- depthOut.frag.out
+|  |  |  |  |  |-- discard-dce.frag.out
+|  |  |  |  |  |-- doWhileLoop.frag.out
+|  |  |  |  |  |-- earlyReturnDiscard.frag.out
+|  |  |  |  |  |-- empty.frag.out
+|  |  |  |  |  |-- errors.frag.out
+|  |  |  |  |  |-- es-link1.frag.out
+|  |  |  |  |  |-- findFunction.frag.out
+|  |  |  |  |  |-- flowControl.frag.out
+|  |  |  |  |  |-- forLoop.frag.out
+|  |  |  |  |  |-- forwardRef.frag.out
+|  |  |  |  |  |-- functionCall.frag.out
+|  |  |  |  |  |-- functionSemantics.frag.out
+|  |  |  |  |  |-- glsl.-D-U.frag.out
+|  |  |  |  |  |-- glsl.450.subgroup.frag.out
+|  |  |  |  |  |-- glsl.450.subgroup.geom.out
+|  |  |  |  |  |-- glsl.450.subgroup.tesc.out
+|  |  |  |  |  |-- glsl.450.subgroup.tese.out
+|  |  |  |  |  |-- glsl.450.subgroup.vert.out
+|  |  |  |  |  |-- glsl.450.subgroupArithmetic.comp.out
+|  |  |  |  |  |-- glsl.450.subgroupBallot.comp.out
+|  |  |  |  |  |-- glsl.450.subgroupBallotNeg.comp.out
+|  |  |  |  |  |-- glsl.450.subgroupBasic.comp.out
+|  |  |  |  |  |-- glsl.450.subgroupClustered.comp.out
+|  |  |  |  |  |-- glsl.450.subgroupClusteredNeg.comp.out
+|  |  |  |  |  |-- glsl.450.subgroupPartitioned.comp.out
+|  |  |  |  |  |-- glsl.450.subgroupQuad.comp.out
+|  |  |  |  |  |-- glsl.450.subgroupShuffle.comp.out
+|  |  |  |  |  |-- glsl.450.subgroupShuffleRelative.comp.out
+|  |  |  |  |  |-- glsl.450.subgroupVote.comp.out
+|  |  |  |  |  |-- glsl.460.subgroup.mesh.out
+|  |  |  |  |  |-- glsl.460.subgroup.rahit.out
+|  |  |  |  |  |-- glsl.460.subgroup.rcall.out
+|  |  |  |  |  |-- glsl.460.subgroup.rchit.out
+|  |  |  |  |  |-- glsl.460.subgroup.rgen.out
+|  |  |  |  |  |-- glsl.460.subgroup.rint.out
+|  |  |  |  |  |-- glsl.460.subgroup.rmiss.out
+|  |  |  |  |  |-- glsl.460.subgroup.task.out
+|  |  |  |  |  |-- glsl.entryPointRename.vert.bad.out
+|  |  |  |  |  |-- glsl.entryPointRename.vert.out
+|  |  |  |  |  |-- glsl.entryPointRename2.vert.out
+|  |  |  |  |  |-- glsl.es320.subgroup.frag.out
+|  |  |  |  |  |-- glsl.es320.subgroup.geom.out
+|  |  |  |  |  |-- glsl.es320.subgroup.tesc.out
+|  |  |  |  |  |-- glsl.es320.subgroup.tese.out
+|  |  |  |  |  |-- glsl.es320.subgroup.vert.out
+|  |  |  |  |  |-- glsl.es320.subgroupArithmetic.comp.out
+|  |  |  |  |  |-- glsl.es320.subgroupBallot.comp.out
+|  |  |  |  |  |-- glsl.es320.subgroupBallotNeg.comp.out
+|  |  |  |  |  |-- glsl.es320.subgroupBasic.comp.out
+|  |  |  |  |  |-- glsl.es320.subgroupClustered.comp.out
+|  |  |  |  |  |-- glsl.es320.subgroupClusteredNeg.comp.out
+|  |  |  |  |  |-- glsl.es320.subgroupPartitioned.comp.out
+|  |  |  |  |  |-- glsl.es320.subgroupQuad.comp.out
+|  |  |  |  |  |-- glsl.es320.subgroupShuffle.comp.out
+|  |  |  |  |  |-- glsl.es320.subgroupShuffleRelative.comp.out
+|  |  |  |  |  |-- glsl.es320.subgroupVote.comp.out
+|  |  |  |  |  |-- glspv.esversion.vert.out
+|  |  |  |  |  |-- glspv.frag.out
+|  |  |  |  |  |-- glspv.version.frag.out
+|  |  |  |  |  |-- glspv.version.vert.out
+|  |  |  |  |  |-- glspv.vert.out
+|  |  |  |  |  |-- hlsl.-D-U.frag.out
+|  |  |  |  |  |-- hlsl.PointSize.geom.out
+|  |  |  |  |  |-- hlsl.PointSize.vert.out
+|  |  |  |  |  |-- hlsl.aliasOpaque.frag.out
+|  |  |  |  |  |-- hlsl.amend.frag.out
+|  |  |  |  |  |-- hlsl.array.flatten.frag.out
+|  |  |  |  |  |-- hlsl.array.frag.out
+|  |  |  |  |  |-- hlsl.array.implicit-size.frag.out
+|  |  |  |  |  |-- hlsl.array.multidim.frag.out
+|  |  |  |  |  |-- hlsl.assoc.frag.out
+|  |  |  |  |  |-- hlsl.attribute.expression.comp.out
+|  |  |  |  |  |-- hlsl.attribute.frag.out
+|  |  |  |  |  |-- hlsl.attributeC11.frag.out
+|  |  |  |  |  |-- hlsl.attributeGlobalBuffer.frag.out
+|  |  |  |  |  |-- hlsl.automap.frag.out
+|  |  |  |  |  |-- hlsl.basic.comp.out
+|  |  |  |  |  |-- hlsl.basic.geom.out
+|  |  |  |  |  |-- hlsl.boolConv.vert.out
+|  |  |  |  |  |-- hlsl.buffer.frag.out
+|  |  |  |  |  |-- hlsl.calculatelod.dx10.frag.out
+|  |  |  |  |  |-- hlsl.calculatelodunclamped.dx10.frag.out
+|  |  |  |  |  |-- hlsl.cast.frag.out
+|  |  |  |  |  |-- hlsl.cbuffer-identifier.vert.out
+|  |  |  |  |  |-- hlsl.charLit.vert.out
+|  |  |  |  |  |-- hlsl.clip.frag.out
+|  |  |  |  |  |-- hlsl.clipdistance-1.frag.out
+|  |  |  |  |  |-- hlsl.clipdistance-1.geom.out
+|  |  |  |  |  |-- hlsl.clipdistance-1.vert.out
+|  |  |  |  |  |-- hlsl.clipdistance-2.frag.out
+|  |  |  |  |  |-- hlsl.clipdistance-2.geom.out
+|  |  |  |  |  |-- hlsl.clipdistance-2.vert.out
+|  |  |  |  |  |-- hlsl.clipdistance-3.frag.out
+|  |  |  |  |  |-- hlsl.clipdistance-3.geom.out
+|  |  |  |  |  |-- hlsl.clipdistance-3.vert.out
+|  |  |  |  |  |-- hlsl.clipdistance-4.frag.out
+|  |  |  |  |  |-- hlsl.clipdistance-4.geom.out
+|  |  |  |  |  |-- hlsl.clipdistance-4.vert.out
+|  |  |  |  |  |-- hlsl.clipdistance-5.frag.out
+|  |  |  |  |  |-- hlsl.clipdistance-5.vert.out
+|  |  |  |  |  |-- hlsl.clipdistance-6.frag.out
+|  |  |  |  |  |-- hlsl.clipdistance-6.vert.out
+|  |  |  |  |  |-- hlsl.clipdistance-7.frag.out
+|  |  |  |  |  |-- hlsl.clipdistance-7.vert.out
+|  |  |  |  |  |-- hlsl.clipdistance-8.frag.out
+|  |  |  |  |  |-- hlsl.clipdistance-8.vert.out
+|  |  |  |  |  |-- hlsl.clipdistance-9.frag.out
+|  |  |  |  |  |-- hlsl.clipdistance-9.vert.out
+|  |  |  |  |  |-- hlsl.color.hull.tesc.out
+|  |  |  |  |  |-- hlsl.comparison.vec.frag.out
+|  |  |  |  |  |-- hlsl.conditional.frag.out
+|  |  |  |  |  |-- hlsl.constantbuffer.frag.out
+|  |  |  |  |  |-- hlsl.constructArray.vert.out
+|  |  |  |  |  |-- hlsl.constructexpr.frag.out
+|  |  |  |  |  |-- hlsl.constructimat.frag.out
+|  |  |  |  |  |-- hlsl.coverage.frag.out
+|  |  |  |  |  |-- hlsl.dashI.vert.out
+|  |  |  |  |  |-- hlsl.deadFunctionMissingBody.vert.out
+|  |  |  |  |  |-- hlsl.depthGreater.frag.out
+|  |  |  |  |  |-- hlsl.depthLess.frag.out
+|  |  |  |  |  |-- hlsl.discard.frag.out
+|  |  |  |  |  |-- hlsl.doLoop.frag.out
+|  |  |  |  |  |-- hlsl.domain.1.tese.out
+|  |  |  |  |  |-- hlsl.domain.2.tese.out
+|  |  |  |  |  |-- hlsl.domain.3.tese.out
+|  |  |  |  |  |-- hlsl.earlydepthstencil.frag.out
+|  |  |  |  |  |-- hlsl.emptystruct.init.vert.out
+|  |  |  |  |  |-- hlsl.emptystructreturn.frag.out
+|  |  |  |  |  |-- hlsl.emptystructreturn.vert.out
+|  |  |  |  |  |-- hlsl.entry-in.frag.out
+|  |  |  |  |  |-- hlsl.entry-out.frag.out
+|  |  |  |  |  |-- hlsl.entry.rename.frag.out
+|  |  |  |  |  |-- hlsl.explicitDescriptorSet-2.frag.out
+|  |  |  |  |  |-- hlsl.explicitDescriptorSet.frag.out
+|  |  |  |  |  |-- hlsl.flatten.return.frag.out
+|  |  |  |  |  |-- hlsl.flattenOpaque.frag.out
+|  |  |  |  |  |-- hlsl.flattenOpaqueInit.vert.out
+|  |  |  |  |  |-- hlsl.flattenOpaqueInitMix.vert.out
+|  |  |  |  |  |-- hlsl.flattenSubset.frag.out
+|  |  |  |  |  |-- hlsl.flattenSubset2.frag.out
+|  |  |  |  |  |-- hlsl.float1.frag.out
+|  |  |  |  |  |-- hlsl.float4.frag.out
+|  |  |  |  |  |-- hlsl.forLoop.frag.out
+|  |  |  |  |  |-- hlsl.format.rwtexture.frag.out
+|  |  |  |  |  |-- hlsl.frag.out
+|  |  |  |  |  |-- hlsl.fraggeom.frag.out
+|  |  |  |  |  |-- hlsl.function.frag.out
+|  |  |  |  |  |-- hlsl.gather.array.dx10.frag.out
+|  |  |  |  |  |-- hlsl.gather.basic.dx10.frag.out
+|  |  |  |  |  |-- hlsl.gather.basic.dx10.vert.out
+|  |  |  |  |  |-- hlsl.gather.offset.dx10.frag.out
+|  |  |  |  |  |-- hlsl.gather.offsetarray.dx10.frag.out
+|  |  |  |  |  |-- hlsl.gatherRGBA.array.dx10.frag.out
+|  |  |  |  |  |-- hlsl.gatherRGBA.basic.dx10.frag.out
+|  |  |  |  |  |-- hlsl.gatherRGBA.offset.dx10.frag.out
+|  |  |  |  |  |-- hlsl.gatherRGBA.offsetarray.dx10.frag.out
+|  |  |  |  |  |-- hlsl.gathercmpRGBA.offset.dx10.frag.out
+|  |  |  |  |  |-- hlsl.getdimensions.dx10.frag.out
+|  |  |  |  |  |-- hlsl.getdimensions.dx10.vert.out
+|  |  |  |  |  |-- hlsl.getdimensions.rw.dx10.frag.out
+|  |  |  |  |  |-- hlsl.getsampleposition.dx10.frag.out
+|  |  |  |  |  |-- hlsl.global-const-init.frag.out
+|  |  |  |  |  |-- hlsl.groupid.comp.out
+|  |  |  |  |  |-- hlsl.gs-hs-mix.tesc.out
+|  |  |  |  |  |-- hlsl.hlslOffset.vert.out
+|  |  |  |  |  |-- hlsl.hull.1.tesc.out
+|  |  |  |  |  |-- hlsl.hull.2.tesc.out
+|  |  |  |  |  |-- hlsl.hull.3.tesc.out
+|  |  |  |  |  |-- hlsl.hull.4.tesc.out
+|  |  |  |  |  |-- hlsl.hull.5.tesc.out
+|  |  |  |  |  |-- hlsl.hull.ctrlpt-1.tesc.out
+|  |  |  |  |  |-- hlsl.hull.ctrlpt-2.tesc.out
+|  |  |  |  |  |-- hlsl.hull.void.tesc.out
+|  |  |  |  |  |-- hlsl.identifier.sample.frag.out
+|  |  |  |  |  |-- hlsl.if.frag.out
+|  |  |  |  |  |-- hlsl.imagefetch-subvec4.comp.out
+|  |  |  |  |  |-- hlsl.implicitBool.frag.out
+|  |  |  |  |  |-- hlsl.include.vert.out
+|  |  |  |  |  |-- hlsl.includeNegative.vert.out
+|  |  |  |  |  |-- hlsl.inf.vert.out
+|  |  |  |  |  |-- hlsl.init.frag.out
+|  |  |  |  |  |-- hlsl.init2.frag.out
+|  |  |  |  |  |-- hlsl.inoutquals.frag.out
+|  |  |  |  |  |-- hlsl.int.dot.frag.out
+|  |  |  |  |  |-- hlsl.intrinsic.frexp.frag.out
+|  |  |  |  |  |-- hlsl.intrinsic.frexp.vert.out
+|  |  |  |  |  |-- hlsl.intrinsics.barriers.comp.out
+|  |  |  |  |  |-- hlsl.intrinsics.comp.out
+|  |  |  |  |  |-- hlsl.intrinsics.d3dcolortoubyte4.frag.out
+|  |  |  |  |  |-- hlsl.intrinsics.double.frag.out
+|  |  |  |  |  |-- hlsl.intrinsics.evalfns.frag.out
+|  |  |  |  |  |-- hlsl.intrinsics.f1632.frag.out
+|  |  |  |  |  |-- hlsl.intrinsics.f3216.frag.out
+|  |  |  |  |  |-- hlsl.intrinsics.frag.out
+|  |  |  |  |  |-- hlsl.intrinsics.lit.frag.out
+|  |  |  |  |  |-- hlsl.intrinsics.negative.comp.out
+|  |  |  |  |  |-- hlsl.intrinsics.negative.frag.out
+|  |  |  |  |  |-- hlsl.intrinsics.negative.vert.out
+|  |  |  |  |  |-- hlsl.intrinsics.promote.down.frag.out
+|  |  |  |  |  |-- hlsl.intrinsics.promote.frag.out
+|  |  |  |  |  |-- hlsl.intrinsics.promote.outputs.frag.out
+|  |  |  |  |  |-- hlsl.intrinsics.vert.out
+|  |  |  |  |  |-- hlsl.isfinite.frag.out
+|  |  |  |  |  |-- hlsl.layout.frag.out
+|  |  |  |  |  |-- hlsl.layoutOverride.vert.out
+|  |  |  |  |  |-- hlsl.load.2dms.dx10.frag.out
+|  |  |  |  |  |-- hlsl.load.array.dx10.frag.out
+|  |  |  |  |  |-- hlsl.load.basic.dx10.frag.out
+|  |  |  |  |  |-- hlsl.load.basic.dx10.vert.out
+|  |  |  |  |  |-- hlsl.load.buffer.dx10.frag.out
+|  |  |  |  |  |-- hlsl.load.buffer.float.dx10.frag.out
+|  |  |  |  |  |-- hlsl.load.offset.dx10.frag.out
+|  |  |  |  |  |-- hlsl.load.offsetarray.dx10.frag.out
+|  |  |  |  |  |-- hlsl.load.rwbuffer.dx10.frag.out
+|  |  |  |  |  |-- hlsl.load.rwtexture.array.dx10.frag.out
+|  |  |  |  |  |-- hlsl.load.rwtexture.dx10.frag.out
+|  |  |  |  |  |-- hlsl.localStructuredBuffer.comp.out
+|  |  |  |  |  |-- hlsl.logical.binary.frag.out
+|  |  |  |  |  |-- hlsl.logical.binary.vec.frag.out
+|  |  |  |  |  |-- hlsl.logical.unary.frag.out
+|  |  |  |  |  |-- hlsl.logicalConvert.frag.out
+|  |  |  |  |  |-- hlsl.loopattr.frag.out
+|  |  |  |  |  |-- hlsl.matNx1.frag.out
+|  |  |  |  |  |-- hlsl.matType.bool.frag.out
+|  |  |  |  |  |-- hlsl.matType.frag.out
+|  |  |  |  |  |-- hlsl.matType.int.frag.out
+|  |  |  |  |  |-- hlsl.matpack-1.frag.out
+|  |  |  |  |  |-- hlsl.matpack-pragma.frag.out
+|  |  |  |  |  |-- hlsl.matrixSwizzle.vert.out
+|  |  |  |  |  |-- hlsl.matrixindex.frag.out
+|  |  |  |  |  |-- hlsl.max.frag.out
+|  |  |  |  |  |-- hlsl.memberFunCall.frag.out
+|  |  |  |  |  |-- hlsl.mintypes.frag.out
+|  |  |  |  |  |-- hlsl.mip.negative.frag.out
+|  |  |  |  |  |-- hlsl.mip.negative2.frag.out
+|  |  |  |  |  |-- hlsl.mip.operator.frag.out
+|  |  |  |  |  |-- hlsl.mul-truncate.frag.out
+|  |  |  |  |  |-- hlsl.multiDescriptorSet.frag.out
+|  |  |  |  |  |-- hlsl.multiEntry.vert.out
+|  |  |  |  |  |-- hlsl.multiReturn.frag.out
+|  |  |  |  |  |-- hlsl.namespace.frag.out
+|  |  |  |  |  |-- hlsl.noSemantic.functionality1.comp.out
+|  |  |  |  |  |-- hlsl.nonint-index.frag.out
+|  |  |  |  |  |-- hlsl.nonstaticMemberFunction.frag.out
+|  |  |  |  |  |-- hlsl.numericsuffixes.frag.out
+|  |  |  |  |  |-- hlsl.numthreads.comp.out
+|  |  |  |  |  |-- hlsl.opaque-type-bug.frag.out
+|  |  |  |  |  |-- hlsl.overload.frag.out
+|  |  |  |  |  |-- hlsl.params.default.frag.out
+|  |  |  |  |  |-- hlsl.params.default.negative.frag.out
+|  |  |  |  |  |-- hlsl.partialFlattenLocal.vert.out
+|  |  |  |  |  |-- hlsl.partialFlattenMixed.vert.out
+|  |  |  |  |  |-- hlsl.partialInit.frag.out
+|  |  |  |  |  |-- hlsl.pp.expand.frag.err
+|  |  |  |  |  |-- hlsl.pp.expand.frag.out
+|  |  |  |  |  |-- hlsl.pp.line.frag.out
+|  |  |  |  |  |-- hlsl.pp.line2.frag.out
+|  |  |  |  |  |-- hlsl.pp.line3.frag.out
+|  |  |  |  |  |-- hlsl.pp.line4.frag.out
+|  |  |  |  |  |-- hlsl.pp.vert.out
+|  |  |  |  |  |-- hlsl.precedence.frag.out
+|  |  |  |  |  |-- hlsl.precedence2.frag.out
+|  |  |  |  |  |-- hlsl.precise.frag.out
+|  |  |  |  |  |-- hlsl.preprocessor.frag.out
+|  |  |  |  |  |-- hlsl.promote.atomic.frag.out
+|  |  |  |  |  |-- hlsl.promote.binary.frag.out
+|  |  |  |  |  |-- hlsl.promote.vec1.frag.out
+|  |  |  |  |  |-- hlsl.promotions.frag.out
+|  |  |  |  |  |-- hlsl.reflection.binding.frag.out
+|  |  |  |  |  |-- hlsl.reflection.binding.vert.out
+|  |  |  |  |  |-- hlsl.reflection.vert.out
+|  |  |  |  |  |-- hlsl.rw.atomics.frag.out
+|  |  |  |  |  |-- hlsl.rw.bracket.frag.out
+|  |  |  |  |  |-- hlsl.rw.register.frag.out
+|  |  |  |  |  |-- hlsl.rw.scalar.bracket.frag.out
+|  |  |  |  |  |-- hlsl.rw.swizzle.frag.out
+|  |  |  |  |  |-- hlsl.rw.vec2.bracket.frag.out
+|  |  |  |  |  |-- hlsl.sample.array.dx10.frag.out
+|  |  |  |  |  |-- hlsl.sample.basic.dx10.frag.out
+|  |  |  |  |  |-- hlsl.sample.dx9.frag.out
+|  |  |  |  |  |-- hlsl.sample.dx9.vert.out
+|  |  |  |  |  |-- hlsl.sample.offset.dx10.frag.out
+|  |  |  |  |  |-- hlsl.sample.offsetarray.dx10.frag.out
+|  |  |  |  |  |-- hlsl.sample.sub-vec4.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplebias.array.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplebias.basic.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplebias.offset.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplebias.offsetarray.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplecmp.array.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplecmp.basic.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplecmp.dualmode.frag.out
+|  |  |  |  |  |-- hlsl.samplecmp.negative.frag.out
+|  |  |  |  |  |-- hlsl.samplecmp.negative2.frag.out
+|  |  |  |  |  |-- hlsl.samplecmp.offset.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplecmp.offsetarray.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplecmplevelzero.array.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplecmplevelzero.basic.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplecmplevelzero.offset.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplecmplevelzero.offsetarray.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplegrad.array.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplegrad.basic.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplegrad.basic.dx10.vert.out
+|  |  |  |  |  |-- hlsl.samplegrad.offset.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplegrad.offsetarray.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplelevel.array.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplelevel.basic.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplelevel.basic.dx10.vert.out
+|  |  |  |  |  |-- hlsl.samplelevel.offset.dx10.frag.out
+|  |  |  |  |  |-- hlsl.samplelevel.offsetarray.dx10.frag.out
+|  |  |  |  |  |-- hlsl.scalar-length.frag.out
+|  |  |  |  |  |-- hlsl.scalar2matrix.frag.out
+|  |  |  |  |  |-- hlsl.scalarCast.vert.out
+|  |  |  |  |  |-- hlsl.scope.frag.out
+|  |  |  |  |  |-- hlsl.self_cast.frag.out
+|  |  |  |  |  |-- hlsl.semantic-1.vert.out
+|  |  |  |  |  |-- hlsl.semantic.geom.out
+|  |  |  |  |  |-- hlsl.semantic.vert.out
+|  |  |  |  |  |-- hlsl.semicolons.frag.out
+|  |  |  |  |  |-- hlsl.shapeConv.frag.out
+|  |  |  |  |  |-- hlsl.shapeConvRet.frag.out
+|  |  |  |  |  |-- hlsl.shift.per-set.frag.out
+|  |  |  |  |  |-- hlsl.sin.frag.out
+|  |  |  |  |  |-- hlsl.singleArgIntPromo.vert.out
+|  |  |  |  |  |-- hlsl.snorm.uav.comp.out
+|  |  |  |  |  |-- hlsl.specConstant.frag.out
+|  |  |  |  |  |-- hlsl.staticFuncInit.frag.out
+|  |  |  |  |  |-- hlsl.staticMemberFunction.frag.out
+|  |  |  |  |  |-- hlsl.store.rwbyteaddressbuffer.type.comp.out
+|  |  |  |  |  |-- hlsl.string.frag.out
+|  |  |  |  |  |-- hlsl.stringtoken.frag.out
+|  |  |  |  |  |-- hlsl.struct.frag.out
+|  |  |  |  |  |-- hlsl.struct.split-1.vert.out
+|  |  |  |  |  |-- hlsl.struct.split.array.geom.out
+|  |  |  |  |  |-- hlsl.struct.split.assign.frag.out
+|  |  |  |  |  |-- hlsl.struct.split.call.vert.out
+|  |  |  |  |  |-- hlsl.struct.split.nested.geom.out
+|  |  |  |  |  |-- hlsl.struct.split.trivial.geom.out
+|  |  |  |  |  |-- hlsl.struct.split.trivial.vert.out
+|  |  |  |  |  |-- hlsl.structIoFourWay.frag.out
+|  |  |  |  |  |-- hlsl.structStructName.frag.out
+|  |  |  |  |  |-- hlsl.structarray.flatten.frag.out
+|  |  |  |  |  |-- hlsl.structarray.flatten.geom.out
+|  |  |  |  |  |-- hlsl.structbuffer.append.fn.frag.out
+|  |  |  |  |  |-- hlsl.structbuffer.append.frag.out
+|  |  |  |  |  |-- hlsl.structbuffer.atomics.frag.out
+|  |  |  |  |  |-- hlsl.structbuffer.byte.frag.out
+|  |  |  |  |  |-- hlsl.structbuffer.coherent.frag.out
+|  |  |  |  |  |-- hlsl.structbuffer.floatidx.comp.out
+|  |  |  |  |  |-- hlsl.structbuffer.fn.frag.out
+|  |  |  |  |  |-- hlsl.structbuffer.fn2.comp.out
+|  |  |  |  |  |-- hlsl.structbuffer.frag.out
+|  |  |  |  |  |-- hlsl.structbuffer.incdec.frag.hlslfun1.out
+|  |  |  |  |  |-- hlsl.structbuffer.incdec.frag.out
+|  |  |  |  |  |-- hlsl.structbuffer.rw.frag.out
+|  |  |  |  |  |-- hlsl.structbuffer.rwbyte.frag.out
+|  |  |  |  |  |-- hlsl.structin.vert.out
+|  |  |  |  |  |-- hlsl.subpass.frag.out
+|  |  |  |  |  |-- hlsl.switch.frag.out
+|  |  |  |  |  |-- hlsl.swizzle.frag.out
+|  |  |  |  |  |-- hlsl.synthesizeInput.frag.out
+|  |  |  |  |  |-- hlsl.target.frag.out
+|  |  |  |  |  |-- hlsl.targetStruct1.frag.out
+|  |  |  |  |  |-- hlsl.targetStruct2.frag.out
+|  |  |  |  |  |-- hlsl.templatetypes.frag.out
+|  |  |  |  |  |-- hlsl.texture.struct.frag.out
+|  |  |  |  |  |-- hlsl.texture.subvec4.frag.out
+|  |  |  |  |  |-- hlsl.texturebuffer.frag.out
+|  |  |  |  |  |-- hlsl.this.frag.out
+|  |  |  |  |  |-- hlsl.tristream-append.geom.out
+|  |  |  |  |  |-- hlsl.tx.bracket.frag.out
+|  |  |  |  |  |-- hlsl.tx.overload.frag.out
+|  |  |  |  |  |-- hlsl.type.half.frag.out
+|  |  |  |  |  |-- hlsl.type.identifier.frag.out
+|  |  |  |  |  |-- hlsl.type.type.conversion.all.frag.out
+|  |  |  |  |  |-- hlsl.type.type.conversion.valid.frag.out
+|  |  |  |  |  |-- hlsl.typeGraphCopy.vert.out
+|  |  |  |  |  |-- hlsl.typedef.frag.out
+|  |  |  |  |  |-- hlsl.void.frag.out
+|  |  |  |  |  |-- hlsl.wavebroadcast.comp.out
+|  |  |  |  |  |-- hlsl.waveprefix.comp.out
+|  |  |  |  |  |-- hlsl.wavequad.comp.out
+|  |  |  |  |  |-- hlsl.wavequery.comp.out
+|  |  |  |  |  |-- hlsl.wavequery.frag.out
+|  |  |  |  |  |-- hlsl.wavereduction.comp.out
+|  |  |  |  |  |-- hlsl.wavevote.comp.out
+|  |  |  |  |  |-- hlsl.whileLoop.frag.out
+|  |  |  |  |  |-- hlsl.y-negate-1.vert.out
+|  |  |  |  |  |-- hlsl.y-negate-2.vert.out
+|  |  |  |  |  |-- hlsl.y-negate-3.vert.out
+|  |  |  |  |  |-- implicitInnerAtomicUint.frag.out
+|  |  |  |  |  |-- include.vert.out
+|  |  |  |  |  |-- invalidSwizzle.vert.out
+|  |  |  |  |  |-- length.frag.out
+|  |  |  |  |  |-- lineContinuation.vert.out
+|  |  |  |  |  |-- lineContinuation100.vert.out
+|  |  |  |  |  |-- link.multiAnonBlocksInvalid.0.0.vert.out
+|  |  |  |  |  |-- link.multiAnonBlocksValid.0.0.vert.out
+|  |  |  |  |  |-- link.multiBlocksInvalid.0.0.vert.out
+|  |  |  |  |  |-- link.multiBlocksValid.1.0.vert.out
+|  |  |  |  |  |-- link.vk.differentPC.0.0.frag.out
+|  |  |  |  |  |-- link.vk.differentPC.1.0.frag.out
+|  |  |  |  |  |-- link.vk.matchingPC.0.0.frag.out
+|  |  |  |  |  |-- link.vk.multiBlocksValid.0.0.vert.out
+|  |  |  |  |  |-- link.vk.multiBlocksValid.1.0.geom.out
+|  |  |  |  |  |-- link.vk.pcNamingInvalid.0.0.vert.out
+|  |  |  |  |  |-- link.vk.pcNamingValid.0.0.vert.out
+|  |  |  |  |  |-- link1.frag.out
+|  |  |  |  |  |-- link1.vk.frag.out
+|  |  |  |  |  |-- localAggregates.frag.out
+|  |  |  |  |  |-- loops.frag.out
+|  |  |  |  |  |-- loopsArtificial.frag.out
+|  |  |  |  |  |-- mains1.frag.out
+|  |  |  |  |  |-- matrix.frag.out
+|  |  |  |  |  |-- matrix2.frag.out
+|  |  |  |  |  |-- matrixError.vert.out
+|  |  |  |  |  |-- maxClipDistances.vert.out
+|  |  |  |  |  |-- max_vertices_0.geom.out
+|  |  |  |  |  |-- missingBodies.vert.out
+|  |  |  |  |  |-- mixedArrayDecls.frag.out
+|  |  |  |  |  |-- negativeArraySize.comp.out
+|  |  |  |  |  |-- newTexture.frag.out
+|  |  |  |  |  |-- noMain.vert.out
+|  |  |  |  |  |-- nonSquare.vert.out
+|  |  |  |  |  |-- nonVulkan.frag.out
+|  |  |  |  |  |-- nonuniform.frag.out
+|  |  |  |  |  |-- nosuffix.out
+|  |  |  |  |  |-- numeral.frag.out
+|  |  |  |  |  |-- nvShaderNoperspectiveInterpolation.frag.out
+|  |  |  |  |  |-- overlongLiteral.frag.out
+|  |  |  |  |  |-- pointCoord.frag.out
+|  |  |  |  |  |-- precise.tesc.out
+|  |  |  |  |  |-- precise_struct_block.vert.out
+|  |  |  |  |  |-- precision.frag.out
+|  |  |  |  |  |-- precision.vert.out
+|  |  |  |  |  |-- prepost.frag.out
+|  |  |  |  |  |-- preprocessor.bad_arg.vert.err
+|  |  |  |  |  |-- preprocessor.bad_arg.vert.out
+|  |  |  |  |  |-- preprocessor.cpp_style___FILE__.vert.err
+|  |  |  |  |  |-- preprocessor.cpp_style___FILE__.vert.out
+|  |  |  |  |  |-- preprocessor.cpp_style_line_directive.vert.err
+|  |  |  |  |  |-- preprocessor.cpp_style_line_directive.vert.out
+|  |  |  |  |  |-- preprocessor.defined.vert.err
+|  |  |  |  |  |-- preprocessor.defined.vert.out
+|  |  |  |  |  |-- preprocessor.edge_cases.vert.err
+|  |  |  |  |  |-- preprocessor.edge_cases.vert.out
+|  |  |  |  |  |-- preprocessor.eof_missing.vert.err
+|  |  |  |  |  |-- preprocessor.eof_missing.vert.out
+|  |  |  |  |  |-- preprocessor.errors.vert.err
+|  |  |  |  |  |-- preprocessor.errors.vert.out
+|  |  |  |  |  |-- preprocessor.extensions.vert.err
+|  |  |  |  |  |-- preprocessor.extensions.vert.out
+|  |  |  |  |  |-- preprocessor.function_macro.vert.err
+|  |  |  |  |  |-- preprocessor.function_macro.vert.out
+|  |  |  |  |  |-- preprocessor.include.disabled.vert.err
+|  |  |  |  |  |-- preprocessor.include.disabled.vert.out
+|  |  |  |  |  |-- preprocessor.include.enabled.vert.err
+|  |  |  |  |  |-- preprocessor.include.enabled.vert.out
+|  |  |  |  |  |-- preprocessor.line.frag.err
+|  |  |  |  |  |-- preprocessor.line.frag.out
+|  |  |  |  |  |-- preprocessor.line.vert.err
+|  |  |  |  |  |-- preprocessor.line.vert.out
+|  |  |  |  |  |-- preprocessor.many.endif.vert.err
+|  |  |  |  |  |-- preprocessor.many.endif.vert.out
+|  |  |  |  |  |-- preprocessor.pragma.vert.err
+|  |  |  |  |  |-- preprocessor.pragma.vert.out
+|  |  |  |  |  |-- preprocessor.simple.vert.err
+|  |  |  |  |  |-- preprocessor.simple.vert.out
+|  |  |  |  |  |-- preprocessor.success_if_parse_would_fail.vert.err
+|  |  |  |  |  |-- preprocessor.success_if_parse_would_fail.vert.out
+|  |  |  |  |  |-- rayQuery-allOps.Error.rgen.out
+|  |  |  |  |  |-- rayQuery-allOps.comp.out
+|  |  |  |  |  |-- rayQuery-allOps.frag.out
+|  |  |  |  |  |-- rayQuery-allOps.rgen.out
+|  |  |  |  |  |-- rayQuery-committed.Error.rgen.out
+|  |  |  |  |  |-- rayQuery-initialize.rgen.out
+|  |  |  |  |  |-- rayQuery-no-cse.rgen.out
+|  |  |  |  |  |-- rayQuery.rgen.out
+|  |  |  |  |  |-- recurse1.vert.out
+|  |  |  |  |  |-- reflection.frag.out
+|  |  |  |  |  |-- reflection.linked.options.out
+|  |  |  |  |  |-- reflection.linked.out
+|  |  |  |  |  |-- reflection.options.frag.out
+|  |  |  |  |  |-- reflection.options.geom.out
+|  |  |  |  |  |-- reflection.options.vert.out
+|  |  |  |  |  |-- reflection.vert.out
+|  |  |  |  |  |-- remap.basic.dcefunc.frag.out
+|  |  |  |  |  |-- remap.basic.dcevartype.frag.out
+|  |  |  |  |  |-- remap.basic.everything.frag.out
+|  |  |  |  |  |-- remap.basic.none.frag.out
+|  |  |  |  |  |-- remap.basic.strip.frag.out
+|  |  |  |  |  |-- remap.hlsl.sample.basic.everything.frag.out
+|  |  |  |  |  |-- remap.hlsl.sample.basic.none.frag.out
+|  |  |  |  |  |-- remap.hlsl.sample.basic.strip.frag.out
+|  |  |  |  |  |-- remap.hlsl.templatetypes.everything.frag.out
+|  |  |  |  |  |-- remap.hlsl.templatetypes.none.frag.out
+|  |  |  |  |  |-- remap.if.everything.frag.out
+|  |  |  |  |  |-- remap.if.none.frag.out
+|  |  |  |  |  |-- remap.invalid-spirv-1.out
+|  |  |  |  |  |-- remap.invalid-spirv-2.out
+|  |  |  |  |  |-- remap.literal64.everything.spv.out
+|  |  |  |  |  |-- remap.literal64.none.spv.out
+|  |  |  |  |  |-- remap.similar_1a.everything.frag.out
+|  |  |  |  |  |-- remap.similar_1a.none.frag.out
+|  |  |  |  |  |-- remap.similar_1b.everything.frag.out
+|  |  |  |  |  |-- remap.similar_1b.none.frag.out
+|  |  |  |  |  |-- remap.specconst.comp.out
+|  |  |  |  |  |-- remap.switch.everything.frag.out
+|  |  |  |  |  |-- remap.switch.none.frag.out
+|  |  |  |  |  |-- remap.uniformarray.everything.frag.out
+|  |  |  |  |  |-- remap.uniformarray.none.frag.out
+|  |  |  |  |  |-- runtimeArray.vert.out
+|  |  |  |  |  |-- sample.frag.out
+|  |  |  |  |  |-- sample.vert.out
+|  |  |  |  |  |-- samplerlessTextureFunctions.frag.out
+|  |  |  |  |  |-- simpleFunctionCall.frag.out
+|  |  |  |  |  |-- size
+|  |  |  |  |  |-- specExamples.frag.out
+|  |  |  |  |  |-- specExamples.vert.out
+|  |  |  |  |  |-- specExamplesConf.vert.out
+|  |  |  |  |  |-- spv.1.3.8bitstorage-ssbo.vert.out
+|  |  |  |  |  |-- spv.1.3.8bitstorage-ubo.vert.out
+|  |  |  |  |  |-- spv.1.3.coopmat.comp.out
+|  |  |  |  |  |-- spv.1.4.LoopControl.frag.out
+|  |  |  |  |  |-- spv.1.4.NonWritable.frag.out
+|  |  |  |  |  |-- spv.1.4.OpCopyLogical.comp.out
+|  |  |  |  |  |-- spv.1.4.OpCopyLogical.funcall.frag.out
+|  |  |  |  |  |-- spv.1.4.OpCopyLogicalBool.comp.out
+|  |  |  |  |  |-- spv.1.4.OpEntryPoint.frag.out
+|  |  |  |  |  |-- spv.1.4.OpSelect.frag.out
+|  |  |  |  |  |-- spv.1.4.constructComposite.comp.out
+|  |  |  |  |  |-- spv.1.4.image.frag.out
+|  |  |  |  |  |-- spv.1.4.sparseTexture.frag.out
+|  |  |  |  |  |-- spv.1.4.texture.frag.out
+|  |  |  |  |  |-- spv.100ops.frag.out
+|  |  |  |  |  |-- spv.130.frag.out
+|  |  |  |  |  |-- spv.140.frag.out
+|  |  |  |  |  |-- spv.150.geom.out
+|  |  |  |  |  |-- spv.150.vert.out
+|  |  |  |  |  |-- spv.16bitstorage-int.frag.out
+|  |  |  |  |  |-- spv.16bitstorage-uint.frag.out
+|  |  |  |  |  |-- spv.16bitstorage.frag.out
+|  |  |  |  |  |-- spv.16bitstorage_Error-int.frag.out
+|  |  |  |  |  |-- spv.16bitstorage_Error-uint.frag.out
+|  |  |  |  |  |-- spv.16bitstorage_Error.frag.out
+|  |  |  |  |  |-- spv.16bitxfb.vert.out
+|  |  |  |  |  |-- spv.300BuiltIns.vert.out
+|  |  |  |  |  |-- spv.300layout.frag.out
+|  |  |  |  |  |-- spv.300layout.vert.out
+|  |  |  |  |  |-- spv.300layoutp.vert.out
+|  |  |  |  |  |-- spv.310.bitcast.frag.out
+|  |  |  |  |  |-- spv.310.comp.out
+|  |  |  |  |  |-- spv.320.meshShaderUserDefined.mesh.out
+|  |  |  |  |  |-- spv.330.geom.out
+|  |  |  |  |  |-- spv.400.frag.nanclamp.out
+|  |  |  |  |  |-- spv.400.frag.out
+|  |  |  |  |  |-- spv.400.tesc.out
+|  |  |  |  |  |-- spv.400.tese.out
+|  |  |  |  |  |-- spv.420.geom.out
+|  |  |  |  |  |-- spv.430.frag.out
+|  |  |  |  |  |-- spv.430.vert.out
+|  |  |  |  |  |-- spv.450.geom.out
+|  |  |  |  |  |-- spv.450.noRedecl.tesc.out
+|  |  |  |  |  |-- spv.450.tesc.out
+|  |  |  |  |  |-- spv.460.comp.out
+|  |  |  |  |  |-- spv.460.frag.out
+|  |  |  |  |  |-- spv.460.vert.out
+|  |  |  |  |  |-- spv.8bit-16bit-construction.frag.out
+|  |  |  |  |  |-- spv.8bitstorage-int.frag.out
+|  |  |  |  |  |-- spv.8bitstorage-ssbo.vert.out
+|  |  |  |  |  |-- spv.8bitstorage-ubo.vert.out
+|  |  |  |  |  |-- spv.8bitstorage-uint.frag.out
+|  |  |  |  |  |-- spv.8bitstorage_Error-int.frag.out
+|  |  |  |  |  |-- spv.8bitstorage_Error-uint.frag.out
+|  |  |  |  |  |-- spv.AnyHitShader.rahit.out
+|  |  |  |  |  |-- spv.AnyHitShader_Errors.rahit.out
+|  |  |  |  |  |-- spv.AofA.frag.out
+|  |  |  |  |  |-- spv.ClosestHitShader.rchit.out
+|  |  |  |  |  |-- spv.ClosestHitShader_Errors.rchit.out
+|  |  |  |  |  |-- spv.GeometryShaderPassthrough.geom.out
+|  |  |  |  |  |-- spv.IntersectShader.rint.out
+|  |  |  |  |  |-- spv.IntersectShader_Errors.rint.out
+|  |  |  |  |  |-- spv.MissShader.rmiss.out
+|  |  |  |  |  |-- spv.MissShader_Errors.rmiss.out
+|  |  |  |  |  |-- spv.OVR_multiview.vert.out
+|  |  |  |  |  |-- spv.Operations.frag.out
+|  |  |  |  |  |-- spv.RayCallable.rcall.out
+|  |  |  |  |  |-- spv.RayCallable_Errors.rcall.out
+|  |  |  |  |  |-- spv.RayConstants.rgen.out
+|  |  |  |  |  |-- spv.RayGenShader.rgen.out
+|  |  |  |  |  |-- spv.RayGenShader11.rgen.out
+|  |  |  |  |  |-- spv.RayGenShaderArray.rgen.out
+|  |  |  |  |  |-- spv.RayGenShader_Errors.rgen.out
+|  |  |  |  |  |-- spv.accessChain.frag.out
+|  |  |  |  |  |-- spv.aggOps.frag.out
+|  |  |  |  |  |-- spv.always-discard.frag.out
+|  |  |  |  |  |-- spv.always-discard2.frag.out
+|  |  |  |  |  |-- spv.arbPostDepthCoverage.frag.out
+|  |  |  |  |  |-- spv.arbPostDepthCoverage_Error.frag.out
+|  |  |  |  |  |-- spv.atomic.comp.out
+|  |  |  |  |  |-- spv.atomicCounter.comp.out
+|  |  |  |  |  |-- spv.atomicInt64.comp.out
+|  |  |  |  |  |-- spv.barrier.vert.out
+|  |  |  |  |  |-- spv.bitCast.frag.out
+|  |  |  |  |  |-- spv.bool.vert.out
+|  |  |  |  |  |-- spv.boolInBlock.frag.out
+|  |  |  |  |  |-- spv.branch-return.vert.out
+|  |  |  |  |  |-- spv.buffer.autoassign.frag.out
+|  |  |  |  |  |-- spv.bufferhandle1.frag.out
+|  |  |  |  |  |-- spv.bufferhandle10.frag.out
+|  |  |  |  |  |-- spv.bufferhandle11.frag.out
+|  |  |  |  |  |-- spv.bufferhandle12.frag.out
+|  |  |  |  |  |-- spv.bufferhandle13.frag.out
+|  |  |  |  |  |-- spv.bufferhandle14.frag.out
+|  |  |  |  |  |-- spv.bufferhandle15.frag.out
+|  |  |  |  |  |-- spv.bufferhandle16.frag.out
+|  |  |  |  |  |-- spv.bufferhandle17_Errors.frag.out
+|  |  |  |  |  |-- spv.bufferhandle18.frag.out
+|  |  |  |  |  |-- spv.bufferhandle19_Errors.frag.out
+|  |  |  |  |  |-- spv.bufferhandle2.frag.out
+|  |  |  |  |  |-- spv.bufferhandle3.frag.out
+|  |  |  |  |  |-- spv.bufferhandle4.frag.out
+|  |  |  |  |  |-- spv.bufferhandle5.frag.out
+|  |  |  |  |  |-- spv.bufferhandle6.frag.out
+|  |  |  |  |  |-- spv.bufferhandle7.frag.out
+|  |  |  |  |  |-- spv.bufferhandle8.frag.out
+|  |  |  |  |  |-- spv.bufferhandle9.frag.out
+|  |  |  |  |  |-- spv.bufferhandleUvec2.frag.out
+|  |  |  |  |  |-- spv.bufferhandle_Error.frag.out
+|  |  |  |  |  |-- spv.builtInXFB.vert.out
+|  |  |  |  |  |-- spv.computeShaderDerivatives.comp.out
+|  |  |  |  |  |-- spv.computeShaderDerivatives2.comp.out
+|  |  |  |  |  |-- spv.conditionalDemote.frag.out
+|  |  |  |  |  |-- spv.conditionalDiscard.frag.out
+|  |  |  |  |  |-- spv.constConstruct.vert.out
+|  |  |  |  |  |-- spv.constStruct.vert.out
+|  |  |  |  |  |-- spv.constructComposite.comp.out
+|  |  |  |  |  |-- spv.controlFlowAttributes.frag.out
+|  |  |  |  |  |-- spv.conversion.frag.out
+|  |  |  |  |  |-- spv.coopmat.comp.out
+|  |  |  |  |  |-- spv.coopmat_Error.comp.out
+|  |  |  |  |  |-- spv.dataOut.frag.out
+|  |  |  |  |  |-- spv.dataOutIndirect.frag.out
+|  |  |  |  |  |-- spv.dataOutIndirect.vert.out
+|  |  |  |  |  |-- spv.dead-after-continue.vert.out
+|  |  |  |  |  |-- spv.dead-after-discard.frag.out
+|  |  |  |  |  |-- spv.dead-after-loop-break.vert.out
+|  |  |  |  |  |-- spv.dead-after-return.vert.out
+|  |  |  |  |  |-- spv.dead-after-switch-break.vert.out
+|  |  |  |  |  |-- spv.dead-complex-continue-after-return.vert.out
+|  |  |  |  |  |-- spv.dead-complex-merge-after-return.vert.out
+|  |  |  |  |  |-- spv.debugInfo.1.1.frag.out
+|  |  |  |  |  |-- spv.debugInfo.frag.out
+|  |  |  |  |  |-- spv.debugPrintf.frag.out
+|  |  |  |  |  |-- spv.debugPrintf_Error.frag.out
+|  |  |  |  |  |-- spv.deepRvalue.frag.out
+|  |  |  |  |  |-- spv.demoteDisabled.frag.out
+|  |  |  |  |  |-- spv.depthOut.frag.out
+|  |  |  |  |  |-- spv.deviceGroup.frag.out
+|  |  |  |  |  |-- spv.discard-dce.frag.out
+|  |  |  |  |  |-- spv.do-simple.vert.out
+|  |  |  |  |  |-- spv.do-while-continue-break.vert.out
+|  |  |  |  |  |-- spv.doWhileLoop.frag.out
+|  |  |  |  |  |-- spv.double.comp.out
+|  |  |  |  |  |-- spv.drawParams.vert.out
+|  |  |  |  |  |-- spv.earlyReturnDiscard.frag.out
+|  |  |  |  |  |-- spv.explicittypes.frag.out
+|  |  |  |  |  |-- spv.ext.AnyHitShader.rahit.out
+|  |  |  |  |  |-- spv.ext.AnyHitShader_Errors.rahit.out
+|  |  |  |  |  |-- spv.ext.ClosestHitShader.rchit.out
+|  |  |  |  |  |-- spv.ext.ClosestHitShader_Errors.rchit.out
+|  |  |  |  |  |-- spv.ext.IntersectShader.rint.out
+|  |  |  |  |  |-- spv.ext.IntersectShader_Errors.rint.out
+|  |  |  |  |  |-- spv.ext.MissShader.rmiss.out
+|  |  |  |  |  |-- spv.ext.MissShader_Errors.rmiss.out
+|  |  |  |  |  |-- spv.ext.RayCallable.rcall.out
+|  |  |  |  |  |-- spv.ext.RayCallable_Errors.rcall.out
+|  |  |  |  |  |-- spv.ext.RayConstants.rgen.out
+|  |  |  |  |  |-- spv.ext.RayGenShader.rgen.out
+|  |  |  |  |  |-- spv.ext.RayGenShader11.rgen.out
+|  |  |  |  |  |-- spv.ext.RayGenShaderArray.rgen.out
+|  |  |  |  |  |-- spv.ext.RayGenShader_Errors.rgen.out
+|  |  |  |  |  |-- spv.extPostDepthCoverage.frag.out
+|  |  |  |  |  |-- spv.extPostDepthCoverage_Error.frag.out
+|  |  |  |  |  |-- spv.float16.frag.out
+|  |  |  |  |  |-- spv.float16Fetch.frag.out
+|  |  |  |  |  |-- spv.float16convertonlyarith.comp.out
+|  |  |  |  |  |-- spv.float16convertonlystorage.comp.out
+|  |  |  |  |  |-- spv.float32.frag.out
+|  |  |  |  |  |-- spv.float64.frag.out
+|  |  |  |  |  |-- spv.flowControl.frag.out
+|  |  |  |  |  |-- spv.for-complex-condition.vert.out
+|  |  |  |  |  |-- spv.for-continue-break.vert.out
+|  |  |  |  |  |-- spv.for-nobody.vert.out
+|  |  |  |  |  |-- spv.for-notest.vert.out
+|  |  |  |  |  |-- spv.for-simple.vert.out
+|  |  |  |  |  |-- spv.forLoop.frag.out
+|  |  |  |  |  |-- spv.forwardFun.frag.out
+|  |  |  |  |  |-- spv.fragmentDensity-es.frag.out
+|  |  |  |  |  |-- spv.fragmentDensity-neg.frag.out
+|  |  |  |  |  |-- spv.fragmentDensity.frag.out
+|  |  |  |  |  |-- spv.fragmentDensity.vert.out
+|  |  |  |  |  |-- spv.fragmentShaderBarycentric.frag.out
+|  |  |  |  |  |-- spv.fragmentShaderBarycentric2.frag.out
+|  |  |  |  |  |-- spv.fsi.frag.out
+|  |  |  |  |  |-- spv.fsi_Error.frag.out
+|  |  |  |  |  |-- spv.fullyCovered.frag.out
+|  |  |  |  |  |-- spv.functionCall.frag.out
+|  |  |  |  |  |-- spv.functionNestedOpaque.vert.out
+|  |  |  |  |  |-- spv.functionParameterTypes.frag.out
+|  |  |  |  |  |-- spv.functionSemantics.frag.out
+|  |  |  |  |  |-- spv.glFragColor.frag.out
+|  |  |  |  |  |-- spv.glsl.register.autoassign.frag.out
+|  |  |  |  |  |-- spv.glsl.register.noautoassign.frag.out
+|  |  |  |  |  |-- spv.hlslDebugInfo.frag.out
+|  |  |  |  |  |-- spv.hlslOffsets.vert.out
+|  |  |  |  |  |-- spv.image.frag.out
+|  |  |  |  |  |-- spv.image.load-formatted.frag.out
+|  |  |  |  |  |-- spv.imageLoadStoreLod.frag.out
+|  |  |  |  |  |-- spv.int16.amd.frag.out
+|  |  |  |  |  |-- spv.int16.frag.out
+|  |  |  |  |  |-- spv.int32.frag.out
+|  |  |  |  |  |-- spv.int64.frag.out
+|  |  |  |  |  |-- spv.int8.frag.out
+|  |  |  |  |  |-- spv.intOps.vert.out
+|  |  |  |  |  |-- spv.intcoopmat.comp.out
+|  |  |  |  |  |-- spv.interpOps.frag.out
+|  |  |  |  |  |-- spv.layoutNested.vert.out
+|  |  |  |  |  |-- spv.length.frag.out
+|  |  |  |  |  |-- spv.localAggregates.frag.out
+|  |  |  |  |  |-- spv.loops.frag.out
+|  |  |  |  |  |-- spv.loopsArtificial.frag.out
+|  |  |  |  |  |-- spv.looseUniformNoLoc.vert.out
+|  |  |  |  |  |-- spv.matFun.vert.out
+|  |  |  |  |  |-- spv.matrix.frag.out
+|  |  |  |  |  |-- spv.matrix2.frag.out
+|  |  |  |  |  |-- spv.memoryQualifier.frag.out
+|  |  |  |  |  |-- spv.memoryScopeSemantics.comp.out
+|  |  |  |  |  |-- spv.memoryScopeSemantics_Error.comp.out
+|  |  |  |  |  |-- spv.merge-unreachable.frag.out
+|  |  |  |  |  |-- spv.meshShaderBuiltins.mesh.out
+|  |  |  |  |  |-- spv.meshShaderPerViewBuiltins.mesh.out
+|  |  |  |  |  |-- spv.meshShaderPerViewUserDefined.mesh.out
+|  |  |  |  |  |-- spv.meshShaderPerView_Errors.mesh.out
+|  |  |  |  |  |-- spv.meshShaderRedeclBuiltins.mesh.out
+|  |  |  |  |  |-- spv.meshShaderRedeclPerViewBuiltins.mesh.out
+|  |  |  |  |  |-- spv.meshShaderSharedMem.mesh.out
+|  |  |  |  |  |-- spv.meshShaderTaskMem.mesh.out
+|  |  |  |  |  |-- spv.meshShaderUserDefined.mesh.out
+|  |  |  |  |  |-- spv.meshTaskShader.task.out
+|  |  |  |  |  |-- spv.multiStruct.comp.out
+|  |  |  |  |  |-- spv.multiStructFuncall.frag.out
+|  |  |  |  |  |-- spv.multiView.frag.out
+|  |  |  |  |  |-- spv.multiviewPerViewAttributes.tesc.out
+|  |  |  |  |  |-- spv.multiviewPerViewAttributes.vert.out
+|  |  |  |  |  |-- spv.newTexture.frag.out
+|  |  |  |  |  |-- spv.noBuiltInLoc.vert.out
+|  |  |  |  |  |-- spv.noDeadDecorations.vert.out
+|  |  |  |  |  |-- spv.noLocation.vert.out
+|  |  |  |  |  |-- spv.noWorkgroup.comp.out
+|  |  |  |  |  |-- spv.nonSquare.vert.out
+|  |  |  |  |  |-- spv.nonuniform.frag.out
+|  |  |  |  |  |-- spv.nonuniform2.frag.out
+|  |  |  |  |  |-- spv.nonuniform3.frag.out
+|  |  |  |  |  |-- spv.nonuniform4.frag.out
+|  |  |  |  |  |-- spv.nonuniform5.frag.out
+|  |  |  |  |  |-- spv.offsets.frag.out
+|  |  |  |  |  |-- spv.paramMemory.frag.out
+|  |  |  |  |  |-- spv.perprimitiveNV.frag.out
+|  |  |  |  |  |-- spv.pp.line.frag.out
+|  |  |  |  |  |-- spv.precise.tesc.out
+|  |  |  |  |  |-- spv.precise.tese.out
+|  |  |  |  |  |-- spv.precision.frag.out
+|  |  |  |  |  |-- spv.precisionNonESSamp.frag.out
+|  |  |  |  |  |-- spv.prepost.frag.out
+|  |  |  |  |  |-- spv.privateVariableTypes.frag.out
+|  |  |  |  |  |-- spv.pushConstant.vert.out
+|  |  |  |  |  |-- spv.pushConstantAnon.vert.out
+|  |  |  |  |  |-- spv.qualifiers.vert.out
+|  |  |  |  |  |-- spv.queryL.frag.out
+|  |  |  |  |  |-- spv.rankShift.comp.out
+|  |  |  |  |  |-- spv.register.autoassign-2.frag.out
+|  |  |  |  |  |-- spv.register.autoassign.frag.out
+|  |  |  |  |  |-- spv.register.autoassign.rangetest.frag.out
+|  |  |  |  |  |-- spv.register.noautoassign.frag.out
+|  |  |  |  |  |-- spv.register.subpass.frag.out
+|  |  |  |  |  |-- spv.rw.autoassign.frag.out
+|  |  |  |  |  |-- spv.sample.frag.out
+|  |  |  |  |  |-- spv.sampleId.frag.out
+|  |  |  |  |  |-- spv.sampleMaskOverrideCoverage.frag.out
+|  |  |  |  |  |-- spv.samplePosition.frag.out
+|  |  |  |  |  |-- spv.samplerlessTextureFunctions.frag.out
+|  |  |  |  |  |-- spv.scalarlayout.frag.out
+|  |  |  |  |  |-- spv.scalarlayoutfloat16.frag.out
+|  |  |  |  |  |-- spv.separate.frag.out
+|  |  |  |  |  |-- spv.set.vert.out
+|  |  |  |  |  |-- spv.shaderBallot.comp.out
+|  |  |  |  |  |-- spv.shaderBallotAMD.comp.out
+|  |  |  |  |  |-- spv.shaderDrawParams.vert.out
+|  |  |  |  |  |-- spv.shaderFragMaskAMD.frag.out
+|  |  |  |  |  |-- spv.shaderGroupVote.comp.out
+|  |  |  |  |  |-- spv.shaderImageFootprint.frag.out
+|  |  |  |  |  |-- spv.shaderStencilExport.frag.out
+|  |  |  |  |  |-- spv.shadingRate.frag.out
+|  |  |  |  |  |-- spv.shiftOps.frag.out
+|  |  |  |  |  |-- spv.shortCircuit.frag.out
+|  |  |  |  |  |-- spv.simpleFunctionCall.frag.out
+|  |  |  |  |  |-- spv.simpleMat.vert.out
+|  |  |  |  |  |-- spv.smBuiltins.frag.out
+|  |  |  |  |  |-- spv.smBuiltins.vert.out
+|  |  |  |  |  |-- spv.sparseTexture.frag.out
+|  |  |  |  |  |-- spv.sparseTextureClamp.frag.out
+|  |  |  |  |  |-- spv.specConst.vert.out
+|  |  |  |  |  |-- spv.specConstArrayCheck.vert.out
+|  |  |  |  |  |-- spv.specConstant.comp.out
+|  |  |  |  |  |-- spv.specConstant.vert.out
+|  |  |  |  |  |-- spv.specConstantComposite.vert.out
+|  |  |  |  |  |-- spv.specConstantOperations.vert.out
+|  |  |  |  |  |-- spv.specTexture.frag.out
+|  |  |  |  |  |-- spv.ssbo.autoassign.frag.out
+|  |  |  |  |  |-- spv.ssboAlias.frag.out
+|  |  |  |  |  |-- spv.stereoViewRendering.tesc.out
+|  |  |  |  |  |-- spv.stereoViewRendering.vert.out
+|  |  |  |  |  |-- spv.storageBuffer.vert.out
+|  |  |  |  |  |-- spv.structAssignment.frag.out
+|  |  |  |  |  |-- spv.structDeref.frag.out
+|  |  |  |  |  |-- spv.structure.frag.out
+|  |  |  |  |  |-- spv.subgroup.frag.out
+|  |  |  |  |  |-- spv.subgroup.geom.out
+|  |  |  |  |  |-- spv.subgroup.tesc.out
+|  |  |  |  |  |-- spv.subgroup.tese.out
+|  |  |  |  |  |-- spv.subgroup.vert.out
+|  |  |  |  |  |-- spv.subgroupArithmetic.comp.out
+|  |  |  |  |  |-- spv.subgroupBallot.comp.out
+|  |  |  |  |  |-- spv.subgroupBallotNeg.comp.out
+|  |  |  |  |  |-- spv.subgroupBasic.comp.out
+|  |  |  |  |  |-- spv.subgroupClustered.comp.out
+|  |  |  |  |  |-- spv.subgroupClusteredNeg.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesArithmetic.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesArithmeticNeg.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesBallot.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesBallotNeg.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesBasic.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesClustered.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesClusteredNeg.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesPartitioned.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesPartitionedNeg.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesQuad.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesQuadNeg.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesShuffle.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesShuffleNeg.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesShuffleRelative.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesShuffleRelativeNeg.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesVote.comp.out
+|  |  |  |  |  |-- spv.subgroupExtendedTypesVoteNeg.comp.out
+|  |  |  |  |  |-- spv.subgroupPartitioned.comp.out
+|  |  |  |  |  |-- spv.subgroupQuad.comp.out
+|  |  |  |  |  |-- spv.subgroupShuffle.comp.out
+|  |  |  |  |  |-- spv.subgroupShuffleRelative.comp.out
+|  |  |  |  |  |-- spv.subgroupVote.comp.out
+|  |  |  |  |  |-- spv.subpass.frag.out
+|  |  |  |  |  |-- spv.switch.frag.out
+|  |  |  |  |  |-- spv.swizzle.frag.out
+|  |  |  |  |  |-- spv.swizzleInversion.frag.out
+|  |  |  |  |  |-- spv.test.frag.out
+|  |  |  |  |  |-- spv.test.vert.out
+|  |  |  |  |  |-- spv.texture.frag.out
+|  |  |  |  |  |-- spv.texture.sampler.transform.frag.out
+|  |  |  |  |  |-- spv.texture.vert.out
+|  |  |  |  |  |-- spv.textureBuffer.vert.out
+|  |  |  |  |  |-- spv.textureGatherBiasLod.frag.out
+|  |  |  |  |  |-- spv.types.frag.out
+|  |  |  |  |  |-- spv.uint.frag.out
+|  |  |  |  |  |-- spv.uniformArray.frag.out
+|  |  |  |  |  |-- spv.unit1.frag.out
+|  |  |  |  |  |-- spv.variableArrayIndex.frag.out
+|  |  |  |  |  |-- spv.varyingArray.frag.out
+|  |  |  |  |  |-- spv.varyingArrayIndirect.frag.out
+|  |  |  |  |  |-- spv.vecMatConstruct.frag.out
+|  |  |  |  |  |-- spv.viewportArray2.tesc.out
+|  |  |  |  |  |-- spv.viewportArray2.vert.out
+|  |  |  |  |  |-- spv.voidFunction.frag.out
+|  |  |  |  |  |-- spv.volatileAtomic.comp.out
+|  |  |  |  |  |-- spv.vulkan100.subgroupArithmetic.comp.out
+|  |  |  |  |  |-- spv.vulkan100.subgroupPartitioned.comp.out
+|  |  |  |  |  |-- spv.vulkan110.int16.frag.out
+|  |  |  |  |  |-- spv.vulkan110.storageBuffer.vert.out
+|  |  |  |  |  |-- spv.while-continue-break.vert.out
+|  |  |  |  |  |-- spv.while-simple.vert.out
+|  |  |  |  |  |-- spv.whileLoop.frag.out
+|  |  |  |  |  |-- spv.xfb.vert.out
+|  |  |  |  |  |-- spv.xfb2.vert.out
+|  |  |  |  |  |-- spv.xfb3.vert.out
+|  |  |  |  |  |-- spv.xfbOffsetOnBlockMembersAssignment.vert.out
+|  |  |  |  |  |-- spv.xfbOffsetOnStructMembersAssignment.vert.out
+|  |  |  |  |  |-- spv.xfbOverlapOffsetCheckWithBlockAndMember.vert.out
+|  |  |  |  |  |-- spv.xfbStrideJustOnce.vert.out
+|  |  |  |  |  |-- stringToDouble.vert.out
+|  |  |  |  |  |-- structAssignment.frag.out
+|  |  |  |  |  |-- structDeref.frag.out
+|  |  |  |  |  |-- structure.frag.out
+|  |  |  |  |  |-- switch.frag.out
+|  |  |  |  |  |-- swizzle.frag.out
+|  |  |  |  |  |-- syntaxError.frag.out
+|  |  |  |  |  |-- test.conf
+|  |  |  |  |  |-- test.frag.out
+|  |  |  |  |  |-- texture.frag.out
+|  |  |  |  |  |-- tokenLength.vert.out
+|  |  |  |  |  |-- tokenPaste.vert.out
+|  |  |  |  |  |-- types.frag.out
+|  |  |  |  |  |-- uint.frag.out
+|  |  |  |  |  |-- uniformArray.frag.out
+|  |  |  |  |  |-- variableArrayIndex.frag.out
+|  |  |  |  |  |-- varyingArray.frag.out
+|  |  |  |  |  |-- varyingArrayIndirect.frag.out
+|  |  |  |  |  |-- versionsClean.frag.out
+|  |  |  |  |  |-- versionsClean.vert.out
+|  |  |  |  |  |-- versionsErrors.frag.out
+|  |  |  |  |  |-- versionsErrors.vert.out
+|  |  |  |  |  |-- voidFunction.frag.out
+|  |  |  |  |  |-- vulkan.ast.vert.out
+|  |  |  |  |  |-- vulkan.comp.out
+|  |  |  |  |  |-- vulkan.frag.out
+|  |  |  |  |  |-- vulkan.vert.out
+|  |  |  |  |  |-- web.array.frag.out
+|  |  |  |  |  |-- web.basic.vert.out
+|  |  |  |  |  |-- web.builtins.frag.out
+|  |  |  |  |  |-- web.builtins.vert.out
+|  |  |  |  |  |-- web.comp.out
+|  |  |  |  |  |-- web.controlFlow.frag.out
+|  |  |  |  |  |-- web.operations.frag.out
+|  |  |  |  |  |-- web.separate.frag.out
+|  |  |  |  |  |-- web.texture.frag.out
+|  |  |  |  |  |-- whileLoop.frag.out
+|  |  |  |  |-- bump
+|  |  |  |  |-- comment.frag
+|  |  |  |  |-- compoundsuffix.frag.hlsl
+|  |  |  |  |-- compoundsuffix.vert.glsl
+|  |  |  |  |-- conditionalDiscard.frag
+|  |  |  |  |-- constErrors.frag
+|  |  |  |  |-- constFold.frag
+|  |  |  |  |-- constFoldIntMin.frag
+|  |  |  |  |-- constantUnaryConversion.comp
+|  |  |  |  |-- conversion.frag
+|  |  |  |  |-- cppBad.vert
+|  |  |  |  |-- cppBad2.vert
+|  |  |  |  |-- cppBad3.vert
+|  |  |  |  |-- cppBad4.vert
+|  |  |  |  |-- cppBad5.vert
+|  |  |  |  |-- cppComplexExpr.vert
+|  |  |  |  |-- cppDeepNest.frag
+|  |  |  |  |-- cppIndent.vert
+|  |  |  |  |-- cppIntMinOverNegativeOne.frag
+|  |  |  |  |-- cppMerge.frag
+|  |  |  |  |-- cppNest.vert
+|  |  |  |  |-- cppPassMacroName.frag
+|  |  |  |  |-- cppRelaxSkipTokensErrors.vert
+|  |  |  |  |-- cppSimple.vert
+|  |  |  |  |-- dataOut.frag
+|  |  |  |  |-- dataOutIndirect.frag
+|  |  |  |  |-- dce.frag
+|  |  |  |  |-- decls.frag
+|  |  |  |  |-- deepRvalue.frag
+|  |  |  |  |-- depthOut.frag
+|  |  |  |  |-- discard-dce.frag
+|  |  |  |  |-- doWhileLoop.frag
+|  |  |  |  |-- earlyReturnDiscard.frag
+|  |  |  |  |-- empty.frag
+|  |  |  |  |-- empty2.frag
+|  |  |  |  |-- empty3.frag
+|  |  |  |  |-- errors.frag
+|  |  |  |  |-- es-link1.frag
+|  |  |  |  |-- es-link2.frag
+|  |  |  |  |-- findFunction.frag
+|  |  |  |  |-- flowControl.frag
+|  |  |  |  |-- foo.h
+|  |  |  |  |-- forLoop.frag
+|  |  |  |  |-- forwardRef.frag
+|  |  |  |  |-- functionCall.frag
+|  |  |  |  |-- functionSemantics.frag
+|  |  |  |  |-- glsl.-D-U.frag
+|  |  |  |  |-- glsl.450.subgroup.frag
+|  |  |  |  |-- glsl.450.subgroup.geom
+|  |  |  |  |-- glsl.450.subgroup.tesc
+|  |  |  |  |-- glsl.450.subgroup.tese
+|  |  |  |  |-- glsl.450.subgroup.vert
+|  |  |  |  |-- glsl.450.subgroupArithmetic.comp
+|  |  |  |  |-- glsl.450.subgroupBallot.comp
+|  |  |  |  |-- glsl.450.subgroupBallotNeg.comp
+|  |  |  |  |-- glsl.450.subgroupBasic.comp
+|  |  |  |  |-- glsl.450.subgroupClustered.comp
+|  |  |  |  |-- glsl.450.subgroupClusteredNeg.comp
+|  |  |  |  |-- glsl.450.subgroupPartitioned.comp
+|  |  |  |  |-- glsl.450.subgroupQuad.comp
+|  |  |  |  |-- glsl.450.subgroupShuffle.comp
+|  |  |  |  |-- glsl.450.subgroupShuffleRelative.comp
+|  |  |  |  |-- glsl.450.subgroupVote.comp
+|  |  |  |  |-- glsl.460.subgroup.mesh
+|  |  |  |  |-- glsl.460.subgroup.rahit
+|  |  |  |  |-- glsl.460.subgroup.rcall
+|  |  |  |  |-- glsl.460.subgroup.rchit
+|  |  |  |  |-- glsl.460.subgroup.rgen
+|  |  |  |  |-- glsl.460.subgroup.rint
+|  |  |  |  |-- glsl.460.subgroup.rmiss
+|  |  |  |  |-- glsl.460.subgroup.task
+|  |  |  |  |-- glsl.entryPointRename.vert
+|  |  |  |  |-- glsl.entryPointRename2.vert
+|  |  |  |  |-- glsl.es320.subgroup.frag
+|  |  |  |  |-- glsl.es320.subgroup.geom
+|  |  |  |  |-- glsl.es320.subgroup.tesc
+|  |  |  |  |-- glsl.es320.subgroup.tese
+|  |  |  |  |-- glsl.es320.subgroup.vert
+|  |  |  |  |-- glsl.es320.subgroupArithmetic.comp
+|  |  |  |  |-- glsl.es320.subgroupBallot.comp
+|  |  |  |  |-- glsl.es320.subgroupBallotNeg.comp
+|  |  |  |  |-- glsl.es320.subgroupBasic.comp
+|  |  |  |  |-- glsl.es320.subgroupClustered.comp
+|  |  |  |  |-- glsl.es320.subgroupClusteredNeg.comp
+|  |  |  |  |-- glsl.es320.subgroupPartitioned.comp
+|  |  |  |  |-- glsl.es320.subgroupQuad.comp
+|  |  |  |  |-- glsl.es320.subgroupShuffle.comp
+|  |  |  |  |-- glsl.es320.subgroupShuffleRelative.comp
+|  |  |  |  |-- glsl.es320.subgroupVote.comp
+|  |  |  |  |-- glslangValidator
+|  |  |  |  |-- glspv.esversion.vert
+|  |  |  |  |-- glspv.frag
+|  |  |  |  |-- glspv.version.frag
+|  |  |  |  |-- glspv.version.vert
+|  |  |  |  |-- glspv.vert
+|  |  |  |  |-- hlsl.-D-U.frag
+|  |  |  |  |-- hlsl.PointSize.geom
+|  |  |  |  |-- hlsl.PointSize.vert
+|  |  |  |  |-- hlsl.aliasOpaque.frag
+|  |  |  |  |-- hlsl.amend.frag
+|  |  |  |  |-- hlsl.array.flatten.frag
+|  |  |  |  |-- hlsl.array.frag
+|  |  |  |  |-- hlsl.array.implicit-size.frag
+|  |  |  |  |-- hlsl.array.multidim.frag
+|  |  |  |  |-- hlsl.assoc.frag
+|  |  |  |  |-- hlsl.attribute.expression.comp
+|  |  |  |  |-- hlsl.attribute.frag
+|  |  |  |  |-- hlsl.attributeC11.frag
+|  |  |  |  |-- hlsl.attributeGlobalBuffer.frag
+|  |  |  |  |-- hlsl.automap.frag
+|  |  |  |  |-- hlsl.basic.comp
+|  |  |  |  |-- hlsl.basic.geom
+|  |  |  |  |-- hlsl.boolConv.vert
+|  |  |  |  |-- hlsl.buffer.frag
+|  |  |  |  |-- hlsl.calculatelod.dx10.frag
+|  |  |  |  |-- hlsl.calculatelodunclamped.dx10.frag
+|  |  |  |  |-- hlsl.cast.frag
+|  |  |  |  |-- hlsl.cbuffer-identifier.vert
+|  |  |  |  |-- hlsl.charLit.vert
+|  |  |  |  |-- hlsl.clip.frag
+|  |  |  |  |-- hlsl.clipdistance-1.frag
+|  |  |  |  |-- hlsl.clipdistance-1.geom
+|  |  |  |  |-- hlsl.clipdistance-1.vert
+|  |  |  |  |-- hlsl.clipdistance-2.frag
+|  |  |  |  |-- hlsl.clipdistance-2.geom
+|  |  |  |  |-- hlsl.clipdistance-2.vert
+|  |  |  |  |-- hlsl.clipdistance-3.frag
+|  |  |  |  |-- hlsl.clipdistance-3.geom
+|  |  |  |  |-- hlsl.clipdistance-3.vert
+|  |  |  |  |-- hlsl.clipdistance-4.frag
+|  |  |  |  |-- hlsl.clipdistance-4.geom
+|  |  |  |  |-- hlsl.clipdistance-4.vert
+|  |  |  |  |-- hlsl.clipdistance-5.frag
+|  |  |  |  |-- hlsl.clipdistance-5.vert
+|  |  |  |  |-- hlsl.clipdistance-6.frag
+|  |  |  |  |-- hlsl.clipdistance-6.vert
+|  |  |  |  |-- hlsl.clipdistance-7.frag
+|  |  |  |  |-- hlsl.clipdistance-7.vert
+|  |  |  |  |-- hlsl.clipdistance-8.frag
+|  |  |  |  |-- hlsl.clipdistance-8.vert
+|  |  |  |  |-- hlsl.clipdistance-9.frag
+|  |  |  |  |-- hlsl.clipdistance-9.vert
+|  |  |  |  |-- hlsl.color.hull.tesc
+|  |  |  |  |-- hlsl.comparison.vec.frag
+|  |  |  |  |-- hlsl.conditional.frag
+|  |  |  |  |-- hlsl.constantbuffer.frag
+|  |  |  |  |-- hlsl.constructArray.vert
+|  |  |  |  |-- hlsl.constructexpr.frag
+|  |  |  |  |-- hlsl.constructimat.frag
+|  |  |  |  |-- hlsl.coverage.frag
+|  |  |  |  |-- hlsl.dashI.vert
+|  |  |  |  |-- hlsl.deadFunctionMissingBody.vert
+|  |  |  |  |-- hlsl.depthGreater.frag
+|  |  |  |  |-- hlsl.depthLess.frag
+|  |  |  |  |-- hlsl.discard.frag
+|  |  |  |  |-- hlsl.doLoop.frag
+|  |  |  |  |-- hlsl.domain.1.tese
+|  |  |  |  |-- hlsl.domain.2.tese
+|  |  |  |  |-- hlsl.domain.3.tese
+|  |  |  |  |-- hlsl.earlydepthstencil.frag
+|  |  |  |  |-- hlsl.emptystruct.init.vert
+|  |  |  |  |-- hlsl.emptystructreturn.frag
+|  |  |  |  |-- hlsl.emptystructreturn.vert
+|  |  |  |  |-- hlsl.entry-in.frag
+|  |  |  |  |-- hlsl.entry-out.frag
+|  |  |  |  |-- hlsl.entry.rename.frag
+|  |  |  |  |-- hlsl.explicitDescriptorSet.frag
+|  |  |  |  |-- hlsl.flatten.return.frag
+|  |  |  |  |-- hlsl.flattenOpaque.frag
+|  |  |  |  |-- hlsl.flattenOpaqueInit.vert
+|  |  |  |  |-- hlsl.flattenOpaqueInitMix.vert
+|  |  |  |  |-- hlsl.flattenSubset.frag
+|  |  |  |  |-- hlsl.flattenSubset2.frag
+|  |  |  |  |-- hlsl.float1.frag
+|  |  |  |  |-- hlsl.float4.frag
+|  |  |  |  |-- hlsl.forLoop.frag
+|  |  |  |  |-- hlsl.format.rwtexture.frag
+|  |  |  |  |-- hlsl.frag
+|  |  |  |  |-- hlsl.fraggeom.frag
+|  |  |  |  |-- hlsl.function.frag
+|  |  |  |  |-- hlsl.gather.array.dx10.frag
+|  |  |  |  |-- hlsl.gather.basic.dx10.frag
+|  |  |  |  |-- hlsl.gather.basic.dx10.vert
+|  |  |  |  |-- hlsl.gather.offset.dx10.frag
+|  |  |  |  |-- hlsl.gather.offsetarray.dx10.frag
+|  |  |  |  |-- hlsl.gatherRGBA.array.dx10.frag
+|  |  |  |  |-- hlsl.gatherRGBA.basic.dx10.frag
+|  |  |  |  |-- hlsl.gatherRGBA.offset.dx10.frag
+|  |  |  |  |-- hlsl.gatherRGBA.offsetarray.dx10.frag
+|  |  |  |  |-- hlsl.gathercmpRGBA.array.dx10.frag
+|  |  |  |  |-- hlsl.gathercmpRGBA.basic.dx10.frag
+|  |  |  |  |-- hlsl.gathercmpRGBA.offset.dx10.frag
+|  |  |  |  |-- hlsl.gathercmpRGBA.offsetarray.dx10.frag
+|  |  |  |  |-- hlsl.getdimensions.dx10.frag
+|  |  |  |  |-- hlsl.getdimensions.dx10.vert
+|  |  |  |  |-- hlsl.getdimensions.rw.dx10.frag
+|  |  |  |  |-- hlsl.getsampleposition.dx10.frag
+|  |  |  |  |-- hlsl.global-const-init.frag
+|  |  |  |  |-- hlsl.groupid.comp
+|  |  |  |  |-- hlsl.gs-hs-mix.tesc
+|  |  |  |  |-- hlsl.hlslOffset.vert
+|  |  |  |  |-- hlsl.hull.1.tesc
+|  |  |  |  |-- hlsl.hull.2.tesc
+|  |  |  |  |-- hlsl.hull.3.tesc
+|  |  |  |  |-- hlsl.hull.4.tesc
+|  |  |  |  |-- hlsl.hull.5.tesc
+|  |  |  |  |-- hlsl.hull.ctrlpt-1.tesc
+|  |  |  |  |-- hlsl.hull.ctrlpt-2.tesc
+|  |  |  |  |-- hlsl.hull.void.tesc
+|  |  |  |  |-- hlsl.identifier.sample.frag
+|  |  |  |  |-- hlsl.if.frag
+|  |  |  |  |-- hlsl.imagefetch-subvec4.comp
+|  |  |  |  |-- hlsl.implicitBool.frag
+|  |  |  |  |-- hlsl.include.vert
+|  |  |  |  |-- hlsl.includeNegative.vert
+|  |  |  |  |-- hlsl.inf.vert
+|  |  |  |  |-- hlsl.init.frag
+|  |  |  |  |-- hlsl.init2.frag
+|  |  |  |  |-- hlsl.inoutquals.frag
+|  |  |  |  |-- hlsl.int.dot.frag
+|  |  |  |  |-- hlsl.intrinsic.frexp.frag
+|  |  |  |  |-- hlsl.intrinsic.frexp.vert
+|  |  |  |  |-- hlsl.intrinsics.barriers.comp
+|  |  |  |  |-- hlsl.intrinsics.comp
+|  |  |  |  |-- hlsl.intrinsics.d3dcolortoubyte4.frag
+|  |  |  |  |-- hlsl.intrinsics.double.frag
+|  |  |  |  |-- hlsl.intrinsics.evalfns.frag
+|  |  |  |  |-- hlsl.intrinsics.f1632.frag
+|  |  |  |  |-- hlsl.intrinsics.f3216.frag
+|  |  |  |  |-- hlsl.intrinsics.frag
+|  |  |  |  |-- hlsl.intrinsics.lit.frag
+|  |  |  |  |-- hlsl.intrinsics.negative.comp
+|  |  |  |  |-- hlsl.intrinsics.negative.frag
+|  |  |  |  |-- hlsl.intrinsics.negative.vert
+|  |  |  |  |-- hlsl.intrinsics.promote.down.frag
+|  |  |  |  |-- hlsl.intrinsics.promote.frag
+|  |  |  |  |-- hlsl.intrinsics.promote.outputs.frag
+|  |  |  |  |-- hlsl.intrinsics.vert
+|  |  |  |  |-- hlsl.isfinite.frag
+|  |  |  |  |-- hlsl.layout.frag
+|  |  |  |  |-- hlsl.layoutOverride.vert
+|  |  |  |  |-- hlsl.load.2dms.dx10.frag
+|  |  |  |  |-- hlsl.load.array.dx10.frag
+|  |  |  |  |-- hlsl.load.basic.dx10.frag
+|  |  |  |  |-- hlsl.load.basic.dx10.vert
+|  |  |  |  |-- hlsl.load.buffer.dx10.frag
+|  |  |  |  |-- hlsl.load.buffer.float.dx10.frag
+|  |  |  |  |-- hlsl.load.offset.dx10.frag
+|  |  |  |  |-- hlsl.load.offsetarray.dx10.frag
+|  |  |  |  |-- hlsl.load.rwbuffer.dx10.frag
+|  |  |  |  |-- hlsl.load.rwtexture.array.dx10.frag
+|  |  |  |  |-- hlsl.load.rwtexture.dx10.frag
+|  |  |  |  |-- hlsl.localStructuredBuffer.comp
+|  |  |  |  |-- hlsl.logical.binary.frag
+|  |  |  |  |-- hlsl.logical.binary.vec.frag
+|  |  |  |  |-- hlsl.logical.unary.frag
+|  |  |  |  |-- hlsl.logicalConvert.frag
+|  |  |  |  |-- hlsl.loopattr.frag
+|  |  |  |  |-- hlsl.matNx1.frag
+|  |  |  |  |-- hlsl.matType.bool.frag
+|  |  |  |  |-- hlsl.matType.frag
+|  |  |  |  |-- hlsl.matType.int.frag
+|  |  |  |  |-- hlsl.matpack-1.frag
+|  |  |  |  |-- hlsl.matpack-pragma.frag
+|  |  |  |  |-- hlsl.matrixSwizzle.vert
+|  |  |  |  |-- hlsl.matrixindex.frag
+|  |  |  |  |-- hlsl.max.frag
+|  |  |  |  |-- hlsl.memberFunCall.frag
+|  |  |  |  |-- hlsl.mintypes.frag
+|  |  |  |  |-- hlsl.mip.negative.frag
+|  |  |  |  |-- hlsl.mip.negative2.frag
+|  |  |  |  |-- hlsl.mip.operator.frag
+|  |  |  |  |-- hlsl.mul-truncate.frag
+|  |  |  |  |-- hlsl.multiDescriptorSet.frag
+|  |  |  |  |-- hlsl.multiEntry.vert
+|  |  |  |  |-- hlsl.multiReturn.frag
+|  |  |  |  |-- hlsl.namespace.frag
+|  |  |  |  |-- hlsl.noSemantic.functionality1.comp
+|  |  |  |  |-- hlsl.nonint-index.frag
+|  |  |  |  |-- hlsl.nonstaticMemberFunction.frag
+|  |  |  |  |-- hlsl.numericsuffixes.frag
+|  |  |  |  |-- hlsl.numthreads.comp
+|  |  |  |  |-- hlsl.opaque-type-bug.frag
+|  |  |  |  |-- hlsl.overload.frag
+|  |  |  |  |-- hlsl.params.default.frag
+|  |  |  |  |-- hlsl.params.default.negative.frag
+|  |  |  |  |-- hlsl.partialFlattenLocal.vert
+|  |  |  |  |-- hlsl.partialFlattenMixed.vert
+|  |  |  |  |-- hlsl.partialInit.frag
+|  |  |  |  |-- hlsl.pp.expand.frag
+|  |  |  |  |-- hlsl.pp.line.frag
+|  |  |  |  |-- hlsl.pp.line2.frag
+|  |  |  |  |-- hlsl.pp.line3.frag
+|  |  |  |  |-- hlsl.pp.line4.frag
+|  |  |  |  |-- hlsl.pp.tokenpasting.frag
+|  |  |  |  |-- hlsl.pp.vert
+|  |  |  |  |-- hlsl.precedence.frag
+|  |  |  |  |-- hlsl.precedence2.frag
+|  |  |  |  |-- hlsl.precise.frag
+|  |  |  |  |-- hlsl.preprocessor.frag
+|  |  |  |  |-- hlsl.promote.atomic.frag
+|  |  |  |  |-- hlsl.promote.binary.frag
+|  |  |  |  |-- hlsl.promote.vec1.frag
+|  |  |  |  |-- hlsl.promotions.frag
+|  |  |  |  |-- hlsl.reflection.binding.frag
+|  |  |  |  |-- hlsl.reflection.vert
+|  |  |  |  |-- hlsl.rw.atomics.frag
+|  |  |  |  |-- hlsl.rw.bracket.frag
+|  |  |  |  |-- hlsl.rw.register.frag
+|  |  |  |  |-- hlsl.rw.scalar.bracket.frag
+|  |  |  |  |-- hlsl.rw.swizzle.frag
+|  |  |  |  |-- hlsl.rw.vec2.bracket.frag
+|  |  |  |  |-- hlsl.sample.array.dx10.frag
+|  |  |  |  |-- hlsl.sample.basic.dx10.frag
+|  |  |  |  |-- hlsl.sample.dx9.frag
+|  |  |  |  |-- hlsl.sample.dx9.vert
+|  |  |  |  |-- hlsl.sample.offset.dx10.frag
+|  |  |  |  |-- hlsl.sample.offsetarray.dx10.frag
+|  |  |  |  |-- hlsl.sample.sub-vec4.dx10.frag
+|  |  |  |  |-- hlsl.samplebias.array.dx10.frag
+|  |  |  |  |-- hlsl.samplebias.basic.dx10.frag
+|  |  |  |  |-- hlsl.samplebias.offset.dx10.frag
+|  |  |  |  |-- hlsl.samplebias.offsetarray.dx10.frag
+|  |  |  |  |-- hlsl.samplecmp.array.dx10.frag
+|  |  |  |  |-- hlsl.samplecmp.basic.dx10.frag
+|  |  |  |  |-- hlsl.samplecmp.dualmode.frag
+|  |  |  |  |-- hlsl.samplecmp.negative.frag
+|  |  |  |  |-- hlsl.samplecmp.negative2.frag
+|  |  |  |  |-- hlsl.samplecmp.offset.dx10.frag
+|  |  |  |  |-- hlsl.samplecmp.offsetarray.dx10.frag
+|  |  |  |  |-- hlsl.samplecmplevelzero.array.dx10.frag
+|  |  |  |  |-- hlsl.samplecmplevelzero.basic.dx10.frag
+|  |  |  |  |-- hlsl.samplecmplevelzero.offset.dx10.frag
+|  |  |  |  |-- hlsl.samplecmplevelzero.offsetarray.dx10.frag
+|  |  |  |  |-- hlsl.samplegrad.array.dx10.frag
+|  |  |  |  |-- hlsl.samplegrad.basic.dx10.frag
+|  |  |  |  |-- hlsl.samplegrad.basic.dx10.vert
+|  |  |  |  |-- hlsl.samplegrad.offset.dx10.frag
+|  |  |  |  |-- hlsl.samplegrad.offsetarray.dx10.frag
+|  |  |  |  |-- hlsl.samplelevel.array.dx10.frag
+|  |  |  |  |-- hlsl.samplelevel.basic.dx10.frag
+|  |  |  |  |-- hlsl.samplelevel.basic.dx10.vert
+|  |  |  |  |-- hlsl.samplelevel.offset.dx10.frag
+|  |  |  |  |-- hlsl.samplelevel.offsetarray.dx10.frag
+|  |  |  |  |-- hlsl.scalar-length.frag
+|  |  |  |  |-- hlsl.scalar2matrix.frag
+|  |  |  |  |-- hlsl.scalarCast.vert
+|  |  |  |  |-- hlsl.scope.frag
+|  |  |  |  |-- hlsl.self_cast.frag
+|  |  |  |  |-- hlsl.semantic-1.vert
+|  |  |  |  |-- hlsl.semantic.geom
+|  |  |  |  |-- hlsl.semantic.vert
+|  |  |  |  |-- hlsl.semicolons.frag
+|  |  |  |  |-- hlsl.shapeConv.frag
+|  |  |  |  |-- hlsl.shapeConvRet.frag
+|  |  |  |  |-- hlsl.shift.per-set.frag
+|  |  |  |  |-- hlsl.sin.frag
+|  |  |  |  |-- hlsl.singleArgIntPromo.vert
+|  |  |  |  |-- hlsl.snorm.uav.comp
+|  |  |  |  |-- hlsl.specConstant.frag
+|  |  |  |  |-- hlsl.staticFuncInit.frag
+|  |  |  |  |-- hlsl.staticMemberFunction.frag
+|  |  |  |  |-- hlsl.store.rwbyteaddressbuffer.type.comp
+|  |  |  |  |-- hlsl.string.frag
+|  |  |  |  |-- hlsl.stringtoken.frag
+|  |  |  |  |-- hlsl.struct.frag
+|  |  |  |  |-- hlsl.struct.split-1.vert
+|  |  |  |  |-- hlsl.struct.split.array.geom
+|  |  |  |  |-- hlsl.struct.split.assign.frag
+|  |  |  |  |-- hlsl.struct.split.call.vert
+|  |  |  |  |-- hlsl.struct.split.nested.geom
+|  |  |  |  |-- hlsl.struct.split.trivial.geom
+|  |  |  |  |-- hlsl.struct.split.trivial.vert
+|  |  |  |  |-- hlsl.structIoFourWay.frag
+|  |  |  |  |-- hlsl.structStructName.frag
+|  |  |  |  |-- hlsl.structarray.flatten.frag
+|  |  |  |  |-- hlsl.structarray.flatten.geom
+|  |  |  |  |-- hlsl.structbuffer.append.fn.frag
+|  |  |  |  |-- hlsl.structbuffer.append.frag
+|  |  |  |  |-- hlsl.structbuffer.atomics.frag
+|  |  |  |  |-- hlsl.structbuffer.byte.frag
+|  |  |  |  |-- hlsl.structbuffer.coherent.frag
+|  |  |  |  |-- hlsl.structbuffer.floatidx.comp
+|  |  |  |  |-- hlsl.structbuffer.fn.frag
+|  |  |  |  |-- hlsl.structbuffer.fn2.comp
+|  |  |  |  |-- hlsl.structbuffer.frag
+|  |  |  |  |-- hlsl.structbuffer.incdec.frag
+|  |  |  |  |-- hlsl.structbuffer.rw.frag
+|  |  |  |  |-- hlsl.structbuffer.rwbyte.frag
+|  |  |  |  |-- hlsl.structin.vert
+|  |  |  |  |-- hlsl.subpass.frag
+|  |  |  |  |-- hlsl.switch.frag
+|  |  |  |  |-- hlsl.swizzle.frag
+|  |  |  |  |-- hlsl.synthesizeInput.frag
+|  |  |  |  |-- hlsl.target.frag
+|  |  |  |  |-- hlsl.targetStruct1.frag
+|  |  |  |  |-- hlsl.targetStruct2.frag
+|  |  |  |  |-- hlsl.templatetypes.frag
+|  |  |  |  |-- hlsl.templatetypes.negative.frag
+|  |  |  |  |-- hlsl.texture.struct.frag
+|  |  |  |  |-- hlsl.texture.subvec4.frag
+|  |  |  |  |-- hlsl.texturebuffer.frag
+|  |  |  |  |-- hlsl.this.frag
+|  |  |  |  |-- hlsl.tristream-append.geom
+|  |  |  |  |-- hlsl.tx.bracket.frag
+|  |  |  |  |-- hlsl.tx.overload.frag
+|  |  |  |  |-- hlsl.type.half.frag
+|  |  |  |  |-- hlsl.type.identifier.frag
+|  |  |  |  |-- hlsl.type.type.conversion.all.frag
+|  |  |  |  |-- hlsl.type.type.conversion.valid.frag
+|  |  |  |  |-- hlsl.typeGraphCopy.vert
+|  |  |  |  |-- hlsl.typedef.frag
+|  |  |  |  |-- hlsl.void.frag
+|  |  |  |  |-- hlsl.wavebroadcast.comp
+|  |  |  |  |-- hlsl.waveprefix.comp
+|  |  |  |  |-- hlsl.wavequad.comp
+|  |  |  |  |-- hlsl.wavequery.comp
+|  |  |  |  |-- hlsl.wavequery.frag
+|  |  |  |  |-- hlsl.wavereduction.comp
+|  |  |  |  |-- hlsl.wavevote.comp
+|  |  |  |  |-- hlsl.whileLoop.frag
+|  |  |  |  |-- hlsl.y-negate-1.vert
+|  |  |  |  |-- hlsl.y-negate-2.vert
+|  |  |  |  |-- hlsl.y-negate-3.vert
+|  |  |  |  |-- i1.h
+|  |  |  |  |-- implicitInnerAtomicUint.frag
+|  |  |  |  |-- inc1
+|  |  |  |  |  |-- badInc.h
+|  |  |  |  |  |-- bar.h
+|  |  |  |  |  |-- foo.h
+|  |  |  |  |  |-- path1
+|  |  |  |  |  |  |-- bar.h
+|  |  |  |  |  |  |-- local.h
+|  |  |  |  |  |  |-- notHere.h
+|  |  |  |  |  |-- path2
+|  |  |  |  |  |  |-- bar.h
+|  |  |  |  |  |  |-- notHere.h
+|  |  |  |  |  |  |-- remote.h
+|  |  |  |  |-- inc2
+|  |  |  |  |  |-- bar.h
+|  |  |  |  |  |-- foo.h
+|  |  |  |  |-- include.vert
+|  |  |  |  |-- invalidSwizzle.vert
+|  |  |  |  |-- length.frag
+|  |  |  |  |-- lineContinuation.vert
+|  |  |  |  |-- lineContinuation100.vert
+|  |  |  |  |-- link.multiAnonBlocksInvalid.0.0.vert
+|  |  |  |  |-- link.multiAnonBlocksInvalid.0.1.vert
+|  |  |  |  |-- link.multiAnonBlocksValid.0.0.vert
+|  |  |  |  |-- link.multiAnonBlocksValid.0.1.vert
+|  |  |  |  |-- link.multiBlocksInvalid.0.0.vert
+|  |  |  |  |-- link.multiBlocksInvalid.0.1.vert
+|  |  |  |  |-- link.multiBlocksValid.1.0.vert
+|  |  |  |  |-- link.multiBlocksValid.1.1.vert
+|  |  |  |  |-- link.vk.differentPC.0.0.frag
+|  |  |  |  |-- link.vk.differentPC.0.1.frag
+|  |  |  |  |-- link.vk.differentPC.0.2.frag
+|  |  |  |  |-- link.vk.differentPC.1.0.frag
+|  |  |  |  |-- link.vk.differentPC.1.1.frag
+|  |  |  |  |-- link.vk.differentPC.1.2.frag
+|  |  |  |  |-- link.vk.matchingPC.0.0.frag
+|  |  |  |  |-- link.vk.matchingPC.0.1.frag
+|  |  |  |  |-- link.vk.matchingPC.0.2.frag
+|  |  |  |  |-- link.vk.multiBlocksValid.0.0.vert
+|  |  |  |  |-- link.vk.multiBlocksValid.0.1.vert
+|  |  |  |  |-- link.vk.multiBlocksValid.1.0.geom
+|  |  |  |  |-- link.vk.multiBlocksValid.1.1.geom
+|  |  |  |  |-- link.vk.pcNamingInvalid.0.0.vert
+|  |  |  |  |-- link.vk.pcNamingInvalid.0.1.vert
+|  |  |  |  |-- link.vk.pcNamingValid.0.0.vert
+|  |  |  |  |-- link.vk.pcNamingValid.0.1.vert
+|  |  |  |  |-- link1.frag
+|  |  |  |  |-- link1.vk.frag
+|  |  |  |  |-- link2.frag
+|  |  |  |  |-- link2.vk.frag
+|  |  |  |  |-- link3.frag
+|  |  |  |  |-- localAggregates.frag
+|  |  |  |  |-- loops.frag
+|  |  |  |  |-- loopsArtificial.frag
+|  |  |  |  |-- mains.frag
+|  |  |  |  |-- mains1.frag
+|  |  |  |  |-- mains2.frag
+|  |  |  |  |-- makeDoc
+|  |  |  |  |-- matrix.frag
+|  |  |  |  |-- matrix2.frag
+|  |  |  |  |-- matrixError.vert
+|  |  |  |  |-- maxClipDistances.vert
+|  |  |  |  |-- max_vertices_0.geom
+|  |  |  |  |-- missingBodies.vert
+|  |  |  |  |-- mixedArrayDecls.frag
+|  |  |  |  |-- negativeArraySize.comp
+|  |  |  |  |-- newTexture.frag
+|  |  |  |  |-- noMain.vert
+|  |  |  |  |-- noMain1.geom
+|  |  |  |  |-- noMain2.geom
+|  |  |  |  |-- nonSquare.vert
+|  |  |  |  |-- nonVulkan.frag
+|  |  |  |  |-- nonuniform.frag
+|  |  |  |  |-- nosuffix
+|  |  |  |  |-- numeral.frag
+|  |  |  |  |-- nvShaderNoperspectiveInterpolation.frag
+|  |  |  |  |-- overlongLiteral.frag
+|  |  |  |  |-- parent.h
+|  |  |  |  |-- parentBad
+|  |  |  |  |-- pointCoord.frag
+|  |  |  |  |-- precise.tesc
+|  |  |  |  |-- precise_struct_block.vert
+|  |  |  |  |-- precision.frag
+|  |  |  |  |-- precision.vert
+|  |  |  |  |-- prepost.frag
+|  |  |  |  |-- preprocessor.bad_arg.vert
+|  |  |  |  |-- preprocessor.cpp_style___FILE__.vert
+|  |  |  |  |-- preprocessor.cpp_style_line_directive.vert
+|  |  |  |  |-- preprocessor.defined.vert
+|  |  |  |  |-- preprocessor.edge_cases.vert
+|  |  |  |  |-- preprocessor.eof_missing.vert
+|  |  |  |  |-- preprocessor.errors.vert
+|  |  |  |  |-- preprocessor.extensions.vert
+|  |  |  |  |-- preprocessor.function_macro.vert
+|  |  |  |  |-- preprocessor.include.disabled.vert
+|  |  |  |  |-- preprocessor.include.enabled.vert
+|  |  |  |  |-- preprocessor.line.frag
+|  |  |  |  |-- preprocessor.line.vert
+|  |  |  |  |-- preprocessor.many.endif.vert
+|  |  |  |  |-- preprocessor.pragma.vert
+|  |  |  |  |-- preprocessor.simple.vert
+|  |  |  |  |-- preprocessor.success_if_parse_would_fail.vert
+|  |  |  |  |-- rayQuery-allOps.Error.rgen
+|  |  |  |  |-- rayQuery-allOps.comp
+|  |  |  |  |-- rayQuery-allOps.frag
+|  |  |  |  |-- rayQuery-allOps.rgen
+|  |  |  |  |-- rayQuery-committed.Error.rgen
+|  |  |  |  |-- rayQuery-initialize.rgen
+|  |  |  |  |-- rayQuery-no-cse.rgen
+|  |  |  |  |-- rayQuery.rgen
+|  |  |  |  |-- recurse1.frag
+|  |  |  |  |-- recurse1.vert
+|  |  |  |  |-- recurse2.frag
+|  |  |  |  |-- reflection.frag
+|  |  |  |  |-- reflection.linked.frag
+|  |  |  |  |-- reflection.linked.vert
+|  |  |  |  |-- reflection.options.geom
+|  |  |  |  |-- reflection.options.vert
+|  |  |  |  |-- reflection.vert
+|  |  |  |  |-- remap.basic.dcefunc.frag
+|  |  |  |  |-- remap.basic.everything.frag
+|  |  |  |  |-- remap.basic.none.frag
+|  |  |  |  |-- remap.basic.strip.frag
+|  |  |  |  |-- remap.hlsl.sample.basic.everything.frag
+|  |  |  |  |-- remap.hlsl.sample.basic.none.frag
+|  |  |  |  |-- remap.hlsl.sample.basic.strip.frag
+|  |  |  |  |-- remap.hlsl.templatetypes.everything.frag
+|  |  |  |  |-- remap.hlsl.templatetypes.none.frag
+|  |  |  |  |-- remap.if.everything.frag
+|  |  |  |  |-- remap.if.none.frag
+|  |  |  |  |-- remap.invalid-spirv-1.spv
+|  |  |  |  |-- remap.invalid-spirv-2.spv
+|  |  |  |  |-- remap.literal64.everything.spv
+|  |  |  |  |-- remap.literal64.none.spv
+|  |  |  |  |-- remap.similar_1a.everything.frag
+|  |  |  |  |-- remap.similar_1a.none.frag
+|  |  |  |  |-- remap.similar_1b.everything.frag
+|  |  |  |  |-- remap.similar_1b.none.frag
+|  |  |  |  |-- remap.specconst.comp
+|  |  |  |  |-- remap.switch.everything.frag
+|  |  |  |  |-- remap.switch.none.frag
+|  |  |  |  |-- remap.uniformarray.everything.frag
+|  |  |  |  |-- remap.uniformarray.none.frag
+|  |  |  |  |-- runtests
+|  |  |  |  |-- runtimeArray.vert
+|  |  |  |  |-- sample.frag
+|  |  |  |  |-- sample.frag.out
+|  |  |  |  |-- sample.vert
+|  |  |  |  |-- sample.vert.out
+|  |  |  |  |-- samplerlessTextureFunctions.frag
+|  |  |  |  |-- simpleFunctionCall.frag
+|  |  |  |  |-- specExamples.frag
+|  |  |  |  |-- specExamples.vert
+|  |  |  |  |-- spv.1.3.8bitstorage-ssbo.vert
+|  |  |  |  |-- spv.1.3.8bitstorage-ubo.vert
+|  |  |  |  |-- spv.1.3.coopmat.comp
+|  |  |  |  |-- spv.1.4.LoopControl.frag
+|  |  |  |  |-- spv.1.4.NonWritable.frag
+|  |  |  |  |-- spv.1.4.OpCopyLogical.comp
+|  |  |  |  |-- spv.1.4.OpCopyLogical.funcall.frag
+|  |  |  |  |-- spv.1.4.OpCopyLogicalBool.comp
+|  |  |  |  |-- spv.1.4.OpEntryPoint.frag
+|  |  |  |  |-- spv.1.4.OpSelect.frag
+|  |  |  |  |-- spv.1.4.constructComposite.comp
+|  |  |  |  |-- spv.1.4.image.frag
+|  |  |  |  |-- spv.1.4.sparseTexture.frag
+|  |  |  |  |-- spv.1.4.texture.frag
+|  |  |  |  |-- spv.100ops.frag
+|  |  |  |  |-- spv.130.frag
+|  |  |  |  |-- spv.140.frag
+|  |  |  |  |-- spv.150.geom
+|  |  |  |  |-- spv.150.vert
+|  |  |  |  |-- spv.16bitstorage-int.frag
+|  |  |  |  |-- spv.16bitstorage-uint.frag
+|  |  |  |  |-- spv.16bitstorage.frag
+|  |  |  |  |-- spv.16bitstorage_Error-int.frag
+|  |  |  |  |-- spv.16bitstorage_Error-uint.frag
+|  |  |  |  |-- spv.16bitstorage_Error.frag
+|  |  |  |  |-- spv.16bitxfb.vert
+|  |  |  |  |-- spv.300BuiltIns.vert
+|  |  |  |  |-- spv.300layout.frag
+|  |  |  |  |-- spv.300layout.vert
+|  |  |  |  |-- spv.300layoutp.vert
+|  |  |  |  |-- spv.310.bitcast.frag
+|  |  |  |  |-- spv.310.comp
+|  |  |  |  |-- spv.320.meshShaderUserDefined.mesh
+|  |  |  |  |-- spv.330.geom
+|  |  |  |  |-- spv.400.frag
+|  |  |  |  |-- spv.400.tesc
+|  |  |  |  |-- spv.400.tese
+|  |  |  |  |-- spv.420.geom
+|  |  |  |  |-- spv.430.frag
+|  |  |  |  |-- spv.430.vert
+|  |  |  |  |-- spv.450.geom
+|  |  |  |  |-- spv.450.noRedecl.tesc
+|  |  |  |  |-- spv.450.tesc
+|  |  |  |  |-- spv.460.comp
+|  |  |  |  |-- spv.460.frag
+|  |  |  |  |-- spv.460.vert
+|  |  |  |  |-- spv.8bit-16bit-construction.frag
+|  |  |  |  |-- spv.8bitstorage-int.frag
+|  |  |  |  |-- spv.8bitstorage-ssbo.vert
+|  |  |  |  |-- spv.8bitstorage-ubo.vert
+|  |  |  |  |-- spv.8bitstorage-uint.frag
+|  |  |  |  |-- spv.8bitstorage_Error-int.frag
+|  |  |  |  |-- spv.8bitstorage_Error-uint.frag
+|  |  |  |  |-- spv.AnyHitShader.rahit
+|  |  |  |  |-- spv.AnyHitShader_Errors.rahit
+|  |  |  |  |-- spv.AofA.frag
+|  |  |  |  |-- spv.ClosestHitShader.rchit
+|  |  |  |  |-- spv.ClosestHitShader_Errors.rchit
+|  |  |  |  |-- spv.GeometryShaderPassthrough.geom
+|  |  |  |  |-- spv.IntersectShader.rint
+|  |  |  |  |-- spv.IntersectShader_Errors.rint
+|  |  |  |  |-- spv.MissShader.rmiss
+|  |  |  |  |-- spv.MissShader_Errors.rmiss
+|  |  |  |  |-- spv.OVR_multiview.vert
+|  |  |  |  |-- spv.Operations.frag
+|  |  |  |  |-- spv.RayCallable.rcall
+|  |  |  |  |-- spv.RayCallable_Errors.rcall
+|  |  |  |  |-- spv.RayConstants.rgen
+|  |  |  |  |-- spv.RayGenShader.rgen
+|  |  |  |  |-- spv.RayGenShader11.rgen
+|  |  |  |  |-- spv.RayGenShaderArray.rgen
+|  |  |  |  |-- spv.RayGenShader_Errors.rgen
+|  |  |  |  |-- spv.accessChain.frag
+|  |  |  |  |-- spv.aggOps.frag
+|  |  |  |  |-- spv.always-discard.frag
+|  |  |  |  |-- spv.always-discard2.frag
+|  |  |  |  |-- spv.arbPostDepthCoverage.frag
+|  |  |  |  |-- spv.arbPostDepthCoverage_Error.frag
+|  |  |  |  |-- spv.atomic.comp
+|  |  |  |  |-- spv.atomicCounter.comp
+|  |  |  |  |-- spv.atomicInt64.comp
+|  |  |  |  |-- spv.barrier.vert
+|  |  |  |  |-- spv.bitCast.frag
+|  |  |  |  |-- spv.bool.vert
+|  |  |  |  |-- spv.boolInBlock.frag
+|  |  |  |  |-- spv.branch-return.vert
+|  |  |  |  |-- spv.buffer.autoassign.frag
+|  |  |  |  |-- spv.bufferhandle1.frag
+|  |  |  |  |-- spv.bufferhandle10.frag
+|  |  |  |  |-- spv.bufferhandle11.frag
+|  |  |  |  |-- spv.bufferhandle12.frag
+|  |  |  |  |-- spv.bufferhandle13.frag
+|  |  |  |  |-- spv.bufferhandle14.frag
+|  |  |  |  |-- spv.bufferhandle15.frag
+|  |  |  |  |-- spv.bufferhandle16.frag
+|  |  |  |  |-- spv.bufferhandle17_Errors.frag
+|  |  |  |  |-- spv.bufferhandle18.frag
+|  |  |  |  |-- spv.bufferhandle19_Errors.frag
+|  |  |  |  |-- spv.bufferhandle2.frag
+|  |  |  |  |-- spv.bufferhandle3.frag
+|  |  |  |  |-- spv.bufferhandle4.frag
+|  |  |  |  |-- spv.bufferhandle5.frag
+|  |  |  |  |-- spv.bufferhandle6.frag
+|  |  |  |  |-- spv.bufferhandle7.frag
+|  |  |  |  |-- spv.bufferhandle8.frag
+|  |  |  |  |-- spv.bufferhandle9.frag
+|  |  |  |  |-- spv.bufferhandleUvec2.frag
+|  |  |  |  |-- spv.bufferhandle_Error.frag
+|  |  |  |  |-- spv.builtInXFB.vert
+|  |  |  |  |-- spv.computeShaderDerivatives.comp
+|  |  |  |  |-- spv.computeShaderDerivatives2.comp
+|  |  |  |  |-- spv.conditionalDemote.frag
+|  |  |  |  |-- spv.conditionalDiscard.frag
+|  |  |  |  |-- spv.constConstruct.vert
+|  |  |  |  |-- spv.constStruct.vert
+|  |  |  |  |-- spv.constructComposite.comp
+|  |  |  |  |-- spv.controlFlowAttributes.frag
+|  |  |  |  |-- spv.conversion.frag
+|  |  |  |  |-- spv.coopmat.comp
+|  |  |  |  |-- spv.coopmat_Error.comp
+|  |  |  |  |-- spv.dataOut.frag
+|  |  |  |  |-- spv.dataOutIndirect.frag
+|  |  |  |  |-- spv.dataOutIndirect.vert
+|  |  |  |  |-- spv.dead-after-continue.vert
+|  |  |  |  |-- spv.dead-after-discard.frag
+|  |  |  |  |-- spv.dead-after-loop-break.vert
+|  |  |  |  |-- spv.dead-after-return.vert
+|  |  |  |  |-- spv.dead-after-switch-break.vert
+|  |  |  |  |-- spv.dead-complex-continue-after-return.vert
+|  |  |  |  |-- spv.dead-complex-merge-after-return.vert
+|  |  |  |  |-- spv.debugInfo.frag
+|  |  |  |  |-- spv.debugPrintf.frag
+|  |  |  |  |-- spv.debugPrintf_Error.frag
+|  |  |  |  |-- spv.deepRvalue.frag
+|  |  |  |  |-- spv.demoteDisabled.frag
+|  |  |  |  |-- spv.depthOut.frag
+|  |  |  |  |-- spv.deviceGroup.frag
+|  |  |  |  |-- spv.discard-dce.frag
+|  |  |  |  |-- spv.do-simple.vert
+|  |  |  |  |-- spv.do-while-continue-break.vert
+|  |  |  |  |-- spv.doWhileLoop.frag
+|  |  |  |  |-- spv.double.comp
+|  |  |  |  |-- spv.drawParams.vert
+|  |  |  |  |-- spv.earlyReturnDiscard.frag
+|  |  |  |  |-- spv.explicittypes.frag
+|  |  |  |  |-- spv.ext.AnyHitShader.rahit
+|  |  |  |  |-- spv.ext.AnyHitShader_Errors.rahit
+|  |  |  |  |-- spv.ext.ClosestHitShader.rchit
+|  |  |  |  |-- spv.ext.ClosestHitShader_Errors.rchit
+|  |  |  |  |-- spv.ext.IntersectShader.rint
+|  |  |  |  |-- spv.ext.IntersectShader_Errors.rint
+|  |  |  |  |-- spv.ext.MissShader.rmiss
+|  |  |  |  |-- spv.ext.MissShader_Errors.rmiss
+|  |  |  |  |-- spv.ext.RayCallable.rcall
+|  |  |  |  |-- spv.ext.RayCallable_Errors.rcall
+|  |  |  |  |-- spv.ext.RayConstants.rgen
+|  |  |  |  |-- spv.ext.RayGenShader.rgen
+|  |  |  |  |-- spv.ext.RayGenShader11.rgen
+|  |  |  |  |-- spv.ext.RayGenShaderArray.rgen
+|  |  |  |  |-- spv.ext.RayGenShader_Errors.rgen
+|  |  |  |  |-- spv.extPostDepthCoverage.frag
+|  |  |  |  |-- spv.extPostDepthCoverage_Error.frag
+|  |  |  |  |-- spv.float16.frag
+|  |  |  |  |-- spv.float16Fetch.frag
+|  |  |  |  |-- spv.float16convertonlyarith.comp
+|  |  |  |  |-- spv.float16convertonlystorage.comp
+|  |  |  |  |-- spv.float32.frag
+|  |  |  |  |-- spv.float64.frag
+|  |  |  |  |-- spv.flowControl.frag
+|  |  |  |  |-- spv.for-complex-condition.vert
+|  |  |  |  |-- spv.for-continue-break.vert
+|  |  |  |  |-- spv.for-nobody.vert
+|  |  |  |  |-- spv.for-notest.vert
+|  |  |  |  |-- spv.for-simple.vert
+|  |  |  |  |-- spv.forLoop.frag
+|  |  |  |  |-- spv.forwardFun.frag
+|  |  |  |  |-- spv.fragmentDensity-es.frag
+|  |  |  |  |-- spv.fragmentDensity-neg.frag
+|  |  |  |  |-- spv.fragmentDensity.frag
+|  |  |  |  |-- spv.fragmentDensity.vert
+|  |  |  |  |-- spv.fragmentShaderBarycentric.frag
+|  |  |  |  |-- spv.fragmentShaderBarycentric2.frag
+|  |  |  |  |-- spv.fsi.frag
+|  |  |  |  |-- spv.fsi_Error.frag
+|  |  |  |  |-- spv.fullyCovered.frag
+|  |  |  |  |-- spv.functionCall.frag
+|  |  |  |  |-- spv.functionNestedOpaque.vert
+|  |  |  |  |-- spv.functionParameterTypes.frag
+|  |  |  |  |-- spv.functionSemantics.frag
+|  |  |  |  |-- spv.glFragColor.frag
+|  |  |  |  |-- spv.glsl.register.autoassign.frag
+|  |  |  |  |-- spv.glsl.register.noautoassign.frag
+|  |  |  |  |-- spv.hlslDebugInfo.vert
+|  |  |  |  |-- spv.hlslOffsets.vert
+|  |  |  |  |-- spv.image.frag
+|  |  |  |  |-- spv.image.load-formatted.frag
+|  |  |  |  |-- spv.imageLoadStoreLod.frag
+|  |  |  |  |-- spv.int16.amd.frag
+|  |  |  |  |-- spv.int16.frag
+|  |  |  |  |-- spv.int32.frag
+|  |  |  |  |-- spv.int64.frag
+|  |  |  |  |-- spv.int8.frag
+|  |  |  |  |-- spv.intOps.vert
+|  |  |  |  |-- spv.intcoopmat.comp
+|  |  |  |  |-- spv.interpOps.frag
+|  |  |  |  |-- spv.layoutNested.vert
+|  |  |  |  |-- spv.length.frag
+|  |  |  |  |-- spv.localAggregates.frag
+|  |  |  |  |-- spv.loops.frag
+|  |  |  |  |-- spv.loopsArtificial.frag
+|  |  |  |  |-- spv.looseUniformNoLoc.vert
+|  |  |  |  |-- spv.matFun.vert
+|  |  |  |  |-- spv.matrix.frag
+|  |  |  |  |-- spv.matrix2.frag
+|  |  |  |  |-- spv.memoryQualifier.frag
+|  |  |  |  |-- spv.memoryScopeSemantics.comp
+|  |  |  |  |-- spv.memoryScopeSemantics_Error.comp
+|  |  |  |  |-- spv.merge-unreachable.frag
+|  |  |  |  |-- spv.meshShaderBuiltins.mesh
+|  |  |  |  |-- spv.meshShaderPerViewBuiltins.mesh
+|  |  |  |  |-- spv.meshShaderPerViewUserDefined.mesh
+|  |  |  |  |-- spv.meshShaderPerView_Errors.mesh
+|  |  |  |  |-- spv.meshShaderRedeclBuiltins.mesh
+|  |  |  |  |-- spv.meshShaderRedeclPerViewBuiltins.mesh
+|  |  |  |  |-- spv.meshShaderSharedMem.mesh
+|  |  |  |  |-- spv.meshShaderTaskMem.mesh
+|  |  |  |  |-- spv.meshShaderUserDefined.mesh
+|  |  |  |  |-- spv.meshTaskShader.task
+|  |  |  |  |-- spv.multiStruct.comp
+|  |  |  |  |-- spv.multiStructFuncall.frag
+|  |  |  |  |-- spv.multiView.frag
+|  |  |  |  |-- spv.multiviewPerViewAttributes.tesc
+|  |  |  |  |-- spv.multiviewPerViewAttributes.vert
+|  |  |  |  |-- spv.newTexture.frag
+|  |  |  |  |-- spv.noBuiltInLoc.vert
+|  |  |  |  |-- spv.noDeadDecorations.vert
+|  |  |  |  |-- spv.noLocation.vert
+|  |  |  |  |-- spv.noWorkgroup.comp
+|  |  |  |  |-- spv.nonSquare.vert
+|  |  |  |  |-- spv.nonuniform.frag
+|  |  |  |  |-- spv.nonuniform2.frag
+|  |  |  |  |-- spv.nonuniform3.frag
+|  |  |  |  |-- spv.nonuniform4.frag
+|  |  |  |  |-- spv.nonuniform5.frag
+|  |  |  |  |-- spv.offsets.frag
+|  |  |  |  |-- spv.paramMemory.frag
+|  |  |  |  |-- spv.perprimitiveNV.frag
+|  |  |  |  |-- spv.pp.line.frag
+|  |  |  |  |-- spv.precise.tesc
+|  |  |  |  |-- spv.precise.tese
+|  |  |  |  |-- spv.precision.frag
+|  |  |  |  |-- spv.precisionNonESSamp.frag
+|  |  |  |  |-- spv.prepost.frag
+|  |  |  |  |-- spv.privateVariableTypes.frag
+|  |  |  |  |-- spv.pushConstant.vert
+|  |  |  |  |-- spv.pushConstantAnon.vert
+|  |  |  |  |-- spv.qualifiers.vert
+|  |  |  |  |-- spv.queryL.frag
+|  |  |  |  |-- spv.rankShift.comp
+|  |  |  |  |-- spv.register.autoassign-2.frag
+|  |  |  |  |-- spv.register.autoassign.frag
+|  |  |  |  |-- spv.register.autoassign.rangetest.frag
+|  |  |  |  |-- spv.register.noautoassign.frag
+|  |  |  |  |-- spv.register.subpass.frag
+|  |  |  |  |-- spv.rw.autoassign.frag
+|  |  |  |  |-- spv.sample.frag
+|  |  |  |  |-- spv.sampleId.frag
+|  |  |  |  |-- spv.sampleMaskOverrideCoverage.frag
+|  |  |  |  |-- spv.samplePosition.frag
+|  |  |  |  |-- spv.samplerlessTextureFunctions.frag
+|  |  |  |  |-- spv.scalarlayout.frag
+|  |  |  |  |-- spv.scalarlayoutfloat16.frag
+|  |  |  |  |-- spv.separate.frag
+|  |  |  |  |-- spv.set.vert
+|  |  |  |  |-- spv.shaderBallot.comp
+|  |  |  |  |-- spv.shaderBallotAMD.comp
+|  |  |  |  |-- spv.shaderDrawParams.vert
+|  |  |  |  |-- spv.shaderFragMaskAMD.frag
+|  |  |  |  |-- spv.shaderGroupVote.comp
+|  |  |  |  |-- spv.shaderImageFootprint.frag
+|  |  |  |  |-- spv.shaderStencilExport.frag
+|  |  |  |  |-- spv.shadingRate.frag
+|  |  |  |  |-- spv.shiftOps.frag
+|  |  |  |  |-- spv.shortCircuit.frag
+|  |  |  |  |-- spv.simpleFunctionCall.frag
+|  |  |  |  |-- spv.simpleMat.vert
+|  |  |  |  |-- spv.smBuiltins.frag
+|  |  |  |  |-- spv.smBuiltins.vert
+|  |  |  |  |-- spv.sparseTexture.frag
+|  |  |  |  |-- spv.sparseTextureClamp.frag
+|  |  |  |  |-- spv.specConst.vert
+|  |  |  |  |-- spv.specConstArrayCheck.vert
+|  |  |  |  |-- spv.specConstant.comp
+|  |  |  |  |-- spv.specConstant.vert
+|  |  |  |  |-- spv.specConstantComposite.vert
+|  |  |  |  |-- spv.specConstantOperations.vert
+|  |  |  |  |-- spv.specTexture.frag
+|  |  |  |  |-- spv.ssbo.autoassign.frag
+|  |  |  |  |-- spv.ssboAlias.frag
+|  |  |  |  |-- spv.stereoViewRendering.tesc
+|  |  |  |  |-- spv.stereoViewRendering.vert
+|  |  |  |  |-- spv.storageBuffer.vert
+|  |  |  |  |-- spv.structAssignment.frag
+|  |  |  |  |-- spv.structDeref.frag
+|  |  |  |  |-- spv.structure.frag
+|  |  |  |  |-- spv.subgroup.frag
+|  |  |  |  |-- spv.subgroup.geom
+|  |  |  |  |-- spv.subgroup.tesc
+|  |  |  |  |-- spv.subgroup.tese
+|  |  |  |  |-- spv.subgroup.vert
+|  |  |  |  |-- spv.subgroupArithmetic.comp
+|  |  |  |  |-- spv.subgroupBallot.comp
+|  |  |  |  |-- spv.subgroupBallotNeg.comp
+|  |  |  |  |-- spv.subgroupBasic.comp
+|  |  |  |  |-- spv.subgroupClustered.comp
+|  |  |  |  |-- spv.subgroupClusteredNeg.comp
+|  |  |  |  |-- spv.subgroupExtendedTypesArithmetic.comp
+|  |  |  |  |-- spv.subgroupExtendedTypesArithmeticNeg.comp
+|  |  |  |  |-- spv.subgroupExtendedTypesBallot.comp
+|  |  |  |  |-- spv.subgroupExtendedTypesBallotNeg.comp
+|  |  |  |  |-- spv.subgroupExtendedTypesClustered.comp
+|  |  |  |  |-- spv.subgroupExtendedTypesClusteredNeg.comp
+|  |  |  |  |-- spv.subgroupExtendedTypesPartitioned.comp
+|  |  |  |  |-- spv.subgroupExtendedTypesPartitionedNeg.comp
+|  |  |  |  |-- spv.subgroupExtendedTypesQuad.comp
+|  |  |  |  |-- spv.subgroupExtendedTypesQuadNeg.comp
+|  |  |  |  |-- spv.subgroupExtendedTypesShuffle.comp
+|  |  |  |  |-- spv.subgroupExtendedTypesShuffleNeg.comp
+|  |  |  |  |-- spv.subgroupExtendedTypesShuffleRelative.comp
+|  |  |  |  |-- spv.subgroupExtendedTypesShuffleRelativeNeg.comp
+|  |  |  |  |-- spv.subgroupExtendedTypesVote.comp
+|  |  |  |  |-- spv.subgroupExtendedTypesVoteNeg.comp
+|  |  |  |  |-- spv.subgroupPartitioned.comp
+|  |  |  |  |-- spv.subgroupQuad.comp
+|  |  |  |  |-- spv.subgroupShuffle.comp
+|  |  |  |  |-- spv.subgroupShuffleRelative.comp
+|  |  |  |  |-- spv.subgroupVote.comp
+|  |  |  |  |-- spv.subpass.frag
+|  |  |  |  |-- spv.switch.frag
+|  |  |  |  |-- spv.swizzle.frag
+|  |  |  |  |-- spv.swizzleInversion.frag
+|  |  |  |  |-- spv.targetOpenGL.vert
+|  |  |  |  |-- spv.targetVulkan.vert
+|  |  |  |  |-- spv.test.frag
+|  |  |  |  |-- spv.test.vert
+|  |  |  |  |-- spv.texture.frag
+|  |  |  |  |-- spv.texture.sampler.transform.frag
+|  |  |  |  |-- spv.texture.vert
+|  |  |  |  |-- spv.textureBuffer.vert
+|  |  |  |  |-- spv.textureGatherBiasLod.frag
+|  |  |  |  |-- spv.types.frag
+|  |  |  |  |-- spv.uint.frag
+|  |  |  |  |-- spv.uniformArray.frag
+|  |  |  |  |-- spv.unit1.frag
+|  |  |  |  |-- spv.unit2.frag
+|  |  |  |  |-- spv.unit3.frag
+|  |  |  |  |-- spv.variableArrayIndex.frag
+|  |  |  |  |-- spv.varyingArray.frag
+|  |  |  |  |-- spv.varyingArrayIndirect.frag
+|  |  |  |  |-- spv.vecMatConstruct.frag
+|  |  |  |  |-- spv.viewportArray2.tesc
+|  |  |  |  |-- spv.viewportArray2.vert
+|  |  |  |  |-- spv.voidFunction.frag
+|  |  |  |  |-- spv.volatileAtomic.comp
+|  |  |  |  |-- spv.vulkan100.subgroupArithmetic.comp
+|  |  |  |  |-- spv.vulkan100.subgroupPartitioned.comp
+|  |  |  |  |-- spv.vulkan110.int16.frag
+|  |  |  |  |-- spv.vulkan110.storageBuffer.vert
+|  |  |  |  |-- spv.while-continue-break.vert
+|  |  |  |  |-- spv.while-simple.vert
+|  |  |  |  |-- spv.whileLoop.frag
+|  |  |  |  |-- spv.xfb.vert
+|  |  |  |  |-- spv.xfb2.vert
+|  |  |  |  |-- spv.xfb3.vert
+|  |  |  |  |-- spv.xfbOffsetOnBlockMembersAssignment.vert
+|  |  |  |  |-- spv.xfbOffsetOnStructMembersAssignment.vert
+|  |  |  |  |-- spv.xfbOverlapOffsetCheckWithBlockAndMember.vert
+|  |  |  |  |-- spv.xfbStrideJustOnce.vert
+|  |  |  |  |-- stringToDouble.vert
+|  |  |  |  |-- structAssignment.frag
+|  |  |  |  |-- structDeref.frag
+|  |  |  |  |-- structure.frag
+|  |  |  |  |-- switch.frag
+|  |  |  |  |-- swizzle.frag
+|  |  |  |  |-- syntaxError.frag
+|  |  |  |  |-- test.frag
+|  |  |  |  |-- texture.frag
+|  |  |  |  |-- tokenLength.vert
+|  |  |  |  |-- tokenPaste.vert
+|  |  |  |  |-- types.frag
+|  |  |  |  |-- uint.frag
+|  |  |  |  |-- uniformArray.frag
+|  |  |  |  |-- validate-shaders.sh
+|  |  |  |  |-- variableArrayIndex.frag
+|  |  |  |  |-- varyingArray.frag
+|  |  |  |  |-- varyingArrayIndirect.frag
+|  |  |  |  |-- versionsClean.frag
+|  |  |  |  |-- versionsClean.vert
+|  |  |  |  |-- versionsErrors.frag
+|  |  |  |  |-- versionsErrors.vert
+|  |  |  |  |-- voidFunction.frag
+|  |  |  |  |-- vulkan.ast.vert
+|  |  |  |  |-- vulkan.comp
+|  |  |  |  |-- vulkan.frag
+|  |  |  |  |-- vulkan.vert
+|  |  |  |  |-- web.array.frag
+|  |  |  |  |-- web.basic.vert
+|  |  |  |  |-- web.builtins.frag
+|  |  |  |  |-- web.builtins.vert
+|  |  |  |  |-- web.comp
+|  |  |  |  |-- web.controlFlow.frag
+|  |  |  |  |-- web.operations.frag
+|  |  |  |  |-- web.runtests
+|  |  |  |  |-- web.separate.frag
+|  |  |  |  |-- web.testlist
+|  |  |  |  |-- web.texture.frag
+|  |  |  |  |-- whileLoop.frag
+|  |  |  |-- WORKSPACE
+|  |  |  |-- _config.yml
+|  |  |  |-- build_overrides
+|  |  |  |  |-- glslang.gni
+|  |  |  |-- glslang
+|  |  |  |  |-- CInterface
+|  |  |  |  |  |-- glslang_c_interface.cpp
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- GenericCodeGen
+|  |  |  |  |  |-- CodeGen.cpp
+|  |  |  |  |  |-- Link.cpp
+|  |  |  |  |-- Include
+|  |  |  |  |  |-- BaseTypes.h
+|  |  |  |  |  |-- Common.h
+|  |  |  |  |  |-- ConstantUnion.h
+|  |  |  |  |  |-- InfoSink.h
+|  |  |  |  |  |-- InitializeGlobals.h
+|  |  |  |  |  |-- PoolAlloc.h
+|  |  |  |  |  |-- ResourceLimits.h
+|  |  |  |  |  |-- ShHandle.h
+|  |  |  |  |  |-- Types.h
+|  |  |  |  |  |-- arrays.h
+|  |  |  |  |  |-- glslang_c_interface.h
+|  |  |  |  |  |-- glslang_c_shader_types.h
+|  |  |  |  |  |-- intermediate.h
+|  |  |  |  |  |-- revision.h
+|  |  |  |  |  |-- revision.template
+|  |  |  |  |-- MachineIndependent
+|  |  |  |  |  |-- Constant.cpp
+|  |  |  |  |  |-- InfoSink.cpp
+|  |  |  |  |  |-- Initialize.cpp
+|  |  |  |  |  |-- Initialize.h
+|  |  |  |  |  |-- IntermTraverse.cpp
+|  |  |  |  |  |-- Intermediate.cpp
+|  |  |  |  |  |-- LiveTraverser.h
+|  |  |  |  |  |-- ParseContextBase.cpp
+|  |  |  |  |  |-- ParseHelper.cpp
+|  |  |  |  |  |-- ParseHelper.h
+|  |  |  |  |  |-- PoolAlloc.cpp
+|  |  |  |  |  |-- RemoveTree.cpp
+|  |  |  |  |  |-- RemoveTree.h
+|  |  |  |  |  |-- Scan.cpp
+|  |  |  |  |  |-- Scan.h
+|  |  |  |  |  |-- ScanContext.h
+|  |  |  |  |  |-- ShaderLang.cpp
+|  |  |  |  |  |-- SymbolTable.cpp
+|  |  |  |  |  |-- SymbolTable.h
+|  |  |  |  |  |-- Versions.cpp
+|  |  |  |  |  |-- Versions.h
+|  |  |  |  |  |-- attribute.cpp
+|  |  |  |  |  |-- attribute.h
+|  |  |  |  |  |-- gl_types.h
+|  |  |  |  |  |-- glslang.m4
+|  |  |  |  |  |-- glslang.y
+|  |  |  |  |  |-- glslang_tab.cpp
+|  |  |  |  |  |-- glslang_tab.cpp.h
+|  |  |  |  |  |-- intermOut.cpp
+|  |  |  |  |  |-- iomapper.cpp
+|  |  |  |  |  |-- iomapper.h
+|  |  |  |  |  |-- limits.cpp
+|  |  |  |  |  |-- linkValidate.cpp
+|  |  |  |  |  |-- localintermediate.h
+|  |  |  |  |  |-- parseConst.cpp
+|  |  |  |  |  |-- parseVersions.h
+|  |  |  |  |  |-- pch.cpp
+|  |  |  |  |  |-- pch.h
+|  |  |  |  |  |-- preprocessor
+|  |  |  |  |  |  |-- Pp.cpp
+|  |  |  |  |  |  |-- PpAtom.cpp
+|  |  |  |  |  |  |-- PpContext.cpp
+|  |  |  |  |  |  |-- PpContext.h
+|  |  |  |  |  |  |-- PpScanner.cpp
+|  |  |  |  |  |  |-- PpTokens.cpp
+|  |  |  |  |  |  |-- PpTokens.h
+|  |  |  |  |  |-- propagateNoContraction.cpp
+|  |  |  |  |  |-- propagateNoContraction.h
+|  |  |  |  |  |-- reflection.cpp
+|  |  |  |  |  |-- reflection.h
+|  |  |  |  |-- OSDependent
+|  |  |  |  |  |-- Unix
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- ossource.cpp
+|  |  |  |  |  |-- Web
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- glslang.after.js
+|  |  |  |  |  |  |-- glslang.js.cpp
+|  |  |  |  |  |  |-- glslang.pre.js
+|  |  |  |  |  |-- Windows
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- main.cpp
+|  |  |  |  |  |  |-- ossource.cpp
+|  |  |  |  |  |-- osinclude.h
+|  |  |  |  |-- Public
+|  |  |  |  |  |-- ShaderLang.h
+|  |  |  |  |-- updateGrammar
+|  |  |  |-- gtests
+|  |  |  |  |-- AST.FromFile.cpp
+|  |  |  |  |-- BuiltInResource.FromFile.cpp
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Config.FromFile.cpp
+|  |  |  |  |-- HexFloat.cpp
+|  |  |  |  |-- Hlsl.FromFile.cpp
+|  |  |  |  |-- Initializer.h
+|  |  |  |  |-- Link.FromFile.Vk.cpp
+|  |  |  |  |-- Link.FromFile.cpp
+|  |  |  |  |-- Pp.FromFile.cpp
+|  |  |  |  |-- README.md
+|  |  |  |  |-- Remap.FromFile.cpp
+|  |  |  |  |-- Settings.cpp
+|  |  |  |  |-- Settings.h
+|  |  |  |  |-- Spv.FromFile.cpp
+|  |  |  |  |-- TestFixture.cpp
+|  |  |  |  |-- TestFixture.h
+|  |  |  |  |-- main.cpp
+|  |  |  |  |-- pch.cpp
+|  |  |  |  |-- pch.h
+|  |  |  |-- hlsl
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- hlslAttributes.cpp
+|  |  |  |  |-- hlslAttributes.h
+|  |  |  |  |-- hlslGrammar.cpp
+|  |  |  |  |-- hlslGrammar.h
+|  |  |  |  |-- hlslOpMap.cpp
+|  |  |  |  |-- hlslOpMap.h
+|  |  |  |  |-- hlslParseHelper.cpp
+|  |  |  |  |-- hlslParseHelper.h
+|  |  |  |  |-- hlslParseables.cpp
+|  |  |  |  |-- hlslParseables.h
+|  |  |  |  |-- hlslScanContext.cpp
+|  |  |  |  |-- hlslScanContext.h
+|  |  |  |  |-- hlslTokenStream.cpp
+|  |  |  |  |-- hlslTokenStream.h
+|  |  |  |  |-- hlslTokens.h
+|  |  |  |  |-- pch.cpp
+|  |  |  |  |-- pch.h
+|  |  |  |-- known_good.json
+|  |  |  |-- known_good_khr.json
+|  |  |  |-- kokoro
+|  |  |  |  |-- linux-clang-release-bazel
+|  |  |  |  |  |-- build.sh
+|  |  |  |  |  |-- continuous.cfg
+|  |  |  |  |  |-- presubmit.cfg
+|  |  |  |  |-- macos-clang-release-bazel
+|  |  |  |  |  |-- build.sh
+|  |  |  |  |  |-- continuous.cfg
+|  |  |  |  |  |-- presubmit.cfg
+|  |  |  |  |-- windows-msvc-2015-release-bazel
+|  |  |  |  |  |-- build.bat
+|  |  |  |  |  |-- continuous.cfg
+|  |  |  |  |  |-- presubmit.cfg
+|  |  |  |-- make-revision
+|  |  |  |-- ndk_test
+|  |  |  |  |-- Android.mk
+|  |  |  |  |-- jni
+|  |  |  |  |  |-- Application.mk
+|  |  |  |  |-- test.cpp
+|  |  |  |-- update_glslang_sources.py
+|  |  |-- khronos
+|  |  |  |-- vulkan
+|  |  |  |  |-- vk_icd.h
+|  |  |  |  |-- vk_layer.h
+|  |  |  |  |-- vk_platform.h
+|  |  |  |  |-- vk_sdk_platform.h
+|  |  |  |  |-- vulkan.h
+|  |  |  |  |-- vulkan.hpp
+|  |  |  |  |-- vulkan_android.h
+|  |  |  |  |-- vulkan_beta.h
+|  |  |  |  |-- vulkan_core.h
+|  |  |  |  |-- vulkan_directfb.h
+|  |  |  |  |-- vulkan_fuchsia.h
+|  |  |  |  |-- vulkan_ggp.h
+|  |  |  |  |-- vulkan_ios.h
+|  |  |  |  |-- vulkan_macos.h
+|  |  |  |  |-- vulkan_metal.h
+|  |  |  |  |-- vulkan_vi.h
+|  |  |  |  |-- vulkan_wayland.h
+|  |  |  |  |-- vulkan_win32.h
+|  |  |  |  |-- vulkan_xcb.h
+|  |  |  |  |-- vulkan_xlib.h
+|  |  |  |  |-- vulkan_xlib_xrandr.h
+|  |  |-- libchdr
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- LICENSE.txt
+|  |  |  |-- README.md
+|  |  |  |-- include
+|  |  |  |  |-- dr_libs
+|  |  |  |  |  |-- dr_flac.h
+|  |  |  |  |-- libchdr
+|  |  |  |  |  |-- bitstream.h
+|  |  |  |  |  |-- cdrom.h
+|  |  |  |  |  |-- chd.h
+|  |  |  |  |  |-- chdconfig.h
+|  |  |  |  |  |-- coretypes.h
+|  |  |  |  |  |-- flac.h
+|  |  |  |  |  |-- huffman.h
+|  |  |  |-- src
+|  |  |  |  |-- libchdr_bitstream.c
+|  |  |  |  |-- libchdr_cdrom.c
+|  |  |  |  |-- libchdr_chd.c
+|  |  |  |  |-- libchdr_flac.c
+|  |  |  |  |-- libchdr_huffman.c
+|  |  |  |  |-- link.T
+|  |  |-- libelf
+|  |  |  |-- debug.h
+|  |  |  |-- elf.cpp
+|  |  |  |-- elf.h
+|  |  |  |-- elf32.cpp
+|  |  |  |-- elf32.h
+|  |  |  |-- elf64.cpp
+|  |  |  |-- elf64.h
+|  |  |-- libzip
+|  |  |  |-- config.h
+|  |  |  |-- mkstemp.c
+|  |  |  |-- zip.h
+|  |  |  |-- zip_add.c
+|  |  |  |-- zip_add_dir.c
+|  |  |  |-- zip_close.c
+|  |  |  |-- zip_delete.c
+|  |  |  |-- zip_dirent.c
+|  |  |  |-- zip_entry_free.c
+|  |  |  |-- zip_entry_new.c
+|  |  |  |-- zip_err_str.c
+|  |  |  |-- zip_error.c
+|  |  |  |-- zip_error_clear.c
+|  |  |  |-- zip_error_get.c
+|  |  |  |-- zip_error_get_sys_type.c
+|  |  |  |-- zip_error_strerror.c
+|  |  |  |-- zip_error_to_str.c
+|  |  |  |-- zip_fclose.c
+|  |  |  |-- zip_file_error_clear.c
+|  |  |  |-- zip_file_error_get.c
+|  |  |  |-- zip_file_get_offset.c
+|  |  |  |-- zip_file_strerror.c
+|  |  |  |-- zip_filerange_crc.c
+|  |  |  |-- zip_fopen.c
+|  |  |  |-- zip_fopen_index.c
+|  |  |  |-- zip_fread.c
+|  |  |  |-- zip_free.c
+|  |  |  |-- zip_get_archive_comment.c
+|  |  |  |-- zip_get_archive_flag.c
+|  |  |  |-- zip_get_file_comment.c
+|  |  |  |-- zip_get_name.c
+|  |  |  |-- zip_get_num_files.c
+|  |  |  |-- zip_memdup.c
+|  |  |  |-- zip_name_locate.c
+|  |  |  |-- zip_new.c
+|  |  |  |-- zip_open.c
+|  |  |  |-- zip_rename.c
+|  |  |  |-- zip_replace.c
+|  |  |  |-- zip_set_archive_comment.c
+|  |  |  |-- zip_set_archive_flag.c
+|  |  |  |-- zip_set_file_comment.c
+|  |  |  |-- zip_set_name.c
+|  |  |  |-- zip_source_buffer.c
+|  |  |  |-- zip_source_file.c
+|  |  |  |-- zip_source_filep.c
+|  |  |  |-- zip_source_free.c
+|  |  |  |-- zip_source_function.c
+|  |  |  |-- zip_source_zip.c
+|  |  |  |-- zip_stat.c
+|  |  |  |-- zip_stat_index.c
+|  |  |  |-- zip_stat_init.c
+|  |  |  |-- zip_strerror.c
+|  |  |  |-- zip_unchange.c
+|  |  |  |-- zip_unchange_all.c
+|  |  |  |-- zip_unchange_archive.c
+|  |  |  |-- zip_unchange_data.c
+|  |  |  |-- zipint.h
+|  |  |-- lzma
+|  |  |  |-- C
+|  |  |  |  |-- 7z.h
+|  |  |  |  |-- 7zArcIn.c
+|  |  |  |  |-- 7zBuf.c
+|  |  |  |  |-- 7zBuf.h
+|  |  |  |  |-- 7zCrc.c
+|  |  |  |  |-- 7zCrc.h
+|  |  |  |  |-- 7zCrcOpt.c
+|  |  |  |  |-- 7zDec.c
+|  |  |  |  |-- 7zFile.c
+|  |  |  |  |-- 7zFile.h
+|  |  |  |  |-- 7zStream.c
+|  |  |  |  |-- 7zTypes.h
+|  |  |  |  |-- Alloc.c
+|  |  |  |  |-- Alloc.h
+|  |  |  |  |-- Bcj2.c
+|  |  |  |  |-- Bcj2.h
+|  |  |  |  |-- Bra.c
+|  |  |  |  |-- Bra.h
+|  |  |  |  |-- Bra86.c
+|  |  |  |  |-- BraIA64.c
+|  |  |  |  |-- Compiler.h
+|  |  |  |  |-- CpuArch.c
+|  |  |  |  |-- CpuArch.h
+|  |  |  |  |-- Delta.c
+|  |  |  |  |-- Delta.h
+|  |  |  |  |-- LzFind.c
+|  |  |  |  |-- LzFind.h
+|  |  |  |  |-- LzHash.h
+|  |  |  |  |-- Lzma2Dec.c
+|  |  |  |  |-- Lzma2Dec.h
+|  |  |  |  |-- Lzma86.h
+|  |  |  |  |-- Lzma86Dec.c
+|  |  |  |  |-- Lzma86Enc.c
+|  |  |  |  |-- LzmaDec.c
+|  |  |  |  |-- LzmaDec.h
+|  |  |  |  |-- LzmaEnc.c
+|  |  |  |  |-- LzmaEnc.h
+|  |  |  |  |-- LzmaLib.c
+|  |  |  |  |-- LzmaLib.h
+|  |  |  |  |-- Precomp.h
+|  |  |  |  |-- Sort.c
+|  |  |  |  |-- Sort.h
+|  |  |  |-- DOC
+|  |  |  |  |-- lzma-history.txt
+|  |  |  |  |-- lzma-sdk.txt
+|  |  |  |  |-- lzma-specification.txt
+|  |  |  |  |-- lzma.txt
+|  |  |-- miniupnpc
+|  |  |  |-- .gitignore
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- Changelog.txt
+|  |  |  |-- LICENSE
+|  |  |  |-- MANIFEST.in
+|  |  |  |-- Makefile
+|  |  |  |-- Makefile.mingw
+|  |  |  |-- README
+|  |  |  |-- VERSION.miniupnpc
+|  |  |  |-- addr_is_reserved.c
+|  |  |  |-- addr_is_reserved.h
+|  |  |  |-- apiversions.txt
+|  |  |  |-- codelength.h
+|  |  |  |-- connecthostport.c
+|  |  |  |-- connecthostport.h
+|  |  |  |-- external-ip.sh
+|  |  |  |-- igd_desc_parse.c
+|  |  |  |-- igd_desc_parse.h
+|  |  |  |-- java
+|  |  |  |  |-- .gitignore
+|  |  |  |  |-- JavaBridgeTest.java
+|  |  |  |  |-- testjava.bat
+|  |  |  |  |-- testjava.sh
+|  |  |  |-- listdevices.c
+|  |  |  |-- man3
+|  |  |  |  |-- miniupnpc.3
+|  |  |  |-- mingw32make.bat
+|  |  |  |-- minihttptestserver.c
+|  |  |  |-- minisoap.c
+|  |  |  |-- minisoap.h
+|  |  |  |-- minissdpc.c
+|  |  |  |-- minissdpc.h
+|  |  |  |-- miniupnpc-config.cmake
+|  |  |  |-- miniupnpc.c
+|  |  |  |-- miniupnpc.def
+|  |  |  |-- miniupnpc.h
+|  |  |  |-- miniupnpc.rc
+|  |  |  |-- miniupnpc_declspec.h
+|  |  |  |-- miniupnpc_socketdef.h
+|  |  |  |-- miniupnpcmodule.c
+|  |  |  |-- miniupnpcstrings.h
+|  |  |  |-- miniupnpcstrings.h.cmake
+|  |  |  |-- miniupnpcstrings.h.in
+|  |  |  |-- miniupnpctypes.h
+|  |  |  |-- miniwget.c
+|  |  |  |-- miniwget.h
+|  |  |  |-- miniwget_private.h
+|  |  |  |-- minixml.c
+|  |  |  |-- minixml.h
+|  |  |  |-- minixmlvalid.c
+|  |  |  |-- msvc
+|  |  |  |  |-- .gitignore
+|  |  |  |  |-- genminiupnpcstrings.vbs
+|  |  |  |  |-- miniupnpc.sln
+|  |  |  |  |-- miniupnpc.vcproj
+|  |  |  |  |-- miniupnpc.vcxproj
+|  |  |  |  |-- miniupnpc.vcxproj.filters
+|  |  |  |  |-- miniupnpc_vs2010.sln
+|  |  |  |  |-- miniupnpc_vs2010.vcxproj
+|  |  |  |  |-- miniupnpc_vs2010.vcxproj.filters
+|  |  |  |  |-- miniupnpc_vs2015.sln
+|  |  |  |  |-- upnpc-static.vcproj
+|  |  |  |  |-- upnpc-static.vcxproj
+|  |  |  |  |-- upnpc-static.vcxproj.filters
+|  |  |  |  |-- upnpc-static_vs2010.vcxproj
+|  |  |  |-- portlistingparse.c
+|  |  |  |-- portlistingparse.h
+|  |  |  |-- pymoduletest.py
+|  |  |  |-- pymoduletest3.py
+|  |  |  |-- receivedata.c
+|  |  |  |-- receivedata.h
+|  |  |  |-- setup.py
+|  |  |  |-- setupmingw32.py
+|  |  |  |-- testaddr_is_reserved.c
+|  |  |  |-- testdesc
+|  |  |  |  |-- linksys_WAG200G_desc.values
+|  |  |  |  |-- linksys_WAG200G_desc.xml
+|  |  |  |  |-- new_LiveBox_desc.values
+|  |  |  |  |-- new_LiveBox_desc.xml
+|  |  |  |-- testigddescparse.c
+|  |  |  |-- testminiwget.c
+|  |  |  |-- testminiwget.sh
+|  |  |  |-- testminixml.c
+|  |  |  |-- testportlistingparse.c
+|  |  |  |-- testreplyparse
+|  |  |  |  |-- DeletePortMapping.namevalue
+|  |  |  |  |-- DeletePortMapping.xml
+|  |  |  |  |-- GetExternalIPAddress.namevalue
+|  |  |  |  |-- GetExternalIPAddress.xml
+|  |  |  |  |-- GetSpecificPortMappingEntryReq.namevalue
+|  |  |  |  |-- GetSpecificPortMappingEntryReq.xml
+|  |  |  |  |-- GetSpecificPortMappingEntryResp.namevalue
+|  |  |  |  |-- GetSpecificPortMappingEntryResp.xml
+|  |  |  |  |-- SetDefaultConnectionService.namevalue
+|  |  |  |  |-- SetDefaultConnectionService.xml
+|  |  |  |  |-- readme.txt
+|  |  |  |-- testupnpigd.py
+|  |  |  |-- testupnpreplyparse.c
+|  |  |  |-- testupnpreplyparse.sh
+|  |  |  |-- updateminiupnpcstrings.sh
+|  |  |  |-- upnpc.c
+|  |  |  |-- upnpcommands.c
+|  |  |  |-- upnpcommands.h
+|  |  |  |-- upnpdev.c
+|  |  |  |-- upnpdev.h
+|  |  |  |-- upnperrors.c
+|  |  |  |-- upnperrors.h
+|  |  |  |-- upnpreplyparse.c
+|  |  |  |-- upnpreplyparse.h
+|  |  |  |-- win32_snprintf.h
+|  |  |  |-- wingenminiupnpcstrings.c
+|  |  |-- picotcp
+|  |  |  |-- CONTRIBUTING.md
+|  |  |  |-- COPYING
+|  |  |  |-- LICENSE.GPLv2
+|  |  |  |-- LICENSE.GPLv3
+|  |  |  |-- MODTREE
+|  |  |  |-- Makefile
+|  |  |  |-- README.md
+|  |  |  |-- include
+|  |  |  |  |-- arch
+|  |  |  |  |  |-- pico_arm9.h
+|  |  |  |  |  |-- pico_atsamd21j18.h
+|  |  |  |  |  |-- pico_avr.h
+|  |  |  |  |  |-- pico_cortex_m.h
+|  |  |  |  |  |-- pico_dos.h
+|  |  |  |  |  |-- pico_esp8266.h
+|  |  |  |  |  |-- pico_generic_gcc.h
+|  |  |  |  |  |-- pico_linux.h
+|  |  |  |  |  |-- pico_mbed.h
+|  |  |  |  |  |-- pico_msp430.h
+|  |  |  |  |  |-- pico_msvc.h
+|  |  |  |  |  |-- pico_none.h
+|  |  |  |  |  |-- pico_pic24.h
+|  |  |  |  |  |-- pico_pic32.h
+|  |  |  |  |  |-- pico_posix.h
+|  |  |  |  |-- heap.h
+|  |  |  |  |-- pico_addressing.h
+|  |  |  |  |-- pico_config.h
+|  |  |  |  |-- pico_constants.h
+|  |  |  |  |-- pico_defines.h
+|  |  |  |  |-- pico_defines_msvc.h
+|  |  |  |  |-- pico_device.h
+|  |  |  |  |-- pico_eth.h
+|  |  |  |  |-- pico_frame.h
+|  |  |  |  |-- pico_md5.h
+|  |  |  |  |-- pico_module_eth.h
+|  |  |  |  |-- pico_protocol.h
+|  |  |  |  |-- pico_queue.h
+|  |  |  |  |-- pico_socket.h
+|  |  |  |  |-- pico_socket_multicast.h
+|  |  |  |  |-- pico_stack.h
+|  |  |  |  |-- pico_tree.h
+|  |  |  |-- mkdeps.sh
+|  |  |  |-- modules
+|  |  |  |  |-- pico_6lowpan.h
+|  |  |  |  |-- pico_6lowpan_ll.h
+|  |  |  |  |-- pico_802154.h
+|  |  |  |  |-- pico_aodv.h
+|  |  |  |  |-- pico_arp.c
+|  |  |  |  |-- pico_arp.h
+|  |  |  |  |-- pico_dev_ipc.h
+|  |  |  |  |-- pico_dev_null.h
+|  |  |  |  |-- pico_dev_ppp.c
+|  |  |  |  |-- pico_dev_ppp.h
+|  |  |  |  |-- pico_dhcp_client.h
+|  |  |  |  |-- pico_dhcp_common.c
+|  |  |  |  |-- pico_dhcp_common.h
+|  |  |  |  |-- pico_dhcp_server.c
+|  |  |  |  |-- pico_dhcp_server.h
+|  |  |  |  |-- pico_dns_client.c
+|  |  |  |  |-- pico_dns_client.h
+|  |  |  |  |-- pico_dns_common.c
+|  |  |  |  |-- pico_dns_common.h
+|  |  |  |  |-- pico_ethernet.c
+|  |  |  |  |-- pico_ethernet.h
+|  |  |  |  |-- pico_fragments.c
+|  |  |  |  |-- pico_fragments.h
+|  |  |  |  |-- pico_icmp4.c
+|  |  |  |  |-- pico_icmp4.h
+|  |  |  |  |-- pico_icmp6.h
+|  |  |  |  |-- pico_igmp.h
+|  |  |  |  |-- pico_ipfilter.h
+|  |  |  |  |-- pico_ipv4.c
+|  |  |  |  |-- pico_ipv4.h
+|  |  |  |  |-- pico_ipv6.h
+|  |  |  |  |-- pico_ipv6_nd.h
+|  |  |  |  |-- pico_mcast.h
+|  |  |  |  |-- pico_mld.h
+|  |  |  |  |-- pico_mm.h
+|  |  |  |  |-- pico_nat.h
+|  |  |  |  |-- pico_olsr.h
+|  |  |  |  |-- pico_socket_tcp.c
+|  |  |  |  |-- pico_socket_tcp.h
+|  |  |  |  |-- pico_socket_udp.c
+|  |  |  |  |-- pico_socket_udp.h
+|  |  |  |  |-- pico_strings.c
+|  |  |  |  |-- pico_strings.h
+|  |  |  |  |-- pico_tcp.c
+|  |  |  |  |-- pico_tcp.h
+|  |  |  |  |-- pico_udp.c
+|  |  |  |  |-- pico_udp.h
+|  |  |  |-- rules
+|  |  |  |  |-- crc.mk
+|  |  |  |  |-- debug.mk
+|  |  |  |  |-- dhcp_client.mk
+|  |  |  |  |-- dhcp_server.mk
+|  |  |  |  |-- dns_client.mk
+|  |  |  |  |-- eth.mk
+|  |  |  |  |-- icmp4.mk
+|  |  |  |  |-- ipv4.mk
+|  |  |  |  |-- ipv4frag.mk
+|  |  |  |  |-- ppp.mk
+|  |  |  |  |-- tap.mk
+|  |  |  |  |-- tcp.mk
+|  |  |  |  |-- tun.mk
+|  |  |  |  |-- udp.mk
+|  |  |  |-- stack
+|  |  |  |  |-- pico_device.c
+|  |  |  |  |-- pico_frame.c
+|  |  |  |  |-- pico_md5.c
+|  |  |  |  |-- pico_protocol.c
+|  |  |  |  |-- pico_socket.c
+|  |  |  |  |-- pico_socket_multicast.c
+|  |  |  |  |-- pico_stack.c
+|  |  |  |  |-- pico_tree.c
+|  |  |-- stb
+|  |  |  |-- stb_image.h
+|  |  |  |-- stb_image_write.h
+|  |  |-- switch
+|  |  |  |-- stubs.c
+|  |  |  |-- sys
+|  |  |  |  |-- mman.h
+|  |  |  |-- ucontext.h
+|  |  |-- vixl
+|  |  |  |-- aarch32
+|  |  |  |  |-- assembler-aarch32.cc
+|  |  |  |  |-- assembler-aarch32.h
+|  |  |  |  |-- constants-aarch32.cc
+|  |  |  |  |-- constants-aarch32.h
+|  |  |  |  |-- disasm-aarch32.cc
+|  |  |  |  |-- disasm-aarch32.h
+|  |  |  |  |-- instructions-aarch32.cc
+|  |  |  |  |-- instructions-aarch32.h
+|  |  |  |  |-- location-aarch32.cc
+|  |  |  |  |-- location-aarch32.h
+|  |  |  |  |-- macro-assembler-aarch32.cc
+|  |  |  |  |-- macro-assembler-aarch32.h
+|  |  |  |  |-- operands-aarch32.cc
+|  |  |  |  |-- operands-aarch32.h
+|  |  |  |-- aarch64
+|  |  |  |  |-- abi-aarch64.h
+|  |  |  |  |-- assembler-aarch64.cc
+|  |  |  |  |-- assembler-aarch64.h
+|  |  |  |  |-- constants-aarch64.h
+|  |  |  |  |-- cpu-aarch64.cc
+|  |  |  |  |-- cpu-aarch64.h
+|  |  |  |  |-- cpu-features-auditor-aarch64.cc
+|  |  |  |  |-- cpu-features-auditor-aarch64.h
+|  |  |  |  |-- decoder-aarch64.cc
+|  |  |  |  |-- decoder-aarch64.h
+|  |  |  |  |-- disasm-aarch64.cc
+|  |  |  |  |-- disasm-aarch64.h
+|  |  |  |  |-- instructions-aarch64.cc
+|  |  |  |  |-- instructions-aarch64.h
+|  |  |  |  |-- instrument-aarch64.cc
+|  |  |  |  |-- instrument-aarch64.h
+|  |  |  |  |-- logic-aarch64.cc
+|  |  |  |  |-- macro-assembler-aarch64.cc
+|  |  |  |  |-- macro-assembler-aarch64.h
+|  |  |  |  |-- operands-aarch64.cc
+|  |  |  |  |-- operands-aarch64.h
+|  |  |  |  |-- pointer-auth-aarch64.cc
+|  |  |  |  |-- simulator-aarch64.cc
+|  |  |  |  |-- simulator-aarch64.h
+|  |  |  |  |-- simulator-constants-aarch64.h
+|  |  |  |-- assembler-base-vixl.h
+|  |  |  |-- code-buffer-vixl.cc
+|  |  |  |-- code-buffer-vixl.h
+|  |  |  |-- code-generation-scopes-vixl.h
+|  |  |  |-- compiler-intrinsics-vixl.cc
+|  |  |  |-- compiler-intrinsics-vixl.h
+|  |  |  |-- cpu-features.cc
+|  |  |  |-- cpu-features.h
+|  |  |  |-- globals-vixl.h
+|  |  |  |-- invalset-vixl.h
+|  |  |  |-- macro-assembler-interface.h
+|  |  |  |-- platform-vixl.h
+|  |  |  |-- pool-manager-impl.h
+|  |  |  |-- pool-manager.h
+|  |  |  |-- utils-vixl.cc
+|  |  |  |-- utils-vixl.h
+|  |  |-- xbrz
+|  |  |  |-- Changelog.txt
+|  |  |  |-- License.txt
+|  |  |  |-- xbrz.cpp
+|  |  |  |-- xbrz.h
+|  |  |  |-- xbrz_config.h
+|  |  |  |-- xbrz_tools.h
+|  |  |-- xbyak
+|  |  |  |-- COPYRIGHT
+|  |  |  |-- xbyak.h
+|  |  |  |-- xbyak_bin2hex.h
+|  |  |  |-- xbyak_mnemonic.h
+|  |  |  |-- xbyak_util.h
+|  |  |-- xxhash
+|  |  |  |-- xxhash.c
+|  |  |  |-- xxhash.h
+|  |  |-- zlib
+|  |  |  |-- Makefile
+|  |  |  |-- adler32.c
+|  |  |  |-- compress.c
+|  |  |  |-- crc32.c
+|  |  |  |-- crc32.h
+|  |  |  |-- deflate.c
+|  |  |  |-- deflate.h
+|  |  |  |-- gzclose.c
+|  |  |  |-- gzguts.h
+|  |  |  |-- gzlib.c
+|  |  |  |-- gzread.c
+|  |  |  |-- gzwrite.c
+|  |  |  |-- infback.c
+|  |  |  |-- inffast.c
+|  |  |  |-- inffast.h
+|  |  |  |-- inffixed.h
+|  |  |  |-- inflate.c
+|  |  |  |-- inflate.h
+|  |  |  |-- inftrees.c
+|  |  |  |-- inftrees.h
+|  |  |  |-- trees.c
+|  |  |  |-- trees.h
+|  |  |  |-- uncompr.c
+|  |  |  |-- zconf.h
+|  |  |  |-- zlib.h
+|  |  |  |-- zutil.c
+|  |  |  |-- zutil.h
+|  |-- emulator.h
+|  |-- hw
+|  |  |-- aica
+|  |  |  |-- aica.cpp
+|  |  |  |-- aica.h
+|  |  |  |-- aica_if.cpp
+|  |  |  |-- aica_if.h
+|  |  |  |-- aica_mem.cpp
+|  |  |  |-- aica_mem.h
+|  |  |  |-- dsp.cpp
+|  |  |  |-- dsp.h
+|  |  |  |-- dsp_arm64.cpp
+|  |  |  |-- dsp_interp.cpp
+|  |  |  |-- dsp_x64.cpp
+|  |  |  |-- sgc_if.cpp
+|  |  |  |-- sgc_if.h
+|  |  |-- arm7
+|  |  |  |-- arm-new.h
+|  |  |  |-- arm64.cpp
+|  |  |  |-- arm7.cpp
+|  |  |  |-- arm7.h
+|  |  |  |-- arm7_win86_asm.S
+|  |  |  |-- arm_mem.cpp
+|  |  |  |-- arm_mem.h
+|  |  |  |-- vbaARM.cpp
+|  |  |  |-- virt_arm.cpp
+|  |  |  |-- virt_arm.h
+|  |  |-- bba
+|  |  |  |-- bba.cpp
+|  |  |  |-- bba.h
+|  |  |  |-- rtl8139c.cpp
+|  |  |  |-- rtl8139c.h
+|  |  |-- flashrom
+|  |  |  |-- flashrom.h
+|  |  |-- gdrom
+|  |  |  |-- gdrom_if.h
+|  |  |  |-- gdrom_response.cpp
+|  |  |  |-- gdromv3.cpp
+|  |  |  |-- gdromv3.h
+|  |  |-- holly
+|  |  |  |-- holly_intc.cpp
+|  |  |  |-- holly_intc.h
+|  |  |  |-- sb.cpp
+|  |  |  |-- sb.h
+|  |  |  |-- sb_mem.cpp
+|  |  |  |-- sb_mem.h
+|  |  |-- maple
+|  |  |  |-- maple_cfg.cpp
+|  |  |  |-- maple_cfg.h
+|  |  |  |-- maple_devs.cpp
+|  |  |  |-- maple_devs.h
+|  |  |  |-- maple_helper.cpp
+|  |  |  |-- maple_helper.h
+|  |  |  |-- maple_if.cpp
+|  |  |  |-- maple_if.h
+|  |  |-- mem
+|  |  |  |-- _vmem.cpp
+|  |  |  |-- _vmem.h
+|  |  |  |-- vmem32.cpp
+|  |  |  |-- vmem32.h
+|  |  |-- modem
+|  |  |  |-- dns.cpp
+|  |  |  |-- modem.cpp
+|  |  |  |-- modem.h
+|  |  |  |-- modem_regs.h
+|  |  |-- naomi
+|  |  |  |-- awave_regs.h
+|  |  |  |-- awcartridge.cpp
+|  |  |  |-- awcartridge.h
+|  |  |  |-- decrypt.cpp
+|  |  |  |-- decrypt.h
+|  |  |  |-- gdcartridge.cpp
+|  |  |  |-- gdcartridge.h
+|  |  |  |-- m1cartridge.cpp
+|  |  |  |-- m1cartridge.h
+|  |  |  |-- m4cartridge.cpp
+|  |  |  |-- m4cartridge.h
+|  |  |  |-- naomi.cpp
+|  |  |  |-- naomi.h
+|  |  |  |-- naomi_cart.cpp
+|  |  |  |-- naomi_cart.h
+|  |  |  |-- naomi_m3comm.cpp
+|  |  |  |-- naomi_m3comm.h
+|  |  |  |-- naomi_regs.h
+|  |  |  |-- naomi_roms.h
+|  |  |  |-- naomi_roms_eeprom.h
+|  |  |  |-- naomi_roms_input.h
+|  |  |-- pvr
+|  |  |  |-- Renderer_if.cpp
+|  |  |  |-- Renderer_if.h
+|  |  |  |-- drkPvr.cpp
+|  |  |  |-- helper_classes.h
+|  |  |  |-- pvr_mem.cpp
+|  |  |  |-- pvr_mem.h
+|  |  |  |-- pvr_regs.cpp
+|  |  |  |-- pvr_regs.h
+|  |  |  |-- pvr_sb_regs.cpp
+|  |  |  |-- pvr_sb_regs.h
+|  |  |  |-- pvr_types.h
+|  |  |  |-- spg.cpp
+|  |  |  |-- spg.h
+|  |  |  |-- ta.cpp
+|  |  |  |-- ta.h
+|  |  |  |-- ta_const_df.h
+|  |  |  |-- ta_ctx.cpp
+|  |  |  |-- ta_ctx.h
+|  |  |  |-- ta_structs.h
+|  |  |  |-- ta_vtx.cpp
+|  |  |-- sh4
+|  |  |  |-- dyna
+|  |  |  |  |-- blockmanager.cpp
+|  |  |  |  |-- blockmanager.h
+|  |  |  |  |-- decoder.cpp
+|  |  |  |  |-- decoder.h
+|  |  |  |  |-- decoder_opcodes.h
+|  |  |  |  |-- driver.cpp
+|  |  |  |  |-- ngen.h
+|  |  |  |  |-- rec_config.h
+|  |  |  |  |-- regalloc.h
+|  |  |  |  |-- shil.cpp
+|  |  |  |  |-- shil.h
+|  |  |  |  |-- shil_canonical.h
+|  |  |  |  |-- ssa.cpp
+|  |  |  |  |-- ssa.h
+|  |  |  |  |-- ssa_regalloc.h
+|  |  |  |-- interpr
+|  |  |  |  |-- sh4_fpu.cpp
+|  |  |  |  |-- sh4_interpreter.cpp
+|  |  |  |  |-- sh4_opcodes.cpp
+|  |  |  |  |-- sh4_opcodes.h
+|  |  |  |-- modules
+|  |  |  |  |-- bsc.cpp
+|  |  |  |  |-- ccn.cpp
+|  |  |  |  |-- ccn.h
+|  |  |  |  |-- cpg.cpp
+|  |  |  |  |-- dmac.cpp
+|  |  |  |  |-- dmac.h
+|  |  |  |  |-- fastmmu.cpp
+|  |  |  |  |-- intc.cpp
+|  |  |  |  |-- mmu.cpp
+|  |  |  |  |-- mmu.h
+|  |  |  |  |-- mmu_impl.h
+|  |  |  |  |-- modules.h
+|  |  |  |  |-- rtc.cpp
+|  |  |  |  |-- serial.cpp
+|  |  |  |  |-- tmu.cpp
+|  |  |  |  |-- tmu.h
+|  |  |  |  |-- ubc.cpp
+|  |  |  |  |-- wince.h
+|  |  |  |-- sh4_cache.h
+|  |  |  |-- sh4_core.h
+|  |  |  |-- sh4_core_regs.cpp
+|  |  |  |-- sh4_if.h
+|  |  |  |-- sh4_interpreter.h
+|  |  |  |-- sh4_interrupts.cpp
+|  |  |  |-- sh4_interrupts.h
+|  |  |  |-- sh4_mem.cpp
+|  |  |  |-- sh4_mem.h
+|  |  |  |-- sh4_mmr.cpp
+|  |  |  |-- sh4_mmr.h
+|  |  |  |-- sh4_opcode.h
+|  |  |  |-- sh4_opcode_list.cpp
+|  |  |  |-- sh4_opcode_list.h
+|  |  |  |-- sh4_rom.cpp
+|  |  |  |-- sh4_rom.h
+|  |  |  |-- sh4_sched.cpp
+|  |  |  |-- sh4_sched.h
+|  |-- imgread
+|  |  |-- ImgReader.cpp
+|  |  |-- ImgReader.h
+|  |  |-- cdi.cpp
+|  |  |-- chd.cpp
+|  |  |-- common.cpp
+|  |  |-- common.h
+|  |  |-- cue.cpp
+|  |  |-- gd_driver.h
+|  |  |-- gdi.cpp
+|  |  |-- mds.cpp
+|  |  |-- mds.h
+|  |  |-- mds_reader.cpp
+|  |  |-- mds_reader.h
+|  |-- libretro-common
+|  |  |-- .gitignore
+|  |  |-- cdrom
+|  |  |  |-- cdrom.c
+|  |  |-- compat
+|  |  |  |-- compat_fnmatch.c
+|  |  |  |-- compat_getopt.c
+|  |  |  |-- compat_ifaddrs.c
+|  |  |  |-- compat_posix_string.c
+|  |  |  |-- compat_snprintf.c
+|  |  |  |-- compat_strcasestr.c
+|  |  |  |-- compat_strl.c
+|  |  |  |-- compat_vscprintf.c
+|  |  |  |-- fopen_utf8.c
+|  |  |-- encodings
+|  |  |  |-- encoding_utf.c
+|  |  |-- file
+|  |  |  |-- file_path.c
+|  |  |  |-- retro_dirent.c
+|  |  |-- glsm
+|  |  |  |-- glsm.c
+|  |  |-- glsym
+|  |  |  |-- README.md
+|  |  |  |-- glgen.py
+|  |  |  |-- glsym_es2.c
+|  |  |  |-- glsym_es3.c
+|  |  |  |-- glsym_gl.c
+|  |  |  |-- rglgen.c
+|  |  |  |-- rglgen.py
+|  |  |  |-- xglgen.py
+|  |  |-- include
+|  |  |  |-- boolean.h
+|  |  |  |-- cdrom
+|  |  |  |  |-- cdrom.h
+|  |  |  |-- clamping.h
+|  |  |  |-- compat
+|  |  |  |  |-- apple_compat.h
+|  |  |  |  |-- fnmatch.h
+|  |  |  |  |-- fopen_utf8.h
+|  |  |  |  |-- getopt.h
+|  |  |  |  |-- ifaddrs.h
+|  |  |  |  |-- intrinsics.h
+|  |  |  |  |-- msvc.h
+|  |  |  |  |-- msvc
+|  |  |  |  |  |-- stdint.h
+|  |  |  |  |-- posix_string.h
+|  |  |  |  |-- strcasestr.h
+|  |  |  |  |-- strl.h
+|  |  |  |  |-- zconf.h
+|  |  |  |  |-- zconf.h.in
+|  |  |  |  |-- zlib.h
+|  |  |  |  |-- zlib
+|  |  |  |  |  |-- zconf.h
+|  |  |  |  |  |-- zconf.h.in
+|  |  |  |  |  |-- zlib.h
+|  |  |  |  |  |-- zutil.h
+|  |  |  |  |-- zutil.h
+|  |  |  |-- encodings
+|  |  |  |  |-- utf.h
+|  |  |  |  |-- win32.h
+|  |  |  |-- file
+|  |  |  |  |-- file_path.h
+|  |  |  |-- glsm
+|  |  |  |  |-- glsm.h
+|  |  |  |  |-- glsmsym.h
+|  |  |  |-- glsym
+|  |  |  |  |-- glsym.h
+|  |  |  |  |-- glsym_es2.h
+|  |  |  |  |-- glsym_es3.h
+|  |  |  |  |-- glsym_gl.h
+|  |  |  |  |-- rglgen.h
+|  |  |  |  |-- rglgen_headers.h
+|  |  |  |  |-- switch
+|  |  |  |  |  |-- nx_gl.h
+|  |  |  |  |  |-- nx_glsym.h
+|  |  |  |-- libchdr
+|  |  |  |  |-- bitstream.h
+|  |  |  |  |-- cdrom.h
+|  |  |  |  |-- chd.h
+|  |  |  |  |-- coretypes.h
+|  |  |  |  |-- flac.h
+|  |  |  |  |-- huffman.h
+|  |  |  |  |-- libchdr_zlib.h
+|  |  |  |  |-- lzma.h
+|  |  |  |  |-- minmax.h
+|  |  |  |-- libco.h
+|  |  |  |-- libretro.h
+|  |  |  |-- libretro_d3d.h
+|  |  |  |-- libretro_dspfilter.h
+|  |  |  |-- libretro_gskit_ps2.h
+|  |  |  |-- libretro_vulkan.h
+|  |  |  |-- memalign.h
+|  |  |  |-- memmap.h
+|  |  |  |-- retro_assert.h
+|  |  |  |-- retro_common.h
+|  |  |  |-- retro_common_api.h
+|  |  |  |-- retro_dirent.h
+|  |  |  |-- retro_endianness.h
+|  |  |  |-- retro_environment.h
+|  |  |  |-- retro_inline.h
+|  |  |  |-- retro_math.h
+|  |  |  |-- retro_miscellaneous.h
+|  |  |  |-- retro_stat.h
+|  |  |  |-- retro_timers.h
+|  |  |  |-- rthreads
+|  |  |  |  |-- async_job.h
+|  |  |  |  |-- rsemaphore.h
+|  |  |  |  |-- rthreads.h
+|  |  |  |-- string
+|  |  |  |  |-- stdstring.h
+|  |  |  |-- vfs
+|  |  |  |  |-- vfs.h
+|  |  |  |  |-- vfs_implementation.h
+|  |  |  |  |-- vfs_implementation_cdrom.h
+|  |  |  |-- vulkan
+|  |  |  |  |-- vulkan_symbol_wrapper.h
+|  |  |-- libco
+|  |  |  |-- aarch64.c
+|  |  |  |-- amd64.c
+|  |  |  |-- armeabi.c
+|  |  |  |-- fiber.c
+|  |  |  |-- genode.cpp
+|  |  |  |-- libco.c
+|  |  |  |-- ppc.c
+|  |  |  |-- psp2.c
+|  |  |  |-- scefiber.c
+|  |  |  |-- sjlj.c
+|  |  |  |-- ucontext.c
+|  |  |  |-- x86.c
+|  |  |-- memmap
+|  |  |  |-- memalign.c
+|  |  |  |-- memmap.c
+|  |  |-- rthreads
+|  |  |  |-- ctr_pthread.h
+|  |  |  |-- gx_pthread.h
+|  |  |  |-- psp_pthread.h
+|  |  |  |-- rsemaphore.c
+|  |  |  |-- rthreads.c
+|  |  |  |-- wiiu_pthread.h
+|  |  |  |-- xenon_sdl_threads.c
+|  |  |-- string
+|  |  |  |-- stdstring.c
+|  |  |-- vfs
+|  |  |  |-- vfs_implementation.c
+|  |  |  |-- vfs_implementation_cdrom.c
+|  |  |  |-- vfs_implementation_uwp.cpp
+|  |  |-- vulkan
+|  |  |  |-- vulkan_symbol_wrapper.c
+|  |-- libretro
+|  |  |-- audiostream.cpp
+|  |  |-- common.cpp
+|  |  |-- glsym_private.h
+|  |  |-- keyboard_map.h
+|  |  |-- libretro.cpp
+|  |  |-- libretro_core_option_defines.h
+|  |  |-- libretro_core_options.h
+|  |  |-- libretro_core_options_intl.h
+|  |  |-- typedefs.h
+|  |  |-- vmem_utils.cpp
+|  |-- log
+|  |  |-- BitSet.h
+|  |  |-- Log.h
+|  |  |-- LogManager.cpp
+|  |  |-- LogManager.h
+|  |  |-- LogManagerLibretro.cpp
+|  |  |-- LogManagerLibretro.h
+|  |  |-- StringUtil.h
+|  |-- network
+|  |  |-- miniupnp.cpp
+|  |  |-- miniupnp.h
+|  |  |-- naomi_network.cpp
+|  |  |-- naomi_network.h
+|  |  |-- net_platform.h
+|  |  |-- picoppp.cpp
+|  |  |-- picoppp.h
+|  |-- nullDC.cpp
+|  |-- oslib
+|  |  |-- audiostream.h
+|  |  |-- host_context.h
+|  |  |-- oslib.h
+|  |-- rec-ARM
+|  |  |-- E_Branches.h
+|  |  |-- E_DataOp.h
+|  |  |-- E_Extend.h
+|  |  |-- E_LoadStore.h
+|  |  |-- E_Misc.h
+|  |  |-- E_Multiply.h
+|  |  |-- E_Parallel.h
+|  |  |-- E_Special.h
+|  |  |-- E_Status.h
+|  |  |-- E_VDataOp.h
+|  |  |-- E_VLoadStore.h
+|  |  |-- E_VRegXfer.h
+|  |  |-- H_Branches.h
+|  |  |-- H_LoadStore.h
+|  |  |-- H_fp.h
+|  |  |-- H_psuedo.h
+|  |  |-- H_state.h
+|  |  |-- arm_coding.h
+|  |  |-- arm_disasm.h
+|  |  |-- arm_emitter.h
+|  |  |-- arm_registers.h
+|  |  |-- ngen_arm.S
+|  |  |-- rec_arm.cpp
+|  |-- rec-ARM64
+|  |  |-- arm64_regalloc.h
+|  |  |-- ngen_arm64.S
+|  |  |-- rec_arm64.cpp
+|  |-- rec-cpp
+|  |  |-- rec_cpp.cpp
+|  |-- rec-x64
+|  |  |-- rec_x64.cpp
+|  |  |-- x64_regalloc.h
+|  |-- rec-x86
+|  |  |-- generated_class_names.h
+|  |  |-- generated_class_names_string.h
+|  |  |-- generated_descriptors.h
+|  |  |-- generated_indexes.h
+|  |  |-- rec_lin86_asm.S
+|  |  |-- rec_win86_asm.S
+|  |  |-- rec_x86_asm.cpp
+|  |  |-- rec_x86_driver.cpp
+|  |  |-- rec_x86_il.cpp
+|  |  |-- rec_x86_ngen.h
+|  |  |-- x86_emitter.cpp
+|  |  |-- x86_emitter.h
+|  |  |-- x86_matcher.h
+|  |  |-- x86_op_classes.h
+|  |  |-- x86_op_encoder.h
+|  |  |-- x86_op_table.h
+|  |-- reios
+|  |  |-- descrambl.cpp
+|  |  |-- descrambl.h
+|  |  |-- font.h
+|  |  |-- gdrom_hle.cpp
+|  |  |-- gdrom_hle.h
+|  |  |-- iso9660.h
+|  |  |-- reios.cpp
+|  |  |-- reios.h
+|  |  |-- reios_elf.cpp
+|  |  |-- reios_elf.h
+|  |-- rend
+|  |  |-- CustomTexture.cpp
+|  |  |-- CustomTexture.h
+|  |  |-- TexCache.cpp
+|  |  |-- TexCache.h
+|  |  |-- gl4
+|  |  |  |-- abuffer.cpp
+|  |  |  |-- gl4.h
+|  |  |  |-- gldraw.cpp
+|  |  |  |-- gles.cpp
+|  |  |  |-- gltex.cpp
+|  |  |-- gles
+|  |  |  |-- glcache.h
+|  |  |  |-- gldraw.cpp
+|  |  |  |-- gles.cpp
+|  |  |  |-- gles.h
+|  |  |  |-- gltex.cpp
+|  |  |  |-- postprocess.cpp
+|  |  |  |-- postprocess.h
+|  |  |-- norend
+|  |  |  |-- norend.cpp
+|  |  |-- rend.h
+|  |  |-- soft
+|  |  |  |-- softrend.cpp
+|  |  |-- sorter.cpp
+|  |  |-- sorter.h
+|  |  |-- tileclip.h
+|  |  |-- transform_matrix.h
+|  |  |-- vulkan
+|  |  |  |-- buffer.cpp
+|  |  |  |-- buffer.h
+|  |  |  |-- commandpool.h
+|  |  |  |-- compiler.cpp
+|  |  |  |-- compiler.h
+|  |  |  |-- drawer.cpp
+|  |  |  |-- drawer.h
+|  |  |  |-- oit
+|  |  |  |  |-- oit_buffer.h
+|  |  |  |  |-- oit_drawer.cpp
+|  |  |  |  |-- oit_drawer.h
+|  |  |  |  |-- oit_pipeline.cpp
+|  |  |  |  |-- oit_pipeline.h
+|  |  |  |  |-- oit_renderer.cpp
+|  |  |  |  |-- oit_renderpass.cpp
+|  |  |  |  |-- oit_renderpass.h
+|  |  |  |  |-- oit_shaders.cpp
+|  |  |  |  |-- oit_shaders.h
+|  |  |  |-- pipeline.cpp
+|  |  |  |-- pipeline.h
+|  |  |  |-- quad.cpp
+|  |  |  |-- quad.h
+|  |  |  |-- shaders.cpp
+|  |  |  |-- shaders.h
+|  |  |  |-- texture.cpp
+|  |  |  |-- texture.h
+|  |  |  |-- utils.h
+|  |  |  |-- vk_mem_alloc.h
+|  |  |  |-- vmallocator.cpp
+|  |  |  |-- vmallocator.h
+|  |  |  |-- vmu.cpp
+|  |  |  |-- vmu.h
+|  |  |  |-- vulkan.h
+|  |  |  |-- vulkan_context.cpp
+|  |  |  |-- vulkan_context.h
+|  |  |  |-- vulkan_renderer.cpp
+|  |  |  |-- vulkan_renderer.h
+|  |-- rom_luts.h
+|  |-- serialize.cpp
+|  |-- stdclass.cpp
+|  |-- stdclass.h
+|  |-- types.h
+|-- jni
+|  |-- Android.mk
+|  |-- Application.mk
+|-- link.T
+|-- microphone support notes.txt

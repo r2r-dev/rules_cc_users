@@ -1,0 +1,3015 @@
+|-- .arcconfig
+|-- .arclint
+|-- .gitignore
+|-- .jenkins
+|  |-- bazel-build-test.sh
+|  |-- bazel-common.sh
+|  |-- get-llvm.sh
+|  |-- nightly-release.sh
+|  |-- push-llvm.sh
+|-- .kythe
+|-- .shipshape
+|-- .ycm_extra_conf.py
+|-- AUTHORS
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- CONTRIBUTORS
+|-- LICENSE
+|-- README.adoc
+|-- RELEASES.md
+|-- WORKSPACE
+|-- kythe
+|  |-- .clang-format
+|  |-- BUILD
+|  |-- Doxyfile.kythe
+|  |-- cxx
+|  |  |-- common
+|  |  |  |-- BUILD
+|  |  |  |-- CommandLineUtils.cc
+|  |  |  |-- CommandLineUtils.h
+|  |  |  |-- CommandLineUtilsTest.cc
+|  |  |  |-- cxx_details.cc
+|  |  |  |-- cxx_details.h
+|  |  |  |-- file_vname_generator.cc
+|  |  |  |-- file_vname_generator.h
+|  |  |  |-- file_vname_generator_test.cc
+|  |  |  |-- index_pack.cc
+|  |  |  |-- index_pack.h
+|  |  |  |-- index_pack_test.cc
+|  |  |  |-- indexing
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- KytheClaimClient.cc
+|  |  |  |  |-- KytheClaimClient.h
+|  |  |  |  |-- KytheGraphRecorder.cc
+|  |  |  |  |-- KytheGraphRecorder.h
+|  |  |  |  |-- KytheOutputStream.cc
+|  |  |  |  |-- KytheOutputStream.h
+|  |  |  |  |-- KytheVFS.cc
+|  |  |  |  |-- KytheVFS.h
+|  |  |  |  |-- MaybeFew.h
+|  |  |  |  |-- RecordingOutputStream.h
+|  |  |  |  |-- frontend.cc
+|  |  |  |  |-- frontend.h
+|  |  |  |-- json_proto.cc
+|  |  |  |-- json_proto.h
+|  |  |  |-- json_proto_test.cc
+|  |  |  |-- kythe_metadata_file.cc
+|  |  |  |-- kythe_metadata_file.h
+|  |  |  |-- kythe_uri.cc
+|  |  |  |-- kythe_uri.h
+|  |  |  |-- kythe_uri_test.cc
+|  |  |  |-- language.cc
+|  |  |  |-- language.h
+|  |  |  |-- net_client.cc
+|  |  |  |-- net_client.h
+|  |  |  |-- net_client_test.cc
+|  |  |  |-- path_utils.cc
+|  |  |  |-- path_utils.h
+|  |  |  |-- path_utils_test.cc
+|  |  |  |-- proto_conversions.h
+|  |  |  |-- protobuf_metadata_file.cc
+|  |  |  |-- protobuf_metadata_file.h
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- net_client_test_data.json
+|  |  |  |  |-- net_client_test_runner.sh
+|  |  |  |  |-- start_http_service.sh
+|  |  |  |-- vname_ordering.h
+|  |  |-- doc
+|  |  |  |-- BUILD
+|  |  |  |-- doc.cc
+|  |  |  |-- html_markup_handler.cc
+|  |  |  |-- html_markup_handler.h
+|  |  |  |-- html_renderer.cc
+|  |  |  |-- html_renderer.h
+|  |  |  |-- html_renderer_test.cc
+|  |  |  |-- javadoxygen_markup_handler.cc
+|  |  |  |-- javadoxygen_markup_handler.h
+|  |  |  |-- markup_handler.cc
+|  |  |  |-- markup_handler.h
+|  |  |  |-- markup_handler_test.cc
+|  |  |-- extractor
+|  |  |  |-- BUILD
+|  |  |  |-- cxx_extractor.cc
+|  |  |  |-- cxx_extractor.h
+|  |  |  |-- cxx_extractor_bazel_main.cc
+|  |  |  |-- cxx_extractor_main.cc
+|  |  |  |-- cxx_extractor_test.cc
+|  |  |  |-- objc_bazel_support.cc
+|  |  |  |-- objc_bazel_support.h
+|  |  |  |-- objc_bazel_support_test.cc
+|  |  |  |-- objc_extractor_bazel_main.cc
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- altroot
+|  |  |  |  |  |-- altpath
+|  |  |  |  |  |  |-- file.cc
+|  |  |  |  |-- altroot_altpath_file.UNIT
+|  |  |  |  |-- arm.UNIT
+|  |  |  |  |-- arm.cc
+|  |  |  |  |-- cc_lib.cc
+|  |  |  |  |-- cc_lib.xa
+|  |  |  |  |-- claim_a.h
+|  |  |  |  |-- claim_b.h
+|  |  |  |  |-- claim_main.cc
+|  |  |  |  |-- claim_pragma_test.cc
+|  |  |  |  |-- extract_verify_iostream_test.cc
+|  |  |  |  |-- extract_verify_std_string_test.cc
+|  |  |  |  |-- extract_verify_std_vector_test.cc
+|  |  |  |  |-- extract_verify_stddef_test.cc
+|  |  |  |  |-- extract_verify_test.cc
+|  |  |  |  |-- main_source_file_env_dep.cc
+|  |  |  |  |-- main_source_file_env_dep_with.UNIT
+|  |  |  |  |-- main_source_file_env_dep_without.UNIT
+|  |  |  |  |-- main_source_file_no_env_dep.cc
+|  |  |  |  |-- main_source_file_no_env_dep_with.UNIT
+|  |  |  |  |-- main_source_file_no_env_dep_without.UNIT
+|  |  |  |  |-- metadata.UNIT
+|  |  |  |  |-- metadata.cc
+|  |  |  |  |-- metadata.cc.meta
+|  |  |  |  |-- modfoo.h
+|  |  |  |  |-- modfoo.modulemap
+|  |  |  |  |-- modules.UNIT
+|  |  |  |  |-- modules.cc
+|  |  |  |  |-- objc_lib.m
+|  |  |  |  |-- objc_lib.xa
+|  |  |  |  |-- recursish_macro.cc
+|  |  |  |  |-- run_cxx_bazel_extraction.sh
+|  |  |  |  |-- run_objc_bazel_extraction.sh
+|  |  |  |  |-- skip_functions.sh
+|  |  |  |  |-- stdin.vnames
+|  |  |  |  |-- test_alternate_platform.sh
+|  |  |  |  |-- test_common.sh
+|  |  |  |  |-- test_extract_transcript.sh
+|  |  |  |  |-- test_index_pack.sh
+|  |  |  |  |-- test_main_source_file_env_dep.sh
+|  |  |  |  |-- test_main_source_file_no_env_dep.sh
+|  |  |  |  |-- test_metadata.sh
+|  |  |  |  |-- test_modules.sh
+|  |  |  |  |-- test_root_directory.sh
+|  |  |  |  |-- test_stdin_names.sh
+|  |  |  |  |-- test_stdin_names_verify.cc
+|  |  |  |  |-- transcript_a.h
+|  |  |  |  |-- transcript_b.h
+|  |  |  |  |-- transcript_main.UNIT
+|  |  |  |  |-- transcript_main.cc
+|  |  |-- indexer
+|  |  |  |-- cxx
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- DESIGN
+|  |  |  |  |-- GoogleFlagsLibrarySupport.cc
+|  |  |  |  |-- GoogleFlagsLibrarySupport.h
+|  |  |  |  |-- GraphObserver.h
+|  |  |  |  |-- IndexerASTHooks.cc
+|  |  |  |  |-- IndexerASTHooks.h
+|  |  |  |  |-- IndexerFrontendAction.cc
+|  |  |  |  |-- IndexerFrontendAction.h
+|  |  |  |  |-- IndexerLibrarySupport.h
+|  |  |  |  |-- IndexerPPCallbacks.cc
+|  |  |  |  |-- IndexerPPCallbacks.h
+|  |  |  |  |-- KytheGraphObserver.cc
+|  |  |  |  |-- KytheGraphObserver.h
+|  |  |  |  |-- KytheIndexerMain.cc
+|  |  |  |  |-- KytheIndexerUnitTest.cc
+|  |  |  |  |-- ProtoLibrarySupport.cc
+|  |  |  |  |-- ProtoLibrarySupport.h
+|  |  |  |  |-- claiming.ad
+|  |  |  |  |-- clang_utils.cc
+|  |  |  |  |-- clang_utils.h
+|  |  |  |  |-- docs
+|  |  |  |  |  |-- llvm-2014
+|  |  |  |  |  |  |-- Makefile
+|  |  |  |  |  |  |-- abstract.tex
+|  |  |  |  |-- indexer_worklist.cc
+|  |  |  |  |-- indexer_worklist.h
+|  |  |  |  |-- marked_source.cc
+|  |  |  |  |-- marked_source.h
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- .clang-format
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- all_tests.sh
+|  |  |  |  |  |-- basic
+|  |  |  |  |  |  |-- a.h
+|  |  |  |  |  |  |-- alias_alias_int.cc
+|  |  |  |  |  |  |-- alias_alias_ptr_int.cc
+|  |  |  |  |  |  |-- alias_and_cvr.cc
+|  |  |  |  |  |  |-- alias_int.cc
+|  |  |  |  |  |  |-- alias_int_twice.cc
+|  |  |  |  |  |  |-- alias_root.cc
+|  |  |  |  |  |  |-- alias_root_quals.cc
+|  |  |  |  |  |  |-- anchor_utf8.cc
+|  |  |  |  |  |  |-- anonymous_inline_namespace.cc
+|  |  |  |  |  |  |-- anonymous_namespace.cc
+|  |  |  |  |  |  |-- anonymous_namespace_header.cc
+|  |  |  |  |  |  |-- anonymous_namespace_inc.cc
+|  |  |  |  |  |  |-- anonymous_namespace_transitive_header.cc
+|  |  |  |  |  |  |-- anonymous_nested_namespace.cc
+|  |  |  |  |  |  |-- auto.cc
+|  |  |  |  |  |  |-- auto_const_ref.cc
+|  |  |  |  |  |  |-- auto_multi.cc
+|  |  |  |  |  |  |-- auto_zoo.cc
+|  |  |  |  |  |  |-- builtin_functions.c
+|  |  |  |  |  |  |-- builtin_functions_ctd.c
+|  |  |  |  |  |  |-- decltype.cc
+|  |  |  |  |  |  |-- decltype_auto.cc
+|  |  |  |  |  |  |-- decltype_const_ref.cc
+|  |  |  |  |  |  |-- decltype_parens.cc
+|  |  |  |  |  |  |-- empty_case.cc
+|  |  |  |  |  |  |-- enum_class_decl.cc
+|  |  |  |  |  |  |-- enum_class_element_decl.cc
+|  |  |  |  |  |  |-- enum_decl.cc
+|  |  |  |  |  |  |-- enum_decl_completes.cc
+|  |  |  |  |  |  |-- enum_decl_ty.cc
+|  |  |  |  |  |  |-- enum_decl_ty_completes.cc
+|  |  |  |  |  |  |-- enum_decl_ty_header_completes.cc
+|  |  |  |  |  |  |-- enum_decl_ty_header_completes.h
+|  |  |  |  |  |  |-- enum_element_decl.cc
+|  |  |  |  |  |  |-- file_content.cc
+|  |  |  |  |  |  |-- file_node.cc
+|  |  |  |  |  |  |-- file_node_reentrant.cc
+|  |  |  |  |  |  |-- file_node_reentrant.h
+|  |  |  |  |  |  |-- inline_namespace.cc
+|  |  |  |  |  |  |-- macros_builtin.c
+|  |  |  |  |  |  |-- macros_defn.cc
+|  |  |  |  |  |  |-- macros_expand.cc
+|  |  |  |  |  |  |-- macros_expand_transitive.cc
+|  |  |  |  |  |  |-- macros_if.cc
+|  |  |  |  |  |  |-- macros_if_defined.cc
+|  |  |  |  |  |  |-- macros_ifdef.cc
+|  |  |  |  |  |  |-- macros_implicit.cc
+|  |  |  |  |  |  |-- macros_include.cc
+|  |  |  |  |  |  |-- macros_subst_one_level.cc
+|  |  |  |  |  |  |-- macros_undef.cc
+|  |  |  |  |  |  |-- namespace.cc
+|  |  |  |  |  |  |-- namespace_contains.cc
+|  |  |  |  |  |  |-- namespace_header.cc
+|  |  |  |  |  |  |-- namespace_vnames.cc
+|  |  |  |  |  |  |-- nested_name_specifiers.cc
+|  |  |  |  |  |  |-- new.cc
+|  |  |  |  |  |  |-- new_operator.cc
+|  |  |  |  |  |  |-- sizeof_ref.c
+|  |  |  |  |  |  |-- sizeof_typedef_ref.c
+|  |  |  |  |  |  |-- typedef_class.cc
+|  |  |  |  |  |  |-- typedef_class_nested_ns.cc
+|  |  |  |  |  |  |-- typedef_const_int.cc
+|  |  |  |  |  |  |-- typedef_int.cc
+|  |  |  |  |  |  |-- typedef_nested_class.cc
+|  |  |  |  |  |  |-- typedef_paren.cc
+|  |  |  |  |  |  |-- typedef_ptr_int.cc
+|  |  |  |  |  |  |-- typedef_ptr_int_canonicalized.cc
+|  |  |  |  |  |  |-- typedef_same.cc
+|  |  |  |  |  |  |-- typeof_param.c
+|  |  |  |  |  |  |-- vardecl_double_shadowed_local_anchor.cc
+|  |  |  |  |  |  |-- vardecl_field.cc
+|  |  |  |  |  |  |-- vardecl_field_ref.cc
+|  |  |  |  |  |  |-- vardecl_global_anchor.cc
+|  |  |  |  |  |  |-- vardecl_global_anon_ns_anchor.cc
+|  |  |  |  |  |  |-- vardecl_global_tu_anchor.cc
+|  |  |  |  |  |  |-- vardecl_local_anchor.cc
+|  |  |  |  |  |  |-- vardecl_shadowed_local_anchor.cc
+|  |  |  |  |  |  |-- wild_std_allocator.cc
+|  |  |  |  |  |  |-- wild_struct_field.c
+|  |  |  |  |  |-- bundle_case.sh
+|  |  |  |  |  |-- bundle_self_test.cc
+|  |  |  |  |  |-- bundle_self_test_mix.cc
+|  |  |  |  |  |-- bundle_self_test_multi_transcript.cc
+|  |  |  |  |  |-- bundle_self_test_unclaimed.cc
+|  |  |  |  |  |-- bundle_self_test_vnames_json.cc
+|  |  |  |  |  |-- claim_macro_features.cc
+|  |  |  |  |  |-- cxx_indexer_test.bzl
+|  |  |  |  |  |-- docs
+|  |  |  |  |  |  |-- docs_bcpl_block.cc
+|  |  |  |  |  |  |-- docs_bcpl_block_multiline.cc
+|  |  |  |  |  |  |-- docs_block.cc
+|  |  |  |  |  |  |-- docs_block_multiline.cc
+|  |  |  |  |  |  |-- docs_doc_var.cc
+|  |  |  |  |  |  |-- docs_file_level.cc
+|  |  |  |  |  |  |-- docs_file_level_conflict.cc
+|  |  |  |  |  |  |-- docs_file_level_doxygen.cc
+|  |  |  |  |  |  |-- docs_file_level_includes.cc
+|  |  |  |  |  |  |-- docs_file_level_includes_a.h
+|  |  |  |  |  |  |-- docs_file_level_includes_b.h
+|  |  |  |  |  |  |-- docs_implicit_block.cc
+|  |  |  |  |  |  |-- docs_implicit_block_multiline.cc
+|  |  |  |  |  |  |-- docs_implicit_unrelated_block.cc
+|  |  |  |  |  |  |-- docs_implicit_unrelated_block_decl.cc
+|  |  |  |  |  |  |-- docs_implicit_unrelated_block_newline.cc
+|  |  |  |  |  |  |-- docs_juxtaposed.cc
+|  |  |  |  |  |  |-- docs_juxtaposed_implicit.cc
+|  |  |  |  |  |  |-- docs_juxtaposed_implicit_multiline.cc
+|  |  |  |  |  |  |-- docs_juxtaposed_multiline.cc
+|  |  |  |  |  |  |-- docs_linkage_spec.cc
+|  |  |  |  |  |  |-- docs_ref_gen_backtick.cc
+|  |  |  |  |  |  |-- docs_ref_gen_doxycommand.cc
+|  |  |  |  |  |  |-- docs_ref_gen_param.cc
+|  |  |  |  |  |  |-- docs_ref_gen_quote.cc
+|  |  |  |  |  |  |-- docs_ref_gen_tparam.cc
+|  |  |  |  |  |  |-- docs_template_alias.cc
+|  |  |  |  |  |  |-- docs_template_function.cc
+|  |  |  |  |  |  |-- docs_template_function_spec.cc
+|  |  |  |  |  |  |-- docs_template_partial_spec_record.cc
+|  |  |  |  |  |  |-- docs_template_partial_spec_var.cc
+|  |  |  |  |  |  |-- docs_template_record.cc
+|  |  |  |  |  |  |-- docs_template_total_spec_record.cc
+|  |  |  |  |  |  |-- docs_template_total_spec_var.cc
+|  |  |  |  |  |  |-- docs_template_var.cc
+|  |  |  |  |  |  |-- docs_visibility.cc
+|  |  |  |  |  |-- function
+|  |  |  |  |  |  |-- function_args_decl.cc
+|  |  |  |  |  |  |-- function_args_defn.cc
+|  |  |  |  |  |  |-- function_auto_return.cc
+|  |  |  |  |  |  |-- function_ctor.cc
+|  |  |  |  |  |  |-- function_ctor_default_and_init.cc
+|  |  |  |  |  |  |-- function_ctor_default_value.cc
+|  |  |  |  |  |  |-- function_ctor_init_list.cc
+|  |  |  |  |  |  |-- function_ctor_init_refs.cc
+|  |  |  |  |  |  |-- function_ctor_new.cc
+|  |  |  |  |  |  |-- function_decl.cc
+|  |  |  |  |  |  |-- function_decl_completes.cc
+|  |  |  |  |  |  |-- function_defn.cc
+|  |  |  |  |  |  |-- function_defn_call.cc
+|  |  |  |  |  |  |-- function_direct_call.cc
+|  |  |  |  |  |  |-- function_dtor.cc
+|  |  |  |  |  |  |-- function_dtor_delete.cc
+|  |  |  |  |  |  |-- function_dtor_explicit_call.cc
+|  |  |  |  |  |  |-- function_dtor_implicit_call.cc
+|  |  |  |  |  |  |-- function_knr_ty.c
+|  |  |  |  |  |  |-- function_lambda.cc
+|  |  |  |  |  |  |-- function_member.cc
+|  |  |  |  |  |  |-- function_member_conversion.cc
+|  |  |  |  |  |  |-- function_member_operator.cc
+|  |  |  |  |  |  |-- function_operator_overload_dup_names.cc
+|  |  |  |  |  |  |-- function_operator_overload_enable_if.cc
+|  |  |  |  |  |  |-- function_operator_overload_names.cc
+|  |  |  |  |  |  |-- function_operator_parens_call.cc
+|  |  |  |  |  |  |-- function_operator_parens_overload_call.cc
+|  |  |  |  |  |  |-- function_overload.cc
+|  |  |  |  |  |  |-- function_overload_call.cc
+|  |  |  |  |  |  |-- function_ptr_ty.cc
+|  |  |  |  |  |  |-- function_static_member.cc
+|  |  |  |  |  |  |-- function_ty.cc
+|  |  |  |  |  |  |-- function_vararg.cc
+|  |  |  |  |  |  |-- function_vararg_ty.cc
+|  |  |  |  |  |  |-- void_f.h
+|  |  |  |  |  |-- handle_results.sh
+|  |  |  |  |  |-- include_dotdot.cc
+|  |  |  |  |  |-- kindex_repo_test.header
+|  |  |  |  |  |-- kindex_repo_test.header2
+|  |  |  |  |  |-- kindex_repo_test.main
+|  |  |  |  |  |-- kindex_repo_test.unit
+|  |  |  |  |  |-- kindex_repo_test.verify
+|  |  |  |  |  |-- kindex_test.header
+|  |  |  |  |  |-- kindex_test.main
+|  |  |  |  |  |-- kindex_test.unit
+|  |  |  |  |  |-- kindex_test.verify
+|  |  |  |  |  |-- libraries
+|  |  |  |  |  |  |-- flags_bool.cc
+|  |  |  |  |  |  |-- flags_bool.h
+|  |  |  |  |  |  |-- flags_bool_stdbool.cc
+|  |  |  |  |  |  |-- flags_decls.cc
+|  |  |  |  |  |  |-- flags_defns.cc
+|  |  |  |  |  |  |-- flags_empty.cc
+|  |  |  |  |  |  |-- flags_ref_int64_decl.cc
+|  |  |  |  |  |  |-- flags_ref_int64_defn.cc
+|  |  |  |  |  |  |-- flags_ref_int64_defn_completes.cc
+|  |  |  |  |  |  |-- flags_string.cc
+|  |  |  |  |  |  |-- flags_string.h
+|  |  |  |  |  |  |-- gflags.h
+|  |  |  |  |  |  |-- gflags_declare.h
+|  |  |  |  |  |  |-- message.proto.h
+|  |  |  |  |  |  |-- parsetextproto.h
+|  |  |  |  |  |  |-- proto_parsetextproto.cc
+|  |  |  |  |  |  |-- proto_parsetextproto_tabs.cc
+|  |  |  |  |  |  |-- stdbool.h
+|  |  |  |  |  |-- marked_source
+|  |  |  |  |  |  |-- ms_class.cc
+|  |  |  |  |  |  |-- ms_class_ns.cc
+|  |  |  |  |  |  |-- ms_fn.cc
+|  |  |  |  |  |  |-- ms_fn_namespace.cc
+|  |  |  |  |  |  |-- ms_fn_ptr_return.cc
+|  |  |  |  |  |  |-- ms_fn_rec.cc
+|  |  |  |  |  |  |-- ms_fn_rec_template.cc
+|  |  |  |  |  |  |-- ms_fn_template.cc
+|  |  |  |  |  |  |-- ms_var_fn_template.cc
+|  |  |  |  |  |-- metadata
+|  |  |  |  |  |  |-- empty.meta
+|  |  |  |  |  |  |-- fancy_metadata_h_generates_rule.cc
+|  |  |  |  |  |  |-- fancy_single.meta.h
+|  |  |  |  |  |  |-- metadata_generates_rule.cc
+|  |  |  |  |  |  |-- metadata_h_generates_rule.cc
+|  |  |  |  |  |  |-- metadata_pragma.cc
+|  |  |  |  |  |  |-- single.meta
+|  |  |  |  |  |  |-- single.meta.h
+|  |  |  |  |  |-- objc
+|  |  |  |  |  |  |-- FwdClass.h
+|  |  |  |  |  |  |-- attribute_nullable.m
+|  |  |  |  |  |  |-- block_pointer.m
+|  |  |  |  |  |  |-- block_pointer_type.m
+|  |  |  |  |  |  |-- block_pointer_typedef.m
+|  |  |  |  |  |  |-- boxed_expr.m
+|  |  |  |  |  |  |-- builtin_bool.m
+|  |  |  |  |  |  |-- builtin_defs.m
+|  |  |  |  |  |  |-- categories
+|  |  |  |  |  |  |  |-- base+foo.h
+|  |  |  |  |  |  |  |-- base+foo.m
+|  |  |  |  |  |  |  |-- base.h
+|  |  |  |  |  |  |  |-- base.m
+|  |  |  |  |  |  |  |-- extension.h
+|  |  |  |  |  |  |  |-- extension.m
+|  |  |  |  |  |  |  |-- extension_property_xcode.h
+|  |  |  |  |  |  |  |-- extension_property_xcode.m
+|  |  |  |  |  |  |  |-- main.m
+|  |  |  |  |  |  |  |-- single_file_category.m
+|  |  |  |  |  |  |-- class_decl_defn.m
+|  |  |  |  |  |  |-- class_instantiation.m
+|  |  |  |  |  |  |-- class_method_call.m
+|  |  |  |  |  |  |-- class_method_call_variable_params.m
+|  |  |  |  |  |  |-- class_method_decl_defn.m
+|  |  |  |  |  |  |-- compatibility_alias.m
+|  |  |  |  |  |  |-- compatibility_alias_and_typedef.m
+|  |  |  |  |  |  |-- compatibility_alias_twice.m
+|  |  |  |  |  |  |-- compatibility_alias_with_macro.m
+|  |  |  |  |  |  |-- compatibility_alias_with_macro_with_params.m
+|  |  |  |  |  |  |-- encode.m
+|  |  |  |  |  |  |-- extends.m
+|  |  |  |  |  |  |-- extends_no_super_impl.m
+|  |  |  |  |  |  |-- forward_declare.m
+|  |  |  |  |  |  |-- forward_declare_not_necessary.m
+|  |  |  |  |  |  |-- forward_declare_not_necessary_2.m
+|  |  |  |  |  |  |-- generics
+|  |  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |  |-- generic_bound.m
+|  |  |  |  |  |  |  |-- generic_contravariant_decl.m
+|  |  |  |  |  |  |  |-- generic_contravariant_restricted_super_class.m
+|  |  |  |  |  |  |  |-- generic_covariant_decl.m
+|  |  |  |  |  |  |  |-- generic_covariant_restricted_super_class.m
+|  |  |  |  |  |  |  |-- generic_inherited.m
+|  |  |  |  |  |  |  |-- generic_instantiation.m
+|  |  |  |  |  |  |  |-- generic_invariant.m
+|  |  |  |  |  |  |  |-- generic_method_call.m
+|  |  |  |  |  |  |  |-- generic_method_type.m
+|  |  |  |  |  |  |  |-- generic_nested.m
+|  |  |  |  |  |  |  |-- generic_restricted_protocol.m
+|  |  |  |  |  |  |  |-- generic_two_args.m
+|  |  |  |  |  |  |  |-- generic_unbound.m
+|  |  |  |  |  |  |-- id_instance_method.m
+|  |  |  |  |  |  |-- include.h
+|  |  |  |  |  |  |-- include.m
+|  |  |  |  |  |  |-- instance_method_call.m
+|  |  |  |  |  |  |-- instance_method_call_variable_params.m
+|  |  |  |  |  |  |-- instance_method_call_with_class_params.m
+|  |  |  |  |  |  |-- instance_method_call_with_params.m
+|  |  |  |  |  |  |-- instance_method_decl_defn.m
+|  |  |  |  |  |  |-- instance_method_decl_defn_with_params.m
+|  |  |  |  |  |  |-- instance_method_matched_correctly.m
+|  |  |  |  |  |  |-- instance_method_self_and_class_method_self_different.m
+|  |  |  |  |  |  |-- instance_method_type.m
+|  |  |  |  |  |  |-- ivar_decl.m
+|  |  |  |  |  |  |-- lang_name.m
+|  |  |  |  |  |  |-- marked_attr__Nullable.m
+|  |  |  |  |  |  |-- marked_class.m
+|  |  |  |  |  |  |-- marked_method.m
+|  |  |  |  |  |  |-- method_overrides.m
+|  |  |  |  |  |  |-- method_overrides_decl_only.m
+|  |  |  |  |  |  |-- method_overrides_root.m
+|  |  |  |  |  |  |-- method_param_types.m
+|  |  |  |  |  |  |-- method_swizzle.m
+|  |  |  |  |  |  |-- method_type.m
+|  |  |  |  |  |  |-- multiline_method.m
+|  |  |  |  |  |  |-- precise_extends.m
+|  |  |  |  |  |  |-- property_custom_getter_setter.m
+|  |  |  |  |  |  |-- property_decl_defn.m
+|  |  |  |  |  |  |-- property_decl_defn_class.m
+|  |  |  |  |  |  |-- property_decl_defn_xcode_only.m
+|  |  |  |  |  |  |-- property_getter_setter.m
+|  |  |  |  |  |  |-- protocol_class_namespace.m
+|  |  |  |  |  |  |-- protocol_defn.m
+|  |  |  |  |  |  |-- protocol_extends.m
+|  |  |  |  |  |  |-- protocol_extends_impl.m
+|  |  |  |  |  |  |-- protocol_impl.m
+|  |  |  |  |  |  |-- protocol_method_defn.m
+|  |  |  |  |  |  |-- protocol_param.m
+|  |  |  |  |  |  |-- protocol_param_long_enough_to_hash.m
+|  |  |  |  |  |  |-- selector.m
+|  |  |  |  |  |  |-- subscript_ref.m
+|  |  |  |  |  |-- one_case.sh
+|  |  |  |  |  |-- parse_args.sh
+|  |  |  |  |  |-- pass_test.sh
+|  |  |  |  |  |-- rec
+|  |  |  |  |  |  |-- rec_ambiguous_struct.cc
+|  |  |  |  |  |  |-- rec_anon_struct.cc
+|  |  |  |  |  |  |-- rec_anon_union.cc
+|  |  |  |  |  |  |-- rec_class.cc
+|  |  |  |  |  |  |-- rec_class_base.cc
+|  |  |  |  |  |  |-- rec_class_base_dependent.cc
+|  |  |  |  |  |  |-- rec_class_base_recurring.cc
+|  |  |  |  |  |  |-- rec_class_header_completes.cc
+|  |  |  |  |  |  |-- rec_class_header_completes.h
+|  |  |  |  |  |  |-- rec_class_macro.cc
+|  |  |  |  |  |  |-- rec_class_member_defn_call.cc
+|  |  |  |  |  |  |-- rec_ctor_implicit_refs.cc
+|  |  |  |  |  |  |-- rec_fwd_class_ref.cc
+|  |  |  |  |  |  |-- rec_fwd_class_type_ref.cc
+|  |  |  |  |  |  |-- rec_fwd_struct_name.c
+|  |  |  |  |  |  |-- rec_gnu_anon_struct.cc
+|  |  |  |  |  |  |-- rec_implicit_anchors.cc
+|  |  |  |  |  |  |-- rec_implicit_anchors_ctor.cc
+|  |  |  |  |  |  |-- rec_inner_class.cc
+|  |  |  |  |  |  |-- rec_nested_name.cc
+|  |  |  |  |  |  |-- rec_override.cc
+|  |  |  |  |  |  |-- rec_override_root.cc
+|  |  |  |  |  |  |-- rec_struct.c
+|  |  |  |  |  |  |-- rec_struct.cc
+|  |  |  |  |  |  |-- rec_struct_decl.cc
+|  |  |  |  |  |  |-- rec_union.cc
+|  |  |  |  |  |-- template
+|  |  |  |  |  |  |-- template_alias.cc
+|  |  |  |  |  |  |-- template_alias_implicit_instantiation.cc
+|  |  |  |  |  |  |-- template_alias_implicit_instantiation_decls.cc
+|  |  |  |  |  |  |-- template_arg_multiple_typename.cc
+|  |  |  |  |  |  |-- template_arg_typename.cc
+|  |  |  |  |  |  |-- template_blame_member.cc
+|  |  |  |  |  |  |-- template_blame_pspec_member.cc
+|  |  |  |  |  |  |-- template_blame_spec.cc
+|  |  |  |  |  |  |-- template_blame_spec_member.cc
+|  |  |  |  |  |  |-- template_class_ctor_default_and_init.cc
+|  |  |  |  |  |  |-- template_class_defn.cc
+|  |  |  |  |  |  |-- template_class_fn_spec.cc
+|  |  |  |  |  |  |-- template_class_inner.cc
+|  |  |  |  |  |  |-- template_class_inst_explicit.cc
+|  |  |  |  |  |  |-- template_class_inst_implicit.cc
+|  |  |  |  |  |  |-- template_class_inst_implicit_dependent.cc
+|  |  |  |  |  |  |-- template_class_inst_vs_spec.cc
+|  |  |  |  |  |  |-- template_class_ref.cc
+|  |  |  |  |  |  |-- template_class_ref_ps.cc
+|  |  |  |  |  |  |-- template_class_skip_implicit_on.cc
+|  |  |  |  |  |  |-- template_class_template_ctor.cc
+|  |  |  |  |  |  |-- template_depbase_field_ref.cc
+|  |  |  |  |  |  |-- template_dependent_ctor.cc
+|  |  |  |  |  |  |-- template_dependent_ctor_small.cc
+|  |  |  |  |  |  |-- template_dependent_dtor.cc
+|  |  |  |  |  |  |-- template_dependent_dtor_qualified.cc
+|  |  |  |  |  |  |-- template_dependent_sized_array.cc
+|  |  |  |  |  |  |-- template_depexpr_field_ref.cc
+|  |  |  |  |  |  |-- template_depname_class.cc
+|  |  |  |  |  |  |-- template_depname_field_ref.cc
+|  |  |  |  |  |  |-- template_depname_implicit.cc
+|  |  |  |  |  |  |-- template_depname_inst_class.cc
+|  |  |  |  |  |  |-- template_depname_path_graph.cc
+|  |  |  |  |  |  |-- template_depname_template_field_ref.cc
+|  |  |  |  |  |  |-- template_drop_redundant_wraiths.cc
+|  |  |  |  |  |  |-- template_drop_redundant_wraiths_expect_fail.cc
+|  |  |  |  |  |  |-- template_field.cc
+|  |  |  |  |  |  |-- template_fn_call.cc
+|  |  |  |  |  |  |-- template_fn_decl.cc
+|  |  |  |  |  |  |-- template_fn_decl_defn.cc
+|  |  |  |  |  |  |-- template_fn_defn.cc
+|  |  |  |  |  |  |-- template_fn_dependent_spec_defn.cc
+|  |  |  |  |  |  |-- template_fn_explicit_spec_completes.cc
+|  |  |  |  |  |  |-- template_fn_explicit_spec_with_default_completes.cc
+|  |  |  |  |  |  |-- template_fn_implicit_spec.cc
+|  |  |  |  |  |  |-- template_fn_inst_vs_spec.cc
+|  |  |  |  |  |  |-- template_fn_member_spec_defn.cc
+|  |  |  |  |  |  |-- template_fn_multi_decl_def.cc
+|  |  |  |  |  |  |-- template_fn_multiple_implicit_spec.cc
+|  |  |  |  |  |  |-- template_fn_overload.cc
+|  |  |  |  |  |  |-- template_fn_spec.cc
+|  |  |  |  |  |  |-- template_fn_spec_decl.cc
+|  |  |  |  |  |  |-- template_fn_spec_defn_decl.cc
+|  |  |  |  |  |  |-- template_fn_spec_defn_defn_decl_decl.cc
+|  |  |  |  |  |  |-- template_fn_spec_overload.cc
+|  |  |  |  |  |  |-- template_incomplete_array.cc
+|  |  |  |  |  |  |-- template_instance_type_from_class.cc
+|  |  |  |  |  |  |-- template_multilevel_argument.cc
+|  |  |  |  |  |  |-- template_nested_name.cc
+|  |  |  |  |  |  |-- template_pack_fn_decl.cc
+|  |  |  |  |  |  |-- template_pack_fn_mono_call.cc
+|  |  |  |  |  |  |-- template_pack_fn_pack_call.cc
+|  |  |  |  |  |  |-- template_pack_rec_pack_call.cc
+|  |  |  |  |  |  |-- template_ps_completes.cc
+|  |  |  |  |  |  |-- template_ps_decl.cc
+|  |  |  |  |  |  |-- template_ps_defn.cc
+|  |  |  |  |  |  |-- template_ps_multiple_decl.cc
+|  |  |  |  |  |  |-- template_ps_twovar_decl.cc
+|  |  |  |  |  |  |-- template_rec_override.cc
+|  |  |  |  |  |  |-- template_rec_override_root.cc
+|  |  |  |  |  |  |-- template_redundant_constituents_anchored.cc
+|  |  |  |  |  |  |-- template_static_member.cc
+|  |  |  |  |  |  |-- template_two_arg_spec.cc
+|  |  |  |  |  |  |-- template_ty_typename.cc
+|  |  |  |  |  |  |-- template_type_alias_param.cc
+|  |  |  |  |  |  |-- template_unresolved_ctor_expr.cc
+|  |  |  |  |  |  |-- template_var_constexpr.cc
+|  |  |  |  |  |  |-- template_var_decl.cc
+|  |  |  |  |  |  |-- template_var_defn.cc
+|  |  |  |  |  |  |-- template_var_defn_completes.cc
+|  |  |  |  |  |  |-- template_var_explicit_spec.cc
+|  |  |  |  |  |  |-- template_var_implicit_spec.cc
+|  |  |  |  |  |  |-- template_var_inst_total_spec.cc
+|  |  |  |  |  |  |-- template_var_ps.cc
+|  |  |  |  |  |  |-- template_var_ps_completes.cc
+|  |  |  |  |  |  |-- template_var_ps_implicit_spec.cc
+|  |  |  |  |  |  |-- template_var_ref_ps.cc
+|  |  |  |  |  |-- test_fail_index.cc
+|  |  |  |  |  |-- test_fail_verify.cc
+|  |  |  |  |  |-- test_index_pack.sh
+|  |  |  |  |  |-- test_kindex.sh
+|  |  |  |  |  |-- test_vnames.json
+|  |  |-- tools
+|  |  |  |-- BUILD
+|  |  |  |-- fyi
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- fyi.cc
+|  |  |  |  |-- fyi.h
+|  |  |  |  |-- fyi_main.cc
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- basic.cc
+|  |  |  |  |  |-- basic.cc.expected
+|  |  |  |  |  |-- basic.cc.json
+|  |  |  |  |  |-- basic.h
+|  |  |  |  |  |-- basic_test.sh
+|  |  |  |  |  |-- compile_commands.json.in
+|  |  |  |  |  |-- hopeless.cc
+|  |  |  |  |  |-- hopeless.cc.json
+|  |  |  |  |  |-- hopeless_test.sh
+|  |  |  |  |  |-- nothing.cc
+|  |  |  |  |  |-- nothing.cc.expected
+|  |  |  |  |  |-- nothing.cc.json
+|  |  |  |  |  |-- nothing_test.sh
+|  |  |  |  |  |-- test_case.sh
+|  |  |  |-- generate_compile_commands
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- extract_compile_command.cc
+|  |  |  |-- kindex_tool_main.cc
+|  |  |  |-- shuck_main.cc
+|  |  |  |-- static_claim_main.cc
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- claim_test.expected
+|  |  |  |  |-- claim_test_1.kindex_UNIT
+|  |  |  |  |-- claim_test_2.kindex_UNIT
+|  |  |  |  |-- def_decl_test.cc
+|  |  |  |  |-- def_decl_test.sh
+|  |  |  |  |-- java.kindex_UNIT
+|  |  |  |  |-- java.kindex_cf28b786fa21d0c45156e8011ac809afc454703fa03d767a5aeeed382f902795
+|  |  |  |  |-- test_claim_tool_index_pack.sh
+|  |  |  |  |-- test_claim_tool_kindex.sh
+|  |  |  |  |-- test_kindex_tool.sh
+|  |  |-- verifier
+|  |  |  |-- BUILD
+|  |  |  |-- assertion_ast.h
+|  |  |  |-- assertions.cc
+|  |  |  |-- assertions.h
+|  |  |  |-- assertions.lex
+|  |  |  |-- assertions.yy
+|  |  |  |-- pretty_printer.cc
+|  |  |  |-- pretty_printer.h
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- just_file_node.bin
+|  |  |  |  |-- just_file_node.dot
+|  |  |  |  |-- regex_expected_error.txt
+|  |  |  |  |-- regex_input.txt
+|  |  |  |  |-- singleton_expected_error.txt
+|  |  |  |  |-- singleton_input.txt
+|  |  |  |  |-- singleton_inspect_expected_error.txt
+|  |  |  |  |-- singleton_inspect_input.txt
+|  |  |  |  |-- test_outputs.sh
+|  |  |  |  |-- test_singleton.sh
+|  |  |  |  |-- test_verifier_cmd.sh
+|  |  |  |  |-- test_verifier_regex.sh
+|  |  |  |-- verifier.cc
+|  |  |  |-- verifier.h
+|  |  |  |-- verifier_main.cc
+|  |  |  |-- verifier_unit_test.cc
+|  |-- data
+|  |  |-- BUILD
+|  |  |-- test_filevnames.sh
+|  |  |-- vnames.json
+|  |-- docs
+|  |  |-- .gitignore
+|  |  |-- BUILD
+|  |  |-- example-linux.txt
+|  |  |-- exploring-kythe-sample-web-ui.txt
+|  |  |-- kythe-compatible-compilers.txt
+|  |  |-- kythe-compilation-database.txt
+|  |  |-- kythe-index-pack.txt
+|  |  |-- kythe-overview.txt
+|  |  |-- kythe-storage.txt
+|  |  |-- kythe-uri-spec.txt
+|  |  |-- kythe-verifier.txt
+|  |  |-- kythes-command-line-tool.txt
+|  |  |-- modeling-libraries.txt
+|  |  |-- schema
+|  |  |  |-- BUILD
+|  |  |  |-- asciidoc_with_verifier.bzl
+|  |  |  |-- callgraph.txt
+|  |  |  |-- example-clike.sh
+|  |  |  |-- example-cxx.sh
+|  |  |  |-- example-dot.sh
+|  |  |  |-- example-go.sh
+|  |  |  |-- example-java.sh
+|  |  |  |-- example-objc.sh
+|  |  |  |-- example.sh
+|  |  |  |-- indexing-protobuf.txt
+|  |  |  |-- java-schema-file-data-template.FileData
+|  |  |  |-- java-schema-unit-template.CompilationUnit
+|  |  |  |-- kythe-filter.conf
+|  |  |  |-- marked-source.txt
+|  |  |  |-- schema.txt
+|  |  |  |-- verifierstyle.txt
+|  |  |  |-- writing-an-indexer.txt
+|  |-- examples
+|  |  |-- bazel
+|  |  |  |-- BUILD.src.data
+|  |  |  |-- BUILD.third_party
+|  |  |  |-- kythe-index.sh
+|  |  |  |-- kythe_config.json
+|  |  |  |-- setup-bazel-repo.sh
+|  |  |-- proto
+|  |  |  |-- BUILD
+|  |  |  |-- example.proto
+|  |  |  |-- proto_indexer.cc
+|  |  |  |-- proto_user.cc
+|  |  |  |-- test_direct_index_proto_user.sh
+|  |-- extractors
+|  |  |-- bazel
+|  |  |  |-- extract.sh
+|  |  |-- cmake
+|  |  |  |-- BUILD
+|  |  |  |-- extract_compilation_database.sh
+|  |  |  |-- test_extract_compilation_database.sh
+|  |  |  |-- testdata
+|  |  |  |  |-- compilation_database.json
+|  |  |  |  |-- expected.file
+|  |  |  |  |-- expected.unit
+|  |  |  |  |-- test_file.cc
+|  |  |-- openjdk
+|  |  |  |-- BUILD
+|  |  |  |-- Dockerfile
+|  |  |  |-- extract.sh
+|  |  |  |-- run.sh
+|  |-- go
+|  |  |-- extractors
+|  |  |  |-- bazel
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- extractor.go
+|  |  |  |  |-- extractor_test.go
+|  |  |  |  |-- extractors.bzl
+|  |  |  |  |-- utils.go
+|  |  |  |-- cmd
+|  |  |  |  |-- bazel
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- bazel_go_extractor.go
+|  |  |  |  |  |-- extract_kindex.go
+|  |  |  |  |  |-- govnames.json
+|  |  |  |  |  |-- govnames_test.json
+|  |  |  |  |-- gotool
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- gotool.go
+|  |  |  |-- golang
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- golang.go
+|  |  |  |-- govname
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- govname.go
+|  |  |  |  |-- govname_test.go
+|  |  |-- indexer
+|  |  |  |-- BUILD
+|  |  |  |-- cmd
+|  |  |  |  |-- go_example
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- go_example.go
+|  |  |  |  |-- go_indexer
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- go_indexer.go
+|  |  |  |-- emit.go
+|  |  |  |-- facts.go
+|  |  |  |-- indexer.go
+|  |  |  |-- indexer_test.go
+|  |  |  |-- testdata
+|  |  |  |  |-- basic
+|  |  |  |  |  |-- anchors.go
+|  |  |  |  |  |-- anonymous.go
+|  |  |  |  |  |-- comments.go
+|  |  |  |  |  |-- filenode.go
+|  |  |  |  |  |-- funcall.go
+|  |  |  |  |  |-- functions.go
+|  |  |  |  |  |-- imports.go
+|  |  |  |  |  |-- locals.go
+|  |  |  |  |  |-- packages.go
+|  |  |  |  |  |-- satisfies.go
+|  |  |  |  |  |-- structref.go
+|  |  |  |  |  |-- typespec.go
+|  |  |  |  |  |-- vardef.go
+|  |  |  |  |  |-- varref.go
+|  |  |  |  |-- code
+|  |  |  |  |  |-- funcdecl.go
+|  |  |  |  |  |-- interface.go
+|  |  |  |  |  |-- methdecl.go
+|  |  |  |  |  |-- pkgvar.go
+|  |  |  |  |  |-- structtype.go
+|  |  |  |  |-- foo.a
+|  |  |  |  |-- foo.go
+|  |  |  |  |-- go_indexer_test.bzl
+|  |  |  |  |-- integration
+|  |  |  |  |  |-- marked_source.go
+|  |  |  |  |-- meta.go
+|  |  |  |  |-- meta.go.linkage
+|  |  |  |  |-- override.go
+|  |  |  |  |-- structinit.go
+|  |  |  |  |-- syntax.go
+|  |  |  |  |-- unsafe.go
+|  |  |-- platform
+|  |  |  |-- analysis
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- analysis.go
+|  |  |  |  |-- driver
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- driver.go
+|  |  |  |  |  |-- driver_test.go
+|  |  |  |  |-- local
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- local.go
+|  |  |  |  |-- proxy
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- proxy.go
+|  |  |  |  |  |-- proxy_test.go
+|  |  |  |  |-- remote
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- remote.go
+|  |  |  |-- cache
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- cache.go
+|  |  |  |  |-- cache_test.go
+|  |  |  |-- delimited
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- copy.go
+|  |  |  |  |-- dedup
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- dedup.go
+|  |  |  |  |-- delimited.go
+|  |  |  |  |-- delimited_test.go
+|  |  |  |-- indexpack
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- indexpack.go
+|  |  |  |  |-- indexpack_test.go
+|  |  |  |-- kcd
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- kcd.go
+|  |  |  |  |-- kcd_test.go
+|  |  |  |  |-- kythe
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- units.go
+|  |  |  |  |  |-- units_test.go
+|  |  |  |  |-- locked
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- locked.go
+|  |  |  |  |-- memdb
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- memdb.go
+|  |  |  |  |  |-- memdb_test.go
+|  |  |  |  |-- packdb
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- packdb.go
+|  |  |  |  |  |-- packdb_test.go
+|  |  |  |  |-- testutil
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- testutil.go
+|  |  |  |-- kindex
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- kindex.go
+|  |  |  |  |-- kindex_test.go
+|  |  |  |-- tools
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- analyzer_driver
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- analyzer_driver.go
+|  |  |  |  |-- dedup_stream
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- dedup_stream.go
+|  |  |  |  |-- entrystream
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- entrystream.go
+|  |  |  |  |-- indexpack
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- indexpack.go
+|  |  |  |  |-- indexpack_test.sh
+|  |  |  |  |-- kindex_file_generator
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- kindex_file_generator.go
+|  |  |  |  |  |-- kindex_file_generator_test.sh
+|  |  |  |  |-- ktags
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- ktags.go
+|  |  |  |  |-- shasum_tool
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- shasum_tool.go
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- analyzer_driver_test.sh
+|  |  |  |  |-- viewindex
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- viewindex.go
+|  |  |  |-- vfs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- vfs.go
+|  |  |  |  |-- zip
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- fs.go
+|  |  |-- services
+|  |  |  |-- cli
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- cli.go
+|  |  |  |  |-- command_decor.go
+|  |  |  |  |-- command_diagnostics.go
+|  |  |  |  |-- command_docs.go
+|  |  |  |  |-- command_edges.go
+|  |  |  |  |-- command_ls.go
+|  |  |  |  |-- command_nodes.go
+|  |  |  |  |-- command_source.go
+|  |  |  |  |-- commands_xrefs.go
+|  |  |  |-- filetree
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- filetree.go
+|  |  |  |-- graphstore
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- compare
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- compare.go
+|  |  |  |  |  |-- compare_test.go
+|  |  |  |  |-- graphstore.go
+|  |  |  |  |-- grpc
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- grpc.go
+|  |  |  |  |-- proxy
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- proxy.go
+|  |  |  |  |  |-- proxy_test.go
+|  |  |  |-- web
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- web.go
+|  |  |  |-- xrefs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- xrefs.go
+|  |  |  |  |-- xrefs_test.go
+|  |  |-- serving
+|  |  |  |-- api
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- api.go
+|  |  |  |-- filetree
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- filetree.go
+|  |  |  |-- pipeline
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- paths
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- paths.go
+|  |  |  |  |  |-- paths_test.go
+|  |  |  |  |-- pipeline.go
+|  |  |  |-- pq
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- pq.go
+|  |  |  |  |-- pq_build.go
+|  |  |  |  |-- pq_filetree.go
+|  |  |  |  |-- pq_xrefs.go
+|  |  |  |-- tools
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- http_server
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- http_server.go
+|  |  |  |  |-- kwazthis
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- kwazthis.go
+|  |  |  |  |-- kythe
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- kythe.go
+|  |  |  |  |-- pq
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- pq.go
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- debug_serving.sh
+|  |  |  |  |  |-- entries2tables.sh
+|  |  |  |  |  |-- kwazthis_test.sh
+|  |  |  |  |  |-- write_tables_test.sh
+|  |  |  |  |-- write_tables
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- write_tables.go
+|  |  |  |-- xrefs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- assemble
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- assemble.go
+|  |  |  |  |  |-- assemble_test.go
+|  |  |  |  |-- xrefs.go
+|  |  |  |  |-- xrefs_test.go
+|  |  |-- storage
+|  |  |  |-- entryset
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- entryset.go
+|  |  |  |  |-- entryset_test.go
+|  |  |  |-- gsutil
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- gsutil.go
+|  |  |  |-- inmemory
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- inmemory.go
+|  |  |  |-- keyvalue
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- keyvalue.go
+|  |  |  |  |-- keyvalue_test.go
+|  |  |  |-- leveldb
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- leveldb.go
+|  |  |  |  |-- leveldb_test.go
+|  |  |  |-- stream
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- stream.go
+|  |  |  |  |-- stream_test.go
+|  |  |  |-- table
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- table.go
+|  |  |  |-- tools
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- directory_indexer
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- directory_indexer.go
+|  |  |  |  |-- read_entries
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- read_entries.go
+|  |  |  |  |-- triples
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- triples.go
+|  |  |  |  |-- write_entries
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- write_entries.go
+|  |  |-- test
+|  |  |  |-- services
+|  |  |  |  |-- graphstore
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- graphstore.go
+|  |  |  |  |-- xrefs
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- xrefs.go
+|  |  |  |-- storage
+|  |  |  |  |-- keyvalue
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- keyvalue.go
+|  |  |  |-- testutil
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- testutil.go
+|  |  |  |-- tools
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- http_server
+|  |  |  |  |  |-- http_server.go
+|  |  |  |  |-- xrefs_atomizer
+|  |  |  |  |  |-- xrefs_atomizer.go
+|  |  |-- util
+|  |  |  |-- archive
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- reader.go
+|  |  |  |  |-- reader_test.go
+|  |  |  |-- build
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- build.go
+|  |  |  |-- datasize
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- datasize.go
+|  |  |  |  |-- datasize_test.go
+|  |  |  |-- dedup
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dedup.go
+|  |  |  |  |-- dedup_test.go
+|  |  |  |-- disksort
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- disksort.go
+|  |  |  |  |-- disksort_test.go
+|  |  |  |-- encoding
+|  |  |  |  |-- rdf
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- rdf.go
+|  |  |  |  |  |-- rdf_test.go
+|  |  |  |  |-- text
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- text.go
+|  |  |  |-- flagutil
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- flagutil.go
+|  |  |  |-- html
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- html.go
+|  |  |  |  |-- html_test.go
+|  |  |  |-- httpencoding
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- httpencoding.go
+|  |  |  |-- kytheuri
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- bench_test.go
+|  |  |  |  |-- escape.go
+|  |  |  |  |-- uri.go
+|  |  |  |  |-- uri_test.go
+|  |  |  |-- markedsource
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- markedsource.go
+|  |  |  |  |-- markedsource_test.go
+|  |  |  |-- metadata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- metadata.go
+|  |  |  |  |-- metadata_test.go
+|  |  |  |-- netutil
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- netutil.go
+|  |  |  |  |-- netutil_test.go
+|  |  |  |-- pager
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- pager.go
+|  |  |  |  |-- pager_test.go
+|  |  |  |-- process
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- async.go
+|  |  |  |  |-- process_test.go
+|  |  |  |-- profile
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- profile.go
+|  |  |  |-- ptypes
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- ptypes.go
+|  |  |  |  |-- ptypes_test.go
+|  |  |  |-- reduce
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- reduce.go
+|  |  |  |  |-- reduce_sort.go
+|  |  |  |  |-- reduce_test.go
+|  |  |  |-- schema
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- edges
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- edges.go
+|  |  |  |  |  |-- edges_test.go
+|  |  |  |  |-- facts
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- facts.go
+|  |  |  |  |-- nodes
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- nodes.go
+|  |  |  |  |-- schema.go
+|  |  |  |  |-- schema_test.go
+|  |  |  |  |-- tickets
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- tickets.go
+|  |  |  |  |  |-- tickets_test.go
+|  |  |  |-- sortutil
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- sortutil.go
+|  |  |  |-- tools
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- extractschema
+|  |  |  |  |  |-- extractschema.go
+|  |  |  |  |-- print_extra_action
+|  |  |  |  |  |-- print_extra_action.go
+|  |  |  |  |-- print_test_status
+|  |  |  |  |  |-- print_test_status.go
+|  |  |  |  |-- scan_leveldb
+|  |  |  |  |  |-- scan_leveldb.go
+|  |  |  |-- vnameutil
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- order.go
+|  |  |  |  |-- order_test.go
+|  |  |  |  |-- rewrite.go
+|  |  |  |  |-- rewrite_test.go
+|  |  |  |  |-- test
+|  |  |  |  |  |-- macros.bzl
+|  |  |  |  |  |-- test_vname_rules.go
+|  |-- java
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- devtools
+|  |  |  |  |  |-- kythe
+|  |  |  |  |  |  |-- analyzers
+|  |  |  |  |  |  |  |-- base
+|  |  |  |  |  |  |  |  |-- AbstractCompilationAnalyzer.java
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- CorpusPath.java
+|  |  |  |  |  |  |  |  |-- EdgeKind.java
+|  |  |  |  |  |  |  |  |-- EntrySet.java
+|  |  |  |  |  |  |  |  |-- FactEmitter.java
+|  |  |  |  |  |  |  |  |-- GRPCCompilationAnalyzer.java
+|  |  |  |  |  |  |  |  |-- IndexerConfig.java
+|  |  |  |  |  |  |  |  |-- KytheEntrySets.java
+|  |  |  |  |  |  |  |  |-- NodeKind.java
+|  |  |  |  |  |  |  |  |-- StreamFactEmitter.java
+|  |  |  |  |  |  |  |-- indexer.bazelproject
+|  |  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- JavaEntrySets.java
+|  |  |  |  |  |  |  |  |-- JavaIndexer.java
+|  |  |  |  |  |  |  |  |-- JavaIndexerConfig.java
+|  |  |  |  |  |  |  |  |-- JavaIndexerServer.java
+|  |  |  |  |  |  |  |  |-- JavaNode.java
+|  |  |  |  |  |  |  |  |-- KytheDocTreeScanner.java
+|  |  |  |  |  |  |  |  |-- KytheJavacAnalyzer.java
+|  |  |  |  |  |  |  |  |-- KytheTreeScanner.java
+|  |  |  |  |  |  |  |  |-- MiniAnchor.java
+|  |  |  |  |  |  |  |  |-- NameVisitor.java
+|  |  |  |  |  |  |  |  |-- SourceText.java
+|  |  |  |  |  |  |  |  |-- TreeContext.java
+|  |  |  |  |  |  |  |  |-- wrapped_indexer.sh
+|  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- FormattingLogger.java
+|  |  |  |  |  |  |-- extractors
+|  |  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- InputUsageRecord.java
+|  |  |  |  |  |  |  |  |-- JavaCompilationUnitExtractor.java
+|  |  |  |  |  |  |  |  |-- ProcessAnnotation.java
+|  |  |  |  |  |  |  |  |-- UsageAsInputReportingFileManager.java
+|  |  |  |  |  |  |  |  |-- UsageAsInputReportingJavaFileObject.java
+|  |  |  |  |  |  |  |  |-- bazel
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- JavaExtractor.java
+|  |  |  |  |  |  |  |  |-- maven
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- Dockerfile
+|  |  |  |  |  |  |  |  |-- standalone
+|  |  |  |  |  |  |  |  |  |-- AbstractJavacWrapper.java
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- Dockerfile
+|  |  |  |  |  |  |  |  |  |-- Javac8Wrapper.java
+|  |  |  |  |  |  |  |  |  |-- javac-wrapper.sh
+|  |  |  |  |  |  |  |-- shared
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- CompilationDescription.java
+|  |  |  |  |  |  |  |  |-- CompilationFileInputComparator.java
+|  |  |  |  |  |  |  |  |-- ExtractionException.java
+|  |  |  |  |  |  |  |  |-- ExtractorUtils.java
+|  |  |  |  |  |  |  |  |-- FileVNames.java
+|  |  |  |  |  |  |  |  |-- IndexInfoUtils.java
+|  |  |  |  |  |  |-- platform
+|  |  |  |  |  |  |  |-- indexpack
+|  |  |  |  |  |  |  |  |-- Archive.java
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- JavaCompilationDetails.java
+|  |  |  |  |  |  |  |  |-- JavacAnalysisDriver.java
+|  |  |  |  |  |  |  |  |-- JavacAnalyzer.java
+|  |  |  |  |  |  |  |  |-- JavacOptionsUtils.java
+|  |  |  |  |  |  |  |  |-- filemanager
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- CompilationUnitBasedJavaFileManager.java
+|  |  |  |  |  |  |  |  |  |-- CompilationUnitBasedJavaFileStore.java
+|  |  |  |  |  |  |  |  |  |-- CompilationUnitFileTree.java
+|  |  |  |  |  |  |  |  |  |-- CustomFileObject.java
+|  |  |  |  |  |  |  |  |  |-- CustomJavaFileObject.java
+|  |  |  |  |  |  |  |  |  |-- JavaFileStore.java
+|  |  |  |  |  |  |  |  |  |-- JavaFileStoreBasedFileManager.java
+|  |  |  |  |  |  |  |  |-- helpers
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- BlockAnonymousSignatureGenerator.java
+|  |  |  |  |  |  |  |  |  |-- JCTreeScanner.java
+|  |  |  |  |  |  |  |  |  |-- JavacUtil.java
+|  |  |  |  |  |  |  |  |  |-- MemoizedTreePathScanner.java
+|  |  |  |  |  |  |  |  |  |-- SignatureGenerator.java
+|  |  |  |  |  |  |  |  |  |-- SyntaxPreservingScanner.java
+|  |  |  |  |  |  |  |-- shared
+|  |  |  |  |  |  |  |  |-- AnalysisException.java
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- FileDataCache.java
+|  |  |  |  |  |  |  |  |-- FileDataDirectory.java
+|  |  |  |  |  |  |  |  |-- FileDataProvider.java
+|  |  |  |  |  |  |  |  |-- KytheMetadataLoader.java
+|  |  |  |  |  |  |  |  |-- MemoryStatisticsCollector.java
+|  |  |  |  |  |  |  |  |-- Metadata.java
+|  |  |  |  |  |  |  |  |-- MetadataLoader.java
+|  |  |  |  |  |  |  |  |-- MetadataLoaders.java
+|  |  |  |  |  |  |  |  |-- NullStatisticsCollector.java
+|  |  |  |  |  |  |  |  |-- ProtobufMetadataLoader.java
+|  |  |  |  |  |  |  |  |-- RemoteFileData.java
+|  |  |  |  |  |  |  |  |-- StatisticsCollector.java
+|  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- DeleteRecursively.java
+|  |  |  |  |  |  |  |-- JsonUtil.java
+|  |  |  |  |  |  |  |-- KytheURI.java
+|  |  |  |  |  |  |  |-- PositionMappings.java
+|  |  |  |  |  |  |  |-- Span.java
+|  |-- javatests
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- devtools
+|  |  |  |  |  |-- kythe
+|  |  |  |  |  |  |-- analyzers
+|  |  |  |  |  |  |  |-- base
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- StreamFactEmitterTest.java
+|  |  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- MiniAnchorTest.java
+|  |  |  |  |  |  |  |  |-- indexer_empty_cu_test.sh
+|  |  |  |  |  |  |  |  |-- indexer_source_root_test.sh
+|  |  |  |  |  |  |  |  |-- indexer_test.sh
+|  |  |  |  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- DefaultPackage.java
+|  |  |  |  |  |  |  |  |  |-- corner_case.kindex
+|  |  |  |  |  |  |  |  |  |-- pkg
+|  |  |  |  |  |  |  |  |  |  |-- AnnotationComments.java
+|  |  |  |  |  |  |  |  |  |  |-- Annotations.java
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- Callgraph.java
+|  |  |  |  |  |  |  |  |  |  |-- Classes.java
+|  |  |  |  |  |  |  |  |  |  |-- Comments.java
+|  |  |  |  |  |  |  |  |  |  |-- CrossFile.java
+|  |  |  |  |  |  |  |  |  |  |-- Definitions.java
+|  |  |  |  |  |  |  |  |  |  |-- Enums.java
+|  |  |  |  |  |  |  |  |  |  |-- Files.java
+|  |  |  |  |  |  |  |  |  |  |-- GenericClass.java
+|  |  |  |  |  |  |  |  |  |  |-- GenericComments.java
+|  |  |  |  |  |  |  |  |  |  |-- GenericMethod.java
+|  |  |  |  |  |  |  |  |  |  |-- GenericMethodRef.java
+|  |  |  |  |  |  |  |  |  |  |-- Generics.java
+|  |  |  |  |  |  |  |  |  |  |-- Imports.java
+|  |  |  |  |  |  |  |  |  |  |-- Inheritance.java
+|  |  |  |  |  |  |  |  |  |  |-- Interfaces.java
+|  |  |  |  |  |  |  |  |  |  |-- Lambdas.java
+|  |  |  |  |  |  |  |  |  |  |-- MarkedSource.java
+|  |  |  |  |  |  |  |  |  |  |-- MemberReferences.java
+|  |  |  |  |  |  |  |  |  |  |-- Metadata.java
+|  |  |  |  |  |  |  |  |  |  |-- Metadata.java.meta
+|  |  |  |  |  |  |  |  |  |  |-- Methods.java
+|  |  |  |  |  |  |  |  |  |  |-- Names.java
+|  |  |  |  |  |  |  |  |  |  |-- ProtobufMetadata.java
+|  |  |  |  |  |  |  |  |  |  |-- ProtobufMetadata.java.pb.meta
+|  |  |  |  |  |  |  |  |  |  |-- Selectors.java
+|  |  |  |  |  |  |  |  |  |  |-- Snippets.java
+|  |  |  |  |  |  |  |  |  |  |-- StaticMethods.java
+|  |  |  |  |  |  |  |  |  |  |-- Variables.java
+|  |  |  |  |  |  |  |  |  |  |-- WildcardMethod.java
+|  |  |  |  |  |  |  |  |  |  |-- protobuf_vnames.json
+|  |  |  |  |  |  |-- extractors
+|  |  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- JavaExtractorTest.java
+|  |  |  |  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |  |  |  |-- child
+|  |  |  |  |  |  |  |  |  |  |-- derived
+|  |  |  |  |  |  |  |  |  |  |  |-- B.java
+|  |  |  |  |  |  |  |  |  |-- deps
+|  |  |  |  |  |  |  |  |  |  |-- A.java
+|  |  |  |  |  |  |  |  |  |  |-- B.java
+|  |  |  |  |  |  |  |  |  |  |-- C.java
+|  |  |  |  |  |  |  |  |  |-- empty
+|  |  |  |  |  |  |  |  |  |  |-- Empty.java
+|  |  |  |  |  |  |  |  |  |  |-- fake-rt.jar
+|  |  |  |  |  |  |  |  |  |-- error
+|  |  |  |  |  |  |  |  |  |  |-- Crash.java
+|  |  |  |  |  |  |  |  |  |-- hitchhikers
+|  |  |  |  |  |  |  |  |  |  |-- A.java
+|  |  |  |  |  |  |  |  |  |  |-- B.java
+|  |  |  |  |  |  |  |  |  |-- jarred.jar
+|  |  |  |  |  |  |  |  |  |-- one
+|  |  |  |  |  |  |  |  |  |  |-- pkg
+|  |  |  |  |  |  |  |  |  |  |  |-- A.java
+|  |  |  |  |  |  |  |  |  |-- parent
+|  |  |  |  |  |  |  |  |  |  |-- base
+|  |  |  |  |  |  |  |  |  |  |  |-- A.class
+|  |  |  |  |  |  |  |  |  |  |  |-- C.class
+|  |  |  |  |  |  |  |  |  |-- path
+|  |  |  |  |  |  |  |  |  |  |-- B.java
+|  |  |  |  |  |  |  |  |  |  |-- sub
+|  |  |  |  |  |  |  |  |  |  |  |-- A.java
+|  |  |  |  |  |  |  |  |  |-- pkg
+|  |  |  |  |  |  |  |  |  |  |-- A.java
+|  |  |  |  |  |  |  |  |  |  |-- B.java
+|  |  |  |  |  |  |  |  |  |  |-- M.java
+|  |  |  |  |  |  |  |  |  |  |-- M.java.meta
+|  |  |  |  |  |  |  |  |  |-- processor
+|  |  |  |  |  |  |  |  |  |  |-- Silly.java
+|  |  |  |  |  |  |  |  |  |  |-- SillyProcessor.java
+|  |  |  |  |  |  |  |  |  |  |-- SillyUser.java
+|  |  |  |  |  |  |  |  |  |-- two
+|  |  |  |  |  |  |  |  |  |  |-- pkg
+|  |  |  |  |  |  |  |  |  |  |  |-- B.java
+|  |  |  |  |  |  |  |-- shared
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- ExtractorUtilsTest.java
+|  |  |  |  |  |  |  |  |-- FileVNamesTest.java
+|  |  |  |  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |  |  |  |-- sample.txt
+|  |  |  |  |  |  |-- platform
+|  |  |  |  |  |  |  |-- indexpack
+|  |  |  |  |  |  |  |  |-- ArchiveTest.java
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- OptionsTest.java
+|  |  |  |  |  |  |  |  |-- filemanager
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- CompilationUnitFileTreeTest.java
+|  |  |  |  |  |  |  |-- shared
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- FileDataCacheTest.java
+|  |  |  |  |  |  |  |  |-- FileDataDirectoryTest.java
+|  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- KytheURITest.java
+|  |  |  |  |  |  |  |-- PositionMappingsTest.java
+|  |-- ocaml
+|  |  |-- .ocp-indent
+|  |  |-- js_indexer
+|  |  |  |-- dumpKytheCommand.ml
+|  |  |  |-- dumpKytheService_js.ml
+|  |  |  |-- flow.patch
+|  |-- proto
+|  |  |-- BUILD
+|  |  |-- analysis.proto
+|  |  |-- analysis_proto
+|  |  |  |-- analysis.pb.go
+|  |  |-- analysis_service.proto
+|  |  |-- analysis_service_proto
+|  |  |  |-- analysis_service.pb.go
+|  |  |-- buildinfo.proto
+|  |  |-- buildinfo_proto
+|  |  |  |-- buildinfo.pb.go
+|  |  |-- claim.proto
+|  |  |-- common.proto
+|  |  |-- common_proto
+|  |  |  |-- common.pb.go
+|  |  |-- cxx.proto
+|  |  |-- entryset.proto
+|  |  |-- entryset_proto
+|  |  |  |-- entryset.pb.go
+|  |  |-- filecontext.proto
+|  |  |-- filecontext_proto
+|  |  |  |-- filecontext.pb.go
+|  |  |-- filetree.proto
+|  |  |-- filetree_proto
+|  |  |  |-- filetree.pb.go
+|  |  |-- generate_go_protobufs.py
+|  |  |-- go.proto
+|  |  |-- go_proto
+|  |  |  |-- go.pb.go
+|  |  |-- graph.proto
+|  |  |-- graph_proto
+|  |  |  |-- graph.pb.go
+|  |  |-- internal.proto
+|  |  |-- internal_proto
+|  |  |  |-- internal.pb.go
+|  |  |-- java.proto
+|  |  |-- serving.proto
+|  |  |-- serving_proto
+|  |  |  |-- serving.pb.go
+|  |  |-- status_service.proto
+|  |  |-- status_service_proto
+|  |  |  |-- status_service.pb.go
+|  |  |-- storage.proto
+|  |  |-- storage_proto
+|  |  |  |-- storage.pb.go
+|  |  |-- storage_service.proto
+|  |  |-- storage_service_proto
+|  |  |  |-- storage_service.pb.go
+|  |  |-- xref.proto
+|  |  |-- xref_proto
+|  |  |  |-- xref.pb.go
+|  |-- release
+|  |  |-- BUILD
+|  |  |-- Dockerfile
+|  |  |-- README.md
+|  |  |-- appengine
+|  |  |  |-- default
+|  |  |  |  |-- .gitignore
+|  |  |  |  |-- app.yaml
+|  |  |  |  |-- deploy.sh
+|  |  |  |  |-- main.go
+|  |  |  |-- xrefs
+|  |  |  |  |-- .gitignore
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Dockerfile
+|  |  |  |  |-- app.yaml
+|  |  |  |  |-- build_serving_tables.sh
+|  |  |  |  |-- deploy.sh
+|  |  |  |  |-- run_indexers.sh
+|  |  |  |  |-- server.go
+|  |  |-- base
+|  |  |  |-- BUILD
+|  |  |  |-- Dockerfile
+|  |  |  |-- fix_permissions.sh
+|  |  |-- kythe.sh
+|  |  |-- maven_extractor.sh
+|  |  |-- package_release.sh
+|  |  |-- release_test.sh
+|  |  |-- setup_release.sh
+|  |-- rust
+|  |  |-- cargo-kythe
+|  |  |  |-- .gitignore
+|  |  |  |-- Cargo.toml
+|  |  |  |-- README.md
+|  |  |  |-- build.rs
+|  |  |  |-- src
+|  |  |  |  |-- main.rs
+|  |  |-- indexer
+|  |  |  |-- .gitignore
+|  |  |  |-- BUILD
+|  |  |  |-- Cargo.toml
+|  |  |  |-- README.md
+|  |  |  |-- src
+|  |  |  |  |-- kythe
+|  |  |  |  |  |-- mod.rs
+|  |  |  |  |  |-- schema.rs
+|  |  |  |  |  |-- writer.rs
+|  |  |  |  |-- lib.rs
+|  |  |  |  |-- pass.rs
+|  |  |  |  |-- visitor.rs
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- basic
+|  |  |  |  |  |-- a.rs
+|  |  |  |  |  |-- const.rs
+|  |  |  |  |  |-- file_content.rs
+|  |  |  |  |  |-- file_node.rs
+|  |  |  |  |  |-- static.rs
+|  |  |  |  |  |-- var_ref.rs
+|  |  |  |  |  |-- vardecl_local_anchor.rs
+|  |  |  |  |  |-- vardecl_local_destructure.rs
+|  |  |  |  |  |-- vardecl_local_shadow.rs
+|  |  |  |  |-- function
+|  |  |  |  |  |-- function_call.rs
+|  |  |  |  |  |-- function_decl.rs
+|  |  |  |  |  |-- function_for_loop.rs
+|  |  |  |  |  |-- function_params.rs
+|  |  |  |  |  |-- function_reference.rs
+|  |  |  |  |  |-- function_unnamed.rs
+|  |  |  |  |  |-- impl_method_call.rs
+|  |  |  |  |  |-- method_instance_call.rs
+|  |  |  |  |  |-- method_static_call.rs
+|  |  |  |  |-- handle_results.sh
+|  |  |  |  |-- one_case.sh
+|  |  |  |  |-- parse_args.sh
+|  |  |  |  |-- rust_indexer_test.bzl
+|  |  |  |  |-- variants
+|  |  |  |  |  |-- enum_decl.rs
+|  |  |  |  |  |-- enum_pat.rs
+|  |  |  |  |  |-- struct_record.rs
+|  |  |  |  |  |-- struct_record_pat.rs
+|  |  |  |  |  |-- struct_tuple.rs
+|  |  |  |  |  |-- struct_tuple_pat.rs
+|  |  |  |  |  |-- struct_unit.rs
+|  |-- testdata
+|  |  |-- BUILD
+|  |  |-- entries.gz
+|  |  |-- java_empty.kindex
+|  |  |-- serving_table.decor.json.gz
+|  |  |-- serving_table.edgePages.json.gz
+|  |  |-- serving_table.edgeSets.json.gz
+|  |  |-- serving_table.xrefPages.json.gz
+|  |  |-- serving_table.xrefs.json.gz
+|  |  |-- test.kindex
+|  |-- typescript
+|  |  |-- .gitignore
+|  |  |-- README.md
+|  |  |-- browse
+|  |  |-- indexer.ts
+|  |  |-- languageserver
+|  |  |  |-- languageserver
+|  |  |  |  |-- README.md
+|  |  |  |  |-- package-lock.json
+|  |  |  |  |-- package.json
+|  |  |  |  |-- src
+|  |  |  |  |  |-- server.ts
+|  |  |  |  |-- test
+|  |  |  |  |  |-- dummy_test.ts
+|  |  |  |  |-- tsconfig.json
+|  |  |  |  |-- tsconfig.test.json
+|  |  |  |-- vscode-extension
+|  |  |  |  |-- .vscode
+|  |  |  |  |  |-- launch.json
+|  |  |  |  |  |-- settings.json
+|  |  |  |  |  |-- tasks.json
+|  |  |  |  |-- README.md
+|  |  |  |  |-- package-lock.json
+|  |  |  |  |-- package.json
+|  |  |  |  |-- src
+|  |  |  |  |  |-- extension.ts
+|  |  |  |  |-- tsconfig.json
+|  |  |-- package.json
+|  |  |-- test.ts
+|  |  |-- testdata
+|  |  |  |-- any.ts
+|  |  |  |-- class.ts
+|  |  |  |-- compilefail.ts
+|  |  |  |-- compilefail_import.ts
+|  |  |  |-- computed_property.ts
+|  |  |  |-- declaration.d.ts
+|  |  |  |-- declaration_import.ts
+|  |  |  |-- declare_module.d.ts
+|  |  |  |-- default_export.ts
+|  |  |  |-- default_import.ts
+|  |  |  |-- export.ts
+|  |  |  |-- expression.ts
+|  |  |  |-- fake-genfiles
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- alt_module.ts
+|  |  |  |-- function.ts
+|  |  |  |-- generic.ts
+|  |  |  |-- import.ts
+|  |  |  |-- module.ts
+|  |  |  |-- root_dirs.ts
+|  |  |  |-- scope.ts
+|  |  |  |-- tsconfig-files.json
+|  |  |  |-- tsconfig.json
+|  |  |  |-- type.ts
+|  |  |  |-- type_alias.ts
+|  |  |  |-- unicode.ts
+|  |  |-- tsconfig.json
+|  |  |-- utf8.ts
+|  |  |-- yarn.lock
+|  |-- web
+|  |  |-- site
+|  |  |  |-- .gitignore
+|  |  |  |-- Gemfile
+|  |  |  |-- Gemfile.lock
+|  |  |  |-- README.adoc
+|  |  |  |-- _config.yml
+|  |  |  |-- _data
+|  |  |  |  |-- development.yml
+|  |  |  |-- _includes
+|  |  |  |  |-- footer.html
+|  |  |  |  |-- head.html
+|  |  |  |  |-- header.html
+|  |  |  |-- _layouts
+|  |  |  |  |-- default.html
+|  |  |  |  |-- menu.html
+|  |  |  |  |-- page.html
+|  |  |  |-- _plugins
+|  |  |  |  |-- liquify_filter.rb
+|  |  |  |  |-- toc_generator.rb
+|  |  |  |-- _sass
+|  |  |  |  |-- _base.scss
+|  |  |  |  |-- _layout.scss
+|  |  |  |  |-- _syntax-highlighting.scss
+|  |  |  |-- build.sh
+|  |  |  |-- check_links.sh
+|  |  |  |-- community.md
+|  |  |  |-- contributing.md
+|  |  |  |-- css
+|  |  |  |  |-- main.scss
+|  |  |  |-- development.md
+|  |  |  |-- docs.md
+|  |  |  |-- examples.md
+|  |  |  |-- getting-started.md
+|  |  |  |-- index.html
+|  |  |  |-- js
+|  |  |  |  |-- main.js
+|  |  |  |-- schema.md
+|  |  |  |-- sync_docs.sh
+|  |  |-- ui
+|  |  |  |-- .gitignore
+|  |  |  |-- BUILD
+|  |  |  |-- dev
+|  |  |  |  |-- css
+|  |  |  |  |-- index.html
+|  |  |  |-- project.clj
+|  |  |  |-- resources
+|  |  |  |  |-- public
+|  |  |  |  |  |-- css
+|  |  |  |  |  |  |-- style.css
+|  |  |  |  |  |-- index.html
+|  |  |  |-- src-cljs
+|  |  |  |  |-- ui
+|  |  |  |  |  |-- core.cljs
+|  |  |  |  |  |-- filetree.cljs
+|  |  |  |  |  |-- schema.cljs
+|  |  |  |  |  |-- service.cljs
+|  |  |  |  |  |-- src.cljs
+|  |  |  |  |  |-- util.cljs
+|  |  |  |  |  |-- xrefs.cljs
+|-- third_party
+|  |-- BUILD
+|  |-- README
+|  |-- bazel
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- README.google
+|  |  |-- extra_actions_base_proto
+|  |  |  |-- extra_actions_base.pb.go
+|  |  |-- get_devdir.sh
+|  |  |-- get_sdkroot.sh
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- protobuf
+|  |  |  |  |  |-- extra_actions_base.proto
+|  |  |  |  |  |-- test_status.proto
+|  |  |-- test_status_proto
+|  |  |  |-- test_status.pb.go
+|  |-- empty.cc
+|  |-- go
+|  |  |-- .gitignore
+|  |  |-- BUILD
+|  |  |-- README.google
+|  |  |-- build.bzl
+|  |  |-- diff.BUILD
+|  |  |-- errors.BUILD
+|  |  |-- gapi.BUILD
+|  |  |-- gcloud.BUILD
+|  |  |-- gogo_protobuf.BUILD
+|  |  |-- grpc.BUILD
+|  |  |-- levigo.BUILD
+|  |  |-- oauth2.BUILD
+|  |  |-- pq.BUILD
+|  |  |-- protobuf.BUILD
+|  |  |-- shell.BUILD
+|  |  |-- snappy.BUILD
+|  |  |-- stringset.BUILD
+|  |  |-- subcommands.BUILD
+|  |  |-- uuid.BUILD
+|  |  |-- x_net.BUILD
+|  |  |-- x_text.BUILD
+|  |  |-- x_tools.BUILD
+|  |-- googleflags.BUILD
+|  |-- googlelog.BUILD
+|  |-- googlelog
+|  |  |-- BUILD
+|  |  |-- src
+|  |  |  |-- config.h
+|  |-- googletest.BUILD
+|  |-- grpc-java
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- README.google
+|  |  |-- compiler
+|  |  |  |-- src
+|  |  |  |  |-- java_plugin
+|  |  |  |  |  |-- cpp
+|  |  |  |  |  |  |-- java_generator.cpp
+|  |  |  |  |  |  |-- java_generator.h
+|  |  |  |  |  |  |-- java_plugin.cpp
+|  |-- gson
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- ProtoTypeAdapter.java
+|  |  |-- README.google
+|  |-- ijar
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- README.google
+|  |  |-- README.txt
+|  |  |-- classfile.cc
+|  |  |-- common.h
+|  |  |-- ijar.cc
+|  |  |-- zip.cc
+|  |  |-- zip.h
+|  |  |-- zip_main.cc
+|  |-- javac
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- README.google
+|  |  |-- javac-9-dev-r4023-1.jar
+|  |-- jq
+|  |  |-- AUTHORS
+|  |  |-- BUILD
+|  |  |-- COPYING
+|  |  |-- README
+|  |  |-- README.google
+|  |  |-- README.md
+|  |  |-- builtin.c
+|  |  |-- builtin.h
+|  |  |-- bytecode.c
+|  |  |-- bytecode.h
+|  |  |-- compile.c
+|  |  |-- compile.h
+|  |  |-- exec_stack.h
+|  |  |-- execute.c
+|  |  |-- jq.h
+|  |  |-- jq.spec
+|  |  |-- jq_parser.h
+|  |  |-- jq_test.c
+|  |  |-- jv.c
+|  |  |-- jv.h
+|  |  |-- jv_alloc.c
+|  |  |-- jv_alloc.h
+|  |  |-- jv_aux.c
+|  |  |-- jv_dtoa.c
+|  |  |-- jv_dtoa.h
+|  |  |-- jv_file.c
+|  |  |-- jv_parse.c
+|  |  |-- jv_print.c
+|  |  |-- jv_unicode.c
+|  |  |-- jv_unicode.h
+|  |  |-- jv_utf8_tables.h
+|  |  |-- lexer.c
+|  |  |-- lexer.h
+|  |  |-- lexer.l
+|  |  |-- libm.h
+|  |  |-- locfile.c
+|  |  |-- locfile.h
+|  |  |-- main.c
+|  |  |-- opcode_list.h
+|  |  |-- parser.c
+|  |  |-- parser.h
+|  |  |-- parser.y
+|  |  |-- tests
+|  |  |  |-- all.test
+|  |  |  |-- run
+|  |  |-- version.h
+|  |-- leiningen
+|  |  |-- BUILD
+|  |  |-- COPYING
+|  |  |-- README.google
+|  |  |-- lein
+|  |-- leveldb
+|  |  |-- AUTHORS
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- Makefile
+|  |  |-- NEWS
+|  |  |-- README
+|  |  |-- README.google
+|  |  |-- TODO
+|  |  |-- build_config.mk
+|  |  |-- build_detect_platform
+|  |  |-- db
+|  |  |  |-- autocompact_test.cc
+|  |  |  |-- builder.cc
+|  |  |  |-- builder.h
+|  |  |  |-- c.cc
+|  |  |  |-- c_test.c
+|  |  |  |-- corruption_test.cc
+|  |  |  |-- db_bench.cc
+|  |  |  |-- db_impl.cc
+|  |  |  |-- db_impl.h
+|  |  |  |-- db_iter.cc
+|  |  |  |-- db_iter.h
+|  |  |  |-- db_test.cc
+|  |  |  |-- dbformat.cc
+|  |  |  |-- dbformat.h
+|  |  |  |-- dbformat_test.cc
+|  |  |  |-- filename.cc
+|  |  |  |-- filename.h
+|  |  |  |-- filename_test.cc
+|  |  |  |-- leveldb_main.cc
+|  |  |  |-- log_format.h
+|  |  |  |-- log_reader.cc
+|  |  |  |-- log_reader.h
+|  |  |  |-- log_test.cc
+|  |  |  |-- log_writer.cc
+|  |  |  |-- log_writer.h
+|  |  |  |-- memtable.cc
+|  |  |  |-- memtable.h
+|  |  |  |-- repair.cc
+|  |  |  |-- skiplist.h
+|  |  |  |-- skiplist_test.cc
+|  |  |  |-- snapshot.h
+|  |  |  |-- table_cache.cc
+|  |  |  |-- table_cache.h
+|  |  |  |-- version_edit.cc
+|  |  |  |-- version_edit.h
+|  |  |  |-- version_edit_test.cc
+|  |  |  |-- version_set.cc
+|  |  |  |-- version_set.h
+|  |  |  |-- version_set_test.cc
+|  |  |  |-- write_batch.cc
+|  |  |  |-- write_batch_internal.h
+|  |  |  |-- write_batch_test.cc
+|  |  |-- doc
+|  |  |  |-- bench
+|  |  |  |  |-- db_bench_sqlite3.cc
+|  |  |  |  |-- db_bench_tree_db.cc
+|  |  |  |-- benchmark.html
+|  |  |  |-- doc.css
+|  |  |  |-- impl.html
+|  |  |  |-- index.html
+|  |  |  |-- log_format.txt
+|  |  |  |-- table_format.txt
+|  |  |-- helpers
+|  |  |  |-- memenv
+|  |  |  |  |-- memenv.cc
+|  |  |  |  |-- memenv.h
+|  |  |  |  |-- memenv_test.cc
+|  |  |-- include
+|  |  |  |-- leveldb
+|  |  |  |  |-- c.h
+|  |  |  |  |-- cache.h
+|  |  |  |  |-- comparator.h
+|  |  |  |  |-- db.h
+|  |  |  |  |-- env.h
+|  |  |  |  |-- filter_policy.h
+|  |  |  |  |-- iterator.h
+|  |  |  |  |-- options.h
+|  |  |  |  |-- slice.h
+|  |  |  |  |-- status.h
+|  |  |  |  |-- table.h
+|  |  |  |  |-- table_builder.h
+|  |  |  |  |-- write_batch.h
+|  |  |-- issues
+|  |  |  |-- issue178_test.cc
+|  |  |  |-- issue200_test.cc
+|  |  |-- port
+|  |  |  |-- README
+|  |  |  |-- atomic_pointer.h
+|  |  |  |-- port.h
+|  |  |  |-- port_example.h
+|  |  |  |-- port_posix.cc
+|  |  |  |-- port_posix.h
+|  |  |  |-- thread_annotations.h
+|  |  |  |-- win
+|  |  |  |  |-- stdint.h
+|  |  |-- table
+|  |  |  |-- block.cc
+|  |  |  |-- block.h
+|  |  |  |-- block_builder.cc
+|  |  |  |-- block_builder.h
+|  |  |  |-- filter_block.cc
+|  |  |  |-- filter_block.h
+|  |  |  |-- filter_block_test.cc
+|  |  |  |-- format.cc
+|  |  |  |-- format.h
+|  |  |  |-- iterator.cc
+|  |  |  |-- iterator_wrapper.h
+|  |  |  |-- merger.cc
+|  |  |  |-- merger.h
+|  |  |  |-- table.cc
+|  |  |  |-- table_builder.cc
+|  |  |  |-- table_test.cc
+|  |  |  |-- two_level_iterator.cc
+|  |  |  |-- two_level_iterator.h
+|  |  |-- util
+|  |  |  |-- arena.cc
+|  |  |  |-- arena.h
+|  |  |  |-- arena_test.cc
+|  |  |  |-- bloom.cc
+|  |  |  |-- bloom_test.cc
+|  |  |  |-- cache.cc
+|  |  |  |-- cache_test.cc
+|  |  |  |-- coding.cc
+|  |  |  |-- coding.h
+|  |  |  |-- coding_test.cc
+|  |  |  |-- comparator.cc
+|  |  |  |-- crc32c.cc
+|  |  |  |-- crc32c.h
+|  |  |  |-- crc32c_test.cc
+|  |  |  |-- env.cc
+|  |  |  |-- env_posix.cc
+|  |  |  |-- env_test.cc
+|  |  |  |-- filter_policy.cc
+|  |  |  |-- hash.cc
+|  |  |  |-- hash.h
+|  |  |  |-- histogram.cc
+|  |  |  |-- histogram.h
+|  |  |  |-- logging.cc
+|  |  |  |-- logging.h
+|  |  |  |-- mutexlock.h
+|  |  |  |-- options.cc
+|  |  |  |-- posix_logger.h
+|  |  |  |-- random.h
+|  |  |  |-- status.cc
+|  |  |  |-- testharness.cc
+|  |  |  |-- testharness.h
+|  |  |  |-- testutil.cc
+|  |  |  |-- testutil.h
+|  |-- libmemcached.BUILD
+|  |-- libmemcached.mem_config.h
+|  |-- llvm
+|  |  |-- .gitignore
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- README.google
+|  |  |-- src
+|  |  |  |-- BUILD
+|  |  |  |-- clang_builtin_headers.cc
+|  |  |  |-- clang_builtin_headers.h
+|  |  |  |-- cxx_extractor_preprocessor_utils.cc
+|  |  |  |-- cxx_extractor_preprocessor_utils.h
+|  |-- ocaml_b64
+|  |  |-- README.google
+|  |  |-- README.md
+|  |  |-- b64.ml
+|  |  |-- b64.mli
+|  |-- proto
+|  |  |-- BUILD
+|  |  |-- CHANGES.txt
+|  |  |-- CONTRIBUTORS.txt
+|  |  |-- LICENSE
+|  |  |-- Makefile.am
+|  |  |-- Makefile.in
+|  |  |-- README.google
+|  |  |-- README.md
+|  |  |-- WORKSPACE
+|  |  |-- aclocal.m4
+|  |  |-- any_proto
+|  |  |  |-- any.pb.go
+|  |  |-- ar-lib
+|  |  |-- autogen.sh
+|  |  |-- benchmarks
+|  |  |  |-- Makefile.am
+|  |  |  |-- Makefile.in
+|  |  |  |-- generate_datasets.cc
+|  |  |-- compile
+|  |  |-- config.guess
+|  |  |-- config.h.in
+|  |  |-- config.sub
+|  |  |-- configure
+|  |  |-- configure.ac
+|  |  |-- conformance
+|  |  |  |-- ConformanceJava.java
+|  |  |  |-- ConformanceJavaLite.java
+|  |  |  |-- Makefile.am
+|  |  |  |-- Makefile.in
+|  |  |  |-- README.md
+|  |  |  |-- conformance.proto
+|  |  |  |-- conformance_cpp.cc
+|  |  |  |-- conformance_objc.m
+|  |  |  |-- conformance_python.py
+|  |  |  |-- conformance_ruby.rb
+|  |  |  |-- conformance_test.cc
+|  |  |  |-- conformance_test.h
+|  |  |  |-- conformance_test_runner.cc
+|  |  |  |-- failure_list_cpp.txt
+|  |  |  |-- failure_list_csharp.txt
+|  |  |  |-- failure_list_java.txt
+|  |  |  |-- failure_list_objc.txt
+|  |  |  |-- failure_list_python-post26.txt
+|  |  |  |-- failure_list_python.txt
+|  |  |  |-- failure_list_python_cpp.txt
+|  |  |  |-- failure_list_ruby.txt
+|  |  |  |-- third_party
+|  |  |  |  |-- jsoncpp
+|  |  |  |  |  |-- json.h
+|  |  |  |  |  |-- jsoncpp.cpp
+|  |  |-- depcomp
+|  |  |-- editors
+|  |  |  |-- README.txt
+|  |  |  |-- proto.vim
+|  |  |  |-- protobuf-mode.el
+|  |  |-- examples
+|  |  |  |-- AddPerson.java
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- ListPeople.java
+|  |  |  |-- Makefile
+|  |  |  |-- README.txt
+|  |  |  |-- add_person.cc
+|  |  |  |-- add_person.go
+|  |  |  |-- add_person.py
+|  |  |  |-- add_person_test.go
+|  |  |  |-- addressbook.proto
+|  |  |  |-- list_people.cc
+|  |  |  |-- list_people.go
+|  |  |  |-- list_people.py
+|  |  |  |-- list_people_test.go
+|  |  |-- generate_descriptor_proto.sh
+|  |  |-- gmock.BUILD
+|  |  |-- install-sh
+|  |  |-- java
+|  |  |  |-- README.md
+|  |  |  |-- core
+|  |  |  |  |-- generate-sources-build.xml
+|  |  |  |  |-- generate-test-sources-build.xml
+|  |  |  |  |-- pom.xml
+|  |  |  |  |-- src
+|  |  |  |  |  |-- main
+|  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |  |  |-- protobuf
+|  |  |  |  |  |  |  |  |  |  |-- AbstractMessage.java
+|  |  |  |  |  |  |  |  |  |  |-- AbstractMessageLite.java
+|  |  |  |  |  |  |  |  |  |  |-- AbstractParser.java
+|  |  |  |  |  |  |  |  |  |  |-- AbstractProtobufList.java
+|  |  |  |  |  |  |  |  |  |  |-- BlockingRpcChannel.java
+|  |  |  |  |  |  |  |  |  |  |-- BlockingService.java
+|  |  |  |  |  |  |  |  |  |  |-- BooleanArrayList.java
+|  |  |  |  |  |  |  |  |  |  |-- ByteBufferWriter.java
+|  |  |  |  |  |  |  |  |  |  |-- ByteOutput.java
+|  |  |  |  |  |  |  |  |  |  |-- ByteString.java
+|  |  |  |  |  |  |  |  |  |  |-- CodedInputStream.java
+|  |  |  |  |  |  |  |  |  |  |-- CodedOutputStream.java
+|  |  |  |  |  |  |  |  |  |  |-- Descriptors.java
+|  |  |  |  |  |  |  |  |  |  |-- DoubleArrayList.java
+|  |  |  |  |  |  |  |  |  |  |-- DynamicMessage.java
+|  |  |  |  |  |  |  |  |  |  |-- ExperimentalApi.java
+|  |  |  |  |  |  |  |  |  |  |-- Extension.java
+|  |  |  |  |  |  |  |  |  |  |-- ExtensionLite.java
+|  |  |  |  |  |  |  |  |  |  |-- ExtensionRegistry.java
+|  |  |  |  |  |  |  |  |  |  |-- ExtensionRegistryFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- ExtensionRegistryLite.java
+|  |  |  |  |  |  |  |  |  |  |-- FieldSet.java
+|  |  |  |  |  |  |  |  |  |  |-- FloatArrayList.java
+|  |  |  |  |  |  |  |  |  |  |-- GeneratedMessage.java
+|  |  |  |  |  |  |  |  |  |  |-- GeneratedMessageLite.java
+|  |  |  |  |  |  |  |  |  |  |-- GeneratedMessageV3.java
+|  |  |  |  |  |  |  |  |  |  |-- IntArrayList.java
+|  |  |  |  |  |  |  |  |  |  |-- Internal.java
+|  |  |  |  |  |  |  |  |  |  |-- InvalidProtocolBufferException.java
+|  |  |  |  |  |  |  |  |  |  |-- LazyField.java
+|  |  |  |  |  |  |  |  |  |  |-- LazyFieldLite.java
+|  |  |  |  |  |  |  |  |  |  |-- LazyStringArrayList.java
+|  |  |  |  |  |  |  |  |  |  |-- LazyStringList.java
+|  |  |  |  |  |  |  |  |  |  |-- LongArrayList.java
+|  |  |  |  |  |  |  |  |  |  |-- MapEntry.java
+|  |  |  |  |  |  |  |  |  |  |-- MapEntryLite.java
+|  |  |  |  |  |  |  |  |  |  |-- MapField.java
+|  |  |  |  |  |  |  |  |  |  |-- MapFieldLite.java
+|  |  |  |  |  |  |  |  |  |  |-- Message.java
+|  |  |  |  |  |  |  |  |  |  |-- MessageLite.java
+|  |  |  |  |  |  |  |  |  |  |-- MessageLiteOrBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- MessageLiteToString.java
+|  |  |  |  |  |  |  |  |  |  |-- MessageOrBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- MessageReflection.java
+|  |  |  |  |  |  |  |  |  |  |-- MutabilityOracle.java
+|  |  |  |  |  |  |  |  |  |  |-- NioByteString.java
+|  |  |  |  |  |  |  |  |  |  |-- Parser.java
+|  |  |  |  |  |  |  |  |  |  |-- ProtobufArrayList.java
+|  |  |  |  |  |  |  |  |  |  |-- ProtocolMessageEnum.java
+|  |  |  |  |  |  |  |  |  |  |-- ProtocolStringList.java
+|  |  |  |  |  |  |  |  |  |  |-- RepeatedFieldBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- RepeatedFieldBuilderV3.java
+|  |  |  |  |  |  |  |  |  |  |-- RopeByteString.java
+|  |  |  |  |  |  |  |  |  |  |-- RpcCallback.java
+|  |  |  |  |  |  |  |  |  |  |-- RpcChannel.java
+|  |  |  |  |  |  |  |  |  |  |-- RpcController.java
+|  |  |  |  |  |  |  |  |  |  |-- RpcUtil.java
+|  |  |  |  |  |  |  |  |  |  |-- Service.java
+|  |  |  |  |  |  |  |  |  |  |-- ServiceException.java
+|  |  |  |  |  |  |  |  |  |  |-- SingleFieldBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- SingleFieldBuilderV3.java
+|  |  |  |  |  |  |  |  |  |  |-- SmallSortedMap.java
+|  |  |  |  |  |  |  |  |  |  |-- TextFormat.java
+|  |  |  |  |  |  |  |  |  |  |-- TextFormatEscaper.java
+|  |  |  |  |  |  |  |  |  |  |-- TextFormatParseInfoTree.java
+|  |  |  |  |  |  |  |  |  |  |-- TextFormatParseLocation.java
+|  |  |  |  |  |  |  |  |  |  |-- UninitializedMessageException.java
+|  |  |  |  |  |  |  |  |  |  |-- UnknownFieldSet.java
+|  |  |  |  |  |  |  |  |  |  |-- UnknownFieldSetLite.java
+|  |  |  |  |  |  |  |  |  |  |-- UnmodifiableLazyStringList.java
+|  |  |  |  |  |  |  |  |  |  |-- UnsafeByteOperations.java
+|  |  |  |  |  |  |  |  |  |  |-- UnsafeUtil.java
+|  |  |  |  |  |  |  |  |  |  |-- Utf8.java
+|  |  |  |  |  |  |  |  |  |  |-- WireFormat.java
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |  |  |-- protobuf
+|  |  |  |  |  |  |  |  |  |  |-- AbstractMessageTest.java
+|  |  |  |  |  |  |  |  |  |  |-- AnyTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BooleanArrayListTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BoundedByteStringTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ByteBufferWriterTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ByteStringTest.java
+|  |  |  |  |  |  |  |  |  |  |-- CheckUtf8Test.java
+|  |  |  |  |  |  |  |  |  |  |-- CodedInputStreamTest.java
+|  |  |  |  |  |  |  |  |  |  |-- CodedOutputStreamTest.java
+|  |  |  |  |  |  |  |  |  |  |-- DeprecatedFieldTest.java
+|  |  |  |  |  |  |  |  |  |  |-- DescriptorsTest.java
+|  |  |  |  |  |  |  |  |  |  |-- DoubleArrayListTest.java
+|  |  |  |  |  |  |  |  |  |  |-- DynamicMessageTest.java
+|  |  |  |  |  |  |  |  |  |  |-- EnumTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ExtensionRegistryFactoryTest.java
+|  |  |  |  |  |  |  |  |  |  |-- FieldPresenceTest.java
+|  |  |  |  |  |  |  |  |  |  |-- FloatArrayListTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ForceFieldBuildersPreRun.java
+|  |  |  |  |  |  |  |  |  |  |-- GeneratedMessageTest.java
+|  |  |  |  |  |  |  |  |  |  |-- IntArrayListTest.java
+|  |  |  |  |  |  |  |  |  |  |-- IsValidUtf8Test.java
+|  |  |  |  |  |  |  |  |  |  |-- IsValidUtf8TestUtil.java
+|  |  |  |  |  |  |  |  |  |  |-- LazyFieldLiteTest.java
+|  |  |  |  |  |  |  |  |  |  |-- LazyFieldTest.java
+|  |  |  |  |  |  |  |  |  |  |-- LazyMessageLiteTest.java
+|  |  |  |  |  |  |  |  |  |  |-- LazyStringArrayListTest.java
+|  |  |  |  |  |  |  |  |  |  |-- LazyStringEndToEndTest.java
+|  |  |  |  |  |  |  |  |  |  |-- LiteEqualsAndHashTest.java
+|  |  |  |  |  |  |  |  |  |  |-- LiteTest.java
+|  |  |  |  |  |  |  |  |  |  |-- LiteralByteStringTest.java
+|  |  |  |  |  |  |  |  |  |  |-- LongArrayListTest.java
+|  |  |  |  |  |  |  |  |  |  |-- MapForProto2LiteTest.java
+|  |  |  |  |  |  |  |  |  |  |-- MapForProto2Test.java
+|  |  |  |  |  |  |  |  |  |  |-- MapTest.java
+|  |  |  |  |  |  |  |  |  |  |-- MessageTest.java
+|  |  |  |  |  |  |  |  |  |  |-- NestedBuildersTest.java
+|  |  |  |  |  |  |  |  |  |  |-- NioByteStringTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ParseExceptionsTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ParserTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ProtobufArrayListTest.java
+|  |  |  |  |  |  |  |  |  |  |-- RepeatedFieldBuilderV3Test.java
+|  |  |  |  |  |  |  |  |  |  |-- RopeByteStringSubstringTest.java
+|  |  |  |  |  |  |  |  |  |  |-- RopeByteStringTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ServiceTest.java
+|  |  |  |  |  |  |  |  |  |  |-- SingleFieldBuilderV3Test.java
+|  |  |  |  |  |  |  |  |  |  |-- SmallSortedMapTest.java
+|  |  |  |  |  |  |  |  |  |  |-- TestBadIdentifiers.java
+|  |  |  |  |  |  |  |  |  |  |-- TestUtil.java
+|  |  |  |  |  |  |  |  |  |  |-- TestUtilLite.java
+|  |  |  |  |  |  |  |  |  |  |-- TextFormatParseInfoTreeTest.java
+|  |  |  |  |  |  |  |  |  |  |-- TextFormatParseLocationTest.java
+|  |  |  |  |  |  |  |  |  |  |-- TextFormatTest.java
+|  |  |  |  |  |  |  |  |  |  |-- UnknownEnumValueTest.java
+|  |  |  |  |  |  |  |  |  |  |-- UnknownFieldSetLiteTest.java
+|  |  |  |  |  |  |  |  |  |  |-- UnknownFieldSetTest.java
+|  |  |  |  |  |  |  |  |  |  |-- UnmodifiableLazyStringListTest.java
+|  |  |  |  |  |  |  |  |  |  |-- WellKnownTypesTest.java
+|  |  |  |  |  |  |  |  |  |  |-- WireFormatTest.java
+|  |  |  |  |  |  |-- proto
+|  |  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |  |  |-- protobuf
+|  |  |  |  |  |  |  |  |  |  |-- any_test.proto
+|  |  |  |  |  |  |  |  |  |  |-- field_presence_test.proto
+|  |  |  |  |  |  |  |  |  |  |-- lazy_fields_lite.proto
+|  |  |  |  |  |  |  |  |  |  |-- lite_equals_and_hash.proto
+|  |  |  |  |  |  |  |  |  |  |-- map_for_proto2_lite_test.proto
+|  |  |  |  |  |  |  |  |  |  |-- map_for_proto2_test.proto
+|  |  |  |  |  |  |  |  |  |  |-- map_initialization_order_test.proto
+|  |  |  |  |  |  |  |  |  |  |-- map_test.proto
+|  |  |  |  |  |  |  |  |  |  |-- multiple_files_test.proto
+|  |  |  |  |  |  |  |  |  |  |-- nested_builders_test.proto
+|  |  |  |  |  |  |  |  |  |  |-- nested_extension.proto
+|  |  |  |  |  |  |  |  |  |  |-- nested_extension_lite.proto
+|  |  |  |  |  |  |  |  |  |  |-- non_nested_extension.proto
+|  |  |  |  |  |  |  |  |  |  |-- non_nested_extension_lite.proto
+|  |  |  |  |  |  |  |  |  |  |-- outer_class_name_test.proto
+|  |  |  |  |  |  |  |  |  |  |-- outer_class_name_test2.proto
+|  |  |  |  |  |  |  |  |  |  |-- outer_class_name_test3.proto
+|  |  |  |  |  |  |  |  |  |  |-- test_bad_identifiers.proto
+|  |  |  |  |  |  |  |  |  |  |-- test_check_utf8.proto
+|  |  |  |  |  |  |  |  |  |  |-- test_check_utf8_size.proto
+|  |  |  |  |  |  |  |  |  |  |-- test_custom_options.proto
+|  |  |  |  |  |  |  |  |  |  |-- test_extra_interfaces.proto
+|  |  |  |-- lite
+|  |  |  |  |-- generate-sources-build.xml
+|  |  |  |  |-- generate-test-sources-build.xml
+|  |  |  |  |-- pom.xml
+|  |  |  |-- pom.xml
+|  |  |  |-- util
+|  |  |  |  |-- pom.xml
+|  |  |  |  |-- src
+|  |  |  |  |  |-- main
+|  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |  |  |-- protobuf
+|  |  |  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |  |  |-- Durations.java
+|  |  |  |  |  |  |  |  |  |  |  |-- FieldMaskTree.java
+|  |  |  |  |  |  |  |  |  |  |  |-- FieldMaskUtil.java
+|  |  |  |  |  |  |  |  |  |  |  |-- JsonFormat.java
+|  |  |  |  |  |  |  |  |  |  |  |-- TimeUtil.java
+|  |  |  |  |  |  |  |  |  |  |  |-- Timestamps.java
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |  |  |-- protobuf
+|  |  |  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |  |  |-- FieldMaskTreeTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- FieldMaskUtilTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- JsonFormatTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- TimeUtilTest.java
+|  |  |  |  |  |  |-- proto
+|  |  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |  |  |-- protobuf
+|  |  |  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |  |  |-- json_test.proto
+|  |  |-- ltmain.sh
+|  |  |-- m4
+|  |  |  |-- ac_system_extensions.m4
+|  |  |  |-- acx_check_suncc.m4
+|  |  |  |-- acx_pthread.m4
+|  |  |  |-- libtool.m4
+|  |  |  |-- ltoptions.m4
+|  |  |  |-- ltsugar.m4
+|  |  |  |-- ltversion.m4
+|  |  |  |-- lt~obsolete.m4
+|  |  |  |-- stl_hash.m4
+|  |  |-- missing
+|  |  |-- objectivec
+|  |  |  |-- GPBProtocolBuffers.m
+|  |  |-- protobuf-lite.pc.in
+|  |  |-- protobuf.bzl
+|  |  |-- protobuf.pc.in
+|  |  |-- six.BUILD
+|  |  |-- src
+|  |  |  |-- Makefile.am
+|  |  |  |-- Makefile.in
+|  |  |  |-- README.md
+|  |  |  |-- google
+|  |  |  |  |-- protobuf
+|  |  |  |  |  |-- any.cc
+|  |  |  |  |  |-- any.h
+|  |  |  |  |  |-- any.pb.cc
+|  |  |  |  |  |-- any.pb.h
+|  |  |  |  |  |-- any.proto
+|  |  |  |  |  |-- api.pb.cc
+|  |  |  |  |  |-- api.pb.h
+|  |  |  |  |  |-- api.proto
+|  |  |  |  |  |-- arena.cc
+|  |  |  |  |  |-- arena.h
+|  |  |  |  |  |-- arena_test_util.h
+|  |  |  |  |  |-- arenastring.cc
+|  |  |  |  |  |-- arenastring.h
+|  |  |  |  |  |-- compiler
+|  |  |  |  |  |  |-- code_generator.cc
+|  |  |  |  |  |  |-- code_generator.h
+|  |  |  |  |  |  |-- command_line_interface.cc
+|  |  |  |  |  |  |-- command_line_interface.h
+|  |  |  |  |  |  |-- cpp
+|  |  |  |  |  |  |  |-- cpp_enum.cc
+|  |  |  |  |  |  |  |-- cpp_enum.h
+|  |  |  |  |  |  |  |-- cpp_enum_field.cc
+|  |  |  |  |  |  |  |-- cpp_enum_field.h
+|  |  |  |  |  |  |  |-- cpp_extension.cc
+|  |  |  |  |  |  |  |-- cpp_extension.h
+|  |  |  |  |  |  |  |-- cpp_field.cc
+|  |  |  |  |  |  |  |-- cpp_field.h
+|  |  |  |  |  |  |  |-- cpp_file.cc
+|  |  |  |  |  |  |  |-- cpp_file.h
+|  |  |  |  |  |  |  |-- cpp_generator.cc
+|  |  |  |  |  |  |  |-- cpp_generator.h
+|  |  |  |  |  |  |  |-- cpp_helpers.cc
+|  |  |  |  |  |  |  |-- cpp_helpers.h
+|  |  |  |  |  |  |  |-- cpp_map_field.cc
+|  |  |  |  |  |  |  |-- cpp_map_field.h
+|  |  |  |  |  |  |  |-- cpp_message.cc
+|  |  |  |  |  |  |  |-- cpp_message.h
+|  |  |  |  |  |  |  |-- cpp_message_field.cc
+|  |  |  |  |  |  |  |-- cpp_message_field.h
+|  |  |  |  |  |  |  |-- cpp_options.h
+|  |  |  |  |  |  |  |-- cpp_primitive_field.cc
+|  |  |  |  |  |  |  |-- cpp_primitive_field.h
+|  |  |  |  |  |  |  |-- cpp_service.cc
+|  |  |  |  |  |  |  |-- cpp_service.h
+|  |  |  |  |  |  |  |-- cpp_string_field.cc
+|  |  |  |  |  |  |  |-- cpp_string_field.h
+|  |  |  |  |  |  |  |-- cpp_unittest.h
+|  |  |  |  |  |  |-- csharp
+|  |  |  |  |  |  |  |-- csharp_doc_comment.cc
+|  |  |  |  |  |  |  |-- csharp_doc_comment.h
+|  |  |  |  |  |  |  |-- csharp_enum.cc
+|  |  |  |  |  |  |  |-- csharp_enum.h
+|  |  |  |  |  |  |  |-- csharp_enum_field.cc
+|  |  |  |  |  |  |  |-- csharp_enum_field.h
+|  |  |  |  |  |  |  |-- csharp_field_base.cc
+|  |  |  |  |  |  |  |-- csharp_field_base.h
+|  |  |  |  |  |  |  |-- csharp_generator.cc
+|  |  |  |  |  |  |  |-- csharp_generator.h
+|  |  |  |  |  |  |  |-- csharp_helpers.cc
+|  |  |  |  |  |  |  |-- csharp_helpers.h
+|  |  |  |  |  |  |  |-- csharp_map_field.cc
+|  |  |  |  |  |  |  |-- csharp_map_field.h
+|  |  |  |  |  |  |  |-- csharp_message.cc
+|  |  |  |  |  |  |  |-- csharp_message.h
+|  |  |  |  |  |  |  |-- csharp_message_field.cc
+|  |  |  |  |  |  |  |-- csharp_message_field.h
+|  |  |  |  |  |  |  |-- csharp_names.h
+|  |  |  |  |  |  |  |-- csharp_options.h
+|  |  |  |  |  |  |  |-- csharp_primitive_field.cc
+|  |  |  |  |  |  |  |-- csharp_primitive_field.h
+|  |  |  |  |  |  |  |-- csharp_reflection_class.cc
+|  |  |  |  |  |  |  |-- csharp_reflection_class.h
+|  |  |  |  |  |  |  |-- csharp_repeated_enum_field.cc
+|  |  |  |  |  |  |  |-- csharp_repeated_enum_field.h
+|  |  |  |  |  |  |  |-- csharp_repeated_message_field.cc
+|  |  |  |  |  |  |  |-- csharp_repeated_message_field.h
+|  |  |  |  |  |  |  |-- csharp_repeated_primitive_field.cc
+|  |  |  |  |  |  |  |-- csharp_repeated_primitive_field.h
+|  |  |  |  |  |  |  |-- csharp_source_generator_base.cc
+|  |  |  |  |  |  |  |-- csharp_source_generator_base.h
+|  |  |  |  |  |  |  |-- csharp_wrapper_field.cc
+|  |  |  |  |  |  |  |-- csharp_wrapper_field.h
+|  |  |  |  |  |  |-- importer.cc
+|  |  |  |  |  |  |-- importer.h
+|  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |-- java_context.cc
+|  |  |  |  |  |  |  |-- java_context.h
+|  |  |  |  |  |  |  |-- java_doc_comment.cc
+|  |  |  |  |  |  |  |-- java_doc_comment.h
+|  |  |  |  |  |  |  |-- java_enum.cc
+|  |  |  |  |  |  |  |-- java_enum.h
+|  |  |  |  |  |  |  |-- java_enum_field.cc
+|  |  |  |  |  |  |  |-- java_enum_field.h
+|  |  |  |  |  |  |  |-- java_enum_field_lite.cc
+|  |  |  |  |  |  |  |-- java_enum_field_lite.h
+|  |  |  |  |  |  |  |-- java_enum_lite.cc
+|  |  |  |  |  |  |  |-- java_enum_lite.h
+|  |  |  |  |  |  |  |-- java_extension.cc
+|  |  |  |  |  |  |  |-- java_extension.h
+|  |  |  |  |  |  |  |-- java_extension_lite.cc
+|  |  |  |  |  |  |  |-- java_extension_lite.h
+|  |  |  |  |  |  |  |-- java_field.cc
+|  |  |  |  |  |  |  |-- java_field.h
+|  |  |  |  |  |  |  |-- java_file.cc
+|  |  |  |  |  |  |  |-- java_file.h
+|  |  |  |  |  |  |  |-- java_generator.cc
+|  |  |  |  |  |  |  |-- java_generator.h
+|  |  |  |  |  |  |  |-- java_generator_factory.cc
+|  |  |  |  |  |  |  |-- java_generator_factory.h
+|  |  |  |  |  |  |  |-- java_helpers.cc
+|  |  |  |  |  |  |  |-- java_helpers.h
+|  |  |  |  |  |  |  |-- java_lazy_message_field.cc
+|  |  |  |  |  |  |  |-- java_lazy_message_field.h
+|  |  |  |  |  |  |  |-- java_lazy_message_field_lite.cc
+|  |  |  |  |  |  |  |-- java_lazy_message_field_lite.h
+|  |  |  |  |  |  |  |-- java_map_field.cc
+|  |  |  |  |  |  |  |-- java_map_field.h
+|  |  |  |  |  |  |  |-- java_map_field_lite.cc
+|  |  |  |  |  |  |  |-- java_map_field_lite.h
+|  |  |  |  |  |  |  |-- java_message.cc
+|  |  |  |  |  |  |  |-- java_message.h
+|  |  |  |  |  |  |  |-- java_message_builder.cc
+|  |  |  |  |  |  |  |-- java_message_builder.h
+|  |  |  |  |  |  |  |-- java_message_builder_lite.cc
+|  |  |  |  |  |  |  |-- java_message_builder_lite.h
+|  |  |  |  |  |  |  |-- java_message_field.cc
+|  |  |  |  |  |  |  |-- java_message_field.h
+|  |  |  |  |  |  |  |-- java_message_field_lite.cc
+|  |  |  |  |  |  |  |-- java_message_field_lite.h
+|  |  |  |  |  |  |  |-- java_message_lite.cc
+|  |  |  |  |  |  |  |-- java_message_lite.h
+|  |  |  |  |  |  |  |-- java_name_resolver.cc
+|  |  |  |  |  |  |  |-- java_name_resolver.h
+|  |  |  |  |  |  |  |-- java_names.h
+|  |  |  |  |  |  |  |-- java_options.h
+|  |  |  |  |  |  |  |-- java_primitive_field.cc
+|  |  |  |  |  |  |  |-- java_primitive_field.h
+|  |  |  |  |  |  |  |-- java_primitive_field_lite.cc
+|  |  |  |  |  |  |  |-- java_primitive_field_lite.h
+|  |  |  |  |  |  |  |-- java_service.cc
+|  |  |  |  |  |  |  |-- java_service.h
+|  |  |  |  |  |  |  |-- java_shared_code_generator.cc
+|  |  |  |  |  |  |  |-- java_shared_code_generator.h
+|  |  |  |  |  |  |  |-- java_string_field.cc
+|  |  |  |  |  |  |  |-- java_string_field.h
+|  |  |  |  |  |  |  |-- java_string_field_lite.cc
+|  |  |  |  |  |  |  |-- java_string_field_lite.h
+|  |  |  |  |  |  |-- javanano
+|  |  |  |  |  |  |  |-- javanano_enum.cc
+|  |  |  |  |  |  |  |-- javanano_enum.h
+|  |  |  |  |  |  |  |-- javanano_enum_field.cc
+|  |  |  |  |  |  |  |-- javanano_enum_field.h
+|  |  |  |  |  |  |  |-- javanano_extension.cc
+|  |  |  |  |  |  |  |-- javanano_extension.h
+|  |  |  |  |  |  |  |-- javanano_field.cc
+|  |  |  |  |  |  |  |-- javanano_field.h
+|  |  |  |  |  |  |  |-- javanano_file.cc
+|  |  |  |  |  |  |  |-- javanano_file.h
+|  |  |  |  |  |  |  |-- javanano_generator.cc
+|  |  |  |  |  |  |  |-- javanano_generator.h
+|  |  |  |  |  |  |  |-- javanano_helpers.cc
+|  |  |  |  |  |  |  |-- javanano_helpers.h
+|  |  |  |  |  |  |  |-- javanano_map_field.cc
+|  |  |  |  |  |  |  |-- javanano_map_field.h
+|  |  |  |  |  |  |  |-- javanano_message.cc
+|  |  |  |  |  |  |  |-- javanano_message.h
+|  |  |  |  |  |  |  |-- javanano_message_field.cc
+|  |  |  |  |  |  |  |-- javanano_message_field.h
+|  |  |  |  |  |  |  |-- javanano_params.h
+|  |  |  |  |  |  |  |-- javanano_primitive_field.cc
+|  |  |  |  |  |  |  |-- javanano_primitive_field.h
+|  |  |  |  |  |  |-- js
+|  |  |  |  |  |  |  |-- js_generator.cc
+|  |  |  |  |  |  |  |-- js_generator.h
+|  |  |  |  |  |  |-- main.cc
+|  |  |  |  |  |  |-- mock_code_generator.h
+|  |  |  |  |  |  |-- objectivec
+|  |  |  |  |  |  |  |-- objectivec_enum.cc
+|  |  |  |  |  |  |  |-- objectivec_enum.h
+|  |  |  |  |  |  |  |-- objectivec_enum_field.cc
+|  |  |  |  |  |  |  |-- objectivec_enum_field.h
+|  |  |  |  |  |  |  |-- objectivec_extension.cc
+|  |  |  |  |  |  |  |-- objectivec_extension.h
+|  |  |  |  |  |  |  |-- objectivec_field.cc
+|  |  |  |  |  |  |  |-- objectivec_field.h
+|  |  |  |  |  |  |  |-- objectivec_file.cc
+|  |  |  |  |  |  |  |-- objectivec_file.h
+|  |  |  |  |  |  |  |-- objectivec_generator.cc
+|  |  |  |  |  |  |  |-- objectivec_generator.h
+|  |  |  |  |  |  |  |-- objectivec_helpers.cc
+|  |  |  |  |  |  |  |-- objectivec_helpers.h
+|  |  |  |  |  |  |  |-- objectivec_map_field.cc
+|  |  |  |  |  |  |  |-- objectivec_map_field.h
+|  |  |  |  |  |  |  |-- objectivec_message.cc
+|  |  |  |  |  |  |  |-- objectivec_message.h
+|  |  |  |  |  |  |  |-- objectivec_message_field.cc
+|  |  |  |  |  |  |  |-- objectivec_message_field.h
+|  |  |  |  |  |  |  |-- objectivec_oneof.cc
+|  |  |  |  |  |  |  |-- objectivec_oneof.h
+|  |  |  |  |  |  |  |-- objectivec_primitive_field.cc
+|  |  |  |  |  |  |  |-- objectivec_primitive_field.h
+|  |  |  |  |  |  |-- package_info.h
+|  |  |  |  |  |  |-- parser.cc
+|  |  |  |  |  |  |-- parser.h
+|  |  |  |  |  |  |-- php
+|  |  |  |  |  |  |  |-- php_generator.cc
+|  |  |  |  |  |  |  |-- php_generator.h
+|  |  |  |  |  |  |-- plugin.cc
+|  |  |  |  |  |  |-- plugin.h
+|  |  |  |  |  |  |-- plugin.pb.cc
+|  |  |  |  |  |  |-- plugin.pb.h
+|  |  |  |  |  |  |-- plugin.proto
+|  |  |  |  |  |  |-- python
+|  |  |  |  |  |  |  |-- python_generator.cc
+|  |  |  |  |  |  |  |-- python_generator.h
+|  |  |  |  |  |  |-- ruby
+|  |  |  |  |  |  |  |-- ruby_generated_code.proto
+|  |  |  |  |  |  |  |-- ruby_generated_code_pb.rb
+|  |  |  |  |  |  |  |-- ruby_generator.cc
+|  |  |  |  |  |  |  |-- ruby_generator.h
+|  |  |  |  |  |  |-- subprocess.cc
+|  |  |  |  |  |  |-- subprocess.h
+|  |  |  |  |  |  |-- zip_output_unittest.sh
+|  |  |  |  |  |  |-- zip_writer.cc
+|  |  |  |  |  |  |-- zip_writer.h
+|  |  |  |  |  |-- descriptor.cc
+|  |  |  |  |  |-- descriptor.h
+|  |  |  |  |  |-- descriptor.pb.cc
+|  |  |  |  |  |-- descriptor.pb.h
+|  |  |  |  |  |-- descriptor.proto
+|  |  |  |  |  |-- descriptor_database.cc
+|  |  |  |  |  |-- descriptor_database.h
+|  |  |  |  |  |-- duration.pb.cc
+|  |  |  |  |  |-- duration.pb.h
+|  |  |  |  |  |-- duration.proto
+|  |  |  |  |  |-- dynamic_message.cc
+|  |  |  |  |  |-- dynamic_message.h
+|  |  |  |  |  |-- empty.pb.cc
+|  |  |  |  |  |-- empty.pb.h
+|  |  |  |  |  |-- empty.proto
+|  |  |  |  |  |-- extension_set.cc
+|  |  |  |  |  |-- extension_set.h
+|  |  |  |  |  |-- extension_set_heavy.cc
+|  |  |  |  |  |-- field_mask.pb.cc
+|  |  |  |  |  |-- field_mask.pb.h
+|  |  |  |  |  |-- field_mask.proto
+|  |  |  |  |  |-- generated_enum_reflection.h
+|  |  |  |  |  |-- generated_enum_util.h
+|  |  |  |  |  |-- generated_message_reflection.cc
+|  |  |  |  |  |-- generated_message_reflection.h
+|  |  |  |  |  |-- generated_message_util.cc
+|  |  |  |  |  |-- generated_message_util.h
+|  |  |  |  |  |-- has_bits.h
+|  |  |  |  |  |-- io
+|  |  |  |  |  |  |-- coded_stream.cc
+|  |  |  |  |  |  |-- coded_stream.h
+|  |  |  |  |  |  |-- coded_stream_inl.h
+|  |  |  |  |  |  |-- gzip_stream.cc
+|  |  |  |  |  |  |-- gzip_stream.h
+|  |  |  |  |  |  |-- gzip_stream_unittest.sh
+|  |  |  |  |  |  |-- package_info.h
+|  |  |  |  |  |  |-- printer.cc
+|  |  |  |  |  |  |-- printer.h
+|  |  |  |  |  |  |-- strtod.cc
+|  |  |  |  |  |  |-- strtod.h
+|  |  |  |  |  |  |-- tokenizer.cc
+|  |  |  |  |  |  |-- tokenizer.h
+|  |  |  |  |  |  |-- zero_copy_stream.cc
+|  |  |  |  |  |  |-- zero_copy_stream.h
+|  |  |  |  |  |  |-- zero_copy_stream_impl.cc
+|  |  |  |  |  |  |-- zero_copy_stream_impl.h
+|  |  |  |  |  |  |-- zero_copy_stream_impl_lite.cc
+|  |  |  |  |  |  |-- zero_copy_stream_impl_lite.h
+|  |  |  |  |  |-- lite_arena_unittest.cc
+|  |  |  |  |  |-- lite_unittest.cc
+|  |  |  |  |  |-- map.h
+|  |  |  |  |  |-- map_entry.h
+|  |  |  |  |  |-- map_entry_lite.h
+|  |  |  |  |  |-- map_field.cc
+|  |  |  |  |  |-- map_field.h
+|  |  |  |  |  |-- map_field_inl.h
+|  |  |  |  |  |-- map_field_lite.h
+|  |  |  |  |  |-- map_lite_test_util.cc
+|  |  |  |  |  |-- map_lite_test_util.h
+|  |  |  |  |  |-- map_test_util.h
+|  |  |  |  |  |-- map_test_util_impl.h
+|  |  |  |  |  |-- map_type_handler.h
+|  |  |  |  |  |-- message.cc
+|  |  |  |  |  |-- message.h
+|  |  |  |  |  |-- message_lite.cc
+|  |  |  |  |  |-- message_lite.h
+|  |  |  |  |  |-- metadata.h
+|  |  |  |  |  |-- package_info.h
+|  |  |  |  |  |-- reflection.h
+|  |  |  |  |  |-- reflection_internal.h
+|  |  |  |  |  |-- reflection_ops.cc
+|  |  |  |  |  |-- reflection_ops.h
+|  |  |  |  |  |-- repeated_field.cc
+|  |  |  |  |  |-- repeated_field.h
+|  |  |  |  |  |-- service.cc
+|  |  |  |  |  |-- service.h
+|  |  |  |  |  |-- source_context.pb.cc
+|  |  |  |  |  |-- source_context.pb.h
+|  |  |  |  |  |-- source_context.proto
+|  |  |  |  |  |-- struct.pb.cc
+|  |  |  |  |  |-- struct.pb.h
+|  |  |  |  |  |-- struct.proto
+|  |  |  |  |  |-- stubs
+|  |  |  |  |  |  |-- atomic_sequence_num.h
+|  |  |  |  |  |  |-- atomicops.h
+|  |  |  |  |  |  |-- atomicops_internals_arm64_gcc.h
+|  |  |  |  |  |  |-- atomicops_internals_arm_gcc.h
+|  |  |  |  |  |  |-- atomicops_internals_arm_qnx.h
+|  |  |  |  |  |  |-- atomicops_internals_atomicword_compat.h
+|  |  |  |  |  |  |-- atomicops_internals_generic_gcc.h
+|  |  |  |  |  |  |-- atomicops_internals_macosx.h
+|  |  |  |  |  |  |-- atomicops_internals_mips_gcc.h
+|  |  |  |  |  |  |-- atomicops_internals_pnacl.h
+|  |  |  |  |  |  |-- atomicops_internals_power.h
+|  |  |  |  |  |  |-- atomicops_internals_ppc_gcc.h
+|  |  |  |  |  |  |-- atomicops_internals_solaris.h
+|  |  |  |  |  |  |-- atomicops_internals_tsan.h
+|  |  |  |  |  |  |-- atomicops_internals_x86_gcc.cc
+|  |  |  |  |  |  |-- atomicops_internals_x86_gcc.h
+|  |  |  |  |  |  |-- atomicops_internals_x86_msvc.cc
+|  |  |  |  |  |  |-- atomicops_internals_x86_msvc.h
+|  |  |  |  |  |  |-- bytestream.cc
+|  |  |  |  |  |  |-- bytestream.h
+|  |  |  |  |  |  |-- callback.h
+|  |  |  |  |  |  |-- casts.h
+|  |  |  |  |  |  |-- common.cc
+|  |  |  |  |  |  |-- common.h
+|  |  |  |  |  |  |-- fastmem.h
+|  |  |  |  |  |  |-- hash.h
+|  |  |  |  |  |  |-- int128.cc
+|  |  |  |  |  |  |-- int128.h
+|  |  |  |  |  |  |-- logging.h
+|  |  |  |  |  |  |-- macros.h
+|  |  |  |  |  |  |-- map_util.h
+|  |  |  |  |  |  |-- mathlimits.cc
+|  |  |  |  |  |  |-- mathlimits.h
+|  |  |  |  |  |  |-- mathutil.h
+|  |  |  |  |  |  |-- mutex.h
+|  |  |  |  |  |  |-- once.cc
+|  |  |  |  |  |  |-- once.h
+|  |  |  |  |  |  |-- platform_macros.h
+|  |  |  |  |  |  |-- port.h
+|  |  |  |  |  |  |-- scoped_ptr.h
+|  |  |  |  |  |  |-- shared_ptr.h
+|  |  |  |  |  |  |-- singleton.h
+|  |  |  |  |  |  |-- status.cc
+|  |  |  |  |  |  |-- status.h
+|  |  |  |  |  |  |-- status_macros.h
+|  |  |  |  |  |  |-- statusor.cc
+|  |  |  |  |  |  |-- statusor.h
+|  |  |  |  |  |  |-- stl_util.h
+|  |  |  |  |  |  |-- stringpiece.cc
+|  |  |  |  |  |  |-- stringpiece.h
+|  |  |  |  |  |  |-- stringprintf.cc
+|  |  |  |  |  |  |-- stringprintf.h
+|  |  |  |  |  |  |-- structurally_valid.cc
+|  |  |  |  |  |  |-- strutil.cc
+|  |  |  |  |  |  |-- strutil.h
+|  |  |  |  |  |  |-- substitute.cc
+|  |  |  |  |  |  |-- substitute.h
+|  |  |  |  |  |  |-- template_util.h
+|  |  |  |  |  |  |-- time.cc
+|  |  |  |  |  |  |-- time.h
+|  |  |  |  |  |  |-- type_traits.h
+|  |  |  |  |  |-- test_util.h
+|  |  |  |  |  |-- test_util_lite.cc
+|  |  |  |  |  |-- test_util_lite.h
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- bad_utf8_string
+|  |  |  |  |  |  |-- golden_message
+|  |  |  |  |  |  |-- golden_message_maps
+|  |  |  |  |  |  |-- golden_message_oneof_implemented
+|  |  |  |  |  |  |-- golden_message_proto3
+|  |  |  |  |  |  |-- golden_packed_fields_message
+|  |  |  |  |  |  |-- map_test_data.txt
+|  |  |  |  |  |  |-- text_format_unittest_data.txt
+|  |  |  |  |  |  |-- text_format_unittest_data_oneof_implemented.txt
+|  |  |  |  |  |  |-- text_format_unittest_data_pointy.txt
+|  |  |  |  |  |  |-- text_format_unittest_data_pointy_oneof.txt
+|  |  |  |  |  |  |-- text_format_unittest_extensions_data.txt
+|  |  |  |  |  |  |-- text_format_unittest_extensions_data_pointy.txt
+|  |  |  |  |  |-- testing
+|  |  |  |  |  |  |-- file.h
+|  |  |  |  |  |  |-- googletest.h
+|  |  |  |  |  |  |-- zcgunzip.cc
+|  |  |  |  |  |  |-- zcgzip.cc
+|  |  |  |  |  |-- text_format.cc
+|  |  |  |  |  |-- text_format.h
+|  |  |  |  |  |-- timestamp.pb.cc
+|  |  |  |  |  |-- timestamp.pb.h
+|  |  |  |  |  |-- timestamp.proto
+|  |  |  |  |  |-- type.pb.cc
+|  |  |  |  |  |-- type.pb.h
+|  |  |  |  |  |-- type.proto
+|  |  |  |  |  |-- unknown_field_set.cc
+|  |  |  |  |  |-- unknown_field_set.h
+|  |  |  |  |  |-- util
+|  |  |  |  |  |  |-- field_comparator.cc
+|  |  |  |  |  |  |-- field_comparator.h
+|  |  |  |  |  |  |-- field_mask_util.cc
+|  |  |  |  |  |  |-- field_mask_util.h
+|  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |-- constants.h
+|  |  |  |  |  |  |  |-- datapiece.cc
+|  |  |  |  |  |  |  |-- datapiece.h
+|  |  |  |  |  |  |  |-- default_value_objectwriter.cc
+|  |  |  |  |  |  |  |-- default_value_objectwriter.h
+|  |  |  |  |  |  |  |-- error_listener.cc
+|  |  |  |  |  |  |  |-- error_listener.h
+|  |  |  |  |  |  |  |-- expecting_objectwriter.h
+|  |  |  |  |  |  |  |-- field_mask_utility.cc
+|  |  |  |  |  |  |  |-- field_mask_utility.h
+|  |  |  |  |  |  |  |-- json_escaping.cc
+|  |  |  |  |  |  |  |-- json_escaping.h
+|  |  |  |  |  |  |  |-- json_objectwriter.cc
+|  |  |  |  |  |  |  |-- json_objectwriter.h
+|  |  |  |  |  |  |  |-- json_stream_parser.cc
+|  |  |  |  |  |  |  |-- json_stream_parser.h
+|  |  |  |  |  |  |  |-- location_tracker.h
+|  |  |  |  |  |  |  |-- mock_error_listener.h
+|  |  |  |  |  |  |  |-- object_location_tracker.h
+|  |  |  |  |  |  |  |-- object_source.h
+|  |  |  |  |  |  |  |-- object_writer.cc
+|  |  |  |  |  |  |  |-- object_writer.h
+|  |  |  |  |  |  |  |-- proto_writer.cc
+|  |  |  |  |  |  |  |-- proto_writer.h
+|  |  |  |  |  |  |  |-- protostream_objectsource.cc
+|  |  |  |  |  |  |  |-- protostream_objectsource.h
+|  |  |  |  |  |  |  |-- protostream_objectwriter.cc
+|  |  |  |  |  |  |  |-- protostream_objectwriter.h
+|  |  |  |  |  |  |  |-- structured_objectwriter.h
+|  |  |  |  |  |  |  |-- type_info.cc
+|  |  |  |  |  |  |  |-- type_info.h
+|  |  |  |  |  |  |  |-- type_info_test_helper.cc
+|  |  |  |  |  |  |  |-- type_info_test_helper.h
+|  |  |  |  |  |  |  |-- utility.cc
+|  |  |  |  |  |  |  |-- utility.h
+|  |  |  |  |  |  |-- json_util.cc
+|  |  |  |  |  |  |-- json_util.h
+|  |  |  |  |  |  |-- message_differencer.cc
+|  |  |  |  |  |  |-- message_differencer.h
+|  |  |  |  |  |  |-- package_info.h
+|  |  |  |  |  |  |-- time_util.cc
+|  |  |  |  |  |  |-- time_util.h
+|  |  |  |  |  |  |-- type_resolver.h
+|  |  |  |  |  |  |-- type_resolver_util.cc
+|  |  |  |  |  |  |-- type_resolver_util.h
+|  |  |  |  |  |-- wire_format.cc
+|  |  |  |  |  |-- wire_format.h
+|  |  |  |  |  |-- wire_format_lite.cc
+|  |  |  |  |  |-- wire_format_lite.h
+|  |  |  |  |  |-- wire_format_lite_inl.h
+|  |  |  |  |  |-- wrappers.pb.cc
+|  |  |  |  |  |-- wrappers.pb.h
+|  |  |  |  |  |-- wrappers.proto
+|  |  |  |-- solaris
+|  |  |  |  |-- libstdc++.la
+|  |  |-- test-driver
+|  |  |-- update_file_lists.sh
+|  |-- rapidjson
+|  |  |-- BUILD
+|  |  |-- README.google
+|  |  |-- data
+|  |  |  |-- glossary.json
+|  |  |  |-- menu.json
+|  |  |  |-- readme.txt
+|  |  |  |-- sample.json
+|  |  |  |-- webapp.json
+|  |  |  |-- widget.json
+|  |  |-- empty.cc
+|  |  |-- encodings
+|  |  |  |-- utf16be.json
+|  |  |  |-- utf16bebom.json
+|  |  |  |-- utf16le.json
+|  |  |  |-- utf16lebom.json
+|  |  |  |-- utf32be.json
+|  |  |  |-- utf32bebom.json
+|  |  |  |-- utf32le.json
+|  |  |  |-- utf32lebom.json
+|  |  |  |-- utf8.json
+|  |  |  |-- utf8bom.json
+|  |  |-- include
+|  |  |  |-- rapidjson
+|  |  |  |  |-- allocators.h
+|  |  |  |  |-- document.h
+|  |  |  |  |-- encodedstream.h
+|  |  |  |  |-- encodings.h
+|  |  |  |  |-- error
+|  |  |  |  |  |-- en.h
+|  |  |  |  |  |-- error.h
+|  |  |  |  |-- filereadstream.h
+|  |  |  |  |-- filestream.h
+|  |  |  |  |-- filewritestream.h
+|  |  |  |  |-- internal
+|  |  |  |  |  |-- dtoa.h
+|  |  |  |  |  |-- itoa.h
+|  |  |  |  |  |-- meta.h
+|  |  |  |  |  |-- pow10.h
+|  |  |  |  |  |-- stack.h
+|  |  |  |  |  |-- strfunc.h
+|  |  |  |  |-- memorybuffer.h
+|  |  |  |  |-- memorystream.h
+|  |  |  |  |-- msinttypes
+|  |  |  |  |  |-- inttypes.h
+|  |  |  |  |  |-- stdint.h
+|  |  |  |  |-- prettywriter.h
+|  |  |  |  |-- rapidjson.h
+|  |  |  |  |-- reader.h
+|  |  |  |  |-- stringbuffer.h
+|  |  |  |  |-- writer.h
+|  |  |-- jsonchecker
+|  |  |  |-- fail1.json
+|  |  |  |-- fail10.json
+|  |  |  |-- fail11.json
+|  |  |  |-- fail12.json
+|  |  |  |-- fail13.json
+|  |  |  |-- fail14.json
+|  |  |  |-- fail15.json
+|  |  |  |-- fail16.json
+|  |  |  |-- fail17.json
+|  |  |  |-- fail18.json
+|  |  |  |-- fail19.json
+|  |  |  |-- fail2.json
+|  |  |  |-- fail20.json
+|  |  |  |-- fail21.json
+|  |  |  |-- fail22.json
+|  |  |  |-- fail23.json
+|  |  |  |-- fail24.json
+|  |  |  |-- fail25.json
+|  |  |  |-- fail26.json
+|  |  |  |-- fail27.json
+|  |  |  |-- fail28.json
+|  |  |  |-- fail29.json
+|  |  |  |-- fail3.json
+|  |  |  |-- fail30.json
+|  |  |  |-- fail31.json
+|  |  |  |-- fail32.json
+|  |  |  |-- fail33.json
+|  |  |  |-- fail4.json
+|  |  |  |-- fail5.json
+|  |  |  |-- fail6.json
+|  |  |  |-- fail7.json
+|  |  |  |-- fail8.json
+|  |  |  |-- fail9.json
+|  |  |  |-- pass1.json
+|  |  |  |-- pass2.json
+|  |  |  |-- pass3.json
+|  |  |  |-- readme.txt
+|  |  |-- license.txt
+|  |  |-- test
+|  |  |  |-- perftest
+|  |  |  |  |-- misctest.cc
+|  |  |  |  |-- perftest.cc
+|  |  |  |  |-- perftest.h
+|  |  |  |  |-- platformtest.cc
+|  |  |  |  |-- rapidjsontest.cc
+|  |  |  |-- unittest
+|  |  |  |  |-- documenttest.cc
+|  |  |  |  |-- encodedstreamtest.cc
+|  |  |  |  |-- encodingstest.cc
+|  |  |  |  |-- filestreamtest.cc
+|  |  |  |  |-- jsoncheckertest.cc
+|  |  |  |  |-- readertest.cc
+|  |  |  |  |-- stringbuffertest.cc
+|  |  |  |  |-- unittest.cc
+|  |  |  |  |-- unittest.h
+|  |  |  |  |-- valuetest.cc
+|  |  |  |  |-- writertest.cc
+|  |-- snappy
+|  |  |-- AUTHORS
+|  |  |-- BUILD
+|  |  |-- COPYING
+|  |  |-- ChangeLog
+|  |  |-- Makefile.am
+|  |  |-- NEWS
+|  |  |-- README
+|  |  |-- README.google
+|  |  |-- autogen.sh
+|  |  |-- configure.ac
+|  |  |-- format_description.txt
+|  |  |-- framing_format.txt
+|  |  |-- m4
+|  |  |  |-- gtest.m4
+|  |  |-- snappy-c.cc
+|  |  |-- snappy-c.h
+|  |  |-- snappy-internal.h
+|  |  |-- snappy-sinksource.cc
+|  |  |-- snappy-sinksource.h
+|  |  |-- snappy-stubs-internal.cc
+|  |  |-- snappy-stubs-internal.h
+|  |  |-- snappy-stubs-public.h
+|  |  |-- snappy-stubs-public.h.in
+|  |  |-- snappy-test.cc
+|  |  |-- snappy-test.h
+|  |  |-- snappy.cc
+|  |  |-- snappy.h
+|  |  |-- snappy_unittest.cc
+|  |  |-- testdata
+|  |  |  |-- alice29.txt
+|  |  |  |-- asyoulik.txt
+|  |  |  |-- baddata1.snappy
+|  |  |  |-- baddata2.snappy
+|  |  |  |-- baddata3.snappy
+|  |  |  |-- fireworks.jpeg
+|  |  |  |-- geo.protodata
+|  |  |  |-- html
+|  |  |  |-- html_x_4
+|  |  |  |-- kppkn.gtb
+|  |  |  |-- lcet10.txt
+|  |  |  |-- paper-100k.pdf
+|  |  |  |-- plrabn12.txt
+|  |  |  |-- urls.10K
+|  |-- sourcebrowser
+|  |  |-- LICENSE
+|  |  |-- README.google
+|  |  |-- sbutilities.ts
+|  |-- zlib
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- README
+|  |  |-- README.google
+|  |  |-- adler32.c
+|  |  |-- compress.c
+|  |  |-- crc32.c
+|  |  |-- crc32.h
+|  |  |-- deflate.c
+|  |  |-- deflate.h
+|  |  |-- gzclose.c
+|  |  |-- gzguts.h
+|  |  |-- gzlib.c
+|  |  |-- gzread.c
+|  |  |-- gzwrite.c
+|  |  |-- infback.c
+|  |  |-- inffast.c
+|  |  |-- inffast.h
+|  |  |-- inffixed.h
+|  |  |-- inflate.c
+|  |  |-- inflate.h
+|  |  |-- inftrees.c
+|  |  |-- inftrees.h
+|  |  |-- trees.c
+|  |  |-- trees.h
+|  |  |-- uncompr.c
+|  |  |-- zconf.h
+|  |  |-- zlib.h
+|  |  |-- zutil.c
+|  |  |-- zutil.h
+|-- tools
+|  |-- BUILD
+|  |-- arc
+|  |  |-- .gitignore
+|  |  |-- __phutil_library_init__.php
+|  |  |-- __phutil_library_map__.php
+|  |  |-- linter.sh
+|  |  |-- unit
+|  |  |  |-- engine
+|  |  |  |  |-- BazelTestEngine.php
+|  |-- bazel.rc
+|  |-- build_rules
+|  |  |-- autotools
+|  |  |  |-- BUILD
+|  |  |  |-- autoconf.bzl
+|  |  |-- cc_resources.bzl
+|  |  |-- config
+|  |  |  |-- BUILD
+|  |  |  |-- BUILD.tpl
+|  |  |  |-- common.bzl
+|  |  |  |-- local.bzl
+|  |  |  |-- pkg_config.bzl
+|  |  |  |-- system.bzl
+|  |  |  |-- wrapped_ctx.bzl
+|  |  |-- doc.bzl
+|  |  |-- docker.bzl
+|  |  |-- expand_template.bzl
+|  |  |-- go.bzl
+|  |  |-- kythe.bzl
+|  |  |-- lexyacc.bzl
+|  |  |-- proto.bzl
+|  |  |-- rust
+|  |  |  |-- BUILD
+|  |  |  |-- cargo.bzl
+|  |  |  |-- run_cargo.sh
+|  |-- buildstamp
+|  |  |-- get_workspace_status
+|  |-- cdexec
+|  |  |-- BUILD
+|  |  |-- cdexec.bzl
+|  |  |-- cdexec.sh
+|  |-- clang_tidy
+|  |  |-- clang_tidy.sh
+|  |-- cpp
+|  |  |-- .gitignore
+|  |  |-- BUILD
+|  |  |-- CROSSTOOL.tpl
+|  |  |-- clang_configure.bzl
+|  |  |-- empty.cc
+|  |  |-- generate_compilation_database.sh
+|  |  |-- include
+|  |  |  |-- bits
+|  |  |  |  |-- c++config.h
+|  |-- docker
+|  |  |-- BUILD
+|  |  |-- Dockerfile
+|  |-- modules
+|  |  |-- BUILD
+|  |  |-- abspath.sh
+|  |  |-- check.sh
+|  |  |-- update.sh
+|  |  |-- versions.sh
+|  |-- objc
+|  |  |-- BUILD
+|  |-- zcatext.sh
+|-- version.bzl

@@ -1,0 +1,545 @@
+|-- .appveyor.yml
+|-- .bazelproject
+|-- .clang-format
+|-- .gitattributes
+|-- .gitignore
+|-- .gitmodules
+|-- .travis.yml
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- __init__.py
+|-- third_party
+|  |-- GLES_khronos_headers
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- include
+|  |  |  |-- EGL
+|  |  |  |  |-- egl.h
+|  |  |  |  |-- eglext.h
+|  |  |  |  |-- eglplatform.h
+|  |  |  |-- GLES
+|  |  |  |  |-- gl.h
+|  |  |  |  |-- glext.h
+|  |  |  |  |-- glplatform.h
+|  |  |  |-- GLES2
+|  |  |  |  |-- gl2.h
+|  |  |  |  |-- gl2ext.h
+|  |  |  |  |-- gl2platform.h
+|  |  |  |-- GLES3
+|  |  |  |  |-- gl3.h
+|  |  |  |  |-- gl31.h
+|  |  |  |  |-- gl32.h
+|  |  |  |  |-- gl3platform.h
+|  |  |  |-- KHR
+|  |  |  |  |-- khrplatform.h
+|  |-- __init__.py
+|  |-- abseil-cpp
+|  |-- bazel
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- extra_actions_base.proto
+|  |  |-- extra_actions_base_pb2.py
+|  |-- dear_imgui
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- README.md
+|  |  |-- extra_fonts
+|  |  |  |-- binary_to_compressed_c.cpp
+|  |  |-- imconfig.cpp
+|  |  |-- imconfig.h
+|  |  |-- imgui.cpp
+|  |  |-- imgui.h
+|  |  |-- imgui_demo.cpp
+|  |  |-- imgui_draw.cpp
+|  |  |-- imgui_internal.h
+|  |-- gflags
+|  |-- gflags.BUILD
+|  |-- glad
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- include
+|  |  |  |-- glad
+|  |  |  |  |-- glad.h
+|  |  |  |  |-- glad_egl.h
+|  |  |  |  |-- glad_wgl.h
+|  |  |-- src
+|  |  |  |-- glad.c
+|  |  |  |-- glad_egl.c
+|  |  |  |-- glad_wgl.c
+|  |-- glm
+|  |-- glm.BUILD
+|  |-- glslang
+|  |-- glslang.BUILD
+|  |-- google_styleguide
+|  |-- gtest_xrtl
+|  |  |-- BUILD
+|  |  |-- gtest
+|  |-- proggy_fonts
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- ProggyTiny.ttf
+|  |  |-- proggy_tiny.h
+|  |-- spirv_cross
+|  |-- spirv_cross.BUILD
+|  |-- spirv_headers
+|  |-- spirv_headers.BUILD
+|  |-- spirv_tools
+|  |-- spirv_tools.BUILD
+|  |-- stblib
+|  |-- stblib.BUILD
+|  |-- swiftshader
+|  |-- swiftshader.BUILD
+|-- tools
+|  |-- actions
+|  |  |-- BUILD
+|  |  |-- generate_compile_command.py
+|  |  |-- generate_compile_commands_json.py
+|  |  |-- generate_link_target.py
+|  |  |-- generate_link_targets_json.py
+|  |-- bazel.rc
+|  |-- ci
+|  |  |-- appveyor
+|  |  |  |-- .bazelrc
+|  |  |  |-- build.bat
+|  |  |  |-- install.bat
+|  |  |  |-- test.bat
+|  |  |-- travis
+|  |  |  |-- .bazelrc
+|  |  |  |-- analyze.sh
+|  |  |  |-- build.sh
+|  |  |  |-- install.sh
+|  |  |  |-- lint.sh
+|  |  |  |-- test.sh
+|  |-- crosstool
+|  |  |-- msan
+|  |  |  |-- BUILD
+|  |  |  |-- CROSSTOOL
+|  |-- utils
+|  |  |-- BUILD
+|  |  |-- echo_vcvarsall.bat
+|  |  |-- macos_test_runner.sh
+|  |-- visual_studio
+|  |  |-- sln.template
+|  |  |-- vcxproj.filters.template
+|  |  |-- vcxproj.template
+|  |  |-- vcxproj.user.template
+|  |-- xcode
+|  |  |-- xrtl.tulsiproj
+|  |  |  |-- Configs
+|  |  |  |  |-- ios.tulsigen
+|  |  |  |  |-- macos.tulsigen
+|  |  |  |-- project.tulsiconf
+|-- xrtl
+|  |-- BUILD
+|  |-- base
+|  |  |-- BUILD
+|  |  |-- arena.cc
+|  |  |-- arena.h
+|  |  |-- arena_test.cc
+|  |  |-- cli_main.cc
+|  |  |-- cli_main.h
+|  |  |-- debugging.cc
+|  |  |-- debugging.h
+|  |  |-- debugging_settings.cc
+|  |  |-- debugging_settings.h
+|  |  |-- env.cc
+|  |  |-- env.h
+|  |  |-- flags.h
+|  |  |-- flags_test.cc
+|  |  |-- geometry.h
+|  |  |-- geometry_test.cc
+|  |  |-- intrusive_list.h
+|  |  |-- intrusive_list_test.cc
+|  |  |-- intrusive_pool.h
+|  |  |-- intrusive_pool_test.cc
+|  |  |-- logging.cc
+|  |  |-- logging.h
+|  |  |-- logging_test.cc
+|  |  |-- macros.h
+|  |  |-- macros_test.cc
+|  |  |-- math.h
+|  |  |-- math_test.cc
+|  |  |-- proto_util.cc
+|  |  |-- proto_util.h
+|  |  |-- proto_util_test.cc
+|  |  |-- protobuf.h
+|  |  |-- ref_ptr.h
+|  |  |-- ref_ptr_test.cc
+|  |  |-- stopwatch.h
+|  |  |-- stopwatch_test.cc
+|  |  |-- system_clock.cc
+|  |  |-- system_clock.h
+|  |  |-- system_clock_test.cc
+|  |  |-- testdata
+|  |  |  |-- BUILD
+|  |  |  |-- proto_util_test.proto
+|  |  |-- threading
+|  |  |  |-- BUILD
+|  |  |  |-- event.h
+|  |  |  |-- event_test.cc
+|  |  |  |-- message_loop.cc
+|  |  |  |-- message_loop.h
+|  |  |  |-- message_loop_test.cc
+|  |  |  |-- semaphore.h
+|  |  |  |-- semaphore_test.cc
+|  |  |  |-- thread.cc
+|  |  |  |-- thread.h
+|  |  |  |-- thread_test.cc
+|  |  |  |-- timer.h
+|  |  |  |-- timer_test.cc
+|  |  |  |-- wait_handle.h
+|  |  |-- tracing.cc
+|  |  |-- tracing.h
+|  |  |-- uri.cc
+|  |  |-- uri.h
+|  |  |-- uri_fuzzer.cc
+|  |  |-- uri_test.cc
+|  |-- examples
+|  |  |-- BUILD
+|  |  |-- triangle_example.cc
+|  |  |-- triangle_full_example.cc
+|  |-- gfx
+|  |  |-- BUILD
+|  |  |-- CPPLINT.cfg
+|  |  |-- buffer.h
+|  |  |-- color.cc
+|  |  |-- color.h
+|  |  |-- color_test.cc
+|  |  |-- command_buffer.cc
+|  |  |-- command_buffer.h
+|  |  |-- command_encoder.h
+|  |  |-- command_fence.h
+|  |  |-- context.cc
+|  |  |-- context.h
+|  |  |-- context_factory.cc
+|  |  |-- context_factory.h
+|  |  |-- context_factory_test.cc
+|  |  |-- device.cc
+|  |  |-- device.h
+|  |  |-- es3
+|  |  |  |-- BUILD
+|  |  |  |-- es3_buffer.cc
+|  |  |  |-- es3_buffer.h
+|  |  |  |-- es3_command_buffer.cc
+|  |  |  |-- es3_command_buffer.h
+|  |  |  |-- es3_command_encoder.cc
+|  |  |  |-- es3_command_encoder.h
+|  |  |  |-- es3_command_fence.h
+|  |  |  |-- es3_common.h
+|  |  |  |-- es3_context.cc
+|  |  |  |-- es3_context.h
+|  |  |  |-- es3_context_factory.cc
+|  |  |  |-- es3_context_factory.h
+|  |  |  |-- es3_device.cc
+|  |  |  |-- es3_device.h
+|  |  |  |-- es3_framebuffer.cc
+|  |  |  |-- es3_framebuffer.h
+|  |  |  |-- es3_image.cc
+|  |  |  |-- es3_image.h
+|  |  |  |-- es3_image_view.h
+|  |  |  |-- es3_memory_heap.cc
+|  |  |  |-- es3_memory_heap.h
+|  |  |  |-- es3_pipeline.cc
+|  |  |  |-- es3_pipeline.h
+|  |  |  |-- es3_pipeline_layout.h
+|  |  |  |-- es3_pixel_format.cc
+|  |  |  |-- es3_pixel_format.h
+|  |  |  |-- es3_platform_context.cc
+|  |  |  |-- es3_platform_context.h
+|  |  |  |-- es3_program.cc
+|  |  |  |-- es3_program.h
+|  |  |  |-- es3_queue.cc
+|  |  |  |-- es3_queue.h
+|  |  |  |-- es3_queue_fence.cc
+|  |  |  |-- es3_queue_fence.h
+|  |  |  |-- es3_queue_object.h
+|  |  |  |-- es3_render_pass.h
+|  |  |  |-- es3_resource_set.h
+|  |  |  |-- es3_resource_set_layout.h
+|  |  |  |-- es3_sampler.cc
+|  |  |  |-- es3_sampler.h
+|  |  |  |-- es3_shader.cc
+|  |  |  |-- es3_shader.h
+|  |  |  |-- es3_shader_module.cc
+|  |  |  |-- es3_shader_module.h
+|  |  |  |-- es3_swap_chain.cc
+|  |  |  |-- es3_swap_chain.h
+|  |  |-- framebuffer.h
+|  |  |-- image.h
+|  |  |-- image_view.h
+|  |  |-- managed_object.h
+|  |  |-- memory_heap.cc
+|  |  |-- memory_heap.h
+|  |  |-- pipeline.h
+|  |  |-- pipeline_layout.h
+|  |  |-- pixel_format.cc
+|  |  |-- pixel_format.h
+|  |  |-- pixel_format_test.cc
+|  |  |-- queue_fence.h
+|  |  |-- render_pass.h
+|  |  |-- render_state.h
+|  |  |-- resource.h
+|  |  |-- resource_set.h
+|  |  |-- resource_set_layout.h
+|  |  |-- sampler.h
+|  |  |-- shader_module.h
+|  |  |-- spirv
+|  |  |  |-- BUILD
+|  |  |  |-- shader_compiler.cc
+|  |  |  |-- shader_compiler.h
+|  |  |  |-- shader_compiler_fuzzer.cc
+|  |  |  |-- shader_compiler_test.cc
+|  |  |  |-- shader_tool_cli.cc
+|  |  |  |-- spirv_optimizer.cc
+|  |  |  |-- spirv_optimizer.h
+|  |  |  |-- spirv_optimizer_fuzzer.cc
+|  |  |  |-- spirv_optimizer_test.cc
+|  |  |-- swap_chain.cc
+|  |  |-- swap_chain.h
+|  |  |-- testing
+|  |  |  |-- BUILD
+|  |  |  |-- graphics_test.cc
+|  |  |  |-- graphics_test.h
+|  |  |  |-- graphics_test_test.cc
+|  |  |  |-- partial_command_encoder.h
+|  |  |  |-- testdata
+|  |  |  |  |-- goldens
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- compare_buffer_golden_full.bin
+|  |  |  |  |  |-- compare_buffer_golden_partial.bin
+|  |  |  |  |  |-- compare_framebuffer_0.png
+|  |  |  |  |  |-- compare_framebuffer_1.png
+|  |  |  |  |  |-- compare_image.png
+|  |  |-- util
+|  |  |  |-- BUILD
+|  |  |  |-- memory_command_buffer.cc
+|  |  |  |-- memory_command_buffer.h
+|  |  |  |-- memory_command_buffer_reader.cc
+|  |  |  |-- memory_command_buffer_reader.h
+|  |  |  |-- memory_command_buffer_reader_writer_test.cc
+|  |  |  |-- memory_command_buffer_test.cc
+|  |  |  |-- memory_command_buffer_writer.cc
+|  |  |  |-- memory_command_buffer_writer.h
+|  |  |  |-- memory_command_decoder.cc
+|  |  |  |-- memory_command_decoder.h
+|  |  |  |-- memory_command_encoder.cc
+|  |  |  |-- memory_command_encoder.h
+|  |  |  |-- memory_commands.h
+|  |  |-- vertex_format.h
+|  |  |-- vertex_format_test.cc
+|  |-- port
+|  |  |-- BUILD
+|  |  |-- android
+|  |  |  |-- BUILD
+|  |  |  |-- base
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- android_logging_sink.cc
+|  |  |  |-- testing
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- portable_testing_android.bzl
+|  |  |-- apple
+|  |  |  |-- BUILD
+|  |  |  |-- base
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- darwin_debugging.cc
+|  |  |  |  |-- mach_system_clock.cc
+|  |  |  |  |-- threading
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- cfrunloop_message_loop.mm
+|  |  |  |-- testing
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- apple_test.plist
+|  |  |  |  |-- apple_test_main.mm
+|  |  |  |  |-- portable_testing_apple.bzl
+|  |  |-- common
+|  |  |  |-- BUILD
+|  |  |  |-- base
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- gflags_flags.cc
+|  |  |  |  |-- gflags_flags.h
+|  |  |  |  |-- logging_macros.cc
+|  |  |  |  |-- logging_macros.h
+|  |  |  |  |-- posix_cli_main.cc
+|  |  |  |  |-- posix_debugging.cc
+|  |  |  |  |-- posix_env.cc
+|  |  |  |  |-- posix_logging_sink.cc
+|  |  |  |  |-- posix_system_clock.cc
+|  |  |  |  |-- protobuf.h
+|  |  |  |  |-- threading
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- epoll_message_loop.cc
+|  |  |  |  |  |-- epoll_message_loop.h
+|  |  |  |  |  |-- pthreads_event.cc
+|  |  |  |  |  |-- pthreads_semaphore.cc
+|  |  |  |  |  |-- pthreads_thread.cc
+|  |  |  |  |  |-- pthreads_wait_handle.cc
+|  |  |  |  |  |-- pthreads_wait_handle.h
+|  |  |  |-- gfx
+|  |  |  |  |-- es3
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- egl_platform_context.cc
+|  |  |  |  |  |-- egl_platform_context.h
+|  |  |  |  |  |-- egl_strings.cc
+|  |  |  |  |  |-- egl_strings.h
+|  |  |  |-- testing
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- posix_demo_main.cc
+|  |  |  |  |-- posix_test_main.cc
+|  |  |  |-- ui
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- timer_display_link.cc
+|  |  |  |  |-- timer_display_link.h
+|  |  |-- emscripten
+|  |  |  |-- BUILD
+|  |  |  |-- base
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- emscripten_logging_sink.cc
+|  |  |-- ios
+|  |  |  |-- BUILD
+|  |  |-- linux
+|  |  |  |-- BUILD
+|  |  |  |-- ui
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- x11_control.cc
+|  |  |  |  |-- x11_control.h
+|  |  |  |  |-- x11_display.cc
+|  |  |  |  |-- x11_display.h
+|  |  |  |  |-- x11_display_test.cc
+|  |  |  |  |-- x11_headers.h
+|  |  |  |  |-- x11_system_theme.cc
+|  |  |  |  |-- x11_window.cc
+|  |  |  |  |-- x11_window.h
+|  |  |-- macos
+|  |  |  |-- BUILD
+|  |  |  |-- gfx
+|  |  |  |  |-- es3
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- cgl_platform_context.cc
+|  |  |  |  |  |-- cgl_platform_context.h
+|  |  |-- windows
+|  |  |  |-- BUILD
+|  |  |  |-- base
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- threading
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- win32_event.cc
+|  |  |  |  |  |-- win32_message_loop.cc
+|  |  |  |  |  |-- win32_semaphore.cc
+|  |  |  |  |  |-- win32_thread.cc
+|  |  |  |  |  |-- win32_wait_handle.h
+|  |  |  |  |-- win32_debugging.cc
+|  |  |  |  |-- win32_env.cc
+|  |  |  |  |-- win32_system_clock.cc
+|  |  |  |  |-- windows.h
+|  |  |  |-- gfx
+|  |  |  |  |-- es3
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- wgl_platform_context.cc
+|  |  |  |  |  |-- wgl_platform_context.h
+|  |  |  |-- testing
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- win32_demo_main.cc
+|  |  |  |-- ui
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- win32_control.cc
+|  |  |  |  |-- win32_control.h
+|  |  |  |  |-- win32_system_theme.cc
+|  |  |  |  |-- win32_window.cc
+|  |  |  |  |-- win32_window.h
+|  |-- testing
+|  |  |-- BUILD
+|  |  |-- demo_main.cc
+|  |  |-- demo_main.h
+|  |  |-- diffing
+|  |  |  |-- BUILD
+|  |  |  |-- data_differ.cc
+|  |  |  |-- data_differ.h
+|  |  |  |-- data_differ_test.cc
+|  |  |  |-- diff_provider.cc
+|  |  |  |-- diff_provider.h
+|  |  |  |-- diff_provider_test.cc
+|  |  |  |-- html_diff_provider.cc
+|  |  |  |-- html_diff_provider.h
+|  |  |  |-- html_diff_provider_create.cc
+|  |  |  |-- image_differ.cc
+|  |  |  |-- image_differ.h
+|  |  |  |-- image_differ_test.cc
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- data_file.bin
+|  |  |  |  |-- data_file_mismatch.bin
+|  |  |  |  |-- goldens
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- data_file.bin
+|  |  |  |  |  |-- image_file.png
+|  |  |  |  |  |-- text_file.txt
+|  |  |  |  |-- image_file.png
+|  |  |  |  |-- image_file_mismatch.png
+|  |  |  |  |-- text_file.txt
+|  |  |  |  |-- text_file_mismatch.txt
+|  |  |  |-- text_differ.cc
+|  |  |  |-- text_differ.h
+|  |  |  |-- text_differ_test.cc
+|  |  |-- empty_test.sh
+|  |  |-- file_util.cc
+|  |  |-- file_util.h
+|  |  |-- file_util_test.cc
+|  |  |-- gtest.h
+|  |  |-- image_buffer.cc
+|  |  |-- image_buffer.h
+|  |  |-- image_buffer_test.cc
+|  |  |-- portable_testing.bzl
+|  |  |-- testdata
+|  |  |  |-- BUILD
+|  |  |  |-- empty_file
+|  |  |  |-- image_file.png
+|  |  |  |-- text_file
+|  |-- tools
+|  |  |-- target_config
+|  |  |  |-- BUILD
+|  |  |  |-- target_config.cc
+|  |  |  |-- target_config.h
+|  |  |-- target_platform
+|  |  |  |-- BUILD
+|  |  |  |-- conditions.bzl
+|  |  |  |-- platforms.bzl
+|  |  |  |-- target_platform.cc
+|  |  |  |-- target_platform.h
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- platform_android_test.cc
+|  |  |  |  |-- platform_emscripten_test.cc
+|  |  |  |  |-- platform_ios_test.cc
+|  |  |  |  |-- platform_linux_test.cc
+|  |  |  |  |-- platform_macos_test.cc
+|  |  |  |  |-- platform_windows_test.cc
+|  |-- ui
+|  |  |-- BUILD
+|  |  |-- control.cc
+|  |  |-- control.h
+|  |  |-- control_test.cc
+|  |  |-- display_link.h
+|  |  |-- imgui_overlay.cc
+|  |  |-- imgui_overlay.h
+|  |  |-- imgui_overlay_demo.cc
+|  |  |-- input_events.h
+|  |  |-- key_codes.h
+|  |  |-- shaders
+|  |  |  |-- BUILD
+|  |  |  |-- imgui_overlay.frag
+|  |  |  |-- imgui_overlay.vert
+|  |  |-- system_theme.h
+|  |  |-- system_theme_test.cc
+|  |  |-- testing
+|  |  |  |-- BUILD
+|  |  |  |-- mock_control_listener.h
+|  |  |-- window.h
+|  |  |-- window_demo.cc
+|  |  |-- window_pong_demo.cc
+|  |  |-- window_test.cc
+|  |-- workspace.bzl
+|-- xtool
+|-- xtool.bat

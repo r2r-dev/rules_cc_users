@@ -1,0 +1,449 @@
+|-- .bazelrc
+|-- .clang-format
+|-- .github
+|  |-- workflows
+|  |  |-- clang_format.yml
+|-- .gitignore
+|-- .gitmodules
+|-- BUILD.bazel
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- bazel
+|  |-- icu.BUILD
+|  |-- icu_data.BUILD
+|  |-- libxml.BUILD
+|  |-- mini_chromium.BUILD
+|  |-- minizip.BUILD
+|  |-- tensorflow_protos.BUILD
+|  |-- variables.bzl
+|  |-- zetasql.BUILD
+|  |-- zip_reader.BUILD
+|  |-- zlibwrapper.BUILD
+|-- ci
+|  |-- kokoro
+|  |  |-- gcp_ubuntu
+|  |  |  |-- build_docker_images.sh
+|  |  |  |-- cc_coverage
+|  |  |  |  |-- cc_coverage.sh
+|  |  |  |  |-- continuous.cfg
+|  |  |  |  |-- kokoro_build.sh
+|  |  |  |  |-- presubmit.cfg
+|  |  |  |-- cc_test
+|  |  |  |  |-- cc_test.sh
+|  |  |  |  |-- continuous.cfg
+|  |  |  |  |-- kokoro_build.sh
+|  |  |  |  |-- presubmit.cfg
+|-- clang-format.sh
+|-- docker
+|  |-- Dockerfile
+|  |-- Dockerfile.maldoca-with-repo
+|-- maldoca
+|  |-- base
+|  |  |-- BUILD.bazel
+|  |  |-- cleanup.h
+|  |  |-- cleanup_test.cc
+|  |  |-- digest.h
+|  |  |-- endian.h
+|  |  |-- endian_test.cc
+|  |  |-- enum_utils.h
+|  |  |-- enum_utils_test.cc
+|  |  |-- file.cc
+|  |  |-- file.h
+|  |  |-- file_test.cc
+|  |  |-- get_runfiles_dir.cc
+|  |  |-- get_runfiles_dir.h
+|  |  |-- logging.h
+|  |  |-- map_util.h
+|  |  |-- parse_text_proto.h
+|  |  |-- ret_check.h
+|  |  |-- source_location.h
+|  |  |-- source_location_test.cc
+|  |  |-- status.h
+|  |  |-- status_builder.h
+|  |  |-- status_builder_test.cc
+|  |  |-- status_macros.h
+|  |  |-- status_macros_test.cc
+|  |  |-- status_payload.h
+|  |  |-- status_payload_test.cc
+|  |  |-- status_proto.proto
+|  |  |-- status_test.cc
+|  |  |-- statusor.h
+|  |  |-- statusor_test.cc
+|  |  |-- test_payload.proto
+|  |  |-- testing
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- protocol-buffer-matchers.cc
+|  |  |  |-- protocol-buffer-matchers.h
+|  |  |  |-- status_matchers.h
+|  |  |  |-- status_matchers_test.cc
+|  |  |-- utf8
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- unicodetext.h
+|  |-- ole
+|  |  |-- BUILD.bazel
+|  |  |-- archive_handler.cc
+|  |  |-- archive_handler.h
+|  |  |-- archive_handler_test.cc
+|  |  |-- data_structures.cc
+|  |  |-- data_structures.h
+|  |  |-- dir.cc
+|  |  |-- dir.h
+|  |  |-- dir_test.cc
+|  |  |-- endian_reader.cc
+|  |  |-- endian_reader.h
+|  |  |-- endian_reader_test.cc
+|  |  |-- excel4
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ast.proto
+|  |  |-- fat.cc
+|  |  |-- fat.h
+|  |  |-- fat_test.cc
+|  |  |-- header.cc
+|  |  |-- header.h
+|  |  |-- header_test.cc
+|  |  |-- mso.cc
+|  |  |-- mso.h
+|  |  |-- ole_helper.cc
+|  |  |-- ole_helper.h
+|  |  |-- ole_to_proto.cc
+|  |  |-- ole_to_proto.h
+|  |  |-- ole_to_proto_cli.cc
+|  |  |-- ole_to_proto_fuzzer.cc
+|  |  |-- ole_to_proto_test.cc
+|  |  |-- ooxml_properties_extract.cc
+|  |  |-- ooxml_properties_extract.h
+|  |  |-- ooxml_properties_extract_test.cc
+|  |  |-- ooxml_to_proto.cc
+|  |  |-- ooxml_to_proto.h
+|  |  |-- ooxml_to_proto_cli.cc
+|  |  |-- ooxml_to_proto_test.cc
+|  |  |-- oss_utils.cc
+|  |  |-- oss_utils.h
+|  |  |-- oss_utils_test.cc
+|  |  |-- ppt.cc
+|  |  |-- ppt.h
+|  |  |-- ppt_test.cc
+|  |  |-- property_set_stream.cc
+|  |  |-- property_set_stream.h
+|  |  |-- proto
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- excel4_extraction.proto
+|  |  |  |-- extract_vba_settings.proto
+|  |  |  |-- office.proto
+|  |  |  |-- ole.proto
+|  |  |  |-- ole_to_proto_settings.proto
+|  |  |  |-- ooxml.proto
+|  |  |  |-- ooxml_to_proto_settings.proto
+|  |  |  |-- vba_extraction.proto
+|  |  |-- stream.cc
+|  |  |-- stream.h
+|  |  |-- stream_test.cc
+|  |  |-- strings_extract.cc
+|  |  |-- strings_extract.h
+|  |  |-- strings_extract_test.cc
+|  |  |-- testdata
+|  |  |  |-- archive_zip.zip
+|  |  |  |-- ole
+|  |  |  |  |-- 0d21ac394df6857ff203e456ed2385ee
+|  |  |  |  |-- 206e3a5d0c3e6bad5c7a5821f5ca4712
+|  |  |  |  |-- 2bece847ad0418c3a101be9b41f0b525
+|  |  |  |  |-- 7050af905f1696b2b8cdb4c6e6805a618addf5acfbd4edc3fc807a663016ab26
+|  |  |  |  |-- 84096748909414a18ac3d387877e43dd13d301d0a9e9bcbf7c148b3bc1caa886
+|  |  |  |  |-- 95dc7b31c9ba45a066f580e6e2c5c914
+|  |  |  |  |-- a26a4af9346c67f64785cea58ab36b567c3855707c09f8ea5c2c6bf2bcbb47bd
+|  |  |  |  |-- array_record.biff8
+|  |  |  |  |-- array_record.biff8.textproto
+|  |  |  |  |-- assign.biff8
+|  |  |  |  |-- assign.biff8.textproto
+|  |  |  |  |-- bogus_ole
+|  |  |  |  |-- bogus_ooxml
+|  |  |  |  |-- c98661bcd5bd2e5df06d3432890e7a2e8d6a3edcb5f89f6aaa2e5c79d4619f3d
+|  |  |  |  |-- encrypted_no_formulas.biff8
+|  |  |  |  |-- encrypted_no_formulas.biff8.textproto
+|  |  |  |  |-- encrypted_no_formulas_12345.xls
+|  |  |  |  |-- encrypted_no_formulas_12345.xls_excel4.textproto
+|  |  |  |  |-- encrypted_with_formulas.biff8
+|  |  |  |  |-- encrypted_with_formulas.biff8.textproto
+|  |  |  |  |-- encrypted_workbook_12345.xls
+|  |  |  |  |-- encrypted_workbook_12345.xls_excel4.textproto
+|  |  |  |  |-- excel4.biff
+|  |  |  |  |-- external_refs.xls
+|  |  |  |  |-- external_refs.xls_excel4.textproto
+|  |  |  |  |-- extraction_errors_base.xls
+|  |  |  |  |-- extraction_errors_base.xls_excel4.textproto
+|  |  |  |  |-- extraction_errors_corrupted_boundsheet.xls
+|  |  |  |  |-- extraction_errors_corrupted_boundsheet.xls_excel4.textproto
+|  |  |  |  |-- extraction_errors_corrupted_externalbook.xls
+|  |  |  |  |-- extraction_errors_corrupted_externalbook.xls_excel4.textproto
+|  |  |  |  |-- extraction_errors_corrupted_externalname.xls
+|  |  |  |  |-- extraction_errors_corrupted_externalname.xls_excel4.textproto
+|  |  |  |  |-- extraction_errors_corrupted_externalname_formula.xls
+|  |  |  |  |-- extraction_errors_corrupted_externalname_formula.xls_excel4.textproto
+|  |  |  |  |-- extraction_errors_corrupted_externsheet.xls
+|  |  |  |  |-- extraction_errors_corrupted_externsheet.xls_excel4.textproto
+|  |  |  |  |-- extraction_errors_corrupted_formula.xls
+|  |  |  |  |-- extraction_errors_corrupted_formula.xls_excel4.textproto
+|  |  |  |  |-- extraction_errors_corrupted_formularecord.xls
+|  |  |  |  |-- extraction_errors_corrupted_formularecord.xls_excel4.textproto
+|  |  |  |  |-- extraction_errors_corrupted_lbl.xls
+|  |  |  |  |-- extraction_errors_corrupted_lbl.xls_excel4.textproto
+|  |  |  |  |-- extraction_errors_corrupted_lbl_formula.xls
+|  |  |  |  |-- extraction_errors_corrupted_lbl_formula.xls_excel4.textproto
+|  |  |  |  |-- f3897d9509bd8f6bbee6e39568fb694aa05f3dc83ccf5eedcfabda21b48332ee
+|  |  |  |  |-- f674740dfdf4fd4ded529c339160c8255cdd971c4a00180c9e3fc3f3e7b53799
+|  |  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431
+|  |  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431_all.textproto
+|  |  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431_nodirs.textproto
+|  |  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431_nohashes.textproto
+|  |  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431_nosummary.textproto
+|  |  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431_novba.textproto
+|  |  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431_with_strings.textproto
+|  |  |  |  |-- internal_dependencies.xls
+|  |  |  |  |-- missing_formula.xls
+|  |  |  |  |-- missing_formula.xls_excel4.textproto
+|  |  |  |  |-- name.biff8
+|  |  |  |  |-- name.biff8.textproto
+|  |  |  |  |-- name.xls
+|  |  |  |  |-- name.xls_excel4.textproto
+|  |  |  |  |-- name.xls_noexcel4.textproto
+|  |  |  |  |-- testcase-5487200440418304
+|  |  |  |  |-- testcase-6493403182268416
+|  |  |  |-- ooxml
+|  |  |  |  |-- hyperlink_relationship.docx
+|  |  |  |  |-- sample_document.docm
+|  |  |  |  |-- sample_document_invalid_archive.docx
+|  |  |  |-- vba1.bin
+|  |  |-- vba.cc
+|  |  |-- vba.h
+|  |  |-- vba_extract.cc
+|  |  |-- vba_extract.h
+|  |  |-- vba_extract_test.cc
+|  |  |-- vba_extractor.cc
+|  |  |-- vba_test.cc
+|  |-- pdf_parser
+|  |  |-- proto
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- adobe_js.proto
+|  |  |  |-- exporting_packet.proto
+|  |  |  |-- features_packet.proto
+|  |  |  |-- parser_packet.proto
+|  |  |  |-- pdf_assets.proto
+|  |  |  |-- pdf_feature.proto
+|  |  |  |-- pdfium_result.proto
+|  |-- service
+|  |  |-- BUILD.bazel
+|  |  |-- common
+|  |  |  |-- office_processing_component.cc
+|  |  |  |-- office_processing_component.h
+|  |  |  |-- office_processing_component_test.cc
+|  |  |  |-- process_doc.cc
+|  |  |  |-- process_doc.h
+|  |  |  |-- process_doc_test.cc
+|  |  |  |-- processing_component.cc
+|  |  |  |-- processing_component.h
+|  |  |  |-- processing_component_factory.cc
+|  |  |  |-- processing_component_factory.h
+|  |  |  |-- processing_pipeline.cc
+|  |  |  |-- processing_pipeline.h
+|  |  |  |-- processing_pipeline_test.cc
+|  |  |  |-- utils.cc
+|  |  |  |-- utils.h
+|  |  |  |-- utils_test.cc
+|  |  |-- maldoca_client.cc
+|  |  |-- maldoca_client.h
+|  |  |-- maldoca_client_cli.cc
+|  |  |-- maldoca_server.cc
+|  |  |-- maldoca_service.cc
+|  |  |-- maldoca_service.h
+|  |  |-- proto
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc_type.proto
+|  |  |  |-- document_features.proto
+|  |  |  |-- exported_features.proto
+|  |  |  |-- maldoca_service.proto
+|  |  |  |-- parsed_document.proto
+|  |  |  |-- processing_config.proto
+|  |  |-- testdata
+|  |  |  |-- ba5c251f78a1d57b72901f4ff80824d6ad0aa4bf1931c593a36254db4ab41021.ppt
+|  |  |  |-- c98661bcd5bd2e5df06d3432890e7a2e8d6a3edcb5f89f6aaa2e5c79d4619f3d.docx
+|  |  |  |-- c98661bcd5bd2e5df06d3432890e7a2e8d6a3edcb5f89f6aaa2e5c79d4619f3d.features.textproto
+|  |  |  |-- c98661bcd5bd2e5df06d3432890e7a2e8d6a3edcb5f89f6aaa2e5c79d4619f3d.parsed.textproto
+|  |  |  |-- c98661bcd5bd2e5df06d3432890e7a2e8d6a3edcb5f89f6aaa2e5c79d4619f3d.response.textproto
+|  |  |  |-- embedded_file.pdf
+|  |  |  |-- embedded_file.pdf.response.textproto
+|  |  |  |-- embedded_file.pdf.response.textproto_external
+|  |  |  |-- f66b8ee9bea7ec406c6a88ccfb54c447afc3e4c44ae08c071b97beb74b66e2eb.xls
+|  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431.doc
+|  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431.features.textproto
+|  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431.parsed.textproto
+|  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431.response.textproto
+|  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431_all.textproto
+|  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431_nodirs.textproto
+|  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431_nohashes.textproto
+|  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431_nosummary.textproto
+|  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431_novba.textproto
+|  |  |  |-- ffc835c9a950beda17fa79dd0acf28d1df3835232877b5fdd512b3df2ffb2431_with_strings.textproto
+|  |  |  |-- image_and_link.pdf
+|  |  |  |-- image_and_link.pdf.response.textproto
+|  |  |  |-- image_and_link.pdf.response.textproto_external
+|  |  |  |-- image_and_text.features.textproto
+|  |  |  |-- image_and_text.parsed.textproto
+|  |  |  |-- image_and_text.parsed.textproto_external
+|  |  |  |-- image_and_text.pdf
+|  |  |  |-- image_and_text.pdf.response.textproto
+|  |  |  |-- image_and_text.pdf.response.textproto_external
+|  |  |  |-- vba1.bin
+|  |  |  |-- vba1.bin.response.textproto
+|  |  |  |-- vba1.features.textproto
+|  |  |  |-- vba1.parsed.textproto
+|  |-- vba
+|  |  |-- antivirus
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- vba_feature.proto
+|-- third_party
+|  |-- abseil-cpp
+|  |-- benchmark
+|  |-- boringssl
+|  |-- chromium
+|  |  |-- LICENSE
+|  |  |-- third_party
+|  |  |  |-- zlib
+|  |  |  |  |-- google
+|  |  |  |  |  |-- zip_reader.cc
+|  |  |  |  |  |-- zip_reader.h
+|  |-- googletest
+|  |-- grpc
+|  |-- icu
+|  |-- iree
+|  |  |-- LICENSE
+|  |  |-- build_tools
+|  |  |  |-- embed_data
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- build_defs.bzl
+|  |  |  |  |-- cc_embed_data_test.cc
+|  |  |  |  |-- data
+|  |  |  |  |  |-- file2.txt
+|  |  |  |  |  |-- file3.txt
+|  |  |  |  |-- file1.txt
+|  |  |  |  |-- generate_cc_embed_data.cc
+|  |-- libxml2
+|  |-- libxml2_config
+|  |  |-- BUILD.bazel
+|  |  |-- README
+|  |  |-- config.h
+|  |  |-- libxml
+|  |  |  |-- xmlversion.h
+|  |-- mini_chromium
+|  |-- protobuf
+|  |-- re2
+|  |-- rules_cc
+|  |-- rules_proto
+|  |-- tensorflow_protos
+|  |  |-- LICENSE
+|  |  |-- README.md
+|  |  |-- tensorflow
+|  |  |  |-- core
+|  |  |  |  |-- example
+|  |  |  |  |  |-- example.proto
+|  |  |  |  |  |-- feature.proto
+|  |-- zetasql
+|  |  |-- LICENSE
+|  |  |-- README.md
+|  |  |-- zetasql
+|  |  |  |-- base
+|  |  |  |  |-- arena.cc
+|  |  |  |  |-- arena.h
+|  |  |  |  |-- arena_allocator.h
+|  |  |  |  |-- arena_leakage_unittest.cc
+|  |  |  |  |-- arena_unittest.cc
+|  |  |  |  |-- atomic_sequence_num.h
+|  |  |  |  |-- bits.cc
+|  |  |  |  |-- bits.h
+|  |  |  |  |-- bits_test.cc
+|  |  |  |  |-- canonical_errors.h
+|  |  |  |  |-- case.cc
+|  |  |  |  |-- case.h
+|  |  |  |  |-- case_test.cc
+|  |  |  |  |-- cleanup.h
+|  |  |  |  |-- cleanup_test.cc
+|  |  |  |  |-- clock.cc
+|  |  |  |  |-- clock.h
+|  |  |  |  |-- clock_test.cc
+|  |  |  |  |-- endian.h
+|  |  |  |  |-- endian_test.cc
+|  |  |  |  |-- enum_utils.h
+|  |  |  |  |-- enum_utils_test.cc
+|  |  |  |  |-- exactfloat.cc
+|  |  |  |  |-- exactfloat.h
+|  |  |  |  |-- exactfloat_test.cc
+|  |  |  |  |-- exactfloat_underflow_test.cc
+|  |  |  |  |-- flat_internal.cc
+|  |  |  |  |-- flat_internal.h
+|  |  |  |  |-- flat_internal_test.cc
+|  |  |  |  |-- flat_set.h
+|  |  |  |  |-- flat_set_test.cc
+|  |  |  |  |-- general_trie.h
+|  |  |  |  |-- general_trie_unittest.cc
+|  |  |  |  |-- logging.cc
+|  |  |  |  |-- logging.h
+|  |  |  |  |-- map_traits.h
+|  |  |  |  |-- map_traits_test.cc
+|  |  |  |  |-- map_util.h
+|  |  |  |  |-- map_util_test.h
+|  |  |  |  |-- map_util_unittest.cc
+|  |  |  |  |-- mathlimits.cc
+|  |  |  |  |-- mathlimits.h
+|  |  |  |  |-- mathlimits_test.cc
+|  |  |  |  |-- mathutil.cc
+|  |  |  |  |-- mathutil.h
+|  |  |  |  |-- mathutil_test.cc
+|  |  |  |  |-- no_destructor.h
+|  |  |  |  |-- no_destructor_test.cc
+|  |  |  |  |-- path.cc
+|  |  |  |  |-- path.h
+|  |  |  |  |-- path_test.cc
+|  |  |  |  |-- ret_check.cc
+|  |  |  |  |-- ret_check.h
+|  |  |  |  |-- simple_reference_counted.h
+|  |  |  |  |-- simple_reference_counted_test.cc
+|  |  |  |  |-- source_location.h
+|  |  |  |  |-- source_location_test.cc
+|  |  |  |  |-- status.h
+|  |  |  |  |-- status_builder.cc
+|  |  |  |  |-- status_builder.h
+|  |  |  |  |-- status_builder_test.cc
+|  |  |  |  |-- status_macros.h
+|  |  |  |  |-- status_macros_test.cc
+|  |  |  |  |-- status_payload.cc
+|  |  |  |  |-- status_payload.h
+|  |  |  |  |-- status_payload_test.cc
+|  |  |  |  |-- status_test.cc
+|  |  |  |  |-- statusor.cc
+|  |  |  |  |-- statusor.h
+|  |  |  |  |-- statusor_internals.h
+|  |  |  |  |-- statusor_test.cc
+|  |  |  |  |-- stl_util.h
+|  |  |  |  |-- stl_util_test.cc
+|  |  |  |  |-- string_numbers.cc
+|  |  |  |  |-- string_numbers.h
+|  |  |  |  |-- string_numbers_test.cc
+|  |  |  |  |-- test_payload.proto
+|  |  |  |  |-- testing
+|  |  |  |  |  |-- status_matchers.cc
+|  |  |  |  |  |-- status_matchers.h
+|  |  |  |  |  |-- status_matchers_test.cc
+|  |  |  |  |-- time_proto_util.cc
+|  |  |  |  |-- time_proto_util.h
+|  |  |  |  |-- time_proto_util_test.cc
+|  |  |  |  |-- unaligned_access.h
+|  |  |  |  |-- varsetter.h
+|  |-- zlib
+|  |-- zlibwrapper
+|  |  |-- LICENSE
+|  |  |-- gzipheader.cc
+|  |  |-- gzipheader.h
+|  |  |-- zlibwrapper.cc
+|  |  |-- zlibwrapper.h

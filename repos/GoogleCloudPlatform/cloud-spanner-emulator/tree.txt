@@ -1,0 +1,533 @@
+|-- .bazelrc
+|-- .gitignore
+|-- BUILD.bazel
+|-- CHANGELOG.md
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- backend
+|  |-- access
+|  |  |-- BUILD
+|  |  |-- read.cc
+|  |  |-- read.h
+|  |  |-- read_test.cc
+|  |  |-- write.cc
+|  |  |-- write.h
+|  |  |-- write_test.cc
+|  |-- actions
+|  |  |-- BUILD
+|  |  |-- action.cc
+|  |  |-- action.h
+|  |  |-- check_constraint.cc
+|  |  |-- check_constraint.h
+|  |  |-- column_value.cc
+|  |  |-- column_value.h
+|  |  |-- column_value_test.cc
+|  |  |-- context.h
+|  |  |-- existence.cc
+|  |  |-- existence.h
+|  |  |-- existence_test.cc
+|  |  |-- foreign_key.cc
+|  |  |-- foreign_key.h
+|  |  |-- foreign_key_test.cc
+|  |  |-- generated_column.cc
+|  |  |-- generated_column.h
+|  |  |-- index.cc
+|  |  |-- index.h
+|  |  |-- index_test.cc
+|  |  |-- interleave.cc
+|  |  |-- interleave.h
+|  |  |-- interleave_test.cc
+|  |  |-- manager.cc
+|  |  |-- manager.h
+|  |  |-- ops.cc
+|  |  |-- ops.h
+|  |  |-- unique_index.cc
+|  |  |-- unique_index.h
+|  |  |-- unique_index_test.cc
+|  |-- common
+|  |  |-- BUILD
+|  |  |-- case.h
+|  |  |-- case_test.cc
+|  |  |-- graph_dependency_helper.h
+|  |  |-- graph_dependency_helper_test.cc
+|  |  |-- ids.h
+|  |  |-- ids_test.cc
+|  |  |-- indexing.cc
+|  |  |-- indexing.h
+|  |  |-- indexing_test.cc
+|  |  |-- rows.cc
+|  |  |-- rows.h
+|  |  |-- rows_test.cc
+|  |  |-- variant.h
+|  |-- database
+|  |  |-- BUILD
+|  |  |-- database.cc
+|  |  |-- database.h
+|  |  |-- database_test.cc
+|  |-- datamodel
+|  |  |-- BUILD
+|  |  |-- key.cc
+|  |  |-- key.h
+|  |  |-- key_range.cc
+|  |  |-- key_range.h
+|  |  |-- key_range_test.cc
+|  |  |-- key_set.cc
+|  |  |-- key_set.h
+|  |  |-- key_set_test.cc
+|  |  |-- key_test.cc
+|  |  |-- types.cc
+|  |  |-- types.h
+|  |  |-- types_test.cc
+|  |  |-- value.h
+|  |-- locking
+|  |  |-- BUILD
+|  |  |-- handle.cc
+|  |  |-- handle.h
+|  |  |-- manager.cc
+|  |  |-- manager.h
+|  |  |-- manager_test.cc
+|  |  |-- request.cc
+|  |  |-- request.h
+|  |-- query
+|  |  |-- BUILD
+|  |  |-- analyzer_options.cc
+|  |  |-- analyzer_options.h
+|  |  |-- catalog.cc
+|  |  |-- catalog.h
+|  |  |-- catalog_test.cc
+|  |  |-- dml_query_validator.cc
+|  |  |-- dml_query_validator.h
+|  |  |-- feature_filter
+|  |  |  |-- BUILD
+|  |  |  |-- error_mode_util.cc
+|  |  |  |-- error_mode_util.h
+|  |  |  |-- gsql_supported_functions.cc
+|  |  |  |-- gsql_supported_functions.h
+|  |  |  |-- gsql_supported_functions_test.cc
+|  |  |  |-- query_size_limits_checker.cc
+|  |  |  |-- query_size_limits_checker.h
+|  |  |  |-- sql_feature_filter.cc
+|  |  |  |-- sql_feature_filter.h
+|  |  |  |-- sql_features_view.h
+|  |  |-- function_catalog.cc
+|  |  |-- function_catalog.h
+|  |  |-- hint_rewriter.cc
+|  |  |-- hint_rewriter.h
+|  |  |-- hint_rewriter_test.cc
+|  |  |-- index_hint_validator.cc
+|  |  |-- index_hint_validator.h
+|  |  |-- index_hint_validator_test.cc
+|  |  |-- information_schema_catalog.cc
+|  |  |-- information_schema_catalog.h
+|  |  |-- partitionability_validator.cc
+|  |  |-- partitionability_validator.h
+|  |  |-- partitionability_validator_test.cc
+|  |  |-- partitioned_dml_validator.h
+|  |  |-- partitioned_dml_validator_test.cc
+|  |  |-- query_engine.cc
+|  |  |-- query_engine.h
+|  |  |-- query_engine_options.h
+|  |  |-- query_engine_test.cc
+|  |  |-- query_validator.cc
+|  |  |-- query_validator.h
+|  |  |-- query_validator_test.cc
+|  |  |-- queryable_column.h
+|  |  |-- queryable_table.cc
+|  |  |-- queryable_table.h
+|  |  |-- queryable_table_test.cc
+|  |-- schema
+|  |  |-- backfills
+|  |  |  |-- BUILD
+|  |  |  |-- column_value_backfill.cc
+|  |  |  |-- column_value_backfill.h
+|  |  |  |-- column_value_backfill_test.cc
+|  |  |  |-- index_backfill.cc
+|  |  |  |-- index_backfill.h
+|  |  |  |-- index_backfill_test.cc
+|  |  |-- builders
+|  |  |  |-- BUILD
+|  |  |  |-- check_constraint_builder.h
+|  |  |  |-- column_builder.h
+|  |  |  |-- foreign_key_builder.h
+|  |  |  |-- index_builder.h
+|  |  |  |-- table_builder.h
+|  |  |-- catalog
+|  |  |  |-- BUILD
+|  |  |  |-- check_constraint.cc
+|  |  |  |-- check_constraint.h
+|  |  |  |-- column.cc
+|  |  |  |-- column.h
+|  |  |  |-- foreign_key.cc
+|  |  |  |-- foreign_key.h
+|  |  |  |-- index.cc
+|  |  |  |-- index.h
+|  |  |  |-- schema.cc
+|  |  |  |-- schema.h
+|  |  |  |-- schema_test.cc
+|  |  |  |-- table.cc
+|  |  |  |-- table.h
+|  |  |  |-- versioned_catalog.cc
+|  |  |  |-- versioned_catalog.h
+|  |  |  |-- versioned_catalog_test.cc
+|  |  |-- ddl
+|  |  |  |-- BUILD
+|  |  |  |-- operations.proto
+|  |  |-- graph
+|  |  |  |-- BUILD
+|  |  |  |-- schema_graph.h
+|  |  |  |-- schema_graph_editor.cc
+|  |  |  |-- schema_graph_editor.h
+|  |  |  |-- schema_node.h
+|  |  |  |-- schema_objects_pool.h
+|  |  |-- parser
+|  |  |  |-- BUILD
+|  |  |  |-- ddl_char_stream.h
+|  |  |  |-- ddl_expression.jjt
+|  |  |  |-- ddl_includes.h
+|  |  |  |-- ddl_keywords.cc
+|  |  |  |-- ddl_node_base.h
+|  |  |  |-- ddl_parser.cc
+|  |  |  |-- ddl_parser.h
+|  |  |  |-- ddl_parser.jjt
+|  |  |  |-- ddl_parser_cpp.inc
+|  |  |  |-- ddl_parser_test.cc
+|  |  |  |-- ddl_reserved_words.cc
+|  |  |  |-- ddl_reserved_words.h
+|  |  |  |-- ddl_string_bytes_tokens.jjt
+|  |  |  |-- ddl_token_base.h
+|  |  |  |-- ddl_token_validation.cc
+|  |  |  |-- ddl_token_validation.h
+|  |  |  |-- ddl_token_validation_utils.cc
+|  |  |  |-- ddl_token_validation_utils.h
+|  |  |  |-- ddl_whitespace.jjt
+|  |  |  |-- javacc_parser.bzl
+|  |  |-- printer
+|  |  |  |-- BUILD
+|  |  |  |-- print_ddl.cc
+|  |  |  |-- print_ddl.h
+|  |  |-- updater
+|  |  |  |-- BUILD
+|  |  |  |-- ddl_type_conversion.cc
+|  |  |  |-- ddl_type_conversion.h
+|  |  |  |-- ddl_type_conversion_test.cc
+|  |  |  |-- global_schema_names.cc
+|  |  |  |-- global_schema_names.h
+|  |  |  |-- global_schema_names_test.cc
+|  |  |  |-- schema_updater.cc
+|  |  |  |-- schema_updater.h
+|  |  |  |-- schema_updater_test.cc
+|  |  |  |-- schema_updater_tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- base.cc
+|  |  |  |  |-- base.h
+|  |  |  |  |-- check_constraint.cc
+|  |  |  |  |-- common.cc
+|  |  |  |  |-- foreign_key.cc
+|  |  |  |  |-- generated_column.cc
+|  |  |  |  |-- index.cc
+|  |  |  |  |-- table.cc
+|  |  |  |-- schema_validation_context.h
+|  |  |  |-- scoped_schema_change_lock.h
+|  |  |-- validators
+|  |  |  |-- BUILD
+|  |  |  |-- check_constraint_validator.cc
+|  |  |  |-- check_constraint_validator.h
+|  |  |  |-- column_validator.cc
+|  |  |  |-- column_validator.h
+|  |  |  |-- foreign_key_validator.cc
+|  |  |  |-- foreign_key_validator.h
+|  |  |  |-- index_validator.cc
+|  |  |  |-- index_validator.h
+|  |  |  |-- table_validator.cc
+|  |  |  |-- table_validator.h
+|  |  |-- verifiers
+|  |  |  |-- BUILD
+|  |  |  |-- check_constraint_verifiers.cc
+|  |  |  |-- check_constraint_verifiers.h
+|  |  |  |-- check_constraint_verifiers_test.cc
+|  |  |  |-- column_value_verifiers.cc
+|  |  |  |-- column_value_verifiers.h
+|  |  |  |-- column_value_verifiers_test.cc
+|  |  |  |-- foreign_key_verifiers.cc
+|  |  |  |-- foreign_key_verifiers.h
+|  |  |  |-- foreign_key_verifiers_test.cc
+|  |-- storage
+|  |  |-- BUILD
+|  |  |-- in_memory_iterator.cc
+|  |  |-- in_memory_iterator.h
+|  |  |-- in_memory_iterator_test.cc
+|  |  |-- in_memory_storage.cc
+|  |  |-- in_memory_storage.h
+|  |  |-- in_memory_storage_test.cc
+|  |  |-- iterator.h
+|  |  |-- storage.h
+|  |-- transaction
+|  |  |-- BUILD
+|  |  |-- actions.cc
+|  |  |-- actions.h
+|  |  |-- commit_timestamp.cc
+|  |  |-- commit_timestamp.h
+|  |  |-- commit_timestamp_test.cc
+|  |  |-- flush.cc
+|  |  |-- flush.h
+|  |  |-- flush_test.cc
+|  |  |-- options.h
+|  |  |-- read_only_transaction.cc
+|  |  |-- read_only_transaction.h
+|  |  |-- read_only_transaction_test.cc
+|  |  |-- read_write_transaction.cc
+|  |  |-- read_write_transaction.h
+|  |  |-- read_write_transaction_test.cc
+|  |  |-- resolve.cc
+|  |  |-- resolve.h
+|  |  |-- resolve_test.cc
+|  |  |-- row_cursor.cc
+|  |  |-- row_cursor.h
+|  |  |-- row_cursor_test.cc
+|  |  |-- transaction_store.cc
+|  |  |-- transaction_store.h
+|  |  |-- transaction_store_test.cc
+|-- binaries
+|  |-- BUILD
+|  |-- emulator_main.cc
+|  |-- gateway_main.go
+|-- build
+|  |-- bazel
+|  |  |-- BUILD
+|  |  |-- fix_grpc_gateway.go
+|  |  |-- googleapis.BUILD
+|  |  |-- grpc.patch
+|  |  |-- grpc_gateway.bzl
+|  |  |-- portpicker.BUILD
+|  |  |-- zetasql.patch
+|  |-- docker
+|  |  |-- Dockerfile.ubuntu
+|  |-- kokoro
+|  |  |-- build.sh
+|  |  |-- gcp_ubuntu
+|  |  |  |-- Dockerfile.release
+|  |  |  |-- build.sh
+|  |  |  |-- continuous.cfg
+|  |  |  |-- docker_test.sh
+|  |  |  |-- presubmit.cfg
+|  |  |  |-- release.cfg
+|  |  |  |-- release.sh
+|  |  |-- gcp_windows
+|  |  |  |-- continuous.cfg
+|  |  |  |-- kokoro_build.bat
+|  |  |  |-- presubmit.cfg
+|  |  |-- macos_external
+|  |  |  |-- build.sh
+|  |  |  |-- continuous.cfg
+|  |  |  |-- presubmit.cfg
+|-- common
+|  |-- BUILD
+|  |-- clock.cc
+|  |-- clock.h
+|  |-- clock_test.cc
+|  |-- config.cc
+|  |-- config.h
+|  |-- constants.h
+|  |-- errors.cc
+|  |-- errors.h
+|  |-- feature_flags.h
+|  |-- feature_flags_test.cc
+|  |-- limits.h
+|-- frontend
+|  |-- collections
+|  |  |-- BUILD
+|  |  |-- database_manager.cc
+|  |  |-- database_manager.h
+|  |  |-- database_manager_test.cc
+|  |  |-- instance_manager.cc
+|  |  |-- instance_manager.h
+|  |  |-- instance_manager_test.cc
+|  |  |-- operation_manager.cc
+|  |  |-- operation_manager.h
+|  |  |-- operation_manager_test.cc
+|  |  |-- session_manager.cc
+|  |  |-- session_manager.h
+|  |  |-- session_manager_test.cc
+|  |-- common
+|  |  |-- BUILD
+|  |  |-- labels.cc
+|  |  |-- labels.h
+|  |  |-- labels_test.cc
+|  |  |-- protos.cc
+|  |  |-- protos.h
+|  |  |-- status.cc
+|  |  |-- status.h
+|  |  |-- status_test.cc
+|  |  |-- uris.cc
+|  |  |-- uris.h
+|  |  |-- uris_test.cc
+|  |-- converters
+|  |  |-- BUILD
+|  |  |-- chunking.cc
+|  |  |-- chunking.h
+|  |  |-- chunking_test.cc
+|  |  |-- keys.cc
+|  |  |-- keys.h
+|  |  |-- keys_test.cc
+|  |  |-- mutations.cc
+|  |  |-- mutations.h
+|  |  |-- mutations_test.cc
+|  |  |-- partition.cc
+|  |  |-- partition.h
+|  |  |-- query.cc
+|  |  |-- query.h
+|  |  |-- reads.cc
+|  |  |-- reads.h
+|  |  |-- reads_test.cc
+|  |  |-- time.cc
+|  |  |-- time.h
+|  |  |-- time_test.cc
+|  |  |-- types.cc
+|  |  |-- types.h
+|  |  |-- types_test.cc
+|  |  |-- values.cc
+|  |  |-- values.h
+|  |  |-- values_test.cc
+|  |-- entities
+|  |  |-- BUILD
+|  |  |-- database.cc
+|  |  |-- database.h
+|  |  |-- instance.cc
+|  |  |-- instance.h
+|  |  |-- instance_test.cc
+|  |  |-- operation.cc
+|  |  |-- operation.h
+|  |  |-- operation_test.cc
+|  |  |-- session.cc
+|  |  |-- session.h
+|  |  |-- transaction.cc
+|  |  |-- transaction.h
+|  |-- handlers
+|  |  |-- BUILD
+|  |  |-- databases.cc
+|  |  |-- databases_test.cc
+|  |  |-- instances.cc
+|  |  |-- instances_test.cc
+|  |  |-- operations.cc
+|  |  |-- operations_test.cc
+|  |  |-- partitions.cc
+|  |  |-- partitions_test.cc
+|  |  |-- policies.cc
+|  |  |-- policies_test.cc
+|  |  |-- queries.cc
+|  |  |-- queries_test.cc
+|  |  |-- reads.cc
+|  |  |-- reads_test.cc
+|  |  |-- sessions.cc
+|  |  |-- sessions_test.cc
+|  |  |-- transactions.cc
+|  |  |-- transactions_test.cc
+|  |-- proto
+|  |  |-- BUILD
+|  |  |-- partition_token.proto
+|  |-- server
+|  |  |-- BUILD
+|  |  |-- environment.h
+|  |  |-- handler.cc
+|  |  |-- handler.h
+|  |  |-- handler_test.cc
+|  |  |-- request_context.cc
+|  |  |-- request_context.h
+|  |  |-- request_context_test.cc
+|  |  |-- server.cc
+|  |  |-- server.h
+|-- gateway
+|  |-- BUILD
+|  |-- gateway.go
+|  |-- operations.yaml
+|  |-- spanner_database_admin.yaml
+|  |-- spanner_instance_admin.yaml
+|-- tests
+|  |-- common
+|  |  |-- BUILD
+|  |  |-- actions.cc
+|  |  |-- actions.h
+|  |  |-- chunking.cc
+|  |  |-- chunking.h
+|  |  |-- file_based_test_runner.cc
+|  |  |-- file_based_test_runner.h
+|  |  |-- proto_matchers.cc
+|  |  |-- proto_matchers.h
+|  |  |-- row_cursor.h
+|  |  |-- row_reader.h
+|  |  |-- schema_constructor.h
+|  |  |-- scoped_feature_flags_setter.h
+|  |  |-- test_env.cc
+|  |  |-- test_env.h
+|  |-- conformance
+|  |  |-- cases
+|  |  |  |-- BUILD
+|  |  |  |-- arrays.cc
+|  |  |  |-- batch_dml.cc
+|  |  |  |-- case_sensitivity.cc
+|  |  |  |-- check_constraint_read_write.cc
+|  |  |  |-- column_constraints.cc
+|  |  |  |-- commit_timestamps.cc
+|  |  |  |-- delete_range.cc
+|  |  |  |-- dml.cc
+|  |  |  |-- dml_replay.cc
+|  |  |  |-- foreign_key_transactions.cc
+|  |  |  |-- foreign_key_verifiers.cc
+|  |  |  |-- generated_column_read_write.cc
+|  |  |  |-- index_backfill.cc
+|  |  |  |-- index_read_write.cc
+|  |  |  |-- information_schema.cc
+|  |  |  |-- interleaving.cc
+|  |  |  |-- large_reads.cc
+|  |  |  |-- limits.cc
+|  |  |  |-- malformed_writes.cc
+|  |  |  |-- multi_row_writes.cc
+|  |  |  |-- operations.cc
+|  |  |  |-- parameters.cc
+|  |  |  |-- partition_query.cc
+|  |  |  |-- partition_reads.cc
+|  |  |  |-- partitioned_dml.cc
+|  |  |  |-- primary_keys.cc
+|  |  |  |-- query.cc
+|  |  |  |-- query_hints.cc
+|  |  |  |-- query_modes.cc
+|  |  |  |-- range_delete.cc
+|  |  |  |-- range_reads.cc
+|  |  |  |-- read_your_writes.cc
+|  |  |  |-- schema_changes.cc
+|  |  |  |-- sessions.cc
+|  |  |  |-- single_row_writes.cc
+|  |  |  |-- singleton_tables.cc
+|  |  |  |-- snapshot_reads.cc
+|  |  |  |-- tablesample.cc
+|  |  |  |-- thread_safety.cc
+|  |  |  |-- transaction_errors.cc
+|  |  |  |-- transactions.cc
+|  |  |  |-- values.cc
+|  |  |-- common
+|  |  |  |-- BUILD
+|  |  |  |-- database_test_base.cc
+|  |  |  |-- database_test_base.h
+|  |  |  |-- environment.cc
+|  |  |  |-- environment.h
+|  |  |-- data
+|  |  |  |-- schema_changes
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- check_constraint.test
+|  |  |  |  |-- combined.test
+|  |  |  |  |-- foreign_key.test
+|  |  |  |  |-- generated_column.test
+|  |  |  |  |-- key_column_alteration.test
+|  |  |-- endpoints
+|  |  |  |-- BUILD
+|  |  |  |-- emulator_conformance_test.cc
+|  |-- gcloud
+|  |  |-- BUILD
+|  |  |-- database_admin_test.py
+|  |  |-- emulator.py
+|  |  |-- instance_admin_test.py
+|  |  |-- operation_test.py
+|  |  |-- read_write_test.py
+|  |  |-- session_test.py

@@ -1,0 +1,3113 @@
+|-- .bazelci
+|  |-- android-studio.yml
+|  |-- aspect.yml
+|  |-- clion.yml
+|  |-- intellij-ue.yml
+|  |-- intellij.yml
+|-- .github
+|  |-- pull_request_template.md
+|-- .gitignore
+|-- AUTHORS
+|-- BUILD
+|-- CHANGELOG
+|-- CODEOWNERS
+|-- CONTRIBUTING.md
+|-- CONTRIBUTORS
+|-- LICENSE.txt
+|-- README.md
+|-- WORKSPACE
+|-- aspect
+|  |-- BUILD
+|  |-- BUILD.aspect
+|  |-- WORKSPACE
+|  |-- artifacts.bzl
+|  |-- fast_build_info.bzl
+|  |-- intellij_info.bzl
+|  |-- intellij_info_impl.bzl
+|  |-- java_classpath.bzl
+|  |-- make_variables.bzl
+|  |-- testing
+|  |  |-- BUILD
+|  |  |-- rules
+|  |  |  |-- BUILD
+|  |  |  |-- fast_build_aspect_test_fixture.bzl
+|  |  |  |-- fast_build_aspect_test_fixture.proto
+|  |  |  |-- intellij_aspect_test_fixture.bzl
+|  |  |  |-- intellij_aspect_test_fixture.proto
+|  |  |  |-- src
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |  |-- aspect
+|  |  |  |  |  |  |  |  |  |-- FastBuildAspectRule.java
+|  |  |  |  |  |  |  |  |  |-- FastBuildAspectTestFixtureBuilder.java
+|  |  |  |  |  |  |  |  |  |-- IntellijAspectTest.java
+|  |  |  |  |  |  |  |  |  |-- IntellijAspectTestFixtureBuilder.java
+|  |  |-- tests
+|  |  |  |-- src
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |  |-- BazelIntellijAspectTest.java
+|  |  |  |  |  |  |  |  |-- aspect
+|  |  |  |  |  |  |  |  |  |-- cpp
+|  |  |  |  |  |  |  |  |  |  |-- ccbinary
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- CcBinaryTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- simple
+|  |  |  |  |  |  |  |  |  |  |  |  |-- simple.cc
+|  |  |  |  |  |  |  |  |  |  |-- cclibrary
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- CcLibraryTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- simple
+|  |  |  |  |  |  |  |  |  |  |  |  |-- simple.cc
+|  |  |  |  |  |  |  |  |  |  |  |  |-- simple.h
+|  |  |  |  |  |  |  |  |  |  |  |  |-- simple_textual.h
+|  |  |  |  |  |  |  |  |  |  |-- cctest
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- CcTestTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- simple
+|  |  |  |  |  |  |  |  |  |  |  |  |-- simple.cc
+|  |  |  |  |  |  |  |  |  |  |-- cctoolchain
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- CcToolchainTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- simple.cc
+|  |  |  |  |  |  |  |  |  |  |  |-- simple.h
+|  |  |  |  |  |  |  |  |  |  |-- coptsmakevars
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- CoptsMakeVarsTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- simple
+|  |  |  |  |  |  |  |  |  |  |  |  |-- simple.cc
+|  |  |  |  |  |  |  |  |  |-- general
+|  |  |  |  |  |  |  |  |  |  |-- alias
+|  |  |  |  |  |  |  |  |  |  |  |-- AliasTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- Foo.java
+|  |  |  |  |  |  |  |  |  |  |-- analysistest
+|  |  |  |  |  |  |  |  |  |  |  |-- AnalysisTestTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- Foo.java
+|  |  |  |  |  |  |  |  |  |  |  |-- noop_analysis_test.bzl
+|  |  |  |  |  |  |  |  |  |  |-- artifacts
+|  |  |  |  |  |  |  |  |  |  |  |-- ArtifactTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- Foo.java
+|  |  |  |  |  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- BuildFileTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- Foo.java
+|  |  |  |  |  |  |  |  |  |  |-- noide
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- Foo.java
+|  |  |  |  |  |  |  |  |  |  |  |-- NoIdeTest.java
+|  |  |  |  |  |  |  |  |  |  |-- tags
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- Foo.java
+|  |  |  |  |  |  |  |  |  |  |  |-- TagTest.java
+|  |  |  |  |  |  |  |  |  |-- integration
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- BazelInvokingIntegrationTest.java
+|  |  |  |  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |  |  |  |-- dependencies
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- DependenciesTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- testsrc
+|  |  |  |  |  |  |  |  |  |  |  |  |-- DiamondDep.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ExportConsumer.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- Foo.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- FooExporter.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- FooExporterExporter.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- SingleDep.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- SingleDepSibling.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- TransitiveDep.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- TransitiveExportConsumer.java
+|  |  |  |  |  |  |  |  |  |  |-- filteredgenjar
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- FilteredGenJarTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- Foo.java
+|  |  |  |  |  |  |  |  |  |  |-- genjars
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- Foo.java
+|  |  |  |  |  |  |  |  |  |  |  |-- GenJarsTest.java
+|  |  |  |  |  |  |  |  |  |  |-- javabinary
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- Foo.java
+|  |  |  |  |  |  |  |  |  |  |  |-- FooMain.java
+|  |  |  |  |  |  |  |  |  |  |  |-- JavaBinaryTest.java
+|  |  |  |  |  |  |  |  |  |  |-- javalibrary
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- Direct.java
+|  |  |  |  |  |  |  |  |  |  |  |-- Distant.java
+|  |  |  |  |  |  |  |  |  |  |  |-- Foo.java
+|  |  |  |  |  |  |  |  |  |  |  |-- Indirect.java
+|  |  |  |  |  |  |  |  |  |  |  |-- JavaLibraryTest.java
+|  |  |  |  |  |  |  |  |  |  |-- javaplugin
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- JavaPluginTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- Plugin.java
+|  |  |  |  |  |  |  |  |  |  |-- javatest
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- FooTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- JavaTestFastBuildAspectTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- JavaTestTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- java_launcher.cc
+|  |  |  |  |  |  |  |  |  |-- proto
+|  |  |  |  |  |  |  |  |  |  |-- jpl
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- JavaProtoLibraryTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- Lib.java
+|  |  |  |  |  |  |  |  |  |  |  |-- bar.proto
+|  |  |  |  |  |  |  |  |  |  |  |-- foo.proto
+|  |  |  |  |  |  |  |  |  |-- python
+|  |  |  |  |  |  |  |  |  |  |-- pybinary
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- PyBinaryTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- simple.py
+|  |  |  |  |  |  |  |  |  |  |-- pylibrary
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- PyLibraryTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- simple.py
+|  |  |  |  |  |  |  |  |  |  |-- pytest
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- PyTestTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- simple.py
+|  |  |  |  |  |  |  |  |  |-- scala
+|  |  |  |  |  |  |  |  |  |  |-- scalabinary
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- Foo.scala
+|  |  |  |  |  |  |  |  |  |  |  |-- FooMain.scala
+|  |  |  |  |  |  |  |  |  |  |  |-- ScalaBinaryTest.java
+|  |  |  |  |  |  |  |  |  |  |-- scalalibrary
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- Foo.scala
+|  |  |  |  |  |  |  |  |  |  |  |-- ScalaLibraryTest.java
+|  |  |  |  |  |  |  |  |  |  |-- scalamacrolibrary
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- Foo.scala
+|  |  |  |  |  |  |  |  |  |  |  |-- ScalaMacroLibraryTest.java
+|  |  |  |  |  |  |  |  |  |  |-- scalatest
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- FooTest.scala
+|  |  |  |  |  |  |  |  |  |  |  |-- ScalaTestTest.java
+|  |-- tools
+|  |  |-- BUILD
+|  |  |-- src
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- aspect
+|  |  |  |  |  |  |  |  |-- ArtifactLocationParser.java
+|  |  |  |  |  |  |  |  |-- CreateAar.java
+|  |  |  |  |  |  |  |  |-- JarFilter.java
+|  |  |  |  |  |  |  |  |-- OptionParser.java
+|  |  |  |  |  |  |  |  |-- PackageParser.java
+|  |  |  |  |  |  |  |  |-- PackageParserIoProvider.java
+|  |  |-- tests
+|  |  |  |-- unittests
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |  |-- aspect
+|  |  |  |  |  |  |  |  |  |-- ArtifactLocationParserTest.java
+|  |  |  |  |  |  |  |  |  |-- CreateAarTest.java
+|  |  |  |  |  |  |  |  |  |-- JarFilterTest.java
+|  |  |  |  |  |  |  |  |  |-- OptionParserTest.java
+|  |  |  |  |  |  |  |  |  |-- PackageParserTest.java
+|  |  |  |  |-- generated_aar
+|  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |-- res
+|  |  |  |  |  |  |-- values
+|  |  |  |  |  |  |  |-- colors.xml
+|-- aswb
+|  |-- BUILD
+|  |-- aswb.bazelproject
+|  |-- aswb.iml
+|  |-- resources
+|  |  |-- icons
+|  |  |  |-- crow.png
+|  |  |  |-- crow@2x.png
+|  |  |  |-- crowToolWindow.png
+|  |  |  |-- mobileInstallDebug.png
+|  |  |  |-- mobileInstallDebug@2x.png
+|  |  |  |-- mobileInstallRun.png
+|  |  |  |-- mobileInstallRun@2x.png
+|  |-- sdkcompat
+|  |  |-- as203
+|  |  |  |-- com
+|  |  |  |  |-- android
+|  |  |  |  |  |-- tools
+|  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |-- tasks
+|  |  |  |  |  |  |  |  |  |-- DeployTasksCompat.java
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |-- projectsystem
+|  |  |  |  |  |  |  |  |  |-- BlazeClassFileFinderCompat.java
+|  |  |  |  |  |  |  |  |  |-- BlazeModuleSystem.java
+|  |  |  |  |  |  |  |  |  |-- ExternalLibraryInterner.java
+|  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |-- BlazeRClass.java
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidDeploymentService.java
+|  |  |  |  |  |  |  |  |  |-- binary
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryNormalBuildRunContext.java
+|  |  |  |  |  |  |  |  |  |  |-- mobileinstall
+|  |  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryMobileInstallRunContext.java
+|  |  |  |  |  |  |  |  |  |-- runner
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidLaunchTasksProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidRunContext.java
+|  |  |  |  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestRunContext.java
+|  |  |  |  |  |  |  |  |  |  |-- ConnectBlazeTestDebuggerTask.java
+|  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |-- model
+|  |  |  |  |  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidModel.java
+|  |  |-- as211
+|  |  |  |-- com
+|  |  |  |  |-- android
+|  |  |  |  |  |-- tools
+|  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |-- tasks
+|  |  |  |  |  |  |  |  |  |-- DeployTasksCompat.java
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |-- projectsystem
+|  |  |  |  |  |  |  |  |  |-- BlazeClassFileFinderCompat.java
+|  |  |  |  |  |  |  |  |  |-- BlazeModuleSystem.java
+|  |  |  |  |  |  |  |  |  |-- ExternalLibraryInterner.java
+|  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |-- BlazeRClass.java
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidDeploymentService.java
+|  |  |  |  |  |  |  |  |  |-- binary
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryNormalBuildRunContext.java
+|  |  |  |  |  |  |  |  |  |  |-- mobileinstall
+|  |  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryMobileInstallRunContext.java
+|  |  |  |  |  |  |  |  |  |-- runner
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidLaunchTasksProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidRunContext.java
+|  |  |  |  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestRunContext.java
+|  |  |  |  |  |  |  |  |  |  |-- ConnectBlazeTestDebuggerTask.java
+|  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |-- model
+|  |  |  |  |  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidModel.java
+|  |  |-- as42
+|  |  |  |-- com
+|  |  |  |  |-- android
+|  |  |  |  |  |-- tools
+|  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |-- projectsystem
+|  |  |  |  |  |  |  |  |-- DependencyScopeType.java
+|  |  |  |  |  |  |  |  |-- ProjectSystemBuildManager.java
+|  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |-- tasks
+|  |  |  |  |  |  |  |  |  |-- DeployTasksCompat.java
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |-- projectsystem
+|  |  |  |  |  |  |  |  |  |-- BlazeClassFileFinderCompat.java
+|  |  |  |  |  |  |  |  |  |-- BlazeModuleSystem.java
+|  |  |  |  |  |  |  |  |  |-- ExternalLibraryInterner.java
+|  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |-- BlazeRClass.java
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidDeploymentService.java
+|  |  |  |  |  |  |  |  |  |-- binary
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryNormalBuildRunContext.java
+|  |  |  |  |  |  |  |  |  |  |-- mobileinstall
+|  |  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryMobileInstallRunContext.java
+|  |  |  |  |  |  |  |  |  |-- runner
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidLaunchTasksProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidRunContext.java
+|  |  |  |  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestRunContext.java
+|  |  |  |  |  |  |  |  |  |  |-- ConnectBlazeTestDebuggerTask.java
+|  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |-- model
+|  |  |  |  |  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidModel.java
+|  |-- src
+|  |  |-- META-INF
+|  |  |  |-- aswb.xml
+|  |  |  |-- description.html
+|  |  |  |-- ndk_contents.xml
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |-- ResourceRepositoryManagerCompat.java
+|  |  |  |  |  |  |  |-- compose
+|  |  |  |  |  |  |  |  |-- ComposeStatusProvider.java
+|  |  |  |  |  |  |  |  |-- ExperimentComposeStatusProvider.java
+|  |  |  |  |  |  |  |-- cppimpl
+|  |  |  |  |  |  |  |  |-- BlazeNdkSupportEnabler.java
+|  |  |  |  |  |  |  |  |-- debug
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidNativeDebuggerLanguageSupport.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAutoAndroidDebugger.java
+|  |  |  |  |  |  |  |  |  |-- BlazeNativeAndroidDebugger.java
+|  |  |  |  |  |  |  |  |  |-- BlazeNativeAndroidDebuggerBase.java
+|  |  |  |  |  |  |  |-- editor
+|  |  |  |  |  |  |  |  |-- ProjectUnresolvedResourceStatsCollector.java
+|  |  |  |  |  |  |  |  |-- UnresolvedResourceStatsCollector.java
+|  |  |  |  |  |  |  |-- libraries
+|  |  |  |  |  |  |  |  |-- RenderJarCache.java
+|  |  |  |  |  |  |  |  |-- UnpackedAars.java
+|  |  |  |  |  |  |  |-- manifest
+|  |  |  |  |  |  |  |  |-- ManifestParser.java
+|  |  |  |  |  |  |  |  |-- ParsedManifestService.java
+|  |  |  |  |  |  |  |-- npw
+|  |  |  |  |  |  |  |  |-- project
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidModuleTemplate.java
+|  |  |  |  |  |  |  |-- projectsystem
+|  |  |  |  |  |  |  |  |-- BlazeClassFileFinder.java
+|  |  |  |  |  |  |  |  |-- BlazeClassFileFinderFactory.java
+|  |  |  |  |  |  |  |  |-- BlazeModuleSystemBase.java
+|  |  |  |  |  |  |  |  |-- BlazeProjectSystem.java
+|  |  |  |  |  |  |  |  |-- BlazeProjectSystemBuildManager.java
+|  |  |  |  |  |  |  |  |-- BlazeProjectSystemProvider.java
+|  |  |  |  |  |  |  |  |-- BlazeProjectSystemSyncManager.java
+|  |  |  |  |  |  |  |  |-- BlazeSampleDataDirectoryProvider.java
+|  |  |  |  |  |  |  |  |-- MavenArtifactLocator.java
+|  |  |  |  |  |  |  |  |-- PackageNameUtils.java
+|  |  |  |  |  |  |  |  |-- PsiBasedClassFileFinder.java
+|  |  |  |  |  |  |  |  |-- RenderJarClassFileFinder.java
+|  |  |  |  |  |  |  |  |-- TransitiveClosureClassFileFinder.java
+|  |  |  |  |  |  |  |-- projectview
+|  |  |  |  |  |  |  |  |-- AndroidMinSdkSection.java
+|  |  |  |  |  |  |  |  |-- AndroidSdkPlatformSection.java
+|  |  |  |  |  |  |  |  |-- GeneratedAndroidResourcesSection.java
+|  |  |  |  |  |  |  |  |-- GenfilesPath.java
+|  |  |  |  |  |  |  |-- rendering
+|  |  |  |  |  |  |  |  |-- BlazeRenderErrorContributor.java
+|  |  |  |  |  |  |  |  |-- BlazeRenderSecurityManagerOverrides.java
+|  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |-- BlazeLightResourceClassService.java
+|  |  |  |  |  |  |  |  |-- BlazeResourcesDomFileDescription.java
+|  |  |  |  |  |  |  |  |-- actions
+|  |  |  |  |  |  |  |  |  |-- BlazeCreateResourceDirectoryDialog.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCreateResourceFileDialog.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCreateResourceUtils.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCreateXmlResourcePanel.java
+|  |  |  |  |  |  |  |  |  |-- BlazeNewResourceCreationHandler.java
+|  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |-- AndroidPlatformCompat.java
+|  |  |  |  |  |  |  |  |-- BlazeAndroidRunConfigurationCommonState.java
+|  |  |  |  |  |  |  |  |-- BlazeAndroidRunConfigurationHandler.java
+|  |  |  |  |  |  |  |  |-- BlazeAndroidRunConfigurationValidationUtil.java
+|  |  |  |  |  |  |  |  |-- BlazeAndroidRunState.java
+|  |  |  |  |  |  |  |  |-- BlazeApkBuildService.java
+|  |  |  |  |  |  |  |  |-- BlazeCommandAndroidDebuggerInfoProvider.java
+|  |  |  |  |  |  |  |  |-- DefaultActivityLocatorCompat.java
+|  |  |  |  |  |  |  |  |-- RemoteApkDownloader.java
+|  |  |  |  |  |  |  |  |-- binary
+|  |  |  |  |  |  |  |  |  |-- AndroidBinaryLaunchMethodsUtils.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryApplicationIdProvider.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryApplicationLaunchTaskProvider.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryConsoleProvider.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryNormalBuildRunContextBase.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryProgramRunner.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryRunConfigurationHandler.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryRunConfigurationHandlerProvider.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryRunConfigurationState.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryRunConfigurationStateEditor.java
+|  |  |  |  |  |  |  |  |  |-- BlazeDefaultActivityLocator.java
+|  |  |  |  |  |  |  |  |  |-- UserIdHelper.java
+|  |  |  |  |  |  |  |  |  |-- mobileinstall
+|  |  |  |  |  |  |  |  |  |  |-- AdbTunnelConfigurator.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryMobileInstallRunContextBase.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeApkBuildStepMobileInstall.java
+|  |  |  |  |  |  |  |  |  |  |-- MobileInstallAdbLocationProvider.java
+|  |  |  |  |  |  |  |  |-- deployinfo
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidDeployInfo.java
+|  |  |  |  |  |  |  |  |  |-- BlazeApkDeployInfoProtoHelper.java
+|  |  |  |  |  |  |  |  |  |-- BlazeApkProvider.java
+|  |  |  |  |  |  |  |  |  |-- BlazeApkProviderService.java
+|  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |-- BlazeFilterAndroidTestRunConfigurationProducer.java
+|  |  |  |  |  |  |  |  |-- runner
+|  |  |  |  |  |  |  |  |  |-- AaptUtil.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidDebuggerService.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidDeviceSelector.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidOpenProfilerWindowTask.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidRunConfigurationRunner.java
+|  |  |  |  |  |  |  |  |  |-- BlazeApkBuildStep.java
+|  |  |  |  |  |  |  |  |  |-- BlazeApkBuildStepNormalBuild.java
+|  |  |  |  |  |  |  |  |  |-- BlazeDeployTargetService.java
+|  |  |  |  |  |  |  |  |  |-- BlazeInstrumentationTestApkBuildStep.java
+|  |  |  |  |  |  |  |  |  |-- CheckApkDebuggableTask.java
+|  |  |  |  |  |  |  |  |  |-- ExecRootUtil.java
+|  |  |  |  |  |  |  |  |-- state
+|  |  |  |  |  |  |  |  |  |-- DebuggerSettingsState.java
+|  |  |  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |  |  |-- AndroidTestConsoleProvider.java
+|  |  |  |  |  |  |  |  |  |-- AndroidTestContext.java
+|  |  |  |  |  |  |  |  |  |-- AndroidTestContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestApplicationIdProvider.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestFilter.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestLaunchMethodsProvider.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestLaunchMethodsProviderImpl.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestLaunchTask.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestProgramRunner.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestRunConfigurationHandler.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestRunConfigurationHandlerProvider.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestRunConfigurationState.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestRunConfigurationStateEditor.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestRunContextBase.java
+|  |  |  |  |  |  |  |  |  |-- ConnectBlazeTestDebuggerTaskHelper.java
+|  |  |  |  |  |  |  |  |  |-- StockAndroidTestLaunchTask.java
+|  |  |  |  |  |  |  |  |  |-- smrunner
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestEventsHandler.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestLocator.java
+|  |  |  |  |  |  |  |  |-- testrecorder
+|  |  |  |  |  |  |  |  |  |-- TestRecorderBlazeCommandRunConfiguration.java
+|  |  |  |  |  |  |  |  |  |-- TestRecorderBlazeCommandRunConfigurationProxy.java
+|  |  |  |  |  |  |  |  |  |-- TestRecorderBlazeCommandRunConfigurationProxyProvider.java
+|  |  |  |  |  |  |  |-- sdk
+|  |  |  |  |  |  |  |  |-- AndroidSdkListener.java
+|  |  |  |  |  |  |  |  |-- BlazeSdkProvider.java
+|  |  |  |  |  |  |  |  |-- BlazeSdkProviderImpl.java
+|  |  |  |  |  |  |  |  |-- MockBlazeSdkProvider.java
+|  |  |  |  |  |  |  |-- settings
+|  |  |  |  |  |  |  |  |-- BlazeAndroidUserSettings.java
+|  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |-- AndroidOutputsProvider.java
+|  |  |  |  |  |  |  |  |-- BlazeAndroidJavaSyncAugmenter.java
+|  |  |  |  |  |  |  |  |-- BlazeAndroidLibrarySource.java
+|  |  |  |  |  |  |  |  |-- BlazeAndroidSyncListener.java
+|  |  |  |  |  |  |  |  |-- BlazeAndroidSyncPlugin.java
+|  |  |  |  |  |  |  |  |-- BlazeNdkDependencySyncPlugin.java
+|  |  |  |  |  |  |  |  |-- aspects
+|  |  |  |  |  |  |  |  |  |-- strategy
+|  |  |  |  |  |  |  |  |  |  |-- RenderResolveOutputGroupProvider.java
+|  |  |  |  |  |  |  |  |-- importer
+|  |  |  |  |  |  |  |  |  |-- AllowlistFilter.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidWorkspaceImporter.java
+|  |  |  |  |  |  |  |  |  |-- BlazeImportInput.java
+|  |  |  |  |  |  |  |  |  |-- BlazeImportUtil.java
+|  |  |  |  |  |  |  |  |  |-- aggregators
+|  |  |  |  |  |  |  |  |  |  |-- DependencyUtil.java
+|  |  |  |  |  |  |  |  |  |-- problems
+|  |  |  |  |  |  |  |  |  |  |-- AddGeneratedResourceDirectoryNavigatable.java
+|  |  |  |  |  |  |  |  |  |  |-- GeneratedResourceClassifier.java
+|  |  |  |  |  |  |  |  |  |  |-- GeneratedResourceRetentionFilter.java
+|  |  |  |  |  |  |  |  |  |  |-- GeneratedResourceWarnings.java
+|  |  |  |  |  |  |  |  |-- model
+|  |  |  |  |  |  |  |  |  |-- AarLibrary.java
+|  |  |  |  |  |  |  |  |  |-- AndroidResourceModule.java
+|  |  |  |  |  |  |  |  |  |-- AndroidResourceModuleRegistry.java
+|  |  |  |  |  |  |  |  |  |-- AndroidSdkPlatform.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidImportResult.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidSyncData.java
+|  |  |  |  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidModelBase.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeClassJarProvider.java
+|  |  |  |  |  |  |  |  |-- projectstructure
+|  |  |  |  |  |  |  |  |  |-- AndroidFacetModuleCustomizer.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidProjectStructureSyncer.java
+|  |  |  |  |  |  |  |  |  |-- ResourceModuleContentRootCustomizer.java
+|  |  |  |  |  |  |  |  |-- sdk
+|  |  |  |  |  |  |  |  |  |-- AndroidSdkFromProjectView.java
+|  |  |  |  |  |  |  |  |  |-- SdkUtil.java
+|  |  |  |  |  |  |  |-- targetmaps
+|  |  |  |  |  |  |  |  |-- TargetToBinaryMap.java
+|  |  |  |  |  |  |  |  |-- TargetToBinaryMapImpl.java
+|  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |-- JavaResourcePsiElementFinder.java
+|  |  |  |  |  |  |  |  |-- KotlinResourcePsiElementFinder.java
+|  |  |  |  |  |  |  |  |-- ResourcePsiElementFinder.java
+|  |  |-- icons
+|  |  |  |-- BlazeAndroidIcons.java
+|  |-- testdata
+|  |  |-- golden.png
+|  |  |-- ic_banner.png
+|  |-- tests
+|  |  |-- integrationtests
+|  |  |  |-- as203
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |  |-- functional
+|  |  |  |  |  |  |  |  |  |  |-- BlazeModuleSystemDependentLibrariesIntegrationTest.java
+|  |  |  |-- as42
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |  |-- functional
+|  |  |  |  |  |  |  |  |  |  |-- BlazeModuleSystemDependentLibrariesIntegrationTest.java
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |-- AswbGotoDeclarationTest.java
+|  |  |  |  |  |  |  |  |-- cppimpl
+|  |  |  |  |  |  |  |  |  |-- debug
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidNativeDebuggingTest.java
+|  |  |  |  |  |  |  |  |-- functional
+|  |  |  |  |  |  |  |  |  |-- AswbMergedManifestTest.java
+|  |  |  |  |  |  |  |  |  |-- AswbRenderTaskTest.java
+|  |  |  |  |  |  |  |  |  |-- BlazeApkBuildStepMobileInstallIntegrationTest.java
+|  |  |  |  |  |  |  |  |  |-- BlazeApkBuildStepNormalBuildIntegrationTest.java
+|  |  |  |  |  |  |  |  |  |-- BlazeInstrumentationTestApkBuildStepIntegrationTest.java
+|  |  |  |  |  |  |  |  |  |-- BlazeModuleSystemExternalDependencyIntegrationTest.java
+|  |  |  |  |  |  |  |  |  |-- InstrumentationTestTargetIntegrationTest.java
+|  |  |  |  |  |  |  |  |-- plugin
+|  |  |  |  |  |  |  |  |  |-- NdkDependenciesTest.java
+|  |  |  |  |  |  |  |  |-- prefetch
+|  |  |  |  |  |  |  |  |  |-- AswbPrefetchFileSourceTest.java
+|  |  |  |  |  |  |  |  |  |-- CPrefetchFileSourceTest.java
+|  |  |  |  |  |  |  |  |-- projectsystem
+|  |  |  |  |  |  |  |  |  |-- BlazeModuleSystemResourceModuleDependenciesTest.java
+|  |  |  |  |  |  |  |  |  |-- BlazeSampleDataDirectoryProviderTest.java
+|  |  |  |  |  |  |  |  |  |-- RenderJarClassFileFinderTest.java
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- AvailableDebuggersTest.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidRunConfigurationCommonStateTest.java
+|  |  |  |  |  |  |  |  |  |-- DebuggerInfoProviderTest.java
+|  |  |  |  |  |  |  |  |  |-- binary
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryRunConfigurationStateTest.java
+|  |  |  |  |  |  |  |  |  |-- runner
+|  |  |  |  |  |  |  |  |  |  |-- DefaultDebuggerServiceImplTest.java
+|  |  |  |  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestRunConfigurationStateTest.java
+|  |  |  |  |  |  |  |  |  |  |-- smrunner
+|  |  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestEventsHandlerTest.java
+|  |  |  |  |  |  |  |  |  |-- testrecorder
+|  |  |  |  |  |  |  |  |  |  |-- TestRecorderBlazeCommandRunConfigurationTest.java
+|  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |-- AndroidSyncTest.java
+|  |  |  |  |  |  |  |  |  |-- importer
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidWorkspaceImporterTest.java
+|  |  |  |  |  |  |  |  |  |-- model
+|  |  |  |  |  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |  |  |  |  |-- BlazeClassJarProviderIntegrationTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BlazeImportFixture.java
+|  |  |  |  |  |  |  |  |  |  |  |-- PsiBasedClassFileFinderTest.java
+|  |  |  |  |  |  |  |  |-- targetmapbuilder
+|  |  |  |  |  |  |  |  |  |-- NbTargetMapBuilderTest.java
+|  |  |  |  |  |  |  |  |  |-- NbTargetMapUtilsTest.java
+|  |  |  |  |  |  |  |  |-- targetmaps
+|  |  |  |  |  |  |  |  |  |-- TargetToBinaryMapTest.java
+|  |  |-- unittests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |-- libraries
+|  |  |  |  |  |  |  |  |  |-- RenderJarCacheTest.java
+|  |  |  |  |  |  |  |  |  |-- UnpackedAarsTest.java
+|  |  |  |  |  |  |  |  |-- manifest
+|  |  |  |  |  |  |  |  |  |-- ManifestParserTest.java
+|  |  |  |  |  |  |  |  |-- projectsystem
+|  |  |  |  |  |  |  |  |  |-- BlazeModuleSystemTest.java
+|  |  |  |  |  |  |  |  |  |-- RenderJarClassFileFinderUnitTest.java
+|  |  |  |  |  |  |  |  |  |-- TransitiveClosureClassFileFinderTest.java
+|  |  |  |  |  |  |  |  |-- rendering
+|  |  |  |  |  |  |  |  |  |-- BlazeRenderErrorContributorTest.java
+|  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |-- actions
+|  |  |  |  |  |  |  |  |  |  |-- BlazeCreateResourceUtilsTest.java
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- binary
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidBinaryApplicationIdProviderTest.java
+|  |  |  |  |  |  |  |  |  |-- deployinfo
+|  |  |  |  |  |  |  |  |  |  |-- BlazeApkDeployInfoProtoHelperTest.java
+|  |  |  |  |  |  |  |  |  |-- runner
+|  |  |  |  |  |  |  |  |  |  |-- AaptUtilTest.java
+|  |  |  |  |  |  |  |  |  |-- state
+|  |  |  |  |  |  |  |  |  |  |-- DebuggerSettingsStateTest.java
+|  |  |  |  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidTestApplicationIdProviderTest.java
+|  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidSyncPluginTest.java
+|  |  |  |  |  |  |  |  |  |-- BlazeIdeInterfaceAspectsImplTest.java
+|  |  |  |  |  |  |  |  |  |-- aspects
+|  |  |  |  |  |  |  |  |  |  |-- strategy
+|  |  |  |  |  |  |  |  |  |  |  |-- RenderResolveOutputGroupProviderTest.java
+|  |  |  |  |  |  |  |  |  |-- importer
+|  |  |  |  |  |  |  |  |  |  |-- BlazeImportUtilTest.java
+|  |  |  |  |  |  |  |  |  |  |-- model
+|  |  |  |  |  |  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |  |  |  |  |  |-- AndroidResourceModuleRegistryTest.java
+|  |  |  |  |  |  |  |  |  |  |-- problems
+|  |  |  |  |  |  |  |  |  |  |  |-- GeneratedResourceClassifierTest.java
+|  |  |  |  |  |  |  |  |  |-- model
+|  |  |  |  |  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidModelTest.java
+|  |  |  |  |  |  |  |  |  |-- projectstructure
+|  |  |  |  |  |  |  |  |  |  |-- BlazeAndroidProjectStructureSyncerTest.java
+|  |  |-- utils
+|  |  |  |-- integration
+|  |  |  |  |-- com
+|  |  |  |  |  |-- android
+|  |  |  |  |  |  |-- tools
+|  |  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |  |-- rendering
+|  |  |  |  |  |  |  |  |  |-- AswbRenderTestUtils.java
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |  |-- AswbImageDiffUtil.java
+|  |  |  |  |  |  |  |  |  |-- AswbIntegrationTestSetupRule.java
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidIntegrationTestCase.java
+|  |  |  |  |  |  |  |  |  |-- MessageCollector.java
+|  |  |  |  |  |  |  |  |  |-- MockSdkUtil.java
+|  |  |  |  |  |  |  |  |  |-- fixtures
+|  |  |  |  |  |  |  |  |  |  |-- ManifestFixture.java
+|  |  |  |  |  |  |  |  |  |-- targetmapbuilder
+|  |  |  |  |  |  |  |  |  |  |-- BlazeInfoData.java
+|  |  |  |  |  |  |  |  |  |  |-- NbAarTarget.java
+|  |  |  |  |  |  |  |  |  |  |-- NbAndroidInstrumentationTestTarget.java
+|  |  |  |  |  |  |  |  |  |  |-- NbAndroidTarget.java
+|  |  |  |  |  |  |  |  |  |  |-- NbBaseTargetBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- NbCcTarget.java
+|  |  |  |  |  |  |  |  |  |  |-- NbCcToolchain.java
+|  |  |  |  |  |  |  |  |  |  |-- NbJavaTarget.java
+|  |  |  |  |  |  |  |  |  |  |-- NbTarget.java
+|  |  |  |  |  |  |  |  |  |  |-- NbTargetBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- NbTargetMapUtils.java
+|  |  |  |-- sdkcompat
+|  |  |  |  |-- as203
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |-- sdklib
+|  |  |  |  |  |  |  |  |-- repository
+|  |  |  |  |  |  |  |  |  |-- AndroidSdkHandlerCompat.java
+|  |  |  |  |-- as42
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |-- sdklib
+|  |  |  |  |  |  |  |  |-- repository
+|  |  |  |  |  |  |  |  |  |-- AndroidSdkHandlerCompat.java
+|  |  |  |-- unit
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |  |-- LightWeightMockSdkUtil.java
+|  |  |  |  |  |  |  |  |  |-- libraries
+|  |  |  |  |  |  |  |  |  |  |-- AarLibraryFileBuilder.java
+|-- base
+|  |-- BUILD
+|  |-- resources
+|  |  |-- binaries
+|  |  |  |-- README
+|  |  |  |-- bazel-buildifier
+|  |  |-- colorSchemes
+|  |  |  |-- BuildDefault.xml
+|  |  |-- icons
+|  |  |  |-- bazel
+|  |  |  |  |-- failed.png
+|  |  |  |  |-- failed@2x.png
+|  |  |  |  |-- logo.png
+|  |  |  |  |-- logo@2x.png
+|  |  |  |  |-- tool_window.png
+|  |  |  |  |-- tool_window@2x.png
+|  |  |  |-- blaze
+|  |  |  |  |-- failed.png
+|  |  |  |  |-- logo.png
+|  |  |  |  |-- tool_window.png
+|  |  |  |-- blazeRerun.png
+|  |  |  |-- blazeRerun@2x.png
+|  |  |  |-- blazeRerun@2x_dark.png
+|  |  |  |-- blazeRerun_dark.png
+|  |  |  |-- blaze_slow.png
+|  |  |  |-- build_editor.png
+|  |  |  |-- build_file.png
+|  |  |  |-- build_rule.png
+|  |  |  |-- lightningOverlay.png
+|  |  |  |-- lightningOverlay@2x.png
+|  |-- src
+|  |  |-- META-INF
+|  |  |  |-- blaze-base.xml
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |-- base
+|  |  |  |  |  |  |  |-- actions
+|  |  |  |  |  |  |  |  |-- BlazeCompileFileAction.java
+|  |  |  |  |  |  |  |  |-- BlazeMakeProjectAction.java
+|  |  |  |  |  |  |  |  |-- BlazeMenuGroup.java
+|  |  |  |  |  |  |  |  |-- BlazeProjectAction.java
+|  |  |  |  |  |  |  |  |-- BlazeProjectToggleAction.java
+|  |  |  |  |  |  |  |  |-- BuildFileUtils.java
+|  |  |  |  |  |  |  |  |-- CopyBlazeTargetPathAction.java
+|  |  |  |  |  |  |  |  |-- FileGitHubIssueAction.java
+|  |  |  |  |  |  |  |  |-- OpenCorrespondingBuildFile.java
+|  |  |  |  |  |  |  |  |-- ProjectFrameUpdater.java
+|  |  |  |  |  |  |  |  |-- WorkspaceRootMacro.java
+|  |  |  |  |  |  |  |-- async
+|  |  |  |  |  |  |  |  |-- FutureUtil.java
+|  |  |  |  |  |  |  |  |-- ValueHolder.java
+|  |  |  |  |  |  |  |  |-- executor
+|  |  |  |  |  |  |  |  |  |-- BlazeExecutor.java
+|  |  |  |  |  |  |  |  |  |-- BlazeExecutorImpl.java
+|  |  |  |  |  |  |  |  |  |-- ProgressiveTaskWithProgressIndicator.java
+|  |  |  |  |  |  |  |  |  |-- ProgressiveWithResult.java
+|  |  |  |  |  |  |  |  |  |-- TransientExecutor.java
+|  |  |  |  |  |  |  |  |-- process
+|  |  |  |  |  |  |  |  |  |-- BinaryPathRemapper.java
+|  |  |  |  |  |  |  |  |  |-- ExternalTask.java
+|  |  |  |  |  |  |  |  |  |-- ExternalTaskProvider.java
+|  |  |  |  |  |  |  |  |  |-- LineProcessingOutputStream.java
+|  |  |  |  |  |  |  |  |  |-- MacBinaryPathRemapper.java
+|  |  |  |  |  |  |  |  |  |-- PrintOutputLineProcessor.java
+|  |  |  |  |  |  |  |  |  |-- ProcessUtil.java
+|  |  |  |  |  |  |  |-- bazel
+|  |  |  |  |  |  |  |  |-- BazelBuildSystemProvider.java
+|  |  |  |  |  |  |  |  |-- BazelVersion.java
+|  |  |  |  |  |  |  |  |-- BazelWorkspaceRootProvider.java
+|  |  |  |  |  |  |  |  |-- BuildSystemProvider.java
+|  |  |  |  |  |  |  |  |-- WorkspaceRootProvider.java
+|  |  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |  |-- BlazeBuildListener.java
+|  |  |  |  |  |  |  |  |-- BlazeBuildService.java
+|  |  |  |  |  |  |  |-- buildmodifier
+|  |  |  |  |  |  |  |  |-- BazelBuildifierBinaryProvider.java
+|  |  |  |  |  |  |  |  |-- BuildFileFormatOnSaveHandler.java
+|  |  |  |  |  |  |  |  |-- BuildFileFormatter.java
+|  |  |  |  |  |  |  |  |-- BuildifierBinaryProvider.java
+|  |  |  |  |  |  |  |  |-- BuildifierCustomFormatter.java
+|  |  |  |  |  |  |  |-- command
+|  |  |  |  |  |  |  |  |-- BlazeCommand.java
+|  |  |  |  |  |  |  |  |-- BlazeCommandName.java
+|  |  |  |  |  |  |  |  |-- BlazeCommandRunner.java
+|  |  |  |  |  |  |  |  |-- BlazeFlags.java
+|  |  |  |  |  |  |  |  |-- BlazeInvocationContext.java
+|  |  |  |  |  |  |  |  |-- BuildFlagsProvider.java
+|  |  |  |  |  |  |  |  |-- BuildFlagsProviderImpl.java
+|  |  |  |  |  |  |  |  |-- CommandLineBlazeCommandRunner.java
+|  |  |  |  |  |  |  |  |-- buildresult
+|  |  |  |  |  |  |  |  |  |-- BepArtifactData.java
+|  |  |  |  |  |  |  |  |  |-- BlazeArtifact.java
+|  |  |  |  |  |  |  |  |  |-- BuildEventProtocolOutputReader.java
+|  |  |  |  |  |  |  |  |  |-- BuildEventProtocolUtils.java
+|  |  |  |  |  |  |  |  |  |-- BuildEventStreamProvider.java
+|  |  |  |  |  |  |  |  |  |-- BuildFlags.java
+|  |  |  |  |  |  |  |  |  |-- BuildResultHelper.java
+|  |  |  |  |  |  |  |  |  |-- BuildResultHelperBep.java
+|  |  |  |  |  |  |  |  |  |-- BuildResultHelperProvider.java
+|  |  |  |  |  |  |  |  |  |-- LocalFileOutputArtifact.java
+|  |  |  |  |  |  |  |  |  |-- OutputArtifact.java
+|  |  |  |  |  |  |  |  |  |-- OutputArtifactParser.java
+|  |  |  |  |  |  |  |  |  |-- OutputArtifactResolver.java
+|  |  |  |  |  |  |  |  |  |-- ParsedBepOutput.java
+|  |  |  |  |  |  |  |  |  |-- RemoteOutputArtifact.java
+|  |  |  |  |  |  |  |  |  |-- SourceArtifact.java
+|  |  |  |  |  |  |  |  |-- info
+|  |  |  |  |  |  |  |  |  |-- BlazeConfigurationHandler.java
+|  |  |  |  |  |  |  |  |  |-- BlazeInfo.java
+|  |  |  |  |  |  |  |  |  |-- BlazeInfoException.java
+|  |  |  |  |  |  |  |  |  |-- BlazeInfoRunner.java
+|  |  |  |  |  |  |  |  |  |-- BlazeInfoRunnerImpl.java
+|  |  |  |  |  |  |  |-- console
+|  |  |  |  |  |  |  |  |-- BlazeConsoleExperimentManager.java
+|  |  |  |  |  |  |  |  |-- BlazeConsoleLineProcessorProvider.java
+|  |  |  |  |  |  |  |  |-- BlazeConsoleService.java
+|  |  |  |  |  |  |  |  |-- BlazeConsoleServiceImpl.java
+|  |  |  |  |  |  |  |  |-- BlazeConsoleToolWindowFactory.java
+|  |  |  |  |  |  |  |  |-- BlazeConsoleView.java
+|  |  |  |  |  |  |  |  |-- NonProblemFilterWrapper.java
+|  |  |  |  |  |  |  |-- dependencies
+|  |  |  |  |  |  |  |  |-- AddSourceToProjectAction.java
+|  |  |  |  |  |  |  |  |-- AddSourceToProjectDialog.java
+|  |  |  |  |  |  |  |  |-- AddSourceToProjectHelper.java
+|  |  |  |  |  |  |  |  |-- BlazeQueryDirectoryToTargetProvider.java
+|  |  |  |  |  |  |  |  |-- BlazeQuerySourceToTargetProvider.java
+|  |  |  |  |  |  |  |  |-- DependencyFinder.java
+|  |  |  |  |  |  |  |  |-- DirectoryToTargetProvider.java
+|  |  |  |  |  |  |  |  |-- ExternalFileProjectManagementHelper.java
+|  |  |  |  |  |  |  |  |-- SourceToTargetFilteringStrategy.java
+|  |  |  |  |  |  |  |  |-- SourceToTargetHelper.java
+|  |  |  |  |  |  |  |  |-- SourceToTargetProvider.java
+|  |  |  |  |  |  |  |  |-- TargetInfo.java
+|  |  |  |  |  |  |  |  |-- TestSize.java
+|  |  |  |  |  |  |  |-- editor
+|  |  |  |  |  |  |  |  |-- BlazeHighlightStatsCollector.java
+|  |  |  |  |  |  |  |  |-- HighlightingStatsCollector.java
+|  |  |  |  |  |  |  |-- execution
+|  |  |  |  |  |  |  |  |-- BlazeParametersListUtil.java
+|  |  |  |  |  |  |  |-- experiments
+|  |  |  |  |  |  |  |  |-- BlazeExperimentService.java
+|  |  |  |  |  |  |  |  |-- ExperimentScope.java
+|  |  |  |  |  |  |  |-- filecache
+|  |  |  |  |  |  |  |  |-- ArtifactState.java
+|  |  |  |  |  |  |  |  |-- ArtifactStateProtoConverter.java
+|  |  |  |  |  |  |  |  |-- ArtifactsDiff.java
+|  |  |  |  |  |  |  |  |-- FileCache.java
+|  |  |  |  |  |  |  |  |-- FileCacheDiffer.java
+|  |  |  |  |  |  |  |  |-- FileCaches.java
+|  |  |  |  |  |  |  |  |-- FilesDiff.java
+|  |  |  |  |  |  |  |  |-- LocalArtifactStateProtoConverter.java
+|  |  |  |  |  |  |  |  |-- RemoteOutputsCache.java
+|  |  |  |  |  |  |  |-- formatter
+|  |  |  |  |  |  |  |  |-- CustomFormatter.java
+|  |  |  |  |  |  |  |  |-- DelegatingCodeStyleManager.java
+|  |  |  |  |  |  |  |  |-- ExternalFormatterCodeStyleManager.java
+|  |  |  |  |  |  |  |  |-- FileBasedFormattingSynchronizer.java
+|  |  |  |  |  |  |  |  |-- FormatUtils.java
+|  |  |  |  |  |  |  |  |-- FormatterInstaller.java
+|  |  |  |  |  |  |  |-- help
+|  |  |  |  |  |  |  |  |-- BlazeHelpHandler.java
+|  |  |  |  |  |  |  |  |-- BlazeHelpHandlerImpl.java
+|  |  |  |  |  |  |  |-- ide
+|  |  |  |  |  |  |  |  |-- NewBlazePackageAction.java
+|  |  |  |  |  |  |  |  |-- OpenBlazeWorkspaceFileAction.java
+|  |  |  |  |  |  |  |-- ideinfo
+|  |  |  |  |  |  |  |  |-- AndroidAarIdeInfo.java
+|  |  |  |  |  |  |  |  |-- AndroidIdeInfo.java
+|  |  |  |  |  |  |  |  |-- AndroidInstrumentationInfo.java
+|  |  |  |  |  |  |  |  |-- AndroidResFolder.java
+|  |  |  |  |  |  |  |  |-- AndroidSdkIdeInfo.java
+|  |  |  |  |  |  |  |  |-- ArtifactLocation.java
+|  |  |  |  |  |  |  |  |-- CIdeInfo.java
+|  |  |  |  |  |  |  |  |-- CToolchainIdeInfo.java
+|  |  |  |  |  |  |  |  |-- DartIdeInfo.java
+|  |  |  |  |  |  |  |  |-- Dependency.java
+|  |  |  |  |  |  |  |  |-- GoIdeInfo.java
+|  |  |  |  |  |  |  |  |-- ImportPathReplacer.java
+|  |  |  |  |  |  |  |  |-- JavaIdeInfo.java
+|  |  |  |  |  |  |  |  |-- JavaToolchainIdeInfo.java
+|  |  |  |  |  |  |  |  |-- JsIdeInfo.java
+|  |  |  |  |  |  |  |  |-- KotlinToolchainIdeInfo.java
+|  |  |  |  |  |  |  |  |-- LibraryArtifact.java
+|  |  |  |  |  |  |  |  |-- ProjectDataInterner.java
+|  |  |  |  |  |  |  |  |-- ProtoWrapper.java
+|  |  |  |  |  |  |  |  |-- PyIdeInfo.java
+|  |  |  |  |  |  |  |  |-- Tags.java
+|  |  |  |  |  |  |  |  |-- TargetIdeInfo.java
+|  |  |  |  |  |  |  |  |-- TargetKey.java
+|  |  |  |  |  |  |  |  |-- TargetMap.java
+|  |  |  |  |  |  |  |  |-- TestIdeInfo.java
+|  |  |  |  |  |  |  |  |-- TsIdeInfo.java
+|  |  |  |  |  |  |  |-- io
+|  |  |  |  |  |  |  |  |-- AbsolutePathPatcher.java
+|  |  |  |  |  |  |  |  |-- FileAttributeScanner.java
+|  |  |  |  |  |  |  |  |-- FileOperationProvider.java
+|  |  |  |  |  |  |  |  |-- FileSizeScanner.java
+|  |  |  |  |  |  |  |  |-- InputStreamProvider.java
+|  |  |  |  |  |  |  |  |-- InputStreamProviderImpl.java
+|  |  |  |  |  |  |  |  |-- ModifiedTimeScanner.java
+|  |  |  |  |  |  |  |  |-- TempDirectoryProvider.java
+|  |  |  |  |  |  |  |  |-- TempDirectoryProviderImpl.java
+|  |  |  |  |  |  |  |  |-- VfsUtils.java
+|  |  |  |  |  |  |  |  |-- VirtualFileSystemProvider.java
+|  |  |  |  |  |  |  |  |-- VirtualFileSystemProviderImpl.java
+|  |  |  |  |  |  |  |-- issueparser
+|  |  |  |  |  |  |  |  |-- BlazeIssueParser.java
+|  |  |  |  |  |  |  |  |-- BlazeIssueParserProvider.java
+|  |  |  |  |  |  |  |  |-- IssueOutputFilter.java
+|  |  |  |  |  |  |  |  |-- IssueOutputLineProcessor.java
+|  |  |  |  |  |  |  |  |-- NonProblemHyperlinkInfo.java
+|  |  |  |  |  |  |  |  |-- ToolWindowTaskIssueOutputFilter.java
+|  |  |  |  |  |  |  |-- lang
+|  |  |  |  |  |  |  |  |-- AdditionalLanguagesHelper.java
+|  |  |  |  |  |  |  |  |-- buildfile
+|  |  |  |  |  |  |  |  |  |-- completion
+|  |  |  |  |  |  |  |  |  |  |-- ArgumentCompletionContributor.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildCompletionAutoPopupHandler.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildFileCompletionConfidence.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildLookupElement.java
+|  |  |  |  |  |  |  |  |  |  |-- BuiltInFunctionAttributeCompletionContributor.java
+|  |  |  |  |  |  |  |  |  |  |-- BuiltInFunctionCompletionContributor.java
+|  |  |  |  |  |  |  |  |  |  |-- BuiltInSymbolCompletionContributor.java
+|  |  |  |  |  |  |  |  |  |  |-- CommonMacroCompletionContributor.java
+|  |  |  |  |  |  |  |  |  |  |-- CommonMacroContributor.java
+|  |  |  |  |  |  |  |  |  |  |-- CompletionResultsProcessor.java
+|  |  |  |  |  |  |  |  |  |  |-- FilePathLookupElement.java
+|  |  |  |  |  |  |  |  |  |  |-- LabelRuleLookupElement.java
+|  |  |  |  |  |  |  |  |  |  |-- LoadedSymbolReferenceLookupElement.java
+|  |  |  |  |  |  |  |  |  |  |-- NamedBuildLookupElement.java
+|  |  |  |  |  |  |  |  |  |  |-- ParameterCompletionContributor.java
+|  |  |  |  |  |  |  |  |  |-- documentation
+|  |  |  |  |  |  |  |  |  |  |-- BuildDocumentationProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- DocStringFormatter.java
+|  |  |  |  |  |  |  |  |  |-- editor
+|  |  |  |  |  |  |  |  |  |  |-- BuildEnterBetweenBracketsHandler.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildEnterHandler.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildQuoteHandler.java
+|  |  |  |  |  |  |  |  |  |-- findusages
+|  |  |  |  |  |  |  |  |  |  |-- BuildElementDescriptionProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildFileGroupingRule.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildFindUsagesProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildReadWriteAccessDetector.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildTargetElementEvaluator.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildUsageTypeProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- UsageGroupingRuleProviderOverride.java
+|  |  |  |  |  |  |  |  |  |-- formatting
+|  |  |  |  |  |  |  |  |  |  |-- BuildBraceMatcher.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildCodeStyleSettings.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildCodeStyleSettingsProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildCommenter.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildFileFoldingBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildLanguageCodeStyleSettingsProvider.java
+|  |  |  |  |  |  |  |  |  |-- globbing
+|  |  |  |  |  |  |  |  |  |  |-- UnixGlob.java
+|  |  |  |  |  |  |  |  |  |-- highlighting
+|  |  |  |  |  |  |  |  |  |  |-- BuildColorsPage.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildSyntaxHighlighter.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildSyntaxHighlighterFactory.java
+|  |  |  |  |  |  |  |  |  |-- language
+|  |  |  |  |  |  |  |  |  |  |-- BuildFileLanguage.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildFileType.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildFileTypeFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- semantics
+|  |  |  |  |  |  |  |  |  |  |  |-- AttributeDefinition.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BuildLanguageSpec.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BuildLanguageSpecProvider.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BuildLanguageSpecProviderImpl.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BuiltInNamesProvider.java
+|  |  |  |  |  |  |  |  |  |  |  |-- RuleDefinition.java
+|  |  |  |  |  |  |  |  |  |-- lexer
+|  |  |  |  |  |  |  |  |  |  |-- BuildLexer.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildLexerBase.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildToken.java
+|  |  |  |  |  |  |  |  |  |  |-- Token.java
+|  |  |  |  |  |  |  |  |  |  |-- TokenKind.java
+|  |  |  |  |  |  |  |  |  |-- livetemplates
+|  |  |  |  |  |  |  |  |  |  |-- RulesTemplates.java
+|  |  |  |  |  |  |  |  |  |-- parser
+|  |  |  |  |  |  |  |  |  |  |-- BuildParserDefinition.java
+|  |  |  |  |  |  |  |  |  |  |-- ExpressionParsing.java
+|  |  |  |  |  |  |  |  |  |  |-- Parsing.java
+|  |  |  |  |  |  |  |  |  |  |-- ParsingContext.java
+|  |  |  |  |  |  |  |  |  |  |-- StatementParsing.java
+|  |  |  |  |  |  |  |  |  |-- psi
+|  |  |  |  |  |  |  |  |  |  |-- Argument.java
+|  |  |  |  |  |  |  |  |  |  |-- ArgumentList.java
+|  |  |  |  |  |  |  |  |  |  |-- AssignmentStatement.java
+|  |  |  |  |  |  |  |  |  |  |-- AugmentedAssignmentStatement.java
+|  |  |  |  |  |  |  |  |  |  |-- BinaryOpExpression.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildElement.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildElementImpl.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildElementType.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildElementTypes.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildElementVisitor.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildFile.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildFileWithCustomCompletion.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildListType.java
+|  |  |  |  |  |  |  |  |  |  |-- DictionaryEntryLiteral.java
+|  |  |  |  |  |  |  |  |  |  |-- DictionaryLiteral.java
+|  |  |  |  |  |  |  |  |  |  |-- DocStringOwner.java
+|  |  |  |  |  |  |  |  |  |  |-- DotExpression.java
+|  |  |  |  |  |  |  |  |  |  |-- ElseIfPart.java
+|  |  |  |  |  |  |  |  |  |  |-- ElsePart.java
+|  |  |  |  |  |  |  |  |  |  |-- Expression.java
+|  |  |  |  |  |  |  |  |  |  |-- FlowStatement.java
+|  |  |  |  |  |  |  |  |  |  |-- ForStatement.java
+|  |  |  |  |  |  |  |  |  |  |-- FuncallExpression.java
+|  |  |  |  |  |  |  |  |  |  |-- FunctionStatement.java
+|  |  |  |  |  |  |  |  |  |  |-- GlobExpression.java
+|  |  |  |  |  |  |  |  |  |  |-- IfPart.java
+|  |  |  |  |  |  |  |  |  |  |-- IfStatement.java
+|  |  |  |  |  |  |  |  |  |  |-- IntegerLiteral.java
+|  |  |  |  |  |  |  |  |  |  |-- ListComprehensionExpression.java
+|  |  |  |  |  |  |  |  |  |  |-- ListLiteral.java
+|  |  |  |  |  |  |  |  |  |  |-- LiteralExpression.java
+|  |  |  |  |  |  |  |  |  |  |-- LoadStatement.java
+|  |  |  |  |  |  |  |  |  |  |-- LoadedSymbol.java
+|  |  |  |  |  |  |  |  |  |  |-- NamedBuildElement.java
+|  |  |  |  |  |  |  |  |  |  |-- Parameter.java
+|  |  |  |  |  |  |  |  |  |  |-- ParameterList.java
+|  |  |  |  |  |  |  |  |  |  |-- ParenthesizedExpression.java
+|  |  |  |  |  |  |  |  |  |  |-- PassStatement.java
+|  |  |  |  |  |  |  |  |  |  |-- ReferenceExpression.java
+|  |  |  |  |  |  |  |  |  |  |-- ReturnStatement.java
+|  |  |  |  |  |  |  |  |  |  |-- Statement.java
+|  |  |  |  |  |  |  |  |  |  |-- StatementList.java
+|  |  |  |  |  |  |  |  |  |  |-- StatementListContainer.java
+|  |  |  |  |  |  |  |  |  |  |-- StringLiteral.java
+|  |  |  |  |  |  |  |  |  |  |-- TargetExpression.java
+|  |  |  |  |  |  |  |  |  |  |-- TupleExpression.java
+|  |  |  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |  |  |-- BuildElementGenerator.java
+|  |  |  |  |  |  |  |  |  |  |  |-- PsiUtils.java
+|  |  |  |  |  |  |  |  |  |-- quickfix
+|  |  |  |  |  |  |  |  |  |  |-- DeprecatedLoadQuickFix.java
+|  |  |  |  |  |  |  |  |  |-- refactor
+|  |  |  |  |  |  |  |  |  |  |-- BuildNamesValidator.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildRefactoringSupportProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- StringLiteralElementManipulator.java
+|  |  |  |  |  |  |  |  |  |  |-- TargetRenameValidator.java
+|  |  |  |  |  |  |  |  |  |-- references
+|  |  |  |  |  |  |  |  |  |  |-- ArgumentReference.java
+|  |  |  |  |  |  |  |  |  |  |-- AttributeSpecificStringLiteralReferenceProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildReferenceManager.java
+|  |  |  |  |  |  |  |  |  |  |-- ExternalWorkspaceReferenceFragment.java
+|  |  |  |  |  |  |  |  |  |  |-- FileLookupData.java
+|  |  |  |  |  |  |  |  |  |  |-- FuncallReference.java
+|  |  |  |  |  |  |  |  |  |  |-- GlobReference.java
+|  |  |  |  |  |  |  |  |  |  |-- KeywordArgumentReference.java
+|  |  |  |  |  |  |  |  |  |  |-- LabelReference.java
+|  |  |  |  |  |  |  |  |  |  |-- LabelUtils.java
+|  |  |  |  |  |  |  |  |  |  |-- LoadedSymbolReference.java
+|  |  |  |  |  |  |  |  |  |  |-- LocalReference.java
+|  |  |  |  |  |  |  |  |  |  |-- PackageReferenceFragment.java
+|  |  |  |  |  |  |  |  |  |  |-- QuoteType.java
+|  |  |  |  |  |  |  |  |  |  |-- TargetReference.java
+|  |  |  |  |  |  |  |  |  |-- search
+|  |  |  |  |  |  |  |  |  |  |-- BlazePackage.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazePackageSearchScope.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildReferenceSearcher.java
+|  |  |  |  |  |  |  |  |  |  |-- FindUsages.java
+|  |  |  |  |  |  |  |  |  |  |-- GlobReferenceSearcher.java
+|  |  |  |  |  |  |  |  |  |  |-- PsiFileProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- ResolveUtil.java
+|  |  |  |  |  |  |  |  |  |-- stubs
+|  |  |  |  |  |  |  |  |  |  |-- BuildFileStubBuilder.java
+|  |  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |  |-- BuildLangSyncPlugin.java
+|  |  |  |  |  |  |  |  |  |  |-- LanguageSpecResult.java
+|  |  |  |  |  |  |  |  |  |-- validation
+|  |  |  |  |  |  |  |  |  |  |-- AttributeTypeGroups.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildAnnotator.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildElementValidation.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildSpellcheckingStrategy.java
+|  |  |  |  |  |  |  |  |  |  |-- BuiltInRuleAnnotator.java
+|  |  |  |  |  |  |  |  |  |  |-- GlobErrorAnnotator.java
+|  |  |  |  |  |  |  |  |  |  |-- GlobPatternValidator.java
+|  |  |  |  |  |  |  |  |  |  |-- HighlightingAnnotator.java
+|  |  |  |  |  |  |  |  |  |  |-- LoadStatementAnnotator.java
+|  |  |  |  |  |  |  |  |  |-- views
+|  |  |  |  |  |  |  |  |  |  |-- BuildStructureViewElement.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildStructureViewFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildStructureViewModel.java
+|  |  |  |  |  |  |  |  |  |  |-- LoadStatementsFilter.java
+|  |  |  |  |  |  |  |  |-- projectview
+|  |  |  |  |  |  |  |  |  |-- completion
+|  |  |  |  |  |  |  |  |  |  |-- AdditionalLanguagesCompletionContributor.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewKeywordCompletionContributor.java
+|  |  |  |  |  |  |  |  |  |  |-- WorkspaceTypeCompletionContributor.java
+|  |  |  |  |  |  |  |  |  |-- documentation
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewDocumentationProvider.java
+|  |  |  |  |  |  |  |  |  |-- formatting
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewCodeStyleSettingsProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewCommenter.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewEnterHandler.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewRearranger.java
+|  |  |  |  |  |  |  |  |  |-- highlighting
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewSyntaxHighlighter.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewSyntaxHighlighterFactory.java
+|  |  |  |  |  |  |  |  |  |-- language
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewFileType.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewFileTypeFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewKeywords.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewLanguage.java
+|  |  |  |  |  |  |  |  |  |-- lexer
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewLexer.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewLexerBase.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewTokenType.java
+|  |  |  |  |  |  |  |  |  |-- parser
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewParserDefinition.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewPsiParser.java
+|  |  |  |  |  |  |  |  |  |-- psi
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewElementType.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewElementTypes.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewPsiElement.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewPsiFile.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewPsiListItem.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewPsiListSection.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewPsiScalarItem.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewPsiScalarSection.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewPsiSectionItem.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewSection.java
+|  |  |  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |  |  |-- ProjectViewElementGenerator.java
+|  |  |  |  |  |  |  |  |  |-- references
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewLabelReference.java
+|  |  |  |  |  |  |  |  |  |-- stubs
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewFileStubBuilder.java
+|  |  |  |  |  |  |  |-- logging
+|  |  |  |  |  |  |  |  |-- EventLogger.java
+|  |  |  |  |  |  |  |  |-- EventLoggingService.java
+|  |  |  |  |  |  |  |  |-- LoggedSettingsProvider.java
+|  |  |  |  |  |  |  |  |-- NoopEventLoggingService.java
+|  |  |  |  |  |  |  |  |-- utils
+|  |  |  |  |  |  |  |  |  |-- BuildPhaseSyncStats.java
+|  |  |  |  |  |  |  |  |  |-- FileHighlights.java
+|  |  |  |  |  |  |  |  |  |-- HighlightInfo.java
+|  |  |  |  |  |  |  |  |  |-- HighlightStats.java
+|  |  |  |  |  |  |  |  |  |-- ShardStats.java
+|  |  |  |  |  |  |  |  |  |-- SyncStats.java
+|  |  |  |  |  |  |  |-- model
+|  |  |  |  |  |  |  |  |-- BlazeLibrary.java
+|  |  |  |  |  |  |  |  |-- BlazeProjectData.java
+|  |  |  |  |  |  |  |  |-- BlazeVersionData.java
+|  |  |  |  |  |  |  |  |-- LibraryKey.java
+|  |  |  |  |  |  |  |  |-- OutputsProvider.java
+|  |  |  |  |  |  |  |  |-- ProjectTargetData.java
+|  |  |  |  |  |  |  |  |-- RemoteOutputArtifacts.java
+|  |  |  |  |  |  |  |  |-- SyncData.java
+|  |  |  |  |  |  |  |  |-- SyncState.java
+|  |  |  |  |  |  |  |  |-- primitives
+|  |  |  |  |  |  |  |  |  |-- ExecutionRootPath.java
+|  |  |  |  |  |  |  |  |  |-- GenericBlazeRules.java
+|  |  |  |  |  |  |  |  |  |-- InvalidTargetException.java
+|  |  |  |  |  |  |  |  |  |-- Kind.java
+|  |  |  |  |  |  |  |  |  |-- Label.java
+|  |  |  |  |  |  |  |  |  |-- LanguageClass.java
+|  |  |  |  |  |  |  |  |  |-- PackagePathValidator.java
+|  |  |  |  |  |  |  |  |  |-- RuleType.java
+|  |  |  |  |  |  |  |  |  |-- TargetExpression.java
+|  |  |  |  |  |  |  |  |  |-- TargetName.java
+|  |  |  |  |  |  |  |  |  |-- WildcardTargetPattern.java
+|  |  |  |  |  |  |  |  |  |-- WorkspacePath.java
+|  |  |  |  |  |  |  |  |  |-- WorkspaceRoot.java
+|  |  |  |  |  |  |  |  |  |-- WorkspaceType.java
+|  |  |  |  |  |  |  |-- plugin
+|  |  |  |  |  |  |  |  |-- BazelVersionChecker.java
+|  |  |  |  |  |  |  |  |-- BlazeBinaryFileType.java
+|  |  |  |  |  |  |  |  |-- BlazeFileTypeFactory.java
+|  |  |  |  |  |  |  |  |-- BlazeSpecificInitializer.java
+|  |  |  |  |  |  |  |  |-- BuildSystemVersionChecker.java
+|  |  |  |  |  |  |  |  |-- PluginUtils.java
+|  |  |  |  |  |  |  |-- prefetch
+|  |  |  |  |  |  |  |  |-- DefaultPrefetcher.java
+|  |  |  |  |  |  |  |  |-- FetchExecutor.java
+|  |  |  |  |  |  |  |  |-- PrefetchFileSource.java
+|  |  |  |  |  |  |  |  |-- PrefetchIndexingTask.java
+|  |  |  |  |  |  |  |  |-- PrefetchProjectInitializer.java
+|  |  |  |  |  |  |  |  |-- PrefetchService.java
+|  |  |  |  |  |  |  |  |-- PrefetchServiceImpl.java
+|  |  |  |  |  |  |  |  |-- PrefetchVcsSyncListener.java
+|  |  |  |  |  |  |  |  |-- Prefetcher.java
+|  |  |  |  |  |  |  |  |-- ProtoPrefetchFileSource.java
+|  |  |  |  |  |  |  |  |-- RemoteArtifactPrefetcher.java
+|  |  |  |  |  |  |  |-- project
+|  |  |  |  |  |  |  |  |-- BlazeProjectOpenProcessor.java
+|  |  |  |  |  |  |  |  |-- DisableAndroidFrameworkActivity.java
+|  |  |  |  |  |  |  |-- projectview
+|  |  |  |  |  |  |  |  |-- ProjectView.java
+|  |  |  |  |  |  |  |  |-- ProjectViewEdit.java
+|  |  |  |  |  |  |  |  |-- ProjectViewManager.java
+|  |  |  |  |  |  |  |  |-- ProjectViewManagerImpl.java
+|  |  |  |  |  |  |  |  |-- ProjectViewSet.java
+|  |  |  |  |  |  |  |  |-- ProjectViewStorageManager.java
+|  |  |  |  |  |  |  |  |-- ProjectViewStorageManagerImpl.java
+|  |  |  |  |  |  |  |  |-- ProjectViewVerifier.java
+|  |  |  |  |  |  |  |  |-- parser
+|  |  |  |  |  |  |  |  |  |-- ParseContext.java
+|  |  |  |  |  |  |  |  |  |-- ProjectViewParser.java
+|  |  |  |  |  |  |  |  |-- section
+|  |  |  |  |  |  |  |  |  |-- Glob.java
+|  |  |  |  |  |  |  |  |  |-- GlobSectionParser.java
+|  |  |  |  |  |  |  |  |  |-- LabelSectionParser.java
+|  |  |  |  |  |  |  |  |  |-- ListSection.java
+|  |  |  |  |  |  |  |  |  |-- ListSectionParser.java
+|  |  |  |  |  |  |  |  |  |-- ProjectViewDefaultValueProvider.java
+|  |  |  |  |  |  |  |  |  |-- ScalarSection.java
+|  |  |  |  |  |  |  |  |  |-- ScalarSectionParser.java
+|  |  |  |  |  |  |  |  |  |-- Section.java
+|  |  |  |  |  |  |  |  |  |-- SectionBuilder.java
+|  |  |  |  |  |  |  |  |  |-- SectionKey.java
+|  |  |  |  |  |  |  |  |  |-- SectionParser.java
+|  |  |  |  |  |  |  |  |  |-- sections
+|  |  |  |  |  |  |  |  |  |  |-- AdditionalLanguagesSection.java
+|  |  |  |  |  |  |  |  |  |  |-- AutomaticallyDeriveTargetsSection.java
+|  |  |  |  |  |  |  |  |  |  |-- BazelBinarySection.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildFlagsSection.java
+|  |  |  |  |  |  |  |  |  |  |-- DirectoryEntry.java
+|  |  |  |  |  |  |  |  |  |  |-- DirectorySection.java
+|  |  |  |  |  |  |  |  |  |  |-- ExcludeTargetSection.java
+|  |  |  |  |  |  |  |  |  |  |-- ExcludedSourceSection.java
+|  |  |  |  |  |  |  |  |  |  |-- ImportSection.java
+|  |  |  |  |  |  |  |  |  |  |-- ImportTargetOutputSection.java
+|  |  |  |  |  |  |  |  |  |  |-- ItemOrTextBlock.java
+|  |  |  |  |  |  |  |  |  |  |-- RunConfigurationsSection.java
+|  |  |  |  |  |  |  |  |  |  |-- Sections.java
+|  |  |  |  |  |  |  |  |  |  |-- ShardBlazeBuildsSection.java
+|  |  |  |  |  |  |  |  |  |  |-- SyncFlagsSection.java
+|  |  |  |  |  |  |  |  |  |  |-- TargetSection.java
+|  |  |  |  |  |  |  |  |  |  |-- TargetShardSizeSection.java
+|  |  |  |  |  |  |  |  |  |  |-- TestFlagsSection.java
+|  |  |  |  |  |  |  |  |  |  |-- TestSourceSection.java
+|  |  |  |  |  |  |  |  |  |  |-- TextBlock.java
+|  |  |  |  |  |  |  |  |  |  |-- TextBlockSection.java
+|  |  |  |  |  |  |  |  |  |  |-- WorkspaceTypeSection.java
+|  |  |  |  |  |  |  |-- query
+|  |  |  |  |  |  |  |  |-- BlazeQueryLabelKindParser.java
+|  |  |  |  |  |  |  |  |-- BlazeQueryMacroTargetProvider.java
+|  |  |  |  |  |  |  |  |-- BlazeQueryOutputBaseProvider.java
+|  |  |  |  |  |  |  |  |-- BlazeQueryProtoParser.java
+|  |  |  |  |  |  |  |  |-- GeneratedTarget.java
+|  |  |  |  |  |  |  |  |-- MacroLineMarkerProvider.java
+|  |  |  |  |  |  |  |  |-- MacroTargetProvider.java
+|  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |-- BlazeBeforeRunCommandHelper.java
+|  |  |  |  |  |  |  |  |-- BlazeBeforeRunTaskProvider.java
+|  |  |  |  |  |  |  |  |-- BlazeBuildTargetRunConfigurationFactory.java
+|  |  |  |  |  |  |  |  |-- BlazeCommandRunConfiguration.java
+|  |  |  |  |  |  |  |  |-- BlazeCommandRunConfigurationType.java
+|  |  |  |  |  |  |  |  |-- BlazeConfigurationNameBuilder.java
+|  |  |  |  |  |  |  |  |-- BlazePackageHeuristic.java
+|  |  |  |  |  |  |  |  |-- BlazeRunConfiguration.java
+|  |  |  |  |  |  |  |  |-- BlazeRunConfigurationFactory.java
+|  |  |  |  |  |  |  |  |-- BlazeRunConfigurationSyncListener.java
+|  |  |  |  |  |  |  |  |-- ExecutorType.java
+|  |  |  |  |  |  |  |  |-- PendingRunConfigurationContext.java
+|  |  |  |  |  |  |  |  |-- SourceToTargetFinder.java
+|  |  |  |  |  |  |  |  |-- TargetNameHeuristic.java
+|  |  |  |  |  |  |  |  |-- TestSizeFromRoughTargetNameHeuristic.java
+|  |  |  |  |  |  |  |  |-- TestSizeHeuristic.java
+|  |  |  |  |  |  |  |  |-- TestTargetHeuristic.java
+|  |  |  |  |  |  |  |  |-- TestTargetSourcesHeuristic.java
+|  |  |  |  |  |  |  |  |-- WithBrowserHyperlinkExecutionException.java
+|  |  |  |  |  |  |  |  |-- confighandler
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandGenericRunConfigurationHandler.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandGenericRunConfigurationHandlerProvider.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandGenericRunConfigurationRunner.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandRunConfigurationHandler.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandRunConfigurationHandlerProvider.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandRunConfigurationRunner.java
+|  |  |  |  |  |  |  |  |  |-- PendingTargetRunConfigurationHandler.java
+|  |  |  |  |  |  |  |  |  |-- PendingTargetRunConfigurationHandlerProvider.java
+|  |  |  |  |  |  |  |  |-- coverage
+|  |  |  |  |  |  |  |  |  |-- CoverageBuildFlagsProvider.java
+|  |  |  |  |  |  |  |  |  |-- CoverageUtils.java
+|  |  |  |  |  |  |  |  |-- exporter
+|  |  |  |  |  |  |  |  |  |-- ExportRunConfigurationAction.java
+|  |  |  |  |  |  |  |  |  |-- ExportRunConfigurationDialog.java
+|  |  |  |  |  |  |  |  |  |-- ExportRunConfigurationTableModel.java
+|  |  |  |  |  |  |  |  |  |-- RunConfigurationSerializer.java
+|  |  |  |  |  |  |  |  |-- filter
+|  |  |  |  |  |  |  |  |  |-- BlazeTargetFilter.java
+|  |  |  |  |  |  |  |  |  |-- FileResolver.java
+|  |  |  |  |  |  |  |  |  |-- GenericFileMessageFilter.java
+|  |  |  |  |  |  |  |  |  |-- StandardFileResolver.java
+|  |  |  |  |  |  |  |  |  |-- TestLogFilter.java
+|  |  |  |  |  |  |  |  |-- processhandler
+|  |  |  |  |  |  |  |  |  |-- LineProcessingProcessAdapter.java
+|  |  |  |  |  |  |  |  |  |-- ScopedBlazeProcessHandler.java
+|  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |-- AllInBuildFileTestContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- AllInDirectoryRecursiveTestContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- BinaryContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- BinaryContextRunConfigurationProducer.java
+|  |  |  |  |  |  |  |  |  |-- BlazeBuildFileRunConfigurationProducer.java
+|  |  |  |  |  |  |  |  |  |-- BlazeFilterExistingRunConfigurationProducer.java
+|  |  |  |  |  |  |  |  |  |-- BlazeRunConfigurationProducer.java
+|  |  |  |  |  |  |  |  |  |-- BuildFileRunLineMarkerContributor.java
+|  |  |  |  |  |  |  |  |  |-- HeuristicTestIdentifier.java
+|  |  |  |  |  |  |  |  |  |-- PendingAsyncTestContext.java
+|  |  |  |  |  |  |  |  |  |-- PendingWebTestContext.java
+|  |  |  |  |  |  |  |  |  |-- RunConfigurationContext.java
+|  |  |  |  |  |  |  |  |  |-- TestContext.java
+|  |  |  |  |  |  |  |  |  |-- TestContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- TestContextRunConfigurationProducer.java
+|  |  |  |  |  |  |  |  |  |-- VirtualFileTestContextProvider.java
+|  |  |  |  |  |  |  |  |-- smrunner
+|  |  |  |  |  |  |  |  |  |-- BlazeGenericTestEventsHandler.java
+|  |  |  |  |  |  |  |  |  |-- BlazeRerunFailedTestsAction.java
+|  |  |  |  |  |  |  |  |  |-- BlazeTestConsoleProperties.java
+|  |  |  |  |  |  |  |  |  |-- BlazeTestEventsHandler.java
+|  |  |  |  |  |  |  |  |  |-- BlazeTestExitStatus.java
+|  |  |  |  |  |  |  |  |  |-- BlazeTestUiSession.java
+|  |  |  |  |  |  |  |  |  |-- BlazeWebTestEventsHandler.java
+|  |  |  |  |  |  |  |  |  |-- BlazeWebTestLocator.java
+|  |  |  |  |  |  |  |  |  |-- BlazeXmlSchema.java
+|  |  |  |  |  |  |  |  |  |-- BlazeXmlToTestEventsConverter.java
+|  |  |  |  |  |  |  |  |  |-- CompositeSMTestLocator.java
+|  |  |  |  |  |  |  |  |  |-- SmRunnerUtils.java
+|  |  |  |  |  |  |  |  |  |-- TestComparisonFailureParser.java
+|  |  |  |  |  |  |  |  |  |-- TestUiSessionProvider.java
+|  |  |  |  |  |  |  |  |  |-- TestUiSessionProviderImpl.java
+|  |  |  |  |  |  |  |  |-- state
+|  |  |  |  |  |  |  |  |  |-- BlazeBinaryState.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandRunConfigurationCommonState.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandState.java
+|  |  |  |  |  |  |  |  |  |-- ConsoleOutputFileSettingsUi.java
+|  |  |  |  |  |  |  |  |  |-- DebugPortState.java
+|  |  |  |  |  |  |  |  |  |-- EnvironmentVariablesState.java
+|  |  |  |  |  |  |  |  |  |-- RunConfigurationCompositeState.java
+|  |  |  |  |  |  |  |  |  |-- RunConfigurationFlagsState.java
+|  |  |  |  |  |  |  |  |  |-- RunConfigurationState.java
+|  |  |  |  |  |  |  |  |  |-- RunConfigurationStateEditor.java
+|  |  |  |  |  |  |  |  |-- targetfinder
+|  |  |  |  |  |  |  |  |  |-- FuturesUtil.java
+|  |  |  |  |  |  |  |  |  |-- ProjectTargetFinder.java
+|  |  |  |  |  |  |  |  |  |-- TargetFinder.java
+|  |  |  |  |  |  |  |  |-- testlogs
+|  |  |  |  |  |  |  |  |  |-- BlazeTestResult.java
+|  |  |  |  |  |  |  |  |  |-- BlazeTestResultFinderStrategy.java
+|  |  |  |  |  |  |  |  |  |-- BlazeTestResults.java
+|  |  |  |  |  |  |  |  |  |-- BuildEventProtocolTestFinderStrategy.java
+|  |  |  |  |  |  |  |  |-- testmap
+|  |  |  |  |  |  |  |  |  |-- FilteredTargetMap.java
+|  |  |  |  |  |  |  |  |  |-- ProjectSourceToTargetFinder.java
+|  |  |  |  |  |  |  |  |-- ui
+|  |  |  |  |  |  |  |  |  |-- TargetExpressionListUi.java
+|  |  |  |  |  |  |  |-- scope
+|  |  |  |  |  |  |  |  |-- BlazeContext.java
+|  |  |  |  |  |  |  |  |-- BlazeScope.java
+|  |  |  |  |  |  |  |  |-- Output.java
+|  |  |  |  |  |  |  |  |-- OutputSink.java
+|  |  |  |  |  |  |  |  |-- Result.java
+|  |  |  |  |  |  |  |  |-- Scope.java
+|  |  |  |  |  |  |  |  |-- ScopedFunction.java
+|  |  |  |  |  |  |  |  |-- ScopedOperation.java
+|  |  |  |  |  |  |  |  |-- ScopedTask.java
+|  |  |  |  |  |  |  |  |-- output
+|  |  |  |  |  |  |  |  |  |-- IssueOutput.java
+|  |  |  |  |  |  |  |  |  |-- PerformanceWarning.java
+|  |  |  |  |  |  |  |  |  |-- PrintOutput.java
+|  |  |  |  |  |  |  |  |  |-- StatusOutput.java
+|  |  |  |  |  |  |  |  |-- scopes
+|  |  |  |  |  |  |  |  |  |-- BlazeConsoleScope.java
+|  |  |  |  |  |  |  |  |  |-- IdeaLogScope.java
+|  |  |  |  |  |  |  |  |  |-- NoOpBlazeScope.java
+|  |  |  |  |  |  |  |  |  |-- NotificationScope.java
+|  |  |  |  |  |  |  |  |  |-- PerformanceWarningScope.java
+|  |  |  |  |  |  |  |  |  |-- ProblemsViewScope.java
+|  |  |  |  |  |  |  |  |  |-- ProgressIndicatorScope.java
+|  |  |  |  |  |  |  |  |  |-- ProjectCloseScope.java
+|  |  |  |  |  |  |  |  |  |-- TimingScope.java
+|  |  |  |  |  |  |  |  |  |-- TimingScopeListener.java
+|  |  |  |  |  |  |  |  |  |-- ToolWindowScope.java
+|  |  |  |  |  |  |  |-- settings
+|  |  |  |  |  |  |  |  |-- Blaze.java
+|  |  |  |  |  |  |  |  |-- BlazeImportSettings.java
+|  |  |  |  |  |  |  |  |-- BlazeImportSettingsManager.java
+|  |  |  |  |  |  |  |  |-- BlazeUserSettings.java
+|  |  |  |  |  |  |  |  |-- BuildBinaryType.java
+|  |  |  |  |  |  |  |  |-- BuildSystem.java
+|  |  |  |  |  |  |  |  |-- IsBlazeProjectCondition.java
+|  |  |  |  |  |  |  |  |-- SearchableOptionsHelper.java
+|  |  |  |  |  |  |  |  |-- ui
+|  |  |  |  |  |  |  |  |  |-- AddDirectoryToProjectAction.java
+|  |  |  |  |  |  |  |  |  |-- BlazeUserSettingsCompositeConfigurable.java
+|  |  |  |  |  |  |  |  |  |-- BlazeUserSettingsConfigurable.java
+|  |  |  |  |  |  |  |  |  |-- JPanelProvidingProject.java
+|  |  |  |  |  |  |  |  |  |-- OpenProjectViewAction.java
+|  |  |  |  |  |  |  |  |  |-- ProjectViewUi.java
+|  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |-- BlazeBuildParams.java
+|  |  |  |  |  |  |  |  |-- BlazeSyncBuildResult.java
+|  |  |  |  |  |  |  |  |-- BlazeSyncManager.java
+|  |  |  |  |  |  |  |  |-- BlazeSyncModificationTracker.java
+|  |  |  |  |  |  |  |  |-- BlazeSyncParams.java
+|  |  |  |  |  |  |  |  |-- BlazeSyncPlugin.java
+|  |  |  |  |  |  |  |  |-- BlazeSyncStartupActivity.java
+|  |  |  |  |  |  |  |  |-- BuildPhaseSyncTask.java
+|  |  |  |  |  |  |  |  |-- BuildTargetFinder.java
+|  |  |  |  |  |  |  |  |-- GenericSourceFolderProvider.java
+|  |  |  |  |  |  |  |  |-- ProjectStateSyncTask.java
+|  |  |  |  |  |  |  |  |-- ProjectUpdateSyncTask.java
+|  |  |  |  |  |  |  |  |-- SimpleSyncListener.java
+|  |  |  |  |  |  |  |  |-- SimpleSyncListenerService.java
+|  |  |  |  |  |  |  |  |-- SourceFolderProvider.java
+|  |  |  |  |  |  |  |  |-- SyncCache.java
+|  |  |  |  |  |  |  |  |-- SyncListener.java
+|  |  |  |  |  |  |  |  |-- SyncMode.java
+|  |  |  |  |  |  |  |  |-- SyncPhaseCoordinator.java
+|  |  |  |  |  |  |  |  |-- SyncProjectState.java
+|  |  |  |  |  |  |  |  |-- SyncProjectTargetsHelper.java
+|  |  |  |  |  |  |  |  |-- SyncResult.java
+|  |  |  |  |  |  |  |  |-- SyncScope.java
+|  |  |  |  |  |  |  |  |-- actions
+|  |  |  |  |  |  |  |  |  |-- BlazeProjectSyncAction.java
+|  |  |  |  |  |  |  |  |  |-- CleanProjectTargetsSyncAction.java
+|  |  |  |  |  |  |  |  |  |-- ExpandSyncToWorkingSetAction.java
+|  |  |  |  |  |  |  |  |  |-- FullSyncProjectAction.java
+|  |  |  |  |  |  |  |  |  |-- IncrementalSyncProjectAction.java
+|  |  |  |  |  |  |  |  |  |-- PartialSyncAction.java
+|  |  |  |  |  |  |  |  |  |-- ShowPerformanceWarningsToggleAction.java
+|  |  |  |  |  |  |  |  |  |-- SyncWorkingSetAction.java
+|  |  |  |  |  |  |  |  |  |-- UpdateDirectoriesSyncAction.java
+|  |  |  |  |  |  |  |  |-- aspects
+|  |  |  |  |  |  |  |  |  |-- BlazeBuildOutputs.java
+|  |  |  |  |  |  |  |  |  |-- BlazeIdeInterface.java
+|  |  |  |  |  |  |  |  |  |-- BlazeIdeInterfaceAspectsImpl.java
+|  |  |  |  |  |  |  |  |  |-- BlazeIdeInterfaceState.java
+|  |  |  |  |  |  |  |  |  |-- BuildResult.java
+|  |  |  |  |  |  |  |  |  |-- strategy
+|  |  |  |  |  |  |  |  |  |  |-- AspectStrategy.java
+|  |  |  |  |  |  |  |  |  |  |-- AspectStrategyBazel.java
+|  |  |  |  |  |  |  |  |  |  |-- AspectStrategyProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- LanguageOutputGroup.java
+|  |  |  |  |  |  |  |  |  |  |-- OutputGroupsProvider.java
+|  |  |  |  |  |  |  |  |-- autosync
+|  |  |  |  |  |  |  |  |  |-- AutoSyncHandler.java
+|  |  |  |  |  |  |  |  |  |-- AutoSyncProvider.java
+|  |  |  |  |  |  |  |  |  |-- AutoSyncSettings.java
+|  |  |  |  |  |  |  |  |  |-- BuildFileAutoSyncProvider.java
+|  |  |  |  |  |  |  |  |  |-- PendingChangesHandler.java
+|  |  |  |  |  |  |  |  |  |-- ProjectTargetManager.java
+|  |  |  |  |  |  |  |  |  |-- ProjectTargetManagerImpl.java
+|  |  |  |  |  |  |  |  |  |-- ProjectViewAutoSyncProvider.java
+|  |  |  |  |  |  |  |  |  |-- ProtoAutoSyncProvider.java
+|  |  |  |  |  |  |  |  |  |-- VcsAutoSyncProvider.java
+|  |  |  |  |  |  |  |  |-- data
+|  |  |  |  |  |  |  |  |  |-- BlazeDataStorage.java
+|  |  |  |  |  |  |  |  |  |-- BlazeProjectDataManager.java
+|  |  |  |  |  |  |  |  |  |-- BlazeProjectDataManagerImpl.java
+|  |  |  |  |  |  |  |  |-- libraries
+|  |  |  |  |  |  |  |  |  |-- BlazeExternalLibraryProvider.java
+|  |  |  |  |  |  |  |  |  |-- BlazeExternalSyntheticLibrary.java
+|  |  |  |  |  |  |  |  |  |-- BlazeLibraryCollector.java
+|  |  |  |  |  |  |  |  |  |-- BlazeLibrarySorter.java
+|  |  |  |  |  |  |  |  |  |-- ExternalLibraryManager.java
+|  |  |  |  |  |  |  |  |  |-- LibraryEditor.java
+|  |  |  |  |  |  |  |  |  |-- LibrarySource.java
+|  |  |  |  |  |  |  |  |-- projectstructure
+|  |  |  |  |  |  |  |  |  |-- ContentEntryEditor.java
+|  |  |  |  |  |  |  |  |  |-- DirectoryStructure.java
+|  |  |  |  |  |  |  |  |  |-- ModuleEditorImpl.java
+|  |  |  |  |  |  |  |  |  |-- ModuleEditorProvider.java
+|  |  |  |  |  |  |  |  |  |-- ModuleEditorProviderImpl.java
+|  |  |  |  |  |  |  |  |  |-- ModuleFinder.java
+|  |  |  |  |  |  |  |  |  |-- ModuleFinderImpl.java
+|  |  |  |  |  |  |  |  |-- projectview
+|  |  |  |  |  |  |  |  |  |-- BazelIgnoreParser.java
+|  |  |  |  |  |  |  |  |  |-- ImportRoots.java
+|  |  |  |  |  |  |  |  |  |-- LanguageSupport.java
+|  |  |  |  |  |  |  |  |  |-- ProjectViewTargetImportFilter.java
+|  |  |  |  |  |  |  |  |  |-- RelatedWorkspacePathFinder.java
+|  |  |  |  |  |  |  |  |  |-- SourceTestConfig.java
+|  |  |  |  |  |  |  |  |  |-- SyncDirectoriesWarning.java
+|  |  |  |  |  |  |  |  |  |-- TargetExpressionList.java
+|  |  |  |  |  |  |  |  |  |-- WorkspaceFileFinder.java
+|  |  |  |  |  |  |  |  |  |-- WorkspaceFileFinderImpl.java
+|  |  |  |  |  |  |  |  |  |-- WorkspaceLanguageChecker.java
+|  |  |  |  |  |  |  |  |  |-- WorkspaceLanguageCheckerImpl.java
+|  |  |  |  |  |  |  |  |  |-- WorkspaceLanguageSettings.java
+|  |  |  |  |  |  |  |  |-- sharding
+|  |  |  |  |  |  |  |  |  |-- ArgMaxShardSizeLimit.java
+|  |  |  |  |  |  |  |  |  |-- BlazeBuildTargetSharder.java
+|  |  |  |  |  |  |  |  |  |-- BuildBatchingService.java
+|  |  |  |  |  |  |  |  |  |-- LexicographicTargetSharder.java
+|  |  |  |  |  |  |  |  |  |-- PackageLister.java
+|  |  |  |  |  |  |  |  |  |-- ShardedTargetList.java
+|  |  |  |  |  |  |  |  |  |-- SuggestBuildShardingNotification.java
+|  |  |  |  |  |  |  |  |  |-- TargetShardSizeLimit.java
+|  |  |  |  |  |  |  |  |  |-- WildcardTargetExpander.java
+|  |  |  |  |  |  |  |  |-- status
+|  |  |  |  |  |  |  |  |  |-- BlazeSyncStatus.java
+|  |  |  |  |  |  |  |  |  |-- BlazeSyncStatusImpl.java
+|  |  |  |  |  |  |  |  |  |-- BlazeSyncStatusListener.java
+|  |  |  |  |  |  |  |  |  |-- BlazeSyncStatusStateManager.java
+|  |  |  |  |  |  |  |  |-- workspace
+|  |  |  |  |  |  |  |  |  |-- ArtifactLocationDecoder.java
+|  |  |  |  |  |  |  |  |  |-- ArtifactLocationDecoderImpl.java
+|  |  |  |  |  |  |  |  |  |-- ExecutionRootPathResolver.java
+|  |  |  |  |  |  |  |  |  |-- WorkingSet.java
+|  |  |  |  |  |  |  |  |  |-- WorkspaceHelper.java
+|  |  |  |  |  |  |  |  |  |-- WorkspacePathResolver.java
+|  |  |  |  |  |  |  |  |  |-- WorkspacePathResolverImpl.java
+|  |  |  |  |  |  |  |  |  |-- WorkspacePathResolverProvider.java
+|  |  |  |  |  |  |  |  |  |-- WorkspacePathResolverProviderImpl.java
+|  |  |  |  |  |  |  |-- syncstatus
+|  |  |  |  |  |  |  |  |-- SyncStatusContributor.java
+|  |  |  |  |  |  |  |  |-- SyncStatusEditorTabColorProvider.java
+|  |  |  |  |  |  |  |  |-- SyncStatusEditorTabTitleProvider.java
+|  |  |  |  |  |  |  |  |-- SyncStatusNodeDecorator.java
+|  |  |  |  |  |  |  |-- targetmaps
+|  |  |  |  |  |  |  |  |-- ReverseDependencyMap.java
+|  |  |  |  |  |  |  |  |-- SourceToTargetMap.java
+|  |  |  |  |  |  |  |  |-- SourceToTargetMapImpl.java
+|  |  |  |  |  |  |  |  |-- TransitiveDependencyMap.java
+|  |  |  |  |  |  |  |-- toolwindow
+|  |  |  |  |  |  |  |  |-- ConsoleView.java
+|  |  |  |  |  |  |  |  |-- Task.java
+|  |  |  |  |  |  |  |  |-- TasksToolWindowFactory.java
+|  |  |  |  |  |  |  |  |-- TasksToolWindowService.java
+|  |  |  |  |  |  |  |  |-- TasksTreeConsoleBehaviour.java
+|  |  |  |  |  |  |  |  |-- TasksTreeConsoleModel.java
+|  |  |  |  |  |  |  |  |-- TasksTreeConsoleView.java
+|  |  |  |  |  |  |  |  |-- TasksTreeModel.java
+|  |  |  |  |  |  |  |  |-- TasksTreeProperty.java
+|  |  |  |  |  |  |  |  |-- TasksTreeView.java
+|  |  |  |  |  |  |  |  |-- ToolWindowTabs.java
+|  |  |  |  |  |  |  |-- treeview
+|  |  |  |  |  |  |  |  |-- BlazePsiDirectoryNode.java
+|  |  |  |  |  |  |  |  |-- BlazePsiDirectoryRootNode.java
+|  |  |  |  |  |  |  |  |-- BlazePsiDirectoryRootNodeNameModifier.java
+|  |  |  |  |  |  |  |  |-- BlazeTreeStructureProvider.java
+|  |  |  |  |  |  |  |  |-- WorkspaceRootNode.java
+|  |  |  |  |  |  |  |-- ui
+|  |  |  |  |  |  |  |  |-- BlazeValidationError.java
+|  |  |  |  |  |  |  |  |-- BlazeValidationResult.java
+|  |  |  |  |  |  |  |  |-- ComboWrapper.java
+|  |  |  |  |  |  |  |  |-- FileSelectorWithStoredHistory.java
+|  |  |  |  |  |  |  |  |-- IntegerTextField.java
+|  |  |  |  |  |  |  |  |-- UiUtil.java
+|  |  |  |  |  |  |  |  |-- WorkspaceFileTextField.java
+|  |  |  |  |  |  |  |  |-- problems
+|  |  |  |  |  |  |  |  |  |-- BlazeProblemsView.java
+|  |  |  |  |  |  |  |  |  |-- BlazeProblemsViewPanel.java
+|  |  |  |  |  |  |  |  |  |-- BuildTasksProblemsView.java
+|  |  |  |  |  |  |  |  |  |-- ProblemsViewConfiguration.java
+|  |  |  |  |  |  |  |  |  |-- ProblemsViewMessageElement.java
+|  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |-- BuildSystemExtensionPoint.java
+|  |  |  |  |  |  |  |  |-- PackagePrefixCalculator.java
+|  |  |  |  |  |  |  |  |-- ProcessGroupUtil.java
+|  |  |  |  |  |  |  |  |-- SaveUtil.java
+|  |  |  |  |  |  |  |  |-- SerializationUtil.java
+|  |  |  |  |  |  |  |  |-- UrlUtil.java
+|  |  |  |  |  |  |  |  |-- WorkspacePathUtil.java
+|  |  |  |  |  |  |  |-- vcs
+|  |  |  |  |  |  |  |  |-- BlazeVcsHandler.java
+|  |  |  |  |  |  |  |  |-- FallbackBlazeVcsHandler.java
+|  |  |  |  |  |  |  |  |-- VcsSyncListener.java
+|  |  |  |  |  |  |  |  |-- git
+|  |  |  |  |  |  |  |  |  |-- GitBlazeVcsHandler.java
+|  |  |  |  |  |  |  |  |  |-- GitStatusLineProcessor.java
+|  |  |  |  |  |  |  |  |  |-- GitWorkingSetProvider.java
+|  |  |  |  |  |  |  |-- wizard2
+|  |  |  |  |  |  |  |  |-- BazelWizardOptionProvider.java
+|  |  |  |  |  |  |  |  |-- BlazeEditProjectViewImportWizardStep.java
+|  |  |  |  |  |  |  |  |-- BlazeImportProjectAction.java
+|  |  |  |  |  |  |  |  |-- BlazeNewProjectBuilder.java
+|  |  |  |  |  |  |  |  |-- BlazeNewProjectWizard.java
+|  |  |  |  |  |  |  |  |-- BlazeProjectCommitException.java
+|  |  |  |  |  |  |  |  |-- BlazeProjectCreator.java
+|  |  |  |  |  |  |  |  |-- BlazeProjectImportBuilder.java
+|  |  |  |  |  |  |  |  |-- BlazeSelectBuildSystemBinaryStep.java
+|  |  |  |  |  |  |  |  |-- BlazeSelectProjectViewImportWizardStep.java
+|  |  |  |  |  |  |  |  |-- BlazeSelectProjectViewOption.java
+|  |  |  |  |  |  |  |  |-- BlazeSelectWorkspaceImportWizardStep.java
+|  |  |  |  |  |  |  |  |-- BlazeSelectWorkspaceOption.java
+|  |  |  |  |  |  |  |  |-- BlazeWizardOption.java
+|  |  |  |  |  |  |  |  |-- BlazeWizardOptionProvider.java
+|  |  |  |  |  |  |  |  |-- BlazeWizardUserSettings.java
+|  |  |  |  |  |  |  |  |-- BlazeWizardUserSettingsStorage.java
+|  |  |  |  |  |  |  |  |-- CopyExternalProjectViewOption.java
+|  |  |  |  |  |  |  |  |-- CreateFromScratchProjectViewOption.java
+|  |  |  |  |  |  |  |  |-- GenerateFromBuildFileSelectProjectViewOption.java
+|  |  |  |  |  |  |  |  |-- ImportFromWorkspaceProjectViewOption.java
+|  |  |  |  |  |  |  |  |-- ProjectDataDirectoryValidator.java
+|  |  |  |  |  |  |  |  |-- ProjectImportWizardStep.java
+|  |  |  |  |  |  |  |  |-- TopLevelSelectWorkspaceOption.java
+|  |  |  |  |  |  |  |  |-- UseExistingBazelWorkspaceOption.java
+|  |  |  |  |  |  |  |  |-- WorkspaceTypeData.java
+|  |  |  |  |  |  |  |  |-- WorkspaceTypeList.java
+|  |  |  |  |  |  |  |  |-- ui
+|  |  |  |  |  |  |  |  |  |-- BlazeEditProjectViewControl.java
+|  |  |  |  |  |  |  |  |  |-- BlazeSelectOptionControl.java
+|  |  |  |  |  |  |  |  |  |-- BlazeSelectProjectViewControl.java
+|  |  |  |  |  |  |  |  |  |-- BlazeSelectWorkspaceControl.java
+|  |  |  |  |  |  |  |  |  |-- SelectBazelBinaryControl.java
+|  |  |  |  |  |  |  |  |  |-- SelectClientTypeInnerControl.java
+|  |  |-- icons
+|  |  |  |-- BlazeIcons.java
+|  |-- tests
+|  |  |-- integrationtests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- base
+|  |  |  |  |  |  |  |  |-- actions
+|  |  |  |  |  |  |  |  |  |-- BuildFileUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- FileGitHubIssueActionTest.java
+|  |  |  |  |  |  |  |  |-- dependencies
+|  |  |  |  |  |  |  |  |  |-- DependencyFinderTest.java
+|  |  |  |  |  |  |  |  |-- lang
+|  |  |  |  |  |  |  |  |  |-- buildfile
+|  |  |  |  |  |  |  |  |  |  |-- completion
+|  |  |  |  |  |  |  |  |  |  |  |-- ArgumentCompletionContributorTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BuildFileAutoCompletionTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BuildLabelAutoCompletionTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BuiltInFunctionAttributeCompletionContributorTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BuiltInFunctionCompletionContributorTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BuiltInSymbolCompletionContributorTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- CommonMacroCompletionContributorTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- FilePathCompletionTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- LocalSymbolCompletionTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- ParameterCompletionContributorTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- RuleTargetCompletionTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- SkylarkExtensionCompletionTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- SkylarkExtensionSymbolCompletionTest.java
+|  |  |  |  |  |  |  |  |  |  |-- editor
+|  |  |  |  |  |  |  |  |  |  |  |-- BuildBraceMatcherTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BuildIndentOnEnterTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BuildQuoteHandlerTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- EnterInLineCommentTest.java
+|  |  |  |  |  |  |  |  |  |  |-- findusages
+|  |  |  |  |  |  |  |  |  |  |  |-- BlazePackageFindUsagesTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- ExternalFileUsagesTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- ExternalWorkspaceFindUsagesTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- FindParameterUsagesTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- FindRuleUsagesTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- FunctionStatementUsagesTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- GlobFindUsagesTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- LocalVariableUsagesTest.java
+|  |  |  |  |  |  |  |  |  |  |-- formatting
+|  |  |  |  |  |  |  |  |  |  |  |-- BuildFileFoldingBuilderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- highlighting
+|  |  |  |  |  |  |  |  |  |  |  |-- HighlightingAnnotatorTest.java
+|  |  |  |  |  |  |  |  |  |  |-- language
+|  |  |  |  |  |  |  |  |  |  |  |-- BuildFileTypeTest.java
+|  |  |  |  |  |  |  |  |  |  |-- parser
+|  |  |  |  |  |  |  |  |  |  |  |-- BuildParserTest.java
+|  |  |  |  |  |  |  |  |  |  |-- quickfix
+|  |  |  |  |  |  |  |  |  |  |  |-- DeprecatedLoadQuickFixTest.java
+|  |  |  |  |  |  |  |  |  |  |-- refactor
+|  |  |  |  |  |  |  |  |  |  |  |-- FileCopyTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- RenameRefactoringTest.java
+|  |  |  |  |  |  |  |  |  |  |-- references
+|  |  |  |  |  |  |  |  |  |  |  |-- ExternalWorkspaceReferenceTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- GlobReferenceTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- KeywordReferenceTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- LabelReferenceTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- LoadedSkylarkExtensionTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- LocalReferenceTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- PackageReferenceTest.java
+|  |  |  |  |  |  |  |  |  |  |-- search
+|  |  |  |  |  |  |  |  |  |  |  |-- BlazePackageTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- GlobalWordIndexTest.java
+|  |  |  |  |  |  |  |  |  |  |-- validation
+|  |  |  |  |  |  |  |  |  |  |  |-- BuiltInRuleAnnotatorTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- GlobValidationTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- LoadStatementAnnotatorTest.java
+|  |  |  |  |  |  |  |  |  |-- projectview
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewCompletionTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewIntegrationTestCase.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewParserIntegrationTest.java
+|  |  |  |  |  |  |  |  |  |  |-- formatting
+|  |  |  |  |  |  |  |  |  |  |  |-- ProjectViewRearrangerTest.java
+|  |  |  |  |  |  |  |  |  |  |-- lexer
+|  |  |  |  |  |  |  |  |  |  |  |-- ProjectViewLexerTest.java
+|  |  |  |  |  |  |  |  |  |  |-- references
+|  |  |  |  |  |  |  |  |  |  |  |-- ProjectViewLabelReferenceTest.java
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandRunConfigurationGenericHandlerIntegrationTest.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandRunConfigurationRunManagerImplTest.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandRunConfigurationSettingsEditorTest.java
+|  |  |  |  |  |  |  |  |  |-- BlazePackageHeuristicTest.java
+|  |  |  |  |  |  |  |  |  |-- TestTargetHeuristicTest.java
+|  |  |  |  |  |  |  |  |  |-- exporter
+|  |  |  |  |  |  |  |  |  |  |-- RunConfigurationSerializerTest.java
+|  |  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |  |-- AllInBuildFileTestContextProviderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- AllInDirectoryRecursiveTestContextProviderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeBuildFileRunConfigurationProducerTest.java
+|  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |-- ImportRootsTest.java
+|  |  |  |  |  |  |  |  |  |-- libraries
+|  |  |  |  |  |  |  |  |  |  |-- ExternalLibraryManagerTest.java
+|  |  |-- unittests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- base
+|  |  |  |  |  |  |  |  |-- BlazeIconsTest.java
+|  |  |  |  |  |  |  |  |-- async
+|  |  |  |  |  |  |  |  |  |-- process
+|  |  |  |  |  |  |  |  |  |  |-- ExternalTaskImplTest.java
+|  |  |  |  |  |  |  |  |-- bazel
+|  |  |  |  |  |  |  |  |  |-- BazelVersionTest.java
+|  |  |  |  |  |  |  |  |-- command
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandNameTest.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandTest.java
+|  |  |  |  |  |  |  |  |  |-- buildresult
+|  |  |  |  |  |  |  |  |  |  |-- BuildEventProtocolOutputReaderTest.java
+|  |  |  |  |  |  |  |  |-- execution
+|  |  |  |  |  |  |  |  |  |-- BlazeParametersListUtilTest.java
+|  |  |  |  |  |  |  |  |-- filecache
+|  |  |  |  |  |  |  |  |  |-- ArtifactStateTest.java
+|  |  |  |  |  |  |  |  |  |-- FilesDiffTest.java
+|  |  |  |  |  |  |  |  |  |-- RemoteOutputsCacheTest.java
+|  |  |  |  |  |  |  |  |-- ideinfo
+|  |  |  |  |  |  |  |  |  |-- AndroidIdeInfoTest.java
+|  |  |  |  |  |  |  |  |  |-- JavaIdeInfoTest.java
+|  |  |  |  |  |  |  |  |-- issueparser
+|  |  |  |  |  |  |  |  |  |-- BlazeIssueParserTest.java
+|  |  |  |  |  |  |  |  |-- lang
+|  |  |  |  |  |  |  |  |  |-- buildfile
+|  |  |  |  |  |  |  |  |  |  |-- lexer
+|  |  |  |  |  |  |  |  |  |  |  |-- AbstractLexerTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BlazeLexerTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- HighlightingLexerTest.java
+|  |  |  |  |  |  |  |  |  |  |-- psi
+|  |  |  |  |  |  |  |  |  |  |  |-- StripQuotesTest.java
+|  |  |  |  |  |  |  |  |-- model
+|  |  |  |  |  |  |  |  |  |-- primitives
+|  |  |  |  |  |  |  |  |  |  |-- ExecutionRootPathTest.java
+|  |  |  |  |  |  |  |  |  |  |-- LabelTest.java
+|  |  |  |  |  |  |  |  |  |  |-- PackagePathValidatorTest.java
+|  |  |  |  |  |  |  |  |  |  |-- TargetExpressionTest.java
+|  |  |  |  |  |  |  |  |  |  |-- TargetNameTest.java
+|  |  |  |  |  |  |  |  |  |  |-- WorkspacePathTest.java
+|  |  |  |  |  |  |  |  |-- projectview
+|  |  |  |  |  |  |  |  |  |-- ProjectViewSetTest.java
+|  |  |  |  |  |  |  |  |  |-- ProjectViewStorageManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- ProjectViewVerifierTest.java
+|  |  |  |  |  |  |  |  |  |-- parser
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewParserTest.java
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandRunConfigurationTest.java
+|  |  |  |  |  |  |  |  |  |-- RuleNameHeuristicTest.java
+|  |  |  |  |  |  |  |  |  |-- TestSizeHeuristicTest.java
+|  |  |  |  |  |  |  |  |  |-- TestTargetSourcesHeuristicTest.java
+|  |  |  |  |  |  |  |  |  |-- filter
+|  |  |  |  |  |  |  |  |  |  |-- BlazeTargetFilterTest.java
+|  |  |  |  |  |  |  |  |  |  |-- GenericFileMessageFilterTest.java
+|  |  |  |  |  |  |  |  |  |  |-- TestLogFilterTest.java
+|  |  |  |  |  |  |  |  |  |-- smrunner
+|  |  |  |  |  |  |  |  |  |  |-- BlazeXmlSchemaTest.java
+|  |  |  |  |  |  |  |  |  |-- state
+|  |  |  |  |  |  |  |  |  |  |-- BlazeCommandRunConfigurationCommonStateTest.java
+|  |  |  |  |  |  |  |  |  |  |-- RunConfigurationFlagStateTest.java
+|  |  |  |  |  |  |  |  |  |-- testlogs
+|  |  |  |  |  |  |  |  |  |  |-- BuildEventProtocolTestFinderStrategyTest.java
+|  |  |  |  |  |  |  |  |  |-- testmap
+|  |  |  |  |  |  |  |  |  |  |-- TestMapTest.java
+|  |  |  |  |  |  |  |  |-- scope
+|  |  |  |  |  |  |  |  |  |-- BlazeContextTest.java
+|  |  |  |  |  |  |  |  |  |-- ScopeTest.java
+|  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |-- BlazeSyncManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- BuildTargetFinderTest.java
+|  |  |  |  |  |  |  |  |  |-- LanguageSupportTest.java
+|  |  |  |  |  |  |  |  |  |-- aspects
+|  |  |  |  |  |  |  |  |  |  |-- strategy
+|  |  |  |  |  |  |  |  |  |  |  |-- AspectStrategyTest.java
+|  |  |  |  |  |  |  |  |  |-- projectview
+|  |  |  |  |  |  |  |  |  |  |-- RelatedWorkspacePathFinderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- SourceTestConfigTest.java
+|  |  |  |  |  |  |  |  |  |  |-- TargetExpressionListTest.java
+|  |  |  |  |  |  |  |  |  |-- sharding
+|  |  |  |  |  |  |  |  |  |  |-- BlazeBuildTargetSharderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- LexicographicTargetSharderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- QueryResultLineProcessorTest.java
+|  |  |  |  |  |  |  |  |  |  |-- WildcardTargetPatternTest.java
+|  |  |  |  |  |  |  |  |  |-- workspace
+|  |  |  |  |  |  |  |  |  |  |-- ArtifactLocationDecoderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ExecutionRootPathResolverTest.java
+|  |  |  |  |  |  |  |  |  |  |-- WorkspacePathResolverImplTest.java
+|  |  |  |  |  |  |  |  |-- targetmaps
+|  |  |  |  |  |  |  |  |  |-- ReverseDependencyMapTest.java
+|  |  |  |  |  |  |  |  |  |-- TransitiveDependencyMapTest.java
+|  |  |  |  |  |  |  |  |-- toolwindow
+|  |  |  |  |  |  |  |  |  |-- TasksToolWindowServiceTest.java
+|  |  |  |  |  |  |  |  |-- vcs
+|  |  |  |  |  |  |  |  |  |-- git
+|  |  |  |  |  |  |  |  |  |  |-- GitStatusLineProcessorTest.java
+|  |  |-- utils
+|  |  |  |-- integration
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |  |-- base
+|  |  |  |  |  |  |  |  |  |-- BlazeIntegrationTestCase.java
+|  |  |  |  |  |  |  |  |  |-- EditorTestHelper.java
+|  |  |  |  |  |  |  |  |  |-- MockEventLoggingService.java
+|  |  |  |  |  |  |  |  |  |-- TestFileSystem.java
+|  |  |  |  |  |  |  |  |  |-- WorkspaceFileSystem.java
+|  |  |  |  |  |  |  |  |  |-- lang
+|  |  |  |  |  |  |  |  |  |  |-- buildfile
+|  |  |  |  |  |  |  |  |  |  |  |-- BuildFileIntegrationTestCase.java
+|  |  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |  |  |-- BlazeRunConfigurationProducerTestCase.java
+|  |  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |  |-- BlazeSyncIntegrationTestCase.java
+|  |  |  |  |  |  |  |  |  |  |-- JdepsFileWriter.java
+|  |  |  |  |  |  |  |  |  |  |-- MockBlazeVcsHandler.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectModuleMocker.java
+|  |  |  |-- unit
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |  |-- base
+|  |  |  |  |  |  |  |  |  |-- BlazeTestCase.java
+|  |  |  |  |  |  |  |  |  |-- MockProjectViewManager.java
+|  |  |  |  |  |  |  |  |  |-- TestUtils.java
+|  |  |  |  |  |  |  |  |  |-- async
+|  |  |  |  |  |  |  |  |  |  |-- executor
+|  |  |  |  |  |  |  |  |  |  |  |-- MockBlazeExecutor.java
+|  |  |  |  |  |  |  |  |  |-- ideinfo
+|  |  |  |  |  |  |  |  |  |  |-- TargetMapBuilder.java
+|  |  |  |  |  |  |  |  |  |-- io
+|  |  |  |  |  |  |  |  |  |  |-- MockInputStreamProvider.java
+|  |  |  |  |  |  |  |  |  |-- model
+|  |  |  |  |  |  |  |  |  |  |-- MockBlazeProjectDataBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- MockBlazeProjectDataManager.java
+|  |  |  |  |  |  |  |  |  |-- prefetch
+|  |  |  |  |  |  |  |  |  |  |-- MockPrefetchService.java
+|  |  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |  |-- MockBlazeCommandRunConfigurationHandlerProvider.java
+|  |  |  |  |  |  |  |  |  |-- scope
+|  |  |  |  |  |  |  |  |  |  |-- ErrorCollector.java
+|  |  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |  |-- MockRemoteArtifactPrefetcher.java
+|  |  |  |  |  |  |  |  |  |  |-- workspace
+|  |  |  |  |  |  |  |  |  |  |  |-- MockArtifactLocationDecoder.java
+|-- build_defs
+|  |-- BUILD
+|  |-- api_version_txt.py
+|  |-- append_optional_xml_elements.py
+|  |-- build_defs.bzl
+|  |-- intellij_plugin.bzl
+|  |-- intellij_plugin_debug_target.bzl
+|  |-- merge_xml.py
+|  |-- package_meta_inf_files.py
+|  |-- product_build_txt.py
+|  |-- stamp_plugin_xml.py
+|  |-- zip_plugin_files.py
+|-- clwb
+|  |-- BUILD
+|  |-- clwb.bazelproject
+|  |-- gdbserver
+|  |-- src
+|  |  |-- META-INF
+|  |  |  |-- clwb.xml
+|  |  |  |-- description.html
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |-- clwb
+|  |  |  |  |  |  |  |-- BlazeCppModuleType.java
+|  |  |  |  |  |  |  |-- CMakeActionsToManipulate.java
+|  |  |  |  |  |  |  |-- CidrGoogleTestUtilAdapter.java
+|  |  |  |  |  |  |  |-- ToolchainUtils.java
+|  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |-- BlazeCLionGDBDriverConfiguration.java
+|  |  |  |  |  |  |  |  |-- BlazeCidrDebuggerSupportFactory.java
+|  |  |  |  |  |  |  |  |-- BlazeCidrLauncher.java
+|  |  |  |  |  |  |  |  |-- BlazeCidrRemoteDebugProcess.java
+|  |  |  |  |  |  |  |  |-- BlazeCidrRunConfigState.java
+|  |  |  |  |  |  |  |  |-- BlazeCidrRunConfigurationHandler.java
+|  |  |  |  |  |  |  |  |-- BlazeCidrRunConfigurationHandlerProvider.java
+|  |  |  |  |  |  |  |  |-- BlazeCidrRunConfigurationRunner.java
+|  |  |  |  |  |  |  |  |-- BlazeCidrTestOutputFilter.java
+|  |  |  |  |  |  |  |  |-- BlazeCppPathConsoleFilter.java
+|  |  |  |  |  |  |  |  |-- BlazeCppRunner.java
+|  |  |  |  |  |  |  |  |-- BlazeGDBDriverConfiguration.java
+|  |  |  |  |  |  |  |  |-- BlazeGDBServerProvider.java
+|  |  |  |  |  |  |  |  |-- RunConfigurationUtils.java
+|  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |-- CppTestContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- NonBlazeProducerSuppressor.java
+|  |  |  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |  |  |-- BlazeCidrTestEventsHandler.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCppTestInfo.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCppTestLocator.java
+|  |  |  |  |  |  |  |  |  |-- GoogleTestLocation.java
+|  |  |  |  |  |  |  |  |  |-- GoogleTestSpecification.java
+|  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |-- BlazeCLionSyncPlugin.java
+|  |  |  |  |  |  |-- plugin
+|  |  |  |  |  |  |  |-- CMakeNotificationFilter.java
+|  |  |  |  |  |  |  |-- ClwbProjectSpecificInitializer.java
+|  |  |  |  |  |  |  |-- ClwbSpecificInitializer.java
+|  |-- tests
+|  |  |-- unittests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- clwb
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- BlazeCppPathConsoleFilterTest.java
+|  |  |  |  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |  |  |  |-- BlazeCppTestInfoTest.java
+|-- common
+|  |-- BUILD
+|  |-- actions
+|  |  |-- BUILD
+|  |  |-- src
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |-- actions
+|  |  |  |  |  |  |  |  |-- ActionCustomizer.java
+|  |  |  |  |  |  |  |  |-- ActionPresentationHelper.java
+|  |  |  |  |  |  |  |  |-- ReplaceActionHelper.java
+|  |-- experiments
+|  |  |-- BUILD
+|  |  |-- src
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |-- experiments
+|  |  |  |  |  |  |  |  |-- BoolExperiment.java
+|  |  |  |  |  |  |  |  |-- DeveloperFlag.java
+|  |  |  |  |  |  |  |  |-- Experiment.java
+|  |  |  |  |  |  |  |  |-- ExperimentLoader.java
+|  |  |  |  |  |  |  |  |-- ExperimentNameHashes.java
+|  |  |  |  |  |  |  |  |-- ExperimentService.java
+|  |  |  |  |  |  |  |  |-- ExperimentServiceImpl.java
+|  |  |  |  |  |  |  |  |-- ExperimentUsernameProvider.java
+|  |  |  |  |  |  |  |  |-- FeatureRolloutExperiment.java
+|  |  |  |  |  |  |  |  |-- FileExperimentLoader.java
+|  |  |  |  |  |  |  |  |-- HashingExperimentLoader.java
+|  |  |  |  |  |  |  |  |-- IntExperiment.java
+|  |  |  |  |  |  |  |  |-- InternalDevFlag.java
+|  |  |  |  |  |  |  |  |-- SerializationUtil.java
+|  |  |  |  |  |  |  |  |-- StringExperiment.java
+|  |  |  |  |  |  |  |  |-- SystemPropertyExperimentLoader.java
+|  |  |  |  |  |  |  |  |-- WebExperimentLoader.java
+|  |  |  |  |  |  |  |  |-- WebExperimentSyncer.java
+|  |  |-- tests
+|  |  |  |-- unittests
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |-- experiments
+|  |  |  |  |  |  |  |  |  |-- ExperimentServiceImplTest.java
+|  |  |  |  |  |  |  |  |  |-- FeatureRolloutExperimentTest.java
+|  |  |  |  |  |  |  |  |  |-- SystemPropertyExperimentLoaderTest.java
+|  |  |  |-- utils
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |-- experiments
+|  |  |  |  |  |  |  |  |  |-- MockExperimentService.java
+|  |  |  |  |-- mock_experiment_service.xml
+|  |-- settings
+|  |  |-- BUILD
+|  |  |-- src
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |-- settings
+|  |  |  |  |  |  |  |  |-- AutoConfigurable.java
+|  |  |  |  |  |  |  |  |-- ConfigurableSetting.java
+|  |  |  |  |  |  |  |  |-- Property.java
+|  |  |  |  |  |  |  |  |-- SearchableText.java
+|  |  |  |  |  |  |  |  |-- SearchableTextHelper.java
+|  |  |  |  |  |  |  |  |-- SettingComponent.java
+|  |  |  |  |  |  |  |  |-- SettingComponentBindings.java
+|  |-- ui
+|  |  |-- properties
+|  |  |  |-- BUILD
+|  |  |  |-- src
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |-- ui
+|  |  |  |  |  |  |  |  |  |-- properties
+|  |  |  |  |  |  |  |  |  |  |-- ChangeListener.java
+|  |  |  |  |  |  |  |  |  |  |-- InvalidationListener.java
+|  |  |  |  |  |  |  |  |  |  |-- ObservableValue.java
+|  |  |  |  |  |  |  |  |  |  |-- Property.java
+|  |  |  |  |  |  |  |  |  |-- templates
+|  |  |  |  |  |  |  |  |  |  |-- AbstractView.java
+|  |  |  |  |  |  |  |  |  |  |-- Behavior.java
+|  |  |  |  |  |  |  |  |  |  |-- View.java
+|  |  |  |-- tests
+|  |  |  |  |-- unittests
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |  |-- ui
+|  |  |  |  |  |  |  |  |  |  |-- properties
+|  |  |  |  |  |  |  |  |  |  |  |-- PropertyTest.java
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- src
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |-- ConcurrencyUtil.java
+|  |  |  |  |  |  |  |  |-- HelperBinaryUtil.java
+|  |  |  |  |  |  |  |  |-- MorePlatformUtils.java
+|  |  |  |  |  |  |  |  |-- Transactions.java
+|-- cpp
+|  |-- BUILD
+|  |-- src
+|  |  |-- META-INF
+|  |  |  |-- blaze-cpp.xml
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |-- cpp
+|  |  |  |  |  |  |  |-- BlazeCSyncPlugin.java
+|  |  |  |  |  |  |  |-- BlazeCWorkspace.java
+|  |  |  |  |  |  |  |-- BlazeCompilerFlagsProcessor.java
+|  |  |  |  |  |  |  |-- BlazeCompilerSettings.java
+|  |  |  |  |  |  |  |-- BlazeConfigurationResolver.java
+|  |  |  |  |  |  |  |-- BlazeConfigurationResolverResult.java
+|  |  |  |  |  |  |  |-- BlazeConfigurationToolchainResolver.java
+|  |  |  |  |  |  |  |-- BlazeCppAutoImportHelper.java
+|  |  |  |  |  |  |  |-- BlazeCustomHeaderProvider.java
+|  |  |  |  |  |  |  |-- BlazeIncludeHelper.java
+|  |  |  |  |  |  |  |-- BlazeLanguageKindCalculatorHelper.java
+|  |  |  |  |  |  |  |-- BlazeResolveConfiguration.java
+|  |  |  |  |  |  |  |-- BlazeResolveConfigurationData.java
+|  |  |  |  |  |  |  |-- BulkSymbolTableBuildingChangeListener.java
+|  |  |  |  |  |  |  |-- CFileExtensions.java
+|  |  |  |  |  |  |  |-- CMakeWorkspaceOverride.java
+|  |  |  |  |  |  |  |-- CPrefetchFileSource.java
+|  |  |  |  |  |  |  |-- CompilerVersionChecker.java
+|  |  |  |  |  |  |  |-- CompilerVersionCheckerImpl.java
+|  |  |  |  |  |  |  |-- CompilerWrapperProvider.java
+|  |  |  |  |  |  |  |-- CompilerWrapperProviderImpl.java
+|  |  |  |  |  |  |  |-- CppBlazeRules.java
+|  |  |  |  |  |  |  |-- HeaderGuardHelper.java
+|  |  |  |  |  |  |  |-- HeaderRootTrimmer.java
+|  |  |  |  |  |  |  |-- IncludeRootFlagsProcessor.java
+|  |  |  |  |  |  |  |-- MockCompilerVersionChecker.java
+|  |  |  |  |  |  |  |-- PartnerFilePatterns.java
+|  |  |  |  |  |  |  |-- SysrootFlagsProcessor.java
+|  |  |  |  |  |  |  |-- UnfilteredCompilerOptions.java
+|  |  |  |  |  |  |  |-- includes
+|  |  |  |  |  |  |  |  |-- IncludePath.java
+|  |  |  |  |  |  |  |  |-- IwyuPragmas.java
+|  |  |  |  |  |  |  |-- navigation
+|  |  |  |  |  |  |  |  |-- DelegatingSwitchToHeaderOrSourceProvider.java
+|  |  |  |  |  |  |  |  |-- SwitchToHeaderOrSourceSearch.java
+|  |  |  |  |  |  |  |  |-- WatchdogIndicator.java
+|  |  |  |  |  |  |  |-- syncstatus
+|  |  |  |  |  |  |  |  |-- CppSyncStatusContributor.java
+|  |-- tests
+|  |  |-- integrationtests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- cpp
+|  |  |  |  |  |  |  |  |-- BlazeCppAutoImportHelperTest.java
+|  |  |  |  |  |  |  |  |-- BlazeCppIntegrationTestCase.java
+|  |  |  |  |  |  |  |  |-- BlazeCppResolvingTestCase.java
+|  |  |  |  |  |  |  |  |-- includes
+|  |  |  |  |  |  |  |  |  |-- IwyuPragmasTest.java
+|  |  |-- unittests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- cpp
+|  |  |  |  |  |  |  |  |-- BlazeCompilerSettingsTest.java
+|  |  |  |  |  |  |  |  |-- BlazeConfigurationResolverTest.java
+|  |  |  |  |  |  |  |  |-- BlazeResolveConfigurationEquivalenceTest.java
+|  |  |  |  |  |  |  |  |-- UnfilteredCompilerOptionsTest.java
+|  |  |-- utils
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- cpp
+|  |  |  |  |  |  |  |  |-- ClionUnitTestSystemPropertiesRule.java
+|-- dart
+|  |-- BUILD
+|  |-- src
+|  |  |-- META-INF
+|  |  |  |-- blaze-dart.xml
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |-- dart
+|  |  |  |  |  |  |  |-- BlazeDartLibrarySource.java
+|  |  |  |  |  |  |  |-- BlazeDartSyncPlugin.java
+|  |  |  |  |  |  |  |-- DartBlazeRules.java
+|  |  |  |  |  |  |  |-- DartPrefetchFileSource.java
+|  |  |  |  |  |  |  |-- DartSdkUtils.java
+|  |-- tests
+|  |  |-- unittests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- dart
+|  |  |  |  |  |  |  |  |-- BlazeDartSyncPluginTest.java
+|-- golang
+|  |-- BUILD
+|  |-- src
+|  |  |-- META-INF
+|  |  |  |-- blaze-go.xml
+|  |  |  |-- go-contents.xml
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |-- golang
+|  |  |  |  |  |  |  |-- BlazeGoSupport.java
+|  |  |  |  |  |  |  |-- GoBlazeRules.java
+|  |  |  |  |  |  |  |-- resolve
+|  |  |  |  |  |  |  |  |-- BlazeGoImportResolver.java
+|  |  |  |  |  |  |  |  |-- BlazeGoPackage.java
+|  |  |  |  |  |  |  |  |-- BlazeGoPackageFactory.java
+|  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |-- BlazeDlvPositionConverter.java
+|  |  |  |  |  |  |  |  |-- BlazeGoDebugRunner.java
+|  |  |  |  |  |  |  |  |-- BlazeGoRunConfigurationHandler.java
+|  |  |  |  |  |  |  |  |-- BlazeGoRunConfigurationHandlerProvider.java
+|  |  |  |  |  |  |  |  |-- BlazeGoRunConfigurationRunner.java
+|  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |-- GoBinaryContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- GoTestContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- NonBlazeProducerSuppressor.java
+|  |  |  |  |  |  |  |  |-- smrunner
+|  |  |  |  |  |  |  |  |  |-- BlazeGoTestEventsHandler.java
+|  |  |  |  |  |  |  |  |  |-- BlazeGoTestLocator.java
+|  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |-- AlwaysPresentGoSyncPlugin.java
+|  |  |  |  |  |  |  |  |-- BlazeGoAdditionalLibraryRootsProvider.java
+|  |  |  |  |  |  |  |  |-- BlazeGoLibrarySource.java
+|  |  |  |  |  |  |  |  |-- BlazeGoSdkUpdater.java
+|  |  |  |  |  |  |  |  |-- BlazeGoSyncPlugin.java
+|  |  |  |  |  |  |  |  |-- GoPrefetchFileSource.java
+|  |  |  |  |  |  |  |  |-- GoSyncStatusContributor.java
+|  |-- tests
+|  |  |-- integrationtests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- golang
+|  |  |  |  |  |  |  |  |-- resolve
+|  |  |  |  |  |  |  |  |  |-- BlazeGoAnnotatorTest.java
+|  |  |  |  |  |  |  |  |  |-- BlazeGoImportResolverTest.java
+|  |  |  |  |  |  |  |  |  |-- BlazeGoPackageTest.java
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- BlazeDlvPositionConverterTest.java
+|  |  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |  |-- BlazeGoTestConfigurationProducerTest.java
+|  |  |  |  |  |  |  |  |  |  |-- GoBinaryContextProviderTest.java
+|  |  |  |  |  |  |  |  |  |-- smrunner
+|  |  |  |  |  |  |  |  |  |  |-- BlazeGoTestEventsHandlerTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeGoWebTestEventsHandlerTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeWebGoTestEventsHandlerTest.java
+|  |  |-- unittests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- golang
+|  |  |  |  |  |  |  |  |-- resolve
+|  |  |  |  |  |  |  |  |  |-- BlazeGoPackageImportReferencesTest.java
+|  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |-- BlazeGoSyncPluginTest.java
+|-- ijwb
+|  |-- BUILD
+|  |-- ijwb.bazelproject
+|  |-- plugin
+|  |  |-- META-INF
+|  |  |  |-- .gitignore
+|  |-- src
+|  |  |-- META-INF
+|  |  |  |-- description.html
+|  |  |  |-- ijwb.xml
+|  |  |  |-- java-contents.xml
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |-- ijwb
+|  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |-- BlazeAndroidLiteJavaSyncAugmenter.java
+|  |  |  |  |  |  |  |  |-- BlazeAndroidLiteSyncPlugin.java
+|  |-- tests
+|  |  |-- integrationtests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- ijwb
+|  |  |  |  |  |  |  |  |-- lang
+|  |  |  |  |  |  |  |  |  |-- projectview
+|  |  |  |  |  |  |  |  |  |  |-- ProjectViewCompletionTest.java
+|  |  |  |  |  |  |  |  |-- prefetch
+|  |  |  |  |  |  |  |  |  |-- IntelliJBazelPrefetchFileSourceTest.java
+|  |  |-- unittests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- ijwb
+|  |  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |  |-- BlazeAndroidLiteSyncPluginTest.java
+|-- intellij_platform_sdk
+|  |-- BUILD
+|  |-- BUILD.android_studio203
+|  |-- BUILD.android_studio42
+|  |-- BUILD.clion202
+|  |-- BUILD.clion203
+|  |-- BUILD.clion211
+|  |-- BUILD.idea202
+|  |-- BUILD.idea203
+|  |-- BUILD.idea211
+|  |-- BUILD.idea212
+|  |-- BUILD.ue202
+|  |-- BUILD.ue203
+|  |-- BUILD.ue211
+|  |-- BUILD.ue212
+|  |-- android_studio_application_info_name.txt
+|  |-- build_defs.bzl
+|  |-- clion_application_info_name.txt
+|  |-- intellij_application_info_name.txt
+|  |-- intellij_ue_application_info_name.txt
+|-- java
+|  |-- BUILD
+|  |-- src
+|  |  |-- META-INF
+|  |  |  |-- blaze-java.xml
+|  |  |  |-- coverage-contents.xml
+|  |  |  |-- java-contents.xml
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |-- AndroidBlazeRules.java
+|  |  |  |  |  |  |  |-- JavaBlazeRules.java
+|  |  |  |  |  |  |  |-- fastbuild
+|  |  |  |  |  |  |  |  |-- BazelFastBuildAspectStrategy.java
+|  |  |  |  |  |  |  |  |-- FastBuildAspectStrategy.java
+|  |  |  |  |  |  |  |  |-- FastBuildBlazeData.java
+|  |  |  |  |  |  |  |  |-- FastBuildChangedFilesService.java
+|  |  |  |  |  |  |  |  |-- FastBuildCompilationModification.java
+|  |  |  |  |  |  |  |  |-- FastBuildCompiler.java
+|  |  |  |  |  |  |  |  |-- FastBuildCompilerFactory.java
+|  |  |  |  |  |  |  |  |-- FastBuildCompilerFactoryImpl.java
+|  |  |  |  |  |  |  |  |-- FastBuildException.java
+|  |  |  |  |  |  |  |  |-- FastBuildIncrementalCompileException.java
+|  |  |  |  |  |  |  |  |-- FastBuildIncrementalCompiler.java
+|  |  |  |  |  |  |  |  |-- FastBuildIncrementalCompilerImpl.java
+|  |  |  |  |  |  |  |  |-- FastBuildInfo.java
+|  |  |  |  |  |  |  |  |-- FastBuildJavac.java
+|  |  |  |  |  |  |  |  |-- FastBuildJavacImpl.java
+|  |  |  |  |  |  |  |  |-- FastBuildLogDataScope.java
+|  |  |  |  |  |  |  |  |-- FastBuildParameters.java
+|  |  |  |  |  |  |  |  |-- FastBuildService.java
+|  |  |  |  |  |  |  |  |-- FastBuildServiceImpl.java
+|  |  |  |  |  |  |  |  |-- FastBuildState.java
+|  |  |  |  |  |  |  |  |-- FormattedJavacDiagnostic.java
+|  |  |  |  |  |  |  |-- lang
+|  |  |  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |  |  |-- BuildFileSafeDeleteProcessor.java
+|  |  |  |  |  |  |  |  |  |-- references
+|  |  |  |  |  |  |  |  |  |  |-- JavaClassQualifiedNameReference.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaClassReferenceContributor.java
+|  |  |  |  |  |  |  |-- libraries
+|  |  |  |  |  |  |  |  |-- AddLibraryTargetDirectoryToProjectViewAction.java
+|  |  |  |  |  |  |  |  |-- AddLibraryTargetDirectoryToProjectViewAttachSourcesProvider.java
+|  |  |  |  |  |  |  |  |-- AttachSourceJarAction.java
+|  |  |  |  |  |  |  |  |-- AttachedSourceJarManager.java
+|  |  |  |  |  |  |  |  |-- BlazeAttachSourceProvider.java
+|  |  |  |  |  |  |  |  |-- BlazeSourceJarNavigationPolicy.java
+|  |  |  |  |  |  |  |  |-- DescribeLibraryAction.java
+|  |  |  |  |  |  |  |  |-- DetachAllSourceJarsAction.java
+|  |  |  |  |  |  |  |  |-- DisableLibraryBytecodeNotification.java
+|  |  |  |  |  |  |  |  |-- ExcludeLibraryAction.java
+|  |  |  |  |  |  |  |  |-- JarCache.java
+|  |  |  |  |  |  |  |  |-- JarCacheFolderProvider.java
+|  |  |  |  |  |  |  |  |-- LibraryActionHelper.java
+|  |  |  |  |  |  |  |-- plugin
+|  |  |  |  |  |  |  |  |-- JUnitPluginDependencyWarning.java
+|  |  |  |  |  |  |  |-- projectview
+|  |  |  |  |  |  |  |  |-- ExcludeLibrarySection.java
+|  |  |  |  |  |  |  |  |-- ExcludedLibrarySection.java
+|  |  |  |  |  |  |  |  |-- JavaLanguageLevelSection.java
+|  |  |  |  |  |  |  |-- psi
+|  |  |  |  |  |  |  |  |-- AutoFactoryImplicitUsageProvider.java
+|  |  |  |  |  |  |  |  |-- AutoFactoryUseScopeEnlarger.java
+|  |  |  |  |  |  |  |  |-- DaggerImplicitUsageProvider.java
+|  |  |  |  |  |  |  |  |-- DaggerUseScopeEnlarger.java
+|  |  |  |  |  |  |  |  |-- GuiceImplicitUsageProvider.java
+|  |  |  |  |  |  |  |  |-- JavaPsiFileProvider.java
+|  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |-- BlazeCompilerManager.java
+|  |  |  |  |  |  |  |  |-- BlazeJavaDebuggableRunProfileState.java
+|  |  |  |  |  |  |  |  |-- BlazeJavaDebuggerRunner.java
+|  |  |  |  |  |  |  |  |-- BlazeJavaRunConfigState.java
+|  |  |  |  |  |  |  |  |-- BlazeJavaRunConfigurationHandler.java
+|  |  |  |  |  |  |  |  |-- BlazeJavaRunConfigurationHandlerProvider.java
+|  |  |  |  |  |  |  |  |-- BlazeJavaRunProfileState.java
+|  |  |  |  |  |  |  |  |-- BlazeJavaTestEventsHandler.java
+|  |  |  |  |  |  |  |  |-- ClassPackagePathHeuristic.java
+|  |  |  |  |  |  |  |  |-- ExternalFilePositionManager.java
+|  |  |  |  |  |  |  |  |-- JUnitTestHeuristic.java
+|  |  |  |  |  |  |  |  |-- MultiRunDebuggerSessionListener.java
+|  |  |  |  |  |  |  |  |-- QualifiedClassNameHeuristic.java
+|  |  |  |  |  |  |  |  |-- RunUtil.java
+|  |  |  |  |  |  |  |  |-- TestClassHeuristic.java
+|  |  |  |  |  |  |  |  |-- coverage
+|  |  |  |  |  |  |  |  |  |-- BlazeCoverageAnnotator.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCoverageData.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCoverageEnabledConfiguration.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCoverageEngine.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCoverageProgramRunner.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCoverageProjectViewClassDecorator.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCoverageRunner.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCoverageSuite.java
+|  |  |  |  |  |  |  |  |-- fastbuild
+|  |  |  |  |  |  |  |  |  |-- AndroidLocalTestEnvironmentModifier.java
+|  |  |  |  |  |  |  |  |  |-- BazelFastBuildTestEnvironmentCreator.java
+|  |  |  |  |  |  |  |  |  |-- BazelTestEnvironmentVariables.java
+|  |  |  |  |  |  |  |  |  |-- FastBuildConfigurationRunner.java
+|  |  |  |  |  |  |  |  |  |-- FastBuildDebugExecutor.java
+|  |  |  |  |  |  |  |  |  |-- FastBuildDebuggerRunner.java
+|  |  |  |  |  |  |  |  |  |-- FastBuildProgramRunner.java
+|  |  |  |  |  |  |  |  |  |-- FastBuildRunExecutor.java
+|  |  |  |  |  |  |  |  |  |-- FastBuildRunProfileState.java
+|  |  |  |  |  |  |  |  |  |-- FastBuildSuggestion.java
+|  |  |  |  |  |  |  |  |  |-- FastBuildTestClassFinder.java
+|  |  |  |  |  |  |  |  |  |-- FastBuildTestEnvironmentCreator.java
+|  |  |  |  |  |  |  |  |  |-- FastBuildTestEnvironmentCreatorFactory.java
+|  |  |  |  |  |  |  |  |  |-- FastBuildTestEnvironmentModifier.java
+|  |  |  |  |  |  |  |  |  |-- FastBuildTestResultFinderStrategy.java
+|  |  |  |  |  |  |  |  |  |-- JavaCommandBuilder.java
+|  |  |  |  |  |  |  |  |  |-- LocationSubstitution.java
+|  |  |  |  |  |  |  |  |  |-- ModifiableJavaCommand.java
+|  |  |  |  |  |  |  |  |  |-- RerunFastBuildConfigurationWithBlazeAction.java
+|  |  |  |  |  |  |  |  |  |-- RobolectricDepsPropertiesFinder.java
+|  |  |  |  |  |  |  |  |-- hotswap
+|  |  |  |  |  |  |  |  |  |-- BlazeHotSwapAction.java
+|  |  |  |  |  |  |  |  |  |-- BlazeHotSwapManager.java
+|  |  |  |  |  |  |  |  |  |-- ClassFileManifest.java
+|  |  |  |  |  |  |  |  |  |-- ClassFileManifestBuilder.java
+|  |  |  |  |  |  |  |  |  |-- HotSwapCommandBuilder.java
+|  |  |  |  |  |  |  |  |  |-- HotSwapUtils.java
+|  |  |  |  |  |  |  |  |  |-- JavaClasspathAspectStrategy.java
+|  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |-- BlazeJUnitTestFilterFlags.java
+|  |  |  |  |  |  |  |  |  |-- BlazeJavaAbstractTestCaseConfigurationProducer.java
+|  |  |  |  |  |  |  |  |  |-- JUnitConfigurationUtil.java
+|  |  |  |  |  |  |  |  |  |-- JUnitParameterizedClassHeuristic.java
+|  |  |  |  |  |  |  |  |  |-- JavaBinaryContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- JavaTestContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- MultipleJavaClassesTestContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- NonBlazeProducerSuppressor.java
+|  |  |  |  |  |  |  |  |  |-- ProducerUtils.java
+|  |  |  |  |  |  |  |  |  |-- SubclassTestChooser.java
+|  |  |  |  |  |  |  |  |  |-- TestMethodSelectionUtil.java
+|  |  |  |  |  |  |  |  |  |-- TestSizeFinder.java
+|  |  |  |  |  |  |  |  |-- smrunner
+|  |  |  |  |  |  |  |  |  |-- JunitTestComparisonFailureParser.java
+|  |  |  |  |  |  |  |-- settings
+|  |  |  |  |  |  |  |  |-- BlazeJavaUserSettings.java
+|  |  |  |  |  |  |  |  |-- BlazeJavaUserSettingsConfigurable.java
+|  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |-- BlazeJavaLibrarySource.java
+|  |  |  |  |  |  |  |  |-- BlazeJavaSyncAugmenter.java
+|  |  |  |  |  |  |  |  |-- BlazeJavaSyncPlugin.java
+|  |  |  |  |  |  |  |  |-- DuplicateSourceDetector.java
+|  |  |  |  |  |  |  |  |-- JavaLanguageLevelHelper.java
+|  |  |  |  |  |  |  |  |-- JavaOutputsProvider.java
+|  |  |  |  |  |  |  |  |-- JavaPrefetchFileSource.java
+|  |  |  |  |  |  |  |  |-- LibraryGlobFilter.java
+|  |  |  |  |  |  |  |  |-- importer
+|  |  |  |  |  |  |  |  |  |-- BlazeJavaWorkspaceImporter.java
+|  |  |  |  |  |  |  |  |  |-- ExecutionPathHelper.java
+|  |  |  |  |  |  |  |  |  |-- JavaSourceFilter.java
+|  |  |  |  |  |  |  |  |  |-- emptylibrary
+|  |  |  |  |  |  |  |  |  |  |-- EmptyJarTracker.java
+|  |  |  |  |  |  |  |  |  |  |-- EmptyLibrary.java
+|  |  |  |  |  |  |  |  |  |  |-- EmptyLibraryFilter.java
+|  |  |  |  |  |  |  |  |-- jdeps
+|  |  |  |  |  |  |  |  |  |-- JdepsFileReader.java
+|  |  |  |  |  |  |  |  |  |-- JdepsMap.java
+|  |  |  |  |  |  |  |  |  |-- JdepsState.java
+|  |  |  |  |  |  |  |  |  |-- MockJdepsMap.java
+|  |  |  |  |  |  |  |  |-- model
+|  |  |  |  |  |  |  |  |  |-- AttachSourcesFilter.java
+|  |  |  |  |  |  |  |  |  |-- BlazeContentEntry.java
+|  |  |  |  |  |  |  |  |  |-- BlazeJarLibrary.java
+|  |  |  |  |  |  |  |  |  |-- BlazeJavaImportResult.java
+|  |  |  |  |  |  |  |  |  |-- BlazeJavaSyncData.java
+|  |  |  |  |  |  |  |  |  |-- BlazeSourceDirectory.java
+|  |  |  |  |  |  |  |  |-- projectstructure
+|  |  |  |  |  |  |  |  |  |-- JavaSourceFolderProvider.java
+|  |  |  |  |  |  |  |  |  |-- Jdks.java
+|  |  |  |  |  |  |  |  |-- sdk
+|  |  |  |  |  |  |  |  |  |-- BlazeJdkProvider.java
+|  |  |  |  |  |  |  |  |-- source
+|  |  |  |  |  |  |  |  |  |-- AndroidJavaLikeLanguage.java
+|  |  |  |  |  |  |  |  |  |-- FilePathJavaPackageReader.java
+|  |  |  |  |  |  |  |  |  |-- JavaLikeLanguage.java
+|  |  |  |  |  |  |  |  |  |-- JavaPackageReader.java
+|  |  |  |  |  |  |  |  |  |-- JavaSourcePackageReader.java
+|  |  |  |  |  |  |  |  |  |-- ManifestFilePackageReader.java
+|  |  |  |  |  |  |  |  |  |-- PackageManifestReader.java
+|  |  |  |  |  |  |  |  |  |-- SourceArtifact.java
+|  |  |  |  |  |  |  |  |  |-- SourceDirectoryCalculator.java
+|  |  |  |  |  |  |  |  |-- workingset
+|  |  |  |  |  |  |  |  |  |-- JavaWorkingSet.java
+|  |  |  |  |  |  |  |-- syncstatus
+|  |  |  |  |  |  |  |  |-- JavaSyncStatusContributor.java
+|  |-- tests
+|  |  |-- integrationtests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |  |-- fastbuild
+|  |  |  |  |  |  |  |  |  |-- FastBuildChangedFilesServiceTest.java
+|  |  |  |  |  |  |  |  |-- lang
+|  |  |  |  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |  |  |  |-- JavaClassRenameTest.java
+|  |  |  |  |  |  |  |  |  |  |-- SafeDeleteTest.java
+|  |  |  |  |  |  |  |  |  |  |-- completion
+|  |  |  |  |  |  |  |  |  |  |  |-- JavaClassQualifiedNameCompletionTest.java
+|  |  |  |  |  |  |  |  |  |  |-- references
+|  |  |  |  |  |  |  |  |  |  |  |-- JavaClassQualifiedNameReferenceTest.java
+|  |  |  |  |  |  |  |  |-- libraries
+|  |  |  |  |  |  |  |  |  |-- JarCacheFolderProviderTest.java
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- BlazeJavaTestEventsHandlerTest.java
+|  |  |  |  |  |  |  |  |  |-- BlazeJavaWebTestEventsHandlerTest.java
+|  |  |  |  |  |  |  |  |  |-- BlazeWebJavaTestEventsHandlerTest.java
+|  |  |  |  |  |  |  |  |  |-- ClassPackagePathHeuristicTest.java
+|  |  |  |  |  |  |  |  |  |-- CombinedTestHeuristicTest.java
+|  |  |  |  |  |  |  |  |  |-- JUnitTestHeuristicTest.java
+|  |  |  |  |  |  |  |  |  |-- QualifiedClassNameHeuristicTest.java
+|  |  |  |  |  |  |  |  |  |-- TestClassHeuristicTest.java
+|  |  |  |  |  |  |  |  |  |-- fastbuild
+|  |  |  |  |  |  |  |  |  |  |-- FastBuildTestClassFinderTest.java
+|  |  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |  |-- BlazeJUnitTestFilterFlagsIntegrationTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeJavaAbstractTestCaseConfigurationProducerTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeJavaTestClassConfigurationProducerTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeJavaTestMethodConfigurationProducerTest.java
+|  |  |  |  |  |  |  |  |  |  |-- JUnitConfigurationUtilTest.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaBinaryContextProviderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- MultipleJavaClassesTestContextProviderTest.java
+|  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |-- JavaSyncTest.java
+|  |  |  |  |  |  |  |  |  |-- projectstructure
+|  |  |  |  |  |  |  |  |  |  |-- JavaSourceFolderProviderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- JdksTest.java
+|  |  |-- unittests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |  |-- fastbuild
+|  |  |  |  |  |  |  |  |  |-- FastBuildCompilerFactoryImplTest.java
+|  |  |  |  |  |  |  |  |-- projectview
+|  |  |  |  |  |  |  |  |  |-- JavaLanguageLevelSectionTest.java
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- BlazeJavaRunProfileStateTest.java
+|  |  |  |  |  |  |  |  |  |-- coverage
+|  |  |  |  |  |  |  |  |  |  |-- BlazeCoverageDataTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeCoverageRunnerTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeCoverageSuiteTest.java
+|  |  |  |  |  |  |  |  |  |-- fastbuild
+|  |  |  |  |  |  |  |  |  |  |-- FastBuildTestEnvironmentCreatorTest.java
+|  |  |  |  |  |  |  |  |  |  |-- LocationSubstitutionTest.java
+|  |  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |  |-- BlazeJUnitTestFilterFlagsTest.java
+|  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |-- importer
+|  |  |  |  |  |  |  |  |  |  |-- BlazeJavaWorkspaceImporterTest.java
+|  |  |  |  |  |  |  |  |  |  |-- emptylibrary
+|  |  |  |  |  |  |  |  |  |  |  |-- EmptyLibraryFilterTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- JarBuilder.java
+|  |  |  |  |  |  |  |  |  |-- source
+|  |  |  |  |  |  |  |  |  |  |-- SourceDirectoryCalculatorTest.java
+|-- javascript
+|  |-- BUILD
+|  |-- src
+|  |  |-- META-INF
+|  |  |  |-- blaze-javascript.xml
+|  |  |  |-- javascript-contents.xml
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |-- javascript
+|  |  |  |  |  |  |  |-- BlazeJavascriptAdditionalLibraryRootsProvider.java
+|  |  |  |  |  |  |  |-- BlazeJavascriptLibrarySource.java
+|  |  |  |  |  |  |  |-- BlazeJavascriptResolveScopeProvider.java
+|  |  |  |  |  |  |  |-- BlazeJavascriptSyncPlugin.java
+|  |  |  |  |  |  |  |-- JavascriptBlazeRules.java
+|  |  |  |  |  |  |  |-- JavascriptPrefetchFileSource.java
+|  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |-- BlazeJavaScriptTestRunLineMarkerContributor.java
+|  |  |  |  |  |  |  |  |  |-- JavascriptTestContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- JavascriptTestTargetHeuristic.java
+|  |  |  |  |  |  |  |  |  |-- NonBlazeProducerSuppressor.java
+|  |  |  |  |  |  |  |  |-- smrunner
+|  |  |  |  |  |  |  |  |  |-- BlazeJavascriptTestEventsHandler.java
+|  |  |  |  |  |  |  |  |  |-- BlazeJavascriptTestLocator.java
+|  |  |  |  |  |  |-- typescript
+|  |  |  |  |  |  |  |-- AddTsConfigNotificationProvider.java
+|  |  |  |  |  |  |  |-- BlazeTypeScriptAdditionalLibraryRootsProvider.java
+|  |  |  |  |  |  |  |-- BlazeTypeScriptConfig.java
+|  |  |  |  |  |  |  |-- BlazeTypeScriptConfigLibraryUpdater.java
+|  |  |  |  |  |  |  |-- BlazeTypeScriptConfigServiceImpl.java
+|  |  |  |  |  |  |  |-- BlazeTypescriptGotoDeclarationHandler.java
+|  |  |  |  |  |  |  |-- BlazeTypescriptSyncPlugin.java
+|  |  |  |  |  |  |  |-- DelegatingTypeScriptConfigService.java
+|  |  |  |  |  |  |  |-- TsConfigRuleSection.java
+|  |  |  |  |  |  |  |-- TsConfigRulesSection.java
+|  |  |  |  |  |  |  |-- TypeScriptBlazeRules.java
+|  |  |  |  |  |  |  |-- TypeScriptPrefetchFileSource.java
+|  |-- tests
+|  |  |-- integrationtests
+|  |  |  |-- META-INF
+|  |  |  |  |-- test.xml
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- javascript
+|  |  |  |  |  |  |  |  |-- DisableJsLibrariesError.java
+|  |  |  |  |  |  |  |  |-- JavascriptSyncTest.java
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |  |-- BlazeJavaScriptTestRunLineMarkerContributorTest.java
+|  |  |  |  |  |  |  |  |  |  |-- JavascriptTestContextProviderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- OldJavascriptTestContextProviderTest.java
+|  |  |  |  |  |  |  |  |  |-- smrunner
+|  |  |  |  |  |  |  |  |  |  |-- BlazeJavascriptTestEventsHandlerTestUtils.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeJavascriptWebTestEventsHandlerTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeWebJavascriptTestEventsHandlerTest.java
+|  |  |  |  |  |  |  |-- typescript
+|  |  |  |  |  |  |  |  |-- BlazeTypeScriptConfigTest.java
+|  |  |  |  |  |  |  |  |-- BlazeTypescriptGotoDeclarationHandlerTest.java
+|  |  |-- unittests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- javascript
+|  |  |  |  |  |  |  |  |-- BlazeJavascriptSyncPluginTest.java
+|  |  |  |  |  |  |  |-- typescript
+|  |  |  |  |  |  |  |  |-- BlazeTypescriptSyncPluginTest.java
+|-- kotlin
+|  |-- BUILD
+|  |-- src
+|  |  |-- META-INF
+|  |  |  |-- blaze-kotlin.xml
+|  |  |  |-- kotlin-contents.xml
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |-- kotlin
+|  |  |  |  |  |  |  |-- KotlinBlazeRules.java
+|  |  |  |  |  |  |  |-- KotlinJavaLikeLanguage.java
+|  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |-- KotlinBinaryContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- KotlinTestContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- KotlinTestSizeFinder.java
+|  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |-- AlwaysPresentKotlinSyncPlugin.java
+|  |  |  |  |  |  |  |  |-- BlazeKotlinSyncPlugin.java
+|  |  |  |  |  |  |  |  |-- KotlinLibrarySource.java
+|  |  |  |  |  |  |  |  |-- KotlinPluginOptionsProvider.java
+|  |  |  |  |  |  |  |  |-- KotlinUtils.java
+|  |  |  |  |  |  |  |  |-- importer
+|  |  |  |  |  |  |  |  |  |-- KotlinSyncAugmenter.java
+|  |  |  |  |  |  |  |-- syncstatus
+|  |  |  |  |  |  |  |  |-- KotlinSyncStatusContributor.java
+|  |-- tests
+|  |  |-- integrationtests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- kotlin
+|  |  |  |  |  |  |  |  |-- KotlinSyncTest.java
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |  |-- KotlinBinaryContextProviderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- KotlinTestContextProviderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- KotlinTestSizeFinderTest.java
+|  |  |-- unittests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- kotlin
+|  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |-- BlazeKotlinSyncPluginTest.java
+|  |  |  |  |  |  |  |  |  |-- importer
+|  |  |  |  |  |  |  |  |  |  |-- KotlinSyncAugmenterTest.java
+|-- plugin_dev
+|  |-- BUILD
+|  |-- src
+|  |  |-- META-INF
+|  |  |  |-- blaze-plugin-dev.xml
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |-- plugin
+|  |  |  |  |  |  |  |-- IntellijPluginRule.java
+|  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |-- BlazeIntellijPluginConfiguration.java
+|  |  |  |  |  |  |  |  |-- BlazeIntellijPluginConfigurationType.java
+|  |  |  |  |  |  |  |  |-- BlazeIntellijPluginDeployer.java
+|  |  |  |  |  |  |  |  |-- BuildPluginBeforeRunTaskProvider.java
+|  |  |  |  |  |  |  |  |-- IdeaJdkHelper.java
+|  |  |  |  |  |  |  |  |-- IntellijWithPluginClasspathHelper.java
+|  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |-- IntellijPluginSyncPlugin.java
+|  |-- tests
+|  |  |-- integrationtests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- plugin
+|  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |-- PluginDevSyncTest.java
+|-- proto
+|  |-- BUILD
+|  |-- common.proto
+|  |-- fast_build_info.proto
+|  |-- intellij_ide_info.proto
+|  |-- intellij_plugin_target_deploy_info.proto
+|  |-- jarjar_protobuf_rule.txt
+|  |-- project_data.proto
+|-- python
+|  |-- BUILD
+|  |-- src
+|  |  |-- META-INF
+|  |  |  |-- blaze-python.xml
+|  |  |  |-- python-contents.xml
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |-- python
+|  |  |  |  |  |  |  |-- PySdkUtils.java
+|  |  |  |  |  |  |  |-- PythonBlazeRules.java
+|  |  |  |  |  |  |  |-- PythonPluginUtils.java
+|  |  |  |  |  |  |  |-- issueparser
+|  |  |  |  |  |  |  |  |-- PyIssueParserProvider.java
+|  |  |  |  |  |  |  |-- resolve
+|  |  |  |  |  |  |  |  |-- BlazeCustomPackageIdentifier.java
+|  |  |  |  |  |  |  |  |-- BlazePyBuiltinReferenceResolveProvider.java
+|  |  |  |  |  |  |  |  |-- BlazePyOutsideModuleImportResolver.java
+|  |  |  |  |  |  |  |  |-- BlazePyResolverUtils.java
+|  |  |  |  |  |  |  |  |-- PyDynamicImportResolverInitializer.java
+|  |  |  |  |  |  |  |  |-- provider
+|  |  |  |  |  |  |  |  |  |-- AbstractPyImportResolverStrategy.java
+|  |  |  |  |  |  |  |  |  |-- BazelPyGenfilesImportResolverStrategy.java
+|  |  |  |  |  |  |  |  |  |-- BazelPyImportResolverStrategy.java
+|  |  |  |  |  |  |  |  |  |-- PsiElementProvider.java
+|  |  |  |  |  |  |  |  |  |-- PyImportResolverStrategy.java
+|  |  |  |  |  |  |  |  |  |-- PySourcesIndex.java
+|  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |-- BlazePyDebugHelper.java
+|  |  |  |  |  |  |  |  |-- BlazePyDebugRunner.java
+|  |  |  |  |  |  |  |  |-- BlazePyPositionConverter.java
+|  |  |  |  |  |  |  |  |-- BlazePyRunConfigState.java
+|  |  |  |  |  |  |  |  |-- BlazePyRunConfigurationHandler.java
+|  |  |  |  |  |  |  |  |-- BlazePyRunConfigurationHandlerProvider.java
+|  |  |  |  |  |  |  |  |-- BlazePyRunConfigurationRunner.java
+|  |  |  |  |  |  |  |  |-- BlazePyTracebackParser.java
+|  |  |  |  |  |  |  |  |-- PyDebugUtils.java
+|  |  |  |  |  |  |  |  |-- PyTestUtils.java
+|  |  |  |  |  |  |  |  |-- filter
+|  |  |  |  |  |  |  |  |  |-- BlazePyTracebackFilter.java
+|  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |-- NonBlazeProducerSuppressor.java
+|  |  |  |  |  |  |  |  |  |-- PyBinaryContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- PyTestContextProvider.java
+|  |  |  |  |  |  |  |  |-- smrunner
+|  |  |  |  |  |  |  |  |  |-- BlazePythonTestEventsHandler.java
+|  |  |  |  |  |  |  |  |  |-- BlazePythonTestLocator.java
+|  |  |  |  |  |  |  |  |  |-- PyBaseParameterizedNameConverter.java
+|  |  |  |  |  |  |  |  |  |-- PyParameterizedNameConverter.java
+|  |  |  |  |  |  |  |-- sdk
+|  |  |  |  |  |  |  |  |-- FallbackPythonSdkSuggester.java
+|  |  |  |  |  |  |  |-- search
+|  |  |  |  |  |  |  |  |-- BlazePyUseScopeEnlarger.java
+|  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |-- AlwaysPresentPythonSyncPlugin.java
+|  |  |  |  |  |  |  |  |-- BlazePythonSyncPlugin.java
+|  |  |  |  |  |  |  |  |-- PySdkSuggester.java
+|  |  |  |  |  |  |  |  |-- PySyncStatusContributor.java
+|  |  |  |  |  |  |  |  |-- PythonFacetUtil.java
+|  |  |  |  |  |  |  |  |-- PythonPrefetchFileSource.java
+|  |-- tests
+|  |  |-- integrationtests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- python
+|  |  |  |  |  |  |  |  |-- resolve
+|  |  |  |  |  |  |  |  |  |-- BlazePyCustomPackageResolverTest.java
+|  |  |  |  |  |  |  |  |  |-- provider
+|  |  |  |  |  |  |  |  |  |  |-- BazelPyGenfilesImportResolverStrategyTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BazelPyImportResolverStrategyTest.java
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |  |-- BlazePyTestConfigurationProducerTest.java
+|  |  |  |  |  |  |  |  |  |  |-- PyBinaryContextProviderTest.java
+|  |  |  |  |  |  |  |  |  |-- smrunner
+|  |  |  |  |  |  |  |  |  |  |-- BlazePythonTestEventsHandlerTest.java
+|  |  |-- unittests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- python
+|  |  |  |  |  |  |  |  |-- issueparser
+|  |  |  |  |  |  |  |  |  |-- PyIssueParserProviderTest.java
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- BlazePyRunConfigurationRunnerTest.java
+|  |  |  |  |  |  |  |  |  |-- smrunner
+|  |  |  |  |  |  |  |  |  |  |-- PyBaseParameterizedNameConverterTest.java
+|  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |-- BlazePythonSyncPluginTest.java
+|  |  |-- utils
+|  |  |  |-- integration
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- idea
+|  |  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |  |-- python
+|  |  |  |  |  |  |  |  |  |-- resolve
+|  |  |  |  |  |  |  |  |  |  |-- provider
+|  |  |  |  |  |  |  |  |  |  |  |-- PyImportResolverStrategyTestCase.java
+|-- scala
+|  |-- BUILD
+|  |-- src
+|  |  |-- META-INF
+|  |  |  |-- blaze-scala.xml
+|  |  |  |-- scala-contents.xml
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |-- scala
+|  |  |  |  |  |  |  |-- ScalaBlazeRules.java
+|  |  |  |  |  |  |  |-- ScalaJavaLikeLanguage.java
+|  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |-- Specs2Utils.java
+|  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |-- BlazeScalaTestRunLineMarkerContributor.java
+|  |  |  |  |  |  |  |  |  |-- DeployableJarRunConfigurationProducer.java
+|  |  |  |  |  |  |  |  |  |-- GenerateDeployableJarTaskProvider.java
+|  |  |  |  |  |  |  |  |  |-- NonBlazeProducerSuppressor.java
+|  |  |  |  |  |  |  |  |  |-- ScalaBinaryContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- ScalaSpecs2TestContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- ScalaTestContextProvider.java
+|  |  |  |  |  |  |  |  |-- smrunner
+|  |  |  |  |  |  |  |  |  |-- BlazeScalaTestEventsHandler.java
+|  |  |  |  |  |  |  |  |  |-- BlazeScalaTestLocator.java
+|  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |-- AlwaysPresentScalaSyncPlugin.java
+|  |  |  |  |  |  |  |  |-- BlazeScalaLibrarySource.java
+|  |  |  |  |  |  |  |  |-- BlazeScalaSyncPlugin.java
+|  |  |  |  |  |  |  |  |-- ScalaSyncStatusContributor.java
+|  |  |  |  |  |  |  |  |-- importer
+|  |  |  |  |  |  |  |  |  |-- BlazeScalaWorkspaceImporter.java
+|  |  |  |  |  |  |  |  |-- model
+|  |  |  |  |  |  |  |  |  |-- BlazeScalaImportResult.java
+|  |  |  |  |  |  |  |  |  |-- BlazeScalaSyncData.java
+|  |-- tests
+|  |  |-- integrationtests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- scala
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- producers
+|  |  |  |  |  |  |  |  |  |  |-- BlazeScalaTestClassConfigurationProducerTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeScalaTestRunLineMarkerContributorTest.java
+|  |  |  |  |  |  |  |  |  |  |-- DeployableJarRunConfigurationProducerTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ScalaBinaryContextProviderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ScalaSpecs2TestContextProviderTest.java
+|  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |-- ScalaSyncTest.java
+|  |  |-- unittests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |-- source
+|  |  |  |  |  |  |  |  |  |  |-- ScalaSourceDirectoryCalculatorTest.java
+|  |  |  |  |  |  |  |-- scala
+|  |  |  |  |  |  |  |  |-- sync
+|  |  |  |  |  |  |  |  |  |-- BlazeScalaSyncPluginTest.java
+|  |  |  |  |  |  |  |  |  |-- importer
+|  |  |  |  |  |  |  |  |  |  |-- BlazeScalaWorkspaceImporterTest.java
+|-- sdkcompat
+|  |-- BUILD
+|  |-- v202
+|  |  |-- BUILD
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- sdkcompat
+|  |  |  |  |  |  |-- clion
+|  |  |  |  |  |  |  |-- OCNewFileProjectModelHandlerWrapper.java
+|  |  |  |  |  |  |-- general
+|  |  |  |  |  |  |  |-- BaseSdkCompat.java
+|  |  |  |  |  |  |-- golang
+|  |  |  |  |  |  |  |-- GoLangCompat.java
+|  |  |  |  |  |  |-- python
+|  |  |  |  |  |  |  |-- ParsingContextAdapter.java
+|  |  |  |  |  |  |  |-- PyParserAdapter.java
+|  |  |  |  |  |  |-- typescript
+|  |  |  |  |  |  |  |-- TypeScriptSDKCompat.java
+|  |  |  |  |  |  |-- vcs
+|  |  |  |  |  |  |  |-- VcsNotifierCompat.java
+|  |-- v203
+|  |  |-- BUILD
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- sdkcompat
+|  |  |  |  |  |  |-- clion
+|  |  |  |  |  |  |  |-- OCNewFileProjectModelHandlerWrapper.java
+|  |  |  |  |  |  |-- general
+|  |  |  |  |  |  |  |-- BaseSdkCompat.java
+|  |  |  |  |  |  |-- golang
+|  |  |  |  |  |  |  |-- GoLangCompat.java
+|  |  |  |  |  |  |-- python
+|  |  |  |  |  |  |  |-- ParsingContextAdapter.java
+|  |  |  |  |  |  |  |-- PyParserAdapter.java
+|  |  |  |  |  |  |-- typescript
+|  |  |  |  |  |  |  |-- TypeScriptSDKCompat.java
+|  |  |  |  |  |  |-- vcs
+|  |  |  |  |  |  |  |-- VcsNotifierCompat.java
+|  |-- v211
+|  |  |-- BUILD
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- sdkcompat
+|  |  |  |  |  |  |-- clion
+|  |  |  |  |  |  |  |-- OCNewFileProjectModelHandlerWrapper.java
+|  |  |  |  |  |  |-- general
+|  |  |  |  |  |  |  |-- BaseSdkCompat.java
+|  |  |  |  |  |  |-- golang
+|  |  |  |  |  |  |  |-- GoLangCompat.java
+|  |  |  |  |  |  |-- python
+|  |  |  |  |  |  |  |-- ParsingContextAdapter.java
+|  |  |  |  |  |  |  |-- PyParserAdapter.java
+|  |  |  |  |  |  |-- typescript
+|  |  |  |  |  |  |  |-- TypeScriptSDKCompat.java
+|  |  |  |  |  |  |-- vcs
+|  |  |  |  |  |  |  |-- VcsNotifierCompat.java
+|  |-- v212
+|  |  |-- BUILD
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- sdkcompat
+|  |  |  |  |  |  |-- clion
+|  |  |  |  |  |  |  |-- OCNewFileProjectModelHandlerWrapper.java
+|  |  |  |  |  |  |-- general
+|  |  |  |  |  |  |  |-- BaseSdkCompat.java
+|  |  |  |  |  |  |-- golang
+|  |  |  |  |  |  |  |-- GoLangCompat.java
+|  |  |  |  |  |  |-- python
+|  |  |  |  |  |  |  |-- ParsingContextAdapter.java
+|  |  |  |  |  |  |  |-- PyParserAdapter.java
+|  |  |  |  |  |  |-- typescript
+|  |  |  |  |  |  |  |-- TypeScriptSDKCompat.java
+|  |  |  |  |  |  |-- vcs
+|  |  |  |  |  |  |  |-- VcsNotifierCompat.java
+|-- skylark
+|  |-- BUILD
+|  |-- src
+|  |  |-- META-INF
+|  |  |  |-- blaze-skylark.xml
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |-- skylark
+|  |  |  |  |  |  |  |-- debugger
+|  |  |  |  |  |  |  |  |-- SkylarkDebuggingUtils.java
+|  |  |  |  |  |  |  |  |-- impl
+|  |  |  |  |  |  |  |  |  |-- DebugClientTransport.java
+|  |  |  |  |  |  |  |  |  |-- DebuggerCompletionContributor.java
+|  |  |  |  |  |  |  |  |  |-- DebuggerEvaluator.java
+|  |  |  |  |  |  |  |  |  |-- PausedThreadState.java
+|  |  |  |  |  |  |  |  |  |-- SingleThreadChildCache.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkDebugCompletionSuggestions.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkDebugProcess.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkDebugValue.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkDebuggerEditorsProvider.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkDebuggerException.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkExecutionStack.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkExpressionCodeFragment.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkLineBreakpointHandler.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkLineBreakpointType.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkSourcePosition.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkStackFrame.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkSuspendContext.java
+|  |  |  |  |  |  |  |  |-- run
+|  |  |  |  |  |  |  |  |  |-- SkylarkDebugBuildFlagsProvider.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkDebugRunner.java
+|-- terminal
+|  |-- BUILD
+|  |-- src
+|  |  |-- META-INF
+|  |  |  |-- terminal-contents.xml
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |-- terminal
+|  |  |  |  |  |  |  |-- DefaultTerminalLocationCustomizer.java
+|-- testing
+|  |-- BUILD
+|  |-- cidr
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- testing
+|  |  |  |  |  |  |-- cidr
+|  |  |  |  |  |  |  |-- StubOCResolveConfigurationBase.java
+|  |  |  |  |  |  |  |-- StubOCWorkspace.java
+|  |-- src
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- testing
+|  |  |  |  |  |  |-- AbstractIntegrationTestCase.java
+|  |  |  |  |  |  |-- BlazeTestSystemPropertiesRule.java
+|  |  |  |  |  |  |-- DisablePluginsTestRule.java
+|  |  |  |  |  |  |-- EdtRule.java
+|  |  |  |  |  |  |-- FunctionalHeadlessDataManager.java
+|  |  |  |  |  |  |-- IntellijRule.java
+|  |  |  |  |  |  |-- IntellijTestSetupRule.java
+|  |  |  |  |  |  |-- ServiceHelper.java
+|  |  |  |  |  |  |-- TestUtils.java
+|  |  |  |  |  |  |-- UsernameRule.java
+|  |  |  |  |  |  |-- VerifyRequiredPluginsEnabled.java
+|  |-- studio
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- idea
+|  |  |  |  |  |-- blaze
+|  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |-- AndroidIntegrationTestSetupRule.java
+|  |-- test_defs.bzl
+|  |-- testcompat
+|  |  |-- v202
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- sdkcompat
+|  |  |  |  |  |  |  |-- BaseSdkTestCompat.java
+|  |  |  |  |  |  |  |-- testframework
+|  |  |  |  |  |  |  |  |-- EdtTestUtilWrapper.java
+|  |  |  |  |  |  |  |  |-- fixtures
+|  |  |  |  |  |  |  |  |  |-- CompletionAutoPopupTesterAdapter.java
+|  |  |  |  |  |  |-- testing
+|  |  |  |  |  |  |  |-- cidr
+|  |  |  |  |  |  |  |  |-- StubOCCompilerSettings.java
+|  |  |-- v203
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- idea
+|  |  |  |  |  |  |-- sdkcompat
+|  |  |  |  |  |  |  |-- BaseSdkTestCompat.java
+|  |  |  |  |  |  |  |-- testframework
+|  |  |  |  |  |  |  |  |-- EdtTestUtilWrapper.java
+|  |  |  |  |  |  |  |  |-- fixtures
+|  |  |  |  |  |  |  |  |  |-- CompletionAutoPopupTesterAdapter.java
+|  |  |  |  |  |  |-- testing
+|  |  |  |  |  |  |  |-- cidr
+|  |  |  |  |  |  |  |  |-- StubOCCompilerSettings.java
+|-- third_party
+|  |-- BUILD
+|  |-- README.md
+|  |-- auto_value
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |-- bazel
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- devtools
+|  |  |  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |  |  |-- lib
+|  |  |  |  |  |  |  |  |  |  |-- buildeventstream
+|  |  |  |  |  |  |  |  |  |  |  |-- proto
+|  |  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |  |-- build_event_stream.proto
+|  |  |  |  |  |  |  |  |  |  |-- starlarkdebug
+|  |  |  |  |  |  |  |  |  |  |  |-- proto
+|  |  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |  |-- starlark_debugging.proto
+|  |  |  |  |-- protobuf
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- action_cache.proto
+|  |  |  |  |  |-- analysis.proto
+|  |  |  |  |  |-- analysis_v2.proto
+|  |  |  |  |  |-- android_deploy_info.proto
+|  |  |  |  |  |-- bazel_flags.proto
+|  |  |  |  |  |-- build.proto
+|  |  |  |  |  |-- builtin.proto
+|  |  |  |  |  |-- command_line.proto
+|  |  |  |  |  |-- command_server.proto
+|  |  |  |  |  |-- crosstool_config.proto
+|  |  |  |  |  |-- deps.proto
+|  |  |  |  |  |-- desugar_deps.proto
+|  |  |  |  |  |-- execution_statistics.proto
+|  |  |  |  |  |-- extra_actions_base.proto
+|  |  |  |  |  |-- failure_details.proto
+|  |  |  |  |  |-- invocation_policy.proto
+|  |  |  |  |  |-- java_compilation.proto
+|  |  |  |  |  |-- option_filters.proto
+|  |  |  |  |  |-- remote_execution_log.proto
+|  |  |  |  |  |-- spawn.proto
+|  |  |  |  |  |-- test_status.proto
+|  |  |  |  |  |-- worker_protocol.proto
+|  |  |  |  |  |-- xcode_config.proto
+|  |-- go
+|  |  |-- BUILD
+|  |-- java
+|  |  |-- jdk
+|  |  |  |-- BUILD
+|  |-- javascript
+|  |  |-- BUILD
+|  |-- jdk8
+|  |  |-- LICENSE
+|  |  |-- jpda-jdi.jar
+|  |-- python
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |-- scala
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|-- tools
+|  |-- build_rules
+|  |  |-- BUILD
+|  |  |-- prelude_bazel
+|-- version.bzl

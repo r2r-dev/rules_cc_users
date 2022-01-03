@@ -1,0 +1,2844 @@
+|-- .github
+|  |-- workflows
+|  |  |-- precommit.yml
+|-- .gitignore
+|-- .precommit.bazelrc
+|-- BUILD
+|-- CONTRIBUTING
+|-- LICENSE
+|-- README.md
+|-- RELEASE_NOTES.md
+|-- WORKSPACE
+|-- assets
+|  |-- default.cfg
+|  |-- gfx
+|  |  |-- 2d
+|  |  |  |-- bigchars.tga
+|  |  |  |-- crosshaira.tga
+|  |  |  |-- crosshaire.tga
+|  |  |  |-- numbers
+|  |  |  |  |-- eight_32b.tga
+|  |  |  |  |-- five_32b.tga
+|  |  |  |  |-- four_32b.tga
+|  |  |  |  |-- minus_32b.tga
+|  |  |  |  |-- nine_32b.tga
+|  |  |  |  |-- one_32b.tga
+|  |  |  |  |-- seven_32b.tga
+|  |  |  |  |-- six_32b.tga
+|  |  |  |  |-- three_32b.tga
+|  |  |  |  |-- two_32b.tga
+|  |  |  |  |-- zero_32b.tga
+|  |  |  |-- select.tga
+|  |  |-- damage
+|  |  |  |-- blood_screen.tga
+|  |  |  |-- shadow.tga
+|  |  |-- ui
+|  |  |  |-- cursor.tga
+|  |-- icons
+|  |  |-- icona_grenade.tga
+|  |  |-- icona_lightning.tga
+|  |  |-- icona_machinegun.tga
+|  |  |-- icona_plasma.tga
+|  |  |-- icona_railgun.tga
+|  |  |-- icona_rocket.tga
+|  |  |-- icona_shotgun.tga
+|  |  |-- iconf_blu1.tga
+|  |  |-- iconf_blu2.tga
+|  |  |-- iconf_blu3.tga
+|  |  |-- iconf_red1.tga
+|  |  |-- iconf_red2.tga
+|  |  |-- iconf_red3.tga
+|  |  |-- iconh_green.tga
+|  |  |-- iconh_red.tga
+|  |  |-- iconr_shard.tga
+|  |  |-- iconr_yellow.tga
+|  |  |-- medkit.tga
+|  |  |-- noammo.tga
+|  |  |-- quad.tga
+|  |  |-- regen.tga
+|  |-- maps
+|  |  |-- built
+|  |  |  |-- big_screen.aas
+|  |  |  |-- big_screen.bsp
+|  |  |  |-- ctf_bounce.aas
+|  |  |  |-- ctf_bounce.bsp
+|  |  |  |-- em_eat.aas
+|  |  |  |-- em_eat.bsp
+|  |  |  |-- em_non_match.aas
+|  |  |  |-- em_non_match.bsp
+|  |  |  |-- em_tmaze_a1.aas
+|  |  |  |-- em_tmaze_a1.bsp
+|  |  |  |-- em_tmaze_a2.aas
+|  |  |  |-- em_tmaze_a2.bsp
+|  |  |  |-- em_tmaze_a3.aas
+|  |  |  |-- em_tmaze_a3.bsp
+|  |  |  |-- em_tmaze_a4.aas
+|  |  |  |-- em_tmaze_a4.bsp
+|  |  |  |-- em_tmaze_a5.aas
+|  |  |  |-- em_tmaze_a5.bsp
+|  |  |  |-- em_watermaze.aas
+|  |  |  |-- em_watermaze.bsp
+|  |  |  |-- lookat_test.aas
+|  |  |  |-- lookat_test.bsp
+|  |  |  |-- lt_chasm.aas
+|  |  |  |-- lt_chasm.bsp
+|  |  |  |-- lt_hallway_slope.aas
+|  |  |  |-- lt_hallway_slope.bsp
+|  |  |  |-- lt_horseshoe_color.aas
+|  |  |  |-- lt_horseshoe_color.bsp
+|  |  |  |-- lt_space_bounce_01.aas
+|  |  |  |-- lt_space_bounce_01.bsp
+|  |  |  |-- lt_space_bounce_simple.aas
+|  |  |  |-- lt_space_bounce_simple.bsp
+|  |  |  |-- natlab_forage_ltm_dawn.bsp
+|  |  |  |-- natlab_forage_ltm_day.bsp
+|  |  |  |-- natlab_forage_ltm_night.bsp
+|  |  |  |-- natlab_forage_stm_000.bsp
+|  |  |  |-- natlab_forage_stm_001.bsp
+|  |  |  |-- natlab_forage_stm_002.bsp
+|  |  |  |-- natlab_forage_stm_003.bsp
+|  |  |  |-- natlab_forage_stm_004.bsp
+|  |  |  |-- natlab_forage_stm_005.bsp
+|  |  |  |-- natlab_forage_stm_006.bsp
+|  |  |  |-- natlab_forage_stm_007.bsp
+|  |  |  |-- natlab_forage_stm_008.bsp
+|  |  |  |-- natlab_forage_stm_009.bsp
+|  |  |  |-- natlab_forage_stm_010.bsp
+|  |  |  |-- natlab_forage_stm_011.bsp
+|  |  |  |-- natlab_forage_stm_012.bsp
+|  |  |  |-- natlab_forage_stm_013.bsp
+|  |  |  |-- natlab_forage_stm_014.bsp
+|  |  |  |-- natlab_forage_stm_015.bsp
+|  |  |  |-- natlab_forage_stm_016.bsp
+|  |  |  |-- natlab_forage_stm_017.bsp
+|  |  |  |-- natlab_forage_stm_018.bsp
+|  |  |  |-- natlab_forage_stm_019.bsp
+|  |  |  |-- natlab_forage_stm_020.bsp
+|  |  |  |-- natlab_forage_stm_021.bsp
+|  |  |  |-- natlab_forage_stm_022.bsp
+|  |  |  |-- natlab_forage_stm_023.bsp
+|  |  |  |-- natlab_forage_stm_024.bsp
+|  |  |  |-- natlab_forage_stm_025.bsp
+|  |  |  |-- natlab_forage_stm_026.bsp
+|  |  |  |-- natlab_forage_stm_027.bsp
+|  |  |  |-- natlab_forage_stm_028.bsp
+|  |  |  |-- natlab_forage_stm_029.bsp
+|  |  |  |-- natlab_forage_stm_030.bsp
+|  |  |  |-- natlab_forage_stm_031.bsp
+|  |  |  |-- natlab_forage_stm_032.bsp
+|  |  |  |-- natlab_forage_stm_033.bsp
+|  |  |  |-- natlab_forage_stm_034.bsp
+|  |  |  |-- natlab_forage_stm_035.bsp
+|  |  |  |-- natlab_forage_stm_036.bsp
+|  |  |  |-- natlab_forage_stm_037.bsp
+|  |  |  |-- natlab_forage_stm_038.bsp
+|  |  |  |-- natlab_forage_stm_039.bsp
+|  |  |  |-- natlab_forage_stm_040.bsp
+|  |  |  |-- natlab_forage_stm_041.bsp
+|  |  |  |-- natlab_forage_stm_042.bsp
+|  |  |  |-- natlab_forage_stm_043.bsp
+|  |  |  |-- natlab_forage_stm_044.bsp
+|  |  |  |-- natlab_forage_stm_045.bsp
+|  |  |  |-- natlab_forage_stm_046.bsp
+|  |  |  |-- natlab_forage_stm_047.bsp
+|  |  |  |-- natlab_forage_stm_048.bsp
+|  |  |  |-- natlab_forage_stm_049.bsp
+|  |  |  |-- natlab_forage_stm_050.bsp
+|  |  |  |-- natlab_forage_stm_051.bsp
+|  |  |  |-- natlab_forage_stm_052.bsp
+|  |  |  |-- natlab_forage_stm_053.bsp
+|  |  |  |-- natlab_forage_stm_054.bsp
+|  |  |  |-- natlab_forage_stm_055.bsp
+|  |  |  |-- natlab_forage_stm_056.bsp
+|  |  |  |-- natlab_forage_stm_057.bsp
+|  |  |  |-- natlab_forage_stm_058.bsp
+|  |  |  |-- natlab_forage_stm_059.bsp
+|  |  |  |-- natlab_forage_stm_060.bsp
+|  |  |  |-- natlab_forage_stm_061.bsp
+|  |  |  |-- natlab_forage_stm_062.bsp
+|  |  |  |-- natlab_forage_stm_063.bsp
+|  |  |  |-- natlab_forage_stm_064.bsp
+|  |  |  |-- natlab_forage_stm_065.bsp
+|  |  |  |-- natlab_forage_stm_066.bsp
+|  |  |  |-- natlab_forage_stm_067.bsp
+|  |  |  |-- natlab_forage_stm_068.bsp
+|  |  |  |-- natlab_forage_stm_069.bsp
+|  |  |  |-- natlab_forage_stm_070.bsp
+|  |  |  |-- natlab_forage_stm_071.bsp
+|  |  |  |-- natlab_forage_stm_072.bsp
+|  |  |  |-- natlab_forage_stm_073.bsp
+|  |  |  |-- natlab_forage_stm_074.bsp
+|  |  |  |-- natlab_forage_stm_075.bsp
+|  |  |  |-- natlab_forage_stm_076.bsp
+|  |  |  |-- natlab_forage_stm_077.bsp
+|  |  |  |-- natlab_forage_stm_078.bsp
+|  |  |  |-- natlab_forage_stm_079.bsp
+|  |  |  |-- natlab_forage_stm_080.bsp
+|  |  |  |-- natlab_forage_stm_081.bsp
+|  |  |  |-- natlab_forage_stm_082.bsp
+|  |  |  |-- natlab_forage_stm_083.bsp
+|  |  |  |-- natlab_forage_stm_084.bsp
+|  |  |  |-- natlab_forage_stm_085.bsp
+|  |  |  |-- natlab_forage_stm_086.bsp
+|  |  |  |-- natlab_forage_stm_087.bsp
+|  |  |  |-- natlab_forage_stm_088.bsp
+|  |  |  |-- natlab_forage_stm_089.bsp
+|  |  |  |-- natlab_forage_stm_090.bsp
+|  |  |  |-- natlab_forage_stm_091.bsp
+|  |  |  |-- natlab_forage_stm_092.bsp
+|  |  |  |-- natlab_forage_stm_093.bsp
+|  |  |  |-- natlab_forage_stm_094.bsp
+|  |  |  |-- natlab_forage_stm_095.bsp
+|  |  |  |-- natlab_forage_stm_096.bsp
+|  |  |  |-- natlab_forage_stm_097.bsp
+|  |  |  |-- natlab_forage_stm_098.bsp
+|  |  |  |-- natlab_forage_stm_099.bsp
+|  |  |  |-- natlab_forage_variable_000.bsp
+|  |  |  |-- natlab_forage_variable_001.bsp
+|  |  |  |-- natlab_forage_variable_002.bsp
+|  |  |  |-- natlab_forage_variable_003.bsp
+|  |  |  |-- natlab_forage_variable_004.bsp
+|  |  |  |-- natlab_forage_variable_005.bsp
+|  |  |  |-- natlab_forage_variable_006.bsp
+|  |  |  |-- natlab_forage_variable_007.bsp
+|  |  |  |-- natlab_forage_variable_008.bsp
+|  |  |  |-- natlab_forage_variable_009.bsp
+|  |  |  |-- natlab_forage_variable_010.bsp
+|  |  |  |-- natlab_forage_variable_011.bsp
+|  |  |  |-- natlab_forage_variable_012.bsp
+|  |  |  |-- natlab_forage_variable_013.bsp
+|  |  |  |-- natlab_forage_variable_014.bsp
+|  |  |  |-- natlab_forage_variable_015.bsp
+|  |  |  |-- natlab_forage_variable_016.bsp
+|  |  |  |-- natlab_forage_variable_017.bsp
+|  |  |  |-- natlab_forage_variable_018.bsp
+|  |  |  |-- natlab_forage_variable_019.bsp
+|  |  |  |-- natlab_forage_variable_020.bsp
+|  |  |  |-- natlab_forage_variable_021.bsp
+|  |  |  |-- natlab_forage_variable_022.bsp
+|  |  |  |-- natlab_forage_variable_023.bsp
+|  |  |  |-- natlab_forage_variable_024.bsp
+|  |  |  |-- natlab_forage_variable_025.bsp
+|  |  |  |-- natlab_forage_variable_026.bsp
+|  |  |  |-- natlab_forage_variable_027.bsp
+|  |  |  |-- natlab_forage_variable_028.bsp
+|  |  |  |-- natlab_forage_variable_029.bsp
+|  |  |  |-- natlab_forage_variable_030.bsp
+|  |  |  |-- natlab_forage_variable_031.bsp
+|  |  |  |-- natlab_forage_variable_032.bsp
+|  |  |  |-- natlab_forage_variable_033.bsp
+|  |  |  |-- natlab_forage_variable_034.bsp
+|  |  |  |-- natlab_forage_variable_035.bsp
+|  |  |  |-- natlab_forage_variable_036.bsp
+|  |  |  |-- natlab_forage_variable_037.bsp
+|  |  |  |-- natlab_forage_variable_038.bsp
+|  |  |  |-- natlab_forage_variable_039.bsp
+|  |  |  |-- natlab_forage_variable_040.bsp
+|  |  |  |-- natlab_forage_variable_041.bsp
+|  |  |  |-- natlab_forage_variable_042.bsp
+|  |  |  |-- natlab_forage_variable_043.bsp
+|  |  |  |-- natlab_forage_variable_044.bsp
+|  |  |  |-- natlab_forage_variable_045.bsp
+|  |  |  |-- natlab_forage_variable_046.bsp
+|  |  |  |-- natlab_forage_variable_047.bsp
+|  |  |  |-- natlab_forage_variable_048.bsp
+|  |  |  |-- natlab_forage_variable_049.bsp
+|  |  |  |-- natlab_forage_variable_050.bsp
+|  |  |  |-- natlab_forage_variable_051.bsp
+|  |  |  |-- natlab_forage_variable_052.bsp
+|  |  |  |-- natlab_forage_variable_053.bsp
+|  |  |  |-- natlab_forage_variable_054.bsp
+|  |  |  |-- natlab_forage_variable_055.bsp
+|  |  |  |-- natlab_forage_variable_056.bsp
+|  |  |  |-- natlab_forage_variable_057.bsp
+|  |  |  |-- natlab_forage_variable_058.bsp
+|  |  |  |-- natlab_forage_variable_059.bsp
+|  |  |  |-- natlab_forage_variable_060.bsp
+|  |  |  |-- natlab_forage_variable_061.bsp
+|  |  |  |-- natlab_forage_variable_062.bsp
+|  |  |  |-- natlab_forage_variable_063.bsp
+|  |  |  |-- natlab_forage_variable_064.bsp
+|  |  |  |-- natlab_forage_variable_065.bsp
+|  |  |  |-- natlab_forage_variable_066.bsp
+|  |  |  |-- natlab_forage_variable_067.bsp
+|  |  |  |-- natlab_forage_variable_068.bsp
+|  |  |  |-- natlab_forage_variable_069.bsp
+|  |  |  |-- natlab_forage_variable_070.bsp
+|  |  |  |-- natlab_forage_variable_071.bsp
+|  |  |  |-- natlab_forage_variable_072.bsp
+|  |  |  |-- natlab_forage_variable_073.bsp
+|  |  |  |-- natlab_forage_variable_074.bsp
+|  |  |  |-- natlab_forage_variable_075.bsp
+|  |  |  |-- natlab_forage_variable_076.bsp
+|  |  |  |-- natlab_forage_variable_077.bsp
+|  |  |  |-- natlab_forage_variable_078.bsp
+|  |  |  |-- natlab_forage_variable_079.bsp
+|  |  |  |-- natlab_forage_variable_080.bsp
+|  |  |  |-- natlab_forage_variable_081.bsp
+|  |  |  |-- natlab_forage_variable_082.bsp
+|  |  |  |-- natlab_forage_variable_083.bsp
+|  |  |  |-- natlab_forage_variable_084.bsp
+|  |  |  |-- natlab_forage_variable_085.bsp
+|  |  |  |-- natlab_forage_variable_086.bsp
+|  |  |  |-- natlab_forage_variable_087.bsp
+|  |  |  |-- natlab_forage_variable_088.bsp
+|  |  |  |-- natlab_forage_variable_089.bsp
+|  |  |  |-- natlab_forage_variable_090.bsp
+|  |  |  |-- natlab_forage_variable_091.bsp
+|  |  |  |-- natlab_forage_variable_092.bsp
+|  |  |  |-- natlab_forage_variable_093.bsp
+|  |  |  |-- natlab_forage_variable_094.bsp
+|  |  |  |-- natlab_forage_variable_095.bsp
+|  |  |  |-- natlab_forage_variable_096.bsp
+|  |  |  |-- natlab_forage_variable_097.bsp
+|  |  |  |-- natlab_forage_variable_098.bsp
+|  |  |  |-- natlab_forage_variable_099.bsp
+|  |  |  |-- nav_maze_random_goal_01.aas
+|  |  |  |-- nav_maze_random_goal_01.bsp
+|  |  |  |-- nav_maze_random_goal_02.aas
+|  |  |  |-- nav_maze_random_goal_02.bsp
+|  |  |  |-- nav_maze_random_goal_03.aas
+|  |  |  |-- nav_maze_random_goal_03.bsp
+|  |  |  |-- nav_maze_static_01.aas
+|  |  |  |-- nav_maze_static_01.bsp
+|  |  |  |-- nav_maze_static_02.aas
+|  |  |  |-- nav_maze_static_02.bsp
+|  |  |  |-- nav_maze_static_03.aas
+|  |  |  |-- nav_maze_static_03.bsp
+|  |  |  |-- probabilistic_fruit_01.aas
+|  |  |  |-- probabilistic_fruit_01.bsp
+|  |  |  |-- rooms_collect_good_objects.aas
+|  |  |  |-- rooms_collect_good_objects.bsp
+|  |  |  |-- rooms_exploit_deferred_effects_one_room.aas
+|  |  |  |-- rooms_exploit_deferred_effects_one_room.bsp
+|  |  |  |-- rooms_exploit_deferred_effects_two_rooms.aas
+|  |  |  |-- rooms_exploit_deferred_effects_two_rooms.bsp
+|  |  |  |-- seekavoid_arena_01.aas
+|  |  |  |-- seekavoid_arena_01.bsp
+|  |  |  |-- stairway_to_melon.aas
+|  |  |  |-- stairway_to_melon.bsp
+|  |  |-- src
+|  |  |  |-- big_screen.map
+|  |  |  |-- ctf_bounce.map
+|  |  |  |-- em_eat.map
+|  |  |  |-- em_non_match.map
+|  |  |  |-- em_tmaze_a1.map
+|  |  |  |-- em_tmaze_a2.map
+|  |  |  |-- em_tmaze_a3.map
+|  |  |  |-- em_tmaze_a4.map
+|  |  |  |-- em_tmaze_a5.map
+|  |  |  |-- em_watermaze.map
+|  |  |  |-- lookat_test.map
+|  |  |  |-- lt_chasm.map
+|  |  |  |-- lt_hallway_slope.map
+|  |  |  |-- lt_horseshoe_color.map
+|  |  |  |-- lt_space_bounce_01.map
+|  |  |  |-- lt_space_bounce_simple.map
+|  |  |  |-- nav_maze_random_goal_01.map
+|  |  |  |-- nav_maze_random_goal_02.map
+|  |  |  |-- nav_maze_random_goal_03.map
+|  |  |  |-- nav_maze_static_01.map
+|  |  |  |-- nav_maze_static_02.map
+|  |  |  |-- nav_maze_static_03.map
+|  |  |  |-- probabilistic_fruit_01.map
+|  |  |  |-- rooms_collect_good_objects.map
+|  |  |  |-- rooms_exploit_deferred_effects_one_room.map
+|  |  |  |-- rooms_exploit_deferred_effects_two_rooms.map
+|  |  |  |-- seekavoid_arena_01.map
+|  |  |  |-- stairway_to_melon.map
+|  |-- menu
+|  |  |-- art
+|  |  |  |-- 3_cursor2.tga
+|  |  |  |-- accept_0.tga
+|  |  |  |-- accept_1.tga
+|  |  |  |-- arrows_horz_left.tga
+|  |  |  |-- arrows_horz_right.tga
+|  |  |  |-- arrows_vert_bot.tga
+|  |  |  |-- arrows_vert_top.tga
+|  |  |  |-- back_0.tga
+|  |  |  |-- back_1.tga
+|  |  |  |-- create_0.tga
+|  |  |  |-- create_1.tga
+|  |  |  |-- cut_frame.tga
+|  |  |  |-- delete_0.tga
+|  |  |  |-- delete_1.tga
+|  |  |  |-- fight_0.tga
+|  |  |  |-- fight_1.tga
+|  |  |  |-- font1_prop.tga
+|  |  |  |-- font1_prop_glo.tga
+|  |  |  |-- font1_prop_glow.tga
+|  |  |  |-- font2_prop.tga
+|  |  |  |-- skill1.tga
+|  |  |  |-- skill2.tga
+|  |  |  |-- skill3.tga
+|  |  |  |-- skill4.tga
+|  |  |  |-- skill5.tga
+|  |  |  |-- slider2.tga
+|  |  |  |-- sliderbutt_0.tga
+|  |  |  |-- sliderbutt_1.tga
+|  |  |  |-- switch_off.tga
+|  |  |  |-- switch_on.tga
+|  |  |  |-- unknownmap.jpg
+|  |  |-- tab
+|  |  |  |-- name.tga
+|  |  |  |-- ping.tga
+|  |  |  |-- score.tga
+|  |  |  |-- time.tga
+|  |-- models
+|  |  |-- ammo
+|  |  |  |-- rocket
+|  |  |  |  |-- rocket.md3
+|  |  |  |  |-- rocket_1.md3
+|  |  |  |  |-- rocket_2.md3
+|  |  |-- apple.md3
+|  |  |-- bank_platform.md3
+|  |  |-- bounce_pad.md3
+|  |  |-- bush_desert_01.md3
+|  |  |-- cactus_desert_01.md3
+|  |  |-- flags
+|  |  |  |-- b_flag.md3
+|  |  |  |-- b_flag.tga
+|  |  |  |-- n_flag.md3
+|  |  |  |-- n_flag.tga
+|  |  |  |-- r_flag.md3
+|  |  |  |-- r_flag.tga
+|  |  |-- fut_containment_unit.md3
+|  |  |-- fut_ldm_img_frame_arc.md3
+|  |  |-- fut_ldm_img_frame_clc.md3
+|  |  |-- fut_ldm_img_frame_crc.md3
+|  |  |-- fut_ldm_img_frame_dic.md3
+|  |  |-- fut_ldm_img_frame_hxc.md3
+|  |  |-- fut_ldm_img_frame_sqc.md3
+|  |  |-- fut_ldm_img_frame_stc.md3
+|  |  |-- fut_ldm_img_frame_trc.md3
+|  |  |-- fut_ldm_img_frame_ypc.md3
+|  |  |-- fut_obj_barbell_01.md3
+|  |  |-- fut_obj_barbell_02.md3
+|  |  |-- fut_obj_barbell_03.md3
+|  |  |-- fut_obj_coil_01.md3
+|  |  |-- fut_obj_coil_02.md3
+|  |  |-- fut_obj_coil_03.md3
+|  |  |-- fut_obj_cone_01.md3
+|  |  |-- fut_obj_cone_02.md3
+|  |  |-- fut_obj_cone_03.md3
+|  |  |-- fut_obj_crossbar_01.md3
+|  |  |-- fut_obj_crossbar_02.md3
+|  |  |-- fut_obj_crossbar_03.md3
+|  |  |-- fut_obj_cube_01.md3
+|  |  |-- fut_obj_cube_02.md3
+|  |  |-- fut_obj_cube_03.md3
+|  |  |-- fut_obj_cylinder_01.md3
+|  |  |-- fut_obj_cylinder_02.md3
+|  |  |-- fut_obj_cylinder_03.md3
+|  |  |-- fut_obj_doubleprism_01.md3
+|  |  |-- fut_obj_doubleprism_02.md3
+|  |  |-- fut_obj_doubleprism_03.md3
+|  |  |-- fut_obj_glowball_01.md3
+|  |  |-- fut_obj_glowball_02.md3
+|  |  |-- fut_obj_glowball_03.md3
+|  |  |-- fut_obj_potcone_01.md3
+|  |  |-- fut_obj_potcone_02.md3
+|  |  |-- fut_obj_potcone_03.md3
+|  |  |-- fut_obj_prismjack_01.md3
+|  |  |-- fut_obj_prismjack_02.md3
+|  |  |-- fut_obj_prismjack_03.md3
+|  |  |-- fut_obj_sphere_01.md3
+|  |  |-- fut_obj_sphere_02.md3
+|  |  |-- fut_obj_sphere_03.md3
+|  |  |-- fut_obj_toroid_01.md3
+|  |  |-- fut_obj_toroid_02.md3
+|  |  |-- fut_obj_toroid_03.md3
+|  |  |-- fut_view_screen.md3
+|  |  |-- goal_object_01.md3
+|  |  |-- goal_object_02.md3
+|  |  |-- goal_object_03.md3
+|  |  |-- hr_apple2.md3
+|  |  |-- hr_ball.md3
+|  |  |-- hr_balloon.md3
+|  |  |-- hr_banana.md3
+|  |  |-- hr_bee.md3
+|  |  |-- hr_bottle.md3
+|  |  |-- hr_cake.md3
+|  |  |-- hr_can.md3
+|  |  |-- hr_car.md3
+|  |  |-- hr_cassette.md3
+|  |  |-- hr_chair.md3
+|  |  |-- hr_cherries.md3
+|  |  |-- hr_cow.md3
+|  |  |-- hr_flower.md3
+|  |  |-- hr_fork.md3
+|  |  |-- hr_fridge.md3
+|  |  |-- hr_guitar.md3
+|  |  |-- hr_hair_brush.md3
+|  |  |-- hr_hammer.md3
+|  |  |-- hr_hat.md3
+|  |  |-- hr_ice_lolly.md3
+|  |  |-- hr_ice_lolly_lrg.md3
+|  |  |-- hr_jug.md3
+|  |  |-- hr_key.md3
+|  |  |-- hr_key_lrg.md3
+|  |  |-- hr_knife.md3
+|  |  |-- hr_ladder.md3
+|  |  |-- hr_mug.md3
+|  |  |-- hr_pencil.md3
+|  |  |-- hr_pig.md3
+|  |  |-- hr_pincer.md3
+|  |  |-- hr_plant.md3
+|  |  |-- hr_saxophone.md3
+|  |  |-- hr_shoe.md3
+|  |  |-- hr_spoon.md3
+|  |  |-- hr_suitcase.md3
+|  |  |-- hr_tennis_racket.md3
+|  |  |-- hr_tomato.md3
+|  |  |-- hr_toothbrush.md3
+|  |  |-- hr_tree.md3
+|  |  |-- hr_tv.md3
+|  |  |-- hr_wine_glass.md3
+|  |  |-- hr_zebra.md3
+|  |  |-- lemon.md3
+|  |  |-- mango.md3
+|  |  |-- misc
+|  |  |  |-- telep.md3
+|  |  |-- mushroom_desert_01a.md3
+|  |  |-- pickup_platform.md3
+|  |  |-- players
+|  |  |  |-- crash
+|  |  |  |  |-- animation.cfg
+|  |  |  |  |-- blueskin.tga
+|  |  |  |  |-- cooldude.tga
+|  |  |  |  |-- dm_skin1_white.tga
+|  |  |  |  |-- head.md3
+|  |  |  |  |-- head_blue.skin
+|  |  |  |  |-- head_default.skin
+|  |  |  |  |-- head_red.skin
+|  |  |  |  |-- icon_blue.tga
+|  |  |  |  |-- icon_default.tga
+|  |  |  |  |-- icon_red.tga
+|  |  |  |  |-- lower.md3
+|  |  |  |  |-- lower_blue.skin
+|  |  |  |  |-- lower_default.skin
+|  |  |  |  |-- lower_red.skin
+|  |  |  |  |-- redskin.tga
+|  |  |  |  |-- skin1.tga
+|  |  |  |  |-- skin1_scroll.tga
+|  |  |  |  |-- thruster_glow.tga
+|  |  |  |  |-- upper.md3
+|  |  |  |  |-- upper_blue.skin
+|  |  |  |  |-- upper_default.skin
+|  |  |  |  |-- upper_red.skin
+|  |  |  |-- crash_color
+|  |  |  |  |-- animation.cfg
+|  |  |  |  |-- cooldude.tga
+|  |  |  |  |-- head.md3
+|  |  |  |  |-- head_blue.skin
+|  |  |  |  |-- head_default.skin
+|  |  |  |  |-- head_red.skin
+|  |  |  |  |-- icon_blue.tga
+|  |  |  |  |-- icon_default.tga
+|  |  |  |  |-- icon_red.tga
+|  |  |  |  |-- icon_skin1.tga
+|  |  |  |  |-- icon_skin2.tga
+|  |  |  |  |-- icon_skin3.tga
+|  |  |  |  |-- icon_skin4.tga
+|  |  |  |  |-- icon_skin5.tga
+|  |  |  |  |-- icon_skin6.tga
+|  |  |  |  |-- icon_skin7.tga
+|  |  |  |  |-- lower.md3
+|  |  |  |  |-- lower_blue.skin
+|  |  |  |  |-- lower_default.skin
+|  |  |  |  |-- lower_red.skin
+|  |  |  |  |-- lower_skin1.skin
+|  |  |  |  |-- lower_skin1_blue.skin
+|  |  |  |  |-- lower_skin1_red.skin
+|  |  |  |  |-- lower_skin2.skin
+|  |  |  |  |-- lower_skin2_blue.skin
+|  |  |  |  |-- lower_skin2_red.skin
+|  |  |  |  |-- lower_skin3.skin
+|  |  |  |  |-- lower_skin3_blue.skin
+|  |  |  |  |-- lower_skin3_red.skin
+|  |  |  |  |-- lower_skin4.skin
+|  |  |  |  |-- lower_skin4_blue.skin
+|  |  |  |  |-- lower_skin4_red.skin
+|  |  |  |  |-- lower_skin5.skin
+|  |  |  |  |-- lower_skin5_blue.skin
+|  |  |  |  |-- lower_skin5_red.skin
+|  |  |  |  |-- lower_skin6.skin
+|  |  |  |  |-- lower_skin6_blue.skin
+|  |  |  |  |-- lower_skin6_red.skin
+|  |  |  |  |-- lower_skin7.skin
+|  |  |  |  |-- lower_skin7_blue.skin
+|  |  |  |  |-- lower_skin7_red.skin
+|  |  |  |  |-- skin1
+|  |  |  |  |  |-- head_blue.skin
+|  |  |  |  |  |-- head_default.skin
+|  |  |  |  |  |-- head_red.skin
+|  |  |  |  |-- skin2
+|  |  |  |  |  |-- head_blue.skin
+|  |  |  |  |  |-- head_default.skin
+|  |  |  |  |  |-- head_red.skin
+|  |  |  |  |-- skin3
+|  |  |  |  |  |-- head_blue.skin
+|  |  |  |  |  |-- head_default.skin
+|  |  |  |  |  |-- head_red.skin
+|  |  |  |  |-- skin4
+|  |  |  |  |  |-- head_blue.skin
+|  |  |  |  |  |-- head_default.skin
+|  |  |  |  |  |-- head_red.skin
+|  |  |  |  |-- skin5
+|  |  |  |  |  |-- head_blue.skin
+|  |  |  |  |  |-- head_default.skin
+|  |  |  |  |  |-- head_red.skin
+|  |  |  |  |-- skin6
+|  |  |  |  |  |-- head_blue.skin
+|  |  |  |  |  |-- head_default.skin
+|  |  |  |  |  |-- head_red.skin
+|  |  |  |  |-- skin7
+|  |  |  |  |  |-- head_blue.skin
+|  |  |  |  |  |-- head_default.skin
+|  |  |  |  |  |-- head_red.skin
+|  |  |  |  |-- skin_base.tga
+|  |  |  |  |-- skin_base1.tga
+|  |  |  |  |-- skin_base2.tga
+|  |  |  |  |-- skin_base3.tga
+|  |  |  |  |-- skin_base4.tga
+|  |  |  |  |-- skin_base5.tga
+|  |  |  |  |-- skin_base6.tga
+|  |  |  |  |-- skin_base7.tga
+|  |  |  |  |-- upper.md3
+|  |  |  |  |-- upper_blue.skin
+|  |  |  |  |-- upper_default.skin
+|  |  |  |  |-- upper_red.skin
+|  |  |  |  |-- upper_skin1.skin
+|  |  |  |  |-- upper_skin1_blue.skin
+|  |  |  |  |-- upper_skin1_red.skin
+|  |  |  |  |-- upper_skin2.skin
+|  |  |  |  |-- upper_skin2_blue.skin
+|  |  |  |  |-- upper_skin2_red.skin
+|  |  |  |  |-- upper_skin3.skin
+|  |  |  |  |-- upper_skin3_blue.skin
+|  |  |  |  |-- upper_skin3_red.skin
+|  |  |  |  |-- upper_skin4.skin
+|  |  |  |  |-- upper_skin4_blue.skin
+|  |  |  |  |-- upper_skin4_red.skin
+|  |  |  |  |-- upper_skin5.skin
+|  |  |  |  |-- upper_skin5_blue.skin
+|  |  |  |  |-- upper_skin5_red.skin
+|  |  |  |  |-- upper_skin6.skin
+|  |  |  |  |-- upper_skin6_blue.skin
+|  |  |  |  |-- upper_skin6_red.skin
+|  |  |  |  |-- upper_skin7.skin
+|  |  |  |  |-- upper_skin7_blue.skin
+|  |  |  |  |-- upper_skin7_red.skin
+|  |  |-- powerups
+|  |  |  |-- ammo
+|  |  |  |  |-- lightningam.md3
+|  |  |  |  |-- machinegunam.md3
+|  |  |  |  |-- railgunam.md3
+|  |  |  |  |-- rocketam.md3
+|  |  |  |-- armor
+|  |  |  |  |-- armor_yel.md3
+|  |  |  |  |-- shard.md3
+|  |  |  |-- health
+|  |  |  |  |-- large_cross.md3
+|  |  |  |  |-- large_sphere.md3
+|  |  |-- rock_desert_01.md3
+|  |  |-- signal_line.md3
+|  |  |-- stadium.md3
+|  |  |-- strawberry.md3
+|  |  |-- teleport_platform.md3
+|  |  |-- toadstool.md3
+|  |  |-- watermelon.md3
+|  |  |-- weaphits
+|  |  |  |-- boom01.md3
+|  |  |  |-- bullet.md3
+|  |  |  |-- crackle.md3
+|  |  |  |-- ring02.md3
+|  |  |-- weapons2
+|  |  |  |-- gauntlet
+|  |  |  |  |-- gauntlet.md3
+|  |  |  |  |-- gauntlet_barrel.md3
+|  |  |  |-- lightning
+|  |  |  |  |-- lightning.md3
+|  |  |  |  |-- lightning_1.md3
+|  |  |  |  |-- lightning_2.md3
+|  |  |  |  |-- lightning_flash.md3
+|  |  |  |-- machinegun
+|  |  |  |  |-- machinegun.md3
+|  |  |  |  |-- machinegun_1.md3
+|  |  |  |  |-- machinegun_2.md3
+|  |  |  |  |-- machinegun_barrel.md3
+|  |  |  |-- railgun
+|  |  |  |  |-- railgun.md3
+|  |  |  |  |-- railgun_1.md3
+|  |  |  |  |-- railgun_2.md3
+|  |  |  |-- rocketl
+|  |  |  |  |-- rocketl.md3
+|  |  |  |-- shells
+|  |  |  |  |-- m_shell.md3
+|  |-- q3config.cfg
+|  |-- scripts
+|  |  |-- ctp_tech_lava_d.shader
+|  |  |-- decal.shader
+|  |  |-- decal_alpha.shader
+|  |  |-- dm_lab.shader
+|  |  |-- fut_objects.shader
+|  |  |-- fut_wall_light_d.shader
+|  |  |-- lab_floors.shader
+|  |  |-- lab_floors_placeholders.shader
+|  |  |-- lab_games.shader
+|  |  |-- poltergeist.shader
+|  |  |-- psychlab.shader
+|  |  |-- shaderlist.txt
+|  |  |-- skies.shader
+|  |  |-- skies_nat_lab.shader
+|  |-- textures
+|  |  |-- decal
+|  |  |  |-- lab_games
+|  |  |  |  |-- dec_img_style01_001.tga
+|  |  |  |  |-- dec_img_style01_002.tga
+|  |  |  |  |-- dec_img_style01_003.tga
+|  |  |  |  |-- dec_img_style01_004.tga
+|  |  |  |  |-- dec_img_style01_005.tga
+|  |  |  |  |-- dec_img_style01_006.tga
+|  |  |  |  |-- dec_img_style01_007.tga
+|  |  |  |  |-- dec_img_style01_008.tga
+|  |  |  |  |-- dec_img_style01_009.tga
+|  |  |  |  |-- dec_img_style01_010.tga
+|  |  |  |  |-- dec_img_style01_011.tga
+|  |  |  |  |-- dec_img_style01_012.tga
+|  |  |  |  |-- dec_img_style01_013.tga
+|  |  |  |  |-- dec_img_style01_014.tga
+|  |  |  |  |-- dec_img_style01_015.tga
+|  |  |  |  |-- dec_img_style01_016.tga
+|  |  |  |  |-- dec_img_style01_017.tga
+|  |  |  |  |-- dec_img_style01_018.tga
+|  |  |  |  |-- dec_img_style01_019.tga
+|  |  |  |  |-- dec_img_style01_020.tga
+|  |  |  |  |-- dec_img_style02_001.tga
+|  |  |  |  |-- dec_img_style02_002.tga
+|  |  |  |  |-- dec_img_style02_003.tga
+|  |  |  |  |-- dec_img_style02_004.tga
+|  |  |  |  |-- dec_img_style02_005.tga
+|  |  |  |  |-- dec_img_style02_006.tga
+|  |  |  |  |-- dec_img_style02_007.tga
+|  |  |  |  |-- dec_img_style02_008.tga
+|  |  |  |  |-- dec_img_style02_009.tga
+|  |  |  |  |-- dec_img_style02_010.tga
+|  |  |  |  |-- dec_img_style02_011.tga
+|  |  |  |  |-- dec_img_style02_012.tga
+|  |  |  |  |-- dec_img_style02_013.tga
+|  |  |  |  |-- dec_img_style02_014.tga
+|  |  |  |  |-- dec_img_style02_015.tga
+|  |  |  |  |-- dec_img_style02_016.tga
+|  |  |  |  |-- dec_img_style02_017.tga
+|  |  |  |  |-- dec_img_style02_018.tga
+|  |  |  |  |-- dec_img_style02_019.tga
+|  |  |  |  |-- dec_img_style02_020.tga
+|  |  |  |  |-- dec_img_style03_001.tga
+|  |  |  |  |-- dec_img_style03_002.tga
+|  |  |  |  |-- dec_img_style03_003.tga
+|  |  |  |  |-- dec_img_style03_004.tga
+|  |  |  |  |-- dec_img_style03_005.tga
+|  |  |  |  |-- dec_img_style03_006.tga
+|  |  |  |  |-- dec_img_style03_007.tga
+|  |  |  |  |-- dec_img_style03_008.tga
+|  |  |  |  |-- dec_img_style03_009.tga
+|  |  |  |  |-- dec_img_style03_010.tga
+|  |  |  |  |-- dec_img_style03_011.tga
+|  |  |  |  |-- dec_img_style03_012.tga
+|  |  |  |  |-- dec_img_style03_013.tga
+|  |  |  |  |-- dec_img_style03_014.tga
+|  |  |  |  |-- dec_img_style03_015.tga
+|  |  |  |  |-- dec_img_style03_016.tga
+|  |  |  |  |-- dec_img_style03_017.tga
+|  |  |  |  |-- dec_img_style03_018.tga
+|  |  |  |  |-- dec_img_style03_019.tga
+|  |  |  |  |-- dec_img_style03_020.tga
+|  |  |  |  |-- dec_img_style04_001.tga
+|  |  |  |  |-- dec_img_style04_002.tga
+|  |  |  |  |-- dec_img_style04_003.tga
+|  |  |  |  |-- dec_img_style04_004.tga
+|  |  |  |  |-- dec_img_style04_005.tga
+|  |  |  |  |-- dec_img_style04_006.tga
+|  |  |  |  |-- dec_img_style04_007.tga
+|  |  |  |  |-- dec_img_style04_008.tga
+|  |  |  |  |-- dec_img_style04_009.tga
+|  |  |  |  |-- dec_img_style04_010.tga
+|  |  |  |  |-- dec_img_style04_011.tga
+|  |  |  |  |-- dec_img_style04_012.tga
+|  |  |  |  |-- dec_img_style04_013.tga
+|  |  |  |  |-- dec_img_style04_014.tga
+|  |  |  |  |-- dec_img_style04_015.tga
+|  |  |  |  |-- dec_img_style04_016.tga
+|  |  |  |  |-- dec_img_style04_017.tga
+|  |  |  |  |-- dec_img_style04_018.tga
+|  |  |  |  |-- dec_img_style04_019.tga
+|  |  |  |  |-- dec_img_style04_020.tga
+|  |  |-- icons
+|  |  |  |-- iconw_gauntlet.tga
+|  |  |  |-- iconw_grenade.tga
+|  |  |  |-- iconw_lightning.tga
+|  |  |  |-- iconw_machinegun.tga
+|  |  |  |-- iconw_plasma.tga
+|  |  |  |-- iconw_railgun.tga
+|  |  |  |-- iconw_rocket.tga
+|  |  |  |-- iconw_shotgun.tga
+|  |  |-- map
+|  |  |  |-- black_d.tga
+|  |  |  |-- blue_glow.tga
+|  |  |  |-- caustics_d.tga
+|  |  |  |-- ctp_tech_lava_d.tga
+|  |  |  |-- cyan_glow.tga
+|  |  |  |-- desert_day_sky_bk.tga
+|  |  |  |-- desert_day_sky_dn.tga
+|  |  |  |-- desert_day_sky_ft.tga
+|  |  |  |-- desert_day_sky_lf.tga
+|  |  |  |-- desert_day_sky_rt.tga
+|  |  |  |-- desert_day_sky_up.tga
+|  |  |  |-- desert_night_sky_bk.tga
+|  |  |  |-- desert_night_sky_dn.tga
+|  |  |  |-- desert_night_sky_ft.tga
+|  |  |  |-- desert_night_sky_lf.tga
+|  |  |  |-- desert_night_sky_rt.tga
+|  |  |  |-- desert_night_sky_up.tga
+|  |  |  |-- desert_rockface_01_d.tga
+|  |  |  |-- desert_sandground_01_d.tga
+|  |  |  |-- fake_sky.tga
+|  |  |  |-- floor_fill_d.tga
+|  |  |  |-- fut_ceiling_tile_02_d.tga
+|  |  |  |-- fut_door_d.tga
+|  |  |  |-- fut_flat_wall_yellow_blank_d.tga
+|  |  |  |-- fut_utility_panel_01_d.tga
+|  |  |  |-- glass_d.tga
+|  |  |  |-- green_glow.tga
+|  |  |  |-- grey_clang.tga
+|  |  |  |-- lab_games
+|  |  |  |  |-- grad_bar_hor_g.tga
+|  |  |  |  |-- lg_circuit_r.tga
+|  |  |  |  |-- lg_floor_d.tga
+|  |  |  |  |-- lg_floor_placeholder_0_d.tga
+|  |  |  |  |-- lg_floor_placeholder_A_d.tga
+|  |  |  |  |-- lg_floor_placeholder_B_d.tga
+|  |  |  |  |-- lg_floor_placeholder_C_d.tga
+|  |  |  |  |-- lg_floor_placeholder_D_d.tga
+|  |  |  |  |-- lg_floor_placeholder_E_d.tga
+|  |  |  |  |-- lg_floor_placeholder_F_d.tga
+|  |  |  |  |-- lg_grad_bar2_g.tga
+|  |  |  |  |-- lg_grad_bar_g.tga
+|  |  |  |  |-- lg_style_01_4tile_d.tga
+|  |  |  |  |-- lg_style_01_ceiling_d.tga
+|  |  |  |  |-- lg_style_01_floor_blue_bright_d.tga
+|  |  |  |  |-- lg_style_01_floor_blue_d.tga
+|  |  |  |  |-- lg_style_01_floor_blue_team_d.tga
+|  |  |  |  |-- lg_style_01_floor_light_m.tga
+|  |  |  |  |-- lg_style_01_floor_orange_bright_d.tga
+|  |  |  |  |-- lg_style_01_floor_orange_d.tga
+|  |  |  |  |-- lg_style_01_floor_red_team_d.tga
+|  |  |  |  |-- lg_style_01_wall_blue_d.tga
+|  |  |  |  |-- lg_style_01_wall_cerise_d.tga
+|  |  |  |  |-- lg_style_01_wall_green_bright_d.tga
+|  |  |  |  |-- lg_style_01_wall_green_d.tga
+|  |  |  |  |-- lg_style_01_wall_light_m.tga
+|  |  |  |  |-- lg_style_01_wall_purple_d.tga
+|  |  |  |  |-- lg_style_01_wall_red_bright_d.tga
+|  |  |  |  |-- lg_style_01_wall_red_d.tga
+|  |  |  |  |-- lg_style_01_wall_yellow_d.tga
+|  |  |  |  |-- lg_style_02_floor_blue_bright_d.tga
+|  |  |  |  |-- lg_style_02_floor_blue_d.tga
+|  |  |  |  |-- lg_style_02_floor_green_bright_d.tga
+|  |  |  |  |-- lg_style_02_floor_green_d.tga
+|  |  |  |  |-- lg_style_02_floor_light_m.tga
+|  |  |  |  |-- lg_style_02_floor_orange_d.tga
+|  |  |  |  |-- lg_style_02_wall_blue_bright_d.tga
+|  |  |  |  |-- lg_style_02_wall_blue_d.tga
+|  |  |  |  |-- lg_style_02_wall_dblue_d.tga
+|  |  |  |  |-- lg_style_02_wall_lgreen_d.tga
+|  |  |  |  |-- lg_style_02_wall_purple_d.tga
+|  |  |  |  |-- lg_style_02_wall_yellow_bright_d.tga
+|  |  |  |  |-- lg_style_02_wall_yellow_d.tga
+|  |  |  |  |-- lg_style_03_floor_blue_bright_d.tga
+|  |  |  |  |-- lg_style_03_floor_blue_d.tga
+|  |  |  |  |-- lg_style_03_floor_green_bright_d.tga
+|  |  |  |  |-- lg_style_03_floor_green_d.tga
+|  |  |  |  |-- lg_style_03_floor_light1_m.tga
+|  |  |  |  |-- lg_style_03_floor_light2_m.tga
+|  |  |  |  |-- lg_style_03_floor_light3_m.tga
+|  |  |  |  |-- lg_style_03_floor_orange_d.tga
+|  |  |  |  |-- lg_style_03_floor_purple_d.tga
+|  |  |  |  |-- lg_style_03_floor_red_d.tga
+|  |  |  |  |-- lg_style_03_wall_blue_d.tga
+|  |  |  |  |-- lg_style_03_wall_cyan_d.tga
+|  |  |  |  |-- lg_style_03_wall_gray_bright_d.tga
+|  |  |  |  |-- lg_style_03_wall_gray_d.tga
+|  |  |  |  |-- lg_style_03_wall_light_m.tga
+|  |  |  |  |-- lg_style_03_wall_orange_bright_d.tga
+|  |  |  |  |-- lg_style_03_wall_orange_d.tga
+|  |  |  |  |-- lg_style_03_wall_purple_d.tga
+|  |  |  |  |-- lg_style_04_floor_blue_bright_d.tga
+|  |  |  |  |-- lg_style_04_floor_blue_d.tga
+|  |  |  |  |-- lg_style_04_floor_cyan_d.tga
+|  |  |  |  |-- lg_style_04_floor_dorange_d.tga
+|  |  |  |  |-- lg_style_04_floor_orange_bright_d.tga
+|  |  |  |  |-- lg_style_04_floor_orange_d.tga
+|  |  |  |  |-- lg_style_04_wall_cerise_d.tga
+|  |  |  |  |-- lg_style_04_wall_green_bright_d.tga
+|  |  |  |  |-- lg_style_04_wall_green_d.tga
+|  |  |  |  |-- lg_style_04_wall_purple_d.tga
+|  |  |  |  |-- lg_style_04_wall_red_bright_d.tga
+|  |  |  |  |-- lg_style_04_wall_red_d.tga
+|  |  |  |  |-- lg_style_05_floor_blue_bright_d.tga
+|  |  |  |  |-- lg_style_05_floor_blue_d.tga
+|  |  |  |  |-- lg_style_05_floor_light1_m.tga
+|  |  |  |  |-- lg_style_05_floor_light2_m.tga
+|  |  |  |  |-- lg_style_05_floor_orange_bright_d.tga
+|  |  |  |  |-- lg_style_05_floor_orange_d.tga
+|  |  |  |  |-- lg_style_05_wall_red_bright_d.tga
+|  |  |  |  |-- lg_style_05_wall_red_d.tga
+|  |  |  |  |-- lg_style_05_wall_yellow_bright_d.tga
+|  |  |  |  |-- lg_style_05_wall_yellow_d.tga
+|  |  |  |  |-- sky
+|  |  |  |  |  |-- lg_sky_01_bk.tga
+|  |  |  |  |  |-- lg_sky_01_dn.tga
+|  |  |  |  |  |-- lg_sky_01_ft.tga
+|  |  |  |  |  |-- lg_sky_01_lf.tga
+|  |  |  |  |  |-- lg_sky_01_rt.tga
+|  |  |  |  |  |-- lg_sky_01_up.tga
+|  |  |  |  |  |-- lg_sky_02_bk.tga
+|  |  |  |  |  |-- lg_sky_02_dn.tga
+|  |  |  |  |  |-- lg_sky_02_ft.tga
+|  |  |  |  |  |-- lg_sky_02_lf.tga
+|  |  |  |  |  |-- lg_sky_02_rt.tga
+|  |  |  |  |  |-- lg_sky_02_up.tga
+|  |  |  |  |  |-- lg_sky_03_bk.tga
+|  |  |  |  |  |-- lg_sky_03_dn.tga
+|  |  |  |  |  |-- lg_sky_03_ft.tga
+|  |  |  |  |  |-- lg_sky_03_lf.tga
+|  |  |  |  |  |-- lg_sky_03_rt.tga
+|  |  |  |  |  |-- lg_sky_03_up.tga
+|  |  |  |  |-- stadium_d.tga
+|  |  |  |  |-- stadium_logo.tga
+|  |  |  |-- lg_sky_01_bk.tga
+|  |  |  |-- lg_sky_01_dn.tga
+|  |  |  |-- lg_sky_01_ft.tga
+|  |  |  |-- lg_sky_01_lf.tga
+|  |  |  |-- lg_sky_01_rt.tga
+|  |  |  |-- lg_sky_01_up.tga
+|  |  |  |-- lg_sky_02_bk.tga
+|  |  |  |-- lg_sky_02_dn.tga
+|  |  |  |-- lg_sky_02_ft.tga
+|  |  |  |-- lg_sky_02_lf.tga
+|  |  |  |-- lg_sky_02_rt.tga
+|  |  |  |-- lg_sky_02_up.tga
+|  |  |  |-- nebula_bk.tga
+|  |  |  |-- nebula_dn.tga
+|  |  |  |-- nebula_ft.tga
+|  |  |  |-- nebula_lf.tga
+|  |  |  |-- nebula_rt.tga
+|  |  |  |-- nebula_up.tga
+|  |  |  |-- orange_glow.tga
+|  |  |  |-- pink_glow.tga
+|  |  |  |-- purple_glow.tga
+|  |  |  |-- red_glow.tga
+|  |  |  |-- water_env.tga
+|  |  |  |-- yellow_glow.tga
+|  |  |-- model
+|  |  |  |-- apple2_d.tga
+|  |  |  |-- apple_d.tga
+|  |  |  |-- banana_d.tga
+|  |  |  |-- beam_d.tga
+|  |  |  |-- beam_fx_d.tga
+|  |  |  |-- bee_d.tga
+|  |  |  |-- bottle_d.tga
+|  |  |  |-- bush_desert_01_d.tga
+|  |  |  |-- cactus_d.tga
+|  |  |  |-- car_d.tga
+|  |  |  |-- cherry_d.tga
+|  |  |  |-- circuit_decal.tga
+|  |  |  |-- circuit_impact.tga
+|  |  |  |-- cow_d.tga
+|  |  |  |-- disc_core.tga
+|  |  |  |-- disc_d.tga
+|  |  |  |-- disc_impact_d.tga
+|  |  |  |-- flower_d.tga
+|  |  |  |-- fork_d.tga
+|  |  |  |-- fridge_d.tga
+|  |  |  |-- fut_bounce_pad_d.tga
+|  |  |  |-- fut_button_d.tga
+|  |  |  |-- fut_button_e.tga
+|  |  |  |-- fut_containment_unit_d.tga
+|  |  |  |-- fut_ldm_img_arc_d.tga
+|  |  |  |-- fut_ldm_img_clc_d.tga
+|  |  |  |-- fut_ldm_img_crc_d.tga
+|  |  |  |-- fut_ldm_img_dic_d.tga
+|  |  |  |-- fut_ldm_img_hxc_d.tga
+|  |  |  |-- fut_ldm_img_sqc_d.tga
+|  |  |  |-- fut_ldm_img_stc_d.tga
+|  |  |  |-- fut_ldm_img_trc_d.tga
+|  |  |  |-- fut_ldm_img_ypc_d.tga
+|  |  |  |-- fut_light_flat_d.tga
+|  |  |  |-- fut_light_flat_e.tga
+|  |  |  |-- fut_obj_barbell_01_e.tga
+|  |  |  |-- fut_obj_barbell_02_e.tga
+|  |  |  |-- fut_obj_barbell_03_e.tga
+|  |  |  |-- fut_obj_barbell_d.tga
+|  |  |  |-- fut_obj_coil_01_e.tga
+|  |  |  |-- fut_obj_coil_02_e.tga
+|  |  |  |-- fut_obj_coil_03_e.tga
+|  |  |  |-- fut_obj_coil_d.tga
+|  |  |  |-- fut_obj_cone_01_e.tga
+|  |  |  |-- fut_obj_cone_02_e.tga
+|  |  |  |-- fut_obj_cone_03_e.tga
+|  |  |  |-- fut_obj_cone_d.tga
+|  |  |  |-- fut_obj_crossbar_01_e.tga
+|  |  |  |-- fut_obj_crossbar_02_e.tga
+|  |  |  |-- fut_obj_crossbar_03_e.tga
+|  |  |  |-- fut_obj_crossbar_d.tga
+|  |  |  |-- fut_obj_cube_01_e.tga
+|  |  |  |-- fut_obj_cube_02_e.tga
+|  |  |  |-- fut_obj_cube_03_e.tga
+|  |  |  |-- fut_obj_cube_d.tga
+|  |  |  |-- fut_obj_cylinder_01_e.tga
+|  |  |  |-- fut_obj_cylinder_02_e.tga
+|  |  |  |-- fut_obj_cylinder_03_e.tga
+|  |  |  |-- fut_obj_cylinder_d.tga
+|  |  |  |-- fut_obj_doubleprism_01_e.tga
+|  |  |  |-- fut_obj_doubleprism_02_e.tga
+|  |  |  |-- fut_obj_doubleprism_03_e.tga
+|  |  |  |-- fut_obj_doubleprism_d.tga
+|  |  |  |-- fut_obj_glowball_01_e.tga
+|  |  |  |-- fut_obj_glowball_02_e.tga
+|  |  |  |-- fut_obj_glowball_03_e.tga
+|  |  |  |-- fut_obj_glowball_d.tga
+|  |  |  |-- fut_obj_potcone_01_e.tga
+|  |  |  |-- fut_obj_potcone_02_e.tga
+|  |  |  |-- fut_obj_potcone_03_e.tga
+|  |  |  |-- fut_obj_potcone_d.tga
+|  |  |  |-- fut_obj_prismjack_01_e.tga
+|  |  |  |-- fut_obj_prismjack_02_e.tga
+|  |  |  |-- fut_obj_prismjack_03_e.tga
+|  |  |  |-- fut_obj_prismjack_d.tga
+|  |  |  |-- fut_obj_sphere_01_e.tga
+|  |  |  |-- fut_obj_sphere_02_e.tga
+|  |  |  |-- fut_obj_sphere_03_e.tga
+|  |  |  |-- fut_obj_sphere_d.tga
+|  |  |  |-- fut_obj_toroid_01_e.tga
+|  |  |  |-- fut_obj_toroid_02_e.tga
+|  |  |  |-- fut_obj_toroid_03_e.tga
+|  |  |  |-- fut_obj_toroid_d.tga
+|  |  |  |-- fut_view_screen_d.tga
+|  |  |  |-- gen_impact.tga
+|  |  |  |-- goal_colours_d.tga
+|  |  |  |-- hammer_d.tga
+|  |  |  |-- hr_ball_d.tga
+|  |  |  |-- hr_balloon_d.tga
+|  |  |  |-- hr_cake_d.tga
+|  |  |  |-- hr_can_d.tga
+|  |  |  |-- hr_cassette_d.tga
+|  |  |  |-- hr_chair_d.tga
+|  |  |  |-- hr_guitar_d.tga
+|  |  |  |-- hr_hair_brush_d.tga
+|  |  |  |-- hr_hat_d.tga
+|  |  |  |-- hr_icelolly_d.tga
+|  |  |  |-- hr_ladder_d.tga
+|  |  |  |-- hr_mug_d.tga
+|  |  |  |-- hr_pencil_d.tga
+|  |  |  |-- hr_suitcase_d.tga
+|  |  |  |-- hr_toothbrush_d.tga
+|  |  |  |-- hr_tv_d.tga
+|  |  |  |-- impulse_d.tga
+|  |  |  |-- jug_d.tga
+|  |  |  |-- key_d.tga
+|  |  |  |-- knife_d.tga
+|  |  |  |-- lemon_d.tga
+|  |  |  |-- mango_d.tga
+|  |  |  |-- mushroom_desert_white_d.tga
+|  |  |  |-- orb_d.tga
+|  |  |  |-- orb_trail_d.tga
+|  |  |  |-- overshield_d.tga
+|  |  |  |-- pickup_platform_d.tga
+|  |  |  |-- pig_d.tga
+|  |  |  |-- pincer_d.tga
+|  |  |  |-- plant_d.tga
+|  |  |  |-- rapid_d.tga
+|  |  |  |-- rock_desert_d.tga
+|  |  |  |-- saxophone_d.tga
+|  |  |  |-- shield_energy_d.tga
+|  |  |  |-- shield_fx.tga
+|  |  |  |-- shoe_d.tga
+|  |  |  |-- spawn_d.tga
+|  |  |  |-- spoon_d.tga
+|  |  |  |-- strawberry_d.tga
+|  |  |  |-- tennis_racket_d.tga
+|  |  |  |-- toadstool_d.tga
+|  |  |  |-- tomato_d.tga
+|  |  |  |-- tree_d.tga
+|  |  |  |-- watermelon_d.tga
+|  |  |  |-- wine_glass_d.tga
+|  |  |  |-- zebra_d.tga
+|  |  |-- sfx
+|  |  |  |-- detail.jpg
+|  |  |  |-- logo256.tga
+|-- assets_oa
+|  |-- botfiles
+|  |  |-- bots
+|  |  |  |-- angelyss_c.c
+|  |  |  |-- angelyss_i.c
+|  |  |  |-- angelyss_t.c
+|  |  |  |-- angelyss_w.c
+|  |  |  |-- arachna_c.c
+|  |  |  |-- arachna_i.c
+|  |  |  |-- arachna_t.c
+|  |  |  |-- arachna_w.c
+|  |  |  |-- ayumi_c.c
+|  |  |  |-- ayumi_i.c
+|  |  |  |-- ayumi_t.c
+|  |  |  |-- ayumi_w.c
+|  |  |  |-- beret_c.c
+|  |  |  |-- beret_i.c
+|  |  |  |-- beret_t.c
+|  |  |  |-- beret_w.c
+|  |  |  |-- crash_c.c
+|  |  |  |-- crash_i.c
+|  |  |  |-- crash_t.c
+|  |  |  |-- crash_w.c
+|  |  |  |-- dark_c.c
+|  |  |  |-- dark_i.c
+|  |  |  |-- dark_t.c
+|  |  |  |-- dark_w.c
+|  |  |  |-- default_c.c
+|  |  |  |-- default_i.c
+|  |  |  |-- default_t.c
+|  |  |  |-- default_w.c
+|  |  |  |-- gargoyle_c.c
+|  |  |  |-- gargoyle_i.c
+|  |  |  |-- gargoyle_t.c
+|  |  |  |-- gargoyle_w.c
+|  |  |  |-- grism_c.c
+|  |  |  |-- grism_i.c
+|  |  |  |-- grism_t.c
+|  |  |  |-- grism_w.c
+|  |  |  |-- grunt_c.c
+|  |  |  |-- grunt_i.c
+|  |  |  |-- grunt_t.c
+|  |  |  |-- grunt_w.c
+|  |  |  |-- jenna_c.c
+|  |  |  |-- jenna_i.c
+|  |  |  |-- jenna_t.c
+|  |  |  |-- jenna_w.c
+|  |  |  |-- kyonshi_c.c
+|  |  |  |-- kyonshi_i.c
+|  |  |  |-- kyonshi_t.c
+|  |  |  |-- kyonshi_w.c
+|  |  |  |-- liz_c.c
+|  |  |  |-- liz_i.c
+|  |  |  |-- liz_t.c
+|  |  |  |-- liz_w.c
+|  |  |  |-- major_c.c
+|  |  |  |-- major_i.c
+|  |  |  |-- major_t.c
+|  |  |  |-- major_w.c
+|  |  |  |-- merman_c.c
+|  |  |  |-- merman_i.c
+|  |  |  |-- merman_t.c
+|  |  |  |-- merman_w.c
+|  |  |  |-- neko_c.c
+|  |  |  |-- neko_i.c
+|  |  |  |-- neko_t.c
+|  |  |  |-- neko_w.c
+|  |  |  |-- penguin_c.c
+|  |  |  |-- penguin_i.c
+|  |  |  |-- penguin_t.c
+|  |  |  |-- penguin_w.c
+|  |  |  |-- rai_c.c
+|  |  |  |-- rai_i.c
+|  |  |  |-- rai_t.c
+|  |  |  |-- rai_w.c
+|  |  |  |-- sarge_c.c
+|  |  |  |-- sarge_i.c
+|  |  |  |-- sarge_t.c
+|  |  |  |-- sarge_w.c
+|  |  |  |-- sergei_c.c
+|  |  |  |-- sergei_i.c
+|  |  |  |-- sergei_t.c
+|  |  |  |-- sergei_w.c
+|  |  |  |-- skelebot_c.c
+|  |  |  |-- skelebot_i.c
+|  |  |  |-- skelebot_t.c
+|  |  |  |-- skelebot_w.c
+|  |  |  |-- sly_c.c
+|  |  |  |-- sly_i.c
+|  |  |  |-- sly_t.c
+|  |  |  |-- sly_w.c
+|  |  |  |-- tanisha_c.c
+|  |  |  |-- tanisha_i.c
+|  |  |  |-- tanisha_t.c
+|  |  |  |-- tanisha_w.c
+|  |  |  |-- tony_c.c
+|  |  |  |-- tony_i.c
+|  |  |  |-- tony_t.c
+|  |  |  |-- tony_w.c
+|  |  |  |-- widowe_c.c
+|  |  |  |-- widowe_i.c
+|  |  |  |-- widowe_t.c
+|  |  |  |-- widowe_w.c
+|  |  |-- chars.h
+|  |  |-- fuzi.c
+|  |  |-- fuzw.c
+|  |  |-- fw_items.c
+|  |  |-- fw_weap.c
+|  |  |-- inv.h
+|  |  |-- items.c
+|  |  |-- match.c
+|  |  |-- match.h
+|  |  |-- rchat.c
+|  |  |-- rnd.c
+|  |  |-- syn.c
+|  |  |-- syn.h
+|  |  |-- teamplay.h
+|  |  |-- weapons.c
+|  |-- scripts
+|  |  |-- ammo.shader
+|  |  |-- beams.shader
+|  |  |-- bots.txt
+|  |  |-- character.shader
+|  |  |-- common.shader
+|  |  |-- ctf.shader
+|  |  |-- decals.shader
+|  |  |-- iconsprites.shader
+|  |  |-- oanew.shader
+|  |  |-- oapowerups.shader
+|  |  |-- shaderlist.txt
+|  |  |-- weapon_machinegun.shader
+|  |  |-- weapon_muzzles.shader
+|  |  |-- weapon_railgun.shader
+|  |  |-- weapon_rocketlauncher.shader
+|  |  |-- weaponhits.shader
+|  |  |-- weapons.shader
+|-- bazel
+|  |-- BUILD
+|  |-- dm_env.BUILD
+|  |-- eigen.BUILD
+|  |-- funcsigs.BUILD
+|  |-- glib.BUILD
+|  |-- jpeg.BUILD
+|  |-- libxml.BUILD
+|  |-- lua.BUILD
+|  |-- png.BUILD
+|  |-- python.BUILD
+|  |-- sdl.BUILD
+|  |-- six.BUILD
+|  |-- zlib.BUILD
+|-- data
+|  |-- brady_konkle_oliva2008
+|  |  |-- README.md
+|  |-- cifar10
+|  |  |-- README.md
+|  |-- mnist
+|  |  |-- README.md
+|-- deepmind
+|  |-- engine
+|  |  |-- BUILD
+|  |  |-- callbacks.cc
+|  |  |-- callbacks_test.cc
+|  |  |-- context.cc
+|  |  |-- context.h
+|  |  |-- context_actions.cc
+|  |  |-- context_actions.h
+|  |  |-- context_entities.cc
+|  |  |-- context_entities.h
+|  |  |-- context_entities_test.cc
+|  |  |-- context_events.cc
+|  |  |-- context_events.h
+|  |  |-- context_game.cc
+|  |  |-- context_game.h
+|  |  |-- context_observations.cc
+|  |  |-- context_observations.h
+|  |  |-- context_pickups.cc
+|  |  |-- context_pickups.h
+|  |  |-- lua_image.cc
+|  |  |-- lua_image.h
+|  |  |-- lua_image_test.cc
+|  |  |-- lua_maze_generation.cc
+|  |  |-- lua_maze_generation.h
+|  |  |-- lua_maze_generation_test.cc
+|  |  |-- lua_random.cc
+|  |  |-- lua_random.h
+|  |  |-- lua_random_test.cc
+|  |  |-- lua_text_level_maker.cc
+|  |  |-- lua_text_level_maker.h
+|  |-- include
+|  |  |-- BUILD
+|  |  |-- deepmind_calls.h
+|  |  |-- deepmind_context.h
+|  |  |-- deepmind_hooks.h
+|  |  |-- deepmind_model_getters.h
+|  |  |-- deepmind_model_setters.h
+|  |-- level_generation
+|  |  |-- BUILD
+|  |  |-- compile_map.cc
+|  |  |-- compile_map.h
+|  |  |-- compile_map.sh
+|  |  |-- compile_map_test.cc
+|  |  |-- map_builder
+|  |  |  |-- BUILD
+|  |  |  |-- brush.cc
+|  |  |  |-- brush.h
+|  |  |  |-- builder.cc
+|  |  |  |-- builder.h
+|  |  |  |-- entity.cc
+|  |  |  |-- entity.h
+|  |  |  |-- map_builder_test.cc
+|  |  |-- text_level
+|  |  |  |-- BUILD
+|  |  |  |-- char_grid.cc
+|  |  |  |-- char_grid.h
+|  |  |  |-- char_grid_test.cc
+|  |  |  |-- grid_maze.h
+|  |  |  |-- lua_bindings.cc
+|  |  |  |-- lua_bindings.h
+|  |  |  |-- lua_bindings_test.cc
+|  |  |  |-- parse_text_level.cc
+|  |  |  |-- parse_text_level.h
+|  |  |  |-- parse_text_level_test.cc
+|  |  |  |-- text_level_exporter.cc
+|  |  |  |-- text_level_exporter.h
+|  |  |  |-- text_level_exporter_test.cc
+|  |  |  |-- text_level_settings.h
+|  |  |  |-- translate_text_level.cc
+|  |  |  |-- translate_text_level.h
+|  |  |  |-- translate_text_level_test.cc
+|  |  |  |-- translate_text_level_test_libc++.golden_output
+|  |  |  |-- translate_text_level_test_libstdc++.golden_output
+|  |  |-- text_maze_generation
+|  |  |  |-- BUILD
+|  |  |  |-- algorithm.cc
+|  |  |  |-- algorithm.h
+|  |  |  |-- algorithm_test.cc
+|  |  |  |-- flood_fill.cc
+|  |  |  |-- flood_fill.h
+|  |  |  |-- flood_fill_test.cc
+|  |  |  |-- text_maze.cc
+|  |  |  |-- text_maze.h
+|  |  |  |-- text_maze_test.cc
+|  |-- lua
+|  |  |-- BUILD
+|  |  |-- bind.h
+|  |  |-- bind_test.cc
+|  |  |-- call.cc
+|  |  |-- call.h
+|  |  |-- call_test.cc
+|  |  |-- class.h
+|  |  |-- class_test.cc
+|  |  |-- lua.h
+|  |  |-- n_results_or.h
+|  |  |-- n_results_or_test_util.h
+|  |  |-- push.h
+|  |  |-- push_script.cc
+|  |  |-- push_script.h
+|  |  |-- push_test.cc
+|  |  |-- read.h
+|  |  |-- read_test.cc
+|  |  |-- stack_resetter.h
+|  |  |-- stack_resetter_test.cc
+|  |  |-- table_ref.cc
+|  |  |-- table_ref.h
+|  |  |-- table_ref_test.cc
+|  |  |-- vm.cc
+|  |  |-- vm.h
+|  |  |-- vm_test.cc
+|  |  |-- vm_test_module.lua
+|  |  |-- vm_test_util.h
+|  |-- model_generation
+|  |  |-- BUILD
+|  |  |-- geometry_cone.cc
+|  |  |-- geometry_cone.h
+|  |  |-- geometry_cube.cc
+|  |  |-- geometry_cube.h
+|  |  |-- geometry_cylinder.cc
+|  |  |-- geometry_cylinder.h
+|  |  |-- geometry_sphere.cc
+|  |  |-- geometry_sphere.h
+|  |  |-- geometry_test.cc
+|  |  |-- geometry_util.cc
+|  |  |-- geometry_util.h
+|  |  |-- lua_model.cc
+|  |  |-- lua_model.h
+|  |  |-- lua_model_test.cc
+|  |  |-- lua_transform.cc
+|  |  |-- lua_transform.h
+|  |  |-- lua_transform_test.cc
+|  |  |-- model.h
+|  |  |-- model_getters.cc
+|  |  |-- model_getters.h
+|  |  |-- model_lua.cc
+|  |  |-- model_lua.h
+|  |  |-- model_lua_test.cc
+|  |  |-- model_setters.cc
+|  |  |-- model_setters.h
+|  |  |-- model_util.cc
+|  |  |-- model_util.h
+|  |  |-- transform.h
+|  |  |-- transform_lua.cc
+|  |  |-- transform_lua.h
+|  |  |-- transform_lua_test.cc
+|  |-- support
+|  |  |-- BUILD
+|  |  |-- logging.h
+|  |  |-- realpath.c
+|  |  |-- test_srcdir.cc
+|  |  |-- test_srcdir.h
+|  |-- tensor
+|  |  |-- BUILD
+|  |  |-- lua_tensor.cc
+|  |  |-- lua_tensor.h
+|  |  |-- lua_tensor_benchmark.cc
+|  |  |-- lua_tensor_test.cc
+|  |  |-- tensor_view.cc
+|  |  |-- tensor_view.h
+|  |  |-- tensor_view_test.cc
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- default_read_only_file_system.cc
+|  |  |-- default_read_only_file_system.h
+|  |  |-- file_reader.cc
+|  |  |-- file_reader.h
+|  |  |-- file_reader_test.cc
+|  |  |-- files.cc
+|  |  |-- files.h
+|  |  |-- files_test.cc
+|  |  |-- run_executable.cc
+|  |  |-- run_executable.h
+|  |  |-- run_executable_test.cc
+|  |  |-- smoother.h
+|  |  |-- smoother_test.cc
+|-- dmlab.lds
+|-- docs
+|  |-- developers
+|  |  |-- creating_levels.md
+|  |  |-- creating_levels
+|  |  |  |-- level_generation.md
+|  |  |  |-- model_generation.md
+|  |  |  |-- model_generation_chair.png
+|  |  |  |-- model_generation_chair_graph.png
+|  |  |  |-- model_generation_chair_random.png
+|  |  |  |-- text_level.md
+|  |  |-- minimal_level_tutorial.md
+|  |  |-- reference.md
+|  |  |-- reference
+|  |  |  |-- image.md
+|  |  |  |-- images
+|  |  |  |  |-- lua_api_flowchart.png
+|  |  |  |-- lua_api.md
+|  |  |  |-- tensor.md
+|  |-- levels.md
+|  |-- template
+|  |  |-- logo.png
+|  |-- users.md
+|  |-- users
+|  |  |-- actions.md
+|  |  |-- build.md
+|  |  |-- issues.md
+|  |  |-- observations.md
+|  |  |-- python_api.md
+|  |  |-- run_as_human.md
+|  |  |-- run_from_script.md
+|-- engine
+|  |-- COPYING.txt
+|  |-- ChangeLog
+|  |-- README.md
+|  |-- TODO
+|  |-- code
+|  |  |-- asm
+|  |  |  |-- ftola.asm
+|  |  |  |-- ftola.c
+|  |  |  |-- matha.s
+|  |  |  |-- qasm-inline.h
+|  |  |  |-- qasm.h
+|  |  |  |-- snapvector.asm
+|  |  |  |-- snapvector.c
+|  |  |  |-- snd_mixa.s
+|  |  |  |-- vm_x86_64.asm
+|  |  |-- botlib
+|  |  |  |-- aasfile.h
+|  |  |  |-- be_aas.h
+|  |  |  |-- be_aas_bsp.h
+|  |  |  |-- be_aas_bspq3.c
+|  |  |  |-- be_aas_cluster.c
+|  |  |  |-- be_aas_cluster.h
+|  |  |  |-- be_aas_debug.c
+|  |  |  |-- be_aas_debug.h
+|  |  |  |-- be_aas_def.h
+|  |  |  |-- be_aas_entity.c
+|  |  |  |-- be_aas_entity.h
+|  |  |  |-- be_aas_file.c
+|  |  |  |-- be_aas_file.h
+|  |  |  |-- be_aas_funcs.h
+|  |  |  |-- be_aas_main.c
+|  |  |  |-- be_aas_main.h
+|  |  |  |-- be_aas_move.c
+|  |  |  |-- be_aas_move.h
+|  |  |  |-- be_aas_optimize.c
+|  |  |  |-- be_aas_optimize.h
+|  |  |  |-- be_aas_reach.c
+|  |  |  |-- be_aas_reach.h
+|  |  |  |-- be_aas_route.c
+|  |  |  |-- be_aas_route.h
+|  |  |  |-- be_aas_routealt.c
+|  |  |  |-- be_aas_routealt.h
+|  |  |  |-- be_aas_sample.c
+|  |  |  |-- be_aas_sample.h
+|  |  |  |-- be_ai_char.c
+|  |  |  |-- be_ai_char.h
+|  |  |  |-- be_ai_chat.c
+|  |  |  |-- be_ai_chat.h
+|  |  |  |-- be_ai_gen.c
+|  |  |  |-- be_ai_gen.h
+|  |  |  |-- be_ai_goal.c
+|  |  |  |-- be_ai_goal.h
+|  |  |  |-- be_ai_move.c
+|  |  |  |-- be_ai_move.h
+|  |  |  |-- be_ai_weap.c
+|  |  |  |-- be_ai_weap.h
+|  |  |  |-- be_ai_weight.c
+|  |  |  |-- be_ai_weight.h
+|  |  |  |-- be_ea.c
+|  |  |  |-- be_ea.h
+|  |  |  |-- be_interface.c
+|  |  |  |-- be_interface.h
+|  |  |  |-- botlib.h
+|  |  |  |-- l_crc.c
+|  |  |  |-- l_crc.h
+|  |  |  |-- l_libvar.c
+|  |  |  |-- l_libvar.h
+|  |  |  |-- l_log.c
+|  |  |  |-- l_log.h
+|  |  |  |-- l_memory.c
+|  |  |  |-- l_memory.h
+|  |  |  |-- l_precomp.c
+|  |  |  |-- l_precomp.h
+|  |  |  |-- l_script.c
+|  |  |  |-- l_script.h
+|  |  |  |-- l_struct.c
+|  |  |  |-- l_struct.h
+|  |  |  |-- l_utils.h
+|  |  |-- bspc
+|  |  |  |-- LICENSE
+|  |  |  |-- README.md
+|  |  |  |-- _files.c
+|  |  |  |-- aas_areamerging.c
+|  |  |  |-- aas_areamerging.h
+|  |  |  |-- aas_cfg.c
+|  |  |  |-- aas_cfg.h
+|  |  |  |-- aas_create.c
+|  |  |  |-- aas_create.h
+|  |  |  |-- aas_edgemelting.c
+|  |  |  |-- aas_edgemelting.h
+|  |  |  |-- aas_facemerging.c
+|  |  |  |-- aas_facemerging.h
+|  |  |  |-- aas_file.c
+|  |  |  |-- aas_file.h
+|  |  |  |-- aas_gsubdiv.c
+|  |  |  |-- aas_gsubdiv.h
+|  |  |  |-- aas_map.c
+|  |  |  |-- aas_map.h
+|  |  |  |-- aas_prunenodes.c
+|  |  |  |-- aas_prunenodes.h
+|  |  |  |-- aas_store.c
+|  |  |  |-- aas_store.h
+|  |  |  |-- be_aas_bspc.c
+|  |  |  |-- be_aas_bspc.h
+|  |  |  |-- brushbsp.c
+|  |  |  |-- bspc.c
+|  |  |  |-- cfgq3.c
+|  |  |  |-- csg.c
+|  |  |  |-- faces.c
+|  |  |  |-- gldraw.c
+|  |  |  |-- glfile.c
+|  |  |  |-- l_bsp_ent.c
+|  |  |  |-- l_bsp_ent.h
+|  |  |  |-- l_bsp_hl.c
+|  |  |  |-- l_bsp_hl.h
+|  |  |  |-- l_bsp_q1.c
+|  |  |  |-- l_bsp_q1.h
+|  |  |  |-- l_bsp_q2.c
+|  |  |  |-- l_bsp_q2.h
+|  |  |  |-- l_bsp_q3.c
+|  |  |  |-- l_bsp_q3.h
+|  |  |  |-- l_bsp_sin.c
+|  |  |  |-- l_bsp_sin.h
+|  |  |  |-- l_cmd.c
+|  |  |  |-- l_cmd.h
+|  |  |  |-- l_log.c
+|  |  |  |-- l_log.h
+|  |  |  |-- l_math.c
+|  |  |  |-- l_math.h
+|  |  |  |-- l_mem.c
+|  |  |  |-- l_mem.h
+|  |  |  |-- l_poly.c
+|  |  |  |-- l_poly.h
+|  |  |  |-- l_qfiles.c
+|  |  |  |-- l_qfiles.h
+|  |  |  |-- l_threads.c
+|  |  |  |-- l_threads.h
+|  |  |  |-- l_utils.c
+|  |  |  |-- l_utils.h
+|  |  |  |-- lcc.mak
+|  |  |  |-- leakfile.c
+|  |  |  |-- map.c
+|  |  |  |-- map_hl.c
+|  |  |  |-- map_q1.c
+|  |  |  |-- map_q2.c
+|  |  |  |-- map_q3.c
+|  |  |  |-- map_sin.c
+|  |  |  |-- nodraw.c
+|  |  |  |-- portals.c
+|  |  |  |-- prtfile.c
+|  |  |  |-- q2files.h
+|  |  |  |-- q3files.h
+|  |  |  |-- qbsp.h
+|  |  |  |-- qfiles.h
+|  |  |  |-- sinfiles.h
+|  |  |  |-- tetrahedron.c
+|  |  |  |-- tetrahedron.h
+|  |  |  |-- textures.c
+|  |  |  |-- tree.c
+|  |  |  |-- writebsp.c
+|  |  |-- cgame
+|  |  |  |-- cg_consolecmds.c
+|  |  |  |-- cg_draw.c
+|  |  |  |-- cg_drawtools.c
+|  |  |  |-- cg_effects.c
+|  |  |  |-- cg_ents.c
+|  |  |  |-- cg_event.c
+|  |  |  |-- cg_info.c
+|  |  |  |-- cg_local.h
+|  |  |  |-- cg_localents.c
+|  |  |  |-- cg_main.c
+|  |  |  |-- cg_marks.c
+|  |  |  |-- cg_newdraw.c
+|  |  |  |-- cg_particles.c
+|  |  |  |-- cg_players.c
+|  |  |  |-- cg_playerstate.c
+|  |  |  |-- cg_predict.c
+|  |  |  |-- cg_public.h
+|  |  |  |-- cg_scoreboard.c
+|  |  |  |-- cg_servercmds.c
+|  |  |  |-- cg_snapshot.c
+|  |  |  |-- cg_syscalls.asm
+|  |  |  |-- cg_syscalls.c
+|  |  |  |-- cg_view.c
+|  |  |  |-- cg_weapons.c
+|  |  |-- client
+|  |  |  |-- cl_avi.c
+|  |  |  |-- cl_cgame.c
+|  |  |  |-- cl_cin.c
+|  |  |  |-- cl_console.c
+|  |  |  |-- cl_curl.c
+|  |  |  |-- cl_curl.h
+|  |  |  |-- cl_input.c
+|  |  |  |-- cl_keys.c
+|  |  |  |-- cl_main.c
+|  |  |  |-- cl_net_chan.c
+|  |  |  |-- cl_parse.c
+|  |  |  |-- cl_scrn.c
+|  |  |  |-- cl_ui.c
+|  |  |  |-- client.h
+|  |  |  |-- keycodes.h
+|  |  |  |-- keys.h
+|  |  |  |-- libmumblelink.c
+|  |  |  |-- libmumblelink.h
+|  |  |  |-- qal.c
+|  |  |  |-- qal.h
+|  |  |  |-- snd_adpcm.c
+|  |  |  |-- snd_altivec.c
+|  |  |  |-- snd_codec.c
+|  |  |  |-- snd_codec.h
+|  |  |  |-- snd_codec_ogg.c
+|  |  |  |-- snd_codec_opus.c
+|  |  |  |-- snd_codec_wav.c
+|  |  |  |-- snd_dma.c
+|  |  |  |-- snd_local.h
+|  |  |  |-- snd_main.c
+|  |  |  |-- snd_mem.c
+|  |  |  |-- snd_mix.c
+|  |  |  |-- snd_openal.c
+|  |  |  |-- snd_public.h
+|  |  |  |-- snd_wavelet.c
+|  |  |-- deepmind
+|  |  |  |-- context.h
+|  |  |  |-- dm_local.c
+|  |  |  |-- dm_local.h
+|  |  |  |-- dm_public.h
+|  |  |  |-- dmlab_connect.c
+|  |  |  |-- dmlab_load_model.c
+|  |  |  |-- dmlab_load_model.h
+|  |  |  |-- dmlab_recording.c
+|  |  |  |-- dmlab_recording.h
+|  |  |  |-- dmlab_save_model.c
+|  |  |  |-- dmlab_save_model.h
+|  |  |  |-- glimp_common.c
+|  |  |  |-- glimp_common.h
+|  |  |  |-- headless_egl_glimp.c
+|  |  |  |-- headless_native_glimp.c
+|  |  |  |-- headless_osmesa_glimp.c
+|  |  |-- game
+|  |  |  |-- ai_chat.c
+|  |  |  |-- ai_chat.h
+|  |  |  |-- ai_cmd.c
+|  |  |  |-- ai_cmd.h
+|  |  |  |-- ai_dmnet.c
+|  |  |  |-- ai_dmnet.h
+|  |  |  |-- ai_dmq3.c
+|  |  |  |-- ai_dmq3.h
+|  |  |  |-- ai_main.c
+|  |  |  |-- ai_main.h
+|  |  |  |-- ai_team.c
+|  |  |  |-- ai_team.h
+|  |  |  |-- ai_vcmd.c
+|  |  |  |-- ai_vcmd.h
+|  |  |  |-- bg_lib.c
+|  |  |  |-- bg_lib.h
+|  |  |  |-- bg_local.h
+|  |  |  |-- bg_misc.c
+|  |  |  |-- bg_pmove.c
+|  |  |  |-- bg_public.h
+|  |  |  |-- bg_slidemove.c
+|  |  |  |-- chars.h
+|  |  |  |-- g_active.c
+|  |  |  |-- g_arenas.c
+|  |  |  |-- g_bot.c
+|  |  |  |-- g_client.c
+|  |  |  |-- g_cmds.c
+|  |  |  |-- g_combat.c
+|  |  |  |-- g_items.c
+|  |  |  |-- g_local.h
+|  |  |  |-- g_main.c
+|  |  |  |-- g_mem.c
+|  |  |  |-- g_misc.c
+|  |  |  |-- g_missile.c
+|  |  |  |-- g_mover.c
+|  |  |  |-- g_public.h
+|  |  |  |-- g_rankings.c
+|  |  |  |-- g_rankings.h
+|  |  |  |-- g_session.c
+|  |  |  |-- g_spawn.c
+|  |  |  |-- g_svcmds.c
+|  |  |  |-- g_syscalls.asm
+|  |  |  |-- g_syscalls.c
+|  |  |  |-- g_target.c
+|  |  |  |-- g_team.c
+|  |  |  |-- g_team.h
+|  |  |  |-- g_trigger.c
+|  |  |  |-- g_utils.c
+|  |  |  |-- g_weapon.c
+|  |  |  |-- inv.h
+|  |  |  |-- match.h
+|  |  |  |-- syn.h
+|  |  |-- null
+|  |  |  |-- mac_net.c
+|  |  |  |-- null_client.c
+|  |  |  |-- null_glimp.c
+|  |  |  |-- null_input.c
+|  |  |  |-- null_main.c
+|  |  |  |-- null_net.c
+|  |  |  |-- null_snddma.c
+|  |  |-- q3_ui
+|  |  |  |-- ui_addbots.c
+|  |  |  |-- ui_atoms.c
+|  |  |  |-- ui_cdkey.c
+|  |  |  |-- ui_cinematics.c
+|  |  |  |-- ui_confirm.c
+|  |  |  |-- ui_connect.c
+|  |  |  |-- ui_controls2.c
+|  |  |  |-- ui_credits.c
+|  |  |  |-- ui_demo2.c
+|  |  |  |-- ui_display.c
+|  |  |  |-- ui_gameinfo.c
+|  |  |  |-- ui_ingame.c
+|  |  |  |-- ui_loadconfig.c
+|  |  |  |-- ui_local.h
+|  |  |  |-- ui_login.c
+|  |  |  |-- ui_main.c
+|  |  |  |-- ui_menu.c
+|  |  |  |-- ui_mfield.c
+|  |  |  |-- ui_mods.c
+|  |  |  |-- ui_network.c
+|  |  |  |-- ui_options.c
+|  |  |  |-- ui_playermodel.c
+|  |  |  |-- ui_players.c
+|  |  |  |-- ui_playersettings.c
+|  |  |  |-- ui_preferences.c
+|  |  |  |-- ui_qmenu.c
+|  |  |  |-- ui_rankings.c
+|  |  |  |-- ui_rankstatus.c
+|  |  |  |-- ui_removebots.c
+|  |  |  |-- ui_saveconfig.c
+|  |  |  |-- ui_serverinfo.c
+|  |  |  |-- ui_servers2.c
+|  |  |  |-- ui_setup.c
+|  |  |  |-- ui_signup.c
+|  |  |  |-- ui_sound.c
+|  |  |  |-- ui_sparena.c
+|  |  |  |-- ui_specifyleague.c
+|  |  |  |-- ui_specifyserver.c
+|  |  |  |-- ui_splevel.c
+|  |  |  |-- ui_sppostgame.c
+|  |  |  |-- ui_spreset.c
+|  |  |  |-- ui_spskill.c
+|  |  |  |-- ui_startserver.c
+|  |  |  |-- ui_team.c
+|  |  |  |-- ui_teamorders.c
+|  |  |  |-- ui_video.c
+|  |  |-- qcommon
+|  |  |  |-- cm_load.c
+|  |  |  |-- cm_local.h
+|  |  |  |-- cm_patch.c
+|  |  |  |-- cm_patch.h
+|  |  |  |-- cm_polylib.c
+|  |  |  |-- cm_polylib.h
+|  |  |  |-- cm_public.h
+|  |  |  |-- cm_test.c
+|  |  |  |-- cm_trace.c
+|  |  |  |-- cmd.c
+|  |  |  |-- common.c
+|  |  |  |-- cvar.c
+|  |  |  |-- deepmind_hooks.c
+|  |  |  |-- deepmind_hooks.h
+|  |  |  |-- files.c
+|  |  |  |-- huffman.c
+|  |  |  |-- ioapi.c
+|  |  |  |-- ioapi.h
+|  |  |  |-- json.h
+|  |  |  |-- md4.c
+|  |  |  |-- md5.c
+|  |  |  |-- msg.c
+|  |  |  |-- net_chan.c
+|  |  |  |-- net_ip.c
+|  |  |  |-- puff.c
+|  |  |  |-- puff.h
+|  |  |  |-- q_math.c
+|  |  |  |-- q_platform.h
+|  |  |  |-- q_shared.c
+|  |  |  |-- q_shared.h
+|  |  |  |-- qcommon.h
+|  |  |  |-- qfiles.h
+|  |  |  |-- surfaceflags.h
+|  |  |  |-- unzip.c
+|  |  |  |-- unzip.h
+|  |  |  |-- vm.c
+|  |  |  |-- vm_armv7l.c
+|  |  |  |-- vm_interpreted.c
+|  |  |  |-- vm_local.h
+|  |  |  |-- vm_none.c
+|  |  |  |-- vm_powerpc.c
+|  |  |  |-- vm_powerpc_asm.c
+|  |  |  |-- vm_powerpc_asm.h
+|  |  |  |-- vm_sparc.c
+|  |  |  |-- vm_sparc.h
+|  |  |  |-- vm_x86.c
+|  |  |-- renderercommon
+|  |  |  |-- iqm.h
+|  |  |  |-- qgl.h
+|  |  |  |-- tr_common.h
+|  |  |  |-- tr_font.c
+|  |  |  |-- tr_image_bmp.c
+|  |  |  |-- tr_image_jpg.c
+|  |  |  |-- tr_image_pcx.c
+|  |  |  |-- tr_image_png.c
+|  |  |  |-- tr_image_tga.c
+|  |  |  |-- tr_model.c
+|  |  |  |-- tr_noise.c
+|  |  |  |-- tr_public.h
+|  |  |  |-- tr_types.h
+|  |  |-- renderergl1
+|  |  |  |-- tr_altivec.c
+|  |  |  |-- tr_animation.c
+|  |  |  |-- tr_backend.c
+|  |  |  |-- tr_bsp.c
+|  |  |  |-- tr_cmds.c
+|  |  |  |-- tr_curve.c
+|  |  |  |-- tr_extensions.c
+|  |  |  |-- tr_flares.c
+|  |  |  |-- tr_image.c
+|  |  |  |-- tr_init.c
+|  |  |  |-- tr_light.c
+|  |  |  |-- tr_local.h
+|  |  |  |-- tr_main.c
+|  |  |  |-- tr_marks.c
+|  |  |  |-- tr_mesh.c
+|  |  |  |-- tr_model.c
+|  |  |  |-- tr_model_iqm.c
+|  |  |  |-- tr_scene.c
+|  |  |  |-- tr_shade.c
+|  |  |  |-- tr_shade_calc.c
+|  |  |  |-- tr_shader.c
+|  |  |  |-- tr_shadows.c
+|  |  |  |-- tr_sky.c
+|  |  |  |-- tr_subs.c
+|  |  |  |-- tr_surface.c
+|  |  |  |-- tr_world.c
+|  |  |-- renderergl2
+|  |  |  |-- glsl
+|  |  |  |  |-- bokeh_fp.glsl
+|  |  |  |  |-- bokeh_vp.glsl
+|  |  |  |  |-- calclevels4x_fp.glsl
+|  |  |  |  |-- calclevels4x_vp.glsl
+|  |  |  |  |-- depthblur_fp.glsl
+|  |  |  |  |-- depthblur_vp.glsl
+|  |  |  |  |-- dlight_fp.glsl
+|  |  |  |  |-- dlight_vp.glsl
+|  |  |  |  |-- down4x_fp.glsl
+|  |  |  |  |-- down4x_vp.glsl
+|  |  |  |  |-- fogpass_fp.glsl
+|  |  |  |  |-- fogpass_vp.glsl
+|  |  |  |  |-- generic_fp.glsl
+|  |  |  |  |-- generic_vp.glsl
+|  |  |  |  |-- lightall_fp.glsl
+|  |  |  |  |-- lightall_vp.glsl
+|  |  |  |  |-- pshadow_fp.glsl
+|  |  |  |  |-- pshadow_vp.glsl
+|  |  |  |  |-- shadowfill_fp.glsl
+|  |  |  |  |-- shadowfill_vp.glsl
+|  |  |  |  |-- shadowmask_fp.glsl
+|  |  |  |  |-- shadowmask_vp.glsl
+|  |  |  |  |-- ssao_fp.glsl
+|  |  |  |  |-- ssao_vp.glsl
+|  |  |  |  |-- texturecolor_fp.glsl
+|  |  |  |  |-- texturecolor_vp.glsl
+|  |  |  |  |-- tonemap_fp.glsl
+|  |  |  |  |-- tonemap_vp.glsl
+|  |  |  |-- tr_animation.c
+|  |  |  |-- tr_backend.c
+|  |  |  |-- tr_bsp.c
+|  |  |  |-- tr_cmds.c
+|  |  |  |-- tr_curve.c
+|  |  |  |-- tr_dsa.c
+|  |  |  |-- tr_dsa.h
+|  |  |  |-- tr_extensions.c
+|  |  |  |-- tr_extramath.c
+|  |  |  |-- tr_extramath.h
+|  |  |  |-- tr_extratypes.h
+|  |  |  |-- tr_fbo.c
+|  |  |  |-- tr_fbo.h
+|  |  |  |-- tr_flares.c
+|  |  |  |-- tr_glsl.c
+|  |  |  |-- tr_image.c
+|  |  |  |-- tr_image_dds.c
+|  |  |  |-- tr_init.c
+|  |  |  |-- tr_light.c
+|  |  |  |-- tr_local.h
+|  |  |  |-- tr_main.c
+|  |  |  |-- tr_marks.c
+|  |  |  |-- tr_mesh.c
+|  |  |  |-- tr_model.c
+|  |  |  |-- tr_model_iqm.c
+|  |  |  |-- tr_postprocess.c
+|  |  |  |-- tr_postprocess.h
+|  |  |  |-- tr_scene.c
+|  |  |  |-- tr_shade.c
+|  |  |  |-- tr_shade_calc.c
+|  |  |  |-- tr_shader.c
+|  |  |  |-- tr_shadows.c
+|  |  |  |-- tr_sky.c
+|  |  |  |-- tr_subs.c
+|  |  |  |-- tr_surface.c
+|  |  |  |-- tr_vbo.c
+|  |  |  |-- tr_world.c
+|  |  |-- sdl
+|  |  |  |-- sdl_gamma.c
+|  |  |  |-- sdl_glimp.c
+|  |  |  |-- sdl_icon.h
+|  |  |  |-- sdl_input.c
+|  |  |  |-- sdl_snd.c
+|  |  |-- server
+|  |  |  |-- server.h
+|  |  |  |-- sv_bot.c
+|  |  |  |-- sv_ccmds.c
+|  |  |  |-- sv_client.c
+|  |  |  |-- sv_game.c
+|  |  |  |-- sv_init.c
+|  |  |  |-- sv_main.c
+|  |  |  |-- sv_net_chan.c
+|  |  |  |-- sv_rankings.c
+|  |  |  |-- sv_snapshot.c
+|  |  |  |-- sv_world.c
+|  |  |-- sys
+|  |  |  |-- con_log.c
+|  |  |  |-- con_passive.c
+|  |  |  |-- con_tty.c
+|  |  |  |-- con_win32.c
+|  |  |  |-- sys_loadlib.h
+|  |  |  |-- sys_local.h
+|  |  |  |-- sys_main.c
+|  |  |  |-- sys_osx.m
+|  |  |  |-- sys_unix.c
+|  |  |  |-- sys_win32.c
+|  |  |  |-- win_manifest.xml
+|  |  |  |-- win_resource.h
+|  |  |  |-- win_resource.rc
+|  |  |-- tools
+|  |  |  |-- asm
+|  |  |  |  |-- README.Id
+|  |  |  |  |-- cmdlib.c
+|  |  |  |  |-- cmdlib.h
+|  |  |  |  |-- lib.txt
+|  |  |  |  |-- mathlib.h
+|  |  |  |  |-- notes.txt
+|  |  |  |  |-- ops.txt
+|  |  |  |  |-- opstrings.h
+|  |  |  |  |-- q3asm.c
+|  |  |  |-- lcc
+|  |  |  |  |-- COPYRIGHT
+|  |  |  |  |-- LOG
+|  |  |  |  |-- README
+|  |  |  |  |-- README.id
+|  |  |  |  |-- cpp
+|  |  |  |  |  |-- cpp.c
+|  |  |  |  |  |-- cpp.h
+|  |  |  |  |  |-- eval.c
+|  |  |  |  |  |-- getopt.c
+|  |  |  |  |  |-- hideset.c
+|  |  |  |  |  |-- include.c
+|  |  |  |  |  |-- lex.c
+|  |  |  |  |  |-- macro.c
+|  |  |  |  |  |-- nlist.c
+|  |  |  |  |  |-- tokens.c
+|  |  |  |  |  |-- unix.c
+|  |  |  |  |-- doc
+|  |  |  |  |  |-- 4.html
+|  |  |  |  |  |-- bprint.1
+|  |  |  |  |  |-- bprint.pdf
+|  |  |  |  |  |-- install.html
+|  |  |  |  |  |-- lcc.1
+|  |  |  |  |  |-- lcc.pdf
+|  |  |  |  |-- etc
+|  |  |  |  |  |-- bytecode.c
+|  |  |  |  |  |-- lcc.c
+|  |  |  |  |-- lburg
+|  |  |  |  |  |-- gram.c
+|  |  |  |  |  |-- gram.y
+|  |  |  |  |  |-- lburg.1
+|  |  |  |  |  |-- lburg.c
+|  |  |  |  |  |-- lburg.h
+|  |  |  |  |-- src
+|  |  |  |  |  |-- alloc.c
+|  |  |  |  |  |-- bind.c
+|  |  |  |  |  |-- bytecode.c
+|  |  |  |  |  |-- c.h
+|  |  |  |  |  |-- config.h
+|  |  |  |  |  |-- dag.c
+|  |  |  |  |  |-- dagcheck.md
+|  |  |  |  |  |-- decl.c
+|  |  |  |  |  |-- enode.c
+|  |  |  |  |  |-- error.c
+|  |  |  |  |  |-- event.c
+|  |  |  |  |  |-- expr.c
+|  |  |  |  |  |-- gen.c
+|  |  |  |  |  |-- init.c
+|  |  |  |  |  |-- inits.c
+|  |  |  |  |  |-- input.c
+|  |  |  |  |  |-- lex.c
+|  |  |  |  |  |-- list.c
+|  |  |  |  |  |-- main.c
+|  |  |  |  |  |-- null.c
+|  |  |  |  |  |-- output.c
+|  |  |  |  |  |-- prof.c
+|  |  |  |  |  |-- profio.c
+|  |  |  |  |  |-- simp.c
+|  |  |  |  |  |-- stmt.c
+|  |  |  |  |  |-- string.c
+|  |  |  |  |  |-- sym.c
+|  |  |  |  |  |-- symbolic.c
+|  |  |  |  |  |-- token.h
+|  |  |  |  |  |-- trace.c
+|  |  |  |  |  |-- tree.c
+|  |  |  |  |  |-- types.c
+|  |  |-- ui
+|  |  |  |-- ui_atoms.c
+|  |  |  |-- ui_gameinfo.c
+|  |  |  |-- ui_local.h
+|  |  |  |-- ui_main.c
+|  |  |  |-- ui_players.c
+|  |  |  |-- ui_public.h
+|  |  |  |-- ui_shared.c
+|  |  |  |-- ui_shared.h
+|  |  |  |-- ui_syscalls.asm
+|  |  |  |-- ui_syscalls.c
+|  |-- id-readme.txt
+|  |-- md4-readme.txt
+|  |-- opengl2-readme.md
+|  |-- ui
+|  |  |-- hud.txt
+|  |  |-- hud2.txt
+|  |  |-- ingame.txt
+|  |  |-- menudef.h
+|  |  |-- menus.txt
+|  |-- voip-readme.txt
+|-- examples
+|  |-- game_main.c
+|  |-- game_main.py
+|-- game_scripts
+|  |-- common
+|  |  |-- bots.lua
+|  |  |-- color_bots.lua
+|  |  |-- colors.lua
+|  |  |-- combinatorics.lua
+|  |  |-- custom_entities.lua
+|  |  |-- game_rewards.lua
+|  |  |-- game_types.lua
+|  |  |-- geometric_pickups.lua
+|  |  |-- helpers.lua
+|  |  |-- human_recognisable_pickups.lua
+|  |  |-- inventory.lua
+|  |  |-- log.lua
+|  |  |-- make_map.lua
+|  |  |-- pickups.lua
+|  |  |-- position_trigger.lua
+|  |  |-- property_helpers.lua
+|  |  |-- random.lua
+|  |  |-- screen_message.lua
+|  |  |-- set.lua
+|  |  |-- team_colors.lua
+|  |  |-- timer.lua
+|  |  |-- transform.lua
+|  |-- datasets
+|  |  |-- brady_konkle_oliva2008.lua
+|  |  |-- cifar10.lua
+|  |  |-- color_dataset.lua
+|  |  |-- mnist.lua
+|  |  |-- procedural_symbol_array.lua
+|  |  |-- reader.lua
+|  |  |-- selector.lua
+|  |-- decorators
+|  |  |-- custom_decals_decoration.lua
+|  |  |-- custom_floors.lua
+|  |  |-- custom_observations.lua
+|  |  |-- debug_observations.lua
+|  |  |-- extra_gadgets.lua
+|  |  |-- gadget_selection.lua
+|  |  |-- human_recognisable_pickups.lua
+|  |  |-- player_color.lua
+|  |  |-- property_decorator.lua
+|  |  |-- setting_overrides.lua
+|  |  |-- test_only.lua
+|  |  |-- timeout.lua
+|  |-- factories
+|  |  |-- explore
+|  |  |  |-- factory.lua
+|  |  |  |-- goal_locations_factory.lua
+|  |  |  |-- object_locations_factory.lua
+|  |  |  |-- object_rewards_factory.lua
+|  |  |  |-- obstructed_goals_factory.lua
+|  |  |-- language
+|  |  |  |-- factory.lua
+|  |  |  |-- fastmapping_factory.lua
+|  |  |-- lasertag
+|  |  |  |-- factory.lua
+|  |  |  |-- procedural_factory.lua
+|  |  |-- natlab_factory.lua
+|  |  |-- psychlab
+|  |  |  |-- arbitrary_visuomotor_mapping_factory.lua
+|  |  |  |-- continuous_recognition_factory.lua
+|  |  |  |-- factory.lua
+|  |  |  |-- glass_pattern_detection_factory.lua
+|  |  |  |-- helpers.lua
+|  |  |  |-- point_and_click.lua
+|  |  |  |-- sequential_comparison_factory.lua
+|  |  |  |-- visual_search_factory.lua
+|  |  |-- random_goal_factory.lua
+|  |  |-- rooms
+|  |  |  |-- collect_good_objects_factory.lua
+|  |  |  |-- exploit_deferred_effects_factory.lua
+|  |  |  |-- keys_doors_puzzle_factory.lua
+|  |  |  |-- navigate_watermaze_factory.lua
+|  |  |  |-- select_nonmatching_object_factory.lua
+|  |  |-- seek_avoid_factory.lua
+|  |  |-- skymaze_factory.lua
+|  |-- language
+|  |  |-- constraints.lua
+|  |  |-- generator.lua
+|  |  |-- item_count.lua
+|  |  |-- make.lua
+|  |  |-- object_generator.lua
+|  |  |-- placers.lua
+|  |  |-- region_colors.lua
+|  |  |-- reward_controllers.lua
+|  |  |-- selectors.lua
+|  |  |-- texter.lua
+|  |-- levels
+|  |  |-- contributed
+|  |  |  |-- dmlab30
+|  |  |  |  |-- README.md
+|  |  |  |  |-- explore_goal_locations_large.lua
+|  |  |  |  |-- explore_goal_locations_small.lua
+|  |  |  |  |-- explore_object_locations_large.lua
+|  |  |  |  |-- explore_object_locations_small.lua
+|  |  |  |  |-- explore_object_rewards_few.lua
+|  |  |  |  |-- explore_object_rewards_many.lua
+|  |  |  |  |-- explore_obstructed_goals_large.lua
+|  |  |  |  |-- explore_obstructed_goals_small.lua
+|  |  |  |  |-- language_answer_quantitative_question.lua
+|  |  |  |  |-- language_execute_random_task.lua
+|  |  |  |  |-- language_select_described_object.lua
+|  |  |  |  |-- language_select_located_object.lua
+|  |  |  |  |-- lasertag_one_opponent_large.lua
+|  |  |  |  |-- lasertag_one_opponent_small.lua
+|  |  |  |  |-- lasertag_three_opponents_large.lua
+|  |  |  |  |-- lasertag_three_opponents_small.lua
+|  |  |  |  |-- natlab_fixed_large_map.lua
+|  |  |  |  |-- natlab_varying_map_randomized.lua
+|  |  |  |  |-- natlab_varying_map_regrowth.lua
+|  |  |  |  |-- psychlab_arbitrary_visuomotor_mapping.lua
+|  |  |  |  |-- psychlab_continuous_recognition.lua
+|  |  |  |  |-- psychlab_sequential_comparison.lua
+|  |  |  |  |-- psychlab_visual_search.lua
+|  |  |  |  |-- rooms_collect_good_objects_test.lua
+|  |  |  |  |-- rooms_collect_good_objects_train.lua
+|  |  |  |  |-- rooms_exploit_deferred_effects_test.lua
+|  |  |  |  |-- rooms_exploit_deferred_effects_train.lua
+|  |  |  |  |-- rooms_keys_doors_puzzle.lua
+|  |  |  |  |-- rooms_select_nonmatching_object.lua
+|  |  |  |  |-- rooms_watermaze.lua
+|  |  |  |  |-- skymaze_irreversible_path_hard.lua
+|  |  |  |  |-- skymaze_irreversible_path_varied.lua
+|  |  |  |-- fast_mapping
+|  |  |  |  |-- factories
+|  |  |  |  |  |-- fast_mapping_factory.lua
+|  |  |  |  |-- fast_mapping_test.lua
+|  |  |  |  |-- fast_mapping_train.lua
+|  |  |  |  |-- slow_mapping_test.lua
+|  |  |  |  |-- slow_mapping_train.lua
+|  |  |  |-- psychlab
+|  |  |  |  |-- README.md
+|  |  |  |  |-- arbitrary_visuomotor_mapping.lua
+|  |  |  |  |-- continuous_recognition.lua
+|  |  |  |  |-- cued_temporal_production.lua
+|  |  |  |  |-- data
+|  |  |  |  |  |-- arrow_1.png
+|  |  |  |  |  |-- arrow_2.png
+|  |  |  |  |  |-- arrow_3.png
+|  |  |  |  |  |-- arrow_4.png
+|  |  |  |  |  |-- arrow_6.png
+|  |  |  |  |  |-- arrow_7.png
+|  |  |  |  |  |-- arrow_8.png
+|  |  |  |  |  |-- arrow_9.png
+|  |  |  |  |  |-- landoltC_1.png
+|  |  |  |  |  |-- landoltC_2.png
+|  |  |  |  |  |-- landoltC_3.png
+|  |  |  |  |  |-- landoltC_4.png
+|  |  |  |  |  |-- landoltC_6.png
+|  |  |  |  |  |-- landoltC_7.png
+|  |  |  |  |  |-- landoltC_8.png
+|  |  |  |  |  |-- landoltC_9.png
+|  |  |  |  |-- factories
+|  |  |  |  |  |-- arbitrary_visuomotor_mapping_factory.lua
+|  |  |  |  |  |-- change_detection_factory.lua
+|  |  |  |  |  |-- continuous_recognition_factory.lua
+|  |  |  |  |  |-- cued_temporal_production_factory.lua
+|  |  |  |  |  |-- goal_locations_factory.lua
+|  |  |  |  |  |-- harlow_factory.lua
+|  |  |  |  |  |-- landoltC_identification_factory.lua
+|  |  |  |  |  |-- motion.lua
+|  |  |  |  |  |-- motion_discrimination_easy_factory.lua
+|  |  |  |  |  |-- motion_discrimination_factory.lua
+|  |  |  |  |  |-- multiple_object_tracking_factory.lua
+|  |  |  |  |  |-- odd_one_out_factory.lua
+|  |  |  |  |  |-- ready_set_go_factory.lua
+|  |  |  |  |  |-- staircase.lua
+|  |  |  |  |  |-- temporal_bisection_factory.lua
+|  |  |  |  |  |-- temporal_discrimination_factory.lua
+|  |  |  |  |  |-- visual_search_factory.lua
+|  |  |  |  |  |-- what_then_where_factory.lua
+|  |  |  |  |-- glass_pattern_detection.lua
+|  |  |  |  |-- harlow.lua
+|  |  |  |  |-- landoltC_identification.lua
+|  |  |  |  |-- memory_suite_01
+|  |  |  |  |  |-- arbitrary_visuomotor_mapping_holdout_extrapolate.lua
+|  |  |  |  |  |-- arbitrary_visuomotor_mapping_holdout_interpolate.lua
+|  |  |  |  |  |-- arbitrary_visuomotor_mapping_train.lua
+|  |  |  |  |  |-- change_detection_holdout_extrapolate.lua
+|  |  |  |  |  |-- change_detection_holdout_interpolate.lua
+|  |  |  |  |  |-- change_detection_train.lua
+|  |  |  |  |  |-- continuous_recognition_holdout_extrapolate.lua
+|  |  |  |  |  |-- continuous_recognition_holdout_interpolate.lua
+|  |  |  |  |  |-- continuous_recognition_train.lua
+|  |  |  |  |  |-- explore_goal_locations_extrapolate.lua
+|  |  |  |  |  |-- explore_goal_locations_holdout_extrapolate.lua
+|  |  |  |  |  |-- explore_goal_locations_holdout_interpolate.lua
+|  |  |  |  |  |-- explore_goal_locations_holdout_large.lua
+|  |  |  |  |  |-- explore_goal_locations_holdout_small.lua
+|  |  |  |  |  |-- explore_goal_locations_interpolate.lua
+|  |  |  |  |  |-- explore_goal_locations_train_large.lua
+|  |  |  |  |  |-- explore_goal_locations_train_small.lua
+|  |  |  |  |  |-- what_then_where_holdout_interpolate.lua
+|  |  |  |  |  |-- what_then_where_train.lua
+|  |  |  |  |-- motion_discrimination.lua
+|  |  |  |  |-- motion_discrimination_easy.lua
+|  |  |  |  |-- multiple_object_tracking.lua
+|  |  |  |  |-- multiple_object_tracking_easy.lua
+|  |  |  |  |-- odd_one_out.lua
+|  |  |  |  |-- ready_set_go.lua
+|  |  |  |  |-- sequential_comparison.lua
+|  |  |  |  |-- temporal_bisection.lua
+|  |  |  |  |-- temporal_discrimination.lua
+|  |  |  |  |-- visual_search.lua
+|  |  |  |  |-- visuospatial_suite
+|  |  |  |  |  |-- factories
+|  |  |  |  |  |  |-- defaults.lua
+|  |  |  |  |  |  |-- guided_saccade_factory.lua
+|  |  |  |  |  |  |-- odd_one_out_factory.lua
+|  |  |  |  |  |  |-- pathfinder_factory.lua
+|  |  |  |  |  |  |-- pursuit_factory.lua
+|  |  |  |  |  |  |-- visual_match_factory.lua
+|  |  |  |  |  |-- memory_guided_saccade.lua
+|  |  |  |  |  |-- odd_one_out.lua
+|  |  |  |  |  |-- pathfinder.lua
+|  |  |  |  |  |-- pursuit.lua
+|  |  |  |  |  |-- visual_match.lua
+|  |  |  |  |  |-- visually_guided_antisaccade.lua
+|  |  |  |  |  |-- visually_guided_prosaccade.lua
+|  |  |-- demos
+|  |  |  |-- extra_entities.lua
+|  |  |  |-- hrp_demo.lua
+|  |  |  |-- hrp_gallery.lua
+|  |  |  |-- map_generation
+|  |  |  |  |-- make_map_from_text.lua
+|  |  |  |  |-- random_length.lua
+|  |  |  |-- random_maze.lua
+|  |  |  |-- replace_model.lua
+|  |  |  |-- replace_texture.lua
+|  |  |  |-- screen_decoration
+|  |  |  |  |-- rectangles.lua
+|  |  |  |  |-- text.lua
+|  |  |  |-- set_instruction.lua
+|  |  |-- lt_chasm.lua
+|  |  |-- lt_hallway_slope.lua
+|  |  |-- lt_horseshoe_color.lua
+|  |  |-- lt_space_bounce_hard.lua
+|  |  |-- nav_maze_random_goal_01.lua
+|  |  |-- nav_maze_random_goal_02.lua
+|  |  |-- nav_maze_random_goal_03.lua
+|  |  |-- nav_maze_static_01.lua
+|  |  |-- nav_maze_static_02.lua
+|  |  |-- nav_maze_static_03.lua
+|  |  |-- seekavoid_arena_01.lua
+|  |  |-- stairway_to_melon.lua
+|  |  |-- tests
+|  |  |  |-- callbacks_test.lua
+|  |  |  |-- custom_actions_test.lua
+|  |  |  |-- custom_view.lua
+|  |  |  |-- debug_observation_test.lua
+|  |  |  |-- empty_room_test.lua
+|  |  |  |-- entity_info_test.lua
+|  |  |  |-- episode_time_test.lua
+|  |  |  |-- event_test.lua
+|  |  |  |-- extra_entities_test.lua
+|  |  |  |-- extra_entities_with_bots_test.lua
+|  |  |  |-- final_reward_test.lua
+|  |  |  |-- game_command_test.lua
+|  |  |  |-- in_fov_test.lua
+|  |  |  |-- lookat_test.lua
+|  |  |  |-- maze_generation_test.lua
+|  |  |  |-- maze_navigation_test.lua
+|  |  |  |-- model_test.lua
+|  |  |  |-- properties_test.lua
+|  |  |  |-- raycast_test.lua
+|  |  |  |-- recording_test.lua
+|  |  |  |-- render_test.lua
+|  |  |  |-- seed_test.lua
+|  |  |  |-- spawn_inventory_test.lua
+|  |  |  |-- team_model_select.lua
+|  |  |  |-- teleporter_test.lua
+|  |  |  |-- text_observation_test.lua
+|  |  |  |-- update_inventory_test.lua
+|  |-- map_generators
+|  |  |-- keys_doors
+|  |  |  |-- configs.lua
+|  |  |  |-- gen.lua
+|  |  |  |-- objects_and_map.lua
+|  |  |  |-- room.lua
+|  |  |  |-- room_grid.lua
+|  |  |-- platforms_v1
+|  |  |  |-- gen.lua
+|  |-- patterns
+|  |  |-- chequered_d.png
+|  |  |-- crosses_d.png
+|  |  |-- diagonal_stripe_d.png
+|  |  |-- discs_d.png
+|  |  |-- hex_d.png
+|  |  |-- pinstripe_d.png
+|  |  |-- spots_d.png
+|  |  |-- swirls_d.png
+|  |-- player
+|  |  |-- dm_character_skin_mask_a.png
+|  |  |-- dm_character_skin_mask_b.png
+|  |  |-- dm_character_skin_mask_c.png
+|  |-- testing
+|  |  |-- asserts.lua
+|  |  |-- test_runner.lua
+|  |-- themes
+|  |  |-- decals.lua
+|  |  |-- texture_sets.lua
+|  |  |-- themes.lua
+|-- lua_tests
+|  |-- BUILD
+|  |-- asserts_test.lua
+|  |-- color_dataset_test.lua
+|  |-- colors_test.lua
+|  |-- combinatorics_test.lua
+|  |-- data
+|  |  |-- empty_test_file
+|  |  |-- testL.png
+|  |  |-- testRGB.png
+|  |  |-- testRGBA.png
+|  |-- dataset_cifar10_test.lua
+|  |-- dataset_mnist_test.lua
+|  |-- decorators_custom_floors_test.lua
+|  |-- game_test.lua
+|  |-- geometric_pickups_test.lua
+|  |-- helpers_test.lua
+|  |-- human_recognisable_pickups_test.lua
+|  |-- image_test.lua
+|  |-- in_fov_test.lua
+|  |-- keys_doors_configs_test.lua
+|  |-- keys_doors_gen_test.lua
+|  |-- keys_doors_objects_and_map_test.lua
+|  |-- keys_doors_room_grid_test.lua
+|  |-- keys_doors_room_test.lua
+|  |-- language_constraints_test.lua
+|  |-- language_generator_test.lua
+|  |-- language_item_count_test.lua
+|  |-- language_make_test.lua
+|  |-- language_object_generator_test.lua
+|  |-- language_placers_test.lua
+|  |-- language_region_colors_test.lua
+|  |-- language_reward_controllers_test.lua
+|  |-- language_selectors_test.lua
+|  |-- language_texter_test.lua
+|  |-- load_to_tensor_test.lua
+|  |-- log_test.lua
+|  |-- point_and_click_test.lua
+|  |-- position_trigger_test.lua
+|  |-- property_helpers_test.lua
+|  |-- random_test.lua
+|  |-- read_file_test.lua
+|  |-- set_test.lua
+|  |-- skymaze_gen_test.lua
+|  |-- themes_test.lua
+|  |-- timer_test.lua
+|-- public
+|  |-- dmlab.h
+|  |-- dmlab_connect_test.cc
+|  |-- dmlab_so_loader.cc
+|  |-- file_reader_types.h
+|  |-- level_cache_types.h
+|-- python
+|  |-- dmenv_module.py
+|  |-- dmlab_module.c
+|  |-- pip_package
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- build_pip_package.sh
+|  |  |-- setup.py
+|  |-- random_agent.py
+|  |-- random_agent_simple.py
+|  |-- tests
+|  |  |-- BUILD
+|  |  |-- benchmark.py
+|  |  |-- build_defs.bzl
+|  |  |-- custom_actions_test.py
+|  |  |-- custom_view_test.py
+|  |  |-- debug_observation_test.py
+|  |  |-- determinism_test.py
+|  |  |-- dmenv_module_test.py
+|  |  |-- dmlab_module_test.py
+|  |  |-- entity_info_test.py
+|  |  |-- episode_time_test.py
+|  |  |-- extra_entities_test.py
+|  |  |-- extra_entities_with_bots_test.py
+|  |  |-- final_reward_test.py
+|  |  |-- game_command_test.py
+|  |  |-- in_fov_test.py
+|  |  |-- level_cache_test.py
+|  |  |-- lookat_test.py
+|  |  |-- maze_generation_test.py
+|  |  |-- player_info_test.py
+|  |  |-- properties_test.py
+|  |  |-- random_agent_test.py
+|  |  |-- raycast_test.py
+|  |  |-- render_test.py
+|  |  |-- spawn_inventory_test.py
+|  |  |-- team_model_select_test.py
+|  |  |-- teleporter_test.py
+|  |  |-- update_inventory_test.py
+|  |  |-- utils
+|  |  |  |-- BUILD
+|  |  |  |-- game_controller.py
+|  |  |  |-- game_controller_test.py
+|  |  |  |-- math_utils.py
+|  |  |  |-- math_utils_test.py
+|  |  |  |-- maze_game_controller.py
+|  |  |  |-- maze_game_controller_test.py
+|  |  |  |-- test_environment_decorator.py
+|  |  |  |-- test_environment_decorator_test.py
+|-- q3map2
+|  |-- BSD
+|  |-- BUILD
+|  |-- CONTRIBUTING.md
+|  |-- CONTRIBUTORS
+|  |-- GPL
+|  |-- LGPL
+|  |-- LICENSE
+|  |-- TRANSLATING
+|  |-- common
+|  |  |-- aselib.c
+|  |  |-- aselib.h
+|  |  |-- bspfile.c
+|  |  |-- bspfile.h
+|  |  |-- cmdlib.c
+|  |  |-- cmdlib.h
+|  |  |-- imagelib.c
+|  |  |-- imagelib.h
+|  |  |-- inout.c
+|  |  |-- inout.h
+|  |  |-- jpeg.c
+|  |  |-- l3dslib.c
+|  |  |-- l3dslib.h
+|  |  |-- mutex.c
+|  |  |-- mutex.h
+|  |  |-- polylib.c
+|  |  |-- polylib.h
+|  |  |-- polyset.h
+|  |  |-- qfiles.h
+|  |  |-- qthreads.h
+|  |  |-- scriplib.c
+|  |  |-- scriplib.h
+|  |  |-- surfaceflags.h
+|  |  |-- threads.c
+|  |  |-- trilib.c
+|  |  |-- trilib.h
+|  |  |-- unzip.c
+|  |  |-- unzip.h
+|  |  |-- vfs.c
+|  |  |-- vfs.h
+|  |-- include
+|  |  |-- stream_version.h
+|  |  |-- version.h
+|  |-- libs
+|  |  |-- bytebool.h
+|  |  |-- ddslib.h
+|  |  |-- ddslib
+|  |  |  |-- ddslib.c
+|  |  |-- l_net
+|  |  |  |-- l_net.c
+|  |  |  |-- l_net.h
+|  |  |  |-- l_net_berkeley.c
+|  |  |  |-- l_net_wins.c
+|  |  |  |-- l_net_wins.h
+|  |  |-- mathlib.h
+|  |  |-- mathlib
+|  |  |  |-- bbox.c
+|  |  |  |-- m4x4.c
+|  |  |  |-- mathlib.c
+|  |  |  |-- ray.c
+|  |  |-- picomodel.h
+|  |  |-- picomodel
+|  |  |  |-- lwo
+|  |  |  |  |-- clip.c
+|  |  |  |  |-- envelope.c
+|  |  |  |  |-- list.c
+|  |  |  |  |-- lwio.c
+|  |  |  |  |-- lwo2.c
+|  |  |  |  |-- lwo2.h
+|  |  |  |  |-- lwob.c
+|  |  |  |  |-- pntspols.c
+|  |  |  |  |-- surface.c
+|  |  |  |  |-- vecmath.c
+|  |  |  |  |-- vmap.c
+|  |  |  |-- picointernal.c
+|  |  |  |-- picointernal.h
+|  |  |  |-- picomodel.c
+|  |  |  |-- picomodules.c
+|  |  |  |-- pm_3ds.c
+|  |  |  |-- pm_ase.c
+|  |  |  |-- pm_fm.c
+|  |  |  |-- pm_fm.h
+|  |  |  |-- pm_lwo.c
+|  |  |  |-- pm_md2.c
+|  |  |  |-- pm_md3.c
+|  |  |  |-- pm_mdc.c
+|  |  |  |-- pm_ms3d.c
+|  |  |  |-- pm_obj.c
+|  |  |  |-- pm_terrain.c
+|  |-- q3map2
+|  |  |-- brush.c
+|  |  |-- brush_primit.c
+|  |  |-- bsp.c
+|  |  |-- bsp_analyze.c
+|  |  |-- bsp_info.c
+|  |  |-- bsp_scale.c
+|  |  |-- bspfile_abstract.c
+|  |  |-- bspfile_ibsp.c
+|  |  |-- bspfile_rbsp.c
+|  |  |-- changelog.q3map1
+|  |  |-- changelog.q3map2.txt
+|  |  |-- convert_ase.c
+|  |  |-- convert_bsp.c
+|  |  |-- convert_map.c
+|  |  |-- decals.c
+|  |  |-- exportents.c
+|  |  |-- facebsp.c
+|  |  |-- fixaas.c
+|  |  |-- fog.c
+|  |  |-- game_ef.h
+|  |  |-- game_etut.h
+|  |  |-- game_ja.h
+|  |  |-- game_jk2.h
+|  |  |-- game_nexuiz.h
+|  |  |-- game_qfusion.h
+|  |  |-- game_quake3.h
+|  |  |-- game_quakelive.h
+|  |  |-- game_reaction.h
+|  |  |-- game_sof2.h
+|  |  |-- game_t.h
+|  |  |-- game_tenebrae.h
+|  |  |-- game_tremulous.h
+|  |  |-- game_unvanquished.h
+|  |  |-- game_wolf.h
+|  |  |-- game_wolfet.h
+|  |  |-- image.c
+|  |  |-- leakfile.c
+|  |  |-- light.c
+|  |  |-- light_bounce.c
+|  |  |-- light_shadows.c
+|  |  |-- light_trace.c
+|  |  |-- light_ydnar.c
+|  |  |-- lightmaps.c
+|  |  |-- lightmaps_ydnar.c
+|  |  |-- listen.pl
+|  |  |-- main.c
+|  |  |-- map.c
+|  |  |-- mesh.c
+|  |  |-- model.c
+|  |  |-- patch.c
+|  |  |-- path_init.c
+|  |  |-- portals.c
+|  |  |-- prtfile.c
+|  |  |-- q3map2.h
+|  |  |-- shaders.c
+|  |  |-- surface.c
+|  |  |-- surface_extra.c
+|  |  |-- surface_foliage.c
+|  |  |-- surface_fur.c
+|  |  |-- surface_meta.c
+|  |  |-- tjunction.c
+|  |  |-- tree.c
+|  |  |-- vis.c
+|  |  |-- visflow.c
+|  |  |-- writebsp.c
+|  |-- q3map2_regression_tests
+|  |  |-- base_winding
+|  |  |  |-- README.txt
+|  |  |  |-- base_winding_logging.patch
+|  |  |  |-- maps
+|  |  |  |  |-- base_winding.map
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- tile.tga
+|  |  |-- coarse_snap_normal
+|  |  |  |-- README.txt
+|  |  |  |-- maps
+|  |  |  |  |-- coarse_snap_normal.map
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- green.tga
+|  |  |  |  |  |-- red.tga
+|  |  |  |  |  |-- tile.tga
+|  |  |-- decal_misalignment
+|  |  |  |-- README.txt
+|  |  |  |-- maps
+|  |  |  |  |-- decal_misalignment.map
+|  |  |  |-- scripts
+|  |  |  |  |-- radiant_regression_tests.shader
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- bigtile.tga
+|  |  |  |  |  |-- glass.tga
+|  |  |  |  |  |-- qer_glass.tga
+|  |  |  |  |  |-- tile_trans.tga
+|  |  |-- degenerate_winding
+|  |  |  |-- README.txt
+|  |  |  |-- maps
+|  |  |  |  |-- degenerate_winding.map
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- green.tga
+|  |  |  |  |  |-- red.tga
+|  |  |  |  |  |-- tile.tga
+|  |  |-- degenerate_winding2
+|  |  |  |-- README.txt
+|  |  |  |-- maps
+|  |  |  |  |-- degenerate_winding2.map
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- blue.tga
+|  |  |  |  |  |-- green.tga
+|  |  |  |  |  |-- red.tga
+|  |  |  |  |  |-- tile.tga
+|  |  |-- degenerate_winding3
+|  |  |  |-- README.txt
+|  |  |  |-- maps
+|  |  |  |  |-- degenerate_winding3.map
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- blue.tga
+|  |  |  |  |  |-- green.tga
+|  |  |  |  |  |-- red.tga
+|  |  |  |  |  |-- tile.tga
+|  |  |-- disappearing_sliver
+|  |  |  |-- README.txt
+|  |  |  |-- maps
+|  |  |  |  |-- disappearing_sliver.map
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- tile.tga
+|  |  |  |-- winding_logging.patch
+|  |  |-- disappearing_sliver2
+|  |  |  |-- README.txt
+|  |  |  |-- maps
+|  |  |  |  |-- disappearing_sliver2.map
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- tile.tga
+|  |  |-- disappearing_sliver3
+|  |  |  |-- NOTES.txt
+|  |  |  |-- README.txt
+|  |  |  |-- maps
+|  |  |  |  |-- disappearing_sliver3.map
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- tile.tga
+|  |  |-- duplicate_plane
+|  |  |  |-- README.txt
+|  |  |  |-- maps
+|  |  |  |  |-- duplicate_plane.map
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- tile.tga
+|  |  |-- model_clipping_45_degrees
+|  |  |  |-- README.txt
+|  |  |  |-- maps
+|  |  |  |  |-- model_clipping_45_degrees.map
+|  |  |  |-- models
+|  |  |  |  |-- mapobjects
+|  |  |  |  |  |-- wedges
+|  |  |  |  |  |  |-- wedge_45.ase
+|  |  |  |  |  |  |-- wedge_shallow.ase
+|  |  |  |  |  |  |-- wedge_steep.ase
+|  |  |  |-- scripts
+|  |  |  |  |-- radiant_regression_tests.shader
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- bigtile.tga
+|  |  |  |  |  |-- tile_model.tga
+|  |  |-- patch_seam
+|  |  |  |-- README.txt
+|  |  |  |-- maps
+|  |  |  |  |-- patch_seam.map
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- green.tga
+|  |  |  |  |  |-- tile.tga
+|  |  |-- piercing_triangle
+|  |  |  |-- README.txt
+|  |  |  |-- maps
+|  |  |  |  |-- piercing_triangle.map
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- tile.tga
+|  |  |-- plane_aliasing
+|  |  |  |-- README.txt
+|  |  |  |-- maps
+|  |  |  |  |-- plane_aliasing.map
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- blue.tga
+|  |  |  |  |  |-- green.tga
+|  |  |  |  |  |-- red.tga
+|  |  |  |  |  |-- tile.tga
+|  |  |-- segmentation_fault
+|  |  |  |-- README.txt
+|  |  |  |-- maps
+|  |  |  |  |-- segmentation_fault.map
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- tile.tga
+|  |  |-- snap_plane
+|  |  |  |-- README.txt
+|  |  |  |-- maps
+|  |  |  |  |-- snap_plane.map
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- green.tga
+|  |  |  |  |  |-- red.tga
+|  |  |  |  |  |-- tile.tga
+|  |  |-- sparkly_seam
+|  |  |  |-- README.txt
+|  |  |  |-- maps
+|  |  |  |  |-- sparkly_seam.map
+|  |  |  |-- textures
+|  |  |  |  |-- radiant_regression_tests
+|  |  |  |  |  |-- tile.tga
+|-- testing
+|  |-- BUILD
+|  |-- env_observation.cc
+|  |-- env_observation.h
+|  |-- env_observation_util.cc
+|  |-- env_observation_util.h
+|  |-- load_level_test.cc
+|  |-- lua_unit_test.cc
+|  |-- recording_test.cc
+|  |-- seed_level_test.cc
+|-- third_party
+|  |-- GL
+|  |  |-- BUILD
+|  |  |-- EGL
+|  |  |  |-- egl.h
+|  |  |  |-- eglext.h
+|  |  |  |-- eglplatform.h
+|  |  |-- KHR
+|  |  |  |-- khrplatform.h
+|  |  |-- LICENSE
+|  |  |-- util
+|  |  |  |-- BUILD
+|  |  |  |-- LICENSE
+|  |  |  |-- egl_util.cc
+|  |  |  |-- egl_util.h
+|  |  |  |-- egl_util_test.cc
+|  |-- md
+|  |  |-- BUILD
+|  |  |-- LICENSE.md4
+|  |  |-- LICENSE.md5
+|  |  |-- global.h
+|  |  |-- golden.md4
+|  |  |-- golden.md5
+|  |  |-- md4.h
+|  |  |-- md4_fuzzer.c
+|  |  |-- md4c.c
+|  |  |-- md5.h
+|  |  |-- md5_fuzzer.c
+|  |  |-- md5c.c
+|  |  |-- md_test.sh
+|  |  |-- mddriver.c
+|  |-- rl_api
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- env_c_api.h
+|  |  |-- env_c_api_bind.h
+|  |  |-- env_c_api_example.cc
+|  |  |-- env_c_api_example.h
+|  |  |-- env_c_api_example.lds
+|  |  |-- env_c_api_example_test.cc
+|  |  |-- env_c_api_test_suite.cc
+|  |  |-- env_c_api_test_suite.h

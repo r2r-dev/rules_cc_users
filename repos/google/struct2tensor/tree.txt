@@ -1,0 +1,306 @@
+|-- .bazelrc
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- MANIFEST.in
+|-- README.md
+|-- RELEASE.md
+|-- WORKSPACE
+|-- build_common.sh
+|-- build_pip_package.sh
+|-- configure.sh
+|-- docker-compose.yml
+|-- examples
+|  |-- prensor_playground.ipynb
+|-- g3doc
+|  |-- api_docs
+|  |  |-- python
+|  |  |  |-- _toc.yaml
+|  |  |  |-- expression_impl.md
+|  |  |  |-- expression_impl
+|  |  |  |  |-- _api_cache.json
+|  |  |  |  |-- _toc.yaml
+|  |  |  |  |-- all_symbols.md
+|  |  |  |  |-- apply_schema.md
+|  |  |  |  |-- apply_schema
+|  |  |  |  |  |-- apply_schema.md
+|  |  |  |  |-- broadcast.md
+|  |  |  |  |-- broadcast
+|  |  |  |  |  |-- broadcast.md
+|  |  |  |  |  |-- broadcast_anonymous.md
+|  |  |  |  |-- depth_limit.md
+|  |  |  |  |-- depth_limit
+|  |  |  |  |  |-- limit_depth.md
+|  |  |  |  |-- filter_expression.md
+|  |  |  |  |-- filter_expression
+|  |  |  |  |  |-- filter_by_child.md
+|  |  |  |  |  |-- filter_by_sibling.md
+|  |  |  |  |-- index.md
+|  |  |  |  |-- index
+|  |  |  |  |  |-- get_index_from_end.md
+|  |  |  |  |  |-- get_positional_index.md
+|  |  |  |  |-- map_prensor.md
+|  |  |  |  |-- map_prensor
+|  |  |  |  |  |-- map_ragged_tensor.md
+|  |  |  |  |  |-- map_sparse_tensor.md
+|  |  |  |  |-- map_prensor_to_prensor.md
+|  |  |  |  |-- map_prensor_to_prensor
+|  |  |  |  |  |-- Schema.md
+|  |  |  |  |  |-- create_schema.md
+|  |  |  |  |  |-- map_prensor_to_prensor.md
+|  |  |  |  |-- map_values.md
+|  |  |  |  |-- map_values
+|  |  |  |  |  |-- map_many_values.md
+|  |  |  |  |  |-- map_values.md
+|  |  |  |  |  |-- map_values_anonymous.md
+|  |  |  |  |-- parquet.md
+|  |  |  |  |-- parquet
+|  |  |  |  |  |-- ParquetDataset.md
+|  |  |  |  |  |-- calculate_parquet_values.md
+|  |  |  |  |  |-- create_expression_from_parquet_file.md
+|  |  |  |  |-- placeholder.md
+|  |  |  |  |-- placeholder
+|  |  |  |  |  |-- create_expression_from_schema.md
+|  |  |  |  |  |-- get_placeholder_paths_from_graph.md
+|  |  |  |  |-- project.md
+|  |  |  |  |-- project
+|  |  |  |  |  |-- project.md
+|  |  |  |  |-- promote.md
+|  |  |  |  |-- promote
+|  |  |  |  |  |-- PromoteChildExpression.md
+|  |  |  |  |  |-- PromoteExpression.md
+|  |  |  |  |  |-- promote.md
+|  |  |  |  |  |-- promote_anonymous.md
+|  |  |  |  |-- promote_and_broadcast.md
+|  |  |  |  |-- promote_and_broadcast
+|  |  |  |  |  |-- promote_and_broadcast.md
+|  |  |  |  |  |-- promote_and_broadcast_anonymous.md
+|  |  |  |  |-- proto.md
+|  |  |  |  |-- proto
+|  |  |  |  |  |-- DescriptorPool.md
+|  |  |  |  |  |-- FileDescriptorSet.md
+|  |  |  |  |  |-- ProtoExpression.md
+|  |  |  |  |  |-- TransformFn.md
+|  |  |  |  |  |-- create_expression_from_file_descriptor_set.md
+|  |  |  |  |  |-- create_expression_from_proto.md
+|  |  |  |  |  |-- create_transformed_field.md
+|  |  |  |  |  |-- is_proto_expression.md
+|  |  |  |  |-- reroot.md
+|  |  |  |  |-- reroot
+|  |  |  |  |  |-- create_proto_index_field.md
+|  |  |  |  |  |-- reroot.md
+|  |  |  |  |-- size.md
+|  |  |  |  |-- size
+|  |  |  |  |  |-- SizeExpression.md
+|  |  |  |  |  |-- has.md
+|  |  |  |  |  |-- size.md
+|  |  |  |  |  |-- size_anonymous.md
+|  |  |  |  |-- slice_expression.md
+|  |  |  |  |-- slice_expression
+|  |  |  |  |  |-- IndexValue.md
+|  |  |  |  |  |-- slice_expression.md
+|  |  |  |-- s2t.md
+|  |  |  |-- s2t
+|  |  |  |  |-- ChildNodeTensor.md
+|  |  |  |  |-- Expression.md
+|  |  |  |  |-- LeafNodeTensor.md
+|  |  |  |  |-- NodeTensor.md
+|  |  |  |  |-- Path.md
+|  |  |  |  |-- Prensor.md
+|  |  |  |  |-- RootNodeTensor.md
+|  |  |  |  |-- Step.md
+|  |  |  |  |-- _api_cache.json
+|  |  |  |  |-- _toc.yaml
+|  |  |  |  |-- all_symbols.md
+|  |  |  |  |-- calculate_prensors.md
+|  |  |  |  |-- calculate_prensors_with_graph.md
+|  |  |  |  |-- calculate_prensors_with_source_paths.md
+|  |  |  |  |-- create_expression_from_file_descriptor_set.md
+|  |  |  |  |-- create_expression_from_prensor.md
+|  |  |  |  |-- create_expression_from_proto.md
+|  |  |  |  |-- create_path.md
+|  |  |  |  |-- create_prensor_from_descendant_nodes.md
+|  |  |  |  |-- create_prensor_from_root_and_children.md
+|  |  |  |  |-- get_default_options.md
+|  |  |  |  |-- get_options_with_minimal_checks.md
+|  |  |  |  |-- get_ragged_tensor.md
+|  |  |  |  |-- get_ragged_tensors.md
+|  |  |  |  |-- get_sparse_tensor.md
+|  |  |  |  |-- get_sparse_tensors.md
+|-- setup.py
+|-- struct2tensor
+|  |-- BUILD
+|  |-- __init__.py
+|  |-- benchmarks
+|  |  |-- BUILD
+|  |  |-- benchmark.proto
+|  |  |-- g3doc
+|  |  |  |-- README.md
+|  |  |  |-- images
+|  |  |  |  |-- broadcast_depth_2.png
+|  |  |  |  |-- broadcast_depth_5.png
+|  |  |  |  |-- project_deep_1.png
+|  |  |  |  |-- project_deep_5.png
+|  |  |  |  |-- project_flat_1.png
+|  |  |  |  |-- project_flat_5.png
+|  |  |  |  |-- promote_depth_1.png
+|  |  |  |  |-- promote_depth_4.png
+|  |  |  |  |-- reroot_depth_1.png
+|  |  |  |  |-- reroot_depth_4.png
+|  |  |-- serialization_benchmark.cc
+|  |  |-- struct2tensor_benchmark.py
+|  |  |-- struct2tensor_benchmark_util.py
+|  |  |-- testdata
+|  |  |  |-- BUILD
+|  |  |  |-- deep_all_types_4096.tfrecord.gz
+|  |  |  |-- deep_all_types_4096_positive.tfrecord.gz
+|  |  |  |-- flat_100_int_features_4096.tfrecord.gz
+|  |  |  |-- flat_all_types_100_int_values_4096.tfrecord.gz
+|  |  |  |-- flat_all_types_4096.tfrecord.gz
+|  |  |  |-- flat_all_types_4096_positive.tfrecord.gz
+|  |  |  |-- tf_example_100_int_features_4096.tfrecord.gz
+|  |  |  |-- tf_example_1_int_feature_100_values_4096.tfrecord.gz
+|  |  |  |-- tf_example_all_types_4096.tfrecord.gz
+|  |-- calculate.py
+|  |-- calculate_options.py
+|  |-- calculate_test.py
+|  |-- calculate_with_source_paths.py
+|  |-- calculate_with_source_paths_test.py
+|  |-- create_expression.py
+|  |-- create_expression_test.py
+|  |-- expression.py
+|  |-- expression_add.py
+|  |-- expression_add_test.py
+|  |-- expression_impl
+|  |  |-- __init__.py
+|  |  |-- apply_schema.py
+|  |  |-- apply_schema_test.py
+|  |  |-- broadcast.py
+|  |  |-- broadcast_test.py
+|  |  |-- depth_limit.py
+|  |  |-- depth_limit_test.py
+|  |  |-- filter_expression.py
+|  |  |-- filter_expression_test.py
+|  |  |-- index.py
+|  |  |-- index_test.py
+|  |  |-- map_prensor.py
+|  |  |-- map_prensor_test.py
+|  |  |-- map_prensor_to_prensor.py
+|  |  |-- map_prensor_to_prensor_test.py
+|  |  |-- map_values.py
+|  |  |-- map_values_test.py
+|  |  |-- parquet.py
+|  |  |-- parquet_test.py
+|  |  |-- parse_message_level_ex.py
+|  |  |-- parse_message_level_ex_test.py
+|  |  |-- placeholder.py
+|  |  |-- placeholder_test.py
+|  |  |-- project.py
+|  |  |-- project_test.py
+|  |  |-- promote.py
+|  |  |-- promote_and_broadcast.py
+|  |  |-- promote_and_broadcast_test.py
+|  |  |-- promote_test.py
+|  |  |-- proto.py
+|  |  |-- proto_test.py
+|  |  |-- proto_test_util.py
+|  |  |-- raw_parquet_dataset_test.py
+|  |  |-- reroot.py
+|  |  |-- reroot_test.py
+|  |  |-- size.py
+|  |  |-- size_test.py
+|  |  |-- slice_expression.py
+|  |  |-- slice_expression_test.py
+|  |-- expression_test.py
+|  |-- kernels
+|  |  |-- BUILD
+|  |  |-- decode_proto_map_op.cc
+|  |  |-- decode_proto_sparse_op.cc
+|  |  |-- equi_join_indices_op.cc
+|  |  |-- parquet
+|  |  |  |-- BUILD
+|  |  |  |-- parent_indices_builder.cc
+|  |  |  |-- parent_indices_builder.h
+|  |  |  |-- parquet_dataset_kernel.cc
+|  |  |  |-- parquet_reader.cc
+|  |  |  |-- parquet_reader.h
+|  |  |  |-- parquet_reader_util.cc
+|  |  |  |-- parquet_reader_util.h
+|  |  |-- run_length_before_op.cc
+|  |  |-- streaming_proto_reader.cc
+|  |  |-- streaming_proto_reader.h
+|  |  |-- vector_to_tensor.h
+|  |-- ops
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- decode_proto_map_op.cc
+|  |  |-- decode_proto_sparse_op.cc
+|  |  |-- equi_join_indices_op.cc
+|  |  |-- file_descriptor_set.py
+|  |  |-- file_descriptor_set_test.py
+|  |  |-- gen_decode_proto_map_op.py
+|  |  |-- gen_decode_proto_sparse.py
+|  |  |-- gen_equi_join_indices.py
+|  |  |-- gen_parquet_dataset.py
+|  |  |-- gen_run_length_before.py
+|  |  |-- op_kernel_registration_test.cc
+|  |  |-- parquet_dataset_op.cc
+|  |  |-- run_length_before_op.cc
+|  |  |-- struct2tensor_ops.py
+|  |  |-- struct2tensor_ops_test.py
+|  |-- path.py
+|  |-- path_test.py
+|  |-- prensor.py
+|  |-- prensor_test.py
+|  |-- prensor_to_structured_tensor.py
+|  |-- prensor_to_structured_tensor_test.py
+|  |-- prensor_util.py
+|  |-- prensor_value.py
+|  |-- prensor_value_test.py
+|  |-- proto
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- query_metadata.proto
+|  |-- struct2tensor.bzl
+|  |-- struct2tensor_module_test.py
+|  |-- structured_tensor_to_prensor.py
+|  |-- structured_tensor_to_prensor_test.py
+|  |-- test
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- dependent_test.proto
+|  |  |-- expression_test_util.py
+|  |  |-- prensor_test_util.py
+|  |  |-- test.proto
+|  |  |-- test_any.proto
+|  |  |-- test_extension.proto
+|  |  |-- test_map.proto
+|  |  |-- test_proto3.proto
+|  |-- testdata
+|  |  |-- parquet_testdata
+|  |  |  |-- BUILD
+|  |  |  |-- all_data_types.parquet
+|  |  |  |-- dremel_example.parquet
+|  |  |  |-- dremel_example_two_row_groups.parquet
+|  |-- tools
+|  |  |-- BUILD
+|  |  |-- build_docs.py
+|  |  |-- docker_build
+|  |  |  |-- Dockerfile.manylinux2010
+|  |  |  |-- build_manylinux.sh
+|  |  |-- tf_serving_docker
+|  |  |  |-- Dockerfile
+|  |-- version.py
+|  |-- workspace.bzl
+|-- tf
+|  |-- BUILD
+|  |-- BUILD.tpl
+|  |-- tf_configure.bzl
+|-- third_party
+|  |-- BUILD
+|  |-- arrow.BUILD
+|  |-- parquet
+|  |  |-- README.md
+|  |  |-- parquet_types.cpp
+|  |  |-- parquet_types.h
+|  |-- thrift.BUILD

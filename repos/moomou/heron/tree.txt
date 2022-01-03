@@ -1,0 +1,2655 @@
+|-- .gitignore
+|-- .gitmodules
+|-- .travis.yml
+|-- ADOPTERS.md
+|-- LICENSE
+|-- NOTICE
+|-- README.md
+|-- WORKSPACE
+|-- bazel_configure.py
+|-- config
+|  |-- BUILD
+|  |-- autogen.sh
+|  |-- configure.ac
+|  |-- empty.cc
+|  |-- heron.def
+|  |-- m4
+|  |  |-- acx_pthread.m4
+|  |  |-- gxx_stdio_filebuf.m4
+|-- contrib
+|  |-- kafka-spout
+|  |  |-- README.md
+|  |  |-- pom.xml
+|  |  |-- src
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- org
+|  |  |  |  |  |-- apache
+|  |  |  |  |  |  |-- storm
+|  |  |  |  |  |  |  |-- kafka
+|  |  |  |  |  |  |  |  |-- Broker.java
+|  |  |  |  |  |  |  |  |-- BrokerHosts.java
+|  |  |  |  |  |  |  |  |-- ByteBufferSerializer.java
+|  |  |  |  |  |  |  |  |-- DynamicBrokersReader.java
+|  |  |  |  |  |  |  |  |-- DynamicPartitionConnections.java
+|  |  |  |  |  |  |  |  |-- ExponentialBackoffMsgRetryManager.java
+|  |  |  |  |  |  |  |  |-- FailedFetchException.java
+|  |  |  |  |  |  |  |  |-- FailedMsgRetryManager.java
+|  |  |  |  |  |  |  |  |-- IntSerializer.java
+|  |  |  |  |  |  |  |  |-- KafkaConfig.java
+|  |  |  |  |  |  |  |  |-- KafkaError.java
+|  |  |  |  |  |  |  |  |-- KafkaSpout.java
+|  |  |  |  |  |  |  |  |-- KafkaUtils.java
+|  |  |  |  |  |  |  |  |-- KeyValueScheme.java
+|  |  |  |  |  |  |  |  |-- KeyValueSchemeAsMultiScheme.java
+|  |  |  |  |  |  |  |  |-- MessageMetadataScheme.java
+|  |  |  |  |  |  |  |  |-- MessageMetadataSchemeAsMultiScheme.java
+|  |  |  |  |  |  |  |  |-- Partition.java
+|  |  |  |  |  |  |  |  |-- PartitionCoordinator.java
+|  |  |  |  |  |  |  |  |-- PartitionManager.java
+|  |  |  |  |  |  |  |  |-- SpoutConfig.java
+|  |  |  |  |  |  |  |  |-- StaticCoordinator.java
+|  |  |  |  |  |  |  |  |-- StaticHosts.java
+|  |  |  |  |  |  |  |  |-- StaticPartitionConnections.java
+|  |  |  |  |  |  |  |  |-- StringKeyValueScheme.java
+|  |  |  |  |  |  |  |  |-- StringMessageAndMetadataScheme.java
+|  |  |  |  |  |  |  |  |-- StringMultiSchemeWithTopic.java
+|  |  |  |  |  |  |  |  |-- StringScheme.java
+|  |  |  |  |  |  |  |  |-- TopicOffsetOutOfRangeException.java
+|  |  |  |  |  |  |  |  |-- ZkCoordinator.java
+|  |  |  |  |  |  |  |  |-- ZkHosts.java
+|  |  |  |  |  |  |  |  |-- ZkState.java
+|  |  |  |  |  |  |  |  |-- trident
+|  |  |  |  |  |  |  |  |  |-- GlobalPartitionInformation.java
+|  |  |  |  |  |  |  |  |  |-- IBrokerReader.java
+|  |  |  |  |  |  |  |  |  |-- MaxMetric.java
+|  |  |  |  |  |  |  |  |  |-- StaticBrokerReader.java
+|  |  |  |  |  |  |  |  |  |-- ZkBrokerReader.java
+|  |  |-- tests
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- org
+|  |  |  |  |  |-- apache
+|  |  |  |  |  |  |-- storm
+|  |  |  |  |  |  |  |-- kafka
+|  |  |  |  |  |  |  |  |-- DynamicBrokersReaderTest.java
+|  |  |  |  |  |  |  |  |-- ExponentialBackoffMsgRetryManagerTest.java
+|  |  |  |  |  |  |  |  |-- KafkaErrorTest.java
+|  |  |  |  |  |  |  |  |-- KafkaTestBroker.java
+|  |  |  |  |  |  |  |  |-- KafkaUtilsTest.java
+|  |  |  |  |  |  |  |  |-- StringKeyValueSchemeTest.java
+|  |  |  |  |  |  |  |  |-- TestStringScheme.java
+|  |  |  |  |  |  |  |  |-- TestUtils.java
+|  |  |  |  |  |  |  |  |-- ZkCoordinatorTest.java
+|-- docker
+|  |-- .tarignore
+|  |-- Dockerfile.centos7
+|  |-- Dockerfile.dist.ubuntu14.04
+|  |-- Dockerfile.dist.ubuntu16.04
+|  |-- Dockerfile.ubuntu14.04
+|  |-- Dockerfile.ubuntu15.10
+|  |-- Dockerfile.ubuntu16.04
+|  |-- Readme.md
+|  |-- build-artifacts.sh
+|  |-- build-docker.sh
+|  |-- cleanup-dockers.sh
+|  |-- compile-docker.sh
+|  |-- compile-platform.sh
+|  |-- docker-compose.yml
+|  |-- start-docker.sh
+|  |-- stop-docker.sh
+|-- heron
+|  |-- api
+|  |  |-- src
+|  |  |  |-- BUILD
+|  |  |  |-- META-INF
+|  |  |  |  |-- services
+|  |  |  |  |  |-- javax.annotation.processing.Processor
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- api
+|  |  |  |  |  |  |  |  |-- Config.java
+|  |  |  |  |  |  |  |  |-- HeronSubmitter.java
+|  |  |  |  |  |  |  |  |-- HeronTopology.java
+|  |  |  |  |  |  |  |  |-- bolt
+|  |  |  |  |  |  |  |  |  |-- BaseBasicBolt.java
+|  |  |  |  |  |  |  |  |  |-- BaseRichBolt.java
+|  |  |  |  |  |  |  |  |  |-- BasicBoltExecutor.java
+|  |  |  |  |  |  |  |  |  |-- BasicOutputCollector.java
+|  |  |  |  |  |  |  |  |  |-- IBasicBolt.java
+|  |  |  |  |  |  |  |  |  |-- IBasicOutputCollector.java
+|  |  |  |  |  |  |  |  |  |-- IBolt.java
+|  |  |  |  |  |  |  |  |  |-- IErrorReporter.java
+|  |  |  |  |  |  |  |  |  |-- IOutputCollector.java
+|  |  |  |  |  |  |  |  |  |-- IRichBolt.java
+|  |  |  |  |  |  |  |  |  |-- OutputCollector.java
+|  |  |  |  |  |  |  |  |-- exception
+|  |  |  |  |  |  |  |  |  |-- AlreadyAliveException.java
+|  |  |  |  |  |  |  |  |  |-- FailedException.java
+|  |  |  |  |  |  |  |  |  |-- InvalidTopologyException.java
+|  |  |  |  |  |  |  |  |  |-- ReportedFailedException.java
+|  |  |  |  |  |  |  |  |-- grouping
+|  |  |  |  |  |  |  |  |  |-- CustomStreamGrouping.java
+|  |  |  |  |  |  |  |  |-- hooks
+|  |  |  |  |  |  |  |  |  |-- BaseTaskHook.java
+|  |  |  |  |  |  |  |  |  |-- ITaskHook.java
+|  |  |  |  |  |  |  |  |  |-- info
+|  |  |  |  |  |  |  |  |  |  |-- BoltAckInfo.java
+|  |  |  |  |  |  |  |  |  |  |-- BoltExecuteInfo.java
+|  |  |  |  |  |  |  |  |  |  |-- BoltFailInfo.java
+|  |  |  |  |  |  |  |  |  |  |-- EmitInfo.java
+|  |  |  |  |  |  |  |  |  |  |-- SpoutAckInfo.java
+|  |  |  |  |  |  |  |  |  |  |-- SpoutFailInfo.java
+|  |  |  |  |  |  |  |  |-- metric
+|  |  |  |  |  |  |  |  |  |-- AssignableMetric.java
+|  |  |  |  |  |  |  |  |  |-- CombinedMetric.java
+|  |  |  |  |  |  |  |  |  |-- CountMetric.java
+|  |  |  |  |  |  |  |  |  |-- GlobalMetrics.java
+|  |  |  |  |  |  |  |  |  |-- ICombiner.java
+|  |  |  |  |  |  |  |  |  |-- IMetric.java
+|  |  |  |  |  |  |  |  |  |-- IMetricsRegister.java
+|  |  |  |  |  |  |  |  |  |-- IReducer.java
+|  |  |  |  |  |  |  |  |  |-- MeanReducer.java
+|  |  |  |  |  |  |  |  |  |-- MeanReducerState.java
+|  |  |  |  |  |  |  |  |  |-- MultiAssignableMetric.java
+|  |  |  |  |  |  |  |  |  |-- MultiCountMetric.java
+|  |  |  |  |  |  |  |  |  |-- MultiReducedMetric.java
+|  |  |  |  |  |  |  |  |  |-- ReducedMetric.java
+|  |  |  |  |  |  |  |  |-- serializer
+|  |  |  |  |  |  |  |  |  |-- IPluggableSerializer.java
+|  |  |  |  |  |  |  |  |  |-- JavaSerializer.java
+|  |  |  |  |  |  |  |  |  |-- KryoSerializer.java
+|  |  |  |  |  |  |  |  |-- spout
+|  |  |  |  |  |  |  |  |  |-- BaseRichSpout.java
+|  |  |  |  |  |  |  |  |  |-- IMultiSchemableSpout.java
+|  |  |  |  |  |  |  |  |  |-- IRichSpout.java
+|  |  |  |  |  |  |  |  |  |-- ISchemableSpout.java
+|  |  |  |  |  |  |  |  |  |-- ISpout.java
+|  |  |  |  |  |  |  |  |  |-- ISpoutOutputCollector.java
+|  |  |  |  |  |  |  |  |  |-- MultiScheme.java
+|  |  |  |  |  |  |  |  |  |-- RawMultiScheme.java
+|  |  |  |  |  |  |  |  |  |-- RawScheme.java
+|  |  |  |  |  |  |  |  |  |-- Scheme.java
+|  |  |  |  |  |  |  |  |  |-- SchemeAsMultiScheme.java
+|  |  |  |  |  |  |  |  |  |-- SpoutOutputCollector.java
+|  |  |  |  |  |  |  |  |-- topology
+|  |  |  |  |  |  |  |  |  |-- BaseComponent.java
+|  |  |  |  |  |  |  |  |  |-- BaseComponentDeclarer.java
+|  |  |  |  |  |  |  |  |  |-- BaseConfigurationDeclarer.java
+|  |  |  |  |  |  |  |  |  |-- BoltDeclarer.java
+|  |  |  |  |  |  |  |  |  |-- ComponentConfigurationDeclarer.java
+|  |  |  |  |  |  |  |  |  |-- GeneralTopologyContext.java
+|  |  |  |  |  |  |  |  |  |-- IComponent.java
+|  |  |  |  |  |  |  |  |  |-- OutputFieldsDeclarer.java
+|  |  |  |  |  |  |  |  |  |-- OutputFieldsGetter.java
+|  |  |  |  |  |  |  |  |  |-- SpoutDeclarer.java
+|  |  |  |  |  |  |  |  |  |-- TopologyBuilder.java
+|  |  |  |  |  |  |  |  |  |-- TopologyContext.java
+|  |  |  |  |  |  |  |  |-- tuple
+|  |  |  |  |  |  |  |  |  |-- Fields.java
+|  |  |  |  |  |  |  |  |  |-- Tuple.java
+|  |  |  |  |  |  |  |  |  |-- Values.java
+|  |  |  |  |  |  |  |  |-- utils
+|  |  |  |  |  |  |  |  |  |-- DefaultMaxSpoutPendingTuner.java
+|  |  |  |  |  |  |  |  |  |-- Utils.java
+|  |  |  |  |  |  |  |-- classification
+|  |  |  |  |  |  |  |  |-- HeronAnnotationProcessor.java
+|  |  |  |  |  |  |  |  |-- InterfaceAudience.java
+|  |  |  |  |  |  |  |  |-- InterfaceStability.java
+|  |-- common
+|  |  |-- src
+|  |  |  |-- cpp
+|  |  |  |  |-- basics
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- basics.cpp
+|  |  |  |  |  |-- basics.h
+|  |  |  |  |  |-- callback.h
+|  |  |  |  |  |-- callback1.h
+|  |  |  |  |  |-- classcallback.h
+|  |  |  |  |  |-- classcallback1.h
+|  |  |  |  |  |-- execmeta.cpp
+|  |  |  |  |  |-- execmeta.h
+|  |  |  |  |  |-- fileutils.cpp
+|  |  |  |  |  |-- fileutils.h
+|  |  |  |  |  |-- iputils.cpp
+|  |  |  |  |  |-- iputils.h
+|  |  |  |  |  |-- modinit.cpp
+|  |  |  |  |  |-- modinit.h
+|  |  |  |  |  |-- processutils.cpp
+|  |  |  |  |  |-- processutils.h
+|  |  |  |  |  |-- randutils.cpp
+|  |  |  |  |  |-- randutils.h
+|  |  |  |  |  |-- ridgen.cpp
+|  |  |  |  |  |-- ridgen.h
+|  |  |  |  |  |-- sockutils.cpp
+|  |  |  |  |  |-- sockutils.h
+|  |  |  |  |  |-- spconsts.h
+|  |  |  |  |  |-- spfuncs.h
+|  |  |  |  |  |-- sphash.h
+|  |  |  |  |  |-- sprcodes.h
+|  |  |  |  |  |-- sptest.h
+|  |  |  |  |  |-- sptime.cpp
+|  |  |  |  |  |-- sptime.h
+|  |  |  |  |  |-- sptypes.h
+|  |  |  |  |  |-- strutils.cpp
+|  |  |  |  |  |-- strutils.h
+|  |  |  |  |-- config
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- cluster-config-reader.cpp
+|  |  |  |  |  |-- cluster-config-reader.h
+|  |  |  |  |  |-- cluster-config-vars.cpp
+|  |  |  |  |  |-- cluster-config-vars.h
+|  |  |  |  |  |-- config.h
+|  |  |  |  |  |-- helper.h
+|  |  |  |  |  |-- heron-internals-config-reader.cpp
+|  |  |  |  |  |-- heron-internals-config-reader.h
+|  |  |  |  |  |-- heron-internals-config-vars.cpp
+|  |  |  |  |  |-- heron-internals-config-vars.h
+|  |  |  |  |  |-- metrics-sinks-reader.cpp
+|  |  |  |  |  |-- metrics-sinks-reader.h
+|  |  |  |  |  |-- metrics-sinks-vars.cpp
+|  |  |  |  |  |-- metrics-sinks-vars.h
+|  |  |  |  |  |-- operational-config-reader.cpp
+|  |  |  |  |  |-- operational-config-reader.h
+|  |  |  |  |  |-- operational-config-vars.cpp
+|  |  |  |  |  |-- operational-config-vars.h
+|  |  |  |  |  |-- physical-plan-helper.cpp
+|  |  |  |  |  |-- physical-plan-helper.h
+|  |  |  |  |  |-- reader.h
+|  |  |  |  |  |-- topology-config-helper.cpp
+|  |  |  |  |  |-- topology-config-helper.h
+|  |  |  |  |  |-- topology-config-reader.cpp
+|  |  |  |  |  |-- topology-config-reader.h
+|  |  |  |  |  |-- topology-config-vars.cpp
+|  |  |  |  |  |-- topology-config-vars.h
+|  |  |  |  |  |-- yaml-file-reader.cpp
+|  |  |  |  |  |-- yaml-file-reader.h
+|  |  |  |  |-- errors
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- errors.h
+|  |  |  |  |  |-- gexception.cpp
+|  |  |  |  |  |-- gexception.h
+|  |  |  |  |  |-- modinit.cpp
+|  |  |  |  |  |-- modinit.h
+|  |  |  |  |  |-- sperrimpl.cpp
+|  |  |  |  |  |-- sperrimpl.h
+|  |  |  |  |  |-- sperrmod.h
+|  |  |  |  |  |-- sperror.cpp
+|  |  |  |  |  |-- sperror.h
+|  |  |  |  |  |-- spexcept.cpp
+|  |  |  |  |  |-- spexcept.h
+|  |  |  |  |  |-- spin.h
+|  |  |  |  |  |-- sys-errors.dat
+|  |  |  |  |  |-- syserr.h
+|  |  |  |  |-- metrics
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- assignable-metric.cpp
+|  |  |  |  |  |-- assignable-metric.h
+|  |  |  |  |  |-- count-metric.cpp
+|  |  |  |  |  |-- count-metric.h
+|  |  |  |  |  |-- imetric.h
+|  |  |  |  |  |-- mean-metric.cpp
+|  |  |  |  |  |-- mean-metric.h
+|  |  |  |  |  |-- metrics-mgr-st.cpp
+|  |  |  |  |  |-- metrics-mgr-st.h
+|  |  |  |  |  |-- metrics.h
+|  |  |  |  |  |-- metricsmgr-client.cpp
+|  |  |  |  |  |-- metricsmgr-client.h
+|  |  |  |  |  |-- multi-assignable-metric.cpp
+|  |  |  |  |  |-- multi-assignable-metric.h
+|  |  |  |  |  |-- multi-count-metric.cpp
+|  |  |  |  |  |-- multi-count-metric.h
+|  |  |  |  |  |-- multi-mean-metric.cpp
+|  |  |  |  |  |-- multi-mean-metric.h
+|  |  |  |  |  |-- time-spent-metric.cpp
+|  |  |  |  |  |-- time-spent-metric.h
+|  |  |  |  |  |-- tmaster-metrics.cpp
+|  |  |  |  |  |-- tmaster-metrics.h
+|  |  |  |  |-- network
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- asyncdns.cpp
+|  |  |  |  |  |-- asyncdns.h
+|  |  |  |  |  |-- baseclient.cpp
+|  |  |  |  |  |-- baseclient.h
+|  |  |  |  |  |-- baseconnection.cpp
+|  |  |  |  |  |-- baseconnection.h
+|  |  |  |  |  |-- baseserver.cpp
+|  |  |  |  |  |-- baseserver.h
+|  |  |  |  |  |-- client.cpp
+|  |  |  |  |  |-- client.h
+|  |  |  |  |  |-- connection.cpp
+|  |  |  |  |  |-- connection.h
+|  |  |  |  |  |-- event_loop.h
+|  |  |  |  |  |-- event_loop_impl.cpp
+|  |  |  |  |  |-- event_loop_impl.h
+|  |  |  |  |  |-- httpclient.cpp
+|  |  |  |  |  |-- httpclient.h
+|  |  |  |  |  |-- httpserver.cpp
+|  |  |  |  |  |-- httpserver.h
+|  |  |  |  |  |-- httputils.cpp
+|  |  |  |  |  |-- httputils.h
+|  |  |  |  |  |-- misc
+|  |  |  |  |  |  |-- echoclient-main.cpp
+|  |  |  |  |  |  |-- echoclient.cpp
+|  |  |  |  |  |  |-- echoclient.h
+|  |  |  |  |  |  |-- echoserver-main.cpp
+|  |  |  |  |  |  |-- echoserver.cpp
+|  |  |  |  |  |  |-- echoserver.h
+|  |  |  |  |  |  |-- samplehttpclient-main.cpp
+|  |  |  |  |  |  |-- samplehttpserver-main.cpp
+|  |  |  |  |  |  |-- samplehttpserver.cpp
+|  |  |  |  |  |  |-- samplehttpserver.h
+|  |  |  |  |  |  |-- tests.proto
+|  |  |  |  |  |-- modinit.cpp
+|  |  |  |  |  |-- modinit.h
+|  |  |  |  |  |-- network.h
+|  |  |  |  |  |-- network_error.h
+|  |  |  |  |  |-- networkoptions.cpp
+|  |  |  |  |  |-- networkoptions.h
+|  |  |  |  |  |-- packet.cpp
+|  |  |  |  |  |-- packet.h
+|  |  |  |  |  |-- regevent.h
+|  |  |  |  |  |-- server.cpp
+|  |  |  |  |  |-- server.h
+|  |  |  |  |-- setup
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- zk-setup.cpp
+|  |  |  |  |-- threads
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- modinit.cpp
+|  |  |  |  |  |-- modinit.h
+|  |  |  |  |  |-- pcqueue.cpp
+|  |  |  |  |  |-- pcqueue.h
+|  |  |  |  |  |-- spcountdownlatch.cpp
+|  |  |  |  |  |-- spcountdownlatch.h
+|  |  |  |  |  |-- threads.h
+|  |  |  |  |-- zookeeper
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- mock_zkclient.h
+|  |  |  |  |  |-- zkclient.cpp
+|  |  |  |  |  |-- zkclient.h
+|  |  |  |  |  |-- zkclient_factory.h
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |-- basics
+|  |  |  |  |  |  |  |  |  |-- Communicator.java
+|  |  |  |  |  |  |  |  |  |-- Constants.java
+|  |  |  |  |  |  |  |  |  |-- FileUtils.java
+|  |  |  |  |  |  |  |  |  |-- ISelectHandler.java
+|  |  |  |  |  |  |  |  |  |-- NIOLooper.java
+|  |  |  |  |  |  |  |  |  |-- Pair.java
+|  |  |  |  |  |  |  |  |  |-- SingletonRegistry.java
+|  |  |  |  |  |  |  |  |  |-- SlaveLooper.java
+|  |  |  |  |  |  |  |  |  |-- SysUtils.java
+|  |  |  |  |  |  |  |  |  |-- TypeUtils.java
+|  |  |  |  |  |  |  |  |  |-- WakeableLooper.java
+|  |  |  |  |  |  |  |  |-- config
+|  |  |  |  |  |  |  |  |  |-- ClusterConfigReader.java
+|  |  |  |  |  |  |  |  |  |-- Config.java
+|  |  |  |  |  |  |  |  |  |-- ConfigReader.java
+|  |  |  |  |  |  |  |  |  |-- SystemConfig.java
+|  |  |  |  |  |  |  |  |-- network
+|  |  |  |  |  |  |  |  |  |-- HeronClient.java
+|  |  |  |  |  |  |  |  |  |-- HeronServer.java
+|  |  |  |  |  |  |  |  |  |-- HeronSocketOptions.java
+|  |  |  |  |  |  |  |  |  |-- IncomingPacket.java
+|  |  |  |  |  |  |  |  |  |-- OutgoingPacket.java
+|  |  |  |  |  |  |  |  |  |-- REQID.java
+|  |  |  |  |  |  |  |  |  |-- SocketChannelHelper.java
+|  |  |  |  |  |  |  |  |  |-- StatusCode.java
+|  |  |  |  |  |  |  |  |-- utils
+|  |  |  |  |  |  |  |  |  |-- logging
+|  |  |  |  |  |  |  |  |  |  |-- ErrorReportLoggingHandler.java
+|  |  |  |  |  |  |  |  |  |  |-- LoggingHelper.java
+|  |  |  |  |  |  |  |  |  |-- metrics
+|  |  |  |  |  |  |  |  |  |  |-- BoltMetrics.java
+|  |  |  |  |  |  |  |  |  |  |-- JVMMetrics.java
+|  |  |  |  |  |  |  |  |  |  |-- MetricsCollector.java
+|  |  |  |  |  |  |  |  |  |  |-- SpoutMetrics.java
+|  |  |  |  |  |  |  |  |  |-- misc
+|  |  |  |  |  |  |  |  |  |  |-- CustomStreamGroupingHelper.java
+|  |  |  |  |  |  |  |  |  |  |-- PhysicalPlanHelper.java
+|  |  |  |  |  |  |  |  |  |  |-- SerializeDeSerializeHelper.java
+|  |  |  |  |  |  |  |  |  |  |-- ThreadNames.java
+|  |  |  |  |  |  |  |  |  |  |-- TupleKeyGenerator.java
+|  |  |  |  |  |  |  |  |  |-- topology
+|  |  |  |  |  |  |  |  |  |  |-- GeneralTopologyContextImpl.java
+|  |  |  |  |  |  |  |  |  |  |-- TopologyContextImpl.java
+|  |  |  |  |  |  |  |  |  |-- tuple
+|  |  |  |  |  |  |  |  |  |  |-- TickTuple.java
+|  |  |  |  |  |  |  |  |  |  |-- TupleImpl.java
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- basics
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- event_looper.py
+|  |  |  |  |  |-- gateway_looper.py
+|  |  |  |  |-- config
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- system_config.py
+|  |  |  |  |-- constants.py
+|  |  |  |  |-- network
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- heron_client.py
+|  |  |  |  |  |-- protocol.py
+|  |  |  |  |  |-- socket_options.py
+|  |  |  |  |-- pex_loader.py
+|  |  |  |  |-- utils
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- log.py
+|  |  |  |  |  |-- metrics
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- global_metrics.py
+|  |  |  |  |  |  |-- metrics.py
+|  |  |  |  |  |  |-- metrics_helper.py
+|  |  |  |  |  |  |-- py_metrics.py
+|  |  |  |  |  |-- misc
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- communicator.py
+|  |  |  |  |  |  |-- custom_grouping_helper.py
+|  |  |  |  |  |  |-- outgoing_tuple_helper.py
+|  |  |  |  |  |  |-- pplan_helper.py
+|  |  |  |  |  |  |-- serializer.py
+|  |  |  |  |  |  |-- serializer_helper.py
+|  |  |  |  |  |-- topology
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- custom_grouping.py
+|  |  |  |  |  |  |-- task_hook.py
+|  |  |  |  |  |  |-- topology_context.py
+|  |  |  |  |  |-- tuple.py
+|  |  |-- tests
+|  |  |  |-- cpp
+|  |  |  |  |-- basics
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- fileutils_unittest.cpp
+|  |  |  |  |  |-- rid_unittest.cpp
+|  |  |  |  |  |-- strutils_unittest.cpp
+|  |  |  |  |  |-- utils_unittest.cpp
+|  |  |  |  |-- errors
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- errors.dat
+|  |  |  |  |  |-- errors_unittest.cpp
+|  |  |  |  |  |-- module_unittest.cpp
+|  |  |  |  |  |-- syserrs_unittest.cpp
+|  |  |  |  |-- metrics
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- count-metric_unittest.cpp
+|  |  |  |  |  |-- mean-metric_unittest.cpp
+|  |  |  |  |  |-- multi-count-metric_unittest.cpp
+|  |  |  |  |  |-- multi-mean-metric_unittest.cpp
+|  |  |  |  |  |-- time-spent-metric_unittest.cpp
+|  |  |  |  |-- network
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- client_unittest.cpp
+|  |  |  |  |  |-- client_unittest.h
+|  |  |  |  |  |-- host_unittest.h
+|  |  |  |  |  |-- http_client_unittest.cpp
+|  |  |  |  |  |-- http_server_unittest.cpp
+|  |  |  |  |  |-- http_server_unittest.h
+|  |  |  |  |  |-- http_unittest.cpp
+|  |  |  |  |  |-- oclient_unittest.cpp
+|  |  |  |  |  |-- oclient_unittest.h
+|  |  |  |  |  |-- order_unittest.cpp
+|  |  |  |  |  |-- oserver_unittest.cpp
+|  |  |  |  |  |-- oserver_unittest.h
+|  |  |  |  |  |-- packet_unittest.cpp
+|  |  |  |  |  |-- server_unittest.cpp
+|  |  |  |  |  |-- server_unittest.h
+|  |  |  |  |  |-- switch_unittest.cpp
+|  |  |  |  |  |-- unittests.proto
+|  |  |  |  |-- threads
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- spcountdownlatch_unittest.cpp
+|  |  |  |  |-- zookeeper
+|  |  |  |  |  |-- simpletest.cpp
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |-- basics
+|  |  |  |  |  |  |  |  |  |-- CommunicatorTest.java
+|  |  |  |  |  |  |  |  |  |-- FileUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- SysUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- WakeableLooperTest.java
+|  |  |  |  |  |  |  |  |-- config
+|  |  |  |  |  |  |  |  |  |-- ClusterConfigReaderTest.java
+|  |  |  |  |  |  |  |  |  |-- ConfigReaderTest.java
+|  |  |  |  |  |  |  |  |  |-- Constants.java
+|  |  |  |  |  |  |  |  |  |-- SystemConfigTest.java
+|  |  |  |  |  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |  |  |  |  |-- cluster
+|  |  |  |  |  |  |  |  |  |  |  |-- defaults.yaml
+|  |  |  |  |  |  |  |  |  |  |  |-- defaults2.yaml
+|  |  |  |  |  |  |  |  |  |  |-- defaults.yaml
+|  |  |  |  |  |  |  |  |  |  |-- defaults1.yaml
+|  |  |  |  |  |  |  |  |  |  |-- sysconfig.yaml
+|  |  |  |  |  |  |  |  |-- network
+|  |  |  |  |  |  |  |  |  |-- EchoTest.java
+|  |  |  |  |  |  |  |  |  |-- HeronServerTest.java
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- basics
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- event_looper_unittest.py
+|  |  |  |  |  |-- gateway_looper_unittest.py
+|  |  |  |  |-- mock_protobuf.py
+|  |  |  |  |-- network
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- heron_client_unittest.py
+|  |  |  |  |  |-- mock_generator.py
+|  |  |  |  |  |-- protocol_unittest.py
+|  |  |  |  |-- pex_loader
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- constants.py
+|  |  |  |  |  |-- pex_loader_unittest.py
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- pex
+|  |  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |  |-- sample_pex.pex
+|  |  |  |  |  |  |-- src
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- sample.py
+|  |  |  |  |-- utils
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- communicator_unittest.py
+|  |  |  |  |  |-- custom_grouping_unittest.py
+|  |  |  |  |  |-- global_metrics_unittest.py
+|  |  |  |  |  |-- metrics_helper_unittest.py
+|  |  |  |  |  |-- metrics_unittest.py
+|  |  |  |  |  |-- mock_generator.py
+|  |  |  |  |  |-- outgoing_tuple_helper_unittest.py
+|  |  |  |  |  |-- pplan_helper_unittest.py
+|  |  |  |  |  |-- serializer_unittest.py
+|  |  |  |  |  |-- topology_context_unittest.py
+|  |  |  |  |  |-- tuple_helper_unittest.py
+|  |-- config
+|  |  |-- src
+|  |  |  |-- yaml
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- conf
+|  |  |  |  |  |-- aurora
+|  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |-- client.yaml
+|  |  |  |  |  |  |-- heron.aurora
+|  |  |  |  |  |  |-- heron_internals.yaml
+|  |  |  |  |  |  |-- metrics_sinks.yaml
+|  |  |  |  |  |  |-- packing.yaml
+|  |  |  |  |  |  |-- scheduler.yaml
+|  |  |  |  |  |  |-- statemgr.yaml
+|  |  |  |  |  |  |-- uploader.yaml
+|  |  |  |  |  |-- examples
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- aurora_scheduler.yaml
+|  |  |  |  |  |  |-- heron_internals.yaml
+|  |  |  |  |  |  |-- local_scheduler.yaml
+|  |  |  |  |  |  |-- localfs_statemgr.yaml
+|  |  |  |  |  |  |-- localfs_uploader.yaml
+|  |  |  |  |  |  |-- metrics_sinks.yaml
+|  |  |  |  |  |  |-- roundrobin_packing.yaml
+|  |  |  |  |  |-- local
+|  |  |  |  |  |  |-- client.yaml
+|  |  |  |  |  |  |-- heron_internals.yaml
+|  |  |  |  |  |  |-- metrics_sinks.yaml
+|  |  |  |  |  |  |-- packing.yaml
+|  |  |  |  |  |  |-- scheduler.yaml
+|  |  |  |  |  |  |-- statemgr.yaml
+|  |  |  |  |  |  |-- uploader.yaml
+|  |  |  |  |  |-- localzk
+|  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |-- client.yaml
+|  |  |  |  |  |  |-- heron_internals.yaml
+|  |  |  |  |  |  |-- metrics_sinks.yaml
+|  |  |  |  |  |  |-- packing.yaml
+|  |  |  |  |  |  |-- scheduler.yaml
+|  |  |  |  |  |  |-- statemgr.yaml
+|  |  |  |  |  |  |-- uploader.yaml
+|  |  |  |  |  |-- marathon
+|  |  |  |  |  |  |-- client.yaml
+|  |  |  |  |  |  |-- heron_internals.yaml
+|  |  |  |  |  |  |-- metrics_sinks.yaml
+|  |  |  |  |  |  |-- packing.yaml
+|  |  |  |  |  |  |-- scheduler.yaml
+|  |  |  |  |  |  |-- statemgr.yaml
+|  |  |  |  |  |  |-- uploader.yaml
+|  |  |  |  |  |-- mesos
+|  |  |  |  |  |  |-- client.yaml
+|  |  |  |  |  |  |-- heron_internals.yaml
+|  |  |  |  |  |  |-- metrics_sinks.yaml
+|  |  |  |  |  |  |-- packing.yaml
+|  |  |  |  |  |  |-- scheduler.yaml
+|  |  |  |  |  |  |-- statemgr.yaml
+|  |  |  |  |  |  |-- uploader.yaml
+|  |  |  |  |  |-- slurm
+|  |  |  |  |  |  |-- client.yaml
+|  |  |  |  |  |  |-- heron_internals.yaml
+|  |  |  |  |  |  |-- metrics_sinks.yaml
+|  |  |  |  |  |  |-- packing.yaml
+|  |  |  |  |  |  |-- scheduler.yaml
+|  |  |  |  |  |  |-- slurm.sh
+|  |  |  |  |  |  |-- statemgr.yaml
+|  |  |  |  |  |  |-- uploader.yaml
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- test_heron_internals.yaml
+|  |  |  |  |  |-- yarn
+|  |  |  |  |  |  |-- client.yaml
+|  |  |  |  |  |  |-- heron_internals.yaml
+|  |  |  |  |  |  |-- metrics_sinks.yaml
+|  |  |  |  |  |  |-- packing.yaml
+|  |  |  |  |  |  |-- scheduler.yaml
+|  |  |  |  |  |  |-- statemgr.yaml
+|  |  |  |  |  |  |-- uploader.yaml
+|  |-- examples
+|  |  |-- src
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- examples
+|  |  |  |  |  |  |  |  |-- AckingTopology.java
+|  |  |  |  |  |  |  |  |-- ComponentJVMOptionsTopology.java
+|  |  |  |  |  |  |  |  |-- CustomGroupingTopology.java
+|  |  |  |  |  |  |  |  |-- ExclamationTopology.java
+|  |  |  |  |  |  |  |  |-- MultiSpoutExclamationTopology.java
+|  |  |  |  |  |  |  |  |-- MultiStageAckingTopology.java
+|  |  |  |  |  |  |  |  |-- TaskHookTopology.java
+|  |  |  |  |  |  |  |  |-- TestWordSpout.java
+|  |  |  |  |  |  |  |  |-- WordCountTopology.java
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- bolt
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- consume_bolt.py
+|  |  |  |  |  |-- count_bolt.py
+|  |  |  |  |  |-- half_ack_bolt.py
+|  |  |  |  |  |-- stream_aggregate_bolt.py
+|  |  |  |  |-- custom_grouping_topology.py
+|  |  |  |  |-- half_acking_topology.py
+|  |  |  |  |-- misc
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- test_task_hook.py
+|  |  |  |  |-- multi_stream_topology.py
+|  |  |  |  |-- spout
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- multi_stream_spout.py
+|  |  |  |  |  |-- word_spout.py
+|  |  |  |  |-- word_count_topology.py
+|  |  |  |-- scala
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- examples
+|  |  |  |  |  |  |  |  |-- SomeHeronBolt.scala
+|  |  |  |  |  |  |  |  |-- SomeStormBolt.scala
+|  |  |  |  |-- compile.sh
+|  |-- executor
+|  |  |-- src
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- heron_executor.py
+|  |  |-- tests
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- heron_executor_unittest.py
+|  |-- instance
+|  |  |-- src
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- instance
+|  |  |  |  |  |  |  |  |-- Gateway.java
+|  |  |  |  |  |  |  |  |-- HeronInstance.java
+|  |  |  |  |  |  |  |  |-- IInstance.java
+|  |  |  |  |  |  |  |  |-- InstanceControlMsg.java
+|  |  |  |  |  |  |  |  |-- OutgoingTupleCollection.java
+|  |  |  |  |  |  |  |  |-- Slave.java
+|  |  |  |  |  |  |  |  |-- bolt
+|  |  |  |  |  |  |  |  |  |-- BoltInstance.java
+|  |  |  |  |  |  |  |  |  |-- BoltOutputCollectorImpl.java
+|  |  |  |  |  |  |  |  |-- spout
+|  |  |  |  |  |  |  |  |  |-- RootTupleInfo.java
+|  |  |  |  |  |  |  |  |  |-- SpoutInstance.java
+|  |  |  |  |  |  |  |  |  |-- SpoutOutputCollectorImpl.java
+|  |  |  |  |  |  |  |-- metrics
+|  |  |  |  |  |  |  |  |-- GatewayMetrics.java
+|  |  |  |  |  |  |  |-- network
+|  |  |  |  |  |  |  |  |-- MetricsManagerClient.java
+|  |  |  |  |  |  |  |  |-- StreamManagerClient.java
+|  |  |  |  |-- shade.conf
+|  |  |  |-- python
+|  |  |  |  |-- basics
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- base_instance.py
+|  |  |  |  |  |-- bolt_instance.py
+|  |  |  |  |  |-- spout_instance.py
+|  |  |  |  |-- instance
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- st_heron_instance.py
+|  |  |  |  |-- network
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- metricsmgr_client.py
+|  |  |  |  |  |-- st_stmgr_client.py
+|  |  |-- tests
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- grouping
+|  |  |  |  |  |  |  |  |-- CustomGroupingTest.java
+|  |  |  |  |  |  |  |-- instance
+|  |  |  |  |  |  |  |  |-- bolt
+|  |  |  |  |  |  |  |  |  |-- BoltInstanceTest.java
+|  |  |  |  |  |  |  |  |-- spout
+|  |  |  |  |  |  |  |  |  |-- ActivateDeactivateTest.java
+|  |  |  |  |  |  |  |  |  |-- SpoutInstanceTest.java
+|  |  |  |  |  |  |  |-- metrics
+|  |  |  |  |  |  |  |  |-- GlobalMetricsTest.java
+|  |  |  |  |  |  |  |  |-- MultiAssignableMetricTest.java
+|  |  |  |  |  |  |  |-- network
+|  |  |  |  |  |  |  |  |-- ConnectTest.java
+|  |  |  |  |  |  |  |  |-- HandleReadTest.java
+|  |  |  |  |  |  |  |  |-- HandleWriteTest.java
+|  |  |  |  |  |  |  |-- resource
+|  |  |  |  |  |  |  |  |-- Constants.java
+|  |  |  |  |  |  |  |  |-- TestBolt.java
+|  |  |  |  |  |  |  |  |-- TestSpout.java
+|  |  |  |  |  |  |  |  |-- UnitTestHelper.java
+|  |  |  |-- python
+|  |  |  |  |-- basics
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- bolt_instance_unittest.py
+|  |  |  |  |-- network
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- metricsmgr_client_unittest.py
+|  |  |  |  |  |-- mock_generator.py
+|  |  |  |  |  |-- st_stmgr_client_unittest.py
+|  |-- metricsmgr
+|  |  |-- src
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- metricsmgr
+|  |  |  |  |  |  |  |  |-- MetricsManager.java
+|  |  |  |  |  |  |  |  |-- MetricsManagerServer.java
+|  |  |  |  |  |  |  |  |-- MetricsSinksConfig.java
+|  |  |  |  |  |  |  |  |-- executor
+|  |  |  |  |  |  |  |  |  |-- SinkExecutor.java
+|  |  |  |  |  |  |  |  |-- sink
+|  |  |  |  |  |  |  |  |  |-- FileSink.java
+|  |  |  |  |  |  |  |  |  |-- GraphiteSink.java
+|  |  |  |  |  |  |  |  |  |-- ScribeSink.java
+|  |  |  |  |  |  |  |  |  |-- SinkContextImpl.java
+|  |  |  |  |  |  |  |  |  |-- tmaster
+|  |  |  |  |  |  |  |  |  |  |-- TMasterClient.java
+|  |  |  |  |  |  |  |  |  |  |-- TMasterSink.java
+|  |  |  |-- thrift
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Empty.java
+|  |  |  |  |-- scribe.thrift
+|  |  |-- tests
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- metricsmgr
+|  |  |  |  |  |  |  |  |-- HandleTMasterLocationTest.java
+|  |  |  |  |  |  |  |  |-- MetricsManagerServerTest.java
+|  |  |  |  |  |  |  |  |-- executor
+|  |  |  |  |  |  |  |  |  |-- SinkExecutorTest.java
+|  |  |  |  |  |  |  |  |-- sink
+|  |  |  |  |  |  |  |  |  |-- FileSinkTest.java
+|  |  |  |  |  |  |  |  |  |-- tmaster
+|  |  |  |  |  |  |  |  |  |  |-- TMasterSinkTest.java
+|  |-- packing
+|  |  |-- src
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- packing
+|  |  |  |  |  |  |  |  |-- Container.java
+|  |  |  |  |  |  |  |  |-- NullPacking.java
+|  |  |  |  |  |  |  |  |-- PackingUtils.java
+|  |  |  |  |  |  |  |  |-- RamRequirement.java
+|  |  |  |  |  |  |  |  |-- binpacking
+|  |  |  |  |  |  |  |  |  |-- FirstFitDecreasingPacking.java
+|  |  |  |  |  |  |  |  |-- roundrobin
+|  |  |  |  |  |  |  |  |  |-- ResourceCompliantRRPacking.java
+|  |  |  |  |  |  |  |  |  |-- RoundRobinPacking.java
+|  |  |-- tests
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- packing
+|  |  |  |  |  |  |  |  |-- AssertPacking.java
+|  |  |  |  |  |  |  |  |-- binpacking
+|  |  |  |  |  |  |  |  |  |-- FirstFitDecreasingPackingTest.java
+|  |  |  |  |  |  |  |  |-- roundrobin
+|  |  |  |  |  |  |  |  |  |-- ResourceCompliantRRPackingTest.java
+|  |  |  |  |  |  |  |  |  |-- RoundRobinPackingTest.java
+|  |-- proto
+|  |  |-- BUILD
+|  |  |-- Empty.java
+|  |  |-- common.proto
+|  |  |-- empty.cc
+|  |  |-- execution_state.proto
+|  |  |-- messages.h
+|  |  |-- metrics.proto
+|  |  |-- networktests.proto
+|  |  |-- packing_plan.proto
+|  |  |-- physical_plan.proto
+|  |  |-- pplan.proto.oldx
+|  |  |-- scheduler.proto
+|  |  |-- stats.proto
+|  |  |-- stmgr.proto
+|  |  |-- tmaster.proto
+|  |  |-- topology.proto
+|  |  |-- tuple.proto
+|  |-- pyheron
+|  |  |-- src
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- bolt
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- base_bolt.py
+|  |  |  |  |  |-- bolt.py
+|  |  |  |  |-- component
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- base_component.py
+|  |  |  |  |  |-- component_spec.py
+|  |  |  |  |-- spout
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- base_spout.py
+|  |  |  |  |  |-- spout.py
+|  |  |  |  |-- stream.py
+|  |  |  |  |-- topology.py
+|  |  |-- tests
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- component_unittest.py
+|  |  |  |  |-- stream_unittest.py
+|  |  |  |  |-- topology_unittest.py
+|  |-- scheduler-core
+|  |  |-- src
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- scheduler
+|  |  |  |  |  |  |  |  |-- LaunchRunner.java
+|  |  |  |  |  |  |  |  |-- RuntimeManagerMain.java
+|  |  |  |  |  |  |  |  |-- RuntimeManagerRunner.java
+|  |  |  |  |  |  |  |  |-- SchedulerMain.java
+|  |  |  |  |  |  |  |  |-- SubmitterMain.java
+|  |  |  |  |  |  |  |  |-- UpdateTopologyManager.java
+|  |  |  |  |  |  |  |  |-- client
+|  |  |  |  |  |  |  |  |  |-- HttpServiceSchedulerClient.java
+|  |  |  |  |  |  |  |  |  |-- ISchedulerClient.java
+|  |  |  |  |  |  |  |  |  |-- LibrarySchedulerClient.java
+|  |  |  |  |  |  |  |  |  |-- SchedulerClientFactory.java
+|  |  |  |  |  |  |  |  |-- server
+|  |  |  |  |  |  |  |  |  |-- KillRequestHandler.java
+|  |  |  |  |  |  |  |  |  |-- RestartRequestHandler.java
+|  |  |  |  |  |  |  |  |  |-- SchedulerServer.java
+|  |  |  |  |  |  |  |  |  |-- UpdateRequestHandler.java
+|  |  |-- tests
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- scheduler
+|  |  |  |  |  |  |  |  |-- LaunchRunnerTest.java
+|  |  |  |  |  |  |  |  |-- RuntimeManagerMainTest.java
+|  |  |  |  |  |  |  |  |-- RuntimeManagerRunnerTest.java
+|  |  |  |  |  |  |  |  |-- SchedulerMainTest.java
+|  |  |  |  |  |  |  |  |-- SubmitterMainTest.java
+|  |  |  |  |  |  |  |  |-- UpdateTopologyManagerTest.java
+|  |  |  |  |  |  |  |  |-- client
+|  |  |  |  |  |  |  |  |  |-- HttpServiceSchedulerClientTest.java
+|  |  |  |  |  |  |  |  |  |-- LibrarySchedulerClientTest.java
+|  |  |  |  |  |  |  |  |  |-- SchedulerClientFactoryTest.java
+|  |  |  |  |  |  |  |  |-- server
+|  |  |  |  |  |  |  |  |  |-- SchedulerServerTest.java
+|  |-- schedulers
+|  |  |-- src
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- scheduler
+|  |  |  |  |  |  |  |  |-- NullLauncher.java
+|  |  |  |  |  |  |  |  |-- NullScheduler.java
+|  |  |  |  |  |  |  |  |-- aurora
+|  |  |  |  |  |  |  |  |  |-- AuroraContext.java
+|  |  |  |  |  |  |  |  |  |-- AuroraController.java
+|  |  |  |  |  |  |  |  |  |-- AuroraLauncher.java
+|  |  |  |  |  |  |  |  |  |-- AuroraScheduler.java
+|  |  |  |  |  |  |  |  |-- local
+|  |  |  |  |  |  |  |  |  |-- LocalConstants.java
+|  |  |  |  |  |  |  |  |  |-- LocalContext.java
+|  |  |  |  |  |  |  |  |  |-- LocalDefaults.java
+|  |  |  |  |  |  |  |  |  |-- LocalKeys.java
+|  |  |  |  |  |  |  |  |  |-- LocalLauncher.java
+|  |  |  |  |  |  |  |  |  |-- LocalScheduler.java
+|  |  |  |  |  |  |  |  |  |-- defaults.yaml
+|  |  |  |  |  |  |  |  |  |-- keys.yaml
+|  |  |  |  |  |  |  |  |-- marathon
+|  |  |  |  |  |  |  |  |  |-- MarathonConstants.java
+|  |  |  |  |  |  |  |  |  |-- MarathonContext.java
+|  |  |  |  |  |  |  |  |  |-- MarathonController.java
+|  |  |  |  |  |  |  |  |  |-- MarathonLauncher.java
+|  |  |  |  |  |  |  |  |  |-- MarathonScheduler.java
+|  |  |  |  |  |  |  |  |-- mesos
+|  |  |  |  |  |  |  |  |  |-- MesosContext.java
+|  |  |  |  |  |  |  |  |  |-- MesosLauncher.java
+|  |  |  |  |  |  |  |  |  |-- MesosScheduler.java
+|  |  |  |  |  |  |  |  |  |-- framework
+|  |  |  |  |  |  |  |  |  |  |-- BaseContainer.java
+|  |  |  |  |  |  |  |  |  |  |-- LaunchableTask.java
+|  |  |  |  |  |  |  |  |  |  |-- MesosFramework.java
+|  |  |  |  |  |  |  |  |  |  |-- TaskResources.java
+|  |  |  |  |  |  |  |  |  |  |-- TaskUtils.java
+|  |  |  |  |  |  |  |  |-- slurm
+|  |  |  |  |  |  |  |  |  |-- SlurmContext.java
+|  |  |  |  |  |  |  |  |  |-- SlurmController.java
+|  |  |  |  |  |  |  |  |  |-- SlurmLauncher.java
+|  |  |  |  |  |  |  |  |  |-- SlurmScheduler.java
+|  |  |  |  |  |  |  |  |-- yarn
+|  |  |  |  |  |  |  |  |  |-- HeronClientConfiguration.java
+|  |  |  |  |  |  |  |  |  |-- HeronConfigurationOptions.java
+|  |  |  |  |  |  |  |  |  |-- HeronDriverConfiguration.java
+|  |  |  |  |  |  |  |  |  |-- HeronExecutorTask.java
+|  |  |  |  |  |  |  |  |  |-- HeronMasterDriver.java
+|  |  |  |  |  |  |  |  |  |-- HeronMasterDriverProvider.java
+|  |  |  |  |  |  |  |  |  |-- HeronReefUtils.java
+|  |  |  |  |  |  |  |  |  |-- HeronTaskConfiguration.java
+|  |  |  |  |  |  |  |  |  |-- ReefClientSideHandlers.java
+|  |  |  |  |  |  |  |  |  |-- YarnLauncher.java
+|  |  |  |  |  |  |  |  |  |-- YarnScheduler.java
+|  |  |-- tests
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- scheduler
+|  |  |  |  |  |  |  |  |-- aurora
+|  |  |  |  |  |  |  |  |  |-- AuroraControllerTest.java
+|  |  |  |  |  |  |  |  |  |-- AuroraLauncherTest.java
+|  |  |  |  |  |  |  |  |  |-- AuroraSchedulerTest.java
+|  |  |  |  |  |  |  |  |-- local
+|  |  |  |  |  |  |  |  |  |-- LocalLauncherTest.java
+|  |  |  |  |  |  |  |  |  |-- LocalSchedulerTest.java
+|  |  |  |  |  |  |  |  |-- marathon
+|  |  |  |  |  |  |  |  |  |-- MarathonControllerTest.java
+|  |  |  |  |  |  |  |  |  |-- MarathonLauncherTest.java
+|  |  |  |  |  |  |  |  |  |-- MarathonSchedulerTest.java
+|  |  |  |  |  |  |  |  |-- mesos
+|  |  |  |  |  |  |  |  |  |-- MesosLauncherTest.java
+|  |  |  |  |  |  |  |  |  |-- MesosSchedulerTest.java
+|  |  |  |  |  |  |  |  |  |-- framework
+|  |  |  |  |  |  |  |  |  |  |-- LaunchableTaskTest.java
+|  |  |  |  |  |  |  |  |  |  |-- MesosFrameworkTest.java
+|  |  |  |  |  |  |  |  |  |  |-- TaskResourcesTest.java
+|  |  |  |  |  |  |  |  |  |  |-- TaskUtilsTest.java
+|  |  |  |  |  |  |  |  |-- slurm
+|  |  |  |  |  |  |  |  |  |-- SlurmControllerTest.java
+|  |  |  |  |  |  |  |  |  |-- SlurmLauncherTest.java
+|  |  |  |  |  |  |  |  |  |-- SlurmSchedulerTest.java
+|  |  |  |  |  |  |  |  |-- yarn
+|  |  |  |  |  |  |  |  |  |-- DriverOnLocalReefTest.java
+|  |  |  |  |  |  |  |  |  |-- HeronExecutorTaskTest.java
+|  |  |  |  |  |  |  |  |  |-- HeronMasterDriverTest.java
+|  |  |  |  |  |  |  |  |  |-- YarnSchedulerTest.java
+|  |-- shell
+|  |  |-- assets
+|  |  |  |-- BUILD
+|  |  |  |-- bootstrap.css
+|  |  |  |-- browse.html
+|  |  |  |-- file.html
+|  |  |  |-- jquery.js
+|  |  |  |-- jquery.pailer.js
+|  |  |-- src
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- main.py
+|  |  |  |  |-- utils.py
+|  |-- simulator
+|  |  |-- src
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- simulator
+|  |  |  |  |  |  |  |  |-- Simulator.java
+|  |  |  |  |  |  |  |  |-- executors
+|  |  |  |  |  |  |  |  |  |-- InstanceExecutor.java
+|  |  |  |  |  |  |  |  |  |-- MetricsExecutor.java
+|  |  |  |  |  |  |  |  |  |-- StreamExecutor.java
+|  |  |  |  |  |  |  |  |-- grouping
+|  |  |  |  |  |  |  |  |  |-- AllGrouping.java
+|  |  |  |  |  |  |  |  |  |-- CustomGrouping.java
+|  |  |  |  |  |  |  |  |  |-- FieldsGrouping.java
+|  |  |  |  |  |  |  |  |  |-- Grouping.java
+|  |  |  |  |  |  |  |  |  |-- LowestGrouping.java
+|  |  |  |  |  |  |  |  |  |-- ShuffleGrouping.java
+|  |  |  |  |  |  |  |  |-- instance
+|  |  |  |  |  |  |  |  |  |-- BoltInstance.java
+|  |  |  |  |  |  |  |  |  |-- BoltOutputCollectorImpl.java
+|  |  |  |  |  |  |  |  |  |-- IInstance.java
+|  |  |  |  |  |  |  |  |  |-- OutgoingTupleCollection.java
+|  |  |  |  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |  |  |  |-- RootTupleInfo.java
+|  |  |  |  |  |  |  |  |  |-- SpoutInstance.java
+|  |  |  |  |  |  |  |  |  |-- SpoutOutputCollectorImpl.java
+|  |  |  |  |  |  |  |  |-- utils
+|  |  |  |  |  |  |  |  |  |-- PhysicalPlanUtil.java
+|  |  |  |  |  |  |  |  |  |-- RotatingMap.java
+|  |  |  |  |  |  |  |  |  |-- StreamConsumers.java
+|  |  |  |  |  |  |  |  |  |-- TupleCache.java
+|  |  |  |  |  |  |  |  |  |-- XORManager.java
+|  |  |-- tests
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- simulator
+|  |  |  |  |  |  |  |  |-- SimulatorTest.java
+|  |  |  |  |  |  |  |  |-- executors
+|  |  |  |  |  |  |  |  |  |-- InstanceExecutorTest.java
+|  |  |  |  |  |  |  |  |-- grouping
+|  |  |  |  |  |  |  |  |  |-- AllGroupingTest.java
+|  |  |  |  |  |  |  |  |  |-- CustomGroupingTest.java
+|  |  |  |  |  |  |  |  |  |-- FieldsGroupingTest.java
+|  |  |  |  |  |  |  |  |  |-- LowestGroupingTest.java
+|  |  |  |  |  |  |  |  |  |-- ShuffleGroupingTest.java
+|  |  |  |  |  |  |  |  |-- utils
+|  |  |  |  |  |  |  |  |  |-- PhysicalPlanUtilTest.java
+|  |  |  |  |  |  |  |  |  |-- RotatingMapTest.java
+|  |  |  |  |  |  |  |  |  |-- StreamConsumersTest.java
+|  |  |  |  |  |  |  |  |  |-- TupleCacheTest.java
+|  |  |  |  |  |  |  |  |  |-- XORManagerTest.java
+|  |-- spi
+|  |  |-- src
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- spi
+|  |  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |  |-- ClusterConfig.java
+|  |  |  |  |  |  |  |  |  |-- ClusterDefaults.java
+|  |  |  |  |  |  |  |  |  |-- Command.java
+|  |  |  |  |  |  |  |  |  |-- Config.java
+|  |  |  |  |  |  |  |  |  |-- ConfigDefaults.java
+|  |  |  |  |  |  |  |  |  |-- ConfigKeys.java
+|  |  |  |  |  |  |  |  |  |-- Constants.java
+|  |  |  |  |  |  |  |  |  |-- Context.java
+|  |  |  |  |  |  |  |  |  |-- Defaults.java
+|  |  |  |  |  |  |  |  |  |-- Jars.java
+|  |  |  |  |  |  |  |  |  |-- Keys.java
+|  |  |  |  |  |  |  |  |  |-- Misc.java
+|  |  |  |  |  |  |  |  |  |-- Resource.java
+|  |  |  |  |  |  |  |  |  |-- defaults.yaml
+|  |  |  |  |  |  |  |  |  |-- keys.yaml
+|  |  |  |  |  |  |  |  |-- metricsmgr
+|  |  |  |  |  |  |  |  |  |-- metrics
+|  |  |  |  |  |  |  |  |  |  |-- ExceptionInfo.java
+|  |  |  |  |  |  |  |  |  |  |-- MetricsFilter.java
+|  |  |  |  |  |  |  |  |  |  |-- MetricsInfo.java
+|  |  |  |  |  |  |  |  |  |  |-- MetricsRecord.java
+|  |  |  |  |  |  |  |  |  |-- sink
+|  |  |  |  |  |  |  |  |  |  |-- IMetricsSink.java
+|  |  |  |  |  |  |  |  |  |  |-- SinkContext.java
+|  |  |  |  |  |  |  |  |-- packing
+|  |  |  |  |  |  |  |  |  |-- IPacking.java
+|  |  |  |  |  |  |  |  |  |-- IRepacking.java
+|  |  |  |  |  |  |  |  |  |-- InstanceId.java
+|  |  |  |  |  |  |  |  |  |-- PackingPlan.java
+|  |  |  |  |  |  |  |  |  |-- PackingPlanProtoDeserializer.java
+|  |  |  |  |  |  |  |  |  |-- PackingPlanProtoSerializer.java
+|  |  |  |  |  |  |  |  |  |-- Resource.java
+|  |  |  |  |  |  |  |  |-- scheduler
+|  |  |  |  |  |  |  |  |  |-- ILauncher.java
+|  |  |  |  |  |  |  |  |  |-- IScalable.java
+|  |  |  |  |  |  |  |  |  |-- IScheduler.java
+|  |  |  |  |  |  |  |  |-- statemgr
+|  |  |  |  |  |  |  |  |  |-- IStateManager.java
+|  |  |  |  |  |  |  |  |  |-- SchedulerStateManagerAdaptor.java
+|  |  |  |  |  |  |  |  |  |-- WatchCallback.java
+|  |  |  |  |  |  |  |  |-- uploader
+|  |  |  |  |  |  |  |  |  |-- IUploader.java
+|  |  |  |  |  |  |  |  |-- utils
+|  |  |  |  |  |  |  |  |  |-- LauncherUtils.java
+|  |  |  |  |  |  |  |  |  |-- NetworkUtils.java
+|  |  |  |  |  |  |  |  |  |-- PackingTestUtils.java
+|  |  |  |  |  |  |  |  |  |-- ReflectionUtils.java
+|  |  |  |  |  |  |  |  |  |-- Runtime.java
+|  |  |  |  |  |  |  |  |  |-- SchedulerConfig.java
+|  |  |  |  |  |  |  |  |  |-- SchedulerUtils.java
+|  |  |  |  |  |  |  |  |  |-- ShellUtils.java
+|  |  |  |  |  |  |  |  |  |-- Shutdown.java
+|  |  |  |  |  |  |  |  |  |-- TMasterUtils.java
+|  |  |  |  |  |  |  |  |  |-- TopologyTests.java
+|  |  |  |  |  |  |  |  |  |-- TopologyUtils.java
+|  |  |  |  |  |  |  |  |  |-- UploaderUtils.java
+|  |  |-- tests
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- spi
+|  |  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |  |-- ClusterConfigTest.java
+|  |  |  |  |  |  |  |  |  |-- ClusterDefaultsTest.java
+|  |  |  |  |  |  |  |  |  |-- ConfigDefaultsTest.java
+|  |  |  |  |  |  |  |  |  |-- ConfigKeysDefaultsTest.java
+|  |  |  |  |  |  |  |  |  |-- ConfigKeysTest.java
+|  |  |  |  |  |  |  |  |  |-- MiscTest.java
+|  |  |  |  |  |  |  |  |  |-- TestConstants.java
+|  |  |  |  |  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |  |  |  |  |-- local
+|  |  |  |  |  |  |  |  |  |  |  |-- cluster.yaml
+|  |  |  |  |  |  |  |  |  |  |  |-- defaults.yaml
+|  |  |  |  |  |  |  |  |  |  |  |-- packing.yaml
+|  |  |  |  |  |  |  |  |  |  |  |-- scheduler.yaml
+|  |  |  |  |  |  |  |  |  |  |  |-- statemgr.yaml
+|  |  |  |  |  |  |  |  |  |  |  |-- uploader.yaml
+|  |  |  |  |  |  |  |  |-- metricsmgr
+|  |  |  |  |  |  |  |  |  |-- metrics
+|  |  |  |  |  |  |  |  |  |  |-- ExceptionInfoTest.java
+|  |  |  |  |  |  |  |  |  |  |-- MetricsInfoTest.java
+|  |  |  |  |  |  |  |  |  |  |-- MetricsRecordTest.java
+|  |  |  |  |  |  |  |  |-- packing
+|  |  |  |  |  |  |  |  |  |-- PackingPlanTest.java
+|  |  |  |  |  |  |  |  |-- utils
+|  |  |  |  |  |  |  |  |  |-- LauncherUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- NetworkUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- SchedulerUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- ShellUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- TopologyUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- UploaderUtilsTest.java
+|  |-- statemgrs
+|  |  |-- src
+|  |  |  |-- cpp
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- statemgr
+|  |  |  |  |  |-- heron-localfilestatemgr.cpp
+|  |  |  |  |  |-- heron-localfilestatemgr.h
+|  |  |  |  |  |-- heron-statemgr.cpp
+|  |  |  |  |  |-- heron-statemgr.h
+|  |  |  |  |  |-- heron-zkstatemgr.cpp
+|  |  |  |  |  |-- heron-zkstatemgr.h
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- statemgr
+|  |  |  |  |  |  |  |  |-- FileSystemStateManager.java
+|  |  |  |  |  |  |  |  |-- NullStateManager.java
+|  |  |  |  |  |  |  |  |-- localfs
+|  |  |  |  |  |  |  |  |  |-- LocalFileSystemConfigKeys.java
+|  |  |  |  |  |  |  |  |  |-- LocalFileSystemConstants.java
+|  |  |  |  |  |  |  |  |  |-- LocalFileSystemContext.java
+|  |  |  |  |  |  |  |  |  |-- LocalFileSystemKeys.java
+|  |  |  |  |  |  |  |  |  |-- LocalFileSystemStateManager.java
+|  |  |  |  |  |  |  |  |  |-- keys.yaml
+|  |  |  |  |  |  |  |  |-- zookeeper
+|  |  |  |  |  |  |  |  |  |-- ZkContext.java
+|  |  |  |  |  |  |  |  |  |-- ZkUtils.java
+|  |  |  |  |  |  |  |  |  |-- ZkWatcherCallback.java
+|  |  |  |  |  |  |  |  |  |-- curator
+|  |  |  |  |  |  |  |  |  |  |-- CuratorStateManager.java
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- config.py
+|  |  |  |  |-- configloader.py
+|  |  |  |  |-- filestatemanager.py
+|  |  |  |  |-- log.py
+|  |  |  |  |-- stateexceptions.py
+|  |  |  |  |-- statemanager.py
+|  |  |  |  |-- statemanagerfactory.py
+|  |  |  |  |-- zkstatemanager.py
+|  |  |-- tests
+|  |  |  |-- cpp
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- statetest.cpp
+|  |  |  |  |-- zkstatemgr_unittest.cpp
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- statemgr
+|  |  |  |  |  |  |  |  |-- localfs
+|  |  |  |  |  |  |  |  |  |-- LocalFileSystemStateManagerTest.java
+|  |  |  |  |  |  |  |  |-- zookeeper
+|  |  |  |  |  |  |  |  |  |-- ZkUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- curator
+|  |  |  |  |  |  |  |  |  |  |-- CuratorStateManagerTest.java
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- configloader_unittest.py
+|  |-- stmgr
+|  |  |-- src
+|  |  |  |-- cpp
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dummy
+|  |  |  |  |  |-- dummytmaster-main.cpp
+|  |  |  |  |  |-- dummytmaster.cpp
+|  |  |  |  |  |-- dummytmaster.h
+|  |  |  |  |  |-- pplan-writer.cpp
+|  |  |  |  |  |-- stmgr-main.cpp
+|  |  |  |  |  |-- stmgr.cpp
+|  |  |  |  |  |-- stmgr.h
+|  |  |  |  |-- grouping
+|  |  |  |  |  |-- all-grouping.cpp
+|  |  |  |  |  |-- all-grouping.h
+|  |  |  |  |  |-- custom-grouping.cpp
+|  |  |  |  |  |-- custom-grouping.h
+|  |  |  |  |  |-- fields-grouping.cpp
+|  |  |  |  |  |-- fields-grouping.h
+|  |  |  |  |  |-- grouping.cpp
+|  |  |  |  |  |-- grouping.h
+|  |  |  |  |  |-- lowest-grouping.cpp
+|  |  |  |  |  |-- lowest-grouping.h
+|  |  |  |  |  |-- shuffle-grouping.cpp
+|  |  |  |  |  |-- shuffle-grouping.h
+|  |  |  |  |-- manager
+|  |  |  |  |  |-- stmgr-client.cpp
+|  |  |  |  |  |-- stmgr-client.h
+|  |  |  |  |  |-- stmgr-clientmgr.cpp
+|  |  |  |  |  |-- stmgr-clientmgr.h
+|  |  |  |  |  |-- stmgr-server.cpp
+|  |  |  |  |  |-- stmgr-server.h
+|  |  |  |  |  |-- stmgr.cpp
+|  |  |  |  |  |-- stmgr.h
+|  |  |  |  |  |-- stream-consumers.cpp
+|  |  |  |  |  |-- stream-consumers.h
+|  |  |  |  |  |-- tmaster-client.cpp
+|  |  |  |  |  |-- tmaster-client.h
+|  |  |  |  |-- server
+|  |  |  |  |  |-- stmgr-main.cpp
+|  |  |  |  |-- util
+|  |  |  |  |  |-- rotating-map.cpp
+|  |  |  |  |  |-- rotating-map.h
+|  |  |  |  |  |-- tuple-cache.cpp
+|  |  |  |  |  |-- tuple-cache.h
+|  |  |  |  |  |-- xor-manager.cpp
+|  |  |  |  |  |-- xor-manager.h
+|  |  |-- tests
+|  |  |  |-- cpp
+|  |  |  |  |-- grouping
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- all-grouping_unittest.cpp
+|  |  |  |  |  |-- custom-grouping_unittest.cpp
+|  |  |  |  |  |-- fields-grouping_unittest.cpp
+|  |  |  |  |  |-- lowest-grouping_unittest.cpp
+|  |  |  |  |  |-- shuffle-grouping_unittest.cpp
+|  |  |  |  |-- server
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- dummy_instance.cpp
+|  |  |  |  |  |-- dummy_instance.h
+|  |  |  |  |  |-- dummy_metricsmgr.cpp
+|  |  |  |  |  |-- dummy_metricsmgr.h
+|  |  |  |  |  |-- dummy_stmgr.cpp
+|  |  |  |  |  |-- dummy_stmgr.h
+|  |  |  |  |  |-- stmgr_unittest.cpp
+|  |  |  |  |-- util
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- rotating-map_unittest.cpp
+|  |  |  |  |  |-- tuple-cache_unittest.cpp
+|  |  |  |  |  |-- xor-manager_unittest.cpp
+|  |-- storm
+|  |  |-- src
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- backtype
+|  |  |  |  |  |-- storm
+|  |  |  |  |  |  |-- Config.java
+|  |  |  |  |  |  |-- ILocalCluster.java
+|  |  |  |  |  |  |-- LocalCluster.java
+|  |  |  |  |  |  |-- StormSubmitter.java
+|  |  |  |  |  |  |-- generated
+|  |  |  |  |  |  |  |-- AlreadyAliveException.java
+|  |  |  |  |  |  |  |-- GlobalStreamId.java
+|  |  |  |  |  |  |  |-- InvalidTopologyException.java
+|  |  |  |  |  |  |  |-- NotAliveException.java
+|  |  |  |  |  |  |  |-- StormTopology.java
+|  |  |  |  |  |  |-- grouping
+|  |  |  |  |  |  |  |-- CustomStreamGrouping.java
+|  |  |  |  |  |  |  |-- CustomStreamGroupingDelegate.java
+|  |  |  |  |  |  |-- hooks
+|  |  |  |  |  |  |  |-- BaseTaskHook.java
+|  |  |  |  |  |  |  |-- ITaskHook.java
+|  |  |  |  |  |  |  |-- ITaskHookDelegate.java
+|  |  |  |  |  |  |  |-- info
+|  |  |  |  |  |  |  |  |-- BoltAckInfo.java
+|  |  |  |  |  |  |  |  |-- BoltExecuteInfo.java
+|  |  |  |  |  |  |  |  |-- BoltFailInfo.java
+|  |  |  |  |  |  |  |  |-- EmitInfo.java
+|  |  |  |  |  |  |  |  |-- SpoutAckInfo.java
+|  |  |  |  |  |  |  |  |-- SpoutFailInfo.java
+|  |  |  |  |  |  |-- metric
+|  |  |  |  |  |  |  |-- api
+|  |  |  |  |  |  |  |  |-- AssignableMetric.java
+|  |  |  |  |  |  |  |  |-- CombinedMetric.java
+|  |  |  |  |  |  |  |  |-- CountMetric.java
+|  |  |  |  |  |  |  |  |-- GlobalMetrics.java
+|  |  |  |  |  |  |  |  |-- ICombiner.java
+|  |  |  |  |  |  |  |  |-- IMetric.java
+|  |  |  |  |  |  |  |  |-- IReducer.java
+|  |  |  |  |  |  |  |  |-- MeanReducer.java
+|  |  |  |  |  |  |  |  |-- MetricDelegate.java
+|  |  |  |  |  |  |  |  |-- MultiCountMetric.java
+|  |  |  |  |  |  |  |  |-- MultiReducedMetric.java
+|  |  |  |  |  |  |  |  |-- ReducedMetric.java
+|  |  |  |  |  |  |-- serialization
+|  |  |  |  |  |  |  |-- DefaultKryoFactory.java
+|  |  |  |  |  |  |  |-- HeronPluggableSerializerDelegate.java
+|  |  |  |  |  |  |  |-- IKryoDecorator.java
+|  |  |  |  |  |  |  |-- IKryoFactory.java
+|  |  |  |  |  |  |  |-- SerializableSerializer.java
+|  |  |  |  |  |  |  |-- SerializationFactory.java
+|  |  |  |  |  |  |  |-- types
+|  |  |  |  |  |  |  |  |-- ArrayListSerializer.java
+|  |  |  |  |  |  |  |  |-- HashMapSerializer.java
+|  |  |  |  |  |  |  |  |-- HashSetSerializer.java
+|  |  |  |  |  |  |-- spout
+|  |  |  |  |  |  |  |-- IMultiSchemableSpout.java
+|  |  |  |  |  |  |  |-- ISpout.java
+|  |  |  |  |  |  |  |-- ISpoutOutputCollector.java
+|  |  |  |  |  |  |  |-- ISpoutWaitStrategy.java
+|  |  |  |  |  |  |  |-- MultiScheme.java
+|  |  |  |  |  |  |  |-- NothingEmptyEmitStrategy.java
+|  |  |  |  |  |  |  |-- RawMultiScheme.java
+|  |  |  |  |  |  |  |-- RawScheme.java
+|  |  |  |  |  |  |  |-- Scheme.java
+|  |  |  |  |  |  |  |-- SchemeAsMultiScheme.java
+|  |  |  |  |  |  |  |-- SleepSpoutWaitStrategy.java
+|  |  |  |  |  |  |  |-- SpoutOutputCollector.java
+|  |  |  |  |  |  |  |-- SpoutOutputCollectorImpl.java
+|  |  |  |  |  |  |-- task
+|  |  |  |  |  |  |  |-- BoltTopologyContext.java
+|  |  |  |  |  |  |  |-- GeneralTopologyContext.java
+|  |  |  |  |  |  |  |-- IBolt.java
+|  |  |  |  |  |  |  |-- IErrorReporter.java
+|  |  |  |  |  |  |  |-- IMetricsContext.java
+|  |  |  |  |  |  |  |-- IOutputCollector.java
+|  |  |  |  |  |  |  |-- OutputCollector.java
+|  |  |  |  |  |  |  |-- OutputCollectorImpl.java
+|  |  |  |  |  |  |  |-- SpoutTopologyContext.java
+|  |  |  |  |  |  |  |-- TopologyContext.java
+|  |  |  |  |  |  |  |-- WorkerTopologyContext.java
+|  |  |  |  |  |  |-- testing
+|  |  |  |  |  |  |  |-- TestWordSpout.java
+|  |  |  |  |  |  |-- topology
+|  |  |  |  |  |  |  |-- BasicBoltExecutor.java
+|  |  |  |  |  |  |  |-- BasicOutputCollector.java
+|  |  |  |  |  |  |  |-- BoltDeclarer.java
+|  |  |  |  |  |  |  |-- BoltDeclarerImpl.java
+|  |  |  |  |  |  |  |-- ComponentConfigurationDeclarer.java
+|  |  |  |  |  |  |  |-- FailedException.java
+|  |  |  |  |  |  |  |-- IBasicBolt.java
+|  |  |  |  |  |  |  |-- IBasicOutputCollector.java
+|  |  |  |  |  |  |  |-- IComponent.java
+|  |  |  |  |  |  |  |-- IRichBolt.java
+|  |  |  |  |  |  |  |-- IRichBoltDelegate.java
+|  |  |  |  |  |  |  |-- IRichSpout.java
+|  |  |  |  |  |  |  |-- IRichSpoutDelegate.java
+|  |  |  |  |  |  |  |-- ISchemableSpout.java
+|  |  |  |  |  |  |  |-- InputDeclarer.java
+|  |  |  |  |  |  |  |-- OutputFieldsDeclarer.java
+|  |  |  |  |  |  |  |-- OutputFieldsGetter.java
+|  |  |  |  |  |  |  |-- ReportedFailedException.java
+|  |  |  |  |  |  |  |-- SpoutDeclarer.java
+|  |  |  |  |  |  |  |-- SpoutDeclarerImpl.java
+|  |  |  |  |  |  |  |-- TopologyBuilder.java
+|  |  |  |  |  |  |  |-- base
+|  |  |  |  |  |  |  |  |-- BaseBasicBolt.java
+|  |  |  |  |  |  |  |  |-- BaseComponent.java
+|  |  |  |  |  |  |  |  |-- BaseRichBolt.java
+|  |  |  |  |  |  |  |  |-- BaseRichSpout.java
+|  |  |  |  |  |  |-- tuple
+|  |  |  |  |  |  |  |-- Fields.java
+|  |  |  |  |  |  |  |-- Tuple.java
+|  |  |  |  |  |  |  |-- TupleImpl.java
+|  |  |  |  |  |  |  |-- Values.java
+|  |  |  |  |  |  |-- utils
+|  |  |  |  |  |  |  |-- ConfigUtils.java
+|  |  |  |  |  |  |  |-- DefaultMaxSpoutPendingTuner.java
+|  |  |  |  |  |  |  |-- ListDelegate.java
+|  |  |  |  |  |  |  |-- Utils.java
+|  |  |  |  |-- clojure
+|  |  |  |  |  |-- lang
+|  |  |  |  |  |  |-- Atom.java
+|  |  |  |  |-- org
+|  |  |  |  |  |-- apache
+|  |  |  |  |  |  |-- storm
+|  |  |  |  |  |  |  |-- Config.java
+|  |  |  |  |  |  |  |-- ILocalCluster.java
+|  |  |  |  |  |  |  |-- LocalCluster.java
+|  |  |  |  |  |  |  |-- StormSubmitter.java
+|  |  |  |  |  |  |  |-- clojure
+|  |  |  |  |  |  |  |  |-- lang
+|  |  |  |  |  |  |  |  |  |-- Atom.java
+|  |  |  |  |  |  |  |-- generated
+|  |  |  |  |  |  |  |  |-- AlreadyAliveException.java
+|  |  |  |  |  |  |  |  |-- GlobalStreamId.java
+|  |  |  |  |  |  |  |  |-- InvalidTopologyException.java
+|  |  |  |  |  |  |  |  |-- NotAliveException.java
+|  |  |  |  |  |  |  |  |-- StormTopology.java
+|  |  |  |  |  |  |  |-- grouping
+|  |  |  |  |  |  |  |  |-- CustomStreamGrouping.java
+|  |  |  |  |  |  |  |  |-- CustomStreamGroupingDelegate.java
+|  |  |  |  |  |  |  |-- hooks
+|  |  |  |  |  |  |  |  |-- BaseTaskHook.java
+|  |  |  |  |  |  |  |  |-- ITaskHook.java
+|  |  |  |  |  |  |  |  |-- ITaskHookDelegate.java
+|  |  |  |  |  |  |  |  |-- info
+|  |  |  |  |  |  |  |  |  |-- BoltAckInfo.java
+|  |  |  |  |  |  |  |  |  |-- BoltExecuteInfo.java
+|  |  |  |  |  |  |  |  |  |-- BoltFailInfo.java
+|  |  |  |  |  |  |  |  |  |-- EmitInfo.java
+|  |  |  |  |  |  |  |  |  |-- SpoutAckInfo.java
+|  |  |  |  |  |  |  |  |  |-- SpoutFailInfo.java
+|  |  |  |  |  |  |  |-- metric
+|  |  |  |  |  |  |  |  |-- api
+|  |  |  |  |  |  |  |  |  |-- AssignableMetric.java
+|  |  |  |  |  |  |  |  |  |-- CombinedMetric.java
+|  |  |  |  |  |  |  |  |  |-- CountMetric.java
+|  |  |  |  |  |  |  |  |  |-- ICombiner.java
+|  |  |  |  |  |  |  |  |  |-- IMetric.java
+|  |  |  |  |  |  |  |  |  |-- IReducer.java
+|  |  |  |  |  |  |  |  |  |-- MeanReducer.java
+|  |  |  |  |  |  |  |  |  |-- MetricDelegate.java
+|  |  |  |  |  |  |  |  |  |-- MultiCountMetric.java
+|  |  |  |  |  |  |  |  |  |-- MultiReducedMetric.java
+|  |  |  |  |  |  |  |  |  |-- ReducedMetric.java
+|  |  |  |  |  |  |  |-- serialization
+|  |  |  |  |  |  |  |  |-- DefaultKryoFactory.java
+|  |  |  |  |  |  |  |  |-- HeronPluggableSerializerDelegate.java
+|  |  |  |  |  |  |  |  |-- IKryoDecorator.java
+|  |  |  |  |  |  |  |  |-- IKryoFactory.java
+|  |  |  |  |  |  |  |  |-- SerializableSerializer.java
+|  |  |  |  |  |  |  |  |-- SerializationFactory.java
+|  |  |  |  |  |  |  |  |-- types
+|  |  |  |  |  |  |  |  |  |-- ArrayListSerializer.java
+|  |  |  |  |  |  |  |  |  |-- HashMapSerializer.java
+|  |  |  |  |  |  |  |  |  |-- HashSetSerializer.java
+|  |  |  |  |  |  |  |-- spout
+|  |  |  |  |  |  |  |  |-- IMultiSchemableSpout.java
+|  |  |  |  |  |  |  |  |-- ISpout.java
+|  |  |  |  |  |  |  |  |-- ISpoutOutputCollector.java
+|  |  |  |  |  |  |  |  |-- ISpoutWaitStrategy.java
+|  |  |  |  |  |  |  |  |-- MultiScheme.java
+|  |  |  |  |  |  |  |  |-- NothingEmptyEmitStrategy.java
+|  |  |  |  |  |  |  |  |-- RawMultiScheme.java
+|  |  |  |  |  |  |  |  |-- RawScheme.java
+|  |  |  |  |  |  |  |  |-- Scheme.java
+|  |  |  |  |  |  |  |  |-- SchemeAsMultiScheme.java
+|  |  |  |  |  |  |  |  |-- SleepSpoutWaitStrategy.java
+|  |  |  |  |  |  |  |  |-- SpoutOutputCollector.java
+|  |  |  |  |  |  |  |  |-- SpoutOutputCollectorImpl.java
+|  |  |  |  |  |  |  |-- task
+|  |  |  |  |  |  |  |  |-- BoltTopologyContext.java
+|  |  |  |  |  |  |  |  |-- GeneralTopologyContext.java
+|  |  |  |  |  |  |  |  |-- IBolt.java
+|  |  |  |  |  |  |  |  |-- IErrorReporter.java
+|  |  |  |  |  |  |  |  |-- IMetricsContext.java
+|  |  |  |  |  |  |  |  |-- IOutputCollector.java
+|  |  |  |  |  |  |  |  |-- OutputCollector.java
+|  |  |  |  |  |  |  |  |-- OutputCollectorImpl.java
+|  |  |  |  |  |  |  |  |-- SpoutTopologyContext.java
+|  |  |  |  |  |  |  |  |-- TopologyContext.java
+|  |  |  |  |  |  |  |  |-- WorkerTopologyContext.java
+|  |  |  |  |  |  |  |-- testing
+|  |  |  |  |  |  |  |  |-- TestWordSpout.java
+|  |  |  |  |  |  |  |-- topology
+|  |  |  |  |  |  |  |  |-- BasicBoltExecutor.java
+|  |  |  |  |  |  |  |  |-- BasicOutputCollector.java
+|  |  |  |  |  |  |  |  |-- BoltDeclarer.java
+|  |  |  |  |  |  |  |  |-- BoltDeclarerImpl.java
+|  |  |  |  |  |  |  |  |-- ComponentConfigurationDeclarer.java
+|  |  |  |  |  |  |  |  |-- FailedException.java
+|  |  |  |  |  |  |  |  |-- IBasicBolt.java
+|  |  |  |  |  |  |  |  |-- IBasicOutputCollector.java
+|  |  |  |  |  |  |  |  |-- IComponent.java
+|  |  |  |  |  |  |  |  |-- IRichBolt.java
+|  |  |  |  |  |  |  |  |-- IRichBoltDelegate.java
+|  |  |  |  |  |  |  |  |-- IRichSpout.java
+|  |  |  |  |  |  |  |  |-- IRichSpoutDelegate.java
+|  |  |  |  |  |  |  |  |-- ISchemableSpout.java
+|  |  |  |  |  |  |  |  |-- InputDeclarer.java
+|  |  |  |  |  |  |  |  |-- OutputFieldsDeclarer.java
+|  |  |  |  |  |  |  |  |-- OutputFieldsGetter.java
+|  |  |  |  |  |  |  |  |-- ReportedFailedException.java
+|  |  |  |  |  |  |  |  |-- SpoutDeclarer.java
+|  |  |  |  |  |  |  |  |-- SpoutDeclarerImpl.java
+|  |  |  |  |  |  |  |  |-- TopologyBuilder.java
+|  |  |  |  |  |  |  |  |-- base
+|  |  |  |  |  |  |  |  |  |-- BaseBasicBolt.java
+|  |  |  |  |  |  |  |  |  |-- BaseComponent.java
+|  |  |  |  |  |  |  |  |  |-- BaseRichBolt.java
+|  |  |  |  |  |  |  |  |  |-- BaseRichSpout.java
+|  |  |  |  |  |  |  |-- trident
+|  |  |  |  |  |  |  |  |-- spout
+|  |  |  |  |  |  |  |  |  |-- ISpoutPartition.java
+|  |  |  |  |  |  |  |  |-- state
+|  |  |  |  |  |  |  |  |  |-- Serializer.java
+|  |  |  |  |  |  |  |-- tuple
+|  |  |  |  |  |  |  |  |-- Fields.java
+|  |  |  |  |  |  |  |  |-- Tuple.java
+|  |  |  |  |  |  |  |  |-- TupleImpl.java
+|  |  |  |  |  |  |  |  |-- Values.java
+|  |  |  |  |  |  |  |-- utils
+|  |  |  |  |  |  |  |  |-- ConfigUtils.java
+|  |  |  |  |  |  |  |  |-- DefaultMaxSpoutPendingTuner.java
+|  |  |  |  |  |  |  |  |-- ListDelegate.java
+|  |  |  |  |  |  |  |  |-- Utils.java
+|  |  |  |  |-- storm
+|  |  |  |  |  |-- trident
+|  |  |  |  |  |  |-- spout
+|  |  |  |  |  |  |  |-- ISpoutPartition.java
+|  |  |  |  |  |  |-- state
+|  |  |  |  |  |  |  |-- Serializer.java
+|  |-- tmaster
+|  |  |-- src
+|  |  |  |-- cpp
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- manager
+|  |  |  |  |  |-- stats-interface.cpp
+|  |  |  |  |  |-- stats-interface.h
+|  |  |  |  |  |-- stmgrstate.cpp
+|  |  |  |  |  |-- stmgrstate.h
+|  |  |  |  |  |-- tcontroller.cpp
+|  |  |  |  |  |-- tcontroller.h
+|  |  |  |  |  |-- tmaster.cpp
+|  |  |  |  |  |-- tmaster.h
+|  |  |  |  |  |-- tmasterserver.cpp
+|  |  |  |  |  |-- tmasterserver.h
+|  |  |  |  |  |-- tmetrics-collector.cpp
+|  |  |  |  |  |-- tmetrics-collector.h
+|  |  |  |  |-- processor
+|  |  |  |  |  |-- processor.h
+|  |  |  |  |  |-- stmgr-heartbeat-processor.cpp
+|  |  |  |  |  |-- stmgr-heartbeat-processor.h
+|  |  |  |  |  |-- stmgr-register-processor.cpp
+|  |  |  |  |  |-- stmgr-register-processor.h
+|  |  |  |  |  |-- tmaster-processor.cpp
+|  |  |  |  |  |-- tmaster-processor.h
+|  |  |  |  |-- server
+|  |  |  |  |  |-- tmaster-main.cpp
+|  |  |-- tests
+|  |  |  |-- cpp
+|  |  |  |  |-- server
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- dummystmgr.cpp
+|  |  |  |  |  |-- dummystmgr.h
+|  |  |  |  |  |-- tmaster_unittest.cpp
+|  |-- tools
+|  |  |-- cli
+|  |  |  |-- src
+|  |  |  |  |-- python
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- activate.py
+|  |  |  |  |  |-- args.py
+|  |  |  |  |  |-- cli_helper.py
+|  |  |  |  |  |-- deactivate.py
+|  |  |  |  |  |-- execute.py
+|  |  |  |  |  |-- help.py
+|  |  |  |  |  |-- heronrc.sample
+|  |  |  |  |  |-- jars.py
+|  |  |  |  |  |-- kill.py
+|  |  |  |  |  |-- main.py
+|  |  |  |  |  |-- opts.py
+|  |  |  |  |  |-- restart.py
+|  |  |  |  |  |-- submit.py
+|  |  |  |  |  |-- update.py
+|  |  |  |  |  |-- version.py
+|  |  |  |-- tests
+|  |  |  |  |-- python
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- heronparser_unittest.py
+|  |  |  |  |  |-- heronrc.test
+|  |  |  |  |  |-- opts_unittest.py
+|  |  |-- common
+|  |  |  |-- src
+|  |  |  |  |-- python
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- access
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- fetch.py
+|  |  |  |  |  |  |-- heron_api.py
+|  |  |  |  |  |  |-- query.py
+|  |  |  |  |  |  |-- tracker_access.py
+|  |  |  |  |  |-- utils
+|  |  |  |  |  |  |-- classpath.py
+|  |  |  |  |  |  |-- config.py
+|  |  |  |  |  |  |-- heronparser.py
+|  |  |-- config
+|  |  |  |-- src
+|  |  |  |  |-- yaml
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- tracker
+|  |  |  |  |  |  |-- heron_tracker.yaml
+|  |  |-- explorer
+|  |  |  |-- src
+|  |  |  |  |-- python
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- args.py
+|  |  |  |  |  |-- clusters.py
+|  |  |  |  |  |-- help.py
+|  |  |  |  |  |-- logicalplan.py
+|  |  |  |  |  |-- main.py
+|  |  |  |  |  |-- opts.py
+|  |  |  |  |  |-- physicalplan.py
+|  |  |  |  |  |-- topologies.py
+|  |  |  |  |  |-- version.py
+|  |  |  |-- tests
+|  |  |  |  |-- python
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- explorer_unittest.py
+|  |  |  |  |  |-- info.json
+|  |  |  |  |  |-- logicalplan.json
+|  |  |  |  |  |-- metrics.json
+|  |  |  |  |  |-- physicalplan.json
+|  |  |  |  |  |-- topologies.json
+|  |  |-- tracker
+|  |  |  |-- src
+|  |  |  |  |-- python
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- config.py
+|  |  |  |  |  |-- constants.py
+|  |  |  |  |  |-- handlers
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- basehandler.py
+|  |  |  |  |  |  |-- clustershandler.py
+|  |  |  |  |  |  |-- containerfilehandler.py
+|  |  |  |  |  |  |-- defaulthandler.py
+|  |  |  |  |  |  |-- exceptionhandler.py
+|  |  |  |  |  |  |-- exceptionsummaryhandler.py
+|  |  |  |  |  |  |-- executionstatehandler.py
+|  |  |  |  |  |  |-- jmaphandler.py
+|  |  |  |  |  |  |-- jstackhandler.py
+|  |  |  |  |  |  |-- logicalplanhandler.py
+|  |  |  |  |  |  |-- machineshandler.py
+|  |  |  |  |  |  |-- mainhandler.py
+|  |  |  |  |  |  |-- memoryhistogramhandler.py
+|  |  |  |  |  |  |-- metricshandler.py
+|  |  |  |  |  |  |-- metricsqueryhandler.py
+|  |  |  |  |  |  |-- metricstimelinehandler.py
+|  |  |  |  |  |  |-- physicalplanhandler.py
+|  |  |  |  |  |  |-- pidhandler.py
+|  |  |  |  |  |  |-- schedulerlocationhandler.py
+|  |  |  |  |  |  |-- stateshandler.py
+|  |  |  |  |  |  |-- topologieshandler.py
+|  |  |  |  |  |  |-- topologyhandler.py
+|  |  |  |  |  |-- javaobj.py
+|  |  |  |  |  |-- main.py
+|  |  |  |  |  |-- metricstimeline.py
+|  |  |  |  |  |-- query.py
+|  |  |  |  |  |-- query_operators.py
+|  |  |  |  |  |-- topology.py
+|  |  |  |  |  |-- topology_helpers.py
+|  |  |  |  |  |-- tracker.py
+|  |  |  |  |  |-- utils.py
+|  |  |  |-- tests
+|  |  |  |  |-- python
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- mock_proto.py
+|  |  |  |  |  |-- query_operator_unittest.py
+|  |  |  |  |  |-- query_unittest.py
+|  |  |  |  |  |-- topology_helpers_unittest.py
+|  |  |  |  |  |-- topology_unittest.py
+|  |  |  |  |  |-- tracker_unittest.py
+|  |  |-- ui
+|  |  |  |-- resources
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- static
+|  |  |  |  |  |-- css
+|  |  |  |  |  |  |-- bootstrap.css
+|  |  |  |  |  |  |-- bootstrap.min.css
+|  |  |  |  |  |  |-- main.css
+|  |  |  |  |  |  |-- visstyle.css
+|  |  |  |  |  |-- fonts
+|  |  |  |  |  |  |-- glyphicons-halflings-regular.eot
+|  |  |  |  |  |  |-- glyphicons-halflings-regular.svg
+|  |  |  |  |  |  |-- glyphicons-halflings-regular.ttf
+|  |  |  |  |  |  |-- glyphicons-halflings-regular.woff
+|  |  |  |  |  |-- icomoon
+|  |  |  |  |  |  |-- fonts
+|  |  |  |  |  |  |  |-- icomoon.dev.svg
+|  |  |  |  |  |  |  |-- icomoon.eot
+|  |  |  |  |  |  |  |-- icomoon.svg
+|  |  |  |  |  |  |  |-- icomoon.ttf
+|  |  |  |  |  |  |  |-- icomoon.woff
+|  |  |  |  |  |  |-- index.html
+|  |  |  |  |  |  |-- license.txt
+|  |  |  |  |  |  |-- lte-ie7.js
+|  |  |  |  |  |  |-- style.css
+|  |  |  |  |  |-- img
+|  |  |  |  |  |  |-- edit-icon.png
+|  |  |  |  |  |  |-- glyphicons-halflings-white.png
+|  |  |  |  |  |  |-- glyphicons-halflings.png
+|  |  |  |  |  |  |-- hue.png
+|  |  |  |  |  |  |-- icn-green.png
+|  |  |  |  |  |  |-- icn-red.png
+|  |  |  |  |  |  |-- logo54x54.png
+|  |  |  |  |  |  |-- trash-icon.png
+|  |  |  |  |  |-- js
+|  |  |  |  |  |  |-- alltopologies.js
+|  |  |  |  |  |  |-- bootstrap.js
+|  |  |  |  |  |  |-- bootstrap.min.js
+|  |  |  |  |  |  |-- colors.js
+|  |  |  |  |  |  |-- common.js
+|  |  |  |  |  |  |-- config.js
+|  |  |  |  |  |  |-- exceptions.js
+|  |  |  |  |  |  |-- graphic.js
+|  |  |  |  |  |  |-- html5-trunk.js
+|  |  |  |  |  |  |-- jquery-ui-1.8.23.custom.min.js
+|  |  |  |  |  |  |-- jquery.min.js
+|  |  |  |  |  |  |-- jquery.pailer.js
+|  |  |  |  |  |  |-- logical-plan.js
+|  |  |  |  |  |  |-- moment.min.2.8.3.js
+|  |  |  |  |  |  |-- physical-plan.js
+|  |  |  |  |  |  |-- plan-controller.js
+|  |  |  |  |  |  |-- plan-stats.js
+|  |  |  |  |  |  |-- stat-trendlines.js
+|  |  |  |  |  |  |-- topologies.js
+|  |  |  |  |  |  |-- underscore-min.1.6.0.js
+|  |  |  |  |-- templates
+|  |  |  |  |  |-- application.html
+|  |  |  |  |  |-- browse.html
+|  |  |  |  |  |-- config.html
+|  |  |  |  |  |-- error.html
+|  |  |  |  |  |-- exception.html
+|  |  |  |  |  |-- file.html
+|  |  |  |  |  |-- nav.html
+|  |  |  |  |  |-- topologies.html
+|  |  |  |  |  |-- topology.html
+|  |  |  |-- src
+|  |  |  |  |-- python
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- args.py
+|  |  |  |  |  |-- consts.py
+|  |  |  |  |  |-- handlers
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- api
+|  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |-- metrics.py
+|  |  |  |  |  |  |  |-- topology.py
+|  |  |  |  |  |  |-- base.py
+|  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |-- consts.py
+|  |  |  |  |  |  |  |-- graph.py
+|  |  |  |  |  |  |  |-- utils.py
+|  |  |  |  |  |  |-- mainhandler.py
+|  |  |  |  |  |  |-- notfound.py
+|  |  |  |  |  |  |-- ranges.py
+|  |  |  |  |  |  |-- topology.py
+|  |  |  |  |  |-- main.py
+|  |-- uploaders
+|  |  |-- src
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- uploader
+|  |  |  |  |  |  |  |  |-- NullUploader.java
+|  |  |  |  |  |  |  |  |-- hdfs
+|  |  |  |  |  |  |  |  |  |-- HdfsContext.java
+|  |  |  |  |  |  |  |  |  |-- HdfsController.java
+|  |  |  |  |  |  |  |  |  |-- HdfsUploader.java
+|  |  |  |  |  |  |  |  |  |-- sample.yaml
+|  |  |  |  |  |  |  |  |-- localfs
+|  |  |  |  |  |  |  |  |  |-- LocalFileSystemConfigDefaults.java
+|  |  |  |  |  |  |  |  |  |-- LocalFileSystemConfigKeys.java
+|  |  |  |  |  |  |  |  |  |-- LocalFileSystemConstants.java
+|  |  |  |  |  |  |  |  |  |-- LocalFileSystemContext.java
+|  |  |  |  |  |  |  |  |  |-- LocalFileSystemDefaults.java
+|  |  |  |  |  |  |  |  |  |-- LocalFileSystemKeys.java
+|  |  |  |  |  |  |  |  |  |-- LocalFileSystemUploader.java
+|  |  |  |  |  |  |  |  |  |-- defaults.yaml
+|  |  |  |  |  |  |  |  |  |-- keys.yaml
+|  |  |  |  |  |  |  |  |-- s3
+|  |  |  |  |  |  |  |  |  |-- S3Context.java
+|  |  |  |  |  |  |  |  |  |-- S3Uploader.java
+|  |  |  |  |  |  |  |  |  |-- sample.yaml
+|  |  |  |  |  |  |  |  |-- scp
+|  |  |  |  |  |  |  |  |  |-- ScpContext.java
+|  |  |  |  |  |  |  |  |  |-- ScpController.java
+|  |  |  |  |  |  |  |  |  |-- ScpUploader.java
+|  |  |  |  |  |  |  |  |  |-- sample.yaml
+|  |  |-- tests
+|  |  |  |-- java
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- com
+|  |  |  |  |  |-- twitter
+|  |  |  |  |  |  |-- heron
+|  |  |  |  |  |  |  |-- uploader
+|  |  |  |  |  |  |  |  |-- hdfs
+|  |  |  |  |  |  |  |  |  |-- HdfsUploaderTest.java
+|  |  |  |  |  |  |  |  |-- localfs
+|  |  |  |  |  |  |  |  |  |-- LocalFileSystemConfigTest.java
+|  |  |  |  |  |  |  |  |  |-- LocalFileSystemConstantsTest.java
+|  |  |  |  |  |  |  |  |  |-- LocalFileSystemUploaderTest.java
+|  |  |  |  |  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |  |  |  |  |-- some-topology.tar
+|  |  |  |  |  |  |  |  |-- s3
+|  |  |  |  |  |  |  |  |  |-- S3UploaderTest.java
+|  |  |  |  |  |  |  |  |-- scp
+|  |  |  |  |  |  |  |  |  |-- ScpUploaderTest.java
+|-- integration-test
+|  |-- README
+|  |-- src
+|  |  |-- java
+|  |  |  |-- BUILD
+|  |  |  |-- com
+|  |  |  |  |-- twitter
+|  |  |  |  |  |-- heron
+|  |  |  |  |  |  |-- integration_test
+|  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |-- BasicConfig.java
+|  |  |  |  |  |  |  |  |-- HdfsHelper.java
+|  |  |  |  |  |  |  |  |-- bolt
+|  |  |  |  |  |  |  |  |  |-- CountAggregatorBolt.java
+|  |  |  |  |  |  |  |  |  |-- DoubleTuplesBolt.java
+|  |  |  |  |  |  |  |  |  |-- IdentityBolt.java
+|  |  |  |  |  |  |  |  |  |-- IncrementBolt.java
+|  |  |  |  |  |  |  |  |  |-- JSONTweetFilterBolt.java
+|  |  |  |  |  |  |  |  |  |-- LocalWriteBolt.java
+|  |  |  |  |  |  |  |  |  |-- MapAggregatorBolt.java
+|  |  |  |  |  |  |  |  |  |-- PartialUniquerBolt.java
+|  |  |  |  |  |  |  |  |  |-- TweetPropertyBolt.java
+|  |  |  |  |  |  |  |  |  |-- WordCountBolt.java
+|  |  |  |  |  |  |  |  |-- spout
+|  |  |  |  |  |  |  |  |  |-- ABSpout.java
+|  |  |  |  |  |  |  |  |  |-- HdfsStringSpout.java
+|  |  |  |  |  |  |  |  |  |-- LocalFileSpout.java
+|  |  |  |  |  |  |  |  |  |-- PausedLocalFileSpout.java
+|  |  |  |  |  |  |  |-- core
+|  |  |  |  |  |  |  |  |-- AggregatorBolt.java
+|  |  |  |  |  |  |  |  |-- BaseBatchBolt.java
+|  |  |  |  |  |  |  |  |-- Constants.java
+|  |  |  |  |  |  |  |  |-- IBatchBolt.java
+|  |  |  |  |  |  |  |  |-- ITerminalBolt.java
+|  |  |  |  |  |  |  |  |-- IntegrationTestBolt.java
+|  |  |  |  |  |  |  |  |-- IntegrationTestSpout.java
+|  |  |  |  |  |  |  |  |-- LocalAggregatorBolt.java
+|  |  |  |  |  |  |  |  |-- TestTopologyBuilder.java
+|  |  |  |  |  |  |  |-- topology
+|  |  |  |  |  |  |  |  |-- all_grouping
+|  |  |  |  |  |  |  |  |  |-- AllGrouping.java
+|  |  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |  |-- AllGrouping.json
+|  |  |  |  |  |  |  |  |-- basic_topology_one_task
+|  |  |  |  |  |  |  |  |  |-- BasicTopologyOneTask.java
+|  |  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |  |-- BasicTopologyOneTask.json
+|  |  |  |  |  |  |  |  |-- bolt_double_emit_tuples
+|  |  |  |  |  |  |  |  |  |-- BoltDoubleEmitTuples.java
+|  |  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |  |-- BoltDoubleEmitTuples.json
+|  |  |  |  |  |  |  |  |-- fields_grouping
+|  |  |  |  |  |  |  |  |  |-- FieldsGrouping.java
+|  |  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |  |-- FieldsGrouping.json
+|  |  |  |  |  |  |  |  |-- global_grouping
+|  |  |  |  |  |  |  |  |  |-- GlobalGrouping.java
+|  |  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |  |-- GlobalGrouping.json
+|  |  |  |  |  |  |  |  |-- multi_spouts_multi_tasks
+|  |  |  |  |  |  |  |  |  |-- MultiSpoutsMultiTasks.java
+|  |  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |  |-- MultiSpoutsMultiTasks.json
+|  |  |  |  |  |  |  |  |-- non_grouping
+|  |  |  |  |  |  |  |  |  |-- NonGrouping.java
+|  |  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |  |-- NonGrouping.json
+|  |  |  |  |  |  |  |  |-- one_bolt_multi_tasks
+|  |  |  |  |  |  |  |  |  |-- OneBoltMultiTasks.java
+|  |  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |  |-- OneBoltMultiTasks.json
+|  |  |  |  |  |  |  |  |-- one_spout_bolt_multi_tasks
+|  |  |  |  |  |  |  |  |  |-- OneSpoutBoltMultiTasks.java
+|  |  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |  |-- OneSpoutBoltMultiTasks.json
+|  |  |  |  |  |  |  |  |-- one_spout_multi_tasks
+|  |  |  |  |  |  |  |  |  |-- OneSpoutMultiTasks.java
+|  |  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |  |-- OneSpoutMultiTasks.json
+|  |  |  |  |  |  |  |  |-- one_spout_two_bolts
+|  |  |  |  |  |  |  |  |  |-- OneSpoutTwoBolts.java
+|  |  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |  |-- OneSpoutTwoBolts.json
+|  |  |  |  |  |  |  |  |-- serialization
+|  |  |  |  |  |  |  |  |  |-- CustomCheckBolt.java
+|  |  |  |  |  |  |  |  |  |-- CustomObject.java
+|  |  |  |  |  |  |  |  |  |-- CustomSpout.java
+|  |  |  |  |  |  |  |  |  |-- SerializationTopology.java
+|  |  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |  |-- SerializationTopology.json
+|  |  |  |  |  |  |  |  |-- shuffle_grouping
+|  |  |  |  |  |  |  |  |  |-- ShuffleGrouping.java
+|  |  |  |  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |  |  |  |-- ShuffleGrouping.json
+|  |  |  |  |  |  |-- local_integration_test
+|  |  |  |  |  |  |  |-- topology
+|  |  |  |  |  |  |  |  |-- local_readwrite
+|  |  |  |  |  |  |  |  |  |-- LocalReadWriteTopology.java
+|  |  |-- python
+|  |  |  |-- http_server
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- main.py
+|  |  |  |-- integration_test
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- common
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- bolt
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- count_aggregator_bolt.py
+|  |  |  |  |  |  |-- double_tuples_bolt.py
+|  |  |  |  |  |  |-- identity_bolt.py
+|  |  |  |  |  |  |-- word_count_bolt.py
+|  |  |  |  |  |-- spout
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- ab_spout.py
+|  |  |  |  |-- core
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- aggregator_bolt.py
+|  |  |  |  |  |-- batch_bolt.py
+|  |  |  |  |  |-- constants.py
+|  |  |  |  |  |-- integration_test_bolt.py
+|  |  |  |  |  |-- integration_test_spout.py
+|  |  |  |  |  |-- terminal_bolt.py
+|  |  |  |  |  |-- test_topology_builder.py
+|  |  |  |  |-- topology
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- all_grouping
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- all_grouping.py
+|  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |-- all_grouping_result.json
+|  |  |  |  |  |-- basic_one_task
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- basic_one_task.py
+|  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |-- basic_one_task_result.json
+|  |  |  |  |  |-- bolt_double_emit_tuples
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- bolt_double_emit_tuples.py
+|  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |-- bolt_double_emit_tuples_result.json
+|  |  |  |  |  |-- fields_grouping
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- fields_grouping.py
+|  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |-- fields_grouping_result.json
+|  |  |  |  |  |-- global_grouping
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- global_grouping.py
+|  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |-- global_grouping_result.json
+|  |  |  |  |  |-- multi_spouts_multi_tasks
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- multi_spouts_multi_tasks.py
+|  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |-- multi_spouts_multi_tasks_result.json
+|  |  |  |  |  |-- none_grouping
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- none_grouping.py
+|  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |-- none_grouping_result.json
+|  |  |  |  |  |-- one_bolt_multi_tasks
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- one_bolt_multi_tasks.py
+|  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |-- one_bolt_multi_tasks_result.json
+|  |  |  |  |  |-- one_spout_bolt_multi_tasks
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- one_spout_bolt_multi_tasks.py
+|  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |-- one_spout_bolt_multi_tasks_result.json
+|  |  |  |  |  |-- one_spout_multi_tasks
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- one_spout_multi_tasks.py
+|  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |-- one_spout_multi_tasks_result.json
+|  |  |  |  |  |-- one_spout_two_bolts
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- one_spout_two_bolts.py
+|  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |-- one_spout_two_bolts_result.json
+|  |  |  |  |  |-- shuffle_grouping
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |-- shuffle_grouping_result.json
+|  |  |  |  |  |  |-- shuffle_grouping.py
+|  |  |  |  |  |-- test_topology_main.py
+|  |  |  |-- local_test_runner
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README
+|  |  |  |  |-- main.py
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- test.conf
+|  |  |  |  |-- test_kill_bolt.py
+|  |  |  |  |-- test_kill_metricsmgr.py
+|  |  |  |  |-- test_kill_stmgr.py
+|  |  |  |  |-- test_kill_stmgr_metricsmgr.py
+|  |  |  |  |-- test_kill_tmaster.py
+|  |  |  |  |-- test_scale_up.py
+|  |  |  |  |-- test_template.py
+|  |  |  |-- test_runner
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- main.py
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- test.conf
+|-- release
+|  |-- BUILD
+|  |-- maven
+|  |  |-- heron-api.pom.template
+|  |  |-- heron-spi.pom.template
+|  |  |-- heron-storm.pom.template
+|  |  |-- maven-pom-version.sh
+|  |-- release-process.md
+|  |-- release.spec
+|-- scripts
+|  |-- centos5
+|  |  |-- BUILD
+|  |  |-- package_release.sh
+|  |-- compile
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- errors.sh
+|  |-- detect_os_type.sh
+|  |-- get_all_heron_paths.sh
+|  |-- packages
+|  |  |-- BUILD
+|  |  |-- api_template_bin.sh
+|  |  |-- bin_common.sh
+|  |  |-- client_template_bin.sh
+|  |  |-- debian
+|  |  |  |-- description
+|  |  |-- package_info_generator.sh
+|  |  |-- self_extract_binary.bzl
+|  |  |-- tools_template_bin.sh
+|  |-- release
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- common.sh
+|  |  |-- release.sh
+|  |  |-- relnotes.sh
+|  |  |-- status.sh
+|  |-- resources
+|  |  |-- idea
+|  |  |  |-- .name
+|  |  |  |-- codeStyleSettings.xml
+|  |  |  |-- compiler.xml
+|  |  |  |-- copyright
+|  |  |  |  |-- heron.xml
+|  |  |  |  |-- profiles_settings.xml
+|  |  |  |-- libraries
+|  |  |  |  |-- hp_dep.xml
+|  |  |  |-- misc.xml
+|  |  |  |-- modules.xml
+|  |  |  |-- vcs.xml
+|  |-- run_integration_test.sh
+|  |-- setup-eclipse.sh
+|  |-- setup-intellij.sh
+|  |-- travis
+|  |  |-- build.sh
+|  |  |-- ci.sh
+|  |  |-- common.sh
+|  |  |-- save-logs.py
+|  |  |-- test.sh
+|-- third_party
+|  |-- gflags
+|  |  |-- BUILD
+|  |  |-- empty.cc
+|  |  |-- gflags-2.0.tar.gz
+|  |-- glog
+|  |  |-- BUILD
+|  |  |-- empty.cc
+|  |  |-- glog-0.3.4.tar.gz
+|  |-- gmock
+|  |  |-- BUILD
+|  |  |-- empty.cc
+|  |  |-- gmock-1.7.0.zip
+|  |-- gperftools
+|  |  |-- BUILD
+|  |  |-- empty.cc
+|  |  |-- gperftools-2.4.tar.gz
+|  |-- gtest
+|  |  |-- BUILD
+|  |  |-- empty.cc
+|  |  |-- gtest-1.7.0.zip
+|  |-- jansson
+|  |  |-- BUILD
+|  |  |-- empty.cc
+|  |  |-- jansson-2.5.tar.gz
+|  |-- java
+|  |  |-- BUILD
+|  |  |-- Empty.java
+|  |  |-- bazel
+|  |  |  |-- BUILD
+|  |  |  |-- Empty.java
+|  |  |  |-- extra_actions_base.proto
+|  |  |-- jarjar
+|  |  |  |-- BUILD
+|  |  |  |-- src
+|  |  |  |  |-- main
+|  |  |  |  |  |-- resources
+|  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |-- tonicsystems
+|  |  |  |  |  |  |  |  |-- jarjar
+|  |  |  |  |  |  |  |  |  |-- help.txt
+|  |-- kashmir
+|  |  |-- BUILD
+|  |  |-- abstractrandomstream.h
+|  |  |-- devrandom.h
+|  |  |-- empty.cc
+|  |  |-- iofwd.h
+|  |  |-- iostate.h
+|  |  |-- polydevrandom.h
+|  |  |-- randomstream.h
+|  |  |-- tests
+|  |  |  |-- cli.cpp
+|  |  |  |-- command.cpp
+|  |  |-- uuid.h
+|  |-- libevent
+|  |  |-- BUILD
+|  |  |-- empty.cc
+|  |  |-- libevent-2.0.21-stable.tar.gz
+|  |-- pb2json
+|  |  |-- BUILD
+|  |  |-- pb2json.cpp
+|  |  |-- pb2json.h
+|  |-- pex
+|  |  |-- BUILD
+|  |  |-- _pex.py
+|  |  |-- pex
+|  |  |  |-- __init__.py
+|  |  |  |-- archiver.py
+|  |  |  |-- base.py
+|  |  |  |-- bin
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- pex.py
+|  |  |  |-- common.py
+|  |  |  |-- compatibility.py
+|  |  |  |-- compiler.py
+|  |  |  |-- crawler.py
+|  |  |  |-- environment.py
+|  |  |  |-- fetcher.py
+|  |  |  |-- finders.py
+|  |  |  |-- http.py
+|  |  |  |-- installer.py
+|  |  |  |-- interpreter.py
+|  |  |  |-- iterator.py
+|  |  |  |-- link.py
+|  |  |  |-- orderedset.py
+|  |  |  |-- package.py
+|  |  |  |-- pep425.py
+|  |  |  |-- pex.py
+|  |  |  |-- pex_bootstrapper.py
+|  |  |  |-- pex_builder.py
+|  |  |  |-- pex_info.py
+|  |  |  |-- platforms.py
+|  |  |  |-- requirements.py
+|  |  |  |-- resolvable.py
+|  |  |  |-- resolver.py
+|  |  |  |-- resolver_options.py
+|  |  |  |-- sorter.py
+|  |  |  |-- testing.py
+|  |  |  |-- tracer.py
+|  |  |  |-- translator.py
+|  |  |  |-- util.py
+|  |  |  |-- variables.py
+|  |  |  |-- version.py
+|  |  |-- setup.py
+|  |  |-- setuptools-18.0.1-py2.py3-none-any.whl
+|  |  |-- wheel-0.23.0-py2.7.egg
+|  |-- protobuf
+|  |  |-- BUILD
+|  |  |-- empty.cc
+|  |  |-- protobuf-2.5.0.patch
+|  |  |-- protobuf-2.5.0.tar.gz
+|  |-- python
+|  |  |-- cpplint
+|  |  |  |-- BUILD
+|  |  |  |-- cpplint.py
+|  |  |-- pylint
+|  |  |  |-- BUILD
+|  |  |  |-- main.py
+|  |  |-- semver
+|  |  |  |-- PKG-INFO
+|  |  |  |-- README.md
+|  |  |  |-- semver.py
+|  |  |  |-- setup.py
+|  |-- setuptools
+|  |  |-- BUILD
+|  |  |-- README
+|  |  |-- pkg_resources.py
+|  |  |-- setuptools.egg-info
+|  |  |  |-- PKG-INFO
+|  |  |  |-- SOURCES.txt
+|  |  |  |-- dependency_links.txt
+|  |  |  |-- entry_points.txt
+|  |  |  |-- requires.txt
+|  |  |  |-- top_level.txt
+|  |  |  |-- zip-safe
+|  |-- thrift
+|  |  |-- BUILD
+|  |  |-- thrift-linux-x86_64.exe
+|  |  |-- thrift-osx-x86_64.exe
+|  |-- yaml-cpp
+|  |  |-- BUILD
+|  |  |-- empty.cc
+|  |  |-- yaml-cpp-0.5.1.tar.gz
+|  |  |-- yaml-cpp-noboost.tar.gz
+|  |-- zookeeper
+|  |  |-- BUILD
+|  |  |-- empty.cc
+|  |  |-- zookeeper-3.4.5-macfix.tar.gz
+|-- tools
+|  |-- BUILD
+|  |-- bazel.rc
+|  |-- cpp
+|  |  |-- BUILD
+|  |-- dev
+|  |  |-- profiler
+|  |  |  |-- attachProfiler.sh
+|  |  |  |-- profilerUsageMessage.sh
+|  |-- docker
+|  |  |-- bazel.rc
+|  |-- java
+|  |  |-- BUILD
+|  |  |-- src
+|  |  |  |-- com
+|  |  |  |  |-- twitter
+|  |  |  |  |  |-- bazel
+|  |  |  |  |  |  |-- checkstyle
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CppCheckstyle.java
+|  |  |  |  |  |  |  |-- ExtraActionUtils.java
+|  |  |  |  |  |  |  |-- JavaCheckstyle.java
+|  |  |  |  |  |  |  |-- PythonCheckstyle.java
+|  |  |  |  |  |  |  |-- apache_coding_style.xml
+|  |  |  |  |  |  |  |-- apache_header.txt
+|  |  |  |  |  |  |  |-- heron_coding_style.xml
+|  |  |  |  |  |  |  |-- heron_header.txt
+|  |  |  |  |  |  |  |-- suppressions.xml
+|  |-- python
+|  |  |-- BUILD
+|  |  |-- checkstyle.ini
+|  |-- rules
+|  |  |-- genproto.bzl
+|  |  |-- genthrift.bzl
+|  |  |-- heron_api.bzl
+|  |  |-- heron_client.bzl
+|  |  |-- heron_core.bzl
+|  |  |-- heron_deps.bzl
+|  |  |-- heron_examples.bzl
+|  |  |-- heron_tools.bzl
+|  |  |-- jarjar_rules.bzl
+|  |  |-- java_tests.bzl
+|  |  |-- newgenproto.bzl
+|  |  |-- pex_rules.bzl
+|  |  |-- proto.bzl
+|  |-- travis-ci
+|  |  |-- bazel.rc
+|  |  |-- toolchain
+|  |  |  |-- BUILD
+|  |  |  |-- CROSSTOOL
+|-- vagrant
+|  |-- README.md
+|  |-- Vagrantfile
+|  |-- init.sh
+|-- website
+|  |-- .gitignore
+|  |-- Makefile
+|  |-- README.md
+|  |-- archetypes
+|  |  |-- blog.md
+|  |  |-- default.md
+|  |  |-- docs.md
+|  |-- assets
+|  |  |-- css
+|  |  |  |-- .gitkeep
+|  |  |  |-- font-awesome.min.css
+|  |  |  |-- pygments.css
+|  |  |-- fonts
+|  |  |  |-- FontAwesome.otf
+|  |  |  |-- fontawesome-webfont.eot
+|  |  |  |-- fontawesome-webfont.svg
+|  |  |  |-- fontawesome-webfont.ttf
+|  |  |  |-- fontawesome-webfont.woff
+|  |  |  |-- fontawesome-webfont.woff2
+|  |  |-- img
+|  |  |  |-- .gitkeep
+|  |  |  |-- HeronTextLogo-small.png
+|  |  |  |-- HeronTextLogo.png
+|  |  |  |-- aurora-local-cluster-start.png
+|  |  |  |-- aurora-local-topology-submitted.png
+|  |  |  |-- backpressure1.png
+|  |  |  |-- backpressure2.png
+|  |  |  |-- bolt-log.png
+|  |  |  |-- component-metrics.png
+|  |  |  |-- container-container-sandbox.png
+|  |  |  |-- container-log-files.png
+|  |  |  |-- containers.png
+|  |  |  |-- data-flow.png
+|  |  |  |-- favicon-16x16.png
+|  |  |  |-- favicon-32x32.png
+|  |  |  |-- heron-deployment.png
+|  |  |  |-- heron-logos
+|  |  |  |  |-- 1.ai
+|  |  |  |  |-- 1.eps
+|  |  |  |  |-- 1.jpg
+|  |  |  |  |-- 1.pdf
+|  |  |  |  |-- 1.png
+|  |  |  |  |-- 1.psd
+|  |  |  |  |-- 2.ai
+|  |  |  |  |-- 2.eps
+|  |  |  |  |-- 2.jpg
+|  |  |  |  |-- 2.pdf
+|  |  |  |  |-- 2.png
+|  |  |  |  |-- 2.psd
+|  |  |  |  |-- 3.ai
+|  |  |  |  |-- 3.eps
+|  |  |  |  |-- 3.jpg
+|  |  |  |  |-- 3.pdf
+|  |  |  |  |-- 3.png
+|  |  |  |  |-- 3.psd
+|  |  |  |-- heron-tracker.png
+|  |  |  |-- heron-ui-topology-submitted.png
+|  |  |  |-- heron-ui.png
+|  |  |  |-- intellij-save-console.jpg
+|  |  |  |-- intellij-set-breakpoint.jpg
+|  |  |  |-- logical-plan.png
+|  |  |  |-- logo54x54.png
+|  |  |  |-- mesos-local-heron-ui-more.png
+|  |  |  |-- mesos-local-heron-ui-to-mesos-console.png
+|  |  |  |-- mesos-local-heron-ui.png
+|  |  |  |-- mesos-management-console-with-topology.png
+|  |  |  |-- mesos-management-console.png
+|  |  |  |-- physicalplan.png
+|  |  |  |-- tmaster.png
+|  |  |  |-- topology-counters.png
+|  |  |  |-- topology-info.png
+|  |  |  |-- topology-metrics.png
+|  |  |  |-- topology-submit-sequence-diagram.png
+|  |  |  |-- topology.png
+|  |  |  |-- ui-guide
+|  |  |  |  |-- all-topologies.png
+|  |  |  |  |-- config.png
+|  |  |  |  |-- dump.png
+|  |  |  |  |-- exceptions.png
+|  |  |  |  |-- histo.png
+|  |  |  |  |-- jobpage1.png
+|  |  |  |  |-- jobpage2-logfiles.png
+|  |  |  |  |-- jstack.png
+|  |  |  |  |-- logs.png
+|  |  |  |  |-- pid.png
+|  |  |  |  |-- topology-capacity.png
+|  |  |  |  |-- topology-component.png
+|  |  |  |  |-- topology-config.png
+|  |  |  |  |-- topology-failures.png
+|  |  |  |  |-- topology-instance-links.png
+|  |  |  |  |-- topology-instance.png
+|  |  |  |  |-- topology1.png
+|  |  |  |  |-- topology2.png
+|  |  |  |-- ui.png
+|  |  |  |-- virtual-box-memory.png
+|  |  |  |-- virtual-box-processors.png
+|  |  |  |-- viz-link.png
+|  |  |-- js
+|  |  |  |-- .gitkeep
+|  |  |  |-- bootstrap-sprockets.js
+|  |  |  |-- bootstrap.js
+|  |  |  |-- bootstrap
+|  |  |  |  |-- affix.js
+|  |  |  |  |-- alert.js
+|  |  |  |  |-- button.js
+|  |  |  |  |-- carousel.js
+|  |  |  |  |-- collapse.js
+|  |  |  |  |-- dropdown.js
+|  |  |  |  |-- modal.js
+|  |  |  |  |-- popover.js
+|  |  |  |  |-- scrollspy.js
+|  |  |  |  |-- tab.js
+|  |  |  |  |-- tooltip.js
+|  |  |  |  |-- transition.js
+|  |  |  |-- jquery.scrollTo.js
+|  |  |  |-- sidebar.js
+|  |  |-- sass
+|  |  |  |-- _bootstrap.scss
+|  |  |  |-- bootstrap
+|  |  |  |  |-- _alerts.scss
+|  |  |  |  |-- _badges.scss
+|  |  |  |  |-- _bootstrap-compass.scss
+|  |  |  |  |-- _bootstrap-mincer.scss
+|  |  |  |  |-- _bootstrap-sprockets.scss
+|  |  |  |  |-- _breadcrumbs.scss
+|  |  |  |  |-- _button-groups.scss
+|  |  |  |  |-- _buttons.scss
+|  |  |  |  |-- _carousel.scss
+|  |  |  |  |-- _close.scss
+|  |  |  |  |-- _code.scss
+|  |  |  |  |-- _component-animations.scss
+|  |  |  |  |-- _dropdowns.scss
+|  |  |  |  |-- _forms.scss
+|  |  |  |  |-- _glyphicons.scss
+|  |  |  |  |-- _grid.scss
+|  |  |  |  |-- _input-groups.scss
+|  |  |  |  |-- _jumbotron.scss
+|  |  |  |  |-- _labels.scss
+|  |  |  |  |-- _list-group.scss
+|  |  |  |  |-- _media.scss
+|  |  |  |  |-- _mixins.scss
+|  |  |  |  |-- _modals.scss
+|  |  |  |  |-- _navbar.scss
+|  |  |  |  |-- _navs.scss
+|  |  |  |  |-- _normalize.scss
+|  |  |  |  |-- _pager.scss
+|  |  |  |  |-- _pagination.scss
+|  |  |  |  |-- _panels.scss
+|  |  |  |  |-- _popovers.scss
+|  |  |  |  |-- _print.scss
+|  |  |  |  |-- _progress-bars.scss
+|  |  |  |  |-- _responsive-embed.scss
+|  |  |  |  |-- _responsive-utilities.scss
+|  |  |  |  |-- _scaffolding.scss
+|  |  |  |  |-- _tables.scss
+|  |  |  |  |-- _theme.scss
+|  |  |  |  |-- _thumbnails.scss
+|  |  |  |  |-- _tooltip.scss
+|  |  |  |  |-- _type.scss
+|  |  |  |  |-- _utilities.scss
+|  |  |  |  |-- _variables.scss
+|  |  |  |  |-- _wells.scss
+|  |  |  |  |-- mixins
+|  |  |  |  |  |-- _alerts.scss
+|  |  |  |  |  |-- _background-variant.scss
+|  |  |  |  |  |-- _border-radius.scss
+|  |  |  |  |  |-- _buttons.scss
+|  |  |  |  |  |-- _center-block.scss
+|  |  |  |  |  |-- _clearfix.scss
+|  |  |  |  |  |-- _forms.scss
+|  |  |  |  |  |-- _gradients.scss
+|  |  |  |  |  |-- _grid-framework.scss
+|  |  |  |  |  |-- _grid.scss
+|  |  |  |  |  |-- _hide-text.scss
+|  |  |  |  |  |-- _image.scss
+|  |  |  |  |  |-- _labels.scss
+|  |  |  |  |  |-- _list-group.scss
+|  |  |  |  |  |-- _nav-divider.scss
+|  |  |  |  |  |-- _nav-vertical-align.scss
+|  |  |  |  |  |-- _opacity.scss
+|  |  |  |  |  |-- _pagination.scss
+|  |  |  |  |  |-- _panels.scss
+|  |  |  |  |  |-- _progress-bar.scss
+|  |  |  |  |  |-- _reset-filter.scss
+|  |  |  |  |  |-- _reset-text.scss
+|  |  |  |  |  |-- _resize.scss
+|  |  |  |  |  |-- _responsive-visibility.scss
+|  |  |  |  |  |-- _size.scss
+|  |  |  |  |  |-- _tab-focus.scss
+|  |  |  |  |  |-- _table-row.scss
+|  |  |  |  |  |-- _text-emphasis.scss
+|  |  |  |  |  |-- _text-overflow.scss
+|  |  |  |  |  |-- _vendor-prefixes.scss
+|  |  |  |-- sloth
+|  |  |  |  |-- _sloth.scss
+|  |  |  |-- style.scss
+|  |-- config.yaml
+|  |-- content
+|  |  |-- docs
+|  |  |  |-- concepts
+|  |  |  |  |-- architecture.md
+|  |  |  |  |-- design-goals.md
+|  |  |  |  |-- topologies.md
+|  |  |  |-- contributors
+|  |  |  |  |-- codebase.md
+|  |  |  |  |-- community.md
+|  |  |  |  |-- custom-metrics-sink.md
+|  |  |  |  |-- custom-scheduler.md
+|  |  |  |  |-- governance.md
+|  |  |  |  |-- license.md
+|  |  |  |  |-- roadmap.md
+|  |  |  |  |-- support.md
+|  |  |  |  |-- testing.md
+|  |  |  |-- developers
+|  |  |  |  |-- compiling
+|  |  |  |  |  |-- compiling.md
+|  |  |  |  |  |-- docker.md
+|  |  |  |  |  |-- linux.md
+|  |  |  |  |  |-- mac.md
+|  |  |  |  |-- data-model.md
+|  |  |  |  |-- java
+|  |  |  |  |  |-- bolts.md
+|  |  |  |  |  |-- spouts.md
+|  |  |  |  |  |-- topologies.md
+|  |  |  |  |-- packing
+|  |  |  |  |  |-- ffdpacking.md
+|  |  |  |  |-- python
+|  |  |  |  |  |-- bolts.md
+|  |  |  |  |  |-- spouts.md
+|  |  |  |  |  |-- topologies.md
+|  |  |  |  |-- serialization.md
+|  |  |  |  |-- simulator-mode.md
+|  |  |  |  |-- troubleshooting.md
+|  |  |  |  |-- tuning.md
+|  |  |  |  |-- ui-guide.md
+|  |  |  |-- getting-started-troubleshooting.md
+|  |  |  |-- getting-started.md
+|  |  |  |-- operators
+|  |  |  |  |-- configuration
+|  |  |  |  |  |-- config-intro.md
+|  |  |  |  |  |-- instance.md
+|  |  |  |  |  |-- metrics-manager.md
+|  |  |  |  |  |-- stmgr.md
+|  |  |  |  |  |-- system.md
+|  |  |  |  |  |-- tmaster.md
+|  |  |  |  |-- deployment
+|  |  |  |  |  |-- configuration.md
+|  |  |  |  |  |-- index.md
+|  |  |  |  |  |-- schedulers
+|  |  |  |  |  |  |-- aurora-local-setup.md
+|  |  |  |  |  |  |-- aurora.md
+|  |  |  |  |  |  |-- local.md
+|  |  |  |  |  |  |-- mesos-local-mac.md
+|  |  |  |  |  |  |-- mesos.md
+|  |  |  |  |  |  |-- slurm.md
+|  |  |  |  |  |  |-- yarn.md
+|  |  |  |  |  |-- statemanagers
+|  |  |  |  |  |  |-- localfs.md
+|  |  |  |  |  |  |-- zookeeper.md
+|  |  |  |  |  |-- uploaders
+|  |  |  |  |  |  |-- hdfs.md
+|  |  |  |  |  |  |-- localfs.md
+|  |  |  |  |  |  |-- s3.md
+|  |  |  |  |  |  |-- scp.md
+|  |  |  |  |-- heron-cli.md
+|  |  |  |  |-- heron-shell.md
+|  |  |  |  |-- heron-tracker-api.md
+|  |  |  |  |-- heron-tracker.md
+|  |  |  |  |-- heron-ui.md
+|  |  |  |  |-- observability
+|  |  |  |  |  |-- graphite.md
+|  |  |  |-- resources.md
+|  |  |  |-- upgrade-storm-to-heron.md
+|  |-- data
+|  |  |-- toc.yaml
+|  |-- gulpfile.js
+|  |-- layouts
+|  |  |-- 404.ace
+|  |  |-- docs
+|  |  |  |-- single.ace
+|  |  |-- index.ace
+|  |  |-- partials
+|  |  |  |-- css.includes.ace
+|  |  |  |-- docs
+|  |  |  |  |-- main.ace
+|  |  |  |  |-- page-meta.ace
+|  |  |  |-- footer.ace
+|  |  |  |-- head.ace
+|  |  |  |-- index
+|  |  |  |  |-- feed.ace
+|  |  |  |  |-- google-analytics.ace
+|  |  |  |  |-- index-meta.ace
+|  |  |  |  |-- twitter-timeline.ace
+|  |  |  |-- meta.ace
+|  |  |  |-- navbar.ace
+|  |  |  |-- sidenav.ace
+|  |  |-- shortcodes
+|  |  |  |-- bazelVersion.ace
+|  |  |  |-- githubMaster.ace
+|  |  |  |-- heronVersion.ace
+|  |-- package.json
+|  |-- public
+|  |-- scripts
+|  |  |-- javadocs-overview.html
+|  |  |-- javadocs.sh
+|  |  |-- linkchecker.sh
+|  |  |-- setup.sh

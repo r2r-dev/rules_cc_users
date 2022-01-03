@@ -1,0 +1,490 @@
+|-- .bazelversion
+|-- .dockerignore
+|-- .flake8
+|-- .github
+|  |-- CODEOWNERS
+|  |-- ISSUE_TEMPLATE
+|  |  |-- bug-performance-report.md
+|  |  |-- feature-request.md
+|  |-- boring-cyborg.yml
+|  |-- pull_request_template.md
+|  |-- release-template.yml
+|  |-- workflows
+|  |  |-- backport.yml
+|  |  |-- ci_test.yml
+|  |  |-- github_build_dev_container.sh
+|  |  |-- make_wheel_Linux.sh
+|  |  |-- make_wheel_Windows.sh
+|  |  |-- make_wheel_macOS.sh
+|  |  |-- notify_codeowners.py
+|  |  |-- notify_codeowners.yml
+|  |  |-- release-drafter.yml
+|  |  |-- release.yml
+|-- .gitignore
+|-- BUILD
+|-- CODE_OF_CONDUCT.md
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- MANIFEST.in
+|-- MIGRATION_TO_CORE.md
+|-- README.md
+|-- STYLE_GUIDE.md
+|-- WORKSPACE
+|-- build_deps
+|  |-- build_pip_pkg.sh
+|  |-- tf_dependency
+|  |  |-- BUILD
+|  |  |-- BUILD.tpl
+|  |  |-- build_defs.bzl.tpl
+|  |  |-- tf_configure.bzl
+|  |-- toolchains
+|  |  |-- gcc7_manylinux2010-nvcc-cuda11
+|  |  |  |-- BUILD
+|  |  |  |-- cc_toolchain_config.bzl
+|  |  |  |-- clang
+|  |  |  |  |-- bin
+|  |  |  |  |  |-- crosstool_wrapper_driver_is_not_gcc
+|  |  |-- gpu
+|  |  |  |-- BUILD
+|  |  |  |-- crosstool
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- BUILD.tpl
+|  |  |  |  |-- CROSSTOOL.tpl
+|  |  |  |  |-- cc_toolchain_config.bzl.tpl
+|  |  |  |  |-- clang
+|  |  |  |  |  |-- bin
+|  |  |  |  |  |  |-- crosstool_wrapper_driver_is_not_gcc.tpl
+|  |  |  |  |-- windows
+|  |  |  |  |  |-- msvc_wrapper_for_nvcc.py.tpl
+|  |  |  |-- cub.BUILD
+|  |  |  |-- cuda
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- BUILD.tpl
+|  |  |  |  |-- BUILD.windows.tpl
+|  |  |  |  |-- build_defs.bzl.tpl
+|  |  |  |  |-- cuda_config.h.tpl
+|  |  |  |-- cuda_configure.bzl
+|  |  |  |-- find_cuda_config.py
+|-- configure.py
+|-- docs
+|  |-- README.md
+|  |-- overview.md
+|  |-- tutorials
+|  |  |-- README.md
+|  |  |-- _template.ipynb
+|  |  |-- _toc.yaml
+|  |  |-- average_optimizers_callback.ipynb
+|  |  |-- image_ops.ipynb
+|  |  |-- layers_normalizations.ipynb
+|  |  |-- layers_weightnormalization.ipynb
+|  |  |-- losses_triplet.ipynb
+|  |  |-- networks_seq2seq_nmt.ipynb
+|  |  |-- optimizers_conditionalgradient.ipynb
+|  |  |-- optimizers_cyclicallearningrate.ipynb
+|  |  |-- optimizers_lazyadam.ipynb
+|  |  |-- time_stopping.ipynb
+|  |  |-- tqdm_progress_bar.ipynb
+|-- pyproject.toml
+|-- pytest.ini
+|-- requirements.txt
+|-- setup.py
+|-- tensorflow_addons
+|  |-- BUILD
+|  |-- __init__.py
+|  |-- activations
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- gelu.py
+|  |  |-- hardshrink.py
+|  |  |-- lisht.py
+|  |  |-- mish.py
+|  |  |-- rrelu.py
+|  |  |-- snake.py
+|  |  |-- softshrink.py
+|  |  |-- sparsemax.py
+|  |  |-- tanhshrink.py
+|  |  |-- tests
+|  |  |  |-- __init__.py
+|  |  |  |-- activations_test.py
+|  |  |  |-- gelu_test.py
+|  |  |  |-- hardshrink_test.py
+|  |  |  |-- lisht_test.py
+|  |  |  |-- mish_test.py
+|  |  |  |-- rrelu_test.py
+|  |  |  |-- run_all_test.py
+|  |  |  |-- snake_test.py
+|  |  |  |-- softshrink_test.py
+|  |  |  |-- sparsemax_test.py
+|  |  |  |-- tanhshrink_test.py
+|  |-- callbacks
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- average_model_checkpoint.py
+|  |  |-- tests
+|  |  |  |-- __init__.py
+|  |  |  |-- avg_model_checkpoint_test.py
+|  |  |  |-- run_all_test.py
+|  |  |  |-- time_stopping_test.py
+|  |  |  |-- tqdm_progress_bar_test.py
+|  |  |-- time_stopping.py
+|  |  |-- tqdm_progress_bar.py
+|  |-- conftest.py
+|  |-- custom_ops
+|  |  |-- README.md
+|  |  |-- image
+|  |  |  |-- BUILD
+|  |  |  |-- cc
+|  |  |  |  |-- kernels
+|  |  |  |  |  |-- adjust_hsv_in_yiq_op.cc
+|  |  |  |  |  |-- adjust_hsv_in_yiq_op.h
+|  |  |  |  |  |-- adjust_hsv_in_yiq_op_gpu.cu.cc
+|  |  |  |  |  |-- connected_components.cc
+|  |  |  |  |  |-- connected_components.h
+|  |  |  |  |  |-- euclidean_distance_transform_op.cc
+|  |  |  |  |  |-- euclidean_distance_transform_op.h
+|  |  |  |  |  |-- euclidean_distance_transform_op_gpu.cu.cc
+|  |  |  |  |  |-- resampler_ops.cc
+|  |  |  |  |  |-- resampler_ops.h
+|  |  |  |  |  |-- resampler_ops_gpu.cu.cc
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- distort_image_ops.cc
+|  |  |  |  |  |-- image_ops.cc
+|  |  |  |  |  |-- resampler_ops.cc
+|  |  |-- layers
+|  |  |  |-- BUILD
+|  |  |  |-- cc
+|  |  |  |  |-- kernels
+|  |  |  |  |  |-- correlation_cost_op.cc
+|  |  |  |  |  |-- correlation_cost_op.h
+|  |  |  |  |  |-- correlation_cost_op_gpu.cu.cc
+|  |  |  |  |  |-- embedding_bag_backward_kernels.cu.cc
+|  |  |  |  |  |-- embedding_bag_ops.cc
+|  |  |  |  |  |-- embedding_bag_ops.h
+|  |  |  |  |  |-- embedding_bag_ops_gpu.cu.cc
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- correlation_cost_op.cc
+|  |  |  |  |  |-- embedding_bag_ops.cc
+|  |  |-- seq2seq
+|  |  |  |-- BUILD
+|  |  |  |-- cc
+|  |  |  |  |-- kernels
+|  |  |  |  |  |-- beam_search_ops.cc
+|  |  |  |  |  |-- beam_search_ops.h
+|  |  |  |  |  |-- beam_search_ops_gpu.cu.cc
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- beam_search_ops.cc
+|  |  |-- text
+|  |  |  |-- BUILD
+|  |  |  |-- cc
+|  |  |  |  |-- kernels
+|  |  |  |  |  |-- parse_time_kernel.cc
+|  |  |  |  |  |-- skip_gram_kernels.cc
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- parse_time_op.cc
+|  |  |  |  |  |-- skip_gram_ops.cc
+|  |-- image
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- color_ops.py
+|  |  |-- compose_ops.py
+|  |  |-- connected_components.py
+|  |  |-- cutout_ops.py
+|  |  |-- dense_image_warp.py
+|  |  |-- distance_transform.py
+|  |  |-- distort_image_ops.py
+|  |  |-- filters.py
+|  |  |-- interpolate_spline.py
+|  |  |-- resampler_ops.py
+|  |  |-- sparse_image_warp.py
+|  |  |-- tests
+|  |  |  |-- __init__.py
+|  |  |  |-- color_ops_test.py
+|  |  |  |-- compose_ops_test.py
+|  |  |  |-- connected_components_test.py
+|  |  |  |-- cutout_ops_test.py
+|  |  |  |-- dense_image_warp_test.py
+|  |  |  |-- distance_transform_test.py
+|  |  |  |-- distort_image_ops_test.py
+|  |  |  |-- filters_test.py
+|  |  |  |-- interpolate_spline_test.py
+|  |  |  |-- resampler_ops_test.py
+|  |  |  |-- run_all_test.py
+|  |  |  |-- sparse_image_warp_test.py
+|  |  |  |-- test_data
+|  |  |  |  |-- Yellow_Smiley_Face.png
+|  |  |  |  |-- Yellow_Smiley_Face_Warp-interp-1-clamp-0.png
+|  |  |  |  |-- Yellow_Smiley_Face_Warp-interp-1-clamp-1.png
+|  |  |  |  |-- Yellow_Smiley_Face_Warp-interp-1-clamp-4.png
+|  |  |  |  |-- Yellow_Smiley_Face_Warp-interp-2-clamp-0.png
+|  |  |  |  |-- Yellow_Smiley_Face_Warp-interp-2-clamp-1.png
+|  |  |  |  |-- Yellow_Smiley_Face_Warp-interp-2-clamp-4.png
+|  |  |  |  |-- Yellow_Smiley_Face_Warp-interp-3-clamp-0.png
+|  |  |  |  |-- Yellow_Smiley_Face_Warp-interp-3-clamp-1.png
+|  |  |  |  |-- Yellow_Smiley_Face_Warp-interp-3-clamp-4.png
+|  |  |  |-- transform_ops_test.py
+|  |  |  |-- translate_ops_test.py
+|  |  |  |-- utils_test.py
+|  |  |-- transform_ops.py
+|  |  |-- translate_ops.py
+|  |  |-- utils.py
+|  |-- layers
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- adaptive_pooling.py
+|  |  |-- crf.py
+|  |  |-- embedding_bag.py
+|  |  |-- esn.py
+|  |  |-- gelu.py
+|  |  |-- max_unpooling_2d.py
+|  |  |-- maxout.py
+|  |  |-- multihead_attention.py
+|  |  |-- netvlad.py
+|  |  |-- noisy_dense.py
+|  |  |-- normalizations.py
+|  |  |-- optical_flow.py
+|  |  |-- poincare.py
+|  |  |-- polynomial.py
+|  |  |-- snake.py
+|  |  |-- sparsemax.py
+|  |  |-- spatial_pyramid_pooling.py
+|  |  |-- spectral_normalization.py
+|  |  |-- stochastic_depth.py
+|  |  |-- tests
+|  |  |  |-- __init__.py
+|  |  |  |-- adaptive_pooling_test.py
+|  |  |  |-- crf_test.py
+|  |  |  |-- embedding_bag_test.py
+|  |  |  |-- esn_test.py
+|  |  |  |-- gelu_test.py
+|  |  |  |-- max_unpooling_2d_test.py
+|  |  |  |-- maxout_test.py
+|  |  |  |-- multihead_attention_test.py
+|  |  |  |-- netvlad_test.py
+|  |  |  |-- noisy_dense_test.py
+|  |  |  |-- normalizations_test.py
+|  |  |  |-- optical_flow_test.py
+|  |  |  |-- poincare_test.py
+|  |  |  |-- polynomial_test.py
+|  |  |  |-- run_all_test.py
+|  |  |  |-- snake_test.py
+|  |  |  |-- sparsemax_test.py
+|  |  |  |-- spatial_pyramid_pooling_test.py
+|  |  |  |-- spectral_normalization_test.py
+|  |  |  |-- stochastic_depth_test.py
+|  |  |  |-- tlu_test.py
+|  |  |  |-- wrappers_test.py
+|  |  |-- tlu.py
+|  |  |-- wrappers.py
+|  |-- losses
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- contrastive.py
+|  |  |-- focal_loss.py
+|  |  |-- giou_loss.py
+|  |  |-- kappa_loss.py
+|  |  |-- lifted.py
+|  |  |-- metric_learning.py
+|  |  |-- npairs.py
+|  |  |-- quantiles.py
+|  |  |-- sparsemax_loss.py
+|  |  |-- tests
+|  |  |  |-- __init__.py
+|  |  |  |-- contrastive_test.py
+|  |  |  |-- focal_loss_test.py
+|  |  |  |-- giou_loss_test.py
+|  |  |  |-- kappa_loss_test.py
+|  |  |  |-- lifted_test.py
+|  |  |  |-- metric_test.py
+|  |  |  |-- npairs_test.py
+|  |  |  |-- quantiles_test.py
+|  |  |  |-- run_all_test.py
+|  |  |  |-- sparsemax_loss_test.py
+|  |  |  |-- triplet_test.py
+|  |  |-- triplet.py
+|  |-- metrics
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- cohens_kappa.py
+|  |  |-- f_scores.py
+|  |  |-- geometric_mean.py
+|  |  |-- hamming.py
+|  |  |-- harmonic_mean.py
+|  |  |-- kendalls_tau.py
+|  |  |-- matthews_correlation_coefficient.py
+|  |  |-- multilabel_confusion_matrix.py
+|  |  |-- r_square.py
+|  |  |-- tests
+|  |  |  |-- __init__.py
+|  |  |  |-- cohens_kappa_test.py
+|  |  |  |-- f_scores_test.py
+|  |  |  |-- geometric_mean_test.py
+|  |  |  |-- hamming_test.py
+|  |  |  |-- harmonic_mean_test.py
+|  |  |  |-- kendalls_tau_test.py
+|  |  |  |-- matthews_correlation_coefficient_test.py
+|  |  |  |-- metrics_test.py
+|  |  |  |-- multilabel_confusion_matrix_test.py
+|  |  |  |-- r_square_test.py
+|  |  |  |-- run_all_test.py
+|  |  |-- utils.py
+|  |-- optimizers
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- average_wrapper.py
+|  |  |-- cocob.py
+|  |  |-- conditional_gradient.py
+|  |  |-- cyclical_learning_rate.py
+|  |  |-- discriminative_layer_training.py
+|  |  |-- lamb.py
+|  |  |-- lazy_adam.py
+|  |  |-- lookahead.py
+|  |  |-- moving_average.py
+|  |  |-- novograd.py
+|  |  |-- proximal_adagrad.py
+|  |  |-- rectified_adam.py
+|  |  |-- stochastic_weight_averaging.py
+|  |  |-- tests
+|  |  |  |-- __init__.py
+|  |  |  |-- cocob_test.py
+|  |  |  |-- conditional_gradient_test.py
+|  |  |  |-- cyclical_learning_rate_test.py
+|  |  |  |-- discriminative_layer_training_test.py
+|  |  |  |-- lamb_test.py
+|  |  |  |-- lazy_adam_test.py
+|  |  |  |-- lookahead_test.py
+|  |  |  |-- moving_average_test.py
+|  |  |  |-- novograd_test.py
+|  |  |  |-- proximal_adagrad_test.py
+|  |  |  |-- rectified_adam_test.py
+|  |  |  |-- run_all_test.py
+|  |  |  |-- standard_test.py
+|  |  |  |-- stochastic_weight_averaging_test.py
+|  |  |  |-- weight_decay_optimizers_test.py
+|  |  |  |-- yogi_test.py
+|  |  |-- utils.py
+|  |  |-- weight_decay_optimizers.py
+|  |  |-- yogi.py
+|  |-- options.py
+|  |-- register.py
+|  |-- rnn
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- esn_cell.py
+|  |  |-- layer_norm_lstm_cell.py
+|  |  |-- layer_norm_simple_rnn_cell.py
+|  |  |-- nas_cell.py
+|  |  |-- peephole_lstm_cell.py
+|  |  |-- tests
+|  |  |  |-- __init__.py
+|  |  |  |-- esn_cell_test.py
+|  |  |  |-- layer_norm_lstm_cell_test.py
+|  |  |  |-- layer_norm_simple_rnn_cell_test.py
+|  |  |  |-- nas_cell_test.py
+|  |  |  |-- peephole_lstm_cell_test.py
+|  |  |  |-- run_all_test.py
+|  |-- seq2seq
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- attention_wrapper.py
+|  |  |-- basic_decoder.py
+|  |  |-- beam_search_decoder.py
+|  |  |-- decoder.py
+|  |  |-- loss.py
+|  |  |-- sampler.py
+|  |  |-- tests
+|  |  |  |-- __init__.py
+|  |  |  |-- attention_wrapper_test.py
+|  |  |  |-- basic_decoder_test.py
+|  |  |  |-- beam_search_decoder_test.py
+|  |  |  |-- beam_search_ops_test.py
+|  |  |  |-- decoder_test.py
+|  |  |  |-- loss_test.py
+|  |  |  |-- run_all_test.py
+|  |-- tensorflow_addons.bzl
+|  |-- testing
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- serialization.py
+|  |  |-- tests
+|  |  |  |-- __init__.py
+|  |  |  |-- run_all_test.py
+|  |  |  |-- serialization_test.py
+|  |-- tests
+|  |  |-- __init__.py
+|  |  |-- register_test.py
+|  |  |-- run_all_test.py
+|  |-- text
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- crf.py
+|  |  |-- parse_time_op.py
+|  |  |-- skip_gram_ops.py
+|  |  |-- tests
+|  |  |  |-- __init__.py
+|  |  |  |-- crf_test.py
+|  |  |  |-- parse_time_op_test.py
+|  |  |  |-- run_all_test.py
+|  |  |  |-- skip_gram_ops_test.py
+|  |-- utils
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- ensure_tf_install.py
+|  |  |-- keras_utils.py
+|  |  |-- resource_loader.py
+|  |  |-- test_utils.py
+|  |  |-- tests
+|  |  |  |-- __init__.py
+|  |  |  |-- keras_utils_test.py
+|  |  |  |-- run_all_test.py
+|  |  |  |-- test_utils_test.py
+|  |  |-- types.py
+|  |-- version.py
+|-- tools
+|  |-- build_dev_container.sh
+|  |-- docker
+|  |  |-- build_wheel.Dockerfile
+|  |  |-- cpu_tests.Dockerfile
+|  |  |-- dev_container.Dockerfile
+|  |  |-- pre-commit.Dockerfile
+|  |  |-- sanity_check.Dockerfile
+|  |-- docs
+|  |  |-- BUILD
+|  |  |-- Readme.md
+|  |  |-- build_docs.py
+|  |-- format.py
+|  |-- install_deps
+|  |  |-- black.txt
+|  |  |-- buildifier.sh
+|  |  |-- clang-format.sh
+|  |  |-- doc_requirements.txt
+|  |  |-- flake8.txt
+|  |  |-- install_bazelisk.sh
+|  |  |-- pytest.txt
+|  |  |-- tensorflow-cpu.txt
+|  |  |-- tensorflow.txt
+|  |  |-- typedapi.txt
+|  |-- install_so_files.sh
+|  |-- pre-commit.sh
+|  |-- releases
+|  |  |-- tf_auditwheel_patch.sh
+|  |-- run_build.sh
+|  |-- run_cpu_tests.sh
+|  |-- run_google_cloud_tests.sh
+|  |-- run_gpu_tests.sh
+|  |-- run_sanity_check.sh
+|  |-- testing
+|  |  |-- build_and_run_tests.sh
+|  |  |-- parallel_gpu_execute.sh
+|  |  |-- source_code_test.py
+|  |-- update_release_version.sh

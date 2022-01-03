@@ -1,0 +1,794 @@
+|-- .bazelrc
+|-- .bazelversion
+|-- .clang-format
+|-- .gcloudignore
+|-- .gitignore
+|-- BUILD
+|-- CHANGELOG.md
+|-- CONTRIBUTING.md
+|-- DEVELOPER.md
+|-- LICENSE
+|-- Makefile
+|-- OWNERS
+|-- README.md
+|-- VERSION
+|-- WORKSPACE
+|-- api
+|  |-- README.md
+|  |-- VERSION
+|  |-- envoy
+|  |  |-- v10
+|  |  |  |-- http
+|  |  |  |  |-- backend_auth
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- config.proto
+|  |  |  |  |-- common
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- base.proto
+|  |  |  |  |-- grpc_metadata_scrubber
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- config.proto
+|  |  |  |  |-- path_rewrite
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- config.proto
+|  |  |  |  |-- service_control
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- config.proto
+|  |  |  |  |  |-- requirement.proto
+|  |-- scripts
+|  |  |-- go_proto_gen.sh
+|  |  |-- update_version.sh
+|-- bazel
+|  |-- BUILD
+|  |-- bazel_rules_python.bzl
+|  |-- googleapis.bzl
+|  |-- grpc.bzl
+|  |-- repositories.bzl
+|  |-- service_control.bzl
+|  |-- zlib.BUILD
+|-- doc
+|  |-- architecture.md
+|  |-- esp-v2-on-cloudrun.md
+|  |-- esp-v2-on-k8s.md
+|  |-- images
+|  |  |-- api-gateway-deployment.jpg
+|  |  |-- architecture.png
+|  |  |-- filters.png
+|  |  |-- sidecar-deployment.jpg
+|  |-- use-cases.md
+|-- docker
+|  |-- Dockerfile-envoy
+|  |-- Dockerfile-gcsrunner.tmpl
+|  |-- Dockerfile-prow-env
+|  |-- Dockerfile-proxy.tmpl
+|  |-- Dockerfile-serverless.tmpl
+|  |-- cloudbuild.yaml
+|  |-- generic
+|  |  |-- start_proxy.py
+|  |-- serverless
+|  |  |-- env_start_proxy.py
+|  |  |-- gcloud_build_image
+|-- envoy_build_config
+|  |-- BUILD
+|  |-- WORKSPACE
+|  |-- extensions_build_config.bzl
+|-- examples
+|  |-- BUILD
+|  |-- README.md
+|  |-- auth
+|  |  |-- envoy_config.json
+|  |  |-- openapi_swagger.json
+|  |  |-- service_config_generated.json
+|  |-- dynamic_routing
+|  |  |-- envoy_config.json
+|  |  |-- openapi_swagger.json
+|  |  |-- service_config_generated.json
+|  |-- grpc_dynamic_routing
+|  |  |-- api_descriptor.pb
+|  |  |-- envoy_config.json
+|  |  |-- grpc-test.proto
+|  |  |-- grpc-test.yaml
+|  |  |-- service_config_generated.json
+|  |-- service_control
+|  |  |-- envoy_config.json
+|  |  |-- openapi_swagger.json
+|  |  |-- service_config_generated.json
+|  |-- testdata
+|  |  |-- README.md
+|  |  |-- route_match
+|  |  |  |-- envoy_config.json
+|  |  |  |-- openapi_swagger.json
+|  |  |  |-- service_config_generated.json
+|  |  |-- sidecar_backend
+|  |  |  |-- envoy_config.json
+|  |  |  |-- openapi_swagger.json
+|  |  |  |-- service_config_generated.json
+|-- go.mod
+|-- go.sum
+|-- prow
+|  |-- .bazelrc
+|  |-- README.md
+|  |-- continuous-build.sh
+|  |-- e2e-anthos-cloud-run-anthos-cloud-run-http-bookstore.sh
+|  |-- e2e-cloud-run-app-engine-http-bookstore.sh
+|  |-- e2e-cloud-run-cloud-function-http-bookstore.sh
+|  |-- e2e-cloud-run-cloud-run-grpc-echo.sh
+|  |-- e2e-cloud-run-cloud-run-http-bookstore.sh
+|  |-- e2e-gcloud-build-image.sh
+|  |-- e2e-tight_grpc_echo_managed_long_run.sh
+|  |-- e2e-tight_grpc_interop_managed_long_run.sh
+|  |-- e2e-tight_http_bookstore_managed_long_run.sh
+|  |-- e2e-tight_http_bookstore_managed_using_sa_cred_long_run.sh
+|  |-- gcpproxy-api-regression.sh
+|  |-- gcpproxy-build.sh
+|  |-- gcpproxy-coverage.sh
+|  |-- gcpproxy-e2e.sh
+|  |-- gcpproxy-presubmit.sh
+|  |-- janitor.sh
+|  |-- presubmit-asan.sh
+|  |-- presubmit-tsan.sh
+|  |-- utils
+|  |  |-- prow_test_utils.sh
+|-- scripts
+|  |-- all-utilities.sh
+|  |-- cloud-build-docker.sh
+|  |-- docker_make.sh
+|  |-- format-examples.sh
+|  |-- release
+|  |  |-- release-changelog.sh
+|  |  |-- release-new-branch.sh
+|  |  |-- release-publish.sh
+|  |  |-- release-qualify.sh
+|  |  |-- release-show.sh
+|  |  |-- release-stable.sh
+|  |  |-- release-tag-git.sh
+|  |  |-- validate_release.py
+|  |-- robot-release.sh
+|  |-- setup-clang-asan.sh
+|-- src
+|  |-- api_proxy
+|  |  |-- README.md
+|  |  |-- path_matcher
+|  |  |  |-- BUILD
+|  |  |  |-- http_template.cc
+|  |  |  |-- http_template.h
+|  |  |  |-- http_template_fuzz_test.cc
+|  |  |  |-- http_template_test.cc
+|  |  |  |-- path_matcher.cc
+|  |  |  |-- path_matcher.h
+|  |  |  |-- path_matcher_node.cc
+|  |  |  |-- path_matcher_node.h
+|  |  |  |-- path_matcher_test.cc
+|  |  |  |-- variable_binding_utils.cc
+|  |  |  |-- variable_binding_utils.h
+|  |  |  |-- variable_binding_utils_test.cc
+|  |  |-- service_control
+|  |  |  |-- BUILD
+|  |  |  |-- check_response_convert_utils.cc
+|  |  |  |-- check_response_convert_utils.h
+|  |  |  |-- check_response_convert_utils_test.cc
+|  |  |  |-- logs_metrics_loader.cc
+|  |  |  |-- logs_metrics_loader.h
+|  |  |  |-- logs_metrics_loader_test.cc
+|  |  |  |-- request_builder.cc
+|  |  |  |-- request_builder.h
+|  |  |  |-- request_builder_test.cc
+|  |  |  |-- request_info.h
+|  |  |  |-- testdata
+|  |  |  |  |-- allocate_quota_request.golden
+|  |  |  |  |-- allocate_quota_request_android_ios.golden
+|  |  |  |  |-- allocate_quota_request_no_method_name.golden
+|  |  |  |  |-- allocate_quota_request_without_api_key.golden
+|  |  |  |  |-- allocate_quota_request_without_api_key_projectid.golden
+|  |  |  |  |-- check_request.golden
+|  |  |  |  |-- check_request_android_ios.golden
+|  |  |  |  |-- check_request_no_api_key.golden
+|  |  |  |  |-- report_request.golden
+|  |  |  |  |-- report_request_by_consumer.golden
+|  |  |  |  |-- report_request_empty_optional.golden
+|  |  |  |  |-- report_request_failed.golden
+|  |  |  |  |-- report_request_failed_bad_api_key.golden
+|  |  |  |  |-- report_request_failed_grpc_status.golden
+|  |  |-- utils
+|  |  |  |-- BUILD
+|  |  |  |-- version.cc
+|  |  |  |-- version.h
+|  |  |  |-- version_macro_template.sh
+|  |  |  |-- version_test.cc
+|  |-- envoy
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- http
+|  |  |  |-- backend_auth
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- config_parser.h
+|  |  |  |  |-- config_parser_impl.cc
+|  |  |  |  |-- config_parser_impl.h
+|  |  |  |  |-- config_parser_impl_test.cc
+|  |  |  |  |-- filter.cc
+|  |  |  |  |-- filter.h
+|  |  |  |  |-- filter_config.h
+|  |  |  |  |-- filter_config_impl.h
+|  |  |  |  |-- filter_factory.cc
+|  |  |  |  |-- filter_test.cc
+|  |  |  |  |-- mocks.h
+|  |  |  |-- grpc_metadata_scrubber
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- filter.cc
+|  |  |  |  |-- filter.h
+|  |  |  |  |-- filter_config.h
+|  |  |  |  |-- filter_factory.cc
+|  |  |  |  |-- filter_test.cc
+|  |  |  |-- path_rewrite
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- config_parser.h
+|  |  |  |  |-- config_parser_impl.cc
+|  |  |  |  |-- config_parser_impl.h
+|  |  |  |  |-- config_parser_impl_test.cc
+|  |  |  |  |-- filter.cc
+|  |  |  |  |-- filter.h
+|  |  |  |  |-- filter_config.h
+|  |  |  |  |-- filter_factory.cc
+|  |  |  |  |-- filter_test.cc
+|  |  |  |  |-- mocks.h
+|  |  |  |-- service_control
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- client_cache.cc
+|  |  |  |  |-- client_cache.h
+|  |  |  |  |-- client_cache_test.cc
+|  |  |  |  |-- config_parser.cc
+|  |  |  |  |-- config_parser.h
+|  |  |  |  |-- config_parser_test.cc
+|  |  |  |  |-- filter.cc
+|  |  |  |  |-- filter.h
+|  |  |  |  |-- filter_config.h
+|  |  |  |  |-- filter_factory.cc
+|  |  |  |  |-- filter_fuzz_test.cc
+|  |  |  |  |-- filter_stats.cc
+|  |  |  |  |-- filter_stats.h
+|  |  |  |  |-- filter_stats_test.cc
+|  |  |  |  |-- filter_test.cc
+|  |  |  |  |-- handler.h
+|  |  |  |  |-- handler_impl.cc
+|  |  |  |  |-- handler_impl.h
+|  |  |  |  |-- handler_impl_test.cc
+|  |  |  |  |-- handler_utils.cc
+|  |  |  |  |-- handler_utils.h
+|  |  |  |  |-- handler_utils_test.cc
+|  |  |  |  |-- http_call.cc
+|  |  |  |  |-- http_call.h
+|  |  |  |  |-- http_call_test.cc
+|  |  |  |  |-- mocks.h
+|  |  |  |  |-- service_control_call.h
+|  |  |  |  |-- service_control_call_impl.cc
+|  |  |  |  |-- service_control_call_impl.h
+|  |  |  |  |-- service_control_callback_func.h
+|  |  |-- token
+|  |  |  |-- BUILD
+|  |  |  |-- iam_token_info.cc
+|  |  |  |-- iam_token_info.h
+|  |  |  |-- iam_token_info_fuzz_test.cc
+|  |  |  |-- iam_token_info_test.cc
+|  |  |  |-- imds_token_info.cc
+|  |  |  |-- imds_token_info.h
+|  |  |  |-- imds_token_info_fuzz_test.cc
+|  |  |  |-- imds_token_info_test.cc
+|  |  |  |-- mocks.h
+|  |  |  |-- token_info.h
+|  |  |  |-- token_subscriber.cc
+|  |  |  |-- token_subscriber.h
+|  |  |  |-- token_subscriber_factory.h
+|  |  |  |-- token_subscriber_factory_impl.h
+|  |  |  |-- token_subscriber_test.cc
+|  |  |-- utils
+|  |  |  |-- BUILD
+|  |  |  |-- filter_state_utils.cc
+|  |  |  |-- filter_state_utils.h
+|  |  |  |-- filter_state_utils_test.cc
+|  |  |  |-- http_header_utils.cc
+|  |  |  |-- http_header_utils.h
+|  |  |  |-- http_header_utils_test.cc
+|  |  |  |-- json_struct.cc
+|  |  |  |-- json_struct.h
+|  |  |  |-- json_struct_fuzz_test.cc
+|  |  |  |-- json_struct_test.cc
+|  |  |  |-- rc_detail_utils.cc
+|  |  |  |-- rc_detail_utils.h
+|  |  |  |-- rc_detail_utils_test.cc
+|  |-- go
+|  |  |-- README.md
+|  |  |-- bootstrap
+|  |  |  |-- admin.go
+|  |  |  |-- admin_test.go
+|  |  |  |-- ads
+|  |  |  |  |-- bootstrap.go
+|  |  |  |  |-- bootstrap_test.go
+|  |  |  |  |-- flags
+|  |  |  |  |  |-- flags.go
+|  |  |  |  |  |-- flags_test.go
+|  |  |  |  |-- main
+|  |  |  |  |  |-- main.go
+|  |  |  |-- layer_runtime.go
+|  |  |  |-- node.go
+|  |  |  |-- static
+|  |  |  |  |-- bootstrap.go
+|  |  |  |  |-- bootstrap_test.go
+|  |  |-- commonflags
+|  |  |  |-- flags.go
+|  |  |  |-- flags_test.go
+|  |  |-- configgenerator
+|  |  |  |-- cluster_generator.go
+|  |  |  |-- cluster_generator_test.go
+|  |  |  |-- filterconfig
+|  |  |  |  |-- filter_gen_backend_auth.go
+|  |  |  |  |-- filter_gen_backend_auth_test.go
+|  |  |  |  |-- filter_gen_jwt_authn.go
+|  |  |  |  |-- filter_gen_jwt_authn_test.go
+|  |  |  |  |-- filter_gen_path_rewrite.go
+|  |  |  |  |-- filter_gen_service_control.go
+|  |  |  |  |-- filter_gen_service_control_test.go
+|  |  |  |  |-- filter_generator.go
+|  |  |  |  |-- filter_generator_test.go
+|  |  |  |-- listener_generator.go
+|  |  |  |-- listener_generator_test.go
+|  |  |  |-- route_generator.go
+|  |  |  |-- route_generator_test.go
+|  |  |-- configinfo
+|  |  |  |-- method_info.go
+|  |  |  |-- service_info.go
+|  |  |  |-- service_info_test.go
+|  |  |-- configmanager
+|  |  |  |-- config_manager.go
+|  |  |  |-- config_manager_test.go
+|  |  |  |-- flags
+|  |  |  |  |-- flags.go
+|  |  |  |  |-- flags_test.go
+|  |  |  |-- main
+|  |  |  |  |-- server.go
+|  |  |  |-- testdata
+|  |  |  |  |-- test_fetch_listeners.go
+|  |  |  |  |-- test_fixed_mode_dynamic_routing.go
+|  |  |-- gcsrunner
+|  |  |  |-- fetch_config.go
+|  |  |  |-- fetch_config_test.go
+|  |  |  |-- main
+|  |  |  |  |-- runner.go
+|  |  |  |-- serviceaccount.go
+|  |  |  |-- start_envoy.go
+|  |  |  |-- start_envoy_test.go
+|  |  |-- metadata
+|  |  |  |-- metadata_fetcher.go
+|  |  |  |-- metadata_fetcher_test.go
+|  |  |  |-- metadata_fetcher_test_util.go
+|  |  |-- options
+|  |  |  |-- adsbootstrapper.go
+|  |  |  |-- common.go
+|  |  |  |-- configgenerator.go
+|  |  |-- serviceconfig
+|  |  |  |-- rollout_id_change_detector.go
+|  |  |  |-- rollout_id_change_fetcher_test.go
+|  |  |  |-- service_config_fetcher.go
+|  |  |  |-- service_config_fetcher_test.go
+|  |  |-- tokengenerator
+|  |  |  |-- token_generator.go
+|  |  |  |-- token_generator_test.go
+|  |  |-- tracing
+|  |  |  |-- tracing.go
+|  |  |  |-- tracing_test.go
+|  |  |-- util
+|  |  |  |-- dns_resolver.go
+|  |  |  |-- httppattern
+|  |  |  |  |-- sort.go
+|  |  |  |  |-- sort_impl.go
+|  |  |  |  |-- sort_test.go
+|  |  |  |  |-- uri_template.go
+|  |  |  |  |-- uri_template_parser.go
+|  |  |  |  |-- uri_template_parser_test.go
+|  |  |  |  |-- uri_template_test.go
+|  |  |  |  |-- util.go
+|  |  |  |-- httptest_util.go
+|  |  |  |-- load_assignment.go
+|  |  |  |-- marshal.go
+|  |  |  |-- marshal_test.go
+|  |  |  |-- regex.go
+|  |  |  |-- regex_test.go
+|  |  |  |-- request.go
+|  |  |  |-- request_test.go
+|  |  |  |-- testdata
+|  |  |  |  |-- fake_key.go
+|  |  |  |-- time.go
+|  |  |  |-- transport_socket.go
+|  |  |  |-- transport_socket_test.go
+|  |  |  |-- url_util.go
+|  |  |  |-- url_util_test.go
+|  |  |  |-- util.go
+|  |  |  |-- util_test.go
+|  |  |  |-- xds_name.go
+|  |  |  |-- xds_name_test.go
+|-- tests
+|  |-- e2e
+|  |  |-- client
+|  |  |  |-- apiproxy_bookstore_key_restriction_test.py
+|  |  |  |-- apiproxy_bookstore_quota_test.py
+|  |  |  |-- apiproxy_bookstore_test.py
+|  |  |  |-- apiproxy_client.py
+|  |  |  |-- apiproxy_transcoding_fuzz_test.py
+|  |  |  |-- grpc
+|  |  |  |  |-- grpc_stress_input.py
+|  |  |  |-- h2load_runner.py
+|  |  |  |-- jwt_client.go
+|  |  |  |-- utils.py
+|  |  |  |-- wrk_runner.py
+|  |  |  |-- wrk_script.lua.temp
+|  |  |-- scripts
+|  |  |  |-- cloud-run
+|  |  |  |  |-- deploy.sh
+|  |  |  |  |-- utilities.sh
+|  |  |  |-- gen-auth-token.sh
+|  |  |  |-- gke
+|  |  |  |  |-- deploy.sh
+|  |  |  |  |-- utilities.sh
+|  |  |  |-- linux-grpc-test-long-run.sh
+|  |  |  |-- linux-install-wrk.sh
+|  |  |  |-- linux-test-kb-long-run.sh
+|  |  |  |-- prow-utilities.sh
+|  |  |  |-- test-grpc-interop.sh
+|  |  |-- testdata
+|  |  |  |-- bookstore
+|  |  |  |  |-- 35k.json
+|  |  |  |  |-- gke
+|  |  |  |  |  |-- http-bookstore.yaml.template
+|  |  |  |  |-- key_restriction_test.json.template
+|  |  |  |  |-- negative_test_data.json.temp
+|  |  |  |  |-- test_data.json.temp
+|  |  |  |-- bookstore_grpc
+|  |  |  |  |-- gke
+|  |  |  |  |  |-- bookstore.yaml
+|  |  |  |-- grpc_echo
+|  |  |  |  |-- gke
+|  |  |  |  |  |-- grpc-echo.yaml.template
+|  |  |  |  |-- grpc_echo.json
+|  |  |  |  |-- grpc_echostream.json
+|  |  |  |  |-- grpc_large_report.json
+|  |  |  |  |-- grpc_test_data.json
+|  |  |  |-- grpc_interop
+|  |  |  |  |-- gke
+|  |  |  |  |  |-- grpc-interop.yaml.template
+|  |-- endpoints
+|  |  |-- bookstore
+|  |  |  |-- app_template.yaml
+|  |  |  |-- bookstore.Dockerfile
+|  |  |  |-- bookstore_swagger_template.json
+|  |  |  |-- http_bookstore.js
+|  |  |  |-- package-lock.json
+|  |  |  |-- package.json
+|  |  |-- bookstore_grpc
+|  |  |  |-- Dockerfile
+|  |  |  |-- client
+|  |  |  |  |-- client.go
+|  |  |  |  |-- util.go
+|  |  |  |  |-- util_test.go
+|  |  |  |-- client_main.go
+|  |  |  |-- proto
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- api_config_auth.yaml
+|  |  |  |  |-- api_descriptor.pb
+|  |  |  |  |-- v1
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- bookstore.pb.go
+|  |  |  |  |  |-- bookstore.proto
+|  |  |  |  |-- v2
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- bookstore_v2.pb.go
+|  |  |  |  |  |-- bookstore_v2.proto
+|  |  |  |-- server
+|  |  |  |  |-- server.go
+|  |  |-- echo
+|  |  |  |-- Dockerfile
+|  |  |  |-- client
+|  |  |  |  |-- client.go
+|  |  |  |-- client_main.go
+|  |  |  |-- server
+|  |  |  |  |-- app.go
+|  |  |-- grpc_echo
+|  |  |  |-- BUILD
+|  |  |  |-- Dockerfile.tmpl
+|  |  |  |-- client-test-lib.cc
+|  |  |  |-- client-test-lib.h
+|  |  |  |-- client
+|  |  |  |  |-- client.go
+|  |  |  |-- grpc-test-client.cc
+|  |  |  |-- grpc-test-dynamic-routing.tmpl.yaml
+|  |  |  |-- grpc-test-server.cc
+|  |  |  |-- grpc-test.yaml
+|  |  |  |-- linux-build-grpc-docker.sh
+|  |  |  |-- proto
+|  |  |  |  |-- api_descriptor.pb
+|  |  |  |  |-- grpc-test.proto
+|  |  |-- grpc_interop
+|  |  |  |-- grpc-interop.yaml
+|  |  |  |-- proto
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- api_descriptor.pb
+|  |  |  |  |-- test_service.proto
+|  |  |-- health_check
+|  |  |  |-- server.go
+|  |-- env
+|  |  |-- components
+|  |  |  |-- cert.go
+|  |  |  |-- cmd.go
+|  |  |  |-- config_manager.go
+|  |  |  |-- dns_resolver.go
+|  |  |  |-- echo_http_server.go
+|  |  |  |-- envoy.go
+|  |  |  |-- fake_stackdriver_server.go
+|  |  |  |-- grpc_echo_grpc_server.go
+|  |  |  |-- grpc_interop_grpc_server.go
+|  |  |  |-- health_check_helpers.go
+|  |  |  |-- health_check_helpers_test.go
+|  |  |  |-- health_check_registry.go
+|  |  |  |-- health_check_registry_test.go
+|  |  |  |-- mock_iam.go
+|  |  |  |-- mock_jwt_provider.go
+|  |  |  |-- mock_metadata.go
+|  |  |  |-- mock_metadata_test.go
+|  |  |  |-- mock_service_control.go
+|  |  |  |-- mock_service_control_test.go
+|  |  |  |-- mock_service_management.go
+|  |  |  |-- mock_service_management_test.go
+|  |  |  |-- retry_handler.go
+|  |  |  |-- stats_verifier.go
+|  |  |-- env.go
+|  |  |-- platform
+|  |  |  |-- backend.go
+|  |  |  |-- files.go
+|  |  |  |-- network.go
+|  |  |  |-- ports.go
+|  |  |-- testdata
+|  |  |  |-- BUILD
+|  |  |  |-- cert.conf
+|  |  |  |-- client.crt
+|  |  |  |-- client.key
+|  |  |  |-- downstream_client.crt
+|  |  |  |-- downstream_client.key
+|  |  |  |-- fake_echo_service_config.go
+|  |  |  |-- fake_echo_service_config_for_dynamic_routing.go
+|  |  |  |-- fake_grpc_bookstore_service_config.go
+|  |  |  |-- fake_grpc_bookstore_service_config_dynamic_routing.go
+|  |  |  |-- fake_grpc_echo_service_config.go
+|  |  |  |-- fake_grpc_echo_service_config_for_dynamic_routing.go
+|  |  |  |-- fake_grpc_interop_service_config.go
+|  |  |  |-- fake_jwt.go
+|  |  |  |-- fake_service_config_map.go
+|  |  |  |-- json_config_parser.go
+|  |  |  |-- logs_metrics.pb.txt
+|  |  |  |-- mismatch.crt
+|  |  |  |-- mismatch.key
+|  |  |  |-- proxy.crt
+|  |  |  |-- proxy.key
+|  |  |  |-- roots.pem
+|  |  |  |-- server.crt
+|  |  |  |-- server.key
+|  |  |  |-- service_config_for_fixed_dynamic_routing.json
+|  |-- fuzz
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- corpus
+|  |  |  |-- BUILD
+|  |  |  |-- auth_token
+|  |  |  |  |-- invalid-simple.prototxt
+|  |  |  |  |-- valid-realistic.prototxt
+|  |  |  |-- backend_routing_filter
+|  |  |  |  |-- crash-bad-path-translation.prototxt
+|  |  |  |  |-- crash-invalid-binding-query-params.prototxt
+|  |  |  |  |-- missing-path.prototxt
+|  |  |  |  |-- valid-append-query-params.prototxt
+|  |  |  |  |-- valid-append-simple.prototxt
+|  |  |  |  |-- valid-const-query-params.prototxt
+|  |  |  |  |-- valid-const-simple.prototxt
+|  |  |  |-- http_template
+|  |  |  |  |-- custom_verb.prototxt
+|  |  |  |  |-- error.prototxt
+|  |  |  |  |-- more_variable.prototxt
+|  |  |  |  |-- parse_test.prototxt
+|  |  |  |  |-- parse_verb.prototxt
+|  |  |  |  |-- variable_and_custom_verb.prototxt
+|  |  |  |-- iam_token_info
+|  |  |  |  |-- invalid-imds-access-token.prototxt
+|  |  |  |  |-- invalid-url.prototxt
+|  |  |  |  |-- valid-access-token-simple.prototxt
+|  |  |  |  |-- valid-id-token-simple.prototxt
+|  |  |  |  |-- valid-with-delegates.prototxt
+|  |  |  |  |-- valid-with-scopes.prototxt
+|  |  |  |-- imds_token_info
+|  |  |  |  |-- invalid-url.prototxt
+|  |  |  |  |-- valid-access-token-simple.prototxt
+|  |  |  |  |-- valid-id-token-simple.prototxt
+|  |  |  |  |-- valid-url.prototxt
+|  |  |  |-- json_struct
+|  |  |  |  |-- missing-one-key.prototxt
+|  |  |  |  |-- multiple-types.prototxt
+|  |  |  |  |-- nan.prototxt
+|  |  |  |  |-- valid-multiple-keys.prototxt
+|  |  |  |  |-- valid-one-key.prototxt
+|  |  |  |-- service_control_filter
+|  |  |  |  |-- all-metrics.prototxt
+|  |  |  |  |-- bad-check.prototxt
+|  |  |  |  |-- bad-quota.prototxt
+|  |  |  |  |-- crash-api-key-header.prototxt
+|  |  |  |  |-- crash-bad-service-control-uri.prototxt
+|  |  |  |  |-- crash-downstream-address-pipe.prototxt
+|  |  |  |  |-- crash-log-request-headers.prototxt
+|  |  |  |  |-- crash-missing-sc-uri.prototxt
+|  |  |  |  |-- crash-negative-timeout.prototxt
+|  |  |  |  |-- crash-response-code-overflow.prototxt
+|  |  |  |  |-- crash-sa-token-generator-null-token.prototxt
+|  |  |  |  |-- invalid-network-address.prototxt
+|  |  |  |  |-- sc-retries.prototxt
+|  |  |  |  |-- valid-request-complex.prototxt
+|  |  |  |  |-- valid-request.prototxt
+|  |  |-- structured_inputs
+|  |  |  |-- BUILD
+|  |  |  |-- auth_token.proto
+|  |  |  |-- http_template.proto
+|  |  |  |-- iam_token_info.proto
+|  |  |  |-- imds_token_info.proto
+|  |  |  |-- json_struct.proto
+|  |  |  |-- service_control_filter.proto
+|  |-- integration_test
+|  |  |-- access_log_test
+|  |  |  |-- access_log_test.go
+|  |  |-- add_headers_test
+|  |  |  |-- add_headers_test.go
+|  |  |-- auth_pkey_cache_test
+|  |  |  |-- auth_pkey_cache_test.go
+|  |  |-- backend_auth_disable_auth_test
+|  |  |  |-- backend_auth_disable_auth_test.go
+|  |  |-- backend_auth_using_iam_test
+|  |  |  |-- backend_auth_using_iam_test.go
+|  |  |-- backend_auth_using_imds_test
+|  |  |  |-- backend_auth_using_imds_test.go
+|  |  |-- backend_protocol_test
+|  |  |  |-- backend_protocol_test.go
+|  |  |-- backend_retry_test
+|  |  |  |-- backend_retry_test.go
+|  |  |-- client_cancellation_test
+|  |  |  |-- client_cancellation_test.go
+|  |  |-- cors_integration_test
+|  |  |  |-- cors_integration_test.go
+|  |  |-- dns_resolver_test
+|  |  |  |-- dns_resolver_test.go
+|  |  |-- dynamic_routing_integration_test
+|  |  |  |-- dynamic_routing_integration_test.go
+|  |  |-- generated_header_prefix_test
+|  |  |  |-- generated_header_prefix_test.go
+|  |  |-- grpc_deadline_test
+|  |  |  |-- grpc_deadline_test.go
+|  |  |-- grpc_errors_test
+|  |  |  |-- grpc_errors_test.go
+|  |  |-- grpc_fallback_test
+|  |  |  |-- grpc_fallback_test.go
+|  |  |-- grpc_integration_test
+|  |  |  |-- grpc_integration_test.go
+|  |  |-- grpc_interop_test
+|  |  |  |-- grpc_interop_test.go
+|  |  |-- grpc_ministress_test
+|  |  |  |-- grpc_ministress_test.go
+|  |  |-- grpc_streaming_test
+|  |  |  |-- grpc_streaming_test.go
+|  |  |-- http1_deadline_test
+|  |  |  |-- http1_deadline_test.go
+|  |  |-- http1_integration_test
+|  |  |  |-- http1_integration_test.go
+|  |  |-- http_method_override_test
+|  |  |  |-- http_method_override_test.go
+|  |  |-- iam_imds_data_path_test
+|  |  |  |-- iam_imds_data_path_test.go
+|  |  |-- jwt_auth_integration_test
+|  |  |  |-- jwt_auth_integration_test.go
+|  |  |-- jwt_locations_test
+|  |  |  |-- jwt_locations_test.go
+|  |  |-- managed_service_config_test
+|  |  |  |-- managed_service_config_test.go
+|  |  |-- multi_grpc_services_test
+|  |  |  |-- multi_grpc_services_test.go
+|  |  |-- non_gcp_test
+|  |  |  |-- non_gcp_test.go
+|  |  |-- opencensus_tracing_test
+|  |  |  |-- opencensus_tracing_test.go
+|  |  |-- report_gcp_attributes_test
+|  |  |  |-- report_gcp_attributes_test.go
+|  |  |-- service_control_access_token_test
+|  |  |  |-- service_control_access_token_test.go
+|  |  |-- service_control_apikey_location_test
+|  |  |  |-- service_control_apikey_location_test.go
+|  |  |-- service_control_apikey_restriction_test
+|  |  |  |-- service_control_apikey_restriction_test.go
+|  |  |-- service_control_auth_fail_test
+|  |  |  |-- service_control_auth_fail_test.go
+|  |  |-- service_control_basic_test
+|  |  |  |-- service_control_basic_test.go
+|  |  |-- service_control_cache_test
+|  |  |  |-- service_control_cache_test.go
+|  |  |-- service_control_check_fail_test
+|  |  |  |-- service_control_check_fail_test.go
+|  |  |-- service_control_check_network_fail_test
+|  |  |  |-- service_control_check_network_fail_test.go
+|  |  |-- service_control_check_server_fail_test
+|  |  |  |-- service_control_check_server_fail_test.go
+|  |  |-- service_control_credential_id_test
+|  |  |  |-- service_control_credential_id_test.go
+|  |  |-- service_control_failed_request_report_test
+|  |  |  |-- service_control_failed_request_report_test.go
+|  |  |-- service_control_http_method_test
+|  |  |  |-- service_control_http_method_test.go
+|  |  |-- service_control_http_path_test
+|  |  |  |-- service_control_http_path_test.go
+|  |  |-- service_control_log_test
+|  |  |  |-- service_control_log_test.go
+|  |  |-- service_control_protocol_test
+|  |  |  |-- service_control_protocol_test.go
+|  |  |-- service_control_quota_test
+|  |  |  |-- service_control_quota_test.go
+|  |  |-- service_control_report_network_fail_test
+|  |  |  |-- service_control_report_network_fail_test.go
+|  |  |-- service_control_response_code_test
+|  |  |  |-- service_control_response_code_test.go
+|  |  |-- service_control_retry_timeout_test
+|  |  |  |-- service_control_retry_timeout_test.go
+|  |  |-- service_control_skip_test
+|  |  |  |-- service_control_skip_test.go
+|  |  |-- statistics_test
+|  |  |  |-- statistics_test.go
+|  |  |-- transcoding_bindings_test
+|  |  |  |-- transcoding_bindings_test.go
+|  |  |-- transcoding_errors_test
+|  |  |  |-- transcoding_errors_test.go
+|  |  |-- transcoding_options_test
+|  |  |  |-- transcoding_options_test.go
+|  |  |-- transport_security_test
+|  |  |  |-- transport_security_test.go
+|  |  |-- websocket_test
+|  |  |  |-- websocket_test.go
+|  |-- start_proxy
+|  |  |-- __init__.py
+|  |  |-- env_start_proxy_test.py
+|  |  |-- start_proxy_test.py
+|  |-- utils
+|  |  |-- args.go
+|  |  |-- diff.go
+|  |  |-- diff_test.go
+|  |  |-- handler.go
+|  |  |-- http.go
+|  |  |-- service_account.go
+|  |  |-- service_control_utils.go
+|  |  |-- service_control_utils_test.go
+|  |  |-- stats_fetcher.go
+|  |  |-- status.go
+|  |  |-- time.go
+|  |  |-- version.go
+|-- third_party
+|  |-- golang_internal
+|  |  |-- LICENSE
+|  |  |-- README.md
+|  |  |-- oauth2.go
+|  |-- tools
+|  |  |-- coverage
+|  |  |  |-- README.md
+|  |  |  |-- cpp_fuzz.sh
+|  |  |  |-- cpp_unit.sh
+|  |  |  |-- gen_coverage.sh
+|  |  |-- gcrgc
+|  |  |  |-- LICENSE
+|  |  |  |-- README.md
+|  |  |  |-- gcrgc.sh
+|  |  |-- spelling
+|  |  |  |-- LICENSE
+|  |  |  |-- README.md
+|  |  |  |-- check_spelling.sh
+|  |  |  |-- spelling_skip_files.txt
+|  |  |  |-- spelling_whitelist_words.txt

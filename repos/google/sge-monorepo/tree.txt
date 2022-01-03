@@ -1,0 +1,952 @@
+|-- .REPOBUILDER_MARKER
+|-- .bazelrc
+|-- .github
+|  |-- ISSUE_TEMPLATE.md
+|  |-- PULL_REQUEST_TEMPLATE.md
+|-- .gitignore
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- build
+|  |-- BUILDUNIT
+|  |-- build_dist_cli
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- build_dist.go
+|  |-- builders
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- package_builder
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- package_builder.go
+|  |  |  |-- package_builder_test.go
+|  |  |-- unity_builder
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- BuildConfig.cs
+|  |  |  |-- README.md
+|  |  |  |-- license.go
+|  |  |  |-- log.go
+|  |  |  |-- protos
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- credentials.proto
+|  |  |  |-- unity_builder.go
+|  |  |-- unreal_builder
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- CICD
+|  |  |  |-- config.go
+|  |  |  |-- unreal_builder.go
+|  |  |-- wwise_builder
+|  |  |  |-- BUILD
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- protos
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- soundbank.proto
+|  |  |  |-- wwise_builder.go
+|  |-- checks
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- README.md
+|  |  |-- banrules
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- banrules.go
+|  |  |-- checkbuildunit
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- checkbuildunit.go
+|  |  |-- checkdesc
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- checkdesc.go
+|  |  |  |-- checkdesc_test.go
+|  |  |-- checkfmt
+|  |  |  |-- BUILD
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- checkfmt.go
+|  |  |  |-- checkfmt_test.go
+|  |  |  |-- testdata
+|  |  |  |  |-- bad.go.testinput
+|  |  |  |  |-- badsyntax.go.testinput
+|  |  |  |  |-- bin
+|  |  |  |  |  |-- windows
+|  |  |  |  |  |  |-- gofmt.exe
+|  |  |  |  |-- good.go.testinput
+|  |  |-- gazelle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- gazelle.go
+|  |  |  |-- gazelle_fixer
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- gazelle_fixer.go
+|  |  |-- tools.textpb
+|  |-- cicd
+|  |  |-- BUILD.bazel
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- bep
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bep.go
+|  |  |-- cicdfile
+|  |  |  |-- BUILD
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- cicdfile.go
+|  |  |  |-- cicdfile_test.go
+|  |  |  |-- protos
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- cicdfile.proto
+|  |  |  |-- testdata
+|  |  |  |  |-- A
+|  |  |  |  |  |-- AA
+|  |  |  |  |  |  |-- CICD_TEST
+|  |  |  |  |  |  |-- file.txt
+|  |  |  |  |  |-- AB
+|  |  |  |  |  |  |-- file.txt
+|  |  |  |  |  |-- AC
+|  |  |  |  |  |  |-- file.txt
+|  |  |  |  |  |-- file.txt
+|  |  |  |  |-- B
+|  |  |  |  |  |-- BA
+|  |  |  |  |  |  |-- file.txt
+|  |  |  |  |  |-- BB
+|  |  |  |  |  |  |-- BBA
+|  |  |  |  |  |  |  |-- CICD_TEST.test
+|  |  |  |  |  |  |  |-- CICD_TEST
+|  |  |  |  |  |  |  |  |-- file.txt
+|  |  |  |  |  |  |  |-- file.txt
+|  |  |  |  |  |  |-- BBB
+|  |  |  |  |  |  |  |-- CICD_TEST
+|  |  |  |  |  |  |  |-- file.txt
+|  |  |  |  |  |  |-- BBC
+|  |  |  |  |  |  |  |-- CICD_TEST
+|  |  |  |  |  |  |  |  |-- file.txt
+|  |  |  |  |  |  |  |-- file.txt
+|  |  |  |  |  |  |-- file.txt
+|  |  |  |  |  |-- CICD_TEST
+|  |  |  |  |  |-- file.txt
+|  |  |-- cirunner
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- README.md
+|  |  |  |-- ciemail
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- ciemail.go
+|  |  |  |  |-- presubmit_email.go
+|  |  |  |-- cirunner.go
+|  |  |  |-- css
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- email.css
+|  |  |  |-- email_templates.go
+|  |  |  |-- presubmit.go
+|  |  |  |-- protos
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- cirun.proto
+|  |  |  |  |-- credentials.proto
+|  |  |  |-- runners
+|  |  |  |  |-- cron_runner
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- BUILDUNIT
+|  |  |  |  |  |-- cron_runner.go
+|  |  |  |  |  |-- protos
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- cron.proto
+|  |  |  |  |-- dev_runner
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- BUILDUNIT
+|  |  |  |  |  |-- dev_runner.go
+|  |  |  |  |-- postsubmit_runner
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- BUILDUNIT
+|  |  |  |  |  |-- dummy
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- BUILDUNIT
+|  |  |  |  |  |  |-- dummy.go
+|  |  |  |  |  |  |-- dummy_test.go
+|  |  |  |  |  |  |-- publish
+|  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |-- BUILDUNIT
+|  |  |  |  |  |  |  |-- publish.go
+|  |  |  |  |  |-- postsubmit_runner.go
+|  |  |  |  |  |-- postsubmit_runner_test.go
+|  |  |  |  |  |-- protos
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- postsubmit.proto
+|  |  |  |  |-- presubmit_runner
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- BUILDUNIT
+|  |  |  |  |  |-- email.go
+|  |  |  |  |  |-- listener.go
+|  |  |  |  |  |-- presubmit_runner.go
+|  |  |  |  |-- prewarm_runner
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- BUILDUNIT
+|  |  |  |  |  |-- prewarm_runner.go
+|  |  |  |  |-- publish_runner
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- BUILDUNIT
+|  |  |  |  |  |-- dummy
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- BUILDUNIT
+|  |  |  |  |  |  |-- dummy.go
+|  |  |  |  |  |-- protos
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- publish.proto
+|  |  |  |  |  |-- publish_runner.go
+|  |  |  |  |-- unit_runner
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- BUILDUNIT
+|  |  |  |  |  |-- protos
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- unit_runner.proto
+|  |  |  |  |  |-- unit_runner.go
+|  |  |  |-- runnertool
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- credentials.go
+|  |  |  |  |-- runnertool.go
+|  |  |  |-- windows
+|  |  |  |  |-- cirunner.exe
+|  |  |-- cron
+|  |  |  |-- client_cleanup
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- BUILDUNIT
+|  |  |  |  |-- client_cleanup.go
+|  |  |-- jenkins
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- bootstrap
+|  |  |  |  |-- README.md
+|  |  |  |  |-- bootstrap.bat
+|  |  |  |  |-- set_perforce_env.bat
+|  |  |  |-- jenkins.go
+|  |  |  |-- jenkins_scrapper
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- BUILDUNIT
+|  |  |  |  |-- jenkins_scrapper.go
+|  |  |  |-- mockjenkins
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- mockjenkins.go
+|  |  |  |-- pipelines
+|  |  |  |  |-- agent-reconnect.Jenkinsfile
+|  |  |  |  |-- dev.Jenkinsfile
+|  |  |  |  |-- postsubmit.Jenkinsfile
+|  |  |  |  |-- presubmit.Jenkinsfile
+|  |  |  |  |-- prewarm.Jenkinsfile
+|  |  |  |  |-- publish.Jenkinsfile
+|  |  |  |  |-- unit.Jenkinsfile
+|  |  |  |-- worker_images
+|  |  |  |  |-- README.md
+|  |  |-- monorepo
+|  |  |  |-- BUILD
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- monorepo.go
+|  |  |  |-- monorepo_test.go
+|  |  |  |-- p4path
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- p4path.go
+|  |  |  |  |-- p4path_test.go
+|  |  |  |-- universe
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- BUILDUNIT
+|  |  |  |  |-- universe.go
+|  |  |  |  |-- universe_config.go
+|  |  |  |  |-- universe_test.go
+|  |  |-- presubmit
+|  |  |  |-- BUILD
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- check
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- check.go
+|  |  |  |  |-- check_test.go
+|  |  |  |  |-- checkmock
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- checkmock.go
+|  |  |  |  |-- protos
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- check.proto
+|  |  |  |-- presubmit.go
+|  |  |  |-- presubmit_test.go
+|  |  |  |-- protos
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- presubmit.proto
+|  |  |  |-- testdata
+|  |  |  |  |-- foo
+|  |  |  |  |  |-- CICD_TEST
+|  |  |  |  |  |-- MONOREPO
+|  |  |  |  |  |-- WORKSPACE
+|  |  |  |  |-- shared
+|  |  |  |  |  |-- CICD_TEST
+|  |  |  |  |  |-- MONOREPO
+|  |  |  |  |  |-- WORKSPACE
+|  |  |-- publish.bat
+|  |  |-- sgeb
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- build
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- bep_result.go
+|  |  |  |  |-- bep_result_test.go
+|  |  |  |  |-- build.go
+|  |  |  |  |-- build_test.go
+|  |  |  |-- buildtool
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- buildtool.go
+|  |  |  |  |-- buildtool_test.go
+|  |  |  |  |-- toolmock
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- toolmock.go
+|  |  |  |-- protos
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- build.proto
+|  |  |  |  |-- sgeb.proto
+|  |  |  |-- remote.go
+|  |  |  |-- sgeb.go
+|  |  |-- sgep
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- sgep.go
+|  |  |-- signed_urls
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- signed_urls.go
+|  |-- con_job
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- con_job.go
+|  |-- deps
+|  |  |-- BUILD
+|  |  |-- go.bzl
+|  |-- owners
+|  |  |-- BUILD.bazel
+|  |  |-- owners.go
+|  |  |-- owners_test.go
+|  |-- packagemanifest
+|  |  |-- BUILD.bazel
+|  |  |-- packagemanifest.go
+|  |  |-- protos
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- packagemanifest.proto
+|  |-- pong
+|  |  |-- P4_loadtest
+|  |  |  |-- 10GB
+|  |  |  |  |-- all_tests.bat
+|  |  |  |  |-- readme.md
+|  |  |  |  |-- test_run.py
+|  |  |  |-- helloworld
+|  |  |  |  |-- Dockerfile
+|  |  |  |  |-- cloudbuild.yaml
+|  |  |  |  |-- helloworld.sh
+|  |  |  |-- pongperfwide
+|  |  |  |  |-- container
+|  |  |  |  |  |-- Dockerfile
+|  |  |  |  |  |-- cloudbuild.yaml
+|  |  |  |  |  |-- pongperfwide.py
+|  |  |  |  |-- create_p4_env.py
+|  |  |  |  |-- create_p4_env_passwords.py
+|  |  |  |  |-- pongperfwide-deployment.yaml
+|  |  |  |  |-- pongperfwide-pv.yaml
+|  |  |  |  |-- readme.md
+|  |  |-- generate_files
+|  |  |  |-- README.md
+|  |  |  |-- generate_files.py
+|  |-- publishers
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- cl_publisher
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- cl_publisher.go
+|  |  |-- docker_publisher
+|  |  |  |-- BUILD
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- defs.bzl
+|  |  |  |-- docker_publisher.go
+|  |  |  |-- protos
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- docker_push_config.proto
+|  |  |  |-- test
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- BUILDUNIT
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- empty.txt
+|  |  |  |  |  |-- sge.txt
+|  |  |-- gce_container_publisher
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- gce_container_publisher.go
+|  |  |-- gcs_publisher
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- gcs_publisher.go
+|  |  |-- inplace_p4_publisher
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- inplace_p4_publisher.go
+|  |  |-- test_publisher
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- test_publisher.go
+|  |-- sge_sync
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- bin
+|  |  |  |-- sge-sync.exe
+|  |  |-- sge_sync.go
+|  |-- tasks
+|  |  |-- vm_container_deploy
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- vm_container_deploy.go
+|  |-- testing
+|  |  |-- time_buildtool
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- time_buildtool.go
+|-- build_all.bat
+|-- build_protos.bat
+|-- clean.bat
+|-- docs
+|  |-- code-of-conduct.md
+|  |-- contributing.md
+|  |-- perforce_tips.md
+|  |-- sgeb.md
+|  |-- sgep.md
+|  |-- troubleshoot.md
+|  |-- vendor_bendor.md
+|-- environment
+|  |-- BUILD.bazel
+|  |-- BUILDUNIT
+|  |-- CICD
+|  |-- README.md
+|  |-- data
+|  |  |-- StackdriverMonitoring-GCM-46.exe
+|  |  |-- UE4PrereqSetup_x64.exe
+|  |  |-- VisualStudio.chman
+|  |  |-- vc_redist.x64.exe
+|  |  |-- vs_buildtools.exe
+|  |-- docker
+|  |  |-- README.md
+|  |  |-- config.json
+|  |-- envinstall
+|  |  |-- BUILD.bazel
+|  |  |-- dependencies.go
+|  |  |-- manager.go
+|  |-- environment.go
+|-- go.mod
+|-- go.sum
+|-- libs
+|  |-- BUILDUNIT
+|  |-- CICD
+|  |-- bzl
+|  |  |-- build_test
+|  |  |  |-- BUILD
+|  |  |  |-- build_test.bzl
+|  |  |  |-- testbin.go
+|  |  |-- config_settings
+|  |  |  |-- BUILD
+|  |  |-- msbuild
+|  |  |  |-- BUILD
+|  |  |  |-- msbuild.bzl
+|  |-- go
+|  |  |-- auth
+|  |  |  |-- BUILD
+|  |  |  |-- auth.go
+|  |  |-- builddist
+|  |  |  |-- BUILD
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- auth.go
+|  |  |  |-- common.go
+|  |  |  |-- config.go
+|  |  |  |-- delete_package.go
+|  |  |  |-- install_package.go
+|  |  |  |-- list_packages.go
+|  |  |  |-- make_package.go
+|  |  |  |-- register_product.go
+|  |  |-- clock
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- clock.go
+|  |  |  |-- mockclock
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- mockclock.go
+|  |  |-- cloud
+|  |  |  |-- compute
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- compute.go
+|  |  |  |-- monitoring
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- monitoring.go
+|  |  |  |-- secretmanager
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- secretmanager.go
+|  |  |-- email
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- email.go
+|  |  |  |-- mockemail
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- mockemail.go
+|  |  |-- exec
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- exec.go
+|  |  |  |-- exec_default.go
+|  |  |  |-- exec_windows.go
+|  |  |-- files
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- files.go
+|  |  |-- imguix
+|  |  |  |-- BUILD
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- imguix.go
+|  |  |-- log
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cloudlog
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- cloudlog.go
+|  |  |  |-- log.go
+|  |  |  |-- log_test.go
+|  |  |-- p4lib
+|  |  |  |-- BUILD
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- p4.go
+|  |  |  |-- p4_cgo_api.go
+|  |  |  |-- p4_cgo_bridge.cc
+|  |  |  |-- p4_cgo_bridge.h
+|  |  |  |-- p4_cgo_strview.go
+|  |  |  |-- p4_changes.go
+|  |  |  |-- p4_describe.go
+|  |  |  |-- p4_fstat.go
+|  |  |  |-- p4_impl.go
+|  |  |  |-- p4_impl_default.go
+|  |  |  |-- p4_impl_windows.go
+|  |  |  |-- p4_keys.go
+|  |  |  |-- p4_login.go
+|  |  |  |-- p4_print.go
+|  |  |  |-- p4_test.go
+|  |  |  |-- p4_where.go
+|  |  |  |-- p4cmd
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- p4cmd.go
+|  |  |  |-- p4mock
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- p4_mock.go
+|  |  |  |  |-- p4_mock_test.go
+|  |  |-- sgeflag
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- sgeflag.go
+|  |  |-- sgetest
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- sgetest.go
+|  |  |  |-- sgetest_test.go
+|  |  |-- swarm
+|  |  |  |-- BUILD
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- swarm.go
+|  |  |-- trie
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- path_trie.go
+|  |  |  |-- path_trie_test.go
+|  |  |-- urika
+|  |  |  |-- BUILD
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- registry.go
+|  |  |-- windows_utils
+|  |  |  |-- BUILD
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- process_utils.cc
+|  |  |  |-- windows_utils.go
+|  |  |  |-- windows_utils.h
+|  |  |  |-- windows_utils_test.go
+|  |  |-- zip_utils
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- zip_utils.go
+|  |-- rust
+|  |  |-- BUILDUNIT
+|  |  |-- error_lib
+|  |  |  |-- BUILD
+|  |  |  |-- Cargo.toml
+|  |  |  |-- src
+|  |  |  |  |-- error.rs
+|  |  |  |-- tests
+|  |  |  |  |-- tests.rs
+|  |  |-- p4_lib
+|  |  |  |-- BUILD
+|  |  |  |-- Cargo.toml
+|  |  |  |-- src
+|  |  |  |  |-- lib.rs
+|  |  |  |  |-- main.rs
+|  |  |  |-- tests
+|  |  |  |  |-- test.rs
+|-- misc
+|  |-- swarmlib
+|  |  |-- BUILD.bazel
+|  |  |-- swarmbackend.go
+|  |  |-- swarmlib.go
+|-- repobuilder
+|  |-- README.md
+|  |-- helpers.go
+|  |-- keywords.go
+|  |-- protos.go
+|  |-- repobuilder.go
+|-- test_all.bat
+|-- toolchains
+|  |-- BUILD
+|  |-- WORKSPACE
+|  |-- builtin_include_directory_paths_clangcl
+|  |-- conditions
+|  |  |-- BUILD
+|  |-- go
+|  |  |-- 1.14.3
+|  |  |  |-- BUILD.bazel
+|  |  |-- 1.16.2
+|  |  |  |-- BUILD.bazel
+|  |  |-- BUILD.bazel
+|  |-- linux_cc_toolchain_config.bzl
+|  |-- mingw_cc_toolchain_config.bzl
+|  |-- platforms
+|  |  |-- BUILD
+|  |  |-- linux_flavor
+|  |  |  |-- BUILD
+|  |  |-- windows_abi
+|  |  |  |-- BUILD
+|  |-- wasm_cc_toolchain_config.bzl
+|  |-- windows_cc_toolchain_config.bzl
+|-- tools
+|  |-- bazel2vs
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- README.md
+|  |  |-- b2vs
+|  |  |  |-- BUILD
+|  |  |  |-- b2vs.go
+|  |  |  |-- b2vs_test.go
+|  |  |  |-- project.go
+|  |  |  |-- project_test.go
+|  |  |  |-- solution.go
+|  |  |  |-- solution_test.go
+|  |  |  |-- templates
+|  |  |  |  |-- solution.sln
+|  |  |  |  |-- vcxproj.filters.xml
+|  |  |  |  |-- vcxproj.user.xml
+|  |  |  |  |-- vcxproj.xml
+|  |  |  |-- testdata
+|  |  |  |  |-- app_a.msbuild
+|  |  |  |  |-- error.msbuild
+|  |  |  |  |-- hellovulkan.msbuild
+|  |  |  |  |-- hellovulkan.vcxproj
+|  |  |  |  |-- hellovulkan.vcxproj.filters
+|  |  |  |  |-- hellovulkan.vcxproj.user
+|  |  |  |  |-- my_lib.msbuild
+|  |  |  |  |-- output.msbuild
+|  |  |  |  |-- shaderpacker_rust.msbuild
+|  |  |  |  |-- shaderpacker_rust.vcxproj
+|  |  |  |  |-- shaderpacker_rust.vcxproj.filters
+|  |  |  |  |-- shaderpacker_rust.vcxproj.user
+|  |  |  |  |-- test.sln
+|  |  |-- bazel2vs.go
+|  |  |-- protos
+|  |  |  |-- BUILD
+|  |  |  |-- msbuild.proto
+|  |-- ebert
+|  |  |-- BUILD.bazel
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- common.css
+|  |  |-- components
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- avatar.html
+|  |  |  |-- image-diff.html
+|  |  |  |-- review-add-comment.html
+|  |  |  |-- review-comment.html
+|  |  |  |-- review-file.html
+|  |  |  |-- review-files.html
+|  |  |  |-- review-info.html
+|  |  |  |-- text-diff.html
+|  |  |-- dashboard.css
+|  |  |-- diff
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- diff.go
+|  |  |  |-- diff_test.go
+|  |  |-- ebert.go
+|  |  |-- ebert.png
+|  |  |-- ebert
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ebert.go
+|  |  |-- ebert_linux.go
+|  |  |-- ebert_windows.go
+|  |  |-- favicon.ico
+|  |  |-- flags
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- flags.go
+|  |  |-- handlers
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- browse
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- browse.go
+|  |  |  |-- comments
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- comments.go
+|  |  |  |-- dashboard
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- dashboard.go
+|  |  |  |-- files
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- files.go
+|  |  |  |-- handlers.go
+|  |  |  |-- handlers_test.go
+|  |  |  |-- mux.go
+|  |  |  |-- mux_test.go
+|  |  |  |-- project
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- project.go
+|  |  |  |-- review
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- review.go
+|  |  |  |  |-- review_test.go
+|  |  |  |-- trigger
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- trigger.go
+|  |  |-- p4_linux
+|  |  |  |-- p4
+|  |  |  |-- p4broker
+|  |  |  |-- p4d
+|  |  |  |-- p4p
+|  |  |-- pages
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- browse.html
+|  |  |  |-- dashboard.html
+|  |  |  |-- pages.bzl
+|  |  |  |-- project.html
+|  |  |  |-- projects.html
+|  |  |  |-- review.html
+|  |  |-- review.css
+|  |  |-- script
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- diff.js
+|  |  |  |-- util.js
+|  |  |-- watcher
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- watcher.go
+|  |  |-- weaver
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- weaver.go
+|  |  |-- webui.go
+|  |-- gazelle_wrapper
+|  |  |-- BUILD.bazel
+|  |  |-- BUILDUNIT
+|  |  |-- gazelle_wrapper.go
+|  |-- gigantick
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- GoogleSans-Regular.ttf
+|  |  |-- change.go
+|  |  |-- consolas-l1x.ttf
+|  |  |-- diff.go
+|  |  |-- diff_gui.go
+|  |  |-- gigantick.go
+|  |  |-- install.go
+|  |  |-- main_gui.go
+|  |  |-- routine.go
+|  |  |-- server.go
+|  |  |-- tests_gui.go
+|  |  |-- view.go
+|  |-- historian
+|  |  |-- BUILD.bazel
+|  |  |-- BUILDUNIT
+|  |  |-- historian.go
+|  |-- incredible
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- Cargo.toml
+|  |  |-- src
+|  |  |  |-- main.rs
+|  |-- launcher
+|  |  |-- BUILD.bazel
+|  |  |-- BUILDUNIT
+|  |  |-- GoogleSans-Regular.ttf
+|  |  |-- launcher.go
+|  |-- linux_toolchain_builder
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- README.md
+|  |  |-- docker
+|  |  |  |-- Dockerfile
+|  |  |  |-- build.sh
+|  |  |  |-- crosstool.config
+|  |  |-- main.go
+|  |  |-- remote-commands.sh
+|  |-- p4_benchmark
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- csv_logger.go
+|  |  |-- file_stats
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- file_stats.go
+|  |  |-- p4_benchmark.go
+|  |  |-- protos
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- benchmark.proto
+|  |-- p4_snippets
+|  |  |-- go
+|  |  |  |-- BUILD
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- CICD
+|  |  |  |-- p4_snippets.go
+|  |  |-- rust
+|  |  |  |-- BUILD
+|  |  |  |-- BUILDUNIT
+|  |  |  |-- CICD
+|  |  |  |-- Cargo.toml
+|  |  |  |-- src
+|  |  |  |  |-- main.rs
+|  |-- p4_split
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- p4_split.go
+|  |-- perculator
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- README.md
+|  |  |-- gui.go
+|  |  |-- perculator.go
+|  |-- poogle
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- GoogleSans-Regular.ttf
+|  |  |-- README.md
+|  |  |-- poogle.go
+|  |-- remove_empty_directories
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- remove_empty_directories.go
+|  |-- rename_repo_files
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- rename_repo_files.go
+|  |  |-- rename_repo_files_test.go
+|  |  |-- testdata
+|  |  |  |-- file.txt
+|  |  |  |-- folder
+|  |  |  |  |-- file.txt
+|  |  |  |  |-- subfolder
+|  |  |  |  |  |-- other_file.txt
+|  |  |  |-- other_file.txt
+|  |  |  |-- other_folder
+|  |  |  |  |-- file
+|  |  |  |  |-- file.txt
+|  |  |  |  |-- subfolder
+|  |  |  |  |  |-- file.txt
+|  |  |  |  |  |-- file
+|  |  |  |  |  |  |-- file.txt
+|  |  |  |  |  |  |-- other_file.txt
+|  |-- rust_cleaner
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- Cargo.toml
+|  |  |-- src
+|  |  |  |-- main.rs
+|  |-- shaderpacker
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- README.md
+|  |  |-- headers
+|  |  |  |-- BUILD
+|  |  |  |-- shader_header.fbs
+|  |  |-- readme.txt
+|  |  |-- shader_header_lib.bzl
+|  |  |-- shader_lib.bzl
+|  |  |-- shaderpacker.cpp
+|  |  |-- shaderpacker.sln
+|  |  |-- shaderpacker.vcxproj
+|  |  |-- shaderpacker.vcxproj.filters
+|  |-- shaderpacker_rust
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- headers
+|  |  |  |-- BUILD
+|  |  |  |-- shader_header.fbs
+|  |  |-- shader_header_lib.bzl
+|  |  |-- shader_lib.bzl
+|  |  |-- src
+|  |  |  |-- lib.rs
+|  |  |  |-- main.rs
+|  |  |-- tests
+|  |  |  |-- tests.rs
+|  |-- swarm
+|  |  |-- Patches
+|  |  |  |-- patch_swarm.py
+|  |  |-- README.md
+|  |-- triggers
+|  |  |-- README.txt
+|  |  |-- restrict_cls.conf
+|  |  |-- restrict_cls.py
+|  |-- urika
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- urika.go
+|  |-- vendor_bender
+|  |  |-- BUILD
+|  |  |-- BUILDUNIT
+|  |  |-- CICD
+|  |  |-- LicenseDatabase
+|  |  |-- README.md
+|  |  |-- actions.go
+|  |  |-- bazel
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bazel.go
+|  |  |-- git
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- git_pkg.go
+|  |  |-- golang
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- gazelle.go
+|  |  |  |-- gazelle_analyze.go
+|  |  |  |-- go_pkg.go
+|  |  |-- protos
+|  |  |  |-- BUILD
+|  |  |  |-- license.proto
+|  |  |  |-- manifest.proto
+|  |  |  |-- metadata.proto
+|  |  |-- rust
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- rust_pkg.go
+|  |  |  |-- rust_pkg_test.go
+|  |  |-- testdata
+|  |  |  |-- MONOREPO
+|  |  |  |-- WORKSPACE
+|  |  |  |-- third_party
+|  |  |  |  |-- MANIFEST
+|  |  |  |  |-- cc
+|  |  |  |  |  |-- MANIFEST
+|  |  |  |  |  |-- cc_lib_existing
+|  |  |  |  |  |  |-- METADATA
+|  |  |  |  |  |-- local_repositories.bzl
+|  |  |  |  |-- go
+|  |  |  |  |  |-- MANIFEST
+|  |  |  |  |  |-- go_lib_2b_updated
+|  |  |  |  |  |  |-- METADATA
+|  |  |  |  |-- orphan_lib_2b_deleted
+|  |  |  |  |  |-- METADATA
+|  |  |  |  |-- orphan_lib_existing
+|  |  |  |  |  |-- METADATA
+|  |  |-- validations.go
+|  |  |-- vendor_bender.go
+|  |  |-- vendor_bender_test.go
+|  |  |-- zip
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- zip_pkg.go

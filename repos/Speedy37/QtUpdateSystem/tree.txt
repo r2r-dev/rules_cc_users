@@ -1,0 +1,1022 @@
+|-- .appveyor.yml
+|-- .gitattributes
+|-- .gitignore
+|-- .travis.yml
+|-- CMakeLists.txt
+|-- Doxyfile
+|-- LICENSE
+|-- README.md
+|-- deps
+|  |-- brotli
+|  |  |-- .bintray.json
+|  |  |-- .configure-custom.sh
+|  |  |-- .gitignore
+|  |  |-- .gitmodules
+|  |  |-- .travis.sh
+|  |  |-- .travis.yml
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- CONTRIBUTING.md
+|  |  |-- LICENSE
+|  |  |-- MANIFEST.in
+|  |  |-- Makefile
+|  |  |-- README.md
+|  |  |-- WORKSPACE
+|  |  |-- appveyor.yml
+|  |  |-- appveyor
+|  |  |  |-- install.ps1
+|  |  |  |-- run_with_compiler.cmd
+|  |  |-- common
+|  |  |  |-- constants.h
+|  |  |  |-- dictionary.c
+|  |  |  |-- dictionary.h
+|  |  |  |-- version.h
+|  |  |-- configure
+|  |  |-- configure-cmake
+|  |  |-- dec
+|  |  |  |-- bit_reader.c
+|  |  |  |-- bit_reader.h
+|  |  |  |-- context.h
+|  |  |  |-- decode.c
+|  |  |  |-- huffman.c
+|  |  |  |-- huffman.h
+|  |  |  |-- port.h
+|  |  |  |-- prefix.h
+|  |  |  |-- state.c
+|  |  |  |-- state.h
+|  |  |  |-- transform.h
+|  |  |-- docs
+|  |  |  |-- brotli-comparison-study-2015-09-22.pdf
+|  |  |  |-- decode.h.3
+|  |  |  |-- encode.h.3
+|  |  |  |-- types.h.3
+|  |  |-- enc
+|  |  |  |-- backward_references.c
+|  |  |  |-- backward_references.h
+|  |  |  |-- backward_references_hq.c
+|  |  |  |-- backward_references_hq.h
+|  |  |  |-- backward_references_inc.h
+|  |  |  |-- bit_cost.c
+|  |  |  |-- bit_cost.h
+|  |  |  |-- bit_cost_inc.h
+|  |  |  |-- block_encoder_inc.h
+|  |  |  |-- block_splitter.c
+|  |  |  |-- block_splitter.h
+|  |  |  |-- block_splitter_inc.h
+|  |  |  |-- brotli_bit_stream.c
+|  |  |  |-- brotli_bit_stream.h
+|  |  |  |-- cluster.c
+|  |  |  |-- cluster.h
+|  |  |  |-- cluster_inc.h
+|  |  |  |-- command.h
+|  |  |  |-- compress_fragment.c
+|  |  |  |-- compress_fragment.h
+|  |  |  |-- compress_fragment_two_pass.c
+|  |  |  |-- compress_fragment_two_pass.h
+|  |  |  |-- context.h
+|  |  |  |-- dictionary_hash.c
+|  |  |  |-- dictionary_hash.h
+|  |  |  |-- encode.c
+|  |  |  |-- entropy_encode.c
+|  |  |  |-- entropy_encode.h
+|  |  |  |-- entropy_encode_static.h
+|  |  |  |-- fast_log.h
+|  |  |  |-- find_match_length.h
+|  |  |  |-- hash.h
+|  |  |  |-- hash_forgetful_chain_inc.h
+|  |  |  |-- hash_longest_match64_inc.h
+|  |  |  |-- hash_longest_match_inc.h
+|  |  |  |-- hash_longest_match_quickly_inc.h
+|  |  |  |-- hash_to_binary_tree_inc.h
+|  |  |  |-- histogram.c
+|  |  |  |-- histogram.h
+|  |  |  |-- histogram_inc.h
+|  |  |  |-- literal_cost.c
+|  |  |  |-- literal_cost.h
+|  |  |  |-- memory.c
+|  |  |  |-- memory.h
+|  |  |  |-- metablock.c
+|  |  |  |-- metablock.h
+|  |  |  |-- metablock_inc.h
+|  |  |  |-- port.h
+|  |  |  |-- prefix.h
+|  |  |  |-- quality.h
+|  |  |  |-- ringbuffer.h
+|  |  |  |-- static_dict.c
+|  |  |  |-- static_dict.h
+|  |  |  |-- static_dict_lut.h
+|  |  |  |-- utf8_util.c
+|  |  |  |-- utf8_util.h
+|  |  |  |-- write_bits.h
+|  |  |-- fuzz
+|  |  |  |-- decode_fuzzer.cc
+|  |  |  |-- run_decode_fuzzer.cc
+|  |  |  |-- test_fuzzer.sh
+|  |  |-- go
+|  |  |  |-- cbrotli
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- cbrotli.go
+|  |  |  |  |-- cbrotli_test.go
+|  |  |  |  |-- internal
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- decoder.go
+|  |  |  |  |  |-- encoder.go
+|  |  |-- include
+|  |  |  |-- brotli
+|  |  |  |  |-- decode.h
+|  |  |  |  |-- encode.h
+|  |  |  |  |-- port.h
+|  |  |  |  |-- types.h
+|  |  |-- java
+|  |  |  |-- org
+|  |  |  |  |-- brotli
+|  |  |  |  |  |-- dec
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- BitReader.java
+|  |  |  |  |  |  |-- BitReaderTest.java
+|  |  |  |  |  |  |-- BrotliInputStream.java
+|  |  |  |  |  |  |-- BrotliRuntimeException.java
+|  |  |  |  |  |  |-- Context.java
+|  |  |  |  |  |  |-- Decode.java
+|  |  |  |  |  |  |-- DecodeTest.java
+|  |  |  |  |  |  |-- Dictionary.java
+|  |  |  |  |  |  |-- DictionaryTest.java
+|  |  |  |  |  |  |-- EnumTest.java
+|  |  |  |  |  |  |-- Huffman.java
+|  |  |  |  |  |  |-- HuffmanTreeGroup.java
+|  |  |  |  |  |  |-- IntReader.java
+|  |  |  |  |  |  |-- Prefix.java
+|  |  |  |  |  |  |-- RunningState.java
+|  |  |  |  |  |  |-- State.java
+|  |  |  |  |  |  |-- SynthTest.java
+|  |  |  |  |  |  |-- Transform.java
+|  |  |  |  |  |  |-- TransformTest.java
+|  |  |  |  |  |  |-- Utils.java
+|  |  |  |  |  |  |-- WordTransformType.java
+|  |  |  |  |  |  |-- pom.xml
+|  |  |  |  |  |-- integration
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- BundleChecker.java
+|  |  |  |  |  |  |-- fuzz_data.zip
+|  |  |  |  |  |  |-- pom.xml
+|  |  |  |  |  |  |-- test_data.zip
+|  |  |  |  |  |-- pom.xml
+|  |  |-- premake5.lua
+|  |  |-- python
+|  |  |  |-- Makefile
+|  |  |  |-- README.md
+|  |  |  |-- _brotli.cc
+|  |  |  |-- bro.py
+|  |  |  |-- brotli.py
+|  |  |  |-- tests
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- _test_utils.py
+|  |  |  |  |-- bro_test.py
+|  |  |  |  |-- compress_test.py
+|  |  |  |  |-- compressor_test.py
+|  |  |  |  |-- decompress_test.py
+|  |  |-- research
+|  |  |  |-- Makefile
+|  |  |  |-- README.md
+|  |  |  |-- brotlidump.py
+|  |  |  |-- draw_diff.cc
+|  |  |  |-- draw_histogram.cc
+|  |  |  |-- esaxx
+|  |  |  |-- find_opt_references.cc
+|  |  |  |-- img
+|  |  |  |  |-- enwik9_brotli.png
+|  |  |  |  |-- enwik9_diff.png
+|  |  |  |  |-- enwik9_opt.png
+|  |  |  |-- read_dist.h
+|  |  |-- setup.cfg
+|  |  |-- setup.py
+|  |  |-- terryfy
+|  |  |-- tests
+|  |  |  |-- Makefile
+|  |  |  |-- compatibility_test.sh
+|  |  |  |-- roundtrip_test.sh
+|  |  |  |-- run-compatibility-test.cmake
+|  |  |  |-- run-roundtrip-test.cmake
+|  |  |  |-- testdata
+|  |  |  |  |-- 10x10y
+|  |  |  |  |-- 10x10y.compressed
+|  |  |  |  |-- 64x
+|  |  |  |  |-- 64x.compressed
+|  |  |  |  |-- alice29.txt
+|  |  |  |  |-- alice29.txt.compressed
+|  |  |  |  |-- asyoulik.txt
+|  |  |  |  |-- asyoulik.txt.compressed
+|  |  |  |  |-- backward65536
+|  |  |  |  |-- backward65536.compressed
+|  |  |  |  |-- bb.binast
+|  |  |  |  |-- compressed_file
+|  |  |  |  |-- compressed_file.compressed
+|  |  |  |  |-- compressed_repeated
+|  |  |  |  |-- compressed_repeated.compressed
+|  |  |  |  |-- empty
+|  |  |  |  |-- empty.compressed
+|  |  |  |  |-- empty.compressed.00
+|  |  |  |  |-- empty.compressed.01
+|  |  |  |  |-- empty.compressed.02
+|  |  |  |  |-- empty.compressed.03
+|  |  |  |  |-- empty.compressed.04
+|  |  |  |  |-- empty.compressed.05
+|  |  |  |  |-- empty.compressed.06
+|  |  |  |  |-- empty.compressed.07
+|  |  |  |  |-- empty.compressed.08
+|  |  |  |  |-- empty.compressed.09
+|  |  |  |  |-- empty.compressed.10
+|  |  |  |  |-- empty.compressed.11
+|  |  |  |  |-- empty.compressed.12
+|  |  |  |  |-- empty.compressed.13
+|  |  |  |  |-- empty.compressed.14
+|  |  |  |  |-- empty.compressed.15
+|  |  |  |  |-- empty.compressed.16
+|  |  |  |  |-- empty.compressed.17
+|  |  |  |  |-- empty.compressed.18
+|  |  |  |  |-- lcet10.txt
+|  |  |  |  |-- lcet10.txt.compressed
+|  |  |  |  |-- mapsdatazrh
+|  |  |  |  |-- mapsdatazrh.compressed
+|  |  |  |  |-- monkey
+|  |  |  |  |-- monkey.compressed
+|  |  |  |  |-- plrabn12.txt
+|  |  |  |  |-- plrabn12.txt.compressed
+|  |  |  |  |-- quickfox
+|  |  |  |  |-- quickfox.compressed
+|  |  |  |  |-- quickfox_repeated
+|  |  |  |  |-- quickfox_repeated.compressed
+|  |  |  |  |-- random_chunks
+|  |  |  |  |-- random_org_10k.bin
+|  |  |  |  |-- random_org_10k.bin.compressed
+|  |  |  |  |-- ukkonooa
+|  |  |  |  |-- ukkonooa.compressed
+|  |  |  |  |-- x
+|  |  |  |  |-- x.compressed
+|  |  |  |  |-- x.compressed.00
+|  |  |  |  |-- x.compressed.01
+|  |  |  |  |-- x.compressed.02
+|  |  |  |  |-- x.compressed.03
+|  |  |  |  |-- xyzzy
+|  |  |  |  |-- xyzzy.compressed
+|  |  |  |  |-- zeros
+|  |  |  |  |-- zeros.compressed
+|  |  |-- tools
+|  |  |  |-- bro.c
+|  |-- xdelta
+|  |  |-- .gitignore
+|  |  |-- xdelta1
+|  |  |  |-- AUTHORS
+|  |  |  |-- COPYING
+|  |  |  |-- INSTALL
+|  |  |  |-- Makefile.am
+|  |  |  |-- NEWS
+|  |  |  |-- README
+|  |  |  |-- autogen.sh
+|  |  |  |-- configure.in
+|  |  |  |-- contrib
+|  |  |  |  |-- build_hpux
+|  |  |  |-- djgpp
+|  |  |  |  |-- Makefile.am
+|  |  |  |  |-- announce.djg
+|  |  |  |  |-- readme.djg
+|  |  |  |-- doc
+|  |  |  |  |-- Makefile.am
+|  |  |  |  |-- xdelta.1
+|  |  |  |  |-- xdelta.cat
+|  |  |  |-- getopt.c
+|  |  |  |-- getopt.h
+|  |  |  |-- getopt1.c
+|  |  |  |-- libedsio
+|  |  |  |  |-- Makefile.am
+|  |  |  |  |-- base64.c
+|  |  |  |  |-- default.c
+|  |  |  |  |-- edsio-comp.in
+|  |  |  |  |-- edsio.c
+|  |  |  |  |-- edsio.el
+|  |  |  |  |-- edsio.h
+|  |  |  |  |-- edsio.ser
+|  |  |  |  |-- edsiotest.c
+|  |  |  |  |-- fh.c
+|  |  |  |  |-- generic.c
+|  |  |  |  |-- library.c
+|  |  |  |  |-- maketime.c
+|  |  |  |  |-- maketime.h
+|  |  |  |  |-- md5c.c
+|  |  |  |  |-- partime.c
+|  |  |  |  |-- partime.h
+|  |  |  |  |-- sha.c
+|  |  |  |  |-- simple.c
+|  |  |  |-- runtest
+|  |  |  |-- test
+|  |  |  |  |-- Makefile.am
+|  |  |  |  |-- README.test
+|  |  |  |  |-- xdeltatest.c
+|  |  |  |-- xd.ser
+|  |  |  |-- xdapply.c
+|  |  |  |-- xdelta-0.13.README
+|  |  |  |-- xdelta-1.1.2.tar.gz
+|  |  |  |-- xdelta-1.1.3.tar.gz
+|  |  |  |-- xdelta-config.in
+|  |  |  |-- xdelta.c
+|  |  |  |-- xdelta.h
+|  |  |  |-- xdelta.m4
+|  |  |  |-- xdelta.magic
+|  |  |  |-- xdelta.prj
+|  |  |  |-- xdeltapriv.h
+|  |  |  |-- xdmain.c
+|  |  |  |-- xdrsync.c
+|  |  |-- xdelta3
+|  |  |  |-- COPYING
+|  |  |  |-- Makefile.am
+|  |  |  |-- README.md
+|  |  |  |-- badcopy.c
+|  |  |  |-- configure.ac
+|  |  |  |-- cpp-btree
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- COPYING
+|  |  |  |  |-- README
+|  |  |  |  |-- btree.h
+|  |  |  |  |-- btree_bench.cc
+|  |  |  |  |-- btree_container.h
+|  |  |  |  |-- btree_map.h
+|  |  |  |  |-- btree_set.h
+|  |  |  |  |-- btree_test.cc
+|  |  |  |  |-- btree_test.h
+|  |  |  |  |-- btree_test_flags.cc
+|  |  |  |  |-- safe_btree.h
+|  |  |  |  |-- safe_btree_map.h
+|  |  |  |  |-- safe_btree_set.h
+|  |  |  |  |-- safe_btree_test.cc
+|  |  |  |-- draft-korn-vcdiff.txt
+|  |  |  |-- examples
+|  |  |  |  |-- Makefile
+|  |  |  |  |-- README.md
+|  |  |  |  |-- compare_test.c
+|  |  |  |  |-- encode_decode_test.c
+|  |  |  |  |-- iOS
+|  |  |  |  |  |-- xdelta3-ios-test
+|  |  |  |  |  |  |-- xdelta3-ios-test.xcodeproj
+|  |  |  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |  |-- xdelta3-ios-test
+|  |  |  |  |  |  |  |-- Xd3iOSAppDelegate.h
+|  |  |  |  |  |  |  |-- Xd3iOSAppDelegate.m
+|  |  |  |  |  |  |  |-- Xd3iOSViewController.h
+|  |  |  |  |  |  |  |-- Xd3iOSViewController.m
+|  |  |  |  |  |  |  |-- en.lproj
+|  |  |  |  |  |  |  |  |-- InfoPlist.strings
+|  |  |  |  |  |  |  |  |-- MainStoryboard_iPad.storyboard
+|  |  |  |  |  |  |  |  |-- MainStoryboard_iPhone.storyboard
+|  |  |  |  |  |  |  |-- file_v1.bin
+|  |  |  |  |  |  |  |-- file_v1_to_v2.bin
+|  |  |  |  |  |  |  |-- file_v2.bin
+|  |  |  |  |  |  |  |-- main.m
+|  |  |  |  |  |  |  |-- xdelta3-ios-test-Info.plist
+|  |  |  |  |  |  |  |-- xdelta3-ios-test-Prefix.pch
+|  |  |  |  |-- small_page_test.c
+|  |  |  |  |-- speed_test.c
+|  |  |  |  |-- test.h
+|  |  |  |-- go
+|  |  |  |  |-- src
+|  |  |  |  |  |-- regtest.go
+|  |  |  |  |  |-- xdelta
+|  |  |  |  |  |  |-- rstream.go
+|  |  |  |  |  |  |-- run.go
+|  |  |  |  |  |  |-- test.go
+|  |  |  |  |  |  |-- tgroup.go
+|  |  |  |-- install-sh
+|  |  |  |-- linkxd3lib.c
+|  |  |  |-- m4
+|  |  |  |  |-- ax_check_aligned_access_required.m4
+|  |  |  |  |-- ax_pkg_swig.m4
+|  |  |  |  |-- ax_python_devel.m4
+|  |  |  |  |-- ax_swig_python.m4
+|  |  |  |-- plot.sh
+|  |  |  |-- rcs_junk.cc
+|  |  |  |-- run_release.sh
+|  |  |  |-- testing
+|  |  |  |  |-- Makefile
+|  |  |  |  |-- checksum_test.cc
+|  |  |  |  |-- checksum_test_c.c
+|  |  |  |  |-- cmp.h
+|  |  |  |  |-- delta.h
+|  |  |  |  |-- file.h
+|  |  |  |  |-- modify.h
+|  |  |  |  |-- random.h
+|  |  |  |  |-- regtest.cc
+|  |  |  |  |-- regtest_c.c
+|  |  |  |  |-- run_release.sh
+|  |  |  |  |-- segment.h
+|  |  |  |  |-- sizes.h
+|  |  |  |  |-- test.h
+|  |  |  |  |-- xdelta3-regtest.py
+|  |  |  |  |-- xdelta3-test.py
+|  |  |  |-- xdelta3-blkcache.h
+|  |  |  |-- xdelta3-cfgs.h
+|  |  |  |-- xdelta3-decode.h
+|  |  |  |-- xdelta3-djw.h
+|  |  |  |-- xdelta3-fgk.h
+|  |  |  |-- xdelta3-hash.h
+|  |  |  |-- xdelta3-internal.h
+|  |  |  |-- xdelta3-list.h
+|  |  |  |-- xdelta3-lzma.h
+|  |  |  |-- xdelta3-main.h
+|  |  |  |-- xdelta3-merge.h
+|  |  |  |-- xdelta3-second.h
+|  |  |  |-- xdelta3-test.h
+|  |  |  |-- xdelta3.1
+|  |  |  |-- xdelta3.c
+|  |  |  |-- xdelta3.h
+|  |  |  |-- xdelta3.i
+|  |  |  |-- xdelta3.vcxproj
+|  |  |  |-- xdelta3.wxi
+|  |  |  |-- xdelta3.wxs
+|  |-- xz
+|  |  |-- .gitignore
+|  |  |-- AUTHORS
+|  |  |-- COPYING
+|  |  |-- COPYING.GPLv2
+|  |  |-- COPYING.GPLv3
+|  |  |-- COPYING.LGPLv2.1
+|  |  |-- ChangeLog
+|  |  |-- Doxyfile.in
+|  |  |-- INSTALL
+|  |  |-- INSTALL.generic
+|  |  |-- Makefile.am
+|  |  |-- NEWS
+|  |  |-- PACKAGERS
+|  |  |-- README
+|  |  |-- THANKS
+|  |  |-- TODO
+|  |  |-- autogen.sh
+|  |  |-- build-aux
+|  |  |  |-- manconv.sh
+|  |  |  |-- version.sh
+|  |  |-- configure.ac
+|  |  |-- debug
+|  |  |  |-- Makefile.am
+|  |  |  |-- README
+|  |  |  |-- crc32.c
+|  |  |  |-- full_flush.c
+|  |  |  |-- hex2bin.c
+|  |  |  |-- known_sizes.c
+|  |  |  |-- memusage.c
+|  |  |  |-- repeat.c
+|  |  |  |-- sync_flush.c
+|  |  |  |-- translation.bash
+|  |  |-- doc
+|  |  |  |-- examples
+|  |  |  |  |-- 00_README.txt
+|  |  |  |  |-- 01_compress_easy.c
+|  |  |  |  |-- 02_decompress.c
+|  |  |  |  |-- 03_compress_custom.c
+|  |  |  |  |-- 04_compress_easy_mt.c
+|  |  |  |  |-- Makefile
+|  |  |  |-- examples_old
+|  |  |  |  |-- xz_pipe_comp.c
+|  |  |  |  |-- xz_pipe_decomp.c
+|  |  |  |-- faq.txt
+|  |  |  |-- history.txt
+|  |  |  |-- lzma-file-format.txt
+|  |  |  |-- xz-file-format.txt
+|  |  |-- dos
+|  |  |  |-- INSTALL.txt
+|  |  |  |-- Makefile
+|  |  |  |-- README.txt
+|  |  |  |-- config.h
+|  |  |-- extra
+|  |  |  |-- 7z2lzma
+|  |  |  |  |-- 7z2lzma.bash
+|  |  |  |-- scanlzma
+|  |  |  |  |-- scanlzma.c
+|  |  |-- lib
+|  |  |  |-- Makefile.am
+|  |  |  |-- getopt.c
+|  |  |  |-- getopt.in.h
+|  |  |  |-- getopt1.c
+|  |  |  |-- getopt_int.h
+|  |  |-- m4
+|  |  |  |-- .gitignore
+|  |  |  |-- ax_check_capsicum.m4
+|  |  |  |-- ax_pthread.m4
+|  |  |  |-- getopt.m4
+|  |  |  |-- posix-shell.m4
+|  |  |  |-- tuklib_common.m4
+|  |  |  |-- tuklib_cpucores.m4
+|  |  |  |-- tuklib_integer.m4
+|  |  |  |-- tuklib_mbstr.m4
+|  |  |  |-- tuklib_physmem.m4
+|  |  |  |-- tuklib_progname.m4
+|  |  |-- macosx
+|  |  |  |-- build.sh
+|  |  |-- po
+|  |  |  |-- .gitignore
+|  |  |  |-- LINGUAS
+|  |  |  |-- Makevars
+|  |  |  |-- POTFILES.in
+|  |  |  |-- cs.po
+|  |  |  |-- de.po
+|  |  |  |-- fr.po
+|  |  |  |-- it.po
+|  |  |  |-- pl.po
+|  |  |  |-- vi.po
+|  |  |-- src
+|  |  |  |-- Makefile.am
+|  |  |  |-- common
+|  |  |  |  |-- common_w32res.rc
+|  |  |  |  |-- mythread.h
+|  |  |  |  |-- sysdefs.h
+|  |  |  |  |-- tuklib_common.h
+|  |  |  |  |-- tuklib_config.h
+|  |  |  |  |-- tuklib_cpucores.c
+|  |  |  |  |-- tuklib_cpucores.h
+|  |  |  |  |-- tuklib_exit.c
+|  |  |  |  |-- tuklib_exit.h
+|  |  |  |  |-- tuklib_gettext.h
+|  |  |  |  |-- tuklib_integer.h
+|  |  |  |  |-- tuklib_mbstr.h
+|  |  |  |  |-- tuklib_mbstr_fw.c
+|  |  |  |  |-- tuklib_mbstr_width.c
+|  |  |  |  |-- tuklib_open_stdxxx.c
+|  |  |  |  |-- tuklib_open_stdxxx.h
+|  |  |  |  |-- tuklib_physmem.c
+|  |  |  |  |-- tuklib_physmem.h
+|  |  |  |  |-- tuklib_progname.c
+|  |  |  |  |-- tuklib_progname.h
+|  |  |  |-- liblzma
+|  |  |  |  |-- Makefile.am
+|  |  |  |  |-- api
+|  |  |  |  |  |-- Makefile.am
+|  |  |  |  |  |-- lzma.h
+|  |  |  |  |  |-- lzma
+|  |  |  |  |  |  |-- base.h
+|  |  |  |  |  |  |-- bcj.h
+|  |  |  |  |  |  |-- block.h
+|  |  |  |  |  |  |-- check.h
+|  |  |  |  |  |  |-- container.h
+|  |  |  |  |  |  |-- delta.h
+|  |  |  |  |  |  |-- filter.h
+|  |  |  |  |  |  |-- hardware.h
+|  |  |  |  |  |  |-- index.h
+|  |  |  |  |  |  |-- index_hash.h
+|  |  |  |  |  |  |-- lzma12.h
+|  |  |  |  |  |  |-- stream_flags.h
+|  |  |  |  |  |  |-- version.h
+|  |  |  |  |  |  |-- vli.h
+|  |  |  |  |-- check
+|  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- check.c
+|  |  |  |  |  |-- check.h
+|  |  |  |  |  |-- crc32_fast.c
+|  |  |  |  |  |-- crc32_small.c
+|  |  |  |  |  |-- crc32_table.c
+|  |  |  |  |  |-- crc32_table_be.h
+|  |  |  |  |  |-- crc32_table_le.h
+|  |  |  |  |  |-- crc32_tablegen.c
+|  |  |  |  |  |-- crc32_x86.S
+|  |  |  |  |  |-- crc64_fast.c
+|  |  |  |  |  |-- crc64_small.c
+|  |  |  |  |  |-- crc64_table.c
+|  |  |  |  |  |-- crc64_table_be.h
+|  |  |  |  |  |-- crc64_table_le.h
+|  |  |  |  |  |-- crc64_tablegen.c
+|  |  |  |  |  |-- crc64_x86.S
+|  |  |  |  |  |-- crc_macros.h
+|  |  |  |  |  |-- sha256.c
+|  |  |  |  |-- common
+|  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- alone_decoder.c
+|  |  |  |  |  |-- alone_decoder.h
+|  |  |  |  |  |-- alone_encoder.c
+|  |  |  |  |  |-- auto_decoder.c
+|  |  |  |  |  |-- block_buffer_decoder.c
+|  |  |  |  |  |-- block_buffer_encoder.c
+|  |  |  |  |  |-- block_buffer_encoder.h
+|  |  |  |  |  |-- block_decoder.c
+|  |  |  |  |  |-- block_decoder.h
+|  |  |  |  |  |-- block_encoder.c
+|  |  |  |  |  |-- block_encoder.h
+|  |  |  |  |  |-- block_header_decoder.c
+|  |  |  |  |  |-- block_header_encoder.c
+|  |  |  |  |  |-- block_util.c
+|  |  |  |  |  |-- common.c
+|  |  |  |  |  |-- common.h
+|  |  |  |  |  |-- easy_buffer_encoder.c
+|  |  |  |  |  |-- easy_decoder_memusage.c
+|  |  |  |  |  |-- easy_encoder.c
+|  |  |  |  |  |-- easy_encoder_memusage.c
+|  |  |  |  |  |-- easy_preset.c
+|  |  |  |  |  |-- easy_preset.h
+|  |  |  |  |  |-- filter_buffer_decoder.c
+|  |  |  |  |  |-- filter_buffer_encoder.c
+|  |  |  |  |  |-- filter_common.c
+|  |  |  |  |  |-- filter_common.h
+|  |  |  |  |  |-- filter_decoder.c
+|  |  |  |  |  |-- filter_decoder.h
+|  |  |  |  |  |-- filter_encoder.c
+|  |  |  |  |  |-- filter_encoder.h
+|  |  |  |  |  |-- filter_flags_decoder.c
+|  |  |  |  |  |-- filter_flags_encoder.c
+|  |  |  |  |  |-- hardware_cputhreads.c
+|  |  |  |  |  |-- hardware_physmem.c
+|  |  |  |  |  |-- index.c
+|  |  |  |  |  |-- index.h
+|  |  |  |  |  |-- index_decoder.c
+|  |  |  |  |  |-- index_encoder.c
+|  |  |  |  |  |-- index_encoder.h
+|  |  |  |  |  |-- index_hash.c
+|  |  |  |  |  |-- memcmplen.h
+|  |  |  |  |  |-- outqueue.c
+|  |  |  |  |  |-- outqueue.h
+|  |  |  |  |  |-- stream_buffer_decoder.c
+|  |  |  |  |  |-- stream_buffer_encoder.c
+|  |  |  |  |  |-- stream_decoder.c
+|  |  |  |  |  |-- stream_decoder.h
+|  |  |  |  |  |-- stream_encoder.c
+|  |  |  |  |  |-- stream_encoder_mt.c
+|  |  |  |  |  |-- stream_flags_common.c
+|  |  |  |  |  |-- stream_flags_common.h
+|  |  |  |  |  |-- stream_flags_decoder.c
+|  |  |  |  |  |-- stream_flags_encoder.c
+|  |  |  |  |  |-- vli_decoder.c
+|  |  |  |  |  |-- vli_encoder.c
+|  |  |  |  |  |-- vli_size.c
+|  |  |  |  |-- delta
+|  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- delta_common.c
+|  |  |  |  |  |-- delta_common.h
+|  |  |  |  |  |-- delta_decoder.c
+|  |  |  |  |  |-- delta_decoder.h
+|  |  |  |  |  |-- delta_encoder.c
+|  |  |  |  |  |-- delta_encoder.h
+|  |  |  |  |  |-- delta_private.h
+|  |  |  |  |-- liblzma.map
+|  |  |  |  |-- liblzma.pc.in
+|  |  |  |  |-- liblzma_w32res.rc
+|  |  |  |  |-- lz
+|  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- lz_decoder.c
+|  |  |  |  |  |-- lz_decoder.h
+|  |  |  |  |  |-- lz_encoder.c
+|  |  |  |  |  |-- lz_encoder.h
+|  |  |  |  |  |-- lz_encoder_hash.h
+|  |  |  |  |  |-- lz_encoder_hash_table.h
+|  |  |  |  |  |-- lz_encoder_mf.c
+|  |  |  |  |-- lzma
+|  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- fastpos.h
+|  |  |  |  |  |-- fastpos_table.c
+|  |  |  |  |  |-- fastpos_tablegen.c
+|  |  |  |  |  |-- lzma2_decoder.c
+|  |  |  |  |  |-- lzma2_decoder.h
+|  |  |  |  |  |-- lzma2_encoder.c
+|  |  |  |  |  |-- lzma2_encoder.h
+|  |  |  |  |  |-- lzma_common.h
+|  |  |  |  |  |-- lzma_decoder.c
+|  |  |  |  |  |-- lzma_decoder.h
+|  |  |  |  |  |-- lzma_encoder.c
+|  |  |  |  |  |-- lzma_encoder.h
+|  |  |  |  |  |-- lzma_encoder_optimum_fast.c
+|  |  |  |  |  |-- lzma_encoder_optimum_normal.c
+|  |  |  |  |  |-- lzma_encoder_presets.c
+|  |  |  |  |  |-- lzma_encoder_private.h
+|  |  |  |  |-- rangecoder
+|  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- price.h
+|  |  |  |  |  |-- price_table.c
+|  |  |  |  |  |-- price_tablegen.c
+|  |  |  |  |  |-- range_common.h
+|  |  |  |  |  |-- range_decoder.h
+|  |  |  |  |  |-- range_encoder.h
+|  |  |  |  |-- simple
+|  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- arm.c
+|  |  |  |  |  |-- armthumb.c
+|  |  |  |  |  |-- ia64.c
+|  |  |  |  |  |-- powerpc.c
+|  |  |  |  |  |-- simple_coder.c
+|  |  |  |  |  |-- simple_coder.h
+|  |  |  |  |  |-- simple_decoder.c
+|  |  |  |  |  |-- simple_decoder.h
+|  |  |  |  |  |-- simple_encoder.c
+|  |  |  |  |  |-- simple_encoder.h
+|  |  |  |  |  |-- simple_private.h
+|  |  |  |  |  |-- sparc.c
+|  |  |  |  |  |-- x86.c
+|  |  |  |  |-- validate_map.sh
+|  |  |  |-- lzmainfo
+|  |  |  |  |-- Makefile.am
+|  |  |  |  |-- lzmainfo.1
+|  |  |  |  |-- lzmainfo.c
+|  |  |  |  |-- lzmainfo_w32res.rc
+|  |  |  |-- scripts
+|  |  |  |  |-- Makefile.am
+|  |  |  |  |-- xzdiff.1
+|  |  |  |  |-- xzdiff.in
+|  |  |  |  |-- xzgrep.1
+|  |  |  |  |-- xzgrep.in
+|  |  |  |  |-- xzless.1
+|  |  |  |  |-- xzless.in
+|  |  |  |  |-- xzmore.1
+|  |  |  |  |-- xzmore.in
+|  |  |  |-- xz
+|  |  |  |  |-- Makefile.am
+|  |  |  |  |-- args.c
+|  |  |  |  |-- args.h
+|  |  |  |  |-- coder.c
+|  |  |  |  |-- coder.h
+|  |  |  |  |-- file_io.c
+|  |  |  |  |-- file_io.h
+|  |  |  |  |-- hardware.c
+|  |  |  |  |-- hardware.h
+|  |  |  |  |-- list.c
+|  |  |  |  |-- list.h
+|  |  |  |  |-- main.c
+|  |  |  |  |-- main.h
+|  |  |  |  |-- message.c
+|  |  |  |  |-- message.h
+|  |  |  |  |-- mytime.c
+|  |  |  |  |-- mytime.h
+|  |  |  |  |-- options.c
+|  |  |  |  |-- options.h
+|  |  |  |  |-- private.h
+|  |  |  |  |-- signals.c
+|  |  |  |  |-- signals.h
+|  |  |  |  |-- suffix.c
+|  |  |  |  |-- suffix.h
+|  |  |  |  |-- util.c
+|  |  |  |  |-- util.h
+|  |  |  |  |-- xz.1
+|  |  |  |  |-- xz_w32res.rc
+|  |  |  |-- xzdec
+|  |  |  |  |-- Makefile.am
+|  |  |  |  |-- lzmadec_w32res.rc
+|  |  |  |  |-- xzdec.1
+|  |  |  |  |-- xzdec.c
+|  |  |  |  |-- xzdec_w32res.rc
+|  |  |-- tests
+|  |  |  |-- Makefile.am
+|  |  |  |-- bcj_test.c
+|  |  |  |-- compress_prepared_bcj_sparc
+|  |  |  |-- compress_prepared_bcj_x86
+|  |  |  |-- create_compress_files.c
+|  |  |  |-- files
+|  |  |  |  |-- README
+|  |  |  |  |-- bad-0-backward_size.xz
+|  |  |  |  |-- bad-0-empty-truncated.xz
+|  |  |  |  |-- bad-0-footer_magic.xz
+|  |  |  |  |-- bad-0-header_magic.xz
+|  |  |  |  |-- bad-0-nonempty_index.xz
+|  |  |  |  |-- bad-0cat-alone.xz
+|  |  |  |  |-- bad-0cat-header_magic.xz
+|  |  |  |  |-- bad-0catpad-empty.xz
+|  |  |  |  |-- bad-0pad-empty.xz
+|  |  |  |  |-- bad-1-block_header-1.xz
+|  |  |  |  |-- bad-1-block_header-2.xz
+|  |  |  |  |-- bad-1-block_header-3.xz
+|  |  |  |  |-- bad-1-block_header-4.xz
+|  |  |  |  |-- bad-1-block_header-5.xz
+|  |  |  |  |-- bad-1-block_header-6.xz
+|  |  |  |  |-- bad-1-check-crc32.xz
+|  |  |  |  |-- bad-1-check-crc64.xz
+|  |  |  |  |-- bad-1-check-sha256.xz
+|  |  |  |  |-- bad-1-lzma2-1.xz
+|  |  |  |  |-- bad-1-lzma2-2.xz
+|  |  |  |  |-- bad-1-lzma2-3.xz
+|  |  |  |  |-- bad-1-lzma2-4.xz
+|  |  |  |  |-- bad-1-lzma2-5.xz
+|  |  |  |  |-- bad-1-lzma2-6.xz
+|  |  |  |  |-- bad-1-lzma2-7.xz
+|  |  |  |  |-- bad-1-lzma2-8.xz
+|  |  |  |  |-- bad-1-stream_flags-1.xz
+|  |  |  |  |-- bad-1-stream_flags-2.xz
+|  |  |  |  |-- bad-1-stream_flags-3.xz
+|  |  |  |  |-- bad-1-vli-1.xz
+|  |  |  |  |-- bad-1-vli-2.xz
+|  |  |  |  |-- bad-2-compressed_data_padding.xz
+|  |  |  |  |-- bad-2-index-1.xz
+|  |  |  |  |-- bad-2-index-2.xz
+|  |  |  |  |-- bad-2-index-3.xz
+|  |  |  |  |-- bad-2-index-4.xz
+|  |  |  |  |-- bad-2-index-5.xz
+|  |  |  |  |-- good-0-empty.xz
+|  |  |  |  |-- good-0cat-empty.xz
+|  |  |  |  |-- good-0catpad-empty.xz
+|  |  |  |  |-- good-0pad-empty.xz
+|  |  |  |  |-- good-1-3delta-lzma2.xz
+|  |  |  |  |-- good-1-block_header-1.xz
+|  |  |  |  |-- good-1-block_header-2.xz
+|  |  |  |  |-- good-1-block_header-3.xz
+|  |  |  |  |-- good-1-check-crc32.xz
+|  |  |  |  |-- good-1-check-crc64.xz
+|  |  |  |  |-- good-1-check-none.xz
+|  |  |  |  |-- good-1-check-sha256.xz
+|  |  |  |  |-- good-1-delta-lzma2.tiff.xz
+|  |  |  |  |-- good-1-lzma2-1.xz
+|  |  |  |  |-- good-1-lzma2-2.xz
+|  |  |  |  |-- good-1-lzma2-3.xz
+|  |  |  |  |-- good-1-lzma2-4.xz
+|  |  |  |  |-- good-1-lzma2-5.xz
+|  |  |  |  |-- good-1-sparc-lzma2.xz
+|  |  |  |  |-- good-1-x86-lzma2.xz
+|  |  |  |  |-- good-2-lzma2.xz
+|  |  |  |  |-- unsupported-block_header.xz
+|  |  |  |  |-- unsupported-check.xz
+|  |  |  |  |-- unsupported-filter_flags-1.xz
+|  |  |  |  |-- unsupported-filter_flags-2.xz
+|  |  |  |  |-- unsupported-filter_flags-3.xz
+|  |  |  |-- test_bcj_exact_size.c
+|  |  |  |-- test_block_header.c
+|  |  |  |-- test_check.c
+|  |  |  |-- test_compress.sh
+|  |  |  |-- test_files.sh
+|  |  |  |-- test_filter_flags.c
+|  |  |  |-- test_index.c
+|  |  |  |-- test_scripts.sh
+|  |  |  |-- test_stream_flags.c
+|  |  |  |-- tests.h
+|  |  |  |-- xzgrep_expected_output
+|  |  |-- windows
+|  |  |  |-- INSTALL-MSVC.txt
+|  |  |  |-- INSTALL-MinGW.txt
+|  |  |  |-- README-Windows.txt
+|  |  |  |-- build.bash
+|  |  |  |-- config.h
+|  |  |  |-- liblzma.vcxproj
+|  |  |  |-- liblzma_dll.vcxproj
+|  |  |  |-- xz_win.sln
+|-- examples
+|  |-- launcher
+|  |  |-- CMakeLists.txt
+|  |  |-- borderlesswindow.cpp
+|  |  |-- borderlesswindow.h
+|  |  |-- content
+|  |  |  |-- Button.qml
+|  |  |  |-- Input.qml
+|  |  |  |-- Label.qml
+|  |  |-- main.cpp
+|  |  |-- main.qml
+|  |  |-- mainwindow.cpp
+|  |  |-- mainwindow.h
+|  |  |-- ressources.qrc
+|  |  |-- updatedialog.cpp
+|  |  |-- updatedialog.h
+|  |  |-- updatedialog.ui
+|-- src
+|  |-- CMakeLists.txt
+|  |-- common
+|  |  |-- jsonutil.cpp
+|  |  |-- jsonutil.h
+|  |  |-- lzma.cpp
+|  |  |-- lzma.h
+|  |  |-- package.cpp
+|  |  |-- package.h
+|  |  |-- packagemetadata.cpp
+|  |  |-- packagemetadata.h
+|  |  |-- packages.cpp
+|  |  |-- packages.h
+|  |  |-- utils.cpp
+|  |  |-- utils.h
+|  |  |-- version.cpp
+|  |  |-- version.h
+|  |  |-- versions.cpp
+|  |  |-- versions.h
+|  |-- errors
+|  |  |-- warning.cpp
+|  |  |-- warning.h
+|  |-- exceptions.h
+|  |-- operations
+|  |  |-- adddirectoryoperation.cpp
+|  |  |-- adddirectoryoperation.h
+|  |  |-- addoperation.cpp
+|  |  |-- addoperation.h
+|  |  |-- operation.cpp
+|  |  |-- operation.h
+|  |  |-- patchoperation.cpp
+|  |  |-- patchoperation.h
+|  |  |-- removedirectoryoperation.cpp
+|  |  |-- removedirectoryoperation.h
+|  |  |-- removeoperation.cpp
+|  |  |-- removeoperation.h
+|  |-- packager.cpp
+|  |-- packager.h
+|  |-- packager
+|  |  |-- compressfiletask.cpp
+|  |  |-- compressfiletask.h
+|  |  |-- packagertask.cpp
+|  |  |-- packagertask.h
+|  |  |-- patchfiletask.cpp
+|  |  |-- patchfiletask.h
+|  |  |-- taskinfo.cpp
+|  |  |-- taskinfo.h
+|  |-- qtupdatesystem_global.h
+|  |-- repository.cpp
+|  |-- repository.h
+|  |-- tools
+|  |  |-- brotli.cpp
+|  |  |-- brotli.h
+|  |  |-- lzma.cpp
+|  |  |-- lzma.h
+|  |  |-- lzma
+|  |  |  |-- config.h
+|  |  |-- xdelta3.cpp
+|  |  |-- xdelta3.h
+|  |-- updater.cpp
+|  |-- updater.h
+|  |-- updater
+|  |  |-- copythread.cpp
+|  |  |-- copythread.h
+|  |  |-- downloadmanager.cpp
+|  |  |-- downloadmanager.h
+|  |  |-- filemanager.cpp
+|  |  |-- filemanager.h
+|  |  |-- localrepository.cpp
+|  |  |-- localrepository.h
+|  |  |-- oneobjectthread.h
+|-- tests
+|  |-- CMakeLists.txt
+|  |-- data
+|  |  |-- repo_v1_rev1
+|  |  |  |-- complete_1
+|  |  |  |-- complete_1.metadata
+|  |  |  |-- current
+|  |  |  |-- packages
+|  |  |  |-- patch1_2
+|  |  |  |-- patch1_2.metadata
+|  |  |  |-- versions
+|  |  |-- repo_v1_rev2
+|  |  |  |-- complete_1
+|  |  |  |-- complete_1.metadata
+|  |  |  |-- current
+|  |  |  |-- packages
+|  |  |  |-- patch1_2
+|  |  |  |-- patch1_2.metadata
+|  |  |  |-- versions
+|  |  |-- repository_add
+|  |  |  |-- expected
+|  |  |  |  |-- current
+|  |  |  |  |-- packages
+|  |  |  |  |-- versions
+|  |  |  |-- init
+|  |  |  |  |-- current
+|  |  |  |  |-- packages
+|  |  |  |  |-- patchREV1_REV2
+|  |  |  |  |-- patchREV1_REV2.metadata
+|  |  |  |  |-- versions
+|  |  |-- repository_new
+|  |  |  |-- packages
+|  |  |  |-- versions
+|  |  |-- rev1
+|  |  |  |-- dir2
+|  |  |  |  |-- patch_same.txt
+|  |  |  |-- path_diff.txt
+|  |  |  |-- path_diff2.txt
+|  |  |  |-- rmfile.txt
+|  |  |-- rev1_local
+|  |  |  |-- path_diff.txt
+|  |  |  |-- status.json
+|  |  |-- rev2
+|  |  |  |-- add.txt
+|  |  |  |-- dir2
+|  |  |  |  |-- patch_same.txt
+|  |  |  |-- empty_dir
+|  |  |  |-- path_diff.txt
+|  |  |  |-- path_diff2.txt
+|  |  |-- updater_copy
+|  |  |  |-- init_repo
+|  |  |  |  |-- add.txt
+|  |  |  |  |-- status.json
+|  |  |  |-- local_repo
+|  |  |  |  |-- patch_same.txt
+|  |  |  |  |-- path_diff.txt
+|  |  |  |  |-- path_diff2.txt
+|  |  |  |  |-- rmfile.txt
+|  |  |  |  |-- status.json
+|  |  |-- updater_isManaged
+|  |  |  |-- patch_same.txt
+|  |  |  |-- path_diff.txt
+|  |  |  |-- path_diff2.txt
+|  |  |  |-- rmfile.txt
+|  |  |  |-- status.json
+|  |-- main.cpp
+|  |-- testutils.cpp
+|  |-- testutils.h
+|  |-- tst_packager.cpp
+|  |-- tst_packager.h
+|  |-- tst_repository.cpp
+|  |-- tst_repository.h
+|  |-- tst_updatechain.cpp
+|  |-- tst_updatechain.h
+|  |-- tst_updater.cpp
+|  |-- tst_updater.h
+|-- utils
+|  |-- CMakeLists.txt
+|  |-- packager
+|  |  |-- CMakeLists.txt
+|  |  |-- main.cpp
+|  |-- repository
+|  |  |-- CMakeLists.txt
+|  |  |-- main.cpp
+|  |-- updater
+|  |  |-- CMakeLists.txt
+|  |  |-- main.cpp

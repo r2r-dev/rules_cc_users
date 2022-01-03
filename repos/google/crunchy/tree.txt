@@ -1,0 +1,356 @@
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- crunchy
+|  |-- BUILD
+|  |-- crunchy_crypter.h
+|  |-- crunchy_hybrid_crypter.h
+|  |-- crunchy_macer.h
+|  |-- crunchy_signer.h
+|  |-- docs
+|  |  |-- getting_started.md
+|  |-- examples
+|  |  |-- BUILD
+|  |  |-- aead.cc
+|  |  |-- hybrid.cc
+|  |-- internal
+|  |  |-- algs
+|  |  |  |-- crypt
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- aes_eax.cc
+|  |  |  |  |-- aes_eax.h
+|  |  |  |  |-- aes_eax_test.cc
+|  |  |  |  |-- crypter_base.cc
+|  |  |  |  |-- crypter_base.h
+|  |  |  |  |-- crypter_interface.h
+|  |  |  |  |-- crypter_test.cc
+|  |  |  |  |-- crypter_test.h
+|  |  |  |  |-- openssl_aead.cc
+|  |  |  |  |-- openssl_aead.h
+|  |  |  |  |-- openssl_aead_test.cc
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- aes_128_eax.proto.bin
+|  |  |  |  |  |-- aes_128_gcm.proto.bin
+|  |  |  |  |  |-- aes_128_gcm_siv.proto.bin
+|  |  |  |  |  |-- aes_256_eax.proto.bin
+|  |  |  |  |  |-- aes_256_gcm.proto.bin
+|  |  |  |  |  |-- aes_256_gcm_siv.proto.bin
+|  |  |  |  |  |-- chacha20_poly1305.proto.bin
+|  |  |  |  |  |-- crypter_test_vectors.proto
+|  |  |  |-- hash
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- hash_interface.h
+|  |  |  |  |-- identity.cc
+|  |  |  |  |-- identity.h
+|  |  |  |  |-- identity_test.cc
+|  |  |  |  |-- sha256.cc
+|  |  |  |  |-- sha256.h
+|  |  |  |  |-- sha256_test.cc
+|  |  |  |  |-- sha384.cc
+|  |  |  |  |-- sha384.h
+|  |  |  |  |-- sha384_test.cc
+|  |  |  |  |-- sha512.cc
+|  |  |  |  |-- sha512.h
+|  |  |  |  |-- sha512_test.cc
+|  |  |  |-- hybrid
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dem.cc
+|  |  |  |  |-- dem.h
+|  |  |  |  |-- dem_test.cc
+|  |  |  |  |-- hybrid.cc
+|  |  |  |  |-- hybrid.h
+|  |  |  |  |-- hybrid_test.cc
+|  |  |  |  |-- kem.h
+|  |  |  |  |-- openssl_kem.cc
+|  |  |  |  |-- openssl_kem.h
+|  |  |  |  |-- openssl_kem_test.cc
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- hybrid_test_vectors.proto
+|  |  |  |  |  |-- p256.proto.bin
+|  |  |  |  |  |-- p256_aes_128_gcm.proto.bin
+|  |  |  |  |  |-- p256_aes_256_gcm.proto.bin
+|  |  |  |  |  |-- p521.proto.bin
+|  |  |  |  |  |-- p521_aes_256_gcm.proto.bin
+|  |  |  |  |  |-- x25519.proto.bin
+|  |  |  |  |  |-- x25519_aes_256_gcm.proto.bin
+|  |  |  |  |-- x25519_kem.cc
+|  |  |  |  |-- x25519_kem.h
+|  |  |  |-- kdf
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- hkdf.cc
+|  |  |  |  |-- hkdf.h
+|  |  |  |  |-- hkdf_test.cc
+|  |  |  |-- mac
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- mac_interface.h
+|  |  |  |  |-- openssl_hmac.cc
+|  |  |  |  |-- openssl_hmac.h
+|  |  |  |  |-- openssl_hmac_test.cc
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- hmac_sha1.proto.bin
+|  |  |  |  |  |-- hmac_sha224.proto.bin
+|  |  |  |  |  |-- hmac_sha256.proto.bin
+|  |  |  |  |  |-- hmac_sha384.proto.bin
+|  |  |  |  |  |-- hmac_sha512.proto.bin
+|  |  |  |  |  |-- mac_test_vectors.proto
+|  |  |  |-- openssl
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- ec.cc
+|  |  |  |  |-- ec.h
+|  |  |  |  |-- ec_test.cc
+|  |  |  |  |-- errors.cc
+|  |  |  |  |-- errors.h
+|  |  |  |  |-- openssl_unique_ptr.cc
+|  |  |  |  |-- openssl_unique_ptr.h
+|  |  |  |  |-- openssl_unique_ptr_test.cc
+|  |  |  |  |-- rsa.cc
+|  |  |  |  |-- rsa.h
+|  |  |  |  |-- rsa_test.cc
+|  |  |  |-- random
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- crypto_rand.cc
+|  |  |  |  |-- crypto_rand.h
+|  |  |  |  |-- crypto_rand_test.cc
+|  |  |  |-- sign
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- ecdsa.cc
+|  |  |  |  |-- ecdsa.h
+|  |  |  |  |-- ecdsa_common_test.cc
+|  |  |  |  |-- ecdsa_format.cc
+|  |  |  |  |-- ecdsa_format.h
+|  |  |  |  |-- ecdsa_format_test.cc
+|  |  |  |  |-- ecdsa_test.cc
+|  |  |  |  |-- ed25519.cc
+|  |  |  |  |-- ed25519.h
+|  |  |  |  |-- ed25519_test.cc
+|  |  |  |  |-- p256_ecdsa.cc
+|  |  |  |  |-- p256_ecdsa.h
+|  |  |  |  |-- rsa.cc
+|  |  |  |  |-- rsa.h
+|  |  |  |  |-- rsa_test.cc
+|  |  |  |  |-- signer_interface.h
+|  |  |  |  |-- signer_test.h
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- ed25519.proto.bin
+|  |  |  |  |  |-- p256_ecdsa_asn1.proto.bin
+|  |  |  |  |  |-- p256_ecdsa_jwt.proto.bin
+|  |  |  |  |  |-- p256_predigested_ecdsa_asn1.proto.bin
+|  |  |  |  |  |-- p384_ecdsa_asn1.proto.bin
+|  |  |  |  |  |-- p384_ecdsa_jwt.proto.bin
+|  |  |  |  |  |-- p384_predigested_ecdsa_asn1.proto.bin
+|  |  |  |  |  |-- p521_ecdsa_asn1.proto.bin
+|  |  |  |  |  |-- p521_ecdsa_jwt.proto.bin
+|  |  |  |  |  |-- p521_predigested_ecdsa_asn1.proto.bin
+|  |  |  |  |  |-- rsa2048_pkcs.proto.bin
+|  |  |  |  |  |-- rsa2048_pss.proto.bin
+|  |  |  |  |  |-- rsa4096_pkcs.proto.bin
+|  |  |  |  |  |-- rsa4096_pss.proto.bin
+|  |  |  |  |  |-- sign_test_vectors.proto
+|  |  |-- bindings
+|  |  |  |-- BUILD
+|  |  |  |-- crypto.cc
+|  |  |  |-- crypto.h
+|  |  |  |-- crypto_test.cc
+|  |  |-- common
+|  |  |  |-- BUILD
+|  |  |  |-- file.h
+|  |  |  |-- init.h
+|  |  |  |-- pool.h
+|  |  |  |-- proto.bzl
+|  |  |  |-- status_matchers.cc
+|  |  |  |-- status_matchers.h
+|  |  |  |-- string_buffer.h
+|  |  |  |-- test_factory.cc
+|  |  |  |-- test_factory.h
+|  |  |-- keys
+|  |  |  |-- BUILD
+|  |  |  |-- aead_crypting_key.cc
+|  |  |  |-- aead_crypting_key.h
+|  |  |  |-- aead_crypting_key_test.cc
+|  |  |  |-- aead_crypting_key_test_vectors.proto
+|  |  |  |-- hybrid_crypting_key.cc
+|  |  |  |-- hybrid_crypting_key.h
+|  |  |  |-- hybrid_crypting_key_test.cc
+|  |  |  |-- hybrid_crypting_key_test_vectors.proto
+|  |  |  |-- key_util.h
+|  |  |  |-- key_util_test.cc
+|  |  |  |-- macing_key.cc
+|  |  |  |-- macing_key.h
+|  |  |  |-- macing_key_test.cc
+|  |  |  |-- macing_key_test_vectors.proto
+|  |  |  |-- signing_key.cc
+|  |  |  |-- signing_key.h
+|  |  |  |-- signing_key_test.cc
+|  |  |  |-- signing_key_test_vectors.proto
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- aes_128_gcm.proto.bin
+|  |  |  |  |-- aes_256_gcm.proto.bin
+|  |  |  |  |-- ed25519.proto.bin
+|  |  |  |  |-- hmac_sha256.proto.bin
+|  |  |  |  |-- p256.proto.bin
+|  |  |  |  |-- x25519_aes_256_gcm.proto.bin
+|  |  |-- keyset
+|  |  |  |-- BUILD
+|  |  |  |-- aead_crypting_key_registry.cc
+|  |  |  |-- aead_crypting_key_registry.h
+|  |  |  |-- aead_crypting_key_registry_test.cc
+|  |  |  |-- crypter_factory.cc
+|  |  |  |-- crypter_factory.h
+|  |  |  |-- crypter_factory_test.cc
+|  |  |  |-- hybrid_crypter_factory.cc
+|  |  |  |-- hybrid_crypter_factory.h
+|  |  |  |-- hybrid_crypter_factory_test.cc
+|  |  |  |-- hybrid_crypting_key_registry.cc
+|  |  |  |-- hybrid_crypting_key_registry.h
+|  |  |  |-- hybrid_crypting_key_registry_test.cc
+|  |  |  |-- key_registry.h
+|  |  |  |-- keyset_util.h
+|  |  |  |-- keyset_util_test.cc
+|  |  |  |-- macer_factory.cc
+|  |  |  |-- macer_factory.h
+|  |  |  |-- macer_factory_test.cc
+|  |  |  |-- macing_key_registry.cc
+|  |  |  |-- macing_key_registry.h
+|  |  |  |-- macing_key_registry_test.cc
+|  |  |  |-- signer_factory.cc
+|  |  |  |-- signer_factory.h
+|  |  |  |-- signer_factory_test.cc
+|  |  |  |-- signing_key_registry.cc
+|  |  |  |-- signing_key_registry.h
+|  |  |  |-- signing_key_registry_test.cc
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- crypter_factory_test_vectors.proto.bin
+|  |  |  |  |-- factory_test_vectors.proto
+|  |  |  |  |-- hybrid_crypter_factory_test_vectors.proto.bin
+|  |  |  |  |-- macer_factory_test_vectors.proto.bin
+|  |  |  |  |-- signer_factory_mvp_test_vectors.proto.bin
+|  |  |  |  |-- signer_factory_test_vectors.proto.bin
+|  |  |-- port
+|  |  |  |-- BUILD
+|  |  |  |-- any.proto
+|  |  |  |-- logging.cc
+|  |  |  |-- logging.h
+|  |  |  |-- port.h
+|  |  |  |-- source_location.h
+|  |  |-- pure_c
+|  |  |  |-- BUILD
+|  |  |  |-- crypto.c
+|  |  |  |-- crypto.h
+|  |  |  |-- crypto_interfaces.h
+|  |-- java
+|  |  |-- BUILD
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- security
+|  |  |  |  |  |  |  |  |-- crunchy
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- CrunchyCrypter.java
+|  |  |  |  |  |  |  |  |  |-- CrunchyHybridDecrypter.java
+|  |  |  |  |  |  |  |  |  |-- CrunchyHybridEncrypter.java
+|  |  |  |  |  |  |  |  |  |-- CrunchyMacer.java
+|  |  |  |  |  |  |  |  |  |-- CrunchySigner.java
+|  |  |  |  |  |  |  |  |  |-- CrunchyVerifier.java
+|  |  |  |  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |  |  |  |-- algs
+|  |  |  |  |  |  |  |  |  |  |  |-- jce
+|  |  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |  |-- P256.java
+|  |  |  |  |  |  |  |  |  |  |  |-- sign
+|  |  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |  |-- P256EcdsaSignerFactory.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- SubtleSigner.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- SubtleSignerFactory.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- SubtleVerifier.java
+|  |  |  |  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- BigIntegerUtil.java
+|  |  |  |  |  |  |  |  |  |  |  |-- ByteUtil.java
+|  |  |  |  |  |  |  |  |  |  |  |-- RandUtil.java
+|  |  |  |  |  |  |  |  |  |-- jni
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- CrunchyCrypterBindings.java
+|  |  |  |  |  |  |  |  |  |  |-- CrunchyHybridDecrypterBindings.java
+|  |  |  |  |  |  |  |  |  |  |-- CrunchyHybridEncrypterBindings.java
+|  |  |  |  |  |  |  |  |  |  |-- CrunchyMacerBindings.java
+|  |  |  |  |  |  |  |  |  |  |-- CrunchySignerBindings.java
+|  |  |  |  |  |  |  |  |  |  |-- CrunchyVerifierBindings.java
+|  |  |  |  |  |  |  |  |  |  |-- InitJni.java
+|  |  |  |  |  |  |  |  |  |  |-- com_google_security_crunchy_jni_CrunchyCrypterBindings.h
+|  |  |  |  |  |  |  |  |  |  |-- com_google_security_crunchy_jni_CrunchyHybridDecrypterBindings.h
+|  |  |  |  |  |  |  |  |  |  |-- com_google_security_crunchy_jni_CrunchyHybridEncrypterBindings.h
+|  |  |  |  |  |  |  |  |  |  |-- com_google_security_crunchy_jni_CrunchyMacerBindings.h
+|  |  |  |  |  |  |  |  |  |  |-- com_google_security_crunchy_jni_CrunchySignerBindings.h
+|  |  |  |  |  |  |  |  |  |  |-- com_google_security_crunchy_jni_CrunchyVerifierBindings.h
+|  |  |  |  |  |  |  |  |  |  |-- crypto.c
+|  |  |  |-- test
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- security
+|  |  |  |  |  |  |  |  |-- crunchy
+|  |  |  |  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |  |  |  |-- algs
+|  |  |  |  |  |  |  |  |  |  |  |-- jce
+|  |  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |  |-- P256Test.java
+|  |  |  |  |  |  |  |  |  |  |  |-- sign
+|  |  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |  |-- P256EcdsaSignerFactoryTest.java
+|  |  |  |  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- BigIntegerUtilTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- ByteUtilTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- Hex.java
+|  |  |  |  |  |  |  |  |  |  |  |-- HexTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- RandUtilTest.java
+|  |  |  |  |  |  |  |  |  |-- jni
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- CrunchyCrypterBindingsTest.java
+|  |  |  |  |  |  |  |  |  |  |-- CrunchyHybridCrypterBindingsTest.java
+|  |  |  |  |  |  |  |  |  |  |-- CrunchyMacerBindingsTest.java
+|  |  |  |  |  |  |  |  |  |  |-- CrunchySignerBindingsTest.java
+|  |  |-- third_party
+|  |  |  |-- BUILD
+|  |-- key_management
+|  |  |-- BUILD
+|  |  |-- algorithms.cc
+|  |  |-- algorithms.h
+|  |  |-- crunchy_factory.cc
+|  |  |-- crunchy_factory.h
+|  |  |-- internal
+|  |  |  |-- BUILD
+|  |  |  |-- advanced_keyset_manager.cc
+|  |  |  |-- advanced_keyset_manager.h
+|  |  |  |-- advanced_keyset_manager_test.cc
+|  |  |  |-- keyset.proto
+|  |  |-- key_handle.cc
+|  |  |-- key_handle.h
+|  |  |-- keyset_enums.proto
+|  |  |-- keyset_handle.cc
+|  |  |-- keyset_handle.h
+|  |  |-- keyset_manager.cc
+|  |  |-- keyset_manager.h
+|  |  |-- keyset_manager_test.cc
+|  |  |-- keyset_serialization.cc
+|  |  |-- keyset_serialization.h
+|  |  |-- keyset_serialization_test.cc
+|  |-- testing
+|  |  |-- BUILD
+|  |  |-- basic_aead_test.cc
+|  |  |-- basic_hybrid_test.cc
+|  |  |-- basic_macing_test.cc
+|  |  |-- basic_signing_test.cc
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- status.cc
+|  |  |-- status.h

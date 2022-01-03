@@ -1,0 +1,518 @@
+|-- .bazelrc
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- cpp
+|  |-- common
+|  |  |-- BUILD
+|  |  |-- googleinit.h
+|  |  |-- io.cc
+|  |  |-- io.h
+|  |-- jni
+|  |  |-- BUILD
+|  |  |-- jni_utils.cc
+|  |  |-- jni_utils.h
+|  |  |-- macros.h
+|  |-- photo
+|  |  |-- BUILD
+|  |  |-- jpeg_encoder.cc
+|  |  |-- jpeg_encoder.h
+|  |-- sensor_fusion
+|  |  |-- BUILD
+|  |  |-- delayed_low_pass_filter.h
+|  |  |-- delayed_low_pass_filter_test.cc
+|  |  |-- geometry_toolbox_mahony.h
+|  |  |-- geometry_toolbox_test.cc
+|  |  |-- high_pass_filter.h
+|  |  |-- high_pass_filter_test.cc
+|  |  |-- low_pass_filter.h
+|  |  |-- low_pass_filter_test.cc
+|  |  |-- online_sensor_fusion.cc
+|  |  |-- online_sensor_fusion.h
+|  |  |-- online_sensor_fusion_test.cc
+|  |  |-- orientation_filter.cc
+|  |  |-- orientation_filter.h
+|  |  |-- orientation_filter_test.cc
+|  |  |-- quaternion_integrator.cc
+|  |  |-- quaternion_integrator.h
+|  |  |-- stationary_detector.cc
+|  |  |-- stationary_detector.h
+|  |  |-- stationary_detector_test.cc
+|  |-- third_party
+|  |  |-- BUILD.eigen
+|  |  |-- BUILD.glog
+|  |  |-- BUILD.libjpeg_turbo
+|  |  |-- BUILD.libxml
+|  |  |-- BUILD.xmpmeta
+|  |-- video
+|  |  |-- BUILD
+|  |  |-- atom.cc
+|  |  |-- atom.h
+|  |  |-- atom_helpers.h
+|  |  |-- atom_reader.cc
+|  |  |-- atom_reader.h
+|  |  |-- atom_registry.cc
+|  |  |-- atom_registry.h
+|  |  |-- atom_writer.cc
+|  |  |-- atom_writer.h
+|  |  |-- atoms
+|  |  |  |-- BUILD
+|  |  |  |-- atom_camm.cc
+|  |  |  |-- atom_camm.h
+|  |  |  |-- atom_edts.cc
+|  |  |  |-- atom_edts.h
+|  |  |  |-- atom_elst.cc
+|  |  |  |-- atom_elst.h
+|  |  |  |-- atom_hdlr.cc
+|  |  |  |-- atom_hdlr.h
+|  |  |  |-- atom_mdia.cc
+|  |  |  |-- atom_mdia.h
+|  |  |  |-- atom_minf.cc
+|  |  |  |-- atom_minf.h
+|  |  |  |-- atom_moov.cc
+|  |  |  |-- atom_moov.h
+|  |  |  |-- atom_sdtp.cc
+|  |  |  |-- atom_sdtp.h
+|  |  |  |-- atom_st3d.cc
+|  |  |  |-- atom_st3d.h
+|  |  |  |-- atom_stbl.cc
+|  |  |  |-- atom_stbl.h
+|  |  |  |-- atom_stco.cc
+|  |  |  |-- atom_stco.h
+|  |  |  |-- atom_stsd.cc
+|  |  |  |-- atom_stsd.h
+|  |  |  |-- atom_stss.cc
+|  |  |  |-- atom_stss.h
+|  |  |  |-- atom_sv3d.cc
+|  |  |  |-- atom_sv3d.h
+|  |  |  |-- atom_tkhd.cc
+|  |  |  |-- atom_tkhd.h
+|  |  |  |-- atom_trak.cc
+|  |  |  |-- atom_trak.h
+|  |  |  |-- atom_uuid.cc
+|  |  |  |-- atom_uuid.h
+|  |  |  |-- common.h
+|  |  |  |-- visual_sample_entry.cc
+|  |  |  |-- visual_sample_entry.h
+|  |  |-- binary_reader.h
+|  |  |-- binary_reader_impl.cc
+|  |  |-- binary_reader_impl.h
+|  |  |-- binary_writer.h
+|  |  |-- binary_writer_impl.cc
+|  |  |-- binary_writer_impl.h
+|  |  |-- edts_inject.cc
+|  |  |-- edts_inject.h
+|  |  |-- edts_inject_test.cc
+|  |  |-- format_status.h
+|  |  |-- full_atom.h
+|  |  |-- modify_moov.cc
+|  |  |-- modify_moov.h
+|  |  |-- replace_mett_with_camm.cc
+|  |  |-- replace_mett_with_camm.h
+|  |  |-- replace_mett_with_camm_test.cc
+|  |  |-- sdtp_inject.cc
+|  |  |-- sdtp_inject.h
+|  |  |-- spherical_inject.cc
+|  |  |-- spherical_inject.h
+|  |  |-- spherical_inject_test.cc
+|  |  |-- status.h
+|  |  |-- stereo_mode.h
+|  |  |-- testdata
+|  |  |  |-- BUILD
+|  |  |  |-- edts_inject.mp4
+|  |  |  |-- edts_misordered.mp4
+|  |  |  |-- edts_missing.mp4
+|  |  |  |-- edts_reorder.mp4
+|  |  |  |-- mett.mp4
+|  |  |  |-- mett_replaced_with_camm.mp4
+|  |  |  |-- sv3d.bin
+|  |  |  |-- video-sample-inject.mp4
+|  |  |  |-- video-sample-inject_v1.mp4
+|  |  |  |-- video-sample-inplace-inject.mp4
+|  |  |  |-- video-sample_no_mesh.mp4
+|-- docs
+|  |-- README.md
+|  |-- calibration.md
+|  |-- hardware.md
+|  |-- hardware.png
+|  |-- overview.pptx
+|  |-- validation.md
+|-- java
+|  |-- com
+|  |  |-- google
+|  |  |  |-- vr180
+|  |  |  |  |-- api
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CameraApiClient.java
+|  |  |  |  |  |-- CameraApiEndpoint.java
+|  |  |  |  |  |-- CameraApiHandler.java
+|  |  |  |  |  |-- CameraCore.java
+|  |  |  |  |  |-- camerainterfaces
+|  |  |  |  |  |  |-- AudioVolumeManager.java
+|  |  |  |  |  |  |-- BatteryStatusProvider.java
+|  |  |  |  |  |  |-- CameraInterfaceFactory.java
+|  |  |  |  |  |  |-- CameraSettings.java
+|  |  |  |  |  |  |-- CapabilitiesProvider.java
+|  |  |  |  |  |  |-- CaptureManager.java
+|  |  |  |  |  |  |-- ConnectionTester.java
+|  |  |  |  |  |  |-- DebugLogsProvider.java
+|  |  |  |  |  |  |-- Exceptions.java
+|  |  |  |  |  |  |-- FileChecksumProvider.java
+|  |  |  |  |  |  |-- FileProvider.java
+|  |  |  |  |  |  |-- GravityVectorProvider.java
+|  |  |  |  |  |  |-- HotspotManager.java
+|  |  |  |  |  |  |-- LiveCaptureSource.java
+|  |  |  |  |  |  |-- MediaProvider.java
+|  |  |  |  |  |  |-- MobileNetworkManager.java
+|  |  |  |  |  |  |-- NetworkManager.java
+|  |  |  |  |  |  |-- PairingCompleteListener.java
+|  |  |  |  |  |  |-- PairingManager.java
+|  |  |  |  |  |  |-- PairingStatusListener.java
+|  |  |  |  |  |  |-- SslManager.java
+|  |  |  |  |  |  |-- StatusNotifier.java
+|  |  |  |  |  |  |-- StorageStatusProvider.java
+|  |  |  |  |  |  |-- TemperatureProvider.java
+|  |  |  |  |  |  |-- UpdateManager.java
+|  |  |  |  |  |  |-- ViewfinderCaptureSource.java
+|  |  |  |  |  |  |-- ViewfinderProvider.java
+|  |  |  |  |  |  |-- WakeManager.java
+|  |  |  |  |  |-- implementations
+|  |  |  |  |  |  |-- AndroidAudioVolumeManager.java
+|  |  |  |  |  |  |-- AndroidBatteryStatusProvider.java
+|  |  |  |  |  |  |-- AndroidConnectionTester.java
+|  |  |  |  |  |  |-- AndroidFileProvider.java
+|  |  |  |  |  |  |-- AndroidGravityVectorProvider.java
+|  |  |  |  |  |  |-- AndroidMediaProvider.java
+|  |  |  |  |  |  |-- AndroidMobileNetworkManager.java
+|  |  |  |  |  |  |-- AndroidNetworkManager.java
+|  |  |  |  |  |  |-- AndroidStorageStatusProvider.java
+|  |  |  |  |  |  |-- AndroidViewfinderCaptureSource.java
+|  |  |  |  |  |  |-- AndroidWakeManager.java
+|  |  |  |  |  |  |-- BaseCameraInterfaceFactory.java
+|  |  |  |  |  |  |-- BroadcastStatusNotifier.java
+|  |  |  |  |  |  |-- CachedFileChecksumProvider.java
+|  |  |  |  |  |  |-- MemoryDebugLogsProvider.java
+|  |  |  |  |  |  |-- NetworkStateNotifier.java
+|  |  |  |  |  |  |-- SelfSignedSslManager.java
+|  |  |  |  |  |  |-- Settings.java
+|  |  |  |  |  |  |-- StatusNotificationChannel.java
+|  |  |  |  |  |  |-- ViewfinderManager.java
+|  |  |  |  |  |  |-- WifiDirectHotspotManager.java
+|  |  |  |  |  |-- internal
+|  |  |  |  |  |  |-- CameraInternalApiClient.java
+|  |  |  |  |  |  |-- CameraInternalApiHandler.java
+|  |  |  |  |  |  |-- CameraInternalStatusManager.java
+|  |  |  |  |-- app
+|  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- BootReceiver.java
+|  |  |  |  |  |-- BroadcastReceiverObservable.java
+|  |  |  |  |  |-- Camera.java
+|  |  |  |  |  |-- CameraAppGlideModule.java
+|  |  |  |  |  |-- CameraApplication.java
+|  |  |  |  |  |-- CameraController.java
+|  |  |  |  |  |-- CameraInterfaceFactoryImpl.java
+|  |  |  |  |  |-- CameraSettingsActivity.java
+|  |  |  |  |  |-- MainActivity.java
+|  |  |  |  |  |-- MainService.java
+|  |  |  |  |  |-- assets
+|  |  |  |  |  |  |-- mp4_box_equirect_sv3d.bin
+|  |  |  |  |  |  |-- mp4_box_stereo_mesh_config.bin
+|  |  |  |  |  |  |-- mp4_box_sv3d.bin
+|  |  |  |  |  |-- res
+|  |  |  |  |  |  |-- drawable
+|  |  |  |  |  |  |  |-- ic_settings.png
+|  |  |  |  |  |  |-- layout
+|  |  |  |  |  |  |  |-- camera_main_activity.xml
+|  |  |  |  |  |  |  |-- settings_activity.xml
+|  |  |  |  |  |  |-- mipmap-xxxhdpi
+|  |  |  |  |  |  |  |-- camera_logo.png
+|  |  |  |  |  |  |-- values
+|  |  |  |  |  |  |  |-- strings.xml
+|  |  |  |  |  |  |  |-- style.xml
+|  |  |  |  |  |  |  |-- themes.xml
+|  |  |  |  |  |-- stubs
+|  |  |  |  |  |  |-- Emulator.java
+|  |  |  |  |  |  |-- EmulatorCapabilitiesProvider.java
+|  |  |  |  |  |  |-- EmulatorDeviceInfo.java
+|  |  |  |  |  |  |-- EmulatorProjectionMetadataProvider.java
+|  |  |  |  |  |  |-- FakeTemperatureProvider.java
+|  |  |  |  |  |  |-- FakeUpdateManager.java
+|  |  |  |  |-- capture
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CalibrationRecorder.java
+|  |  |  |  |  |-- CaptureManagerImpl.java
+|  |  |  |  |  |-- CapturePathProvider.java
+|  |  |  |  |  |-- FreeSpaceChecker.java
+|  |  |  |  |  |-- MediaFormatFactory.java
+|  |  |  |  |  |-- MediaMuxCapturePipelineManager.java
+|  |  |  |  |  |-- camera
+|  |  |  |  |  |  |-- CameraCapture.java
+|  |  |  |  |  |  |-- CameraConfigurator.java
+|  |  |  |  |  |  |-- CameraPreview.java
+|  |  |  |  |  |  |-- CameraProcessor.java
+|  |  |  |  |  |  |-- DefaultPreviewConfigProvider.java
+|  |  |  |  |  |  |-- PreviewConfig.java
+|  |  |  |  |  |  |-- PreviewConfigProvider.java
+|  |  |  |  |  |  |-- PreviewSizeChooser.java
+|  |  |  |  |  |  |-- SharedEGLContextFactory.java
+|  |  |  |  |  |-- motion
+|  |  |  |  |  |  |-- MotionCaptureSource.java
+|  |  |  |  |  |  |-- SensorFusion.java
+|  |  |  |  |  |  |-- jni
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- sensor_fusion.cc
+|  |  |  |  |  |-- photo
+|  |  |  |  |  |  |-- PhotoCaptureQueue.java
+|  |  |  |  |  |  |-- PhotoCapturer.java
+|  |  |  |  |  |  |-- RawPhotoCapturer.java
+|  |  |  |  |  |  |-- VRPhotoCapturer.java
+|  |  |  |  |  |-- renderer
+|  |  |  |  |  |  |-- PreviewRenderer.java
+|  |  |  |  |  |  |-- ShaderRenderer.java
+|  |  |  |  |  |  |-- TextureRenderer.java
+|  |  |  |  |  |-- video
+|  |  |  |  |  |  |-- SurfaceVideoCaptureSource.java
+|  |  |  |  |  |  |-- SurfaceViewfinderCaptureSource.java
+|  |  |  |  |  |  |-- VideoCaptureSource.java
+|  |  |  |  |-- common
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- InstanceMap.java
+|  |  |  |  |  |-- IoUtils.java
+|  |  |  |  |  |-- SharedPreferenceUtils.java
+|  |  |  |  |  |-- SystemUtil.java
+|  |  |  |  |  |-- communication
+|  |  |  |  |  |  |-- BluetoothConstants.java
+|  |  |  |  |  |  |-- BluetoothManufacturerDataHelper.java
+|  |  |  |  |  |  |-- HttpConstants.java
+|  |  |  |  |  |  |-- MessageMarkers.java
+|  |  |  |  |  |  |-- PaddingCalculator.java
+|  |  |  |  |  |-- crypto
+|  |  |  |  |  |  |-- CryptoProvider.java
+|  |  |  |  |  |  |-- CryptoUtilities.java
+|  |  |  |  |  |  |-- DefaultCipherProvider.java
+|  |  |  |  |  |-- logging
+|  |  |  |  |  |  |-- Log.java
+|  |  |  |  |  |  |-- LogcatLogger.java
+|  |  |  |  |  |  |-- Logger.java
+|  |  |  |  |  |  |-- MemoryLogger.java
+|  |  |  |  |  |-- media
+|  |  |  |  |  |  |-- BitmapIO.java
+|  |  |  |  |  |  |-- MediaInfo.java
+|  |  |  |  |  |  |-- MediaStoreUtil.java
+|  |  |  |  |  |  |-- MediaTypeHelper.java
+|  |  |  |  |  |  |-- St3dBoxParser.java
+|  |  |  |  |  |  |-- StereoMode.java
+|  |  |  |  |  |  |-- VrVideoCrop.java
+|  |  |  |  |  |-- opengl
+|  |  |  |  |  |  |-- Attribute.java
+|  |  |  |  |  |  |-- EglSurface.java
+|  |  |  |  |  |  |-- MeshGrid.java
+|  |  |  |  |  |  |-- NIOBuffer.java
+|  |  |  |  |  |  |-- ShaderProgram.java
+|  |  |  |  |  |  |-- Texture.java
+|  |  |  |  |  |  |-- Uniform.java
+|  |  |  |  |  |-- webrtc
+|  |  |  |  |  |  |-- BlockingPeerObserver.java
+|  |  |  |  |  |  |-- BlockingSdpObserver.java
+|  |  |  |  |  |  |-- IceCandidateConverter.java
+|  |  |  |  |  |  |-- WebRtcConstants.java
+|  |  |  |  |  |-- wifi
+|  |  |  |  |  |  |-- StateMachine.java
+|  |  |  |  |  |  |-- WifiClientManager.java
+|  |  |  |  |  |  |-- WifiDirectManager.java
+|  |  |  |  |  |  |-- WifiNetworkManager.java
+|  |  |  |  |  |  |-- WifiUtilities.java
+|  |  |  |  |-- communication
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- bluetooth
+|  |  |  |  |  |  |-- BluetoothApiHandler.java
+|  |  |  |  |  |  |-- BluetoothException.java
+|  |  |  |  |  |  |-- BluetoothGattException.java
+|  |  |  |  |  |  |-- BluetoothLeAdvertiserHelper.java
+|  |  |  |  |  |  |-- BluetoothPairingManager.java
+|  |  |  |  |  |  |-- BluetoothSocketService.java
+|  |  |  |  |  |  |-- PairingApiHandler.java
+|  |  |  |  |  |  |-- gatt
+|  |  |  |  |  |  |  |-- BluetoothGattServerConnection.java
+|  |  |  |  |  |  |  |-- BluetoothGattServerHelper.java
+|  |  |  |  |  |  |  |-- BluetoothGattUtils.java
+|  |  |  |  |  |  |  |-- BluetoothOperationExecutor.java
+|  |  |  |  |  |  |  |-- BluetoothServiceConfig.java
+|  |  |  |  |  |  |  |-- PreparedWriteState.java
+|  |  |  |  |  |-- http
+|  |  |  |  |  |  |-- AuthorizationValidator.java
+|  |  |  |  |  |  |-- ByteRange.java
+|  |  |  |  |  |  |-- ContentRange.java
+|  |  |  |  |  |  |-- HttpCameraApiHandler.java
+|  |  |  |  |  |  |-- HttpServiceFactory.java
+|  |  |  |  |  |  |-- HttpSocketServer.java
+|  |  |  |  |  |  |-- MediaDownloadHandler.java
+|  |  |  |  |  |  |-- StatusCode.java
+|  |  |  |  |  |  |-- UpdateUploadHandler.java
+|  |  |  |  |-- device
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- DebugConfig.java
+|  |  |  |  |  |-- DeviceInfo.java
+|  |  |  |  |  |-- Hardware.java
+|  |  |  |  |-- media
+|  |  |  |  |  |-- AbrController.java
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- BaseEncoder.java
+|  |  |  |  |  |-- MediaConstants.java
+|  |  |  |  |  |-- MediaCreationUtils.java
+|  |  |  |  |  |-- MediaEncoder.java
+|  |  |  |  |  |-- SlowmoFormat.java
+|  |  |  |  |  |-- audio
+|  |  |  |  |  |  |-- AudioEncoder.java
+|  |  |  |  |  |  |-- AudioEncoderFactory.java
+|  |  |  |  |  |  |-- AudioInput.java
+|  |  |  |  |  |  |-- AudioInputFactory.java
+|  |  |  |  |  |  |-- MicInput.java
+|  |  |  |  |  |  |-- MovingAverage.java
+|  |  |  |  |  |-- metadata
+|  |  |  |  |  |  |-- MetadataInjector.java
+|  |  |  |  |  |  |-- ProjectionMetadata.java
+|  |  |  |  |  |  |-- ProjectionMetadataProvider.java
+|  |  |  |  |  |  |-- ProjectionMetadataProviderUtils.java
+|  |  |  |  |  |  |-- StereoReprojectionConfig.java
+|  |  |  |  |  |  |-- VrMetadataInjector.java
+|  |  |  |  |  |  |-- jni
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- vr_metadata_injector.cc
+|  |  |  |  |  |-- motion
+|  |  |  |  |  |  |-- MotionEncoder.java
+|  |  |  |  |  |  |-- MotionEncoderFactory.java
+|  |  |  |  |  |  |-- MotionEvent.java
+|  |  |  |  |  |-- muxer
+|  |  |  |  |  |  |-- AutoReconnectRtmpMuxer.java
+|  |  |  |  |  |  |-- ChapteredFileMuxer.java
+|  |  |  |  |  |  |-- MediaMux.java
+|  |  |  |  |  |  |-- MediaMuxFactory.java
+|  |  |  |  |  |  |-- RtmpMuxer.java
+|  |  |  |  |  |-- photo
+|  |  |  |  |  |  |-- ExifWriter.java
+|  |  |  |  |  |  |-- PhotoWriter.java
+|  |  |  |  |  |  |-- jni
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- photo_writer.cc
+|  |  |  |  |  |-- rtmp
+|  |  |  |  |  |  |-- ActionMessageFormat.java
+|  |  |  |  |  |  |-- BitrateEstimator.java
+|  |  |  |  |  |  |-- Clock.java
+|  |  |  |  |  |  |-- FasterPipedInputStream.java
+|  |  |  |  |  |  |-- FasterPipedOutputStream.java
+|  |  |  |  |  |  |-- RealClock.java
+|  |  |  |  |  |  |-- RtmpConnection.java
+|  |  |  |  |  |  |-- RtmpContinuityManager.java
+|  |  |  |  |  |  |-- RtmpInputStream.java
+|  |  |  |  |  |  |-- RtmpMessage.java
+|  |  |  |  |  |  |-- RtmpOutputStream.java
+|  |  |  |  |  |  |-- TimestampContinuityManager.java
+|  |  |  |  |  |  |-- TrueMovingAverage.java
+|  |  |  |  |  |-- video
+|  |  |  |  |  |  |-- FramerateReporter.java
+|  |  |  |  |  |  |-- VideoEncoder.java
+|  |  |  |  |  |  |-- VideoEncoderFactory.java
+|-- javatests
+|  |-- com
+|  |  |-- google
+|  |  |  |-- vr180
+|  |  |  |  |-- api
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CameraApiClientTest.java
+|  |  |  |  |  |-- CameraApiHandlerTest.java
+|  |  |  |  |  |-- implementations
+|  |  |  |  |  |  |-- AndroidAudioVolumeManagerTest.java
+|  |  |  |  |  |  |-- AndroidMediaProviderTest.java
+|  |  |  |  |  |  |-- AndroidNetworkManagerTest.java
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CachedFileChecksumProviderTest.java
+|  |  |  |  |-- common
+|  |  |  |  |  |-- communication
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- BluetoothManufacturerDataHelperTest.java
+|  |  |  |  |  |  |-- MessageMarkersTest.java
+|  |  |  |  |  |  |-- PaddingCalculatorTest.java
+|  |  |  |  |  |-- crypto
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CryptoUtilitiesTest.java
+|  |  |  |  |  |-- media
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- BitmapIOTest.java
+|  |  |  |  |  |  |-- MediaInfoTest.java
+|  |  |  |  |  |  |-- MediaStoreUtilTest.java
+|  |  |  |  |  |  |-- VrVideoCropTest.java
+|  |  |  |  |  |-- wifi
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- StateMachineTest.java
+|  |  |  |  |  |  |-- WifiClientManagerTest.java
+|  |  |  |  |  |  |-- WifiDirectManagerTest.java
+|  |  |  |  |  |  |-- WifiUtilitiesTest.java
+|  |  |  |  |-- communication
+|  |  |  |  |  |-- bluetooth
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- BluetoothApiHandlerTest.java
+|  |  |  |  |  |  |-- PairingApiHandlerTest.java
+|  |  |  |  |  |  |-- gatt
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- BluetoothOperationExecutorTest.java
+|  |  |  |  |  |-- http
+|  |  |  |  |  |  |-- AuthorizationValidatorTest.java
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- ByteRangeTest.java
+|  |  |  |  |  |  |-- ContentRangeTest.java
+|  |  |  |  |  |  |-- HttpCameraApiHandlerTest.java
+|  |  |  |  |  |  |-- HttpSocketServerTest.java
+|  |  |  |  |  |  |-- MediaDownloadHandlerTest.java
+|  |  |  |  |-- media
+|  |  |  |  |  |-- AbrControllerTest.java
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- muxer
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- RtmpMuxerTest.java
+|  |  |  |  |  |-- rtmp
+|  |  |  |  |  |  |-- ActionMessageFormatTest.java
+|  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- BitrateEstimatorTest.java
+|  |  |  |  |  |  |-- FasterPipedInputStreamTest.java
+|  |  |  |  |  |  |-- RtmpConnectionTest.java
+|  |  |  |  |  |  |-- RtmpContinuityManagerTest.java
+|  |  |  |  |  |  |-- RtmpInputStreamTest.java
+|  |  |  |  |  |  |-- RtmpOutputStreamTest.java
+|  |  |  |  |-- testhelpers
+|  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- FakeMediaProvider.java
+|  |  |  |  |  |-- FakeSharedPreferences.java
+|  |  |  |  |  |-- MockHttpHelper.java
+|  |  |  |  |  |-- TestCameraCalibration.java
+|  |  |  |  |  |-- TestCameraCapabilities.java
+|  |  |  |  |  |-- res
+|  |  |  |  |  |  |-- raw
+|  |  |  |  |  |  |  |-- st3d_box
+|  |  |  |  |  |  |  |-- sv3d_box
+|  |  |  |  |  |-- sdk_versions.bzl
+|  |  |  |  |  |-- shadows
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- ShadowBluetoothAdapter.java
+|  |  |  |  |  |  |-- ShadowBluetoothGattServer.java
+|  |  |  |  |  |  |-- ShadowBluetoothLeAdvertiser.java
+|  |  |  |  |  |  |-- ShadowBluetoothManager.java
+|  |  |  |  |  |  |-- ShadowExifInterface.java
+|  |  |  |  |  |  |-- ShadowMediaMetadataRetriever.java
+|  |  |  |  |  |  |-- ShadowPair.java
+|  |  |  |  |  |  |-- ShadowPeerConnection.java
+|  |  |  |  |  |  |-- ShadowPeerConnectionFactory.java
+|-- jcenter-settings.xml
+|-- proto
+|  |-- BUILD
+|  |-- camera_api.proto
+|  |-- camera_internal_api.proto
+|  |-- camera_pairing.proto
+|  |-- mesh.proto
+|-- tools
+|  |-- calibration_and_validation.tar.gz

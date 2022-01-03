@@ -1,0 +1,575 @@
+|-- .gitattributes
+|-- .gitignore
+|-- .travis.yml
+|-- CONTRIBUTING
+|-- Dockerfile
+|-- LICENSE
+|-- MANIFEST.in
+|-- Makefile
+|-- README.md
+|-- WORKSPACE
+|-- benchmarks
+|  |-- BUILD
+|  |-- bench.01.jsonnet
+|  |-- bench.02.jsonnet
+|  |-- bench.03.jsonnet
+|-- case_studies
+|  |-- fractal
+|  |  |-- .gitignore
+|  |  |-- Makefile
+|  |  |-- appserv
+|  |  |  |-- main.py
+|  |  |  |-- static
+|  |  |  |  |-- style.css
+|  |  |  |-- templates
+|  |  |  |  |-- base.html
+|  |  |  |  |-- error.html
+|  |  |  |  |-- page.html
+|  |  |-- credentials.libsonnet.TEMPLATE
+|  |  |-- lib
+|  |  |  |-- cassandra.libsonnet
+|  |  |  |-- packer.libsonnet
+|  |  |  |-- terraform.libsonnet
+|  |  |-- service.jsonnet
+|  |  |-- tilegen
+|  |  |  |-- mandelbrot.cpp
+|  |  |  |-- mandelbrot_service.py
+|  |-- kubernetes
+|  |  |-- README.md
+|  |  |-- bigquery-controller.old.yaml
+|  |  |-- example.jsonnet
+|  |  |-- kube.libsonnet
+|  |  |-- redis-master-service.old.yaml
+|  |  |-- redis-master.old.yaml
+|  |  |-- test_same.py
+|  |  |-- twitter-stream.old.yaml
+|  |-- micro_fractal
+|  |  |-- .gitignore
+|  |  |-- appserv
+|  |  |  |-- main.py
+|  |  |  |-- static
+|  |  |  |  |-- style.css
+|  |  |  |-- templates
+|  |  |  |  |-- base.html
+|  |  |  |  |-- error.html
+|  |  |  |  |-- page.html
+|  |  |-- db
+|  |  |  |-- db_export.sh
+|  |  |  |-- db_import.sh
+|  |  |  |-- nodetool.sh
+|  |  |-- fractal.jsonnet
+|  |  |-- fractal_dev.jsonnet.TEMPLATE
+|  |  |-- tilegen
+|  |  |  |-- mandelbrot.cpp
+|  |  |  |-- mandelbrot_service.py
+|  |-- micromanage
+|  |  |-- .gitignore
+|  |  |-- build_artefact.py
+|  |  |-- cmds.py
+|  |  |-- examples
+|  |  |  |-- hello_world_amazon.jsonnet
+|  |  |  |-- hello_world_google.jsonnet
+|  |  |-- lib
+|  |  |  |-- mmlib
+|  |  |  |  |-- v0.1.0
+|  |  |  |  |  |-- cmd
+|  |  |  |  |  |  |-- apt.jsonnet
+|  |  |  |  |  |  |-- cmd.jsonnet
+|  |  |  |  |  |  |-- pip.jsonnet
+|  |  |  |  |  |-- db
+|  |  |  |  |  |  |-- cassandra.jsonnet
+|  |  |  |  |  |-- service
+|  |  |  |  |  |  |-- amazon.jsonnet
+|  |  |  |  |  |  |-- base.jsonnet
+|  |  |  |  |  |  |-- google.jsonnet
+|  |  |  |  |  |-- web
+|  |  |  |  |  |  |-- nginx.jsonnet
+|  |  |  |  |  |  |-- web.jsonnet
+|  |  |  |  |-- v0.1.1
+|  |  |  |  |  |-- amis
+|  |  |  |  |  |  |-- debian.jsonnet
+|  |  |  |  |  |  |-- ubuntu.jsonnet
+|  |  |  |  |  |  |-- ubuntu_raw.json
+|  |  |  |  |  |-- cmd
+|  |  |  |  |  |  |-- apt.jsonnet
+|  |  |  |  |  |  |-- cmd.jsonnet
+|  |  |  |  |  |  |-- pip.jsonnet
+|  |  |  |  |  |-- db
+|  |  |  |  |  |  |-- cassandra.jsonnet
+|  |  |  |  |  |-- service
+|  |  |  |  |  |  |-- amazon.jsonnet
+|  |  |  |  |  |  |-- base.jsonnet
+|  |  |  |  |  |  |-- google.jsonnet
+|  |  |  |  |  |-- web
+|  |  |  |  |  |  |-- nginx.jsonnet
+|  |  |  |  |  |  |-- solutions.jsonnet
+|  |  |  |  |  |  |-- uwsgi_flask.jsonnet
+|  |  |  |  |  |  |-- web.jsonnet
+|  |  |  |  |-- v0.1.2
+|  |  |  |  |  |-- amis
+|  |  |  |  |  |  |-- debian.libsonnet
+|  |  |  |  |  |  |-- ubuntu.libsonnet
+|  |  |  |  |  |  |-- ubuntu.prof
+|  |  |  |  |  |  |-- ubuntu_raw.json
+|  |  |  |  |  |-- cmd
+|  |  |  |  |  |  |-- apt.libsonnet
+|  |  |  |  |  |  |-- cmd.libsonnet
+|  |  |  |  |  |  |-- pip.libsonnet
+|  |  |  |  |  |-- db
+|  |  |  |  |  |  |-- cassandra.libsonnet
+|  |  |  |  |  |-- service
+|  |  |  |  |  |  |-- amazon.libsonnet
+|  |  |  |  |  |  |-- base.libsonnet
+|  |  |  |  |  |  |-- google.libsonnet
+|  |  |  |  |  |-- web
+|  |  |  |  |  |  |-- nginx.libsonnet
+|  |  |  |  |  |  |-- solutions.libsonnet
+|  |  |  |  |  |  |-- uwsgi_flask.libsonnet
+|  |  |  |  |  |  |-- web.libsonnet
+|  |  |-- micromanage
+|  |  |-- micromanage.py
+|  |  |-- packer.py
+|  |  |-- service.py
+|  |  |-- service_amazon.py
+|  |  |-- service_google.py
+|  |  |-- tests
+|  |  |  |-- amazon
+|  |  |  |  |-- test_single_instance.jsonnet
+|  |  |  |-- google
+|  |  |  |  |-- test_empty.jsonnet
+|  |  |  |  |-- test_nested.jsonnet
+|  |  |  |  |-- test_single_instance.jsonnet
+|  |  |  |-- test_really_empty.jsonnet
+|  |  |  |-- testenv.libsonnet.TEMPLATE
+|  |  |-- util.py
+|  |  |-- validate.py
+|-- cmd
+|  |-- BUILD
+|  |-- jsonnet.cpp
+|-- core
+|  |-- BUILD
+|  |-- ast.h
+|  |-- desugarer.cpp
+|  |-- desugarer.h
+|  |-- formatter.cpp
+|  |-- formatter.h
+|  |-- json.h
+|  |-- lexer.cpp
+|  |-- lexer.h
+|  |-- lexer_test.cpp
+|  |-- libjsonnet.cpp
+|  |-- libjsonnet_test.cpp
+|  |-- libjsonnet_test.sh
+|  |-- libjsonnet_test_file.c
+|  |-- libjsonnet_test_snippet.c
+|  |-- parser.cpp
+|  |-- parser.h
+|  |-- parser_test.cpp
+|  |-- pass.cpp
+|  |-- pass.h
+|  |-- state.h
+|  |-- static_analysis.cpp
+|  |-- static_analysis.h
+|  |-- static_error.h
+|  |-- string_utils.cpp
+|  |-- string_utils.h
+|  |-- unicode.h
+|  |-- vm.cpp
+|  |-- vm.h
+|-- cpp
+|  |-- BUILD
+|  |-- libjsonnet++.cpp
+|  |-- libjsonnet++_test.cpp
+|  |-- testdata
+|  |  |-- BUILD
+|  |  |-- example.jsonnet
+|  |  |-- example_golden.json
+|  |  |-- importing.jsonnet
+|  |  |-- importing_golden.json
+|  |  |-- invalid.jsonnet
+|  |  |-- invalid.out
+|-- doc
+|  |-- .gitignore
+|  |-- BUILD
+|  |-- CNAME
+|  |-- _config.yml
+|  |-- _includes
+|  |  |-- domain-redirect.html
+|  |  |-- nav.html
+|  |-- _layouts
+|  |  |-- default.html
+|  |  |-- redirect.html
+|  |-- case_studies
+|  |  |-- casestudy_fractal.1.html
+|  |  |-- casestudy_fractal.2.html
+|  |  |-- casestudy_fractal.3.html
+|  |  |-- index.html
+|  |-- contributing.html
+|  |-- css
+|  |  |-- doc.css
+|  |  |-- prism.css
+|  |-- doc
+|  |  |-- bindings.html
+|  |  |-- casestudies.html
+|  |  |-- casestudy_fractal.1.html
+|  |  |-- casestudy_fractal.2.html
+|  |  |-- casestudy_fractal.3.html
+|  |  |-- commandline.html
+|  |  |-- comparisons.html
+|  |  |-- contributing.html
+|  |  |-- cpp.html
+|  |  |-- demo.html
+|  |  |-- design.html
+|  |  |-- implementation.html
+|  |  |-- index.html
+|  |  |-- javascript.html
+|  |  |-- language.html
+|  |  |-- spec.html
+|  |  |-- stdlib.html
+|  |  |-- tests.html
+|  |  |-- tutorial.html
+|  |  |-- userdocs.html
+|  |-- docs
+|  |  |-- demo.html
+|  |  |-- index.html
+|  |  |-- stdlib.html
+|  |  |-- tutorial.html
+|  |-- favicon.png
+|  |-- img
+|  |  |-- GitHub-Mark-Light-32px.png
+|  |  |-- fractal_architecture.png
+|  |  |-- fractal_screenshot.png
+|  |  |-- google_groups.png
+|  |-- implementation
+|  |  |-- bindings.html
+|  |  |-- commandline.html
+|  |  |-- cpp.html
+|  |  |-- index.html
+|  |  |-- javascript.html
+|  |  |-- tests.html
+|  |-- index.html
+|  |-- js
+|  |  |-- prism.js
+|  |-- language
+|  |  |-- comparisons.html
+|  |  |-- design.html
+|  |  |-- index.html
+|  |  |-- java_comparison
+|  |  |  |-- .gitignore
+|  |  |  |-- BaseTemplate.java
+|  |  |  |-- JsonnetObject.java
+|  |  |  |-- JsonnetValue.java
+|  |  |  |-- README.md
+|  |  |  |-- SubTemplate.java
+|  |  |  |-- Test.java
+|  |  |  |-- base-template.libsonnet
+|  |  |  |-- sub-template.json
+|  |  |  |-- sub-template.jsonnet
+|  |  |-- spec.html
+|-- editors
+|  |-- atom
+|  |  |-- README.md
+|  |-- vim
+|  |  |-- README.md
+|-- examples
+|  |-- BUILD
+|  |-- bar_menu.1.jsonnet
+|  |-- bar_menu.1.jsonnet.golden
+|  |-- bar_menu.10.jsonnet
+|  |-- bar_menu.10.jsonnet.golden
+|  |-- bar_menu.11.jsonnet
+|  |-- bar_menu.11.jsonnet.golden
+|  |-- bar_menu.2.jsonnet
+|  |-- bar_menu.2.jsonnet.golden
+|  |-- bar_menu.3.jsonnet
+|  |-- bar_menu.3.jsonnet.golden
+|  |-- bar_menu.5.jsonnet
+|  |-- bar_menu.5.jsonnet.golden
+|  |-- bar_menu.6.jsonnet
+|  |-- bar_menu.6.jsonnet.golden
+|  |-- bar_menu.7.jsonnet
+|  |-- bar_menu.7.jsonnet.golden
+|  |-- bar_menu.8.jsonnet
+|  |-- bar_menu.8.jsonnet.golden
+|  |-- bar_menu.9.jsonnet
+|  |-- bar_menu.9.jsonnet.fmt.golden
+|  |-- bar_menu.9.jsonnet.golden
+|  |-- bar_menu_utils.libsonnet
+|  |-- build_example.jsonnet
+|  |-- build_example.jsonnet.golden
+|  |-- check.sh
+|  |-- example_operators.jsonnet
+|  |-- example_operators.jsonnet.golden
+|  |-- hidden_fields.jsonnet
+|  |-- hidden_fields.jsonnet.golden
+|  |-- landingpage.jsonnet
+|  |-- landingpage.jsonnet.golden
+|  |-- martinis.libsonnet
+|  |-- no_ingredients.jsonnet
+|  |-- no_ingredients.jsonnet.error
+|  |-- terraform
+|  |  |-- aws-count.jsonnet
+|  |  |-- aws-count.jsonnet.golden
+|  |  |-- aws-two-tier.jsonnet
+|  |  |-- aws-two-tier.jsonnet.golden
+|  |  |-- check.sh
+|  |  |-- consul.jsonnet
+|  |  |-- consul.jsonnet.golden
+|  |  |-- cross-provider.jsonnet
+|  |  |-- cross-provider.jsonnet.golden
+|-- gc_stress
+|  |-- long_chains.jsonnet
+|-- gmock.BUILD
+|-- include
+|  |-- BUILD
+|  |-- libjsonnet++.h
+|  |-- libjsonnet.h
+|-- python
+|  |-- BUILD
+|  |-- __init__.py
+|  |-- _jsonnet.c
+|  |-- _jsonnet_test.py
+|  |-- test.jsonnet
+|-- setup.py
+|-- stdlib
+|  |-- BUILD
+|  |-- std.jsonnet
+|-- test_suite
+|  |-- README.md
+|  |-- arith_bool.jsonnet
+|  |-- arith_float.jsonnet
+|  |-- arith_float.jsonnet.fmt.golden
+|  |-- arith_string.jsonnet
+|  |-- array.jsonnet
+|  |-- array.jsonnet.fmt.golden
+|  |-- assert.jsonnet
+|  |-- binary.jsonnet
+|  |-- binary.jsonnet.fmt.golden
+|  |-- comments.jsonnet
+|  |-- comments.jsonnet.fmt.golden
+|  |-- condition.jsonnet
+|  |-- count_tests.sh
+|  |-- dos_line_endings.jsonnet
+|  |-- dos_line_endings.jsonnet.fmt.golden
+|  |-- error.01.jsonnet
+|  |-- error.01.jsonnet.golden
+|  |-- error.02.jsonnet
+|  |-- error.02.jsonnet.golden
+|  |-- error.03.jsonnet
+|  |-- error.03.jsonnet.golden
+|  |-- error.04.jsonnet
+|  |-- error.04.jsonnet.golden
+|  |-- error.05.jsonnet
+|  |-- error.05.jsonnet.golden
+|  |-- error.06.jsonnet
+|  |-- error.06.jsonnet.golden
+|  |-- error.07.jsonnet
+|  |-- error.07.jsonnet.golden
+|  |-- error.08.jsonnet
+|  |-- error.08.jsonnet.golden
+|  |-- error.array_recursive_manifest.jsonnet
+|  |-- error.array_recursive_manifest.jsonnet.golden
+|  |-- error.assert.fail1.jsonnet
+|  |-- error.assert.fail1.jsonnet.golden
+|  |-- error.assert.fail2.jsonnet
+|  |-- error.assert.fail2.jsonnet.golden
+|  |-- error.comprehension_spec_object.jsonnet
+|  |-- error.comprehension_spec_object.jsonnet.golden
+|  |-- error.comprehension_spec_object2.jsonnet
+|  |-- error.comprehension_spec_object2.jsonnet.golden
+|  |-- error.computed_field_scope.jsonnet
+|  |-- error.computed_field_scope.jsonnet.golden
+|  |-- error.divide_zero.jsonnet
+|  |-- error.divide_zero.jsonnet.golden
+|  |-- error.equality_function.jsonnet
+|  |-- error.equality_function.jsonnet.golden
+|  |-- error.field_not_exist.jsonnet
+|  |-- error.field_not_exist.jsonnet.golden
+|  |-- error.function_arg_positional_after_named.jsonnet
+|  |-- error.function_arg_positional_after_named.jsonnet.golden
+|  |-- error.function_duplicate_arg.jsonnet
+|  |-- error.function_duplicate_arg.jsonnet.golden
+|  |-- error.function_duplicate_param.jsonnet
+|  |-- error.function_duplicate_param.jsonnet.golden
+|  |-- error.function_infinite_default.jsonnet
+|  |-- error.function_infinite_default.jsonnet.golden
+|  |-- error.function_no_default_arg.jsonnet
+|  |-- error.function_no_default_arg.jsonnet.golden
+|  |-- error.function_too_many_args.jsonnet
+|  |-- error.function_too_many_args.jsonnet.golden
+|  |-- error.import_empty.jsonnet
+|  |-- error.import_empty.jsonnet.golden
+|  |-- error.import_folder.jsonnet
+|  |-- error.import_folder.jsonnet.golden
+|  |-- error.import_folder.jsonnet.golden_regex
+|  |-- error.import_folder_slash.jsonnet
+|  |-- error.import_folder_slash.jsonnet.golden
+|  |-- error.inside_equals_array.jsonnet
+|  |-- error.inside_equals_array.jsonnet.golden
+|  |-- error.inside_equals_object.jsonnet
+|  |-- error.inside_equals_object.jsonnet.golden
+|  |-- error.inside_tostring_array.jsonnet
+|  |-- error.inside_tostring_array.jsonnet.golden
+|  |-- error.inside_tostring_object.jsonnet
+|  |-- error.inside_tostring_object.jsonnet.golden
+|  |-- error.invariant.avoid_output_change.jsonnet
+|  |-- error.invariant.avoid_output_change.jsonnet.golden
+|  |-- error.invariant.equality.jsonnet
+|  |-- error.invariant.equality.jsonnet.golden
+|  |-- error.invariant.option.jsonnet
+|  |-- error.invariant.option.jsonnet.golden
+|  |-- error.invariant.simple.jsonnet
+|  |-- error.invariant.simple.jsonnet.golden
+|  |-- error.invariant.simple2.jsonnet
+|  |-- error.invariant.simple2.jsonnet.golden
+|  |-- error.invariant.simple3.jsonnet
+|  |-- error.invariant.simple3.jsonnet.golden
+|  |-- error.native_not_found.jsonnet
+|  |-- error.native_not_found.jsonnet.golden
+|  |-- error.obj_assert.fail1.jsonnet
+|  |-- error.obj_assert.fail1.jsonnet.golden
+|  |-- error.obj_assert.fail2.jsonnet
+|  |-- error.obj_assert.fail2.jsonnet.golden
+|  |-- error.obj_recursive.jsonnet
+|  |-- error.obj_recursive.jsonnet.golden
+|  |-- error.obj_recursive_manifest.jsonnet
+|  |-- error.obj_recursive_manifest.jsonnet.golden
+|  |-- error.object_comprehension_local.jsonnet.golden
+|  |-- error.overflow.jsonnet
+|  |-- error.overflow.jsonnet.golden
+|  |-- error.overflow2.jsonnet
+|  |-- error.overflow2.jsonnet.golden
+|  |-- error.overflow3.jsonnet
+|  |-- error.overflow3.jsonnet.golden
+|  |-- error.parse.array_comma.jsonnet
+|  |-- error.parse.array_comma.jsonnet.golden
+|  |-- error.parse.import_not_literal.jsonnet
+|  |-- error.parse.import_not_literal.jsonnet.golden
+|  |-- error.parse.index_unterminated.jsonnet
+|  |-- error.parse.index_unterminated.jsonnet.golden
+|  |-- error.parse.method_plus.jsonnet
+|  |-- error.parse.method_plus.jsonnet.golden
+|  |-- error.parse.object_comprehension_local_clash.jsonnet
+|  |-- error.parse.object_comprehension_local_clash.jsonnet.golden
+|  |-- error.parse.object_local_clash.jsonnet
+|  |-- error.parse.object_local_clash.jsonnet.golden
+|  |-- error.parse.self_in_computed_field.jsonnet
+|  |-- error.parse.self_in_computed_field.jsonnet.golden
+|  |-- error.parse.static_error_bad_number.jsonnet
+|  |-- error.parse.static_error_bad_number.jsonnet.golden
+|  |-- error.parse.string.invalid_escape.jsonnet
+|  |-- error.parse.string.invalid_escape.jsonnet.golden
+|  |-- error.parse.string.invalid_escape_unicode_non_hex.jsonnet
+|  |-- error.parse.string.invalid_escape_unicode_non_hex.jsonnet.golden
+|  |-- error.parse.string.invalid_escape_unicode_short.jsonnet
+|  |-- error.parse.string.invalid_escape_unicode_short.jsonnet.golden
+|  |-- error.parse.string.invalid_escape_unicode_short2.jsonnet
+|  |-- error.parse.string.invalid_escape_unicode_short2.jsonnet.golden
+|  |-- error.parse.string.invalid_escape_unicode_short3.jsonnet
+|  |-- error.parse.string.invalid_escape_unicode_short3.jsonnet.golden
+|  |-- error.parse.string.unfinished.jsonnet
+|  |-- error.parse.string.unfinished.jsonnet.golden
+|  |-- error.parse.string.unfinished2.jsonnet
+|  |-- error.parse.string.unfinished2.jsonnet.golden
+|  |-- error.parse.string_multi_no_newline.jsonnet
+|  |-- error.parse.string_multi_no_newline.jsonnet.golden
+|  |-- error.parse.text_block_bad_whitespace.jsonnet
+|  |-- error.parse.text_block_bad_whitespace.jsonnet.golden
+|  |-- error.parse.text_block_eof.jsonnet
+|  |-- error.parse.text_block_eof.jsonnet.golden
+|  |-- error.parse.text_block_not_terminated.jsonnet
+|  |-- error.parse.text_block_not_terminated.jsonnet.golden
+|  |-- error.recursive_function_nonterm.jsonnet
+|  |-- error.recursive_function_nonterm.jsonnet.golden
+|  |-- error.recursive_import.jsonnet
+|  |-- error.recursive_import.jsonnet.golden
+|  |-- error.recursive_object_non_term.jsonnet
+|  |-- error.recursive_object_non_term.jsonnet.golden
+|  |-- error.sanity.jsonnet
+|  |-- error.sanity.jsonnet.golden
+|  |-- error.slice_out_of_bounds.sugar.jsonnet.golden
+|  |-- error.static_error_self.jsonnet
+|  |-- error.static_error_self.jsonnet.golden
+|  |-- error.static_error_super.jsonnet
+|  |-- error.static_error_super.jsonnet.golden
+|  |-- error.static_error_var_not_exist.jsonnet
+|  |-- error.static_error_var_not_exist.jsonnet.golden
+|  |-- error.std_makeArray_negative.jsonnet
+|  |-- error.std_makeArray_negative.jsonnet.golden
+|  |-- error.string.invalid_escape_unicode_ascii.jsonnet.golden
+|  |-- error.top_level_func.jsonnet
+|  |-- error.top_level_func.jsonnet.golden
+|  |-- format.jsonnet
+|  |-- formatter.jsonnet
+|  |-- formatter.jsonnet.fmt.golden
+|  |-- formatter.jsonnet.golden
+|  |-- functions.jsonnet
+|  |-- import.jsonnet
+|  |-- invariant.jsonnet
+|  |-- invariant_manifest.jsonnet
+|  |-- invariant_manifest.jsonnet.golden
+|  |-- lib
+|  |  |-- A_20.libsonnet
+|  |  |-- A_20_func.libsonnet
+|  |  |-- capture_std.libsonnet
+|  |  |-- capture_std_func.libsonnet
+|  |  |-- rel_path.libsonnet
+|  |  |-- rel_path2.libsonnet
+|  |  |-- rel_path3.libsonnet
+|  |  |-- rel_path4.libsonnet
+|  |  |-- some_file.txt
+|  |-- local.jsonnet
+|  |-- merge.jsonnet
+|  |-- null.jsonnet
+|  |-- object.jsonnet
+|  |-- object.jsonnet.fmt.golden
+|  |-- oop.jsonnet
+|  |-- oop_extra.jsonnet
+|  |-- parsing_error.jsonnet
+|  |-- precedence.jsonnet
+|  |-- recursive_function.jsonnet
+|  |-- recursive_import_ok.jsonnet
+|  |-- recursive_object.jsonnet
+|  |-- refresh_fmt_golden.sh
+|  |-- refresh_golden.sh
+|  |-- run_fmt_tests.sh
+|  |-- run_tests.sh
+|  |-- sanity.jsonnet
+|  |-- sanity.jsonnet.golden
+|  |-- sanity2.jsonnet
+|  |-- sanity2.jsonnet.golden
+|  |-- shebang.jsonnet
+|  |-- slice.sugar.jsonnet
+|  |-- slice.sugar.jsonnet.fmt.golden
+|  |-- std_all_hidden.jsonnet
+|  |-- stdlib.jsonnet
+|  |-- tests.source
+|  |-- text_block.jsonnet
+|  |-- text_block.jsonnet.fmt.golden
+|  |-- this_file
+|  |  |-- a.libsonnet
+|  |  |-- b.libsonnet
+|  |-- tla.simple.jsonnet
+|  |-- unicode.jsonnet
+|  |-- unix_line_endings.jsonnet
+|  |-- unparse.jsonnet
+|  |-- unparse.jsonnet.fmt.golden
+|  |-- unparse.jsonnet.golden
+|-- third_party
+|  |-- md5
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- md5.cpp
+|  |  |-- md5.h
+|-- tools
+|  |-- build_defs
+|  |  |-- BUILD
+|  |  |-- jsonnet_dev
+|  |  |  |-- BUILD
+|  |  |  |-- build_jekyll_tree.sh
+|  |  |  |-- build_jsonnet_srcs_zip.sh
+|  |  |  |-- jsonnet_docs.bzl
+|  |  |-- python_repo.bzl
+|  |-- scripts
+|  |  |-- push_docs.sh
+|  |  |-- serve_docs.sh

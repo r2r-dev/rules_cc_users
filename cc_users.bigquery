@@ -1,0 +1,35 @@
+SELECT
+  files.repo_name
+FROM (
+  SELECT
+    DISTINCT path,
+    repo_name,
+    id
+  FROM
+    `bigquery-public-data.github_repos.files`
+  WHERE
+    STARTS_WITH("WORKSPACE", path)
+    OR REGEXP_CONTAINS(path, r"BUILD") 
+    OR ENDS_WITH(".bzl", path)
+  ) files
+RIGHT OUTER JOIN (
+  SELECT
+    DISTINCT content,
+    binary,
+    id
+  FROM
+    `bigquery-public-data.github_repos.contents`
+  WHERE
+    NOT binary
+    AND (
+      REGEXP_CONTAINS(content, r'cc_library')
+      OR
+      REGEXP_CONTAINS(content, r'cc_binary')
+      OR
+      REGEXP_CONTAINS(content, r'rules_cc')
+    )
+  ) contents
+ON
+  files.id = contents.id
+GROUP BY
+  files.repo_name

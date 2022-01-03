@@ -1,0 +1,1506 @@
+|-- .asf.yaml
+|-- .bazelrc
+|-- .github
+|  |-- ISSUE_TEMPLATE
+|  |  |-- bug_report.md
+|  |  |-- feature_request.md
+|  |-- stale.yml
+|-- .gitignore
+|-- .travis.yml
+|-- BUILD.bazel
+|-- CHANGES.md
+|-- CMakeLists.txt
+|-- CODE_OF_CONDUCT.md
+|-- CONTRIBUTING.md
+|-- DISCLAIMER
+|-- Dockerfile
+|-- LICENSE
+|-- Makefile
+|-- NOTICE
+|-- README.md
+|-- README_cn.md
+|-- RELEASE_VERSION
+|-- WORKSPACE
+|-- bazel
+|  |-- brpc.bzl
+|-- build_in_travis_ci.sh
+|-- cmake
+|  |-- CMakeLists.download_gtest.in
+|  |-- CompileProto.cmake
+|  |-- FindGFLAGS.cmake
+|  |-- FindGperftools.cmake
+|  |-- SetupGtest.cmake
+|  |-- brpc.pc.in
+|-- config.h.in
+|-- config_brpc.sh
+|-- docs
+|  |-- cn
+|  |  |-- atomic_instructions.md
+|  |  |-- auto_concurrency_limiter.md
+|  |  |-- avalanche.md
+|  |  |-- backup_request.md
+|  |  |-- baidu_std.md
+|  |  |-- benchmark.md
+|  |  |-- benchmark_http.md
+|  |  |-- brpc_intro.pptx
+|  |  |-- bthread.md
+|  |  |-- bthread_id.md
+|  |  |-- bthread_or_not.md
+|  |  |-- builtin_service.md
+|  |  |-- bvar.md
+|  |  |-- bvar_c++.md
+|  |  |-- case_apicontrol.md
+|  |  |-- case_baidu_dsp.md
+|  |  |-- case_elf.md
+|  |  |-- case_ubrpc.md
+|  |  |-- circuit_breaker.md
+|  |  |-- client.md
+|  |  |-- combo_channel.md
+|  |  |-- connections.md
+|  |  |-- consistent_hashing.md
+|  |  |-- contention_profiler.md
+|  |  |-- cpu_profiler.md
+|  |  |-- dummy_server.md
+|  |  |-- error_code.md
+|  |  |-- execution_queue.md
+|  |  |-- flags.md
+|  |  |-- flatmap.md
+|  |  |-- getting_started.md
+|  |  |-- heap_profiler.md
+|  |  |-- http_client.md
+|  |  |-- http_derivatives.md
+|  |  |-- http_service.md
+|  |  |-- io.md
+|  |  |-- iobuf.md
+|  |  |-- json2pb.md
+|  |  |-- lalb.md
+|  |  |-- load_balancing.md
+|  |  |-- memcache_client.md
+|  |  |-- memory_management.md
+|  |  |-- new_protocol.md
+|  |  |-- nshead_service.md
+|  |  |-- overview.md
+|  |  |-- parallel_http.md
+|  |  |-- redis_client.md
+|  |  |-- rpc_press.md
+|  |  |-- rpc_replay.md
+|  |  |-- rpc_view.md
+|  |  |-- rpcz.md
+|  |  |-- server.md
+|  |  |-- server_debugging.md
+|  |  |-- server_push.md
+|  |  |-- status.md
+|  |  |-- streaming_log.md
+|  |  |-- streaming_rpc.md
+|  |  |-- thread_local.md
+|  |  |-- threading_overview.md
+|  |  |-- thrift.md
+|  |  |-- timer_keeping.md
+|  |  |-- ub_client.md
+|  |  |-- vars.md
+|  |-- en
+|  |  |-- TRANSLATING
+|  |  |-- WELCOME_FIXES_FROM_ENGLISH_NATIVE_SPEAKERS
+|  |  |-- atomic_instructions.md
+|  |  |-- avalanche.md
+|  |  |-- backup_request.md
+|  |  |-- brpc_internal.pptx
+|  |  |-- builtin_service.md
+|  |  |-- bvar.md
+|  |  |-- client.md
+|  |  |-- combo_channel.md
+|  |  |-- dummy_server.md
+|  |  |-- error_code.md
+|  |  |-- http_client.md
+|  |  |-- http_derivatives.md
+|  |  |-- http_service.md
+|  |  |-- io.md
+|  |  |-- iobuf.md
+|  |  |-- lalb.md
+|  |  |-- memcache_client.md
+|  |  |-- new_protocol.md
+|  |  |-- overview.md
+|  |  |-- redis_client.md
+|  |  |-- server.md
+|  |  |-- server_debugging.md
+|  |  |-- server_push.md
+|  |  |-- status.md
+|  |  |-- streaming_log.md
+|  |  |-- streaming_rpc.md
+|  |  |-- threading_overview.md
+|  |  |-- thrift.md
+|  |  |-- tutorial_on_building_services.pptx
+|  |  |-- vars.md
+|  |-- images
+|  |  |-- 302.png
+|  |  |-- apicontrol_compare_1.png
+|  |  |-- apicontrol_compare_2.png
+|  |  |-- apicontrol_compare_3.png
+|  |  |-- apicontrol_compare_4.png
+|  |  |-- apicontrol_compare_5.png
+|  |  |-- backup_request_1.png
+|  |  |-- backup_request_2.png
+|  |  |-- backup_request_3.png
+|  |  |-- backup_request_4.png
+|  |  |-- baidu_dsp_compare_1.png
+|  |  |-- baidu_dsp_compare_10.png
+|  |  |-- baidu_dsp_compare_2.png
+|  |  |-- baidu_dsp_compare_3.png
+|  |  |-- baidu_dsp_compare_4.png
+|  |  |-- baidu_dsp_compare_5.png
+|  |  |-- baidu_dsp_compare_6.png
+|  |  |-- baidu_dsp_compare_7.png
+|  |  |-- baidu_dsp_compare_8.png
+|  |  |-- baidu_dsp_compare_9.png
+|  |  |-- bthread_concurrency_1.png
+|  |  |-- bthread_concurrency_2.png
+|  |  |-- bthread_concurrency_3.png
+|  |  |-- bthread_creation_qps.png
+|  |  |-- builtin_service_from_console.png
+|  |  |-- builtin_service_more.png
+|  |  |-- bvar_dump_flags.png
+|  |  |-- bvar_dump_flags_2.png
+|  |  |-- bvar_flow.png
+|  |  |-- bvar_noah1.png
+|  |  |-- bvar_noah2.png
+|  |  |-- bvar_noah3.png
+|  |  |-- bvar_perf.png
+|  |  |-- chash.png
+|  |  |-- client_side.png
+|  |  |-- connection_timedout.png
+|  |  |-- dummy_server_1.png
+|  |  |-- dummy_server_2.png
+|  |  |-- dummy_server_3.png
+|  |  |-- echo_cpu_profiling.png
+|  |  |-- flag_setvalue.png
+|  |  |-- foobar_bvar.png
+|  |  |-- foobar_latency_cdf.png
+|  |  |-- full_worker_usage.png
+|  |  |-- full_worker_usage_2.png
+|  |  |-- growth_profiler.png
+|  |  |-- health_service.png
+|  |  |-- heap_profiler_1.png
+|  |  |-- heap_profiler_2.png
+|  |  |-- heap_profiler_3.gif
+|  |  |-- high_cpu_usage.png
+|  |  |-- lalb_1.png
+|  |  |-- lalb_2.png
+|  |  |-- lalb_3.png
+|  |  |-- lalb_4.png
+|  |  |-- lalb_5.png
+|  |  |-- latency_cdf.png
+|  |  |-- lb.png
+|  |  |-- logo.png
+|  |  |-- multi_client_latency_cdf.png
+|  |  |-- multi_server_latency_cdf.png
+|  |  |-- normal_cpu_usage.png
+|  |  |-- normal_worker_usage.png
+|  |  |-- ns.png
+|  |  |-- ns_access_interval.png
+|  |  |-- ns_filter.jpg
+|  |  |-- pchan.png
+|  |  |-- pooled_conn.png
+|  |  |-- protobufs_service.png
+|  |  |-- qps_vs_multi_client.png
+|  |  |-- qps_vs_reqsize.png
+|  |  |-- qps_vs_threadnum.png
+|  |  |-- raft_contention_1.png
+|  |  |-- raft_contention_2.png
+|  |  |-- raft_contention_3.png
+|  |  |-- register_lb.png
+|  |  |-- register_ns.png
+|  |  |-- reloadable_flags.png
+|  |  |-- resource_pool.png
+|  |  |-- restful_1.png
+|  |  |-- restful_2.png
+|  |  |-- restful_3.png
+|  |  |-- rpc.png
+|  |  |-- rpc_flow.png
+|  |  |-- rpc_press_1.png
+|  |  |-- rpc_press_2.png
+|  |  |-- rpc_replay_1.png
+|  |  |-- rpc_replay_2.png
+|  |  |-- rpc_replay_3.png
+|  |  |-- rpc_replay_4.png
+|  |  |-- rpc_replay_5.png
+|  |  |-- rpc_view_1.png
+|  |  |-- rpc_view_2.png
+|  |  |-- rpc_view_3.png
+|  |  |-- rpcz.png
+|  |  |-- rpcz_2.png
+|  |  |-- rpcz_3.png
+|  |  |-- rpcz_4.png
+|  |  |-- rpcz_5.png
+|  |  |-- rpcz_6.png
+|  |  |-- rpcz_7.png
+|  |  |-- server_side.png
+|  |  |-- set_flag_invalid_value.png
+|  |  |-- set_flag_reject.png
+|  |  |-- set_flag_with_form.png
+|  |  |-- set_flag_with_form_2.png
+|  |  |-- set_flag_with_form_3.png
+|  |  |-- short_conn.png
+|  |  |-- single_conn.png
+|  |  |-- status.png
+|  |  |-- status_2.png
+|  |  |-- tcmalloc_stuck.png
+|  |  |-- the_r_after_flag.png
+|  |  |-- threading_overview_1.png
+|  |  |-- threading_overview_2.png
+|  |  |-- trace_printf.png
+|  |  |-- twolevel_server_latency_cdf.png
+|  |  |-- ubrpc_compare_1.png
+|  |  |-- ubrpc_compare_2.png
+|  |  |-- vars_1.gif
+|  |  |-- vars_2.gif
+|  |  |-- vars_3.gif
+|  |  |-- vars_4.png
+|  |  |-- vars_5.png
+|  |  |-- vars_6.png
+|  |  |-- vars_7.png
+|  |  |-- version_service.png
+|  |  |-- vlog_service.png
+|  |  |-- write.png
+|-- example
+|  |-- BUILD
+|  |-- asynchronous_echo_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.cpp
+|  |  |-- echo.proto
+|  |  |-- server.cpp
+|  |-- auto_concurrency_limiter
+|  |  |-- CMakeLists.txt
+|  |  |-- cl_test.proto
+|  |  |-- client.cpp
+|  |  |-- dummy_server.port
+|  |  |-- server.cpp
+|  |  |-- settings.flags
+|  |  |-- test_case.json
+|  |-- backup_request_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.cpp
+|  |  |-- echo.proto
+|  |  |-- server.cpp
+|  |-- cancel_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.cpp
+|  |  |-- echo.proto
+|  |  |-- server.cpp
+|  |-- cascade_echo_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.cpp
+|  |  |-- echo.proto
+|  |  |-- server.cpp
+|  |-- dynamic_partition_echo_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.cpp
+|  |  |-- echo.proto
+|  |  |-- server.cpp
+|  |  |-- server_list
+|  |-- echo_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.cpp
+|  |  |-- echo.proto
+|  |  |-- server.cpp
+|  |-- grpc_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.cpp
+|  |  |-- helloworld.proto
+|  |  |-- server.cpp
+|  |-- http_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- benchmark_http.cpp
+|  |  |-- cert.pem
+|  |  |-- http.proto
+|  |  |-- http_client.cpp
+|  |  |-- http_server.cpp
+|  |  |-- key.pem
+|  |-- memcache_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.cpp
+|  |-- multi_threaded_echo_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- cert.pem
+|  |  |-- client.cpp
+|  |  |-- echo.proto
+|  |  |-- key.pem
+|  |  |-- server.cpp
+|  |-- multi_threaded_echo_fns_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.cpp
+|  |  |-- echo.proto
+|  |  |-- random_kill.sh
+|  |  |-- run_servers
+|  |  |-- server.cpp
+|  |-- nshead_extension_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.cpp
+|  |  |-- server.cpp
+|  |-- nshead_pb_extension_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.cpp
+|  |  |-- echo.proto
+|  |  |-- server.cpp
+|  |-- parallel_echo_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.cpp
+|  |  |-- echo.proto
+|  |  |-- server.cpp
+|  |-- partition_echo_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.cpp
+|  |  |-- echo.proto
+|  |  |-- server.cpp
+|  |  |-- server_list
+|  |-- redis_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- redis_cli.cpp
+|  |  |-- redis_press.cpp
+|  |  |-- redis_server.cpp
+|  |-- selective_echo_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.cpp
+|  |  |-- echo.proto
+|  |  |-- server.cpp
+|  |-- session_data_and_thread_local
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.cpp
+|  |  |-- echo.proto
+|  |  |-- server.cpp
+|  |-- streaming_echo_c++
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.cpp
+|  |  |-- echo.proto
+|  |  |-- server.cpp
+|  |-- thrift_extension_c++
+|  |  |-- Makefile
+|  |  |-- README.md
+|  |  |-- client.cpp
+|  |  |-- client2.cpp
+|  |  |-- echo.thrift
+|  |  |-- native_client.cpp
+|  |  |-- native_server.cpp
+|  |  |-- server.cpp
+|  |  |-- server2.cpp
+|-- glog.BUILD
+|-- java
+|  |-- TBD
+|-- leveldb.BUILD
+|-- openssl.BUILD
+|-- package
+|  |-- rpm
+|  |  |-- brpc.spec
+|-- python
+|  |-- TBD
+|-- src
+|  |-- CMakeLists.txt
+|  |-- brpc
+|  |  |-- acceptor.cpp
+|  |  |-- acceptor.h
+|  |  |-- adaptive_connection_type.cpp
+|  |  |-- adaptive_connection_type.h
+|  |  |-- adaptive_max_concurrency.cpp
+|  |  |-- adaptive_max_concurrency.h
+|  |  |-- adaptive_protocol_type.h
+|  |  |-- amf.cpp
+|  |  |-- amf.h
+|  |  |-- amf_inl.h
+|  |  |-- authenticator.h
+|  |  |-- builtin
+|  |  |  |-- bad_method_service.cpp
+|  |  |  |-- bad_method_service.h
+|  |  |  |-- bthreads_service.cpp
+|  |  |  |-- bthreads_service.h
+|  |  |  |-- common.cpp
+|  |  |  |-- common.h
+|  |  |  |-- connections_service.cpp
+|  |  |  |-- connections_service.h
+|  |  |  |-- dir_service.cpp
+|  |  |  |-- dir_service.h
+|  |  |  |-- flags_service.cpp
+|  |  |  |-- flags_service.h
+|  |  |  |-- flot_min_js.cpp
+|  |  |  |-- flot_min_js.h
+|  |  |  |-- get_favicon_service.cpp
+|  |  |  |-- get_favicon_service.h
+|  |  |  |-- get_js_service.cpp
+|  |  |  |-- get_js_service.h
+|  |  |  |-- health_service.cpp
+|  |  |  |-- health_service.h
+|  |  |  |-- hotspots_service.cpp
+|  |  |  |-- hotspots_service.h
+|  |  |  |-- ids_service.cpp
+|  |  |  |-- ids_service.h
+|  |  |  |-- index_service.cpp
+|  |  |  |-- index_service.h
+|  |  |  |-- jquery_min_js.cpp
+|  |  |  |-- jquery_min_js.h
+|  |  |  |-- list_service.cpp
+|  |  |  |-- list_service.h
+|  |  |  |-- pprof_perl.cpp
+|  |  |  |-- pprof_perl.h
+|  |  |  |-- pprof_service.cpp
+|  |  |  |-- pprof_service.h
+|  |  |  |-- prometheus_metrics_service.cpp
+|  |  |  |-- prometheus_metrics_service.h
+|  |  |  |-- protobufs_service.cpp
+|  |  |  |-- protobufs_service.h
+|  |  |  |-- rpcz_service.cpp
+|  |  |  |-- rpcz_service.h
+|  |  |  |-- sockets_service.cpp
+|  |  |  |-- sockets_service.h
+|  |  |  |-- sorttable_js.cpp
+|  |  |  |-- sorttable_js.h
+|  |  |  |-- status_service.cpp
+|  |  |  |-- status_service.h
+|  |  |  |-- tabbed.h
+|  |  |  |-- threads_service.cpp
+|  |  |  |-- threads_service.h
+|  |  |  |-- vars_service.cpp
+|  |  |  |-- vars_service.h
+|  |  |  |-- version_service.cpp
+|  |  |  |-- version_service.h
+|  |  |  |-- viz_min_js.cpp
+|  |  |  |-- viz_min_js.h
+|  |  |  |-- vlog_service.cpp
+|  |  |  |-- vlog_service.h
+|  |  |-- builtin_service.proto
+|  |  |-- callback.h
+|  |  |-- channel.cpp
+|  |  |-- channel.h
+|  |  |-- channel_base.h
+|  |  |-- circuit_breaker.cpp
+|  |  |-- circuit_breaker.h
+|  |  |-- closure_guard.h
+|  |  |-- cluster_recover_policy.cpp
+|  |  |-- cluster_recover_policy.h
+|  |  |-- compress.cpp
+|  |  |-- compress.h
+|  |  |-- concurrency_limiter.h
+|  |  |-- controller.cpp
+|  |  |-- controller.h
+|  |  |-- data_factory.h
+|  |  |-- describable.h
+|  |  |-- destroyable.h
+|  |  |-- details
+|  |  |  |-- controller_private_accessor.h
+|  |  |  |-- has_epollrdhup.cpp
+|  |  |  |-- has_epollrdhup.h
+|  |  |  |-- health_check.cpp
+|  |  |  |-- health_check.h
+|  |  |  |-- hpack-static-table.h
+|  |  |  |-- hpack.cpp
+|  |  |  |-- hpack.h
+|  |  |  |-- http_message.cpp
+|  |  |  |-- http_message.h
+|  |  |  |-- http_parser.cpp
+|  |  |  |-- http_parser.h
+|  |  |  |-- load_balancer_with_naming.cpp
+|  |  |  |-- load_balancer_with_naming.h
+|  |  |  |-- mesalink_ssl_helper.cpp
+|  |  |  |-- method_status.cpp
+|  |  |  |-- method_status.h
+|  |  |  |-- naming_service_thread.cpp
+|  |  |  |-- naming_service_thread.h
+|  |  |  |-- profiler_linker.h
+|  |  |  |-- rtmp_utils.cpp
+|  |  |  |-- rtmp_utils.h
+|  |  |  |-- server_private_accessor.h
+|  |  |  |-- sparse_minute_counter.h
+|  |  |  |-- ssl_helper.cpp
+|  |  |  |-- ssl_helper.h
+|  |  |  |-- tcmalloc_extension.cpp
+|  |  |  |-- tcmalloc_extension.h
+|  |  |  |-- usercode_backup_pool.cpp
+|  |  |  |-- usercode_backup_pool.h
+|  |  |-- errno.proto
+|  |  |-- esp_head.h
+|  |  |-- esp_message.cpp
+|  |  |-- esp_message.h
+|  |  |-- event_dispatcher.cpp
+|  |  |-- event_dispatcher.h
+|  |  |-- excluded_servers.h
+|  |  |-- extension.h
+|  |  |-- extension_inl.h
+|  |  |-- get_favicon.proto
+|  |  |-- get_js.proto
+|  |  |-- global.cpp
+|  |  |-- global.h
+|  |  |-- grpc.cpp
+|  |  |-- grpc.h
+|  |  |-- health_reporter.h
+|  |  |-- http2.cpp
+|  |  |-- http2.h
+|  |  |-- http_header.cpp
+|  |  |-- http_header.h
+|  |  |-- http_method.cpp
+|  |  |-- http_method.h
+|  |  |-- http_status_code.cpp
+|  |  |-- http_status_code.h
+|  |  |-- input_message_base.h
+|  |  |-- input_messenger.cpp
+|  |  |-- input_messenger.h
+|  |  |-- kvmap.h
+|  |  |-- load_balancer.cpp
+|  |  |-- load_balancer.h
+|  |  |-- log.h
+|  |  |-- memcache.cpp
+|  |  |-- memcache.h
+|  |  |-- mongo_head.h
+|  |  |-- mongo_service_adaptor.h
+|  |  |-- naming_service.h
+|  |  |-- naming_service_filter.h
+|  |  |-- nshead.h
+|  |  |-- nshead_message.cpp
+|  |  |-- nshead_message.h
+|  |  |-- nshead_meta.proto
+|  |  |-- nshead_pb_service_adaptor.cpp
+|  |  |-- nshead_pb_service_adaptor.h
+|  |  |-- nshead_service.cpp
+|  |  |-- nshead_service.h
+|  |  |-- options.proto
+|  |  |-- parallel_channel.cpp
+|  |  |-- parallel_channel.h
+|  |  |-- parse_result.h
+|  |  |-- partition_channel.cpp
+|  |  |-- partition_channel.h
+|  |  |-- periodic_naming_service.cpp
+|  |  |-- periodic_naming_service.h
+|  |  |-- periodic_task.cpp
+|  |  |-- periodic_task.h
+|  |  |-- policy
+|  |  |  |-- auto_concurrency_limiter.cpp
+|  |  |  |-- auto_concurrency_limiter.h
+|  |  |  |-- baidu_naming_service.cpp
+|  |  |  |-- baidu_naming_service.h
+|  |  |  |-- baidu_rpc_meta.proto
+|  |  |  |-- baidu_rpc_protocol.cpp
+|  |  |  |-- baidu_rpc_protocol.h
+|  |  |  |-- consistent_hashing_load_balancer.cpp
+|  |  |  |-- consistent_hashing_load_balancer.h
+|  |  |  |-- constant_concurrency_limiter.cpp
+|  |  |  |-- constant_concurrency_limiter.h
+|  |  |  |-- consul_naming_service.cpp
+|  |  |  |-- consul_naming_service.h
+|  |  |  |-- couchbase_authenticator.cpp
+|  |  |  |-- couchbase_authenticator.h
+|  |  |  |-- dh.cpp
+|  |  |  |-- dh.h
+|  |  |  |-- discovery_naming_service.cpp
+|  |  |  |-- discovery_naming_service.h
+|  |  |  |-- domain_naming_service.cpp
+|  |  |  |-- domain_naming_service.h
+|  |  |  |-- dynpart_load_balancer.cpp
+|  |  |  |-- dynpart_load_balancer.h
+|  |  |  |-- esp_authenticator.cpp
+|  |  |  |-- esp_authenticator.h
+|  |  |  |-- esp_protocol.cpp
+|  |  |  |-- esp_protocol.h
+|  |  |  |-- file_naming_service.cpp
+|  |  |  |-- file_naming_service.h
+|  |  |  |-- giano_authenticator.cpp
+|  |  |  |-- giano_authenticator.h
+|  |  |  |-- gzip_compress.cpp
+|  |  |  |-- gzip_compress.h
+|  |  |  |-- hasher.cpp
+|  |  |  |-- hasher.h
+|  |  |  |-- http2_rpc_protocol.cpp
+|  |  |  |-- http2_rpc_protocol.h
+|  |  |  |-- http_rpc_protocol.cpp
+|  |  |  |-- http_rpc_protocol.h
+|  |  |  |-- hulu_pbrpc_controller.h
+|  |  |  |-- hulu_pbrpc_meta.proto
+|  |  |  |-- hulu_pbrpc_protocol.cpp
+|  |  |  |-- hulu_pbrpc_protocol.h
+|  |  |  |-- list_naming_service.cpp
+|  |  |  |-- list_naming_service.h
+|  |  |  |-- locality_aware_load_balancer.cpp
+|  |  |  |-- locality_aware_load_balancer.h
+|  |  |  |-- memcache_binary_header.h
+|  |  |  |-- memcache_binary_protocol.cpp
+|  |  |  |-- memcache_binary_protocol.h
+|  |  |  |-- mongo.proto
+|  |  |  |-- mongo_protocol.cpp
+|  |  |  |-- mongo_protocol.h
+|  |  |  |-- most_common_message.h
+|  |  |  |-- nova_pbrpc_protocol.cpp
+|  |  |  |-- nova_pbrpc_protocol.h
+|  |  |  |-- nshead_mcpack_protocol.cpp
+|  |  |  |-- nshead_mcpack_protocol.h
+|  |  |  |-- nshead_protocol.cpp
+|  |  |  |-- nshead_protocol.h
+|  |  |  |-- public_pbrpc_meta.proto
+|  |  |  |-- public_pbrpc_protocol.cpp
+|  |  |  |-- public_pbrpc_protocol.h
+|  |  |  |-- randomized_load_balancer.cpp
+|  |  |  |-- randomized_load_balancer.h
+|  |  |  |-- redis_authenticator.cpp
+|  |  |  |-- redis_authenticator.h
+|  |  |  |-- redis_protocol.cpp
+|  |  |  |-- redis_protocol.h
+|  |  |  |-- remote_file_naming_service.cpp
+|  |  |  |-- remote_file_naming_service.h
+|  |  |  |-- round_robin_load_balancer.cpp
+|  |  |  |-- round_robin_load_balancer.h
+|  |  |  |-- rtmp_protocol.cpp
+|  |  |  |-- rtmp_protocol.h
+|  |  |  |-- snappy_compress.cpp
+|  |  |  |-- snappy_compress.h
+|  |  |  |-- sofa_pbrpc_meta.proto
+|  |  |  |-- sofa_pbrpc_protocol.cpp
+|  |  |  |-- sofa_pbrpc_protocol.h
+|  |  |  |-- streaming_rpc_protocol.cpp
+|  |  |  |-- streaming_rpc_protocol.h
+|  |  |  |-- thrift_protocol.cpp
+|  |  |  |-- thrift_protocol.h
+|  |  |  |-- ubrpc2pb_protocol.cpp
+|  |  |  |-- ubrpc2pb_protocol.h
+|  |  |  |-- weighted_randomized_load_balancer.cpp
+|  |  |  |-- weighted_randomized_load_balancer.h
+|  |  |  |-- weighted_round_robin_load_balancer.cpp
+|  |  |  |-- weighted_round_robin_load_balancer.h
+|  |  |-- progressive_attachment.cpp
+|  |  |-- progressive_attachment.h
+|  |  |-- progressive_reader.h
+|  |  |-- proto_base.proto
+|  |  |-- protocol.cpp
+|  |  |-- protocol.h
+|  |  |-- redis.cpp
+|  |  |-- redis.h
+|  |  |-- redis_command.cpp
+|  |  |-- redis_command.h
+|  |  |-- redis_reply.cpp
+|  |  |-- redis_reply.h
+|  |  |-- reloadable_flags.cpp
+|  |  |-- reloadable_flags.h
+|  |  |-- restful.cpp
+|  |  |-- restful.h
+|  |  |-- retry_policy.cpp
+|  |  |-- retry_policy.h
+|  |  |-- rpc_dump.cpp
+|  |  |-- rpc_dump.h
+|  |  |-- rpc_dump.proto
+|  |  |-- rtmp.cpp
+|  |  |-- rtmp.h
+|  |  |-- rtmp.proto
+|  |  |-- selective_channel.cpp
+|  |  |-- selective_channel.h
+|  |  |-- serialized_request.cpp
+|  |  |-- serialized_request.h
+|  |  |-- server.cpp
+|  |  |-- server.h
+|  |  |-- server_id.cpp
+|  |  |-- server_id.h
+|  |  |-- server_node.h
+|  |  |-- shared_object.h
+|  |  |-- simple_data_pool.cpp
+|  |  |-- simple_data_pool.h
+|  |  |-- socket.cpp
+|  |  |-- socket.h
+|  |  |-- socket_id.h
+|  |  |-- socket_inl.h
+|  |  |-- socket_map.cpp
+|  |  |-- socket_map.h
+|  |  |-- socket_message.h
+|  |  |-- span.cpp
+|  |  |-- span.h
+|  |  |-- span.proto
+|  |  |-- ssl_options.cpp
+|  |  |-- ssl_options.h
+|  |  |-- stream.cpp
+|  |  |-- stream.h
+|  |  |-- stream_creator.h
+|  |  |-- stream_impl.h
+|  |  |-- streaming_rpc_meta.proto
+|  |  |-- thrift_message.cpp
+|  |  |-- thrift_message.h
+|  |  |-- thrift_service.cpp
+|  |  |-- thrift_service.h
+|  |  |-- traceprintf.h
+|  |  |-- trackme.cpp
+|  |  |-- trackme.h
+|  |  |-- trackme.proto
+|  |  |-- ts.cpp
+|  |  |-- ts.h
+|  |  |-- uri.cpp
+|  |  |-- uri.h
+|  |-- bthread
+|  |  |-- bthread.cpp
+|  |  |-- bthread.h
+|  |  |-- butex.cpp
+|  |  |-- butex.h
+|  |  |-- comlog_initializer.h
+|  |  |-- condition_variable.cpp
+|  |  |-- condition_variable.h
+|  |  |-- context.cpp
+|  |  |-- context.h
+|  |  |-- countdown_event.cpp
+|  |  |-- countdown_event.h
+|  |  |-- errno.cpp
+|  |  |-- errno.h
+|  |  |-- execution_queue.cpp
+|  |  |-- execution_queue.h
+|  |  |-- execution_queue_inl.h
+|  |  |-- fd.cpp
+|  |  |-- id.cpp
+|  |  |-- id.h
+|  |  |-- interrupt_pthread.cpp
+|  |  |-- interrupt_pthread.h
+|  |  |-- key.cpp
+|  |  |-- list_of_abafree_id.h
+|  |  |-- log.h
+|  |  |-- mutex.cpp
+|  |  |-- mutex.h
+|  |  |-- offset_inl.list
+|  |  |-- parking_lot.h
+|  |  |-- processor.h
+|  |  |-- remote_task_queue.h
+|  |  |-- stack.cpp
+|  |  |-- stack.h
+|  |  |-- stack_inl.h
+|  |  |-- sys_futex.cpp
+|  |  |-- sys_futex.h
+|  |  |-- task_control.cpp
+|  |  |-- task_control.h
+|  |  |-- task_group.cpp
+|  |  |-- task_group.h
+|  |  |-- task_group_inl.h
+|  |  |-- task_meta.h
+|  |  |-- timer_thread.cpp
+|  |  |-- timer_thread.h
+|  |  |-- types.h
+|  |  |-- unstable.h
+|  |  |-- work_stealing_queue.h
+|  |-- butil
+|  |  |-- arena.cpp
+|  |  |-- arena.h
+|  |  |-- at_exit.cc
+|  |  |-- at_exit.h
+|  |  |-- atomic_ref_count.h
+|  |  |-- atomic_sequence_num.h
+|  |  |-- atomicops.h
+|  |  |-- atomicops_internals_arm64_gcc.h
+|  |  |-- atomicops_internals_arm_gcc.h
+|  |  |-- atomicops_internals_atomicword_compat.h
+|  |  |-- atomicops_internals_gcc.h
+|  |  |-- atomicops_internals_mac.h
+|  |  |-- atomicops_internals_mips_gcc.h
+|  |  |-- atomicops_internals_tsan.h
+|  |  |-- atomicops_internals_x86_gcc.cc
+|  |  |-- atomicops_internals_x86_gcc.h
+|  |  |-- atomicops_internals_x86_msvc.h
+|  |  |-- auto_reset.h
+|  |  |-- base64.cc
+|  |  |-- base64.h
+|  |  |-- base_export.h
+|  |  |-- base_paths.cc
+|  |  |-- basictypes.h
+|  |  |-- big_endian.cc
+|  |  |-- big_endian.h
+|  |  |-- binary_printer.cpp
+|  |  |-- binary_printer.h
+|  |  |-- bit_array.h
+|  |  |-- bits.h
+|  |  |-- build_config.h
+|  |  |-- cancelable_callback.h
+|  |  |-- class_name.cpp
+|  |  |-- class_name.h
+|  |  |-- comlog_sink.cc
+|  |  |-- comlog_sink.h
+|  |  |-- compat.h
+|  |  |-- compiler_specific.h
+|  |  |-- containers
+|  |  |  |-- bounded_queue.h
+|  |  |  |-- case_ignored_flat_map.cpp
+|  |  |  |-- case_ignored_flat_map.h
+|  |  |  |-- doubly_buffered_data.h
+|  |  |  |-- flat_map.h
+|  |  |  |-- flat_map_inl.h
+|  |  |  |-- hash_tables.h
+|  |  |  |-- linked_list.h
+|  |  |  |-- mru_cache.h
+|  |  |  |-- pooled_map.h
+|  |  |  |-- scoped_ptr_hash_map.h
+|  |  |  |-- small_map.h
+|  |  |  |-- stack_container.h
+|  |  |-- cpu.cc
+|  |  |-- cpu.h
+|  |  |-- crc32c.cc
+|  |  |-- crc32c.h
+|  |  |-- debug
+|  |  |  |-- alias.cc
+|  |  |  |-- alias.h
+|  |  |  |-- asan_invalid_access.cc
+|  |  |  |-- asan_invalid_access.h
+|  |  |  |-- crash_logging.cc
+|  |  |  |-- crash_logging.h
+|  |  |  |-- debugger.cc
+|  |  |  |-- debugger.h
+|  |  |  |-- debugger_posix.cc
+|  |  |  |-- dump_without_crashing.cc
+|  |  |  |-- dump_without_crashing.h
+|  |  |  |-- leak_annotations.h
+|  |  |  |-- leak_tracker.h
+|  |  |  |-- proc_maps_linux.cc
+|  |  |  |-- proc_maps_linux.h
+|  |  |  |-- stack_trace.cc
+|  |  |  |-- stack_trace.h
+|  |  |  |-- stack_trace_posix.cc
+|  |  |-- endpoint.cpp
+|  |  |-- endpoint.h
+|  |  |-- environment.cc
+|  |  |-- environment.h
+|  |  |-- errno.cpp
+|  |  |-- errno.h
+|  |  |-- fast_rand.cpp
+|  |  |-- fast_rand.h
+|  |  |-- fd_guard.h
+|  |  |-- fd_utility.cpp
+|  |  |-- fd_utility.h
+|  |  |-- file_descriptor_posix.h
+|  |  |-- file_util.cc
+|  |  |-- file_util.h
+|  |  |-- file_util_linux.cc
+|  |  |-- file_util_mac.mm
+|  |  |-- file_util_posix.cc
+|  |  |-- files
+|  |  |  |-- dir_reader_fallback.h
+|  |  |  |-- dir_reader_linux.h
+|  |  |  |-- dir_reader_posix.h
+|  |  |  |-- dir_reader_unix.h
+|  |  |  |-- fd_guard.h
+|  |  |  |-- file.cc
+|  |  |  |-- file.h
+|  |  |  |-- file_enumerator.cc
+|  |  |  |-- file_enumerator.h
+|  |  |  |-- file_enumerator_posix.cc
+|  |  |  |-- file_path.cc
+|  |  |  |-- file_path.h
+|  |  |  |-- file_path_constants.cc
+|  |  |  |-- file_posix.cc
+|  |  |  |-- file_watcher.cpp
+|  |  |  |-- file_watcher.h
+|  |  |  |-- memory_mapped_file.cc
+|  |  |  |-- memory_mapped_file.h
+|  |  |  |-- memory_mapped_file_posix.cc
+|  |  |  |-- scoped_file.cc
+|  |  |  |-- scoped_file.h
+|  |  |  |-- scoped_temp_dir.cc
+|  |  |  |-- scoped_temp_dir.h
+|  |  |  |-- temp_file.cpp
+|  |  |  |-- temp_file.h
+|  |  |-- find_cstr.cpp
+|  |  |-- find_cstr.h
+|  |  |-- float_util.h
+|  |  |-- format_macros.h
+|  |  |-- gperftools_profiler.h
+|  |  |-- gtest_prod_util.h
+|  |  |-- guid.cc
+|  |  |-- guid.h
+|  |  |-- guid_posix.cc
+|  |  |-- hash.cc
+|  |  |-- hash.h
+|  |  |-- intrusive_ptr.hpp
+|  |  |-- iobuf.cpp
+|  |  |-- iobuf.h
+|  |  |-- iobuf_inl.h
+|  |  |-- lazy_instance.cc
+|  |  |-- lazy_instance.h
+|  |  |-- location.cc
+|  |  |-- location.h
+|  |  |-- logging.cc
+|  |  |-- logging.h
+|  |  |-- mac
+|  |  |  |-- bundle_locations.h
+|  |  |  |-- bundle_locations.mm
+|  |  |  |-- foundation_util.h
+|  |  |  |-- foundation_util.mm
+|  |  |  |-- scoped_cftyperef.h
+|  |  |  |-- scoped_mach_port.cc
+|  |  |  |-- scoped_mach_port.h
+|  |  |  |-- scoped_typeref.h
+|  |  |-- macros.h
+|  |  |-- memory
+|  |  |  |-- aligned_memory.cc
+|  |  |  |-- aligned_memory.h
+|  |  |  |-- linked_ptr.h
+|  |  |  |-- manual_constructor.h
+|  |  |  |-- raw_scoped_refptr_mismatch_checker.h
+|  |  |  |-- ref_counted.cc
+|  |  |  |-- ref_counted.h
+|  |  |  |-- ref_counted_memory.cc
+|  |  |  |-- ref_counted_memory.h
+|  |  |  |-- scoped_open_process.h
+|  |  |  |-- scoped_policy.h
+|  |  |  |-- scoped_ptr.h
+|  |  |  |-- scoped_vector.h
+|  |  |  |-- singleton.cc
+|  |  |  |-- singleton.h
+|  |  |  |-- singleton_objc.h
+|  |  |  |-- singleton_on_pthread_once.h
+|  |  |  |-- weak_ptr.cc
+|  |  |  |-- weak_ptr.h
+|  |  |-- move.h
+|  |  |-- numerics
+|  |  |  |-- safe_conversions.h
+|  |  |  |-- safe_conversions_impl.h
+|  |  |  |-- safe_math.h
+|  |  |  |-- safe_math_impl.h
+|  |  |-- object_pool.h
+|  |  |-- object_pool_inl.h
+|  |  |-- observer_list.h
+|  |  |-- popen.cpp
+|  |  |-- popen.h
+|  |  |-- port.h
+|  |  |-- posix
+|  |  |  |-- eintr_wrapper.h
+|  |  |  |-- file_descriptor_shuffle.cc
+|  |  |  |-- file_descriptor_shuffle.h
+|  |  |  |-- global_descriptors.cc
+|  |  |  |-- global_descriptors.h
+|  |  |-- process_util.cc
+|  |  |-- process_util.h
+|  |  |-- ptr_container.h
+|  |  |-- rand_util.cc
+|  |  |-- rand_util.h
+|  |  |-- rand_util_posix.cc
+|  |  |-- raw_pack.h
+|  |  |-- reader_writer.h
+|  |  |-- recordio.cc
+|  |  |-- recordio.h
+|  |  |-- resource_pool.h
+|  |  |-- resource_pool_inl.h
+|  |  |-- safe_strerror_posix.cc
+|  |  |-- safe_strerror_posix.h
+|  |  |-- scoped_clear_errno.h
+|  |  |-- scoped_generic.h
+|  |  |-- scoped_lock.h
+|  |  |-- scoped_observer.h
+|  |  |-- sha1.h
+|  |  |-- sha1_portable.cc
+|  |  |-- single_threaded_pool.h
+|  |  |-- ssl_compat.h
+|  |  |-- status.cpp
+|  |  |-- status.h
+|  |  |-- stl_util.h
+|  |  |-- string_printf.cpp
+|  |  |-- string_printf.h
+|  |  |-- string_splitter.h
+|  |  |-- string_splitter_inl.h
+|  |  |-- strings
+|  |  |  |-- latin1_string_conversions.cc
+|  |  |  |-- latin1_string_conversions.h
+|  |  |  |-- nullable_string16.cc
+|  |  |  |-- nullable_string16.h
+|  |  |  |-- safe_sprintf.cc
+|  |  |  |-- safe_sprintf.h
+|  |  |  |-- string16.cc
+|  |  |  |-- string16.h
+|  |  |  |-- string_number_conversions.cc
+|  |  |  |-- string_number_conversions.h
+|  |  |  |-- string_piece.cc
+|  |  |  |-- string_piece.h
+|  |  |  |-- string_split.cc
+|  |  |  |-- string_split.h
+|  |  |  |-- string_tokenizer.h
+|  |  |  |-- string_util.cc
+|  |  |  |-- string_util.h
+|  |  |  |-- string_util_constants.cc
+|  |  |  |-- string_util_posix.h
+|  |  |  |-- stringize_macros.h
+|  |  |  |-- stringprintf.cc
+|  |  |  |-- stringprintf.h
+|  |  |  |-- sys_string_conversions.h
+|  |  |  |-- sys_string_conversions_mac.mm
+|  |  |  |-- sys_string_conversions_posix.cc
+|  |  |  |-- utf_offset_string_conversions.cc
+|  |  |  |-- utf_offset_string_conversions.h
+|  |  |  |-- utf_string_conversion_utils.cc
+|  |  |  |-- utf_string_conversion_utils.h
+|  |  |  |-- utf_string_conversions.cc
+|  |  |  |-- utf_string_conversions.h
+|  |  |-- synchronization
+|  |  |  |-- cancellation_flag.cc
+|  |  |  |-- cancellation_flag.h
+|  |  |  |-- condition_variable.h
+|  |  |  |-- condition_variable_posix.cc
+|  |  |  |-- lock.h
+|  |  |  |-- spin_wait.h
+|  |  |  |-- waitable_event.h
+|  |  |  |-- waitable_event_posix.cc
+|  |  |-- synchronous_event.h
+|  |  |-- sys_byteorder.h
+|  |  |-- third_party
+|  |  |  |-- dmg_fp
+|  |  |  |  |-- LICENSE
+|  |  |  |  |-- README.chromium
+|  |  |  |  |-- dmg_fp.h
+|  |  |  |  |-- dtoa.cc
+|  |  |  |  |-- dtoa_wrapper.cc
+|  |  |  |  |-- float_precision_crash.patch
+|  |  |  |  |-- g_fmt.cc
+|  |  |  |  |-- gcc_64_bit.patch
+|  |  |  |  |-- gcc_warnings.patch
+|  |  |  |  |-- mac_wextra.patch
+|  |  |  |  |-- vs2013-optimization.patch
+|  |  |  |  |-- win_vs2012.patch
+|  |  |  |-- dynamic_annotations
+|  |  |  |  |-- LICENSE
+|  |  |  |  |-- README.chromium
+|  |  |  |  |-- dynamic_annotations.c
+|  |  |  |  |-- dynamic_annotations.h
+|  |  |  |-- icu
+|  |  |  |  |-- LICENSE
+|  |  |  |  |-- README.chromium
+|  |  |  |  |-- icu_utf.cc
+|  |  |  |  |-- icu_utf.h
+|  |  |  |-- modp_b64
+|  |  |  |  |-- LICENSE
+|  |  |  |  |-- README.chromium
+|  |  |  |  |-- modp_b64.cc
+|  |  |  |  |-- modp_b64.h
+|  |  |  |  |-- modp_b64_data.h
+|  |  |  |-- murmurhash3
+|  |  |  |  |-- murmurhash3.cpp
+|  |  |  |  |-- murmurhash3.h
+|  |  |  |-- rapidjson
+|  |  |  |  |-- allocators.h
+|  |  |  |  |-- document.h
+|  |  |  |  |-- encodedstream.h
+|  |  |  |  |-- encodings.h
+|  |  |  |  |-- error
+|  |  |  |  |  |-- en.h
+|  |  |  |  |  |-- error.h
+|  |  |  |  |-- filereadstream.h
+|  |  |  |  |-- filewritestream.h
+|  |  |  |  |-- internal
+|  |  |  |  |  |-- biginteger.h
+|  |  |  |  |  |-- diyfp.h
+|  |  |  |  |  |-- dtoa.h
+|  |  |  |  |  |-- ieee754.h
+|  |  |  |  |  |-- itoa.h
+|  |  |  |  |  |-- meta.h
+|  |  |  |  |  |-- pow10.h
+|  |  |  |  |  |-- stack.h
+|  |  |  |  |  |-- strfunc.h
+|  |  |  |  |  |-- strtod.h
+|  |  |  |  |-- memorybuffer.h
+|  |  |  |  |-- memorystream.h
+|  |  |  |  |-- msinttypes
+|  |  |  |  |  |-- inttypes.h
+|  |  |  |  |  |-- stdint.h
+|  |  |  |  |-- optimized_writer.h
+|  |  |  |  |-- pointer.h
+|  |  |  |  |-- prettywriter.h
+|  |  |  |  |-- rapidjson.h
+|  |  |  |  |-- reader.h
+|  |  |  |  |-- rename.patch
+|  |  |  |  |-- stringbuffer.h
+|  |  |  |  |-- writer.h
+|  |  |  |-- snappy
+|  |  |  |  |-- AUTHORS
+|  |  |  |  |-- COPYING
+|  |  |  |  |-- ChangeLog
+|  |  |  |  |-- NEWS
+|  |  |  |  |-- README
+|  |  |  |  |-- format_description.txt
+|  |  |  |  |-- framing_format.txt
+|  |  |  |  |-- snappy-internal.h
+|  |  |  |  |-- snappy-sinksource.cc
+|  |  |  |  |-- snappy-sinksource.h
+|  |  |  |  |-- snappy-stubs-internal.cc
+|  |  |  |  |-- snappy-stubs-internal.h
+|  |  |  |  |-- snappy.cc
+|  |  |  |  |-- snappy.h
+|  |  |  |-- superfasthash
+|  |  |  |  |-- LICENSE
+|  |  |  |  |-- README.chromium
+|  |  |  |  |-- superfasthash.c
+|  |  |  |-- symbolize
+|  |  |  |  |-- LICENSE
+|  |  |  |  |-- README.chromium
+|  |  |  |  |-- config.h
+|  |  |  |  |-- demangle.cc
+|  |  |  |  |-- demangle.h
+|  |  |  |  |-- glog
+|  |  |  |  |  |-- logging.h
+|  |  |  |  |  |-- raw_logging.h
+|  |  |  |  |-- symbolize.cc
+|  |  |  |  |-- symbolize.h
+|  |  |  |  |-- utilities.h
+|  |  |  |-- valgrind
+|  |  |  |  |-- LICENSE
+|  |  |  |  |-- valgrind.h
+|  |  |-- thread_local.cpp
+|  |  |-- thread_local.h
+|  |  |-- thread_local_inl.h
+|  |  |-- threading
+|  |  |  |-- non_thread_safe.h
+|  |  |  |-- non_thread_safe_impl.cc
+|  |  |  |-- non_thread_safe_impl.h
+|  |  |  |-- platform_thread.h
+|  |  |  |-- platform_thread_freebsd.cc
+|  |  |  |-- platform_thread_linux.cc
+|  |  |  |-- platform_thread_mac.mm
+|  |  |  |-- platform_thread_posix.cc
+|  |  |  |-- simple_thread.cc
+|  |  |  |-- simple_thread.h
+|  |  |  |-- thread_checker.h
+|  |  |  |-- thread_checker_impl.cc
+|  |  |  |-- thread_checker_impl.h
+|  |  |  |-- thread_collision_warner.cc
+|  |  |  |-- thread_collision_warner.h
+|  |  |  |-- thread_id_name_manager.cc
+|  |  |  |-- thread_id_name_manager.h
+|  |  |  |-- thread_local.h
+|  |  |  |-- thread_local_posix.cc
+|  |  |  |-- thread_local_storage.cc
+|  |  |  |-- thread_local_storage.h
+|  |  |  |-- thread_local_storage_posix.cc
+|  |  |  |-- thread_restrictions.cc
+|  |  |  |-- thread_restrictions.h
+|  |  |  |-- watchdog.cc
+|  |  |  |-- watchdog.h
+|  |  |-- time.cpp
+|  |  |-- time.h
+|  |  |-- time
+|  |  |  |-- clock.cc
+|  |  |  |-- clock.h
+|  |  |  |-- default_clock.cc
+|  |  |  |-- default_clock.h
+|  |  |  |-- default_tick_clock.cc
+|  |  |  |-- default_tick_clock.h
+|  |  |  |-- tick_clock.cc
+|  |  |  |-- tick_clock.h
+|  |  |  |-- time.cc
+|  |  |  |-- time.h
+|  |  |  |-- time_mac.cc
+|  |  |  |-- time_posix.cc
+|  |  |-- type_traits.h
+|  |  |-- unique_ptr.h
+|  |  |-- unix_socket.cpp
+|  |  |-- unix_socket.h
+|  |  |-- version.cc
+|  |  |-- version.h
+|  |  |-- zero_copy_stream_as_streambuf.cpp
+|  |  |-- zero_copy_stream_as_streambuf.h
+|  |-- bvar
+|  |  |-- bvar.h
+|  |  |-- collector.cpp
+|  |  |-- collector.h
+|  |  |-- default_variables.cpp
+|  |  |-- detail
+|  |  |  |-- agent_group.h
+|  |  |  |-- call_op_returning_void.h
+|  |  |  |-- combiner.h
+|  |  |  |-- is_atomical.h
+|  |  |  |-- percentile.cpp
+|  |  |  |-- percentile.h
+|  |  |  |-- sampler.cpp
+|  |  |  |-- sampler.h
+|  |  |  |-- series.h
+|  |  |-- gflag.cpp
+|  |  |-- gflag.h
+|  |  |-- latency_recorder.cpp
+|  |  |-- latency_recorder.h
+|  |  |-- passive_status.h
+|  |  |-- recorder.h
+|  |  |-- reducer.h
+|  |  |-- scoped_timer.h
+|  |  |-- status.h
+|  |  |-- utils
+|  |  |  |-- lock_timer.h
+|  |  |-- variable.cpp
+|  |  |-- variable.h
+|  |  |-- vector.h
+|  |  |-- window.h
+|  |-- idl_options.proto
+|  |-- json2pb
+|  |  |-- encode_decode.cpp
+|  |  |-- encode_decode.h
+|  |  |-- json_to_pb.cpp
+|  |  |-- json_to_pb.h
+|  |  |-- pb_to_json.cpp
+|  |  |-- pb_to_json.h
+|  |  |-- protobuf_map.cpp
+|  |  |-- protobuf_map.h
+|  |  |-- rapidjson.h
+|  |  |-- zero_copy_stream_reader.h
+|  |  |-- zero_copy_stream_writer.h
+|  |-- mcpack2pb
+|  |  |-- field_type.cpp
+|  |  |-- field_type.h
+|  |  |-- generator.cpp
+|  |  |-- mcpack2pb.cpp
+|  |  |-- mcpack2pb.h
+|  |  |-- parser-inl.h
+|  |  |-- parser.cpp
+|  |  |-- parser.h
+|  |  |-- serializer-inl.h
+|  |  |-- serializer.cpp
+|  |  |-- serializer.h
+|-- test
+|  |-- BUILD
+|  |-- CMakeLists.txt
+|  |-- Makefile
+|  |-- addressbook.proto
+|  |-- addressbook1.proto
+|  |-- addressbook_encode_decode.proto
+|  |-- addressbook_map.proto
+|  |-- aligned_memory_unittest.cc
+|  |-- allocator_unittest.cc
+|  |-- at_exit_unittest.cc
+|  |-- atomicops_unittest.cc
+|  |-- baidu_thread_local_unittest.cpp
+|  |-- baidu_time_unittest.cpp
+|  |-- barrier_closure_unittest.cc
+|  |-- base64_unittest.cc
+|  |-- big_endian_unittest.cc
+|  |-- bits_unittest.cc
+|  |-- bounded_queue_unittest.cc
+|  |-- brpc_adaptive_class_unittest.cpp
+|  |-- brpc_builtin_service_unittest.cpp
+|  |-- brpc_channel_unittest.cpp
+|  |-- brpc_circuit_breaker_unittest.cpp
+|  |-- brpc_controller_unittest.cpp
+|  |-- brpc_esp_protocol_unittest.cpp
+|  |-- brpc_event_dispatcher_unittest.cpp
+|  |-- brpc_extension_unittest.cpp
+|  |-- brpc_grpc_protocol_unittest.cpp
+|  |-- brpc_h2_unsent_message_unittest.cpp
+|  |-- brpc_hpack_unittest.cpp
+|  |-- brpc_http_message_unittest.cpp
+|  |-- brpc_http_parser_unittest.cpp
+|  |-- brpc_http_rpc_protocol_unittest.cpp
+|  |-- brpc_http_status_code_unittest.cpp
+|  |-- brpc_hulu_pbrpc_protocol_unittest.cpp
+|  |-- brpc_input_messenger_unittest.cpp
+|  |-- brpc_load_balancer_unittest.cpp
+|  |-- brpc_memcache_unittest.cpp
+|  |-- brpc_mongo_protocol_unittest.cpp
+|  |-- brpc_naming_service_filter_unittest.cpp
+|  |-- brpc_naming_service_unittest.cpp
+|  |-- brpc_nova_pbrpc_protocol_unittest.cpp
+|  |-- brpc_prometheus_metrics_unittest.cpp
+|  |-- brpc_proto_unittest.cpp
+|  |-- brpc_protobuf_json_unittest.cpp
+|  |-- brpc_public_pbrpc_protocol_unittest.cpp
+|  |-- brpc_redis_unittest.cpp
+|  |-- brpc_repeated_field_unittest.cpp
+|  |-- brpc_rtmp_unittest.cpp
+|  |-- brpc_server_unittest.cpp
+|  |-- brpc_snappy_compress_unittest.cpp
+|  |-- brpc_socket_map_unittest.cpp
+|  |-- brpc_socket_unittest.cpp
+|  |-- brpc_sofa_pbrpc_protocol_unittest.cpp
+|  |-- brpc_ssl_unittest.cpp
+|  |-- brpc_streaming_rpc_unittest.cpp
+|  |-- brpc_uri_unittest.cpp
+|  |-- bthread_butex_unittest.cpp
+|  |-- bthread_cond_unittest.cpp
+|  |-- bthread_countdown_event_unittest.cpp
+|  |-- bthread_dispatcher_unittest.cpp
+|  |-- bthread_execution_queue_unittest.cpp
+|  |-- bthread_fd_unittest.cpp
+|  |-- bthread_futex_unittest.cpp
+|  |-- bthread_id_unittest.cpp
+|  |-- bthread_key_unittest.cpp
+|  |-- bthread_list_unittest.cpp
+|  |-- bthread_mutex_unittest.cpp
+|  |-- bthread_ping_pong_unittest.cpp
+|  |-- bthread_rwlock_unittest.cpp
+|  |-- bthread_sched_yield_unittest.cpp
+|  |-- bthread_setconcurrency_unittest.cpp
+|  |-- bthread_timer_thread_unittest.cpp
+|  |-- bthread_unittest.cpp
+|  |-- bthread_work_stealing_queue_unittest.cpp
+|  |-- butil_unittest_main.cpp
+|  |-- bvar_agent_group_unittest.cpp
+|  |-- bvar_file_dumper_unittest.cpp
+|  |-- bvar_lock_timer_unittest.cpp
+|  |-- bvar_percentile_unittest.cpp
+|  |-- bvar_recorder_unittest.cpp
+|  |-- bvar_reducer_unittest.cpp
+|  |-- bvar_sampler_unittest.cpp
+|  |-- bvar_status_unittest.cpp
+|  |-- bvar_variable_unittest.cpp
+|  |-- cacheline_unittest.cpp
+|  |-- callback_helpers_unittest.cc
+|  |-- callback_list_unittest.cc
+|  |-- callback_unittest.cc
+|  |-- cancelable_callback_unittest.cc
+|  |-- cancellation_flag_unittest.cc
+|  |-- cert1.crt
+|  |-- cert1.key
+|  |-- cert2.crt
+|  |-- cert2.key
+|  |-- class_name_unittest.cpp
+|  |-- condition_variable_unittest.cc
+|  |-- cpu_unittest.cc
+|  |-- crash_logging_unittest.cc
+|  |-- crc32c_unittest.cc
+|  |-- dir_reader_posix_unittest.cc
+|  |-- echo.proto
+|  |-- endpoint_unittest.cpp
+|  |-- environment_unittest.cc
+|  |-- errno_unittest.cpp
+|  |-- fd_guard_unittest.cpp
+|  |-- file_descriptor_shuffle_unittest.cc
+|  |-- file_path_unittest.cc
+|  |-- file_unittest.cc
+|  |-- file_util_unittest.cc
+|  |-- file_watcher_unittest.cpp
+|  |-- find_cstr_unittest.cpp
+|  |-- flat_map_unittest.cpp
+|  |-- grpc.proto
+|  |-- guid_unittest.cc
+|  |-- hash_tables_unittest.cc
+|  |-- hash_unittest.cc
+|  |-- health_check.proto
+|  |-- iobuf.proto
+|  |-- iobuf_unittest.cpp
+|  |-- jsonout
+|  |-- lazy_instance_unittest.cc
+|  |-- leak_tracker_unittest.cc
+|  |-- linked_list_unittest.cc
+|  |-- linked_ptr_unittest.cc
+|  |-- lock_unittest.cc
+|  |-- logging_unittest.cc
+|  |-- memory_unittest.cc
+|  |-- memory_unittest_mac.h
+|  |-- message.proto
+|  |-- mru_cache_unittest.cc
+|  |-- multiprocess_func_list.h
+|  |-- non_thread_safe_unittest.cc
+|  |-- nullable_string16_unittest.cc
+|  |-- object_pool_unittest.cpp
+|  |-- observer_list_unittest.cc
+|  |-- platform_thread_unittest.cc
+|  |-- popen_unittest.cpp
+|  |-- proc_maps_linux_unittest.cc
+|  |-- rand_util_unittest.cc
+|  |-- recordio_unittest.cpp
+|  |-- ref_counted_memory_unittest.cc
+|  |-- ref_counted_unittest.cc
+|  |-- repeated.proto
+|  |-- resource_pool_unittest.cpp
+|  |-- run_tests.sh
+|  |-- safe_numerics_unittest.cc
+|  |-- safe_sprintf_unittest.cc
+|  |-- scoped_clear_errno_unittest.cc
+|  |-- scoped_generic_unittest.cc
+|  |-- scoped_locale.cc
+|  |-- scoped_locale.h
+|  |-- scoped_lock_unittest.cpp
+|  |-- scoped_ptr_unittest.cc
+|  |-- scoped_temp_dir_unittest.cc
+|  |-- scoped_vector_unittest.cc
+|  |-- security_unittest.cc
+|  |-- sha1_unittest.cc
+|  |-- shared_memory_unittest.cc
+|  |-- simple_thread_unittest.cc
+|  |-- singleton_unittest.cc
+|  |-- small_map_unittest.cc
+|  |-- snappy_message.proto
+|  |-- sstream_workaround.h
+|  |-- stack_container_unittest.cc
+|  |-- stack_trace_unittest.cc
+|  |-- status_unittest.cpp
+|  |-- stl_util_unittest.cc
+|  |-- string16_unittest.cc
+|  |-- string_number_conversions_unittest.cc
+|  |-- string_piece_unittest.cc
+|  |-- string_printf_unittest.cpp
+|  |-- string_split_unittest.cc
+|  |-- string_splitter_unittest.cpp
+|  |-- string_tokenizer_unittest.cc
+|  |-- string_util_unittest.cc
+|  |-- stringize_macros_unittest.cc
+|  |-- stringprintf_unittest.cc
+|  |-- synchronous_event_unittest.cpp
+|  |-- sys_info_unittest.cc
+|  |-- sys_string_conversions_unittest.cc
+|  |-- temp_file_unittest.cpp
+|  |-- test_file_util_linux.cc
+|  |-- test_switches.cc
+|  |-- test_switches.h
+|  |-- thread_checker_unittest.cc
+|  |-- thread_collision_warner_unittest.cc
+|  |-- thread_id_name_manager_unittest.cc
+|  |-- thread_local_storage_unittest.cc
+|  |-- thread_local_unittest.cc
+|  |-- time_unittest.cc
+|  |-- type_traits_unittest.cc
+|  |-- unique_ptr_unittest.cpp
+|  |-- utf_offset_string_conversions_unittest.cc
+|  |-- utf_string_conversions_unittest.cc
+|  |-- v1.proto
+|  |-- v2.proto
+|  |-- version_unittest.cc
+|  |-- waitable_event_unittest.cc
+|  |-- watchdog_unittest.cc
+|  |-- weak_ptr_unittest.cc
+|-- tools
+|  |-- CMakeLists.txt
+|  |-- add_syntax_equal_proto2_to_all.sh
+|  |-- clean_all_examples
+|  |-- clean_all_makefile
+|  |-- gdb_bthread_stack.py
+|  |-- get_brpc_revision.sh
+|  |-- make_all_examples
+|  |-- parallel_http
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- parallel_http.cpp
+|  |-- patch_from_baidu
+|  |-- pprof
+|  |-- print_gcc_version.cc
+|  |-- rpc_press
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- client.py
+|  |  |-- info_thread.cpp
+|  |  |-- info_thread.h
+|  |  |-- json_loader.cpp
+|  |  |-- json_loader.h
+|  |  |-- pb_util.cpp
+|  |  |-- pb_util.h
+|  |  |-- rpc_press.cpp
+|  |  |-- rpc_press_impl.cpp
+|  |  |-- rpc_press_impl.h
+|  |-- rpc_replay
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- info_thread.cpp
+|  |  |-- info_thread.h
+|  |  |-- rpc_replay.cpp
+|  |-- rpc_view
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- rpc_view.cpp
+|  |  |-- view.proto
+|  |-- trackme_server
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- bugs
+|  |  |-- trackme_server.cpp
+|-- zlib.BUILD

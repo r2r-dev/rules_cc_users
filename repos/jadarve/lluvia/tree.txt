@@ -1,0 +1,399 @@
+|-- .bazelrc
+|-- .gitattributes
+|-- .github
+|  |-- workflows
+|  |  |-- main.yml
+|-- .gitignore
+|-- BUILD.bazel
+|-- Doxyfile
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- ci
+|  |-- Dockerfile
+|-- doc
+|  |-- Makefile
+|  |-- make.bat
+|  |-- source
+|  |  |-- conf.py
+|  |  |-- contents.rst
+|  |  |-- gettingStarted_cpp.rst
+|  |  |-- gettingStarted_python.rst
+|  |  |-- index.rst
+|  |  |-- installation.rst
+|  |  |-- introduction.rst
+|-- external
+|  |-- catch.bzl
+|  |-- cython.bzl
+|  |-- lua.bzl
+|  |-- miniz.bzl
+|  |-- sol.bzl
+|  |-- stb.bzl
+|  |-- vulkan.bzl
+|-- lluvia
+|  |-- bazel
+|  |  |-- BUILD.bazel
+|  |  |-- cython
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- def.bzl
+|  |  |  |-- macros.bzl
+|  |  |  |-- rules.bzl
+|  |  |-- expand_template
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- def.bzl
+|  |  |  |-- rules.bzl
+|  |  |-- node
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- def.bzl
+|  |  |  |-- macros.bzl
+|  |  |-- workspace.bzl
+|  |-- cpp
+|  |  |-- BUILD.bazel
+|  |  |-- config.bzl
+|  |  |-- core
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- include
+|  |  |  |  |-- lluvia
+|  |  |  |  |  |-- core.h
+|  |  |  |  |  |-- core
+|  |  |  |  |  |  |-- Buffer.h
+|  |  |  |  |  |  |-- CommandBuffer.h
+|  |  |  |  |  |  |-- ComputeDimension.h
+|  |  |  |  |  |  |-- ComputeNode.h
+|  |  |  |  |  |  |-- ComputeNodeDescriptor.h
+|  |  |  |  |  |  |-- ContainerNode.h
+|  |  |  |  |  |  |-- ContainerNodeDescriptor.h
+|  |  |  |  |  |  |-- Duration.h
+|  |  |  |  |  |  |-- Image.h
+|  |  |  |  |  |  |-- ImageDescriptor.h
+|  |  |  |  |  |  |-- ImageView.h
+|  |  |  |  |  |  |-- ImageViewDescriptor.h
+|  |  |  |  |  |  |-- Interpreter.h
+|  |  |  |  |  |  |-- Memory.h
+|  |  |  |  |  |  |-- MemoryAllocationInfo.h
+|  |  |  |  |  |  |-- Node.h
+|  |  |  |  |  |  |-- NodeBuilderDescriptor.h
+|  |  |  |  |  |  |-- Object.h
+|  |  |  |  |  |  |-- Parameter.h
+|  |  |  |  |  |  |-- Program.h
+|  |  |  |  |  |  |-- PushConstants.h
+|  |  |  |  |  |  |-- Session.h
+|  |  |  |  |  |  |-- SessionDescriptor.h
+|  |  |  |  |  |  |-- debug_utils.h
+|  |  |  |  |  |  |-- error.h
+|  |  |  |  |  |  |-- impl
+|  |  |  |  |  |  |  |-- LuaLibrary.h.in
+|  |  |  |  |  |  |  |-- MemoryFreeSpaceManager.h
+|  |  |  |  |  |  |  |-- ZipArchive.h
+|  |  |  |  |  |  |  |-- enum_utils.h
+|  |  |  |  |  |  |-- types.h
+|  |  |  |  |  |  |-- utils.h
+|  |  |  |  |  |  |-- vulkan
+|  |  |  |  |  |  |  |-- Device.h
+|  |  |  |  |  |  |  |-- Instance.h
+|  |  |  |  |  |  |  |-- vulkan.hpp
+|  |  |  |-- src
+|  |  |  |  |-- Buffer.cpp
+|  |  |  |  |-- CommandBuffer.cpp
+|  |  |  |  |-- ComputeNode.cpp
+|  |  |  |  |-- ComputeNodeDescriptor.cpp
+|  |  |  |  |-- ContainerNode.cpp
+|  |  |  |  |-- ContainerNodeDescriptor.cpp
+|  |  |  |  |-- Duration.cpp
+|  |  |  |  |-- Image.cpp
+|  |  |  |  |-- ImageDescriptor.cpp
+|  |  |  |  |-- ImageView.cpp
+|  |  |  |  |-- ImageViewDescriptor.cpp
+|  |  |  |  |-- Interpreter.cpp
+|  |  |  |  |-- Memory.cpp
+|  |  |  |  |-- MemoryAllocationInfo.cpp
+|  |  |  |  |-- Node.cpp
+|  |  |  |  |-- Parameter.cpp
+|  |  |  |  |-- Program.cpp
+|  |  |  |  |-- Session.cpp
+|  |  |  |  |-- SessionDescriptor.cpp
+|  |  |  |  |-- debug_utils.cpp
+|  |  |  |  |-- error.cpp
+|  |  |  |  |-- impl
+|  |  |  |  |  |-- MemoryFreeSpaceManager.cpp
+|  |  |  |  |  |-- ZipArchive.cpp
+|  |  |  |  |-- utils.cpp
+|  |  |  |  |-- vulkan
+|  |  |  |  |  |-- Device.cpp
+|  |  |  |  |  |-- Instance.cpp
+|  |  |  |-- test
+|  |  |  |  |-- glsl
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- assign.comp
+|  |  |  |  |  |-- imageToBuffer.comp
+|  |  |  |  |  |-- pushConstants.comp
+|  |  |  |  |  |-- pushConstants2.comp
+|  |  |  |  |  |-- textureToBuffer.comp
+|  |  |  |  |-- include
+|  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |-- coreTestConfig.h.in
+|  |  |  |  |-- nodes
+|  |  |  |  |  |-- Assign.comp
+|  |  |  |  |  |-- Assign.lua
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- test_Base64.cpp
+|  |  |  |  |-- test_BufferCopy.cpp
+|  |  |  |  |-- test_BufferCreation.cpp
+|  |  |  |  |-- test_BufferMapping.cpp
+|  |  |  |  |-- test_ComputeNode.cpp
+|  |  |  |  |-- test_ComputeNodeImage.cpp
+|  |  |  |  |-- test_Duration.cpp
+|  |  |  |  |-- test_ImageCopy.cpp
+|  |  |  |  |-- test_ImageCreation.cpp
+|  |  |  |  |-- test_ImageLayout.cpp
+|  |  |  |  |-- test_Instance.cpp
+|  |  |  |  |-- test_Interpreter.cpp
+|  |  |  |  |-- test_LoadLibrary.cpp
+|  |  |  |  |-- test_MemoryBarrier.cpp
+|  |  |  |  |-- test_MemoryFreeSpaceManager.cpp
+|  |  |  |  |-- test_ProgramCreation.cpp
+|  |  |  |  |-- test_PushConstants.cpp
+|  |  |  |  |-- test_SessionCreation.cpp
+|  |  |  |  |-- test_miniz.cpp
+|  |  |  |  |-- test_utils.cpp
+|  |  |-- platform
+|  |  |  |-- test
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- test_DebugExtensions.cpp
+|  |  |  |  |-- test_InstanceCreation.cpp
+|  |  |  |  |-- test_InstanceCreationDynamicDispatch.cpp
+|  |  |  |  |-- test_InstanceWrapper.cpp
+|  |-- glsl
+|  |  |-- lib
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- lluvia
+|  |  |  |  |-- core.glsl
+|  |  |  |  |-- core
+|  |  |  |  |  |-- color.glsl
+|  |  |-- shaders
+|  |  |  |-- imgproc
+|  |  |  |  |-- imgdownX_r8ui.comp
+|  |  |  |  |-- imgdownX_rgba8ui.comp
+|  |  |  |  |-- imgdownY_r8ui.comp
+|  |  |  |  |-- imgdownY_rgba8ui.comp
+|  |-- lua
+|  |  |-- BUILD.bazel
+|  |  |-- ll
+|  |  |  |-- library.lua
+|  |  |-- printEnums.lua
+|  |  |-- printParameterTypes.lua
+|  |-- nodes
+|  |  |-- BUILD.bazel
+|  |  |-- lluvia
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- Sobel.comp
+|  |  |  |-- Sobel.lua
+|  |  |  |-- color
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- HSVA2RGBA.comp
+|  |  |  |  |-- HSVA2RGBA.lua
+|  |  |  |  |-- HSVA2RGBA_test.cpp
+|  |  |  |  |-- RGBA2Gray.comp
+|  |  |  |  |-- RGBA2Gray.lua
+|  |  |  |  |-- RGBA2Gray_test.cpp
+|  |  |  |  |-- RGBA2HSVA.comp
+|  |  |  |  |-- RGBA2HSVA.lua
+|  |  |  |  |-- RGBA2HSVA_test.cpp
+|  |-- python
+|  |  |-- .gitignore
+|  |  |-- BUILD.bazel
+|  |  |-- build.sh
+|  |  |-- doc
+|  |  |  |-- Makefile
+|  |  |  |-- make.bat
+|  |  |  |-- source
+|  |  |  |  |-- classes
+|  |  |  |  |  |-- Buffer.rst
+|  |  |  |  |  |-- CommandBuffer.rst
+|  |  |  |  |  |-- ComputeNode.rst
+|  |  |  |  |  |-- ComputeNodeDescriptor.rst
+|  |  |  |  |  |-- ContainerNode.rst
+|  |  |  |  |  |-- ContainerNodeDescriptor.rst
+|  |  |  |  |  |-- Duration.rst
+|  |  |  |  |  |-- Image.rst
+|  |  |  |  |  |-- ImageView.rst
+|  |  |  |  |  |-- Memory.rst
+|  |  |  |  |  |-- MemoryAllocationInfo.rst
+|  |  |  |  |  |-- Parameter.rst
+|  |  |  |  |  |-- PortDescriptor.rst
+|  |  |  |  |  |-- Program.rst
+|  |  |  |  |  |-- Session.rst
+|  |  |  |  |  |-- index.rst
+|  |  |  |  |-- conf.py
+|  |  |  |  |-- enumerations
+|  |  |  |  |  |-- index.rst
+|  |  |  |  |-- index.rst
+|  |  |  |  |-- modules
+|  |  |  |  |  |-- core.rst
+|  |  |  |  |  |-- index.rst
+|  |  |  |  |  |-- util.rst
+|  |  |-- requirements.txt
+|  |  |-- setup.cfg
+|  |  |-- setup.py
+|  |  |-- src
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- lluvia
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- core
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- command_buffer.pxd
+|  |  |  |  |  |-- command_buffer.pyx
+|  |  |  |  |  |-- compute_dimension.pxd
+|  |  |  |  |  |-- core_buffer.pxd
+|  |  |  |  |  |-- core_buffer.pyx
+|  |  |  |  |  |-- core_object.pxd
+|  |  |  |  |  |-- duration.pxd
+|  |  |  |  |  |-- duration.pyx
+|  |  |  |  |  |-- enums
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- compute_dimension.pxd
+|  |  |  |  |  |  |-- compute_dimension.pyx
+|  |  |  |  |  |  |-- core_object.pxd
+|  |  |  |  |  |  |-- core_object.pyx
+|  |  |  |  |  |  |-- image.pxd
+|  |  |  |  |  |  |-- image.pyx
+|  |  |  |  |  |  |-- node.pxd
+|  |  |  |  |  |  |-- node.pyx
+|  |  |  |  |  |  |-- parameter.pxd
+|  |  |  |  |  |  |-- parameter.pyx
+|  |  |  |  |  |  |-- vulkan.pxd
+|  |  |  |  |  |  |-- vulkan.pyx
+|  |  |  |  |  |-- image.pxd
+|  |  |  |  |  |-- image.pyx
+|  |  |  |  |  |-- impl
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- enum_utils.pyx
+|  |  |  |  |  |  |-- stdcpp.pxd
+|  |  |  |  |  |  |-- string_utils.py
+|  |  |  |  |  |-- memory.pxd
+|  |  |  |  |  |-- memory.pyx
+|  |  |  |  |  |-- node.pxd
+|  |  |  |  |  |-- node.pyx
+|  |  |  |  |  |-- parameter.pxd
+|  |  |  |  |  |-- parameter.pyx
+|  |  |  |  |  |-- program.pxd
+|  |  |  |  |  |-- program.pyx
+|  |  |  |  |  |-- session.pxd
+|  |  |  |  |  |-- session.pyx
+|  |  |  |  |  |-- types.pxd
+|  |  |  |  |  |-- vulkan.pxd
+|  |  |  |  |-- glsl
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- lib
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |-- nodes
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |-- util.py
+|  |  |-- test
+|  |  |  |-- core
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- config.py
+|  |  |  |  |-- test_buffer.py
+|  |  |  |  |-- test_compute.py
+|  |  |  |  |-- test_image.py
+|  |  |  |  |-- test_load_library.py
+|  |  |  |  |-- test_session.py
+|  |-- resources
+|  |  |-- BUILD.bazel
+|  |  |-- koala.jpg
+|  |  |-- mouse.jpg
+|  |-- tools
+|  |  |-- expand_template
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- expand_template.py
+|  |  |  |-- test_data
+|  |  |  |  |-- file.txt
+|  |  |  |  |-- template.in
+|-- platform
+|  |-- BUILD.bazel
+|  |-- linux
+|  |  |-- BUILD.bazel
+|  |  |-- python.bzl
+|  |-- values.bzl
+|  |-- windows
+|  |  |-- BUILD.bazel
+|  |  |-- python.bzl
+|-- requirements.txt
+|-- samples
+|  |-- imagePyramid
+|  |  |-- BUILD.bazel
+|  |  |-- glsl
+|  |  |  |-- imageDownsampleX.comp
+|  |  |  |-- imageDownsampleY.comp
+|  |  |-- include
+|  |  |  |-- ImagePyramid.h
+|  |  |-- src
+|  |  |  |-- ImagePyramid.cpp
+|  |  |  |-- main.cpp
+|  |-- imagePyramid_lua
+|  |  |-- BUILD.bazel
+|  |  |-- glsl
+|  |  |  |-- ImageDownsampleX.comp
+|  |  |  |-- ImageDownsampleY.comp
+|  |  |-- lua
+|  |  |  |-- ImageDownsampleX.lua
+|  |  |  |-- ImageDownsampleY.lua
+|  |  |  |-- ImagePyramid.lua
+|  |  |-- src
+|  |  |  |-- main.cpp
+|  |-- lluvia-docs
+|  |  |-- memory
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- test_createMemory.cpp
+|  |  |  |-- test_createObjects.cpp
+|  |  |  |-- test_enumerateMemories.cpp
+|  |  |-- session
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- test_sessionCreate.cpp
+|  |-- opticalFlow
+|  |  |-- BUILD.bazel
+|  |  |-- cpp
+|  |  |  |-- main.cpp
+|  |  |-- glsl
+|  |  |  |-- Flow2RGBA.comp
+|  |  |  |-- FlowPredictPayloadX.comp
+|  |  |  |-- FlowPredictPayloadY.comp
+|  |  |  |-- FlowPredictX.comp
+|  |  |  |-- FlowPredictY.comp
+|  |  |  |-- FlowSmooth.comp
+|  |  |  |-- FlowUpdate.comp
+|  |  |  |-- FlowUpdateDelta.comp
+|  |  |  |-- HSVA2RGBA.comp
+|  |  |  |-- ImageDownsampleX_8ui.comp
+|  |  |  |-- ImageDownsampleY_8ui.comp
+|  |  |  |-- ImageModel.comp
+|  |  |  |-- RGBA2Gray.comp
+|  |  |  |-- RGBA2HSVA.comp
+|  |  |-- lua
+|  |  |  |-- Flow2RGBA.lua
+|  |  |  |-- FlowFilter.lua
+|  |  |  |-- FlowFilterDelta.lua
+|  |  |  |-- FlowFilterSimple.lua
+|  |  |  |-- FlowPredict.lua
+|  |  |  |-- FlowPredictPayload.lua
+|  |  |  |-- FlowPredictPayloadX.lua
+|  |  |  |-- FlowPredictPayloadY.lua
+|  |  |  |-- FlowPredictX.lua
+|  |  |  |-- FlowPredictY.lua
+|  |  |  |-- FlowSmooth.lua
+|  |  |  |-- FlowUpdate.lua
+|  |  |  |-- FlowUpdateDelta.lua
+|  |  |  |-- HSVA2RGBA.lua
+|  |  |  |-- ImageDownsampleX_8ui.lua
+|  |  |  |-- ImageDownsampleY_8ui.lua
+|  |  |  |-- ImageModel.lua
+|  |  |  |-- ImagePyramid_8ui.lua
+|  |  |  |-- RGBA2Gray.lua
+|  |  |  |-- RGBA2HSVA.lua
+|  |  |-- python
+|  |  |  |-- opticalFlow.py
+|-- scripts
+|  |-- install_google_colab.sh
+|-- version.bzl

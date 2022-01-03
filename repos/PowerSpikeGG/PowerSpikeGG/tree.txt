@@ -1,0 +1,518 @@
+|-- .gitignore
+|-- .gitmodules
+|-- BUILD
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- config
+|  |-- .gitkeep
+|  |-- BUILD
+|  |-- development
+|  |  |-- .gitkeep
+|-- configure
+|-- devutils
+|  |-- docker-compose.tmpl.yml
+|  |-- docker_nginx.conf
+|  |-- gazelle
+|  |-- generate-docker-compose
+|  |-- git-hooks
+|  |  |-- pre-commit
+|  |-- lib
+|  |  |-- bash
+|  |  |  |-- bazel.bash
+|  |  |  |-- logging.bash
+|  |  |  |-- prompt.bash
+|  |-- prometheus.tmpl.yml
+|  |-- tslint.json
+|-- docs
+|  |-- contributors
+|  |  |-- 00-Contributing.md
+|  |  |-- 10-GitWorkflow.md
+|  |-- dev-stack.md
+|-- powerspikegg
+|  |-- BUILD
+|  |-- computation_models
+|  |  |-- fetcher
+|  |  |  |-- BUILD
+|  |  |  |-- fetcher.py
+|  |  |  |-- fetcher_test.py
+|  |  |-- match
+|  |  |  |-- BUILD
+|  |  |  |-- Readme.md
+|  |  |  |-- freeze.py
+|  |  |  |-- freeze.sh
+|  |  |  |-- generate_graph.py
+|  |  |  |-- generate_graph.sh
+|  |  |  |-- graph.py
+|  |  |  |-- train.py
+|  |  |  |-- train_graph.py
+|  |  |  |-- train_graph.sh
+|  |  |-- simple
+|  |  |  |-- BUILD
+|  |  |  |-- src
+|  |  |  |  |-- graph.cc
+|  |  |  |  |-- graph.h
+|  |  |  |  |-- main.cc
+|  |  |-- static
+|  |  |  |-- generated
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- assists
+|  |  |  |  |  |-- frozen_model.pb
+|  |  |  |  |-- deaths
+|  |  |  |  |  |-- frozen_model.pb
+|  |  |  |  |-- kills
+|  |  |  |  |  |-- frozen_model.pb
+|  |  |  |  |-- minions_killed
+|  |  |  |  |  |-- frozen_model.pb
+|  |  |  |  |-- neutral_minions_killed
+|  |  |  |  |  |-- frozen_model.pb
+|  |  |  |  |-- total_damages
+|  |  |  |  |  |-- frozen_model.pb
+|  |  |  |  |-- total_heal
+|  |  |  |  |  |-- frozen_model.pb
+|  |  |  |  |-- tower_kills
+|  |  |  |  |  |-- frozen_model.pb
+|  |  |  |  |-- wards_placed
+|  |  |  |  |  |-- frozen_model.pb
+|  |  |  |-- trained_11_2017_04_06
+|  |  |  |  |-- assists
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491447770.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- deaths
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491447761.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- kills
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491447752.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- minions_killed
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491447779.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- neutral_minions_killed
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491447788.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- total_damages
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491447797.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- total_heal
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491447806.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- tower_kills
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491447824.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- wards_placed
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491447815.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |-- trained_2017_04_06
+|  |  |  |  |-- assists
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433481.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- deaths
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433472.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- kills
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433456.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- minions_killed
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433490.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- neutral_minions_killed
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433499.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- total_damages
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433508.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- total_heal
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433517.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- tower_kills
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433535.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- wards_placed
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433525.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |-- trained_2017_04_07
+|  |  |  |  |-- assists
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433481.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- deaths
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433472.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- kills
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433456.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- minions_killed
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433490.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- neutral_minions_killed
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433499.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- total_damages
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433508.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- total_heal
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433517.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- tower_kills
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433535.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |  |  |-- wards_placed
+|  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |-- events.out.tfevents.1491433525.cassan-Alienware-15-R2
+|  |  |  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |  |  |-- model.ckpt.index
+|  |  |  |  |  |-- model.ckpt.meta
+|  |  |-- utils
+|  |  |  |-- BUILD
+|  |  |  |-- src
+|  |  |  |  |-- graph.cc
+|  |  |  |  |-- graph.h
+|  |-- frontend
+|  |  |-- .editorconfig
+|  |  |-- .gitignore
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- angular-cli.json
+|  |  |-- e2e
+|  |  |  |-- app.e2e-spec.ts
+|  |  |  |-- app.po.ts
+|  |  |  |-- tsconfig.json
+|  |  |-- karma.conf.js
+|  |  |-- package.json
+|  |  |-- protractor.conf.js
+|  |  |-- proxy.conf.json
+|  |  |-- scripts
+|  |  |  |-- build.sh
+|  |  |  |-- install.sh
+|  |  |  |-- protogen.sh
+|  |  |-- src
+|  |  |  |-- app
+|  |  |  |  |-- app.component.css
+|  |  |  |  |-- app.component.html
+|  |  |  |  |-- app.component.spec.ts
+|  |  |  |  |-- app.component.ts
+|  |  |  |  |-- app.module.ts
+|  |  |  |  |-- app.routing.ts
+|  |  |  |  |-- config
+|  |  |  |  |  |-- gateway.ts
+|  |  |  |  |-- home
+|  |  |  |  |  |-- home.component.css
+|  |  |  |  |  |-- home.component.html
+|  |  |  |  |  |-- home.component.ts
+|  |  |  |  |  |-- home.module.ts
+|  |  |  |  |  |-- search-bar
+|  |  |  |  |  |  |-- location-picker
+|  |  |  |  |  |  |  |-- location-picker.component.css
+|  |  |  |  |  |  |  |-- location-picker.component.html
+|  |  |  |  |  |  |  |-- location-picker.component.ts
+|  |  |  |  |  |  |-- search-bar.component.css
+|  |  |  |  |  |  |-- search-bar.component.html
+|  |  |  |  |  |  |-- search-bar.component.ts
+|  |  |  |  |-- index.ts
+|  |  |  |  |-- models
+|  |  |  |  |  |-- gateway-queries.ts
+|  |  |  |  |  |-- protos
+|  |  |  |  |  |  |-- .gitkeep
+|  |  |  |  |  |-- summoner-with-matches.ts
+|  |  |  |  |-- navbar
+|  |  |  |  |  |-- navbar.component.css
+|  |  |  |  |  |-- navbar.component.html
+|  |  |  |  |  |-- navbar.component.ts
+|  |  |  |  |-- page-not-found
+|  |  |  |  |  |-- page-not-found.component.html
+|  |  |  |  |  |-- page-not-found.component.ts
+|  |  |  |  |-- services
+|  |  |  |  |  |-- gateway.service.spec.ts
+|  |  |  |  |  |-- gateway.service.ts
+|  |  |  |  |-- spinner
+|  |  |  |  |  |-- spinner.component.css
+|  |  |  |  |  |-- spinner.component.html
+|  |  |  |  |  |-- spinner.component.ts
+|  |  |  |  |-- summoner
+|  |  |  |  |  |-- matches
+|  |  |  |  |  |  |-- match
+|  |  |  |  |  |  |  |-- analysis
+|  |  |  |  |  |  |  |  |-- analysis.component.css
+|  |  |  |  |  |  |  |  |-- analysis.component.html
+|  |  |  |  |  |  |  |  |-- analysis.component.spec.ts
+|  |  |  |  |  |  |  |  |-- analysis.component.ts
+|  |  |  |  |  |  |  |  |-- game-table
+|  |  |  |  |  |  |  |  |  |-- game-table.component.css
+|  |  |  |  |  |  |  |  |  |-- game-table.component.html
+|  |  |  |  |  |  |  |  |  |-- game-table.component.spec.ts
+|  |  |  |  |  |  |  |  |  |-- game-table.component.ts
+|  |  |  |  |  |  |  |  |  |-- thousand.pipe.spec.ts
+|  |  |  |  |  |  |  |  |  |-- thousand.pipe.ts
+|  |  |  |  |  |  |  |  |-- radar-chart
+|  |  |  |  |  |  |  |  |  |-- radar-chart.component.css
+|  |  |  |  |  |  |  |  |  |-- radar-chart.component.html
+|  |  |  |  |  |  |  |  |  |-- radar-chart.component.spec.ts
+|  |  |  |  |  |  |  |  |  |-- radar-chart.component.ts
+|  |  |  |  |  |  |  |-- kda.pipe.ts
+|  |  |  |  |  |  |  |-- match-duration.pipe.spec.ts
+|  |  |  |  |  |  |  |-- match-duration.pipe.ts
+|  |  |  |  |  |  |  |-- match.component.css
+|  |  |  |  |  |  |  |-- match.component.html
+|  |  |  |  |  |  |  |-- match.component.spec.ts
+|  |  |  |  |  |  |  |-- match.component.ts
+|  |  |  |  |  |  |-- matches.component.html
+|  |  |  |  |  |  |-- matches.component.spec.ts
+|  |  |  |  |  |  |-- matches.component.ts
+|  |  |  |  |  |-- sidenav
+|  |  |  |  |  |  |-- sidenav.component.css
+|  |  |  |  |  |  |-- sidenav.component.html
+|  |  |  |  |  |  |-- sidenav.component.spec.ts
+|  |  |  |  |  |  |-- sidenav.component.ts
+|  |  |  |  |  |-- summoner.component.css
+|  |  |  |  |  |-- summoner.component.html
+|  |  |  |  |  |-- summoner.component.ts
+|  |  |  |  |  |-- summoner.module.ts
+|  |  |  |-- assets
+|  |  |  |  |-- .gitkeep
+|  |  |  |  |-- fonts
+|  |  |  |  |  |-- fonts.css
+|  |  |  |  |  |-- vikingsquad.ttf
+|  |  |  |  |-- img
+|  |  |  |  |  |-- ADCARRY.png
+|  |  |  |  |  |-- JUNGLE.png
+|  |  |  |  |  |-- MIDDLE.png
+|  |  |  |  |  |-- SUPPORT.png
+|  |  |  |  |  |-- TOP.png
+|  |  |  |  |  |-- logo
+|  |  |  |  |  |  |-- Logo-Arc.png
+|  |  |  |  |  |  |-- Logo-Circle.png
+|  |  |  |  |  |  |-- Logo-Left.png
+|  |  |  |  |  |  |-- Logo-Right.png
+|  |  |  |  |  |  |-- Logo-Triangle.png
+|  |  |  |  |  |-- region
+|  |  |  |  |  |  |-- EUW.png
+|  |  |  |  |-- videos
+|  |  |  |  |  |-- 8882536.mp4
+|  |  |  |-- environments
+|  |  |  |  |-- environment.prod.ts
+|  |  |  |  |-- environment.ts
+|  |  |  |-- favicon.ico
+|  |  |  |-- index.html
+|  |  |  |-- main.ts
+|  |  |  |-- polyfills.ts
+|  |  |  |-- styles.css
+|  |  |  |-- test.ts
+|  |  |  |-- tsconfig.json
+|  |  |  |-- typings.d.ts
+|  |  |-- tslint.json
+|  |-- gateway
+|  |  |-- BUILD
+|  |  |-- build.sbt
+|  |  |-- lib
+|  |  |  |-- libservice_java.jar
+|  |  |-- project
+|  |  |  |-- build.properties
+|  |  |  |-- plugins.sbt
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- application.conf
+|  |  |  |  |-- scala
+|  |  |  |  |  |-- gg
+|  |  |  |  |  |  |-- powerspike
+|  |  |  |  |  |  |  |-- Main.scala
+|  |  |  |  |  |  |  |-- WebServer.scala
+|  |  |  |  |  |  |  |-- rpc
+|  |  |  |  |  |  |  |  |-- GrpcContext.scala
+|  |  |  |  |  |  |  |  |-- MatchFetcher.scala
+|  |  |  |-- test
+|  |  |  |  |-- scala
+|  |  |  |  |  |-- gg
+|  |  |  |  |  |  |-- powerspike
+|  |  |  |  |  |  |  |-- MatchRouteTest.scala
+|  |  |  |  |  |  |  |-- SummonerRouteTest.scala
+|  |  |  |  |  |  |  |-- services
+|  |  |  |  |  |  |  |  |-- MockFetcher.scala
+|  |  |  |  |  |  |  |  |-- MockGrpcServer.scala
+|  |  |-- tools
+|  |  |  |-- compile-deps.sh
+|  |  |  |-- start-server.sh
+|  |-- go_gateway
+|  |  |-- BUILD
+|  |  |-- aggregation.go
+|  |  |-- computation.go
+|  |  |-- gateway.go
+|  |  |-- gateway_test.go
+|  |  |-- match.go
+|  |  |-- summoner.go
+|  |-- lib
+|  |  |-- mongodb
+|  |  |  |-- BUILD
+|  |  |  |-- wrapper.py
+|  |  |  |-- wrapper_test.py
+|  |  |-- monitoring
+|  |  |  |-- BUILD
+|  |  |  |-- flags.py
+|  |  |  |-- rpc.py
+|  |  |  |-- rpc_test.py
+|  |  |  |-- server.py
+|  |  |  |-- watcher.py
+|  |  |  |-- watcher_test.py
+|  |-- powerspikegg.bzl
+|  |-- rawdata
+|  |  |-- fetcher
+|  |  |  |-- BUILD
+|  |  |  |-- aggregator.py
+|  |  |  |-- aggregator_test.py
+|  |  |  |-- cache.py
+|  |  |  |-- cache_test.py
+|  |  |  |-- converter.py
+|  |  |  |-- converter_test.py
+|  |  |  |-- handler.py
+|  |  |  |-- handler_test.py
+|  |  |  |-- monitoring.py
+|  |  |  |-- monitoring_test.py
+|  |  |  |-- samples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- match_sample_1.json
+|  |  |  |  |-- match_sample_2.json
+|  |  |  |  |-- match_sample_3.json
+|  |  |  |-- server.py
+|  |  |  |-- server_test.py
+|  |  |  |-- service.proto
+|  |  |-- lib
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- static.py
+|  |  |  |  |-- static_test.py
+|  |  |-- public
+|  |  |  |-- BUILD
+|  |  |  |-- constants.proto
+|  |  |  |-- match.proto
+|  |  |-- tools
+|  |  |  |-- devstack.sh
+|  |  |  |-- fetch
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- base.go
+|  |  |  |  |-- cache2csv.go
+|  |  |  |  |-- cache2csv_test.go
+|  |  |  |  |-- fetch.go
+|  |  |  |  |-- match.go
+|  |  |  |  |-- match_test.go
+|  |  |  |  |-- summoner.go
+|  |  |  |  |-- summoner_test.go
+|  |  |  |-- populator
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- populator.go
+|  |-- serving
+|  |  |-- BUILD
+|  |  |-- public
+|  |  |  |-- match_computation.proto
+|  |  |-- src
+|  |  |  |-- converter.cc
+|  |  |  |-- converter.h
+|  |  |  |-- main.cc
+|  |  |  |-- match_computation.cc
+|  |  |  |-- match_computation.h
+|  |  |  |-- server.cc
+|  |  |  |-- server.h
+|  |  |-- test
+|  |  |  |-- grpc_interface.cc
+|-- python_dependencies.txt
+|-- third_party
+|  |-- gtest
+|  |  |-- gtest.BUILD
+|  |-- mongodb
+|  |  |-- BUILD
+|  |  |-- archive.BUILD
+|  |-- python
+|  |  |-- requests
+|  |  |  |-- BUILD
+|  |  |  |-- archive.BUILD
+|  |  |  |-- certifi.py
+|  |  |-- riotwatcher
+|  |  |  |-- BUILD
+|  |  |  |-- LICENSE
+|  |  |  |-- README.rst
+|  |  |  |-- riotwatcher.py
+|  |  |  |-- riotwatcher_test.py
+|  |  |  |-- rwmock.py
+|  |  |  |-- samples
+|  |  |  |  |-- match.json
+|  |  |  |  |-- match_list.json
+|  |  |  |  |-- summoner.json
+|  |  |-- tensorflow
+|  |  |  |-- BUILD
+|  |-- tensorflow

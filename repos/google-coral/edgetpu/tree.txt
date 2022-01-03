@@ -1,0 +1,583 @@
+|-- .gitattributes
+|-- .gitignore
+|-- CHANGES.md
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- MANIFEST.in
+|-- Makefile
+|-- README.md
+|-- WORKSPACE
+|-- benchmarks
+|  |-- basic_engine_benchmarks.py
+|  |-- classification_benchmarks.py
+|  |-- imprinting_benchmarks.py
+|  |-- multiple_tpus_performance_analysis.py
+|  |-- reference
+|  |  |-- basic_engine_reference_aarch64.csv
+|  |  |-- basic_engine_reference_rp3b+.csv
+|  |  |-- basic_engine_reference_rp3b.csv
+|  |  |-- basic_engine_reference_rp4b.csv
+|  |  |-- basic_engine_reference_x86_64.csv
+|  |  |-- classification_reference_aarch64.csv
+|  |  |-- classification_reference_rp3b+.csv
+|  |  |-- classification_reference_rp3b.csv
+|  |  |-- classification_reference_rp4b.csv
+|  |  |-- classification_reference_x86_64.csv
+|  |  |-- imprinting_reference_aarch64.csv
+|  |  |-- imprinting_reference_rp3b+.csv
+|  |  |-- imprinting_reference_rp3b.csv
+|  |  |-- imprinting_reference_rp4b.csv
+|  |  |-- imprinting_reference_x86_64.csv
+|  |-- softmax_regression_benchmarks.py
+|  |-- test_utils.py
+|-- compiler
+|  |-- x86_64
+|  |  |-- edgetpu_compiler
+|  |  |-- edgetpu_compiler_bin
+|  |  |  |-- LICENSES
+|  |  |  |-- NOTICE
+|  |  |  |-- edgetpu_compiler
+|  |  |  |-- ld-linux-x86-64.so.2
+|  |  |  |-- libc++.so.1
+|  |  |  |-- libc++abi.so.1
+|  |  |  |-- libc.so.6
+|  |  |  |-- libdl.so.2
+|  |  |  |-- libm.so.6
+|  |  |  |-- libpthread.so.0
+|  |  |  |-- libresolv.so.2
+|  |  |  |-- librt.so.1
+|-- debian
+|  |-- changelog
+|  |-- compat
+|  |-- control
+|  |-- copyright
+|  |-- edgetpu-examples.install
+|  |-- libedgetpu-legacy-dev.install
+|  |-- libedgetpu1-legacy-max.lintian-overrides
+|  |-- libedgetpu1-legacy-max.preinst
+|  |-- libedgetpu1-legacy-max.templates
+|  |-- libedgetpu1-legacy-max.triggers
+|  |-- libedgetpu1-legacy-max.udev
+|  |-- libedgetpu1-legacy-std.lintian-overrides
+|  |-- libedgetpu1-legacy-std.triggers
+|  |-- libedgetpu1-legacy-std.udev
+|  |-- python3-edgetpu.postinst
+|  |-- rules
+|-- docker
+|  |-- Dockerfile
+|  |-- Dockerfile.windows
+|  |-- docker.mk
+|  |-- update_sources.sh
+|-- docs
+|  |-- README.md
+|  |-- conf.py
+|  |-- coral_theme
+|  |  |-- layout.html
+|  |  |-- search.html
+|  |  |-- theme.conf
+|  |-- edgetpu.basic.basic_engine.rst
+|  |-- edgetpu.basic.edgetpu_utils.rst
+|  |-- edgetpu.classification.engine.rst
+|  |-- edgetpu.detection.engine.rst
+|  |-- edgetpu.learn.backprop.softmax_regression.rst
+|  |-- edgetpu.learn.imprinting.engine.rst
+|  |-- edgetpu.utils.dataset_utils.rst
+|  |-- edgetpu.utils.image_processing.rst
+|  |-- index.rst
+|  |-- requirements.txt
+|-- edgetpu
+|  |-- README.md
+|  |-- __init__.py
+|  |-- basic
+|  |  |-- __init__.py
+|  |  |-- basic_engine.py
+|  |  |-- edgetpu_utils.py
+|  |-- classification
+|  |  |-- __init__.py
+|  |  |-- engine.py
+|  |-- detection
+|  |  |-- __init__.py
+|  |  |-- engine.py
+|  |-- learn
+|  |  |-- __init__.py
+|  |  |-- backprop
+|  |  |  |-- __init__.py
+|  |  |  |-- ops.py
+|  |  |  |-- softmax_regression.py
+|  |  |-- imprinting
+|  |  |  |-- __init__.py
+|  |  |  |-- engine.py
+|  |  |-- utils.py
+|  |-- swig
+|  |  |-- __init__.py
+|  |-- utils
+|  |  |-- __init__.py
+|  |  |-- dataset_utils.py
+|  |  |-- image_processing.py
+|  |  |-- warning.py
+|-- examples
+|  |-- README.md
+|  |-- backprop_last_layer.py
+|  |-- classify_capture.py
+|  |-- classify_image.py
+|  |-- imprinting_learning.py
+|  |-- object_detection.py
+|  |-- semantic_segmetation.py
+|  |-- two_models_inference.py
+|-- include
+|  |-- BUILD
+|  |-- glibc_compat.h
+|-- libedgetpu
+|  |-- BUILD
+|  |-- LICENSE.txt
+|  |-- README.md
+|  |-- direct
+|  |  |-- aarch64
+|  |  |  |-- libedgetpu.so.1
+|  |  |  |-- libedgetpu.so.1.0
+|  |  |-- armv6
+|  |  |  |-- libedgetpu.so.1
+|  |  |  |-- libedgetpu.so.1.0
+|  |  |-- armv7a
+|  |  |  |-- libedgetpu.so.1
+|  |  |  |-- libedgetpu.so.1.0
+|  |  |-- darwin
+|  |  |  |-- libedgetpu.1.0.dylib
+|  |  |  |-- libedgetpu.1.dylib
+|  |  |-- k8
+|  |  |  |-- libedgetpu.so.1
+|  |  |  |-- libedgetpu.so.1.0
+|  |  |-- x64_windows
+|  |  |  |-- edgetpu.dll
+|  |  |  |-- edgetpu.dll.if.lib
+|  |-- edgetpu-accelerator.rules
+|  |-- edgetpu.h
+|  |-- edgetpu_c.h
+|  |-- throttled
+|  |  |-- aarch64
+|  |  |  |-- libedgetpu.so.1
+|  |  |  |-- libedgetpu.so.1.0
+|  |  |-- armv6
+|  |  |  |-- libedgetpu.so.1
+|  |  |  |-- libedgetpu.so.1.0
+|  |  |-- armv7a
+|  |  |  |-- libedgetpu.so.1
+|  |  |  |-- libedgetpu.so.1.0
+|  |  |-- darwin
+|  |  |  |-- libedgetpu.1.0.dylib
+|  |  |  |-- libedgetpu.1.dylib
+|  |  |-- k8
+|  |  |  |-- libedgetpu.so.1
+|  |  |  |-- libedgetpu.so.1.0
+|  |  |-- x64_windows
+|  |  |  |-- edgetpu.dll
+|  |  |  |-- edgetpu.dll.if.lib
+|-- scripts
+|  |-- build_deb.sh
+|  |-- build_non_swig.sh
+|  |-- build_runtime.sh
+|  |-- build_swig.sh
+|  |-- compiler
+|  |  |-- edgetpu_compiler_benchmarks_config.txt
+|  |  |-- edgetpu_compiler_tests.py
+|  |  |-- edgetpu_compiler_tests_config.txt
+|  |  |-- prepare_edgetpu_compiler_test.sh
+|  |-- download.sh
+|  |-- lstpu.py
+|  |-- run_cpp_benchmarks.sh
+|  |-- run_cpp_examples.sh
+|  |-- run_cpp_tests.sh
+|  |-- run_python_benchmarks.sh
+|  |-- run_python_examples.sh
+|  |-- run_python_tests.sh
+|  |-- runtime
+|  |  |-- install.sh
+|  |  |-- uninstall.sh
+|  |-- setup_env.sh
+|  |-- setup_python_env.sh
+|  |-- windows
+|  |  |-- build.bat
+|  |  |-- build_wheel.bat
+|  |  |-- clean.bat
+|  |  |-- docker_build.bat
+|  |  |-- docker_make_image.bat
+|  |  |-- docker_make_wheels.bat
+|  |  |-- install.bat
+|  |  |-- rename_library.py
+|  |  |-- run_cpp_tests.bat
+|  |  |-- run_python_tests.bat
+|  |  |-- uninstall.bat
+|-- setup.py
+|-- src
+|  |-- cpp
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- basic
+|  |  |  |-- BUILD
+|  |  |  |-- basic_engine.cc
+|  |  |  |-- basic_engine.h
+|  |  |  |-- basic_engine_native.cc
+|  |  |  |-- basic_engine_native.h
+|  |  |  |-- basic_engine_native_test.cc
+|  |  |  |-- basic_engine_test.cc
+|  |  |  |-- cocompiled_models_benchmark.cc
+|  |  |  |-- edgetpu_resource_manager.cc
+|  |  |  |-- edgetpu_resource_manager.h
+|  |  |  |-- edgetpu_resource_manager_benchmark.cc
+|  |  |  |-- edgetpu_resource_manager_test.cc
+|  |  |  |-- embedding_extractor_models_test.cc
+|  |  |  |-- float_input_model_test.cc
+|  |  |  |-- inference_repeatability_test.cc
+|  |  |  |-- inference_stress_test.cc
+|  |  |  |-- model_benchmark_cases.bzl
+|  |  |  |-- model_loading_stress_test.cc
+|  |  |  |-- multiple_tpus_inference_stress_test.cc
+|  |  |  |-- segmentation_models_test.cc
+|  |  |-- bbox_utils.h
+|  |  |-- bbox_utils_test.cc
+|  |  |-- benchmark_main.cc
+|  |  |-- classification
+|  |  |  |-- BUILD
+|  |  |  |-- engine.cc
+|  |  |  |-- engine.h
+|  |  |  |-- engine_test.cc
+|  |  |-- classification_model_test_main.cc
+|  |  |-- detection
+|  |  |  |-- BUILD
+|  |  |  |-- engine.cc
+|  |  |  |-- engine.h
+|  |  |  |-- engine_test.cc
+|  |  |  |-- models_test.cc
+|  |  |-- error_reporter.cc
+|  |  |-- error_reporter.h
+|  |  |-- error_reporter_test.cc
+|  |  |-- examples
+|  |  |  |-- BUILD
+|  |  |  |-- Makefile
+|  |  |  |-- README.md
+|  |  |  |-- backprop_last_layer.cc
+|  |  |  |-- classify_image.cc
+|  |  |  |-- label_utils.cc
+|  |  |  |-- label_utils.h
+|  |  |  |-- minimal.cc
+|  |  |  |-- model_pipelining.cc
+|  |  |  |-- model_utils.cc
+|  |  |  |-- model_utils.h
+|  |  |  |-- two_models_one_tpu.cc
+|  |  |  |-- two_models_two_tpus_threaded.cc
+|  |  |-- fake_op.cc
+|  |  |-- fake_op.h
+|  |  |-- learn
+|  |  |  |-- BUILD
+|  |  |  |-- backprop
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- cross_entropy_loss.cc
+|  |  |  |  |-- cross_entropy_loss.h
+|  |  |  |  |-- cross_entropy_loss_test.cc
+|  |  |  |  |-- fully_connected.cc
+|  |  |  |  |-- fully_connected.h
+|  |  |  |  |-- fully_connected_test.cc
+|  |  |  |  |-- multi_variate_normal_distribution.cc
+|  |  |  |  |-- multi_variate_normal_distribution.h
+|  |  |  |  |-- multi_variate_normal_distribution_test.cc
+|  |  |  |  |-- operator.h
+|  |  |  |  |-- sgd_updater.cc
+|  |  |  |  |-- sgd_updater.h
+|  |  |  |  |-- sgd_updater_test.cc
+|  |  |  |  |-- softmax.cc
+|  |  |  |  |-- softmax.h
+|  |  |  |  |-- softmax_regression_model.cc
+|  |  |  |  |-- softmax_regression_model.h
+|  |  |  |  |-- softmax_regression_model_benchmark.cc
+|  |  |  |  |-- softmax_regression_model_test.cc
+|  |  |  |  |-- softmax_test.cc
+|  |  |  |  |-- tensor.h
+|  |  |  |  |-- test_utils.cc
+|  |  |  |  |-- test_utils.h
+|  |  |  |  |-- test_utils_test.cc
+|  |  |  |  |-- weight_updater.h
+|  |  |  |-- imprinting
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- engine.cc
+|  |  |  |  |-- engine.h
+|  |  |  |  |-- engine_native.cc
+|  |  |  |  |-- engine_native.h
+|  |  |  |  |-- engine_native_test.cc
+|  |  |  |  |-- engine_test.cc
+|  |  |  |  |-- imprinting_test_base.cc
+|  |  |  |  |-- imprinting_test_base.h
+|  |  |  |-- utils.cc
+|  |  |  |-- utils.h
+|  |  |  |-- utils_test.cc
+|  |  |-- model_benchmark.bzl
+|  |  |-- model_random_input_test_main.cc
+|  |  |-- models_benchmark.cc.template
+|  |  |-- pipeline
+|  |  |  |-- BUILD
+|  |  |  |-- allocator.h
+|  |  |  |-- common.h
+|  |  |  |-- internal
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- aligned_alloc.h
+|  |  |  |  |-- default_allocator.h
+|  |  |  |  |-- memory_pool_allocator.cc
+|  |  |  |  |-- memory_pool_allocator.h
+|  |  |  |  |-- memory_pool_allocator_test.cc
+|  |  |  |  |-- segment_runner.cc
+|  |  |  |  |-- segment_runner.h
+|  |  |  |  |-- segment_runner_test.cc
+|  |  |  |  |-- thread_safe_queue.h
+|  |  |  |-- models_test.cc
+|  |  |  |-- pipelined_model_runner.cc
+|  |  |  |-- pipelined_model_runner.h
+|  |  |  |-- pipelined_model_runner_test.cc
+|  |  |  |-- test_utils.cc
+|  |  |  |-- test_utils.h
+|  |  |  |-- utils.cc
+|  |  |  |-- utils.h
+|  |  |-- posenet
+|  |  |  |-- BUILD
+|  |  |  |-- models_benchmark.cc
+|  |  |  |-- models_test.cc
+|  |  |  |-- posenet_decoder.cc
+|  |  |  |-- posenet_decoder.h
+|  |  |  |-- posenet_decoder_op.cc
+|  |  |  |-- posenet_decoder_op.h
+|  |  |  |-- posenet_decoder_test.cc
+|  |  |  |-- posenet_decoder_tflite_plugin.cc
+|  |  |-- swig
+|  |  |  |-- BUILD
+|  |  |  |-- basic_engine_python_wrapper.cc
+|  |  |  |-- basic_engine_python_wrapper.h
+|  |  |  |-- edgetpu_cpp_wrapper.i
+|  |  |  |-- imprinting_engine_python_wrapper.cc
+|  |  |  |-- imprinting_engine_python_wrapper.h
+|  |  |  |-- numpy.i
+|  |  |-- test_utils.cc
+|  |  |-- test_utils.h
+|  |  |-- tools
+|  |  |  |-- BUILD
+|  |  |  |-- join_tflite_models.cc
+|  |  |  |-- model_pipelining_performance_analysis.cc
+|  |  |  |-- multiple_tpus_performance_analysis.cc
+|  |  |  |-- tflite_graph_util.cc
+|  |  |  |-- tflite_graph_util.h
+|  |  |  |-- tflite_graph_util_test.cc
+|  |  |-- utils.cc
+|  |  |-- utils.h
+|  |  |-- version.cc
+|  |  |-- version.h
+|  |  |-- version_test.cc
+|-- test_data
+|  |-- BUILD
+|  |-- COPYRIGHT
+|  |-- bird.bmp
+|  |-- bird_segmentation.bmp
+|  |-- bird_segmentation_mask.bmp
+|  |-- cat.bmp
+|  |-- cat_1080p.jpg
+|  |-- cat_720p.jpg
+|  |-- classification_test_cases.csv
+|  |-- coco_labels.txt
+|  |-- cocompilation
+|  |  |-- BUILD
+|  |  |-- inception_v1_224_quant_cocompiled_with_3quant_edgetpu.tflite
+|  |  |-- inception_v1_224_quant_cocompiled_with_inception_v4_299_quant_edgetpu.tflite
+|  |  |-- inception_v2_224_quant_cocompiled_with_3quant_edgetpu.tflite
+|  |  |-- inception_v3_299_quant_cocompiled_with_3quant_edgetpu.tflite
+|  |  |-- inception_v3_299_quant_cocompiled_with_inception_v4_299_quant_edgetpu.tflite
+|  |  |-- inception_v4_299_quant_cocompiled_with_3quant_edgetpu.tflite
+|  |  |-- inception_v4_299_quant_cocompiled_with_inception_v1_224_quant_edgetpu.tflite
+|  |  |-- inception_v4_299_quant_cocompiled_with_inception_v3_299_quant_edgetpu.tflite
+|  |  |-- inception_v4_299_quant_cocompiled_with_mobilenet_v1_0.25_128_quant_edgetpu.tflite
+|  |  |-- mobilenet_v1_0.25_128_quant_cocompiled_with_3quant_edgetpu.tflite
+|  |  |-- mobilenet_v1_0.25_128_quant_cocompiled_with_inception_v4_299_quant_edgetpu.tflite
+|  |  |-- mobilenet_v1_0.25_128_quant_cocompiled_with_mobilenet_v1_0.5_160_quant_edgetpu.tflite
+|  |  |-- mobilenet_v1_0.5_160_quant_cocompiled_with_3quant_edgetpu.tflite
+|  |  |-- mobilenet_v1_0.5_160_quant_cocompiled_with_mobilenet_v1_0.25_128_quant_edgetpu.tflite
+|  |  |-- mobilenet_v1_0.75_192_quant_cocompiled_with_3quant_edgetpu.tflite
+|  |  |-- mobilenet_v1_1.0_224_quant_cocompiled_with_3quant_edgetpu.tflite
+|  |  |-- mobilenet_v1_1.0_224_quant_cocompiled_with_mobilenet_v2_1.0_224_quant_edgetpu.tflite
+|  |  |-- mobilenet_v2_1.0_224_quant_cocompiled_with_mobilenet_v1_1.0_224_quant_edgetpu.tflite
+|  |-- deeplabv3_mnv2_dm05_pascal_quant.tflite
+|  |-- deeplabv3_mnv2_dm05_pascal_quant_edgetpu.tflite
+|  |-- deeplabv3_mnv2_pascal_quant.tflite
+|  |-- deeplabv3_mnv2_pascal_quant_edgetpu.tflite
+|  |-- dog_segmentation.bmp
+|  |-- dog_segmentation_mask.bmp
+|  |-- download_imprinting_test_data.sh
+|  |-- download_oxford_17flowers.sh
+|  |-- dragonfly.bmp
+|  |-- efficientnet-edgetpu-L_quant.tflite
+|  |-- efficientnet-edgetpu-L_quant_edgetpu.tflite
+|  |-- efficientnet-edgetpu-L_quant_embedding_extractor.tflite
+|  |-- efficientnet-edgetpu-L_quant_embedding_extractor_edgetpu.tflite
+|  |-- efficientnet-edgetpu-M_quant.tflite
+|  |-- efficientnet-edgetpu-M_quant_edgetpu.tflite
+|  |-- efficientnet-edgetpu-M_quant_embedding_extractor.tflite
+|  |-- efficientnet-edgetpu-M_quant_embedding_extractor_edgetpu.tflite
+|  |-- efficientnet-edgetpu-S_quant.tflite
+|  |-- efficientnet-edgetpu-S_quant_edgetpu.tflite
+|  |-- efficientnet-edgetpu-S_quant_embedding_extractor.tflite
+|  |-- efficientnet-edgetpu-S_quant_embedding_extractor_edgetpu.tflite
+|  |-- face.jpg
+|  |-- grace_hopper.bmp
+|  |-- hot_dog.jpg
+|  |-- imagenet_labels.txt
+|  |-- imprinting
+|  |  |-- BUILD
+|  |  |-- COPYRIGHT
+|  |  |-- cat_test_0.bmp
+|  |  |-- cat_train_0.bmp
+|  |  |-- dog_test_0.bmp
+|  |  |-- dog_train_0.bmp
+|  |  |-- hotdog_test_0.bmp
+|  |  |-- hotdog_train_0.bmp
+|  |  |-- hotdog_train_1.bmp
+|  |-- inat_bird_labels.txt
+|  |-- inat_insect_labels.txt
+|  |-- inat_plant_labels.txt
+|  |-- inception_v1_224_quant.tflite
+|  |-- inception_v1_224_quant_edgetpu.tflite
+|  |-- inception_v2_224_quant.tflite
+|  |-- inception_v2_224_quant_edgetpu.tflite
+|  |-- inception_v3_299_quant.tflite
+|  |-- inception_v3_299_quant_edgetpu.tflite
+|  |-- inception_v4_299_quant.tflite
+|  |-- inception_v4_299_quant_edgetpu.tflite
+|  |-- invalid_models
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- model_invoking_error.tflite
+|  |-- keras_post_training_unet_mv2_128_quant.tflite
+|  |-- keras_post_training_unet_mv2_128_quant_edgetpu.tflite
+|  |-- mobilenet_edgetpu_0.75_224_post_training_quant.tflite
+|  |-- mobilenet_edgetpu_0.75_224_post_training_quant_edgetpu.tflite
+|  |-- mobilenet_edgetpu_1.0_224_post_training_quant.tflite
+|  |-- mobilenet_edgetpu_1.0_224_post_training_quant_edgetpu.tflite
+|  |-- mobilenet_v1_0.25_128_quant.tflite
+|  |-- mobilenet_v1_0.25_128_quant_edgetpu.tflite
+|  |-- mobilenet_v1_0.5_160_quant.tflite
+|  |-- mobilenet_v1_0.5_160_quant_edgetpu.tflite
+|  |-- mobilenet_v1_0.75_192_quant.tflite
+|  |-- mobilenet_v1_0.75_192_quant_edgetpu.tflite
+|  |-- mobilenet_v1_1.0_224_l2norm_quant.tflite
+|  |-- mobilenet_v1_1.0_224_l2norm_quant_edgetpu.tflite
+|  |-- mobilenet_v1_1.0_224_ptq_float_io.tflite
+|  |-- mobilenet_v1_1.0_224_ptq_float_io_edgetpu.tflite
+|  |-- mobilenet_v1_1.0_224_quant.tflite
+|  |-- mobilenet_v1_1.0_224_quant_edgetpu.tflite
+|  |-- mobilenet_v1_1.0_224_quant_embedding_extractor.tflite
+|  |-- mobilenet_v1_1.0_224_quant_embedding_extractor_edgetpu.tflite
+|  |-- mobilenet_v2_1.0_224_inat_bird_quant.tflite
+|  |-- mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite
+|  |-- mobilenet_v2_1.0_224_inat_insect_quant.tflite
+|  |-- mobilenet_v2_1.0_224_inat_insect_quant_edgetpu.tflite
+|  |-- mobilenet_v2_1.0_224_inat_plant_quant.tflite
+|  |-- mobilenet_v2_1.0_224_inat_plant_quant_edgetpu.tflite
+|  |-- mobilenet_v2_1.0_224_quant.tflite
+|  |-- mobilenet_v2_1.0_224_quant_edgetpu.tflite
+|  |-- open_image_v4_subset.copyright
+|  |-- open_image_v4_subset.csv
+|  |-- owl.jpg
+|  |-- parrot.jpg
+|  |-- pascal_voc_segmentation_labels.txt
+|  |-- pet_labels.txt
+|  |-- pets.jpg
+|  |-- pipeline
+|  |  |-- BUILD
+|  |  |-- inception_v3_299_quant_segment_0_of_2_edgetpu.tflite
+|  |  |-- inception_v3_299_quant_segment_0_of_3_edgetpu.tflite
+|  |  |-- inception_v3_299_quant_segment_0_of_4_edgetpu.tflite
+|  |  |-- inception_v3_299_quant_segment_1_of_2_edgetpu.tflite
+|  |  |-- inception_v3_299_quant_segment_1_of_3_edgetpu.tflite
+|  |  |-- inception_v3_299_quant_segment_1_of_4_edgetpu.tflite
+|  |  |-- inception_v3_299_quant_segment_2_of_3_edgetpu.tflite
+|  |  |-- inception_v3_299_quant_segment_2_of_4_edgetpu.tflite
+|  |  |-- inception_v3_299_quant_segment_3_of_4_edgetpu.tflite
+|  |  |-- inception_v4_299_quant_segment_0_of_2_edgetpu.tflite
+|  |  |-- inception_v4_299_quant_segment_0_of_3_edgetpu.tflite
+|  |  |-- inception_v4_299_quant_segment_0_of_4_edgetpu.tflite
+|  |  |-- inception_v4_299_quant_segment_1_of_2_edgetpu.tflite
+|  |  |-- inception_v4_299_quant_segment_1_of_3_edgetpu.tflite
+|  |  |-- inception_v4_299_quant_segment_1_of_4_edgetpu.tflite
+|  |  |-- inception_v4_299_quant_segment_2_of_3_edgetpu.tflite
+|  |  |-- inception_v4_299_quant_segment_2_of_4_edgetpu.tflite
+|  |  |-- inception_v4_299_quant_segment_3_of_4_edgetpu.tflite
+|  |-- posenet
+|  |  |-- BUILD
+|  |  |-- posenet_mobilenet_v1_075_353_481_quant_decoder.tflite
+|  |  |-- posenet_mobilenet_v1_075_353_481_quant_decoder_edgetpu.tflite
+|  |  |-- posenet_mobilenet_v1_075_481_641_quant_decoder.tflite
+|  |  |-- posenet_mobilenet_v1_075_481_641_quant_decoder_edgetpu.tflite
+|  |  |-- posenet_mobilenet_v1_075_721_1281_quant_decoder.tflite
+|  |  |-- posenet_mobilenet_v1_075_721_1281_quant_decoder_edgetpu.tflite
+|  |  |-- test_image.bmp
+|  |-- resized_cat.bmp
+|  |-- ssd_mobilenet_v1_coco_quant_postprocess.tflite
+|  |-- ssd_mobilenet_v1_coco_quant_postprocess_edgetpu.tflite
+|  |-- ssd_mobilenet_v1_fine_tuned_pet.tflite
+|  |-- ssd_mobilenet_v1_fine_tuned_pet_edgetpu.tflite
+|  |-- ssd_mobilenet_v2_coco_quant_postprocess.tflite
+|  |-- ssd_mobilenet_v2_coco_quant_postprocess_edgetpu.tflite
+|  |-- ssd_mobilenet_v2_face_quant_postprocess.tflite
+|  |-- ssd_mobilenet_v2_face_quant_postprocess_edgetpu.tflite
+|  |-- sunflower.bmp
+|  |-- tf_models
+|  |  |-- mobilenet_v1_1.0_224_l2norm_quant.tgz
+|  |-- tools
+|  |  |-- BUILD
+|  |  |-- mobilenet_quant_v1_1.0_224_partial_delegation.tflite
+|  |  |-- mobilenet_quant_v1_1.0_224_partial_delegation_with_bypass.tflite
+|  |  |-- mobilenet_quant_v1_224_feature_layers-custom_op.tflite
+|  |  |-- mobilenet_quant_v1_224_head_layers.tflite
+|  |  |-- ssd_mobilenet_v1_coco_quant_postprocess_base_custom_op.tflite
+|  |  |-- ssd_mobilenet_v1_coco_quant_postprocess_head_layers.tflite
+|  |  |-- ssd_mobilenet_v1_coco_quant_postprocess_partial_delegation.tflite
+|-- tests
+|  |-- basic_engine_test.py
+|  |-- classification_engine_test.py
+|  |-- detection_engine_test.py
+|  |-- edgetpu_learn_utils_test.py
+|  |-- edgetpu_utils_test.py
+|  |-- exception_test.py
+|  |-- imprinting_engine_test.py
+|  |-- imprinting_evaluation_test.py
+|  |-- multiple_tpus_test.py
+|  |-- ops_test.py
+|  |-- softmax_regression_test.py
+|  |-- test_utils.py
+|  |-- version_test.py
+|-- third_party
+|  |-- coral_accelerator_windows
+|  |  |-- Coral_USB_Accelerator.cat
+|  |  |-- Coral_USB_Accelerator.inf
+|  |  |-- Coral_USB_Accelerator_(DFU).cat
+|  |  |-- Coral_USB_Accelerator_(DFU).inf
+|  |  |-- amd64
+|  |  |  |-- WdfCoInstaller01009.dll
+|  |  |  |-- license.rtf
+|  |  |  |-- winusbcoinstaller2.dll
+|  |  |-- coral.cat
+|  |  |-- coral.inf
+|  |  |-- coral.man
+|  |  |-- coral.sys
+|  |-- glog
+|  |  |-- BUILD
+|  |  |-- windows
+|  |  |  |-- BUILD
+|  |  |  |-- glog_cmake.bat
+|  |-- libusb_win
+|  |  |-- README
+|  |  |-- libusb-1.0.dll
+|  |-- python
+|  |  |-- BUILD
+|  |  |-- darwin
+|  |  |  |-- BUILD
+|  |  |-- linux
+|  |  |  |-- BUILD
+|  |  |-- windows
+|  |  |  |-- BUILD
+|  |-- usbdk
+|  |  |-- LICENSE
+|  |  |-- UsbDk_1.0.21_x64.msi

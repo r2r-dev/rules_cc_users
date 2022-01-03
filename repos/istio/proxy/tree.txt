@@ -1,0 +1,503 @@
+|-- .bazelrc
+|-- .bazelversion
+|-- .clang-format
+|-- .gitattributes
+|-- .github
+|  |-- PULL_REQUEST_TEMPLATE.md
+|-- .gitignore
+|-- BUGS-AND-FEATURE-REQUESTS.md
+|-- BUILD
+|-- CODEOWNERS
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- Makefile
+|-- Makefile.core.mk
+|-- Makefile.overrides.mk
+|-- README.md
+|-- SUPPORT.md
+|-- WORKSPACE
+|-- bazel
+|  |-- BUILD
+|  |-- repositories.bzl
+|  |-- wasm.bzl
+|-- common-protos
+|  |-- google
+|  |  |-- protobuf
+|  |  |  |-- duration.proto
+|  |  |  |-- wrappers.proto
+|-- common
+|  |-- .commonfiles.sha
+|  |-- Makefile.common.mk
+|  |-- config
+|  |  |-- .golangci-format.yml
+|  |  |-- .golangci.yml
+|  |  |-- .hadolint.yml
+|  |  |-- .yamllint.yml
+|  |  |-- license-lint.yml
+|  |  |-- mdl.rb
+|  |  |-- sass-lint.yml
+|  |  |-- tslint.json
+|  |-- scripts
+|  |  |-- check_clean_repo.sh
+|  |  |-- copyright-banner-go.txt
+|  |  |-- fix_copyright_banner.sh
+|  |  |-- format_go.sh
+|  |  |-- gobuild.sh
+|  |  |-- kind_provisioner.sh
+|  |  |-- lint_copyright_banner.sh
+|  |  |-- lint_go.sh
+|  |  |-- metallb.yaml
+|  |  |-- report_build_info.sh
+|  |  |-- run.sh
+|  |  |-- setup_env.sh
+|-- envoy.bazelrc
+|-- extensions
+|  |-- BUILD
+|  |-- access_log_policy
+|  |  |-- BUILD
+|  |  |-- config.cc
+|  |  |-- config
+|  |  |  |-- v1alpha1
+|  |  |  |  |-- .gitignore
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- access_log_policy_config.pb.html
+|  |  |  |  |-- access_log_policy_config.proto
+|  |  |-- plugin.cc
+|  |  |-- plugin.h
+|  |-- attributegen
+|  |  |-- .gitignore
+|  |  |-- BUILD
+|  |  |-- config.pb.html
+|  |  |-- config.proto
+|  |  |-- plugin.cc
+|  |  |-- plugin.h
+|  |  |-- plugin_test.cc
+|  |  |-- testdata
+|  |  |  |-- BUILD
+|  |  |  |-- operation.json
+|  |  |  |-- responseCode.json
+|  |  |  |-- server.yaml
+|  |-- common
+|  |  |-- BUILD
+|  |  |-- context.cc
+|  |  |-- context.h
+|  |  |-- istio_dimensions.h
+|  |  |-- istio_dimensions_test.cc
+|  |  |-- node_info.fbs
+|  |  |-- proto_util.cc
+|  |  |-- proto_util.h
+|  |  |-- proto_util_speed_test.cc
+|  |  |-- proto_util_test.cc
+|  |  |-- util.cc
+|  |  |-- util.h
+|  |  |-- util_test.cc
+|  |  |-- wasm
+|  |  |  |-- BUILD
+|  |  |  |-- base64.h
+|  |  |  |-- json_util.cc
+|  |  |  |-- json_util.h
+|  |-- metadata_exchange
+|  |  |-- BUILD
+|  |  |-- config.cc
+|  |  |-- config.pb.html
+|  |  |-- config.proto
+|  |  |-- declare_property.pb.html
+|  |  |-- declare_property.proto
+|  |  |-- plugin.cc
+|  |  |-- plugin.h
+|  |-- stackdriver
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- common
+|  |  |  |-- BUILD
+|  |  |  |-- constants.h
+|  |  |  |-- metrics.cc
+|  |  |  |-- metrics.h
+|  |  |  |-- utils.cc
+|  |  |  |-- utils.h
+|  |  |  |-- utils_test.cc
+|  |  |-- config
+|  |  |  |-- v1alpha1
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- stackdriver_plugin_config.pb.html
+|  |  |  |  |-- stackdriver_plugin_config.proto
+|  |  |-- log
+|  |  |  |-- BUILD
+|  |  |  |-- exporter.cc
+|  |  |  |-- exporter.h
+|  |  |  |-- logger.cc
+|  |  |  |-- logger.h
+|  |  |  |-- logger_test.cc
+|  |  |-- metric
+|  |  |  |-- BUILD
+|  |  |  |-- record.cc
+|  |  |  |-- record.h
+|  |  |  |-- registry.cc
+|  |  |  |-- registry.h
+|  |  |  |-- registry_test.cc
+|  |  |-- stackdriver.cc
+|  |  |-- stackdriver.h
+|  |  |-- stackdriver_plugin_factory.cc
+|  |  |-- testdata
+|  |  |  |-- stackdriver_filter.yaml
+|  |-- stats
+|  |  |-- BUILD
+|  |  |-- config.pb.html
+|  |  |-- config.proto
+|  |  |-- plugin.cc
+|  |  |-- plugin.h
+|  |  |-- plugin_test.cc
+|  |  |-- run_test.sh
+|  |  |-- testdata
+|  |  |  |-- client.yaml
+|  |  |  |-- istio
+|  |  |  |  |-- metadata-exchange_filter.yaml
+|  |  |  |  |-- stats_filter.yaml
+|  |  |  |-- server.yaml
+|-- go.mod
+|-- go.sum
+|-- prow
+|  |-- proxy-common.inc
+|  |-- proxy-postsubmit-centos.sh
+|  |-- proxy-postsubmit.sh
+|  |-- proxy-presubmit-asan.sh
+|  |-- proxy-presubmit-centos-release.sh
+|  |-- proxy-presubmit-release.sh
+|  |-- proxy-presubmit-tsan.sh
+|  |-- proxy-presubmit-wasm.sh
+|  |-- proxy-presubmit.sh
+|-- scripts
+|  |-- check-repository.sh
+|  |-- check-style.sh
+|  |-- gen-testdata.sh
+|  |-- pre-commit
+|  |-- push-debian.sh
+|  |-- release-binary.sh
+|  |-- update_envoy.sh
+|-- src
+|  |-- envoy
+|  |  |-- BUILD
+|  |  |-- extensions
+|  |  |  |-- wasm
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- wasm.cc
+|  |  |-- http
+|  |  |  |-- alpn
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- alpn_filter.cc
+|  |  |  |  |-- alpn_filter.h
+|  |  |  |  |-- alpn_test.cc
+|  |  |  |  |-- config.cc
+|  |  |  |  |-- config.h
+|  |  |  |  |-- config_test.cc
+|  |  |  |-- authn
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- authenticator_base.cc
+|  |  |  |  |-- authenticator_base.h
+|  |  |  |  |-- authenticator_base_test.cc
+|  |  |  |  |-- authn_utils.cc
+|  |  |  |  |-- authn_utils.h
+|  |  |  |  |-- authn_utils_test.cc
+|  |  |  |  |-- filter_context.cc
+|  |  |  |  |-- filter_context.h
+|  |  |  |  |-- filter_context_test.cc
+|  |  |  |  |-- http_filter.cc
+|  |  |  |  |-- http_filter.h
+|  |  |  |  |-- http_filter_factory.cc
+|  |  |  |  |-- http_filter_integration_test.cc
+|  |  |  |  |-- http_filter_test.cc
+|  |  |  |  |-- origin_authenticator.cc
+|  |  |  |  |-- origin_authenticator.h
+|  |  |  |  |-- origin_authenticator_test.cc
+|  |  |  |  |-- peer_authenticator.cc
+|  |  |  |  |-- peer_authenticator.h
+|  |  |  |  |-- peer_authenticator_test.cc
+|  |  |  |  |-- sample
+|  |  |  |  |  |-- APToken
+|  |  |  |  |  |  |-- APToken-example1.jwt
+|  |  |  |  |  |  |-- aptoken-envoy.conf
+|  |  |  |  |  |  |-- guide.txt
+|  |  |  |  |-- test_utils.h
+|  |  |-- tcp
+|  |  |  |-- forward_downstream_sni
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- config.cc
+|  |  |  |  |-- config.h
+|  |  |  |  |-- config.proto
+|  |  |  |  |-- forward_downstream_sni.cc
+|  |  |  |  |-- forward_downstream_sni.h
+|  |  |  |  |-- forward_downstream_sni_test.cc
+|  |  |  |-- metadata_exchange
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- config.cc
+|  |  |  |  |-- config.h
+|  |  |  |  |-- config
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- metadata_exchange.proto
+|  |  |  |  |-- metadata_exchange.cc
+|  |  |  |  |-- metadata_exchange.h
+|  |  |  |  |-- metadata_exchange_initial_header.cc
+|  |  |  |  |-- metadata_exchange_initial_header.h
+|  |  |  |  |-- metadata_exchange_test.cc
+|  |  |  |-- sni_verifier
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- config.cc
+|  |  |  |  |-- config.h
+|  |  |  |  |-- config.proto
+|  |  |  |  |-- sni_verifier.cc
+|  |  |  |  |-- sni_verifier.h
+|  |  |  |  |-- sni_verifier_test.cc
+|  |  |  |-- tcp_cluster_rewrite
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- config.cc
+|  |  |  |  |-- config.h
+|  |  |  |  |-- config_test.cc
+|  |  |  |  |-- tcp_cluster_rewrite.cc
+|  |  |  |  |-- tcp_cluster_rewrite.h
+|  |  |  |  |-- tcp_cluster_rewrite_test.cc
+|  |  |-- upstreams
+|  |  |  |-- http
+|  |  |  |  |-- metadata
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- config.cc
+|  |  |  |  |  |-- config.h
+|  |  |  |  |  |-- integration_test.cc
+|  |  |  |  |  |-- upstream_request.cc
+|  |  |  |  |  |-- upstream_request.h
+|  |  |  |  |  |-- upstream_request_test.cc
+|  |  |-- utils
+|  |  |  |-- BUILD
+|  |  |  |-- authn.cc
+|  |  |  |-- authn.h
+|  |  |  |-- authn_test.cc
+|  |  |  |-- filter_names.cc
+|  |  |  |-- filter_names.h
+|  |  |  |-- trace_headers.h
+|  |  |  |-- utils.cc
+|  |  |  |-- utils.h
+|  |  |  |-- utils_test.cc
+|  |-- istio
+|  |  |-- authn
+|  |  |  |-- BUILD
+|  |  |  |-- context.proto
+|  |  |-- utils
+|  |  |  |-- BUILD
+|  |  |  |-- attribute_names.cc
+|  |  |  |-- attribute_names.h
+|  |  |  |-- utils.cc
+|  |  |  |-- utils.h
+|  |  |  |-- utils_test.cc
+|-- test
+|  |-- envoye2e
+|  |  |-- basic_flow
+|  |  |  |-- basic_test.go
+|  |  |-- driver
+|  |  |  |-- check.go
+|  |  |  |-- envoy.go
+|  |  |  |-- grpc.go
+|  |  |  |-- resource.go
+|  |  |  |-- scenario.go
+|  |  |  |-- stats.go
+|  |  |  |-- tcp.go
+|  |  |  |-- xds.go
+|  |  |-- env
+|  |  |  |-- grpc.go
+|  |  |  |-- grpc_echo
+|  |  |  |  |-- grpc_echo.pb.go
+|  |  |  |  |-- grpc_echo.proto
+|  |  |  |  |-- grpc_echo_grpc.pb.go
+|  |  |  |-- http_client.go
+|  |  |  |-- inventory.go
+|  |  |  |-- ports.go
+|  |  |  |-- utils.go
+|  |  |-- http_metadata_exchange
+|  |  |  |-- exchange_test.go
+|  |  |-- inventory.go
+|  |  |-- ratelimit
+|  |  |  |-- ratelimit_test.go
+|  |  |-- stackdriver_plugin
+|  |  |  |-- cmd
+|  |  |  |  |-- Dockerfile
+|  |  |  |  |-- Makefile
+|  |  |  |  |-- main.go
+|  |  |  |-- fake_stackdriver.go
+|  |  |  |-- stackdriver.go
+|  |  |  |-- stackdriver_test.go
+|  |  |  |-- sts.go
+|  |  |-- stats_plugin
+|  |  |  |-- stats_test.go
+|  |  |-- tcp_metadata_exchange
+|  |  |  |-- tcp_metadata_exchange_test.go
+|  |-- integration
+|  |  |-- BUILD
+|  |  |-- exchanged_token_integration_test.cc
+|  |  |-- istio_http_integration_test_with_envoy_jwt_filter.cc
+|-- testdata
+|  |-- bootstrap
+|  |  |-- client.yaml.tmpl
+|  |  |-- server.yaml.tmpl
+|  |  |-- stats.yaml.tmpl
+|  |-- certs
+|  |  |-- access-token
+|  |  |-- cert-chain.pem
+|  |  |-- client-key.cert
+|  |  |-- client.cert
+|  |  |-- generate.sh
+|  |  |-- key.pem
+|  |  |-- root-cert.pem
+|  |  |-- root.cert
+|  |  |-- root.key
+|  |  |-- server-key.cert
+|  |  |-- server.cert
+|  |  |-- stackdriver.key
+|  |  |-- stackdriver.pem
+|  |-- client_node_metadata.json.tmpl
+|  |-- cluster
+|  |  |-- server.yaml.tmpl
+|  |  |-- tcp_client.yaml.tmpl
+|  |  |-- tcp_server.yaml.tmpl
+|  |-- filters
+|  |  |-- access_log_policy.yaml.tmpl
+|  |  |-- attributegen.yaml.tmpl
+|  |  |-- client_mx_network_filter.yaml.tmpl
+|  |  |-- client_stats_network_filter.yaml.tmpl
+|  |  |-- client_wrong_mx_network_filter.yaml.tmpl
+|  |  |-- extension_config_inbound.yaml.tmpl
+|  |  |-- extension_config_outbound.yaml.tmpl
+|  |  |-- grpc_stats.yaml
+|  |  |-- local_ratelimit_inbound.yaml.tmpl
+|  |  |-- mx_inbound.yaml.tmpl
+|  |  |-- mx_outbound.yaml.tmpl
+|  |  |-- rbac.yaml.tmpl
+|  |  |-- rbac_dry_run_action_allow.yaml.tmpl
+|  |  |-- rbac_dry_run_action_both.yaml.tmpl
+|  |  |-- rbac_dry_run_action_deny.yaml.tmpl
+|  |  |-- rbac_log.yaml.tmpl
+|  |  |-- rbac_tcp.yaml.tmpl
+|  |  |-- server_mx_network_filter.yaml.tmpl
+|  |  |-- server_stats_network_filter.yaml.tmpl
+|  |  |-- stackdriver_inbound.yaml.tmpl
+|  |  |-- stackdriver_network_inbound.yaml.tmpl
+|  |  |-- stackdriver_network_outbound.yaml.tmpl
+|  |  |-- stackdriver_outbound.yaml.tmpl
+|  |  |-- stats_inbound.yaml.tmpl
+|  |  |-- stats_outbound.yaml.tmpl
+|  |-- gce_client_node_metadata.json.tmpl
+|  |-- gce_server_node_metadata.json.tmpl
+|  |-- listener
+|  |  |-- client.yaml.tmpl
+|  |  |-- server.yaml.tmpl
+|  |  |-- tcp_client.yaml.tmpl
+|  |  |-- tcp_server.yaml.tmpl
+|  |-- metric
+|  |  |-- basic_flow_client_requests.yaml.tmpl
+|  |  |-- basic_flow_client_tcp_connection.yaml.tmpl
+|  |  |-- basic_flow_server_requests.yaml.tmpl
+|  |  |-- basic_flow_server_tcp_connection.yaml.tmpl
+|  |  |-- client_custom_metric.yaml.tmpl
+|  |  |-- client_disable_host_header_fallback.yaml.tmpl
+|  |  |-- client_request_messages.yaml.tmpl
+|  |  |-- client_request_total.yaml.tmpl
+|  |  |-- client_request_total_customized.yaml.tmpl
+|  |  |-- client_request_total_endpoint_labels.yaml.tmpl
+|  |  |-- client_response_messages.yaml.tmpl
+|  |  |-- host_header_fallback.yaml.tmpl
+|  |  |-- istio_build.yaml
+|  |  |-- server_disable_host_header_fallback.yaml.tmpl
+|  |  |-- server_request_messages.yaml.tmpl
+|  |  |-- server_request_total.yaml.tmpl
+|  |  |-- server_response_messages.yaml.tmpl
+|  |  |-- stackdriver_callout_metric.yaml.tmpl
+|  |  |-- stackdriver_gateway_callout_metric.yaml.tmpl
+|  |  |-- tcp_client_connection_close.yaml.tmpl
+|  |  |-- tcp_client_connection_open.yaml.tmpl
+|  |  |-- tcp_client_received_bytes.yaml.tmpl
+|  |  |-- tcp_client_sent_bytes.yaml.tmpl
+|  |  |-- tcp_server_connection_close.yaml.tmpl
+|  |  |-- tcp_server_connection_open.yaml.tmpl
+|  |  |-- tcp_server_connection_open_without_mx.yaml.tmpl
+|  |  |-- tcp_server_mx_stats_alpn_found.yaml.tmpl
+|  |  |-- tcp_server_mx_stats_alpn_not_found.yaml.tmpl
+|  |  |-- tcp_server_mx_stats_metadata_added.yaml.tmpl
+|  |  |-- tcp_server_received_bytes.yaml.tmpl
+|  |  |-- tcp_server_sent_bytes.yaml.tmpl
+|  |-- server_node_metadata.json.tmpl
+|  |-- stackdriver
+|  |  |-- client_access_log.yaml.tmpl
+|  |  |-- client_access_log_entry.yaml.tmpl
+|  |  |-- client_config_customized.yaml.tmpl
+|  |  |-- client_gateway_access_log.yaml.tmpl
+|  |  |-- client_gateway_access_log_entry.yaml.tmpl
+|  |  |-- client_request_count.yaml.tmpl
+|  |  |-- client_tcp_access_log_entry.yaml.tmpl
+|  |  |-- client_tcp_access_log_entry_on_open.yaml.tmpl
+|  |  |-- client_tcp_connection_count.yaml.tmpl
+|  |  |-- client_tcp_received_bytes_count.yaml.tmpl
+|  |  |-- gateway_access_log.yaml.tmpl
+|  |  |-- gateway_access_log_entry.yaml.tmpl
+|  |  |-- gce_client_request_count.yaml.tmpl
+|  |  |-- gce_server_request_count.yaml.tmpl
+|  |  |-- server_access_log.yaml.tmpl
+|  |  |-- server_access_log_entry.yaml.tmpl
+|  |  |-- server_audit_log.yaml.tmpl
+|  |  |-- server_audit_log_entry.yaml.tmpl
+|  |  |-- server_request_count.yaml.tmpl
+|  |  |-- server_request_count_source_unknown.yaml.tmpl
+|  |  |-- server_tcp_access_log_entry.yaml.tmpl
+|  |  |-- server_tcp_access_log_entry_on_open.yaml.tmpl
+|  |  |-- server_tcp_connection_count.yaml.tmpl
+|  |  |-- server_tcp_received_bytes_count.yaml.tmpl
+|  |  |-- utf8_client_access_log_entry.yaml.tmpl
+|  |  |-- utf8_server_access_log_entry.yaml.tmpl
+|  |-- stats
+|  |  |-- client_config.yaml
+|  |  |-- client_config_customized.yaml.tmpl
+|  |  |-- client_config_disable_header_fallback.yaml
+|  |  |-- client_config_grpc.yaml.tmpl
+|  |  |-- request_classification_config.yaml
+|  |  |-- server_config.yaml
+|  |  |-- server_config_disable_header_fallback.yaml
+|  |  |-- server_config_grpc.yaml.tmpl
+|  |-- testdata.gen.go
+|  |-- transport_socket
+|  |  |-- client.yaml.tmpl
+|  |  |-- server.yaml.tmpl
+|-- tools
+|  |-- bazel.rc.cloudbuilder
+|  |-- bazel_get_workspace_status
+|  |-- deb
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- conffiles
+|  |  |-- description
+|  |  |-- envoy.json
+|  |  |-- postinst.sh
+|  |  |-- sidecar.env
+|  |  |-- test
+|  |  |  |-- build_docker.sh
+|  |  |  |-- envoy_local.json
+|  |  |  |-- golden.cidr
+|  |  |  |-- golden.defaults
+|  |  |  |-- golden.exclude
+|  |  |  |-- golden.in
+|  |  |  |-- machine_setup.sh
+|  |  |  |-- run_gce_test.sh
+|  |  |  |-- run_pilot_test.sh
+|  |-- docker
+|  |  |-- BUILD
+|  |-- extensionserver
+|  |  |-- Dockerfile
+|  |  |-- README.md
+|  |  |-- config.go
+|  |  |-- config_test.go
+|  |  |-- convert.go
+|  |  |-- envoy.yaml
+|  |  |-- envoyfilter.yaml
+|  |  |-- extensionserver.yaml
+|  |  |-- main
+|  |  |  |-- main.go
+|  |  |-- prefetch.go
+|  |  |-- server.go
+|  |  |-- testdata
+|  |  |  |-- metadata_exchange.yaml
+|  |  |  |-- stats.yaml

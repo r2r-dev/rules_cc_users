@@ -1,0 +1,669 @@
+|-- .bazelrc
+|-- .github
+|  |-- issue_template.md
+|-- .gitignore
+|-- .gitmodules
+|-- AUTHORS
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- RELEASE.md
+|-- WORKSPACE
+|-- tensorflow_serving
+|  |-- BUILD
+|  |-- apis
+|  |  |-- BUILD
+|  |  |-- classification.proto
+|  |  |-- classifier.h
+|  |  |-- get_model_metadata.proto
+|  |  |-- get_model_status.proto
+|  |  |-- inference.proto
+|  |  |-- input.proto
+|  |  |-- internal
+|  |  |  |-- BUILD
+|  |  |  |-- serialized_input.proto
+|  |  |-- logging.proto
+|  |  |-- model.proto
+|  |  |-- model_management.proto
+|  |  |-- model_service.proto
+|  |  |-- model_service_pb2.py
+|  |  |-- model_service_pb2_grpc.py
+|  |  |-- predict.proto
+|  |  |-- prediction_log.proto
+|  |  |-- prediction_service.proto
+|  |  |-- prediction_service_pb2.py
+|  |  |-- prediction_service_pb2_grpc.py
+|  |  |-- regression.proto
+|  |  |-- regressor.h
+|  |  |-- session_service.proto
+|  |  |-- status.proto
+|  |-- batching
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- batch_scheduler_retrier.h
+|  |  |-- batch_scheduler_retrier_test.cc
+|  |  |-- batching_options.h
+|  |  |-- batching_session.cc
+|  |  |-- batching_session.h
+|  |  |-- batching_session_test.cc
+|  |  |-- batching_util.cc
+|  |  |-- batching_util.h
+|  |  |-- batching_util_test.cc
+|  |  |-- incremental_barrier.cc
+|  |  |-- incremental_barrier.h
+|  |  |-- incremental_barrier_test.cc
+|  |  |-- streaming_batch_scheduler.cc
+|  |  |-- streaming_batch_scheduler.h
+|  |  |-- streaming_batch_scheduler_test.cc
+|  |  |-- test_util
+|  |  |  |-- BUILD
+|  |  |  |-- matrix_half_plus_two_saved_model.py
+|  |  |  |-- puppet_batch_scheduler.h
+|  |  |  |-- puppet_batch_scheduler_test.cc
+|  |  |-- testdata
+|  |  |  |-- BUILD
+|  |  |  |-- matrix_half_plus_two
+|  |  |  |  |-- 1
+|  |  |  |  |  |-- saved_model.pb
+|  |  |-- threadsafe_status.cc
+|  |  |-- threadsafe_status.h
+|  |  |-- threadsafe_status_test.cc
+|  |-- config
+|  |  |-- BUILD
+|  |  |-- file_system_storage_path_source.proto
+|  |  |-- log_collector_config.proto
+|  |  |-- logging_config.proto
+|  |  |-- model_server_config.proto
+|  |  |-- monitoring_config.proto
+|  |  |-- platform_config.proto
+|  |  |-- ssl_config.proto
+|  |-- core
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- aspired_version_policy.cc
+|  |  |-- aspired_version_policy.h
+|  |  |-- aspired_version_policy_test.cc
+|  |  |-- aspired_versions_manager.cc
+|  |  |-- aspired_versions_manager.h
+|  |  |-- aspired_versions_manager_benchmark.cc
+|  |  |-- aspired_versions_manager_builder.cc
+|  |  |-- aspired_versions_manager_builder.h
+|  |  |-- aspired_versions_manager_builder_test.cc
+|  |  |-- aspired_versions_manager_test.cc
+|  |  |-- availability_preserving_policy.cc
+|  |  |-- availability_preserving_policy.h
+|  |  |-- availability_preserving_policy_test.cc
+|  |  |-- basic_manager.cc
+|  |  |-- basic_manager.h
+|  |  |-- basic_manager_test.cc
+|  |  |-- caching_manager.cc
+|  |  |-- caching_manager.h
+|  |  |-- caching_manager_test.cc
+|  |  |-- dynamic_source_router.h
+|  |  |-- dynamic_source_router_test.cc
+|  |  |-- load_servables_fast.cc
+|  |  |-- load_servables_fast.h
+|  |  |-- loader.h
+|  |  |-- loader_harness.cc
+|  |  |-- loader_harness.h
+|  |  |-- loader_harness_test.cc
+|  |  |-- log_collector.cc
+|  |  |-- log_collector.h
+|  |  |-- log_collector_test.cc
+|  |  |-- manager.h
+|  |  |-- manager_test.cc
+|  |  |-- manager_wrapper.cc
+|  |  |-- manager_wrapper.h
+|  |  |-- prefix_storage_path_source_adapter.cc
+|  |  |-- prefix_storage_path_source_adapter.h
+|  |  |-- prefix_storage_path_source_adapter_test.cc
+|  |  |-- request_logger.cc
+|  |  |-- request_logger.h
+|  |  |-- request_logger_test.cc
+|  |  |-- resource_preserving_policy.cc
+|  |  |-- resource_preserving_policy.h
+|  |  |-- resource_preserving_policy_test.cc
+|  |  |-- servable_data.h
+|  |  |-- servable_data_test.cc
+|  |  |-- servable_handle.h
+|  |  |-- servable_id.h
+|  |  |-- servable_id_test.cc
+|  |  |-- servable_state.h
+|  |  |-- servable_state_monitor.cc
+|  |  |-- servable_state_monitor.h
+|  |  |-- servable_state_monitor_test.cc
+|  |  |-- server_request_logger.cc
+|  |  |-- server_request_logger.h
+|  |  |-- server_request_logger_test.cc
+|  |  |-- simple_loader.h
+|  |  |-- simple_loader_test.cc
+|  |  |-- source.h
+|  |  |-- source_adapter.h
+|  |  |-- source_adapter_test.cc
+|  |  |-- source_router.h
+|  |  |-- source_router_test.cc
+|  |  |-- static_manager.cc
+|  |  |-- static_manager.h
+|  |  |-- static_manager_test.cc
+|  |  |-- static_source_router.h
+|  |  |-- static_source_router_test.cc
+|  |  |-- storage_path.h
+|  |  |-- storage_path_test.cc
+|  |  |-- target.h
+|  |  |-- test_util
+|  |  |  |-- BUILD
+|  |  |  |-- availability_test_util.cc
+|  |  |  |-- availability_test_util.h
+|  |  |  |-- fake_loader.cc
+|  |  |  |-- fake_loader.h
+|  |  |  |-- fake_loader_source_adapter.cc
+|  |  |  |-- fake_loader_source_adapter.h
+|  |  |  |-- fake_loader_source_adapter.proto
+|  |  |  |-- fake_log_collector.h
+|  |  |  |-- fake_storage_path_source_adapter.cc
+|  |  |  |-- fake_storage_path_source_adapter.h
+|  |  |  |-- manager_test_util.cc
+|  |  |  |-- manager_test_util.h
+|  |  |  |-- mock_loader.h
+|  |  |  |-- mock_log_collector.h
+|  |  |  |-- mock_request_logger.h
+|  |  |  |-- mock_server_request_logger.h
+|  |  |  |-- mock_session.h
+|  |  |  |-- mock_storage_path_target.h
+|  |  |  |-- servable_handle_test_util.h
+|  |  |  |-- session_test_util.cc
+|  |  |  |-- session_test_util.h
+|  |  |  |-- test_main.cc
+|  |-- example
+|  |  |-- BUILD
+|  |  |-- mnist_client.py
+|  |  |-- mnist_input_data.py
+|  |  |-- mnist_saved_model.py
+|  |  |-- resnet_client.cc
+|  |  |-- resnet_client.py
+|  |  |-- resnet_client_grpc.py
+|  |  |-- resnet_k8s.yaml
+|  |  |-- resnet_warmup.py
+|  |-- experimental
+|  |  |-- example
+|  |  |  |-- BUILD
+|  |  |  |-- half_plus_two_with_rpop.py
+|  |  |  |-- half_plus_two_with_rpop_client.py
+|  |  |  |-- remote_predict_client.py
+|  |  |-- tensorflow
+|  |  |  |-- ops
+|  |  |  |  |-- remote_predict
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- kernels
+|  |  |  |  |  |  |-- prediction_service_grpc.cc
+|  |  |  |  |  |  |-- prediction_service_grpc.h
+|  |  |  |  |  |  |-- prediction_service_grpc_test.cc
+|  |  |  |  |  |  |-- remote_predict_op_kernel.cc
+|  |  |  |  |  |  |-- remote_predict_op_kernel.h
+|  |  |  |  |  |  |-- remote_predict_op_kernel_test.cc
+|  |  |  |  |  |-- ops
+|  |  |  |  |  |  |-- remote_predict_op.cc
+|  |  |  |  |  |-- python
+|  |  |  |  |  |  |-- ops
+|  |  |  |  |  |  |  |-- remote_predict_ops.py
+|  |-- g3doc
+|  |  |-- _toc.yaml
+|  |  |-- api_rest.md
+|  |  |-- architecture.md
+|  |  |-- building_with_docker.md
+|  |  |-- custom_op.md
+|  |  |-- custom_servable.md
+|  |  |-- custom_source.md
+|  |  |-- docker.md
+|  |  |-- images
+|  |  |  |-- predict_sequence_diagram.png
+|  |  |  |-- serving_architecture.svg
+|  |  |  |-- tb_profile_overview.png
+|  |  |  |-- tb_profile_setup_dialog.png
+|  |  |  |-- tb_profile_zoom.png
+|  |  |  |-- tf_diagram.svg
+|  |  |-- performance.md
+|  |  |-- saved_model_warmup.md
+|  |  |-- serving_advanced.md
+|  |  |-- serving_basic.md
+|  |  |-- serving_config.md
+|  |  |-- serving_kubernetes.md
+|  |  |-- setup.md
+|  |  |-- signature_defs.md
+|  |  |-- tensorboard.md
+|  |-- model_servers
+|  |  |-- BUILD
+|  |  |-- get_model_status_impl.cc
+|  |  |-- get_model_status_impl.h
+|  |  |-- get_model_status_impl_test.cc
+|  |  |-- grpc_status_util.cc
+|  |  |-- grpc_status_util.h
+|  |  |-- http_rest_api_handler.cc
+|  |  |-- http_rest_api_handler.h
+|  |  |-- http_rest_api_handler_test.cc
+|  |  |-- http_rest_api_util.cc
+|  |  |-- http_rest_api_util.h
+|  |  |-- http_rest_api_util_test.cc
+|  |  |-- http_server.cc
+|  |  |-- http_server.h
+|  |  |-- main.cc
+|  |  |-- model_platform_types.h
+|  |  |-- model_service_impl.cc
+|  |  |-- model_service_impl.h
+|  |  |-- platform_config_util.cc
+|  |  |-- platform_config_util.h
+|  |  |-- prediction_service_impl.cc
+|  |  |-- prediction_service_impl.h
+|  |  |-- profiler_client.py
+|  |  |-- server.cc
+|  |  |-- server.h
+|  |  |-- server_core.cc
+|  |  |-- server_core.h
+|  |  |-- server_core_test.cc
+|  |  |-- tensorflow_model_server_test.py
+|  |  |-- tensorflow_model_server_test_client.py
+|  |  |-- test_util
+|  |  |  |-- BUILD
+|  |  |  |-- mock_server_core.h
+|  |  |  |-- server_core_test_util.cc
+|  |  |  |-- server_core_test_util.h
+|  |  |  |-- storage_path_error_injecting_source_adapter.cc
+|  |  |  |-- storage_path_error_injecting_source_adapter.h
+|  |  |  |-- storage_path_error_injecting_source_adapter.proto
+|  |  |  |-- tensorflow_model_server_test_base.py
+|  |  |-- version.cc
+|  |  |-- version.h
+|  |-- oss_or_google.bzl
+|  |-- repo.bzl
+|  |-- resources
+|  |  |-- BUILD
+|  |  |-- resource_tracker.cc
+|  |  |-- resource_tracker.h
+|  |  |-- resource_tracker_test.cc
+|  |  |-- resource_util.cc
+|  |  |-- resource_util.h
+|  |  |-- resource_util_test.cc
+|  |  |-- resource_values.cc
+|  |  |-- resource_values.h
+|  |  |-- resources.proto
+|  |-- servables
+|  |  |-- hashmap
+|  |  |  |-- BUILD
+|  |  |  |-- hashmap_source_adapter.cc
+|  |  |  |-- hashmap_source_adapter.h
+|  |  |  |-- hashmap_source_adapter.proto
+|  |  |  |-- hashmap_source_adapter_test.cc
+|  |  |-- tensorflow
+|  |  |  |-- BUILD
+|  |  |  |-- bundle_factory_test.h
+|  |  |  |-- bundle_factory_test_util.cc
+|  |  |  |-- bundle_factory_test_util.h
+|  |  |  |-- bundle_factory_util.cc
+|  |  |  |-- bundle_factory_util.h
+|  |  |  |-- bundle_factory_util_test.cc
+|  |  |  |-- classification_service.cc
+|  |  |  |-- classification_service.h
+|  |  |  |-- classification_service_test.cc
+|  |  |  |-- classifier.cc
+|  |  |  |-- classifier.h
+|  |  |  |-- classifier_test.cc
+|  |  |  |-- get_model_metadata_impl.cc
+|  |  |  |-- get_model_metadata_impl.h
+|  |  |  |-- get_model_metadata_impl_test.cc
+|  |  |  |-- machine_learning_metadata.cc
+|  |  |  |-- machine_learning_metadata.h
+|  |  |  |-- machine_learning_metadata_test.cc
+|  |  |  |-- multi_inference.cc
+|  |  |  |-- multi_inference.h
+|  |  |  |-- multi_inference_helper.cc
+|  |  |  |-- multi_inference_helper.h
+|  |  |  |-- multi_inference_helper_test.cc
+|  |  |  |-- multi_inference_test.cc
+|  |  |  |-- oss
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- resource_estimator.cc
+|  |  |  |  |-- resource_estimator.h
+|  |  |  |  |-- resource_estimator_test.cc
+|  |  |  |-- predict_impl.cc
+|  |  |  |-- predict_impl.h
+|  |  |  |-- predict_impl_test.cc
+|  |  |  |-- predict_response_tensor_serialization_option.h
+|  |  |  |-- predict_util.cc
+|  |  |  |-- predict_util.h
+|  |  |  |-- predict_util_test.cc
+|  |  |  |-- regression_service.cc
+|  |  |  |-- regression_service.h
+|  |  |  |-- regression_service_test.cc
+|  |  |  |-- regressor.cc
+|  |  |  |-- regressor.h
+|  |  |  |-- regressor_test.cc
+|  |  |  |-- resource_estimator.h
+|  |  |  |-- saved_model_bundle_factory.cc
+|  |  |  |-- saved_model_bundle_factory.h
+|  |  |  |-- saved_model_bundle_factory_test.cc
+|  |  |  |-- saved_model_bundle_source_adapter.cc
+|  |  |  |-- saved_model_bundle_source_adapter.h
+|  |  |  |-- saved_model_bundle_source_adapter.proto
+|  |  |  |-- saved_model_bundle_source_adapter_test.cc
+|  |  |  |-- saved_model_warmup.cc
+|  |  |  |-- saved_model_warmup.h
+|  |  |  |-- saved_model_warmup_test.cc
+|  |  |  |-- saved_model_warmup_test_util.cc
+|  |  |  |-- saved_model_warmup_test_util.h
+|  |  |  |-- saved_model_warmup_util.cc
+|  |  |  |-- saved_model_warmup_util.h
+|  |  |  |-- saved_model_warmup_util_test.cc
+|  |  |  |-- serving_session.cc
+|  |  |  |-- serving_session.h
+|  |  |  |-- session_bundle_config.proto
+|  |  |  |-- simple_servers.cc
+|  |  |  |-- simple_servers.h
+|  |  |  |-- simple_servers_test.cc
+|  |  |  |-- test_util
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- fake_thread_pool_factory.cc
+|  |  |  |  |-- fake_thread_pool_factory.h
+|  |  |  |  |-- fake_thread_pool_factory.proto
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- bad_half_plus_two
+|  |  |  |  |  |-- 00000123
+|  |  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |  |-- export
+|  |  |  |  |  |  |-- export.meta
+|  |  |  |  |-- bad_model_config.txt
+|  |  |  |  |-- batching_config.txt
+|  |  |  |  |-- export_bad_half_plus_two.py
+|  |  |  |  |-- export_counter.py
+|  |  |  |  |-- good_model_config.txt
+|  |  |  |  |-- half_plus_two_model_metadata.json
+|  |  |  |  |-- mobilenet_v1_quant_tflite.README
+|  |  |  |  |-- mobilenet_v1_quant_tflite
+|  |  |  |  |  |-- 00000123
+|  |  |  |  |  |  |-- model.tflite
+|  |  |  |  |-- monitoring_config.txt
+|  |  |  |  |-- parse_example_tflite.README
+|  |  |  |  |-- parse_example_tflite.py
+|  |  |  |  |-- parse_example_tflite
+|  |  |  |  |  |-- 00000123
+|  |  |  |  |  |  |-- model.tflite
+|  |  |  |  |-- saved_model_counter
+|  |  |  |  |  |-- 00000123
+|  |  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |  |  |-- variables
+|  |  |  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |  |  |-- variables.index
+|  |  |  |  |-- saved_model_half_plus_three
+|  |  |  |  |  |-- 00000123
+|  |  |  |  |  |  |-- assets
+|  |  |  |  |  |  |  |-- foo.txt
+|  |  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |  |  |-- variables
+|  |  |  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |  |  |-- variables.index
+|  |  |  |  |-- saved_model_half_plus_two.py
+|  |  |  |  |-- saved_model_half_plus_two_2_versions
+|  |  |  |  |  |-- 00000123
+|  |  |  |  |  |  |-- assets
+|  |  |  |  |  |  |  |-- foo.txt
+|  |  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |  |  |-- variables
+|  |  |  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |  |  |-- variables.index
+|  |  |  |  |  |-- 00000124
+|  |  |  |  |  |  |-- assets
+|  |  |  |  |  |  |  |-- foo.txt
+|  |  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |  |  |-- variables
+|  |  |  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |  |  |-- variables.index
+|  |  |  |  |-- saved_model_half_plus_two_2_versions_metadata.json
+|  |  |  |  |-- saved_model_half_plus_two_cpu
+|  |  |  |  |  |-- 00000123
+|  |  |  |  |  |  |-- assets
+|  |  |  |  |  |  |  |-- foo.txt
+|  |  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |  |  |-- variables
+|  |  |  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |  |  |-- variables.index
+|  |  |  |  |-- saved_model_half_plus_two_gpu
+|  |  |  |  |  |-- 00000123
+|  |  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |  |  |-- variables
+|  |  |  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |  |  |-- variables.index
+|  |  |  |  |-- saved_model_half_plus_two_gpu_trt
+|  |  |  |  |  |-- 00000123
+|  |  |  |  |  |  |-- assets
+|  |  |  |  |  |  |  |-- foo.txt
+|  |  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |  |  |-- variables
+|  |  |  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |  |  |-- variables.index
+|  |  |  |  |-- saved_model_half_plus_two_mkl
+|  |  |  |  |  |-- 00000123
+|  |  |  |  |  |  |-- assets
+|  |  |  |  |  |  |  |-- foo.txt
+|  |  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |  |  |-- variables
+|  |  |  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |  |  |-- variables.index
+|  |  |  |  |-- saved_model_half_plus_two_mlmd
+|  |  |  |  |  |-- 00000123
+|  |  |  |  |  |  |-- assets.extra
+|  |  |  |  |  |  |  |-- mlmd_uuid
+|  |  |  |  |  |  |-- assets
+|  |  |  |  |  |  |  |-- foo.txt
+|  |  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |  |  |-- variables
+|  |  |  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |  |  |-- variables.index
+|  |  |  |  |-- saved_model_half_plus_two_tf2_2_versions_metadata.json
+|  |  |  |  |-- saved_model_half_plus_two_tf2_cpu
+|  |  |  |  |  |-- 00000123
+|  |  |  |  |  |  |-- assets
+|  |  |  |  |  |  |  |-- foo.txt
+|  |  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |  |  |-- variables
+|  |  |  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |  |  |-- variables.index
+|  |  |  |  |-- saved_model_half_plus_two_tflite
+|  |  |  |  |  |-- 00000123
+|  |  |  |  |  |  |-- model.tflite
+|  |  |  |  |-- saved_model_half_plus_two_tflite_with_sigdef
+|  |  |  |  |  |-- 00000123
+|  |  |  |  |  |  |-- model.tflite
+|  |  |  |  |-- tf_text_regression.README
+|  |  |  |  |-- tf_text_regression
+|  |  |  |  |  |-- 01
+|  |  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |  |  |-- variables
+|  |  |  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |  |  |-- variables.index
+|  |  |  |-- tflite_interpreter_pool.cc
+|  |  |  |-- tflite_interpreter_pool.h
+|  |  |  |-- tflite_interpreter_pool_test.cc
+|  |  |  |-- tflite_session.cc
+|  |  |  |-- tflite_session.h
+|  |  |  |-- tflite_session_main.cc
+|  |  |  |-- tflite_session_test.cc
+|  |  |  |-- thread_pool_factory.h
+|  |  |  |-- thread_pool_factory_config.proto
+|  |  |  |-- util.cc
+|  |  |  |-- util.h
+|  |  |  |-- util_test.cc
+|  |-- serving.bzl
+|  |-- session_bundle
+|  |  |-- BUILD
+|  |  |-- manifest_proto.h
+|  |  |-- oss
+|  |  |  |-- BUILD
+|  |  |  |-- manifest.proto
+|  |  |  |-- session_bundle.h
+|  |  |  |-- session_bundle_util.cc
+|  |  |  |-- session_bundle_util_test.cc
+|  |  |-- session_bundle.h
+|  |  |-- session_bundle_util.h
+|  |  |-- testdata
+|  |  |  |-- half_plus_two
+|  |  |  |  |-- 00000123
+|  |  |  |  |  |-- export-00000-of-00001
+|  |  |  |  |  |-- export.meta
+|  |-- sources
+|  |  |-- storage_path
+|  |  |  |-- BUILD
+|  |  |  |-- file_system_storage_path_source.cc
+|  |  |  |-- file_system_storage_path_source.h
+|  |  |  |-- file_system_storage_path_source_test.cc
+|  |  |  |-- static_storage_path_source.cc
+|  |  |  |-- static_storage_path_source.h
+|  |  |  |-- static_storage_path_source.proto
+|  |  |  |-- static_storage_path_source_test.cc
+|  |-- tensorflow_version.bzl
+|  |-- test_util
+|  |  |-- BUILD
+|  |  |-- test_util.cc
+|  |  |-- test_util.h
+|  |-- tools
+|  |  |-- docker
+|  |  |  |-- Dockerfile
+|  |  |  |-- Dockerfile.devel
+|  |  |  |-- Dockerfile.devel-gpu
+|  |  |  |-- Dockerfile.devel-mkl
+|  |  |  |-- Dockerfile.gpu
+|  |  |  |-- Dockerfile.mkl
+|  |  |  |-- README.md
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- docker_test_lib.sh
+|  |  |  |  |-- dockerfile_devel_gpu_test.sh
+|  |  |  |  |-- dockerfile_devel_gpu_trt_test.sh
+|  |  |  |  |-- dockerfile_devel_mkl_test.sh
+|  |  |  |  |-- dockerfile_devel_test.sh
+|  |  |  |  |-- dockerfile_gpu_test.sh
+|  |  |  |  |-- dockerfile_gpu_trt_test.sh
+|  |  |  |  |-- dockerfile_mkl_test.sh
+|  |  |  |  |-- dockerfile_test.sh
+|  |  |-- pip_package
+|  |  |  |-- BUILD
+|  |  |  |-- build_pip_package.sh
+|  |  |  |-- setup.py
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- any_ptr.h
+|  |  |-- any_ptr_test.cc
+|  |  |-- class_registration.h
+|  |  |-- class_registration_test.cc
+|  |  |-- class_registration_test.proto
+|  |  |-- class_registration_util.cc
+|  |  |-- class_registration_util.h
+|  |  |-- event_bus.h
+|  |  |-- event_bus_test.cc
+|  |  |-- executor.h
+|  |  |-- fast_read_dynamic_ptr.h
+|  |  |-- fast_read_dynamic_ptr_benchmark.cc
+|  |  |-- fast_read_dynamic_ptr_test.cc
+|  |  |-- file_probing_env.cc
+|  |  |-- file_probing_env.h
+|  |  |-- hash.cc
+|  |  |-- hash.h
+|  |  |-- inline_executor.cc
+|  |  |-- inline_executor.h
+|  |  |-- inline_executor_test.cc
+|  |  |-- json_tensor.cc
+|  |  |-- json_tensor.h
+|  |  |-- json_tensor_test.cc
+|  |  |-- net_http
+|  |  |  |-- README.md
+|  |  |  |-- client
+|  |  |  |  |-- internal
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- evhttp_connection.cc
+|  |  |  |  |  |-- evhttp_connection.h
+|  |  |  |  |-- public
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- httpclient.h
+|  |  |  |  |  |-- httpclient_interface.h
+|  |  |  |  |-- testing
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- evhttp_echo_client.cc
+|  |  |  |-- compression
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- gzip_zlib.cc
+|  |  |  |  |-- gzip_zlib.h
+|  |  |  |  |-- gzip_zlib_test.cc
+|  |  |  |-- internal
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- fixed_thread_pool.h
+|  |  |  |  |-- net_logging.cc
+|  |  |  |  |-- net_logging.h
+|  |  |  |  |-- testing
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- net_logging_example.cc
+|  |  |  |-- server
+|  |  |  |  |-- internal
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- evhttp_request.cc
+|  |  |  |  |  |-- evhttp_request.h
+|  |  |  |  |  |-- evhttp_request_test.cc
+|  |  |  |  |  |-- evhttp_server.cc
+|  |  |  |  |  |-- evhttp_server.h
+|  |  |  |  |  |-- evhttp_server_test.cc
+|  |  |  |  |  |-- server_support.h
+|  |  |  |  |-- public
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- header_names.cc
+|  |  |  |  |  |-- header_names.h
+|  |  |  |  |  |-- httpserver.h
+|  |  |  |  |  |-- httpserver_interface.h
+|  |  |  |  |  |-- response_code_enum.h
+|  |  |  |  |  |-- server_request_interface.h
+|  |  |  |  |-- testing
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- evhttp_echo_server.cc
+|  |  |  |-- socket
+|  |  |  |  |-- testing
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- ev_fetch_client.cc
+|  |  |  |  |  |-- ev_print_req_server.cc
+|  |  |-- observer.h
+|  |  |-- observer_test.cc
+|  |  |-- oss_or_google.h
+|  |  |-- prometheus_exporter.cc
+|  |  |-- prometheus_exporter.h
+|  |  |-- prometheus_exporter_test.cc
+|  |  |-- retrier.cc
+|  |  |-- retrier.h
+|  |  |-- retrier_test.cc
+|  |  |-- status_util.cc
+|  |  |-- status_util.h
+|  |  |-- status_util_test.cc
+|  |  |-- test_util
+|  |  |  |-- BUILD
+|  |  |  |-- mock_file_probing_env.h
+|  |  |-- threadpool_executor.cc
+|  |  |-- threadpool_executor.h
+|  |  |-- threadpool_executor_test.cc
+|  |  |-- unique_ptr_with_deps.h
+|  |  |-- unique_ptr_with_deps_test.cc
+|  |-- workspace.bzl
+|-- third_party
+|  |-- icu
+|  |  |-- BUILD
+|  |  |-- README
+|  |  |-- data.patch
+|  |-- libevent
+|  |  |-- BUILD
+|  |-- rapidjson
+|  |  |-- BUILD
+|  |-- tf_text
+|  |  |-- BUILD
+|  |  |-- tftext.patch
+|-- tools
+|  |-- gen_status_stamp.sh
+|  |-- run_in_docker.sh

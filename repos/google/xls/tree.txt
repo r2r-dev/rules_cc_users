@@ -1,0 +1,2190 @@
+|-- .bazelrc
+|-- .gitattributes
+|-- .github
+|  |-- workflows
+|  |  |-- continuous-integration.yml
+|  |  |-- nightly-fuzz.yml
+|  |  |-- nightly-ubuntu-18.04.yml
+|  |  |-- one-bazel-test.yml
+|-- .gitignore
+|-- CONTRIBUTING.md
+|-- Dockerfile-ubuntu-18.04
+|-- Dockerfile-ubuntu-20.04
+|-- Dockerfile-ubuntu-20.10
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- dependency_support
+|  |-- BUILD.bazel
+|  |-- automake_substitution.bzl
+|  |-- boost
+|  |  |-- BUILD
+|  |  |-- add_python.patch
+|  |  |-- initialize.bzl
+|  |  |-- workspace.bzl
+|  |-- com_github_grpc_grpc
+|  |  |-- BUILD
+|  |  |-- grpc-cython.patch
+|  |-- com_google_absl
+|  |  |-- BUILD
+|  |  |-- aarch64_rng_flags.patch
+|  |-- com_grail_bazel_toolchain
+|  |  |-- BUILD
+|  |  |-- google_workstation_workaround.patch
+|  |-- copy.bzl
+|  |-- embedded_python_interpreter
+|  |  |-- BUILD.bazel
+|  |  |-- cc_so_library.bzl
+|  |  |-- print_libpython_path.py
+|  |-- initialize_external.bzl
+|  |-- linenoise
+|  |  |-- BUILD
+|  |  |-- bundled.BUILD.bazel
+|  |-- llvm_bazel
+|  |  |-- BUILD
+|  |  |-- initialize.bzl
+|  |  |-- workspace.bzl
+|  |-- load_external.bzl
+|  |-- org_tuxfamily_eigen
+|  |  |-- BUILD.bazel
+|  |  |-- bundled.BUILD.bazel
+|  |  |-- smoke_test.cc
+|  |  |-- workspace.bzl
+|  |-- pip_requirements.txt
+|  |-- pseudo_configure.bzl
+|  |-- pybind11
+|  |  |-- BUILD
+|  |  |-- pybind11.bzl
+|  |-- rules_hdl
+|  |  |-- BUILD
+|  |  |-- workspace.bzl
+|  |-- z3
+|  |  |-- BUILD
+|  |  |-- build_defs.bzl
+|  |  |-- bundled.BUILD.bazel
+|  |-- zlib
+|  |  |-- BUILD
+|  |  |-- bundled.BUILD.bazel
+|-- docs
+|  |-- 404.html
+|  |-- add2_delay_plot.png
+|  |-- adding_ir_operation
+|  |  |-- index.html
+|  |-- aggregation_tree.png
+|  |-- assets
+|  |  |-- images
+|  |  |  |-- favicon.png
+|  |  |-- javascripts
+|  |  |  |-- bundle.d5fec882.min.js
+|  |  |  |-- bundle.d5fec882.min.js.map
+|  |  |  |-- lunr
+|  |  |  |  |-- min
+|  |  |  |  |  |-- lunr.ar.min.js
+|  |  |  |  |  |-- lunr.da.min.js
+|  |  |  |  |  |-- lunr.de.min.js
+|  |  |  |  |  |-- lunr.du.min.js
+|  |  |  |  |  |-- lunr.es.min.js
+|  |  |  |  |  |-- lunr.fi.min.js
+|  |  |  |  |  |-- lunr.fr.min.js
+|  |  |  |  |  |-- lunr.hu.min.js
+|  |  |  |  |  |-- lunr.it.min.js
+|  |  |  |  |  |-- lunr.ja.min.js
+|  |  |  |  |  |-- lunr.jp.min.js
+|  |  |  |  |  |-- lunr.multi.min.js
+|  |  |  |  |  |-- lunr.nl.min.js
+|  |  |  |  |  |-- lunr.no.min.js
+|  |  |  |  |  |-- lunr.pt.min.js
+|  |  |  |  |  |-- lunr.ro.min.js
+|  |  |  |  |  |-- lunr.ru.min.js
+|  |  |  |  |  |-- lunr.stemmer.support.min.js
+|  |  |  |  |  |-- lunr.sv.min.js
+|  |  |  |  |  |-- lunr.tr.min.js
+|  |  |  |  |  |-- lunr.vi.min.js
+|  |  |  |  |-- tinyseg.min.js
+|  |  |  |-- vendor.d1f5a259.min.js
+|  |  |  |-- vendor.d1f5a259.min.js.map
+|  |  |  |-- worker
+|  |  |  |  |-- search.fae956e7.min.js
+|  |  |  |  |-- search.fae956e7.min.js.map
+|  |  |-- stylesheets
+|  |  |  |-- main.b8ac9624.min.css
+|  |  |  |-- main.b8ac9624.min.css.map
+|  |  |  |-- palette.28f3ef9a.min.css
+|  |  |  |-- palette.28f3ef9a.min.css.map
+|  |-- bidirectional_butterfly.png
+|  |-- bidirectional_tree.png
+|  |-- bitslice_of_sign_ext_1.png
+|  |-- bitslice_of_sign_ext_2.png
+|  |-- bitslice_of_sign_ext_3.png
+|  |-- build_system
+|  |  |-- index.html
+|  |-- butterfly_topology.png
+|  |-- compacted_one_hot_select.png
+|  |-- consecutive_selects.png
+|  |-- contributing
+|  |  |-- index.html
+|  |-- data_layout
+|  |  |-- index.html
+|  |-- deadlock.png
+|  |-- delay_estimation
+|  |  |-- index.html
+|  |-- distribution_tree.png
+|  |-- dslx_intro_example1
+|  |  |-- index.html
+|  |-- dslx_intro_example3
+|  |  |-- index.html
+|  |-- dslx_reference
+|  |  |-- index.html
+|  |-- dslx_std
+|  |  |-- index.html
+|  |-- flatten_butterfly.png
+|  |-- floating_point
+|  |  |-- index.html
+|  |-- fp_adder_viz.png
+|  |-- fpadd_example
+|  |  |-- index.html
+|  |-- fpga_characterization
+|  |  |-- index.html
+|  |-- fully_connected_topology.png
+|  |-- fuzzer
+|  |  |-- index.html
+|  |-- hierarchical_star.png
+|  |-- hierarchical_structure_dimension_order.png
+|  |-- ideas_and_projects
+|  |  |-- index.html
+|  |-- images
+|  |  |-- xls_logo_623_250.png
+|  |  |-- xls_stack_diagram.png
+|  |-- index.html
+|  |-- interpreters
+|  |  |-- index.html
+|  |-- ir_jit
+|  |  |-- index.html
+|  |-- ir_semantics
+|  |  |-- index.html
+|  |-- ir_visualization
+|  |  |-- index.html
+|  |-- line.png
+|  |-- literal_reassoc_after.png
+|  |-- literal_reassoc_before.png
+|  |-- livelock.png
+|  |-- mincut_scheduling_0.png
+|  |-- mincut_scheduling_1.png
+|  |-- mincut_scheduling_2.png
+|  |-- mincut_scheduling_3.png
+|  |-- multi_radix_n_cube.png
+|  |-- multi_radix_n_mesh.png
+|  |-- narrowed_add.png
+|  |-- one_hot_sel_delay_plot.png
+|  |-- one_hot_select_after.png
+|  |-- one_hot_select_before.png
+|  |-- optimizations
+|  |  |-- index.html
+|  |-- reassoc_after.png
+|  |-- reassoc_before.png
+|  |-- repl.gif
+|  |-- ring.png
+|  |-- scheduling
+|  |  |-- index.html
+|  |-- select_chain.png
+|  |-- selector_substitution.png
+|  |-- single_router.png
+|  |-- sitemap.xml
+|  |-- sitemap.xml.gz
+|  |-- solvers
+|  |  |-- index.html
+|  |-- star.png
+|  |-- symmetric_mesh.png
+|  |-- symmetric_torus.png
+|  |-- tools
+|  |  |-- index.html
+|  |-- tools_quick_start
+|  |  |-- index.html
+|  |-- tree_topology.png
+|  |-- two_input_boolean_simplification.png
+|  |-- unidirectional_butterfly.png
+|  |-- vast
+|  |  |-- index.html
+|  |-- xls_noc_butterfly_topology
+|  |  |-- index.html
+|  |-- xls_noc_dimension_order_topology
+|  |  |-- index.html
+|  |-- xls_noc_fully_connected_topology
+|  |  |-- index.html
+|  |-- xls_noc_glossary
+|  |  |-- index.html
+|  |-- xls_noc_readme
+|  |  |-- index.html
+|  |-- xls_noc_star_topology
+|  |  |-- index.html
+|  |-- xls_noc_topologies
+|  |  |-- index.html
+|  |-- xls_noc_tree_topology
+|  |  |-- index.html
+|  |-- xls_style
+|  |  |-- index.html
+|-- docs_src
+|  |-- BUILD
+|  |-- README.md
+|  |-- add2_delay_plot.png
+|  |-- adding_ir_operation.md
+|  |-- aggregation_tree.png
+|  |-- bidirectional_butterfly.png
+|  |-- bidirectional_tree.png
+|  |-- bitslice_of_sign_ext_1.png
+|  |-- bitslice_of_sign_ext_2.png
+|  |-- bitslice_of_sign_ext_3.png
+|  |-- build_system.md
+|  |-- butterfly_topology.png
+|  |-- compacted_one_hot_select.png
+|  |-- consecutive_selects.png
+|  |-- contributing.md
+|  |-- data_layout.md
+|  |-- deadlock.png
+|  |-- delay_estimation.md
+|  |-- distribution_tree.png
+|  |-- dslx_intro_example1.md
+|  |-- dslx_intro_example3.md
+|  |-- dslx_reference.md
+|  |-- dslx_std.md
+|  |-- flatten_butterfly.png
+|  |-- floating_point.md
+|  |-- fp_adder_viz.png
+|  |-- fpadd_example.md
+|  |-- fpga_characterization.md
+|  |-- fully_connected_topology.png
+|  |-- fuzzer.md
+|  |-- hierarchical_star.png
+|  |-- hierarchical_structure_dimension_order.png
+|  |-- ideas_and_projects.md
+|  |-- images
+|  |  |-- xls_logo_623_250.png
+|  |  |-- xls_stack_diagram.png
+|  |-- interpreters.md
+|  |-- ir_jit.md
+|  |-- ir_semantics.md
+|  |-- ir_visualization.md
+|  |-- line.png
+|  |-- literal_reassoc_after.png
+|  |-- literal_reassoc_before.png
+|  |-- livelock.png
+|  |-- mincut_scheduling_0.png
+|  |-- mincut_scheduling_1.png
+|  |-- mincut_scheduling_2.png
+|  |-- mincut_scheduling_3.png
+|  |-- multi_radix_n_cube.png
+|  |-- multi_radix_n_mesh.png
+|  |-- narrowed_add.png
+|  |-- one_hot_sel_delay_plot.png
+|  |-- one_hot_select_after.png
+|  |-- one_hot_select_before.png
+|  |-- optimizations.md
+|  |-- reassoc_after.png
+|  |-- reassoc_before.png
+|  |-- repl.gif
+|  |-- ring.png
+|  |-- scheduling.md
+|  |-- select_chain.png
+|  |-- selector_substitution.png
+|  |-- single_router.png
+|  |-- solvers.md
+|  |-- star.png
+|  |-- symmetric_mesh.png
+|  |-- symmetric_torus.png
+|  |-- tools.md
+|  |-- tools_quick_start.md
+|  |-- tree_topology.png
+|  |-- two_input_boolean_simplification.png
+|  |-- unidirectional_butterfly.png
+|  |-- vast.md
+|  |-- xls_noc_butterfly_topology.md
+|  |-- xls_noc_dimension_order_topology.md
+|  |-- xls_noc_fully_connected_topology.md
+|  |-- xls_noc_glossary.md
+|  |-- xls_noc_readme.md
+|  |-- xls_noc_star_topology.md
+|  |-- xls_noc_topologies.md
+|  |-- xls_noc_tree_topology.md
+|  |-- xls_style.md
+|-- mkdocs.yml
+|-- third_party
+|  |-- xls_berkeley_softfloat
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- fpdiv_2x32.x
+|  |  |-- fpdiv_2x32_test.cc
+|  |-- xls_go_math
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- fp_sincos_32.x
+|  |  |-- fp_sincos_32_test.cc
+|  |  |-- fp_trig_reduce.x
+|  |  |-- fp_trig_reduce_64_test.cc
+|  |  |-- fpexp_32.x
+|  |  |-- fpexp_32_test.cc
+|  |  |-- fpsqrt_32.x
+|  |  |-- fpsqrt_32_test.cc
+|  |-- xls_machsuite
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- fft
+|  |  |  |-- BUILD
+|  |  |  |-- fft.x
+|  |  |  |-- fft_reference.cc
+|  |  |  |-- test_data
+|  |  |  |  |-- dslx_test_data.x
+|  |  |  |  |-- img_in
+|  |  |  |  |-- img_twid_in
+|  |  |  |  |-- real_in
+|  |  |  |  |-- real_twid_in
+|-- xls
+|  |-- AUTHORS
+|  |-- BUILD
+|  |-- build_rules
+|  |  |-- BUILD
+|  |  |-- elab_test.bzl
+|  |  |-- genrule_wrapper.bzl
+|  |  |-- iverilog_test.bzl
+|  |  |-- py_proto_library.bzl
+|  |  |-- tests
+|  |  |  |-- BUILD
+|  |  |  |-- a.x
+|  |  |  |-- add_one.x
+|  |  |  |-- b.x
+|  |  |  |-- c.x
+|  |  |  |-- chaining_example.x
+|  |  |  |-- d.x
+|  |  |  |-- die_if_odd.x
+|  |  |  |-- die_if_odd_validator.x
+|  |  |  |-- e.x
+|  |  |  |-- has_clk.sh
+|  |  |  |-- importer.x
+|  |  |  |-- not_has_clk.sh
+|  |  |  |-- simple_example_five.x
+|  |  |  |-- simple_example_four.x
+|  |  |  |-- simple_example_one.x
+|  |  |  |-- simple_example_three.x
+|  |  |  |-- simple_example_two.x
+|  |  |-- xls_build_defs.bzl
+|  |  |-- xls_codegen_macros.bzl
+|  |  |-- xls_codegen_rules.bzl
+|  |  |-- xls_common_rules.bzl
+|  |  |-- xls_config_rules.bzl
+|  |  |-- xls_dslx_rules.bzl
+|  |  |-- xls_ir_rules.bzl
+|  |  |-- xls_jit_wrapper_rules.bzl
+|  |  |-- xls_macros.bzl
+|  |  |-- xls_oss_config_rules.bzl
+|  |  |-- xls_providers.bzl
+|  |  |-- xls_rules.bzl
+|  |  |-- xls_toolchains.bzl
+|  |-- codegen
+|  |  |-- BUILD
+|  |  |-- block_conversion.cc
+|  |  |-- block_conversion.h
+|  |  |-- block_conversion_test.cc
+|  |  |-- block_generator.cc
+|  |  |-- block_generator.h
+|  |  |-- block_generator_test.cc
+|  |  |-- codegen_checker.cc
+|  |  |-- codegen_checker.h
+|  |  |-- codegen_options.cc
+|  |  |-- codegen_options.h
+|  |  |-- codegen_pass.cc
+|  |  |-- codegen_pass.h
+|  |  |-- codegen_pass_pipeline.cc
+|  |  |-- codegen_pass_pipeline.h
+|  |  |-- combinational_generator.cc
+|  |  |-- combinational_generator.h
+|  |  |-- combinational_generator_test.cc
+|  |  |-- finite_state_machine.cc
+|  |  |-- finite_state_machine.h
+|  |  |-- finite_state_machine_test.cc
+|  |  |-- flattening.cc
+|  |  |-- flattening.h
+|  |  |-- flattening_test.cc
+|  |  |-- lint_annotate.cc
+|  |  |-- lint_annotate.h
+|  |  |-- module_builder.cc
+|  |  |-- module_builder.h
+|  |  |-- module_builder_test.cc
+|  |  |-- module_signature.cc
+|  |  |-- module_signature.h
+|  |  |-- module_signature.proto
+|  |  |-- module_signature_test.cc
+|  |  |-- name_to_bit_count.h
+|  |  |-- node_expressions.cc
+|  |  |-- node_expressions.h
+|  |  |-- pipeline_generator.cc
+|  |  |-- pipeline_generator.h
+|  |  |-- pipeline_generator_test.cc
+|  |  |-- port_legalization_pass.cc
+|  |  |-- port_legalization_pass.h
+|  |  |-- port_legalization_pass_test.cc
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- module_signature.cc
+|  |  |  |-- pipeline_generator.cc
+|  |  |  |-- pipeline_generator_test.py
+|  |  |-- sequential_generator.cc
+|  |  |-- sequential_generator.h
+|  |  |-- sequential_generator_test.cc
+|  |  |-- signature_generation_pass.cc
+|  |  |-- signature_generation_pass.h
+|  |  |-- signature_generator.cc
+|  |  |-- signature_generator.h
+|  |  |-- signature_generator_test.cc
+|  |  |-- state_removal_pass.cc
+|  |  |-- state_removal_pass.h
+|  |  |-- state_removal_pass_test.cc
+|  |  |-- testdata
+|  |  |  |-- block_generator_test_APlusB.svtxt
+|  |  |  |-- block_generator_test_APlusB.vtxt
+|  |  |  |-- block_generator_test_Accumulator.svtxt
+|  |  |  |-- block_generator_test_Accumulator.vtxt
+|  |  |  |-- block_generator_test_PipelinedAPlusB.svtxt
+|  |  |  |-- block_generator_test_PipelinedAPlusB.vtxt
+|  |  |  |-- block_generator_test_PipelinedAPlusBNoReset.svtxt
+|  |  |  |-- block_generator_test_PipelinedAPlusBNoReset.vtxt
+|  |  |  |-- combinational_generator_test_ArrayIndex2DArrayIndexSingleElement.svtxt
+|  |  |  |-- combinational_generator_test_ArrayIndex2DArrayIndexSingleElement.vtxt
+|  |  |  |-- combinational_generator_test_ArrayIndex2DArrayIndexSubArray.svtxt
+|  |  |  |-- combinational_generator_test_ArrayIndex2DArrayIndexSubArray.vtxt
+|  |  |  |-- combinational_generator_test_ArrayIndexNilIndex.svtxt
+|  |  |  |-- combinational_generator_test_ArrayIndexNilIndex.vtxt
+|  |  |  |-- combinational_generator_test_ArrayIndexSimpleArray.svtxt
+|  |  |  |-- combinational_generator_test_ArrayIndexSimpleArray.vtxt
+|  |  |  |-- combinational_generator_test_ArrayIndexWithLiteralIndex.svtxt
+|  |  |  |-- combinational_generator_test_ArrayIndexWithLiteralIndex.vtxt
+|  |  |  |-- combinational_generator_test_ArrayIndexWithNarrowIndex.svtxt
+|  |  |  |-- combinational_generator_test_ArrayIndexWithNarrowIndex.vtxt
+|  |  |  |-- combinational_generator_test_ArrayLiteral.svtxt
+|  |  |  |-- combinational_generator_test_ArrayLiteral.vtxt
+|  |  |  |-- combinational_generator_test_ArraySliceWiderThanInputArray.svtxt
+|  |  |  |-- combinational_generator_test_ArraySliceWiderThanInputArray.vtxt
+|  |  |  |-- combinational_generator_test_ArraySliceWithNarrowStart.svtxt
+|  |  |  |-- combinational_generator_test_ArraySliceWithNarrowStart.vtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdate2DLiteralIndex.svtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdate2DLiteralIndex.vtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdate2DUpdateArrayLiteralIndex.svtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdate2DUpdateArrayLiteralIndex.vtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdate2DUpdateArrayNilIndex.svtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdate2DUpdateArrayNilIndex.vtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdate2DUpdateArrayVariableIndex.svtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdate2DUpdateArrayVariableIndex.vtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdate2DVariableIndex.svtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdate2DVariableIndex.vtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdateBitsNilIndex.svtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdateBitsNilIndex.vtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdateLiteralIndex.svtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdateLiteralIndex.vtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdateVariableIndex.svtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdateVariableIndex.vtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdateWithDifferentTypesIndices.svtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdateWithDifferentTypesIndices.vtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdateWithNarrowIndex.svtxt
+|  |  |  |-- combinational_generator_test_ArrayUpdateWithNarrowIndex.vtxt
+|  |  |  |-- combinational_generator_test_ExpressionWhichRequiresNamedIntermediate.svtxt
+|  |  |  |-- combinational_generator_test_ExpressionWhichRequiresNamedIntermediate.vtxt
+|  |  |  |-- combinational_generator_test_ExpressionsOfTuples.svtxt
+|  |  |  |-- combinational_generator_test_ExpressionsOfTuples.vtxt
+|  |  |  |-- combinational_generator_test_OneHot.svtxt
+|  |  |  |-- combinational_generator_test_OneHot.vtxt
+|  |  |  |-- combinational_generator_test_OneHotSelect.svtxt
+|  |  |  |-- combinational_generator_test_OneHotSelect.vtxt
+|  |  |  |-- combinational_generator_test_RandomExpression.svtxt
+|  |  |  |-- combinational_generator_test_RandomExpression.vtxt
+|  |  |  |-- combinational_generator_test_RrotToCombinationalText.svtxt
+|  |  |  |-- combinational_generator_test_RrotToCombinationalText.vtxt
+|  |  |  |-- combinational_generator_test_TupleLiterals.svtxt
+|  |  |  |-- combinational_generator_test_TupleLiterals.vtxt
+|  |  |  |-- combinational_generator_test_UncommonParameterTypes.svtxt
+|  |  |  |-- combinational_generator_test_UncommonParameterTypes.vtxt
+|  |  |  |-- finite_state_machine_test_ComplexFsm.svtxt
+|  |  |  |-- finite_state_machine_test_ComplexFsm.vtxt
+|  |  |  |-- finite_state_machine_test_CounterFsm.svtxt
+|  |  |  |-- finite_state_machine_test_CounterFsm.vtxt
+|  |  |  |-- finite_state_machine_test_FsmWithNestedLogic.svtxt
+|  |  |  |-- finite_state_machine_test_FsmWithNestedLogic.vtxt
+|  |  |  |-- finite_state_machine_test_OutputAssignments.svtxt
+|  |  |  |-- finite_state_machine_test_OutputAssignments.vtxt
+|  |  |  |-- finite_state_machine_test_SimpleFsm.svtxt
+|  |  |  |-- finite_state_machine_test_SimpleFsm.vtxt
+|  |  |  |-- finite_state_machine_test_TrivialFsm.svtxt
+|  |  |  |-- finite_state_machine_test_TrivialFsm.vtxt
+|  |  |  |-- finite_state_machine_test_TrivialFsmWithOutputs.svtxt
+|  |  |  |-- finite_state_machine_test_TrivialFsmWithOutputs.vtxt
+|  |  |  |-- module_builder_test_AddTwoNumbers.svtxt
+|  |  |  |-- module_builder_test_AddTwoNumbers.vtxt
+|  |  |  |-- module_builder_test_BitSliceUpdateAsFunction.svtxt
+|  |  |  |-- module_builder_test_BitSliceUpdateAsFunction.vtxt
+|  |  |  |-- module_builder_test_ComplexComputation.svtxt
+|  |  |  |-- module_builder_test_ComplexComputation.vtxt
+|  |  |  |-- module_builder_test_DynamicBitSliceAsFunction.svtxt
+|  |  |  |-- module_builder_test_DynamicBitSliceAsFunction.vtxt
+|  |  |  |-- module_builder_test_NewSections.svtxt
+|  |  |  |-- module_builder_test_NewSections.vtxt
+|  |  |  |-- module_builder_test_PassThroughArray.svtxt
+|  |  |  |-- module_builder_test_PassThroughArray.vtxt
+|  |  |  |-- module_builder_test_PassThroughTuple.svtxt
+|  |  |  |-- module_builder_test_PassThroughTuple.vtxt
+|  |  |  |-- module_builder_test_RegisterWithAsynchronousActiveLowReset.svtxt
+|  |  |  |-- module_builder_test_RegisterWithAsynchronousActiveLowReset.vtxt
+|  |  |  |-- module_builder_test_RegisterWithLoadEnable.svtxt
+|  |  |  |-- module_builder_test_RegisterWithLoadEnable.vtxt
+|  |  |  |-- module_builder_test_RegisterWithLoadEnableAndReset.svtxt
+|  |  |  |-- module_builder_test_RegisterWithLoadEnableAndReset.vtxt
+|  |  |  |-- module_builder_test_RegisterWithSynchronousReset.svtxt
+|  |  |  |-- module_builder_test_RegisterWithSynchronousReset.vtxt
+|  |  |  |-- module_builder_test_Registers.svtxt
+|  |  |  |-- module_builder_test_Registers.vtxt
+|  |  |  |-- module_builder_test_ReturnConstantArray.svtxt
+|  |  |  |-- module_builder_test_ReturnConstantArray.vtxt
+|  |  |  |-- module_builder_test_ReturnConstantTuple.svtxt
+|  |  |  |-- module_builder_test_ReturnConstantTuple.vtxt
+|  |  |  |-- module_builder_test_SmulAsFunction.svtxt
+|  |  |  |-- module_builder_test_SmulAsFunction.vtxt
+|  |  |  |-- pipeline_generator_test_AddNegateFlopInputsAndOutputs.svtxt
+|  |  |  |-- pipeline_generator_test_AddNegateFlopInputsAndOutputs.vtxt
+|  |  |  |-- pipeline_generator_test_AddNegateFlopInputsNotOutputs.svtxt
+|  |  |  |-- pipeline_generator_test_AddNegateFlopInputsNotOutputs.vtxt
+|  |  |  |-- pipeline_generator_test_AddNegateFlopNeitherInputsNorOutputs.svtxt
+|  |  |  |-- pipeline_generator_test_AddNegateFlopNeitherInputsNorOutputs.vtxt
+|  |  |  |-- pipeline_generator_test_AddNegateFlopOutputsNotInputs.svtxt
+|  |  |  |-- pipeline_generator_test_AddNegateFlopOutputsNotInputs.vtxt
+|  |  |  |-- pipeline_generator_test_BigExpressionInOneStage.svtxt
+|  |  |  |-- pipeline_generator_test_BigExpressionInOneStage.vtxt
+|  |  |  |-- pipeline_generator_test_BinarySelect.svtxt
+|  |  |  |-- pipeline_generator_test_BinarySelect.vtxt
+|  |  |  |-- pipeline_generator_test_EmitsCoverpoints.svtxt
+|  |  |  |-- pipeline_generator_test_EmitsCoverpoints.vtxt
+|  |  |  |-- pipeline_generator_test_IdentityOfMul.svtxt
+|  |  |  |-- pipeline_generator_test_IdentityOfMul.vtxt
+|  |  |  |-- pipeline_generator_test_ManualPipelineControl.svtxt
+|  |  |  |-- pipeline_generator_test_ManualPipelineControl.vtxt
+|  |  |  |-- pipeline_generator_test_ManualPipelineControlNoInputFlops.svtxt
+|  |  |  |-- pipeline_generator_test_ManualPipelineControlNoInputFlops.vtxt
+|  |  |  |-- pipeline_generator_test_MultidimensionalArray.svtxt
+|  |  |  |-- pipeline_generator_test_MultidimensionalArray.vtxt
+|  |  |  |-- pipeline_generator_test_PassThroughArray.svtxt
+|  |  |  |-- pipeline_generator_test_PassThroughArray.vtxt
+|  |  |  |-- pipeline_generator_test_RequiredNamedIntermediates.svtxt
+|  |  |  |-- pipeline_generator_test_RequiredNamedIntermediates.vtxt
+|  |  |  |-- pipeline_generator_test_ReturnArrayLiteral.svtxt
+|  |  |  |-- pipeline_generator_test_ReturnArrayLiteral.vtxt
+|  |  |  |-- pipeline_generator_test_ReturnLiteral.svtxt
+|  |  |  |-- pipeline_generator_test_ReturnLiteral.vtxt
+|  |  |  |-- pipeline_generator_test_ReturnTupleLiteral.svtxt
+|  |  |  |-- pipeline_generator_test_ReturnTupleLiteral.vtxt
+|  |  |  |-- pipeline_generator_test_SingleAddFlopNeitherInputsNorOutputs.svtxt
+|  |  |  |-- pipeline_generator_test_SingleAddFlopNeitherInputsNorOutputs.vtxt
+|  |  |  |-- pipeline_generator_test_SingleAddFlopOutputsNotInputs.svtxt
+|  |  |  |-- pipeline_generator_test_SingleAddFlopOutputsNotInputs.vtxt
+|  |  |  |-- pipeline_generator_test_SingleNegate.svtxt
+|  |  |  |-- pipeline_generator_test_SingleNegate.vtxt
+|  |  |  |-- pipeline_generator_test_SplitOutputs.svtxt
+|  |  |  |-- pipeline_generator_test_SplitOutputs.vtxt
+|  |  |  |-- pipeline_generator_test_TreeOfAdds.svtxt
+|  |  |  |-- pipeline_generator_test_TreeOfAdds.vtxt
+|  |  |  |-- pipeline_generator_test_TrivialFunction.svtxt
+|  |  |  |-- pipeline_generator_test_TrivialFunction.vtxt
+|  |  |  |-- pipeline_generator_test_TupleOfArrays.svtxt
+|  |  |  |-- pipeline_generator_test_TupleOfArrays.vtxt
+|  |  |  |-- pipeline_generator_test_TwoBitSelector.svtxt
+|  |  |  |-- pipeline_generator_test_TwoBitSelector.vtxt
+|  |  |  |-- pipeline_generator_test_TwoBitSelectorAllCasesPopulated.svtxt
+|  |  |  |-- pipeline_generator_test_TwoBitSelectorAllCasesPopulated.vtxt
+|  |  |  |-- pipeline_generator_test_ValidSignal.svtxt
+|  |  |  |-- pipeline_generator_test_ValidSignal.vtxt
+|  |  |  |-- sequential_generator_test_LoopBodyPipelineTest.svtxt
+|  |  |  |-- sequential_generator_test_LoopBodyPipelineTest.vtxt
+|  |  |-- vast.cc
+|  |  |-- vast.h
+|  |  |-- vast_test.cc
+|  |-- common
+|  |  |-- BUILD
+|  |  |-- bits_util.h
+|  |  |-- case_converters.cc
+|  |  |-- case_converters.h
+|  |  |-- casts.h
+|  |  |-- casts_nc.cc
+|  |  |-- casts_test.cc
+|  |  |-- check_simulator.py
+|  |  |-- config
+|  |  |  |-- BUILD
+|  |  |  |-- xls_config.h
+|  |  |  |-- xls_config_oss.cc
+|  |  |-- file
+|  |  |  |-- BUILD
+|  |  |  |-- file_descriptor.h
+|  |  |  |-- file_descriptor_test.cc
+|  |  |  |-- filesystem.cc
+|  |  |  |-- filesystem.h
+|  |  |  |-- filesystem_test.cc
+|  |  |  |-- filesystem_test.proto
+|  |  |  |-- get_runfile_path.cc
+|  |  |  |-- get_runfile_path.h
+|  |  |  |-- get_runfile_path_test.cc
+|  |  |  |-- path.cc
+|  |  |  |-- path.h
+|  |  |  |-- path_test.cc
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- filesystem.py
+|  |  |  |-- temp_directory.cc
+|  |  |  |-- temp_directory.h
+|  |  |  |-- temp_directory_test.cc
+|  |  |  |-- temp_file.cc
+|  |  |  |-- temp_file.h
+|  |  |  |-- temp_file_test.cc
+|  |  |-- gfile.py
+|  |  |-- indent.cc
+|  |  |-- indent.h
+|  |  |-- init_xls.cc
+|  |  |-- init_xls.h
+|  |  |-- iterator_range.h
+|  |  |-- logging
+|  |  |  |-- BUILD
+|  |  |  |-- capture_stream.cc
+|  |  |  |-- capture_stream.h
+|  |  |  |-- capture_stream_test.cc
+|  |  |  |-- check_ops.h
+|  |  |  |-- condition.h
+|  |  |  |-- errno_saver.h
+|  |  |  |-- errno_saver_test.cc
+|  |  |  |-- log_entry.cc
+|  |  |  |-- log_entry.h
+|  |  |  |-- log_entry_test.cc
+|  |  |  |-- log_flags.cc
+|  |  |  |-- log_flags.h
+|  |  |  |-- log_flags.inc
+|  |  |  |-- log_flags_test.cc
+|  |  |  |-- log_lines.cc
+|  |  |  |-- log_lines.h
+|  |  |  |-- log_lines_test.cc
+|  |  |  |-- log_message.cc
+|  |  |  |-- log_message.h
+|  |  |  |-- log_message_test.cc
+|  |  |  |-- log_sink.h
+|  |  |  |-- logger.cc
+|  |  |  |-- logging.cc
+|  |  |  |-- logging.h
+|  |  |  |-- logging_flags_test.py
+|  |  |  |-- logging_internal.h
+|  |  |  |-- logging_test.cc
+|  |  |  |-- logging_test_base.cc
+|  |  |  |-- logging_test_base.h
+|  |  |  |-- null_guard.h
+|  |  |  |-- null_guard_test.cc
+|  |  |  |-- null_stream.h
+|  |  |  |-- null_stream_test.cc
+|  |  |  |-- scoped_mock_log.h
+|  |  |  |-- vlog_is_on.cc
+|  |  |  |-- vlog_is_on.h
+|  |  |  |-- vlog_is_on.inc
+|  |  |  |-- vlog_is_on_test.cc
+|  |  |-- math_util.cc
+|  |  |-- math_util.h
+|  |  |-- math_util_test.cc
+|  |  |-- memoize.py
+|  |  |-- module_initializer.h
+|  |  |-- module_initializer.inc
+|  |  |-- module_initializer_test.cc
+|  |  |-- multiprocess.py
+|  |  |-- proto_adaptor_utils.h
+|  |  |-- proto_adaptor_utils_test.cc
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- absl_casters.h
+|  |  |  |-- init_xls.cc
+|  |  |-- revision.py
+|  |  |-- runfiles.py
+|  |  |-- runfiles_test.py
+|  |  |-- source_location.h
+|  |  |-- source_location_test.cc
+|  |  |-- status
+|  |  |  |-- BUILD
+|  |  |  |-- error_code_to_status.cc
+|  |  |  |-- error_code_to_status.h
+|  |  |  |-- error_code_to_status_test.cc
+|  |  |  |-- matchers.cc
+|  |  |  |-- matchers.h
+|  |  |  |-- ret_check.cc
+|  |  |  |-- ret_check.h
+|  |  |  |-- ret_check_test.cc
+|  |  |  |-- status_builder.cc
+|  |  |  |-- status_builder.h
+|  |  |  |-- status_builder_test.cc
+|  |  |  |-- status_macros.h
+|  |  |  |-- status_macros_test.cc
+|  |  |  |-- statusor_pybind_caster.h
+|  |  |  |-- statusor_pybind_caster.inc
+|  |  |-- strerror.cc
+|  |  |-- strerror.h
+|  |  |-- strerror_test.cc
+|  |  |-- string_to_int.cc
+|  |  |-- string_to_int.h
+|  |  |-- string_to_int_test.cc
+|  |  |-- strong_int.h
+|  |  |-- strong_int_nc.cc
+|  |  |-- strong_int_test.cc
+|  |  |-- subprocess.cc
+|  |  |-- subprocess.h
+|  |  |-- subprocess_test.cc
+|  |  |-- symbolized_stacktrace.cc
+|  |  |-- symbolized_stacktrace.h
+|  |  |-- symbolized_stacktrace_test.cc
+|  |  |-- test_base.py
+|  |  |-- testdata
+|  |  |  |-- bar.txt
+|  |  |  |-- foo.txt
+|  |  |-- thread.h
+|  |  |-- thread.inc
+|  |  |-- update_golden_files.inc
+|  |  |-- visitor.h
+|  |  |-- visitor_test.cc
+|  |  |-- xls_error.py
+|  |  |-- xls_gunit_main.cc
+|  |-- contrib
+|  |  |-- integrator
+|  |  |  |-- BUILD
+|  |  |  |-- area_model
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- area_characterization_client_main.py
+|  |  |  |  |-- area_estimator.cc
+|  |  |  |  |-- area_estimator.h
+|  |  |  |  |-- area_estimators_test.cc
+|  |  |  |  |-- area_model_testing_2_point_5_mux_per_node.textproto
+|  |  |  |  |-- ice40_lut4.textproto
+|  |  |  |-- integration_algorithms
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- basic_integration_algorithm.cc
+|  |  |  |  |-- basic_integration_algorithm.h
+|  |  |  |  |-- basic_integration_algorithm_test.cc
+|  |  |  |  |-- integration_algorithm.h
+|  |  |  |  |-- integration_algorithm_implementation.h
+|  |  |  |-- integration_builder.cc
+|  |  |  |-- integration_builder.h
+|  |  |  |-- integration_builder_test.cc
+|  |  |  |-- integration_options.cc
+|  |  |  |-- integration_options.h
+|  |  |  |-- ir_integrator.cc
+|  |  |  |-- ir_integrator.h
+|  |  |  |-- ir_integrator_test.cc
+|  |  |-- xlscc
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- hls_block.proto
+|  |  |  |-- main.cc
+|  |  |  |-- metadata_output.proto
+|  |  |  |-- synth_only
+|  |  |  |  |-- ac_compat
+|  |  |  |  |  |-- ac_channel.h
+|  |  |  |  |  |-- ac_fixed.h
+|  |  |  |  |  |-- ac_int.h
+|  |  |  |  |  |-- ac_wait.h
+|  |  |  |  |-- assert.h
+|  |  |  |  |-- iostream
+|  |  |  |  |-- limits
+|  |  |  |  |-- math.h
+|  |  |  |  |-- ostream
+|  |  |  |  |-- stdarg.h
+|  |  |  |  |-- stddef.h
+|  |  |  |  |-- string
+|  |  |  |  |-- type_traits
+|  |  |  |  |-- xls_int.h
+|  |  |  |-- testdata
+|  |  |  |  |-- translator_verilog_test_IOProcComboGenNToOneMux.svtxt
+|  |  |  |  |-- translator_verilog_test_IOProcComboGenNToOneMux.vtxt
+|  |  |  |  |-- translator_verilog_test_IOProcComboGenOneToNMux.svtxt
+|  |  |  |  |-- translator_verilog_test_IOProcComboGenOneToNMux.vtxt
+|  |  |  |-- translator.cc
+|  |  |  |-- translator.h
+|  |  |  |-- translator_test.cc
+|  |  |  |-- translator_verilog_test.cc
+|  |  |  |-- unit_test.cc
+|  |  |  |-- unit_test.h
+|  |  |  |-- xls_int_test.cc
+|  |  |  |-- xlscc_main_test.py
+|  |-- data_structures
+|  |  |-- BUILD
+|  |  |-- algorithm.h
+|  |  |-- algorithm_test.cc
+|  |  |-- binary_decision_diagram.cc
+|  |  |-- binary_decision_diagram.h
+|  |  |-- binary_decision_diagram_test.cc
+|  |  |-- binary_search.cc
+|  |  |-- binary_search.h
+|  |  |-- binary_search_test.cc
+|  |  |-- graph_contraction.h
+|  |  |-- graph_contraction_test.cc
+|  |  |-- inline_bitmap.h
+|  |  |-- inline_bitmap_test.cc
+|  |  |-- leaf_type_tree.h
+|  |  |-- leaf_type_tree_test.cc
+|  |  |-- min_cut.cc
+|  |  |-- min_cut.h
+|  |  |-- min_cut_test.cc
+|  |  |-- path_cut.cc
+|  |  |-- path_cut.h
+|  |  |-- path_cut_test.cc
+|  |  |-- union_find_map.h
+|  |  |-- union_find_map_test.cc
+|  |-- delay_model
+|  |  |-- BUILD
+|  |  |-- analyze_critical_path.cc
+|  |  |-- analyze_critical_path.h
+|  |  |-- build_defs.bzl
+|  |  |-- delay_estimator.cc
+|  |  |-- delay_estimator.h
+|  |  |-- delay_estimator_test.cc
+|  |  |-- delay_estimators.cc
+|  |  |-- delay_estimators.h
+|  |  |-- delay_estimators_test.cc
+|  |  |-- delay_heap.cc
+|  |  |-- delay_heap.h
+|  |  |-- delay_heap_test.cc
+|  |  |-- delay_model.proto
+|  |  |-- delay_model.py
+|  |  |-- delay_model_test.py
+|  |  |-- generate_delay_lookup.py
+|  |  |-- generate_delay_lookup.tmpl
+|  |  |-- models
+|  |  |  |-- BUILD
+|  |  |  |-- unit.textproto
+|  |  |-- op_module_generator.py
+|  |  |-- op_module_generator_test.py
+|  |  |-- testdata
+|  |  |  |-- parallel_op_module.vtxt
+|  |-- dslx
+|  |  |-- BUILD
+|  |  |-- abstract_interpreter.cc
+|  |  |-- abstract_interpreter.h
+|  |  |-- ast.cc
+|  |  |-- ast.h
+|  |  |-- ast_builtin_types.inc
+|  |  |-- ast_test.cc
+|  |  |-- bindings.cc
+|  |  |-- bindings.h
+|  |  |-- bindings_test.cc
+|  |  |-- bit_helpers.py
+|  |  |-- bit_helpers_test.py
+|  |  |-- builtins.cc
+|  |  |-- builtins.h
+|  |  |-- command_line_utils.cc
+|  |  |-- command_line_utils.h
+|  |  |-- concrete_type.cc
+|  |  |-- concrete_type.h
+|  |  |-- concrete_type_test.cc
+|  |  |-- cpp_transpiler.cc
+|  |  |-- cpp_transpiler.h
+|  |  |-- cpp_transpiler_test.cc
+|  |  |-- deduce.cc
+|  |  |-- deduce.h
+|  |  |-- deduce_ctx.cc
+|  |  |-- deduce_ctx.h
+|  |  |-- dslx_builtins.cc
+|  |  |-- dslx_builtins.h
+|  |  |-- error_printer.cc
+|  |  |-- error_printer.h
+|  |  |-- error_printer_test.cc
+|  |  |-- evaluate.cc
+|  |  |-- evaluate.h
+|  |  |-- evaluate_test.cc
+|  |  |-- extract_conversion_order.cc
+|  |  |-- extract_conversion_order.h
+|  |  |-- extract_conversion_order_test.cc
+|  |  |-- highlight_main.cc
+|  |  |-- highlight_main_test.py
+|  |  |-- import_data.cc
+|  |  |-- import_data.h
+|  |  |-- import_routines.cc
+|  |  |-- import_routines.h
+|  |  |-- interp_bindings.cc
+|  |  |-- interp_bindings.h
+|  |  |-- interp_bindings_test.cc
+|  |  |-- interp_value.cc
+|  |  |-- interp_value.h
+|  |  |-- interp_value_test.cc
+|  |  |-- interpreter.cc
+|  |  |-- interpreter.h
+|  |  |-- interpreter
+|  |  |  |-- BUILD
+|  |  |  |-- dslx_test.sh
+|  |  |  |-- interpreter_test.py
+|  |  |  |-- value_test.py
+|  |  |-- interpreter_main.cc
+|  |  |-- interpreter_test.cc
+|  |  |-- ir_converter.cc
+|  |  |-- ir_converter.h
+|  |  |-- ir_converter_main.cc
+|  |  |-- ir_converter_test.cc
+|  |  |-- ir_converter_test.sh
+|  |  |-- mangle.cc
+|  |  |-- mangle.h
+|  |  |-- mangle_test.cc
+|  |  |-- parametric_expression.cc
+|  |  |-- parametric_expression.h
+|  |  |-- parametric_expression_test.cc
+|  |  |-- parametric_instantiator.cc
+|  |  |-- parametric_instantiator.h
+|  |  |-- parse_and_typecheck.cc
+|  |  |-- parse_and_typecheck.h
+|  |  |-- parser.cc
+|  |  |-- parser.h
+|  |  |-- parser_test.cc
+|  |  |-- pos.cc
+|  |  |-- pos.h
+|  |  |-- pos_test.cc
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- ast.cc
+|  |  |  |-- errors.h
+|  |  |  |-- interp_value.cc
+|  |  |  |-- interpreter.cc
+|  |  |-- run_routines.cc
+|  |  |-- run_routines.h
+|  |  |-- run_routines_test.cc
+|  |  |-- scanner.cc
+|  |  |-- scanner.h
+|  |  |-- scanner_keywords.inc
+|  |  |-- scanner_test.cc
+|  |  |-- stdlib
+|  |  |  |-- BUILD
+|  |  |  |-- acm_random.x
+|  |  |  |-- apfloat.x
+|  |  |  |-- bfloat16.x
+|  |  |  |-- float32.x
+|  |  |  |-- float64.x
+|  |  |  |-- std.x
+|  |  |-- symbolic_bindings.cc
+|  |  |-- symbolic_bindings.h
+|  |  |-- testdata
+|  |  |  |-- ir_converter_test_ArrayConcat0.ir
+|  |  |  |-- ir_converter_test_ArrayEllipsis.ir
+|  |  |  |-- ir_converter_test_ArrayUpdate.ir
+|  |  |  |-- ir_converter_test_ArrayUpdateInLoop.ir
+|  |  |  |-- ir_converter_test_BasicStruct.ir
+|  |  |  |-- ir_converter_test_BitSliceCast.ir
+|  |  |  |-- ir_converter_test_BitSliceSyntax.ir
+|  |  |  |-- ir_converter_test_BitSliceUpdate.ir
+|  |  |  |-- ir_converter_test_BoolLiterals.ir
+|  |  |  |-- ir_converter_test_CastOfAdd.ir
+|  |  |  |-- ir_converter_test_Concat.ir
+|  |  |  |-- ir_converter_test_ConstexprFunction.ir
+|  |  |  |-- ir_converter_test_ConstexprImport.ir
+|  |  |  |-- ir_converter_test_ConvertCoverOp.ir
+|  |  |  |-- ir_converter_test_ConvertOneFunctionWithImport.ir
+|  |  |  |-- ir_converter_test_CountedFor.ir
+|  |  |  |-- ir_converter_test_CountedForDestructuring.ir
+|  |  |  |-- ir_converter_test_CountedForInvokingFunctionFromBody.ir
+|  |  |  |-- ir_converter_test_CountedForParametricConst.ir
+|  |  |  |-- ir_converter_test_CountedForParametricRefInBody.ir
+|  |  |  |-- ir_converter_test_CountedForWithLoopInvariants.ir
+|  |  |  |-- ir_converter_test_CountedForWithTupleAccumulator.ir
+|  |  |  |-- ir_converter_test_EnumUse.ir
+|  |  |  |-- ir_converter_test_ExtendConversions.ir
+|  |  |  |-- ir_converter_test_FailInMatch.ir
+|  |  |  |-- ir_converter_test_FailInMatchInvocation.ir
+|  |  |  |-- ir_converter_test_FailInTernaryAlternate.ir
+|  |  |  |-- ir_converter_test_FailInTernaryConsequent.ir
+|  |  |  |-- ir_converter_test_FailInsideFor.ir
+|  |  |  |-- ir_converter_test_FailInsideForWithTupleAccum.ir
+|  |  |  |-- ir_converter_test_FailIsElided.ir
+|  |  |  |-- ir_converter_test_FailOutsideFor.ir
+|  |  |  |-- ir_converter_test_Identity.ir
+|  |  |  |-- ir_converter_test_IdentityFinalArg.ir
+|  |  |  |-- ir_converter_test_ImportEnumValue.ir
+|  |  |  |-- ir_converter_test_Index.ir
+|  |  |  |-- ir_converter_test_InvocationMultiSymbol.ir
+|  |  |  |-- ir_converter_test_InvokeMethodThatFails.ir
+|  |  |  |-- ir_converter_test_InvokeMultipleArgs.ir
+|  |  |  |-- ir_converter_test_InvokeNullary.ir
+|  |  |  |-- ir_converter_test_InvokeParametricThatFails.ir
+|  |  |  |-- ir_converter_test_InvokeParametricThatInvokesFailing.ir
+|  |  |  |-- ir_converter_test_LetBinding.ir
+|  |  |  |-- ir_converter_test_LetTupleBinding.ir
+|  |  |  |-- ir_converter_test_LetTupleBindingNested.ir
+|  |  |  |-- ir_converter_test_Match.ir
+|  |  |  |-- ir_converter_test_MatchDense.ir
+|  |  |  |-- ir_converter_test_MatchDenseConsts.ir
+|  |  |  |-- ir_converter_test_MatchIdentity.ir
+|  |  |  |-- ir_converter_test_MatchMultiFail.ir
+|  |  |  |-- ir_converter_test_MatchPackageLevelConstant.ir
+|  |  |  |-- ir_converter_test_MatchUnderLet.ir
+|  |  |  |-- ir_converter_test_MatchWithlet.ir
+|  |  |  |-- ir_converter_test_ModuleLevelConstantDims.ir
+|  |  |  |-- ir_converter_test_NamedConstant.ir
+|  |  |  |-- ir_converter_test_NegativeX.ir
+|  |  |  |-- ir_converter_test_NestedTupleSignature.ir
+|  |  |  |-- ir_converter_test_NonConstArrayEllipsis.ir
+|  |  |  |-- ir_converter_test_NonpublicFnDoesNotGetTokenWrapper.ir
+|  |  |  |-- ir_converter_test_OneHotSelSplatVariadic.ir
+|  |  |  |-- ir_converter_test_PackageLevelConstantArray.ir
+|  |  |  |-- ir_converter_test_PackageLevelConstantArrayAccess.ir
+|  |  |  |-- ir_converter_test_ParametricConstexprFn.ir
+|  |  |  |-- ir_converter_test_ParametricConstexprImport.ir
+|  |  |  |-- ir_converter_test_ParametricInvocation.ir
+|  |  |  |-- ir_converter_test_ParametricIrConversion.ir
+|  |  |  |-- ir_converter_test_PublicFnGetsTokenWrapper.ir
+|  |  |  |-- ir_converter_test_SignedComparisons.ir
+|  |  |  |-- ir_converter_test_SignedComparisonsViaSignedNumbers.ir
+|  |  |  |-- ir_converter_test_SignedDiv.ir
+|  |  |  |-- ir_converter_test_Signex.ir
+|  |  |  |-- ir_converter_test_SignexAcceptsSignedOutputType.ir
+|  |  |  |-- ir_converter_test_SingleElementBitsArrayParam.ir
+|  |  |  |-- ir_converter_test_SingleElementEnumArrayParam.ir
+|  |  |  |-- ir_converter_test_SplatStructInstance.ir
+|  |  |  |-- ir_converter_test_Struct.ir
+|  |  |  |-- ir_converter_test_StructWithConstSizedArray.ir
+|  |  |  |-- ir_converter_test_Ternary.ir
+|  |  |  |-- ir_converter_test_TokenIdentityFunction.ir
+|  |  |  |-- ir_converter_test_TransitiveParametricInvocation.ir
+|  |  |  |-- ir_converter_test_TupleIndex.ir
+|  |  |  |-- ir_converter_test_TupleOfLiterals.ir
+|  |  |  |-- ir_converter_test_TupleOfParameters.ir
+|  |  |  |-- ir_converter_test_TwoPlusTwo.ir
+|  |  |  |-- ir_converter_test_UnconditionalFail.ir
+|  |  |  |-- ir_converter_test_WidthSlice.ir
+|  |  |-- tests
+|  |  |  |-- BUILD
+|  |  |  |-- array_concat.x
+|  |  |  |-- array_ellipsis.x
+|  |  |  |-- array_of_tuple.x
+|  |  |  |-- array_of_typedef_in_tuple.x
+|  |  |  |-- array_slice.x
+|  |  |  |-- array_with_binary_dim.x
+|  |  |  |-- basic_array.x
+|  |  |  |-- basic_enum_array.x
+|  |  |  |-- basic_struct.x
+|  |  |  |-- basic_struct_array.x
+|  |  |  |-- basic_struct_attr.x
+|  |  |  |-- basic_struct_parameter.x
+|  |  |  |-- basic_struct_update.x
+|  |  |  |-- binops.x
+|  |  |  |-- bit_slice.x
+|  |  |  |-- bit_slice_syntax.x
+|  |  |  |-- bit_slice_update.x
+|  |  |  |-- bits_concat.x
+|  |  |  |-- bitslice_negated_constexpr_bounds.x
+|  |  |  |-- bitslice_with_constexpr_bounds.x
+|  |  |  |-- call_imported_fn_simple.x
+|  |  |  |-- cast_to_array.x
+|  |  |  |-- casts.x
+|  |  |  |-- clz.x
+|  |  |  |-- comparisons.x
+|  |  |  |-- compound_eq.x
+|  |  |  |-- const_slice_limit.x
+|  |  |  |-- const_value_as_nested_loop_bound.x
+|  |  |  |-- constant_array_unannotated_type.x
+|  |  |  |-- constexpr.x
+|  |  |  |-- constexpr_attrs.x
+|  |  |  |-- constexpr_clog2.x
+|  |  |  |-- constexpr_imported_clog2.x
+|  |  |  |-- constexpr_slice.x
+|  |  |  |-- constexpr_types_via_invocations.x
+|  |  |  |-- constexpr_types_via_invocations_inline.x
+|  |  |  |-- constexpr_types_via_stdlib_invocation.x
+|  |  |  |-- constexpr_with_typed_stuff_after.x
+|  |  |  |-- cover.x
+|  |  |  |-- ctz.x
+|  |  |  |-- derived_parametric_value_as_nested_loop_bound.x
+|  |  |  |-- derived_parametrics.x
+|  |  |  |-- empty_struct_splat_update.x
+|  |  |  |-- enum_value_from_const.x
+|  |  |  |-- enum_values.x
+|  |  |  |-- errors
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- arg0_type_mismatch.x
+|  |  |  |  |-- arg1_type_mismatch.x
+|  |  |  |  |-- array_type_dimension_with_width_annotated.x
+|  |  |  |  |-- bad_annotation.x
+|  |  |  |  |-- bad_dim.x
+|  |  |  |  |-- brace_scope.x
+|  |  |  |  |-- cast_int_to_struct.x
+|  |  |  |  |-- cast_struct_to_int.x
+|  |  |  |  |-- co_recursion.x
+|  |  |  |  |-- colon_ref_builtin.x
+|  |  |  |  |-- colon_ref_of_type_alias.x
+|  |  |  |  |-- constant_without_type_annot.x
+|  |  |  |  |-- coverpoint_bad_name.x
+|  |  |  |  |-- destructure_fallible.x
+|  |  |  |  |-- double_define_parameter.x
+|  |  |  |  |-- double_define_test_function.x
+|  |  |  |  |-- double_define_top_level_function.x
+|  |  |  |  |-- duplicate_match_arm.x
+|  |  |  |  |-- empty_array.x
+|  |  |  |  |-- enum_with_type_on_value.x
+|  |  |  |  |-- error_modules_test.py
+|  |  |  |  |-- has_type_error.x
+|  |  |  |  |-- imports_and_causes_ref_error.x
+|  |  |  |  |-- imports_and_typedefs_dne_type.x
+|  |  |  |  |-- imports_has_type_error.x
+|  |  |  |  |-- imports_private_enum.x
+|  |  |  |  |-- index_struct_value.x
+|  |  |  |  |-- invalid_array_expression_size.x
+|  |  |  |  |-- invalid_array_expression_type.x
+|  |  |  |  |-- invalid_colon_ref_as_literal_type.x
+|  |  |  |  |-- invalid_colon_ref_as_literal_type_mod.x
+|  |  |  |  |-- invalid_parameter_cast.x
+|  |  |  |  |-- let_destructure_same_name.x
+|  |  |  |  |-- match_multi_pattern_with_bindings.x
+|  |  |  |  |-- match_not_exhaustive.x
+|  |  |  |  |-- mod_private_enum.x
+|  |  |  |  |-- multiple_mod_level_const_bindings.x
+|  |  |  |  |-- negative_shift_amount_shl.x
+|  |  |  |  |-- negative_shift_amount_shr.x
+|  |  |  |  |-- no_radix.x
+|  |  |  |  |-- non_const_array_type_dimension.x
+|  |  |  |  |-- non_constexpr_slice.x
+|  |  |  |  |-- over_shift_amount.x
+|  |  |  |  |-- parametric_plus_global_as_dimension.x
+|  |  |  |  |-- self_recursion.x
+|  |  |  |  |-- signed_array_size.x
+|  |  |  |  |-- signed_parametric_in_array_size.x
+|  |  |  |  |-- tail_call.x
+|  |  |  |  |-- two_failing_tests.x
+|  |  |  |-- explicit_parametric.x
+|  |  |  |-- explicit_parametric_reduced.x
+|  |  |  |-- explicit_parametric_simple.x
+|  |  |  |-- for_enum_ref.x
+|  |  |  |-- for_rotate.x
+|  |  |  |-- for_sans_type_annotation.x
+|  |  |  |-- for_up_to_const.x
+|  |  |  |-- for_up_to_const_local.x
+|  |  |  |-- for_up_to_constexpr_cast.x
+|  |  |  |-- function_called_in_derived_parametric_simple.x
+|  |  |  |-- function_called_in_derived_parametric_struct_simple.x
+|  |  |  |-- identifiers_with_ticks.x
+|  |  |  |-- import_constexpr.x
+|  |  |  |-- importer_const_in_range.x
+|  |  |  |-- importer_const_in_return_type.x
+|  |  |  |-- let_match_tuple.x
+|  |  |  |-- local_const_value.x
+|  |  |  |-- local_const_value_as_nested_loop_bound.x
+|  |  |  |-- local_const_value_in_parametric.x
+|  |  |  |-- local_const_value_in_parametric_match.x
+|  |  |  |-- map.x
+|  |  |  |-- map_multi_module.x
+|  |  |  |-- map_of_stdlib_parametric.x
+|  |  |  |-- mask_bits.x
+|  |  |  |-- match_const.x
+|  |  |  |-- match_multi.x
+|  |  |  |-- match_sample.x
+|  |  |  |-- mod_const_array_of_enum_importer.x
+|  |  |  |-- mod_const_enum_importer.x
+|  |  |  |-- mod_const_importer.x
+|  |  |  |-- mod_const_in_type_alias.x
+|  |  |  |-- mod_const_in_type_alias_expr.x
+|  |  |  |-- mod_enum_fully_qualified_match_importer.x
+|  |  |  |-- mod_enum_importer.x
+|  |  |  |-- mod_enum_use_in_for_match_importer.x
+|  |  |  |-- mod_imported.x
+|  |  |  |-- mod_imported_access_const_struct.x
+|  |  |  |-- mod_imported_aliases.x
+|  |  |  |-- mod_imported_array.x
+|  |  |  |-- mod_imported_const_struct.x
+|  |  |  |-- mod_imported_lsb.x
+|  |  |  |-- mod_imported_struct_of_enum.x
+|  |  |  |-- mod_imported_typedef.x
+|  |  |  |-- mod_importer.x
+|  |  |  |-- mod_importer_access_const_struct.x
+|  |  |  |-- mod_importer_access_const_struct_indirect.x
+|  |  |  |-- mod_importer_simple.x
+|  |  |  |-- mod_importer_struct_of_enum.x
+|  |  |  |-- mod_importer_typedef.x
+|  |  |  |-- mod_parametric_id.x
+|  |  |  |-- mod_parametric_id_indirect.x
+|  |  |  |-- mod_parametric_id_user.x
+|  |  |  |-- mod_parametric_id_with_default.x
+|  |  |  |-- mod_simple_const.x
+|  |  |  |-- mod_simple_const_array_of_enums.x
+|  |  |  |-- mod_simple_const_enum.x
+|  |  |  |-- mod_simple_enum.x
+|  |  |  |-- mod_simple_enum_alias_importer.x
+|  |  |  |-- mod_simple_enum_importer.x
+|  |  |  |-- mod_struct_importer.x
+|  |  |  |-- mod_struct_point.x
+|  |  |  |-- mod_typedef_importer.x
+|  |  |  |-- multiplies.x
+|  |  |  |-- nest_alias_const_array.x
+|  |  |  |-- non_parametric_called_solely_from_parametric.x
+|  |  |  |-- number_of_imported_type.x
+|  |  |  |-- number_of_imported_type_import.x
+|  |  |  |-- numerical_conversions.x
+|  |  |  |-- numerical_conversions2.x
+|  |  |  |-- one_hot.x
+|  |  |  |-- one_hot_sel.x
+|  |  |  |-- parametric_array_of_tuples.x
+|  |  |  |-- parametric_call_parametric.x
+|  |  |  |-- parametric_const_ref.x
+|  |  |  |-- parametric_dot_product.x
+|  |  |  |-- parametric_enum_value.x
+|  |  |  |-- parametric_functions.x
+|  |  |  |-- parametric_id_with_default_user.x
+|  |  |  |-- parametric_import.x
+|  |  |  |-- parametric_importer.x
+|  |  |  |-- parametric_multidim_array.x
+|  |  |  |-- parametric_smul.x
+|  |  |  |-- parametric_struct.x
+|  |  |  |-- parametric_struct_simple.x
+|  |  |  |-- parametric_to_value.x
+|  |  |  |-- parametric_used_in_for.x
+|  |  |  |-- parametric_value_as_nested_loop_bound.x
+|  |  |  |-- parametric_with_comparison.x
+|  |  |  |-- reductions.x
+|  |  |  |-- reverse.x
+|  |  |  |-- signed_comparisons.x
+|  |  |  |-- signed_number_type.x
+|  |  |  |-- signex_builtin.x
+|  |  |  |-- simple_enum_usage.x
+|  |  |  |-- std_alias.x
+|  |  |  |-- std_lsb.x
+|  |  |  |-- string_conversion.x
+|  |  |  |-- struct_equality.x
+|  |  |  |-- struct_splat_update.x
+|  |  |  |-- struct_splat_update_to_const.x
+|  |  |  |-- subtract_to_negative.x
+|  |  |  |-- test_f_calls_parametric_f.x
+|  |  |  |-- trace.x
+|  |  |  |-- tuple_indexing.x
+|  |  |  |-- tuple_with_array_member.x
+|  |  |  |-- type_aliasing_importer.x
+|  |  |  |-- typedef_multidim_array.x
+|  |  |  |-- update_within_parametric.x
+|  |  |  |-- width_slice_to_parametric.x
+|  |  |-- token_parser.cc
+|  |  |-- token_parser.h
+|  |  |-- type_and_bindings.h
+|  |  |-- type_info.cc
+|  |  |-- type_info.h
+|  |  |-- type_info_test.cc
+|  |  |-- typecheck.cc
+|  |  |-- typecheck.h
+|  |  |-- typecheck_test.cc
+|  |-- examples
+|  |  |-- BUILD
+|  |  |-- adler32.x
+|  |  |-- adler32_reference.cc
+|  |  |-- capitalize.x
+|  |  |-- crc32.x
+|  |  |-- crc32_reference.cc
+|  |  |-- cubic_bezier.x
+|  |  |-- dot_product.x
+|  |  |-- dslx_intro
+|  |  |  |-- BUILD
+|  |  |  |-- crc32_one_byte.x
+|  |  |  |-- crc32_one_byte_inferred.x
+|  |  |  |-- prefix_scan_equality.x
+|  |  |-- fir_filter.x
+|  |  |-- jpeg
+|  |  |  |-- BUILD
+|  |  |  |-- constants.h
+|  |  |  |-- idct_chen.x
+|  |  |  |-- idct_chen_jit_wrapper_test.cc
+|  |  |  |-- jpeg_grm.cc
+|  |  |  |-- jpeg_grm.h
+|  |  |  |-- jpeg_grm_test.cc
+|  |  |  |-- streams.cc
+|  |  |  |-- streams.h
+|  |  |  |-- streams_test.cc
+|  |  |-- list_filegroup_files.bzl
+|  |  |-- matmul_4x4.ir
+|  |  |-- matmul_4x4_test.cc
+|  |  |-- riscv_simple.x
+|  |  |-- sample_packages.cc
+|  |  |-- sample_packages.h
+|  |  |-- sample_packages.inc.h
+|  |  |-- sha256.x
+|  |  |-- sobel_filter.x
+|  |-- experimental
+|  |  |-- ml_delay_model
+|  |  |  |-- delay_model.py
+|  |  |  |-- expr_generator.py
+|  |  |-- smtlib
+|  |  |  |-- BUILD
+|  |  |  |-- flags_checks.py
+|  |  |  |-- n_bit_add_generator.py
+|  |  |  |-- n_bit_mul_generator.py
+|  |  |  |-- n_bit_nested_add_generator.py
+|  |  |  |-- n_bit_nested_mul_generator.py
+|  |  |  |-- n_bit_nested_shift_generator.py
+|  |  |  |-- plot_csv_solver_speed_data.py
+|  |  |  |-- smtlib.md
+|  |  |  |-- solvers_op_comparison_bits_list.py
+|  |  |  |-- solvers_op_comparison_functions.py
+|  |  |  |-- solvers_op_comparison_nests_list.py
+|  |  |  |-- solvers_plots
+|  |  |  |  |-- add_nests1_bitslist2048.png
+|  |  |  |  |-- add_nestslist100_bits2.png
+|  |  |  |  |-- mul_nests1_bitslist10.png
+|  |  |  |  |-- mul_nestslist10_bits4.png
+|  |  |  |  |-- plot_files.md
+|  |  |  |  |-- shl_nests1_bitslist40.png
+|  |  |  |  |-- shl_nestslist10_bits16.png
+|  |-- fuzzer
+|  |  |-- BUILD
+|  |  |-- ast_generator.cc
+|  |  |-- ast_generator.h
+|  |  |-- ast_generator_test.cc
+|  |  |-- build_defs.bzl
+|  |  |-- cli_helpers.py
+|  |  |-- crashers
+|  |  |  |-- 20190618.x
+|  |  |  |-- 20190618_2.x
+|  |  |  |-- 20190618_3.x
+|  |  |  |-- 20190626.x
+|  |  |  |-- 2020-08-24-min.x
+|  |  |  |-- 2020-08-24.x
+|  |  |  |-- crasher_2019-06-20_5.x
+|  |  |  |-- crasher_2019-06-24_7.x
+|  |  |  |-- crasher_2019-06-25.x
+|  |  |  |-- crasher_2019-06-25_2.x
+|  |  |  |-- crasher_2019-06-26.x
+|  |  |  |-- crasher_2019-06-27_124445.x
+|  |  |  |-- crasher_2019-06-29_129987.x
+|  |  |  |-- crasher_2019-06-29_402110.x
+|  |  |  |-- crasher_2019-07-01_122.x
+|  |  |  |-- crasher_2019-07-01_960.x
+|  |  |  |-- crasher_2019-08-27_31.x
+|  |  |  |-- crasher_2019-09-23_1351.x
+|  |  |  |-- crasher_2019-09-23_41.x
+|  |  |  |-- crasher_2019-09-24_42.x
+|  |  |  |-- crasher_2019-09-25_229987.x
+|  |  |  |-- crasher_2019-09-25_347.x
+|  |  |  |-- crasher_2019-09-25_6340.x
+|  |  |  |-- crasher_2020-01-08_2173.x
+|  |  |  |-- crasher_2020-01-08_63c5.x
+|  |  |  |-- crasher_2020-10-17_77f6.x
+|  |  |  |-- crasher_2020-10-26_1c73.x
+|  |  |  |-- crasher_2020-11-05_06b9.x
+|  |  |  |-- crasher_2020-11-30_d149.x
+|  |  |  |-- crasher_2020-12-03_8671.x
+|  |  |  |-- crasher_2020-12-04_0d47.x
+|  |  |  |-- crasher_2020-12-05_c89a.x
+|  |  |  |-- crasher_2020-12-08_1025.x
+|  |  |  |-- crasher_2021-01-18_70d2.x
+|  |  |  |-- crasher_2021-02-03_ae62.x
+|  |  |  |-- crasher_2021-02-05_e838.x
+|  |  |  |-- crasher_2021-02-20_257d.x
+|  |  |  |-- crasher_2021-02-28_ce06.x
+|  |  |  |-- crasher_2021-03-02_191a.x
+|  |  |  |-- crasher_2021-03-04_741e.x
+|  |  |  |-- crasher_2021-03-12_0667.x
+|  |  |  |-- crasher_2021-03-19_2649.x
+|  |  |  |-- crasher_2021-03-25_8450.x
+|  |  |  |-- crasher_2021-03-26_1de6.x
+|  |  |  |-- crasher_2021-03-27_2259.x
+|  |  |  |-- crasher_2021-03-28_5212.x
+|  |  |  |-- crasher_2021-03-28_dba9.x
+|  |  |  |-- crasher_2021-03-29_141c.x
+|  |  |  |-- crasher_2021-04-03_6317.x
+|  |  |  |-- crasher_2021-04-03_aeea.x
+|  |  |  |-- crasher_2021-04-05_2b5f.x
+|  |  |  |-- crasher_2021-04-05_32d7.x
+|  |  |  |-- crasher_2021-04-12_6b20.x
+|  |  |  |-- crasher_2021-06-04.x
+|  |  |  |-- crasher_2021-06-29_6e22.x
+|  |  |-- find_failing_input_main.cc
+|  |  |-- find_failing_input_main_test.py
+|  |  |-- fuzz_coverage_test.py
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- cpp_ast_generator.cc
+|  |  |  |-- cpp_sample.cc
+|  |  |-- read_summary_main.cc
+|  |  |-- run_crasher.py
+|  |  |-- run_crasher.sh
+|  |  |-- run_fuzz.py
+|  |  |-- run_fuzz_multiprocess.py
+|  |  |-- run_fuzz_multiprocess_benchmark.py
+|  |  |-- run_fuzz_multiprocess_main.py
+|  |  |-- run_fuzz_multiprocess_test.py
+|  |  |-- run_fuzz_shll_test.py
+|  |  |-- run_fuzz_smoke_test.py
+|  |  |-- run_fuzz_test.py
+|  |  |-- sample.cc
+|  |  |-- sample.h
+|  |  |-- sample_generator.cc
+|  |  |-- sample_generator.h
+|  |  |-- sample_generator_test.cc
+|  |  |-- sample_runner.py
+|  |  |-- sample_runner_main.py
+|  |  |-- sample_runner_test.py
+|  |  |-- sample_summary.proto
+|  |  |-- sample_test.py
+|  |  |-- scrub_crasher.cc
+|  |  |-- scrub_crasher.h
+|  |  |-- summarize_ir_main.cc
+|  |-- interpreter
+|  |  |-- BUILD
+|  |  |-- block_interpreter.cc
+|  |  |-- block_interpreter.h
+|  |  |-- block_interpreter_test.cc
+|  |  |-- channel_queue.cc
+|  |  |-- channel_queue.h
+|  |  |-- channel_queue_test.cc
+|  |  |-- function_interpreter.cc
+|  |  |-- function_interpreter.h
+|  |  |-- ir_evaluator_test_base.cc
+|  |  |-- ir_evaluator_test_base.h
+|  |  |-- ir_interpreter.cc
+|  |  |-- ir_interpreter.h
+|  |  |-- ir_interpreter_test.cc
+|  |  |-- proc_interpreter.cc
+|  |  |-- proc_interpreter.h
+|  |  |-- proc_interpreter_test.cc
+|  |  |-- proc_network_interpreter.cc
+|  |  |-- proc_network_interpreter.h
+|  |  |-- proc_network_interpreter_test.cc
+|  |-- ir
+|  |  |-- BUILD
+|  |  |-- abstract_evaluator.h
+|  |  |-- abstract_evaluator_test.cc
+|  |  |-- abstract_node_evaluator.h
+|  |  |-- big_int.cc
+|  |  |-- big_int.h
+|  |  |-- big_int_test.cc
+|  |  |-- bit_push_buffer.h
+|  |  |-- bit_push_buffer_test.cc
+|  |  |-- bits.cc
+|  |  |-- bits.h
+|  |  |-- bits_ops.cc
+|  |  |-- bits_ops.h
+|  |  |-- bits_ops_test.cc
+|  |  |-- bits_test.cc
+|  |  |-- block.cc
+|  |  |-- block.h
+|  |  |-- block_test.cc
+|  |  |-- channel.cc
+|  |  |-- channel.h
+|  |  |-- channel.proto
+|  |  |-- channel_ops.cc
+|  |  |-- channel_ops.h
+|  |  |-- channel_test.cc
+|  |  |-- dfs_visitor.cc
+|  |  |-- dfs_visitor.h
+|  |  |-- dfs_visitor_test.cc
+|  |  |-- fileno.h
+|  |  |-- format_preference.cc
+|  |  |-- format_preference.h
+|  |  |-- format_preference_test.cc
+|  |  |-- function.cc
+|  |  |-- function.h
+|  |  |-- function_base.cc
+|  |  |-- function_base.h
+|  |  |-- function_builder.cc
+|  |  |-- function_builder.h
+|  |  |-- function_builder_test.cc
+|  |  |-- function_test.cc
+|  |  |-- ir_matcher.cc
+|  |  |-- ir_matcher.h
+|  |  |-- ir_matcher_test.cc
+|  |  |-- ir_parser.cc
+|  |  |-- ir_parser.h
+|  |  |-- ir_parser_test.cc
+|  |  |-- ir_scanner.cc
+|  |  |-- ir_scanner.h
+|  |  |-- ir_scanner_test.cc
+|  |  |-- ir_test_base.cc
+|  |  |-- ir_test_base.h
+|  |  |-- ir_test_base_test.cc
+|  |  |-- keyword_args.cc
+|  |  |-- keyword_args.h
+|  |  |-- lsb_or_msb.h
+|  |  |-- name_uniquer.cc
+|  |  |-- name_uniquer.h
+|  |  |-- name_uniquer_test.cc
+|  |  |-- node.cc
+|  |  |-- node.h
+|  |  |-- node_iterator.cc
+|  |  |-- node_iterator.h
+|  |  |-- node_iterator_test.cc
+|  |  |-- node_test.cc
+|  |  |-- node_util.cc
+|  |  |-- node_util.h
+|  |  |-- node_util_test.cc
+|  |  |-- nodes_header.tmpl
+|  |  |-- nodes_source.tmpl
+|  |  |-- number_parser.cc
+|  |  |-- number_parser.h
+|  |  |-- number_parser_test.cc
+|  |  |-- op_header.tmpl
+|  |  |-- op_proto.tmpl
+|  |  |-- op_source.tmpl
+|  |  |-- op_specification.py
+|  |  |-- package.cc
+|  |  |-- package.h
+|  |  |-- package_test.cc
+|  |  |-- proc.cc
+|  |  |-- proc.h
+|  |  |-- proc_test.cc
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- bits.cc
+|  |  |  |-- bits_test.py
+|  |  |  |-- fileno.cc
+|  |  |  |-- fileno_test.py
+|  |  |  |-- function.cc
+|  |  |  |-- function_builder.cc
+|  |  |  |-- function_builder_test.py
+|  |  |  |-- function_test.py
+|  |  |  |-- ir_parser.cc
+|  |  |  |-- ir_parser_test.py
+|  |  |  |-- lsb_or_msb.cc
+|  |  |  |-- number_parser_test.py
+|  |  |  |-- package.cc
+|  |  |  |-- package_test.py
+|  |  |  |-- source_location.cc
+|  |  |  |-- type.cc
+|  |  |  |-- type_test.py
+|  |  |  |-- value.cc
+|  |  |  |-- verifier.cc
+|  |  |  |-- verifier_test.py
+|  |  |  |-- wrapper_types.h
+|  |  |-- random_value.cc
+|  |  |-- random_value.h
+|  |  |-- random_value_test.cc
+|  |  |-- render_specification_against_template.py
+|  |  |-- source_location.h
+|  |  |-- ternary.cc
+|  |  |-- ternary.h
+|  |  |-- type.cc
+|  |  |-- type.h
+|  |  |-- type_test.cc
+|  |  |-- unwrapping_iterator.h
+|  |  |-- value.cc
+|  |  |-- value.h
+|  |  |-- value_helpers.cc
+|  |  |-- value_helpers.h
+|  |  |-- value_helpers_test.cc
+|  |  |-- value_test.cc
+|  |  |-- value_test_util.cc
+|  |  |-- value_test_util.h
+|  |  |-- value_test_util_test.cc
+|  |  |-- value_view.h
+|  |  |-- value_view_helpers.h
+|  |  |-- value_view_test.cc
+|  |  |-- verifier.cc
+|  |  |-- verifier.h
+|  |  |-- verifier_test.cc
+|  |  |-- xls_type.proto
+|  |-- jit
+|  |  |-- BUILD
+|  |  |-- function_builder_visitor.cc
+|  |  |-- function_builder_visitor.h
+|  |  |-- ir_jit.cc
+|  |  |-- ir_jit.h
+|  |  |-- ir_jit_test.cc
+|  |  |-- jit_channel_queue.cc
+|  |  |-- jit_channel_queue.h
+|  |  |-- jit_runtime.cc
+|  |  |-- jit_runtime.h
+|  |  |-- jit_wrapper_generator.cc
+|  |  |-- jit_wrapper_generator.h
+|  |  |-- jit_wrapper_generator_main.cc
+|  |  |-- jit_wrapper_generator_test.cc
+|  |  |-- llvm_type_converter.cc
+|  |  |-- llvm_type_converter.h
+|  |  |-- proc_builder_visitor.cc
+|  |  |-- proc_builder_visitor.h
+|  |  |-- proc_builder_visitor_test.cc
+|  |  |-- serial_proc_runtime.cc
+|  |  |-- serial_proc_runtime.h
+|  |  |-- serial_proc_runtime_test.cc
+|  |-- modules
+|  |  |-- BUILD
+|  |  |-- apfloat_add_2.x
+|  |  |-- apfloat_fma.x
+|  |  |-- apfloat_mul_2.x
+|  |  |-- apfloat_sub_2.x
+|  |  |-- fma_32.x
+|  |  |-- fma_32_test.cc
+|  |  |-- fma_64.x
+|  |  |-- fma_64_test.cc
+|  |  |-- fp_fast_rsqrt_32.x
+|  |  |-- fp_fast_rsqrt_32_test.cc
+|  |  |-- fpadd_2x32.x
+|  |  |-- fpadd_2x32_bounds.cc
+|  |  |-- fpadd_2x32_jit_wrapper_test.cc
+|  |  |-- fpadd_2x32_test.cc
+|  |  |-- fpadd_2x64.x
+|  |  |-- fpadd_2x64_test.cc
+|  |  |-- fpadd_2xbf16.x
+|  |  |-- fpldexp_32.x
+|  |  |-- fpldexp_32_test.cc
+|  |  |-- fpmul_2x32.x
+|  |  |-- fpmul_2x32_test.cc
+|  |  |-- fpmul_2x64.x
+|  |  |-- fpmul_2x64_test.cc
+|  |  |-- fpmul_2xbf16.x
+|  |  |-- fpsub_2x32.x
+|  |  |-- fpsub_2x64.x
+|  |-- netlist
+|  |  |-- BUILD
+|  |  |-- cell_library.cc
+|  |  |-- cell_library.h
+|  |  |-- cell_library_test.cc
+|  |  |-- fake_cell_library.cc
+|  |  |-- fake_cell_library.h
+|  |  |-- fake_cell_library.textproto
+|  |  |-- find_logic_clouds.cc
+|  |  |-- find_logic_clouds.h
+|  |  |-- find_logic_clouds_test.cc
+|  |  |-- function_extractor.cc
+|  |  |-- function_extractor.h
+|  |  |-- function_extractor_main.cc
+|  |  |-- function_extractor_test.cc
+|  |  |-- function_parser.cc
+|  |  |-- function_parser.h
+|  |  |-- function_parser_test.cc
+|  |  |-- interpreter.cc
+|  |  |-- interpreter.h
+|  |  |-- interpreter_test.cc
+|  |  |-- lib_parser.cc
+|  |  |-- lib_parser.h
+|  |  |-- lib_parser_test.cc
+|  |  |-- logical_effort.cc
+|  |  |-- logical_effort.h
+|  |  |-- logical_effort_test.cc
+|  |  |-- netlist.cc
+|  |  |-- netlist.h
+|  |  |-- netlist.proto
+|  |  |-- netlist_parser.cc
+|  |  |-- netlist_parser.h
+|  |  |-- netlist_parser_test.cc
+|  |  |-- parse_netlist_main.cc
+|  |  |-- parse_netlist_main_test.sh
+|  |-- noc
+|  |  |-- config
+|  |  |  |-- BUILD
+|  |  |  |-- arbiter_scheme_config_proto_builder.cc
+|  |  |  |-- arbiter_scheme_config_proto_builder.h
+|  |  |  |-- arbiter_scheme_config_proto_builder_test.cc
+|  |  |  |-- common_network_config_builder_options_proto_builder.cc
+|  |  |  |-- common_network_config_builder_options_proto_builder.h
+|  |  |  |-- common_network_config_builder_options_proto_builder_test.cc
+|  |  |  |-- custom_network_config_builder_options_proto_builder.cc
+|  |  |  |-- custom_network_config_builder_options_proto_builder.h
+|  |  |  |-- custom_network_config_builder_options_proto_builder_test.cc
+|  |  |  |-- examples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- aggregation_tree_network_config_builder_options.textproto
+|  |  |  |  |-- bidirectional_tree_network_config_builder_options.textproto
+|  |  |  |  |-- custom_network_config_builder_options_textproto_test.cc
+|  |  |  |  |-- distribution_tree_network_config_builder_options.textproto
+|  |  |  |  |-- fully_connected_network_config_builder_options.textproto
+|  |  |  |  |-- grid_with_column_loopback_network_config_builder_options.textproto
+|  |  |  |  |-- grid_with_row_loopback_network_config_builder_options.textproto
+|  |  |  |  |-- linear_network_config_builder_options.textproto
+|  |  |  |  |-- mesh_network_config_builder_options.textproto
+|  |  |  |  |-- ring_network_config_builder_options.textproto
+|  |  |  |  |-- single_switch_network_config_builder_options.textproto
+|  |  |  |  |-- torus_network_config_builder_options.textproto
+|  |  |  |-- link_config_proto_builder.cc
+|  |  |  |-- link_config_proto_builder.h
+|  |  |  |-- link_config_proto_builder_test.cc
+|  |  |  |-- network_config.proto
+|  |  |  |-- network_config_builder_options.proto
+|  |  |  |-- network_config_proto_builder.cc
+|  |  |  |-- network_config_proto_builder.h
+|  |  |  |-- network_config_proto_builder_test.cc
+|  |  |  |-- network_config_proto_builder_utils.h
+|  |  |  |-- port_config_proto_builder.cc
+|  |  |  |-- port_config_proto_builder.h
+|  |  |  |-- port_config_proto_builder_test.cc
+|  |  |  |-- router_config_proto_builder.cc
+|  |  |  |-- router_config_proto_builder.h
+|  |  |  |-- router_config_proto_builder_test.cc
+|  |  |  |-- routing_scheme_config_proto_builder.cc
+|  |  |  |-- routing_scheme_config_proto_builder.h
+|  |  |  |-- routing_scheme_config_proto_builder_test.cc
+|  |  |  |-- virtual_channel_config_proto_builder.cc
+|  |  |  |-- virtual_channel_config_proto_builder.h
+|  |  |  |-- virtual_channel_config_proto_builder_test.cc
+|  |  |-- config_ng
+|  |  |  |-- BUILD
+|  |  |  |-- arbitrary_base_number.cc
+|  |  |  |-- arbitrary_base_number.h
+|  |  |  |-- arbitrary_base_number_test.cc
+|  |  |  |-- bidirectional_butterfly_options_proto_builder.cc
+|  |  |  |-- bidirectional_butterfly_options_proto_builder.h
+|  |  |  |-- bidirectional_butterfly_options_proto_builder_test.cc
+|  |  |  |-- bidirectional_tree_options_proto_builder.cc
+|  |  |  |-- bidirectional_tree_options_proto_builder.h
+|  |  |  |-- bidirectional_tree_options_proto_builder_test.cc
+|  |  |  |-- butterfly_options_proto_builder.cc
+|  |  |  |-- butterfly_options_proto_builder.h
+|  |  |  |-- butterfly_options_proto_builder_test.cc
+|  |  |  |-- channel_options_proto_builder.cc
+|  |  |  |-- channel_options_proto_builder.h
+|  |  |  |-- channel_options_proto_builder_test.cc
+|  |  |  |-- component_configuration_options_network_config_builder.proto
+|  |  |  |-- coordinate.cc
+|  |  |  |-- coordinate.h
+|  |  |  |-- coordinate_options_proto_builder.cc
+|  |  |  |-- coordinate_options_proto_builder.h
+|  |  |  |-- coordinate_options_proto_builder_test.cc
+|  |  |  |-- coordinate_test.cc
+|  |  |  |-- custom_topology_options_proto_builder.cc
+|  |  |  |-- custom_topology_options_proto_builder.h
+|  |  |  |-- custom_topology_options_proto_builder_test.cc
+|  |  |  |-- dimension_bounds.cc
+|  |  |  |-- dimension_bounds.h
+|  |  |  |-- dimension_bounds_test.cc
+|  |  |  |-- dimension_order_entry_options_proto_builder.cc
+|  |  |  |-- dimension_order_entry_options_proto_builder.h
+|  |  |  |-- dimension_order_entry_options_proto_builder_test.cc
+|  |  |  |-- dimension_order_options_proto_builder.cc
+|  |  |  |-- dimension_order_options_proto_builder.h
+|  |  |  |-- dimension_order_options_proto_builder_test.cc
+|  |  |  |-- fake_network_component.h
+|  |  |  |-- flattened_multi_dimensional_array.h
+|  |  |  |-- flattened_multi_dimensional_array_test.cc
+|  |  |  |-- fully_connected_options_proto_builder.cc
+|  |  |  |-- fully_connected_options_proto_builder.h
+|  |  |  |-- fully_connected_options_proto_builder_test.cc
+|  |  |  |-- level_options_proto_builder.cc
+|  |  |  |-- level_options_proto_builder.h
+|  |  |  |-- level_options_proto_builder_test.cc
+|  |  |  |-- network_component.cc
+|  |  |  |-- network_component.h
+|  |  |  |-- network_component_port.cc
+|  |  |  |-- network_component_port.h
+|  |  |  |-- network_component_port_test.cc
+|  |  |  |-- network_component_port_utils.cc
+|  |  |  |-- network_component_port_utils.h
+|  |  |  |-- network_component_port_utils_test.cc
+|  |  |  |-- network_component_test.cc
+|  |  |  |-- network_component_utils.cc
+|  |  |  |-- network_component_utils.h
+|  |  |  |-- network_component_utils_test.cc
+|  |  |  |-- network_component_visitor_abstract.h
+|  |  |  |-- network_config_builder_options.proto
+|  |  |  |-- network_connection.cc
+|  |  |  |-- network_connection.h
+|  |  |  |-- network_connection_test.cc
+|  |  |  |-- network_connection_utils.cc
+|  |  |  |-- network_connection_utils.h
+|  |  |  |-- network_connection_utils_test.cc
+|  |  |  |-- network_topology_component.cc
+|  |  |  |-- network_topology_component.h
+|  |  |  |-- network_topology_component_test.cc
+|  |  |  |-- network_topology_view.cc
+|  |  |  |-- network_topology_view.h
+|  |  |  |-- network_topology_view_test.cc
+|  |  |  |-- network_view.cc
+|  |  |  |-- network_view.h
+|  |  |  |-- network_view_test.cc
+|  |  |  |-- network_view_utils.cc
+|  |  |  |-- network_view_utils.h
+|  |  |  |-- network_view_utils_test.cc
+|  |  |  |-- node_options_proto_builder.cc
+|  |  |  |-- node_options_proto_builder.h
+|  |  |  |-- node_options_proto_builder_test.cc
+|  |  |  |-- routing_algorithm_options_network_config_builder.proto
+|  |  |  |-- topology_endpoint_options_proto_builder.cc
+|  |  |  |-- topology_endpoint_options_proto_builder.h
+|  |  |  |-- topology_endpoint_options_proto_builder_test.cc
+|  |  |  |-- topology_options_network_config_builder.proto
+|  |  |  |-- tree_options_proto_builder.cc
+|  |  |  |-- tree_options_proto_builder.h
+|  |  |  |-- tree_options_proto_builder_test.cc
+|  |  |  |-- unidirectional_butterfly_options_proto_builder.cc
+|  |  |  |-- unidirectional_butterfly_options_proto_builder.h
+|  |  |  |-- unidirectional_butterfly_options_proto_builder_test.cc
+|  |  |  |-- unidirectional_tree_options_proto_builder.cc
+|  |  |  |-- unidirectional_tree_options_proto_builder.h
+|  |  |  |-- unidirectional_tree_options_proto_builder_test.cc
+|  |  |-- simulation
+|  |  |  |-- BUILD
+|  |  |  |-- common.cc
+|  |  |  |-- common.h
+|  |  |  |-- common_test.cc
+|  |  |  |-- flit.h
+|  |  |  |-- global_routing_table.cc
+|  |  |  |-- global_routing_table.h
+|  |  |  |-- global_routing_table_test.cc
+|  |  |  |-- indexer.cc
+|  |  |  |-- indexer.h
+|  |  |  |-- indexer_test.cc
+|  |  |  |-- network_graph.cc
+|  |  |  |-- network_graph.h
+|  |  |  |-- network_graph_builder.cc
+|  |  |  |-- network_graph_builder.h
+|  |  |  |-- network_graph_builder_test.cc
+|  |  |  |-- network_graph_test.cc
+|  |  |  |-- packetizer.cc
+|  |  |  |-- packetizer.h
+|  |  |  |-- packetizer_test.cc
+|  |  |  |-- parameters.h
+|  |  |  |-- parameters_test.cc
+|  |  |  |-- random_number_interface.h
+|  |  |  |-- random_number_interface_test.cc
+|  |  |  |-- sample_network_graphs.cc
+|  |  |  |-- sample_network_graphs.h
+|  |  |  |-- sim_objects.cc
+|  |  |  |-- sim_objects.h
+|  |  |  |-- sim_objects_test.cc
+|  |  |  |-- sim_packets_test.cc
+|  |  |  |-- traffic_description.h
+|  |  |  |-- traffic_description_test.cc
+|  |  |  |-- traffic_models.cc
+|  |  |  |-- traffic_models.h
+|  |  |  |-- traffic_models_test.cc
+|  |  |  |-- units.h
+|  |  |  |-- units_test.cc
+|  |-- passes
+|  |  |-- BUILD
+|  |  |-- arith_simplification_pass.cc
+|  |  |-- arith_simplification_pass.h
+|  |  |-- arith_simplification_pass_test.cc
+|  |  |-- array_simplification_pass.cc
+|  |  |-- array_simplification_pass.h
+|  |  |-- array_simplification_pass_test.cc
+|  |  |-- bdd_cse_pass.cc
+|  |  |-- bdd_cse_pass.h
+|  |  |-- bdd_cse_pass_test.cc
+|  |  |-- bdd_function.cc
+|  |  |-- bdd_function.h
+|  |  |-- bdd_function_test.cc
+|  |  |-- bdd_query_engine.cc
+|  |  |-- bdd_query_engine.h
+|  |  |-- bdd_query_engine_test.cc
+|  |  |-- bdd_simplification_pass.cc
+|  |  |-- bdd_simplification_pass.h
+|  |  |-- bdd_simplification_pass_test.cc
+|  |  |-- bit_slice_simplification_pass.cc
+|  |  |-- bit_slice_simplification_pass.h
+|  |  |-- bit_slice_simplification_pass_test.cc
+|  |  |-- boolean_simplification_pass.cc
+|  |  |-- boolean_simplification_pass.h
+|  |  |-- boolean_simplification_pass_test.cc
+|  |  |-- canonicalization_pass.cc
+|  |  |-- canonicalization_pass.h
+|  |  |-- canonicalization_pass_test.cc
+|  |  |-- concat_simplification_pass.cc
+|  |  |-- concat_simplification_pass.h
+|  |  |-- concat_simplification_pass_test.cc
+|  |  |-- constant_folding_pass.cc
+|  |  |-- constant_folding_pass.h
+|  |  |-- constant_folding_pass_test.cc
+|  |  |-- cse_pass.cc
+|  |  |-- cse_pass.h
+|  |  |-- cse_pass_test.cc
+|  |  |-- dce_pass.cc
+|  |  |-- dce_pass.h
+|  |  |-- dce_pass_test.cc
+|  |  |-- dfe_pass.cc
+|  |  |-- dfe_pass.h
+|  |  |-- dfe_pass_test.cc
+|  |  |-- dump_pass.cc
+|  |  |-- dump_pass.h
+|  |  |-- identity_removal_pass.cc
+|  |  |-- identity_removal_pass.h
+|  |  |-- identity_removal_pass_test.cc
+|  |  |-- inlining_pass.cc
+|  |  |-- inlining_pass.h
+|  |  |-- inlining_pass_test.cc
+|  |  |-- literal_uncommoning_pass.cc
+|  |  |-- literal_uncommoning_pass.h
+|  |  |-- literal_uncommoning_pass_test.cc
+|  |  |-- map_inlining_pass.cc
+|  |  |-- map_inlining_pass.h
+|  |  |-- map_inlining_pass_test.cc
+|  |  |-- narrowing_pass.cc
+|  |  |-- narrowing_pass.h
+|  |  |-- narrowing_pass_test.cc
+|  |  |-- pass_base.h
+|  |  |-- passes.cc
+|  |  |-- passes.h
+|  |  |-- passes_test.cc
+|  |  |-- post_dominator_analysis.cc
+|  |  |-- post_dominator_analysis.h
+|  |  |-- post_dominator_analysis_test.cc
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- standard_pipeline.cc
+|  |  |  |-- standard_pipeline_test.py
+|  |  |-- query_engine.cc
+|  |  |-- query_engine.h
+|  |  |-- query_engine_test.cc
+|  |  |-- reassociation_pass.cc
+|  |  |-- reassociation_pass.h
+|  |  |-- reassociation_pass_test.cc
+|  |  |-- select_simplification_pass.cc
+|  |  |-- select_simplification_pass.h
+|  |  |-- select_simplification_pass_test.cc
+|  |  |-- standard_pipeline.cc
+|  |  |-- standard_pipeline.h
+|  |  |-- standard_pipeline_test.cc
+|  |  |-- strength_reduction_pass.cc
+|  |  |-- strength_reduction_pass.h
+|  |  |-- strength_reduction_pass_test.cc
+|  |  |-- table_switch_pass.cc
+|  |  |-- table_switch_pass.h
+|  |  |-- table_switch_pass_test.cc
+|  |  |-- ternary_evaluator.h
+|  |  |-- ternary_evaluator_test.cc
+|  |  |-- ternary_query_engine.cc
+|  |  |-- ternary_query_engine.h
+|  |  |-- ternary_query_engine_test.cc
+|  |  |-- tuple_simplification_pass.cc
+|  |  |-- tuple_simplification_pass.h
+|  |  |-- tuple_simplification_pass_test.cc
+|  |  |-- unroll_pass.cc
+|  |  |-- unroll_pass.h
+|  |  |-- unroll_pass_test.cc
+|  |  |-- verifier_checker.cc
+|  |  |-- verifier_checker.h
+|  |-- public
+|  |  |-- BUILD
+|  |  |-- function_builder.h
+|  |  |-- runtime_build_actions.cc
+|  |  |-- runtime_build_actions.h
+|  |  |-- runtime_build_actions_test.cc
+|  |  |-- value.h
+|  |-- scheduling
+|  |  |-- BUILD
+|  |  |-- extract_stage.cc
+|  |  |-- extract_stage.h
+|  |  |-- extract_stage_test.cc
+|  |  |-- function_partition.cc
+|  |  |-- function_partition.h
+|  |  |-- function_partition_test.cc
+|  |  |-- pipeline_schedule.cc
+|  |  |-- pipeline_schedule.h
+|  |  |-- pipeline_schedule.proto
+|  |  |-- pipeline_schedule_test.cc
+|  |  |-- pipeline_scheduling_pass.cc
+|  |  |-- pipeline_scheduling_pass.h
+|  |  |-- schedule_bounds.cc
+|  |  |-- schedule_bounds.h
+|  |  |-- schedule_bounds_test.cc
+|  |  |-- scheduling_checker.cc
+|  |  |-- scheduling_checker.h
+|  |  |-- scheduling_pass.cc
+|  |  |-- scheduling_pass.h
+|  |-- simulation
+|  |  |-- BUILD
+|  |  |-- module_simulator.cc
+|  |  |-- module_simulator.h
+|  |  |-- module_simulator_codegen_test.cc
+|  |  |-- module_simulator_test.cc
+|  |  |-- module_testbench.cc
+|  |  |-- module_testbench.h
+|  |  |-- module_testbench_test.cc
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- module_simulator.cc
+|  |  |-- simulation_targets.inc
+|  |  |-- simulators
+|  |  |  |-- BUILD
+|  |  |  |-- iverilog_simulator.cc
+|  |  |-- testdata
+|  |  |  |-- verilog_test_base_test_ExpectEqualtoGolden.svtxt
+|  |  |  |-- verilog_test_base_test_ExpectEqualtoGolden.vtxt
+|  |  |-- verilog_simulator.cc
+|  |  |-- verilog_simulator.h
+|  |  |-- verilog_simulator_test.cc
+|  |  |-- verilog_simulators.cc
+|  |  |-- verilog_simulators.h
+|  |  |-- verilog_test_base.cc
+|  |  |-- verilog_test_base.h
+|  |  |-- verilog_test_base_test.cc
+|  |-- solvers
+|  |  |-- BUILD
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- characterize_binops.py
+|  |  |  |-- lec_characterizer.proto
+|  |  |  |-- lec_characterizer.py
+|  |  |  |-- lec_characterizer_test.py
+|  |  |  |-- z3_lec.cc
+|  |  |  |-- z3_lec_test.py
+|  |  |-- z3_ir_translator.cc
+|  |  |-- z3_ir_translator.h
+|  |  |-- z3_ir_translator_test.cc
+|  |  |-- z3_lec.cc
+|  |  |-- z3_lec.h
+|  |  |-- z3_lec_test.cc
+|  |  |-- z3_netlist_translator.cc
+|  |  |-- z3_netlist_translator.h
+|  |  |-- z3_netlist_translator_test.cc
+|  |  |-- z3_utils.cc
+|  |  |-- z3_utils.h
+|  |  |-- z3_utils_test.cc
+|  |-- synthesis
+|  |  |-- BUILD
+|  |  |-- client_credentials.py
+|  |  |-- dummy_synthesis_server_main.cc
+|  |  |-- server_credentials.cc
+|  |  |-- server_credentials.h
+|  |  |-- synthesis.proto
+|  |  |-- synthesis_client_main.py
+|  |  |-- synthesis_server_test.py
+|  |  |-- synthesis_service.proto
+|  |  |-- synthesis_utils.py
+|  |  |-- synthesis_utils_test.py
+|  |  |-- timing_characterization_client.py
+|  |  |-- timing_characterization_client_main.py
+|  |  |-- timing_characterization_client_test.py
+|  |  |-- yosys
+|  |  |  |-- BUILD
+|  |  |  |-- bogusys.cc
+|  |  |  |-- nextpbr.cc
+|  |  |  |-- testdata
+|  |  |  |  |-- netlist.json
+|  |  |  |  |-- nextpnr.out
+|  |  |  |-- yosys_server_main.cc
+|  |  |  |-- yosys_server_test.py
+|  |  |  |-- yosys_util.cc
+|  |  |  |-- yosys_util.h
+|  |  |  |-- yosys_util_test.cc
+|  |-- tests
+|  |  |-- BUILD
+|  |  |-- basic_ir_ops_test.cc
+|  |  |-- documentation_test.py
+|  |  |-- dslx_optimization_test.cc
+|  |  |-- ir_types_test.cc
+|  |  |-- jit_wrapper
+|  |  |  |-- BUILD
+|  |  |  |-- simple.x
+|  |  |  |-- simple_jit_wrapper_test.cc
+|  |-- tools
+|  |  |-- BUILD
+|  |  |-- bdd_stats.cc
+|  |  |-- benchmark_eval_test.sh
+|  |  |-- benchmark_main.cc
+|  |  |-- benchmark_test.sh
+|  |  |-- booleanifier.cc
+|  |  |-- booleanifier.h
+|  |  |-- booleanifier_test.cc
+|  |  |-- booleanify_main.cc
+|  |  |-- cell_library_extract_formula.cc
+|  |  |-- check_ir_equivalence.sh
+|  |  |-- check_ir_equivalence_main.cc
+|  |  |-- codegen_main.cc
+|  |  |-- codegen_main_test.py
+|  |  |-- delay_info_main.cc
+|  |  |-- delay_info_main_test.py
+|  |  |-- delay_model_visualizer.py
+|  |  |-- device_rpc_strategy.h
+|  |  |-- device_rpc_strategy_factory.cc
+|  |  |-- device_rpc_strategy_factory.h
+|  |  |-- drpc_main.cc
+|  |  |-- eval_ir_main.cc
+|  |  |-- eval_ir_main_test.py
+|  |  |-- extract_stage_main.cc
+|  |  |-- generate_vvp_runner.py
+|  |  |-- ice40_device_rpc_strategy.cc
+|  |  |-- ice40_device_rpc_strategy.h
+|  |  |-- ice40_device_rpc_strategy_registry.cc
+|  |  |-- ice40_io_strategy.cc
+|  |  |-- ice40_io_strategy.h
+|  |  |-- ice40_io_strategy_registry.cc
+|  |  |-- io_strategy.h
+|  |  |-- io_strategy_factory.cc
+|  |  |-- io_strategy_factory.h
+|  |  |-- ir_minimizer_main.cc
+|  |  |-- ir_minimizer_main_test.py
+|  |  |-- ir_stats_main.cc
+|  |  |-- lec_main.cc
+|  |  |-- llvm_main_generator.cc
+|  |  |-- make_release.py
+|  |  |-- netlist_interpreter_main.cc
+|  |  |-- null_io_strategy.cc
+|  |  |-- null_io_strategy.h
+|  |  |-- opt.cc
+|  |  |-- opt.h
+|  |  |-- opt_main.cc
+|  |  |-- opt_main_test.py
+|  |  |-- package_bazel_build.py
+|  |  |-- package_bazel_build_test.sh
+|  |  |-- package_bazel_build_testdata
+|  |  |  |-- bazel-bin
+|  |  |  |  |-- package_test
+|  |  |  |  |-- package_test.runfiles
+|  |  |  |  |  |-- c
+|  |  |  |  |  |  |-- copied_dep.sh
+|  |  |  |  |  |-- copied_dep.sh
+|  |  |  |  |  |-- s
+|  |  |  |  |  |  |-- src_dep.sh
+|  |  |  |  |-- package_test.runfiles_manifest
+|  |  |  |-- hash
+|  |  |  |  |-- execroot
+|  |  |  |  |  |-- com_google_xls
+|  |  |  |  |  |  |-- execroot_dep.sh
+|  |  |  |  |-- external
+|  |  |  |  |  |-- outputroot_dep.sh
+|  |  |-- parse_ir.cc
+|  |  |-- parse_ir_test.sh
+|  |  |-- proto_to_dslx.cc
+|  |  |-- proto_to_dslx.h
+|  |  |-- proto_to_dslx_main.cc
+|  |  |-- proto_to_dslx_test.cc
+|  |  |-- repl.cc
+|  |  |-- run_opt_main.py
+|  |  |-- simulate_module_main.cc
+|  |  |-- simulate_module_main_test.py
+|  |  |-- smtlib_emitter_main.cc
+|  |  |-- solver.cc
+|  |  |-- testbench.h
+|  |  |-- testbench_builder.h
+|  |  |-- testbench_builder_helpers.h
+|  |  |-- testbench_thread.h
+|  |  |-- testdata
+|  |  |  |-- add_folding_overlarge.ir
+|  |  |  |-- mul_folding_overlarge.ir
+|  |  |  |-- shll_folding_overlarge.ir
+|  |  |  |-- sub_add_folding_overlarge.ir
+|  |  |  |-- sub_folding_overlarge.ir
+|  |  |  |-- two_functions.ir
+|  |  |  |-- wrap_io_test_Ice40WrapIoIdentity32b.vtxt
+|  |  |-- verilog_include.h
+|  |  |-- wrap_io.cc
+|  |  |-- wrap_io.h
+|  |  |-- wrap_io_main.cc
+|  |  |-- wrap_io_test.cc
+|  |-- uncore_rtl
+|  |  |-- ice40
+|  |  |  |-- BUILD
+|  |  |  |-- add1_8b.add1_8b.ready_valid.sig
+|  |  |  |-- add1_8b.add1_8b.sig
+|  |  |  |-- add1_8b.v
+|  |  |  |-- add1_8b_ready_valid.v
+|  |  |  |-- icestick.pcf
+|  |  |  |-- ident_8b_main.v
+|  |  |  |-- ident_8b_main_wrapper.v
+|  |  |  |-- repeat_byte_4.repeat_byte_4.sig
+|  |  |  |-- repeat_byte_4.v
+|  |  |  |-- uart_receiver.v
+|  |  |  |-- uart_receiver_test.v
+|  |  |  |-- uart_transmitter.v
+|  |  |  |-- uart_transmitter_two_bytes_main.v
+|  |  |  |-- uart_transmitter_two_bytes_main_wrapper.v
+|  |  |  |-- uart_transmitter_two_bytes_test.v
+|  |  |  |-- wrap_io_ice40_add1_8b_ready_valid_testbench.v
+|  |  |  |-- wrap_io_ice40_repeat_byte_4_testbench.v
+|  |  |  |-- wrap_io_ice40_testbench.v
+|  |  |  |-- xls_assertions.inc
+|  |-- visualization
+|  |  |-- ir_viz
+|  |  |  |-- BUILD
+|  |  |  |-- app.py
+|  |  |  |-- graph_view.js
+|  |  |  |-- ir_for_visualization.proto
+|  |  |  |-- ir_graph.css
+|  |  |  |-- ir_graph.js
+|  |  |  |-- ir_to_json.cc
+|  |  |  |-- ir_to_json.h
+|  |  |  |-- ir_to_json_test.cc
+|  |  |  |-- ir_visualizer.js
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- ir_to_json.cc
+|  |  |  |  |-- ir_to_json_test.py
+|  |  |  |-- selectable_graph.js
+|  |  |  |-- templates
+|  |  |  |  |-- splash.tmpl
+|  |  |  |-- third_party_js.txt

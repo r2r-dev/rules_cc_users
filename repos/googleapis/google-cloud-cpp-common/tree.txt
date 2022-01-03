@@ -1,0 +1,428 @@
+|-- .bazelci
+|  |-- presubmit.yml
+|-- .bazelignore
+|-- .bazelrc
+|-- .clang-format
+|-- .clang-tidy
+|-- .cmake-format.py
+|-- .codecov.yml
+|-- .dockerignore
+|-- .editorconfig
+|-- .github
+|  |-- issue_template.md
+|-- .gitignore
+|-- BUILD
+|-- CHANGELOG.md
+|-- CMakeLists.txt
+|-- CODE_OF_CONDUCT.md
+|-- CONTRIBUTING.md
+|-- INSTALL.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- bazel
+|  |-- BUILD
+|  |-- google_cloud_cpp_common_deps.bzl
+|  |-- googleapis.BUILD
+|-- ci
+|  |-- check-include-guards.gawk
+|  |-- check-style.sh
+|  |-- colors.sh
+|  |-- coverity-scan.sh
+|  |-- define-dump-log.sh
+|  |-- etc
+|  |  |-- install-config.sh
+|  |  |-- kokoro
+|  |  |  |-- install
+|  |  |  |  |-- project-config.sh
+|  |  |  |  |-- run-installed-programs.sh
+|  |  |  |-- readme
+|  |  |  |  |-- project-config.sh
+|  |  |-- publish-refdocs.sh
+|  |  |-- repo-config.sh
+|  |-- generate-badges.sh
+|  |-- install-bazel.sh
+|  |-- install-cloud-sdk.sh
+|  |-- kokoro
+|  |  |-- README.md
+|  |  |-- define-docker-variables.sh
+|  |  |-- docker
+|  |  |  |-- Dockerfile.centos
+|  |  |  |-- Dockerfile.fedora
+|  |  |  |-- Dockerfile.fedora-install
+|  |  |  |-- Dockerfile.fedora-libcxx-msan
+|  |  |  |-- Dockerfile.ubuntu
+|  |  |  |-- Dockerfile.ubuntu-install
+|  |  |  |-- asan-presubmit.cfg
+|  |  |  |-- asan.cfg
+|  |  |  |-- bazel-dependency-presubmit.cfg
+|  |  |  |-- bazel-dependency.cfg
+|  |  |  |-- build-in-docker-bazel-dependency.sh
+|  |  |  |-- build-in-docker-bazel.sh
+|  |  |  |-- build-in-docker-cmake.sh
+|  |  |  |-- build.sh
+|  |  |  |-- check-api-presubmit.cfg
+|  |  |  |-- check-api.cfg
+|  |  |  |-- check-api.sh
+|  |  |  |-- clang-3.8-presubmit.cfg
+|  |  |  |-- clang-3.8.cfg
+|  |  |  |-- clang-9-presubmit.cfg
+|  |  |  |-- clang-9.cfg
+|  |  |  |-- clang-tidy-presubmit.cfg
+|  |  |  |-- clang-tidy.cfg
+|  |  |  |-- common.cfg
+|  |  |  |-- coverage-presubmit.cfg
+|  |  |  |-- coverage.cfg
+|  |  |  |-- cxx17-presubmit.cfg
+|  |  |  |-- cxx17.cfg
+|  |  |  |-- dump-logs.sh
+|  |  |  |-- dump-reports.sh
+|  |  |  |-- gcc-4.8-presubmit.cfg
+|  |  |  |-- gcc-4.8.cfg
+|  |  |  |-- gcc-9-presubmit.cfg
+|  |  |  |-- gcc-9.cfg
+|  |  |  |-- libcxx-presubmit.cfg
+|  |  |  |-- libcxx.cfg
+|  |  |  |-- msan-presubmit.cfg
+|  |  |  |-- msan.cfg
+|  |  |  |-- ninja-presubmit.cfg
+|  |  |  |-- ninja.cfg
+|  |  |  |-- no-tests-presubmit.cfg
+|  |  |  |-- no-tests.cfg
+|  |  |  |-- noex-presubmit.cfg
+|  |  |  |-- noex.cfg
+|  |  |  |-- publish-refdocs.cfg
+|  |  |  |-- publish-refdocs.sh
+|  |  |  |-- shared-presubmit.cfg
+|  |  |  |-- shared.cfg
+|  |  |  |-- tsan-presubmit.cfg
+|  |  |  |-- tsan.cfg
+|  |  |  |-- ubsan-presubmit.cfg
+|  |  |  |-- ubsan.cfg
+|  |  |  |-- upload-coverage.sh
+|  |  |  |-- upload-docs.sh
+|  |  |-- install
+|  |  |  |-- Dockerfile.centos-7
+|  |  |  |-- Dockerfile.centos-8
+|  |  |  |-- Dockerfile.debian-buster
+|  |  |  |-- Dockerfile.debian-stretch
+|  |  |  |-- Dockerfile.fedora
+|  |  |  |-- Dockerfile.opensuse-leap
+|  |  |  |-- Dockerfile.opensuse-tumbleweed
+|  |  |  |-- Dockerfile.ubuntu-bionic
+|  |  |  |-- Dockerfile.ubuntu-focal
+|  |  |  |-- Dockerfile.ubuntu-xenial
+|  |  |  |-- build.sh
+|  |  |  |-- centos-7-presubmit.cfg
+|  |  |  |-- centos-7.cfg
+|  |  |  |-- centos-8-presubmit.cfg
+|  |  |  |-- centos-8.cfg
+|  |  |  |-- common.cfg
+|  |  |  |-- debian-buster-presubmit.cfg
+|  |  |  |-- debian-buster.cfg
+|  |  |  |-- debian-stretch-presubmit.cfg
+|  |  |  |-- debian-stretch.cfg
+|  |  |  |-- fedora-presubmit.cfg
+|  |  |  |-- fedora.cfg
+|  |  |  |-- opensuse-leap-presubmit.cfg
+|  |  |  |-- opensuse-leap.cfg
+|  |  |  |-- opensuse-tumbleweed-presubmit.cfg
+|  |  |  |-- opensuse-tumbleweed.cfg
+|  |  |  |-- ubuntu-bionic-presubmit.cfg
+|  |  |  |-- ubuntu-bionic.cfg
+|  |  |  |-- ubuntu-focal-presubmit.cfg
+|  |  |  |-- ubuntu-focal.cfg
+|  |  |  |-- ubuntu-xenial-presubmit.cfg
+|  |  |  |-- ubuntu-xenial.cfg
+|  |  |-- macos
+|  |  |  |-- bazel-presubmit.cfg
+|  |  |  |-- bazel.cfg
+|  |  |  |-- build-bazel.sh
+|  |  |  |-- build-cmake.sh
+|  |  |  |-- build.sh
+|  |  |  |-- cmake-super-presubmit.cfg
+|  |  |  |-- cmake-super.cfg
+|  |  |  |-- common.cfg
+|  |  |-- readme
+|  |  |  |-- Dockerfile.centos-7
+|  |  |  |-- Dockerfile.centos-8
+|  |  |  |-- Dockerfile.debian-buster
+|  |  |  |-- Dockerfile.debian-stretch
+|  |  |  |-- Dockerfile.fedora
+|  |  |  |-- Dockerfile.opensuse-leap
+|  |  |  |-- Dockerfile.opensuse-tumbleweed
+|  |  |  |-- Dockerfile.ubuntu-bionic
+|  |  |  |-- Dockerfile.ubuntu-xenial
+|  |  |  |-- build.sh
+|  |  |  |-- centos-7-presubmit.cfg
+|  |  |  |-- centos-7.cfg
+|  |  |  |-- centos-8-presubmit.cfg
+|  |  |  |-- centos-8.cfg
+|  |  |  |-- common.cfg
+|  |  |  |-- debian-buster-presubmit.cfg
+|  |  |  |-- debian-buster.cfg
+|  |  |  |-- debian-stretch-presubmit.cfg
+|  |  |  |-- debian-stretch.cfg
+|  |  |  |-- fedora-presubmit.cfg
+|  |  |  |-- fedora.cfg
+|  |  |  |-- opensuse-leap-presubmit.cfg
+|  |  |  |-- opensuse-leap.cfg
+|  |  |  |-- opensuse-tumbleweed-presubmit.cfg
+|  |  |  |-- opensuse-tumbleweed.cfg
+|  |  |  |-- ubuntu-bionic-presubmit.cfg
+|  |  |  |-- ubuntu-bionic.cfg
+|  |  |  |-- ubuntu-xenial-presubmit.cfg
+|  |  |  |-- ubuntu-xenial.cfg
+|  |  |-- windows
+|  |  |  |-- bazel-presubmit.cfg
+|  |  |  |-- bazel.cfg
+|  |  |  |-- build-bazel-dependencies.ps1
+|  |  |  |-- build-bazel.ps1
+|  |  |  |-- build-cmake-dependencies.ps1
+|  |  |  |-- build-cmake.ps1
+|  |  |  |-- build.bat
+|  |  |  |-- build.ps1
+|  |  |  |-- cmake-presubmit.cfg
+|  |  |  |-- cmake.cfg
+|  |  |  |-- common.cfg
+|  |-- retry-command.sh
+|  |-- templates
+|  |  |-- README.md
+|  |  |-- generate-kokoro-install.sh
+|  |  |-- kokoro
+|  |  |  |-- docker-fragments-functions.sh
+|  |  |  |-- docker-fragments.sh
+|  |  |  |-- install
+|  |  |  |  |-- Dockerfile.centos-7.in
+|  |  |  |  |-- Dockerfile.centos-8.in
+|  |  |  |  |-- Dockerfile.debian-buster.in
+|  |  |  |  |-- Dockerfile.debian-stretch.in
+|  |  |  |  |-- Dockerfile.fedora.in
+|  |  |  |  |-- Dockerfile.opensuse-leap.in
+|  |  |  |  |-- Dockerfile.opensuse-tumbleweed.in
+|  |  |  |  |-- Dockerfile.ubuntu-bionic.in
+|  |  |  |  |-- Dockerfile.ubuntu-focal.in
+|  |  |  |  |-- Dockerfile.ubuntu-xenial.in
+|  |  |  |  |-- build.sh.in
+|  |-- test-api
+|  |  |-- google_cloud_cpp_common.expected.abi.dump.gz
+|  |  |-- google_cloud_cpp_grpc_utils.expected.abi.dump.gz
+|  |-- test-install
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- Makefile
+|  |  |-- WORKSPACE
+|  |-- test-readme
+|  |  |-- README.md
+|  |  |-- dockerfile2markdown.sh
+|  |  |-- extract-install.sh
+|  |  |-- extract-readme.sh
+|  |  |-- generate-install.sh
+|  |  |-- generate-readme.sh
+|-- cmake
+|  |-- CompileProtos.cmake
+|  |-- CreateBazelConfig.cmake
+|  |-- DownloadNlohmannJson.cmake
+|  |-- EnableClangTidy.cmake
+|  |-- EnableCoverage.cmake
+|  |-- EnableCxxExceptions.cmake
+|  |-- FindGMockWithTargets.cmake
+|  |-- FindProtobufWithTargets.cmake
+|  |-- FindgRPC.cmake
+|  |-- GoogleCloudCppCommon.cmake
+|  |-- IncludeNlohmannJson.cmake
+|  |-- SelectMSVCRuntime.cmake
+|-- doc
+|  |-- adr
+|  |  |-- 2018-06-13-storage-always-retries.md
+|  |  |-- 2018-06-18-storage-request-parameters-are-function-arguments.md
+|  |  |-- 2018-06-19-do-not-duplicate-server-side-validation.md
+|  |  |-- 2018-10-30-storage-metadata-fields-and-optional.md
+|  |  |-- 2019-01-04-error-reporting-with-statusor.md
+|  |  |-- 2019-03-26-binary-distributions.md
+|  |  |-- adr-template.md
+|  |-- config
+|  |  |-- DoxygenLayout.xml
+|  |-- cpp-style-guide.md
+|  |-- cutting-a-patch.md
+|  |-- cutting-a-release.md
+|  |-- landing
+|  |  |-- README.md
+|  |  |-- index.html
+|  |  |-- version-redirect.html
+|  |-- setup-cmake-environment.md
+|  |-- setup-development-environment.md
+|  |-- working-with-bazel-and-cmake.md
+|-- google
+|  |-- cloud
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- README.md
+|  |  |-- async_operation.h
+|  |  |-- background_threads.h
+|  |  |-- completion_queue.cc
+|  |  |-- completion_queue.h
+|  |  |-- completion_queue_test.cc
+|  |  |-- config-version.cmake.in
+|  |  |-- config.cmake.in
+|  |  |-- config.pc.in
+|  |  |-- connection_options.cc
+|  |  |-- connection_options.h
+|  |  |-- connection_options_test.cc
+|  |  |-- future.h
+|  |  |-- future_generic.h
+|  |  |-- future_generic_test.cc
+|  |  |-- future_generic_then_test.cc
+|  |  |-- future_void.h
+|  |  |-- future_void_test.cc
+|  |  |-- future_void_then_test.cc
+|  |  |-- google_cloud_cpp_common.bzl
+|  |  |-- google_cloud_cpp_common_unit_tests.bzl
+|  |  |-- google_cloud_cpp_grpc_utils.bzl
+|  |  |-- google_cloud_cpp_grpc_utils_unit_tests.bzl
+|  |  |-- grpc_error_delegate.cc
+|  |  |-- grpc_error_delegate.h
+|  |  |-- grpc_error_delegate_test.cc
+|  |  |-- grpc_utils
+|  |  |  |-- BUILD
+|  |  |  |-- async_operation.h
+|  |  |  |-- completion_queue.h
+|  |  |  |-- config.cmake.in
+|  |  |  |-- grpc_error_delegate.h
+|  |  |  |-- version.h
+|  |  |-- iam_binding.h
+|  |  |-- iam_bindings.cc
+|  |  |-- iam_bindings.h
+|  |  |-- iam_bindings_test.cc
+|  |  |-- iam_policy.cc
+|  |  |-- iam_policy.h
+|  |  |-- internal
+|  |  |  |-- README.md
+|  |  |  |-- async_read_stream_impl.h
+|  |  |  |-- async_retry_unary_rpc.h
+|  |  |  |-- async_retry_unary_rpc_test.cc
+|  |  |  |-- background_threads_impl.cc
+|  |  |  |-- background_threads_impl.h
+|  |  |  |-- background_threads_impl_test.cc
+|  |  |  |-- backoff_policy.cc
+|  |  |  |-- backoff_policy.h
+|  |  |  |-- backoff_policy_test.cc
+|  |  |  |-- big_endian.h
+|  |  |  |-- big_endian_test.cc
+|  |  |  |-- build_info.cc.in
+|  |  |  |-- build_info.h
+|  |  |  |-- compiler_info.cc
+|  |  |  |-- compiler_info.h
+|  |  |  |-- compiler_info_test.cc
+|  |  |  |-- completion_queue_impl.cc
+|  |  |  |-- completion_queue_impl.h
+|  |  |  |-- conjunction.h
+|  |  |  |-- disjunction.h
+|  |  |  |-- env_test.cc
+|  |  |  |-- filesystem.cc
+|  |  |  |-- filesystem.h
+|  |  |  |-- filesystem_test.cc
+|  |  |  |-- format_time_point.cc
+|  |  |  |-- format_time_point.h
+|  |  |  |-- format_time_point_test.cc
+|  |  |  |-- future_base.h
+|  |  |  |-- future_fwd.h
+|  |  |  |-- future_impl.cc
+|  |  |  |-- future_impl.h
+|  |  |  |-- future_impl_test.cc
+|  |  |  |-- future_then_impl.h
+|  |  |  |-- future_then_meta.h
+|  |  |  |-- getenv.cc
+|  |  |  |-- getenv.h
+|  |  |  |-- invoke_result.h
+|  |  |  |-- invoke_result_test.cc
+|  |  |  |-- ios_flags_saver.h
+|  |  |  |-- make_unique.h
+|  |  |  |-- pagination_range.h
+|  |  |  |-- pagination_range_test.cc
+|  |  |  |-- parse_rfc3339.cc
+|  |  |  |-- parse_rfc3339.h
+|  |  |  |-- parse_rfc3339_test.cc
+|  |  |  |-- port_platform.h
+|  |  |  |-- random.cc
+|  |  |  |-- random.h
+|  |  |  |-- random_test.cc
+|  |  |  |-- retry_policy.h
+|  |  |  |-- retry_policy_test.cc
+|  |  |  |-- setenv.cc
+|  |  |  |-- setenv.h
+|  |  |  |-- throw_delegate.cc
+|  |  |  |-- throw_delegate.h
+|  |  |  |-- throw_delegate_test.cc
+|  |  |  |-- tuple.h
+|  |  |  |-- tuple_test.cc
+|  |  |  |-- utility.h
+|  |  |  |-- utility_test.cc
+|  |  |  |-- version_info.h
+|  |  |  |-- version_info.h.in
+|  |  |-- log.cc
+|  |  |-- log.h
+|  |  |-- log_test.cc
+|  |  |-- optional.h
+|  |  |-- optional_test.cc
+|  |  |-- samples
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- common_install_test.cc
+|  |  |-- status.cc
+|  |  |-- status.h
+|  |  |-- status_or.h
+|  |  |-- status_or_test.cc
+|  |  |-- status_test.cc
+|  |  |-- terminate_handler.cc
+|  |  |-- terminate_handler.h
+|  |  |-- terminate_handler_test.cc
+|  |  |-- testing_util
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- assert_ok.cc
+|  |  |  |-- assert_ok.h
+|  |  |  |-- assert_ok_test.cc
+|  |  |  |-- capture_log_lines_backend.cc
+|  |  |  |-- capture_log_lines_backend.h
+|  |  |  |-- check_predicate_becomes_false.h
+|  |  |  |-- chrono_literals.h
+|  |  |  |-- config.cmake.in
+|  |  |  |-- custom_google_mock_main.cc
+|  |  |  |-- expect_exception.h
+|  |  |  |-- expect_future_error.h
+|  |  |  |-- google_cloud_cpp_testing.bzl
+|  |  |  |-- google_cloud_cpp_testing_grpc.bzl
+|  |  |  |-- google_cloud_cpp_testing_grpc_unit_tests.bzl
+|  |  |  |-- google_cloud_cpp_testing_unit_tests.bzl
+|  |  |  |-- init_google_mock.h
+|  |  |  |-- is_proto_equal.cc
+|  |  |  |-- is_proto_equal.h
+|  |  |  |-- is_proto_equal_test.cc
+|  |  |  |-- mock_async_response_reader.h
+|  |  |  |-- mock_completion_queue.h
+|  |  |  |-- scoped_environment.cc
+|  |  |  |-- scoped_environment.h
+|  |  |  |-- scoped_environment_test.cc
+|  |  |  |-- testing_types.cc
+|  |  |  |-- testing_types.h
+|  |  |-- tracing_options.cc
+|  |  |-- tracing_options.h
+|  |  |-- tracing_options_test.cc
+|  |  |-- version.cc
+|  |  |-- version.h
+|-- release
+|  |-- README.md
+|  |-- release.sh
+|-- super
+|  |-- CMakeLists.txt
+|  |-- ExternalProjectHelper.cmake
+|  |-- external
+|  |  |-- c-ares.cmake
+|  |  |-- googleapis.cmake
+|  |  |-- googletest.cmake
+|  |  |-- grpc.cmake
+|  |  |-- protobuf.cmake
+|  |  |-- ssl.cmake
+|  |  |-- zlib.cmake

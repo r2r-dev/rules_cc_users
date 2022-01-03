@@ -1,0 +1,332 @@
+|-- .bazelrc
+|-- .circleci
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- config.yml
+|-- .drone.yml
+|-- .github
+|  |-- PULL_REQUEST_TEMPLATE.md
+|-- .gitignore
+|-- .travis.yml
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- Makefile
+|-- OWNERS
+|-- README.md
+|-- WORKSPACE
+|-- cc_gogo_protobuf.bzl
+|-- googleapis.bzl
+|-- include
+|  |-- istio
+|  |  |-- api_spec
+|  |  |  |-- BUILD
+|  |  |  |-- http_api_spec_parser.h
+|  |  |-- control
+|  |  |  |-- http
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- check_data.h
+|  |  |  |  |-- controller.h
+|  |  |  |  |-- report_data.h
+|  |  |  |  |-- request_handler.h
+|  |  |  |-- tcp
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- check_data.h
+|  |  |  |  |-- controller.h
+|  |  |  |  |-- report_data.h
+|  |  |  |  |-- request_handler.h
+|  |  |-- mixerclient
+|  |  |  |-- BUILD
+|  |  |  |-- check_response.h
+|  |  |  |-- client.h
+|  |  |  |-- environment.h
+|  |  |  |-- options.h
+|  |  |  |-- timer.h
+|  |  |-- prefetch
+|  |  |  |-- BUILD
+|  |  |  |-- quota_prefetch.h
+|  |  |-- quota_config
+|  |  |  |-- BUILD
+|  |  |  |-- config_parser.h
+|  |  |  |-- requirement.h
+|  |  |-- utils
+|  |  |  |-- BUILD
+|  |  |  |-- attribute_names.h
+|  |  |  |-- attributes_builder.h
+|  |  |  |-- concat_hash.h
+|  |  |  |-- google_macros.h
+|  |  |  |-- local_attributes.h
+|  |  |  |-- protobuf.h
+|  |  |  |-- simple_lru_cache.h
+|  |  |  |-- simple_lru_cache_inl.h
+|  |  |  |-- status.h
+|-- istio.deps
+|-- protobuf.bzl
+|-- prow
+|  |-- proxy-postsubmit-periodic.sh
+|  |-- proxy-postsubmit.sh
+|  |-- proxy-presubmit-asan.sh
+|  |-- proxy-presubmit-tsan.sh
+|  |-- proxy-presubmit.sh
+|-- repositories.bzl
+|-- script
+|  |-- build_proxy_artifacts.yaml
+|  |-- check-license-headers
+|  |-- check-repositories
+|  |-- check-style
+|  |-- pre-commit
+|  |-- push-debian.sh
+|  |-- release-binary
+|-- src
+|  |-- envoy
+|  |  |-- BUILD
+|  |  |-- http
+|  |  |  |-- authn
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- authenticator_base.cc
+|  |  |  |  |-- authenticator_base.h
+|  |  |  |  |-- authenticator_base_test.cc
+|  |  |  |  |-- authn_utils.cc
+|  |  |  |  |-- authn_utils.h
+|  |  |  |  |-- authn_utils_test.cc
+|  |  |  |  |-- filter_context.cc
+|  |  |  |  |-- filter_context.h
+|  |  |  |  |-- filter_context_test.cc
+|  |  |  |  |-- http_filter.cc
+|  |  |  |  |-- http_filter.h
+|  |  |  |  |-- http_filter_factory.cc
+|  |  |  |  |-- http_filter_integration_test.cc
+|  |  |  |  |-- http_filter_test.cc
+|  |  |  |  |-- origin_authenticator.cc
+|  |  |  |  |-- origin_authenticator.h
+|  |  |  |  |-- origin_authenticator_test.cc
+|  |  |  |  |-- peer_authenticator.cc
+|  |  |  |  |-- peer_authenticator.h
+|  |  |  |  |-- peer_authenticator_test.cc
+|  |  |  |  |-- test_utils.h
+|  |  |  |-- jwt_auth
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- ImplementationNotes.md
+|  |  |  |  |-- README.md
+|  |  |  |  |-- auth_store.h
+|  |  |  |  |-- http_filter.cc
+|  |  |  |  |-- http_filter.h
+|  |  |  |  |-- http_filter_factory.cc
+|  |  |  |  |-- integration_test
+|  |  |  |  |  |-- envoy.conf
+|  |  |  |  |  |-- envoy.conf.jwk
+|  |  |  |  |  |-- envoy_allow_missing_or_failed_jwt.conf.jwk
+|  |  |  |  |  |-- http_filter_integration_test.cc
+|  |  |  |  |-- jwt.cc
+|  |  |  |  |-- jwt.h
+|  |  |  |  |-- jwt_authenticator.cc
+|  |  |  |  |-- jwt_authenticator.h
+|  |  |  |  |-- jwt_authenticator_test.cc
+|  |  |  |  |-- jwt_test.cc
+|  |  |  |  |-- pubkey_cache.h
+|  |  |  |  |-- sample
+|  |  |  |  |  |-- correct_jwt
+|  |  |  |  |  |-- envoy.conf
+|  |  |  |  |  |-- fake_issuer.go
+|  |  |  |  |  |-- invalid_jwt
+|  |  |  |  |  |-- pubkey.jwk
+|  |  |  |  |-- token_extractor.cc
+|  |  |  |  |-- token_extractor.h
+|  |  |  |  |-- token_extractor_test.cc
+|  |  |  |  |-- tools
+|  |  |  |  |  |-- jwk_generator.py
+|  |  |  |  |  |-- jwt_generator.py
+|  |  |  |-- mixer
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- check_data.cc
+|  |  |  |  |-- check_data.h
+|  |  |  |  |-- config.cc
+|  |  |  |  |-- config.h
+|  |  |  |  |-- control.cc
+|  |  |  |  |-- control.h
+|  |  |  |  |-- control_factory.h
+|  |  |  |  |-- envoy.conf.template
+|  |  |  |  |-- envoy_lds.conf
+|  |  |  |  |-- filter.cc
+|  |  |  |  |-- filter.h
+|  |  |  |  |-- filter_factory.cc
+|  |  |  |  |-- report_data.h
+|  |  |  |  |-- start_envoy
+|  |  |-- tcp
+|  |  |  |-- forward_downstream_sni
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- config.cc
+|  |  |  |  |-- config.h
+|  |  |  |  |-- forward_downstream_sni.cc
+|  |  |  |  |-- forward_downstream_sni.h
+|  |  |  |  |-- forward_downstream_sni_test.cc
+|  |  |  |-- mixer
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- config.h
+|  |  |  |  |-- control.cc
+|  |  |  |  |-- control.h
+|  |  |  |  |-- control_factory.h
+|  |  |  |  |-- filter.cc
+|  |  |  |  |-- filter.h
+|  |  |  |  |-- filter_factory.cc
+|  |  |  |-- tcp_cluster_rewrite
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- config.cc
+|  |  |  |  |-- config.h
+|  |  |  |  |-- config_test.cc
+|  |  |  |  |-- tcp_cluster_rewrite.cc
+|  |  |  |  |-- tcp_cluster_rewrite.h
+|  |  |  |  |-- tcp_cluster_rewrite_test.cc
+|  |  |-- utils
+|  |  |  |-- BUILD
+|  |  |  |-- authn.cc
+|  |  |  |-- authn.h
+|  |  |  |-- authn_test.cc
+|  |  |  |-- config.cc
+|  |  |  |-- config.h
+|  |  |  |-- filter_names.cc
+|  |  |  |-- filter_names.h
+|  |  |  |-- grpc_transport.cc
+|  |  |  |-- grpc_transport.h
+|  |  |  |-- header_update.h
+|  |  |  |-- mixer_control.cc
+|  |  |  |-- mixer_control.h
+|  |  |  |-- mixer_control_test.cc
+|  |  |  |-- stats.cc
+|  |  |  |-- stats.h
+|  |  |  |-- utils.cc
+|  |  |  |-- utils.h
+|  |  |  |-- utils_test.cc
+|  |-- istio
+|  |  |-- api_spec
+|  |  |  |-- BUILD
+|  |  |  |-- http_api_spec_parser_impl.cc
+|  |  |  |-- http_api_spec_parser_impl.h
+|  |  |  |-- http_api_spec_parser_test.cc
+|  |  |  |-- http_template.cc
+|  |  |  |-- http_template.h
+|  |  |  |-- http_template_test.cc
+|  |  |  |-- path_matcher.h
+|  |  |  |-- path_matcher_node.cc
+|  |  |  |-- path_matcher_node.h
+|  |  |  |-- path_matcher_test.cc
+|  |  |-- authn
+|  |  |  |-- BUILD
+|  |  |  |-- context.proto
+|  |  |-- control
+|  |  |  |-- BUILD
+|  |  |  |-- client_context_base.cc
+|  |  |  |-- client_context_base.h
+|  |  |  |-- http
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- attributes_builder.cc
+|  |  |  |  |-- attributes_builder.h
+|  |  |  |  |-- attributes_builder_test.cc
+|  |  |  |  |-- client_context.cc
+|  |  |  |  |-- client_context.h
+|  |  |  |  |-- controller_impl.cc
+|  |  |  |  |-- controller_impl.h
+|  |  |  |  |-- mock_check_data.h
+|  |  |  |  |-- mock_report_data.h
+|  |  |  |  |-- request_handler_impl.cc
+|  |  |  |  |-- request_handler_impl.h
+|  |  |  |  |-- request_handler_impl_test.cc
+|  |  |  |  |-- service_context.cc
+|  |  |  |  |-- service_context.h
+|  |  |  |-- mock_mixer_client.h
+|  |  |  |-- request_context.h
+|  |  |  |-- tcp
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- attributes_builder.cc
+|  |  |  |  |-- attributes_builder.h
+|  |  |  |  |-- attributes_builder_test.cc
+|  |  |  |  |-- client_context.h
+|  |  |  |  |-- controller_impl.cc
+|  |  |  |  |-- controller_impl.h
+|  |  |  |  |-- mock_check_data.h
+|  |  |  |  |-- mock_report_data.h
+|  |  |  |  |-- request_handler_impl.cc
+|  |  |  |  |-- request_handler_impl.h
+|  |  |  |  |-- request_handler_impl_test.cc
+|  |  |-- mixerclient
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- attribute_compressor.cc
+|  |  |  |-- attribute_compressor.h
+|  |  |  |-- attribute_compressor_test.cc
+|  |  |  |-- check_cache.cc
+|  |  |  |-- check_cache.h
+|  |  |  |-- check_cache_test.cc
+|  |  |  |-- client_impl.cc
+|  |  |  |-- client_impl.h
+|  |  |  |-- client_impl_test.cc
+|  |  |  |-- create_global_dictionary.py
+|  |  |  |-- global_dictionary.h
+|  |  |  |-- quota_cache.cc
+|  |  |  |-- quota_cache.h
+|  |  |  |-- quota_cache_test.cc
+|  |  |  |-- referenced.cc
+|  |  |  |-- referenced.h
+|  |  |  |-- referenced_test.cc
+|  |  |  |-- report_batch.cc
+|  |  |  |-- report_batch.h
+|  |  |  |-- report_batch_test.cc
+|  |  |  |-- status_test_util.h
+|  |  |-- prefetch
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- circular_queue.h
+|  |  |  |-- circular_queue_test.cc
+|  |  |  |-- quota_prefetch.cc
+|  |  |  |-- quota_prefetch_test.cc
+|  |  |  |-- time_based_counter.cc
+|  |  |  |-- time_based_counter.h
+|  |  |  |-- time_based_counter_test.cc
+|  |  |-- quota_config
+|  |  |  |-- BUILD
+|  |  |  |-- config_parser_impl.cc
+|  |  |  |-- config_parser_impl.h
+|  |  |  |-- config_parser_impl_test.cc
+|  |  |-- utils
+|  |  |  |-- BUILD
+|  |  |  |-- attribute_names.cc
+|  |  |  |-- local_attributes.cc
+|  |  |  |-- protobuf.cc
+|  |  |  |-- simple_lru_cache_test.cc
+|  |  |  |-- status.cc
+|  |  |  |-- utils.cc
+|  |  |  |-- utils.h
+|  |  |  |-- utils_test.cc
+|-- test
+|  |-- backend
+|  |  |-- echo
+|  |  |  |-- README.md
+|  |  |  |-- echo.go
+|  |-- integration
+|  |  |-- BUILD
+|  |  |-- istio_http_integration_test.cc
+|-- tools
+|  |-- bazel.rc
+|  |-- bazel.rc.ci
+|  |-- bazel.rc.cloudbuilder
+|  |-- bazel_get_workspace_status
+|  |-- deb
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- conffiles
+|  |  |-- description
+|  |  |-- envoy.json
+|  |  |-- postinst.sh
+|  |  |-- sidecar.env
+|  |  |-- test
+|  |  |  |-- build_docker.sh
+|  |  |  |-- envoy_local.json
+|  |  |  |-- golden.cidr
+|  |  |  |-- golden.defaults
+|  |  |  |-- golden.exclude
+|  |  |  |-- golden.in
+|  |  |  |-- machine_setup.sh
+|  |  |  |-- run_gce_test.sh
+|  |  |  |-- run_pilot_test.sh
+|-- x_tools_imports.bzl

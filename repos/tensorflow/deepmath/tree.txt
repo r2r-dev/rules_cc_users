@@ -1,0 +1,461 @@
+|-- .gitignore
+|-- .gitmodules
+|-- CONTRIBUTING.md
+|-- Dockerfile
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- deepmath
+|  |-- BUILD
+|  |-- deephol
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- action_generator.py
+|  |  |-- action_generator_test.py
+|  |  |-- data
+|  |  |  |-- hollight_tactics.textpb
+|  |  |  |-- hollight_tactics_replacements.textpb
+|  |  |  |-- mini_theorem_database.textpb
+|  |  |-- deephol.proto
+|  |  |-- deephol_loop
+|  |  |  |-- README
+|  |  |  |-- checkpoint_monitor.py
+|  |  |  |-- data
+|  |  |  |  |-- loop1.pbtxt
+|  |  |  |-- loop.proto
+|  |  |  |-- loop_meta.py
+|  |  |  |-- loop_pipeline.py
+|  |  |  |-- options.proto
+|  |  |  |-- prooflog_to_tfexamples_lib.py
+|  |  |  |-- prover_runner.py
+|  |  |  |-- report.py
+|  |  |  |-- run_loop_main.py
+|  |  |-- embedding_store.py
+|  |  |-- embedding_store_test.py
+|  |  |-- holparam_predictor.py
+|  |  |-- holparam_predictor_test.py
+|  |  |-- io_util.py
+|  |  |-- io_util_test.py
+|  |  |-- main.py
+|  |  |-- mock_predictions_lib.py
+|  |  |-- predictions.py
+|  |  |-- predictions_abstract_base_test.py
+|  |  |-- predictions_test.py
+|  |  |-- process_sexp.py
+|  |  |-- proof_search_tree.py
+|  |  |-- prover.py
+|  |  |-- prover_flags.py
+|  |  |-- prover_runner.py
+|  |  |-- prover_util.py
+|  |  |-- prover_util_test.py
+|  |  |-- prune_lib.py
+|  |  |-- public
+|  |  |  |-- BUILD
+|  |  |  |-- proof_assistant.py
+|  |  |  |-- recordio_util.py
+|  |  |-- test_data
+|  |  |  |-- default_ckpt
+|  |  |  |  |-- export
+|  |  |  |  |  |-- best_exporter
+|  |  |  |  |  |  |-- 1548452515
+|  |  |  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |-- model.ckpt-0.data-00000-of-00001
+|  |  |  |  |-- model.ckpt-0.index
+|  |  |  |-- tac_dep_ckpt
+|  |  |  |  |-- export
+|  |  |  |  |  |-- best_exporter
+|  |  |  |  |  |  |-- 1548452515
+|  |  |  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |-- model.ckpt-0.data-00000-of-00001
+|  |  |  |  |-- model.ckpt-0.index
+|  |  |-- test_util.py
+|  |  |-- theorem_fingerprint.py
+|  |  |-- theorem_fingerprint_test.py
+|  |  |-- train
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- architectures.py
+|  |  |  |-- data.py
+|  |  |  |-- experiments.py
+|  |  |  |-- extractor.py
+|  |  |  |-- losses.py
+|  |  |  |-- model.py
+|  |  |  |-- utils.py
+|  |  |  |-- wavenet.py
+|  |  |-- utilities
+|  |  |  |-- BUILD
+|  |  |  |-- deephol_stat.proto
+|  |  |  |-- normalization_lib.py
+|  |  |  |-- normalization_lib_test.py
+|  |  |  |-- proof_analysis.py
+|  |  |  |-- proof_analysis_test.py
+|  |  |  |-- proof_checker.py
+|  |  |  |-- proof_checker_lib.py
+|  |  |  |-- proof_checker_test.py
+|  |  |  |-- proof_test_util.py
+|  |  |  |-- sexpression_graphs.py
+|  |  |  |-- sexpression_graphs_test.py
+|  |  |  |-- sexpression_parser.py
+|  |  |  |-- sexpression_parser_test.py
+|  |  |  |-- stat_proofs_main.py
+|  |  |  |-- stats.py
+|  |  |  |-- stats_test.py
+|  |-- deepmath.bzl
+|  |-- eprover
+|  |  |-- BUILD
+|  |  |-- clause.proto
+|  |  |-- fast_clause.proto
+|  |  |-- fol_formula.proto
+|  |  |-- prover_clause_examples.proto
+|  |  |-- prover_options.proto
+|  |  |-- prover_result.proto
+|  |  |-- prover_task.proto
+|  |  |-- prover_task_stats.proto
+|  |-- guidance
+|  |  |-- BUILD
+|  |  |-- all_models.py
+|  |  |-- all_models_test.py
+|  |  |-- clause_loom.py
+|  |  |-- clause_loom_test.py
+|  |  |-- clause_utils.cc
+|  |  |-- clause_utils.h
+|  |  |-- cnn_unconditional.py
+|  |  |-- convert_ops.cc
+|  |  |-- driver.py
+|  |  |-- driver_lib.py
+|  |  |-- driver_test.py
+|  |  |-- fast_cnn.py
+|  |  |-- inference_graph.py
+|  |  |-- inputs.py
+|  |  |-- inputs_test.py
+|  |  |-- jagged.py
+|  |  |-- jagged_ops.cc
+|  |  |-- jagged_test.py
+|  |  |-- make_fast_clause.h
+|  |  |-- model_cnn_regularized.py
+|  |  |-- model_wavenet.py
+|  |  |-- sequence_op.cc
+|  |  |-- serialize.cc
+|  |  |-- serialize.h
+|  |  |-- test_data
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- cnn-graph.meta
+|  |  |  |-- examples-00000-of-00010
+|  |  |  |-- examples-00001-of-00010
+|  |  |  |-- examples-00002-of-00010
+|  |  |  |-- examples-00003-of-00010
+|  |  |  |-- examples-00004-of-00010
+|  |  |  |-- examples-00005-of-00010
+|  |  |  |-- examples-00006-of-00010
+|  |  |  |-- examples-00007-of-00010
+|  |  |  |-- examples-00008-of-00010
+|  |  |  |-- examples-00009-of-00010
+|  |  |  |-- examples-eval-00000-of-00010
+|  |  |  |-- examples-eval-00001-of-00010
+|  |  |  |-- examples-eval-00002-of-00010
+|  |  |  |-- examples-eval-00003-of-00010
+|  |  |  |-- examples-eval-00004-of-00010
+|  |  |  |-- examples-eval-00005-of-00010
+|  |  |  |-- examples-eval-00006-of-00010
+|  |  |  |-- examples-eval-00007-of-00010
+|  |  |  |-- examples-eval-00008-of-00010
+|  |  |  |-- examples-eval-00009-of-00010
+|  |  |  |-- examples-train-00000-of-00010
+|  |  |  |-- examples-train-00001-of-00010
+|  |  |  |-- examples-train-00002-of-00010
+|  |  |  |-- examples-train-00003-of-00010
+|  |  |  |-- examples-train-00004-of-00010
+|  |  |  |-- examples-train-00005-of-00010
+|  |  |  |-- examples-train-00006-of-00010
+|  |  |  |-- examples-train-00007-of-00010
+|  |  |  |-- examples-train-00008-of-00010
+|  |  |  |-- examples-train-00009-of-00010
+|  |  |  |-- theorems
+|  |  |  |  |-- t25_cat_1_theorem.txt
+|  |  |  |  |-- t28_trees_3_theorem.txt
+|  |  |  |-- tree-graph.meta
+|  |  |  |-- vocab
+|  |  |  |-- vocab_large
+|  |  |-- train.py
+|  |  |-- train_test.py
+|  |  |-- tree_rnn.py
+|  |  |-- vocabulary.cc
+|  |  |-- vocabulary.h
+|  |  |-- vocabulary_test.cc
+|  |  |-- wavenet.py
+|  |  |-- weaver_op.cc
+|  |-- hol
+|  |  |-- BUILD
+|  |  |-- general.cc
+|  |  |-- general.h
+|  |  |-- kernel.cc
+|  |  |-- kernel.h
+|  |  |-- printer.cc
+|  |  |-- printer.h
+|  |  |-- proofs-bug1
+|  |  |-- proofs-bug2
+|  |  |-- proofs-bug3
+|  |  |-- proofs-bug4
+|  |  |-- proofs-nat
+|  |  |-- trace.cc
+|  |  |-- trace.h
+|  |  |-- trace_main.cc
+|  |-- holstep
+|  |  |-- BUILD
+|  |  |-- parser.py
+|  |  |-- parser_test.py
+|  |-- holstep_baselines
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- conditioned_classification_models.py
+|  |  |-- data_utils.py
+|  |  |-- main.py
+|  |  |-- unconditioned_classification_models.py
+|  |-- premises
+|  |  |-- BUILD
+|  |  |-- layers.py
+|  |  |-- model.py
+|  |  |-- model_definition_cnn.py
+|  |  |-- model_definition_cnn_bigger.py
+|  |  |-- model_definition_cnn_flat1.py
+|  |  |-- model_definition_cnn_flat2.py
+|  |  |-- model_definition_cnn_flat3.py
+|  |  |-- model_definition_hybrid_pool1.py
+|  |  |-- model_definition_hybrid_pool2.py
+|  |  |-- model_final_cnn_1x.py
+|  |  |-- model_final_cnn_2x.py
+|  |  |-- model_final_cnn_3x.py
+|  |  |-- model_final_cnn_3x_lstm.py
+|  |  |-- model_final_gru.py
+|  |  |-- model_final_lstm.py
+|  |-- proof_assistant
+|  |  |-- BUILD
+|  |  |-- proof_assistant.proto
+|  |-- public
+|  |  |-- BUILD
+|  |  |-- build_data.py
+|  |  |-- error.py
+|  |-- tools
+|  |  |-- BUILD
+|  |  |-- boilerplate_test.py
+|  |  |-- gen_op_stub.py
+|  |-- treegen
+|  |  |-- BUILD
+|  |  |-- arith_make_data.py
+|  |  |-- arith_make_data_test.py
+|  |  |-- arith_model.py
+|  |  |-- arith_model_test.py
+|  |  |-- arith_train.py
+|  |  |-- arith_utils.py
+|  |  |-- binary_trees.py
+|  |  |-- cnf_model.py
+|  |  |-- cnf_model_big_test.py
+|  |  |-- cnf_model_test.py
+|  |  |-- cnf_model_test_lib.py
+|  |  |-- cnf_train.py
+|  |  |-- cnf_utils.py
+|  |  |-- g3doc
+|  |  |  |-- design.md
+|  |  |  |-- down-up_1_plus_2_minus_3.dot
+|  |  |-- jsonl.py
+|  |  |-- loom_ops.py
+|  |  |-- loom_ops_test.py
+|  |  |-- preprocess_json_clauses.py
+|  |  |-- testdata
+|  |  |  |-- cnf_metadata.json
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- dfile.py
+|  |  |-- dfile_test.py
+|  |  |-- model_utils.py
+|  |  |-- model_utils_test.py
+|  |  |-- test_utils.py
+|  |-- zz
+|  |  |-- .pseudo_root
+|  |  |  |-- ZZ
+|  |  |  |-- zz
+|  |  |-- .zb_root
+|  |  |-- BUILD
+|  |  |  |-- build_system.txt
+|  |  |  |-- filter_deps
+|  |  |  |-- global_deps
+|  |  |  |-- module.mak
+|  |  |  |-- qt_module.mak
+|  |  |  |-- zb
+|  |  |  |-- zz_gdep_link
+|  |  |-- CmdLine
+|  |  |  |-- CmdLine.cc
+|  |  |  |-- CmdLine.hh
+|  |  |  |-- CmdLine_CLI.icc
+|  |  |  |-- MODULE.conf
+|  |  |-- CodeBreeder
+|  |  |  |-- CbPython.cc
+|  |  |  |-- CbPython.hh
+|  |  |  |-- Compile.cc
+|  |  |  |-- Compile.hh
+|  |  |  |-- CreateTestVectors.cc
+|  |  |  |-- CreateTestVectors.hh
+|  |  |  |-- DeriveGenealogy.cc
+|  |  |  |-- DeriveGenealogy.hh
+|  |  |  |-- Evo
+|  |  |  |  |-- new_spec.evo
+|  |  |  |  |-- spec.evo
+|  |  |  |  |-- std.evo
+|  |  |  |  |-- stdext.evo
+|  |  |  |  |-- syms1.evo
+|  |  |  |  |-- syms2.evo
+|  |  |  |-- Expand.cc
+|  |  |  |-- Expand.hh
+|  |  |  |-- ExtractPropTests.cc
+|  |  |  |-- ExtractPropTests.hh
+|  |  |  |-- HeapSynth.cc
+|  |  |  |-- HeapSynth.hh
+|  |  |  |-- Instr.cc
+|  |  |  |-- Instr.hh
+|  |  |  |-- MODULE.conf
+|  |  |  |-- Main_cb.cc
+|  |  |  |-- Parser.cc
+|  |  |  |-- Parser.hh
+|  |  |  |-- PropSynth.cc
+|  |  |  |-- PropSynth.hh
+|  |  |  |-- ProtoBuf.cc
+|  |  |  |-- ProtoBuf.hh
+|  |  |  |-- RandomFuncs.cc
+|  |  |  |-- RandomFuncs.hh
+|  |  |  |-- Synth.cc
+|  |  |  |-- Synth.hh
+|  |  |  |-- SynthEnum.cc
+|  |  |  |-- SynthEnum.hh
+|  |  |  |-- SynthHelpers.cc
+|  |  |  |-- SynthHelpers.hh
+|  |  |  |-- SynthPrune.cc
+|  |  |  |-- SynthPrune.hh
+|  |  |  |-- SynthSpec.cc
+|  |  |  |-- SynthSpec.hh
+|  |  |  |-- TrainingData.hh
+|  |  |  |-- TypeInference.cc
+|  |  |  |-- TypeInference.hh
+|  |  |  |-- Types.cc
+|  |  |  |-- Types.hh
+|  |  |  |-- Vm.cc
+|  |  |  |-- Vm.hh
+|  |  |  |-- synth.pb.cc
+|  |  |  |-- synth.pb.h
+|  |  |  |-- synth.proto
+|  |  |-- Console
+|  |  |  |-- Console.cc
+|  |  |  |-- Console.hh
+|  |  |  |-- ConsoleStd.cc
+|  |  |  |-- ConsoleStd.hh
+|  |  |  |-- MODULE.conf
+|  |  |  |-- MODULE.hh
+|  |  |  |-- Main_console.cc
+|  |  |-- Generics
+|  |  |  |-- Arr.hh
+|  |  |  |-- Atom.cc
+|  |  |  |-- Atom.hh
+|  |  |  |-- CuckooSet.cc
+|  |  |  |-- CuckooSet.hh
+|  |  |  |-- ExprParser.cc
+|  |  |  |-- ExprParser.hh
+|  |  |  |-- Glob.cc
+|  |  |  |-- Glob.hh
+|  |  |  |-- Heap.hh
+|  |  |  |-- IdHeap.hh
+|  |  |  |-- IntMap.hh
+|  |  |  |-- IntSet.hh
+|  |  |  |-- LineReader.hh
+|  |  |  |-- MODULE.conf
+|  |  |  |-- Main_test.cc
+|  |  |  |-- Map.hh
+|  |  |  |-- PArr.hh
+|  |  |  |-- Set.hh
+|  |  |  |-- Sort.hh
+|  |  |-- HolLight
+|  |  |  |-- Checker.cc
+|  |  |  |-- Checker.hh
+|  |  |  |-- DetailedViewer.cc
+|  |  |  |-- DetailedViewer.hh
+|  |  |  |-- Hashing.hh
+|  |  |  |-- HolFormat.cc
+|  |  |  |-- HolFormat.hh
+|  |  |  |-- HolOperators.cc
+|  |  |  |-- HolOperators.hh
+|  |  |  |-- Kernel.cc
+|  |  |  |-- Kernel.hh
+|  |  |  |-- List.hh
+|  |  |  |-- MODULE.conf
+|  |  |  |-- Main_pan.cc
+|  |  |  |-- Parser.cc
+|  |  |  |-- Parser.hh
+|  |  |  |-- ParserTypes.cc
+|  |  |  |-- ParserTypes.hh
+|  |  |  |-- PremiseViewer.cc
+|  |  |  |-- PremiseViewer.hh
+|  |  |  |-- Printing.cc
+|  |  |  |-- Printing.hh
+|  |  |  |-- ProofLogging.cc
+|  |  |  |-- ProofLogging.hh
+|  |  |  |-- ProofStore.cc
+|  |  |  |-- ProofStore.hh
+|  |  |  |-- RuleApply.cc
+|  |  |  |-- RuleApply.hh
+|  |  |  |-- StrollExtract.cc
+|  |  |  |-- StrollExtract.hh
+|  |  |  |-- Train_EqChains.cc
+|  |  |  |-- Train_EqChains.hh
+|  |  |  |-- Train_PremiseGraph.cc
+|  |  |  |-- Train_PremiseGraph.hh
+|  |  |  |-- Types.cc
+|  |  |  |-- Types.hh
+|  |  |  |-- WriteProof.cc
+|  |  |  |-- WriteProof.hh
+|  |  |-- Prelude
+|  |  |  |-- Array.ihh
+|  |  |  |-- Exceptions.ihh
+|  |  |  |-- Format.icc
+|  |  |  |-- Format.ihh
+|  |  |  |-- Hash.ihh
+|  |  |  |-- MODULE.conf
+|  |  |  |-- Macros.ihh
+|  |  |  |-- Mem.ihh
+|  |  |  |-- Prelude.cc
+|  |  |  |-- Prelude.hh
+|  |  |  |-- PrimitiveTypes.ihh
+|  |  |  |-- Profile.icc
+|  |  |  |-- ScopeGuard.ihh
+|  |  |  |-- ScopedPtr.ihh
+|  |  |  |-- Signals.icc
+|  |  |  |-- Traits.ihh
+|  |  |  |-- Utility.icc
+|  |  |  |-- Utility.ihh
+|  |  |  |-- Vec.ihh
+|  |  |  |-- VecAlgo.ihh
+|  |  |-- Unix
+|  |  |  |-- Linux.cc
+|  |  |  |-- Linux.hh
+|  |  |  |-- MODULE.conf
+|  |  |  |-- MODULE.hh
+|  |  |  |-- Processes.cc
+|  |  |  |-- Processes.hh
+|  |  |  |-- Sockets.cc
+|  |  |  |-- Sockets.hh
+|  |  |  |-- Unix.cc
+|  |  |  |-- Unix.hh
+|  |  |-- build_all.sh
+|  |  |-- clean_all.sh
+|-- fold
+|-- tensorflow
+|-- third_party
+|  |-- mkl
+|  |-- py
+|  |  |-- keras
+|  |  |  |-- BUILD
+|  |  |-- numpy
+|  |  |  |-- BUILD
+|  |  |-- scipy
+|  |  |  |-- BUILD
+|-- tools
+|  |-- README.md
+|  |-- bazel.rc

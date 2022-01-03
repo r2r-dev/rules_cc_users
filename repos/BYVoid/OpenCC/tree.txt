@@ -1,0 +1,871 @@
+|-- .appveyor.yml
+|-- .clang-format
+|-- .github
+|  |-- workflows
+|  |  |-- cmake.yml
+|  |  |-- nodejs.yml
+|  |  |-- python.yml
+|  |  |-- release-pypi.yml
+|-- .gitignore
+|-- .npmignore
+|-- .travis.yml
+|-- AUTHORS
+|-- CMakeLists.txt
+|-- LICENSE
+|-- Makefile
+|-- NEWS.md
+|-- README.md
+|-- binding.gyp
+|-- build.cmd
+|-- data
+|  |-- CMakeLists.txt
+|  |-- config
+|  |  |-- hk2s.json
+|  |  |-- hk2t.json
+|  |  |-- jp2t.json
+|  |  |-- s2hk.json
+|  |  |-- s2t.json
+|  |  |-- s2tw.json
+|  |  |-- s2twp.json
+|  |  |-- t2hk.json
+|  |  |-- t2jp.json
+|  |  |-- t2s.json
+|  |  |-- t2tw.json
+|  |  |-- tw2s.json
+|  |  |-- tw2sp.json
+|  |  |-- tw2t.json
+|  |-- dictionary
+|  |  |-- HKVariants.txt
+|  |  |-- HKVariantsRevPhrases.txt
+|  |  |-- JPShinjitaiCharacters.txt
+|  |  |-- JPShinjitaiPhrases.txt
+|  |  |-- JPVariants.txt
+|  |  |-- STCharacters.txt
+|  |  |-- STPhrases.txt
+|  |  |-- TSCharacters.txt
+|  |  |-- TSPhrases.txt
+|  |  |-- TWPhrasesIT.txt
+|  |  |-- TWPhrasesName.txt
+|  |  |-- TWPhrasesOther.txt
+|  |  |-- TWVariants.txt
+|  |  |-- TWVariantsRevPhrases.txt
+|  |-- icon
+|  |  |-- opencc.svg
+|  |-- scheme
+|  |  |-- st_multi.txt
+|  |  |-- ts_multi.txt
+|  |  |-- variant.txt
+|  |-- scripts
+|  |  |-- common.py
+|  |  |-- find_target.py
+|  |  |-- merge.py
+|  |  |-- reverse.py
+|  |  |-- sort.py
+|  |  |-- sort_all.py
+|-- deps
+|  |-- darts-clone
+|  |  |-- darts.h
+|  |-- google-benchmark
+|  |  |-- .clang-format
+|  |  |-- .github
+|  |  |  |-- ISSUE_TEMPLATE
+|  |  |  |  |-- bug_report.md
+|  |  |  |  |-- feature_request.md
+|  |  |-- .gitignore
+|  |  |-- .travis-libcxx-setup.sh
+|  |  |-- .travis.yml
+|  |  |-- .ycm_extra_conf.py
+|  |  |-- AUTHORS
+|  |  |-- BUILD.bazel
+|  |  |-- CMakeLists.txt
+|  |  |-- CONTRIBUTING.md
+|  |  |-- CONTRIBUTORS
+|  |  |-- LICENSE
+|  |  |-- README.md
+|  |  |-- WORKSPACE
+|  |  |-- _config.yml
+|  |  |-- appveyor.yml
+|  |  |-- bindings
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- benchmark
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- benchmark.cc
+|  |  |  |  |  |-- example.py
+|  |  |  |  |-- build_defs.bzl
+|  |  |  |  |-- pybind11.BUILD
+|  |  |  |  |-- python_headers.BUILD
+|  |  |  |  |-- requirements.txt
+|  |  |-- cmake
+|  |  |  |-- AddCXXCompilerFlag.cmake
+|  |  |  |-- CXXFeatureCheck.cmake
+|  |  |  |-- Config.cmake.in
+|  |  |  |-- GetGitVersion.cmake
+|  |  |  |-- GoogleTest.cmake
+|  |  |  |-- GoogleTest.cmake.in
+|  |  |  |-- benchmark.pc.in
+|  |  |  |-- gnu_posix_regex.cpp
+|  |  |  |-- llvm-toolchain.cmake
+|  |  |  |-- posix_regex.cpp
+|  |  |  |-- split_list.cmake
+|  |  |  |-- std_regex.cpp
+|  |  |  |-- steady_clock.cpp
+|  |  |  |-- thread_safety_attributes.cpp
+|  |  |-- conan
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- test_package
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- conanfile.py
+|  |  |  |  |-- test_package.cpp
+|  |  |-- conanfile.py
+|  |  |-- dependencies.md
+|  |  |-- docs
+|  |  |  |-- AssemblyTests.md
+|  |  |  |-- _config.yml
+|  |  |  |-- tools.md
+|  |  |-- include
+|  |  |  |-- benchmark
+|  |  |  |  |-- benchmark.h
+|  |  |-- mingw.py
+|  |  |-- releasing.md
+|  |  |-- setup.py
+|  |  |-- src
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- arraysize.h
+|  |  |  |-- benchmark.cc
+|  |  |  |-- benchmark_api_internal.cc
+|  |  |  |-- benchmark_api_internal.h
+|  |  |  |-- benchmark_main.cc
+|  |  |  |-- benchmark_name.cc
+|  |  |  |-- benchmark_register.cc
+|  |  |  |-- benchmark_register.h
+|  |  |  |-- benchmark_runner.cc
+|  |  |  |-- benchmark_runner.h
+|  |  |  |-- check.h
+|  |  |  |-- colorprint.cc
+|  |  |  |-- colorprint.h
+|  |  |  |-- commandlineflags.cc
+|  |  |  |-- commandlineflags.h
+|  |  |  |-- complexity.cc
+|  |  |  |-- complexity.h
+|  |  |  |-- console_reporter.cc
+|  |  |  |-- counter.cc
+|  |  |  |-- counter.h
+|  |  |  |-- csv_reporter.cc
+|  |  |  |-- cycleclock.h
+|  |  |  |-- internal_macros.h
+|  |  |  |-- json_reporter.cc
+|  |  |  |-- log.h
+|  |  |  |-- mutex.h
+|  |  |  |-- re.h
+|  |  |  |-- reporter.cc
+|  |  |  |-- sleep.cc
+|  |  |  |-- sleep.h
+|  |  |  |-- statistics.cc
+|  |  |  |-- statistics.h
+|  |  |  |-- string_util.cc
+|  |  |  |-- string_util.h
+|  |  |  |-- sysinfo.cc
+|  |  |  |-- thread_manager.h
+|  |  |  |-- thread_timer.h
+|  |  |  |-- timers.cc
+|  |  |  |-- timers.h
+|  |  |-- test
+|  |  |  |-- AssemblyTests.cmake
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- basic_test.cc
+|  |  |  |-- benchmark_gtest.cc
+|  |  |  |-- benchmark_name_gtest.cc
+|  |  |  |-- benchmark_test.cc
+|  |  |  |-- clobber_memory_assembly_test.cc
+|  |  |  |-- commandlineflags_gtest.cc
+|  |  |  |-- complexity_test.cc
+|  |  |  |-- cxx03_test.cc
+|  |  |  |-- diagnostics_test.cc
+|  |  |  |-- display_aggregates_only_test.cc
+|  |  |  |-- donotoptimize_assembly_test.cc
+|  |  |  |-- donotoptimize_test.cc
+|  |  |  |-- filter_test.cc
+|  |  |  |-- fixture_test.cc
+|  |  |  |-- internal_threading_test.cc
+|  |  |  |-- link_main_test.cc
+|  |  |  |-- map_test.cc
+|  |  |  |-- memory_manager_test.cc
+|  |  |  |-- multiple_ranges_test.cc
+|  |  |  |-- options_test.cc
+|  |  |  |-- output_test.h
+|  |  |  |-- output_test_helper.cc
+|  |  |  |-- register_benchmark_test.cc
+|  |  |  |-- report_aggregates_only_test.cc
+|  |  |  |-- reporter_output_test.cc
+|  |  |  |-- skip_with_error_test.cc
+|  |  |  |-- state_assembly_test.cc
+|  |  |  |-- statistics_gtest.cc
+|  |  |  |-- string_util_gtest.cc
+|  |  |  |-- templated_fixture_test.cc
+|  |  |  |-- user_counters_tabular_test.cc
+|  |  |  |-- user_counters_test.cc
+|  |  |  |-- user_counters_thousands_test.cc
+|  |  |-- tools
+|  |  |  |-- compare.py
+|  |  |  |-- gbench
+|  |  |  |  |-- Inputs
+|  |  |  |  |  |-- test1_run1.json
+|  |  |  |  |  |-- test1_run2.json
+|  |  |  |  |  |-- test2_run.json
+|  |  |  |  |  |-- test3_run0.json
+|  |  |  |  |  |-- test3_run1.json
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- report.py
+|  |  |  |  |-- util.py
+|  |  |  |-- strip_asm.py
+|  |-- gtest-1.11.0
+|  |  |-- CMakeLists.txt
+|  |  |-- CONTRIBUTORS
+|  |  |-- LICENSE
+|  |  |-- README.md
+|  |  |-- cmake
+|  |  |  |-- Config.cmake.in
+|  |  |  |-- gtest.pc.in
+|  |  |  |-- gtest_main.pc.in
+|  |  |  |-- internal_utils.cmake
+|  |  |  |-- libgtest.la.in
+|  |  |-- docs
+|  |  |  |-- advanced.md
+|  |  |  |-- faq.md
+|  |  |  |-- pkgconfig.md
+|  |  |  |-- primer.md
+|  |  |  |-- pump_manual.md
+|  |  |  |-- samples.md
+|  |  |-- include
+|  |  |  |-- gtest
+|  |  |  |  |-- gtest-death-test.h
+|  |  |  |  |-- gtest-matchers.h
+|  |  |  |  |-- gtest-message.h
+|  |  |  |  |-- gtest-param-test.h
+|  |  |  |  |-- gtest-printers.h
+|  |  |  |  |-- gtest-spi.h
+|  |  |  |  |-- gtest-test-part.h
+|  |  |  |  |-- gtest-typed-test.h
+|  |  |  |  |-- gtest.h
+|  |  |  |  |-- gtest_pred_impl.h
+|  |  |  |  |-- gtest_prod.h
+|  |  |  |  |-- internal
+|  |  |  |  |  |-- custom
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- gtest-port.h
+|  |  |  |  |  |  |-- gtest-printers.h
+|  |  |  |  |  |  |-- gtest.h
+|  |  |  |  |  |-- gtest-death-test-internal.h
+|  |  |  |  |  |-- gtest-filepath.h
+|  |  |  |  |  |-- gtest-internal.h
+|  |  |  |  |  |-- gtest-param-util.h
+|  |  |  |  |  |-- gtest-port-arch.h
+|  |  |  |  |  |-- gtest-port.h
+|  |  |  |  |  |-- gtest-string.h
+|  |  |  |  |  |-- gtest-type-util.h
+|  |  |  |  |  |-- gtest-type-util.h.pump
+|  |  |-- samples
+|  |  |  |-- prime_tables.h
+|  |  |  |-- sample1.cc
+|  |  |  |-- sample1.h
+|  |  |  |-- sample10_unittest.cc
+|  |  |  |-- sample1_unittest.cc
+|  |  |  |-- sample2.cc
+|  |  |  |-- sample2.h
+|  |  |  |-- sample2_unittest.cc
+|  |  |  |-- sample3-inl.h
+|  |  |  |-- sample3_unittest.cc
+|  |  |  |-- sample4.cc
+|  |  |  |-- sample4.h
+|  |  |  |-- sample4_unittest.cc
+|  |  |  |-- sample5_unittest.cc
+|  |  |  |-- sample6_unittest.cc
+|  |  |  |-- sample7_unittest.cc
+|  |  |  |-- sample8_unittest.cc
+|  |  |  |-- sample9_unittest.cc
+|  |  |-- scripts
+|  |  |  |-- common.py
+|  |  |  |-- fuse_gtest_files.py
+|  |  |  |-- gen_gtest_pred_impl.py
+|  |  |  |-- gtest-config.in
+|  |  |  |-- pump.py
+|  |  |  |-- release_docs.py
+|  |  |  |-- test
+|  |  |  |  |-- Makefile
+|  |  |  |-- upload.py
+|  |  |  |-- upload_gtest.py
+|  |  |-- src
+|  |  |  |-- gtest-all.cc
+|  |  |  |-- gtest-death-test.cc
+|  |  |  |-- gtest-filepath.cc
+|  |  |  |-- gtest-internal-inl.h
+|  |  |  |-- gtest-matchers.cc
+|  |  |  |-- gtest-port.cc
+|  |  |  |-- gtest-printers.cc
+|  |  |  |-- gtest-test-part.cc
+|  |  |  |-- gtest-typed-test.cc
+|  |  |  |-- gtest.cc
+|  |  |  |-- gtest_main.cc
+|  |  |-- test
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- googletest-break-on-failure-unittest.py
+|  |  |  |-- googletest-break-on-failure-unittest_.cc
+|  |  |  |-- googletest-catch-exceptions-test.py
+|  |  |  |-- googletest-catch-exceptions-test_.cc
+|  |  |  |-- googletest-color-test.py
+|  |  |  |-- googletest-color-test_.cc
+|  |  |  |-- googletest-death-test-test.cc
+|  |  |  |-- googletest-death-test_ex_test.cc
+|  |  |  |-- googletest-env-var-test.py
+|  |  |  |-- googletest-env-var-test_.cc
+|  |  |  |-- googletest-filepath-test.cc
+|  |  |  |-- googletest-filter-unittest.py
+|  |  |  |-- googletest-filter-unittest_.cc
+|  |  |  |-- googletest-json-outfiles-test.py
+|  |  |  |-- googletest-json-output-unittest.py
+|  |  |  |-- googletest-list-tests-unittest.py
+|  |  |  |-- googletest-list-tests-unittest_.cc
+|  |  |  |-- googletest-listener-test.cc
+|  |  |  |-- googletest-message-test.cc
+|  |  |  |-- googletest-options-test.cc
+|  |  |  |-- googletest-output-test-golden-lin.txt
+|  |  |  |-- googletest-output-test.py
+|  |  |  |-- googletest-output-test_.cc
+|  |  |  |-- googletest-param-test-invalid-name1-test.py
+|  |  |  |-- googletest-param-test-invalid-name1-test_.cc
+|  |  |  |-- googletest-param-test-invalid-name2-test.py
+|  |  |  |-- googletest-param-test-invalid-name2-test_.cc
+|  |  |  |-- googletest-param-test-test.cc
+|  |  |  |-- googletest-param-test-test.h
+|  |  |  |-- googletest-param-test2-test.cc
+|  |  |  |-- googletest-port-test.cc
+|  |  |  |-- googletest-printers-test.cc
+|  |  |  |-- googletest-shuffle-test.py
+|  |  |  |-- googletest-shuffle-test_.cc
+|  |  |  |-- googletest-test-part-test.cc
+|  |  |  |-- googletest-test2_test.cc
+|  |  |  |-- googletest-throw-on-failure-test.py
+|  |  |  |-- googletest-throw-on-failure-test_.cc
+|  |  |  |-- googletest-uninitialized-test.py
+|  |  |  |-- googletest-uninitialized-test_.cc
+|  |  |  |-- gtest-typed-test2_test.cc
+|  |  |  |-- gtest-typed-test_test.cc
+|  |  |  |-- gtest-typed-test_test.h
+|  |  |  |-- gtest-unittest-api_test.cc
+|  |  |  |-- gtest_all_test.cc
+|  |  |  |-- gtest_assert_by_exception_test.cc
+|  |  |  |-- gtest_environment_test.cc
+|  |  |  |-- gtest_help_test.py
+|  |  |  |-- gtest_help_test_.cc
+|  |  |  |-- gtest_json_test_utils.py
+|  |  |  |-- gtest_list_output_unittest.py
+|  |  |  |-- gtest_list_output_unittest_.cc
+|  |  |  |-- gtest_main_unittest.cc
+|  |  |  |-- gtest_no_test_unittest.cc
+|  |  |  |-- gtest_pred_impl_unittest.cc
+|  |  |  |-- gtest_premature_exit_test.cc
+|  |  |  |-- gtest_prod_test.cc
+|  |  |  |-- gtest_repeat_test.cc
+|  |  |  |-- gtest_skip_environment_check_output_test.py
+|  |  |  |-- gtest_skip_in_environment_setup_test.cc
+|  |  |  |-- gtest_skip_test.cc
+|  |  |  |-- gtest_sole_header_test.cc
+|  |  |  |-- gtest_stress_test.cc
+|  |  |  |-- gtest_test_macro_stack_footprint_test.cc
+|  |  |  |-- gtest_test_utils.py
+|  |  |  |-- gtest_testbridge_test.py
+|  |  |  |-- gtest_testbridge_test_.cc
+|  |  |  |-- gtest_throw_on_failure_ex_test.cc
+|  |  |  |-- gtest_unittest.cc
+|  |  |  |-- gtest_xml_outfile1_test_.cc
+|  |  |  |-- gtest_xml_outfile2_test_.cc
+|  |  |  |-- gtest_xml_outfiles_test.py
+|  |  |  |-- gtest_xml_output_unittest.py
+|  |  |  |-- gtest_xml_output_unittest_.cc
+|  |  |  |-- gtest_xml_test_utils.py
+|  |  |  |-- production.cc
+|  |  |  |-- production.h
+|  |-- marisa-0.2.6
+|  |  |-- AUTHORS
+|  |  |-- CMakeLists.txt
+|  |  |-- COPYING.md
+|  |  |-- README.md
+|  |  |-- include
+|  |  |  |-- marisa.h
+|  |  |  |-- marisa
+|  |  |  |  |-- agent.h
+|  |  |  |  |-- base.h
+|  |  |  |  |-- exception.h
+|  |  |  |  |-- iostream.h
+|  |  |  |  |-- key.h
+|  |  |  |  |-- keyset.h
+|  |  |  |  |-- query.h
+|  |  |  |  |-- scoped-array.h
+|  |  |  |  |-- scoped-ptr.h
+|  |  |  |  |-- stdio.h
+|  |  |  |  |-- trie.h
+|  |  |-- lib
+|  |  |  |-- marisa
+|  |  |  |  |-- agent.cc
+|  |  |  |  |-- grimoire
+|  |  |  |  |  |-- algorithm.h
+|  |  |  |  |  |-- algorithm
+|  |  |  |  |  |  |-- sort.h
+|  |  |  |  |  |-- intrin.h
+|  |  |  |  |  |-- io.h
+|  |  |  |  |  |-- io
+|  |  |  |  |  |  |-- mapper.cc
+|  |  |  |  |  |  |-- mapper.h
+|  |  |  |  |  |  |-- reader.cc
+|  |  |  |  |  |  |-- reader.h
+|  |  |  |  |  |  |-- writer.cc
+|  |  |  |  |  |  |-- writer.h
+|  |  |  |  |  |-- trie.h
+|  |  |  |  |  |-- trie
+|  |  |  |  |  |  |-- cache.h
+|  |  |  |  |  |  |-- config.h
+|  |  |  |  |  |  |-- entry.h
+|  |  |  |  |  |  |-- header.h
+|  |  |  |  |  |  |-- history.h
+|  |  |  |  |  |  |-- key.h
+|  |  |  |  |  |  |-- louds-trie.cc
+|  |  |  |  |  |  |-- louds-trie.h
+|  |  |  |  |  |  |-- range.h
+|  |  |  |  |  |  |-- state.h
+|  |  |  |  |  |  |-- tail.cc
+|  |  |  |  |  |  |-- tail.h
+|  |  |  |  |  |-- vector.h
+|  |  |  |  |  |-- vector
+|  |  |  |  |  |  |-- bit-vector.cc
+|  |  |  |  |  |  |-- bit-vector.h
+|  |  |  |  |  |  |-- flat-vector.h
+|  |  |  |  |  |  |-- pop-count.h
+|  |  |  |  |  |  |-- rank-index.h
+|  |  |  |  |  |  |-- vector.h
+|  |  |  |  |-- keyset.cc
+|  |  |  |  |-- trie.cc
+|  |-- pybind11-2.5.0
+|  |  |-- .appveyor.yml
+|  |  |-- .gitignore
+|  |  |-- .gitmodules
+|  |  |-- .readthedocs.yml
+|  |  |-- .travis.yml
+|  |  |-- CMakeLists.txt
+|  |  |-- CONTRIBUTING.md
+|  |  |-- ISSUE_TEMPLATE.md
+|  |  |-- LICENSE
+|  |  |-- MANIFEST.in
+|  |  |-- README.md
+|  |  |-- docs
+|  |  |  |-- Doxyfile
+|  |  |  |-- _static
+|  |  |  |  |-- theme_overrides.css
+|  |  |  |-- advanced
+|  |  |  |  |-- cast
+|  |  |  |  |  |-- chrono.rst
+|  |  |  |  |  |-- custom.rst
+|  |  |  |  |  |-- eigen.rst
+|  |  |  |  |  |-- functional.rst
+|  |  |  |  |  |-- index.rst
+|  |  |  |  |  |-- overview.rst
+|  |  |  |  |  |-- stl.rst
+|  |  |  |  |  |-- strings.rst
+|  |  |  |  |-- classes.rst
+|  |  |  |  |-- embedding.rst
+|  |  |  |  |-- exceptions.rst
+|  |  |  |  |-- functions.rst
+|  |  |  |  |-- misc.rst
+|  |  |  |  |-- pycpp
+|  |  |  |  |  |-- index.rst
+|  |  |  |  |  |-- numpy.rst
+|  |  |  |  |  |-- object.rst
+|  |  |  |  |  |-- utilities.rst
+|  |  |  |  |-- smart_ptrs.rst
+|  |  |  |-- basics.rst
+|  |  |  |-- benchmark.py
+|  |  |  |-- benchmark.rst
+|  |  |  |-- changelog.rst
+|  |  |  |-- classes.rst
+|  |  |  |-- compiling.rst
+|  |  |  |-- conf.py
+|  |  |  |-- faq.rst
+|  |  |  |-- index.rst
+|  |  |  |-- intro.rst
+|  |  |  |-- limitations.rst
+|  |  |  |-- pybind11-logo.png
+|  |  |  |-- pybind11_vs_boost_python1.png
+|  |  |  |-- pybind11_vs_boost_python1.svg
+|  |  |  |-- pybind11_vs_boost_python2.png
+|  |  |  |-- pybind11_vs_boost_python2.svg
+|  |  |  |-- reference.rst
+|  |  |  |-- release.rst
+|  |  |  |-- requirements.txt
+|  |  |  |-- upgrade.rst
+|  |  |-- include
+|  |  |  |-- pybind11
+|  |  |  |  |-- attr.h
+|  |  |  |  |-- buffer_info.h
+|  |  |  |  |-- cast.h
+|  |  |  |  |-- chrono.h
+|  |  |  |  |-- common.h
+|  |  |  |  |-- complex.h
+|  |  |  |  |-- detail
+|  |  |  |  |  |-- class.h
+|  |  |  |  |  |-- common.h
+|  |  |  |  |  |-- descr.h
+|  |  |  |  |  |-- init.h
+|  |  |  |  |  |-- internals.h
+|  |  |  |  |  |-- typeid.h
+|  |  |  |  |-- eigen.h
+|  |  |  |  |-- embed.h
+|  |  |  |  |-- eval.h
+|  |  |  |  |-- functional.h
+|  |  |  |  |-- iostream.h
+|  |  |  |  |-- numpy.h
+|  |  |  |  |-- operators.h
+|  |  |  |  |-- options.h
+|  |  |  |  |-- pybind11.h
+|  |  |  |  |-- pytypes.h
+|  |  |  |  |-- stl.h
+|  |  |  |  |-- stl_bind.h
+|  |  |-- pybind11
+|  |  |  |-- __init__.py
+|  |  |  |-- __main__.py
+|  |  |  |-- _version.py
+|  |  |-- setup.cfg
+|  |  |-- setup.py
+|  |  |-- tests
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- conftest.py
+|  |  |  |-- constructor_stats.h
+|  |  |  |-- cross_module_gil_utils.cpp
+|  |  |  |-- local_bindings.h
+|  |  |  |-- object.h
+|  |  |  |-- pybind11_cross_module_tests.cpp
+|  |  |  |-- pybind11_tests.cpp
+|  |  |  |-- pybind11_tests.h
+|  |  |  |-- pytest.ini
+|  |  |  |-- test_async.cpp
+|  |  |  |-- test_async.py
+|  |  |  |-- test_buffers.cpp
+|  |  |  |-- test_buffers.py
+|  |  |  |-- test_builtin_casters.cpp
+|  |  |  |-- test_builtin_casters.py
+|  |  |  |-- test_call_policies.cpp
+|  |  |  |-- test_call_policies.py
+|  |  |  |-- test_callbacks.cpp
+|  |  |  |-- test_callbacks.py
+|  |  |  |-- test_chrono.cpp
+|  |  |  |-- test_chrono.py
+|  |  |  |-- test_class.cpp
+|  |  |  |-- test_class.py
+|  |  |  |-- test_cmake_build
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- embed.cpp
+|  |  |  |  |-- installed_embed
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- installed_function
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- installed_target
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- main.cpp
+|  |  |  |  |-- subdirectory_embed
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- subdirectory_function
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- subdirectory_target
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- test.py
+|  |  |  |-- test_constants_and_functions.cpp
+|  |  |  |-- test_constants_and_functions.py
+|  |  |  |-- test_copy_move.cpp
+|  |  |  |-- test_copy_move.py
+|  |  |  |-- test_docstring_options.cpp
+|  |  |  |-- test_docstring_options.py
+|  |  |  |-- test_eigen.cpp
+|  |  |  |-- test_eigen.py
+|  |  |  |-- test_embed
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- catch.cpp
+|  |  |  |  |-- external_module.cpp
+|  |  |  |  |-- test_interpreter.cpp
+|  |  |  |  |-- test_interpreter.py
+|  |  |  |-- test_enum.cpp
+|  |  |  |-- test_enum.py
+|  |  |  |-- test_eval.cpp
+|  |  |  |-- test_eval.py
+|  |  |  |-- test_eval_call.py
+|  |  |  |-- test_exceptions.cpp
+|  |  |  |-- test_exceptions.py
+|  |  |  |-- test_factory_constructors.cpp
+|  |  |  |-- test_factory_constructors.py
+|  |  |  |-- test_gil_scoped.cpp
+|  |  |  |-- test_gil_scoped.py
+|  |  |  |-- test_iostream.cpp
+|  |  |  |-- test_iostream.py
+|  |  |  |-- test_kwargs_and_defaults.cpp
+|  |  |  |-- test_kwargs_and_defaults.py
+|  |  |  |-- test_local_bindings.cpp
+|  |  |  |-- test_local_bindings.py
+|  |  |  |-- test_methods_and_attributes.cpp
+|  |  |  |-- test_methods_and_attributes.py
+|  |  |  |-- test_modules.cpp
+|  |  |  |-- test_modules.py
+|  |  |  |-- test_multiple_inheritance.cpp
+|  |  |  |-- test_multiple_inheritance.py
+|  |  |  |-- test_numpy_array.cpp
+|  |  |  |-- test_numpy_array.py
+|  |  |  |-- test_numpy_dtypes.cpp
+|  |  |  |-- test_numpy_dtypes.py
+|  |  |  |-- test_numpy_vectorize.cpp
+|  |  |  |-- test_numpy_vectorize.py
+|  |  |  |-- test_opaque_types.cpp
+|  |  |  |-- test_opaque_types.py
+|  |  |  |-- test_operator_overloading.cpp
+|  |  |  |-- test_operator_overloading.py
+|  |  |  |-- test_pickling.cpp
+|  |  |  |-- test_pickling.py
+|  |  |  |-- test_pytypes.cpp
+|  |  |  |-- test_pytypes.py
+|  |  |  |-- test_sequences_and_iterators.cpp
+|  |  |  |-- test_sequences_and_iterators.py
+|  |  |  |-- test_smart_ptr.cpp
+|  |  |  |-- test_smart_ptr.py
+|  |  |  |-- test_stl.cpp
+|  |  |  |-- test_stl.py
+|  |  |  |-- test_stl_binders.cpp
+|  |  |  |-- test_stl_binders.py
+|  |  |  |-- test_tagbased_polymorphic.cpp
+|  |  |  |-- test_tagbased_polymorphic.py
+|  |  |  |-- test_union.cpp
+|  |  |  |-- test_union.py
+|  |  |  |-- test_virtual_functions.cpp
+|  |  |  |-- test_virtual_functions.py
+|  |  |-- tools
+|  |  |  |-- FindCatch.cmake
+|  |  |  |-- FindEigen3.cmake
+|  |  |  |-- FindPythonLibsNew.cmake
+|  |  |  |-- check-style.sh
+|  |  |  |-- libsize.py
+|  |  |  |-- mkdoc.py
+|  |  |  |-- pybind11Config.cmake.in
+|  |  |  |-- pybind11Tools.cmake
+|  |-- rapidjson-1.1.0
+|  |  |-- rapidjson
+|  |  |  |-- allocators.h
+|  |  |  |-- document.h
+|  |  |  |-- encodedstream.h
+|  |  |  |-- encodings.h
+|  |  |  |-- error
+|  |  |  |  |-- en.h
+|  |  |  |  |-- error.h
+|  |  |  |-- filereadstream.h
+|  |  |  |-- filewritestream.h
+|  |  |  |-- fwd.h
+|  |  |  |-- internal
+|  |  |  |  |-- biginteger.h
+|  |  |  |  |-- diyfp.h
+|  |  |  |  |-- dtoa.h
+|  |  |  |  |-- ieee754.h
+|  |  |  |  |-- itoa.h
+|  |  |  |  |-- meta.h
+|  |  |  |  |-- pow10.h
+|  |  |  |  |-- regex.h
+|  |  |  |  |-- stack.h
+|  |  |  |  |-- strfunc.h
+|  |  |  |  |-- strtod.h
+|  |  |  |  |-- swap.h
+|  |  |  |-- istreamwrapper.h
+|  |  |  |-- memorybuffer.h
+|  |  |  |-- memorystream.h
+|  |  |  |-- msinttypes
+|  |  |  |  |-- inttypes.h
+|  |  |  |  |-- stdint.h
+|  |  |  |-- ostreamwrapper.h
+|  |  |  |-- pointer.h
+|  |  |  |-- prettywriter.h
+|  |  |  |-- rapidjson.h
+|  |  |  |-- reader.h
+|  |  |  |-- schema.h
+|  |  |  |-- stream.h
+|  |  |  |-- stringbuffer.h
+|  |  |  |-- writer.h
+|  |-- tclap-1.2.2
+|  |  |-- tclap
+|  |  |  |-- Arg.h
+|  |  |  |-- ArgException.h
+|  |  |  |-- ArgTraits.h
+|  |  |  |-- CmdLine.h
+|  |  |  |-- CmdLineInterface.h
+|  |  |  |-- CmdLineOutput.h
+|  |  |  |-- Constraint.h
+|  |  |  |-- DocBookOutput.h
+|  |  |  |-- HelpVisitor.h
+|  |  |  |-- IgnoreRestVisitor.h
+|  |  |  |-- MultiArg.h
+|  |  |  |-- MultiSwitchArg.h
+|  |  |  |-- OptionalUnlabeledTracker.h
+|  |  |  |-- StandardTraits.h
+|  |  |  |-- StdOutput.h
+|  |  |  |-- SwitchArg.h
+|  |  |  |-- UnlabeledMultiArg.h
+|  |  |  |-- UnlabeledValueArg.h
+|  |  |  |-- ValueArg.h
+|  |  |  |-- ValuesConstraint.h
+|  |  |  |-- VersionVisitor.h
+|  |  |  |-- Visitor.h
+|  |  |  |-- XorHandler.h
+|  |  |  |-- ZshCompletionOutput.h
+|  |  |  |-- sstream.h
+|-- doc
+|  |-- CMakeLists.txt
+|  |-- README.md
+|  |-- opencc.doxy.in
+|-- node
+|  |-- configs.gypi
+|  |-- demo.js
+|  |-- dict.js
+|  |-- dicts.gypi
+|  |-- global.gypi
+|  |-- marisa.cc
+|  |-- node_opencc.gypi
+|  |-- opencc.cc
+|  |-- opencc.d.ts
+|  |-- opencc.js
+|  |-- opencc_config.h
+|  |-- test.js
+|  |-- ts-demo.ts
+|-- opencc.pc.in
+|-- package-lock.json
+|-- package.json
+|-- python
+|  |-- .gitignore
+|  |-- opencc
+|  |  |-- .gitignore
+|  |  |-- __init__.py
+|  |-- tests
+|  |  |-- test_opencc.py
+|-- release-pypi-linux.sh
+|-- release-pypi-macos.sh
+|-- release-pypi-windows.cmd
+|-- setup.py
+|-- src
+|  |-- BinaryDict.cpp
+|  |-- BinaryDict.hpp
+|  |-- BinaryDictTest.cpp
+|  |-- CMakeLists.txt
+|  |-- CmdLineOutput.hpp
+|  |-- Common.hpp
+|  |-- Config.cpp
+|  |-- Config.hpp
+|  |-- ConfigTest.cpp
+|  |-- ConfigTestBase.hpp
+|  |-- Conversion.cpp
+|  |-- Conversion.hpp
+|  |-- ConversionChain.cpp
+|  |-- ConversionChain.hpp
+|  |-- ConversionChainTest.cpp
+|  |-- ConversionTest.cpp
+|  |-- Converter.cpp
+|  |-- Converter.hpp
+|  |-- DartsDict.cpp
+|  |-- DartsDict.hpp
+|  |-- DartsDictTest.cpp
+|  |-- Dict.cpp
+|  |-- Dict.hpp
+|  |-- DictConverter.cpp
+|  |-- DictConverter.hpp
+|  |-- DictEntry.cpp
+|  |-- DictEntry.hpp
+|  |-- DictGroup.cpp
+|  |-- DictGroup.hpp
+|  |-- DictGroupTest.cpp
+|  |-- DictGroupTestBase.hpp
+|  |-- Exception.hpp
+|  |-- Export.hpp
+|  |-- Lexicon.cpp
+|  |-- Lexicon.hpp
+|  |-- MarisaDict.cpp
+|  |-- MarisaDict.hpp
+|  |-- MarisaDictTest.cpp
+|  |-- MaxMatchSegmentation.cpp
+|  |-- MaxMatchSegmentation.hpp
+|  |-- MaxMatchSegmentationTest.cpp
+|  |-- Optional.hpp
+|  |-- PhraseExtract.cpp
+|  |-- PhraseExtract.hpp
+|  |-- PhraseExtractTest.cpp
+|  |-- README.md
+|  |-- Segmentation.cpp
+|  |-- Segmentation.hpp
+|  |-- Segments.hpp
+|  |-- SerializableDict.hpp
+|  |-- SerializedValues.cpp
+|  |-- SerializedValues.hpp
+|  |-- SerializedValuesTest.cpp
+|  |-- SimpleConverter.cpp
+|  |-- SimpleConverter.hpp
+|  |-- SimpleConverterTest.cpp
+|  |-- TestUtils.hpp
+|  |-- TestUtilsUTF8.hpp
+|  |-- TextDict.cpp
+|  |-- TextDict.hpp
+|  |-- TextDictTest.cpp
+|  |-- TextDictTestBase.hpp
+|  |-- UTF8StringSlice.cpp
+|  |-- UTF8StringSlice.hpp
+|  |-- UTF8StringSliceTest.cpp
+|  |-- UTF8Util.cpp
+|  |-- UTF8Util.hpp
+|  |-- UTF8UtilTest.cpp
+|  |-- benchmark
+|  |  |-- CMakeLists.txt
+|  |  |-- Performance.cpp
+|  |-- opencc.h
+|  |-- opencc_config.h.in
+|  |-- py_opencc.cpp
+|  |-- tools
+|  |  |-- CMakeLists.txt
+|  |  |-- CommandLine.cpp
+|  |  |-- DictConverter.cpp
+|  |  |-- PhraseExtract.cpp
+|-- test.cmd
+|-- test
+|  |-- CMakeLists.txt
+|  |-- CommandLineConvertTest.cpp
+|  |-- benchmark
+|  |  |-- zuozhuan.txt
+|  |-- config_test
+|  |  |-- config_test.json
+|  |  |-- config_test_characters.txt
+|  |  |-- config_test_phrases.txt
+|  |-- testcases
+|  |  |-- hk2s.ans
+|  |  |-- hk2s.in
+|  |  |-- hk2t.ans
+|  |  |-- hk2t.in
+|  |  |-- jp2t.ans
+|  |  |-- jp2t.in
+|  |  |-- s2hk.ans
+|  |  |-- s2hk.in
+|  |  |-- s2t.ans
+|  |  |-- s2t.in
+|  |  |-- s2tw.ans
+|  |  |-- s2tw.in
+|  |  |-- s2twp.ans
+|  |  |-- s2twp.in
+|  |  |-- t2hk.ans
+|  |  |-- t2hk.in
+|  |  |-- t2jp.ans
+|  |  |-- t2jp.in
+|  |  |-- t2s.ans
+|  |  |-- t2s.in
+|  |  |-- tw2s.ans
+|  |  |-- tw2s.in
+|  |  |-- tw2sp.ans
+|  |  |-- tw2sp.in
+|  |  |-- tw2t.ans
+|  |  |-- tw2t.in

@@ -1,0 +1,1885 @@
+|-- .clang-tidy
+|-- .github
+|  |-- ISSUE_TEMPLATE.md
+|  |-- workflows
+|  |  |-- actions
+|  |  |  |-- install_local_dependencies
+|  |  |  |  |-- action.yaml
+|  |  |  |-- run_build
+|  |  |  |  |-- action.yaml
+|  |  |  |-- run_tests
+|  |  |  |  |-- action.yaml
+|  |  |  |-- setup_linux
+|  |  |  |  |-- action.yaml
+|  |  |  |-- setup_macos
+|  |  |  |  |-- action.yaml
+|  |  |-- main.yaml
+|-- .gitignore
+|-- CMakeLists.txt
+|-- CMakeSettings.json
+|-- ChangeLog.txt
+|-- LICENSE.txt
+|-- README.md
+|-- appveyor.yml
+|-- archive.sh
+|-- cmake-utils
+|  |-- DependenciesFromConan.cmake
+|  |-- DependenciesFromLocalSystem.cmake
+|  |-- TargetArch.cmake
+|  |-- conan.cmake
+|  |-- utils.cmake
+|-- conanfile.py
+|-- cpack
+|  |-- CMakeLists.txt
+|  |-- debfiles
+|  |  |-- postinst
+|  |  |-- postrm
+|  |-- wix
+|  |  |-- change_path_env.xml
+|-- doc
+|  |-- CMakeLists.txt
+|  |-- man
+|  |  |-- cryfs.1
+|-- run-clang-tidy.sh
+|-- run-iwyu.sh
+|-- src
+|  |-- CMakeLists.txt
+|  |-- blobstore
+|  |  |-- CMakeLists.txt
+|  |  |-- implementations
+|  |  |  |-- onblocks
+|  |  |  |  |-- BlobOnBlocks.cpp
+|  |  |  |  |-- BlobOnBlocks.h
+|  |  |  |  |-- BlobStoreOnBlocks.cpp
+|  |  |  |  |-- BlobStoreOnBlocks.h
+|  |  |  |  |-- datanodestore
+|  |  |  |  |  |-- DataInnerNode.cpp
+|  |  |  |  |  |-- DataInnerNode.h
+|  |  |  |  |  |-- DataInnerNode_ChildEntry.h
+|  |  |  |  |  |-- DataLeafNode.cpp
+|  |  |  |  |  |-- DataLeafNode.h
+|  |  |  |  |  |-- DataNode.cpp
+|  |  |  |  |  |-- DataNode.h
+|  |  |  |  |  |-- DataNodeStore.cpp
+|  |  |  |  |  |-- DataNodeStore.h
+|  |  |  |  |  |-- DataNodeView.h
+|  |  |  |  |-- datatreestore
+|  |  |  |  |  |-- DataTree.cpp
+|  |  |  |  |  |-- DataTree.h
+|  |  |  |  |  |-- DataTreeStore.cpp
+|  |  |  |  |  |-- DataTreeStore.h
+|  |  |  |  |  |-- LeafHandle.cpp
+|  |  |  |  |  |-- LeafHandle.h
+|  |  |  |  |  |-- impl
+|  |  |  |  |  |  |-- CachedValue.cpp
+|  |  |  |  |  |  |-- CachedValue.h
+|  |  |  |  |  |  |-- LeafTraverser.cpp
+|  |  |  |  |  |  |-- LeafTraverser.h
+|  |  |  |  |  |  |-- algorithms.cpp
+|  |  |  |  |  |  |-- algorithms.h
+|  |  |  |  |-- parallelaccessdatatreestore
+|  |  |  |  |  |-- DataTreeRef.cpp
+|  |  |  |  |  |-- DataTreeRef.h
+|  |  |  |  |  |-- ParallelAccessDataTreeStore.cpp
+|  |  |  |  |  |-- ParallelAccessDataTreeStore.h
+|  |  |  |  |  |-- ParallelAccessDataTreeStoreAdapter.cpp
+|  |  |  |  |  |-- ParallelAccessDataTreeStoreAdapter.h
+|  |  |  |  |-- utils
+|  |  |  |  |  |-- Math.cpp
+|  |  |  |  |  |-- Math.h
+|  |  |-- interface
+|  |  |  |-- Blob.h
+|  |  |  |-- BlobStore.h
+|  |-- blockstore
+|  |  |-- CMakeLists.txt
+|  |  |-- implementations
+|  |  |  |-- caching
+|  |  |  |  |-- CachingBlockStore2.cpp
+|  |  |  |  |-- CachingBlockStore2.h
+|  |  |  |  |-- cache
+|  |  |  |  |  |-- Cache.cpp
+|  |  |  |  |  |-- Cache.h
+|  |  |  |  |  |-- CacheEntry.cpp
+|  |  |  |  |  |-- CacheEntry.h
+|  |  |  |  |  |-- PeriodicTask.cpp
+|  |  |  |  |  |-- PeriodicTask.h
+|  |  |  |  |  |-- QueueMap.cpp
+|  |  |  |  |  |-- QueueMap.h
+|  |  |  |-- compressing
+|  |  |  |  |-- CompressedBlock.cpp
+|  |  |  |  |-- CompressedBlock.h
+|  |  |  |  |-- CompressingBlockStore.cpp
+|  |  |  |  |-- CompressingBlockStore.h
+|  |  |  |  |-- compressors
+|  |  |  |  |  |-- Gzip.cpp
+|  |  |  |  |  |-- Gzip.h
+|  |  |  |  |  |-- RunLengthEncoding.cpp
+|  |  |  |  |  |-- RunLengthEncoding.h
+|  |  |  |-- encrypted
+|  |  |  |  |-- EncryptedBlockStore2.cpp
+|  |  |  |  |-- EncryptedBlockStore2.h
+|  |  |  |-- inmemory
+|  |  |  |  |-- InMemoryBlockStore2.cpp
+|  |  |  |  |-- InMemoryBlockStore2.h
+|  |  |  |-- integrity
+|  |  |  |  |-- ClientIdAndBlockId.cpp
+|  |  |  |  |-- ClientIdAndBlockId.h
+|  |  |  |  |-- IntegrityBlockStore2.cpp
+|  |  |  |  |-- IntegrityBlockStore2.h
+|  |  |  |  |-- KnownBlockVersions.cpp
+|  |  |  |  |-- KnownBlockVersions.h
+|  |  |  |-- low2highlevel
+|  |  |  |  |-- LowToHighLevelBlock.cpp
+|  |  |  |  |-- LowToHighLevelBlock.h
+|  |  |  |  |-- LowToHighLevelBlockStore.cpp
+|  |  |  |  |-- LowToHighLevelBlockStore.h
+|  |  |  |-- mock
+|  |  |  |  |-- MockBlock.cpp
+|  |  |  |  |-- MockBlock.h
+|  |  |  |  |-- MockBlockStore.cpp
+|  |  |  |  |-- MockBlockStore.h
+|  |  |  |-- ondisk
+|  |  |  |  |-- OnDiskBlockStore2.cpp
+|  |  |  |  |-- OnDiskBlockStore2.h
+|  |  |  |-- parallelaccess
+|  |  |  |  |-- BlockRef.cpp
+|  |  |  |  |-- BlockRef.h
+|  |  |  |  |-- ParallelAccessBlockStore.cpp
+|  |  |  |  |-- ParallelAccessBlockStore.h
+|  |  |  |  |-- ParallelAccessBlockStoreAdapter.cpp
+|  |  |  |  |-- ParallelAccessBlockStoreAdapter.h
+|  |  |  |-- readonly
+|  |  |  |  |-- ReadOnlyBlockStore2.cpp
+|  |  |  |  |-- ReadOnlyBlockStore2.h
+|  |  |  |-- testfake
+|  |  |  |  |-- FakeBlock.cpp
+|  |  |  |  |-- FakeBlock.h
+|  |  |  |  |-- FakeBlockStore.cpp
+|  |  |  |  |-- FakeBlockStore.h
+|  |  |-- interface
+|  |  |  |-- Block.h
+|  |  |  |-- BlockStore.h
+|  |  |  |-- BlockStore2.h
+|  |  |-- utils
+|  |  |  |-- BlockId.cpp
+|  |  |  |-- BlockId.h
+|  |  |  |-- BlockStoreUtils.cpp
+|  |  |  |-- BlockStoreUtils.h
+|  |  |  |-- FileDoesntExistException.cpp
+|  |  |  |-- FileDoesntExistException.h
+|  |  |  |-- IdWrapper.cpp
+|  |  |  |-- IdWrapper.h
+|  |-- cpp-utils
+|  |  |-- CMakeLists.txt
+|  |  |-- assert
+|  |  |  |-- AssertFailed.cpp
+|  |  |  |-- AssertFailed.h
+|  |  |  |-- assert.cpp
+|  |  |  |-- assert.h
+|  |  |  |-- backtrace.h
+|  |  |  |-- backtrace_nonwindows.cpp
+|  |  |  |-- backtrace_windows.cpp
+|  |  |-- crypto
+|  |  |  |-- RandomPadding.cpp
+|  |  |  |-- RandomPadding.h
+|  |  |  |-- hash
+|  |  |  |  |-- Hash.cpp
+|  |  |  |  |-- Hash.h
+|  |  |  |-- kdf
+|  |  |  |  |-- PasswordBasedKDF.cpp
+|  |  |  |  |-- PasswordBasedKDF.h
+|  |  |  |  |-- SCryptParameters.cpp
+|  |  |  |  |-- SCryptParameters.h
+|  |  |  |  |-- Scrypt.cpp
+|  |  |  |  |-- Scrypt.h
+|  |  |  |-- symmetric
+|  |  |  |  |-- AEAD_Cipher.h
+|  |  |  |  |-- CFB_Cipher.h
+|  |  |  |  |-- Cipher.h
+|  |  |  |  |-- EncryptionKey.cpp
+|  |  |  |  |-- EncryptionKey.h
+|  |  |  |  |-- GCM_Cipher.h
+|  |  |  |  |-- ciphers.cpp
+|  |  |  |  |-- ciphers.h
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FakeAuthenticatedCipher.cpp
+|  |  |  |  |  |-- FakeAuthenticatedCipher.h
+|  |  |-- data
+|  |  |  |-- Data.cpp
+|  |  |  |-- Data.h
+|  |  |  |-- DataFixture.cpp
+|  |  |  |-- DataFixture.h
+|  |  |  |-- DataUtils.cpp
+|  |  |  |-- DataUtils.h
+|  |  |  |-- Deserializer.cpp
+|  |  |  |-- Deserializer.h
+|  |  |  |-- FixedSizeData.h
+|  |  |  |-- SerializationHelper.cpp
+|  |  |  |-- SerializationHelper.h
+|  |  |  |-- Serializer.cpp
+|  |  |  |-- Serializer.h
+|  |  |-- either.h
+|  |  |-- io
+|  |  |  |-- Console.cpp
+|  |  |  |-- Console.h
+|  |  |  |-- DontEchoStdinToStdoutRAII.cpp
+|  |  |  |-- DontEchoStdinToStdoutRAII.h
+|  |  |  |-- IOStreamConsole.cpp
+|  |  |  |-- IOStreamConsole.h
+|  |  |  |-- NoninteractiveConsole.cpp
+|  |  |  |-- NoninteractiveConsole.h
+|  |  |  |-- ProgressBar.cpp
+|  |  |  |-- ProgressBar.h
+|  |  |  |-- pipestream.cpp
+|  |  |  |-- pipestream.h
+|  |  |-- lock
+|  |  |  |-- CombinedLock.h
+|  |  |  |-- ConditionBarrier.h
+|  |  |  |-- LockPool.cpp
+|  |  |  |-- LockPool.h
+|  |  |  |-- MutexPoolLock.h
+|  |  |-- logging
+|  |  |  |-- Logger.h
+|  |  |  |-- logging.h
+|  |  |-- macros.h
+|  |  |-- network
+|  |  |  |-- CurlHttpClient.cpp
+|  |  |  |-- CurlHttpClient.h
+|  |  |  |-- FakeHttpClient.cpp
+|  |  |  |-- FakeHttpClient.h
+|  |  |  |-- HttpClient.cpp
+|  |  |  |-- HttpClient.h
+|  |  |  |-- WinHttpClient.cpp
+|  |  |  |-- WinHttpClient.h
+|  |  |-- pointer
+|  |  |  |-- cast.h
+|  |  |  |-- gcc_4_8_compatibility.h
+|  |  |  |-- optional_ownership_ptr.h
+|  |  |  |-- unique_ref.h
+|  |  |  |-- unique_ref_boost_optional_gtest_workaround.h
+|  |  |-- process
+|  |  |  |-- SignalCatcher.cpp
+|  |  |  |-- SignalCatcher.h
+|  |  |  |-- SignalHandler.cpp
+|  |  |  |-- SignalHandler.h
+|  |  |  |-- daemonize.cpp
+|  |  |  |-- daemonize.h
+|  |  |  |-- subprocess.cpp
+|  |  |  |-- subprocess.h
+|  |  |-- random
+|  |  |  |-- OSRandomGenerator.cpp
+|  |  |  |-- OSRandomGenerator.h
+|  |  |  |-- PseudoRandomPool.cpp
+|  |  |  |-- PseudoRandomPool.h
+|  |  |  |-- Random.cpp
+|  |  |  |-- Random.h
+|  |  |  |-- RandomDataBuffer.cpp
+|  |  |  |-- RandomDataBuffer.h
+|  |  |  |-- RandomGenerator.cpp
+|  |  |  |-- RandomGenerator.h
+|  |  |  |-- RandomGeneratorThread.cpp
+|  |  |  |-- RandomGeneratorThread.h
+|  |  |  |-- ThreadsafeRandomDataBuffer.h
+|  |  |-- system
+|  |  |  |-- diskspace.cpp
+|  |  |  |-- diskspace.h
+|  |  |  |-- env.cpp
+|  |  |  |-- env.h
+|  |  |  |-- filetime.h
+|  |  |  |-- filetime_nonwindows.cpp
+|  |  |  |-- filetime_windows.cpp
+|  |  |  |-- get_total_memory.cpp
+|  |  |  |-- get_total_memory.h
+|  |  |  |-- homedir.cpp
+|  |  |  |-- homedir.h
+|  |  |  |-- memory.h
+|  |  |  |-- memory_nonwindows.cpp
+|  |  |  |-- memory_windows.cpp
+|  |  |  |-- path.h
+|  |  |  |-- stat.h
+|  |  |  |-- time.cpp
+|  |  |  |-- time.h
+|  |  |-- tempfile
+|  |  |  |-- TempDir.cpp
+|  |  |  |-- TempDir.h
+|  |  |  |-- TempFile.cpp
+|  |  |  |-- TempFile.h
+|  |  |-- testutils
+|  |  |  |-- CaptureStderrRAII.h
+|  |  |  |-- ExpectThrows.h
+|  |  |-- thread
+|  |  |  |-- LeftRight.cpp
+|  |  |  |-- LeftRight.h
+|  |  |  |-- LoopThread.cpp
+|  |  |  |-- LoopThread.h
+|  |  |  |-- ThreadSystem.cpp
+|  |  |  |-- ThreadSystem.h
+|  |  |  |-- debugging.h
+|  |  |  |-- debugging_nonwindows.cpp
+|  |  |  |-- debugging_windows.cpp
+|  |  |-- value_type
+|  |  |  |-- ValueType.cpp
+|  |  |  |-- ValueType.h
+|  |-- cryfs-cli
+|  |  |-- CMakeLists.txt
+|  |  |-- CallAfterTimeout.cpp
+|  |  |-- CallAfterTimeout.h
+|  |  |-- Cli.cpp
+|  |  |-- Cli.h
+|  |  |-- Environment.cpp
+|  |  |-- Environment.h
+|  |  |-- VersionChecker.cpp
+|  |  |-- VersionChecker.h
+|  |  |-- main.cpp
+|  |  |-- program_options
+|  |  |  |-- Parser.cpp
+|  |  |  |-- Parser.h
+|  |  |  |-- ProgramOptions.cpp
+|  |  |  |-- ProgramOptions.h
+|  |  |  |-- utils.cpp
+|  |  |  |-- utils.h
+|  |-- cryfs-unmount
+|  |  |-- CMakeLists.txt
+|  |  |-- Cli.cpp
+|  |  |-- Cli.h
+|  |  |-- main_unmount.cpp
+|  |  |-- program_options
+|  |  |  |-- Parser.cpp
+|  |  |  |-- Parser.h
+|  |  |  |-- ProgramOptions.cpp
+|  |  |  |-- ProgramOptions.h
+|  |-- cryfs
+|  |  |-- CMakeLists.txt
+|  |  |-- cryfs.cpp
+|  |  |-- cryfs.h
+|  |  |-- impl
+|  |  |  |-- CryfsException.cpp
+|  |  |  |-- CryfsException.h
+|  |  |  |-- ErrorCodes.h
+|  |  |  |-- config
+|  |  |  |  |-- CryCipher.cpp
+|  |  |  |  |-- CryCipher.h
+|  |  |  |  |-- CryConfig.cpp
+|  |  |  |  |-- CryConfig.h
+|  |  |  |  |-- CryConfigConsole.cpp
+|  |  |  |  |-- CryConfigConsole.h
+|  |  |  |  |-- CryConfigCreator.cpp
+|  |  |  |  |-- CryConfigCreator.h
+|  |  |  |  |-- CryConfigFile.cpp
+|  |  |  |  |-- CryConfigFile.h
+|  |  |  |  |-- CryConfigLoader.cpp
+|  |  |  |  |-- CryConfigLoader.h
+|  |  |  |  |-- CryKeyProvider.cpp
+|  |  |  |  |-- CryKeyProvider.h
+|  |  |  |  |-- CryPasswordBasedKeyProvider.cpp
+|  |  |  |  |-- CryPasswordBasedKeyProvider.h
+|  |  |  |  |-- CryPresetPasswordBasedKeyProvider.cpp
+|  |  |  |  |-- CryPresetPasswordBasedKeyProvider.h
+|  |  |  |  |-- crypto
+|  |  |  |  |  |-- CryConfigEncryptor.cpp
+|  |  |  |  |  |-- CryConfigEncryptor.h
+|  |  |  |  |  |-- CryConfigEncryptorFactory.cpp
+|  |  |  |  |  |-- CryConfigEncryptorFactory.h
+|  |  |  |  |  |-- inner
+|  |  |  |  |  |  |-- ConcreteInnerEncryptor.cpp
+|  |  |  |  |  |  |-- ConcreteInnerEncryptor.h
+|  |  |  |  |  |  |-- InnerConfig.cpp
+|  |  |  |  |  |  |-- InnerConfig.h
+|  |  |  |  |  |  |-- InnerEncryptor.cpp
+|  |  |  |  |  |  |-- InnerEncryptor.h
+|  |  |  |  |  |-- outer
+|  |  |  |  |  |  |-- OuterConfig.cpp
+|  |  |  |  |  |  |-- OuterConfig.h
+|  |  |  |  |  |  |-- OuterEncryptor.cpp
+|  |  |  |  |  |  |-- OuterEncryptor.h
+|  |  |  |-- filesystem
+|  |  |  |  |-- CryDevice.cpp
+|  |  |  |  |-- CryDevice.h
+|  |  |  |  |-- CryDir.cpp
+|  |  |  |  |-- CryDir.h
+|  |  |  |  |-- CryFile.cpp
+|  |  |  |  |-- CryFile.h
+|  |  |  |  |-- CryNode.cpp
+|  |  |  |  |-- CryNode.h
+|  |  |  |  |-- CryOpenFile.cpp
+|  |  |  |  |-- CryOpenFile.h
+|  |  |  |  |-- CrySymlink.cpp
+|  |  |  |  |-- CrySymlink.h
+|  |  |  |  |-- cachingfsblobstore
+|  |  |  |  |  |-- CachingFsBlobStore.cpp
+|  |  |  |  |  |-- CachingFsBlobStore.h
+|  |  |  |  |  |-- DirBlobRef.cpp
+|  |  |  |  |  |-- DirBlobRef.h
+|  |  |  |  |  |-- FileBlobRef.cpp
+|  |  |  |  |  |-- FileBlobRef.h
+|  |  |  |  |  |-- FsBlobRef.cpp
+|  |  |  |  |  |-- FsBlobRef.h
+|  |  |  |  |  |-- SymlinkBlobRef.cpp
+|  |  |  |  |  |-- SymlinkBlobRef.h
+|  |  |  |  |-- fsblobstore
+|  |  |  |  |  |-- DirBlob.cpp
+|  |  |  |  |  |-- DirBlob.h
+|  |  |  |  |  |-- FileBlob.cpp
+|  |  |  |  |  |-- FileBlob.h
+|  |  |  |  |  |-- FsBlob.cpp
+|  |  |  |  |  |-- FsBlob.h
+|  |  |  |  |  |-- FsBlobStore.cpp
+|  |  |  |  |  |-- FsBlobStore.h
+|  |  |  |  |  |-- FsBlobView.cpp
+|  |  |  |  |  |-- FsBlobView.h
+|  |  |  |  |  |-- SymlinkBlob.cpp
+|  |  |  |  |  |-- SymlinkBlob.h
+|  |  |  |  |  |-- utils
+|  |  |  |  |  |  |-- DirEntry.cpp
+|  |  |  |  |  |  |-- DirEntry.h
+|  |  |  |  |  |  |-- DirEntryList.cpp
+|  |  |  |  |  |  |-- DirEntryList.h
+|  |  |  |  |-- parallelaccessfsblobstore
+|  |  |  |  |  |-- DirBlobRef.cpp
+|  |  |  |  |  |-- DirBlobRef.h
+|  |  |  |  |  |-- FileBlobRef.cpp
+|  |  |  |  |  |-- FileBlobRef.h
+|  |  |  |  |  |-- FsBlobRef.cpp
+|  |  |  |  |  |-- FsBlobRef.h
+|  |  |  |  |  |-- ParallelAccessFsBlobStore.cpp
+|  |  |  |  |  |-- ParallelAccessFsBlobStore.h
+|  |  |  |  |  |-- ParallelAccessFsBlobStoreAdapter.cpp
+|  |  |  |  |  |-- ParallelAccessFsBlobStoreAdapter.h
+|  |  |  |  |  |-- SymlinkBlobRef.cpp
+|  |  |  |  |  |-- SymlinkBlobRef.h
+|  |  |  |-- localstate
+|  |  |  |  |-- BasedirMetadata.cpp
+|  |  |  |  |-- BasedirMetadata.h
+|  |  |  |  |-- LocalStateDir.cpp
+|  |  |  |  |-- LocalStateDir.h
+|  |  |  |  |-- LocalStateMetadata.cpp
+|  |  |  |  |-- LocalStateMetadata.h
+|  |-- fspp
+|  |  |-- CMakeLists.txt
+|  |  |-- fs_interface
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- Context.cpp
+|  |  |  |-- Context.h
+|  |  |  |-- Device.cpp
+|  |  |  |-- Device.h
+|  |  |  |-- Dir.cpp
+|  |  |  |-- Dir.h
+|  |  |  |-- File.cpp
+|  |  |  |-- File.h
+|  |  |  |-- FuseErrnoException.cpp
+|  |  |  |-- FuseErrnoException.h
+|  |  |  |-- Node.cpp
+|  |  |  |-- Node.h
+|  |  |  |-- OpenFile.cpp
+|  |  |  |-- OpenFile.h
+|  |  |  |-- Symlink.cpp
+|  |  |  |-- Symlink.h
+|  |  |  |-- Types.cpp
+|  |  |  |-- Types.h
+|  |  |-- fstest
+|  |  |  |-- FsTest.h
+|  |  |  |-- FsppDeviceTest.h
+|  |  |  |-- FsppDeviceTest_Timestamps.h
+|  |  |  |-- FsppDirTest.h
+|  |  |  |-- FsppDirTest_Timestamps.h
+|  |  |  |-- FsppFileTest.h
+|  |  |  |-- FsppFileTest_Timestamps.h
+|  |  |  |-- FsppNodeTest_Rename.h
+|  |  |  |-- FsppNodeTest_Stat.h
+|  |  |  |-- FsppNodeTest_Timestamps.h
+|  |  |  |-- FsppOpenFileTest.h
+|  |  |  |-- FsppOpenFileTest_Timestamps.h
+|  |  |  |-- FsppSymlinkTest.h
+|  |  |  |-- FsppSymlinkTest_Timestamps.h
+|  |  |  |-- testutils
+|  |  |  |  |-- FileSystemTest.h
+|  |  |  |  |-- FileTest.h
+|  |  |  |  |-- FsppNodeTest.h
+|  |  |  |  |-- TimestampTestUtils.h
+|  |  |-- fuse
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- Filesystem.h
+|  |  |  |-- Fuse.cpp
+|  |  |  |-- Fuse.h
+|  |  |  |-- InvalidFilesystem.h
+|  |  |  |-- params.h
+|  |  |  |-- stat_compatibility.h
+|  |  |-- impl
+|  |  |  |-- FilesystemImpl.cpp
+|  |  |  |-- FilesystemImpl.h
+|  |  |  |-- FuseOpenFileList.h
+|  |  |  |-- IdList.h
+|  |  |  |-- Profiler.cpp
+|  |  |  |-- Profiler.h
+|  |-- gitversion
+|  |  |-- .gitattributes
+|  |  |-- CMakeLists.txt
+|  |  |-- MANIFEST.in
+|  |  |-- VersionCompare.cpp
+|  |  |-- VersionCompare.h
+|  |  |-- _version.py
+|  |  |-- getversion.py
+|  |  |-- gitversion.cmake
+|  |  |-- gitversion.cpp
+|  |  |-- gitversion.h
+|  |  |-- parser.cpp
+|  |  |-- parser.h
+|  |  |-- setup.cfg
+|  |  |-- setup.py
+|  |  |-- versioneer.py
+|  |  |-- versionstring.cpp
+|  |  |-- versionstring.h
+|  |-- parallelaccessstore
+|  |  |-- CMakeLists.txt
+|  |  |-- ParallelAccessBaseStore.cpp
+|  |  |-- ParallelAccessBaseStore.h
+|  |  |-- ParallelAccessStore.cpp
+|  |  |-- ParallelAccessStore.h
+|  |-- stats
+|  |  |-- CMakeLists.txt
+|  |  |-- main.cpp
+|  |  |-- traversal.cpp
+|  |  |-- traversal.h
+|-- test
+|  |-- CMakeLists.txt
+|  |-- blobstore
+|  |  |-- CMakeLists.txt
+|  |  |-- implementations
+|  |  |  |-- onblocks
+|  |  |  |  |-- BigBlobsTest.cpp
+|  |  |  |  |-- BlobReadWriteTest.cpp
+|  |  |  |  |-- BlobSizeTest.cpp
+|  |  |  |  |-- BlobStoreTest.cpp
+|  |  |  |  |-- datanodestore
+|  |  |  |  |  |-- DataInnerNodeTest.cpp
+|  |  |  |  |  |-- DataLeafNodeTest.cpp
+|  |  |  |  |  |-- DataNodeStoreTest.cpp
+|  |  |  |  |  |-- DataNodeViewTest.cpp
+|  |  |  |  |-- datatreestore
+|  |  |  |  |  |-- DataTreeStoreTest.cpp
+|  |  |  |  |  |-- DataTreeTest_NumStoredBytes.cpp
+|  |  |  |  |  |-- DataTreeTest_Performance.cpp
+|  |  |  |  |  |-- DataTreeTest_ResizeByTraversing.cpp
+|  |  |  |  |  |-- DataTreeTest_ResizeNumBytes.cpp
+|  |  |  |  |  |-- LeafTraverserTest.cpp
+|  |  |  |  |  |-- impl
+|  |  |  |  |  |  |-- GetLowestInnerRightBorderNodeWithLessThanKChildrenOrNullTest.cpp
+|  |  |  |  |  |  |-- GetLowestRightBorderNodeWithMoreThanOneChildOrNullTest.cpp
+|  |  |  |  |  |-- testutils
+|  |  |  |  |  |  |-- DataTreeTest.cpp
+|  |  |  |  |  |  |-- DataTreeTest.h
+|  |  |  |  |  |  |-- LeafDataFixture.h
+|  |  |  |  |  |  |-- TwoLevelDataFixture.h
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- BlobStoreTest.cpp
+|  |  |  |  |  |-- BlobStoreTest.h
+|  |  |  |  |-- utils
+|  |  |  |  |  |-- CeilDivisionTest.cpp
+|  |  |  |  |  |-- CeilLogTest.cpp
+|  |  |  |  |  |-- IntPowTest.cpp
+|  |  |  |  |  |-- MaxZeroSubtractionTest.cpp
+|  |-- blockstore
+|  |  |-- CMakeLists.txt
+|  |  |-- implementations
+|  |  |  |-- caching
+|  |  |  |  |-- CachingBlockStore2Test_Generic.cpp
+|  |  |  |  |-- CachingBlockStore2Test_Specific.cpp
+|  |  |  |  |-- cache
+|  |  |  |  |  |-- CacheTest_MoveConstructor.cpp
+|  |  |  |  |  |-- CacheTest_PushAndPop.cpp
+|  |  |  |  |  |-- CacheTest_RaceCondition.cpp
+|  |  |  |  |  |-- PeriodicTaskTest.cpp
+|  |  |  |  |  |-- QueueMapTest_MemoryLeak.cpp
+|  |  |  |  |  |-- QueueMapTest_MoveConstructor.cpp
+|  |  |  |  |  |-- QueueMapTest_Peek.cpp
+|  |  |  |  |  |-- QueueMapTest_Size.cpp
+|  |  |  |  |  |-- QueueMapTest_Values.cpp
+|  |  |  |  |  |-- testutils
+|  |  |  |  |  |  |-- CacheTest.cpp
+|  |  |  |  |  |  |-- CacheTest.h
+|  |  |  |  |  |  |-- CopyableMovableValueType.cpp
+|  |  |  |  |  |  |-- CopyableMovableValueType.h
+|  |  |  |  |  |  |-- MinimalKeyType.cpp
+|  |  |  |  |  |  |-- MinimalKeyType.h
+|  |  |  |  |  |  |-- MinimalValueType.cpp
+|  |  |  |  |  |  |-- MinimalValueType.h
+|  |  |  |  |  |  |-- QueueMapTest.cpp
+|  |  |  |  |  |  |-- QueueMapTest.h
+|  |  |  |-- compressing
+|  |  |  |  |-- CompressingBlockStoreTest.cpp
+|  |  |  |  |-- compressors
+|  |  |  |  |  |-- testutils
+|  |  |  |  |  |  |-- CompressorTest.cpp
+|  |  |  |-- encrypted
+|  |  |  |  |-- EncryptedBlockStoreTest_Generic.cpp
+|  |  |  |  |-- EncryptedBlockStoreTest_Specific.cpp
+|  |  |  |-- inmemory
+|  |  |  |  |-- InMemoryBlockStoreTest.cpp
+|  |  |  |-- integrity
+|  |  |  |  |-- IntegrityBlockStoreTest_Generic.cpp
+|  |  |  |  |-- IntegrityBlockStoreTest_Specific.cpp
+|  |  |  |  |-- KnownBlockVersionsTest.cpp
+|  |  |  |-- low2highlevel
+|  |  |  |  |-- LowToHighLevelBlockStoreTest.cpp
+|  |  |  |-- mock
+|  |  |  |  |-- MockBlockStoreTest.cpp
+|  |  |  |-- ondisk
+|  |  |  |  |-- OnDiskBlockStoreTest_Generic.cpp
+|  |  |  |  |-- OnDiskBlockStoreTest_Specific.cpp
+|  |  |  |  |-- OnDiskBlockTest
+|  |  |  |  |  |-- OnDiskBlockCreateTest.cpp
+|  |  |  |  |  |-- OnDiskBlockFlushTest.cpp
+|  |  |  |  |  |-- OnDiskBlockLoadTest.cpp
+|  |  |  |-- parallelaccess
+|  |  |  |  |-- ParallelAccessBlockStoreTest_Generic.cpp
+|  |  |  |  |-- ParallelAccessBlockStoreTest_Specific.cpp
+|  |  |  |-- testfake
+|  |  |  |  |-- TestFakeBlockStoreTest.cpp
+|  |  |-- interface
+|  |  |  |-- BlockStore2Test.cpp
+|  |  |  |-- BlockStoreTest.cpp
+|  |  |  |-- BlockTest.cpp
+|  |  |-- testutils
+|  |  |  |-- BlockStore2Test.h
+|  |  |  |-- BlockStoreTest.h
+|  |  |  |-- BlockStoreTest_Data.h
+|  |  |  |-- BlockStoreTest_Size.h
+|  |  |  |-- gtest_printers.h
+|  |  |-- utils
+|  |  |  |-- BlockStoreUtilsTest.cpp
+|  |-- cpp-utils
+|  |  |-- CMakeLists.txt
+|  |  |-- MacrosIncludeTest.cpp
+|  |  |-- assert
+|  |  |  |-- assert_debug_test.cpp
+|  |  |  |-- assert_release_test.cpp
+|  |  |  |-- backtrace_test.cpp
+|  |  |  |-- exit_signal.cpp
+|  |  |-- crypto
+|  |  |  |-- hash
+|  |  |  |  |-- HashTest.cpp
+|  |  |  |-- kdf
+|  |  |  |  |-- SCryptParametersTest.cpp
+|  |  |  |  |-- SCryptTest.cpp
+|  |  |  |-- symmetric
+|  |  |  |  |-- CipherTest.cpp
+|  |  |-- data
+|  |  |  |-- DataFixtureIncludeTest.cpp
+|  |  |  |-- DataFixtureTest.cpp
+|  |  |  |-- DataIncludeTest.cpp
+|  |  |  |-- DataTest.cpp
+|  |  |  |-- FixedSizeDataIncludeTest.cpp
+|  |  |  |-- FixedSizeDataTest.cpp
+|  |  |  |-- SerializationHelperTest.cpp
+|  |  |-- either_test.cpp
+|  |  |-- io
+|  |  |  |-- ConsoleIncludeTest.cpp
+|  |  |  |-- ConsoleTest.h
+|  |  |  |-- ConsoleTest_Ask.cpp
+|  |  |  |-- ConsoleTest_AskPassword.cpp
+|  |  |  |-- ConsoleTest_AskYesNo.cpp
+|  |  |  |-- ConsoleTest_Print.cpp
+|  |  |  |-- DontEchoStdinToStdoutRAIITest.cpp
+|  |  |  |-- ProgressBarTest.cpp
+|  |  |-- lock
+|  |  |  |-- ConditionBarrierIncludeTest.cpp
+|  |  |  |-- LockPoolIncludeTest.cpp
+|  |  |  |-- MutexPoolLockIncludeTest.cpp
+|  |  |-- logging
+|  |  |  |-- LoggerIncludeTest.cpp
+|  |  |  |-- LoggerTest.cpp
+|  |  |  |-- LoggingIncludeTest.cpp
+|  |  |  |-- LoggingLevelTest.cpp
+|  |  |  |-- LoggingTest.cpp
+|  |  |  |-- testutils
+|  |  |  |  |-- LoggingTest.h
+|  |  |-- network
+|  |  |  |-- CurlHttpClientTest.cpp
+|  |  |  |-- FakeHttpClientTest.cpp
+|  |  |-- pointer
+|  |  |  |-- cast_include_test.cpp
+|  |  |  |-- cast_test.cpp
+|  |  |  |-- optional_ownership_ptr_include_test.cpp
+|  |  |  |-- optional_ownership_ptr_test.cpp
+|  |  |  |-- unique_ref_boost_optional_gtest_workaround_include_test.cpp
+|  |  |  |-- unique_ref_include_test.cpp
+|  |  |  |-- unique_ref_test.cpp
+|  |  |-- process
+|  |  |  |-- SignalCatcherTest.cpp
+|  |  |  |-- SignalHandlerTest.cpp
+|  |  |  |-- SubprocessTest.cpp
+|  |  |  |-- daemonize_include_test.cpp
+|  |  |  |-- exit_status.cpp
+|  |  |  |-- subprocess_include_test.cpp
+|  |  |-- random
+|  |  |  |-- RandomIncludeTest.cpp
+|  |  |-- system
+|  |  |  |-- EnvTest.cpp
+|  |  |  |-- FiletimeTest.cpp
+|  |  |  |-- GetTotalMemoryTest.cpp
+|  |  |  |-- HomedirTest.cpp
+|  |  |  |-- MemoryTest.cpp
+|  |  |  |-- PathTest.cpp
+|  |  |  |-- TimeTest.cpp
+|  |  |-- tempfile
+|  |  |  |-- TempDirIncludeTest.cpp
+|  |  |  |-- TempDirTest.cpp
+|  |  |  |-- TempFileIncludeTest.cpp
+|  |  |  |-- TempFileTest.cpp
+|  |  |-- thread
+|  |  |  |-- LeftRightTest.cpp
+|  |  |  |-- debugging_test.cpp
+|  |  |-- value_type
+|  |  |  |-- ValueTypeTest.cpp
+|  |-- cryfs-cli
+|  |  |-- CMakeLists.txt
+|  |  |-- CallAfterTimeoutTest.cpp
+|  |  |-- CliTest_IntegrityCheck.cpp
+|  |  |-- CliTest_Setup.cpp
+|  |  |-- CliTest_ShowingHelp.cpp
+|  |  |-- CliTest_WrongEnvironment.cpp
+|  |  |-- CryfsUnmountTest.cpp
+|  |  |-- EnvironmentTest.cpp
+|  |  |-- VersionCheckerTest.cpp
+|  |  |-- program_options
+|  |  |  |-- ParserTest.cpp
+|  |  |  |-- ProgramOptionsTest.cpp
+|  |  |  |-- UtilsTest.cpp
+|  |  |  |-- testutils
+|  |  |  |  |-- ProgramOptionsTestBase.h
+|  |  |-- testutils
+|  |  |  |-- CliTest.cpp
+|  |  |  |-- CliTest.h
+|  |-- cryfs
+|  |  |-- CMakeLists.txt
+|  |  |-- impl
+|  |  |  |-- config
+|  |  |  |  |-- CompatibilityTest.cpp
+|  |  |  |  |-- CryCipherTest.cpp
+|  |  |  |  |-- CryConfigConsoleTest.cpp
+|  |  |  |  |-- CryConfigCreatorTest.cpp
+|  |  |  |  |-- CryConfigFileTest.cpp
+|  |  |  |  |-- CryConfigLoaderTest.cpp
+|  |  |  |  |-- CryConfigTest.cpp
+|  |  |  |  |-- CryPasswordBasedKeyProviderTest.cpp
+|  |  |  |  |-- CryPresetPasswordBasedKeyProviderTest.cpp
+|  |  |  |  |-- crypto
+|  |  |  |  |  |-- CryConfigEncryptorFactoryTest.cpp
+|  |  |  |  |  |-- CryConfigEncryptorTest.cpp
+|  |  |  |  |  |-- inner
+|  |  |  |  |  |  |-- ConcreteInnerEncryptorTest.cpp
+|  |  |  |  |  |  |-- InnerConfigTest.cpp
+|  |  |  |  |  |-- outer
+|  |  |  |  |  |  |-- OuterConfigTest.cpp
+|  |  |  |  |  |  |-- OuterEncryptorTest.cpp
+|  |  |  |-- filesystem
+|  |  |  |  |-- CryFsTest.cpp
+|  |  |  |  |-- CryNodeTest.cpp
+|  |  |  |  |-- FileSystemTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- CryTestBase.h
+|  |  |  |-- localstate
+|  |  |  |  |-- BasedirMetadataTest.cpp
+|  |  |  |  |-- LocalStateMetadataTest.cpp
+|  |  |  |-- testutils
+|  |  |  |  |-- FakeCryKeyProvider.h
+|  |  |  |  |-- MockConsole.h
+|  |  |  |  |-- MockCryKeyProvider.h
+|  |  |  |  |-- TestWithFakeHomeDirectory.h
+|  |-- fspp
+|  |  |-- CMakeLists.txt
+|  |  |-- fs_interface
+|  |  |  |-- DeviceTest.cpp
+|  |  |  |-- DirTest.cpp
+|  |  |  |-- FileTest.cpp
+|  |  |  |-- NodeTest.cpp
+|  |  |  |-- OpenFileTest.cpp
+|  |  |-- fuse
+|  |  |  |-- BasicFuseTest.cpp
+|  |  |  |-- FilesystemTest.cpp
+|  |  |  |-- TimestampTest.cpp
+|  |  |  |-- access
+|  |  |  |  |-- FuseAccessErrorTest.cpp
+|  |  |  |  |-- FuseAccessFilenameTest.cpp
+|  |  |  |  |-- FuseAccessModeTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseAccessTest.cpp
+|  |  |  |  |  |-- FuseAccessTest.h
+|  |  |  |-- closeFile
+|  |  |  |  |-- FuseCloseTest.cpp
+|  |  |  |-- createAndOpenFile
+|  |  |  |  |-- FuseCreateAndOpenErrorTest.cpp
+|  |  |  |  |-- FuseCreateAndOpenFileDescriptorTest.cpp
+|  |  |  |  |-- FuseCreateAndOpenFilenameTest.cpp
+|  |  |  |  |-- FuseCreateAndOpenFlagsTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseCreateAndOpenTest.cpp
+|  |  |  |  |  |-- FuseCreateAndOpenTest.h
+|  |  |  |-- fdatasync
+|  |  |  |  |-- FuseFdatasyncErrorTest.cpp
+|  |  |  |  |-- FuseFdatasyncFileDescriptorTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseFdatasyncTest.cpp
+|  |  |  |  |  |-- FuseFdatasyncTest.h
+|  |  |  |-- flush
+|  |  |  |  |-- FuseFlushErrorTest.cpp
+|  |  |  |  |-- FuseFlushFileDescriptorTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseFlushTest.cpp
+|  |  |  |  |  |-- FuseFlushTest.h
+|  |  |  |-- fstat
+|  |  |  |  |-- FuseFstatErrorTest.cpp
+|  |  |  |  |-- FuseFstatParameterTest.cpp
+|  |  |  |  |-- README
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseFstatTest.cpp
+|  |  |  |  |  |-- FuseFstatTest.h
+|  |  |  |-- fsync
+|  |  |  |  |-- FuseFsyncErrorTest.cpp
+|  |  |  |  |-- FuseFsyncFileDescriptorTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseFsyncTest.cpp
+|  |  |  |  |  |-- FuseFsyncTest.h
+|  |  |  |-- ftruncate
+|  |  |  |  |-- FuseFTruncateErrorTest.cpp
+|  |  |  |  |-- FuseFTruncateFileDescriptorTest.cpp
+|  |  |  |  |-- FuseFTruncateSizeTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseFTruncateTest.cpp
+|  |  |  |  |  |-- FuseFTruncateTest.h
+|  |  |  |-- lstat
+|  |  |  |  |-- FuseLstatErrorTest.cpp
+|  |  |  |  |-- FuseLstatPathParameterTest.cpp
+|  |  |  |  |-- FuseLstatReturnAtimeTest.cpp
+|  |  |  |  |-- FuseLstatReturnCtimeTest.cpp
+|  |  |  |  |-- FuseLstatReturnGidTest.cpp
+|  |  |  |  |-- FuseLstatReturnModeTest.cpp
+|  |  |  |  |-- FuseLstatReturnMtimeTest.cpp
+|  |  |  |  |-- FuseLstatReturnNlinkTest.cpp
+|  |  |  |  |-- FuseLstatReturnSizeTest.cpp
+|  |  |  |  |-- FuseLstatReturnUidTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseLstatReturnTest.h
+|  |  |  |  |  |-- FuseLstatTest.cpp
+|  |  |  |  |  |-- FuseLstatTest.h
+|  |  |  |-- mkdir
+|  |  |  |  |-- FuseMkdirDirnameTest.cpp
+|  |  |  |  |-- FuseMkdirErrorTest.cpp
+|  |  |  |  |-- FuseMkdirModeTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseMkdirTest.cpp
+|  |  |  |  |  |-- FuseMkdirTest.h
+|  |  |  |-- openFile
+|  |  |  |  |-- FuseOpenErrorTest.cpp
+|  |  |  |  |-- FuseOpenFileDescriptorTest.cpp
+|  |  |  |  |-- FuseOpenFilenameTest.cpp
+|  |  |  |  |-- FuseOpenFlagsTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseOpenTest.cpp
+|  |  |  |  |  |-- FuseOpenTest.h
+|  |  |  |-- read
+|  |  |  |  |-- FuseReadErrorTest.cpp
+|  |  |  |  |-- FuseReadFileDescriptorTest.cpp
+|  |  |  |  |-- FuseReadOverflowTest.cpp
+|  |  |  |  |-- FuseReadReturnedDataTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseReadTest.cpp
+|  |  |  |  |  |-- FuseReadTest.h
+|  |  |  |-- readDir
+|  |  |  |  |-- FuseReadDirDirnameTest.cpp
+|  |  |  |  |-- FuseReadDirErrorTest.cpp
+|  |  |  |  |-- FuseReadDirReturnTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseReadDirTest.cpp
+|  |  |  |  |  |-- FuseReadDirTest.h
+|  |  |  |-- rename
+|  |  |  |  |-- FuseRenameErrorTest.cpp
+|  |  |  |  |-- FuseRenameFilenameTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseRenameTest.cpp
+|  |  |  |  |  |-- FuseRenameTest.h
+|  |  |  |-- rmdir
+|  |  |  |  |-- FuseRmdirDirnameTest.cpp
+|  |  |  |  |-- FuseRmdirErrorTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseRmdirTest.cpp
+|  |  |  |  |  |-- FuseRmdirTest.h
+|  |  |  |-- statfs
+|  |  |  |  |-- FuseStatfsErrorTest.cpp
+|  |  |  |  |-- FuseStatfsReturnBavailTest.cpp
+|  |  |  |  |-- FuseStatfsReturnBfreeTest.cpp
+|  |  |  |  |-- FuseStatfsReturnBlocksTest.cpp
+|  |  |  |  |-- FuseStatfsReturnBsizeTest.cpp
+|  |  |  |  |-- FuseStatfsReturnFfreeTest.cpp
+|  |  |  |  |-- FuseStatfsReturnFilesTest.cpp
+|  |  |  |  |-- FuseStatfsReturnNamemaxTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseStatfsReturnTest.h
+|  |  |  |  |  |-- FuseStatfsTest.cpp
+|  |  |  |  |  |-- FuseStatfsTest.h
+|  |  |  |-- truncate
+|  |  |  |  |-- FuseTruncateErrorTest.cpp
+|  |  |  |  |-- FuseTruncateFilenameTest.cpp
+|  |  |  |  |-- FuseTruncateSizeTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseTruncateTest.cpp
+|  |  |  |  |  |-- FuseTruncateTest.h
+|  |  |  |-- unlink
+|  |  |  |  |-- FuseUnlinkErrorTest.cpp
+|  |  |  |  |-- FuseUnlinkFilenameTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseUnlinkTest.cpp
+|  |  |  |  |  |-- FuseUnlinkTest.h
+|  |  |  |-- utimens
+|  |  |  |  |-- FuseUtimensErrorTest.cpp
+|  |  |  |  |-- FuseUtimensFilenameTest.cpp
+|  |  |  |  |-- FuseUtimensTimeParameterTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseUtimensTest.cpp
+|  |  |  |  |  |-- FuseUtimensTest.h
+|  |  |  |-- write
+|  |  |  |  |-- FuseWriteDataTest.cpp
+|  |  |  |  |-- FuseWriteErrorTest.cpp
+|  |  |  |  |-- FuseWriteFileDescriptorTest.cpp
+|  |  |  |  |-- FuseWriteOverflowTest.cpp
+|  |  |  |  |-- testutils
+|  |  |  |  |  |-- FuseWriteTest.cpp
+|  |  |  |  |  |-- FuseWriteTest.h
+|  |  |-- impl
+|  |  |  |-- FuseOpenFileListTest.cpp
+|  |  |  |-- IdListTest.cpp
+|  |  |-- testutils
+|  |  |  |-- FuseTest.cpp
+|  |  |  |-- FuseTest.h
+|  |  |  |-- FuseThread.cpp
+|  |  |  |-- FuseThread.h
+|  |  |  |-- InMemoryFile.cpp
+|  |  |  |-- InMemoryFile.h
+|  |  |  |-- OpenFileHandle.cpp
+|  |  |  |-- OpenFileHandle.h
+|  |-- gitversion
+|  |  |-- CMakeLists.txt
+|  |  |-- ParserTest.cpp
+|  |  |-- VersionCompareTest.cpp
+|  |-- my-gtest-main
+|  |  |-- CMakeLists.txt
+|  |  |-- my-gtest-main.cpp
+|  |  |-- my-gtest-main.h
+|  |-- parallelaccessstore
+|  |  |-- CMakeLists.txt
+|  |  |-- DummyTest.cpp
+|  |  |-- ParallelAccessBaseStoreTest.cpp
+|-- vendor
+|  |-- CMakeLists.txt
+|  |-- README
+|  |-- cryptopp
+|  |  |-- CMakeLists.txt
+|  |  |-- vendor_cryptopp
+|  |  |  |-- .gitignore
+|  |  |  |-- 3way.cpp
+|  |  |  |-- 3way.h
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- Doxyfile
+|  |  |  |-- Filelist.txt
+|  |  |  |-- GNUmakefile
+|  |  |  |-- GNUmakefile-cross
+|  |  |  |-- History.txt
+|  |  |  |-- Install.txt
+|  |  |  |-- License.txt
+|  |  |  |-- Readme.txt
+|  |  |  |-- TestData
+|  |  |  |  |-- 3desval.dat
+|  |  |  |  |-- 3wayval.dat
+|  |  |  |  |-- aria.dat
+|  |  |  |  |-- camellia.dat
+|  |  |  |  |-- cast128v.dat
+|  |  |  |  |-- cast256v.dat
+|  |  |  |  |-- defdmac1.bin
+|  |  |  |  |-- defdmac2.bin
+|  |  |  |  |-- descert.dat
+|  |  |  |  |-- dh1024.dat
+|  |  |  |  |-- dh2048.dat
+|  |  |  |  |-- dlie1024.dat
+|  |  |  |  |-- dlie2048.dat
+|  |  |  |  |-- dsa1024.dat
+|  |  |  |  |-- dsa1024b.dat
+|  |  |  |  |-- dsa512.dat
+|  |  |  |  |-- ed25519.dat
+|  |  |  |  |-- ed25519v0.dat
+|  |  |  |  |-- ed25519v1.dat
+|  |  |  |  |-- elgc1024.dat
+|  |  |  |  |-- esig1023.dat
+|  |  |  |  |-- esig1536.dat
+|  |  |  |  |-- esig2046.dat
+|  |  |  |  |-- fhmqv160.dat
+|  |  |  |  |-- fhmqv256.dat
+|  |  |  |  |-- fhmqv384.dat
+|  |  |  |  |-- fhmqv512.dat
+|  |  |  |  |-- gostval.dat
+|  |  |  |  |-- hmqv160.dat
+|  |  |  |  |-- hmqv256.dat
+|  |  |  |  |-- hmqv384.dat
+|  |  |  |  |-- hmqv512.dat
+|  |  |  |  |-- ideaval.dat
+|  |  |  |  |-- luc1024.dat
+|  |  |  |  |-- luc2048.dat
+|  |  |  |  |-- lucc1024.dat
+|  |  |  |  |-- lucc512.dat
+|  |  |  |  |-- lucd1024.dat
+|  |  |  |  |-- lucd512.dat
+|  |  |  |  |-- lucs1024.dat
+|  |  |  |  |-- lucs512.dat
+|  |  |  |  |-- marsval.dat
+|  |  |  |  |-- mqv1024.dat
+|  |  |  |  |-- mqv2048.dat
+|  |  |  |  |-- nr1024.dat
+|  |  |  |  |-- nr2048.dat
+|  |  |  |  |-- rabi1024.dat
+|  |  |  |  |-- rabi2048.dat
+|  |  |  |  |-- rc2val.dat
+|  |  |  |  |-- rc5val.dat
+|  |  |  |  |-- rc6val.dat
+|  |  |  |  |-- rijndael.dat
+|  |  |  |  |-- rsa1024.dat
+|  |  |  |  |-- rsa2048.dat
+|  |  |  |  |-- rsa2048a.dat
+|  |  |  |  |-- rsa400pb.dat
+|  |  |  |  |-- rsa400pv.dat
+|  |  |  |  |-- rsa512a.dat
+|  |  |  |  |-- rw1024.dat
+|  |  |  |  |-- rw2048.dat
+|  |  |  |  |-- saferval.dat
+|  |  |  |  |-- serpentv.dat
+|  |  |  |  |-- shacal2v.dat
+|  |  |  |  |-- sharkval.dat
+|  |  |  |  |-- skipjack.dat
+|  |  |  |  |-- squareva.dat
+|  |  |  |  |-- twofishv.dat
+|  |  |  |  |-- usage.dat
+|  |  |  |  |-- x25519.dat
+|  |  |  |  |-- x25519v0.dat
+|  |  |  |  |-- x25519v1.dat
+|  |  |  |  |-- xtrdh171.dat
+|  |  |  |  |-- xtrdh342.dat
+|  |  |  |-- TestPrograms
+|  |  |  |  |-- test_32bit.cxx
+|  |  |  |  |-- test_64bit.cxx
+|  |  |  |  |-- test_arm_acle.cxx
+|  |  |  |  |-- test_arm_aes.cxx
+|  |  |  |  |-- test_arm_asimd.cxx
+|  |  |  |  |-- test_arm_crc.cxx
+|  |  |  |  |-- test_arm_neon.cxx
+|  |  |  |  |-- test_arm_pmull.cxx
+|  |  |  |  |-- test_arm_sha.cxx
+|  |  |  |  |-- test_arm_sha3.cxx
+|  |  |  |  |-- test_arm_sha512.cxx
+|  |  |  |  |-- test_arm_sm3.cxx
+|  |  |  |  |-- test_arm_sm4.cxx
+|  |  |  |  |-- test_cxx.cxx
+|  |  |  |  |-- test_mixed_asm.cxx
+|  |  |  |  |-- test_newlib.cxx
+|  |  |  |  |-- test_ppc_aes.cxx
+|  |  |  |  |-- test_ppc_altivec.cxx
+|  |  |  |  |-- test_ppc_power7.cxx
+|  |  |  |  |-- test_ppc_power8.cxx
+|  |  |  |  |-- test_ppc_power9.cxx
+|  |  |  |  |-- test_ppc_sha.cxx
+|  |  |  |  |-- test_ppc_vmull.cxx
+|  |  |  |  |-- test_pthreads.cxx
+|  |  |  |  |-- test_x86_aes.cxx
+|  |  |  |  |-- test_x86_avx.cxx
+|  |  |  |  |-- test_x86_avx2.cxx
+|  |  |  |  |-- test_x86_avx512.cxx
+|  |  |  |  |-- test_x86_clmul.cxx
+|  |  |  |  |-- test_x86_cpuid.cxx
+|  |  |  |  |-- test_x86_sha.cxx
+|  |  |  |  |-- test_x86_sse2.cxx
+|  |  |  |  |-- test_x86_sse3.cxx
+|  |  |  |  |-- test_x86_sse41.cxx
+|  |  |  |  |-- test_x86_sse42.cxx
+|  |  |  |  |-- test_x86_ssse3.cxx
+|  |  |  |-- TestScripts
+|  |  |  |  |-- change-version.sh
+|  |  |  |  |-- coverity-linux.txt
+|  |  |  |  |-- coverity-macosx.txt
+|  |  |  |  |-- coverity-windows.txt
+|  |  |  |  |-- cryptdll-windows.cmd
+|  |  |  |  |-- cryptest-android.sh
+|  |  |  |  |-- cryptest-autotools.sh
+|  |  |  |  |-- cryptest-cmake.sh
+|  |  |  |  |-- cryptest-coverity.cpp
+|  |  |  |  |-- cryptest-ios.sh
+|  |  |  |  |-- cryptest-symbols.sh
+|  |  |  |  |-- cryptest-tidy.sh
+|  |  |  |  |-- cryptest.sh
+|  |  |  |  |-- governor.sh
+|  |  |  |  |-- install-android.sh
+|  |  |  |  |-- make-benchmarks.sh
+|  |  |  |  |-- reset-fork.sh
+|  |  |  |  |-- setenv-android-gcc.sh
+|  |  |  |  |-- setenv-android-old.sh
+|  |  |  |  |-- setenv-embedded.sh
+|  |  |  |  |-- setenv-ios.sh
+|  |  |  |  |-- setenv-travis.sh
+|  |  |  |  |-- tweetnacl.sh
+|  |  |  |-- TestVectors
+|  |  |  |  |-- Readme.txt
+|  |  |  |  |-- aead.txt
+|  |  |  |  |-- aes.txt
+|  |  |  |  |-- all.txt
+|  |  |  |  |-- aria.txt
+|  |  |  |  |-- blake2.txt
+|  |  |  |  |-- blake2b.txt
+|  |  |  |  |-- blake2s.txt
+|  |  |  |  |-- camellia.txt
+|  |  |  |  |-- ccm.txt
+|  |  |  |  |-- chacha.txt
+|  |  |  |  |-- chacha20poly1305.txt
+|  |  |  |  |-- chacha_tls.txt
+|  |  |  |  |-- cham.txt
+|  |  |  |  |-- cmac.txt
+|  |  |  |  |-- dlies.txt
+|  |  |  |  |-- dsa.txt
+|  |  |  |  |-- dsa_1363.txt
+|  |  |  |  |-- dsa_rfc6979.txt
+|  |  |  |  |-- eax.txt
+|  |  |  |  |-- esign.txt
+|  |  |  |  |-- gcm.txt
+|  |  |  |  |-- hc128.txt
+|  |  |  |  |-- hc256.txt
+|  |  |  |  |-- hight.txt
+|  |  |  |  |-- hkdf.txt
+|  |  |  |  |-- hmac.txt
+|  |  |  |  |-- kalyna.txt
+|  |  |  |  |-- keccak.txt
+|  |  |  |  |-- lea.txt
+|  |  |  |  |-- mars.txt
+|  |  |  |  |-- nr.txt
+|  |  |  |  |-- ocb.txt
+|  |  |  |  |-- panama.txt
+|  |  |  |  |-- poly1305_tls.txt
+|  |  |  |  |-- poly1305aes.txt
+|  |  |  |  |-- rabbit.txt
+|  |  |  |  |-- rsa_oaep.txt
+|  |  |  |  |-- rsa_pkcs1_1_5.txt
+|  |  |  |  |-- rsa_pss.txt
+|  |  |  |  |-- rw.txt
+|  |  |  |  |-- salsa.txt
+|  |  |  |  |-- seal.txt
+|  |  |  |  |-- seed.txt
+|  |  |  |  |-- sha.txt
+|  |  |  |  |-- sha1_160_fips_180.txt
+|  |  |  |  |-- sha1_fips_180.txt
+|  |  |  |  |-- sha2.txt
+|  |  |  |  |-- sha2_224_fips_180.txt
+|  |  |  |  |-- sha2_256_fips_180.txt
+|  |  |  |  |-- sha2_384_fips_180.txt
+|  |  |  |  |-- sha2_512_fips_180.txt
+|  |  |  |  |-- sha2_fips_180.txt
+|  |  |  |  |-- sha3.txt
+|  |  |  |  |-- sha3_224_fips_202.txt
+|  |  |  |  |-- sha3_256_fips_202.txt
+|  |  |  |  |-- sha3_384_fips_202.txt
+|  |  |  |  |-- sha3_512_fips_202.txt
+|  |  |  |  |-- sha3_fips_202.txt
+|  |  |  |  |-- shacal2.txt
+|  |  |  |  |-- shake.txt
+|  |  |  |  |-- simeck.txt
+|  |  |  |  |-- simon.txt
+|  |  |  |  |-- siphash.txt
+|  |  |  |  |-- skipjack.txt
+|  |  |  |  |-- sm3.txt
+|  |  |  |  |-- sm4.txt
+|  |  |  |  |-- sosemanuk.txt
+|  |  |  |  |-- speck.txt
+|  |  |  |  |-- tea.txt
+|  |  |  |  |-- threefish.txt
+|  |  |  |  |-- ttmac.txt
+|  |  |  |  |-- vmac.txt
+|  |  |  |  |-- wake.txt
+|  |  |  |  |-- whrlpool.txt
+|  |  |  |  |-- xchacha.txt
+|  |  |  |-- adhoc.cpp.proto
+|  |  |  |-- adler32.cpp
+|  |  |  |-- adler32.h
+|  |  |  |-- adv_simd.h
+|  |  |  |-- aes.h
+|  |  |  |-- aes_armv4.S
+|  |  |  |-- aes_armv4.h
+|  |  |  |-- algebra.cpp
+|  |  |  |-- algebra.h
+|  |  |  |-- algparam.cpp
+|  |  |  |-- algparam.h
+|  |  |  |-- arc4.cpp
+|  |  |  |-- arc4.h
+|  |  |  |-- argnames.h
+|  |  |  |-- aria.cpp
+|  |  |  |-- aria.h
+|  |  |  |-- aria_simd.cpp
+|  |  |  |-- ariatab.cpp
+|  |  |  |-- arm_simd.h
+|  |  |  |-- asn.cpp
+|  |  |  |-- asn.h
+|  |  |  |-- authenc.cpp
+|  |  |  |-- authenc.h
+|  |  |  |-- base32.cpp
+|  |  |  |-- base32.h
+|  |  |  |-- base64.cpp
+|  |  |  |-- base64.h
+|  |  |  |-- basecode.cpp
+|  |  |  |-- basecode.h
+|  |  |  |-- bds10.zip
+|  |  |  |-- bench.h
+|  |  |  |-- bench1.cpp
+|  |  |  |-- bench2.cpp
+|  |  |  |-- bench3.cpp
+|  |  |  |-- bfinit.cpp
+|  |  |  |-- blake2.cpp
+|  |  |  |-- blake2.h
+|  |  |  |-- blake2b_simd.cpp
+|  |  |  |-- blake2s_simd.cpp
+|  |  |  |-- blowfish.cpp
+|  |  |  |-- blowfish.h
+|  |  |  |-- blumshub.cpp
+|  |  |  |-- blumshub.h
+|  |  |  |-- camellia.cpp
+|  |  |  |-- camellia.h
+|  |  |  |-- cast.cpp
+|  |  |  |-- cast.h
+|  |  |  |-- casts.cpp
+|  |  |  |-- cbcmac.cpp
+|  |  |  |-- cbcmac.h
+|  |  |  |-- ccm.cpp
+|  |  |  |-- ccm.h
+|  |  |  |-- chacha.cpp
+|  |  |  |-- chacha.h
+|  |  |  |-- chacha_avx.cpp
+|  |  |  |-- chacha_simd.cpp
+|  |  |  |-- chachapoly.cpp
+|  |  |  |-- chachapoly.h
+|  |  |  |-- cham.cpp
+|  |  |  |-- cham.h
+|  |  |  |-- cham_simd.cpp
+|  |  |  |-- channels.cpp
+|  |  |  |-- channels.h
+|  |  |  |-- cmac.cpp
+|  |  |  |-- cmac.h
+|  |  |  |-- config.h
+|  |  |  |-- cpu.cpp
+|  |  |  |-- cpu.h
+|  |  |  |-- crc.cpp
+|  |  |  |-- crc.h
+|  |  |  |-- crc_simd.cpp
+|  |  |  |-- cryptdll.vcxproj
+|  |  |  |-- cryptdll.vcxproj.filters
+|  |  |  |-- cryptest.nmake
+|  |  |  |-- cryptest.sh
+|  |  |  |-- cryptest.sln
+|  |  |  |-- cryptest.vcxproj
+|  |  |  |-- cryptest.vcxproj.filters
+|  |  |  |-- cryptlib.cpp
+|  |  |  |-- cryptlib.h
+|  |  |  |-- cryptlib.vcxproj
+|  |  |  |-- cryptlib.vcxproj.filters
+|  |  |  |-- cryptopp-config.cmake
+|  |  |  |-- cryptopp.mapfile
+|  |  |  |-- cryptopp.rc
+|  |  |  |-- cryptopp.supp
+|  |  |  |-- darn.cpp
+|  |  |  |-- darn.h
+|  |  |  |-- datatest.cpp
+|  |  |  |-- default.cpp
+|  |  |  |-- default.h
+|  |  |  |-- des.cpp
+|  |  |  |-- des.h
+|  |  |  |-- dessp.cpp
+|  |  |  |-- dh.cpp
+|  |  |  |-- dh.h
+|  |  |  |-- dh2.cpp
+|  |  |  |-- dh2.h
+|  |  |  |-- dll.cpp
+|  |  |  |-- dll.h
+|  |  |  |-- dlltest.cpp
+|  |  |  |-- dlltest.vcxproj
+|  |  |  |-- dlltest.vcxproj.filters
+|  |  |  |-- dmac.h
+|  |  |  |-- donna.h
+|  |  |  |-- donna_32.cpp
+|  |  |  |-- donna_32.h
+|  |  |  |-- donna_64.cpp
+|  |  |  |-- donna_64.h
+|  |  |  |-- donna_sse.cpp
+|  |  |  |-- donna_sse.h
+|  |  |  |-- drbg.h
+|  |  |  |-- dsa.cpp
+|  |  |  |-- dsa.h
+|  |  |  |-- eax.cpp
+|  |  |  |-- eax.h
+|  |  |  |-- ec2n.cpp
+|  |  |  |-- ec2n.h
+|  |  |  |-- eccrypto.cpp
+|  |  |  |-- eccrypto.h
+|  |  |  |-- ecp.cpp
+|  |  |  |-- ecp.h
+|  |  |  |-- ecpoint.h
+|  |  |  |-- elgamal.cpp
+|  |  |  |-- elgamal.h
+|  |  |  |-- emsa2.cpp
+|  |  |  |-- emsa2.h
+|  |  |  |-- eprecomp.cpp
+|  |  |  |-- eprecomp.h
+|  |  |  |-- esign.cpp
+|  |  |  |-- esign.h
+|  |  |  |-- factory.h
+|  |  |  |-- fhmqv.h
+|  |  |  |-- files.cpp
+|  |  |  |-- files.h
+|  |  |  |-- filters.cpp
+|  |  |  |-- filters.h
+|  |  |  |-- fips140.cpp
+|  |  |  |-- fips140.h
+|  |  |  |-- fipsalgt.cpp
+|  |  |  |-- fipstest.cpp
+|  |  |  |-- fltrimpl.h
+|  |  |  |-- gcm.cpp
+|  |  |  |-- gcm.h
+|  |  |  |-- gcm_simd.cpp
+|  |  |  |-- gf256.cpp
+|  |  |  |-- gf256.h
+|  |  |  |-- gf2_32.cpp
+|  |  |  |-- gf2_32.h
+|  |  |  |-- gf2n.cpp
+|  |  |  |-- gf2n.h
+|  |  |  |-- gf2n_simd.cpp
+|  |  |  |-- gfpcrypt.cpp
+|  |  |  |-- gfpcrypt.h
+|  |  |  |-- gost.cpp
+|  |  |  |-- gost.h
+|  |  |  |-- gzip.cpp
+|  |  |  |-- gzip.h
+|  |  |  |-- hashfwd.h
+|  |  |  |-- hc128.cpp
+|  |  |  |-- hc128.h
+|  |  |  |-- hc256.cpp
+|  |  |  |-- hc256.h
+|  |  |  |-- hex.cpp
+|  |  |  |-- hex.h
+|  |  |  |-- hight.cpp
+|  |  |  |-- hight.h
+|  |  |  |-- hkdf.h
+|  |  |  |-- hmac.cpp
+|  |  |  |-- hmac.h
+|  |  |  |-- hmqv.h
+|  |  |  |-- hrtimer.cpp
+|  |  |  |-- hrtimer.h
+|  |  |  |-- ida.cpp
+|  |  |  |-- ida.h
+|  |  |  |-- idea.cpp
+|  |  |  |-- idea.h
+|  |  |  |-- integer.cpp
+|  |  |  |-- integer.h
+|  |  |  |-- iterhash.cpp
+|  |  |  |-- iterhash.h
+|  |  |  |-- kalyna.cpp
+|  |  |  |-- kalyna.h
+|  |  |  |-- kalynatab.cpp
+|  |  |  |-- keccak.cpp
+|  |  |  |-- keccak.h
+|  |  |  |-- keccak_core.cpp
+|  |  |  |-- keccak_simd.cpp
+|  |  |  |-- lea.cpp
+|  |  |  |-- lea.h
+|  |  |  |-- lea_simd.cpp
+|  |  |  |-- lubyrack.h
+|  |  |  |-- luc.cpp
+|  |  |  |-- luc.h
+|  |  |  |-- mars.cpp
+|  |  |  |-- mars.h
+|  |  |  |-- marss.cpp
+|  |  |  |-- md2.cpp
+|  |  |  |-- md2.h
+|  |  |  |-- md4.cpp
+|  |  |  |-- md4.h
+|  |  |  |-- md5.cpp
+|  |  |  |-- md5.h
+|  |  |  |-- mdc.h
+|  |  |  |-- mersenne.h
+|  |  |  |-- misc.cpp
+|  |  |  |-- misc.h
+|  |  |  |-- modarith.h
+|  |  |  |-- modes.cpp
+|  |  |  |-- modes.h
+|  |  |  |-- modexppc.h
+|  |  |  |-- mqueue.cpp
+|  |  |  |-- mqueue.h
+|  |  |  |-- mqv.cpp
+|  |  |  |-- mqv.h
+|  |  |  |-- naclite.h
+|  |  |  |-- nbtheory.cpp
+|  |  |  |-- nbtheory.h
+|  |  |  |-- neon_simd.cpp
+|  |  |  |-- nr.h
+|  |  |  |-- oaep.cpp
+|  |  |  |-- oaep.h
+|  |  |  |-- oids.h
+|  |  |  |-- osrng.cpp
+|  |  |  |-- osrng.h
+|  |  |  |-- ossig.h
+|  |  |  |-- padlkrng.cpp
+|  |  |  |-- padlkrng.h
+|  |  |  |-- panama.cpp
+|  |  |  |-- panama.h
+|  |  |  |-- pch.cpp
+|  |  |  |-- pch.h
+|  |  |  |-- pkcspad.cpp
+|  |  |  |-- pkcspad.h
+|  |  |  |-- poly1305.cpp
+|  |  |  |-- poly1305.h
+|  |  |  |-- polynomi.cpp
+|  |  |  |-- polynomi.h
+|  |  |  |-- ppc_power7.cpp
+|  |  |  |-- ppc_power8.cpp
+|  |  |  |-- ppc_power9.cpp
+|  |  |  |-- ppc_simd.cpp
+|  |  |  |-- ppc_simd.h
+|  |  |  |-- pssr.cpp
+|  |  |  |-- pssr.h
+|  |  |  |-- pubkey.cpp
+|  |  |  |-- pubkey.h
+|  |  |  |-- pwdbased.h
+|  |  |  |-- queue.cpp
+|  |  |  |-- queue.h
+|  |  |  |-- rabbit.cpp
+|  |  |  |-- rabbit.h
+|  |  |  |-- rabin.cpp
+|  |  |  |-- rabin.h
+|  |  |  |-- randpool.cpp
+|  |  |  |-- randpool.h
+|  |  |  |-- rc2.cpp
+|  |  |  |-- rc2.h
+|  |  |  |-- rc5.cpp
+|  |  |  |-- rc5.h
+|  |  |  |-- rc6.cpp
+|  |  |  |-- rc6.h
+|  |  |  |-- rdrand-masm.cmd
+|  |  |  |-- rdrand-nasm.sh
+|  |  |  |-- rdrand.asm
+|  |  |  |-- rdrand.cpp
+|  |  |  |-- rdrand.h
+|  |  |  |-- rdrand.s
+|  |  |  |-- rdtables.cpp
+|  |  |  |-- regtest1.cpp
+|  |  |  |-- regtest2.cpp
+|  |  |  |-- regtest3.cpp
+|  |  |  |-- regtest4.cpp
+|  |  |  |-- resource.h
+|  |  |  |-- rijndael.cpp
+|  |  |  |-- rijndael.h
+|  |  |  |-- rijndael_simd.cpp
+|  |  |  |-- ripemd.cpp
+|  |  |  |-- ripemd.h
+|  |  |  |-- rng.cpp
+|  |  |  |-- rng.h
+|  |  |  |-- rsa.cpp
+|  |  |  |-- rsa.h
+|  |  |  |-- rw.cpp
+|  |  |  |-- rw.h
+|  |  |  |-- safer.cpp
+|  |  |  |-- safer.h
+|  |  |  |-- salsa.cpp
+|  |  |  |-- salsa.h
+|  |  |  |-- scrypt.cpp
+|  |  |  |-- scrypt.h
+|  |  |  |-- seal.cpp
+|  |  |  |-- seal.h
+|  |  |  |-- secblock.h
+|  |  |  |-- seckey.h
+|  |  |  |-- seed.cpp
+|  |  |  |-- seed.h
+|  |  |  |-- serpent.cpp
+|  |  |  |-- serpent.h
+|  |  |  |-- serpentp.h
+|  |  |  |-- setenv-android-gcc.sh
+|  |  |  |-- setenv-embedded.sh
+|  |  |  |-- setenv-ios.sh
+|  |  |  |-- sha.cpp
+|  |  |  |-- sha.h
+|  |  |  |-- sha3.cpp
+|  |  |  |-- sha3.h
+|  |  |  |-- sha_simd.cpp
+|  |  |  |-- shacal2.cpp
+|  |  |  |-- shacal2.h
+|  |  |  |-- shacal2_simd.cpp
+|  |  |  |-- shake.cpp
+|  |  |  |-- shake.h
+|  |  |  |-- shark.cpp
+|  |  |  |-- shark.h
+|  |  |  |-- sharkbox.cpp
+|  |  |  |-- simeck.cpp
+|  |  |  |-- simeck.h
+|  |  |  |-- simeck_simd.cpp
+|  |  |  |-- simon.cpp
+|  |  |  |-- simon.h
+|  |  |  |-- simon128_simd.cpp
+|  |  |  |-- simon64_simd.cpp
+|  |  |  |-- simple.cpp
+|  |  |  |-- simple.h
+|  |  |  |-- siphash.h
+|  |  |  |-- skipjack.cpp
+|  |  |  |-- skipjack.h
+|  |  |  |-- sm3.cpp
+|  |  |  |-- sm3.h
+|  |  |  |-- sm4.cpp
+|  |  |  |-- sm4.h
+|  |  |  |-- sm4_simd.cpp
+|  |  |  |-- smartptr.h
+|  |  |  |-- sosemanuk.cpp
+|  |  |  |-- sosemanuk.h
+|  |  |  |-- speck.cpp
+|  |  |  |-- speck.h
+|  |  |  |-- speck128_simd.cpp
+|  |  |  |-- speck64_simd.cpp
+|  |  |  |-- square.cpp
+|  |  |  |-- square.h
+|  |  |  |-- squaretb.cpp
+|  |  |  |-- sse_simd.cpp
+|  |  |  |-- stdcpp.h
+|  |  |  |-- strciphr.cpp
+|  |  |  |-- strciphr.h
+|  |  |  |-- tea.cpp
+|  |  |  |-- tea.h
+|  |  |  |-- test.cpp
+|  |  |  |-- tftables.cpp
+|  |  |  |-- threefish.cpp
+|  |  |  |-- threefish.h
+|  |  |  |-- tiger.cpp
+|  |  |  |-- tiger.h
+|  |  |  |-- tigertab.cpp
+|  |  |  |-- trap.h
+|  |  |  |-- trunhash.h
+|  |  |  |-- ttmac.cpp
+|  |  |  |-- ttmac.h
+|  |  |  |-- tweetnacl.cpp
+|  |  |  |-- tweetnacl.h
+|  |  |  |-- twofish.cpp
+|  |  |  |-- twofish.h
+|  |  |  |-- validat0.cpp
+|  |  |  |-- validat1.cpp
+|  |  |  |-- validat10.cpp
+|  |  |  |-- validat2.cpp
+|  |  |  |-- validat3.cpp
+|  |  |  |-- validat4.cpp
+|  |  |  |-- validat5.cpp
+|  |  |  |-- validat6.cpp
+|  |  |  |-- validat7.cpp
+|  |  |  |-- validat8.cpp
+|  |  |  |-- validat9.cpp
+|  |  |  |-- validate.h
+|  |  |  |-- vc60.zip
+|  |  |  |-- vmac.cpp
+|  |  |  |-- vmac.h
+|  |  |  |-- vs2005.zip
+|  |  |  |-- wake.cpp
+|  |  |  |-- wake.h
+|  |  |  |-- whrlpool.cpp
+|  |  |  |-- whrlpool.h
+|  |  |  |-- words.h
+|  |  |  |-- x64dll.asm
+|  |  |  |-- x64masm.asm
+|  |  |  |-- xed25519.cpp
+|  |  |  |-- xed25519.h
+|  |  |  |-- xtr.cpp
+|  |  |  |-- xtr.h
+|  |  |  |-- xtrcrypt.cpp
+|  |  |  |-- xtrcrypt.h
+|  |  |  |-- zdeflate.cpp
+|  |  |  |-- zdeflate.h
+|  |  |  |-- zinflate.cpp
+|  |  |  |-- zinflate.h
+|  |  |  |-- zlib.cpp
+|  |  |  |-- zlib.h
+|  |-- googletest
+|  |  |-- CMakeLists.txt
+|  |  |-- gtest
+|  |  |  |-- .clang-format
+|  |  |  |-- .gitignore
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- CONTRIBUTING.md
+|  |  |  |-- CONTRIBUTORS
+|  |  |  |-- LICENSE
+|  |  |  |-- README.md
+|  |  |  |-- WORKSPACE
+|  |  |  |-- ci
+|  |  |  |  |-- linux-presubmit.sh
+|  |  |  |  |-- macos-presubmit.sh
+|  |  |  |-- docs
+|  |  |  |  |-- _config.yml
+|  |  |  |  |-- _data
+|  |  |  |  |  |-- navigation.yml
+|  |  |  |  |-- _layouts
+|  |  |  |  |  |-- default.html
+|  |  |  |  |-- _sass
+|  |  |  |  |  |-- main.scss
+|  |  |  |  |-- advanced.md
+|  |  |  |  |-- assets
+|  |  |  |  |  |-- css
+|  |  |  |  |  |  |-- style.scss
+|  |  |  |  |-- community_created_documentation.md
+|  |  |  |  |-- faq.md
+|  |  |  |  |-- gmock_cheat_sheet.md
+|  |  |  |  |-- gmock_cook_book.md
+|  |  |  |  |-- gmock_faq.md
+|  |  |  |  |-- gmock_for_dummies.md
+|  |  |  |  |-- index.md
+|  |  |  |  |-- pkgconfig.md
+|  |  |  |  |-- platforms.md
+|  |  |  |  |-- primer.md
+|  |  |  |  |-- quickstart-bazel.md
+|  |  |  |  |-- quickstart-cmake.md
+|  |  |  |  |-- samples.md
+|  |  |  |-- googlemock
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- cmake
+|  |  |  |  |  |-- gmock.pc.in
+|  |  |  |  |  |-- gmock_main.pc.in
+|  |  |  |  |-- docs
+|  |  |  |  |  |-- README.md
+|  |  |  |  |-- include
+|  |  |  |  |  |-- gmock
+|  |  |  |  |  |  |-- gmock-actions.h
+|  |  |  |  |  |  |-- gmock-cardinalities.h
+|  |  |  |  |  |  |-- gmock-function-mocker.h
+|  |  |  |  |  |  |-- gmock-matchers.h
+|  |  |  |  |  |  |-- gmock-more-actions.h
+|  |  |  |  |  |  |-- gmock-more-matchers.h
+|  |  |  |  |  |  |-- gmock-nice-strict.h
+|  |  |  |  |  |  |-- gmock-spec-builders.h
+|  |  |  |  |  |  |-- gmock.h
+|  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |-- custom
+|  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |-- gmock-generated-actions.h
+|  |  |  |  |  |  |  |  |-- gmock-matchers.h
+|  |  |  |  |  |  |  |  |-- gmock-port.h
+|  |  |  |  |  |  |  |-- gmock-internal-utils.h
+|  |  |  |  |  |  |  |-- gmock-port.h
+|  |  |  |  |  |  |  |-- gmock-pp.h
+|  |  |  |  |-- scripts
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- fuse_gmock_files.py
+|  |  |  |  |  |-- generator
+|  |  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |-- README.cppclean
+|  |  |  |  |  |  |-- cpp
+|  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |-- ast.py
+|  |  |  |  |  |  |  |-- gmock_class.py
+|  |  |  |  |  |  |  |-- gmock_class_test.py
+|  |  |  |  |  |  |  |-- keywords.py
+|  |  |  |  |  |  |  |-- tokenize.py
+|  |  |  |  |  |  |  |-- utils.py
+|  |  |  |  |  |  |-- gmock_gen.py
+|  |  |  |  |-- src
+|  |  |  |  |  |-- gmock-all.cc
+|  |  |  |  |  |-- gmock-cardinalities.cc
+|  |  |  |  |  |-- gmock-internal-utils.cc
+|  |  |  |  |  |-- gmock-matchers.cc
+|  |  |  |  |  |-- gmock-spec-builders.cc
+|  |  |  |  |  |-- gmock.cc
+|  |  |  |  |  |-- gmock_main.cc
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- gmock-actions_test.cc
+|  |  |  |  |  |-- gmock-cardinalities_test.cc
+|  |  |  |  |  |-- gmock-function-mocker_test.cc
+|  |  |  |  |  |-- gmock-internal-utils_test.cc
+|  |  |  |  |  |-- gmock-matchers_test.cc
+|  |  |  |  |  |-- gmock-more-actions_test.cc
+|  |  |  |  |  |-- gmock-nice-strict_test.cc
+|  |  |  |  |  |-- gmock-port_test.cc
+|  |  |  |  |  |-- gmock-pp-string_test.cc
+|  |  |  |  |  |-- gmock-pp_test.cc
+|  |  |  |  |  |-- gmock-spec-builders_test.cc
+|  |  |  |  |  |-- gmock_all_test.cc
+|  |  |  |  |  |-- gmock_ex_test.cc
+|  |  |  |  |  |-- gmock_leak_test.py
+|  |  |  |  |  |-- gmock_leak_test_.cc
+|  |  |  |  |  |-- gmock_link2_test.cc
+|  |  |  |  |  |-- gmock_link_test.cc
+|  |  |  |  |  |-- gmock_link_test.h
+|  |  |  |  |  |-- gmock_output_test.py
+|  |  |  |  |  |-- gmock_output_test_.cc
+|  |  |  |  |  |-- gmock_output_test_golden.txt
+|  |  |  |  |  |-- gmock_stress_test.cc
+|  |  |  |  |  |-- gmock_test.cc
+|  |  |  |  |  |-- gmock_test_utils.py
+|  |  |  |-- googletest
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- cmake
+|  |  |  |  |  |-- Config.cmake.in
+|  |  |  |  |  |-- gtest.pc.in
+|  |  |  |  |  |-- gtest_main.pc.in
+|  |  |  |  |  |-- internal_utils.cmake
+|  |  |  |  |  |-- libgtest.la.in
+|  |  |  |  |-- docs
+|  |  |  |  |  |-- README.md
+|  |  |  |  |-- include
+|  |  |  |  |  |-- gtest
+|  |  |  |  |  |  |-- gtest-death-test.h
+|  |  |  |  |  |  |-- gtest-matchers.h
+|  |  |  |  |  |  |-- gtest-message.h
+|  |  |  |  |  |  |-- gtest-param-test.h
+|  |  |  |  |  |  |-- gtest-printers.h
+|  |  |  |  |  |  |-- gtest-spi.h
+|  |  |  |  |  |  |-- gtest-test-part.h
+|  |  |  |  |  |  |-- gtest-typed-test.h
+|  |  |  |  |  |  |-- gtest.h
+|  |  |  |  |  |  |-- gtest_pred_impl.h
+|  |  |  |  |  |  |-- gtest_prod.h
+|  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |-- custom
+|  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |-- gtest-port.h
+|  |  |  |  |  |  |  |  |-- gtest-printers.h
+|  |  |  |  |  |  |  |  |-- gtest.h
+|  |  |  |  |  |  |  |-- gtest-death-test-internal.h
+|  |  |  |  |  |  |  |-- gtest-filepath.h
+|  |  |  |  |  |  |  |-- gtest-internal.h
+|  |  |  |  |  |  |  |-- gtest-param-util.h
+|  |  |  |  |  |  |  |-- gtest-port-arch.h
+|  |  |  |  |  |  |  |-- gtest-port.h
+|  |  |  |  |  |  |  |-- gtest-string.h
+|  |  |  |  |  |  |  |-- gtest-type-util.h
+|  |  |  |  |-- samples
+|  |  |  |  |  |-- prime_tables.h
+|  |  |  |  |  |-- sample1.cc
+|  |  |  |  |  |-- sample1.h
+|  |  |  |  |  |-- sample10_unittest.cc
+|  |  |  |  |  |-- sample1_unittest.cc
+|  |  |  |  |  |-- sample2.cc
+|  |  |  |  |  |-- sample2.h
+|  |  |  |  |  |-- sample2_unittest.cc
+|  |  |  |  |  |-- sample3-inl.h
+|  |  |  |  |  |-- sample3_unittest.cc
+|  |  |  |  |  |-- sample4.cc
+|  |  |  |  |  |-- sample4.h
+|  |  |  |  |  |-- sample4_unittest.cc
+|  |  |  |  |  |-- sample5_unittest.cc
+|  |  |  |  |  |-- sample6_unittest.cc
+|  |  |  |  |  |-- sample7_unittest.cc
+|  |  |  |  |  |-- sample8_unittest.cc
+|  |  |  |  |  |-- sample9_unittest.cc
+|  |  |  |  |-- scripts
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- common.py
+|  |  |  |  |  |-- fuse_gtest_files.py
+|  |  |  |  |  |-- gen_gtest_pred_impl.py
+|  |  |  |  |  |-- gtest-config.in
+|  |  |  |  |  |-- release_docs.py
+|  |  |  |  |  |-- run_with_path.py
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- Makefile
+|  |  |  |  |  |-- upload.py
+|  |  |  |  |  |-- upload_gtest.py
+|  |  |  |  |-- src
+|  |  |  |  |  |-- gtest-all.cc
+|  |  |  |  |  |-- gtest-death-test.cc
+|  |  |  |  |  |-- gtest-filepath.cc
+|  |  |  |  |  |-- gtest-internal-inl.h
+|  |  |  |  |  |-- gtest-matchers.cc
+|  |  |  |  |  |-- gtest-port.cc
+|  |  |  |  |  |-- gtest-printers.cc
+|  |  |  |  |  |-- gtest-test-part.cc
+|  |  |  |  |  |-- gtest-typed-test.cc
+|  |  |  |  |  |-- gtest.cc
+|  |  |  |  |  |-- gtest_main.cc
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- googletest-break-on-failure-unittest.py
+|  |  |  |  |  |-- googletest-break-on-failure-unittest_.cc
+|  |  |  |  |  |-- googletest-catch-exceptions-test.py
+|  |  |  |  |  |-- googletest-catch-exceptions-test_.cc
+|  |  |  |  |  |-- googletest-color-test.py
+|  |  |  |  |  |-- googletest-color-test_.cc
+|  |  |  |  |  |-- googletest-death-test-test.cc
+|  |  |  |  |  |-- googletest-death-test_ex_test.cc
+|  |  |  |  |  |-- googletest-env-var-test.py
+|  |  |  |  |  |-- googletest-env-var-test_.cc
+|  |  |  |  |  |-- googletest-failfast-unittest.py
+|  |  |  |  |  |-- googletest-failfast-unittest_.cc
+|  |  |  |  |  |-- googletest-filepath-test.cc
+|  |  |  |  |  |-- googletest-filter-unittest.py
+|  |  |  |  |  |-- googletest-filter-unittest_.cc
+|  |  |  |  |  |-- googletest-global-environment-unittest.py
+|  |  |  |  |  |-- googletest-global-environment-unittest_.cc
+|  |  |  |  |  |-- googletest-json-outfiles-test.py
+|  |  |  |  |  |-- googletest-json-output-unittest.py
+|  |  |  |  |  |-- googletest-list-tests-unittest.py
+|  |  |  |  |  |-- googletest-list-tests-unittest_.cc
+|  |  |  |  |  |-- googletest-listener-test.cc
+|  |  |  |  |  |-- googletest-message-test.cc
+|  |  |  |  |  |-- googletest-options-test.cc
+|  |  |  |  |  |-- googletest-output-test-golden-lin.txt
+|  |  |  |  |  |-- googletest-output-test.py
+|  |  |  |  |  |-- googletest-output-test_.cc
+|  |  |  |  |  |-- googletest-param-test-invalid-name1-test.py
+|  |  |  |  |  |-- googletest-param-test-invalid-name1-test_.cc
+|  |  |  |  |  |-- googletest-param-test-invalid-name2-test.py
+|  |  |  |  |  |-- googletest-param-test-invalid-name2-test_.cc
+|  |  |  |  |  |-- googletest-param-test-test.cc
+|  |  |  |  |  |-- googletest-param-test-test.h
+|  |  |  |  |  |-- googletest-param-test2-test.cc
+|  |  |  |  |  |-- googletest-port-test.cc
+|  |  |  |  |  |-- googletest-printers-test.cc
+|  |  |  |  |  |-- googletest-setuptestsuite-test.py
+|  |  |  |  |  |-- googletest-setuptestsuite-test_.cc
+|  |  |  |  |  |-- googletest-shuffle-test.py
+|  |  |  |  |  |-- googletest-shuffle-test_.cc
+|  |  |  |  |  |-- googletest-test-part-test.cc
+|  |  |  |  |  |-- googletest-throw-on-failure-test.py
+|  |  |  |  |  |-- googletest-throw-on-failure-test_.cc
+|  |  |  |  |  |-- googletest-uninitialized-test.py
+|  |  |  |  |  |-- googletest-uninitialized-test_.cc
+|  |  |  |  |  |-- gtest-typed-test2_test.cc
+|  |  |  |  |  |-- gtest-typed-test_test.cc
+|  |  |  |  |  |-- gtest-typed-test_test.h
+|  |  |  |  |  |-- gtest-unittest-api_test.cc
+|  |  |  |  |  |-- gtest_all_test.cc
+|  |  |  |  |  |-- gtest_assert_by_exception_test.cc
+|  |  |  |  |  |-- gtest_environment_test.cc
+|  |  |  |  |  |-- gtest_help_test.py
+|  |  |  |  |  |-- gtest_help_test_.cc
+|  |  |  |  |  |-- gtest_json_test_utils.py
+|  |  |  |  |  |-- gtest_list_output_unittest.py
+|  |  |  |  |  |-- gtest_list_output_unittest_.cc
+|  |  |  |  |  |-- gtest_main_unittest.cc
+|  |  |  |  |  |-- gtest_no_test_unittest.cc
+|  |  |  |  |  |-- gtest_pred_impl_unittest.cc
+|  |  |  |  |  |-- gtest_premature_exit_test.cc
+|  |  |  |  |  |-- gtest_prod_test.cc
+|  |  |  |  |  |-- gtest_repeat_test.cc
+|  |  |  |  |  |-- gtest_skip_check_output_test.py
+|  |  |  |  |  |-- gtest_skip_environment_check_output_test.py
+|  |  |  |  |  |-- gtest_skip_in_environment_setup_test.cc
+|  |  |  |  |  |-- gtest_skip_test.cc
+|  |  |  |  |  |-- gtest_sole_header_test.cc
+|  |  |  |  |  |-- gtest_stress_test.cc
+|  |  |  |  |  |-- gtest_test_macro_stack_footprint_test.cc
+|  |  |  |  |  |-- gtest_test_utils.py
+|  |  |  |  |  |-- gtest_testbridge_test.py
+|  |  |  |  |  |-- gtest_testbridge_test_.cc
+|  |  |  |  |  |-- gtest_throw_on_failure_ex_test.cc
+|  |  |  |  |  |-- gtest_unittest.cc
+|  |  |  |  |  |-- gtest_xml_outfile1_test_.cc
+|  |  |  |  |  |-- gtest_xml_outfile2_test_.cc
+|  |  |  |  |  |-- gtest_xml_outfiles_test.py
+|  |  |  |  |  |-- gtest_xml_output_unittest.py
+|  |  |  |  |  |-- gtest_xml_output_unittest_.cc
+|  |  |  |  |  |-- gtest_xml_test_utils.py
+|  |  |  |  |  |-- production.cc
+|  |  |  |  |  |-- production.h
+|  |  |  |-- library.json

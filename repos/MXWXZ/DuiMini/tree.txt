@@ -1,0 +1,1353 @@
+|-- .clang-format
+|-- .github
+|  |-- ISSUE_TEMPLATE
+|  |  |-- bug_report.md
+|  |  |-- feature_request.md
+|-- .gitignore
+|-- .travis.yml
+|-- CMakeLists.txt
+|-- Demo
+|  |-- CMakeLists.txt
+|  |-- Demo.cpp
+|-- DuiMini
+|  |-- CMakeLists.txt
+|  |-- include
+|  |  |-- Core
+|  |  |  |-- Resource
+|  |  |  |  |-- UIResFile.h
+|  |  |  |  |-- UIResLoader.hpp
+|  |  |  |  |-- UIResRaw.h
+|  |  |  |  |-- UIResZip.h
+|  |  |  |  |-- UIResource.h
+|  |  |  |-- UIConfig.h
+|  |  |  |-- UIInterface.h
+|  |  |  |-- UISystem.h
+|  |  |-- DuiMini.h
+|  |  |-- UIBuildConfig.h
+|  |  |-- UIBuildConfig.h.in
+|  |  |-- UIDefine.h
+|  |  |-- Utils
+|  |  |  |-- UIEvent.hpp
+|  |  |  |-- UIException.h
+|  |  |  |-- UIUnzip.h
+|  |  |  |-- UIUtils.h
+|  |  |  |-- UIXmlParse.hpp
+|  |-- src
+|  |  |-- Core
+|  |  |  |-- Resource
+|  |  |  |  |-- UIResFile.cpp
+|  |  |  |  |-- UIResRaw.cpp
+|  |  |  |  |-- UIResZip.cpp
+|  |  |  |  |-- UIResource.cpp
+|  |  |  |-- UIConfig.cpp
+|  |  |  |-- UISystem.cpp
+|  |  |-- Utils
+|  |  |  |-- UIException.cpp
+|  |  |  |-- UIUnzip.cpp
+|  |  |  |-- UIUtils.cpp
+|-- LICENSE
+|-- README.md
+|-- Tests
+|  |-- CMakeLists.txt
+|  |-- Core
+|  |  |-- test_resource.cpp
+|  |-- TestRes
+|  |  |-- testxml.xml
+|  |  |-- uires.zip
+|  |  |-- uires
+|  |  |  |-- inner
+|  |  |  |  |-- picture.png
+|  |  |  |  |-- plaintext.txt
+|  |  |  |-- picture.png
+|  |  |  |-- plaintext.txt
+|  |-- Tools
+|  |  |-- HostFile.cpp
+|  |-- Utils
+|  |  |-- test_utils.cpp
+|  |-- test_main.cpp
+|-- Tools
+|  |-- CMakeLists.txt
+|  |-- ResPacker
+|  |  |-- CMakeLists.txt
+|  |  |-- ResPacker.cpp
+|-- thirdpart
+|  |-- CMakeLists.txt
+|  |-- SFML
+|  |  |-- .editorconfig
+|  |  |-- .github
+|  |  |  |-- ISSUE_TEMPLATE.md
+|  |  |  |-- PULL_REQUEST_TEMPLATE.md
+|  |  |-- CMakeLists.txt
+|  |  |-- CONTRIBUTING.md
+|  |  |-- changelog.md
+|  |  |-- cmake
+|  |  |  |-- Config.cmake
+|  |  |  |-- Macros.cmake
+|  |  |  |-- Modules
+|  |  |  |  |-- FindEGL.cmake
+|  |  |  |  |-- FindFLAC.cmake
+|  |  |  |  |-- FindFreetype.cmake
+|  |  |  |  |-- FindGLES.cmake
+|  |  |  |  |-- FindUDev.cmake
+|  |  |  |  |-- FindVorbis.cmake
+|  |  |  |-- SFMLConfig.cmake.in
+|  |  |  |-- SFMLConfigDependencies.cmake.in
+|  |  |  |-- toolchains
+|  |  |  |  |-- android.toolchain.cmake
+|  |  |  |  |-- iOS.toolchain.cmake
+|  |  |-- doc
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- doxyfile.in
+|  |  |  |-- doxygen.css
+|  |  |  |-- footer.html
+|  |  |  |-- header.html.in
+|  |  |  |-- mainpage.hpp
+|  |  |-- examples
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- X11
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- X11.cpp
+|  |  |  |-- android
+|  |  |  |  |-- .gitignore
+|  |  |  |  |-- app
+|  |  |  |  |  |-- app.iml
+|  |  |  |  |  |-- build.gradle
+|  |  |  |  |  |-- proguard-rules.pro
+|  |  |  |  |  |-- src
+|  |  |  |  |  |  |-- main
+|  |  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |  |  |-- assets
+|  |  |  |  |  |  |  |  |-- canary.wav
+|  |  |  |  |  |  |  |  |-- image.png
+|  |  |  |  |  |  |  |  |-- orchestral.ogg
+|  |  |  |  |  |  |  |  |-- sansation.ttf
+|  |  |  |  |  |  |  |-- jni
+|  |  |  |  |  |  |  |  |-- Android.mk
+|  |  |  |  |  |  |  |  |-- Application.mk
+|  |  |  |  |  |  |  |  |-- main.cpp
+|  |  |  |  |  |  |  |-- res
+|  |  |  |  |  |  |  |  |-- drawable-hdpi
+|  |  |  |  |  |  |  |  |  |-- sfml_logo.png
+|  |  |  |  |  |  |  |  |-- drawable-ldpi
+|  |  |  |  |  |  |  |  |  |-- sfml_logo.png
+|  |  |  |  |  |  |  |  |-- drawable-mdpi
+|  |  |  |  |  |  |  |  |  |-- sfml_logo.png
+|  |  |  |  |  |  |  |  |-- drawable-xhdpi
+|  |  |  |  |  |  |  |  |  |-- sfml_logo.png
+|  |  |  |  |  |  |  |  |-- drawable-xxhdpi
+|  |  |  |  |  |  |  |  |  |-- sfml_logo.png
+|  |  |  |  |  |  |  |  |-- values
+|  |  |  |  |  |  |  |  |  |-- strings.xml
+|  |  |  |  |-- build.gradle
+|  |  |  |  |-- gradle.properties
+|  |  |  |  |-- settings.gradle
+|  |  |  |-- cocoa
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- CocoaAppDelegate.h
+|  |  |  |  |-- CocoaAppDelegate.mm
+|  |  |  |  |-- MainMenu.xib
+|  |  |  |  |-- NSString+stdstring.h
+|  |  |  |  |-- NSString+stdstring.mm
+|  |  |  |  |-- main.m
+|  |  |  |  |-- readme.txt
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- Cocoa-Info.plist
+|  |  |  |  |  |-- Credits.rtf
+|  |  |  |  |  |-- blue.png
+|  |  |  |  |  |-- green.png
+|  |  |  |  |  |-- icon.icns
+|  |  |  |  |  |-- logo.png
+|  |  |  |  |  |-- red.png
+|  |  |  |  |  |-- sansation.ttf
+|  |  |  |-- ftp
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Ftp.cpp
+|  |  |  |-- iOS
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- main.cpp
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- canary.wav
+|  |  |  |  |  |-- image.png
+|  |  |  |  |  |-- orchestral.ogg
+|  |  |  |  |  |-- sansation.ttf
+|  |  |  |-- island
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Island.cpp
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- sansation.ttf
+|  |  |  |  |  |-- terrain.frag
+|  |  |  |  |  |-- terrain.vert
+|  |  |  |  |-- stb_perlin.h
+|  |  |  |-- joystick
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Joystick.cpp
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- sansation.ttf
+|  |  |  |-- opengl
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- OpenGL.cpp
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- background.jpg
+|  |  |  |  |  |-- sansation.ttf
+|  |  |  |  |  |-- texture.jpg
+|  |  |  |-- pong
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Pong.cpp
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- ball.wav
+|  |  |  |  |  |-- sansation.ttf
+|  |  |  |-- shader
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Effect.hpp
+|  |  |  |  |-- Shader.cpp
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- background.jpg
+|  |  |  |  |  |-- billboard.frag
+|  |  |  |  |  |-- billboard.geom
+|  |  |  |  |  |-- billboard.vert
+|  |  |  |  |  |-- blink.frag
+|  |  |  |  |  |-- blur.frag
+|  |  |  |  |  |-- devices.png
+|  |  |  |  |  |-- edge.frag
+|  |  |  |  |  |-- logo.png
+|  |  |  |  |  |-- pixelate.frag
+|  |  |  |  |  |-- sansation.ttf
+|  |  |  |  |  |-- sfml.png
+|  |  |  |  |  |-- storm.vert
+|  |  |  |  |  |-- text-background.png
+|  |  |  |  |  |-- wave.vert
+|  |  |  |-- sockets
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Sockets.cpp
+|  |  |  |  |-- TCP.cpp
+|  |  |  |  |-- UDP.cpp
+|  |  |  |-- sound
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Sound.cpp
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- canary.wav
+|  |  |  |  |  |-- ding.flac
+|  |  |  |  |  |-- orchestral.ogg
+|  |  |  |-- sound_capture
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- SoundCapture.cpp
+|  |  |  |-- voip
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Client.cpp
+|  |  |  |  |-- Server.cpp
+|  |  |  |  |-- VoIP.cpp
+|  |  |  |-- win32
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Win32.cpp
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- image1.jpg
+|  |  |  |  |  |-- image2.jpg
+|  |  |  |-- window
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Window.cpp
+|  |  |-- extlibs
+|  |  |  |-- Android.mk
+|  |  |  |-- bin
+|  |  |  |  |-- x64
+|  |  |  |  |  |-- openal32.dll
+|  |  |  |  |-- x86
+|  |  |  |  |  |-- openal32.dll
+|  |  |  |-- headers
+|  |  |  |  |-- AL
+|  |  |  |  |  |-- al.h
+|  |  |  |  |  |-- alc.h
+|  |  |  |  |  |-- alext.h
+|  |  |  |  |  |-- efx-creative.h
+|  |  |  |  |  |-- efx-presets.h
+|  |  |  |  |  |-- efx.h
+|  |  |  |  |-- FLAC
+|  |  |  |  |  |-- all.h
+|  |  |  |  |  |-- assert.h
+|  |  |  |  |  |-- callback.h
+|  |  |  |  |  |-- export.h
+|  |  |  |  |  |-- format.h
+|  |  |  |  |  |-- metadata.h
+|  |  |  |  |  |-- ordinals.h
+|  |  |  |  |  |-- stream_decoder.h
+|  |  |  |  |  |-- stream_encoder.h
+|  |  |  |  |-- freetype2
+|  |  |  |  |  |-- config
+|  |  |  |  |  |  |-- ftconfig.h
+|  |  |  |  |  |  |-- ftheader.h
+|  |  |  |  |  |  |-- ftmodule.h
+|  |  |  |  |  |  |-- ftoption.h
+|  |  |  |  |  |  |-- ftstdlib.h
+|  |  |  |  |  |-- freetype.h
+|  |  |  |  |  |-- ft2build.h
+|  |  |  |  |  |-- ftadvanc.h
+|  |  |  |  |  |-- ftautoh.h
+|  |  |  |  |  |-- ftbbox.h
+|  |  |  |  |  |-- ftbdf.h
+|  |  |  |  |  |-- ftbitmap.h
+|  |  |  |  |  |-- ftbzip2.h
+|  |  |  |  |  |-- ftcache.h
+|  |  |  |  |  |-- ftcffdrv.h
+|  |  |  |  |  |-- ftchapters.h
+|  |  |  |  |  |-- ftcid.h
+|  |  |  |  |  |-- fterrdef.h
+|  |  |  |  |  |-- fterrors.h
+|  |  |  |  |  |-- ftgasp.h
+|  |  |  |  |  |-- ftglyph.h
+|  |  |  |  |  |-- ftgxval.h
+|  |  |  |  |  |-- ftgzip.h
+|  |  |  |  |  |-- ftimage.h
+|  |  |  |  |  |-- ftincrem.h
+|  |  |  |  |  |-- ftlcdfil.h
+|  |  |  |  |  |-- ftlist.h
+|  |  |  |  |  |-- ftlzw.h
+|  |  |  |  |  |-- ftmac.h
+|  |  |  |  |  |-- ftmm.h
+|  |  |  |  |  |-- ftmodapi.h
+|  |  |  |  |  |-- ftmoderr.h
+|  |  |  |  |  |-- ftotval.h
+|  |  |  |  |  |-- ftoutln.h
+|  |  |  |  |  |-- ftpfr.h
+|  |  |  |  |  |-- ftrender.h
+|  |  |  |  |  |-- ftsizes.h
+|  |  |  |  |  |-- ftsnames.h
+|  |  |  |  |  |-- ftstroke.h
+|  |  |  |  |  |-- ftsynth.h
+|  |  |  |  |  |-- ftsystem.h
+|  |  |  |  |  |-- fttrigon.h
+|  |  |  |  |  |-- ftttdrv.h
+|  |  |  |  |  |-- fttypes.h
+|  |  |  |  |  |-- ftwinfnt.h
+|  |  |  |  |  |-- ftxf86.h
+|  |  |  |  |  |-- t1tables.h
+|  |  |  |  |  |-- ttnameid.h
+|  |  |  |  |  |-- tttables.h
+|  |  |  |  |  |-- tttags.h
+|  |  |  |  |  |-- ttunpat.h
+|  |  |  |  |-- mingw
+|  |  |  |  |  |-- _mingw_dxhelper.h
+|  |  |  |  |  |-- dinput.h
+|  |  |  |  |-- ogg
+|  |  |  |  |  |-- config_types.h
+|  |  |  |  |  |-- ogg.h
+|  |  |  |  |  |-- os_types.h
+|  |  |  |  |-- stb_image
+|  |  |  |  |  |-- stb_image.h
+|  |  |  |  |  |-- stb_image_write.h
+|  |  |  |  |-- vorbis
+|  |  |  |  |  |-- codec.h
+|  |  |  |  |  |-- vorbisenc.h
+|  |  |  |  |  |-- vorbisfile.h
+|  |  |  |-- libs-android
+|  |  |  |  |-- armeabi-v7a
+|  |  |  |  |  |-- libFLAC++.a
+|  |  |  |  |  |-- libFLAC.a
+|  |  |  |  |  |-- libfreetype.a
+|  |  |  |  |  |-- libogg.a
+|  |  |  |  |  |-- libopenal.so
+|  |  |  |  |  |-- libvorbis.a
+|  |  |  |  |  |-- libvorbisenc.a
+|  |  |  |  |  |-- libvorbisfile.a
+|  |  |  |  |-- armeabi
+|  |  |  |  |  |-- libFLAC++.a
+|  |  |  |  |  |-- libFLAC.a
+|  |  |  |  |  |-- libfreetype.a
+|  |  |  |  |  |-- libogg.a
+|  |  |  |  |  |-- libopenal.so
+|  |  |  |  |  |-- libvorbis.a
+|  |  |  |  |  |-- libvorbisenc.a
+|  |  |  |  |  |-- libvorbisfile.a
+|  |  |  |  |-- mips
+|  |  |  |  |  |-- libFLAC++.a
+|  |  |  |  |  |-- libFLAC.a
+|  |  |  |  |  |-- libfreetype.a
+|  |  |  |  |  |-- libogg.a
+|  |  |  |  |  |-- libopenal.so
+|  |  |  |  |  |-- libvorbis.a
+|  |  |  |  |  |-- libvorbisenc.a
+|  |  |  |  |  |-- libvorbisfile.a
+|  |  |  |  |-- x86
+|  |  |  |  |  |-- libFLAC++.a
+|  |  |  |  |  |-- libFLAC.a
+|  |  |  |  |  |-- libfreetype.a
+|  |  |  |  |  |-- libogg.a
+|  |  |  |  |  |-- libopenal.so
+|  |  |  |  |  |-- libvorbis.a
+|  |  |  |  |  |-- libvorbisenc.a
+|  |  |  |  |  |-- libvorbisfile.a
+|  |  |  |-- libs-ios
+|  |  |  |  |-- libflac.a
+|  |  |  |  |-- libfreetype.a
+|  |  |  |  |-- libogg.a
+|  |  |  |  |-- libvorbis.a
+|  |  |  |-- libs-mingw
+|  |  |  |  |-- x64
+|  |  |  |  |  |-- libFLAC.a
+|  |  |  |  |  |-- libfreetype.a
+|  |  |  |  |  |-- libogg.a
+|  |  |  |  |  |-- libopenal32.a
+|  |  |  |  |  |-- libvorbis.a
+|  |  |  |  |  |-- libvorbisenc.a
+|  |  |  |  |  |-- libvorbisfile.a
+|  |  |  |  |-- x86
+|  |  |  |  |  |-- libFLAC.a
+|  |  |  |  |  |-- libfreetype.a
+|  |  |  |  |  |-- libogg.a
+|  |  |  |  |  |-- libopenal32.a
+|  |  |  |  |  |-- libvorbis.a
+|  |  |  |  |  |-- libvorbisenc.a
+|  |  |  |  |  |-- libvorbisfile.a
+|  |  |  |-- libs-msvc-universal
+|  |  |  |  |-- x64
+|  |  |  |  |  |-- flac.lib
+|  |  |  |  |  |-- freetype.lib
+|  |  |  |  |  |-- ogg.lib
+|  |  |  |  |  |-- openal32.lib
+|  |  |  |  |  |-- vorbis.lib
+|  |  |  |  |  |-- vorbisenc.lib
+|  |  |  |  |  |-- vorbisfile.lib
+|  |  |  |  |-- x86
+|  |  |  |  |  |-- flac.lib
+|  |  |  |  |  |-- freetype.lib
+|  |  |  |  |  |-- ogg.lib
+|  |  |  |  |  |-- openal32.lib
+|  |  |  |  |  |-- vorbis.lib
+|  |  |  |  |  |-- vorbisenc.lib
+|  |  |  |  |  |-- vorbisfile.lib
+|  |  |  |-- libs-msvc
+|  |  |  |  |-- x64
+|  |  |  |  |  |-- flac.lib
+|  |  |  |  |  |-- freetype.lib
+|  |  |  |  |  |-- ogg.lib
+|  |  |  |  |  |-- openal32.lib
+|  |  |  |  |  |-- vorbis.lib
+|  |  |  |  |  |-- vorbisenc.lib
+|  |  |  |  |  |-- vorbisfile.lib
+|  |  |  |  |-- x86
+|  |  |  |  |  |-- flac.lib
+|  |  |  |  |  |-- freetype.lib
+|  |  |  |  |  |-- ogg.lib
+|  |  |  |  |  |-- openal32.lib
+|  |  |  |  |  |-- vorbis.lib
+|  |  |  |  |  |-- vorbisenc.lib
+|  |  |  |  |  |-- vorbisfile.lib
+|  |  |  |-- libs-osx
+|  |  |  |  |-- Frameworks
+|  |  |  |  |  |-- FLAC.framework
+|  |  |  |  |  |  |-- FLAC
+|  |  |  |  |  |  |-- Resources
+|  |  |  |  |  |  |-- Versions
+|  |  |  |  |  |  |  |-- A
+|  |  |  |  |  |  |  |  |-- FLAC
+|  |  |  |  |  |  |  |  |-- Resources
+|  |  |  |  |  |  |  |  |  |-- Info.plist
+|  |  |  |  |  |  |  |-- Current
+|  |  |  |  |  |-- OpenAL.framework
+|  |  |  |  |  |  |-- OpenAL
+|  |  |  |  |  |  |-- Resources
+|  |  |  |  |  |  |-- Versions
+|  |  |  |  |  |  |  |-- A
+|  |  |  |  |  |  |  |  |-- OpenAL
+|  |  |  |  |  |  |  |  |-- Resources
+|  |  |  |  |  |  |  |  |  |-- Info.plist
+|  |  |  |  |  |  |  |-- Current
+|  |  |  |  |  |-- freetype.framework
+|  |  |  |  |  |  |-- Resources
+|  |  |  |  |  |  |-- Versions
+|  |  |  |  |  |  |  |-- A
+|  |  |  |  |  |  |  |  |-- Resources
+|  |  |  |  |  |  |  |  |  |-- Info.plist
+|  |  |  |  |  |  |  |  |-- freetype
+|  |  |  |  |  |  |  |-- Current
+|  |  |  |  |  |  |-- freetype
+|  |  |  |  |  |-- ogg.framework
+|  |  |  |  |  |  |-- Resources
+|  |  |  |  |  |  |-- Versions
+|  |  |  |  |  |  |  |-- A
+|  |  |  |  |  |  |  |  |-- Resources
+|  |  |  |  |  |  |  |  |  |-- Info.plist
+|  |  |  |  |  |  |  |  |-- ogg
+|  |  |  |  |  |  |  |-- Current
+|  |  |  |  |  |  |-- ogg
+|  |  |  |  |  |-- vorbis.framework
+|  |  |  |  |  |  |-- Resources
+|  |  |  |  |  |  |-- Versions
+|  |  |  |  |  |  |  |-- A
+|  |  |  |  |  |  |  |  |-- Resources
+|  |  |  |  |  |  |  |  |  |-- Info.plist
+|  |  |  |  |  |  |  |  |-- vorbis
+|  |  |  |  |  |  |  |-- Current
+|  |  |  |  |  |  |-- vorbis
+|  |  |  |  |  |-- vorbisenc.framework
+|  |  |  |  |  |  |-- Resources
+|  |  |  |  |  |  |-- Versions
+|  |  |  |  |  |  |  |-- A
+|  |  |  |  |  |  |  |  |-- Resources
+|  |  |  |  |  |  |  |  |  |-- Info.plist
+|  |  |  |  |  |  |  |  |-- vorbisenc
+|  |  |  |  |  |  |  |-- Current
+|  |  |  |  |  |  |-- vorbisenc
+|  |  |  |  |  |-- vorbisfile.framework
+|  |  |  |  |  |  |-- Resources
+|  |  |  |  |  |  |-- Versions
+|  |  |  |  |  |  |  |-- A
+|  |  |  |  |  |  |  |  |-- Resources
+|  |  |  |  |  |  |  |  |  |-- Info.plist
+|  |  |  |  |  |  |  |  |-- vorbisfile
+|  |  |  |  |  |  |  |-- Current
+|  |  |  |  |  |  |-- vorbisfile
+|  |  |-- include
+|  |  |  |-- SFML
+|  |  |  |  |-- Audio.hpp
+|  |  |  |  |-- Audio
+|  |  |  |  |  |-- AlResource.hpp
+|  |  |  |  |  |-- Export.hpp
+|  |  |  |  |  |-- InputSoundFile.hpp
+|  |  |  |  |  |-- Listener.hpp
+|  |  |  |  |  |-- Music.hpp
+|  |  |  |  |  |-- OutputSoundFile.hpp
+|  |  |  |  |  |-- Sound.hpp
+|  |  |  |  |  |-- SoundBuffer.hpp
+|  |  |  |  |  |-- SoundBufferRecorder.hpp
+|  |  |  |  |  |-- SoundFileFactory.hpp
+|  |  |  |  |  |-- SoundFileFactory.inl
+|  |  |  |  |  |-- SoundFileReader.hpp
+|  |  |  |  |  |-- SoundFileWriter.hpp
+|  |  |  |  |  |-- SoundRecorder.hpp
+|  |  |  |  |  |-- SoundSource.hpp
+|  |  |  |  |  |-- SoundStream.hpp
+|  |  |  |  |-- Config.hpp
+|  |  |  |  |-- GpuPreference.hpp
+|  |  |  |  |-- Graphics.hpp
+|  |  |  |  |-- Graphics
+|  |  |  |  |  |-- BlendMode.hpp
+|  |  |  |  |  |-- CircleShape.hpp
+|  |  |  |  |  |-- Color.hpp
+|  |  |  |  |  |-- ConvexShape.hpp
+|  |  |  |  |  |-- Drawable.hpp
+|  |  |  |  |  |-- Export.hpp
+|  |  |  |  |  |-- Font.hpp
+|  |  |  |  |  |-- Glsl.hpp
+|  |  |  |  |  |-- Glsl.inl
+|  |  |  |  |  |-- Glyph.hpp
+|  |  |  |  |  |-- Image.hpp
+|  |  |  |  |  |-- PrimitiveType.hpp
+|  |  |  |  |  |-- Rect.hpp
+|  |  |  |  |  |-- Rect.inl
+|  |  |  |  |  |-- RectangleShape.hpp
+|  |  |  |  |  |-- RenderStates.hpp
+|  |  |  |  |  |-- RenderTarget.hpp
+|  |  |  |  |  |-- RenderTexture.hpp
+|  |  |  |  |  |-- RenderWindow.hpp
+|  |  |  |  |  |-- Shader.hpp
+|  |  |  |  |  |-- Shape.hpp
+|  |  |  |  |  |-- Sprite.hpp
+|  |  |  |  |  |-- Text.hpp
+|  |  |  |  |  |-- Texture.hpp
+|  |  |  |  |  |-- Transform.hpp
+|  |  |  |  |  |-- Transformable.hpp
+|  |  |  |  |  |-- Vertex.hpp
+|  |  |  |  |  |-- VertexArray.hpp
+|  |  |  |  |  |-- VertexBuffer.hpp
+|  |  |  |  |  |-- View.hpp
+|  |  |  |  |-- Main.hpp
+|  |  |  |  |-- Network.hpp
+|  |  |  |  |-- Network
+|  |  |  |  |  |-- Export.hpp
+|  |  |  |  |  |-- Ftp.hpp
+|  |  |  |  |  |-- Http.hpp
+|  |  |  |  |  |-- IpAddress.hpp
+|  |  |  |  |  |-- Packet.hpp
+|  |  |  |  |  |-- Socket.hpp
+|  |  |  |  |  |-- SocketHandle.hpp
+|  |  |  |  |  |-- SocketSelector.hpp
+|  |  |  |  |  |-- TcpListener.hpp
+|  |  |  |  |  |-- TcpSocket.hpp
+|  |  |  |  |  |-- UdpSocket.hpp
+|  |  |  |  |-- OpenGL.hpp
+|  |  |  |  |-- System.hpp
+|  |  |  |  |-- System
+|  |  |  |  |  |-- Clock.hpp
+|  |  |  |  |  |-- Err.hpp
+|  |  |  |  |  |-- Export.hpp
+|  |  |  |  |  |-- FileInputStream.hpp
+|  |  |  |  |  |-- InputStream.hpp
+|  |  |  |  |  |-- Lock.hpp
+|  |  |  |  |  |-- MemoryInputStream.hpp
+|  |  |  |  |  |-- Mutex.hpp
+|  |  |  |  |  |-- NativeActivity.hpp
+|  |  |  |  |  |-- NonCopyable.hpp
+|  |  |  |  |  |-- Sleep.hpp
+|  |  |  |  |  |-- String.hpp
+|  |  |  |  |  |-- String.inl
+|  |  |  |  |  |-- Thread.hpp
+|  |  |  |  |  |-- Thread.inl
+|  |  |  |  |  |-- ThreadLocal.hpp
+|  |  |  |  |  |-- ThreadLocalPtr.hpp
+|  |  |  |  |  |-- ThreadLocalPtr.inl
+|  |  |  |  |  |-- Time.hpp
+|  |  |  |  |  |-- Utf.hpp
+|  |  |  |  |  |-- Utf.inl
+|  |  |  |  |  |-- Vector2.hpp
+|  |  |  |  |  |-- Vector2.inl
+|  |  |  |  |  |-- Vector3.hpp
+|  |  |  |  |  |-- Vector3.inl
+|  |  |  |  |-- Window.hpp
+|  |  |  |  |-- Window
+|  |  |  |  |  |-- Clipboard.hpp
+|  |  |  |  |  |-- Context.hpp
+|  |  |  |  |  |-- ContextSettings.hpp
+|  |  |  |  |  |-- Cursor.hpp
+|  |  |  |  |  |-- Event.hpp
+|  |  |  |  |  |-- Export.hpp
+|  |  |  |  |  |-- GlResource.hpp
+|  |  |  |  |  |-- Joystick.hpp
+|  |  |  |  |  |-- Keyboard.hpp
+|  |  |  |  |  |-- Mouse.hpp
+|  |  |  |  |  |-- Sensor.hpp
+|  |  |  |  |  |-- Touch.hpp
+|  |  |  |  |  |-- VideoMode.hpp
+|  |  |  |  |  |-- Window.hpp
+|  |  |  |  |  |-- WindowHandle.hpp
+|  |  |  |  |  |-- WindowStyle.hpp
+|  |  |-- license.md
+|  |  |-- readme.md
+|  |  |-- src
+|  |  |  |-- SFML
+|  |  |  |  |-- Android.mk
+|  |  |  |  |-- Audio
+|  |  |  |  |  |-- ALCheck.cpp
+|  |  |  |  |  |-- ALCheck.hpp
+|  |  |  |  |  |-- AlResource.cpp
+|  |  |  |  |  |-- AudioDevice.cpp
+|  |  |  |  |  |-- AudioDevice.hpp
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- InputSoundFile.cpp
+|  |  |  |  |  |-- Listener.cpp
+|  |  |  |  |  |-- Music.cpp
+|  |  |  |  |  |-- OutputSoundFile.cpp
+|  |  |  |  |  |-- Sound.cpp
+|  |  |  |  |  |-- SoundBuffer.cpp
+|  |  |  |  |  |-- SoundBufferRecorder.cpp
+|  |  |  |  |  |-- SoundFileFactory.cpp
+|  |  |  |  |  |-- SoundFileReaderFlac.cpp
+|  |  |  |  |  |-- SoundFileReaderFlac.hpp
+|  |  |  |  |  |-- SoundFileReaderOgg.cpp
+|  |  |  |  |  |-- SoundFileReaderOgg.hpp
+|  |  |  |  |  |-- SoundFileReaderWav.cpp
+|  |  |  |  |  |-- SoundFileReaderWav.hpp
+|  |  |  |  |  |-- SoundFileWriterFlac.cpp
+|  |  |  |  |  |-- SoundFileWriterFlac.hpp
+|  |  |  |  |  |-- SoundFileWriterOgg.cpp
+|  |  |  |  |  |-- SoundFileWriterOgg.hpp
+|  |  |  |  |  |-- SoundFileWriterWav.cpp
+|  |  |  |  |  |-- SoundFileWriterWav.hpp
+|  |  |  |  |  |-- SoundRecorder.cpp
+|  |  |  |  |  |-- SoundSource.cpp
+|  |  |  |  |  |-- SoundStream.cpp
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Graphics
+|  |  |  |  |  |-- BlendMode.cpp
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- CircleShape.cpp
+|  |  |  |  |  |-- Color.cpp
+|  |  |  |  |  |-- ConvexShape.cpp
+|  |  |  |  |  |-- Font.cpp
+|  |  |  |  |  |-- GLCheck.cpp
+|  |  |  |  |  |-- GLCheck.hpp
+|  |  |  |  |  |-- GLExtensions.cpp
+|  |  |  |  |  |-- GLExtensions.hpp
+|  |  |  |  |  |-- GLExtensions.txt
+|  |  |  |  |  |-- GLLoader.cpp
+|  |  |  |  |  |-- GLLoader.hpp
+|  |  |  |  |  |-- Glsl.cpp
+|  |  |  |  |  |-- Image.cpp
+|  |  |  |  |  |-- ImageLoader.cpp
+|  |  |  |  |  |-- ImageLoader.hpp
+|  |  |  |  |  |-- RectangleShape.cpp
+|  |  |  |  |  |-- RenderStates.cpp
+|  |  |  |  |  |-- RenderTarget.cpp
+|  |  |  |  |  |-- RenderTexture.cpp
+|  |  |  |  |  |-- RenderTextureImpl.cpp
+|  |  |  |  |  |-- RenderTextureImpl.hpp
+|  |  |  |  |  |-- RenderTextureImplDefault.cpp
+|  |  |  |  |  |-- RenderTextureImplDefault.hpp
+|  |  |  |  |  |-- RenderTextureImplFBO.cpp
+|  |  |  |  |  |-- RenderTextureImplFBO.hpp
+|  |  |  |  |  |-- RenderWindow.cpp
+|  |  |  |  |  |-- Shader.cpp
+|  |  |  |  |  |-- Shape.cpp
+|  |  |  |  |  |-- Sprite.cpp
+|  |  |  |  |  |-- Text.cpp
+|  |  |  |  |  |-- Texture.cpp
+|  |  |  |  |  |-- TextureSaver.cpp
+|  |  |  |  |  |-- TextureSaver.hpp
+|  |  |  |  |  |-- Transform.cpp
+|  |  |  |  |  |-- Transformable.cpp
+|  |  |  |  |  |-- Vertex.cpp
+|  |  |  |  |  |-- VertexArray.cpp
+|  |  |  |  |  |-- VertexBuffer.cpp
+|  |  |  |  |  |-- View.cpp
+|  |  |  |  |-- Main
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- MainAndroid.cpp
+|  |  |  |  |  |-- MainWin32.cpp
+|  |  |  |  |  |-- MainiOS.mm
+|  |  |  |  |  |-- SFMLActivity.cpp
+|  |  |  |  |-- Network
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- Ftp.cpp
+|  |  |  |  |  |-- Http.cpp
+|  |  |  |  |  |-- IpAddress.cpp
+|  |  |  |  |  |-- Packet.cpp
+|  |  |  |  |  |-- Socket.cpp
+|  |  |  |  |  |-- SocketImpl.hpp
+|  |  |  |  |  |-- SocketSelector.cpp
+|  |  |  |  |  |-- TcpListener.cpp
+|  |  |  |  |  |-- TcpSocket.cpp
+|  |  |  |  |  |-- UdpSocket.cpp
+|  |  |  |  |  |-- Unix
+|  |  |  |  |  |  |-- SocketImpl.cpp
+|  |  |  |  |  |  |-- SocketImpl.hpp
+|  |  |  |  |  |-- Win32
+|  |  |  |  |  |  |-- SocketImpl.cpp
+|  |  |  |  |  |  |-- SocketImpl.hpp
+|  |  |  |  |-- System
+|  |  |  |  |  |-- Android
+|  |  |  |  |  |  |-- Activity.cpp
+|  |  |  |  |  |  |-- Activity.hpp
+|  |  |  |  |  |  |-- NativeActivity.cpp
+|  |  |  |  |  |  |-- ResourceStream.cpp
+|  |  |  |  |  |  |-- ResourceStream.hpp
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- Clock.cpp
+|  |  |  |  |  |-- Err.cpp
+|  |  |  |  |  |-- FileInputStream.cpp
+|  |  |  |  |  |-- Lock.cpp
+|  |  |  |  |  |-- MemoryInputStream.cpp
+|  |  |  |  |  |-- Mutex.cpp
+|  |  |  |  |  |-- Sleep.cpp
+|  |  |  |  |  |-- String.cpp
+|  |  |  |  |  |-- Thread.cpp
+|  |  |  |  |  |-- ThreadLocal.cpp
+|  |  |  |  |  |-- Time.cpp
+|  |  |  |  |  |-- Unix
+|  |  |  |  |  |  |-- ClockImpl.cpp
+|  |  |  |  |  |  |-- ClockImpl.hpp
+|  |  |  |  |  |  |-- MutexImpl.cpp
+|  |  |  |  |  |  |-- MutexImpl.hpp
+|  |  |  |  |  |  |-- SleepImpl.cpp
+|  |  |  |  |  |  |-- SleepImpl.hpp
+|  |  |  |  |  |  |-- ThreadImpl.cpp
+|  |  |  |  |  |  |-- ThreadImpl.hpp
+|  |  |  |  |  |  |-- ThreadLocalImpl.cpp
+|  |  |  |  |  |  |-- ThreadLocalImpl.hpp
+|  |  |  |  |  |-- Win32
+|  |  |  |  |  |  |-- ClockImpl.cpp
+|  |  |  |  |  |  |-- ClockImpl.hpp
+|  |  |  |  |  |  |-- MutexImpl.cpp
+|  |  |  |  |  |  |-- MutexImpl.hpp
+|  |  |  |  |  |  |-- SleepImpl.cpp
+|  |  |  |  |  |  |-- SleepImpl.hpp
+|  |  |  |  |  |  |-- ThreadImpl.cpp
+|  |  |  |  |  |  |-- ThreadImpl.hpp
+|  |  |  |  |  |  |-- ThreadLocalImpl.cpp
+|  |  |  |  |  |  |-- ThreadLocalImpl.hpp
+|  |  |  |  |-- Window
+|  |  |  |  |  |-- Android
+|  |  |  |  |  |  |-- ClipboardImpl.cpp
+|  |  |  |  |  |  |-- ClipboardImpl.hpp
+|  |  |  |  |  |  |-- CursorImpl.cpp
+|  |  |  |  |  |  |-- CursorImpl.hpp
+|  |  |  |  |  |  |-- InputImpl.cpp
+|  |  |  |  |  |  |-- InputImpl.hpp
+|  |  |  |  |  |  |-- JoystickImpl.cpp
+|  |  |  |  |  |  |-- JoystickImpl.hpp
+|  |  |  |  |  |  |-- SensorImpl.cpp
+|  |  |  |  |  |  |-- SensorImpl.hpp
+|  |  |  |  |  |  |-- VideoModeImpl.cpp
+|  |  |  |  |  |  |-- WindowImplAndroid.cpp
+|  |  |  |  |  |  |-- WindowImplAndroid.hpp
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- Clipboard.cpp
+|  |  |  |  |  |-- ClipboardImpl.hpp
+|  |  |  |  |  |-- Context.cpp
+|  |  |  |  |  |-- Cursor.cpp
+|  |  |  |  |  |-- CursorImpl.hpp
+|  |  |  |  |  |-- EGLCheck.cpp
+|  |  |  |  |  |-- EGLCheck.hpp
+|  |  |  |  |  |-- EglContext.cpp
+|  |  |  |  |  |-- EglContext.hpp
+|  |  |  |  |  |-- FreeBSD
+|  |  |  |  |  |  |-- JoystickImpl.cpp
+|  |  |  |  |  |  |-- JoystickImpl.hpp
+|  |  |  |  |  |-- GlContext.cpp
+|  |  |  |  |  |-- GlContext.hpp
+|  |  |  |  |  |-- GlResource.cpp
+|  |  |  |  |  |-- InputImpl.hpp
+|  |  |  |  |  |-- Joystick.cpp
+|  |  |  |  |  |-- JoystickImpl.hpp
+|  |  |  |  |  |-- JoystickManager.cpp
+|  |  |  |  |  |-- JoystickManager.hpp
+|  |  |  |  |  |-- Keyboard.cpp
+|  |  |  |  |  |-- Mouse.cpp
+|  |  |  |  |  |-- OSX
+|  |  |  |  |  |  |-- AutoreleasePoolWrapper.h
+|  |  |  |  |  |  |-- AutoreleasePoolWrapper.mm
+|  |  |  |  |  |  |-- ClipboardImpl.hpp
+|  |  |  |  |  |  |-- ClipboardImpl.mm
+|  |  |  |  |  |  |-- CursorImpl.hpp
+|  |  |  |  |  |  |-- CursorImpl.mm
+|  |  |  |  |  |  |-- HIDInputManager.hpp
+|  |  |  |  |  |  |-- HIDInputManager.mm
+|  |  |  |  |  |  |-- HIDJoystickManager.cpp
+|  |  |  |  |  |  |-- HIDJoystickManager.hpp
+|  |  |  |  |  |  |-- InputImpl.hpp
+|  |  |  |  |  |  |-- InputImpl.mm
+|  |  |  |  |  |  |-- JoystickImpl.cpp
+|  |  |  |  |  |  |-- JoystickImpl.hpp
+|  |  |  |  |  |  |-- NSImage+raw.h
+|  |  |  |  |  |  |-- NSImage+raw.mm
+|  |  |  |  |  |  |-- SFApplication.h
+|  |  |  |  |  |  |-- SFApplication.m
+|  |  |  |  |  |  |-- SFApplicationDelegate.h
+|  |  |  |  |  |  |-- SFApplicationDelegate.m
+|  |  |  |  |  |  |-- SFContext.hpp
+|  |  |  |  |  |  |-- SFContext.mm
+|  |  |  |  |  |  |-- SFKeyboardModifiersHelper.h
+|  |  |  |  |  |  |-- SFKeyboardModifiersHelper.mm
+|  |  |  |  |  |  |-- SFOpenGLView+keyboard.mm
+|  |  |  |  |  |  |-- SFOpenGLView+keyboard_priv.h
+|  |  |  |  |  |  |-- SFOpenGLView+mouse.mm
+|  |  |  |  |  |  |-- SFOpenGLView+mouse_priv.h
+|  |  |  |  |  |  |-- SFOpenGLView.h
+|  |  |  |  |  |  |-- SFOpenGLView.mm
+|  |  |  |  |  |  |-- SFSilentResponder.h
+|  |  |  |  |  |  |-- SFSilentResponder.m
+|  |  |  |  |  |  |-- SFViewController.h
+|  |  |  |  |  |  |-- SFViewController.mm
+|  |  |  |  |  |  |-- SFWindow.h
+|  |  |  |  |  |  |-- SFWindow.m
+|  |  |  |  |  |  |-- SFWindowController.h
+|  |  |  |  |  |  |-- SFWindowController.mm
+|  |  |  |  |  |  |-- Scaling.h
+|  |  |  |  |  |  |-- SensorImpl.cpp
+|  |  |  |  |  |  |-- SensorImpl.hpp
+|  |  |  |  |  |  |-- VideoModeImpl.cpp
+|  |  |  |  |  |  |-- WindowImplCocoa.hpp
+|  |  |  |  |  |  |-- WindowImplCocoa.mm
+|  |  |  |  |  |  |-- WindowImplDelegateProtocol.h
+|  |  |  |  |  |  |-- cg_sf_conversion.hpp
+|  |  |  |  |  |  |-- cg_sf_conversion.mm
+|  |  |  |  |  |  |-- cpp_objc_conversion.h
+|  |  |  |  |  |  |-- cpp_objc_conversion.mm
+|  |  |  |  |  |-- OpenBSD
+|  |  |  |  |  |  |-- JoystickImpl.cpp
+|  |  |  |  |  |  |-- JoystickImpl.hpp
+|  |  |  |  |  |-- Sensor.cpp
+|  |  |  |  |  |-- SensorImpl.hpp
+|  |  |  |  |  |-- SensorManager.cpp
+|  |  |  |  |  |-- SensorManager.hpp
+|  |  |  |  |  |-- Touch.cpp
+|  |  |  |  |  |-- Unix
+|  |  |  |  |  |  |-- ClipboardImpl.cpp
+|  |  |  |  |  |  |-- ClipboardImpl.hpp
+|  |  |  |  |  |  |-- CursorImpl.cpp
+|  |  |  |  |  |  |-- CursorImpl.hpp
+|  |  |  |  |  |  |-- Display.cpp
+|  |  |  |  |  |  |-- Display.hpp
+|  |  |  |  |  |  |-- GlxContext.cpp
+|  |  |  |  |  |  |-- GlxContext.hpp
+|  |  |  |  |  |  |-- GlxExtensions.cpp
+|  |  |  |  |  |  |-- GlxExtensions.hpp
+|  |  |  |  |  |  |-- GlxExtensions.txt
+|  |  |  |  |  |  |-- InputImpl.cpp
+|  |  |  |  |  |  |-- InputImpl.hpp
+|  |  |  |  |  |  |-- JoystickImpl.cpp
+|  |  |  |  |  |  |-- JoystickImpl.hpp
+|  |  |  |  |  |  |-- SensorImpl.cpp
+|  |  |  |  |  |  |-- SensorImpl.hpp
+|  |  |  |  |  |  |-- VideoModeImpl.cpp
+|  |  |  |  |  |  |-- WindowImplX11.cpp
+|  |  |  |  |  |  |-- WindowImplX11.hpp
+|  |  |  |  |  |-- VideoMode.cpp
+|  |  |  |  |  |-- VideoModeImpl.hpp
+|  |  |  |  |  |-- Win32
+|  |  |  |  |  |  |-- ClipboardImpl.cpp
+|  |  |  |  |  |  |-- ClipboardImpl.hpp
+|  |  |  |  |  |  |-- CursorImpl.cpp
+|  |  |  |  |  |  |-- CursorImpl.hpp
+|  |  |  |  |  |  |-- InputImpl.cpp
+|  |  |  |  |  |  |-- InputImpl.hpp
+|  |  |  |  |  |  |-- JoystickImpl.cpp
+|  |  |  |  |  |  |-- JoystickImpl.hpp
+|  |  |  |  |  |  |-- SensorImpl.cpp
+|  |  |  |  |  |  |-- SensorImpl.hpp
+|  |  |  |  |  |  |-- VideoModeImpl.cpp
+|  |  |  |  |  |  |-- WglContext.cpp
+|  |  |  |  |  |  |-- WglContext.hpp
+|  |  |  |  |  |  |-- WglExtensions.cpp
+|  |  |  |  |  |  |-- WglExtensions.hpp
+|  |  |  |  |  |  |-- WglExtensions.txt
+|  |  |  |  |  |  |-- WindowImplWin32.cpp
+|  |  |  |  |  |  |-- WindowImplWin32.hpp
+|  |  |  |  |  |-- Window.cpp
+|  |  |  |  |  |-- WindowImpl.cpp
+|  |  |  |  |  |-- WindowImpl.hpp
+|  |  |  |  |  |-- iOS
+|  |  |  |  |  |  |-- ClipboardImpl.hpp
+|  |  |  |  |  |  |-- ClipboardImpl.mm
+|  |  |  |  |  |  |-- CursorImpl.cpp
+|  |  |  |  |  |  |-- CursorImpl.hpp
+|  |  |  |  |  |  |-- EaglContext.hpp
+|  |  |  |  |  |  |-- EaglContext.mm
+|  |  |  |  |  |  |-- InputImpl.hpp
+|  |  |  |  |  |  |-- InputImpl.mm
+|  |  |  |  |  |  |-- JoystickImpl.hpp
+|  |  |  |  |  |  |-- JoystickImpl.mm
+|  |  |  |  |  |  |-- ObjCType.hpp
+|  |  |  |  |  |  |-- SFAppDelegate.hpp
+|  |  |  |  |  |  |-- SFAppDelegate.mm
+|  |  |  |  |  |  |-- SFMain.hpp
+|  |  |  |  |  |  |-- SFMain.mm
+|  |  |  |  |  |  |-- SFView.hpp
+|  |  |  |  |  |  |-- SFView.mm
+|  |  |  |  |  |  |-- SFViewController.hpp
+|  |  |  |  |  |  |-- SFViewController.mm
+|  |  |  |  |  |  |-- SensorImpl.hpp
+|  |  |  |  |  |  |-- SensorImpl.mm
+|  |  |  |  |  |  |-- VideoModeImpl.mm
+|  |  |  |  |  |  |-- WindowImplUIKit.hpp
+|  |  |  |  |  |  |-- WindowImplUIKit.mm
+|  |  |-- tools
+|  |  |  |-- android
+|  |  |  |  |-- clean_all.sh
+|  |  |  |  |-- compile_arm-v7a.sh
+|  |  |  |  |-- compile_arm.sh
+|  |  |  |  |-- compile_libs.sh
+|  |  |  |  |-- compile_mips.sh
+|  |  |  |  |-- compile_x86.sh
+|  |  |  |  |-- create_toolchains.sh
+|  |  |  |  |-- download_sources.sh
+|  |  |  |  |-- make_all.sh
+|  |  |  |  |-- patches
+|  |  |  |  |  |-- remove-so-version-suffix.diff
+|  |  |  |  |-- readme.txt
+|  |  |  |-- pkg-config
+|  |  |  |  |-- sfml-all.pc.in
+|  |  |  |  |-- sfml-audio.pc.in
+|  |  |  |  |-- sfml-graphics.pc.in
+|  |  |  |  |-- sfml-network.pc.in
+|  |  |  |  |-- sfml-system.pc.in
+|  |  |  |  |-- sfml-window.pc.in
+|  |  |  |-- xcode
+|  |  |  |  |-- templates
+|  |  |  |  |  |-- SFML
+|  |  |  |  |  |  |-- SFML App.xctemplate
+|  |  |  |  |  |  |  |-- ResourcePath.hpp
+|  |  |  |  |  |  |  |-- ResourcePath.mm
+|  |  |  |  |  |  |  |-- TemplateIcon.icns
+|  |  |  |  |  |  |  |-- TemplateInfo.plist.in
+|  |  |  |  |  |  |  |-- cute_image.jpg
+|  |  |  |  |  |  |  |-- icon.png
+|  |  |  |  |  |  |  |-- main.cpp
+|  |  |  |  |  |  |  |-- nice_music.ogg
+|  |  |  |  |  |  |  |-- sansation.ttf
+|  |  |  |  |  |  |-- SFML Base.xctemplate
+|  |  |  |  |  |  |  |-- TemplateInfo.plist
+|  |  |  |  |  |  |-- SFML Bundle.xctemplate
+|  |  |  |  |  |  |  |-- TemplateInfo.plist
+|  |  |  |  |  |  |-- SFML CLT.xctemplate
+|  |  |  |  |  |  |  |-- TemplateIcon.icns
+|  |  |  |  |  |  |  |-- TemplateInfo.plist
+|  |  |  |  |  |  |  |-- cute_image.jpg
+|  |  |  |  |  |  |  |-- icon.png
+|  |  |  |  |  |  |  |-- main.cpp
+|  |  |  |  |  |  |  |-- nice_music.ogg
+|  |  |  |  |  |  |  |-- sansation.ttf
+|  |  |  |  |  |  |-- SFML Compiler.xctemplate
+|  |  |  |  |  |  |  |-- TemplateInfo.plist.in
+|  |  |  |  |  |  |-- SFML Linker.xctemplate
+|  |  |  |  |  |  |  |-- TemplateInfo.plist
+|  |  |  |  |  |-- readme.txt
+|  |-- cxxopts
+|  |  |-- LICENSE
+|  |  |-- cxxopts.hpp
+|  |-- googletest
+|  |  |-- .gitignore
+|  |  |-- .travis.yml
+|  |  |-- BUILD.bazel
+|  |  |-- CMakeLists.txt
+|  |  |-- CONTRIBUTING.md
+|  |  |-- LICENSE
+|  |  |-- Makefile.am
+|  |  |-- README.md
+|  |  |-- WORKSPACE
+|  |  |-- appveyor.yml
+|  |  |-- ci
+|  |  |  |-- build-linux-autotools.sh
+|  |  |  |-- build-linux-bazel.sh
+|  |  |  |-- env-linux.sh
+|  |  |  |-- env-osx.sh
+|  |  |  |-- get-nprocessors.sh
+|  |  |  |-- install-linux.sh
+|  |  |  |-- install-osx.sh
+|  |  |  |-- log-config.sh
+|  |  |  |-- travis.sh
+|  |  |-- configure.ac
+|  |  |-- googlemock
+|  |  |  |-- CHANGES
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- CONTRIBUTORS
+|  |  |  |-- LICENSE
+|  |  |  |-- Makefile.am
+|  |  |  |-- README.md
+|  |  |  |-- cmake
+|  |  |  |  |-- gmock.pc.in
+|  |  |  |  |-- gmock_main.pc.in
+|  |  |  |-- configure.ac
+|  |  |  |-- docs
+|  |  |  |  |-- CheatSheet.md
+|  |  |  |  |-- CookBook.md
+|  |  |  |  |-- DesignDoc.md
+|  |  |  |  |-- Documentation.md
+|  |  |  |  |-- ForDummies.md
+|  |  |  |  |-- FrequentlyAskedQuestions.md
+|  |  |  |  |-- KnownIssues.md
+|  |  |  |-- include
+|  |  |  |  |-- gmock
+|  |  |  |  |  |-- gmock-actions.h
+|  |  |  |  |  |-- gmock-cardinalities.h
+|  |  |  |  |  |-- gmock-generated-actions.h
+|  |  |  |  |  |-- gmock-generated-actions.h.pump
+|  |  |  |  |  |-- gmock-generated-function-mockers.h
+|  |  |  |  |  |-- gmock-generated-function-mockers.h.pump
+|  |  |  |  |  |-- gmock-generated-matchers.h
+|  |  |  |  |  |-- gmock-generated-matchers.h.pump
+|  |  |  |  |  |-- gmock-generated-nice-strict.h
+|  |  |  |  |  |-- gmock-generated-nice-strict.h.pump
+|  |  |  |  |  |-- gmock-matchers.h
+|  |  |  |  |  |-- gmock-more-actions.h
+|  |  |  |  |  |-- gmock-more-matchers.h
+|  |  |  |  |  |-- gmock-spec-builders.h
+|  |  |  |  |  |-- gmock.h
+|  |  |  |  |  |-- internal
+|  |  |  |  |  |  |-- custom
+|  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |-- gmock-generated-actions.h
+|  |  |  |  |  |  |  |-- gmock-generated-actions.h.pump
+|  |  |  |  |  |  |  |-- gmock-matchers.h
+|  |  |  |  |  |  |  |-- gmock-port.h
+|  |  |  |  |  |  |-- gmock-generated-internal-utils.h
+|  |  |  |  |  |  |-- gmock-generated-internal-utils.h.pump
+|  |  |  |  |  |  |-- gmock-internal-utils.h
+|  |  |  |  |  |  |-- gmock-port.h
+|  |  |  |-- msvc
+|  |  |  |  |-- 2005
+|  |  |  |  |  |-- gmock.sln
+|  |  |  |  |  |-- gmock.vcproj
+|  |  |  |  |  |-- gmock_config.vsprops
+|  |  |  |  |  |-- gmock_main.vcproj
+|  |  |  |  |  |-- gmock_test.vcproj
+|  |  |  |  |-- 2010
+|  |  |  |  |  |-- gmock.sln
+|  |  |  |  |  |-- gmock.vcxproj
+|  |  |  |  |  |-- gmock_config.props
+|  |  |  |  |  |-- gmock_main.vcxproj
+|  |  |  |  |  |-- gmock_test.vcxproj
+|  |  |  |  |-- 2015
+|  |  |  |  |  |-- gmock.sln
+|  |  |  |  |  |-- gmock.vcxproj
+|  |  |  |  |  |-- gmock_config.props
+|  |  |  |  |  |-- gmock_main.vcxproj
+|  |  |  |  |  |-- gmock_test.vcxproj
+|  |  |  |-- scripts
+|  |  |  |  |-- fuse_gmock_files.py
+|  |  |  |  |-- generator
+|  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |-- README
+|  |  |  |  |  |-- README.cppclean
+|  |  |  |  |  |-- cpp
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- ast.py
+|  |  |  |  |  |  |-- gmock_class.py
+|  |  |  |  |  |  |-- gmock_class_test.py
+|  |  |  |  |  |  |-- keywords.py
+|  |  |  |  |  |  |-- tokenize.py
+|  |  |  |  |  |  |-- utils.py
+|  |  |  |  |  |-- gmock_gen.py
+|  |  |  |  |-- gmock-config.in
+|  |  |  |  |-- gmock_doctor.py
+|  |  |  |  |-- upload.py
+|  |  |  |  |-- upload_gmock.py
+|  |  |  |-- src
+|  |  |  |  |-- gmock-all.cc
+|  |  |  |  |-- gmock-cardinalities.cc
+|  |  |  |  |-- gmock-internal-utils.cc
+|  |  |  |  |-- gmock-matchers.cc
+|  |  |  |  |-- gmock-spec-builders.cc
+|  |  |  |  |-- gmock.cc
+|  |  |  |  |-- gmock_main.cc
+|  |  |  |-- test
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- gmock-actions_test.cc
+|  |  |  |  |-- gmock-cardinalities_test.cc
+|  |  |  |  |-- gmock-generated-actions_test.cc
+|  |  |  |  |-- gmock-generated-function-mockers_test.cc
+|  |  |  |  |-- gmock-generated-internal-utils_test.cc
+|  |  |  |  |-- gmock-generated-matchers_test.cc
+|  |  |  |  |-- gmock-internal-utils_test.cc
+|  |  |  |  |-- gmock-matchers_test.cc
+|  |  |  |  |-- gmock-more-actions_test.cc
+|  |  |  |  |-- gmock-nice-strict_test.cc
+|  |  |  |  |-- gmock-port_test.cc
+|  |  |  |  |-- gmock-spec-builders_test.cc
+|  |  |  |  |-- gmock_all_test.cc
+|  |  |  |  |-- gmock_ex_test.cc
+|  |  |  |  |-- gmock_leak_test.py
+|  |  |  |  |-- gmock_leak_test_.cc
+|  |  |  |  |-- gmock_link2_test.cc
+|  |  |  |  |-- gmock_link_test.cc
+|  |  |  |  |-- gmock_link_test.h
+|  |  |  |  |-- gmock_output_test.py
+|  |  |  |  |-- gmock_output_test_.cc
+|  |  |  |  |-- gmock_output_test_golden.txt
+|  |  |  |  |-- gmock_stress_test.cc
+|  |  |  |  |-- gmock_test.cc
+|  |  |  |  |-- gmock_test_utils.py
+|  |  |-- googletest
+|  |  |  |-- CHANGES
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- CONTRIBUTORS
+|  |  |  |-- LICENSE
+|  |  |  |-- Makefile.am
+|  |  |  |-- README.md
+|  |  |  |-- cmake
+|  |  |  |  |-- Config.cmake.in
+|  |  |  |  |-- gtest.pc.in
+|  |  |  |  |-- gtest_main.pc.in
+|  |  |  |  |-- internal_utils.cmake
+|  |  |  |-- codegear
+|  |  |  |  |-- gtest.cbproj
+|  |  |  |  |-- gtest.groupproj
+|  |  |  |  |-- gtest_all.cc
+|  |  |  |  |-- gtest_link.cc
+|  |  |  |  |-- gtest_main.cbproj
+|  |  |  |  |-- gtest_unittest.cbproj
+|  |  |  |-- configure.ac
+|  |  |  |-- docs
+|  |  |  |  |-- Pkgconfig.md
+|  |  |  |  |-- PumpManual.md
+|  |  |  |  |-- XcodeGuide.md
+|  |  |  |  |-- advanced.md
+|  |  |  |  |-- faq.md
+|  |  |  |  |-- primer.md
+|  |  |  |  |-- samples.md
+|  |  |  |-- include
+|  |  |  |  |-- gtest
+|  |  |  |  |  |-- gtest-death-test.h
+|  |  |  |  |  |-- gtest-message.h
+|  |  |  |  |  |-- gtest-param-test.h
+|  |  |  |  |  |-- gtest-param-test.h.pump
+|  |  |  |  |  |-- gtest-printers.h
+|  |  |  |  |  |-- gtest-spi.h
+|  |  |  |  |  |-- gtest-test-part.h
+|  |  |  |  |  |-- gtest-typed-test.h
+|  |  |  |  |  |-- gtest.h
+|  |  |  |  |  |-- gtest_pred_impl.h
+|  |  |  |  |  |-- gtest_prod.h
+|  |  |  |  |  |-- internal
+|  |  |  |  |  |  |-- custom
+|  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |-- gtest-port.h
+|  |  |  |  |  |  |  |-- gtest-printers.h
+|  |  |  |  |  |  |  |-- gtest.h
+|  |  |  |  |  |  |-- gtest-death-test-internal.h
+|  |  |  |  |  |  |-- gtest-filepath.h
+|  |  |  |  |  |  |-- gtest-internal.h
+|  |  |  |  |  |  |-- gtest-linked_ptr.h
+|  |  |  |  |  |  |-- gtest-param-util-generated.h
+|  |  |  |  |  |  |-- gtest-param-util-generated.h.pump
+|  |  |  |  |  |  |-- gtest-param-util.h
+|  |  |  |  |  |  |-- gtest-port-arch.h
+|  |  |  |  |  |  |-- gtest-port.h
+|  |  |  |  |  |  |-- gtest-string.h
+|  |  |  |  |  |  |-- gtest-tuple.h
+|  |  |  |  |  |  |-- gtest-tuple.h.pump
+|  |  |  |  |  |  |-- gtest-type-util.h
+|  |  |  |  |  |  |-- gtest-type-util.h.pump
+|  |  |  |-- m4
+|  |  |  |  |-- acx_pthread.m4
+|  |  |  |  |-- gtest.m4
+|  |  |  |-- msvc
+|  |  |  |  |-- 2010
+|  |  |  |  |  |-- gtest-md.sln
+|  |  |  |  |  |-- gtest-md.vcxproj
+|  |  |  |  |  |-- gtest-md.vcxproj.filters
+|  |  |  |  |  |-- gtest.sln
+|  |  |  |  |  |-- gtest.vcxproj
+|  |  |  |  |  |-- gtest.vcxproj.filters
+|  |  |  |  |  |-- gtest_main-md.vcxproj
+|  |  |  |  |  |-- gtest_main-md.vcxproj.filters
+|  |  |  |  |  |-- gtest_main.vcxproj
+|  |  |  |  |  |-- gtest_main.vcxproj.filters
+|  |  |  |  |  |-- gtest_prod_test-md.vcxproj
+|  |  |  |  |  |-- gtest_prod_test-md.vcxproj.filters
+|  |  |  |  |  |-- gtest_prod_test.vcxproj
+|  |  |  |  |  |-- gtest_prod_test.vcxproj.filters
+|  |  |  |  |  |-- gtest_unittest-md.vcxproj
+|  |  |  |  |  |-- gtest_unittest-md.vcxproj.filters
+|  |  |  |  |  |-- gtest_unittest.vcxproj
+|  |  |  |  |  |-- gtest_unittest.vcxproj.filters
+|  |  |  |-- samples
+|  |  |  |  |-- prime_tables.h
+|  |  |  |  |-- sample1.cc
+|  |  |  |  |-- sample1.h
+|  |  |  |  |-- sample10_unittest.cc
+|  |  |  |  |-- sample1_unittest.cc
+|  |  |  |  |-- sample2.cc
+|  |  |  |  |-- sample2.h
+|  |  |  |  |-- sample2_unittest.cc
+|  |  |  |  |-- sample3-inl.h
+|  |  |  |  |-- sample3_unittest.cc
+|  |  |  |  |-- sample4.cc
+|  |  |  |  |-- sample4.h
+|  |  |  |  |-- sample4_unittest.cc
+|  |  |  |  |-- sample5_unittest.cc
+|  |  |  |  |-- sample6_unittest.cc
+|  |  |  |  |-- sample7_unittest.cc
+|  |  |  |  |-- sample8_unittest.cc
+|  |  |  |  |-- sample9_unittest.cc
+|  |  |  |-- scripts
+|  |  |  |  |-- common.py
+|  |  |  |  |-- fuse_gtest_files.py
+|  |  |  |  |-- gen_gtest_pred_impl.py
+|  |  |  |  |-- gtest-config.in
+|  |  |  |  |-- pump.py
+|  |  |  |  |-- release_docs.py
+|  |  |  |  |-- upload.py
+|  |  |  |  |-- upload_gtest.py
+|  |  |  |-- src
+|  |  |  |  |-- gtest-all.cc
+|  |  |  |  |-- gtest-death-test.cc
+|  |  |  |  |-- gtest-filepath.cc
+|  |  |  |  |-- gtest-internal-inl.h
+|  |  |  |  |-- gtest-port.cc
+|  |  |  |  |-- gtest-printers.cc
+|  |  |  |  |-- gtest-test-part.cc
+|  |  |  |  |-- gtest-typed-test.cc
+|  |  |  |  |-- gtest.cc
+|  |  |  |  |-- gtest_main.cc
+|  |  |  |-- test
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- googletest-break-on-failure-unittest.py
+|  |  |  |  |-- googletest-break-on-failure-unittest_.cc
+|  |  |  |  |-- googletest-catch-exceptions-test.py
+|  |  |  |  |-- googletest-catch-exceptions-test_.cc
+|  |  |  |  |-- googletest-color-test.py
+|  |  |  |  |-- googletest-color-test_.cc
+|  |  |  |  |-- googletest-death-test-test.cc
+|  |  |  |  |-- googletest-death-test_ex_test.cc
+|  |  |  |  |-- googletest-env-var-test.py
+|  |  |  |  |-- googletest-env-var-test_.cc
+|  |  |  |  |-- googletest-filepath-test.cc
+|  |  |  |  |-- googletest-filter-unittest.py
+|  |  |  |  |-- googletest-filter-unittest_.cc
+|  |  |  |  |-- googletest-json-outfiles-test.py
+|  |  |  |  |-- googletest-json-output-unittest.py
+|  |  |  |  |-- googletest-linked-ptr-test.cc
+|  |  |  |  |-- googletest-list-tests-unittest.py
+|  |  |  |  |-- googletest-list-tests-unittest_.cc
+|  |  |  |  |-- googletest-listener-test.cc
+|  |  |  |  |-- googletest-message-test.cc
+|  |  |  |  |-- googletest-options-test.cc
+|  |  |  |  |-- googletest-output-test-golden-lin.txt
+|  |  |  |  |-- googletest-output-test.py
+|  |  |  |  |-- googletest-output-test_.cc
+|  |  |  |  |-- googletest-param-test-invalid-name1-test.py
+|  |  |  |  |-- googletest-param-test-invalid-name1-test_.cc
+|  |  |  |  |-- googletest-param-test-invalid-name2-test.py
+|  |  |  |  |-- googletest-param-test-invalid-name2-test_.cc
+|  |  |  |  |-- googletest-param-test-test.cc
+|  |  |  |  |-- googletest-param-test-test.h
+|  |  |  |  |-- googletest-param-test2-test.cc
+|  |  |  |  |-- googletest-port-test.cc
+|  |  |  |  |-- googletest-printers-test.cc
+|  |  |  |  |-- googletest-shuffle-test.py
+|  |  |  |  |-- googletest-shuffle-test_.cc
+|  |  |  |  |-- googletest-test-part-test.cc
+|  |  |  |  |-- googletest-test2_test.cc
+|  |  |  |  |-- googletest-throw-on-failure-test.py
+|  |  |  |  |-- googletest-throw-on-failure-test_.cc
+|  |  |  |  |-- googletest-tuple-test.cc
+|  |  |  |  |-- googletest-uninitialized-test.py
+|  |  |  |  |-- googletest-uninitialized-test_.cc
+|  |  |  |  |-- gtest-typed-test2_test.cc
+|  |  |  |  |-- gtest-typed-test_test.cc
+|  |  |  |  |-- gtest-typed-test_test.h
+|  |  |  |  |-- gtest-unittest-api_test.cc
+|  |  |  |  |-- gtest_all_test.cc
+|  |  |  |  |-- gtest_assert_by_exception_test.cc
+|  |  |  |  |-- gtest_environment_test.cc
+|  |  |  |  |-- gtest_help_test.py
+|  |  |  |  |-- gtest_help_test_.cc
+|  |  |  |  |-- gtest_json_test_utils.py
+|  |  |  |  |-- gtest_list_output_unittest.py
+|  |  |  |  |-- gtest_list_output_unittest_.cc
+|  |  |  |  |-- gtest_main_unittest.cc
+|  |  |  |  |-- gtest_no_test_unittest.cc
+|  |  |  |  |-- gtest_pred_impl_unittest.cc
+|  |  |  |  |-- gtest_premature_exit_test.cc
+|  |  |  |  |-- gtest_prod_test.cc
+|  |  |  |  |-- gtest_repeat_test.cc
+|  |  |  |  |-- gtest_sole_header_test.cc
+|  |  |  |  |-- gtest_stress_test.cc
+|  |  |  |  |-- gtest_test_macro_stack_footprint_test.cc
+|  |  |  |  |-- gtest_test_utils.py
+|  |  |  |  |-- gtest_testbridge_test.py
+|  |  |  |  |-- gtest_testbridge_test_.cc
+|  |  |  |  |-- gtest_throw_on_failure_ex_test.cc
+|  |  |  |  |-- gtest_unittest.cc
+|  |  |  |  |-- gtest_xml_outfile1_test_.cc
+|  |  |  |  |-- gtest_xml_outfile2_test_.cc
+|  |  |  |  |-- gtest_xml_outfiles_test.py
+|  |  |  |  |-- gtest_xml_output_unittest.py
+|  |  |  |  |-- gtest_xml_output_unittest_.cc
+|  |  |  |  |-- gtest_xml_test_utils.py
+|  |  |  |  |-- production.cc
+|  |  |  |  |-- production.h
+|  |  |  |-- xcode
+|  |  |  |  |-- Config
+|  |  |  |  |  |-- DebugProject.xcconfig
+|  |  |  |  |  |-- FrameworkTarget.xcconfig
+|  |  |  |  |  |-- General.xcconfig
+|  |  |  |  |  |-- ReleaseProject.xcconfig
+|  |  |  |  |  |-- StaticLibraryTarget.xcconfig
+|  |  |  |  |  |-- TestTarget.xcconfig
+|  |  |  |  |-- Resources
+|  |  |  |  |  |-- Info.plist
+|  |  |  |  |-- Samples
+|  |  |  |  |  |-- FrameworkSample
+|  |  |  |  |  |  |-- Info.plist
+|  |  |  |  |  |  |-- WidgetFramework.xcodeproj
+|  |  |  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |  |-- runtests.sh
+|  |  |  |  |  |  |-- widget.cc
+|  |  |  |  |  |  |-- widget.h
+|  |  |  |  |  |  |-- widget_test.cc
+|  |  |  |  |-- Scripts
+|  |  |  |  |  |-- runtests.sh
+|  |  |  |  |  |-- versiongenerate.py
+|  |  |  |  |-- gtest.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |-- miniz
+|  |  |-- CMakeLists.txt
+|  |  |-- LICENSE
+|  |  |-- miniz.c
+|  |  |-- miniz.h
+|  |-- pugixml
+|  |  |-- CMakeLists.txt
+|  |  |-- pugiconfig.hpp
+|  |  |-- pugixml.cpp
+|  |  |-- pugixml.hpp
+|  |  |-- readme.txt
+|-- ubuntu_dependencies.sh

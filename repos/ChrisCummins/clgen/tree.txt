@@ -1,0 +1,697 @@
+|-- .bazelrc
+|-- .env
+|-- .gitignore
+|-- .travis.yml
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- DEPS.txt
+|-- INSTALL.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- compilers
+|  |-- llvm
+|  |  |-- BUILD
+|  |  |-- clang.py
+|  |  |-- clang_format.py
+|  |  |-- llvm.py
+|-- datasets
+|  |-- github
+|  |  |-- README.md
+|  |  |-- scrape_repos
+|  |  |  |-- README.md
+|  |  |  |-- preprocessors
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- JavaMethodsBatchedExtractor.java
+|  |  |  |  |-- JavaMethodsExtractor.java
+|  |  |  |  |-- extractors.py
+|  |  |  |  |-- public.py
+|  |  |  |  |-- secrets.py
+|  |  |  |-- proto
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- scrape_repos.proto
+|-- deeplearning
+|  |-- clgen
+|  |  |-- BUILD
+|  |  |-- cache.py
+|  |  |-- clgen.py
+|  |  |-- clgen_test.py
+|  |  |-- corpuses
+|  |  |  |-- BUILD
+|  |  |  |-- atomizers.py
+|  |  |  |-- atomizers_test.py
+|  |  |  |-- corpuses.py
+|  |  |  |-- corpuses_test.py
+|  |  |  |-- encoded.py
+|  |  |  |-- encoded_test.py
+|  |  |  |-- lexer
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- lexer.cc
+|  |  |  |  |-- lexer.h
+|  |  |  |  |-- lexer_test.cc
+|  |  |  |  |-- lexer_worker.cc
+|  |  |  |-- preprocessed.py
+|  |  |  |-- token_lists.json
+|  |  |  |-- tools
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- export_preprocessed_files.py
+|  |  |  |  |-- export_preprocessed_files_test.py
+|  |  |-- dashboard
+|  |  |  |-- BUILD
+|  |  |  |-- dashboard.py
+|  |  |  |-- dashboard_db.py
+|  |  |  |-- static
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- bootstrap.css
+|  |  |  |  |-- site.css
+|  |  |  |  |-- site.js
+|  |  |  |-- templates
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- base.html
+|  |  |  |  |-- dashboard.html
+|  |  |  |  |-- encoded_contentfile.html
+|  |  |  |  |-- report.html
+|  |  |  |  |-- samples.html
+|  |  |-- data
+|  |  |  |-- include
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- opencl-shim.h
+|  |  |  |  |-- opencl.h
+|  |  |-- docker
+|  |  |  |-- BUILD
+|  |  |  |-- clgen_preprocess_test.py
+|  |  |  |-- export_pretrained_model.py
+|  |  |  |-- export_pretrained_model_test.py
+|  |  |  |-- smoke_test
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- smoke_test.bats
+|  |  |-- errors.py
+|  |  |-- ls_models.py
+|  |  |-- models
+|  |  |  |-- BUILD
+|  |  |  |-- backends.py
+|  |  |  |-- builders.py
+|  |  |  |-- builders_test.py
+|  |  |  |-- data_generators.py
+|  |  |  |-- data_generators_test.py
+|  |  |  |-- helper.py
+|  |  |  |-- keras_backend.py
+|  |  |  |-- keras_backend_test.py
+|  |  |  |-- models.py
+|  |  |  |-- models_test.py
+|  |  |  |-- pretrained.py
+|  |  |  |-- tensorflow_backend.py
+|  |  |  |-- tensorflow_backend_test.py
+|  |  |-- preprocess.py
+|  |  |-- preprocess_test.py
+|  |  |-- preprocessors
+|  |  |  |-- BUILD
+|  |  |  |-- JavaPreprocessor.java
+|  |  |  |-- JavaPreprocessorTest.java
+|  |  |  |-- JavaRewriter.java
+|  |  |  |-- clang.py
+|  |  |  |-- clang_rewriter.cpp
+|  |  |  |-- clang_test.py
+|  |  |  |-- common.py
+|  |  |  |-- common_test.py
+|  |  |  |-- cxx.py
+|  |  |  |-- cxx_test.py
+|  |  |  |-- java.py
+|  |  |  |-- java_test.py
+|  |  |  |-- normalizer.py
+|  |  |  |-- normalizer_test.py
+|  |  |  |-- opencl.py
+|  |  |  |-- opencl_test.py
+|  |  |  |-- preprocessors.py
+|  |  |  |-- preprocessors_test.py
+|  |  |  |-- public.py
+|  |  |  |-- public_test.py
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- preprocessors_benchmark_test.py
+|  |  |-- proto
+|  |  |  |-- BUILD
+|  |  |  |-- clgen.proto
+|  |  |  |-- corpus.proto
+|  |  |  |-- internal.proto
+|  |  |  |-- model.proto
+|  |  |  |-- sampler.proto
+|  |  |  |-- telemetry.proto
+|  |  |-- sample.py
+|  |  |-- sample_observers.py
+|  |  |-- sample_observers_test.py
+|  |  |-- samplers.py
+|  |  |-- samplers_test.py
+|  |  |-- samples_database.py
+|  |  |-- samples_database_test.py
+|  |  |-- telemetry.py
+|  |  |-- telemetry_test.py
+|  |  |-- tests
+|  |  |  |-- BUILD
+|  |  |  |-- data
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- cl
+|  |  |  |  |  |-- nonterminating.cl
+|  |  |  |  |  |-- sample-1.cl
+|  |  |  |  |  |-- sample-1.gs
+|  |  |  |  |  |-- sample-2.cl
+|  |  |  |  |  |-- sample-3.cl
+|  |  |  |  |  |-- sample-3.h
+|  |  |  |  |-- db
+|  |  |  |  |  |-- 10-kernels-preprocessed.db
+|  |  |  |  |  |-- 10-kernels.db
+|  |  |  |  |  |-- empty-gh.db
+|  |  |  |  |  |-- empty.db
+|  |  |  |  |-- java_preprocessor_regression_test_1.java
+|  |  |  |  |-- pico
+|  |  |  |  |  |-- corpus.tar.bz2
+|  |  |  |  |  |-- model.json
+|  |  |  |  |  |-- sampler.json
+|  |  |  |  |-- tiny-gh.db.tar.bz2
+|  |  |  |  |-- tiny.tar.bz2
+|  |  |  |  |-- tiny
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- config.pbtxt
+|  |  |  |  |  |-- config_test.py
+|  |  |  |  |  |-- corpus.tar.bz2
+|  |  |  |-- fixtures.py
+|  |  |  |-- smoke_test
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- smoke_test.sh
+|-- labm8
+|  |-- LICENSE
+|  |-- README.md
+|  |-- cpp
+|  |  |-- BUILD
+|  |  |-- app.cc
+|  |  |-- app.h
+|  |  |-- logging.cc
+|  |  |-- logging.h
+|  |  |-- macros.h
+|  |  |-- pbutil.h
+|  |  |-- platform_macros.h
+|  |  |-- port.h
+|  |  |-- string.cc
+|  |  |-- string.h
+|  |  |-- stringpiece.cc
+|  |  |-- stringpiece.h
+|  |  |-- test.cc
+|  |  |-- test.h
+|  |-- java
+|  |  |-- bazelutil
+|  |  |  |-- BUILD
+|  |  |  |-- BazelRunfiles.java
+|  |-- py
+|  |  |-- BUILD
+|  |  |-- app.py
+|  |  |-- archive.py
+|  |  |-- bazelutil.py
+|  |  |-- cache.py
+|  |  |-- crypto.py
+|  |  |-- decorators.py
+|  |  |-- dockerutil.py
+|  |  |-- fs.py
+|  |  |-- gpu_scheduler.py
+|  |  |-- hashcache.py
+|  |  |-- humanize.py
+|  |  |-- internal
+|  |  |  |-- BUILD
+|  |  |  |-- flags_parsers.py
+|  |  |  |-- labm8_logging.py
+|  |  |  |-- lockfile.proto
+|  |  |  |-- logging.proto
+|  |  |  |-- pytest_plugin.py
+|  |  |-- io.py
+|  |  |-- jsonutil.py
+|  |  |-- labdate.py
+|  |  |-- labtypes.py
+|  |  |-- lockfile.py
+|  |  |-- logutil.py
+|  |  |-- pbutil.py
+|  |  |-- ppar.py
+|  |  |-- prof.py
+|  |  |-- progress.py
+|  |  |-- shell.py
+|  |  |-- sqlutil.py
+|  |  |-- system.py
+|  |  |-- tar.py
+|  |  |-- test.py
+|  |  |-- text.py
+|  |-- sh
+|  |  |-- BUILD
+|  |  |-- app.sh
+|  |  |-- test.sh
+|-- requirements.txt
+|-- research
+|  |-- README.md
+|  |-- cummins_2017_cgo
+|  |  |-- BUILD
+|  |  |-- generative_model.py
+|-- third_party
+|  |-- CLSmith.BUILD
+|  |-- DEPS.txt
+|  |-- bazel
+|  |  |-- .formatignore
+|  |  |-- BUILD
+|  |  |-- ci.sh
+|  |  |-- download_file.py
+|  |  |-- maven_jar.bzl
+|  |  |-- util.py
+|  |-- bzip2.BUILD
+|  |-- ctpl.BUILD
+|  |-- fmt.BUILD
+|  |-- git-sizer.BUILD
+|  |-- go.BUILD
+|  |-- libOpenCL.BUILD
+|  |-- libclc
+|  |  |-- generic
+|  |  |  |-- include
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- LICENSE
+|  |  |  |  |-- clc
+|  |  |  |  |  |-- as_type.h
+|  |  |  |  |  |-- async
+|  |  |  |  |  |  |-- async_work_group_copy.h
+|  |  |  |  |  |  |-- async_work_group_copy.inc
+|  |  |  |  |  |  |-- async_work_group_strided_copy.h
+|  |  |  |  |  |  |-- async_work_group_strided_copy.inc
+|  |  |  |  |  |  |-- gentype.inc
+|  |  |  |  |  |  |-- prefetch.h
+|  |  |  |  |  |  |-- prefetch.inc
+|  |  |  |  |  |  |-- wait_group_events.h
+|  |  |  |  |  |-- atomic
+|  |  |  |  |  |  |-- atomic_add.h
+|  |  |  |  |  |  |-- atomic_and.h
+|  |  |  |  |  |  |-- atomic_cmpxchg.h
+|  |  |  |  |  |  |-- atomic_dec.h
+|  |  |  |  |  |  |-- atomic_decl.inc
+|  |  |  |  |  |  |-- atomic_inc.h
+|  |  |  |  |  |  |-- atomic_max.h
+|  |  |  |  |  |  |-- atomic_min.h
+|  |  |  |  |  |  |-- atomic_or.h
+|  |  |  |  |  |  |-- atomic_sub.h
+|  |  |  |  |  |  |-- atomic_xchg.h
+|  |  |  |  |  |  |-- atomic_xor.h
+|  |  |  |  |  |-- cl_khr_global_int32_base_atomics
+|  |  |  |  |  |  |-- atom_add.h
+|  |  |  |  |  |  |-- atom_cmpxchg.h
+|  |  |  |  |  |  |-- atom_dec.h
+|  |  |  |  |  |  |-- atom_inc.h
+|  |  |  |  |  |  |-- atom_sub.h
+|  |  |  |  |  |  |-- atom_xchg.h
+|  |  |  |  |  |-- cl_khr_global_int32_extended_atomics
+|  |  |  |  |  |  |-- atom_and.h
+|  |  |  |  |  |  |-- atom_max.h
+|  |  |  |  |  |  |-- atom_min.h
+|  |  |  |  |  |  |-- atom_or.h
+|  |  |  |  |  |  |-- atom_xor.h
+|  |  |  |  |  |-- cl_khr_local_int32_base_atomics
+|  |  |  |  |  |  |-- atom_add.h
+|  |  |  |  |  |  |-- atom_cmpxchg.h
+|  |  |  |  |  |  |-- atom_dec.h
+|  |  |  |  |  |  |-- atom_inc.h
+|  |  |  |  |  |  |-- atom_sub.h
+|  |  |  |  |  |  |-- atom_xchg.h
+|  |  |  |  |  |-- cl_khr_local_int32_extended_atomics
+|  |  |  |  |  |  |-- atom_and.h
+|  |  |  |  |  |  |-- atom_max.h
+|  |  |  |  |  |  |-- atom_min.h
+|  |  |  |  |  |  |-- atom_or.h
+|  |  |  |  |  |  |-- atom_xor.h
+|  |  |  |  |  |-- clc.h
+|  |  |  |  |  |-- clcfunc.h
+|  |  |  |  |  |-- clctypes.h
+|  |  |  |  |  |-- clcversion.h
+|  |  |  |  |  |-- common
+|  |  |  |  |  |  |-- degrees.h
+|  |  |  |  |  |  |-- degrees.inc
+|  |  |  |  |  |  |-- mix.h
+|  |  |  |  |  |  |-- mix.inc
+|  |  |  |  |  |  |-- radians.h
+|  |  |  |  |  |  |-- radians.inc
+|  |  |  |  |  |  |-- sign.h
+|  |  |  |  |  |  |-- smoothstep.h
+|  |  |  |  |  |  |-- smoothstep.inc
+|  |  |  |  |  |  |-- step.h
+|  |  |  |  |  |  |-- step.inc
+|  |  |  |  |  |-- convert.h
+|  |  |  |  |  |-- float
+|  |  |  |  |  |  |-- definitions.h
+|  |  |  |  |  |-- geometric
+|  |  |  |  |  |  |-- cross.h
+|  |  |  |  |  |  |-- distance.h
+|  |  |  |  |  |  |-- distance.inc
+|  |  |  |  |  |  |-- dot.h
+|  |  |  |  |  |  |-- dot.inc
+|  |  |  |  |  |  |-- fast_distance.h
+|  |  |  |  |  |  |-- fast_distance.inc
+|  |  |  |  |  |  |-- fast_length.h
+|  |  |  |  |  |  |-- fast_length.inc
+|  |  |  |  |  |  |-- fast_normalize.h
+|  |  |  |  |  |  |-- fast_normalize.inc
+|  |  |  |  |  |  |-- floatn.inc
+|  |  |  |  |  |  |-- length.h
+|  |  |  |  |  |  |-- length.inc
+|  |  |  |  |  |  |-- normalize.h
+|  |  |  |  |  |  |-- normalize.inc
+|  |  |  |  |  |-- image
+|  |  |  |  |  |  |-- image.h
+|  |  |  |  |  |  |-- image_defines.h
+|  |  |  |  |  |-- integer
+|  |  |  |  |  |  |-- abs.h
+|  |  |  |  |  |  |-- abs.inc
+|  |  |  |  |  |  |-- abs_diff.h
+|  |  |  |  |  |  |-- abs_diff.inc
+|  |  |  |  |  |  |-- add_sat.h
+|  |  |  |  |  |  |-- add_sat.inc
+|  |  |  |  |  |  |-- clz.h
+|  |  |  |  |  |  |-- clz.inc
+|  |  |  |  |  |  |-- definitions.h
+|  |  |  |  |  |  |-- gentype.inc
+|  |  |  |  |  |  |-- hadd.h
+|  |  |  |  |  |  |-- hadd.inc
+|  |  |  |  |  |  |-- integer-gentype.inc
+|  |  |  |  |  |  |-- mad24.h
+|  |  |  |  |  |  |-- mad24.inc
+|  |  |  |  |  |  |-- mad_hi.h
+|  |  |  |  |  |  |-- mad_sat.h
+|  |  |  |  |  |  |-- mad_sat.inc
+|  |  |  |  |  |  |-- mul24.h
+|  |  |  |  |  |  |-- mul24.inc
+|  |  |  |  |  |  |-- mul_hi.h
+|  |  |  |  |  |  |-- mul_hi.inc
+|  |  |  |  |  |  |-- rhadd.h
+|  |  |  |  |  |  |-- rhadd.inc
+|  |  |  |  |  |  |-- rotate.h
+|  |  |  |  |  |  |-- rotate.inc
+|  |  |  |  |  |  |-- sub_sat.h
+|  |  |  |  |  |  |-- sub_sat.inc
+|  |  |  |  |  |  |-- upsample.h
+|  |  |  |  |  |-- math
+|  |  |  |  |  |  |-- acos.h
+|  |  |  |  |  |  |-- acos.inc
+|  |  |  |  |  |  |-- acosh.h
+|  |  |  |  |  |  |-- acosh.inc
+|  |  |  |  |  |  |-- acospi.h
+|  |  |  |  |  |  |-- acospi.inc
+|  |  |  |  |  |  |-- asin.h
+|  |  |  |  |  |  |-- asin.inc
+|  |  |  |  |  |  |-- asinh.h
+|  |  |  |  |  |  |-- asinh.inc
+|  |  |  |  |  |  |-- asinpi.h
+|  |  |  |  |  |  |-- asinpi.inc
+|  |  |  |  |  |  |-- atan.h
+|  |  |  |  |  |  |-- atan.inc
+|  |  |  |  |  |  |-- atan2.h
+|  |  |  |  |  |  |-- atan2.inc
+|  |  |  |  |  |  |-- atan2pi.h
+|  |  |  |  |  |  |-- atan2pi.inc
+|  |  |  |  |  |  |-- atanh.h
+|  |  |  |  |  |  |-- atanh.inc
+|  |  |  |  |  |  |-- atanpi.h
+|  |  |  |  |  |  |-- atanpi.inc
+|  |  |  |  |  |  |-- binary_decl.inc
+|  |  |  |  |  |  |-- binary_intrin.inc
+|  |  |  |  |  |  |-- cbrt.h
+|  |  |  |  |  |  |-- cbrt.inc
+|  |  |  |  |  |  |-- ceil.h
+|  |  |  |  |  |  |-- clc_nextafter.h
+|  |  |  |  |  |  |-- copysign.h
+|  |  |  |  |  |  |-- copysign.inc
+|  |  |  |  |  |  |-- cos.h
+|  |  |  |  |  |  |-- cos.inc
+|  |  |  |  |  |  |-- cosh.h
+|  |  |  |  |  |  |-- cosh.inc
+|  |  |  |  |  |  |-- cospi.h
+|  |  |  |  |  |  |-- cospi.inc
+|  |  |  |  |  |  |-- erf.h
+|  |  |  |  |  |  |-- erfc.h
+|  |  |  |  |  |  |-- exp.h
+|  |  |  |  |  |  |-- exp10.h
+|  |  |  |  |  |  |-- exp2.h
+|  |  |  |  |  |  |-- exp2.inc
+|  |  |  |  |  |  |-- fabs.h
+|  |  |  |  |  |  |-- fdim.h
+|  |  |  |  |  |  |-- fdim.inc
+|  |  |  |  |  |  |-- floor.h
+|  |  |  |  |  |  |-- fma.h
+|  |  |  |  |  |  |-- fmax.h
+|  |  |  |  |  |  |-- fmin.h
+|  |  |  |  |  |  |-- fmod.h
+|  |  |  |  |  |  |-- fmod.inc
+|  |  |  |  |  |  |-- fract.h
+|  |  |  |  |  |  |-- fract.inc
+|  |  |  |  |  |  |-- frexp.h
+|  |  |  |  |  |  |-- frexp.inc
+|  |  |  |  |  |  |-- gentype.inc
+|  |  |  |  |  |  |-- half_rsqrt.h
+|  |  |  |  |  |  |-- half_sqrt.h
+|  |  |  |  |  |  |-- hypot.h
+|  |  |  |  |  |  |-- hypot.inc
+|  |  |  |  |  |  |-- ilogb.h
+|  |  |  |  |  |  |-- ilogb.inc
+|  |  |  |  |  |  |-- ldexp.h
+|  |  |  |  |  |  |-- ldexp.inc
+|  |  |  |  |  |  |-- lgamma.h
+|  |  |  |  |  |  |-- lgamma.inc
+|  |  |  |  |  |  |-- lgamma_r.h
+|  |  |  |  |  |  |-- lgamma_r.inc
+|  |  |  |  |  |  |-- log.h
+|  |  |  |  |  |  |-- log.inc
+|  |  |  |  |  |  |-- log10.h
+|  |  |  |  |  |  |-- log1p.h
+|  |  |  |  |  |  |-- log1p.inc
+|  |  |  |  |  |  |-- log2.h
+|  |  |  |  |  |  |-- log2.inc
+|  |  |  |  |  |  |-- mad.h
+|  |  |  |  |  |  |-- mad.inc
+|  |  |  |  |  |  |-- modf.h
+|  |  |  |  |  |  |-- modf.inc
+|  |  |  |  |  |  |-- native_cos.h
+|  |  |  |  |  |  |-- native_divide.h
+|  |  |  |  |  |  |-- native_exp.h
+|  |  |  |  |  |  |-- native_exp10.h
+|  |  |  |  |  |  |-- native_exp2.h
+|  |  |  |  |  |  |-- native_log.h
+|  |  |  |  |  |  |-- native_log.inc
+|  |  |  |  |  |  |-- native_log2.h
+|  |  |  |  |  |  |-- native_log2.inc
+|  |  |  |  |  |  |-- native_powr.h
+|  |  |  |  |  |  |-- native_sin.h
+|  |  |  |  |  |  |-- native_sqrt.h
+|  |  |  |  |  |  |-- nextafter.h
+|  |  |  |  |  |  |-- pow.h
+|  |  |  |  |  |  |-- pown.h
+|  |  |  |  |  |  |-- rint.h
+|  |  |  |  |  |  |-- round.h
+|  |  |  |  |  |  |-- rsqrt.h
+|  |  |  |  |  |  |-- sin.h
+|  |  |  |  |  |  |-- sin.inc
+|  |  |  |  |  |  |-- sincos.h
+|  |  |  |  |  |  |-- sincos.inc
+|  |  |  |  |  |  |-- sinpi.h
+|  |  |  |  |  |  |-- sinpi.inc
+|  |  |  |  |  |  |-- sqrt.h
+|  |  |  |  |  |  |-- sqrt.inc
+|  |  |  |  |  |  |-- tan.h
+|  |  |  |  |  |  |-- tan.inc
+|  |  |  |  |  |  |-- tanh.h
+|  |  |  |  |  |  |-- tanh.inc
+|  |  |  |  |  |  |-- ternary_intrin.inc
+|  |  |  |  |  |  |-- tgamma.h
+|  |  |  |  |  |  |-- tgamma.inc
+|  |  |  |  |  |  |-- trunc.h
+|  |  |  |  |  |  |-- unary_decl.inc
+|  |  |  |  |  |  |-- unary_intrin.inc
+|  |  |  |  |  |-- relational
+|  |  |  |  |  |  |-- all.h
+|  |  |  |  |  |  |-- any.h
+|  |  |  |  |  |  |-- binary_decl.inc
+|  |  |  |  |  |  |-- bitselect.h
+|  |  |  |  |  |  |-- bitselect.inc
+|  |  |  |  |  |  |-- floatn.inc
+|  |  |  |  |  |  |-- isequal.h
+|  |  |  |  |  |  |-- isfinite.h
+|  |  |  |  |  |  |-- isgreater.h
+|  |  |  |  |  |  |-- isgreaterequal.h
+|  |  |  |  |  |  |-- isinf.h
+|  |  |  |  |  |  |-- isless.h
+|  |  |  |  |  |  |-- islessequal.h
+|  |  |  |  |  |  |-- islessgreater.h
+|  |  |  |  |  |  |-- isnan.h
+|  |  |  |  |  |  |-- isnormal.h
+|  |  |  |  |  |  |-- isnotequal.h
+|  |  |  |  |  |  |-- isordered.h
+|  |  |  |  |  |  |-- isunordered.h
+|  |  |  |  |  |  |-- select.h
+|  |  |  |  |  |  |-- signbit.h
+|  |  |  |  |  |  |-- unary_decl.inc
+|  |  |  |  |  |-- shared
+|  |  |  |  |  |  |-- clamp.h
+|  |  |  |  |  |  |-- clamp.inc
+|  |  |  |  |  |  |-- max.h
+|  |  |  |  |  |  |-- max.inc
+|  |  |  |  |  |  |-- min.h
+|  |  |  |  |  |  |-- min.inc
+|  |  |  |  |  |  |-- vload.h
+|  |  |  |  |  |  |-- vstore.h
+|  |  |  |  |  |-- synchronization
+|  |  |  |  |  |  |-- barrier.h
+|  |  |  |  |  |  |-- cl_mem_fence_flags.h
+|  |  |  |  |  |-- workitem
+|  |  |  |  |  |  |-- get_global_id.h
+|  |  |  |  |  |  |-- get_global_offset.h
+|  |  |  |  |  |  |-- get_global_size.h
+|  |  |  |  |  |  |-- get_group_id.h
+|  |  |  |  |  |  |-- get_local_id.h
+|  |  |  |  |  |  |-- get_local_size.h
+|  |  |  |  |  |  |-- get_num_groups.h
+|  |  |  |  |  |  |-- get_work_dim.h
+|  |  |  |  |-- config.h
+|  |  |  |  |-- math
+|  |  |  |  |  |-- clc_ldexp.h
+|  |  |  |  |  |-- clc_nextafter.h
+|  |  |  |  |  |-- clc_sqrt.h
+|  |  |  |  |  |-- clc_sqrt.inc
+|  |-- libcxx.BUILD
+|  |-- linux.BUILD
+|  |-- llvm.BUILD
+|  |-- llvm
+|  |  |-- BUILD
+|  |  |-- clang-format.sh
+|  |  |-- clang.sh
+|  |-- llvm_headers.BUILD
+|  |-- llvm_test_suite.BUILD
+|  |-- nlohmann_json.BUILD
+|  |-- oclgrind.BUILD
+|  |-- opencl_headers.BUILD
+|  |-- progress_cpp.BUILD
+|  |-- py
+|  |  |-- BUILD
+|  |  |-- BUILD.tpl
+|  |  |-- README.md
+|  |  |-- absl
+|  |  |  |-- BUILD
+|  |  |-- appdirs
+|  |  |  |-- BUILD
+|  |  |-- attrs
+|  |  |  |-- BUILD
+|  |  |-- checksumdir
+|  |  |  |-- BUILD
+|  |  |-- click
+|  |  |  |-- BUILD
+|  |  |-- decorator
+|  |  |  |-- BUILD
+|  |  |-- detect_secrets
+|  |  |  |-- BUILD
+|  |  |-- empty.py
+|  |  |-- fasteners
+|  |  |  |-- BUILD
+|  |  |-- flask
+|  |  |  |-- BUILD
+|  |  |-- gputil
+|  |  |  |-- BUILD
+|  |  |-- humanize
+|  |  |  |-- BUILD
+|  |  |-- keras
+|  |  |  |-- BUILD
+|  |  |-- mysql
+|  |  |  |-- BUILD
+|  |  |-- networkx
+|  |  |  |-- BUILD
+|  |  |-- numpy
+|  |  |  |-- BUILD
+|  |  |-- portpicker
+|  |  |  |-- BUILD
+|  |  |-- progressbar
+|  |  |  |-- BUILD
+|  |  |-- protobuf
+|  |  |  |-- BUILD
+|  |  |-- ptvsd
+|  |  |  |-- BUILD
+|  |  |-- pytest
+|  |  |  |-- BUILD
+|  |  |-- python_configure.bzl
+|  |  |-- pytz
+|  |  |  |-- BUILD
+|  |  |-- requests
+|  |  |  |-- BUILD
+|  |  |-- scipy
+|  |  |  |-- BUILD
+|  |  |-- send2trash
+|  |  |  |-- BUILD
+|  |  |-- sqlalchemy
+|  |  |  |-- BUILD
+|  |  |  |-- DEPS.txt
+|  |  |-- tensorflow
+|  |  |  |-- BUILD
+|  |  |  |-- LICENSE
+|  |  |  |-- tf.py
+|  |  |-- tqdm
+|  |  |  |-- BUILD
+|  |  |-- urllib3
+|  |  |  |-- BUILD
+|  |  |-- variety.tpl
+|  |-- pybind11_json.BUILD
+|  |-- rodinia_data.BUILD
+|  |-- subprocess.BUILD
+|  |-- tbb_lin.BUILD
+|  |-- tbb_mac.BUILD
+|-- tools
+|  |-- BUILD
+|  |-- Brewfile.travis
+|  |-- README.md
+|  |-- bazel
+|  |-- bazel_env.sh
+|  |-- bzl
+|  |  |-- BUILD
+|  |  |-- string_genrule.bzl
+|  |-- docker
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- export.sh
+|  |  |-- phd_base
+|  |  |  |-- BUILD
+|  |  |  |-- Dockerfile
+|  |  |  |-- README.md
+|  |  |  |-- export.sh
+|  |  |  |-- run.sh
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dependencies_test.py
+|  |  |  |  |-- python_version.py
+|  |  |  |  |-- tests.bats
+|  |  |-- phd_base_java
+|  |  |  |-- BUILD
+|  |  |  |-- Dockerfile
+|  |  |  |-- README.md
+|  |  |  |-- export.sh
+|  |  |  |-- run.sh
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- java_test.py
+|  |  |  |  |-- tests.bats
+|  |  |-- phd_base_tf_cpu
+|  |  |  |-- BUILD
+|  |  |  |-- Dockerfile
+|  |  |  |-- README.md
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- tests.bats
+|  |  |  |  |-- tf_test.py
+|  |  |-- phd_build
+|  |  |  |-- BUILD
+|  |  |  |-- Dockerfile
+|  |  |  |-- README.md
+|  |  |  |-- empty.py
+|  |  |  |-- export.sh
+|  |  |  |-- run.sh
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- build_test.py
+|  |  |  |  |-- tests.bats
+|  |  |-- remove_all_docker_images.sh
+|  |-- flaky_bazel.sh
+|  |-- whoami.sh
+|  |-- workspace_status.sh
+|-- version.txt

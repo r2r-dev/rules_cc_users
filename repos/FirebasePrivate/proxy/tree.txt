@@ -1,0 +1,238 @@
+|-- .bazelrc
+|-- .bazelrc.travis
+|-- .gitignore
+|-- .travis.yml
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- contrib
+|  |-- endpoints
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- include
+|  |  |  |-- BUILD
+|  |  |  |-- api_manager
+|  |  |  |  |-- api_manager.h
+|  |  |  |  |-- compute_platform.h
+|  |  |  |  |-- env_interface.h
+|  |  |  |  |-- grpc_request.h
+|  |  |  |  |-- http_request.h
+|  |  |  |  |-- method.h
+|  |  |  |  |-- method_call_info.h
+|  |  |  |  |-- periodic_timer.h
+|  |  |  |  |-- protocol.h
+|  |  |  |  |-- request.h
+|  |  |  |  |-- request_handler_interface.h
+|  |  |  |  |-- response.h
+|  |  |  |  |-- service_control.h
+|  |  |  |  |-- utils
+|  |  |  |  |  |-- status.h
+|  |  |  |  |  |-- version.h
+|  |  |-- repositories.bzl
+|  |  |-- src
+|  |  |  |-- api_manager
+|  |  |  |  |-- .gitignore
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- api_manager_impl.cc
+|  |  |  |  |-- api_manager_impl.h
+|  |  |  |  |-- api_manager_test.cc
+|  |  |  |  |-- auth.h
+|  |  |  |  |-- auth
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- certs.h
+|  |  |  |  |  |-- jwt_cache.cc
+|  |  |  |  |  |-- jwt_cache.h
+|  |  |  |  |  |-- jwt_cache_test.cc
+|  |  |  |  |  |-- lib
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- auth_jwt_validator.cc
+|  |  |  |  |  |  |-- auth_jwt_validator.h
+|  |  |  |  |  |  |-- auth_jwt_validator_test.cc
+|  |  |  |  |  |  |-- auth_token.cc
+|  |  |  |  |  |  |-- auth_token.h
+|  |  |  |  |  |  |-- auth_token_test.cc
+|  |  |  |  |  |  |-- base64.cc
+|  |  |  |  |  |  |-- base64.h
+|  |  |  |  |  |  |-- base64_test.cc
+|  |  |  |  |  |  |-- grpc_internals.h
+|  |  |  |  |  |  |-- json.cc
+|  |  |  |  |  |  |-- json.h
+|  |  |  |  |  |  |-- json_test.cc
+|  |  |  |  |  |  |-- json_util.cc
+|  |  |  |  |  |  |-- json_util.h
+|  |  |  |  |  |  |-- json_util_test.cc
+|  |  |  |  |  |-- service_account_token.cc
+|  |  |  |  |  |-- service_account_token.h
+|  |  |  |  |  |-- service_account_token_test.cc
+|  |  |  |  |-- check_auth.cc
+|  |  |  |  |-- check_auth.h
+|  |  |  |  |-- check_auth_test.cc
+|  |  |  |  |-- check_service_control.cc
+|  |  |  |  |-- check_service_control.h
+|  |  |  |  |-- check_workflow.cc
+|  |  |  |  |-- check_workflow.h
+|  |  |  |  |-- cloud_trace
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- cloud_trace.cc
+|  |  |  |  |  |-- cloud_trace.h
+|  |  |  |  |  |-- cloud_trace_test.cc
+|  |  |  |  |  |-- sampler_test.cc
+|  |  |  |  |-- common_protos_test.cc
+|  |  |  |  |-- config.cc
+|  |  |  |  |-- config.h
+|  |  |  |  |-- config_test.cc
+|  |  |  |  |-- context
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- request_context.cc
+|  |  |  |  |  |-- request_context.h
+|  |  |  |  |  |-- service_context.cc
+|  |  |  |  |  |-- service_context.h
+|  |  |  |  |-- fetch_metadata.cc
+|  |  |  |  |-- fetch_metadata.h
+|  |  |  |  |-- fetch_metadata_test.cc
+|  |  |  |  |-- gce_metadata.cc
+|  |  |  |  |-- gce_metadata.h
+|  |  |  |  |-- gce_metadata_test.cc
+|  |  |  |  |-- http_template.cc
+|  |  |  |  |-- http_template.h
+|  |  |  |  |-- http_template_test.cc
+|  |  |  |  |-- method_impl.cc
+|  |  |  |  |-- method_impl.h
+|  |  |  |  |-- method_test.cc
+|  |  |  |  |-- mixer
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- mixer.cc
+|  |  |  |  |  |-- mixer.h
+|  |  |  |  |-- mock_api_manager_environment.h
+|  |  |  |  |-- mock_method_info.h
+|  |  |  |  |-- mock_request.h
+|  |  |  |  |-- path_matcher.cc
+|  |  |  |  |-- path_matcher.h
+|  |  |  |  |-- path_matcher_node.cc
+|  |  |  |  |-- path_matcher_node.h
+|  |  |  |  |-- path_matcher_test.cc
+|  |  |  |  |-- proto
+|  |  |  |  |  |-- api_manager_status.proto
+|  |  |  |  |  |-- sample_server_config.pb.txt
+|  |  |  |  |  |-- server_config.proto
+|  |  |  |  |-- request_handler.cc
+|  |  |  |  |-- request_handler.h
+|  |  |  |  |-- server_config_proto_test.cc
+|  |  |  |  |-- service_control
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- aggregated.cc
+|  |  |  |  |  |-- aggregated.h
+|  |  |  |  |  |-- aggregated_test.cc
+|  |  |  |  |  |-- check_response_test.cc
+|  |  |  |  |  |-- info.h
+|  |  |  |  |  |-- interface.h
+|  |  |  |  |  |-- logs_metrics_loader.cc
+|  |  |  |  |  |-- logs_metrics_loader.h
+|  |  |  |  |  |-- logs_metrics_loader_test.cc
+|  |  |  |  |  |-- proto.cc
+|  |  |  |  |  |-- proto.h
+|  |  |  |  |  |-- proto_test.cc
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- check_request.golden
+|  |  |  |  |  |  |-- check_request_no_api_key.golden
+|  |  |  |  |  |  |-- final_report_request.golden
+|  |  |  |  |  |  |-- first_report_request.golden
+|  |  |  |  |  |  |-- intermediate_report_request.golden
+|  |  |  |  |  |  |-- report_request.golden
+|  |  |  |  |  |  |-- report_request_empty_optional.golden
+|  |  |  |  |  |  |-- report_request_failed.golden
+|  |  |  |  |  |-- url.cc
+|  |  |  |  |  |-- url.h
+|  |  |  |  |  |-- url_test.cc
+|  |  |  |  |-- utils
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- marshalling.cc
+|  |  |  |  |  |-- marshalling.h
+|  |  |  |  |  |-- marshalling_test.cc
+|  |  |  |  |  |-- status.cc
+|  |  |  |  |  |-- status_test.cc
+|  |  |  |  |  |-- stl_util.h
+|  |  |  |  |  |-- url_util.cc
+|  |  |  |  |  |-- url_util.h
+|  |  |  |  |  |-- url_util_test.cc
+|  |  |  |  |  |-- version.cc
+|  |  |  |-- grpc
+|  |  |  |  |-- transcoding
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- bookstore.proto
+|  |  |  |  |  |-- json_request_translator.cc
+|  |  |  |  |  |-- json_request_translator.h
+|  |  |  |  |  |-- json_request_translator_test.cc
+|  |  |  |  |  |-- message_reader.cc
+|  |  |  |  |  |-- message_reader.h
+|  |  |  |  |  |-- message_reader_test.cc
+|  |  |  |  |  |-- message_stream.cc
+|  |  |  |  |  |-- message_stream.h
+|  |  |  |  |  |-- message_stream_test.cc
+|  |  |  |  |  |-- prefix_writer.cc
+|  |  |  |  |  |-- prefix_writer.h
+|  |  |  |  |  |-- prefix_writer_test.cc
+|  |  |  |  |  |-- proto_stream_tester.cc
+|  |  |  |  |  |-- proto_stream_tester.h
+|  |  |  |  |  |-- request_message_translator.cc
+|  |  |  |  |  |-- request_message_translator.h
+|  |  |  |  |  |-- request_message_translator_test.cc
+|  |  |  |  |  |-- request_stream_translator.cc
+|  |  |  |  |  |-- request_stream_translator.h
+|  |  |  |  |  |-- request_stream_translator_test.cc
+|  |  |  |  |  |-- request_translator_test_base.cc
+|  |  |  |  |  |-- request_translator_test_base.h
+|  |  |  |  |  |-- request_weaver.cc
+|  |  |  |  |  |-- request_weaver.h
+|  |  |  |  |  |-- request_weaver_test.cc
+|  |  |  |  |  |-- response_to_json_translator.cc
+|  |  |  |  |  |-- response_to_json_translator.h
+|  |  |  |  |  |-- response_to_json_translator_test.cc
+|  |  |  |  |  |-- test_common.cc
+|  |  |  |  |  |-- test_common.h
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- bookstore_service.pb.txt
+|  |  |  |  |  |-- transcoder.h
+|  |  |  |  |  |-- transcoder_factory.cc
+|  |  |  |  |  |-- transcoder_factory.h
+|  |  |  |  |  |-- transcoder_test.cc
+|  |  |  |  |  |-- type_helper.cc
+|  |  |  |  |  |-- type_helper.h
+|  |  |  |  |  |-- type_helper_test.cc
+|  |-- tools
+|  |  |-- server
+|  |  |  |-- Makefile
+|  |  |  |-- README.md
+|  |  |  |-- server.c
+|-- repositories.bzl
+|-- script
+|  |-- check-style
+|  |-- pre-commit
+|-- src
+|  |-- envoy
+|  |  |-- BUILD
+|  |  |-- mixer
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- envoy-mixer.conf
+|  |  |  |-- http_control.cc
+|  |  |  |-- http_control.h
+|  |  |  |-- http_filter.cc
+|  |  |-- prototype
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- api_manager_env.cc
+|  |  |  |-- api_manager_env.h
+|  |  |  |-- api_manager_filter.cc
+|  |  |  |-- dummy_api_manager_cluster.py
+|  |  |  |-- envoy-esp.conf
+|  |  |  |-- generic_service_config.json
+|  |  |  |-- server_config.pb.txt
+|  |  |-- repositories.bzl
+|-- test
+|  |-- backend
+|  |  |-- echo
+|  |  |  |-- README.md
+|  |  |  |-- echo.go

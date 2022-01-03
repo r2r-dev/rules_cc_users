@@ -1,0 +1,381 @@
+|-- .editorconfig
+|-- .gitattributes
+|-- .github
+|  |-- workflows
+|  |  |-- fuzz.yml
+|-- .gitignore
+|-- .gitmodules
+|-- .travis.yml
+|-- BUILD
+|-- CMakeLists.txt
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- MANIFEST.in
+|-- Makefile
+|-- Makefile.am
+|-- README
+|-- README.md
+|-- WORKSPACE
+|-- bootstrap
+|-- c
+|  |-- common
+|  |  |-- constants.c
+|  |  |-- constants.h
+|  |  |-- context.c
+|  |  |-- context.h
+|  |  |-- dictionary.bin
+|  |  |-- dictionary.bin.br
+|  |  |-- dictionary.c
+|  |  |-- dictionary.h
+|  |  |-- platform.c
+|  |  |-- platform.h
+|  |  |-- transform.c
+|  |  |-- transform.h
+|  |  |-- version.h
+|  |-- dec
+|  |  |-- bit_reader.c
+|  |  |-- bit_reader.h
+|  |  |-- decode.c
+|  |  |-- huffman.c
+|  |  |-- huffman.h
+|  |  |-- prefix.h
+|  |  |-- state.c
+|  |  |-- state.h
+|  |-- enc
+|  |  |-- backward_references.c
+|  |  |-- backward_references.h
+|  |  |-- backward_references_hq.c
+|  |  |-- backward_references_hq.h
+|  |  |-- backward_references_inc.h
+|  |  |-- bit_cost.c
+|  |  |-- bit_cost.h
+|  |  |-- bit_cost_inc.h
+|  |  |-- block_encoder_inc.h
+|  |  |-- block_splitter.c
+|  |  |-- block_splitter.h
+|  |  |-- block_splitter_inc.h
+|  |  |-- brotli_bit_stream.c
+|  |  |-- brotli_bit_stream.h
+|  |  |-- cluster.c
+|  |  |-- cluster.h
+|  |  |-- cluster_inc.h
+|  |  |-- command.c
+|  |  |-- command.h
+|  |  |-- compress_fragment.c
+|  |  |-- compress_fragment.h
+|  |  |-- compress_fragment_two_pass.c
+|  |  |-- compress_fragment_two_pass.h
+|  |  |-- dictionary_hash.c
+|  |  |-- dictionary_hash.h
+|  |  |-- encode.c
+|  |  |-- encoder_dict.c
+|  |  |-- encoder_dict.h
+|  |  |-- entropy_encode.c
+|  |  |-- entropy_encode.h
+|  |  |-- entropy_encode_static.h
+|  |  |-- fast_log.c
+|  |  |-- fast_log.h
+|  |  |-- find_match_length.h
+|  |  |-- hash.h
+|  |  |-- hash_composite_inc.h
+|  |  |-- hash_forgetful_chain_inc.h
+|  |  |-- hash_longest_match64_inc.h
+|  |  |-- hash_longest_match_inc.h
+|  |  |-- hash_longest_match_quickly_inc.h
+|  |  |-- hash_rolling_inc.h
+|  |  |-- hash_to_binary_tree_inc.h
+|  |  |-- histogram.c
+|  |  |-- histogram.h
+|  |  |-- histogram_inc.h
+|  |  |-- literal_cost.c
+|  |  |-- literal_cost.h
+|  |  |-- memory.c
+|  |  |-- memory.h
+|  |  |-- metablock.c
+|  |  |-- metablock.h
+|  |  |-- metablock_inc.h
+|  |  |-- params.h
+|  |  |-- prefix.h
+|  |  |-- quality.h
+|  |  |-- ringbuffer.h
+|  |  |-- static_dict.c
+|  |  |-- static_dict.h
+|  |  |-- static_dict_lut.h
+|  |  |-- utf8_util.c
+|  |  |-- utf8_util.h
+|  |  |-- write_bits.h
+|  |-- fuzz
+|  |  |-- decode_fuzzer.c
+|  |  |-- run_decode_fuzzer.c
+|  |  |-- test_fuzzer.sh
+|  |-- include
+|  |  |-- brotli
+|  |  |  |-- decode.h
+|  |  |  |-- encode.h
+|  |  |  |-- port.h
+|  |  |  |-- types.h
+|  |-- tools
+|  |  |-- brotli.c
+|  |  |-- brotli.md
+|-- compiler_config_setting.bzl
+|-- configure
+|-- configure-cmake
+|-- configure.ac
+|-- csharp
+|  |-- injected_code.txt
+|  |-- org
+|  |  |-- brotli
+|  |  |  |-- dec
+|  |  |  |  |-- BitReader.cs
+|  |  |  |  |-- BitReaderTest.cs
+|  |  |  |  |-- BrotliInputStream.cs
+|  |  |  |  |-- BrotliRuntimeException.cs
+|  |  |  |  |-- Context.cs
+|  |  |  |  |-- Decode.cs
+|  |  |  |  |-- DecodeTest.cs
+|  |  |  |  |-- Dictionary.cs
+|  |  |  |  |-- DictionaryTest.cs
+|  |  |  |  |-- Huffman.cs
+|  |  |  |  |-- HuffmanTreeGroup.cs
+|  |  |  |  |-- IntReader.cs
+|  |  |  |  |-- Prefix.cs
+|  |  |  |  |-- RunningState.cs
+|  |  |  |  |-- State.cs
+|  |  |  |  |-- SynthTest.cs
+|  |  |  |  |-- Transform.cs
+|  |  |  |  |-- TransformTest.cs
+|  |  |  |  |-- Utils.cs
+|  |  |  |  |-- WordTransformType.cs
+|  |-- sharpen.cfg
+|  |-- transpile.sh
+|-- docs
+|  |-- brotli-comparison-study-2015-09-22.pdf
+|  |-- brotli.1
+|  |-- brotli.svg
+|  |-- constants.h.3
+|  |-- decode.h.3
+|  |-- encode.h.3
+|  |-- types.h.3
+|-- fetch-spec
+|  |-- shared-brotli-fetch-spec.txt
+|-- go
+|  |-- BUILD
+|  |-- WORKSPACE
+|  |-- cbrotli
+|  |  |-- BUILD
+|  |  |-- cbrotli_test.go
+|  |  |-- cgo.go
+|  |  |-- go.mod
+|  |  |-- reader.go
+|  |  |-- writer.go
+|-- java
+|  |-- BUILD
+|  |-- WORKSPACE
+|  |-- org
+|  |  |-- brotli
+|  |  |  |-- common
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- SharedDictionaryType.java
+|  |  |  |-- dec
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- BitReader.java
+|  |  |  |  |-- BitReaderTest.java
+|  |  |  |  |-- BrotliInputStream.java
+|  |  |  |  |-- BrotliRuntimeException.java
+|  |  |  |  |-- CompoundDictionaryTest.java
+|  |  |  |  |-- Context.java
+|  |  |  |  |-- Decode.java
+|  |  |  |  |-- DecodeTest.java
+|  |  |  |  |-- Dictionary.java
+|  |  |  |  |-- DictionaryData.java
+|  |  |  |  |-- DictionaryTest.java
+|  |  |  |  |-- EagerStreamTest.java
+|  |  |  |  |-- Huffman.java
+|  |  |  |  |-- SetDictionaryTest.java
+|  |  |  |  |-- State.java
+|  |  |  |  |-- SynthTest.java
+|  |  |  |  |-- Transform.java
+|  |  |  |  |-- TransformTest.java
+|  |  |  |  |-- Utils.java
+|  |  |  |  |-- build_defs.bzl
+|  |  |  |  |-- pom.xml
+|  |  |  |  |-- proguard.pgcfg
+|  |  |  |-- enc
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- PreparedDictionary.java
+|  |  |  |  |-- PreparedDictionaryGenerator.java
+|  |  |  |-- integration
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- BrotliJniTestBase.java
+|  |  |  |  |-- BundleChecker.java
+|  |  |  |  |-- BundleHelper.java
+|  |  |  |  |-- fuzz_data.zip
+|  |  |  |  |-- pom.xml
+|  |  |  |  |-- test_corpus.zip
+|  |  |  |  |-- test_data.zip
+|  |  |  |-- pom.xml
+|  |  |  |-- wrapper
+|  |  |  |  |-- common
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- BrotliCommon.java
+|  |  |  |  |  |-- CommonJNI.java
+|  |  |  |  |  |-- SetRfcDictionaryTest.java
+|  |  |  |  |  |-- SetZeroDictionaryTest.java
+|  |  |  |  |  |-- common_jni.cc
+|  |  |  |  |-- dec
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- BrotliDecoderChannel.java
+|  |  |  |  |  |-- BrotliDecoderChannelTest.java
+|  |  |  |  |  |-- BrotliInputStream.java
+|  |  |  |  |  |-- BrotliInputStreamTest.java
+|  |  |  |  |  |-- Decoder.java
+|  |  |  |  |  |-- DecoderJNI.java
+|  |  |  |  |  |-- DecoderTest.java
+|  |  |  |  |  |-- EagerStreamTest.java
+|  |  |  |  |  |-- decoder_jni.cc
+|  |  |  |  |-- enc
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- BrotliEncoderChannel.java
+|  |  |  |  |  |-- BrotliEncoderChannelTest.java
+|  |  |  |  |  |-- BrotliOutputStream.java
+|  |  |  |  |  |-- BrotliOutputStreamTest.java
+|  |  |  |  |  |-- EmptyInputTest.java
+|  |  |  |  |  |-- Encoder.java
+|  |  |  |  |  |-- EncoderJNI.java
+|  |  |  |  |  |-- EncoderTest.java
+|  |  |  |  |  |-- encoder_jni.cc
+|-- js
+|  |-- BUILD
+|  |-- WORKSPACE
+|  |-- decode.js
+|  |-- decode.min.js
+|  |-- decode_test.js
+|  |-- polyfill.js
+|-- premake5.lua
+|-- python
+|  |-- Makefile
+|  |-- README.md
+|  |-- _brotli.cc
+|  |-- bro.py
+|  |-- brotli.py
+|  |-- tests
+|  |  |-- __init__.py
+|  |  |-- _test_utils.py
+|  |  |-- bro_test.py
+|  |  |-- compress_test.py
+|  |  |-- compressor_test.py
+|  |  |-- decompress_test.py
+|  |  |-- decompressor_test.py
+|-- research
+|  |-- BUILD
+|  |-- BUILD.libdivsufsort
+|  |-- Makefile
+|  |-- README.md
+|  |-- WORKSPACE
+|  |-- brotli_decoder.c
+|  |-- brotlidump.py
+|  |-- deorummolae.cc
+|  |-- deorummolae.h
+|  |-- dictionary_generator.cc
+|  |-- draw_diff.cc
+|  |-- draw_histogram.cc
+|  |-- durchschlag.cc
+|  |-- durchschlag.h
+|  |-- esaxx
+|  |-- find_opt_references.cc
+|  |-- img
+|  |  |-- enwik9_brotli.png
+|  |  |-- enwik9_diff.png
+|  |  |-- enwik9_opt.png
+|  |-- libdivsufsort
+|  |-- read_dist.h
+|  |-- sieve.cc
+|  |-- sieve.h
+|-- scripts
+|  |-- .bintray.json
+|  |-- .configure-custom.sh
+|  |-- .travis.sh
+|  |-- appveyor.yml
+|  |-- dictionary
+|  |  |-- README.md
+|  |  |-- step-01-download-rfc.py
+|  |  |-- step-02-rfc-to-bin.py
+|  |  |-- step-03-validate-bin.py
+|  |  |-- step-04-generate-java-literals.py
+|  |-- fix-win-bazel-build.py
+|  |-- libbrotlicommon.pc.in
+|  |-- libbrotlidec.pc.in
+|  |-- libbrotlienc.pc.in
+|  |-- sources.lst
+|-- setup.cfg
+|-- setup.py
+|-- tests
+|  |-- Makefile
+|  |-- compatibility_test.sh
+|  |-- roundtrip_test.sh
+|  |-- run-compatibility-test.cmake
+|  |-- run-roundtrip-test.cmake
+|  |-- testdata
+|  |  |-- 10x10y
+|  |  |-- 10x10y.compressed
+|  |  |-- 64x
+|  |  |-- 64x.compressed
+|  |  |-- alice29.txt
+|  |  |-- alice29.txt.compressed
+|  |  |-- asyoulik.txt
+|  |  |-- asyoulik.txt.compressed
+|  |  |-- backward65536
+|  |  |-- backward65536.compressed
+|  |  |-- bb.binast
+|  |  |-- compressed_file
+|  |  |-- compressed_file.compressed
+|  |  |-- compressed_repeated
+|  |  |-- compressed_repeated.compressed
+|  |  |-- empty
+|  |  |-- empty.compressed
+|  |  |-- empty.compressed.00
+|  |  |-- empty.compressed.01
+|  |  |-- empty.compressed.02
+|  |  |-- empty.compressed.03
+|  |  |-- empty.compressed.04
+|  |  |-- empty.compressed.05
+|  |  |-- empty.compressed.06
+|  |  |-- empty.compressed.07
+|  |  |-- empty.compressed.08
+|  |  |-- empty.compressed.09
+|  |  |-- empty.compressed.10
+|  |  |-- empty.compressed.11
+|  |  |-- empty.compressed.12
+|  |  |-- empty.compressed.13
+|  |  |-- empty.compressed.14
+|  |  |-- empty.compressed.15
+|  |  |-- empty.compressed.16
+|  |  |-- empty.compressed.17
+|  |  |-- empty.compressed.18
+|  |  |-- lcet10.txt
+|  |  |-- lcet10.txt.compressed
+|  |  |-- mapsdatazrh
+|  |  |-- mapsdatazrh.compressed
+|  |  |-- monkey
+|  |  |-- monkey.compressed
+|  |  |-- plrabn12.txt
+|  |  |-- plrabn12.txt.compressed
+|  |  |-- quickfox
+|  |  |-- quickfox.compressed
+|  |  |-- quickfox_repeated
+|  |  |-- quickfox_repeated.compressed
+|  |  |-- random_chunks
+|  |  |-- random_org_10k.bin
+|  |  |-- random_org_10k.bin.compressed
+|  |  |-- ukkonooa
+|  |  |-- ukkonooa.compressed
+|  |  |-- x
+|  |  |-- x.compressed
+|  |  |-- x.compressed.00
+|  |  |-- x.compressed.01
+|  |  |-- x.compressed.02
+|  |  |-- x.compressed.03
+|  |  |-- xyzzy
+|  |  |-- xyzzy.compressed
+|  |  |-- zeros
+|  |  |-- zeros.compressed

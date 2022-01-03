@@ -1,0 +1,3110 @@
+|-- .bazelignore
+|-- .bazelrc
+|-- .classpath
+|-- .gitignore
+|-- .project
+|-- .settings
+|  |-- org.eclipse.core.resources.prefs
+|  |-- org.eclipse.core.runtime.prefs
+|  |-- org.eclipse.jdt.core.prefs
+|  |-- org.eclipse.jdt.ui.prefs
+|-- BUILD.bazel
+|-- BUILDING.md
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- cmd
+|  |-- apic
+|  |  |-- BUILD.bazel
+|  |  |-- binary.go
+|  |  |-- compile.go
+|  |  |-- format.go
+|  |  |-- main.go
+|  |  |-- resolve.go
+|  |  |-- template.go
+|  |  |-- validate.go
+|  |-- copyright
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |-- device-info
+|  |  |-- BUILD.bazel
+|  |  |-- main.cpp
+|  |-- dump-manifest
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |-- embed
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |-- enum_lookup
+|  |  |-- BUILD.bazel
+|  |  |-- lookup.go
+|  |  |-- main.go
+|  |-- filehash
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |-- font-gen
+|  |  |-- BUILD.bazel
+|  |  |-- glyphs.png
+|  |  |-- main.go
+|  |-- gapid
+|  |  |-- BUILD.bazel
+|  |  |-- console_other.go
+|  |  |-- console_windows.go
+|  |  |-- main.go
+|  |-- gapir
+|  |  |-- apk
+|  |  |  |-- BUILD.bazel
+|  |  |-- cc
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- gapir.exports
+|  |  |  |-- main.cpp
+|  |-- gapis
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |-- gapit
+|  |  |-- BUILD.bazel
+|  |  |-- benchmark.go
+|  |  |-- commands.go
+|  |  |-- common.go
+|  |  |-- create_graph_visualization.go
+|  |  |-- devices.go
+|  |  |-- dump.go
+|  |  |-- dump_fbo.go
+|  |  |-- dump_pipeline.go
+|  |  |-- dump_replay.go
+|  |  |-- dump_shaders.go
+|  |  |-- export_replay.go
+|  |  |-- flags.go
+|  |  |-- inputs.go
+|  |  |-- main.go
+|  |  |-- memory.go
+|  |  |-- packages.go
+|  |  |-- profile.go
+|  |  |-- replace_resource.go
+|  |  |-- report.go
+|  |  |-- screenshot.go
+|  |  |-- state.go
+|  |  |-- stats.go
+|  |  |-- stresstest.go
+|  |  |-- sxs_video.go
+|  |  |-- trace.go
+|  |  |-- trim.go
+|  |  |-- unpack.go
+|  |  |-- video.go
+|  |-- gofuse
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |-- linearize_trace
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |-- lingo
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |-- llvm-build
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |-- make-debuggable
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |-- pullapk
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |-- regres
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |-- robot
+|  |  |-- BUILD.bazel
+|  |  |-- actions.go
+|  |  |-- build.go
+|  |  |-- job.go
+|  |  |-- main.go
+|  |  |-- master.go
+|  |  |-- replay.go
+|  |  |-- report.go
+|  |  |-- stash.go
+|  |  |-- subject.go
+|  |  |-- trace.go
+|  |  |-- upload.go
+|  |  |-- web.go
+|  |-- shadertool
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |-- stash
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |  |-- search.go
+|  |  |-- server.go
+|  |  |-- upload.go
+|  |-- stringgen
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |  |-- stringdefapi.tmpl
+|  |  |-- stringdefgo.tmpl
+|  |  |-- template.go
+|  |-- verify_gles_api
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |  |-- registry.go
+|-- core
+|  |-- app
+|  |  |-- BUILD.bazel
+|  |  |-- analytics
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- analytics.go
+|  |  |  |-- analytics_test.go
+|  |  |  |-- batcher.go
+|  |  |  |-- crash_reporter.go
+|  |  |  |-- encoder.go
+|  |  |  |-- endpoint.go
+|  |  |  |-- errors.go
+|  |  |  |-- helpers.go
+|  |  |  |-- limits.go
+|  |  |  |-- param
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- param.go
+|  |  |  |-- payloads.go
+|  |  |  |-- stubs.go
+|  |  |-- atexit.go
+|  |  |-- auth
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- auth.go
+|  |  |  |-- auth_test.go
+|  |  |  |-- doc.go
+|  |  |-- benchmark
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- benchmark.go
+|  |  |  |-- complexity.go
+|  |  |  |-- complexity_test.go
+|  |  |  |-- counter.go
+|  |  |  |-- counter_test.go
+|  |  |  |-- doc.go
+|  |  |-- crash
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- crash.go
+|  |  |  |-- reporting
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- encoder.go
+|  |  |  |  |-- encoder_test.go
+|  |  |  |  |-- filter_stack.go
+|  |  |  |  |-- filter_stack_test.go
+|  |  |  |  |-- reporter.go
+|  |  |  |  |-- reporting.go
+|  |  |  |  |-- reporting_test.go
+|  |  |  |  |-- stubs.go
+|  |  |-- default_version.go.in
+|  |  |-- doc.go
+|  |  |-- flags.go
+|  |  |-- flags
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- choices.go
+|  |  |  |-- choices_test.go
+|  |  |  |-- doc.go
+|  |  |  |-- flags.go
+|  |  |  |-- repeated.go
+|  |  |  |-- repeated_test.go
+|  |  |  |-- strings.go
+|  |  |-- help.go
+|  |  |-- layout
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- layout.go
+|  |  |  |-- pkgdata.go
+|  |  |-- linker
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- linker.go
+|  |  |  |-- linker_posix.go
+|  |  |  |-- linker_windows.go
+|  |  |-- log.go
+|  |  |-- oncrash.go
+|  |  |-- profile.go
+|  |  |-- run.go
+|  |  |-- status
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- context.go
+|  |  |  |-- listener.go
+|  |  |  |-- logger.go
+|  |  |  |-- memory.go
+|  |  |  |-- status.go
+|  |  |  |-- task.go
+|  |  |  |-- tracer.go
+|  |  |-- verbs.go
+|  |-- archive
+|  |  |-- BUILD.bazel
+|  |  |-- archive.go
+|  |-- assert
+|  |  |-- BUILD.bazel
+|  |  |-- assertion.go
+|  |  |-- enum.go
+|  |  |-- enum_test.go
+|  |  |-- error.go
+|  |  |-- error_test.go
+|  |  |-- float.go
+|  |  |-- float_test.go
+|  |  |-- integer.go
+|  |  |-- integer_test.go
+|  |  |-- manager.go
+|  |  |-- manager_test.go
+|  |  |-- map.go
+|  |  |-- map_test.go
+|  |  |-- slice.go
+|  |  |-- slice_test.go
+|  |  |-- string.go
+|  |  |-- string_test.go
+|  |  |-- time.go
+|  |  |-- time_test.go
+|  |  |-- value.go
+|  |  |-- value_test.go
+|  |-- cc
+|  |  |-- BUILD.bazel
+|  |  |-- android
+|  |  |  |-- compatibility.cpp
+|  |  |  |-- crash_handler.cpp
+|  |  |  |-- debugger.cpp
+|  |  |  |-- get_gles_proc_address.cpp
+|  |  |  |-- get_vulkan_proc_address.cpp
+|  |  |  |-- thread.cpp
+|  |  |  |-- trace.cpp
+|  |  |  |-- trace.h
+|  |  |-- archive.cpp
+|  |  |-- archive.h
+|  |  |-- armlinux
+|  |  |  |-- get_gles_proc_address.cpp
+|  |  |  |-- get_vulkan_proc_address.cpp
+|  |  |  |-- thread.cpp
+|  |  |-- assert.h
+|  |  |-- connection.cpp
+|  |  |-- connection.h
+|  |  |-- connection_test.cpp
+|  |  |-- core_ptr_types.h
+|  |  |-- crash_handler.cpp
+|  |  |-- crash_handler.h
+|  |  |-- crash_handler_test.cpp
+|  |  |-- debugger.h
+|  |  |-- dl_loader.cpp
+|  |  |-- dl_loader.h
+|  |  |-- file_reader.cpp
+|  |  |-- file_reader.h
+|  |  |-- file_writer.cpp
+|  |  |-- file_writer.h
+|  |  |-- get_gles_proc_address.h
+|  |  |-- get_vulkan_proc_address.h
+|  |  |-- gl
+|  |  |  |-- formats.cpp
+|  |  |  |-- formats.h
+|  |  |  |-- versions.h
+|  |  |-- gles_ptr_types.h
+|  |  |-- gvr_ptr_types.h
+|  |  |-- id.cpp
+|  |  |-- id.h
+|  |  |-- interval_list.h
+|  |  |-- interval_list_test.cpp
+|  |  |-- linux
+|  |  |  |-- crash_handler.cpp
+|  |  |  |-- debugger.cpp
+|  |  |  |-- get_gles_proc_address.cpp
+|  |  |  |-- get_vulkan_proc_address.cpp
+|  |  |  |-- thread.cpp
+|  |  |-- lock.h
+|  |  |-- log.cpp
+|  |  |-- log.h
+|  |  |-- mock_connection.h
+|  |  |-- null_writer.h
+|  |  |-- osx
+|  |  |  |-- crash_handler_osx.cpp
+|  |  |  |-- debugger.cpp
+|  |  |  |-- get_gles_proc_address.cpp
+|  |  |  |-- get_vulkan_proc_address.cpp
+|  |  |  |-- thread.cpp
+|  |  |-- posix
+|  |  |  |-- thread.cpp
+|  |  |-- range.h
+|  |  |-- semaphore.h
+|  |  |-- socket_connection.cpp
+|  |  |-- socket_connection.h
+|  |  |-- static_array.h
+|  |  |-- stream_reader.h
+|  |  |-- stream_writer.h
+|  |  |-- string_writer.h
+|  |  |-- supported_abis.h
+|  |  |-- target.h
+|  |  |-- thread.h
+|  |  |-- timer.cpp
+|  |  |-- timer.h
+|  |  |-- trace.h
+|  |  |-- vector.h
+|  |  |-- vulkan_ptr_types.h
+|  |  |-- windows
+|  |  |  |-- crash_handler.cpp
+|  |  |  |-- debugger.cpp
+|  |  |  |-- get_gles_proc_address.cpp
+|  |  |  |-- get_vulkan_proc_address.cpp
+|  |  |  |-- thread.cpp
+|  |-- codegen
+|  |  |-- BUILD.bazel
+|  |  |-- arithmetic.go
+|  |  |-- assert.go
+|  |  |-- builder.go
+|  |  |-- call
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- call.go
+|  |  |-- cast.go
+|  |  |-- codegen_test.go
+|  |  |-- datalayout.go
+|  |  |-- debug.go
+|  |  |-- doc.go
+|  |  |-- exceptions.go
+|  |  |-- function.go
+|  |  |-- intrinsics.go
+|  |  |-- module.go
+|  |  |-- output.go
+|  |  |-- triple.go
+|  |  |-- triple_test.go
+|  |  |-- types.go
+|  |  |-- value.go
+|  |-- context
+|  |  |-- keys
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- chain.go
+|  |  |  |-- doc.go
+|  |  |  |-- keys.go
+|  |  |  |-- keys_test.go
+|  |-- data
+|  |  |-- BUILD.bazel
+|  |  |-- assignable.go
+|  |  |-- binary
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bitstream.go
+|  |  |  |-- bitstream_test.go
+|  |  |  |-- reader.go
+|  |  |  |-- writer.go
+|  |  |-- compare
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- comparator.go
+|  |  |  |-- compare.go
+|  |  |  |-- compare_test.go
+|  |  |  |-- custom.go
+|  |  |  |-- doc.go
+|  |  |  |-- handler.go
+|  |  |  |-- path.go
+|  |  |-- dedupe.go
+|  |  |-- dedupe_test.go
+|  |  |-- deep
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- copy.go
+|  |  |  |-- copy_test.go
+|  |  |  |-- doc.go
+|  |  |-- dictionary
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- dictionary.go
+|  |  |  |-- dictionary_test.go
+|  |  |  |-- source.go
+|  |  |-- endian
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- endian.go
+|  |  |  |-- endian_test.go
+|  |  |-- generic
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- generic.go
+|  |  |  |-- generic_test.go
+|  |  |-- id
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- hash.go
+|  |  |  |-- id.go
+|  |  |  |-- id_remap.go
+|  |  |  |-- id_test.go
+|  |  |-- pack
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.MD
+|  |  |  |-- doc.go
+|  |  |  |-- dynamic.go
+|  |  |  |-- events.go
+|  |  |  |-- pack.go
+|  |  |  |-- pack_test.go
+|  |  |  |-- reader.go
+|  |  |  |-- types.go
+|  |  |  |-- writer.go
+|  |  |-- pod
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- pod.go
+|  |  |  |-- pod.proto
+|  |  |  |-- value.go
+|  |  |-- protoconv
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- protoconv.go
+|  |  |-- protoutil
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- descriptor.go
+|  |  |  |-- doc.go
+|  |  |  |-- oneof.go
+|  |  |  |-- testprotos
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- testprotos.proto
+|  |  |-- slice
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- slice.go
+|  |  |  |-- slice_test.go
+|  |  |  |-- sort.go
+|  |  |  |-- sort_test.go
+|  |-- event
+|  |  |-- BUILD.bazel
+|  |  |-- as.go
+|  |  |-- broadcast.go
+|  |  |-- doc.go
+|  |  |-- event.go
+|  |  |-- flow.go
+|  |  |-- function.go
+|  |  |-- pipe.go
+|  |  |-- task
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- baton.go
+|  |  |  |-- baton_test.go
+|  |  |  |-- context.go
+|  |  |  |-- context_test.go
+|  |  |  |-- doc.go
+|  |  |  |-- event.go
+|  |  |  |-- event_test.go
+|  |  |  |-- executor.go
+|  |  |  |-- executor_test.go
+|  |  |  |-- factory.go
+|  |  |  |-- factory_test.go
+|  |  |  |-- handle.go
+|  |  |  |-- runner.go
+|  |  |  |-- runner_test.go
+|  |  |  |-- signal.go
+|  |  |  |-- signal_test.go
+|  |  |  |-- task.go
+|  |  |  |-- task_test.go
+|  |-- fault
+|  |  |-- BUILD.bazel
+|  |  |-- collect.go
+|  |  |-- doc.go
+|  |  |-- fault_test.go
+|  |  |-- stacktrace
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- crunch
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- crunch.go
+|  |  |  |  |-- crunch_test.go
+|  |  |  |-- doc.go
+|  |  |  |-- filter.go
+|  |  |  |-- stacktrace.go
+|  |  |  |-- stacktrace_test.go
+|  |  |-- types.go
+|  |-- git
+|  |  |-- BUILD.bazel
+|  |  |-- branch.go
+|  |  |-- changelist.go
+|  |  |-- checkout.go
+|  |  |-- constants.go
+|  |  |-- doc.go
+|  |  |-- fetch.go
+|  |  |-- get.go
+|  |  |-- git.go
+|  |  |-- log.go
+|  |  |-- log_test.go
+|  |  |-- patch.go
+|  |  |-- rebase.go
+|  |  |-- reset_to_head.go
+|  |  |-- sha.go
+|  |  |-- status.go
+|  |-- image
+|  |  |-- BUILD.bazel
+|  |  |-- astc.go
+|  |  |-- astc
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- astc.cc
+|  |  |  |-- astc.go
+|  |  |  |-- astc.h
+|  |  |-- atc.go
+|  |  |-- convert.go
+|  |  |-- convertable.go
+|  |  |-- decompress_test.go
+|  |  |-- doc.go
+|  |  |-- etc1.go
+|  |  |-- etc2.go
+|  |  |-- font
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- font.go
+|  |  |  |-- glyphs.go
+|  |  |-- format.go
+|  |  |-- id.go
+|  |  |-- image.go
+|  |  |-- image.proto
+|  |  |-- image_test.go
+|  |  |-- png.go
+|  |  |-- resizer.go
+|  |  |-- rgba_f32.go
+|  |  |-- rgba_f32_test.go
+|  |  |-- rgtc.go
+|  |  |-- s3.go
+|  |  |-- s3_dxt1_rgb.go
+|  |  |-- s3_dxt1_rgba.go
+|  |  |-- s3_dxt3_rgba.go
+|  |  |-- s3_dxt5_rgba.go
+|  |  |-- test_data
+|  |  |  |-- .DS_Store
+|  |  |  |-- ASTC_RGBA_4x4.astc
+|  |  |  |-- ASTC_RGBA_4x4.png
+|  |  |  |-- ETC2_RGBA_U8U8U8U1_NORM.ktx
+|  |  |  |-- ETC2_RGBA_U8U8U8U1_NORM.png
+|  |  |  |-- ETC2_RGBA_U8_NORM.ktx
+|  |  |  |-- ETC2_RGBA_U8_NORM.png
+|  |  |  |-- ETC2_RGB_U8_NORM.ktx
+|  |  |  |-- ETC2_RGB_U8_NORM.png
+|  |  |  |-- ETC2_RG_S11_NORM.ktx
+|  |  |  |-- ETC2_RG_S11_NORM.png
+|  |  |  |-- ETC2_RG_U11_NORM.ktx
+|  |  |  |-- ETC2_RG_U11_NORM.png
+|  |  |  |-- ETC2_R_S11_NORM.ktx
+|  |  |  |-- ETC2_R_S11_NORM.png
+|  |  |  |-- ETC2_R_U11_NORM.ktx
+|  |  |  |-- ETC2_R_U11_NORM.png
+|  |  |  |-- RGTC1_BC4_R_S8_NORM.bin
+|  |  |  |-- RGTC1_BC4_R_S8_NORM.png
+|  |  |  |-- RGTC1_BC4_R_U8_NORM.bin
+|  |  |  |-- RGTC1_BC4_R_U8_NORM.png
+|  |  |  |-- RGTC2_BC5_RG_S8_NORM.bin
+|  |  |  |-- RGTC2_BC5_RG_S8_NORM.png
+|  |  |  |-- RGTC2_BC5_RG_U8_NORM.bin
+|  |  |  |-- RGTC2_BC5_RG_U8_NORM.png
+|  |  |  |-- S3_DXT1_RGB.bin
+|  |  |  |-- S3_DXT1_RGB.png
+|  |  |  |-- S3_DXT1_RGBA.bin
+|  |  |  |-- S3_DXT1_RGBA.png
+|  |  |  |-- S3_DXT3_RGBA.bin
+|  |  |  |-- S3_DXT3_RGBA.png
+|  |  |  |-- S3_DXT5_RGBA.bin
+|  |  |  |-- S3_DXT5_RGBA.png
+|  |  |  |-- testcardf.png
+|  |  |  |-- testcardf_transparent.png
+|  |  |-- thumbnailer.go
+|  |  |-- uncompressed.go
+|  |-- java
+|  |  |-- jdbg
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- assignable.go
+|  |  |  |-- errors.go
+|  |  |  |-- failure.go
+|  |  |  |-- jdbg.go
+|  |  |  |-- jdbg_test.go
+|  |  |  |-- marshal.go
+|  |  |  |-- method_signature.go
+|  |  |  |-- methods.go
+|  |  |  |-- resolve_overload.go
+|  |  |  |-- signature.go
+|  |  |  |-- type.go
+|  |  |  |-- value.go
+|  |  |-- jdwp
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- class_status.go
+|  |  |  |-- cmdset_arrayreference.go
+|  |  |  |-- cmdset_arraytype.go
+|  |  |  |-- cmdset_classobjectreference.go
+|  |  |  |-- cmdset_classtype.go
+|  |  |  |-- cmdset_eventrequest.go
+|  |  |  |-- cmdset_method.go
+|  |  |  |-- cmdset_objectreference.go
+|  |  |  |-- cmdset_referencetypes.go
+|  |  |  |-- cmdset_stackframe.go
+|  |  |  |-- cmdset_stringreference.go
+|  |  |  |-- cmdset_threadreference.go
+|  |  |  |-- cmdset_vm.go
+|  |  |  |-- cmdsets.go
+|  |  |  |-- coder.go
+|  |  |  |-- debug.go
+|  |  |  |-- errors.go
+|  |  |  |-- event.go
+|  |  |  |-- event_kind.go
+|  |  |  |-- field.go
+|  |  |  |-- helpers.go
+|  |  |  |-- invoke_options.go
+|  |  |  |-- jdwp.go
+|  |  |  |-- jdwp_test.go
+|  |  |  |-- method.go
+|  |  |  |-- modbits.go
+|  |  |  |-- packet.go
+|  |  |  |-- recv.go
+|  |  |  |-- suspend_policy.go
+|  |  |  |-- tag.go
+|  |  |  |-- test
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- test.go
+|  |  |  |-- thread_status.go
+|  |  |  |-- type_tag.go
+|  |  |  |-- types.go
+|  |  |  |-- value.go
+|  |-- langsvr
+|  |  |-- BUILD.bazel
+|  |  |-- body.go
+|  |  |-- body_test.go
+|  |  |-- codelens.go
+|  |  |-- command.go
+|  |  |-- completion.go
+|  |  |-- diagnositcs.go
+|  |  |-- doc.go
+|  |  |-- document.go
+|  |  |-- formatting_options.go
+|  |  |-- highlight.go
+|  |  |-- langsvr.go
+|  |  |-- position.go
+|  |  |-- protocol
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- connection.go
+|  |  |  |-- doc.go
+|  |  |  |-- message.go
+|  |  |  |-- notifications.go
+|  |  |  |-- requests.go
+|  |  |  |-- types.go
+|  |  |-- signature.go
+|  |  |-- source.go
+|  |  |-- symbol.go
+|  |  |-- textedit.go
+|  |  |-- uri.go
+|  |-- log
+|  |  |-- BUILD.bazel
+|  |  |-- broadcast.go
+|  |  |-- broadcast_test.go
+|  |  |-- channel.go
+|  |  |-- channel_test.go
+|  |  |-- clock.go
+|  |  |-- err.go
+|  |  |-- filter.go
+|  |  |-- handler.go
+|  |  |-- indirect.go
+|  |  |-- log.go
+|  |  |-- log_pb
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- log.go
+|  |  |  |-- log.proto
+|  |  |-- log_test.go
+|  |  |-- message.go
+|  |  |-- onclosed.go
+|  |  |-- process.go
+|  |  |-- severity.go
+|  |  |-- stacktracer.go
+|  |  |-- style.go
+|  |  |-- styles.go
+|  |  |-- styles_test.go
+|  |  |-- tag.go
+|  |  |-- testing.go
+|  |  |-- trace.go
+|  |  |-- values.go
+|  |  |-- writer.go
+|  |-- math
+|  |  |-- f16
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- float16.go
+|  |  |  |-- float16_test.go
+|  |  |-- f32
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- f32.go
+|  |  |  |-- vec3.go
+|  |  |  |-- vec3_test.go
+|  |  |  |-- vec4.go
+|  |  |  |-- vec4_test.go
+|  |  |-- f64
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- f64.go
+|  |  |  |-- f64_test.go
+|  |  |  |-- vec3.go
+|  |  |  |-- vec3_test.go
+|  |  |  |-- vec4.go
+|  |  |  |-- vec4_test.go
+|  |  |-- interval
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- algorithm.go
+|  |  |  |-- doc.go
+|  |  |  |-- list.go
+|  |  |  |-- u64.go
+|  |  |  |-- u64_test.go
+|  |  |  |-- value_list.go
+|  |  |  |-- value_list_test.go
+|  |  |-- sint
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- histogram.go
+|  |  |  |-- sint.go
+|  |  |  |-- sint_test.go
+|  |  |-- u32
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- u32.go
+|  |  |-- u64
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- u64.go
+|  |-- memory
+|  |  |-- arena
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- arena.go
+|  |  |  |-- arena_test.go
+|  |  |  |-- cc
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- arena.cpp
+|  |  |  |  |-- arena.h
+|  |  |  |  |-- arena_test.cpp
+|  |-- memory_tracker
+|  |  |-- README.md
+|  |  |-- cc
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- memory_protections.h
+|  |  |  |-- memory_tracker.cpp
+|  |  |  |-- memory_tracker.h
+|  |  |  |-- memory_tracker_test.cpp
+|  |  |  |-- posix
+|  |  |  |  |-- memory_tracker.h
+|  |  |  |  |-- memory_tracker.inc
+|  |  |  |-- windows
+|  |  |  |  |-- memory_tracker.cpp
+|  |  |  |  |-- memory_tracker.h
+|  |  |  |  |-- memory_tracker.inc
+|  |-- net
+|  |  |-- BUILD.bazel
+|  |  |-- grpcutil
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- client.go
+|  |  |  |-- doc.go
+|  |  |  |-- pipe.go
+|  |  |  |-- pipe_test.go
+|  |  |  |-- server.go
+|  |  |  |-- stream.go
+|  |  |-- useragent.go
+|  |  |-- useragent_test.go
+|  |-- os
+|  |  |-- android
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- action.go
+|  |  |  |-- adb
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- adb.go
+|  |  |  |  |-- adb_data_test.go
+|  |  |  |  |-- adb_test.go
+|  |  |  |  |-- bind.go
+|  |  |  |  |-- commands.go
+|  |  |  |  |-- commands_test.go
+|  |  |  |  |-- device.go
+|  |  |  |  |-- device_test.go
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- file.go
+|  |  |  |  |-- file_test.go
+|  |  |  |  |-- forward.go
+|  |  |  |  |-- forward_and_connect.go
+|  |  |  |  |-- inputs.go
+|  |  |  |  |-- installed_package.go
+|  |  |  |  |-- installed_package_test.go
+|  |  |  |  |-- logcat.go
+|  |  |  |  |-- logcat_test.go
+|  |  |  |  |-- screen.go
+|  |  |  |  |-- screen_test.go
+|  |  |  |-- apk
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- analysis.go
+|  |  |  |  |-- apk.go
+|  |  |  |  |-- apk.proto
+|  |  |  |  |-- debugifier.go
+|  |  |  |  |-- doc.go
+|  |  |  |-- binaryxml
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- debuggable.go
+|  |  |  |  |-- debuggable_test.go
+|  |  |  |  |-- decode.go
+|  |  |  |  |-- decode_test.go
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- string_pool.go
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- manifest1.binxml
+|  |  |  |  |  |-- manifest2.binxml
+|  |  |  |  |  |-- manifest3.binxml
+|  |  |  |  |  |-- manifest4.binxml
+|  |  |  |  |  |-- manifest5.binxml
+|  |  |  |  |  |-- manifest6.binxml
+|  |  |  |  |  |-- manifest7.binxml
+|  |  |  |  |-- value.go
+|  |  |  |  |-- xml_attribute.go
+|  |  |  |  |-- xml_cdata.go
+|  |  |  |  |-- xml_context.go
+|  |  |  |  |-- xml_end_element.go
+|  |  |  |  |-- xml_end_namespace.go
+|  |  |  |  |-- xml_resource_map.go
+|  |  |  |  |-- xml_start_element.go
+|  |  |  |  |-- xml_start_namespace.go
+|  |  |  |  |-- xml_tree.go
+|  |  |  |-- device.go
+|  |  |  |-- doc.go
+|  |  |  |-- installed_package.go
+|  |  |  |-- keycodes.proto
+|  |  |  |-- manifest
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- manifest.go
+|  |  |  |  |-- manifest_test.go
+|  |  |-- device
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- abi.go
+|  |  |  |-- abi_test.go
+|  |  |  |-- android.go
+|  |  |  |-- android_test.go
+|  |  |  |-- architecture.go
+|  |  |  |-- architecture_test.go
+|  |  |  |-- bind
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- bind.go
+|  |  |  |  |-- bind.proto
+|  |  |  |  |-- device.go
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- registry.go
+|  |  |  |  |-- simple.go
+|  |  |  |  |-- simple_posix.go
+|  |  |  |  |-- simple_windows.go
+|  |  |  |-- cpu.go
+|  |  |  |-- cpu_test.go
+|  |  |  |-- device.go
+|  |  |  |-- device.proto
+|  |  |  |-- deviceinfo
+|  |  |  |  |-- apk
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- cc
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- android
+|  |  |  |  |  |  |-- egl_lite.h
+|  |  |  |  |  |  |-- jni.cpp
+|  |  |  |  |  |  |-- jni_helpers.h
+|  |  |  |  |  |  |-- query.cpp
+|  |  |  |  |  |-- cpu.cpp
+|  |  |  |  |  |-- gl.cpp
+|  |  |  |  |  |-- gl_lite.h
+|  |  |  |  |  |-- instance.cpp
+|  |  |  |  |  |-- instance.h
+|  |  |  |  |  |-- libdeviceinfo.exports
+|  |  |  |  |  |-- linux
+|  |  |  |  |  |  |-- query.cpp
+|  |  |  |  |  |-- osx
+|  |  |  |  |  |  |-- query.mm
+|  |  |  |  |  |-- query.cpp
+|  |  |  |  |  |-- query.h
+|  |  |  |  |  |-- vk.cpp
+|  |  |  |  |  |-- vk_lite.h
+|  |  |  |  |  |-- windows
+|  |  |  |  |  |  |-- query.cpp
+|  |  |  |-- doc.go
+|  |  |  |-- gpu.go
+|  |  |  |-- hardware.go
+|  |  |  |-- host
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- host.go
+|  |  |  |  |-- host_c.go
+|  |  |  |  |-- host_darwin.go
+|  |  |  |  |-- host_linux.go
+|  |  |  |  |-- host_test.go
+|  |  |  |  |-- host_windows.go
+|  |  |  |-- id.go
+|  |  |  |-- instance.go
+|  |  |  |-- instance_test.go
+|  |  |  |-- linux.go
+|  |  |  |-- linux_test.go
+|  |  |  |-- os.go
+|  |  |  |-- osx.go
+|  |  |  |-- osx_test.go
+|  |  |  |-- remotessh
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- commands.go
+|  |  |  |  |-- configuration.go
+|  |  |  |  |-- configuration_test.go
+|  |  |  |  |-- device.go
+|  |  |-- file
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- file.go
+|  |  |  |-- list.go
+|  |  |  |-- path.go
+|  |  |  |-- path_test.go
+|  |  |  |-- rooted.go
+|  |  |  |-- set.go
+|  |  |  |-- unix.go
+|  |  |  |-- windows.go
+|  |  |  |-- windows_test.go
+|  |  |  |-- zip.go
+|  |  |-- flock
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- debug.test
+|  |  |  |-- doc.go
+|  |  |  |-- flock.go
+|  |  |  |-- flock_test.go
+|  |  |  |-- flock_unix.go
+|  |  |  |-- flock_windows.go
+|  |  |-- process
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- client.go
+|  |  |  |-- doc.go
+|  |  |-- shell
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- command.go
+|  |  |  |-- command_example_test.go
+|  |  |  |-- command_test.go
+|  |  |  |-- doc.go
+|  |  |  |-- env.go
+|  |  |  |-- env_test.go
+|  |  |  |-- local.go
+|  |  |  |-- process.go
+|  |  |  |-- stub
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- delegate.go
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- echo.go
+|  |  |  |  |-- match.go
+|  |  |  |  |-- response.go
+|  |  |  |  |-- sequence.go
+|  |  |  |  |-- stub.go
+|  |  |  |  |-- stub_example_test.go
+|  |  |  |-- target.go
+|  |-- stream
+|  |  |-- BUILD.bazel
+|  |  |-- channel.go
+|  |  |-- component.go
+|  |  |-- convert.go
+|  |  |-- convert_test.go
+|  |  |-- curve.go
+|  |  |-- datatype.go
+|  |  |-- doc.go
+|  |  |-- fmts
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- a.go
+|  |  |  |-- abgr.go
+|  |  |  |-- argb.go
+|  |  |  |-- bgr.go
+|  |  |  |-- bgra.go
+|  |  |  |-- count.go
+|  |  |  |-- d.go
+|  |  |  |-- doc.go
+|  |  |  |-- ds.go
+|  |  |  |-- fmts_test.go
+|  |  |  |-- gray.go
+|  |  |  |-- l.go
+|  |  |  |-- la.go
+|  |  |  |-- r.go
+|  |  |  |-- rg.go
+|  |  |  |-- rgb.go
+|  |  |  |-- rgba.go
+|  |  |  |-- rgbe.go
+|  |  |  |-- s.go
+|  |  |  |-- sd.go
+|  |  |  |-- x.go
+|  |  |  |-- xy.go
+|  |  |  |-- xyz.go
+|  |  |  |-- xyzw.go
+|  |  |-- format.go
+|  |  |-- sampling.go
+|  |  |-- shared_exp.go
+|  |  |-- stream.proto
+|  |-- text
+|  |  |-- BUILD.bazel
+|  |  |-- cases
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cases.go
+|  |  |  |-- cases_test.go
+|  |  |-- copyright
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- apache_asm
+|  |  |  |-- apache_c
+|  |  |  |-- apache_cmake
+|  |  |  |-- apache_cpp
+|  |  |  |-- apache_js
+|  |  |  |-- apache_lingo
+|  |  |  |-- apache_proto
+|  |  |  |-- apache_tmpl
+|  |  |  |-- apache_txt
+|  |  |  |-- broken_1
+|  |  |  |-- copyright.go
+|  |  |  |-- external_murmur
+|  |  |  |-- generated
+|  |  |  |-- generated_by
+|  |  |  |-- generated_c
+|  |  |  |-- generated_java
+|  |  |  |-- generated_protoc
+|  |  |  |-- generated_protoc_go
+|  |  |  |-- generated_protoc_js
+|  |  |  |-- generated_stringer
+|  |  |-- doc.go
+|  |  |-- limit.go
+|  |  |-- limit_test.go
+|  |  |-- line_number.go
+|  |  |-- line_number_test.go
+|  |  |-- parse
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cst
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- branch.go
+|  |  |  |  |-- fragment.go
+|  |  |  |  |-- leaf.go
+|  |  |  |  |-- node.go
+|  |  |  |  |-- source.go
+|  |  |  |  |-- token.go
+|  |  |  |-- doc.go
+|  |  |  |-- error.go
+|  |  |  |-- parser.go
+|  |  |  |-- parser_test.go
+|  |  |  |-- reader.go
+|  |  |  |-- reader_test.go
+|  |  |  |-- skip.go
+|  |  |  |-- test
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- ast.go
+|  |  |  |  |-- cst.go
+|  |  |  |  |-- verify.go
+|  |  |-- reflow
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- writer.go
+|  |  |-- split_args.go
+|  |  |-- split_args_test.go
+|  |  |-- writer.go
+|  |  |-- writer_test.go
+|  |-- video
+|  |  |-- BUILD.bazel
+|  |  |-- doc.go
+|  |  |-- encoder.go
+|  |-- vulkan
+|  |  |-- cc
+|  |  |  |-- include
+|  |  |  |  |-- vulkan
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- vk_layer.h
+|  |  |  |  |  |-- vk_platform.h
+|  |  |  |  |  |-- vulkan.h
+|  |  |-- loader
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- loader.go
+|  |  |-- vk_virtual_swapchain
+|  |  |  |-- apk
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |-- cc
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- VirtualSwapchainLayer.json
+|  |  |  |  |-- base_swapchain.cpp
+|  |  |  |  |-- base_swapchain.h
+|  |  |  |  |-- layer.cpp
+|  |  |  |  |-- layer.h
+|  |  |  |  |-- platform.cpp
+|  |  |  |  |-- platform.h
+|  |  |  |  |-- swapchain.cpp
+|  |  |  |  |-- swapchain.h
+|  |  |  |  |-- threading.h
+|  |  |  |  |-- virtual_swapchain.cpp
+|  |  |  |  |-- virtual_swapchain.h
+|  |  |  |  |-- virtual_swapchain_android.exports
+|  |  |  |  |-- virtual_swapchain_desktop.exports
+|-- gapic
+|  |-- .gitignore
+|  |-- BUILD.bazel
+|  |-- docs
+|  |  |-- shaders.md
+|  |-- readme.md
+|  |-- res
+|  |  |-- BUILD.bazel
+|  |  |-- icons
+|  |  |  |-- android.png
+|  |  |  |-- android@2x.png
+|  |  |  |-- arrow.png
+|  |  |  |-- arrow@2x.png
+|  |  |  |-- color_buffer0.png
+|  |  |  |-- color_buffer0@2x.png
+|  |  |  |-- color_buffer1.png
+|  |  |  |-- color_buffer1@2x.png
+|  |  |  |-- color_buffer2.png
+|  |  |  |-- color_buffer2@2x.png
+|  |  |  |-- color_buffer3.png
+|  |  |  |-- color_buffer3@2x.png
+|  |  |  |-- color_channels_00.png
+|  |  |  |-- color_channels_00@2x.png
+|  |  |  |-- color_channels_01.png
+|  |  |  |-- color_channels_01@2x.png
+|  |  |  |-- color_channels_02.png
+|  |  |  |-- color_channels_02@2x.png
+|  |  |  |-- color_channels_03.png
+|  |  |  |-- color_channels_03@2x.png
+|  |  |  |-- color_channels_04.png
+|  |  |  |-- color_channels_04@2x.png
+|  |  |  |-- color_channels_05.png
+|  |  |  |-- color_channels_05@2x.png
+|  |  |  |-- color_channels_06.png
+|  |  |  |-- color_channels_06@2x.png
+|  |  |  |-- color_channels_07.png
+|  |  |  |-- color_channels_07@2x.png
+|  |  |  |-- color_channels_08.png
+|  |  |  |-- color_channels_08@2x.png
+|  |  |  |-- color_channels_09.png
+|  |  |  |-- color_channels_09@2x.png
+|  |  |  |-- color_channels_10.png
+|  |  |  |-- color_channels_10@2x.png
+|  |  |  |-- color_channels_11.png
+|  |  |  |-- color_channels_11@2x.png
+|  |  |  |-- color_channels_12.png
+|  |  |  |-- color_channels_12@2x.png
+|  |  |  |-- color_channels_13.png
+|  |  |  |-- color_channels_13@2x.png
+|  |  |  |-- color_channels_14.png
+|  |  |  |-- color_channels_14@2x.png
+|  |  |  |-- color_channels_15.png
+|  |  |  |-- color_channels_15@2x.png
+|  |  |  |-- culling_disabled.png
+|  |  |  |-- culling_disabled@2x.png
+|  |  |  |-- culling_enabled.png
+|  |  |  |-- culling_enabled@2x.png
+|  |  |  |-- depth_buffer.png
+|  |  |  |-- depth_buffer@2x.png
+|  |  |  |-- error.png
+|  |  |  |-- error@2x.png
+|  |  |  |-- faceted.png
+|  |  |  |-- faceted@2x.png
+|  |  |  |-- flat.png
+|  |  |  |-- flat@2x.png
+|  |  |  |-- flip_vertically.png
+|  |  |  |-- flip_vertically@2x.png
+|  |  |  |-- histogram.png
+|  |  |  |-- histogram@2x.png
+|  |  |  |-- jump.png
+|  |  |  |-- jump@2x.png
+|  |  |  |-- lit.png
+|  |  |  |-- lit@2x.png
+|  |  |  |-- loading_0_large.png
+|  |  |  |-- loading_0_large@2x.png
+|  |  |  |-- loading_0_small.png
+|  |  |  |-- loading_0_small@2x.png
+|  |  |  |-- loading_1_large.png
+|  |  |  |-- loading_1_large@2x.png
+|  |  |  |-- loading_1_small.png
+|  |  |  |-- loading_1_small@2x.png
+|  |  |  |-- loading_2_large.png
+|  |  |  |-- loading_2_large@2x.png
+|  |  |  |-- loading_2_small.png
+|  |  |  |-- loading_2_small@2x.png
+|  |  |  |-- loading_3_large.png
+|  |  |  |-- loading_3_large@2x.png
+|  |  |  |-- loading_3_small.png
+|  |  |  |-- loading_3_small@2x.png
+|  |  |  |-- loading_4_large.png
+|  |  |  |-- loading_4_large@2x.png
+|  |  |  |-- loading_4_small.png
+|  |  |  |-- loading_4_small@2x.png
+|  |  |  |-- loading_5_large.png
+|  |  |  |-- loading_5_large@2x.png
+|  |  |  |-- loading_5_small.png
+|  |  |  |-- loading_5_small@2x.png
+|  |  |  |-- loading_6_large.png
+|  |  |  |-- loading_6_large@2x.png
+|  |  |  |-- loading_6_small.png
+|  |  |  |-- loading_6_small@2x.png
+|  |  |  |-- loading_7_large.png
+|  |  |  |-- loading_7_large@2x.png
+|  |  |  |-- loading_7_small.png
+|  |  |  |-- loading_7_small@2x.png
+|  |  |  |-- logo_1024.png
+|  |  |  |-- logo_128.png
+|  |  |  |-- logo_128@2x.png
+|  |  |  |-- logo_16.png
+|  |  |  |-- logo_256.png
+|  |  |  |-- logo_32.png
+|  |  |  |-- logo_48.png
+|  |  |  |-- logo_512.png
+|  |  |  |-- logo_64.png
+|  |  |  |-- normals.png
+|  |  |  |-- normals@2x.png
+|  |  |  |-- overdraw.png
+|  |  |  |-- overdraw@2x.png
+|  |  |  |-- point_cloud.png
+|  |  |  |-- point_cloud@2x.png
+|  |  |  |-- refresh.png
+|  |  |  |-- refresh@2x.png
+|  |  |  |-- save.png
+|  |  |  |-- save@2x.png
+|  |  |  |-- settings.png
+|  |  |  |-- settings@2x.png
+|  |  |  |-- smile.png
+|  |  |  |-- smile@2x.png
+|  |  |  |-- smooth.png
+|  |  |  |-- smooth@2x.png
+|  |  |  |-- transparency.png
+|  |  |  |-- transparency@2x.png
+|  |  |  |-- winding_ccw.png
+|  |  |  |-- winding_ccw@2x.png
+|  |  |  |-- winding_cw.png
+|  |  |  |-- winding_cw@2x.png
+|  |  |  |-- wireframe_all.png
+|  |  |  |-- wireframe_all@2x.png
+|  |  |  |-- wireframe_none.png
+|  |  |  |-- wireframe_none@2x.png
+|  |  |  |-- wireframe_overlay.png
+|  |  |  |-- wireframe_overlay@2x.png
+|  |  |  |-- yup.png
+|  |  |  |-- yup@2x.png
+|  |  |  |-- zoom_actual.png
+|  |  |  |-- zoom_actual@2x.png
+|  |  |  |-- zoom_fit.png
+|  |  |  |-- zoom_fit@2x.png
+|  |  |  |-- zoom_in.png
+|  |  |  |-- zoom_in@2x.png
+|  |  |  |-- zoom_out.png
+|  |  |  |-- zoom_out@2x.png
+|  |  |  |-- zup.png
+|  |  |  |-- zup@2x.png
+|  |  |-- shaders
+|  |  |  |-- border.glsl
+|  |  |  |-- checker.glsl
+|  |  |  |-- flat.glsl
+|  |  |  |-- image.glsl
+|  |  |  |-- lit.glsl
+|  |  |  |-- normals.glsl
+|  |  |  |-- solid.glsl
+|  |  |-- text
+|  |  |  |-- licenses.html
+|  |-- src
+|  |  |-- main
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- gapid
+|  |  |  |  |  |  |-- Main.java
+|  |  |  |  |  |  |-- MainWindow.java
+|  |  |  |  |  |  |-- Server.java
+|  |  |  |  |  |  |-- glviewer
+|  |  |  |  |  |  |  |-- CameraModel.java
+|  |  |  |  |  |  |  |-- Constants.java
+|  |  |  |  |  |  |  |-- Geometry.java
+|  |  |  |  |  |  |  |-- GeometryScene.java
+|  |  |  |  |  |  |  |-- ModelViewProjection.java
+|  |  |  |  |  |  |  |-- Renderable.java
+|  |  |  |  |  |  |  |-- ShaderSource.java
+|  |  |  |  |  |  |  |-- camera
+|  |  |  |  |  |  |  |  |-- CylindricalCameraModel.java
+|  |  |  |  |  |  |  |  |-- Emitter.java
+|  |  |  |  |  |  |  |  |-- IsoSurfaceCameraModel.java
+|  |  |  |  |  |  |  |  |-- RayCaster.java
+|  |  |  |  |  |  |  |-- geo
+|  |  |  |  |  |  |  |  |-- BoundingBox.java
+|  |  |  |  |  |  |  |  |-- Model.java
+|  |  |  |  |  |  |  |  |-- ObjWriter.java
+|  |  |  |  |  |  |  |-- gl
+|  |  |  |  |  |  |  |  |-- GlObject.java
+|  |  |  |  |  |  |  |  |-- IndexBuffer.java
+|  |  |  |  |  |  |  |  |-- Renderer.java
+|  |  |  |  |  |  |  |  |-- Scene.java
+|  |  |  |  |  |  |  |  |-- Shader.java
+|  |  |  |  |  |  |  |  |-- Texture.java
+|  |  |  |  |  |  |  |  |-- VertexBuffer.java
+|  |  |  |  |  |  |  |-- vec
+|  |  |  |  |  |  |  |  |-- MatD.java
+|  |  |  |  |  |  |  |  |-- VecD.java
+|  |  |  |  |  |  |-- image
+|  |  |  |  |  |  |  |-- ArrayImage.java
+|  |  |  |  |  |  |  |-- FetchedImage.java
+|  |  |  |  |  |  |  |-- Histogram.java
+|  |  |  |  |  |  |  |-- Image.java
+|  |  |  |  |  |  |  |-- Images.java
+|  |  |  |  |  |  |  |-- MultiLayerAndLevelImage.java
+|  |  |  |  |  |  |-- lang
+|  |  |  |  |  |  |  |-- glsl
+|  |  |  |  |  |  |  |  |-- GlslSourceConfiguration.java
+|  |  |  |  |  |  |-- models
+|  |  |  |  |  |  |  |-- Analytics.java
+|  |  |  |  |  |  |  |-- ApiContext.java
+|  |  |  |  |  |  |  |-- ApiState.java
+|  |  |  |  |  |  |  |-- Capture.java
+|  |  |  |  |  |  |  |-- CaptureDependentModel.java
+|  |  |  |  |  |  |  |-- CommandStream.java
+|  |  |  |  |  |  |  |-- ConstantSets.java
+|  |  |  |  |  |  |  |-- DeviceDependentModel.java
+|  |  |  |  |  |  |  |-- Devices.java
+|  |  |  |  |  |  |  |-- Follower.java
+|  |  |  |  |  |  |  |-- Geometries.java
+|  |  |  |  |  |  |  |-- ImagesModel.java
+|  |  |  |  |  |  |  |-- Info.java
+|  |  |  |  |  |  |  |-- Memory.java
+|  |  |  |  |  |  |  |-- ModelBase.java
+|  |  |  |  |  |  |  |-- Models.java
+|  |  |  |  |  |  |  |-- Reports.java
+|  |  |  |  |  |  |  |-- Resources.java
+|  |  |  |  |  |  |  |-- Settings.java
+|  |  |  |  |  |  |  |-- Strings.java
+|  |  |  |  |  |  |  |-- Timeline.java
+|  |  |  |  |  |  |  |-- TraceTargets.java
+|  |  |  |  |  |  |-- rpc
+|  |  |  |  |  |  |  |-- Rpc.java
+|  |  |  |  |  |  |  |-- RpcException.java
+|  |  |  |  |  |  |  |-- SingleInFlight.java
+|  |  |  |  |  |  |  |-- UiCallback.java
+|  |  |  |  |  |  |  |-- UiErrorCallback.java
+|  |  |  |  |  |  |-- server
+|  |  |  |  |  |  |  |-- ChildProcess.java
+|  |  |  |  |  |  |  |-- Client.java
+|  |  |  |  |  |  |  |-- GapiPaths.java
+|  |  |  |  |  |  |  |-- GapidClient.java
+|  |  |  |  |  |  |  |-- GapidClientCache.java
+|  |  |  |  |  |  |  |-- GapidClientGrpc.java
+|  |  |  |  |  |  |  |-- GapisConnection.java
+|  |  |  |  |  |  |  |-- GapisProcess.java
+|  |  |  |  |  |  |  |-- GapitPkgInfoProcess.java
+|  |  |  |  |  |  |  |-- Tracer.java
+|  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |-- Arrays.java
+|  |  |  |  |  |  |  |-- BigPoint.java
+|  |  |  |  |  |  |  |-- Boxes.java
+|  |  |  |  |  |  |  |-- Buffers.java
+|  |  |  |  |  |  |  |-- Caches.java
+|  |  |  |  |  |  |  |-- Colors.java
+|  |  |  |  |  |  |  |-- Crash2ExceptionHandler.java
+|  |  |  |  |  |  |  |-- Events.java
+|  |  |  |  |  |  |  |-- ExceptionHandler.java
+|  |  |  |  |  |  |  |-- Flags.java
+|  |  |  |  |  |  |  |-- Float16.java
+|  |  |  |  |  |  |  |-- FutureCache.java
+|  |  |  |  |  |  |  |-- GapidVersion.java.in
+|  |  |  |  |  |  |  |-- GeoUtils.java
+|  |  |  |  |  |  |  |-- IntRange.java
+|  |  |  |  |  |  |  |-- Loadable.java
+|  |  |  |  |  |  |  |-- Logging.java
+|  |  |  |  |  |  |  |-- LoggingCallback.java
+|  |  |  |  |  |  |  |-- LongPoint.java
+|  |  |  |  |  |  |  |-- MacApplication.java
+|  |  |  |  |  |  |  |-- Messages.java
+|  |  |  |  |  |  |  |-- MoreFutures.java
+|  |  |  |  |  |  |  |-- MouseAdapter.java
+|  |  |  |  |  |  |  |-- OS.java
+|  |  |  |  |  |  |  |-- ObjectStore.java
+|  |  |  |  |  |  |  |-- Paths.java
+|  |  |  |  |  |  |  |-- Pods.java
+|  |  |  |  |  |  |  |-- PrefixTree.java
+|  |  |  |  |  |  |  |-- ProtoDebugTextFormat.java
+|  |  |  |  |  |  |  |-- Range.java
+|  |  |  |  |  |  |  |-- Ranges.java
+|  |  |  |  |  |  |  |-- Scheduler.java
+|  |  |  |  |  |  |  |-- SelectionHandler.java
+|  |  |  |  |  |  |  |-- Streams.java
+|  |  |  |  |  |  |  |-- Strings.java
+|  |  |  |  |  |  |  |-- Tables.java
+|  |  |  |  |  |  |  |-- Trees.java
+|  |  |  |  |  |  |  |-- UpdateWatcher.java
+|  |  |  |  |  |  |  |-- Values.java
+|  |  |  |  |  |  |  |-- Version.java
+|  |  |  |  |  |  |-- views
+|  |  |  |  |  |  |  |-- AboutDialog.java
+|  |  |  |  |  |  |  |-- ActivityPickerDialog.java
+|  |  |  |  |  |  |  |-- CommandEditor.java
+|  |  |  |  |  |  |  |-- CommandTree.java
+|  |  |  |  |  |  |  |-- ContextSelector.java
+|  |  |  |  |  |  |  |-- ErrorDialog.java
+|  |  |  |  |  |  |  |-- Formatter.java
+|  |  |  |  |  |  |  |-- FramebufferView.java
+|  |  |  |  |  |  |  |-- GeometryView.java
+|  |  |  |  |  |  |  |-- GotoCommand.java
+|  |  |  |  |  |  |  |-- GotoMemory.java
+|  |  |  |  |  |  |  |-- Licenses.java
+|  |  |  |  |  |  |  |-- LogView.java
+|  |  |  |  |  |  |  |-- MemoryView.java
+|  |  |  |  |  |  |  |-- ReportView.java
+|  |  |  |  |  |  |  |-- SettingsDialog.java
+|  |  |  |  |  |  |  |-- ShaderView.java
+|  |  |  |  |  |  |  |-- StateView.java
+|  |  |  |  |  |  |  |-- StatusBar.java
+|  |  |  |  |  |  |  |-- Tab.java
+|  |  |  |  |  |  |  |-- TextureView.java
+|  |  |  |  |  |  |  |-- ThumbnailScrubber.java
+|  |  |  |  |  |  |  |-- TraceTargetPickerDialog.java
+|  |  |  |  |  |  |  |-- TracerDialog.java
+|  |  |  |  |  |  |  |-- WelcomeDialog.java
+|  |  |  |  |  |  |-- widgets
+|  |  |  |  |  |  |  |-- ActionTextbox.java
+|  |  |  |  |  |  |  |-- Balloon.java
+|  |  |  |  |  |  |  |-- CopyPaste.java
+|  |  |  |  |  |  |  |-- CopySources.java
+|  |  |  |  |  |  |  |-- DialogBase.java
+|  |  |  |  |  |  |  |-- FileTextbox.java
+|  |  |  |  |  |  |  |-- FixedTopSplitter.java
+|  |  |  |  |  |  |  |-- HorizontalList.java
+|  |  |  |  |  |  |  |-- ImagePanel.java
+|  |  |  |  |  |  |  |-- InfiniteScrolledComposite.java
+|  |  |  |  |  |  |  |-- LinkifiedTree.java
+|  |  |  |  |  |  |  |-- LinkifiedTreeWithImages.java
+|  |  |  |  |  |  |  |-- LoadableImage.java
+|  |  |  |  |  |  |  |-- LoadableImageWidget.java
+|  |  |  |  |  |  |  |-- LoadablePanel.java
+|  |  |  |  |  |  |  |-- LoadingIndicator.java
+|  |  |  |  |  |  |  |-- MeasuringViewLabelProvider.java
+|  |  |  |  |  |  |  |-- QuickColorPiker.java
+|  |  |  |  |  |  |  |-- ScenePanel.java
+|  |  |  |  |  |  |  |-- SearchBox.java
+|  |  |  |  |  |  |  |-- TabArea.java
+|  |  |  |  |  |  |  |-- TabDnD.java
+|  |  |  |  |  |  |  |-- TextViewer.java
+|  |  |  |  |  |  |  |-- Theme.java
+|  |  |  |  |  |  |  |-- VisibilityTrackingTableViewer.java
+|  |  |  |  |  |  |  |-- VisibilityTrackingTreeViewer.java
+|  |  |  |  |  |  |  |-- Widgets.java
+|  |  |-- platform
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- linux
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- gapid
+|  |  |  |  |  |  |  |-- glcanvas
+|  |  |  |  |  |  |  |  |-- GlCanvas.java
+|  |  |  |  |-- glcanvas.cc
+|  |  |  |  |-- org
+|  |  |  |  |  |-- eclipse
+|  |  |  |  |  |  |-- swt
+|  |  |  |  |  |  |  |-- widgets
+|  |  |  |  |  |  |  |  |-- SwtUtil.java
+|  |  |  |-- osx
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- gapid
+|  |  |  |  |  |  |  |-- glcanvas
+|  |  |  |  |  |  |  |  |-- GlCanvas.java
+|  |  |  |  |-- org
+|  |  |  |  |  |-- eclipse
+|  |  |  |  |  |  |-- swt
+|  |  |  |  |  |  |  |-- widgets
+|  |  |  |  |  |  |  |  |-- SwtUtil.java
+|  |  |  |-- windows
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- gapid
+|  |  |  |  |  |  |  |-- glcanvas
+|  |  |  |  |  |  |  |  |-- GlCanvas.java
+|  |  |  |  |-- org
+|  |  |  |  |  |-- eclipse
+|  |  |  |  |  |  |-- swt
+|  |  |  |  |  |  |  |-- widgets
+|  |  |  |  |  |  |  |  |-- SwtUtil.java
+|-- gapidapk
+|  |-- BUILD.bazel
+|  |-- android
+|  |  |-- apk
+|  |  |  |-- AndroidManifest.xml.in
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- rules.bzl
+|  |  |-- app
+|  |  |  |-- src
+|  |  |  |  |-- main
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- java
+|  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |  |-- gapid
+|  |  |  |  |  |  |  |  |  |  |-- Cache.java
+|  |  |  |  |  |  |  |  |  |  |-- Counter.java
+|  |  |  |  |  |  |  |  |  |  |-- DeviceInfoService.java
+|  |  |  |  |  |  |  |  |  |  |-- FileCache.java
+|  |  |  |  |  |  |  |  |  |  |-- GapidService.java
+|  |  |  |  |  |  |  |  |  |  |-- IOUtils.java
+|  |  |  |  |  |  |  |  |  |  |-- PackageInfoService.java
+|  |  |  |  |  |  |  |  |  |  |-- SocketWriter.java
+|  |  |  |  |  |-- res
+|  |  |  |  |  |  |-- drawable-xxxhdpi
+|  |  |  |  |  |  |  |-- logo.png
+|  |  |  |  |  |  |-- values
+|  |  |  |  |  |  |  |-- strings.xml.in
+|  |-- deviceinfo.go
+|  |-- doc.go
+|  |-- gapidapk.go
+|  |-- packageinfo.go
+|  |-- pkginfo
+|  |  |-- BUILD.bazel
+|  |  |-- doc.go
+|  |  |-- pkginfo.go
+|  |  |-- pkginfo.proto
+|-- gapii
+|  |-- README.md
+|  |-- apk
+|  |  |-- BUILD.bazel
+|  |-- cc
+|  |  |-- BUILD.bazel
+|  |  |-- abort_exception.h
+|  |  |-- android
+|  |  |  |-- gvr_install.h
+|  |  |  |-- installer.cpp
+|  |  |  |-- installer.h
+|  |  |-- call_observer.cpp
+|  |  |-- call_observer.h
+|  |  |-- chunk_writer.cpp
+|  |  |-- chunk_writer.h
+|  |  |-- connection_header.cpp
+|  |  |-- connection_header.h
+|  |  |-- connection_stream.cpp
+|  |  |-- connection_stream.h
+|  |  |-- gapii_android.exports
+|  |  |-- gapii_desktop.exports
+|  |  |-- gles_context.cpp
+|  |  |-- gles_exports.h
+|  |  |-- gles_extras.cpp
+|  |  |-- gles_extras.inc
+|  |  |-- gles_inlines.inc
+|  |  |-- gles_mid_execution.cpp
+|  |  |-- gles_spy_externs.cpp
+|  |  |-- gvr_abi_types.h
+|  |  |-- gvr_extras.cpp
+|  |  |-- gvr_extras.inc
+|  |  |-- gvr_inlines.inc
+|  |  |-- pack_encoder.cpp
+|  |  |-- pack_encoder.h
+|  |  |-- runtime.cpp
+|  |  |-- spy.cpp
+|  |  |-- spy.h
+|  |  |-- spy_base.cpp
+|  |  |-- spy_base.h
+|  |  |-- spy_disable_precompiled_shaders.cpp
+|  |  |-- state_serializer.cpp
+|  |  |-- state_serializer.h
+|  |  |-- vulkan_extras.cpp
+|  |  |-- vulkan_extras.h
+|  |  |-- vulkan_extras.inc
+|  |  |-- vulkan_inlines.inc
+|  |  |-- vulkan_layer_extras.h
+|  |  |-- vulkan_mid_execution.cpp
+|  |  |-- windows
+|  |  |  |-- wgl.cpp
+|  |  |  |-- wgl.h
+|  |-- client
+|  |  |-- BUILD.bazel
+|  |  |-- adb.go
+|  |  |-- capture.go
+|  |  |-- doc.go
+|  |  |-- header.go
+|  |  |-- jdwp_loader.go
+|  |-- interceptor-lib
+|  |  |-- cc
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- include
+|  |  |  |  |-- interceptor.h
+|  |  |  |-- lib
+|  |  |  |  |-- AArch64
+|  |  |  |  |  |-- target_aarch64.cpp
+|  |  |  |  |  |-- target_aarch64.h
+|  |  |  |  |-- ARM
+|  |  |  |  |  |-- target_arm.cpp
+|  |  |  |  |  |-- target_arm.h
+|  |  |  |  |-- X86
+|  |  |  |  |  |-- target_x86.cpp
+|  |  |  |  |  |-- target_x86.h
+|  |  |  |  |-- code_generator.cpp
+|  |  |  |  |-- code_generator.h
+|  |  |  |  |-- constant_pool_data_expr.cpp
+|  |  |  |  |-- constant_pool_data_expr.h
+|  |  |  |  |-- disassembler.cpp
+|  |  |  |  |-- disassembler.h
+|  |  |  |  |-- error.cpp
+|  |  |  |  |-- error.h
+|  |  |  |  |-- exports.in
+|  |  |  |  |-- interceptor.cpp
+|  |  |  |  |-- libinterceptor.exports
+|  |  |  |  |-- memory_manager.cpp
+|  |  |  |  |-- memory_manager.h
+|  |  |  |  |-- target.cpp
+|  |  |  |  |-- target.h
+|  |-- vulkan
+|  |  |-- vk_graphics_spy
+|  |  |  |-- cc
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- GraphicsSpyLayer.json
+|  |  |  |  |-- layer.cpp
+|  |  |  |  |-- vk_graphics_spy.exports
+|-- gapil
+|  |-- BUILD.bazel
+|  |-- README.md
+|  |-- analysis
+|  |  |-- BUILD.bazel
+|  |  |-- analysis.go
+|  |  |-- analyze.go
+|  |  |-- analyze_test.go
+|  |  |-- bool_value.go
+|  |  |-- class_value.go
+|  |  |-- class_value_test.go
+|  |  |-- enum_value.go
+|  |  |-- enum_value_test.go
+|  |  |-- expressions.go
+|  |  |-- map_value.go
+|  |  |-- map_value_test.go
+|  |  |-- possibility.go
+|  |  |-- possibility_test.go
+|  |  |-- reference_value.go
+|  |  |-- reference_value_test.go
+|  |  |-- results.go
+|  |  |-- scope.go
+|  |  |-- uint_value.go
+|  |  |-- uint_value_test.go
+|  |  |-- unreachables.go
+|  |  |-- untracked_value.go
+|  |  |-- value.go
+|  |-- api.go
+|  |-- ast
+|  |  |-- BUILD.bazel
+|  |  |-- api.go
+|  |  |-- expression.go
+|  |  |-- function.go
+|  |  |-- identifier.go
+|  |  |-- invalid.go
+|  |  |-- literal.go
+|  |  |-- mappings.go
+|  |  |-- node.go
+|  |  |-- operator.go
+|  |  |-- type.go
+|  |  |-- visit.go
+|  |-- bapi
+|  |  |-- BUILD.bazel
+|  |  |-- bapi.go
+|  |  |-- bapi.proto
+|  |  |-- bapi_test.go
+|  |  |-- decode.go
+|  |  |-- encode.go
+|  |-- compiler
+|  |  |-- BUILD.bazel
+|  |  |-- any.go
+|  |  |-- buffer.go
+|  |  |-- builtins.go
+|  |  |-- cast.go
+|  |  |-- compiler.go
+|  |  |-- compiler_test.go
+|  |  |-- context.go
+|  |  |-- debug.go
+|  |  |-- errors.go
+|  |  |-- exec.go
+|  |  |-- expressions.go
+|  |  |-- externs.go
+|  |  |-- mangle.go
+|  |  |-- mangling
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- c
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- c.go
+|  |  |  |  |-- c_test.go
+|  |  |  |-- ia64
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- ia64.go
+|  |  |  |  |-- ia64_test.go
+|  |  |  |-- mangling.go
+|  |  |-- map.go
+|  |  |-- module.go
+|  |  |-- plugin.go
+|  |  |-- plugins
+|  |  |  |-- cloner
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- callbacks.go
+|  |  |  |  |-- cloner.go
+|  |  |  |  |-- plugin.go
+|  |  |  |-- encoder
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- callbacks.go
+|  |  |  |  |-- encoder.go
+|  |  |  |  |-- entities.go
+|  |  |  |  |-- plugin.go
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- cgo.go
+|  |  |  |  |  |-- encoder.api
+|  |  |  |  |  |-- encoder_pb
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- doc.go
+|  |  |  |  |  |-- encoder_test.go
+|  |  |  |  |  |-- test.cpp
+|  |  |  |  |  |-- test.h
+|  |  |  |-- replay
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- asm.go
+|  |  |  |  |-- callbacks.go
+|  |  |  |  |-- remap.go
+|  |  |  |  |-- replay.go
+|  |  |  |  |-- replay_test.go
+|  |  |  |  |-- runtime.go
+|  |  |-- program.go
+|  |  |-- refcount.go
+|  |  |-- scope.go
+|  |  |-- settings.go
+|  |  |-- statements.go
+|  |  |-- storagetypes.go
+|  |  |-- testutils
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cmd.go
+|  |  |  |-- data.go
+|  |  |  |-- doc.go
+|  |  |  |-- externs.go
+|  |  |-- types.go
+|  |-- constset
+|  |  |-- BUILD.bazel
+|  |  |-- constset.go
+|  |-- executor
+|  |  |-- BUILD.bazel
+|  |  |-- cgo.go
+|  |  |-- cgo.h
+|  |  |-- encode.go
+|  |  |-- env.cpp
+|  |  |-- env.go
+|  |  |-- env.h
+|  |  |-- executor.go
+|  |  |-- externs.go
+|  |-- format
+|  |  |-- BUILD.bazel
+|  |  |-- format.go
+|  |  |-- indenter.go
+|  |  |-- ws_trimmer.go
+|  |-- fuzz
+|  |  |-- .gitignore
+|  |  |-- BUILD.bazel
+|  |  |-- corpus
+|  |  |  |-- binaryop.api
+|  |  |  |-- bitfield.api
+|  |  |  |-- cast.api
+|  |  |  |-- class.api
+|  |  |  |-- cmd.api
+|  |  |  |-- empty.api
+|  |  |  |-- enum.api
+|  |  |  |-- fence.api
+|  |  |  |-- globals.api
+|  |  |  |-- new.api
+|  |  |  |-- new_ref.api
+|  |  |  |-- sub.api
+|  |  |  |-- type.api
+|  |  |-- fuzz
+|  |  |-- fuzz.go
+|  |  |-- fuzz_test.go
+|  |-- langsvr
+|  |  |-- BUILD.bazel
+|  |  |-- analyze.go
+|  |  |-- debug_logger.go
+|  |  |-- main.go
+|  |  |-- vscode
+|  |  |  |-- extension.js
+|  |  |  |-- gfxapi.configuration.json
+|  |  |  |-- gfxapi.json
+|  |  |  |-- package.json
+|  |-- parser
+|  |  |-- BUILD.bazel
+|  |  |-- api.go
+|  |  |-- expression.go
+|  |  |-- function.go
+|  |  |-- identifier.go
+|  |  |-- operator.go
+|  |  |-- parser.go
+|  |  |-- parser_test.go
+|  |  |-- statement.go
+|  |  |-- type.go
+|  |-- resolver
+|  |  |-- BUILD.bazel
+|  |  |-- api.go
+|  |  |-- docs.go
+|  |  |-- expression.go
+|  |  |-- extract_calls.go
+|  |  |-- flow.go
+|  |  |-- function.go
+|  |  |-- generic_subroutine.go
+|  |  |-- inference.go
+|  |  |-- internal.go
+|  |  |-- operator.go
+|  |  |-- remove_dead_code.go
+|  |  |-- resolve.go
+|  |  |-- resolve_test.go
+|  |  |-- resolver.go
+|  |  |-- rules.go
+|  |  |-- statement.go
+|  |  |-- type.go
+|  |-- runtime
+|  |  |-- cc
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- buffer.inc
+|  |  |  |-- cloner
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- cloner.cpp
+|  |  |  |  |-- cloner.h
+|  |  |  |-- encoder.h
+|  |  |  |-- hash.h
+|  |  |  |-- maker.h
+|  |  |  |-- maker_test.cpp
+|  |  |  |-- map.h
+|  |  |  |-- map.inc
+|  |  |  |-- map_test.cpp
+|  |  |  |-- ref.h
+|  |  |  |-- ref.inc
+|  |  |  |-- ref_test.cpp
+|  |  |  |-- replay
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- asm.h
+|  |  |  |  |-- builder.cpp
+|  |  |  |  |-- dataex.h
+|  |  |  |  |-- replay.cpp
+|  |  |  |  |-- replay.h
+|  |  |  |-- runtime.cpp
+|  |  |  |-- runtime.h
+|  |  |  |-- slice.h
+|  |  |  |-- slice.inc
+|  |  |  |-- slice_test.cpp
+|  |  |  |-- string.cpp
+|  |  |  |-- string.h
+|  |  |  |-- string_test.cpp
+|  |-- semantic
+|  |  |-- BUILD.bazel
+|  |  |-- api.go
+|  |  |-- expression.go
+|  |  |-- function.go
+|  |  |-- interface_test.go
+|  |  |-- internal.go
+|  |  |-- invalid.go
+|  |  |-- logical_order.go
+|  |  |-- mappings.go
+|  |  |-- node.go
+|  |  |-- printer
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- printer.go
+|  |  |-- statement.go
+|  |  |-- symbols.go
+|  |  |-- type.go
+|  |  |-- visit.go
+|  |-- serialization
+|  |  |-- BUILD.bazel
+|  |  |-- serialization.go
+|  |-- template
+|  |  |-- BUILD.bazel
+|  |  |-- api.go
+|  |  |-- constant_sets.go
+|  |  |-- format.go
+|  |  |-- functions.go
+|  |  |-- globals.go
+|  |  |-- list.go
+|  |  |-- literals.go
+|  |  |-- literals_test.go
+|  |  |-- names.go
+|  |  |-- strings.go
+|  |  |-- strings_examples_test.go
+|  |  |-- strings_test.go
+|  |  |-- template.go
+|  |  |-- types.go
+|  |-- validate
+|  |  |-- BUILD.bazel
+|  |  |-- inspect.go
+|  |  |-- inspect_test.go
+|  |  |-- issues.go
+|  |  |-- no_unused.go
+|  |  |-- validate.go
+|-- gapir
+|  |-- README.md
+|  |-- cc
+|  |  |-- BUILD.bazel
+|  |  |-- android
+|  |  |  |-- gles_renderer.cpp
+|  |  |  |-- vulkan_renderer.cpp
+|  |  |-- archive_replay_service.cpp
+|  |  |-- archive_replay_service.h
+|  |  |-- base_type.cpp
+|  |  |-- base_type.h
+|  |  |-- cached_resource_loader.cpp
+|  |  |-- cached_resource_loader.h
+|  |  |-- context.cpp
+|  |  |-- context.h
+|  |  |-- context_test.cpp
+|  |  |-- crash_uploader.cpp
+|  |  |-- crash_uploader.h
+|  |  |-- function_table.h
+|  |  |-- gfx_api.h
+|  |  |-- gles_gfx_api.inc
+|  |  |-- gles_renderer.h
+|  |  |-- grpc_replay_service.cpp
+|  |  |-- grpc_replay_service.h
+|  |  |-- in_memory_resource_cache.cpp
+|  |  |-- in_memory_resource_cache.h
+|  |  |-- in_memory_resource_cache_test.cpp
+|  |  |-- interpreter.cpp
+|  |  |-- interpreter.h
+|  |  |-- interpreter_test.cpp
+|  |  |-- linux
+|  |  |  |-- gles_renderer.cpp
+|  |  |  |-- vulkan_renderer.cpp
+|  |  |-- memory_manager.cpp
+|  |  |-- memory_manager.h
+|  |  |-- memory_manager_test.cpp
+|  |  |-- mock_replay_service.h
+|  |  |-- mock_resource_loader.h
+|  |  |-- on_disk_resource_cache.cpp
+|  |  |-- on_disk_resource_cache.h
+|  |  |-- osx
+|  |  |  |-- gles_renderer.mm
+|  |  |  |-- vulkan_renderer.mm
+|  |  |-- post_buffer.cpp
+|  |  |-- post_buffer.h
+|  |  |-- post_buffer_test.cpp
+|  |  |-- renderer.h
+|  |  |-- replay_request.cpp
+|  |  |-- replay_request.h
+|  |  |-- replay_request_test.cpp
+|  |  |-- replay_service.cpp
+|  |  |-- replay_service.h
+|  |  |-- resource.cpp
+|  |  |-- resource.h
+|  |  |-- resource_cache.cpp
+|  |  |-- resource_cache.h
+|  |  |-- resource_loader.h
+|  |  |-- resource_loader_test.cpp
+|  |  |-- server.cpp
+|  |  |-- server.h
+|  |  |-- server_connection_test.cpp
+|  |  |-- stack.cpp
+|  |  |-- stack.h
+|  |  |-- stack_test.cpp
+|  |  |-- surface.cpp
+|  |  |-- surface.h
+|  |  |-- test_utilities.h
+|  |  |-- test_utilities_test.cpp
+|  |  |-- thread_pool.cpp
+|  |  |-- thread_pool.h
+|  |  |-- vulkan_gfx_api.inc
+|  |  |-- vulkan_renderer.h
+|  |  |-- windows
+|  |  |  |-- gles_renderer.cpp
+|  |  |  |-- vulkan_renderer.cpp
+|  |-- client
+|  |  |-- BUILD.bazel
+|  |  |-- client.go
+|  |  |-- connection.go
+|  |  |-- doc.go
+|  |  |-- host_log_parser.go
+|  |  |-- session.go
+|  |-- replay_service
+|  |  |-- BUILD.bazel
+|  |  |-- service.proto
+|  |  |-- vm.h
+|-- gapis
+|  |-- README.md
+|  |-- api
+|  |  |-- BUILD.bazel
+|  |  |-- all
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- all.go
+|  |  |-- api.go
+|  |  |-- cmd.go
+|  |  |-- cmd_convert.go
+|  |  |-- cmd_errors.go
+|  |  |-- cmd_extras.go
+|  |  |-- cmd_flags.go
+|  |  |-- cmd_foreach.go
+|  |  |-- cmd_id.go
+|  |  |-- cmd_id_group.go
+|  |  |-- cmd_id_group_test.go
+|  |  |-- cmd_id_range.go
+|  |  |-- cmd_id_set.go
+|  |  |-- cmd_observations.go
+|  |  |-- cmd_service.go
+|  |  |-- cmd_service_test.go
+|  |  |-- context.go
+|  |  |-- doc.go
+|  |  |-- gfxtrace.proto
+|  |  |-- gles
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- api
+|  |  |  |  |-- android_extension_pack.api
+|  |  |  |  |-- android_native.api
+|  |  |  |  |-- asynchronous_queries.api
+|  |  |  |  |-- buffer_objects.api
+|  |  |  |  |-- constants.api
+|  |  |  |  |-- debug.api
+|  |  |  |  |-- draw_commands.api
+|  |  |  |  |-- egl.api
+|  |  |  |  |-- eglenum.api
+|  |  |  |  |-- errors.api
+|  |  |  |  |-- extensions.api
+|  |  |  |  |-- extras.api
+|  |  |  |  |-- fragment_operations.api
+|  |  |  |  |-- framebuffer.api
+|  |  |  |  |-- gl.api
+|  |  |  |  |-- glbitfield.api
+|  |  |  |  |-- glenum.api
+|  |  |  |  |-- image_format.api
+|  |  |  |  |-- other.api
+|  |  |  |  |-- programs_and_shaders.api
+|  |  |  |  |-- rasterization.api
+|  |  |  |  |-- state_queries.api
+|  |  |  |  |-- synchronization.api
+|  |  |  |  |-- textures_and_samplers.api
+|  |  |  |  |-- transform_feedback.api
+|  |  |  |  |-- util.api
+|  |  |  |  |-- vertex_arrays.api
+|  |  |  |-- compat.go
+|  |  |  |-- compat_buffers.go
+|  |  |  |-- compat_client.go
+|  |  |  |-- compat_test.go
+|  |  |  |-- context.go
+|  |  |  |-- custom_replay.go
+|  |  |  |-- datatypes.go
+|  |  |  |-- dead_code_elimination_test.go
+|  |  |  |-- dependency_graph_behaviour_provider.go
+|  |  |  |-- doc.go
+|  |  |  |-- draw_call.go
+|  |  |  |-- draw_call_mesh.go
+|  |  |  |-- externs.go
+|  |  |  |-- extras.go
+|  |  |  |-- find_issues.go
+|  |  |  |-- gles.api
+|  |  |  |-- gles.go
+|  |  |  |-- gles10.api
+|  |  |  |-- gles_pb
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- extras.proto
+|  |  |  |-- glsl.go
+|  |  |  |-- guess_semantics.go
+|  |  |  |-- helpers.go
+|  |  |  |-- image.go
+|  |  |  |-- importance.go
+|  |  |  |-- issue_whitelist.go
+|  |  |  |-- links.go
+|  |  |  |-- markers.go
+|  |  |  |-- markers_test.go
+|  |  |  |-- math.go
+|  |  |  |-- read_depth.go
+|  |  |  |-- read_framebuffer.go
+|  |  |  |-- read_texture.go
+|  |  |  |-- replay.go
+|  |  |  |-- replay.todo
+|  |  |  |-- resolvables.proto
+|  |  |  |-- resources.go
+|  |  |  |-- state.go
+|  |  |  |-- state_builder.go
+|  |  |  |-- string.go
+|  |  |  |-- stub_program.go
+|  |  |  |-- stub_program_test.go
+|  |  |  |-- synthetic.api
+|  |  |  |-- templates
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- api_exports.cpp.tmpl
+|  |  |  |  |-- api_imports.cpp.tmpl
+|  |  |  |-- texture_compat.go
+|  |  |  |-- tweaker.go
+|  |  |  |-- types.api
+|  |  |  |-- undefined_framebuffer.go
+|  |  |  |-- version.go
+|  |  |  |-- wireframe.go
+|  |  |-- graph_visualization.go
+|  |  |-- gvr
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- extension.go
+|  |  |  |-- framebindings.go
+|  |  |  |-- gvr.api
+|  |  |  |-- gvr.go
+|  |  |  |-- gvr_pb
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- doc.go
+|  |  |  |-- importance.go
+|  |  |  |-- resolvables.proto
+|  |  |  |-- templates
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- api_exports.cpp.tmpl
+|  |  |  |  |-- api_exports.h.tmpl
+|  |  |  |  |-- api_imports.cpp.tmpl
+|  |  |  |  |-- api_install.cpp.tmpl
+|  |  |  |-- types.api
+|  |  |-- labeled.go
+|  |  |-- memory_breakdown.go
+|  |  |-- mesh.go
+|  |  |-- property.go
+|  |  |-- reference.go
+|  |  |-- resource.go
+|  |  |-- service.go
+|  |  |-- service.proto
+|  |  |-- state.go
+|  |  |-- subcmd_idx.go
+|  |  |-- subcmd_idx_test.go
+|  |  |-- subcmd_idx_trie.go
+|  |  |-- subcmd_idx_trie_test.go
+|  |  |-- sync
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- data.go
+|  |  |  |-- sync.go
+|  |  |-- templates
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- api.go.tmpl
+|  |  |  |-- api.proto.tmpl
+|  |  |  |-- api_classnames.tmpl
+|  |  |  |-- api_imports.h.tmpl
+|  |  |  |-- api_spy.cpp.tmpl
+|  |  |  |-- api_spy.h.tmpl
+|  |  |  |-- api_types.cpp.tmpl
+|  |  |  |-- api_types.h.tmpl
+|  |  |  |-- c_common.tmpl
+|  |  |  |-- common.tmpl
+|  |  |  |-- constant_sets.go.tmpl
+|  |  |  |-- convert.go.tmpl
+|  |  |  |-- cpp_common.tmpl
+|  |  |  |-- enum_lookup.go.tmpl
+|  |  |  |-- gfx_api_common.tmpl
+|  |  |  |-- go_common.tmpl
+|  |  |  |-- go_convert_common.tmpl
+|  |  |  |-- go_ctypes.h.tmpl
+|  |  |  |-- mutate.go.tmpl
+|  |  |  |-- opengl32_exports.def.tmpl
+|  |  |  |-- opengl32_exports.tmpl
+|  |  |  |-- opengl32_resolve.cpp.tmpl
+|  |  |  |-- opengl32_x64.asm.tmpl
+|  |  |  |-- opengl_framework_exports.cpp.tmpl
+|  |  |  |-- opengl_framework_exports.tmpl
+|  |  |  |-- specific_gfx_api.cpp.tmpl
+|  |  |  |-- specific_gfx_api.h.tmpl
+|  |  |  |-- state_serialize.go.tmpl
+|  |  |  |-- vulkan_gfx_api_extras.tmpl
+|  |  |-- test
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- convert_test.go
+|  |  |  |-- doc.go
+|  |  |  |-- helpers.go
+|  |  |  |-- intrinsics_test.go
+|  |  |  |-- map_test.go
+|  |  |  |-- mutate_test.go
+|  |  |  |-- subroutines_test.go
+|  |  |  |-- test.api
+|  |  |  |-- test.go
+|  |  |  |-- test_commands.api
+|  |  |  |-- test_import_1.api
+|  |  |  |-- test_import_2.api
+|  |  |  |-- test_imports.api
+|  |  |  |-- test_pb
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- doc.go
+|  |  |  |-- test_state.api
+|  |  |  |-- test_types.api
+|  |  |-- texture.go
+|  |  |-- transform
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- capture_log.go
+|  |  |  |-- doc.go
+|  |  |  |-- early_terminator.go
+|  |  |  |-- early_terminator_test.go
+|  |  |  |-- file_log.go
+|  |  |  |-- injector.go
+|  |  |  |-- injector_test.go
+|  |  |  |-- recorder.go
+|  |  |  |-- tasks.go
+|  |  |  |-- terminator.go
+|  |  |  |-- transformer.go
+|  |  |  |-- transforms.go
+|  |  |-- vulkan
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- android
+|  |  |  |  |-- vulkan_android.api
+|  |  |  |-- api
+|  |  |  |  |-- bitfields.api
+|  |  |  |  |-- buffer.api
+|  |  |  |  |-- coherent_memory.api
+|  |  |  |  |-- command_buffer_control.api
+|  |  |  |  |-- constants.api
+|  |  |  |  |-- copy_clear_commands.api
+|  |  |  |  |-- descriptor.api
+|  |  |  |  |-- device.api
+|  |  |  |  |-- draw_commands.api
+|  |  |  |  |-- enums.api
+|  |  |  |  |-- image.api
+|  |  |  |  |-- instance.api
+|  |  |  |  |-- memory.api
+|  |  |  |  |-- physical_device.api
+|  |  |  |  |-- pipeline.api
+|  |  |  |  |-- properties_features_requirements.api
+|  |  |  |  |-- query_pool.api
+|  |  |  |  |-- queue.api
+|  |  |  |  |-- queued_command_tracking.api
+|  |  |  |  |-- renderpass_framebuffer.api
+|  |  |  |  |-- structs.api
+|  |  |  |  |-- synchronization.api
+|  |  |  |  |-- types.api
+|  |  |  |  |-- util.api
+|  |  |  |  |-- vk11structs.api
+|  |  |  |-- buffer_command.go
+|  |  |  |-- command_buffer_rebuilder.go
+|  |  |  |-- custom_replay.go
+|  |  |  |-- doc.go
+|  |  |  |-- drawCall.go
+|  |  |  |-- draw_call_mesh.go
+|  |  |  |-- errors.api
+|  |  |  |-- extensions
+|  |  |  |  |-- ext_debug_marker.api
+|  |  |  |  |-- ext_debug_report.api
+|  |  |  |  |-- khr_16bit_storage.api
+|  |  |  |  |-- khr_bind_memory2.api
+|  |  |  |  |-- khr_dedicated_allocation.api
+|  |  |  |  |-- khr_display.api
+|  |  |  |  |-- khr_display_swapchain.api
+|  |  |  |  |-- khr_external_fence_capabilities.api
+|  |  |  |  |-- khr_external_memory_capabilities.api
+|  |  |  |  |-- khr_external_semaphore_capabilities.api
+|  |  |  |  |-- khr_get_memory_requirements2.api
+|  |  |  |  |-- khr_get_physical_device_properties2.api
+|  |  |  |  |-- khr_get_surface_capabilities2.api
+|  |  |  |  |-- khr_maintenance1.api
+|  |  |  |  |-- khr_maintenance2.api
+|  |  |  |  |-- khr_maintenance3.api
+|  |  |  |  |-- khr_surface.api
+|  |  |  |  |-- khr_swapchain.api
+|  |  |  |  |-- khr_variable_pointers.api
+|  |  |  |  |-- nv_dedicated_allocation.api
+|  |  |  |  |-- virtual_swapchain.api
+|  |  |  |-- externs.go
+|  |  |  |-- externs_test.go
+|  |  |  |-- find_issues.go
+|  |  |  |-- footprint_builder.go
+|  |  |  |-- footprint_builder_test.go
+|  |  |  |-- graph_visualization.go
+|  |  |  |-- image_primer.go
+|  |  |  |-- image_primer_shaders.go
+|  |  |  |-- image_primer_shaders_test.go
+|  |  |  |-- image_primer_test.go
+|  |  |  |-- linux
+|  |  |  |  |-- vulkan_linux.api
+|  |  |  |-- mem_binding_list.go
+|  |  |  |-- memory_breakdown.go
+|  |  |  |-- overdraw.go
+|  |  |  |-- platform.api
+|  |  |  |-- query_timestamps.go
+|  |  |  |-- read_framebuffer.go
+|  |  |  |-- replay.go
+|  |  |  |-- replay.proto
+|  |  |  |-- resolvables.proto
+|  |  |  |-- resources.go
+|  |  |  |-- scratch_resources.go
+|  |  |  |-- state.go
+|  |  |  |-- state_rebuilder.go
+|  |  |  |-- synthetic.api
+|  |  |  |-- templates
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- api_exports.cpp.tmpl
+|  |  |  |  |-- api_imports.cpp.tmpl
+|  |  |  |  |-- vk_spy_helpers.cpp.tmpl
+|  |  |  |  |-- vulkan.h.tmpl
+|  |  |  |  |-- vulkan_common.tmpl
+|  |  |  |-- vulkan.api
+|  |  |  |-- vulkan.go
+|  |  |  |-- vulkan_pb
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- doc.go
+|  |  |  |-- vulkan_terminator.go
+|  |  |  |-- windows
+|  |  |  |  |-- vulkan_windows.api
+|  |  |  |-- wireframe.go
+|  |  |-- watcher.go
+|  |-- capture
+|  |  |-- BUILD.bazel
+|  |  |-- capture.go
+|  |  |-- capture.proto
+|  |  |-- capture_test.go
+|  |  |-- context.go
+|  |  |-- decoder.go
+|  |  |-- doc.go
+|  |  |-- encoder.go
+|  |-- client
+|  |  |-- BUILD.bazel
+|  |  |-- client.go
+|  |  |-- doc.go
+|  |  |-- process.go
+|  |-- config
+|  |  |-- BUILD.bazel
+|  |  |-- config.go
+|  |-- database
+|  |  |-- BUILD.bazel
+|  |  |-- database.go
+|  |  |-- debug.go
+|  |  |-- memory.go
+|  |  |-- resolvable.go
+|  |  |-- to_proto.go
+|  |-- docs
+|  |  |-- observations.svg
+|  |-- extensions
+|  |  |-- BUILD.bazel
+|  |  |-- extensions.go
+|  |  |-- unity
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- state_reset_grouper.go
+|  |  |  |-- unity.go
+|  |-- memory
+|  |  |-- BUILD.bazel
+|  |  |-- alignof_sizeof.go
+|  |  |-- allocator.go
+|  |  |-- allocator_test.go
+|  |  |-- blob.go
+|  |  |-- data.go
+|  |  |-- decoder.go
+|  |  |-- doc.go
+|  |  |-- encoder.go
+|  |  |-- id.go
+|  |  |-- load.go
+|  |  |-- memory.proto
+|  |  |-- memory_pb
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- memory.proto
+|  |  |-- pointer.go
+|  |  |-- pool.go
+|  |  |-- pool_test.go
+|  |  |-- pool_write.go
+|  |  |-- range.go
+|  |  |-- range_list.go
+|  |  |-- read.go
+|  |  |-- resource.go
+|  |  |-- slice.go
+|  |  |-- store.go
+|  |  |-- subslice.go
+|  |  |-- types.go
+|  |  |-- write.go
+|  |  |-- write_test.go
+|  |  |-- writer.go
+|  |-- messages
+|  |  |-- BUILD.bazel
+|  |  |-- doc.go
+|  |  |-- en-us.stb.md
+|  |-- replay
+|  |  |-- BUILD.bazel
+|  |  |-- asm
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- instructions.go
+|  |  |  |-- instructions_test.go
+|  |  |-- batch.go
+|  |  |-- builder
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- allocator.go
+|  |  |  |-- builder.go
+|  |  |  |-- builder_test.go
+|  |  |  |-- constant_encoder.go
+|  |  |  |-- constant_encoder_test.go
+|  |  |  |-- function_info.go
+|  |  |  |-- mapped_memory_range.go
+|  |  |-- context.go
+|  |  |-- custom.go
+|  |  |-- devices
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- devices.go
+|  |  |-- doc.go
+|  |  |-- events.go
+|  |  |-- executor.go
+|  |  |-- export_replay.go
+|  |  |-- id.go
+|  |  |-- interfaces.go
+|  |  |-- manager.go
+|  |  |-- mapping_printer.go
+|  |  |-- opcode
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- disassemble.go
+|  |  |  |-- doc.go
+|  |  |  |-- opcodes.go
+|  |  |-- protocol
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- opcode.go
+|  |  |  |-- replay_protocol.proto
+|  |  |  |-- type.go
+|  |  |-- replay.go
+|  |  |-- replay_connection.go
+|  |  |-- resolvables.proto
+|  |  |-- scheduler
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- scheduler.go
+|  |  |  |-- scheduler_test.go
+|  |  |-- timestamps.go
+|  |  |-- value
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- pointer_resolver.go
+|  |  |  |-- value.go
+|  |  |  |-- values.go
+|  |-- resolve
+|  |  |-- BUILD.bazel
+|  |  |-- as.go
+|  |  |-- cmdgrouper
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cmdgrouper.go
+|  |  |  |-- sequence.go
+|  |  |-- command_tree.go
+|  |  |-- commands.go
+|  |  |-- constant_set.go
+|  |  |-- contexts.go
+|  |  |-- dependencygraph
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- dce.go
+|  |  |  |-- dce_test.go
+|  |  |  |-- dead_code_elimination.go
+|  |  |  |-- dead_code_elimination_test.go
+|  |  |  |-- dependency_graph.go
+|  |  |  |-- doc.go
+|  |  |  |-- footprint.go
+|  |  |  |-- footprint_test.go
+|  |  |  |-- resolvables.proto
+|  |  |-- dependencygraph2
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- dce.go
+|  |  |  |-- dependency_graph.go
+|  |  |  |-- dependency_graph_builder.go
+|  |  |  |-- dependency_graph_test.go
+|  |  |  |-- effect.go
+|  |  |  |-- forward.go
+|  |  |  |-- fragments.go
+|  |  |  |-- graph_builder.go
+|  |  |  |-- graph_visualization
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- graph_structure.go
+|  |  |  |  |-- graph_structure_test.go
+|  |  |  |  |-- graph_visualization.go
+|  |  |  |-- memory.go
+|  |  |  |-- memory_intervals.go
+|  |  |  |-- resolvables.go
+|  |  |  |-- resolvables.proto
+|  |  |-- doc.go
+|  |  |-- errors.go
+|  |  |-- events.go
+|  |  |-- filter.go
+|  |  |-- find.go
+|  |  |-- follow.go
+|  |  |-- framebuffer_attachment.go
+|  |  |-- framebuffer_attachment_data.go
+|  |  |-- framebuffer_changes.go
+|  |  |-- framebuffer_observation.go
+|  |  |-- get.go
+|  |  |-- get_set_test.go
+|  |  |-- index_limits.go
+|  |  |-- initialcmds
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- initial_commands.go
+|  |  |  |-- resolvables.proto
+|  |  |-- memory.go
+|  |  |-- mesh.go
+|  |  |-- metrics.go
+|  |  |-- report.go
+|  |  |-- requests_test.go
+|  |  |-- resolvables.proto
+|  |  |-- resolve.go
+|  |  |-- resource_data.go
+|  |  |-- resource_meta.go
+|  |  |-- resources.go
+|  |  |-- service.go
+|  |  |-- set.go
+|  |  |-- state.go
+|  |  |-- state_tree.go
+|  |  |-- state_tree_test.go
+|  |  |-- stats.go
+|  |  |-- synchronization_data.go
+|  |  |-- thumbnail.go
+|  |-- server
+|  |  |-- BUILD.bazel
+|  |  |-- export_replay.go
+|  |  |-- grpc.go
+|  |  |-- server.go
+|  |-- service
+|  |  |-- BUILD.bazel
+|  |  |-- box
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- box.go
+|  |  |  |-- box.proto
+|  |  |  |-- box_test.go
+|  |  |  |-- doc.go
+|  |  |-- constant_set.go
+|  |  |-- doc.go
+|  |  |-- errors.go
+|  |  |-- path
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- id.go
+|  |  |  |-- linker.go
+|  |  |  |-- path.go
+|  |  |  |-- path.proto
+|  |  |  |-- transform.go
+|  |  |  |-- validate.go
+|  |  |-- report.go
+|  |  |-- service.go
+|  |  |-- service.proto
+|  |  |-- severity
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- severity.proto
+|  |-- shadertools
+|  |  |-- BUILD.bazel
+|  |  |-- cc
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.txt
+|  |  |  |-- common.cpp
+|  |  |  |-- common.h
+|  |  |  |-- disassemble_test.cpp
+|  |  |  |-- libmanager.cpp
+|  |  |  |-- libmanager.h
+|  |  |  |-- name_manager.cpp
+|  |  |  |-- name_manager.h
+|  |  |  |-- spirv2glsl.cpp
+|  |  |  |-- spirv2glsl.h
+|  |  |  |-- spirv_example.dis
+|  |  |  |-- spirv_example.spv
+|  |  |  |-- spv_manager.cpp
+|  |  |  |-- spv_manager.h
+|  |  |  |-- tests
+|  |  |  |  |-- shaders
+|  |  |  |  |  |-- 0001ce24c54214efa0dc896734b22dd1dbaac80b9.frag
+|  |  |  |  |  |-- 0001ce24c54214efa0dc896734b22dd1dbaac80b9.frag.out3
+|  |  |  |  |  |-- 02dd3b78fd079ef9351eaaa548e4ef8aab00191f.frag
+|  |  |  |  |  |-- 02dd3b78fd079ef9351eaaa548e4ef8aab00191f.frag.out3
+|  |  |  |  |  |-- 31970cd999553c708364771961a1f61d5dd59c40.vert.out3
+|  |  |  |  |  |-- 34bb6e0642a25204a333b495d2bc9fd20014f8a6.vert
+|  |  |  |  |  |-- 34bb6e0642a25204a333b495d2bc9fd20014f8a6.vert.out3
+|  |  |  |  |  |-- 41cb18c3bc5d39d4a6b353f00112bf820ec66f2e.frag
+|  |  |  |  |  |-- 41cb18c3bc5d39d4a6b353f00112bf820ec66f2e.frag.out3
+|  |  |  |  |  |-- 434060f1baa60016a23927c97c8a29d9478458c2.frag
+|  |  |  |  |  |-- 434060f1baa60016a23927c97c8a29d9478458c2.frag.out3
+|  |  |  |  |  |-- 6390be7dea7d9bcdef8ea7cedda537700125020e.vert
+|  |  |  |  |  |-- 6390be7dea7d9bcdef8ea7cedda537700125020e.vert.out3
+|  |  |  |  |  |-- 97b7e64fe6c5c0016c5a1c1d94f2f26df319a113.vert
+|  |  |  |  |  |-- 97b7e64fe6c5c0016c5a1c1d94f2f26df319a113.vert.out3
+|  |  |  |  |  |-- 9911db668374bd88249acd0600179fb0ce42c93d.vert
+|  |  |  |  |  |-- 9911db668374bd88249acd0600179fb0ce42c93d.vert.out3
+|  |  |-- shadertools.go
+|  |  |-- shadertools_test.go
+|  |-- stringtable
+|  |  |-- BUILD.bazel
+|  |  |-- README.md
+|  |  |-- load.go
+|  |  |-- minidown
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- node
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- node.go
+|  |  |  |-- parse.go
+|  |  |  |-- parser
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- parse.go
+|  |  |  |  |-- parse_test.go
+|  |  |  |-- scanner
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- scanner.go
+|  |  |  |  |-- scanner_test.go
+|  |  |  |-- token
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- token.go
+|  |  |-- msg.go
+|  |  |-- parser
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- parser.go
+|  |  |  |-- parser_test.go
+|  |  |-- stringtable.proto
+|  |  |-- value.go
+|  |-- trace
+|  |  |-- BUILD.bazel
+|  |  |-- android
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- trace.go
+|  |  |-- context.go
+|  |  |-- desktop
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- trace.go
+|  |  |-- manager.go
+|  |  |-- trace.go
+|  |  |-- trace_tree.go
+|  |  |-- tracer
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- default_api_trace_options.go
+|  |  |  |-- tracer.go
+|  |-- vertex
+|  |  |-- BUILD.bazel
+|  |  |-- doc.go
+|  |  |-- vertex.go
+|  |  |-- vertex.proto
+|  |  |-- vertex_test.go
+|-- kokoro
+|  |-- README.md
+|  |-- img
+|  |  |-- linux.png
+|  |  |-- macos.png
+|  |  |-- windows.png
+|  |-- linux
+|  |  |-- build.sh
+|  |  |-- common.cfg
+|  |  |-- continuous.cfg
+|  |  |-- gapid-mime.xml
+|  |  |-- gapid.desktop
+|  |  |-- gapid.menu
+|  |  |-- package.sh
+|  |  |-- presubmit.cfg
+|  |  |-- release.cfg
+|  |-- macos
+|  |  |-- Info.plist
+|  |  |-- background.png
+|  |  |-- background@2x.png
+|  |  |-- build.sh
+|  |  |-- common.cfg
+|  |  |-- continuous.cfg
+|  |  |-- copy_jre.sh
+|  |  |-- dmg-settings.py
+|  |  |-- package.sh
+|  |  |-- presubmit.cfg
+|  |  |-- release.cfg
+|  |-- presubmit
+|  |  |-- build.sh
+|  |  |-- common.cfg
+|  |  |-- presubmit.cfg
+|  |  |-- presubmit.sh
+|  |-- windows
+|  |  |-- banner.bmp
+|  |  |-- build.bat
+|  |  |-- common.cfg
+|  |  |-- continuous.cfg
+|  |  |-- copy_jre.bat
+|  |  |-- gapid.ico
+|  |  |-- gapid.wxs
+|  |  |-- package.bat
+|  |  |-- presubmit.cfg
+|  |  |-- release.cfg
+|  |  |-- ui_dialog.bmp
+|-- test
+|  |-- integration
+|  |  |-- gles
+|  |  |  |-- replay
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- check.go
+|  |  |  |  |-- clear_test.go
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- draw_test.go
+|  |  |  |  |-- fb_texture_test.go
+|  |  |  |  |-- gles_test.go
+|  |  |  |  |-- image.go
+|  |  |  |  |-- issues_test.go
+|  |  |  |  |-- reference
+|  |  |  |  |  |-- one-depth.png
+|  |  |  |  |  |-- solid-black.png
+|  |  |  |  |  |-- solid-blue.png
+|  |  |  |  |  |-- solid-green.png
+|  |  |  |  |  |-- solid-red.png
+|  |  |  |  |  |-- textured-square.png
+|  |  |  |  |  |-- triangle-180.png
+|  |  |  |  |  |-- triangle-depth.png
+|  |  |  |  |  |-- triangle.png
+|  |  |  |  |  |-- triangle_2.png
+|  |  |  |  |  |-- undef-fb.png
+|  |  |  |  |-- shaders.go
+|  |  |  |-- snippets
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- builder.go
+|  |  |  |  |-- clear_backbuffer.go
+|  |  |  |  |-- context.go
+|  |  |  |  |-- draw_textured_square.go
+|  |  |  |  |-- shaders.go
+|  |  |  |  |-- snippets.go
+|  |  |-- replay
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- postback_test.go
+|  |  |-- service
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- service.go
+|  |  |  |-- service_test.go
+|  |-- robot
+|  |  |-- README.md
+|  |  |-- build
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- artifact.go
+|  |  |  |-- build.go
+|  |  |  |-- build.proto
+|  |  |  |-- doc.go
+|  |  |  |-- local.go
+|  |  |  |-- package.go
+|  |  |  |-- remote.go
+|  |  |  |-- server.go
+|  |  |  |-- track.go
+|  |  |-- go_robot_go.sh
+|  |  |-- job
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- device.go
+|  |  |  |-- device_listener.go
+|  |  |  |-- doc.go
+|  |  |  |-- job.go
+|  |  |  |-- job.proto
+|  |  |  |-- local.go
+|  |  |  |-- manager.go
+|  |  |  |-- remote.go
+|  |  |  |-- server.go
+|  |  |  |-- worker
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- action.go
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- local.go
+|  |  |  |  |-- worker.go
+|  |  |  |  |-- worker.proto
+|  |  |-- lingo
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- error.go
+|  |  |  |-- examples
+|  |  |  |  |-- calc
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- constants.lingo
+|  |  |  |  |  |-- main.go
+|  |  |  |  |  |-- nodes.lingo
+|  |  |  |  |  |-- parser.lingo
+|  |  |  |  |-- cstcalc
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- doc.go
+|  |  |  |  |  |-- main.lingo
+|  |  |  |  |-- simplecalc
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- doc.go
+|  |  |  |  |  |-- main.lingo
+|  |  |  |-- generator
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- generator.go
+|  |  |  |  |-- introspect.go
+|  |  |  |  |-- rewrite.go
+|  |  |  |  |-- wrap.go
+|  |  |  |-- node.go
+|  |  |  |-- scanner.go
+|  |  |-- master
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- client.go
+|  |  |  |-- doc.go
+|  |  |  |-- local.go
+|  |  |  |-- master.go
+|  |  |  |-- master.proto
+|  |  |  |-- remote.go
+|  |  |  |-- satellite.go
+|  |  |  |-- server.go
+|  |  |-- monitor
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- build.go
+|  |  |  |-- doc.go
+|  |  |  |-- generation.go
+|  |  |  |-- job.go
+|  |  |  |-- monitor.go
+|  |  |  |-- replay.go
+|  |  |  |-- report.go
+|  |  |  |-- subject.go
+|  |  |  |-- trace.go
+|  |  |-- record
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- file.go
+|  |  |  |-- json.go
+|  |  |  |-- ledger.go
+|  |  |  |-- library.go
+|  |  |  |-- null.go
+|  |  |  |-- pb.go
+|  |  |  |-- pbtxt.go
+|  |  |  |-- record.go
+|  |  |  |-- record.proto
+|  |  |  |-- shelf.go
+|  |  |-- replay
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- client.go
+|  |  |  |-- doc.go
+|  |  |  |-- local.go
+|  |  |  |-- manager.go
+|  |  |  |-- remote.go
+|  |  |  |-- replay.proto
+|  |  |  |-- server.go
+|  |  |-- report
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- client.go
+|  |  |  |-- doc.go
+|  |  |  |-- local.go
+|  |  |  |-- manager.go
+|  |  |  |-- remote.go
+|  |  |  |-- report.proto
+|  |  |  |-- server.go
+|  |  |-- scheduler
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- replay.go
+|  |  |  |-- report.go
+|  |  |  |-- scheduler.go
+|  |  |  |-- trace.go
+|  |  |-- search
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- eval
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- eval.go
+|  |  |  |-- query
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- builder.go
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- expression.go
+|  |  |  |  |-- replace.go
+|  |  |  |-- script
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- constants.lingo
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- expression.lingo
+|  |  |  |  |-- literal.lingo
+|  |  |  |  |-- parse.lingo
+|  |  |  |-- search.proto
+|  |  |-- stash
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- client.go
+|  |  |  |-- doc.go
+|  |  |  |-- factory.go
+|  |  |  |-- grpc
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- client.go
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- grpc_test.go
+|  |  |  |  |-- server.go
+|  |  |  |  |-- stash.proto
+|  |  |  |-- local
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- doc.go
+|  |  |  |  |-- entity.go
+|  |  |  |  |-- file.go
+|  |  |  |  |-- memory.go
+|  |  |  |-- stash.go
+|  |  |  |-- stash.proto
+|  |  |  |-- upload.go
+|  |  |-- subject
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- doc.go
+|  |  |  |-- local.go
+|  |  |  |-- remote.go
+|  |  |  |-- server.go
+|  |  |  |-- subject.go
+|  |  |  |-- subject.proto
+|  |  |-- trace
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- client.go
+|  |  |  |-- doc.go
+|  |  |  |-- local.go
+|  |  |  |-- manager.go
+|  |  |  |-- remote.go
+|  |  |  |-- server.go
+|  |  |  |-- trace.proto
+|  |  |-- web
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- action.go
+|  |  |  |-- build.go
+|  |  |  |-- client
+|  |  |  |  |-- client.go
+|  |  |  |  |-- data.go
+|  |  |  |  |-- dom
+|  |  |  |  |  |-- a.go
+|  |  |  |  |  |-- button.go
+|  |  |  |  |  |-- canvas.go
+|  |  |  |  |  |-- context2d.go
+|  |  |  |  |  |-- div.go
+|  |  |  |  |  |-- document.go
+|  |  |  |  |  |-- element.go
+|  |  |  |  |  |-- events.go
+|  |  |  |  |  |-- node.go
+|  |  |  |  |  |-- paragraph.go
+|  |  |  |  |  |-- select.go
+|  |  |  |  |  |-- span.go
+|  |  |  |  |  |-- style.go
+|  |  |  |  |  |-- table.go
+|  |  |  |  |  |-- text.go
+|  |  |  |  |  |-- video.go
+|  |  |  |  |  |-- window.go
+|  |  |  |  |-- widgets
+|  |  |  |  |  |-- button
+|  |  |  |  |  |  |-- button.go
+|  |  |  |  |  |-- grid
+|  |  |  |  |  |  |-- click_ripple.go
+|  |  |  |  |  |  |-- data.go
+|  |  |  |  |  |  |-- draw.go
+|  |  |  |  |  |  |-- events.go
+|  |  |  |  |  |  |-- grid.go
+|  |  |  |  |  |  |-- layout.go
+|  |  |  |  |  |  |-- style.go
+|  |  |  |  |  |  |-- transition.go
+|  |  |  |  |  |-- objview
+|  |  |  |  |  |  |-- objview.go
+|  |  |  |-- doc.go
+|  |  |  |-- entity.go
+|  |  |  |-- grid.go
+|  |  |  |-- job.go
+|  |  |  |-- master.go
+|  |  |  |-- requests.go
+|  |  |  |-- static.go
+|  |  |  |-- status.go
+|  |  |  |-- subject.go
+|  |  |  |-- web.go
+|  |  |  |-- www
+|  |  |  |  |-- css
+|  |  |  |  |  |-- grid.css
+|  |  |  |  |-- favicon.png
+|  |  |  |  |-- grid.html
+|  |  |  |  |-- grid
+|  |  |  |  |  |-- .gitignore
+|  |  |  |  |-- grid2.html
+|  |  |  |  |-- images
+|  |  |  |  |  |-- os
+|  |  |  |  |  |  |-- android.png
+|  |  |  |  |  |  |-- linux.png
+|  |  |  |  |  |  |-- osx.png
+|  |  |  |  |  |  |-- windows.png
+|  |  |  |  |-- index.html
+|  |  |  |  |-- js
+|  |  |  |  |  |-- actions.js
+|  |  |  |  |  |-- devices.js
+|  |  |  |  |  |-- draw.js
+|  |  |  |  |  |-- grid-main.js
+|  |  |  |  |  |-- griddata.js
+|  |  |  |  |  |-- packages.js
+|  |  |  |  |  |-- queriable.js
+|  |  |  |  |  |-- replays.js
+|  |  |  |  |  |-- reports.js
+|  |  |  |  |  |-- selection.js
+|  |  |  |  |  |-- subjects.js
+|  |  |  |  |  |-- traces.js
+|  |  |  |  |  |-- tracks.js
+|  |  |  |  |  |-- viewer.js
+|  |  |  |  |  |-- xhr.js
+|-- tools
+|  |-- build
+|  |  |-- BUILD.bazel
+|  |  |-- build.properties.in
+|  |  |-- cc_toolchain.bzl
+|  |  |-- mingw_toolchain
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CROSSTOOL.in
+|  |  |  |-- ar_wrapper.cpp.tpl
+|  |  |  |-- file_collector.cpp
+|  |  |  |-- file_collector.h
+|  |  |  |-- gcc_wrapper.cpp.tpl
+|  |  |-- rules.bzl
+|  |  |-- rules
+|  |  |  |-- AndroidManifest.xml
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- Ignore.java
+|  |  |  |-- android.bzl
+|  |  |  |-- apic.bzl
+|  |  |  |-- cc.bzl
+|  |  |  |-- common.bzl
+|  |  |  |-- dynlib.bzl
+|  |  |  |-- embed.bzl
+|  |  |  |-- filehash.bzl
+|  |  |  |-- gapil.bzl
+|  |  |  |-- go.bzl
+|  |  |  |-- grpc.bzl
+|  |  |  |-- grpc_c++.bzl
+|  |  |  |-- lingo.bzl
+|  |  |  |-- mm.bzl
+|  |  |  |-- repository.bzl
+|  |  |  |-- stringgen.bzl
+|  |  |  |-- zip.bzl
+|  |  |-- third_party
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- SPIRV-Tools-Generated
+|  |  |  |  |-- DebugInfo.h
+|  |  |  |  |-- LICENSE
+|  |  |  |  |-- README.md
+|  |  |  |  |-- amd-gcn-shader.insts.inc
+|  |  |  |  |-- build-version.inc
+|  |  |  |  |-- core.insts-1.0.inc
+|  |  |  |  |-- core.insts-1.1.inc
+|  |  |  |  |-- core.insts-1.2.inc
+|  |  |  |  |-- core.insts-unified1.inc
+|  |  |  |  |-- debuginfo.insts.inc
+|  |  |  |  |-- enum_string_mapping.inc
+|  |  |  |  |-- extension_enum.inc
+|  |  |  |  |-- generators.inc
+|  |  |  |  |-- glsl.std.450.insts-1.0.inc
+|  |  |  |  |-- glsl.std.450.insts.inc
+|  |  |  |  |-- opencl.std.insts-1.0.inc
+|  |  |  |  |-- opencl.std.insts.inc
+|  |  |  |  |-- operand.kinds-1.0.inc
+|  |  |  |  |-- operand.kinds-1.1.inc
+|  |  |  |  |-- operand.kinds-1.2.inc
+|  |  |  |  |-- operand.kinds-unified1.inc
+|  |  |  |  |-- spv-amd-gcn-shader.insts.inc
+|  |  |  |  |-- spv-amd-shader-ballot.insts.inc
+|  |  |  |  |-- spv-amd-shader-explicit-vertex-parameter.insts.inc
+|  |  |  |  |-- spv-amd-shader-trinary-minmax.insts.inc
+|  |  |  |-- astc-encoder.BUILD
+|  |  |  |-- breakpad.bzl
+|  |  |  |-- breakpad
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- breakpad.BUILD
+|  |  |  |  |-- dump_syms_pe.cc
+|  |  |  |  |-- windows.patch
+|  |  |  |-- cityhash-byteswap.h
+|  |  |  |-- cityhash-config.h
+|  |  |  |-- cityhash.BUILD
+|  |  |  |-- gapic_third_party.BUILD
+|  |  |  |-- glslang.BUILD
+|  |  |  |-- grpc_c++.BUILD
+|  |  |  |-- grpc_java.BUILD
+|  |  |  |-- jface.bzl
+|  |  |  |-- llvm.BUILD
+|  |  |  |-- llvm
+|  |  |  |  |-- LICENSE.TXT
+|  |  |  |  |-- include-aarch64
+|  |  |  |  |  |-- llvm
+|  |  |  |  |  |  |-- Config
+|  |  |  |  |  |  |  |-- AsmParsers.def
+|  |  |  |  |  |  |  |-- AsmPrinters.def
+|  |  |  |  |  |  |  |-- Disassemblers.def
+|  |  |  |  |  |  |  |-- Targets.def
+|  |  |  |  |  |  |  |-- config.h
+|  |  |  |  |  |  |  |-- llvm-config.h
+|  |  |  |  |-- include-armeabi
+|  |  |  |  |  |-- llvm
+|  |  |  |  |  |  |-- Config
+|  |  |  |  |  |  |  |-- AsmParsers.def
+|  |  |  |  |  |  |  |-- AsmPrinters.def
+|  |  |  |  |  |  |  |-- Disassemblers.def
+|  |  |  |  |  |  |  |-- Targets.def
+|  |  |  |  |  |  |  |-- config.h
+|  |  |  |  |  |  |  |-- llvm-config.h
+|  |  |  |  |-- include-darwin
+|  |  |  |  |  |-- llvm
+|  |  |  |  |  |  |-- Config
+|  |  |  |  |  |  |  |-- AsmParsers.def
+|  |  |  |  |  |  |  |-- AsmPrinters.def
+|  |  |  |  |  |  |  |-- Disassemblers.def
+|  |  |  |  |  |  |  |-- Targets.def
+|  |  |  |  |  |  |  |-- config.h
+|  |  |  |  |  |  |  |-- llvm-config.h
+|  |  |  |  |-- include-linux
+|  |  |  |  |  |-- llvm
+|  |  |  |  |  |  |-- Config
+|  |  |  |  |  |  |  |-- AsmParsers.def
+|  |  |  |  |  |  |  |-- AsmPrinters.def
+|  |  |  |  |  |  |  |-- Disassemblers.def
+|  |  |  |  |  |  |  |-- Targets.def
+|  |  |  |  |  |  |  |-- config.h
+|  |  |  |  |  |  |  |-- llvm-config.h
+|  |  |  |  |-- include-windows
+|  |  |  |  |  |-- llvm
+|  |  |  |  |  |  |-- Config
+|  |  |  |  |  |  |  |-- AsmParsers.def
+|  |  |  |  |  |  |  |-- AsmPrinters.def
+|  |  |  |  |  |  |  |-- Disassemblers.def
+|  |  |  |  |  |  |  |-- Targets.def
+|  |  |  |  |  |  |  |-- config.h
+|  |  |  |  |  |  |  |-- llvm-config.h
+|  |  |  |  |-- include-x86
+|  |  |  |  |  |-- llvm
+|  |  |  |  |  |  |-- Config
+|  |  |  |  |  |  |  |-- AsmParsers.def
+|  |  |  |  |  |  |  |-- AsmPrinters.def
+|  |  |  |  |  |  |  |-- Disassemblers.def
+|  |  |  |  |  |  |  |-- Targets.def
+|  |  |  |  |  |  |  |-- config.h
+|  |  |  |  |  |  |  |-- llvm-config.h
+|  |  |  |  |-- include
+|  |  |  |  |  |-- llvm
+|  |  |  |  |  |  |-- Config
+|  |  |  |  |  |  |  |-- abi-breaking.h
+|  |  |  |  |  |  |-- Support
+|  |  |  |  |  |  |  |-- VCSRevision.h
+|  |  |  |  |-- libs.bzl
+|  |  |  |  |-- rules.bzl
+|  |  |  |-- lss.BUILD
+|  |  |  |-- spirv-cross.BUILD
+|  |  |  |-- spirv-headers.BUILD
+|  |  |  |-- spirv-reflect.BUILD
+|  |  |  |-- spirv-tools.BUILD
+|  |  |  |-- swt.bzl
+|  |  |-- workspace.bzl
+|  |  |-- workspace_gapic.bzl
+|  |  |-- workspace_go.bzl
+|-- version.bzl

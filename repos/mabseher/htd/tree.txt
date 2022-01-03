@@ -1,0 +1,754 @@
+|-- .gitignore
+|-- .travis.yml
+|-- CMakeLists.txt
+|-- FORMATS.md
+|-- INSTALL.md
+|-- LICENSE.txt
+|-- README.md
+|-- appveyor.yml
+|-- cmake
+|  |-- templates
+|  |  |-- Doxyfile.in
+|  |  |-- cmake_uninstall.cmake.in
+|  |  |-- htd
+|  |  |  |-- AssemblyInfo.cpp.in
+|  |  |  |-- Id.hpp.in
+|  |  |  |-- PreprocessorDefinitions.hpp.in
+|  |  |-- htd_cli
+|  |  |  |-- PreprocessorDefinitions.hpp.in
+|  |  |-- htd_io
+|  |  |  |-- PreprocessorDefinitions.hpp.in
+|-- include
+|  |-- htd
+|  |  |-- AdaptiveWidthMinimizingTreeDecompositionAlgorithm.hpp
+|  |  |-- AddEmptyLeavesOperation.hpp
+|  |  |-- AddEmptyRootOperation.hpp
+|  |  |-- AddIdenticalJoinNodeParentOperation.hpp
+|  |  |-- Algorithm.hpp
+|  |  |-- AlgorithmFactory.hpp
+|  |  |-- AssemblyInfo.hpp
+|  |  |-- BiconnectedComponentAlgorithm.hpp
+|  |  |-- BidirectionalGraphNaming.hpp
+|  |  |-- BreadthFirstGraphTraversal.hpp
+|  |  |-- BucketEliminationGraphDecompositionAlgorithm.hpp
+|  |  |-- BucketEliminationTreeDecompositionAlgorithm.hpp
+|  |  |-- CliqueMinimalSeparatorAlgorithm.hpp
+|  |  |-- Collection.hpp
+|  |  |-- CombinedWidthMinimizingTreeDecompositionAlgorithm.hpp
+|  |  |-- CompressionOperation.hpp
+|  |  |-- ConnectedComponentAlgorithmFactory.hpp
+|  |  |-- ConstCollection.hpp
+|  |  |-- ConstIterator.hpp
+|  |  |-- ConstIteratorBase.hpp
+|  |  |-- ConstIteratorWrapper.hpp
+|  |  |-- ConstPointerIteratorWrapper.hpp
+|  |  |-- DepthFirstConnectedComponentAlgorithm.hpp
+|  |  |-- DepthFirstGraphTraversal.hpp
+|  |  |-- DinitzMaxFlowAlgorithm.hpp
+|  |  |-- DirectedGraph.hpp
+|  |  |-- DirectedGraphFactory.hpp
+|  |  |-- DirectedMultiGraph.hpp
+|  |  |-- DirectedMultiGraphFactory.hpp
+|  |  |-- EnhancedMaximumCardinalitySearchOrderingAlgorithm.hpp
+|  |  |-- ExchangeNodeReplacementOperation.hpp
+|  |  |-- ExhaustiveVertexSelectionStrategy.hpp
+|  |  |-- FilteredHyperedgeCollection.hpp
+|  |  |-- FitnessEvaluation.hpp
+|  |  |-- FlowNetworkStructure.hpp
+|  |  |-- Globals.hpp
+|  |  |-- Graph.hpp
+|  |  |-- GraphDecomposition.hpp
+|  |  |-- GraphDecompositionAlgorithmFactory.hpp
+|  |  |-- GraphDecompositionFactory.hpp
+|  |  |-- GraphFactory.hpp
+|  |  |-- GraphLabeling.hpp
+|  |  |-- GraphPreprocessor.hpp
+|  |  |-- GraphPreprocessorFactory.hpp
+|  |  |-- GraphSeparatorAlgorithmFactory.hpp
+|  |  |-- GraphTypeFactory.hpp
+|  |  |-- GreedySetCoverAlgorithm.hpp
+|  |  |-- Helpers.hpp
+|  |  |-- Hyperedge.hpp
+|  |  |-- HyperedgeDeque.hpp
+|  |  |-- HyperedgePointerDeque.hpp
+|  |  |-- HyperedgePointerVector.hpp
+|  |  |-- HyperedgeVector.hpp
+|  |  |-- Hypergraph.hpp
+|  |  |-- HypergraphFactory.hpp
+|  |  |-- HypertreeDecomposition.hpp
+|  |  |-- HypertreeDecompositionAlgorithm.hpp
+|  |  |-- HypertreeDecompositionAlgorithmFactory.hpp
+|  |  |-- HypertreeDecompositionFactory.hpp
+|  |  |-- IBiconnectedComponentAlgorithm.hpp
+|  |  |-- IConnectedComponentAlgorithm.hpp
+|  |  |-- ICustomizedTreeDecompositionAlgorithm.hpp
+|  |  |-- IDecompositionManipulationOperation.hpp
+|  |  |-- IDirectedGraph.hpp
+|  |  |-- IDirectedMultiGraph.hpp
+|  |  |-- IFlow.hpp
+|  |  |-- IFlowNetworkStructure.hpp
+|  |  |-- IGraph.hpp
+|  |  |-- IGraphDecomposition.hpp
+|  |  |-- IGraphDecompositionAlgorithm.hpp
+|  |  |-- IGraphDecompositionManipulationOperation.hpp
+|  |  |-- IGraphLabeling.hpp
+|  |  |-- IGraphPreprocessor.hpp
+|  |  |-- IGraphSeparatorAlgorithm.hpp
+|  |  |-- IGraphStructure.hpp
+|  |  |-- IGraphTraversal.hpp
+|  |  |-- IHyperedgeCollection.hpp
+|  |  |-- IHypergraph.hpp
+|  |  |-- IHypertreeDecomposition.hpp
+|  |  |-- IHypertreeDecompositionAlgorithm.hpp
+|  |  |-- ILabel.hpp
+|  |  |-- ILabelCollection.hpp
+|  |  |-- ILabeledDirectedGraph.hpp
+|  |  |-- ILabeledDirectedMultiGraph.hpp
+|  |  |-- ILabeledGraph.hpp
+|  |  |-- ILabeledHypergraph.hpp
+|  |  |-- ILabeledMultiGraph.hpp
+|  |  |-- ILabeledMultiHypergraph.hpp
+|  |  |-- ILabeledPath.hpp
+|  |  |-- ILabeledTree.hpp
+|  |  |-- ILabelingCollection.hpp
+|  |  |-- ILabelingFunction.hpp
+|  |  |-- IMaxFlowAlgorithm.hpp
+|  |  |-- IMultiGraph.hpp
+|  |  |-- IMultiHypergraph.hpp
+|  |  |-- IMutableDirectedGraph.hpp
+|  |  |-- IMutableDirectedMultiGraph.hpp
+|  |  |-- IMutableGraph.hpp
+|  |  |-- IMutableGraphDecomposition.hpp
+|  |  |-- IMutableHypergraph.hpp
+|  |  |-- IMutableHypertreeDecomposition.hpp
+|  |  |-- IMutableLabeledDirectedGraph.hpp
+|  |  |-- IMutableLabeledDirectedMultiGraph.hpp
+|  |  |-- IMutableLabeledGraph.hpp
+|  |  |-- IMutableLabeledHypergraph.hpp
+|  |  |-- IMutableLabeledMultiGraph.hpp
+|  |  |-- IMutableLabeledMultiHypergraph.hpp
+|  |  |-- IMutableLabeledPath.hpp
+|  |  |-- IMutableLabeledTree.hpp
+|  |  |-- IMutableMultiGraph.hpp
+|  |  |-- IMutableMultiHypergraph.hpp
+|  |  |-- IMutablePath.hpp
+|  |  |-- IMutablePathDecomposition.hpp
+|  |  |-- IMutableTree.hpp
+|  |  |-- IMutableTreeDecomposition.hpp
+|  |  |-- IOrderingAlgorithm.hpp
+|  |  |-- IPath.hpp
+|  |  |-- IPathDecomposition.hpp
+|  |  |-- IPathDecompositionAlgorithm.hpp
+|  |  |-- IPathDecompositionManipulationOperation.hpp
+|  |  |-- IPreprocessedGraph.hpp
+|  |  |-- ISetCoverAlgorithm.hpp
+|  |  |-- IStronglyConnectedComponentAlgorithm.hpp
+|  |  |-- ITree.hpp
+|  |  |-- ITreeDecomposition.hpp
+|  |  |-- ITreeDecompositionAlgorithm.hpp
+|  |  |-- ITreeDecompositionFitnessFunction.hpp
+|  |  |-- ITreeDecompositionManipulationOperation.hpp
+|  |  |-- ITreeDecompositionVerifier.hpp
+|  |  |-- ITreeTraversal.hpp
+|  |  |-- IVertexOrdering.hpp
+|  |  |-- IVertexSelectionStrategy.hpp
+|  |  |-- IWidthLimitableOrderingAlgorithm.hpp
+|  |  |-- IWidthLimitedVertexOrdering.hpp
+|  |  |-- IWidthMinimizingTreeDecompositionAlgorithm.hpp
+|  |  |-- InducedSubgraphLabelingOperation.hpp
+|  |  |-- IterativeImprovementTreeDecompositionAlgorithm.hpp
+|  |  |-- Iterator.hpp
+|  |  |-- IteratorBase.hpp
+|  |  |-- IteratorWrapper.hpp
+|  |  |-- JoinNodeComplexityReductionOperation.hpp
+|  |  |-- JoinNodeNormalizationOperation.hpp
+|  |  |-- JoinNodeReplacementOperation.hpp
+|  |  |-- Label.hpp
+|  |  |-- LabelCollection.hpp
+|  |  |-- LabeledDirectedGraph.hpp
+|  |  |-- LabeledDirectedGraphFactory.hpp
+|  |  |-- LabeledDirectedMultiGraph.hpp
+|  |  |-- LabeledDirectedMultiGraphFactory.hpp
+|  |  |-- LabeledGraph.hpp
+|  |  |-- LabeledGraphFactory.hpp
+|  |  |-- LabeledGraphType.hpp
+|  |  |-- LabeledHypergraph.hpp
+|  |  |-- LabeledHypergraphFactory.hpp
+|  |  |-- LabeledMultiGraph.hpp
+|  |  |-- LabeledMultiGraphFactory.hpp
+|  |  |-- LabeledMultiHypergraph.hpp
+|  |  |-- LabeledMultiHypergraphFactory.hpp
+|  |  |-- LabeledPath.hpp
+|  |  |-- LabeledPathFactory.hpp
+|  |  |-- LabeledTree.hpp
+|  |  |-- LabeledTreeFactory.hpp
+|  |  |-- LabelingCollection.hpp
+|  |  |-- LibraryInstance.hpp
+|  |  |-- LimitChildCountOperation.hpp
+|  |  |-- LimitMaximumForgottenVertexCountOperation.hpp
+|  |  |-- LimitMaximumIntroducedVertexCountOperation.hpp
+|  |  |-- MaximumCardinalitySearchOrderingAlgorithm.hpp
+|  |  |-- MinDegreeOrderingAlgorithm.hpp
+|  |  |-- MinFillOrderingAlgorithm.hpp
+|  |  |-- MinimumSeparatorAlgorithm.hpp
+|  |  |-- MultiGraph.hpp
+|  |  |-- MultiGraphFactory.hpp
+|  |  |-- MultiHypergraph.hpp
+|  |  |-- MultiHypergraphFactory.hpp
+|  |  |-- NamedDirectedGraph.hpp
+|  |  |-- NamedDirectedMultiGraph.hpp
+|  |  |-- NamedGraph.hpp
+|  |  |-- NamedHypergraph.hpp
+|  |  |-- NamedMultiGraph.hpp
+|  |  |-- NamedMultiHypergraph.hpp
+|  |  |-- NamedPath.hpp
+|  |  |-- NamedTree.hpp
+|  |  |-- NamedVertexHyperedge.hpp
+|  |  |-- NaturalOrderingAlgorithm.hpp
+|  |  |-- NormalizationOperation.hpp
+|  |  |-- OrderingAlgorithmFactory.hpp
+|  |  |-- Path.hpp
+|  |  |-- PathDecomposition.hpp
+|  |  |-- PathDecompositionAlgorithmFactory.hpp
+|  |  |-- PathDecompositionFactory.hpp
+|  |  |-- PostOrderTreeTraversal.hpp
+|  |  |-- PostProcessingPathDecompositionAlgorithm.hpp
+|  |  |-- PreOrderTreeTraversal.hpp
+|  |  |-- PreprocessedGraph.hpp
+|  |  |-- PriorityQueue.hpp
+|  |  |-- RandomOrderingAlgorithm.hpp
+|  |  |-- RandomVertexSelectionStrategy.hpp
+|  |  |-- SemiNormalizationOperation.hpp
+|  |  |-- SeparatorBasedTreeDecompositionAlgorithm.hpp
+|  |  |-- SetCoverAlgorithm.hpp
+|  |  |-- SetCoverAlgorithmFactory.hpp
+|  |  |-- SingleNeighborVertexSelectionStrategy.hpp
+|  |  |-- State.hpp
+|  |  |-- StronglyConnectedComponentAlgorithmFactory.hpp
+|  |  |-- TarjanStronglyConnectedComponentAlgorithm.hpp
+|  |  |-- TemplateInstantiations.hpp
+|  |  |-- Tree.hpp
+|  |  |-- TreeDecomposition.hpp
+|  |  |-- TreeDecompositionAlgorithmFactory.hpp
+|  |  |-- TreeDecompositionFactory.hpp
+|  |  |-- TreeDecompositionOptimizationOperation.hpp
+|  |  |-- TreeDecompositionVerifier.hpp
+|  |  |-- TriangulationMinimizationOrderingAlgorithm.hpp
+|  |  |-- TrivialTreeDecompositionAlgorithm.hpp
+|  |  |-- VectorAdapter.hpp
+|  |  |-- VectorAdapterConstIteratorWrapper.hpp
+|  |  |-- VectorAdapterIteratorWrapper.hpp
+|  |  |-- Vertex.hpp
+|  |  |-- VertexOrdering.hpp
+|  |  |-- WeakNormalizationOperation.hpp
+|  |  |-- WidthMinimizingTreeDecompositionAlgorithm.hpp
+|  |  |-- WidthReductionOperation.hpp
+|  |  |-- main.hpp
+|  |-- htd_cli
+|  |  |-- Choice.hpp
+|  |  |-- IObserver.hpp
+|  |  |-- MultiValueOption.hpp
+|  |  |-- Option.hpp
+|  |  |-- OptionManager.hpp
+|  |  |-- SingleValueOption.hpp
+|  |  |-- ValueOption.hpp
+|  |  |-- main.hpp
+|  |-- htd_io
+|  |  |-- GrFormatGraphProcessor.hpp
+|  |  |-- GrFormatGraphToTreeDecompositionProcessor.hpp
+|  |  |-- GrFormatImporter.hpp
+|  |  |-- HgrFormatGraphToTreeDecompositionProcessor.hpp
+|  |  |-- HgrFormatImporter.hpp
+|  |  |-- HumanReadableExporter.hpp
+|  |  |-- IGraphDecompositionExporter.hpp
+|  |  |-- IGraphProcessor.hpp
+|  |  |-- IGraphToTreeDecompositionProcessor.hpp
+|  |  |-- IHypertreeDecompositionExporter.hpp
+|  |  |-- ITreeDecompositionExporter.hpp
+|  |  |-- LpFormatGraphToTreeDecompositionProcessor.hpp
+|  |  |-- LpFormatImporter.hpp
+|  |  |-- ParsingResult.hpp
+|  |  |-- TdFormatExporter.hpp
+|  |  |-- WidthExporter.hpp
+|  |  |-- main.hpp
+|-- scripts
+|  |-- htd_gr2td_exhaustive.sh
+|  |-- htd_gr2td_exhaustive_mindegree.sh
+|  |-- htd_gr2td_exhaustive_minfill.sh
+|  |-- pace16_build_test.sh
+|-- src
+|  |-- htd
+|  |  |-- AdaptiveWidthMinimizingTreeDecompositionAlgorithm.cpp
+|  |  |-- AddEmptyLeavesOperation.cpp
+|  |  |-- AddEmptyRootOperation.cpp
+|  |  |-- AddIdenticalJoinNodeParentOperation.cpp
+|  |  |-- BiconnectedComponentAlgorithm.cpp
+|  |  |-- BreadthFirstGraphTraversal.cpp
+|  |  |-- BucketEliminationGraphDecompositionAlgorithm.cpp
+|  |  |-- BucketEliminationTreeDecompositionAlgorithm.cpp
+|  |  |-- CMakeLists.txt
+|  |  |-- CliqueMinimalSeparatorAlgorithm.cpp
+|  |  |-- CombinedWidthMinimizingTreeDecompositionAlgorithm.cpp
+|  |  |-- CompressionOperation.cpp
+|  |  |-- ConnectedComponentAlgorithmFactory.cpp
+|  |  |-- DepthFirstConnectedComponentAlgorithm.cpp
+|  |  |-- DepthFirstGraphTraversal.cpp
+|  |  |-- DinitzMaxFlowAlgorithm.cpp
+|  |  |-- DirectedGraph.cpp
+|  |  |-- DirectedGraphFactory.cpp
+|  |  |-- DirectedMultiGraph.cpp
+|  |  |-- DirectedMultiGraphFactory.cpp
+|  |  |-- EnhancedMaximumCardinalitySearchOrderingAlgorithm.cpp
+|  |  |-- ExchangeNodeReplacementOperation.cpp
+|  |  |-- ExhaustiveVertexSelectionStrategy.cpp
+|  |  |-- FilteredHyperedgeCollection.cpp
+|  |  |-- FitnessEvaluation.cpp
+|  |  |-- FlowNetworkStructure.cpp
+|  |  |-- Graph.cpp
+|  |  |-- GraphDecomposition.cpp
+|  |  |-- GraphDecompositionAlgorithmFactory.cpp
+|  |  |-- GraphDecompositionFactory.cpp
+|  |  |-- GraphFactory.cpp
+|  |  |-- GraphLabeling.cpp
+|  |  |-- GraphPreprocessor.cpp
+|  |  |-- GraphPreprocessorFactory.cpp
+|  |  |-- GraphSeparatorAlgorithmFactory.cpp
+|  |  |-- GreedySetCoverAlgorithm.cpp
+|  |  |-- Helpers.cpp
+|  |  |-- Hyperedge.cpp
+|  |  |-- HyperedgeDeque.cpp
+|  |  |-- HyperedgePointerDeque.cpp
+|  |  |-- HyperedgePointerVector.cpp
+|  |  |-- HyperedgeVector.cpp
+|  |  |-- Hypergraph.cpp
+|  |  |-- HypergraphFactory.cpp
+|  |  |-- HypertreeDecomposition.cpp
+|  |  |-- HypertreeDecompositionAlgorithm.cpp
+|  |  |-- HypertreeDecompositionAlgorithmFactory.cpp
+|  |  |-- HypertreeDecompositionFactory.cpp
+|  |  |-- Id.cpp
+|  |  |-- InducedSubgraphLabelingOperation.cpp
+|  |  |-- IterativeImprovementTreeDecompositionAlgorithm.cpp
+|  |  |-- JoinNodeComplexityReductionOperation.cpp
+|  |  |-- JoinNodeNormalizationOperation.cpp
+|  |  |-- JoinNodeReplacementOperation.cpp
+|  |  |-- LabelCollection.cpp
+|  |  |-- LabeledDirectedGraph.cpp
+|  |  |-- LabeledDirectedGraphFactory.cpp
+|  |  |-- LabeledDirectedMultiGraph.cpp
+|  |  |-- LabeledDirectedMultiGraphFactory.cpp
+|  |  |-- LabeledGraph.cpp
+|  |  |-- LabeledGraphFactory.cpp
+|  |  |-- LabeledHypergraph.cpp
+|  |  |-- LabeledHypergraphFactory.cpp
+|  |  |-- LabeledMultiGraph.cpp
+|  |  |-- LabeledMultiGraphFactory.cpp
+|  |  |-- LabeledMultiHypergraph.cpp
+|  |  |-- LabeledMultiHypergraphFactory.cpp
+|  |  |-- LabeledPath.cpp
+|  |  |-- LabeledPathFactory.cpp
+|  |  |-- LabeledTree.cpp
+|  |  |-- LabeledTreeFactory.cpp
+|  |  |-- LabelingCollection.cpp
+|  |  |-- LibraryInstance.cpp
+|  |  |-- LimitChildCountOperation.cpp
+|  |  |-- LimitMaximumForgottenVertexCountOperation.cpp
+|  |  |-- LimitMaximumIntroducedVertexCountOperation.cpp
+|  |  |-- MaximumCardinalitySearchOrderingAlgorithm.cpp
+|  |  |-- MinDegreeOrderingAlgorithm.cpp
+|  |  |-- MinFillOrderingAlgorithm.cpp
+|  |  |-- MinimumSeparatorAlgorithm.cpp
+|  |  |-- MultiGraph.cpp
+|  |  |-- MultiGraphFactory.cpp
+|  |  |-- MultiHypergraph.cpp
+|  |  |-- MultiHypergraphFactory.cpp
+|  |  |-- NaturalOrderingAlgorithm.cpp
+|  |  |-- NormalizationOperation.cpp
+|  |  |-- OrderingAlgorithmFactory.cpp
+|  |  |-- Path.cpp
+|  |  |-- PathDecomposition.cpp
+|  |  |-- PathDecompositionAlgorithmFactory.cpp
+|  |  |-- PathDecompositionFactory.cpp
+|  |  |-- PostOrderTreeTraversal.cpp
+|  |  |-- PostProcessingPathDecompositionAlgorithm.cpp
+|  |  |-- PreOrderTreeTraversal.cpp
+|  |  |-- PreprocessedGraph.cpp
+|  |  |-- RandomOrderingAlgorithm.cpp
+|  |  |-- RandomVertexSelectionStrategy.cpp
+|  |  |-- SemiNormalizationOperation.cpp
+|  |  |-- SeparatorBasedTreeDecompositionAlgorithm.cpp
+|  |  |-- SetCoverAlgorithm.cpp
+|  |  |-- SetCoverAlgorithmFactory.cpp
+|  |  |-- SingleNeighborVertexSelectionStrategy.cpp
+|  |  |-- State.cpp
+|  |  |-- StronglyConnectedComponentAlgorithmFactory.cpp
+|  |  |-- TarjanStronglyConnectedComponentAlgorithm.cpp
+|  |  |-- TemplateInstantiations.cpp
+|  |  |-- Tree.cpp
+|  |  |-- TreeDecomposition.cpp
+|  |  |-- TreeDecompositionAlgorithmFactory.cpp
+|  |  |-- TreeDecompositionFactory.cpp
+|  |  |-- TreeDecompositionOptimizationOperation.cpp
+|  |  |-- TreeDecompositionVerifier.cpp
+|  |  |-- TriangulationMinimizationOrderingAlgorithm.cpp
+|  |  |-- TrivialTreeDecompositionAlgorithm.cpp
+|  |  |-- Vertex.cpp
+|  |  |-- VertexOrdering.cpp
+|  |  |-- WeakNormalizationOperation.cpp
+|  |  |-- WidthMinimizingTreeDecompositionAlgorithm.cpp
+|  |  |-- WidthReductionOperation.cpp
+|  |-- htd_cli
+|  |  |-- CMakeLists.txt
+|  |  |-- Choice.cpp
+|  |  |-- MultiValueOption.cpp
+|  |  |-- Option.cpp
+|  |  |-- OptionManager.cpp
+|  |  |-- SingleValueOption.cpp
+|  |  |-- ValueOption.cpp
+|  |-- htd_io
+|  |  |-- CMakeLists.txt
+|  |  |-- GrFormatGraphToTreeDecompositionProcessor.cpp
+|  |  |-- GrFormatImporter.cpp
+|  |  |-- HgrFormatGraphToTreeDecompositionProcessor.cpp
+|  |  |-- HgrFormatImporter.cpp
+|  |  |-- HumanReadableExporter.cpp
+|  |  |-- LpFormatGraphToTreeDecompositionProcessor.cpp
+|  |  |-- LpFormatImporter.cpp
+|  |  |-- TdFormatExporter.cpp
+|  |  |-- WidthExporter.cpp
+|  |-- htd_main
+|  |  |-- CMakeLists.txt
+|  |  |-- main.cpp
+|-- test
+|  |-- CMakeLists.txt
+|  |-- googletest
+|  |  |-- googletest-release-1.10.0
+|  |  |  |-- .clang-format
+|  |  |  |-- .gitignore
+|  |  |  |-- .travis.yml
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- CONTRIBUTING.md
+|  |  |  |-- LICENSE
+|  |  |  |-- README.md
+|  |  |  |-- WORKSPACE
+|  |  |  |-- appveyor.yml
+|  |  |  |-- ci
+|  |  |  |  |-- build-linux-bazel.sh
+|  |  |  |  |-- build-platformio.sh
+|  |  |  |  |-- env-linux.sh
+|  |  |  |  |-- env-osx.sh
+|  |  |  |  |-- get-nprocessors.sh
+|  |  |  |  |-- install-linux.sh
+|  |  |  |  |-- install-osx.sh
+|  |  |  |  |-- install-platformio.sh
+|  |  |  |  |-- log-config.sh
+|  |  |  |  |-- travis.sh
+|  |  |  |-- googlemock
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- CONTRIBUTORS
+|  |  |  |  |-- LICENSE
+|  |  |  |  |-- README.md
+|  |  |  |  |-- cmake
+|  |  |  |  |  |-- gmock.pc.in
+|  |  |  |  |  |-- gmock_main.pc.in
+|  |  |  |  |-- docs
+|  |  |  |  |  |-- cheat_sheet.md
+|  |  |  |  |  |-- cook_book.md
+|  |  |  |  |  |-- for_dummies.md
+|  |  |  |  |  |-- gmock_faq.md
+|  |  |  |  |-- include
+|  |  |  |  |  |-- gmock
+|  |  |  |  |  |  |-- gmock-actions.h
+|  |  |  |  |  |  |-- gmock-cardinalities.h
+|  |  |  |  |  |  |-- gmock-function-mocker.h
+|  |  |  |  |  |  |-- gmock-generated-actions.h
+|  |  |  |  |  |  |-- gmock-generated-actions.h.pump
+|  |  |  |  |  |  |-- gmock-generated-function-mockers.h
+|  |  |  |  |  |  |-- gmock-generated-function-mockers.h.pump
+|  |  |  |  |  |  |-- gmock-generated-matchers.h
+|  |  |  |  |  |  |-- gmock-generated-matchers.h.pump
+|  |  |  |  |  |  |-- gmock-matchers.h
+|  |  |  |  |  |  |-- gmock-more-actions.h
+|  |  |  |  |  |  |-- gmock-more-matchers.h
+|  |  |  |  |  |  |-- gmock-nice-strict.h
+|  |  |  |  |  |  |-- gmock-spec-builders.h
+|  |  |  |  |  |  |-- gmock.h
+|  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |-- custom
+|  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |-- gmock-generated-actions.h
+|  |  |  |  |  |  |  |  |-- gmock-generated-actions.h.pump
+|  |  |  |  |  |  |  |  |-- gmock-matchers.h
+|  |  |  |  |  |  |  |  |-- gmock-port.h
+|  |  |  |  |  |  |  |-- gmock-internal-utils.h
+|  |  |  |  |  |  |  |-- gmock-port.h
+|  |  |  |  |  |  |  |-- gmock-pp.h
+|  |  |  |  |-- scripts
+|  |  |  |  |  |-- fuse_gmock_files.py
+|  |  |  |  |  |-- generator
+|  |  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |-- README.cppclean
+|  |  |  |  |  |  |-- cpp
+|  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |-- ast.py
+|  |  |  |  |  |  |  |-- gmock_class.py
+|  |  |  |  |  |  |  |-- gmock_class_test.py
+|  |  |  |  |  |  |  |-- keywords.py
+|  |  |  |  |  |  |  |-- tokenize.py
+|  |  |  |  |  |  |  |-- utils.py
+|  |  |  |  |  |  |-- gmock_gen.py
+|  |  |  |  |  |-- gmock-config.in
+|  |  |  |  |  |-- gmock_doctor.py
+|  |  |  |  |  |-- upload.py
+|  |  |  |  |  |-- upload_gmock.py
+|  |  |  |  |-- src
+|  |  |  |  |  |-- gmock-all.cc
+|  |  |  |  |  |-- gmock-cardinalities.cc
+|  |  |  |  |  |-- gmock-internal-utils.cc
+|  |  |  |  |  |-- gmock-matchers.cc
+|  |  |  |  |  |-- gmock-spec-builders.cc
+|  |  |  |  |  |-- gmock.cc
+|  |  |  |  |  |-- gmock_main.cc
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- gmock-actions_test.cc
+|  |  |  |  |  |-- gmock-cardinalities_test.cc
+|  |  |  |  |  |-- gmock-function-mocker_nc.cc
+|  |  |  |  |  |-- gmock-function-mocker_nc_test.py
+|  |  |  |  |  |-- gmock-function-mocker_test.cc
+|  |  |  |  |  |-- gmock-generated-actions_test.cc
+|  |  |  |  |  |-- gmock-generated-function-mockers_test.cc
+|  |  |  |  |  |-- gmock-generated-matchers_test.cc
+|  |  |  |  |  |-- gmock-internal-utils_test.cc
+|  |  |  |  |  |-- gmock-matchers_test.cc
+|  |  |  |  |  |-- gmock-more-actions_test.cc
+|  |  |  |  |  |-- gmock-nice-strict_test.cc
+|  |  |  |  |  |-- gmock-port_test.cc
+|  |  |  |  |  |-- gmock-pp-string_test.cc
+|  |  |  |  |  |-- gmock-pp_test.cc
+|  |  |  |  |  |-- gmock-spec-builders_test.cc
+|  |  |  |  |  |-- gmock_all_test.cc
+|  |  |  |  |  |-- gmock_ex_test.cc
+|  |  |  |  |  |-- gmock_leak_test.py
+|  |  |  |  |  |-- gmock_leak_test_.cc
+|  |  |  |  |  |-- gmock_link2_test.cc
+|  |  |  |  |  |-- gmock_link_test.cc
+|  |  |  |  |  |-- gmock_link_test.h
+|  |  |  |  |  |-- gmock_output_test.py
+|  |  |  |  |  |-- gmock_output_test_.cc
+|  |  |  |  |  |-- gmock_output_test_golden.txt
+|  |  |  |  |  |-- gmock_stress_test.cc
+|  |  |  |  |  |-- gmock_test.cc
+|  |  |  |  |  |-- gmock_test_utils.py
+|  |  |  |-- googletest
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- CONTRIBUTORS
+|  |  |  |  |-- LICENSE
+|  |  |  |  |-- README.md
+|  |  |  |  |-- cmake
+|  |  |  |  |  |-- Config.cmake.in
+|  |  |  |  |  |-- gtest.pc.in
+|  |  |  |  |  |-- gtest_main.pc.in
+|  |  |  |  |  |-- internal_utils.cmake
+|  |  |  |  |  |-- libgtest.la.in
+|  |  |  |  |-- docs
+|  |  |  |  |  |-- advanced.md
+|  |  |  |  |  |-- faq.md
+|  |  |  |  |  |-- pkgconfig.md
+|  |  |  |  |  |-- primer.md
+|  |  |  |  |  |-- pump_manual.md
+|  |  |  |  |  |-- samples.md
+|  |  |  |  |-- include
+|  |  |  |  |  |-- gtest
+|  |  |  |  |  |  |-- gtest-death-test.h
+|  |  |  |  |  |  |-- gtest-matchers.h
+|  |  |  |  |  |  |-- gtest-message.h
+|  |  |  |  |  |  |-- gtest-param-test.h
+|  |  |  |  |  |  |-- gtest-printers.h
+|  |  |  |  |  |  |-- gtest-spi.h
+|  |  |  |  |  |  |-- gtest-test-part.h
+|  |  |  |  |  |  |-- gtest-typed-test.h
+|  |  |  |  |  |  |-- gtest.h
+|  |  |  |  |  |  |-- gtest_pred_impl.h
+|  |  |  |  |  |  |-- gtest_prod.h
+|  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |-- custom
+|  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |-- gtest-port.h
+|  |  |  |  |  |  |  |  |-- gtest-printers.h
+|  |  |  |  |  |  |  |  |-- gtest.h
+|  |  |  |  |  |  |  |-- gtest-death-test-internal.h
+|  |  |  |  |  |  |  |-- gtest-filepath.h
+|  |  |  |  |  |  |  |-- gtest-internal.h
+|  |  |  |  |  |  |  |-- gtest-param-util.h
+|  |  |  |  |  |  |  |-- gtest-port-arch.h
+|  |  |  |  |  |  |  |-- gtest-port.h
+|  |  |  |  |  |  |  |-- gtest-string.h
+|  |  |  |  |  |  |  |-- gtest-type-util.h
+|  |  |  |  |  |  |  |-- gtest-type-util.h.pump
+|  |  |  |  |-- samples
+|  |  |  |  |  |-- prime_tables.h
+|  |  |  |  |  |-- sample1.cc
+|  |  |  |  |  |-- sample1.h
+|  |  |  |  |  |-- sample10_unittest.cc
+|  |  |  |  |  |-- sample1_unittest.cc
+|  |  |  |  |  |-- sample2.cc
+|  |  |  |  |  |-- sample2.h
+|  |  |  |  |  |-- sample2_unittest.cc
+|  |  |  |  |  |-- sample3-inl.h
+|  |  |  |  |  |-- sample3_unittest.cc
+|  |  |  |  |  |-- sample4.cc
+|  |  |  |  |  |-- sample4.h
+|  |  |  |  |  |-- sample4_unittest.cc
+|  |  |  |  |  |-- sample5_unittest.cc
+|  |  |  |  |  |-- sample6_unittest.cc
+|  |  |  |  |  |-- sample7_unittest.cc
+|  |  |  |  |  |-- sample8_unittest.cc
+|  |  |  |  |  |-- sample9_unittest.cc
+|  |  |  |  |-- scripts
+|  |  |  |  |  |-- common.py
+|  |  |  |  |  |-- fuse_gtest_files.py
+|  |  |  |  |  |-- gen_gtest_pred_impl.py
+|  |  |  |  |  |-- gtest-config.in
+|  |  |  |  |  |-- pump.py
+|  |  |  |  |  |-- release_docs.py
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- Makefile
+|  |  |  |  |  |-- upload.py
+|  |  |  |  |  |-- upload_gtest.py
+|  |  |  |  |-- src
+|  |  |  |  |  |-- gtest-all.cc
+|  |  |  |  |  |-- gtest-death-test.cc
+|  |  |  |  |  |-- gtest-filepath.cc
+|  |  |  |  |  |-- gtest-internal-inl.h
+|  |  |  |  |  |-- gtest-matchers.cc
+|  |  |  |  |  |-- gtest-port.cc
+|  |  |  |  |  |-- gtest-printers.cc
+|  |  |  |  |  |-- gtest-test-part.cc
+|  |  |  |  |  |-- gtest-typed-test.cc
+|  |  |  |  |  |-- gtest.cc
+|  |  |  |  |  |-- gtest_main.cc
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- googletest-break-on-failure-unittest.py
+|  |  |  |  |  |-- googletest-break-on-failure-unittest_.cc
+|  |  |  |  |  |-- googletest-catch-exceptions-test.py
+|  |  |  |  |  |-- googletest-catch-exceptions-test_.cc
+|  |  |  |  |  |-- googletest-color-test.py
+|  |  |  |  |  |-- googletest-color-test_.cc
+|  |  |  |  |  |-- googletest-death-test-test.cc
+|  |  |  |  |  |-- googletest-death-test_ex_test.cc
+|  |  |  |  |  |-- googletest-env-var-test.py
+|  |  |  |  |  |-- googletest-env-var-test_.cc
+|  |  |  |  |  |-- googletest-filepath-test.cc
+|  |  |  |  |  |-- googletest-filter-unittest.py
+|  |  |  |  |  |-- googletest-filter-unittest_.cc
+|  |  |  |  |  |-- googletest-json-outfiles-test.py
+|  |  |  |  |  |-- googletest-json-output-unittest.py
+|  |  |  |  |  |-- googletest-list-tests-unittest.py
+|  |  |  |  |  |-- googletest-list-tests-unittest_.cc
+|  |  |  |  |  |-- googletest-listener-test.cc
+|  |  |  |  |  |-- googletest-message-test.cc
+|  |  |  |  |  |-- googletest-options-test.cc
+|  |  |  |  |  |-- googletest-output-test-golden-lin.txt
+|  |  |  |  |  |-- googletest-output-test.py
+|  |  |  |  |  |-- googletest-output-test_.cc
+|  |  |  |  |  |-- googletest-param-test-invalid-name1-test.py
+|  |  |  |  |  |-- googletest-param-test-invalid-name1-test_.cc
+|  |  |  |  |  |-- googletest-param-test-invalid-name2-test.py
+|  |  |  |  |  |-- googletest-param-test-invalid-name2-test_.cc
+|  |  |  |  |  |-- googletest-param-test-test.cc
+|  |  |  |  |  |-- googletest-param-test-test.h
+|  |  |  |  |  |-- googletest-param-test2-test.cc
+|  |  |  |  |  |-- googletest-port-test.cc
+|  |  |  |  |  |-- googletest-printers-test.cc
+|  |  |  |  |  |-- googletest-shuffle-test.py
+|  |  |  |  |  |-- googletest-shuffle-test_.cc
+|  |  |  |  |  |-- googletest-test-part-test.cc
+|  |  |  |  |  |-- googletest-test2_test.cc
+|  |  |  |  |  |-- googletest-throw-on-failure-test.py
+|  |  |  |  |  |-- googletest-throw-on-failure-test_.cc
+|  |  |  |  |  |-- googletest-uninitialized-test.py
+|  |  |  |  |  |-- googletest-uninitialized-test_.cc
+|  |  |  |  |  |-- gtest-typed-test2_test.cc
+|  |  |  |  |  |-- gtest-typed-test_test.cc
+|  |  |  |  |  |-- gtest-typed-test_test.h
+|  |  |  |  |  |-- gtest-unittest-api_test.cc
+|  |  |  |  |  |-- gtest_all_test.cc
+|  |  |  |  |  |-- gtest_assert_by_exception_test.cc
+|  |  |  |  |  |-- gtest_environment_test.cc
+|  |  |  |  |  |-- gtest_help_test.py
+|  |  |  |  |  |-- gtest_help_test_.cc
+|  |  |  |  |  |-- gtest_json_test_utils.py
+|  |  |  |  |  |-- gtest_list_output_unittest.py
+|  |  |  |  |  |-- gtest_list_output_unittest_.cc
+|  |  |  |  |  |-- gtest_main_unittest.cc
+|  |  |  |  |  |-- gtest_no_test_unittest.cc
+|  |  |  |  |  |-- gtest_pred_impl_unittest.cc
+|  |  |  |  |  |-- gtest_premature_exit_test.cc
+|  |  |  |  |  |-- gtest_prod_test.cc
+|  |  |  |  |  |-- gtest_repeat_test.cc
+|  |  |  |  |  |-- gtest_skip_environment_check_output_test.py
+|  |  |  |  |  |-- gtest_skip_in_environment_setup_test.cc
+|  |  |  |  |  |-- gtest_skip_test.cc
+|  |  |  |  |  |-- gtest_sole_header_test.cc
+|  |  |  |  |  |-- gtest_stress_test.cc
+|  |  |  |  |  |-- gtest_test_macro_stack_footprint_test.cc
+|  |  |  |  |  |-- gtest_test_utils.py
+|  |  |  |  |  |-- gtest_testbridge_test.py
+|  |  |  |  |  |-- gtest_testbridge_test_.cc
+|  |  |  |  |  |-- gtest_throw_on_failure_ex_test.cc
+|  |  |  |  |  |-- gtest_unittest.cc
+|  |  |  |  |  |-- gtest_xml_outfile1_test_.cc
+|  |  |  |  |  |-- gtest_xml_outfile2_test_.cc
+|  |  |  |  |  |-- gtest_xml_outfiles_test.py
+|  |  |  |  |  |-- gtest_xml_output_unittest.py
+|  |  |  |  |  |-- gtest_xml_output_unittest_.cc
+|  |  |  |  |  |-- gtest_xml_test_utils.py
+|  |  |  |  |  |-- production.cc
+|  |  |  |  |  |-- production.h
+|  |  |  |-- library.json
+|  |  |  |-- platformio.ini
+|  |-- htd
+|  |  |-- BucketEliminationGraphDecompositionAlgorithmTest.cpp
+|  |  |-- BucketEliminationTreeDecompositionAlgorithmTest.cpp
+|  |  |-- CMakeLists.txt
+|  |  |-- ConnectedComponentAlgorithmTest.cpp
+|  |  |-- FactoryTest.cpp
+|  |  |-- FilteredHyperedgeCollectionTest.cpp
+|  |  |-- GraphDecompositionTest.cpp
+|  |  |-- GraphLabelingTest.cpp
+|  |  |-- GraphPreprocessorTest.cpp
+|  |  |-- GraphTest.cpp
+|  |  |-- HelperTest.cpp
+|  |  |-- HyperedgeTest.cpp
+|  |  |-- HypergraphTest.cpp
+|  |  |-- HypertreeDecompositionAlgorithmTest.cpp
+|  |  |-- HypertreeDecompositionTest.cpp
+|  |  |-- IteratorTest.cpp
+|  |  |-- LabelCollectionTest.cpp
+|  |  |-- LabeledDirectedGraphTest.cpp
+|  |  |-- LabeledDirectedMultiGraphTest.cpp
+|  |  |-- LabeledGraphTest.cpp
+|  |  |-- LabeledHypergraphTest.cpp
+|  |  |-- LabeledMultiGraphTest.cpp
+|  |  |-- LabelingCollectionTest.cpp
+|  |  |-- LibraryInstanceTest.cpp
+|  |  |-- ManipulationOperationTest.cpp
+|  |  |-- MaximumCardinalitySearchOrderingAlgorithmTest.cpp
+|  |  |-- MinDegreeOrderingAlgorithmTest.cpp
+|  |  |-- MinFillOrderingAlgorithmTest.cpp
+|  |  |-- MultiGraphTest.cpp
+|  |  |-- MultiHypergraphTest.cpp
+|  |  |-- PathDecompositionTest.cpp
+|  |  |-- PathTest.cpp
+|  |  |-- PostProcessingPathDecompositionAlgorithmTest.cpp
+|  |  |-- RandomOrderingAlgorithmTest.cpp
+|  |  |-- SetCoverAlgorithmTest.cpp
+|  |  |-- TreeDecompositionOptimizationTest.cpp
+|  |  |-- TreeDecompositionTest.cpp
+|  |  |-- TreeTest.cpp
+|  |  |-- VertexSelectionStrategyTest.cpp
+|-- travis.sh

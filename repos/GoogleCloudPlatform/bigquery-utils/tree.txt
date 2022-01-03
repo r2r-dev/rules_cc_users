@@ -1,0 +1,870 @@
+|-- .github
+|  |-- workflows
+|  |  |-- sql-extraction.yml
+|  |  |-- vscode-automatic-query-fixer.yml
+|  |  |-- vscode-sql-extraction.yml
+|-- .gitignore
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- cloudbuild.yaml
+|-- dashboards
+|  |-- system_tables
+|  |  |-- README.md
+|  |  |-- docs
+|  |  |  |-- daily_utilization.md
+|  |  |  |-- hourly_utilization.md
+|  |  |  |-- job_comparison.md
+|  |  |  |-- job_error.md
+|  |  |  |-- job_execution.md
+|  |  |  |-- reservation_utilization.md
+|  |  |-- images
+|  |  |  |-- daily_utilization
+|  |  |  |  |-- by_job_type.png
+|  |  |  |  |-- by_project.png
+|  |  |  |  |-- by_reservation.png
+|  |  |  |  |-- by_top_usage.png
+|  |  |  |  |-- by_user.png
+|  |  |  |  |-- filters_and_scorecards.png
+|  |  |  |  |-- overall.png
+|  |  |  |-- hourly_utilization
+|  |  |  |  |-- by_job_type.png
+|  |  |  |  |-- by_project.png
+|  |  |  |  |-- by_reservation.png
+|  |  |  |  |-- by_top_usage.png
+|  |  |  |  |-- by_user.png
+|  |  |  |  |-- filters_and_scorecards.png
+|  |  |  |  |-- overall.png
+|  |  |  |-- job_comparison
+|  |  |  |  |-- concurrent_jobs.png
+|  |  |  |  |-- concurrent_projects.png
+|  |  |  |  |-- creation.png
+|  |  |  |  |-- hourly_utilization.png
+|  |  |  |  |-- job_stages.png
+|  |  |  |  |-- shuffle.png
+|  |  |  |  |-- side_by_side_comparison.png
+|  |  |  |  |-- slot_utilization.png
+|  |  |  |-- job_error
+|  |  |  |  |-- error_pie.png
+|  |  |  |  |-- error_table.png
+|  |  |  |  |-- filters_and_scorecards.png
+|  |  |  |-- job_execution
+|  |  |  |  |-- execution_table.png
+|  |  |  |  |-- filters_and_scorecards.png
+|  |  |  |-- reservation_utilization
+|  |  |  |  |-- assignments.png
+|  |  |  |  |-- utilization.png
+|  |  |-- sql
+|  |  |  |-- current_assignments.sql
+|  |  |  |-- daily_commitments.sql
+|  |  |  |-- daily_utilization.sql
+|  |  |  |-- hourly_utilization.sql
+|  |  |  |-- job_analyzer_slow.sql
+|  |  |  |-- job_comparison_statistics.sql
+|  |  |  |-- job_concurrency_comparison_slow.sql
+|  |  |  |-- job_error.sql
+|  |  |  |-- job_execution.sql
+|  |  |  |-- reservation_utilization_month.sql
+|  |  |  |-- reservation_utilization_week.sql
+|-- dataform
+|  |-- examples
+|  |  |-- dataform_assertion_unit_test
+|  |  |  |-- .gitignore
+|  |  |  |-- README.md
+|  |  |  |-- dataform.json
+|  |  |  |-- definitions
+|  |  |  |  |-- tests
+|  |  |  |  |  |-- test_date_assertions.js
+|  |  |  |  |  |-- test_email_assertions.js
+|  |  |  |  |  |-- test_gender_assertions.js
+|  |  |  |  |  |-- test_marital_status_assertions.js
+|  |  |  |  |  |-- test_personal_info_assertions.js
+|  |  |  |  |  |-- test_telephone_number_assertions.js
+|  |  |  |-- includes
+|  |  |  |  |-- date_assertions.js
+|  |  |  |  |-- personal_info_assertions.js
+|  |  |  |  |-- unit_test_utils.js
+|  |  |  |-- package.json
+|-- images
+|  |-- public_udf_architecture.png
+|-- performance_testing
+|  |-- jmeter
+|  |  |-- README.md
+|  |  |-- bigquery_http_sampler.jmx
+|  |  |-- bigquery_jdbc_sampler.jmx
+|  |  |-- cancel_running_jobs.py
+|  |  |-- examples
+|  |  |  |-- BigQuery-BI-and-ELT.jmx
+|  |  |  |-- README.md
+|  |  |  |-- assets
+|  |  |  |  |-- elapsed_by_query.png
+|  |  |  |  |-- first_test_run.png
+|  |  |  |  |-- jmeter-datastudio-viz.gif
+|  |  |  |  |-- two_runs.png
+|  |  |  |  |-- two_runs_grouped_by_thread_group_and_users.png
+|  |  |  |-- battery.sh
+|  |  |  |-- bigquery_public_data_bi_queries.csv
+|  |  |  |-- pdt_queries.csv
+|  |  |  |-- run_jmeter_jdbc_sampler.sh
+|  |  |-- http_sampler_results.sql
+|  |  |-- jdbc_sampler_results.sql
+|  |  |-- run_jmeter_http_sampler.sh
+|  |  |-- run_jmeter_jdbc_sampler.sh
+|  |  |-- test_queries
+|  |  |  |-- complex_selects.csv
+|  |  |  |-- medium_selects.csv
+|  |  |  |-- simple_selects.csv
+|-- release
+|  |-- build.sh
+|  |-- git_init.sh
+|-- scripts
+|  |-- README.md
+|  |-- billing
+|  |  |-- README.md
+|  |  |-- docs
+|  |  |  |-- daily_compute_usage_cud_sud_coverage.md
+|  |  |  |-- monthly_cud_sud_savings.md
+|  |  |-- sql
+|  |  |  |-- daily_compute_cores_average.sql
+|  |  |  |-- daily_compute_discount.sql
+|  |  |  |-- daily_compute_usage_and_costs_by_vm_shape.sql
+|  |  |  |-- daily_compute_usage_cud_sud_coverage.sql
+|  |  |  |-- daily_compute_usage_hours.sql
+|  |  |  |-- monthly_costs_by_project.sql
+|  |  |  |-- monthly_costs_credits.sql
+|  |  |  |-- monthly_cud_sud_savings.sql
+|  |  |  |-- monthly_invoice_costs_credits.sql
+|  |  |  |-- previous_day_costs_by_project.sql
+|  |  |  |-- previous_day_costs_by_service.sql
+|  |  |  |-- previous_month_costs_by_label.sql
+|  |  |  |-- previous_month_costs_by_service.sql
+|  |  |  |-- previous_month_costs_by_service_label.sql
+|  |  |  |-- total_costs_by_label_value.sql
+|  |  |  |-- total_costs_by_sku_label.sql
+|-- stored_procedures
+|  |-- README.md
+|  |-- get_next_id.sql
+|-- third_party
+|  |-- compilerworks
+|  |  |-- LICENSE
+|  |  |-- README.md
+|  |  |-- cw_stdlib.sql
+|  |  |-- migration
+|  |  |  |-- common
+|  |  |  |  |-- README.md
+|  |  |  |  |-- next_day.sql
+|  |  |  |-- vertica
+|  |  |  |  |-- README.md
+|  |  |  |  |-- regex_mode.sql
+|  |  |  |  |-- regexp_extract_with_occurrence.sql
+|  |  |  |  |-- regexp_extract_with_occurrence_and_flags.sql
+|  |  |  |  |-- regexp_substr_generic.sql
+|-- tools
+|  |-- .gitignore
+|  |-- automatic_query_fixer
+|  |  |-- .gitattributes
+|  |  |-- .gitignore
+|  |  |-- README.md
+|  |  |-- build.gradle
+|  |  |-- examples
+|  |  |  |-- script
+|  |  |  |-- semantic_error1.sql
+|  |  |  |-- semantic_error2.sql
+|  |  |  |-- semantic_error3.sql
+|  |  |  |-- syntax_error.sql
+|  |  |-- gradle
+|  |  |  |-- wrapper
+|  |  |  |  |-- gradle-wrapper.jar
+|  |  |  |  |-- gradle-wrapper.properties
+|  |  |-- gradlew
+|  |  |-- gradlew.bat
+|  |  |-- libs
+|  |  |  |-- calcite-babel-1.23.0-SNAPSHOT.jar
+|  |  |  |-- calcite-core-1.23.0-SNAPSHOT.jar
+|  |  |  |-- calcite-linq4j-1.23.0-SNAPSHOT.jar
+|  |  |  |-- zetasql_helper_client.jar
+|  |  |-- settings.gradle
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- cloud
+|  |  |  |  |  |  |  |  |-- bigquery
+|  |  |  |  |  |  |  |  |  |-- utils
+|  |  |  |  |  |  |  |  |  |  |-- queryfixer
+|  |  |  |  |  |  |  |  |  |  |  |-- AutomaticQueryFixer.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BigQueryParserFactory.java
+|  |  |  |  |  |  |  |  |  |  |  |-- QueryFixerMain.java
+|  |  |  |  |  |  |  |  |  |  |  |-- QueryPositionConverter.java
+|  |  |  |  |  |  |  |  |  |  |  |-- cmd
+|  |  |  |  |  |  |  |  |  |  |  |  |-- AutoModeInteraction.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- CommandLineInteraction.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- QueryFixerOptions.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- SuggestionModeInteraction.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- UserAssistedModeInteraction.java
+|  |  |  |  |  |  |  |  |  |  |  |-- entity
+|  |  |  |  |  |  |  |  |  |  |  |  |-- FixOption.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- FixResult.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- IToken.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- Position.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- StringView.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- TokenImpl.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ZetaSqlToken.java
+|  |  |  |  |  |  |  |  |  |  |  |-- errors
+|  |  |  |  |  |  |  |  |  |  |  |  |-- BigQuerySemanticError.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- BigQuerySqlError.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- BigQuerySyntaxError.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ColumnNotGroupedError.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- DuplicateColumnsError.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ExpectKeywordButGotOthersError.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- FunctionNotFoundError.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- IllegalInputCharacterError.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- NoMatchingSignatureError.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- SqlErrorFactory.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- TableNotFoundError.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- UnexpectedKeywordError.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- UnrecognizedColumnError.java
+|  |  |  |  |  |  |  |  |  |  |  |-- exception
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ParserCreationException.java
+|  |  |  |  |  |  |  |  |  |  |  |-- fixer
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ColumnNotGroupedFixer.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- DuplicateColumnsFixer.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ExpectKeywordButGotOthersFixer.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- FixerFactory.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- FunctionFixer.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- FunctionNotFoundFixer.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- IFixer.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- IllegalInputCharacterFixer.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- NearbyTokenFixer.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- NoMatchingSignatureFixer.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- TableNotFoundFixer.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- TypeCast.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- UnexpectedKeywordFixer.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- UnrecognizedColumnFixer.java
+|  |  |  |  |  |  |  |  |  |  |  |-- service
+|  |  |  |  |  |  |  |  |  |  |  |  |-- BigQueryService.java
+|  |  |  |  |  |  |  |  |  |  |  |-- tokenizer
+|  |  |  |  |  |  |  |  |  |  |  |  |-- CalciteTokenizer.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- QueryTokenProcessor.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- Tokenizer.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ZetaSqlTokenizer.java
+|  |  |  |  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ByteOffsetTranslator.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- PatternMatcher.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- StringUtil.java
+|  |  |  |-- test
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- cloud
+|  |  |  |  |  |  |  |  |-- bigquery
+|  |  |  |  |  |  |  |  |  |-- utils
+|  |  |  |  |  |  |  |  |  |  |-- queryfixer
+|  |  |  |  |  |  |  |  |  |  |  |-- BigQueryServiceTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- FixerTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- ParserFactoryTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- QueryPositionConverterTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- QueryTokenProcessorTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- SqlErrorFactoryTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- StringUtilTest.java
+|  |-- cloud_functions
+|  |  |-- .gitignore
+|  |  |-- README.md
+|  |  |-- gcs_event_based_ingest
+|  |  |  |-- .dockerignore
+|  |  |  |-- .flake8
+|  |  |  |-- .gitignore
+|  |  |  |-- .hadolint.yaml
+|  |  |  |-- .isort.cfg
+|  |  |  |-- .mypy.ini
+|  |  |  |-- .pylintrc
+|  |  |  |-- .style.yapf
+|  |  |  |-- Dockerfile.ci
+|  |  |  |-- ORDERING.md
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- backfill.py
+|  |  |  |-- cloudbuild.yaml
+|  |  |  |-- e2e
+|  |  |  |  |-- .gitignore
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- conftest.py
+|  |  |  |  |-- e2e_test.py
+|  |  |  |  |-- main.tf
+|  |  |  |-- gcs_ocn_bq_ingest
+|  |  |  |  |-- README.md
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- common
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- constants.py
+|  |  |  |  |  |-- exceptions.py
+|  |  |  |  |  |-- ordering.py
+|  |  |  |  |  |-- utils.py
+|  |  |  |  |-- main.py
+|  |  |  |  |-- requirements.txt
+|  |  |  |-- img
+|  |  |  |  |-- bq-ingest.png
+|  |  |  |  |-- ordering.png
+|  |  |  |-- pytest.ini
+|  |  |  |-- requirements-dev.txt
+|  |  |  |-- requirements.txt
+|  |  |  |-- scripts
+|  |  |  |  |-- install_terraform.sh
+|  |  |  |-- terraform_module
+|  |  |  |  |-- gcs_ocn_bq_ingest_function
+|  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- main.tf
+|  |  |  |  |  |-- outputs.tf
+|  |  |  |  |  |-- variables.tf
+|  |  |  |  |  |-- versions.tf
+|  |  |  |-- tests
+|  |  |  |  |-- cli
+|  |  |  |  |  |-- test_backfill.py
+|  |  |  |  |-- conftest.py
+|  |  |  |  |-- gcs_ocn_bq_ingest
+|  |  |  |  |  |-- test_gcs_ocn_bq_ingest.py
+|  |  |  |  |  |-- test_gcs_ocn_bq_ingest_it.py
+|  |  |  |  |  |-- test_ordering_it.py
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- nation_schema.json
+|  |  |  |  |  |-- ordering_schema.json
+|  |  |  |  |  |-- test-data
+|  |  |  |  |  |  |-- nation
+|  |  |  |  |  |  |  |-- _SUCCESS
+|  |  |  |  |  |  |  |-- part-m-00000
+|  |  |  |  |  |  |  |-- part-m-00001
+|  |  |  |  |  |  |-- nyc_311
+|  |  |  |  |  |  |  |-- $2017041101
+|  |  |  |  |  |  |  |  |-- _SUCCESS
+|  |  |  |  |  |  |  |  |-- nyc_311.csv
+|  |  |  |  |  |  |  |-- $2017041102
+|  |  |  |  |  |  |  |  |-- _SUCCESS
+|  |  |  |  |  |  |  |  |-- nyc_311.csv
+|  |  |  |  |  |  |-- ordering
+|  |  |  |  |  |  |  |-- 01
+|  |  |  |  |  |  |  |  |-- _SUCCESS
+|  |  |  |  |  |  |  |  |-- data.csv
+|  |  |  |  |  |  |  |-- 02
+|  |  |  |  |  |  |  |  |-- _SUCCESS
+|  |  |  |  |  |  |  |  |-- data.csv
+|  |  |  |  |  |  |  |-- 03
+|  |  |  |  |  |  |  |  |-- _SUCCESS
+|  |  |  |  |  |  |  |  |-- data.csv
+|  |  |  |  |  |  |  |-- 04
+|  |  |  |  |  |  |  |  |-- _SUCCESS
+|  |  |  |  |  |  |  |  |-- data.csv
+|  |-- query_breakdown
+|  |  |-- .gitignore
+|  |  |-- README.md
+|  |  |-- pom.xml
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- bigquery
+|  |  |  |  |  |  |  |  |-- CalciteParser.java
+|  |  |  |  |  |  |  |  |-- InputReader.java
+|  |  |  |  |  |  |  |  |-- LocationTracker.java
+|  |  |  |  |  |  |  |  |-- Main.java
+|  |  |  |  |  |  |  |  |-- Node.java
+|  |  |  |  |  |  |  |  |-- Pair.java
+|  |  |  |  |  |  |  |  |-- Parser.java
+|  |  |  |  |  |  |  |  |-- QueryBreakdown.java
+|  |  |  |  |  |  |  |  |-- ReplacedComponent.java
+|  |  |  |  |  |  |  |  |-- ReplacementLogic.java
+|  |  |  |-- test
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- bigquery
+|  |  |  |  |  |  |  |  |-- CalciteParserTest.java
+|  |  |  |  |  |  |  |  |-- ErrorRecoveryTest.java
+|  |  |  |  |  |  |  |  |-- InputReaderTest.java
+|  |  |  |  |  |  |  |  |-- InputTestFiles
+|  |  |  |  |  |  |  |  |  |-- bigqueryReferenceQueries.txt
+|  |  |  |  |  |  |  |  |  |-- empty.txt
+|  |  |  |  |  |  |  |  |  |-- multipleDeletion.txt
+|  |  |  |  |  |  |  |  |  |-- multipleLineQuery.txt
+|  |  |  |  |  |  |  |  |  |-- multipleLines.txt
+|  |  |  |  |  |  |  |  |  |-- multipleLinesNoSemicolon.txt
+|  |  |  |  |  |  |  |  |  |-- simpleDeletion.txt
+|  |  |  |  |  |  |  |  |  |-- singleDeletionReplacement.txt
+|  |  |  |  |  |  |  |  |  |-- singleLine.txt
+|  |  |  |  |  |  |  |  |  |-- singleton.txt
+|  |  |  |  |  |  |  |  |-- LocationTrackerTest.java
+|  |  |  |  |  |  |  |  |-- QueryBreakdownTest.java
+|  |-- query_verification
+|  |  |-- README.md
+|  |  |-- pom.xml
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- bigquery
+|  |  |  |  |  |  |  |  |-- BigQueryManager.java
+|  |  |  |  |  |  |  |  |-- BigQuerySchemaJsonDeserializer.java
+|  |  |  |  |  |  |  |  |-- DataWarehouseManager.java
+|  |  |  |  |  |  |  |  |-- Main.java
+|  |  |  |  |  |  |  |  |-- QueryErrors.java
+|  |  |  |  |  |  |  |  |-- QueryJobResults.java
+|  |  |  |  |  |  |  |  |-- QueryVerificationData.java
+|  |  |  |  |  |  |  |  |-- QueryVerificationQuery.java
+|  |  |  |  |  |  |  |  |-- QueryVerificationSchema.java
+|  |  |  |  |  |  |  |  |-- QueryVerifier.java
+|  |  |  |  |  |  |  |  |-- ResultDifferences.java
+|  |  |  |  |  |  |  |  |-- TeradataManager.java
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- config.json
+|  |  |  |-- test
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- bigquery
+|  |  |  |  |  |  |  |  |-- BigQueryManagerTest.java
+|  |  |  |  |  |  |  |  |-- MainTest.java
+|  |  |  |  |  |  |  |  |-- QueryVerifierTest.java
+|  |  |  |  |  |  |  |  |-- TeradataManagerTest.java
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- query1.sql
+|  |  |  |  |  |-- schema1.json
+|  |  |  |  |  |-- schema2.json
+|  |  |  |  |  |-- schema3.json
+|  |  |  |  |  |-- schema4.json
+|  |-- sql_extraction
+|  |  |-- .gitignore
+|  |  |-- README.md
+|  |  |-- build.gradle.kts
+|  |  |-- examples
+|  |  |  |-- AnnotationTest.java
+|  |  |  |-- ConcatTest.java
+|  |  |  |-- IfElseTest.java
+|  |  |  |-- JDBCTest.java
+|  |  |  |-- LoopTest.java
+|  |  |  |-- SimpleStringTest.java
+|  |  |-- gradle.properties
+|  |  |-- gradle
+|  |  |  |-- wrapper
+|  |  |  |  |-- gradle-wrapper.jar
+|  |  |  |  |-- gradle-wrapper.properties
+|  |  |-- gradlew
+|  |  |-- gradlew.bat
+|  |  |-- settings.gradle.kts
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- kotlin
+|  |  |  |  |  |-- Cli.kt
+|  |  |  |  |  |-- ConfidenceRater.kt
+|  |  |  |  |  |-- DataFlowEngine.kt
+|  |  |  |  |  |-- DataFlowSolver.kt
+|  |  |  |  |  |-- Environment.kt
+|  |  |  |  |  |-- FilesExpander.kt
+|  |  |  |  |  |-- FrontEnd.kt
+|  |  |  |  |  |-- JavaAnalyzer.kt
+|  |  |  |  |  |-- JavaFrontEnd.kt
+|  |  |  |  |  |-- PythonAnalyzer.kt
+|  |  |  |  |  |-- PythonFrontEnd.kt
+|  |  |  |  |  |-- SqlExtractor.kt
+|  |  |  |  |  |-- output
+|  |  |  |  |  |  |-- Location.kt
+|  |  |  |  |  |  |-- Output.kt
+|  |  |  |  |  |  |-- Query.kt
+|  |  |  |  |  |  |-- QueryFragment.kt
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- simplelogger.properties
+|  |  |  |-- test
+|  |  |  |  |-- kotlin
+|  |  |  |  |  |-- DataFlowEngineTest.kt
+|  |  |  |  |  |-- DataFlowSolverTest.kt
+|  |  |  |  |  |-- EnvironmentTest.kt
+|  |  |  |  |  |-- FilesExpanderTest.kt
+|  |  |  |  |  |-- JavaAnalysisTest.kt
+|  |  |  |  |  |-- PythonAnalysisTest.kt
+|  |  |  |  |  |-- SqlExtractorTest.kt
+|  |  |  |  |  |-- output
+|  |  |  |  |  |  |-- QueryFragmentTest.kt
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- junit-platform.properties
+|  |  |  |  |  |-- simplelogger.properties
+|  |-- template_based_query_generation
+|  |  |-- .gitignore
+|  |  |-- README.md
+|  |  |-- pom.xml
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- java
+|  |  |  |  |  |-- QueryGenerator.java
+|  |  |  |  |  |-- data
+|  |  |  |  |  |  |-- DataType.java
+|  |  |  |  |  |  |-- Table.java
+|  |  |  |  |  |-- graph
+|  |  |  |  |  |  |-- MarkovChain.java
+|  |  |  |  |  |  |-- Node.java
+|  |  |  |  |  |-- parser
+|  |  |  |  |  |  |-- DataTypeMap.java
+|  |  |  |  |  |  |-- DataTypeMaps.java
+|  |  |  |  |  |  |-- Dependencies.java
+|  |  |  |  |  |  |-- Dependency.java
+|  |  |  |  |  |  |-- DialectMap.java
+|  |  |  |  |  |  |-- Feature.java
+|  |  |  |  |  |  |-- FeatureIndicator.java
+|  |  |  |  |  |  |-- FeatureIndicators.java
+|  |  |  |  |  |  |-- Features.java
+|  |  |  |  |  |  |-- Keywords.java
+|  |  |  |  |  |  |-- KeywordsMapping.java
+|  |  |  |  |  |  |-- RegexMap.java
+|  |  |  |  |  |  |-- User.java
+|  |  |  |  |  |  |-- Utils.java
+|  |  |  |  |  |-- query
+|  |  |  |  |  |  |-- SkeletonPiece.java
+|  |  |  |  |  |-- token
+|  |  |  |  |  |  |-- QueryRegex.java
+|  |  |  |  |  |  |-- TokenProvider.java
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- dialect_config
+|  |  |  |  |  |  |-- datatype_mapping.json
+|  |  |  |  |  |  |-- ddl_dependencies.json
+|  |  |  |  |  |  |-- ddl_mapping.json
+|  |  |  |  |  |  |-- dml_dependencies.json
+|  |  |  |  |  |  |-- dml_mapping.json
+|  |  |  |  |  |  |-- dql_dependencies.json
+|  |  |  |  |  |  |-- dql_mapping.json
+|  |  |  |  |  |  |-- regex_mapping.json
+|  |  |  |  |  |  |-- root_dependencies.json
+|  |  |  |  |  |-- user_config
+|  |  |  |  |  |  |-- config.json
+|  |  |  |  |  |  |-- ddl.json
+|  |  |  |  |  |  |-- dml.json
+|  |  |  |  |  |  |-- dql.json
+|  |  |  |-- test
+|  |  |  |  |-- java
+|  |  |  |  |  |-- QueryGeneratorTest.java
+|  |  |  |  |  |-- data
+|  |  |  |  |  |  |-- TableTest.java
+|  |  |  |  |  |-- graph
+|  |  |  |  |  |  |-- MarkovChainTest.java
+|  |  |  |  |  |  |-- NodeTest.java
+|  |  |  |  |  |-- parser
+|  |  |  |  |  |  |-- KeywordsMappingTest.java
+|  |  |  |  |  |  |-- KeywordsTest.java
+|  |  |  |  |  |  |-- UtilsTest.java
+|  |  |  |  |  |-- token
+|  |  |  |  |  |  |-- QueryRegexTest.java
+|  |  |  |  |  |  |-- TokenInfoTest.java
+|  |  |  |  |  |  |-- TokenTest.java
+|  |  |  |  |  |  |-- TokenizerTest.java
+|  |-- unsupervised_dataset
+|  |  |-- README.md
+|  |  |-- run_crawler.py
+|  |  |-- sql_classifier
+|  |  |  |-- classifier
+|  |  |  |  |-- bin
+|  |  |  |  |  |-- calcite-bigquery.jar
+|  |  |  |  |  |-- calcite-core.jar
+|  |  |  |  |  |-- calcite-defaultdialect.jar
+|  |  |  |  |  |-- calcite-dialect1.jar
+|  |  |  |  |  |-- calcite-postgresql.jar
+|  |  |  |  |-- pom.xml
+|  |  |  |  |-- src
+|  |  |  |  |  |-- main
+|  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |-- Classifier.java
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |-- ClassifierTest.java
+|  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |-- queries_large.csv
+|  |  |  |  |  |  |  |-- queries_small.csv
+|  |  |-- sql_crawler
+|  |  |  |-- __init__.py
+|  |  |  |-- cloud_integration.py
+|  |  |  |-- cq_node.py
+|  |  |  |-- crawler.py
+|  |  |  |-- crawler_log.py
+|  |  |  |-- extraction_modules
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- extraction_module_1.py
+|  |  |  |  |-- extraction_module_2.py
+|  |  |  |  |-- extraction_module_3.py
+|  |  |  |  |-- extraction_module_4.py
+|  |  |  |  |-- generic_extraction_module.py
+|  |  |  |  |-- google_extraction_module.py
+|  |  |  |  |-- sql_file_extraction_module.py
+|  |  |  |-- extractor.py
+|  |  |  |-- tests
+|  |  |  |  |-- README.md
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- cq_node_test.py
+|  |  |  |  |-- crawler_log_test.py
+|  |  |  |  |-- crawler_test.py
+|  |  |  |  |-- extractor_test.py
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- sample_a.html
+|  |  |  |  |  |-- sample_b.html
+|  |-- vscode_automatic_query_fixer
+|  |  |-- .eslintrc.json
+|  |  |-- .gitignore
+|  |  |-- .prettierrc.js
+|  |  |-- .vscode
+|  |  |  |-- extensions.json
+|  |  |  |-- launch.json
+|  |  |  |-- settings.json
+|  |  |  |-- tasks.json
+|  |  |-- .vscodeignore
+|  |  |-- README.md
+|  |  |-- copy_binaries.js
+|  |  |-- example_sql
+|  |  |-- package-lock.json
+|  |  |-- package.json
+|  |  |-- resources
+|  |  |  |-- MockAutoFixer
+|  |  |-- src
+|  |  |  |-- auto_fixer_result.ts
+|  |  |  |-- auto_fixer_runner.ts
+|  |  |  |-- code_action_provider.ts
+|  |  |  |-- extension.ts
+|  |  |  |-- test
+|  |  |  |  |-- runTest.ts
+|  |  |  |  |-- suite
+|  |  |  |  |  |-- extension.test.ts
+|  |  |  |  |  |-- index.ts
+|  |  |-- tsconfig.json
+|  |  |-- vsc-extension-quickstart.md
+|  |-- vscode_query_breakdown
+|  |  |-- .eslintrc.json
+|  |  |-- .gitignore
+|  |  |-- .prettierrc.js
+|  |  |-- .vscode
+|  |  |  |-- extensions.json
+|  |  |  |-- launch.json
+|  |  |  |-- settings.json
+|  |  |  |-- tasks.json
+|  |  |-- .vscodeignore
+|  |  |-- README.md
+|  |  |-- package-lock.json
+|  |  |-- package.json
+|  |  |-- src
+|  |  |  |-- extension.ts
+|  |  |  |-- query_breakdown_runner.ts
+|  |  |  |-- resultJson.ts
+|  |  |  |-- test
+|  |  |  |  |-- runTest.ts
+|  |  |  |  |-- suite
+|  |  |  |  |  |-- extension.test.ts
+|  |  |  |  |  |-- index.ts
+|  |  |  |  |-- testQuery.txt
+|  |  |  |  |-- testQuery2.txt
+|  |  |  |-- toolconfig.json
+|  |  |-- tsconfig.json
+|  |  |-- vsc-extension-quickstart.md
+|  |-- vscode_sql_extraction
+|  |  |-- .eslintrc.json
+|  |  |-- .gitignore
+|  |  |-- .prettierrc.js
+|  |  |-- .vscode
+|  |  |  |-- extensions.json
+|  |  |  |-- launch.json
+|  |  |  |-- settings.json
+|  |  |  |-- tasks.json
+|  |  |-- .vscodeignore
+|  |  |-- README.md
+|  |  |-- copy_binaries.js
+|  |  |-- package-lock.json
+|  |  |-- package.json
+|  |  |-- resources
+|  |  |  |-- dark
+|  |  |  |  |-- dependency.svg
+|  |  |  |  |-- refresh.svg
+|  |  |  |-- dep.png
+|  |  |  |-- dep.svg
+|  |  |  |-- light
+|  |  |  |  |-- dependency.svg
+|  |  |  |  |-- refresh.svg
+|  |  |-- src
+|  |  |  |-- extension.ts
+|  |  |  |-- highlighter.ts
+|  |  |  |-- query.ts
+|  |  |  |-- sql_extraction_runner.ts
+|  |  |  |-- test
+|  |  |  |  |-- runTest.ts
+|  |  |  |  |-- suite
+|  |  |  |  |  |-- extension.test.ts
+|  |  |  |  |  |-- index.ts
+|  |  |  |-- tree_view.ts
+|  |  |-- tsconfig.json
+|  |  |-- vsc-extension-quickstart.md
+|  |-- zetasql_helper
+|  |  |-- .bazelrc
+|  |  |-- .bazelversion
+|  |  |-- .gitignore
+|  |  |-- Dockerfile
+|  |  |-- README.md
+|  |  |-- WORKSPACE
+|  |  |-- java
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- bigquery
+|  |  |  |  |  |  |-- utils
+|  |  |  |  |  |  |  |-- zetasqlhelper
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- Client.java
+|  |  |  |  |  |  |  |  |-- LocalServiceDockerProvider.java
+|  |  |  |  |  |  |  |  |-- LocalServiceException.java
+|  |  |  |  |  |  |  |  |-- LocalServiceProvider.java
+|  |  |  |  |  |  |  |  |-- Main.java
+|  |  |  |  |  |  |  |  |-- QueryFunctionRange.java
+|  |  |  |  |  |  |  |  |-- QueryLocationRange.java
+|  |  |  |  |  |  |  |  |-- Token.java
+|  |  |  |  |  |  |  |  |-- ZetaSqlHelper.java
+|  |  |  |-- resources
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- META-INF
+|  |  |  |  |  |-- services
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- com.google.bigquery.utils.zetasqlhelper.LocalServiceProvider
+|  |  |-- patches
+|  |  |  |-- BUILD
+|  |  |  |-- parser_visibility.patch
+|  |  |  |-- resolver_visibility.patch
+|  |  |-- zetasql_helper
+|  |  |  |-- fixer
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- fix_column_not_grouped.cc
+|  |  |  |  |-- fix_column_not_grouped.h
+|  |  |  |  |-- fix_duplicate_columns.cc
+|  |  |  |  |-- fix_duplicate_columns.h
+|  |  |  |  |-- fixer_test.cpp
+|  |  |  |-- local_service
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- local_service.cc
+|  |  |  |  |-- local_service.h
+|  |  |  |  |-- local_service.proto
+|  |  |  |  |-- local_service_grpc.cc
+|  |  |  |  |-- local_service_grpc.h
+|  |  |  |  |-- local_service_test.cc
+|  |  |  |  |-- run_server.cc
+|  |  |  |-- scanner
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- extract_function.cc
+|  |  |  |  |-- extract_function.h
+|  |  |  |  |-- function_range.proto
+|  |  |  |  |-- locate_table.cc
+|  |  |  |  |-- locate_table.h
+|  |  |  |  |-- scanner_test.cc
+|  |  |  |-- token
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- parse_token.proto
+|  |  |  |  |-- token.cc
+|  |  |  |  |-- token.h
+|  |  |  |  |-- token_test.cc
+|  |  |  |-- util
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- util.cc
+|  |  |  |  |-- util.h
+|-- udfs
+|  |-- CONTRIBUTING.md
+|  |-- README.md
+|  |-- cloudbuild.yaml
+|  |-- cloudbuild_deploy.yaml
+|  |-- community
+|  |  |-- README.md
+|  |  |-- csv_to_struct.sql
+|  |  |-- find_in_set.sql
+|  |  |-- freq_table.sql
+|  |  |-- get_array_value.sql
+|  |  |-- get_value.sql
+|  |  |-- int.sql
+|  |  |-- json_typeof.sql
+|  |  |-- kruskal_wallis.sql
+|  |  |-- last_day.sql
+|  |  |-- levenshtein.sql
+|  |  |-- linear_interpolate.sql
+|  |  |-- linear_regression.sql
+|  |  |-- median.sql
+|  |  |-- multiply_full_scale.sql
+|  |  |-- nlp_compromise_number.sql
+|  |  |-- nlp_compromise_people.sql
+|  |  |-- percentage_change.sql
+|  |  |-- percentage_difference.sql
+|  |  |-- pvalue.sql
+|  |  |-- radians.sql
+|  |  |-- random_int.sql
+|  |  |-- random_value.sql
+|  |  |-- string_to_struct.sql
+|  |  |-- test_cases.yaml
+|  |  |-- translate.sql
+|  |  |-- ts_gen_keyed_timestamps.sql
+|  |  |-- ts_linear_interpolate.sql
+|  |  |-- ts_session_group.sql
+|  |  |-- ts_slide.sql
+|  |  |-- ts_tumble.sql
+|  |  |-- typeof.sql
+|  |  |-- url_keys.sql
+|  |  |-- url_param.sql
+|  |  |-- url_parse.sql
+|  |  |-- y4md_to_date.sql
+|  |  |-- zeronorm.sql
+|  |-- dir_to_dataset_map.yaml
+|  |-- js_libs
+|  |  |-- README.md
+|  |  |-- js_libs.yaml
+|  |-- migration
+|  |  |-- netezza
+|  |  |  |-- README.md
+|  |  |-- oracle
+|  |  |  |-- README.md
+|  |  |-- redshift
+|  |  |  |-- README.md
+|  |  |  |-- initcap.sql
+|  |  |  |-- interval_literal_to_seconds.sql
+|  |  |  |-- split_part.sql
+|  |  |  |-- test_cases.yaml
+|  |  |  |-- translate.sql
+|  |  |-- snowflake
+|  |  |  |-- README.md
+|  |  |  |-- factorial.sql
+|  |  |  |-- test_cases.yaml
+|  |  |-- teradata
+|  |  |  |-- README.md
+|  |  |  |-- ascii.sql
+|  |  |  |-- chr.sql
+|  |  |  |-- decode1.sql
+|  |  |  |-- decode2.sql
+|  |  |  |-- decode3.sql
+|  |  |  |-- index.sql
+|  |  |  |-- initcap.sql
+|  |  |  |-- instr.sql
+|  |  |  |-- last_day.sql
+|  |  |  |-- left.sql
+|  |  |  |-- months_between.sql
+|  |  |  |-- nullifzero.sql
+|  |  |  |-- nvl.sql
+|  |  |  |-- nvl2.sql
+|  |  |  |-- otranslate.sql
+|  |  |  |-- right.sql
+|  |  |  |-- test_cases.yaml
+|  |  |  |-- zeroifnull.sql
+|  |  |-- vertica
+|  |  |  |-- README.md
+|  |  |  |-- lowerb.sql
+|  |  |  |-- substrb.sql
+|  |  |  |-- test_cases.yaml
+|  |  |  |-- upperb.sql
+|  |-- tests
+|  |  |-- .gitignore
+|  |  |-- Dockerfile.ci
+|  |  |-- cloudbuild_udf_test_image.yaml
+|  |  |-- create_udf_signatures.py
+|  |  |-- requirements.txt
+|  |  |-- run.sh
+|  |  |-- test_create_udfs.py
+|  |  |-- test_run_udfs.py
+|  |  |-- udf_test_utils.py
+|-- views
+|  |-- audit
+|  |  |-- README.md
+|  |  |-- big_query_elt_script_logging.sql
+|  |  |-- query_audit.sql

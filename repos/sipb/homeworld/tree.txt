@@ -1,0 +1,507 @@
+|-- .circleci
+|  |-- branches.yaml
+|  |-- ci-key-private.asc
+|  |-- config.yml
+|-- .github
+|  |-- pull_request_template.md
+|-- .gitignore
+|-- .jenkins
+|  |-- Jenkinsfile
+|  |-- branches.yaml.in
+|  |-- deploy-setup.yaml
+|  |-- generate-branches-config.py
+|  |-- gpg-key-details
+|  |-- jenkins-build.sh
+|  |-- jenkins-deploy.sh
+|-- LICENSE
+|-- README.md
+|-- build-chroot
+|  |-- .gitignore
+|  |-- bazel-3.1.0.deb.sha256
+|  |-- bazel-keyring.gpg
+|  |-- bump-pinned-bazel.sh
+|  |-- create.sh
+|  |-- debootstrap-1.0.106.deb.sha256
+|  |-- enter-ci.sh
+|  |-- enter.sh
+|  |-- install-bazel.sh
+|  |-- install-debootstrap.sh
+|  |-- packages.list
+|  |-- update.sh
+|-- deploy-chroot
+|  |-- create.sh
+|  |-- enter-internal.sh
+|  |-- enter.sh
+|  |-- generate-setup.py
+|  |-- packages.list
+|  |-- reinstall-apt-setup.sh
+|  |-- setup.yaml.in
+|  |-- update.sh
+|-- design
+|  |-- homeworld.md
+|  |-- key-infrastructure.md
+|  |-- rbac.md
+|-- docs
+|  |-- build.md
+|  |-- cluster-autodeploy.md
+|  |-- cluster-configuration.md
+|  |-- cluster-new.md
+|  |-- cluster-redeploy.md
+|  |-- deploy.md
+|  |-- homeworld-troubleshooting.md
+|  |-- installation-chroot.md
+|  |-- installation-direct.md
+|  |-- jenkins-setup.txt
+|  |-- jenkins-troubleshooting.txt
+|-- platform
+|  |-- .bazelrc
+|  |-- .gitignore
+|  |-- BUILD.bazel
+|  |-- WORKSPACE
+|  |-- apt-setup
+|  |  |-- BUILD.bazel
+|  |  |-- homeworld.pref.in
+|  |  |-- homeworld.sources.in
+|  |-- auth-monitor
+|  |  |-- BUILD.bazel
+|  |  |-- auth-monitor.go
+|  |  |-- auth-monitor.service
+|  |-- autostart
+|  |  |-- BUILD.bazel
+|  |  |-- homeworld-autostart.service
+|  |  |-- launch-autostart.sh
+|  |-- bazel
+|  |  |-- 0001-containerregistry-py2.patch
+|  |  |-- BUILD.bazel
+|  |  |-- assert.bzl
+|  |  |-- cache-compute.py
+|  |  |-- deps.bzl
+|  |  |-- deps_early.bzl
+|  |  |-- hash-compute.py
+|  |  |-- oci_digest.bzl
+|  |  |-- oci_to_tar.bzl
+|  |  |-- package.bzl
+|  |  |-- substitute.bzl
+|  |  |-- substitute.py
+|  |  |-- util.bzl
+|  |  |-- version-compute.py
+|  |  |-- version.bzl
+|  |  |-- workspace-status.sh
+|  |-- cni-plugins
+|  |  |-- 10-flannel.conf
+|  |  |-- 99-loopback.conf
+|  |  |-- BUILD.bazel
+|  |  |-- deps.bzl
+|  |-- cri-o
+|  |  |-- BUILD.bazel
+|  |  |-- build.patch
+|  |  |-- crictl.yaml
+|  |  |-- crio-shutdown.service
+|  |  |-- crio.conf.in
+|  |  |-- crio.conf.upstream
+|  |  |-- crio.service
+|  |  |-- deps.bzl
+|  |  |-- pause
+|  |  |  |-- BUILD.bazel
+|  |-- cri-tools
+|  |  |-- BUILD.bazel
+|  |  |-- deps.bzl
+|  |-- debian
+|  |  |-- BUILD.bazel
+|  |  |-- clean_fakechroot.py
+|  |  |-- debclean.bzl
+|  |  |-- debian.bzl
+|  |-- dns-monitor
+|  |  |-- BUILD.bazel
+|  |  |-- dns-monitor.go
+|  |  |-- kubernetes.yaml.in
+|  |-- dnsmasq
+|  |  |-- BUILD.bazel
+|  |  |-- BUILD.import
+|  |  |-- deps.bzl
+|  |  |-- dnsmasq.conf
+|  |  |-- kubernetes.yaml.in
+|  |-- docker-registry
+|  |  |-- BUILD.bazel
+|  |  |-- deps.bzl
+|  |  |-- docker-registry.patch
+|  |  |-- docker-registry.service
+|  |  |-- docker-registry.yaml
+|  |  |-- homeworld
+|  |  |-- postinst.sh
+|  |  |-- prerm.sh
+|  |-- etcd-metrics-exporter
+|  |  |-- BUILD.bazel
+|  |  |-- etcd-metrics-exporter.go
+|  |  |-- etcd-metrics-exporter.service
+|  |  |-- launch-etcd-metrics-exporter.sh
+|  |-- etcd
+|  |  |-- BUILD.bazel
+|  |  |-- deps.bzl
+|  |  |-- etcd-visibility.patch
+|  |  |-- etcd.service
+|  |  |-- etcdctl-visibility.patch
+|  |  |-- launch-etcd.sh
+|  |-- flannel-monitor
+|  |  |-- BUILD.bazel
+|  |  |-- architecture.txt
+|  |  |-- collector
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- flannel-monitor-collector.go
+|  |  |-- common
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- common.go
+|  |  |-- kubernetes.yaml.in
+|  |  |-- monitor
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- flannel-monitor.go
+|  |  |-- reflector
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- flannel-monitor-reflector.go
+|  |-- flannel
+|  |  |-- BUILD.bazel
+|  |  |-- deps.bzl
+|  |  |-- kubernetes.yaml.in
+|  |-- go
+|  |  |-- 0001-add-missing-platforms.patch
+|  |  |-- 0001-allow-gazelle-prepatch.patch
+|  |  |-- BUILD.bazel
+|  |  |-- deps.bzl
+|  |  |-- deps_early.bzl
+|  |-- keysystem
+|  |  |-- BUILD.bazel
+|  |  |-- api
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- config.go
+|  |  |  |-- endpoint
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- endpoint.go
+|  |  |  |  |-- endpoint_test.go
+|  |  |  |-- knc
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- knc.go
+|  |  |  |-- reqtarget
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- impersonate.go
+|  |  |  |  |-- impersonate_test.go
+|  |  |  |  |-- reqtarget.go
+|  |  |  |  |-- reqtarget_test.go
+|  |  |  |-- server
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- api.go
+|  |  |  |  |-- api_test.go
+|  |  |  |  |-- apiauth.go
+|  |  |  |  |-- apiauth_test.go
+|  |  |  |-- testdir
+|  |  |  |  |-- invalid.yaml
+|  |  |  |  |-- nocert.yaml
+|  |  |  |  |-- nocertpath.yaml
+|  |  |  |  |-- nokeypair.yaml
+|  |  |  |  |-- nokeypath.yaml
+|  |  |  |  |-- test.yaml.in
+|  |  |  |  |-- testbase.yaml
+|  |  |-- buglog.txt
+|  |  |-- deps.bzl
+|  |  |-- keyclient
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- actions
+|  |  |  |  |-- bootstrap
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- bootstrap.go
+|  |  |  |  |-- download
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- download.go
+|  |  |  |  |  |-- fetchers.go
+|  |  |  |  |-- hostname
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- hostname.go
+|  |  |  |  |-- keygen
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- keygen.go
+|  |  |  |  |-- keyreq
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- keyreq.go
+|  |  |  |-- actloop
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- actloop.go
+|  |  |  |-- keyclient.go
+|  |  |  |-- setup
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- load.go
+|  |  |  |-- state
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- state.go
+|  |  |-- keygateway
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- keygateway.go
+|  |  |-- keygen
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- generate.go
+|  |  |  |-- main
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- keygen.go
+|  |  |-- keygenupstream
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- keygenupstream.go
+|  |  |-- keyinitadmit
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- keyinitadmit.go
+|  |  |-- keylocalcert
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- keylocalcert.go
+|  |  |-- keyreq
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- keyreq.go
+|  |  |-- keyserver
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- account
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- account.go
+|  |  |  |  |-- privileges.go
+|  |  |  |-- authorities
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- authorities.go
+|  |  |  |  |-- ssh.go
+|  |  |  |  |-- ssh_test.go
+|  |  |  |  |-- tls.go
+|  |  |  |  |-- tls_op_test.go
+|  |  |  |  |-- tls_parse_test.go
+|  |  |  |-- config
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- config.go
+|  |  |  |  |-- context.go
+|  |  |  |  |-- context_test.go
+|  |  |  |  |-- testdir
+|  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |-- localhost.conf
+|  |  |  |  |  |-- privkey.pem
+|  |  |  |  |  |-- smalltest.yaml
+|  |  |  |  |  |-- smalltest2.yaml
+|  |  |  |  |  |-- smalltest3.yaml
+|  |  |  |  |  |-- test1.key
+|  |  |  |  |  |-- test1.pem
+|  |  |  |  |  |-- test2
+|  |  |  |  |  |-- test2.pub
+|  |  |  |  |  |-- test3.key
+|  |  |  |  |  |-- test3.pem
+|  |  |  |  |  |-- testa.txt
+|  |  |  |  |  |-- testb.txt
+|  |  |  |-- keyapi
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- api.go
+|  |  |  |  |-- api_test.go
+|  |  |  |  |-- keyserver.go
+|  |  |  |-- keyserver.go
+|  |  |  |-- operation
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- operation.go
+|  |  |  |  |-- operation_test.go
+|  |  |  |-- token
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- registry.go
+|  |  |  |  |-- scoped
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- token.go
+|  |  |  |-- verifier
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- token.go
+|  |  |  |  |-- verifier.go
+|  |  |-- run-tests.sh
+|  |  |-- systemd
+|  |  |  |-- keyclient.service
+|  |  |  |-- keygateway.service
+|  |  |  |-- keyserver.service
+|  |  |-- worldconfig
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- apis.go
+|  |  |  |-- keyclient.go
+|  |  |  |-- keyserver.go
+|  |  |  |-- paths
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- paths.go
+|  |  |  |-- spiresetup.go
+|  |-- knc
+|  |  |-- BUILD.bazel
+|  |  |-- BUILD.import
+|  |  |-- deps.bzl
+|  |-- kube-dns
+|  |  |-- BUILD.bazel
+|  |  |-- deps.bzl
+|  |  |-- dns-visibility.patch
+|  |-- kube-state-metrics
+|  |  |-- BUILD.bazel
+|  |  |-- deps.bzl
+|  |  |-- kube-state-metrics.service
+|  |  |-- launch.go
+|  |-- kubernetes
+|  |  |-- 0001-fix-bazel-compat.patch
+|  |  |-- BUILD.bazel
+|  |  |-- apiserver.service
+|  |  |-- br_netfilter.conf
+|  |  |-- deps.bzl
+|  |  |-- kube-ctrlmgr.service
+|  |  |-- kube-proxy.service
+|  |  |-- kube-scheduler.service
+|  |  |-- kubelet.service
+|  |  |-- launch.go
+|  |  |-- wrapper
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- wrap.go
+|  |-- oci-sig-policy
+|  |  |-- BUILD.bazel
+|  |  |-- policy.json
+|  |-- oci-tools
+|  |  |-- BUILD.bazel
+|  |  |-- deps.bzl
+|  |  |-- image-tools.patch
+|  |  |-- skopeo.patch
+|  |-- prometheus-client
+|  |  |-- BUILD.bazel
+|  |  |-- deps.bzl
+|  |-- prometheus-node-exporter
+|  |  |-- BUILD.bazel
+|  |  |-- deps.bzl
+|  |  |-- prometheus-node-exporter.service
+|  |  |-- visibility.patch
+|  |-- prometheus
+|  |  |-- BUILD.bazel
+|  |  |-- deps.bzl
+|  |  |-- prometheus-visibility.patch
+|  |  |-- prometheus.service
+|  |-- pull-monitor
+|  |  |-- pull-monitor
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- deps.bzl
+|  |  |  |-- interact.go
+|  |  |  |-- pull-monitor.go
+|  |  |  |-- pull-monitor.service.in
+|  |  |-- pullcheck
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- pullcheck.c
+|  |-- python
+|  |  |-- BUILD.bazel
+|  |  |-- deps.bzl
+|  |  |-- deps_early.bzl
+|  |  |-- resources.bzl
+|  |  |-- template_init.py
+|  |-- runc
+|  |  |-- BUILD.bazel
+|  |  |-- deps.bzl
+|  |-- services
+|  |  |-- BUILD.bazel
+|  |-- setup-queue
+|  |  |-- BUILD.bazel
+|  |  |-- deploy.go
+|  |  |-- setup-queue.service
+|  |  |-- setup-queue.timer
+|  |-- spire
+|  |  |-- BUILD.bazel
+|  |  |-- debian-iso
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- deps.bzl
+|  |  |-- resources
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- isolinux.cfg.serial
+|  |  |  |-- kubeconfig-local.yaml
+|  |  |  |-- netcfg.postinst
+|  |  |  |-- postinstall.sh
+|  |  |  |-- prepartition.sh
+|  |  |  |-- preseed.cfg.in
+|  |  |  |-- prometheus.yaml
+|  |  |  |-- servicemap.yaml
+|  |  |  |-- setup-schema.yaml
+|  |  |  |-- setup.yaml
+|  |  |  |-- sshd_config
+|  |  |-- src
+|  |  |  |-- __main__.py
+|  |  |  |-- access.py
+|  |  |  |-- authority.py
+|  |  |  |-- command.py
+|  |  |  |-- configuration.py
+|  |  |  |-- deploy.py
+|  |  |  |-- infra.py
+|  |  |  |-- iso.py
+|  |  |  |-- keycrypt.py
+|  |  |  |-- keys.py
+|  |  |  |-- metadata.py
+|  |  |  |-- packages.py
+|  |  |  |-- query.py
+|  |  |  |-- resource.py
+|  |  |  |-- seq.py
+|  |  |  |-- setup.py
+|  |  |  |-- ssh.py
+|  |  |  |-- template.py
+|  |  |  |-- util.py
+|  |  |  |-- verify.py
+|  |  |  |-- virt.py
+|  |-- upload
+|  |  |-- .gitignore
+|  |  |-- BUILD.bazel
+|  |  |-- branches.yaml.example
+|  |  |-- container_push.bzl
+|  |  |-- src
+|  |  |  |-- .gitignore
+|  |  |  |-- aptbranch.py
+|  |  |  |-- branches-schema.yaml
+|  |  |  |-- doupload.py
+|  |  |  |-- gendebs.py
+|  |  |  |-- parse.py
+|  |  |  |-- push-ocis.sh
+|  |  |  |-- upload.py
+|  |  |  |-- validate.py
+|  |  |  |-- wrapper.sh
+|  |  |-- upload.bzl
+|  |-- user-grant
+|  |  |-- BUILD.bazel
+|  |  |-- grant.go
+|  |  |-- kubernetes.yaml.in
+|  |-- util
+|  |  |-- certutil
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- email.go
+|  |  |  |-- expiration.go
+|  |  |  |-- expiration_test.go
+|  |  |  |-- privkey.go
+|  |  |  |-- sign.go
+|  |  |-- csrutil
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- csr.go
+|  |  |  |-- csr_test.go
+|  |  |-- fileutil
+|  |  |  |-- .gitignore
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- util.go
+|  |  |  |-- util_test.go
+|  |  |-- netutil
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- parseip.go
+|  |  |  |-- parseip_test.go
+|  |  |-- osutil
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- environment.go
+|  |  |-- strutil
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- substitute.go
+|  |  |  |-- substitute_test.go
+|  |  |-- testkeyutil
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- keygen.go
+|  |  |-- testutil
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- checkerr.go
+|  |  |-- wraputil
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- file.go
+|  |  |  |-- pem.go
+|  |  |  |-- pem_test.go
+|  |  |  |-- ssh.go
+|  |  |  |-- ssh_test.go
+|  |-- version
+|  |  |-- BUILD.bazel
+|  |  |-- VERSION
+|-- tools
+|  |-- bump-debian-iso.sh
+|  |-- debian-iso-checksum.sh
+|  |-- extract-apt-setup.sh
+|  |-- shellcheck-all.sh
+|  |-- update-defs.py

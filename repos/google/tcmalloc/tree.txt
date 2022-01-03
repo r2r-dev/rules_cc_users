@@ -1,0 +1,254 @@
+|-- .bazelrc
+|-- .gitignore
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- ci
+|  |-- linux_clang-latest_libcxx_bazel.sh
+|  |-- linux_clang-latest_libstdcxx_bazel.sh
+|  |-- linux_gcc-latest_libstdcxx_bazel.sh
+|-- docs
+|  |-- README.md
+|  |-- compatibility.md
+|  |-- design.md
+|  |-- gperftools.md
+|  |-- gwp-asan.md
+|  |-- images
+|  |  |-- legacy_pageheap.png
+|  |  |-- pagemap.png
+|  |  |-- per-cpu-cache-internals.png
+|  |  |-- per-thread-structure.png
+|  |  |-- spanmap.gif
+|  |  |-- tcmalloc_internals.png
+|  |-- overview.md
+|  |-- platforms.md
+|  |-- quickstart.md
+|  |-- reference.md
+|  |-- regions-are-not-optional.md
+|  |-- rseq.md
+|  |-- sampling.md
+|  |-- stats.md
+|  |-- temeraire.md
+|  |-- tuning.md
+|-- tcmalloc
+|  |-- .clang-format
+|  |-- .github
+|  |  |-- CODEOWNERS
+|  |-- BUILD
+|  |-- arena.cc
+|  |-- arena.h
+|  |-- arena_test.cc
+|  |-- background.cc
+|  |-- central_freelist.cc
+|  |-- central_freelist.h
+|  |-- central_freelist_benchmark.cc
+|  |-- central_freelist_test.cc
+|  |-- common.cc
+|  |-- common.h
+|  |-- copts.bzl
+|  |-- cpu_cache.cc
+|  |-- cpu_cache.h
+|  |-- cpu_cache_test.cc
+|  |-- experiment.cc
+|  |-- experiment.h
+|  |-- experiment_config.h
+|  |-- experiment_config_test.cc
+|  |-- experiment_fuzz.cc
+|  |-- experimental_pow2_below64_size_class.cc
+|  |-- experimental_pow2_size_class.cc
+|  |-- guarded_page_allocator.cc
+|  |-- guarded_page_allocator.h
+|  |-- guarded_page_allocator_benchmark.cc
+|  |-- guarded_page_allocator_test.cc
+|  |-- heap_profiling_test.cc
+|  |-- huge_address_map.cc
+|  |-- huge_address_map.h
+|  |-- huge_address_map_test.cc
+|  |-- huge_allocator.cc
+|  |-- huge_allocator.h
+|  |-- huge_allocator_test.cc
+|  |-- huge_cache.cc
+|  |-- huge_cache.h
+|  |-- huge_cache_test.cc
+|  |-- huge_page_aware_allocator.cc
+|  |-- huge_page_aware_allocator.h
+|  |-- huge_page_aware_allocator_test.cc
+|  |-- huge_page_filler.h
+|  |-- huge_page_filler_test.cc
+|  |-- huge_pages.h
+|  |-- huge_region.h
+|  |-- huge_region_test.cc
+|  |-- internal
+|  |  |-- BUILD
+|  |  |-- atomic_danger.h
+|  |  |-- atomic_stats_counter.h
+|  |  |-- config.h
+|  |  |-- declarations.h
+|  |  |-- environment.cc
+|  |  |-- environment.h
+|  |  |-- environment_test.cc
+|  |  |-- linked_list.h
+|  |  |-- linked_list_benchmark.cc
+|  |  |-- linked_list_test.cc
+|  |  |-- linux_syscall_support.h
+|  |  |-- logging.cc
+|  |  |-- logging.h
+|  |  |-- logging_test.cc
+|  |  |-- logging_test_helper.cc
+|  |  |-- memory_stats.cc
+|  |  |-- memory_stats.h
+|  |  |-- memory_stats_test.cc
+|  |  |-- mincore.cc
+|  |  |-- mincore.h
+|  |  |-- mincore_benchmark.cc
+|  |  |-- mincore_test.cc
+|  |  |-- mock_span.h
+|  |  |-- numa.cc
+|  |  |-- numa.h
+|  |  |-- numa_test.cc
+|  |  |-- optimization.h
+|  |  |-- parameter_accessors.h
+|  |  |-- percpu.cc
+|  |  |-- percpu.h
+|  |  |-- percpu_rseq_aarch64.S
+|  |  |-- percpu_rseq_asm.S
+|  |  |-- percpu_rseq_ppc.S
+|  |  |-- percpu_rseq_unsupported.cc
+|  |  |-- percpu_rseq_x86_64.S
+|  |  |-- percpu_tcmalloc.h
+|  |  |-- percpu_tcmalloc_test.cc
+|  |  |-- proc_maps.cc
+|  |  |-- proc_maps.h
+|  |  |-- range_tracker.h
+|  |  |-- range_tracker_benchmark.cc
+|  |  |-- range_tracker_test.cc
+|  |  |-- timeseries_tracker.h
+|  |  |-- timeseries_tracker_test.cc
+|  |  |-- util.cc
+|  |  |-- util.h
+|  |-- internal_malloc_extension.h
+|  |-- legacy_size_classes.cc
+|  |-- libc_override.h
+|  |-- libc_override_gcc_and_weak.h
+|  |-- libc_override_glibc.h
+|  |-- libc_override_redefine.h
+|  |-- malloc_extension.cc
+|  |-- malloc_extension.h
+|  |-- malloc_extension_fuzz.cc
+|  |-- malloc_extension_system_malloc_test.cc
+|  |-- malloc_extension_test.cc
+|  |-- mock_central_freelist.cc
+|  |-- mock_central_freelist.h
+|  |-- mock_transfer_cache.cc
+|  |-- mock_transfer_cache.h
+|  |-- noruntime_size_classes.cc
+|  |-- page_allocator.cc
+|  |-- page_allocator.h
+|  |-- page_allocator_interface.cc
+|  |-- page_allocator_interface.h
+|  |-- page_allocator_test.cc
+|  |-- page_allocator_test_util.h
+|  |-- page_heap.cc
+|  |-- page_heap.h
+|  |-- page_heap_allocator.h
+|  |-- page_heap_test.cc
+|  |-- pagemap.cc
+|  |-- pagemap.h
+|  |-- pagemap_test.cc
+|  |-- pages.h
+|  |-- parameters.cc
+|  |-- parameters.h
+|  |-- peak_heap_tracker.cc
+|  |-- peak_heap_tracker.h
+|  |-- profile_test.cc
+|  |-- realloc_test.cc
+|  |-- runtime_size_classes.cc
+|  |-- runtime_size_classes.h
+|  |-- runtime_size_classes_fuzz.cc
+|  |-- runtime_size_classes_test.cc
+|  |-- sampler.cc
+|  |-- sampler.h
+|  |-- size_class_info.h
+|  |-- size_classes.cc
+|  |-- size_classes_test.cc
+|  |-- size_classes_with_runtime_size_classes_test.cc
+|  |-- span.cc
+|  |-- span.h
+|  |-- span_benchmark.cc
+|  |-- span_stats.h
+|  |-- span_test.cc
+|  |-- stack_trace_table.cc
+|  |-- stack_trace_table.h
+|  |-- stack_trace_table_test.cc
+|  |-- static_vars.cc
+|  |-- static_vars.h
+|  |-- stats.cc
+|  |-- stats.h
+|  |-- stats_test.cc
+|  |-- system-alloc.cc
+|  |-- system-alloc.h
+|  |-- system-alloc_test.cc
+|  |-- tcmalloc.cc
+|  |-- tcmalloc.h
+|  |-- tcmalloc_large_test.cc
+|  |-- tcmalloc_policy.h
+|  |-- testing
+|  |  |-- BUILD
+|  |  |-- aligned_new_test.cc
+|  |  |-- benchmark_main.cc
+|  |  |-- current_allocated_bytes_test.cc
+|  |  |-- default_parameters_test.cc
+|  |  |-- empirical.cc
+|  |  |-- empirical.h
+|  |  |-- empirical_benchmark.cc
+|  |  |-- empirical_distributions.cc
+|  |  |-- empirical_distributions.h
+|  |  |-- empirical_distributions_benchmark.cc
+|  |  |-- empirical_distributions_test.cc
+|  |  |-- empirical_driver.cc
+|  |  |-- empirical_test.cc
+|  |  |-- frag_test.cc
+|  |  |-- get_stats_test.cc
+|  |  |-- hello_main.cc
+|  |  |-- large_alloc_size_test.cc
+|  |  |-- largesmall_frag_test.cc
+|  |  |-- limit_test.cc
+|  |  |-- markidle_test.cc
+|  |  |-- memalign_test.cc
+|  |  |-- memory_errors_test.cc
+|  |  |-- no_deps_test.cc
+|  |  |-- numa_locality_test.cc
+|  |  |-- outofmemory_test.cc
+|  |  |-- releasing_test.cc
+|  |  |-- sample_size_class_test.cc
+|  |  |-- sampler_test.cc
+|  |  |-- sampling_memusage_test.cc
+|  |  |-- sampling_test.cc
+|  |  |-- startup_size_test.cc
+|  |  |-- tcmalloc_benchmark.cc
+|  |  |-- tcmalloc_test.cc
+|  |  |-- testutil.cc
+|  |  |-- testutil.h
+|  |  |-- thread_ctor_test.cc
+|  |  |-- thread_ctor_test_lib.cc
+|  |  |-- thread_manager.h
+|  |  |-- threadcachesize_test.cc
+|  |  |-- want_hpaa_test_helper.cc
+|  |-- thread_cache.cc
+|  |-- thread_cache.h
+|  |-- thread_cache_test.cc
+|  |-- tracking.h
+|  |-- transfer_cache.cc
+|  |-- transfer_cache.h
+|  |-- transfer_cache_benchmark.cc
+|  |-- transfer_cache_fuzz.cc
+|  |-- transfer_cache_internals.h
+|  |-- transfer_cache_stats.h
+|  |-- transfer_cache_test.cc
+|  |-- variants.bzl
+|  |-- want_hpaa.cc
+|  |-- want_hpaa_subrelease.cc
+|  |-- want_legacy_spans.cc
+|  |-- want_no_hpaa.cc
+|  |-- want_numa_aware.cc

@@ -1,0 +1,787 @@
+|-- .gitignore
+|-- .gitmodules
+|-- .travis.yml
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- build
+|  |-- testsuites
+|  |-- travis
+|  |  |-- Dockerfile
+|  |  |-- run_tests_in_docker.sh
+|  |  |-- setup_bazel_and_run_tests.sh
+|-- clang-format
+|-- google
+|  |-- boringssl
+|  |  |-- BUILD
+|  |  |-- err_data.c
+|  |  |-- linux-aarch64
+|  |  |  |-- crypto
+|  |  |  |  |-- aes
+|  |  |  |  |  |-- aesv8-armx.S
+|  |  |  |  |  |-- aesv8-armx64.S
+|  |  |  |  |-- bn
+|  |  |  |  |  |-- armv8-mont.S
+|  |  |  |  |-- chacha
+|  |  |  |  |  |-- chacha-armv8.S
+|  |  |  |  |-- modes
+|  |  |  |  |  |-- ghashv8-armx.S
+|  |  |  |  |  |-- ghashv8-armx64.S
+|  |  |  |  |-- sha
+|  |  |  |  |  |-- sha1-armv8.S
+|  |  |  |  |  |-- sha256-armv8.S
+|  |  |  |  |  |-- sha512-armv8.S
+|  |  |-- linux-arm
+|  |  |  |-- crypto
+|  |  |  |  |-- aes
+|  |  |  |  |  |-- aes-armv4.S
+|  |  |  |  |  |-- aesv8-armx.S
+|  |  |  |  |  |-- aesv8-armx32.S
+|  |  |  |  |  |-- bsaes-armv7.S
+|  |  |  |  |-- bn
+|  |  |  |  |  |-- armv4-mont.S
+|  |  |  |  |-- chacha
+|  |  |  |  |  |-- chacha-armv4.S
+|  |  |  |  |-- modes
+|  |  |  |  |  |-- ghash-armv4.S
+|  |  |  |  |  |-- ghashv8-armx.S
+|  |  |  |  |  |-- ghashv8-armx32.S
+|  |  |  |  |-- sha
+|  |  |  |  |  |-- sha1-armv4-large.S
+|  |  |  |  |  |-- sha256-armv4.S
+|  |  |  |  |  |-- sha512-armv4.S
+|  |  |-- linux-x86
+|  |  |  |-- crypto
+|  |  |  |  |-- aes
+|  |  |  |  |  |-- aes-586.S
+|  |  |  |  |  |-- aesni-x86.S
+|  |  |  |  |  |-- vpaes-x86.S
+|  |  |  |  |-- bn
+|  |  |  |  |  |-- bn-586.S
+|  |  |  |  |  |-- co-586.S
+|  |  |  |  |  |-- x86-mont.S
+|  |  |  |  |-- chacha
+|  |  |  |  |  |-- chacha-x86.S
+|  |  |  |  |-- cpu-x86-asm.S
+|  |  |  |  |-- md5
+|  |  |  |  |  |-- md5-586.S
+|  |  |  |  |-- modes
+|  |  |  |  |  |-- ghash-x86.S
+|  |  |  |  |-- rc4
+|  |  |  |  |  |-- rc4-586.S
+|  |  |  |  |-- sha
+|  |  |  |  |  |-- sha1-586.S
+|  |  |  |  |  |-- sha256-586.S
+|  |  |  |  |  |-- sha512-586.S
+|  |  |-- linux-x86_64
+|  |  |  |-- crypto
+|  |  |  |  |-- aes
+|  |  |  |  |  |-- aes-x86_64.S
+|  |  |  |  |  |-- aesni-x86_64.S
+|  |  |  |  |  |-- bsaes-x86_64.S
+|  |  |  |  |  |-- vpaes-x86_64.S
+|  |  |  |  |-- bn
+|  |  |  |  |  |-- rsaz-avx2.S
+|  |  |  |  |  |-- rsaz-x86_64.S
+|  |  |  |  |  |-- x86_64-mont.S
+|  |  |  |  |  |-- x86_64-mont5.S
+|  |  |  |  |-- chacha
+|  |  |  |  |  |-- chacha-x86_64.S
+|  |  |  |  |-- cpu-x86_64-asm.S
+|  |  |  |  |-- ec
+|  |  |  |  |  |-- p256-x86_64-asm.S
+|  |  |  |  |-- md5
+|  |  |  |  |  |-- md5-x86_64.S
+|  |  |  |  |-- modes
+|  |  |  |  |  |-- aesni-gcm-x86_64.S
+|  |  |  |  |  |-- ghash-x86_64.S
+|  |  |  |  |-- rand
+|  |  |  |  |  |-- rdrand-x86_64.S
+|  |  |  |  |-- rc4
+|  |  |  |  |  |-- rc4-md5-x86_64.S
+|  |  |  |  |  |-- rc4-x86_64.S
+|  |  |  |  |-- sha
+|  |  |  |  |  |-- sha1-x86_64.S
+|  |  |  |  |  |-- sha256-x86_64.S
+|  |  |  |  |  |-- sha512-x86_64.S
+|  |  |-- mac-x86
+|  |  |  |-- crypto
+|  |  |  |  |-- aes
+|  |  |  |  |  |-- aes-586.S
+|  |  |  |  |  |-- aesni-x86.S
+|  |  |  |  |  |-- vpaes-x86.S
+|  |  |  |  |-- bn
+|  |  |  |  |  |-- bn-586.S
+|  |  |  |  |  |-- co-586.S
+|  |  |  |  |  |-- x86-mont.S
+|  |  |  |  |-- chacha
+|  |  |  |  |  |-- chacha-x86.S
+|  |  |  |  |-- md5
+|  |  |  |  |  |-- md5-586.S
+|  |  |  |  |-- modes
+|  |  |  |  |  |-- ghash-x86.S
+|  |  |  |  |-- rc4
+|  |  |  |  |  |-- rc4-586.S
+|  |  |  |  |-- sha
+|  |  |  |  |  |-- sha1-586.S
+|  |  |  |  |  |-- sha256-586.S
+|  |  |  |  |  |-- sha512-586.S
+|  |  |-- mac-x86_64
+|  |  |  |-- crypto
+|  |  |  |  |-- aes
+|  |  |  |  |  |-- aes-x86_64.S
+|  |  |  |  |  |-- aesni-x86_64.S
+|  |  |  |  |  |-- bsaes-x86_64.S
+|  |  |  |  |  |-- vpaes-x86_64.S
+|  |  |  |  |-- bn
+|  |  |  |  |  |-- rsaz-avx2.S
+|  |  |  |  |  |-- rsaz-x86_64.S
+|  |  |  |  |  |-- x86_64-mont.S
+|  |  |  |  |  |-- x86_64-mont5.S
+|  |  |  |  |-- chacha
+|  |  |  |  |  |-- chacha-x86_64.S
+|  |  |  |  |-- ec
+|  |  |  |  |  |-- p256-x86_64-asm.S
+|  |  |  |  |-- md5
+|  |  |  |  |  |-- md5-x86_64.S
+|  |  |  |  |-- modes
+|  |  |  |  |  |-- aesni-gcm-x86_64.S
+|  |  |  |  |  |-- ghash-x86_64.S
+|  |  |  |  |-- rand
+|  |  |  |  |  |-- rdrand-x86_64.S
+|  |  |  |  |-- rc4
+|  |  |  |  |  |-- rc4-x86_64.S
+|  |  |  |  |-- sha
+|  |  |  |  |  |-- sha1-x86_64.S
+|  |  |  |  |  |-- sha256-x86_64.S
+|  |  |  |  |  |-- sha512-x86_64.S
+|  |  |-- src
+|  |  |-- win-x86
+|  |  |  |-- crypto
+|  |  |  |  |-- aes
+|  |  |  |  |  |-- aes-586.asm
+|  |  |  |  |  |-- aesni-x86.asm
+|  |  |  |  |  |-- vpaes-x86.asm
+|  |  |  |  |-- bn
+|  |  |  |  |  |-- bn-586.asm
+|  |  |  |  |  |-- co-586.asm
+|  |  |  |  |  |-- x86-mont.asm
+|  |  |  |  |-- chacha
+|  |  |  |  |  |-- chacha-x86.asm
+|  |  |  |  |-- md5
+|  |  |  |  |  |-- md5-586.asm
+|  |  |  |  |-- modes
+|  |  |  |  |  |-- ghash-x86.asm
+|  |  |  |  |-- rc4
+|  |  |  |  |  |-- rc4-586.asm
+|  |  |  |  |-- sha
+|  |  |  |  |  |-- sha1-586.asm
+|  |  |  |  |  |-- sha256-586.asm
+|  |  |  |  |  |-- sha512-586.asm
+|  |  |-- win-x86_64
+|  |  |  |-- crypto
+|  |  |  |  |-- aes
+|  |  |  |  |  |-- aes-x86_64.asm
+|  |  |  |  |  |-- aesni-x86_64.asm
+|  |  |  |  |  |-- bsaes-x86_64.asm
+|  |  |  |  |  |-- vpaes-x86_64.asm
+|  |  |  |  |-- bn
+|  |  |  |  |  |-- rsaz-avx2.asm
+|  |  |  |  |  |-- rsaz-x86_64.asm
+|  |  |  |  |  |-- x86_64-mont.asm
+|  |  |  |  |  |-- x86_64-mont5.asm
+|  |  |  |  |-- chacha
+|  |  |  |  |  |-- chacha-x86_64.asm
+|  |  |  |  |-- ec
+|  |  |  |  |  |-- p256-x86_64-asm.asm
+|  |  |  |  |-- md5
+|  |  |  |  |  |-- md5-x86_64.asm
+|  |  |  |  |-- modes
+|  |  |  |  |  |-- aesni-gcm-x86_64.asm
+|  |  |  |  |  |-- ghash-x86_64.asm
+|  |  |  |  |-- rand
+|  |  |  |  |  |-- rdrand-x86_64.asm
+|  |  |  |  |-- rc4
+|  |  |  |  |  |-- rc4-x86_64.asm
+|  |  |  |  |-- sha
+|  |  |  |  |  |-- sha1-x86_64.asm
+|  |  |  |  |  |-- sha256-x86_64.asm
+|  |  |  |  |  |-- sha512-x86_64.asm
+|  |-- gflags
+|  |  |-- BUILD
+|  |  |-- upstream
+|  |-- glog
+|  |  |-- BUILD
+|  |  |-- upstream
+|  |-- googletest
+|  |  |-- BUILD
+|  |  |-- upstream
+|  |-- grpc
+|  |-- libwebp
+|  |  |-- BUILD
+|  |  |-- upstream
+|  |-- protobuf
+|-- proto
+|  |-- BUILD
+|  |-- image_optimizer.proto
+|-- release
+|  |-- BUILD
+|  |-- Dockerfile
+|  |-- debian
+|  |  |-- description
+|  |  |-- postinst
+|  |-- squim.sh
+|-- setup_bazel.sh
+|-- squim
+|  |-- .clang-format
+|  |-- app
+|  |  |-- BUILD
+|  |  |-- client.cc
+|  |  |-- image_optimizer_client.cc
+|  |  |-- image_optimizer_client.h
+|  |  |-- image_optimizer_service.cc
+|  |  |-- image_optimizer_service.h
+|  |  |-- optimization.cc
+|  |  |-- optimization.h
+|  |  |-- optimizer_end_to_end_test.cc
+|  |  |-- optimizers
+|  |  |  |-- check_is_photo.cc
+|  |  |  |-- check_is_photo.h
+|  |  |  |-- metadata_handler.cc
+|  |  |  |-- metadata_handler.h
+|  |  |  |-- squim_webp.cc
+|  |  |  |-- squim_webp.h
+|  |  |  |-- try_strip_alpha.cc
+|  |  |  |-- try_strip_alpha.h
+|  |  |-- request_builder.cc
+|  |  |-- request_builder.h
+|  |  |-- server.cc
+|  |  |-- testdata
+|  |  |  |-- test.jpg
+|  |-- base
+|  |  |-- BUILD
+|  |  |-- defer.h
+|  |  |-- logging.h
+|  |  |-- make_noncopyable.h
+|  |  |-- memory
+|  |  |  |-- make_unique.h
+|  |  |-- optional.h
+|  |  |-- strings
+|  |  |  |-- string_piece.cc
+|  |  |  |-- string_piece.h
+|  |  |  |-- string_piece_test.cc
+|  |  |  |-- string_util.cc
+|  |  |  |-- string_util.h
+|  |-- image
+|  |  |-- BUILD
+|  |  |-- codecs
+|  |  |  |-- decode_params.h
+|  |  |  |-- gif
+|  |  |  |  |-- gif_image.cc
+|  |  |  |  |-- gif_image.h
+|  |  |  |  |-- gif_image_frame_parser.cc
+|  |  |  |  |-- gif_image_frame_parser.h
+|  |  |  |  |-- gif_image_parser.cc
+|  |  |  |  |-- gif_image_parser.h
+|  |  |  |  |-- gif_image_parser_test.cc
+|  |  |  |  |-- lzw_reader.cc
+|  |  |  |  |-- lzw_reader.h
+|  |  |  |  |-- lzw_reader_test.cc
+|  |  |  |  |-- lzw_writer.cc
+|  |  |  |  |-- lzw_writer.h
+|  |  |  |-- gif_decoder.cc
+|  |  |  |-- gif_decoder.h
+|  |  |  |-- gif_decoder_test.cc
+|  |  |  |-- jpeg_decoder.cc
+|  |  |  |-- jpeg_decoder.h
+|  |  |  |-- jpeg_decoder_test.cc
+|  |  |  |-- png_decoder.cc
+|  |  |  |-- png_decoder.h
+|  |  |  |-- png_decoder_test.cc
+|  |  |  |-- webp
+|  |  |  |  |-- multiframe_webp_encoder.cc
+|  |  |  |  |-- multiframe_webp_encoder.h
+|  |  |  |  |-- simple_webp_encoder.cc
+|  |  |  |  |-- simple_webp_encoder.h
+|  |  |  |  |-- webp_util.cc
+|  |  |  |  |-- webp_util.h
+|  |  |  |-- webp_decoder.cc
+|  |  |  |-- webp_decoder.h
+|  |  |  |-- webp_decoder_test.cc
+|  |  |  |-- webp_encoder.cc
+|  |  |  |-- webp_encoder.h
+|  |  |  |-- webp_encoder_test.cc
+|  |  |-- decoding_reader.cc
+|  |  |-- decoding_reader.h
+|  |  |-- decoding_reader_test.cc
+|  |  |-- image_codec_factory.h
+|  |  |-- image_constants.cc
+|  |  |-- image_constants.h
+|  |  |-- image_decoder.h
+|  |  |-- image_encoder.h
+|  |  |-- image_frame.cc
+|  |  |-- image_frame.h
+|  |  |-- image_info.h
+|  |  |-- image_metadata.cc
+|  |  |-- image_metadata.h
+|  |  |-- image_optimization_stats.h
+|  |  |-- image_reader.h
+|  |  |-- image_writer.h
+|  |  |-- multi_frame_writer.cc
+|  |  |-- multi_frame_writer.h
+|  |  |-- optimization
+|  |  |  |-- codec_aware_strategy.h
+|  |  |  |-- codec_configurator.cc
+|  |  |  |-- codec_configurator.h
+|  |  |  |-- codec_factory_with_configurator.cc
+|  |  |  |-- codec_factory_with_configurator.h
+|  |  |  |-- convert_to_webp_strategy.cc
+|  |  |  |-- convert_to_webp_strategy.h
+|  |  |  |-- convert_to_webp_strategy_test.cc
+|  |  |  |-- default_codec_factory.cc
+|  |  |  |-- default_codec_factory.h
+|  |  |  |-- image_optimizer.cc
+|  |  |  |-- image_optimizer.h
+|  |  |  |-- image_optimizer_test.cc
+|  |  |  |-- layered_adjuster.cc
+|  |  |  |-- layered_adjuster.h
+|  |  |  |-- lazy_webp_writer.cc
+|  |  |  |-- lazy_webp_writer.h
+|  |  |  |-- lazy_webp_writer_test.cc
+|  |  |  |-- optimization_strategy.h
+|  |  |  |-- photo_metric.cc
+|  |  |  |-- photo_metric.h
+|  |  |  |-- root_strategy.cc
+|  |  |  |-- root_strategy.h
+|  |  |  |-- skip_metadata_reader.cc
+|  |  |  |-- skip_metadata_reader.h
+|  |  |  |-- strategy_builder.h
+|  |  |-- pixel.h
+|  |  |-- result.cc
+|  |  |-- result.h
+|  |  |-- scanline_reader.h
+|  |  |-- single_frame_writer.cc
+|  |  |-- single_frame_writer.h
+|  |  |-- single_frame_writer_test.cc
+|  |  |-- test
+|  |  |  |-- image_test_util.cc
+|  |  |  |-- image_test_util.h
+|  |  |  |-- mock_decoder.h
+|  |  |  |-- mock_encoder.h
+|  |  |  |-- mock_image_reader.h
+|  |  |-- testdata
+|  |  |  |-- gif
+|  |  |  |  |-- animated.gif
+|  |  |  |  |-- animated_interlaced.gif
+|  |  |  |  |-- bad.gif
+|  |  |  |  |-- bad_pixel_global_palette.gif
+|  |  |  |  |-- bad_pixel_local_palette.gif
+|  |  |  |  |-- completely_transparent.gif
+|  |  |  |  |-- completely_transparent.png
+|  |  |  |  |-- frame_smaller_than_screen.gif
+|  |  |  |  |-- full2loop.gif
+|  |  |  |  |-- interlaced.gif
+|  |  |  |  |-- interlaced.png
+|  |  |  |  |-- red_conforming.png
+|  |  |  |  |-- red_empty_screen.gif
+|  |  |  |  |-- red_unused_invalid_background.gif
+|  |  |  |  |-- square2loop.gif
+|  |  |  |  |-- transparent.gif
+|  |  |  |  |-- zero_size_animation.gif
+|  |  |  |-- jpeg
+|  |  |  |  |-- already_optimized.jpg
+|  |  |  |  |-- app_segments.jpg
+|  |  |  |  |-- corrupt.jpg
+|  |  |  |  |-- emptyfile.jpg
+|  |  |  |  |-- notajpeg.gif
+|  |  |  |  |-- notajpeg.png
+|  |  |  |  |-- progressive.jpg
+|  |  |  |  |-- quality100.jpg
+|  |  |  |  |-- sjpeg1.jpg
+|  |  |  |  |-- sjpeg2.jpg
+|  |  |  |  |-- sjpeg3.jpg
+|  |  |  |  |-- sjpeg4.jpg
+|  |  |  |  |-- sjpeg6.jpg
+|  |  |  |  |-- test411.jpg
+|  |  |  |  |-- test411.png
+|  |  |  |  |-- test420.jpg
+|  |  |  |  |-- test420.png
+|  |  |  |  |-- test422.jpg
+|  |  |  |  |-- test422.png
+|  |  |  |  |-- test444.jpg
+|  |  |  |  |-- test444.png
+|  |  |  |  |-- testgray.jpg
+|  |  |  |  |-- testgray.png
+|  |  |  |-- png
+|  |  |  |  |-- gray_alpha.png
+|  |  |  |  |-- pagespeed-128.png
+|  |  |  |  |-- pagespeed-33x34.png
+|  |  |  |  |-- read_from_stream_crash.png
+|  |  |  |  |-- rgb_alpha.png
+|  |  |  |  |-- this_is_a_test.png
+|  |  |  |-- pngsuite
+|  |  |  |  |-- already_optimized.png
+|  |  |  |  |-- basi0g01.png
+|  |  |  |  |-- basi0g02.png
+|  |  |  |  |-- basi0g04.png
+|  |  |  |  |-- basi0g08.png
+|  |  |  |  |-- basi0g16.png
+|  |  |  |  |-- basi2c08.png
+|  |  |  |  |-- basi2c16.png
+|  |  |  |  |-- basi3p01.png
+|  |  |  |  |-- basi3p02.png
+|  |  |  |  |-- basi3p04.png
+|  |  |  |  |-- basi3p08.png
+|  |  |  |  |-- basi4a08.png
+|  |  |  |  |-- basi4a16.png
+|  |  |  |  |-- basi6a08.png
+|  |  |  |  |-- basi6a16.png
+|  |  |  |  |-- basn0g01.png
+|  |  |  |  |-- basn0g02.png
+|  |  |  |  |-- basn0g04.png
+|  |  |  |  |-- basn0g08.png
+|  |  |  |  |-- basn0g16.png
+|  |  |  |  |-- basn2c08.png
+|  |  |  |  |-- basn2c16.png
+|  |  |  |  |-- basn3p01.png
+|  |  |  |  |-- basn3p02.png
+|  |  |  |  |-- basn3p04.png
+|  |  |  |  |-- basn3p08.png
+|  |  |  |  |-- basn4a08.png
+|  |  |  |  |-- basn4a16.png
+|  |  |  |  |-- basn6a08.png
+|  |  |  |  |-- basn6a16.png
+|  |  |  |  |-- bgai4a08.png
+|  |  |  |  |-- bgai4a16.png
+|  |  |  |  |-- bgan6a08.png
+|  |  |  |  |-- bgan6a16.png
+|  |  |  |  |-- bgbn4a08.png
+|  |  |  |  |-- bggn4a16.png
+|  |  |  |  |-- bgwn6a08.png
+|  |  |  |  |-- bgyn6a16.png
+|  |  |  |  |-- ccwn2c08.png
+|  |  |  |  |-- ccwn3p08.png
+|  |  |  |  |-- cdfn2c08.png
+|  |  |  |  |-- cdhn2c08.png
+|  |  |  |  |-- cdsn2c08.png
+|  |  |  |  |-- cdun2c08.png
+|  |  |  |  |-- ch1n3p04.png
+|  |  |  |  |-- ch2n3p08.png
+|  |  |  |  |-- cm0n0g04.png
+|  |  |  |  |-- cm7n0g04.png
+|  |  |  |  |-- cm9n0g04.png
+|  |  |  |  |-- cs3n2c16.png
+|  |  |  |  |-- cs3n3p08.png
+|  |  |  |  |-- cs5n2c08.png
+|  |  |  |  |-- cs5n3p08.png
+|  |  |  |  |-- cs8n2c08.png
+|  |  |  |  |-- cs8n3p08.png
+|  |  |  |  |-- ct0n0g04.png
+|  |  |  |  |-- ct1n0g04.png
+|  |  |  |  |-- ctzn0g04.png
+|  |  |  |  |-- emptyfile.png
+|  |  |  |  |-- f00n0g08.png
+|  |  |  |  |-- f00n2c08.png
+|  |  |  |  |-- f01n0g08.png
+|  |  |  |  |-- f01n2c08.png
+|  |  |  |  |-- f02n0g08.png
+|  |  |  |  |-- f02n2c08.png
+|  |  |  |  |-- f03n0g08.png
+|  |  |  |  |-- f03n2c08.png
+|  |  |  |  |-- f04n0g08.png
+|  |  |  |  |-- f04n2c08.png
+|  |  |  |  |-- g03n0g16.png
+|  |  |  |  |-- g03n2c08.png
+|  |  |  |  |-- g03n3p04.png
+|  |  |  |  |-- g04n0g16.png
+|  |  |  |  |-- g04n2c08.png
+|  |  |  |  |-- g04n3p04.png
+|  |  |  |  |-- g05n0g16.png
+|  |  |  |  |-- g05n2c08.png
+|  |  |  |  |-- g05n3p04.png
+|  |  |  |  |-- g07n0g16.png
+|  |  |  |  |-- g07n2c08.png
+|  |  |  |  |-- g07n3p04.png
+|  |  |  |  |-- g10n0g16.png
+|  |  |  |  |-- g10n2c08.png
+|  |  |  |  |-- g10n3p04.png
+|  |  |  |  |-- g25n0g16.png
+|  |  |  |  |-- g25n2c08.png
+|  |  |  |  |-- g25n3p04.png
+|  |  |  |  |-- gif
+|  |  |  |  |  |-- basi0g01.gif
+|  |  |  |  |  |-- basi0g01.gif.rgba
+|  |  |  |  |  |-- basi0g02.gif
+|  |  |  |  |  |-- basi0g02.gif.rgba
+|  |  |  |  |  |-- basi0g04.gif
+|  |  |  |  |  |-- basi0g04.gif.rgba
+|  |  |  |  |  |-- basi0g08.gif
+|  |  |  |  |  |-- basi0g08.gif.rgba
+|  |  |  |  |  |-- basi3p01.gif
+|  |  |  |  |  |-- basi3p01.gif.rgba
+|  |  |  |  |  |-- basi3p02.gif
+|  |  |  |  |  |-- basi3p02.gif.rgba
+|  |  |  |  |  |-- basi3p04.gif
+|  |  |  |  |  |-- basi3p04.gif.rgba
+|  |  |  |  |  |-- basi3p08.gif
+|  |  |  |  |  |-- basi3p08.gif.rgba
+|  |  |  |  |  |-- basn0g01.gif
+|  |  |  |  |  |-- basn0g01.gif.rgba
+|  |  |  |  |  |-- basn0g02.gif
+|  |  |  |  |  |-- basn0g02.gif.rgba
+|  |  |  |  |  |-- basn0g04.gif
+|  |  |  |  |  |-- basn0g04.gif.rgba
+|  |  |  |  |  |-- basn0g08.gif
+|  |  |  |  |  |-- basn0g08.gif.rgba
+|  |  |  |  |  |-- basn3p01.gif
+|  |  |  |  |  |-- basn3p01.gif.rgba
+|  |  |  |  |  |-- basn3p02.gif
+|  |  |  |  |  |-- basn3p02.gif.rgba
+|  |  |  |  |  |-- basn3p04.gif
+|  |  |  |  |  |-- basn3p04.gif.rgba
+|  |  |  |  |  |-- basn3p08.gif
+|  |  |  |  |  |-- basn3p08.gif.rgba
+|  |  |  |  |  |-- tr-basi4a08.gif
+|  |  |  |  |  |-- tr-basi4a08.gif.rgba
+|  |  |  |  |  |-- tr-basn4a08.gif
+|  |  |  |  |  |-- tr-basn4a08.gif.rgba
+|  |  |  |  |-- grey_alpha_opaque.png
+|  |  |  |  |-- oi1n0g16.png
+|  |  |  |  |-- oi1n2c16.png
+|  |  |  |  |-- oi2n0g16.png
+|  |  |  |  |-- oi2n2c16.png
+|  |  |  |  |-- oi4n0g16.png
+|  |  |  |  |-- oi4n2c16.png
+|  |  |  |  |-- oi9n0g16.png
+|  |  |  |  |-- oi9n2c16.png
+|  |  |  |  |-- pp0n2c16.png
+|  |  |  |  |-- pp0n6a08.png
+|  |  |  |  |-- ps1n0g08.png
+|  |  |  |  |-- ps1n2c16.png
+|  |  |  |  |-- ps2n0g08.png
+|  |  |  |  |-- ps2n2c16.png
+|  |  |  |  |-- rgba_opaque.png
+|  |  |  |  |-- s01i3p01.png
+|  |  |  |  |-- s01n3p01.png
+|  |  |  |  |-- s02i3p01.png
+|  |  |  |  |-- s02n3p01.png
+|  |  |  |  |-- s03i3p01.png
+|  |  |  |  |-- s03n3p01.png
+|  |  |  |  |-- s04i3p01.png
+|  |  |  |  |-- s04n3p01.png
+|  |  |  |  |-- s05i3p02.png
+|  |  |  |  |-- s05n3p02.png
+|  |  |  |  |-- s06i3p02.png
+|  |  |  |  |-- s06n3p02.png
+|  |  |  |  |-- s07i3p02.png
+|  |  |  |  |-- s07n3p02.png
+|  |  |  |  |-- s08i3p02.png
+|  |  |  |  |-- s08n3p02.png
+|  |  |  |  |-- s09i3p02.png
+|  |  |  |  |-- s09n3p02.png
+|  |  |  |  |-- s32i3p04.png
+|  |  |  |  |-- s32n3p04.png
+|  |  |  |  |-- s33i3p04.png
+|  |  |  |  |-- s33n3p04.png
+|  |  |  |  |-- s34i3p04.png
+|  |  |  |  |-- s34n3p04.png
+|  |  |  |  |-- s35i3p04.png
+|  |  |  |  |-- s35n3p04.png
+|  |  |  |  |-- s36i3p04.png
+|  |  |  |  |-- s36n3p04.png
+|  |  |  |  |-- s37i3p04.png
+|  |  |  |  |-- s37n3p04.png
+|  |  |  |  |-- s38i3p04.png
+|  |  |  |  |-- s38n3p04.png
+|  |  |  |  |-- s39i3p04.png
+|  |  |  |  |-- s39n3p04.png
+|  |  |  |  |-- s40i3p04.png
+|  |  |  |  |-- s40n3p04.png
+|  |  |  |  |-- tbbn1g04.png
+|  |  |  |  |-- tbbn2c16.png
+|  |  |  |  |-- tbbn3p08.png
+|  |  |  |  |-- tbgn2c16.png
+|  |  |  |  |-- tbgn3p08.png
+|  |  |  |  |-- tbrn2c08.png
+|  |  |  |  |-- tbwn1g16.png
+|  |  |  |  |-- tbwn3p08.png
+|  |  |  |  |-- tbyn3p08.png
+|  |  |  |  |-- tm3n3p02.png
+|  |  |  |  |-- tp0n1g08.png
+|  |  |  |  |-- tp0n2c08.png
+|  |  |  |  |-- tp0n3p08.png
+|  |  |  |  |-- tp1n3p08.png
+|  |  |  |  |-- tr-basi4a08.png
+|  |  |  |  |-- tr-basn4a08.png
+|  |  |  |  |-- tr-t1-8pB.png
+|  |  |  |  |-- tr-t2-8pb.png
+|  |  |  |  |-- tr-t3-32pB.png
+|  |  |  |  |-- tr-t4-32pb.png
+|  |  |  |  |-- tr-t5-64pB.png
+|  |  |  |  |-- tr-t6-64pb.png
+|  |  |  |  |-- x00n0g01.png
+|  |  |  |  |-- xcrn0g04.png
+|  |  |  |  |-- xlfn0g04.png
+|  |  |  |  |-- z00n2c08.png
+|  |  |  |  |-- z03n2c08.png
+|  |  |  |  |-- z06n2c08.png
+|  |  |  |  |-- z09n2c08.png
+|  |  |  |-- resized
+|  |  |  |  |-- basi0g04_w16_h16.png
+|  |  |  |  |-- basi0g04_w16_h25.png
+|  |  |  |  |-- basi0g04_w31_h31.png
+|  |  |  |  |-- basi0g04_w32_h32.png
+|  |  |  |  |-- basi0g04_w32_h5.png
+|  |  |  |  |-- basi0g04_w3_h3.png
+|  |  |  |  |-- basi0g04_w3_h32.png
+|  |  |  |  |-- basi0g04_w8_h8.png
+|  |  |  |  |-- basi3p02_w16_h16.png
+|  |  |  |  |-- basi3p02_w16_h25.png
+|  |  |  |  |-- basi3p02_w31_h31.png
+|  |  |  |  |-- basi3p02_w32_h32.png
+|  |  |  |  |-- basi3p02_w32_h5.png
+|  |  |  |  |-- basi3p02_w3_h3.png
+|  |  |  |  |-- basi3p02_w3_h32.png
+|  |  |  |  |-- basi3p02_w8_h8.png
+|  |  |  |  |-- basn6a16_w16_h16.png
+|  |  |  |  |-- basn6a16_w16_h25.png
+|  |  |  |  |-- basn6a16_w31_h31.png
+|  |  |  |  |-- basn6a16_w32_h32.png
+|  |  |  |  |-- basn6a16_w32_h5.png
+|  |  |  |  |-- basn6a16_w3_h3.png
+|  |  |  |  |-- basn6a16_w3_h32.png
+|  |  |  |  |-- basn6a16_w8_h8.png
+|  |  |  |  |-- pagespeed-33x34_w16_h16.png
+|  |  |  |  |-- pagespeed-33x34_w16_h25.png
+|  |  |  |  |-- pagespeed-33x34_w31_h31.png
+|  |  |  |  |-- pagespeed-33x34_w32_h32.png
+|  |  |  |  |-- pagespeed-33x34_w32_h5.png
+|  |  |  |  |-- pagespeed-33x34_w3_h3.png
+|  |  |  |  |-- pagespeed-33x34_w3_h32.png
+|  |  |  |  |-- pagespeed-33x34_w8_h8.png
+|  |  |  |-- webp
+|  |  |  |  |-- alpha_32x32.png
+|  |  |  |  |-- alpha_32x32.webp
+|  |  |  |  |-- animated.webp
+|  |  |  |  |-- completely_opaque_32x20.png
+|  |  |  |  |-- corrupt_body.webp
+|  |  |  |  |-- corrupt_header.webp
+|  |  |  |  |-- gray_saved_as_gray.png
+|  |  |  |  |-- gray_saved_as_rgb.png
+|  |  |  |  |-- gray_saved_as_rgb.webp
+|  |  |  |  |-- icc_xmp_ex.webp
+|  |  |  |  |-- img3.webpla
+|  |  |  |  |-- multiple_frame_opaque.gif
+|  |  |  |  |-- multiple_frame_opaque_gray.gif
+|  |  |  |  |-- opaque_32x20.png
+|  |  |  |  |-- opaque_32x20.webp
+|  |  |  |  |-- pagespeed_32x32_gray.png
+|  |  |  |  |-- partially_opaque_32x20.png
+|  |-- io
+|  |  |-- BUILD
+|  |  |-- buf_reader.cc
+|  |  |-- buf_reader.h
+|  |  |-- buf_reader_test.cc
+|  |  |-- buf_writer.cc
+|  |  |-- buf_writer.h
+|  |  |-- buf_writer_test.cc
+|  |  |-- buffer_writer.cc
+|  |  |-- buffer_writer.h
+|  |  |-- buffer_writer_test.cc
+|  |  |-- buffered_source.cc
+|  |  |-- buffered_source.h
+|  |  |-- buffered_source_test.cc
+|  |  |-- chunk.cc
+|  |  |-- chunk.h
+|  |  |-- chunk_test.cc
+|  |  |-- closer.h
+|  |  |-- flusher.h
+|  |  |-- io_result.cc
+|  |  |-- io_result.h
+|  |  |-- reader.h
+|  |  |-- seeker.h
+|  |  |-- writer.cc
+|  |  |-- writer.h
+|  |-- ioutil
+|  |  |-- BUILD
+|  |  |-- chunk_reader.cc
+|  |  |-- chunk_reader.h
+|  |  |-- chunk_writer.cc
+|  |  |-- chunk_writer.h
+|  |  |-- file_util.cc
+|  |  |-- file_util.h
+|  |  |-- read_util.cc
+|  |  |-- read_util.h
+|  |  |-- string_reader.cc
+|  |  |-- string_reader.h
+|  |  |-- string_writer.cc
+|  |  |-- string_writer.h
+|  |-- os
+|  |  |-- BUILD
+|  |  |-- dir_util.cc
+|  |  |-- dir_util.h
+|  |  |-- dir_util_test.cc
+|  |  |-- file.cc
+|  |  |-- file.h
+|  |  |-- file_info.h
+|  |  |-- file_mode.h
+|  |  |-- file_posix.cc
+|  |  |-- file_posix.h
+|  |  |-- file_system.cc
+|  |  |-- file_system.h
+|  |  |-- file_system_posix.cc
+|  |  |-- file_system_posix.h
+|  |  |-- file_system_posix_test.cc
+|  |  |-- fs_result.cc
+|  |  |-- fs_result.h
+|  |  |-- os_error.cc
+|  |  |-- os_error.h
+|  |  |-- path_util.h
+|  |  |-- posix_util.cc
+|  |  |-- posix_util.h
+|  |  |-- testdata
+|  |  |  |-- file1.txt
+|  |  |  |-- subdir1
+|  |  |  |  |-- file2.txt
+|  |  |  |  |-- subdir2
+|  |  |  |  |  |-- file3.txt
+|  |  |  |  |  |-- subdir3
+|  |  |  |  |  |  |-- file4.txt
+|  |  |  |-- subdir4
+|  |  |  |  |-- file5.txt
+|  |-- test
+|  |  |-- BUILD
+|  |  |-- test_main.cc
+|-- third_party
+|  |-- libjpeg_turbo
+|  |  |-- BUILD
+|  |  |-- config.h
+|  |  |-- jconfig.h
+|  |  |-- jconfigint.h
+|  |  |-- jsimdcfg.inc
+|  |  |-- upstream
+|  |-- libpng
+|  |  |-- BUILD
+|  |  |-- upstream
+|  |-- nanopb
+|  |-- zlib
+|  |  |-- BUILD
+|  |  |-- upstream
+|-- tools
+|  |-- BUILD
+|  |-- bazel.rc
+|  |-- boilerplate.py
+|  |-- build_rules
+|  |  |-- docker.bzl
+|  |  |-- gen_config_header.bzl
+|  |  |-- gen_headers.bzl
+|  |  |-- grpc_proto.bzl
+|  |  |-- yasm.bzl
+|  |-- clang
+|  |  |-- clang_format.py
+|  |  |-- linux64
+|  |  |  |-- clang-format
+|  |-- cpp
+|  |  |-- .gitignore
+|  |  |-- BUILD
+|  |  |-- CROSSTOOL.in

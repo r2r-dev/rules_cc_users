@@ -1,0 +1,453 @@
+|-- .bazelrc
+|-- .gitignore
+|-- BUILD
+|-- CONTRIBUTING
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- base
+|  |-- BUILD
+|  |-- casts.h
+|-- benchmark.BUILD
+|-- exegesis
+|  |-- arm
+|  |  |-- README.md
+|  |  |-- xml
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- converter.cc
+|  |  |  |-- converter.h
+|  |  |  |-- converter_test.cc
+|  |  |  |-- docvars.cc
+|  |  |  |-- docvars.h
+|  |  |  |-- docvars.proto
+|  |  |  |-- docvars_test.cc
+|  |  |  |-- markdown.cc
+|  |  |  |-- markdown.h
+|  |  |  |-- markdown_test.cc
+|  |  |  |-- parser.cc
+|  |  |  |-- parser.h
+|  |  |  |-- parser.proto
+|  |  |  |-- parser_test.cc
+|  |  |  |-- testdata
+|  |  |  |  |-- fpsimdindex.xml
+|  |  |  |  |-- index.xml
+|  |  |  |  |-- instruction_1.xml
+|  |  |  |  |-- instruction_2.xml
+|  |-- base
+|  |  |-- BUILD
+|  |  |-- architecture.cc
+|  |  |-- architecture.h
+|  |  |-- architecture_provider.cc
+|  |  |-- architecture_provider.h
+|  |  |-- architecture_provider_test.cc
+|  |  |-- architecture_test.cc
+|  |  |-- cleanup_instruction_set.cc
+|  |  |-- cleanup_instruction_set.h
+|  |  |-- cleanup_instruction_set_test.cc
+|  |  |-- cleanup_instruction_set_test_utils.cc
+|  |  |-- cleanup_instruction_set_test_utils.h
+|  |  |-- cpu_info.cc
+|  |  |-- cpu_info.h
+|  |  |-- cpu_info_test.cc
+|  |  |-- cpuid.cc
+|  |  |-- cpuid.h
+|  |  |-- cpuid_test.cc
+|  |  |-- cpuid_x86.cc
+|  |  |-- cpuid_x86.h
+|  |  |-- cpuid_x86_test.cc
+|  |  |-- host_cpu.cc
+|  |  |-- host_cpu.h
+|  |  |-- host_cpu_test.cc
+|  |  |-- init_main.cc
+|  |  |-- init_main.h
+|  |  |-- microarchitecture.cc
+|  |  |-- microarchitecture.h
+|  |  |-- microarchitecture_test.cc
+|  |  |-- opcode.cc
+|  |  |-- opcode.h
+|  |  |-- opcode_test.cc
+|  |  |-- port_mask.cc
+|  |  |-- port_mask.h
+|  |  |-- port_mask_test.cc
+|  |  |-- prettyprint.cc
+|  |  |-- prettyprint.h
+|  |  |-- prettyprint_test.cc
+|  |  |-- registers.cc
+|  |  |-- registers.h
+|  |  |-- registers_test.cc
+|  |  |-- restrict.cc
+|  |  |-- restrict.h
+|  |  |-- restrict_test.cc
+|  |  |-- transform_factory.cc
+|  |  |-- transform_factory.h
+|  |  |-- transform_factory_test.cc
+|  |-- benchmarks
+|  |  |-- BUILD
+|  |  |-- mergeicmps_bench.cc
+|  |-- data
+|  |  |-- x86
+|  |  |  |-- BUILD
+|  |-- itineraries
+|  |  |-- BUILD
+|  |  |-- compute_itineraries.cc
+|  |  |-- compute_itineraries.h
+|  |  |-- compute_itineraries_test.cc
+|  |  |-- decomposition.cc
+|  |  |-- decomposition.h
+|  |  |-- decomposition_test.cc
+|  |  |-- jit_perf_evaluator.cc
+|  |  |-- jit_perf_evaluator.h
+|  |  |-- jit_perf_evaluator_test.cc
+|  |  |-- perf_subsystem.cc
+|  |  |-- perf_subsystem.h
+|  |  |-- perf_subsystem_test.cc
+|  |-- llvm
+|  |  |-- BUILD
+|  |  |-- asm_att_fuzzer.cc
+|  |  |-- asm_intel_fuzzer.cc
+|  |  |-- assembler_disassembler.cc
+|  |  |-- assembler_disassembler.h
+|  |  |-- assembler_disassembler.proto
+|  |  |-- assembler_disassembler_test.cc
+|  |  |-- disassembler.cc
+|  |  |-- disassembler.h
+|  |  |-- disassembler_test.cc
+|  |  |-- fuzzer_util.cc
+|  |  |-- fuzzer_util.h
+|  |  |-- inline_asm.cc
+|  |  |-- inline_asm.h
+|  |  |-- inline_asm_test.cc
+|  |  |-- llvm_utils.cc
+|  |  |-- llvm_utils.h
+|  |-- mysteries
+|  |  |-- Makefile
+|  |  |-- README.md
+|  |  |-- alu_16bits
+|  |  |  |-- README.md
+|  |  |  |-- ex1_add_8bits.cc
+|  |  |  |-- ex2_add_16bits.cc
+|  |  |  |-- ex3_add_32bits.cc
+|  |  |  |-- ex4_add_64bits.cc
+|  |  |  |-- ex5_adc_8bits.cc
+|  |  |  |-- ex6_adc_16bits.cc
+|  |  |  |-- ex7_adc_32bits.cc
+|  |  |  |-- ex8_adc_64bits.cc
+|  |  |-- nop
+|  |  |  |-- README.md
+|  |  |  |-- alu.cc
+|  |  |  |-- nop.cc
+|  |  |-- read_modify_write
+|  |  |  |-- README.md
+|  |  |  |-- ex1_addrm8_array.cc
+|  |  |  |-- ex2_addrm32_array.cc
+|  |  |  |-- ex3_addrm8_singlelocation.cc
+|  |  |  |-- ex4_addrm32_singlelocation.cc
+|  |  |  |-- ex5_addrm8_singlelocation_loadstore.cc
+|  |  |  |-- ex6_addrm32_singlelocation_loadstore.cc
+|  |-- power
+|  |  |-- README.md
+|  |-- proto
+|  |  |-- BUILD
+|  |  |-- cpuid.proto
+|  |  |-- instruction_encoding.proto
+|  |  |-- instructions.proto
+|  |  |-- microarchitecture.proto
+|  |  |-- pdf
+|  |  |  |-- BUILD
+|  |  |  |-- pdf_document.proto
+|  |  |-- registers.proto
+|  |  |-- x86
+|  |  |  |-- BUILD
+|  |  |  |-- cpuid.proto
+|  |  |  |-- decoded_instruction.proto
+|  |  |  |-- encoding_specification.proto
+|  |  |  |-- instruction_encoding.proto
+|  |-- testing
+|  |  |-- BUILD
+|  |  |-- test.proto
+|  |  |-- test_util.cc
+|  |  |-- test_util.h
+|  |  |-- test_util_test.cc
+|  |-- tools
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- architecture_flags.cc
+|  |  |-- architecture_flags.h
+|  |  |-- compute_itineraries.cc
+|  |  |-- parse_arm_xml.cc
+|  |  |-- parse_cpuid_dump.cc
+|  |  |-- parse_intel_sdm.cc
+|  |  |-- pdf2proto.cc
+|  |  |-- proto_patch_helper.cc
+|  |  |-- proto_patch_migrate.cc
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- bits.h
+|  |  |-- bits_test.cc
+|  |  |-- category_util.h
+|  |  |-- category_util_test.cc
+|  |  |-- file_util.cc
+|  |  |-- file_util.h
+|  |  |-- file_util_test.cc
+|  |  |-- index_type.h
+|  |  |-- index_type_test.cc
+|  |  |-- instruction_syntax.cc
+|  |  |-- instruction_syntax.h
+|  |  |-- instruction_syntax_test.cc
+|  |  |-- pdf
+|  |  |  |-- BUILD
+|  |  |  |-- geometry.cc
+|  |  |  |-- geometry.h
+|  |  |  |-- geometry_test.cc
+|  |  |  |-- pdf_document_parser.cc
+|  |  |  |-- pdf_document_parser.h
+|  |  |  |-- pdf_document_parser_test.cc
+|  |  |  |-- pdf_document_utils.cc
+|  |  |  |-- pdf_document_utils.h
+|  |  |  |-- pdf_document_utils_test.cc
+|  |  |  |-- testdata
+|  |  |  |  |-- simple.pdf
+|  |  |  |-- xpdf_util.cc
+|  |  |  |-- xpdf_util.h
+|  |  |  |-- xpdf_util_test.cc
+|  |  |-- proto_util.cc
+|  |  |-- proto_util.h
+|  |  |-- proto_util_test.cc
+|  |  |-- status_util.cc
+|  |  |-- status_util.h
+|  |  |-- status_util_test.cc
+|  |  |-- strings.cc
+|  |  |-- strings.h
+|  |  |-- strings_test.cc
+|  |  |-- structured_register.h
+|  |  |-- structured_register_test.cc
+|  |  |-- system.cc
+|  |  |-- system.h
+|  |  |-- text_processing.cc
+|  |  |-- text_processing.h
+|  |  |-- text_processing_test.cc
+|  |  |-- xml
+|  |  |  |-- BUILD
+|  |  |  |-- xml_util.cc
+|  |  |  |-- xml_util.h
+|  |  |  |-- xml_util_test.cc
+|  |-- x86
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- architecture.cc
+|  |  |-- architecture.h
+|  |  |-- architecture_test.cc
+|  |  |-- cleanup_instruction_set_alternatives.cc
+|  |  |-- cleanup_instruction_set_alternatives.h
+|  |  |-- cleanup_instruction_set_alternatives_test.cc
+|  |  |-- cleanup_instruction_set_checks.cc
+|  |  |-- cleanup_instruction_set_checks.h
+|  |  |-- cleanup_instruction_set_checks_test.cc
+|  |  |-- cleanup_instruction_set_encoding.cc
+|  |  |-- cleanup_instruction_set_encoding.h
+|  |  |-- cleanup_instruction_set_encoding_test.cc
+|  |  |-- cleanup_instruction_set_evex.cc
+|  |  |-- cleanup_instruction_set_evex.h
+|  |  |-- cleanup_instruction_set_evex_test.cc
+|  |  |-- cleanup_instruction_set_fix_operands.cc
+|  |  |-- cleanup_instruction_set_fix_operands.h
+|  |  |-- cleanup_instruction_set_fix_operands_test.cc
+|  |  |-- cleanup_instruction_set_merge_instructions.cc
+|  |  |-- cleanup_instruction_set_merge_instructions.h
+|  |  |-- cleanup_instruction_set_merge_instructions_test.cc
+|  |  |-- cleanup_instruction_set_missing_instructions.cc
+|  |  |-- cleanup_instruction_set_missing_instructions.h
+|  |  |-- cleanup_instruction_set_missing_instructions_test.cc
+|  |  |-- cleanup_instruction_set_operand_info.cc
+|  |  |-- cleanup_instruction_set_operand_info.h
+|  |  |-- cleanup_instruction_set_operand_info_test.cc
+|  |  |-- cleanup_instruction_set_operand_size_override.cc
+|  |  |-- cleanup_instruction_set_operand_size_override.h
+|  |  |-- cleanup_instruction_set_operand_size_override_test.cc
+|  |  |-- cleanup_instruction_set_properties.cc
+|  |  |-- cleanup_instruction_set_properties.h
+|  |  |-- cleanup_instruction_set_properties_test.cc
+|  |  |-- cleanup_instruction_set_removals.cc
+|  |  |-- cleanup_instruction_set_removals.h
+|  |  |-- cleanup_instruction_set_removals_test.cc
+|  |  |-- cleanup_instruction_set_rex.cc
+|  |  |-- cleanup_instruction_set_rex.h
+|  |  |-- cleanup_instruction_set_rex_test.cc
+|  |  |-- cleanup_instruction_set_utils.cc
+|  |  |-- cleanup_instruction_set_utils.h
+|  |  |-- cleanup_instruction_set_utils_test.cc
+|  |  |-- cpu_state.cc
+|  |  |-- cpu_state.h
+|  |  |-- cpu_state_test.cc
+|  |  |-- encoding_specification.cc
+|  |  |-- encoding_specification.h
+|  |  |-- encoding_specification_test.cc
+|  |  |-- instruction_encoder.cc
+|  |  |-- instruction_encoder.h
+|  |  |-- instruction_encoder_test.cc
+|  |  |-- instruction_encoding.cc
+|  |  |-- instruction_encoding.h
+|  |  |-- instruction_encoding_constants.h
+|  |  |-- instruction_encoding_test.cc
+|  |  |-- instruction_encoding_test_utils.cc
+|  |  |-- instruction_encoding_test_utils.h
+|  |  |-- instruction_encoding_test_utils_test.cc
+|  |  |-- instruction_parser.cc
+|  |  |-- instruction_parser.h
+|  |  |-- instruction_parser_test.cc
+|  |  |-- instruction_set_utils.cc
+|  |  |-- instruction_set_utils.h
+|  |  |-- microarchitectures.cc
+|  |  |-- microarchitectures.h
+|  |  |-- microarchitectures_test.cc
+|  |  |-- operand_translator.cc
+|  |  |-- operand_translator.h
+|  |  |-- operand_translator_test.cc
+|  |  |-- pdf
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- intel_sdm.proto
+|  |  |  |-- intel_sdm_extractor.cc
+|  |  |  |-- intel_sdm_extractor.h
+|  |  |  |-- intel_sdm_extractor_test.cc
+|  |  |  |-- parse_sdm.cc
+|  |  |  |-- parse_sdm.h
+|  |  |  |-- sdm_patches
+|  |  |  |  |-- sdm_2016_04_vol2a.pbtxt
+|  |  |  |  |-- sdm_2016_04_vol2b.pbtxt
+|  |  |  |  |-- sdm_2016_06_vol2.pbtxt
+|  |  |  |  |-- sdm_2016_09_vol2.pbtxt
+|  |  |  |  |-- sdm_2016_12_vol123.pbtxt
+|  |  |  |  |-- sdm_2017_03_vol123.pbtxt
+|  |  |  |  |-- sdm_2017_07_vol1234.pbtxt
+|  |  |  |  |-- sdm_2017_10_vol1234.pbtxt
+|  |  |  |  |-- sdm_2017_12_vol1234.pbtxt
+|  |  |  |  |-- sdm_2018_03_vol1234.pbtxt
+|  |  |  |  |-- sdm_2018_05_vol1234.pbtxt
+|  |  |  |  |-- sdm_2018_11_vol1234.pbtxt
+|  |  |  |  |-- sdm_2019_01_vol1234.pbtxt
+|  |  |  |  |-- sdm_2019_05_vol1234.pbtxt
+|  |  |  |  |-- sdm_2019_10_vol1234.pbtxt
+|  |  |  |  |-- sdm_2020_05_vol1234.pbtxt
+|  |  |  |-- testdata
+|  |  |  |  |-- 253666_p170_p171_instructionset.pbtxt
+|  |  |  |  |-- 253666_p170_p171_pdfdoc.pbtxt
+|  |  |  |  |-- 253666_p170_p171_sdmdoc.pbtxt
+|  |  |  |-- vendor_syntax.cc
+|  |  |  |-- vendor_syntax.h
+|  |  |  |-- vendor_syntax_test.cc
+|  |  |-- registers.cc
+|  |  |-- registers.h
+|  |  |-- registers_test.cc
+|-- file
+|  |-- base
+|  |  |-- BUILD
+|  |  |-- path.cc
+|  |  |-- path.h
+|-- glog.BUILD
+|-- libpfm4.BUILD
+|-- llvm.BUILD
+|-- llvm.bzl
+|-- llvm_sim
+|  |-- README.md
+|  |-- analysis
+|  |  |-- BUILD
+|  |  |-- inverse_throughput.cc
+|  |  |-- inverse_throughput.h
+|  |  |-- inverse_throughput_test.cc
+|  |  |-- port_pressure.cc
+|  |  |-- port_pressure.h
+|  |  |-- port_pressure_test.cc
+|  |-- components
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- buffer.h
+|  |  |-- buffer_test.cc
+|  |  |-- common.cc
+|  |  |-- common.h
+|  |  |-- decoder.cc
+|  |  |-- decoder.h
+|  |  |-- decoder_test.cc
+|  |  |-- dispatch_port.h
+|  |  |-- dispatch_port_test.cc
+|  |  |-- execution_unit.h
+|  |  |-- execution_unit_test.cc
+|  |  |-- fetcher.cc
+|  |  |-- fetcher.h
+|  |  |-- fetcher_test.cc
+|  |  |-- issue_policy.cc
+|  |  |-- issue_policy.h
+|  |  |-- issue_policy_test.cc
+|  |  |-- parser.cc
+|  |  |-- parser.h
+|  |  |-- parser_test.cc
+|  |  |-- port.h
+|  |  |-- port_test.cc
+|  |  |-- register_renamer.cc
+|  |  |-- register_renamer.h
+|  |  |-- register_renamer_test.cc
+|  |  |-- reorder_buffer.cc
+|  |  |-- reorder_buffer.h
+|  |  |-- reorder_buffer_test.cc
+|  |  |-- retirer.h
+|  |  |-- retirer_test.cc
+|  |  |-- simplified_execution_units.h
+|  |  |-- simplified_execution_units_test.cc
+|  |  |-- testing.cc
+|  |  |-- testing.h
+|  |-- framework
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- component.cc
+|  |  |-- component.h
+|  |  |-- component_test.cc
+|  |  |-- context.cc
+|  |  |-- context.h
+|  |  |-- context_test.cc
+|  |  |-- log.cc
+|  |  |-- log.h
+|  |  |-- log_levels.cc
+|  |  |-- log_levels.h
+|  |  |-- simulator.cc
+|  |  |-- simulator.h
+|  |  |-- simulator_test.cc
+|  |-- x86
+|  |  |-- BUILD
+|  |  |-- constants.h
+|  |  |-- faucon.cc
+|  |  |-- faucon_lib.cc
+|  |  |-- faucon_lib.h
+|  |  |-- faucon_lib_test.cc
+|  |  |-- haswell.cc
+|  |  |-- haswell.h
+|  |  |-- haswell_test.cc
+|  |  |-- testdata
+|  |  |  |-- BUILD
+|  |  |  |-- test1.s
+|  |  |  |-- test10.s
+|  |  |  |-- test2.s
+|  |  |  |-- test3.s
+|  |  |  |-- test4.s
+|  |  |  |-- test5.s
+|  |  |  |-- test6.s
+|  |  |  |-- test9.s
+|  |  |  |-- testbinary.cc
+|-- net
+|  |-- proto2
+|  |  |-- util
+|  |  |  |-- public
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- repeated_field_util.h
+|-- tinyxml2.BUILD
+|-- utf.BUILD
+|-- util
+|  |-- graph
+|  |  |-- BUILD
+|  |  |-- connected_components.cc
+|  |  |-- connected_components.h
+|  |-- gtl
+|  |  |-- BUILD
+|  |  |-- map_util.h
+|  |  |-- stl_util.h
+|-- xpdf.BUILD

@@ -1,0 +1,514 @@
+|-- .bazelrc
+|-- .circleci
+|  |-- config.yml
+|-- .clang-format
+|-- .clang-tidy
+|-- .gitignore
+|-- .gitmodules
+|-- 3rd_party
+|  |-- CMakeLists.txt
+|  |-- base64
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- README.txt
+|  |  |-- include
+|  |  |  |-- lightstep
+|  |  |  |  |-- base64
+|  |  |  |  |  |-- base64.h
+|  |  |-- src
+|  |  |  |-- base64.cpp
+|  |-- catch2
+|  |  |-- BUILD
+|  |  |-- LICENSE.txt
+|  |  |-- catch.hpp
+|  |  |-- catch_main.cpp
+|  |-- embedfile
+|  |  |-- src
+|  |  |  |-- embedfile.c
+|-- BUILD.bazel
+|-- CMakeLists.txt
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- bazel
+|  |-- BUILD
+|  |-- cares.BUILD
+|  |-- cc_configure.bzl
+|  |-- cc_wrapper.py
+|  |-- glibc_version.cpp
+|  |-- graphviz.BUILD
+|  |-- libevent.BUILD
+|  |-- lightstep_build_system.bzl
+|  |-- profile_benchmark.sh
+|  |-- run_gprof2dot.py
+|  |-- valgrind.BUILD
+|-- benchmark
+|  |-- BUILD
+|  |-- buffer_benchmark.cpp
+|  |-- manual_tracer_benchmark.cpp
+|  |-- span_operations_benchmark.cpp
+|  |-- tracer_upload_bench
+|  |  |-- BUILD
+|  |  |-- benchmark_report.cpp
+|  |  |-- benchmark_report.h
+|  |  |-- main.cpp
+|  |  |-- span.cpp
+|  |  |-- span.h
+|  |  |-- span_drop_counter.h
+|  |  |-- tracer_upload_bench.proto
+|  |  |-- utility.cpp
+|  |  |-- utility.h
+|-- bridge
+|  |-- python
+|  |  |-- BUILD
+|  |  |-- binary
+|  |  |  |-- py27m
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- lightstep-export-map.ld
+|  |  |  |-- py27mu
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- lightstep-export-map.ld
+|  |  |  |-- py3
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- lightstep-export-map.ld
+|  |  |-- lightstep-export-map.ld
+|  |  |-- requirements.txt
+|  |  |-- src
+|  |  |  |-- BUILD
+|  |  |  |-- module.cpp
+|  |  |-- wheel
+|  |  |  |-- METADATA.in
+|  |  |  |-- WHEEL.in
+|  |  |  |-- __init__.py
+|  |  |  |-- generate_record.py
+|-- ci
+|  |-- BUILD
+|  |-- Dockerfile
+|  |-- clang-tidy-wrapper.sh
+|  |-- clone_lightstep_benchmarks.sh
+|  |-- do_ci.ps1
+|  |-- do_ci.sh
+|  |-- fix_compilation_database.py
+|  |-- gen_compilation_database.sh
+|  |-- install_bazel.sh
+|  |-- install_benchmark.sh
+|  |-- install_cares.sh
+|  |-- install_clang.sh
+|  |-- install_cmake.ps1
+|  |-- install_grpc.sh
+|  |-- install_libevent.sh
+|  |-- install_opentracing.sh
+|  |-- install_osx_bazelisk.sh
+|  |-- install_osx_cmake.sh
+|  |-- install_protobuf.sh
+|  |-- release.sh
+|  |-- run_clang_tidy.sh
+|  |-- run_lightstep_docker.sh
+|  |-- setup_build_environment.sh
+|  |-- setup_windows_build_environment.ps1
+|-- cmake
+|  |-- Modules
+|  |  |-- FindCARES.cmake
+|  |  |-- FindLibevent.cmake
+|  |  |-- LightStepTracerCommon.cmake
+|  |  |-- LightStepTracerConfiguration.cmake
+|-- doc
+|  |-- diagram.png
+|-- example
+|  |-- CMakeLists.txt
+|  |-- stream
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- main.cpp
+|  |-- tutorial
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- text_map_carrier.h
+|  |  |-- tutorial.cpp
+|-- include
+|  |-- lightstep
+|  |  |-- BUILD
+|  |  |-- binary_carrier.h
+|  |  |-- buffer_chain.h
+|  |  |-- metrics_observer.h
+|  |  |-- tracer.h
+|  |  |-- transporter.h
+|-- lightstep-tracer-common
+|  |-- BUILD
+|  |-- README.lightstep-tracer-cpp
+|  |-- WORKSPACE
+|  |-- circle.yml
+|  |-- collector.proto
+|  |-- lightstep_carrier.proto
+|  |-- third_party
+|  |  |-- googleapis
+|  |  |  |-- LICENSE
+|  |  |  |-- README.lightstep-tracer-common
+|  |  |  |-- WORKSPACE
+|  |  |  |-- google
+|  |  |  |  |-- api
+|  |  |  |  |  |-- annotations.proto
+|  |  |  |  |  |-- http.proto
+|  |  |-- protobuf
+|  |  |  |-- LICENSE
+|  |  |  |-- README.lightstep-tracer-common
+|  |  |  |-- google
+|  |  |  |  |-- protobuf
+|  |  |  |  |  |-- descriptor.proto
+|  |  |  |  |  |-- timestamp.proto
+|-- lightstep-tracer-configuration
+|  |-- BUILD
+|  |-- tracer_configuration.proto
+|  |-- tracer_configuration.schema.json
+|-- scripts
+|  |-- fix_format.sh
+|-- src
+|  |-- common
+|  |  |-- BUILD
+|  |  |-- atomic_unique_ptr.h
+|  |  |-- buffer_chain.cpp
+|  |  |-- chained_stream.cpp
+|  |  |-- chained_stream.h
+|  |  |-- chunked_http_framing.cpp
+|  |  |-- chunked_http_framing.h
+|  |  |-- circular_buffer.h
+|  |  |-- circular_buffer_range.h
+|  |  |-- composable_fragment_input_stream.cpp
+|  |  |-- composable_fragment_input_stream.h
+|  |  |-- condition_variable_wrapper.h
+|  |  |-- direct_coded_output_stream.h
+|  |  |-- fast_random_number_generator.h
+|  |  |-- flat_map.h
+|  |  |-- fragment_array_input_stream.cpp
+|  |  |-- fragment_array_input_stream.h
+|  |  |-- fragment_input_stream.cpp
+|  |  |-- fragment_input_stream.h
+|  |  |-- function_ref.h
+|  |  |-- hex_conversion.cpp
+|  |  |-- hex_conversion.h
+|  |  |-- in_memory_stream.cpp
+|  |  |-- in_memory_stream.h
+|  |  |-- logger.cpp
+|  |  |-- logger.h
+|  |  |-- noncopyable.h
+|  |  |-- platform
+|  |  |  |-- BUILD
+|  |  |  |-- error.h
+|  |  |  |-- error_unix.cpp
+|  |  |  |-- error_windows.cpp
+|  |  |  |-- fork.h
+|  |  |  |-- fork_unix.cpp
+|  |  |  |-- fork_windows.cpp
+|  |  |  |-- memory.h
+|  |  |  |-- network.h
+|  |  |  |-- network_environment.h
+|  |  |  |-- network_environment_unix.cpp
+|  |  |  |-- network_environment_windows.cpp
+|  |  |  |-- network_unix.cpp
+|  |  |  |-- network_windows.cpp
+|  |  |  |-- string.h
+|  |  |  |-- string_unix.cpp
+|  |  |  |-- string_windows.cpp
+|  |  |  |-- time.h
+|  |  |  |-- utility.h
+|  |  |  |-- utility_unix.cpp
+|  |  |  |-- utility_windows.cpp
+|  |  |-- protobuf.cpp
+|  |  |-- protobuf.h
+|  |  |-- random.cpp
+|  |  |-- random.h
+|  |  |-- random_traverser.cpp
+|  |  |-- random_traverser.h
+|  |  |-- report_request_framing.cpp
+|  |  |-- report_request_framing.h
+|  |  |-- serialization.cpp
+|  |  |-- serialization.h
+|  |  |-- spin_lock_mutex.h
+|  |  |-- timestamp.cpp
+|  |  |-- timestamp.h
+|  |  |-- utility.cpp
+|  |  |-- utility.h
+|  |  |-- version_check.cpp
+|  |-- network
+|  |  |-- BUILD
+|  |  |-- ares_dns_resolver
+|  |  |  |-- BUILD
+|  |  |  |-- ares_dns_resolver.cpp
+|  |  |  |-- ares_dns_resolver.h
+|  |  |  |-- ares_library_handle.cpp
+|  |  |  |-- ares_library_handle.h
+|  |  |-- dns_resolver.h
+|  |  |-- event.cpp
+|  |  |-- event.h
+|  |  |-- event_base.cpp
+|  |  |-- event_base.h
+|  |  |-- ip_address.cpp
+|  |  |-- ip_address.h
+|  |  |-- no_dns_resolver.cpp
+|  |  |-- socket.cpp
+|  |  |-- socket.h
+|  |  |-- timer_event.cpp
+|  |  |-- timer_event.h
+|  |  |-- vector_write.cpp
+|  |  |-- vector_write.h
+|  |-- recorder
+|  |  |-- BUILD
+|  |  |-- auto_recorder.cpp
+|  |  |-- auto_recorder.h
+|  |  |-- fork_aware_recorder.cpp
+|  |  |-- fork_aware_recorder.h
+|  |  |-- grpc_transporter.h
+|  |  |-- grpc_transporter
+|  |  |  |-- BUILD
+|  |  |  |-- grpc_transporter.cpp
+|  |  |-- legacy_manual_recorder.cpp
+|  |  |-- legacy_manual_recorder.h
+|  |  |-- manual_recorder.cpp
+|  |  |-- manual_recorder.h
+|  |  |-- metrics_tracker.cpp
+|  |  |-- metrics_tracker.h
+|  |  |-- no_grpc_transporter.cpp
+|  |  |-- no_stream_recorder.cpp
+|  |  |-- recorder.h
+|  |  |-- report_builder.cpp
+|  |  |-- report_builder.h
+|  |  |-- serialization
+|  |  |  |-- BUILD
+|  |  |  |-- embedded_metrics_message.cpp
+|  |  |  |-- embedded_metrics_message.h
+|  |  |  |-- report_request.cpp
+|  |  |  |-- report_request.h
+|  |  |  |-- report_request_header.cpp
+|  |  |  |-- report_request_header.h
+|  |  |-- stream_recorder.h
+|  |  |-- stream_recorder
+|  |  |  |-- BUILD
+|  |  |  |-- connection_stream.cpp
+|  |  |  |-- connection_stream.h
+|  |  |  |-- host_header.cpp
+|  |  |  |-- host_header.h
+|  |  |  |-- satellite_connection.cpp
+|  |  |  |-- satellite_connection.h
+|  |  |  |-- satellite_dns_resolution_manager.cpp
+|  |  |  |-- satellite_dns_resolution_manager.h
+|  |  |  |-- satellite_endpoint_manager.cpp
+|  |  |  |-- satellite_endpoint_manager.h
+|  |  |  |-- satellite_streamer.cpp
+|  |  |  |-- satellite_streamer.h
+|  |  |  |-- span_stream.cpp
+|  |  |  |-- span_stream.h
+|  |  |  |-- status_line_parser.cpp
+|  |  |  |-- status_line_parser.h
+|  |  |  |-- stream_recorder.cpp
+|  |  |  |-- stream_recorder.h
+|  |  |  |-- stream_recorder_impl.cpp
+|  |  |  |-- stream_recorder_impl.h
+|  |  |  |-- stream_recorder_options.h
+|  |  |  |-- utility.cpp
+|  |  |  |-- utility.h
+|  |  |-- transporter.cpp
+|  |-- tracer
+|  |  |-- BUILD
+|  |  |-- baggage_flat_map.h
+|  |  |-- binary_carrier.cpp
+|  |  |-- counting_metrics_observer.h
+|  |  |-- dynamic_load.cpp
+|  |  |-- immutable_span_context.cpp
+|  |  |-- immutable_span_context.h
+|  |  |-- json_options.cpp
+|  |  |-- json_options.h
+|  |  |-- legacy
+|  |  |  |-- BUILD
+|  |  |  |-- legacy_span.cpp
+|  |  |  |-- legacy_span.h
+|  |  |  |-- legacy_tracer_impl.cpp
+|  |  |  |-- legacy_tracer_impl.h
+|  |  |-- lightstep_span_context.cpp
+|  |  |-- lightstep_span_context.h
+|  |  |-- lightstep_tracer_factory.cpp
+|  |  |-- lightstep_tracer_factory.h
+|  |  |-- no_default_ssl_roots_pem.cpp
+|  |  |-- propagation
+|  |  |  |-- BUILD
+|  |  |  |-- b3_propagator.cpp
+|  |  |  |-- b3_propagator.h
+|  |  |  |-- baggage_propagator.cpp
+|  |  |  |-- baggage_propagator.h
+|  |  |  |-- binary_propagation.cpp
+|  |  |  |-- binary_propagation.h
+|  |  |  |-- cloud_trace_propagator.cpp
+|  |  |  |-- cloud_trace_propagator.h
+|  |  |  |-- envoy_propagator.cpp
+|  |  |  |-- envoy_propagator.h
+|  |  |  |-- lightstep_propagator.cpp
+|  |  |  |-- lightstep_propagator.h
+|  |  |  |-- multiheader_propagator.cpp
+|  |  |  |-- multiheader_propagator.h
+|  |  |  |-- propagation.cpp
+|  |  |  |-- propagation.h
+|  |  |  |-- propagation_options.cpp
+|  |  |  |-- propagation_options.h
+|  |  |  |-- propagator.h
+|  |  |  |-- trace_context.cpp
+|  |  |  |-- trace_context.h
+|  |  |  |-- trace_context_propagator.cpp
+|  |  |  |-- trace_context_propagator.h
+|  |  |  |-- utility.h
+|  |  |-- serialization.cpp
+|  |  |-- serialization.h
+|  |  |-- span.cpp
+|  |  |-- span.h
+|  |  |-- tag.cpp
+|  |  |-- tag.h
+|  |  |-- tracer.cpp
+|  |  |-- tracer_impl.cpp
+|  |  |-- tracer_impl.h
+|  |  |-- utility.cpp
+|  |  |-- utility.h
+|-- test
+|  |-- BUILD
+|  |-- baseline_circular_buffer.h
+|  |-- baseline_circular_buffer_test.cpp
+|  |-- bridge
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- span_probe.py
+|  |  |  |-- tracer_test.py
+|  |-- child_process_handle.cpp
+|  |-- child_process_handle.h
+|  |-- cmake
+|  |  |-- CMakeLists.txt
+|  |  |-- load_tracer_test.cpp
+|  |-- common
+|  |  |-- BUILD
+|  |  |-- atomic_unique_ptr_test.cpp
+|  |  |-- chained_stream_test.cpp
+|  |  |-- chunked_http_framing_test.cpp
+|  |  |-- circular_buffer_range_test.cpp
+|  |  |-- circular_buffer_test.cpp
+|  |  |-- composable_fragment_input_stream_test.cpp
+|  |  |-- direct_coded_output_stream_test.cpp
+|  |  |-- fast_random_number_generator_test.cpp
+|  |  |-- flat_map_test.cpp
+|  |  |-- fork_id_test.cpp
+|  |  |-- fragment_array_input_stream_test.cpp
+|  |  |-- fragment_input_stream_test.cpp
+|  |  |-- function_ref_test.cpp
+|  |  |-- hex_conversion_test.cpp
+|  |  |-- logger_test.cpp
+|  |  |-- protobuf_test.cpp
+|  |  |-- random_test.cpp
+|  |  |-- random_traverser_test.cpp
+|  |  |-- report_request_framing_test.cpp
+|  |  |-- serialization_test.cpp
+|  |  |-- spin_lock_mutex_test.cpp
+|  |  |-- test.proto
+|  |  |-- timestamp_test.cpp
+|  |  |-- utility_test.cpp
+|  |-- composable_fragment_input_stream_wrapper.h
+|  |-- echo_server
+|  |  |-- BUILD
+|  |  |-- echo_server_handle.cpp
+|  |  |-- echo_server_handle.h
+|  |  |-- main.go
+|  |-- http_connection.cpp
+|  |-- http_connection.h
+|  |-- mock_dns_resolution_callback.cpp
+|  |-- mock_dns_resolution_callback.h
+|  |-- mock_dns_server
+|  |  |-- BUILD
+|  |  |-- main.go
+|  |  |-- mock_dns_server_handle.cpp
+|  |  |-- mock_dns_server_handle.h
+|  |-- mock_satellite
+|  |  |-- BUILD
+|  |  |-- main.go
+|  |  |-- mock_satellite.proto
+|  |  |-- mock_satellite_handle.cpp
+|  |  |-- mock_satellite_handle.h
+|  |  |-- mock_satellite_query.cpp
+|  |  |-- mock_satellite_test.cpp
+|  |  |-- proto.go
+|  |  |-- reportprocessor.go
+|  |  |-- satellitehandler.go
+|  |-- network
+|  |  |-- BUILD
+|  |  |-- ares_dns_resolver
+|  |  |  |-- BUILD
+|  |  |  |-- ares_dns_resolver_test.cpp
+|  |  |-- event_base_test.cpp
+|  |  |-- event_test.cpp
+|  |  |-- ip_address_test.cpp
+|  |  |-- no_dns_resolver_test.cpp
+|  |  |-- socket_test.cpp
+|  |  |-- timer_event_test.cpp
+|  |  |-- vector_write_test.cpp
+|  |-- number_simulation.cpp
+|  |-- number_simulation.h
+|  |-- ports.h
+|  |-- recorder
+|  |  |-- BUILD
+|  |  |-- auto_recorder_test.cpp
+|  |  |-- fork_aware_recorder_test.cpp
+|  |  |-- in_memory_async_transporter.cpp
+|  |  |-- in_memory_async_transporter.h
+|  |  |-- in_memory_recorder.cpp
+|  |  |-- in_memory_recorder.h
+|  |  |-- in_memory_sync_transporter.cpp
+|  |  |-- in_memory_sync_transporter.h
+|  |  |-- legacy_in_memory_async_transporter.cpp
+|  |  |-- legacy_in_memory_async_transporter.h
+|  |  |-- legacy_manual_recorder_test.cpp
+|  |  |-- manual_recorder_test.cpp
+|  |  |-- serialization
+|  |  |  |-- BUILD
+|  |  |  |-- embedded_metrics_message_test.cpp
+|  |  |  |-- report_request_header_test.cpp
+|  |  |  |-- report_request_test.cpp
+|  |  |-- stream_recorder
+|  |  |  |-- BUILD
+|  |  |  |-- connection_stream_test.cpp
+|  |  |  |-- fragment_span_input_stream_test.cpp
+|  |  |  |-- host_header_test.cpp
+|  |  |  |-- satellite_dns_resolution_manager_test.cpp
+|  |  |  |-- satellite_endpoint_manager_test.cpp
+|  |  |  |-- span_stream_test.cpp
+|  |  |  |-- status_line_parser_test.cpp
+|  |  |  |-- stream_recorder_fork_test.cpp
+|  |  |  |-- stream_recorder_test.cpp
+|  |  |  |-- utility_test.cpp
+|  |-- string_logger_sink.cpp
+|  |-- string_logger_sink.h
+|  |-- testing_condition_variable_wrapper.cpp
+|  |-- testing_condition_variable_wrapper.h
+|  |-- tracer
+|  |  |-- BUILD
+|  |  |-- dynamic_load_test.cpp
+|  |  |-- json_options_test.cpp
+|  |  |-- propagation
+|  |  |  |-- BUILD
+|  |  |  |-- b3_propagation_test.cpp
+|  |  |  |-- cloud_trace_propagation_test.cpp
+|  |  |  |-- envoy_propagation_test.cpp
+|  |  |  |-- http_headers_carrier.cpp
+|  |  |  |-- http_headers_carrier.h
+|  |  |  |-- lightstep_propagation_test.cpp
+|  |  |  |-- propagation_options_test.cpp
+|  |  |  |-- propagation_test.cpp
+|  |  |  |-- text_map_carrier.cpp
+|  |  |  |-- text_map_carrier.h
+|  |  |  |-- trace_context_propagation_test.cpp
+|  |  |  |-- trace_context_test.cpp
+|  |  |  |-- utility.cpp
+|  |  |  |-- utility.h
+|  |  |-- serialization_test.cpp
+|  |  |-- span_probe.cpp
+|  |  |-- tracer_test.cpp
+|  |  |-- utility_test.cpp
+|  |-- utility.cpp
+|  |-- utility.h
+|  |-- zero_copy_connection_input_stream.cpp
+|  |-- zero_copy_connection_input_stream.h
+|-- tracer-export-map.ld
+|-- version.h.in

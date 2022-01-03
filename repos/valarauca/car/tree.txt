@@ -1,0 +1,1388 @@
+|-- .gitignore
+|-- Cargo.lock
+|-- Cargo.toml
+|-- LICENSE
+|-- README.md
+|-- car_cli
+|  |-- Cargo.lock
+|  |-- Cargo.toml
+|  |-- src
+|  |  |-- create
+|  |  |  |-- brotli.rs
+|  |  |  |-- bzip2.rs
+|  |  |  |-- gzip.rs
+|  |  |  |-- lz4.rs
+|  |  |  |-- mod.rs
+|  |  |  |-- snap.rs
+|  |  |  |-- tar.rs
+|  |  |  |-- xz.rs
+|  |  |  |-- zstd.rs
+|  |  |-- extract.rs
+|  |  |-- lib.rs
+|  |  |-- list.rs
+|-- car_compress
+|  |-- .gitignore
+|  |-- Cargo.toml
+|  |-- LICENSE
+|  |-- README.md
+|  |-- algo
+|  |  |-- README.md
+|  |  |-- brotli2-rs
+|  |  |  |-- .gitignore
+|  |  |  |-- .gitmodules
+|  |  |  |-- .travis.yml
+|  |  |  |-- Cargo.toml
+|  |  |  |-- LICENSE-APACHE
+|  |  |  |-- LICENSE-MIT
+|  |  |  |-- README.md
+|  |  |  |-- appveyor.yml
+|  |  |  |-- brotli-sys
+|  |  |  |  |-- Cargo.toml
+|  |  |  |  |-- brotli
+|  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |-- .gitmodules
+|  |  |  |  |  |-- .travis.yml
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CONTRIBUTING.md
+|  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |-- MANIFEST.in
+|  |  |  |  |  |-- Makefile
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- WORKSPACE
+|  |  |  |  |  |-- appveyor.yml
+|  |  |  |  |  |-- appveyor
+|  |  |  |  |  |  |-- install.ps1
+|  |  |  |  |  |  |-- run_with_compiler.cmd
+|  |  |  |  |  |-- common
+|  |  |  |  |  |  |-- constants.h
+|  |  |  |  |  |  |-- dictionary.c
+|  |  |  |  |  |  |-- dictionary.h
+|  |  |  |  |  |  |-- port.h
+|  |  |  |  |  |  |-- types.h
+|  |  |  |  |  |-- configure
+|  |  |  |  |  |-- dec
+|  |  |  |  |  |  |-- bit_reader.c
+|  |  |  |  |  |  |-- bit_reader.h
+|  |  |  |  |  |  |-- context.h
+|  |  |  |  |  |  |-- decode.c
+|  |  |  |  |  |  |-- decode.h
+|  |  |  |  |  |  |-- huffman.c
+|  |  |  |  |  |  |-- huffman.h
+|  |  |  |  |  |  |-- port.h
+|  |  |  |  |  |  |-- prefix.h
+|  |  |  |  |  |  |-- state.c
+|  |  |  |  |  |  |-- state.h
+|  |  |  |  |  |  |-- transform.h
+|  |  |  |  |  |-- docs
+|  |  |  |  |  |  |-- brotli-comparison-study-2015-09-22.pdf
+|  |  |  |  |  |  |-- draft-alakuijala-brotli-11.nroff
+|  |  |  |  |  |  |-- draft-alakuijala-brotli-11.txt
+|  |  |  |  |  |-- enc
+|  |  |  |  |  |  |-- backward_references.c
+|  |  |  |  |  |  |-- backward_references.h
+|  |  |  |  |  |  |-- backward_references_inc.h
+|  |  |  |  |  |  |-- bit_cost.c
+|  |  |  |  |  |  |-- bit_cost.h
+|  |  |  |  |  |  |-- bit_cost_inc.h
+|  |  |  |  |  |  |-- block_encoder_inc.h
+|  |  |  |  |  |  |-- block_splitter.c
+|  |  |  |  |  |  |-- block_splitter.h
+|  |  |  |  |  |  |-- block_splitter_inc.h
+|  |  |  |  |  |  |-- brotli_bit_stream.c
+|  |  |  |  |  |  |-- brotli_bit_stream.h
+|  |  |  |  |  |  |-- cluster.c
+|  |  |  |  |  |  |-- cluster.h
+|  |  |  |  |  |  |-- cluster_inc.h
+|  |  |  |  |  |  |-- command.h
+|  |  |  |  |  |  |-- compress_fragment.c
+|  |  |  |  |  |  |-- compress_fragment.h
+|  |  |  |  |  |  |-- compress_fragment_two_pass.c
+|  |  |  |  |  |  |-- compress_fragment_two_pass.h
+|  |  |  |  |  |  |-- compressor.cc
+|  |  |  |  |  |  |-- compressor.h
+|  |  |  |  |  |  |-- context.h
+|  |  |  |  |  |  |-- dictionary_hash.h
+|  |  |  |  |  |  |-- encode.c
+|  |  |  |  |  |  |-- encode.h
+|  |  |  |  |  |  |-- encode_parallel.cc
+|  |  |  |  |  |  |-- encode_parallel.h
+|  |  |  |  |  |  |-- entropy_encode.c
+|  |  |  |  |  |  |-- entropy_encode.h
+|  |  |  |  |  |  |-- entropy_encode_static.h
+|  |  |  |  |  |  |-- fast_log.h
+|  |  |  |  |  |  |-- find_match_length.h
+|  |  |  |  |  |  |-- hash.h
+|  |  |  |  |  |  |-- hash_longest_match_inc.h
+|  |  |  |  |  |  |-- hash_longest_match_quickly_inc.h
+|  |  |  |  |  |  |-- histogram.c
+|  |  |  |  |  |  |-- histogram.h
+|  |  |  |  |  |  |-- histogram_inc.h
+|  |  |  |  |  |  |-- literal_cost.c
+|  |  |  |  |  |  |-- literal_cost.h
+|  |  |  |  |  |  |-- memory.c
+|  |  |  |  |  |  |-- memory.h
+|  |  |  |  |  |  |-- metablock.c
+|  |  |  |  |  |  |-- metablock.h
+|  |  |  |  |  |  |-- metablock_inc.h
+|  |  |  |  |  |  |-- port.h
+|  |  |  |  |  |  |-- prefix.h
+|  |  |  |  |  |  |-- ringbuffer.h
+|  |  |  |  |  |  |-- static_dict.c
+|  |  |  |  |  |  |-- static_dict.h
+|  |  |  |  |  |  |-- static_dict_lut.h
+|  |  |  |  |  |  |-- streams.cc
+|  |  |  |  |  |  |-- streams.h
+|  |  |  |  |  |  |-- utf8_util.c
+|  |  |  |  |  |  |-- utf8_util.h
+|  |  |  |  |  |  |-- write_bits.h
+|  |  |  |  |  |-- premake5.lua
+|  |  |  |  |  |-- python
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- bro.py
+|  |  |  |  |  |  |-- brotlimodule.cc
+|  |  |  |  |  |  |-- tests
+|  |  |  |  |  |  |  |-- compatibility_test.py
+|  |  |  |  |  |  |  |-- custom_dictionary_test.py
+|  |  |  |  |  |  |  |-- roundtrip_test.py
+|  |  |  |  |  |  |  |-- test_utils.py
+|  |  |  |  |  |-- setup.cfg
+|  |  |  |  |  |-- setup.py
+|  |  |  |  |  |-- terryfy
+|  |  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |  |-- .travis.yml
+|  |  |  |  |  |  |-- README.rst
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- bdist_wheel.py
+|  |  |  |  |  |  |-- cp_suff_real_libs.py
+|  |  |  |  |  |  |-- fuse_suff_real_libs.py
+|  |  |  |  |  |  |-- git-closest-tag
+|  |  |  |  |  |  |-- library_installers.sh
+|  |  |  |  |  |  |-- make-wheel-builder
+|  |  |  |  |  |  |-- monkeyexec.py
+|  |  |  |  |  |  |-- repath_lib_names.py
+|  |  |  |  |  |  |-- test_git_utils.sh
+|  |  |  |  |  |  |-- test_library_installers.sh
+|  |  |  |  |  |  |-- test_python_installs.sh
+|  |  |  |  |  |  |-- test_pyver_ge.sh
+|  |  |  |  |  |  |-- test_tools.sh
+|  |  |  |  |  |  |-- test_travisparse.py
+|  |  |  |  |  |  |-- travis2bashes
+|  |  |  |  |  |  |-- travis2sh
+|  |  |  |  |  |  |-- travis_tools.sh
+|  |  |  |  |  |  |-- travisparse.py
+|  |  |  |  |  |  |-- wafutils.py
+|  |  |  |  |  |  |-- wheel-upload
+|  |  |  |  |  |  |-- wheel-uploader
+|  |  |  |  |  |-- tests
+|  |  |  |  |  |  |-- Makefile
+|  |  |  |  |  |  |-- compatibility_test.sh
+|  |  |  |  |  |  |-- roundtrip_test.sh
+|  |  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |  |-- 10x10y
+|  |  |  |  |  |  |  |-- 10x10y.compressed
+|  |  |  |  |  |  |  |-- 64x
+|  |  |  |  |  |  |  |-- 64x.compressed
+|  |  |  |  |  |  |  |-- alice29.txt
+|  |  |  |  |  |  |  |-- alice29.txt.compressed
+|  |  |  |  |  |  |  |-- asyoulik.txt
+|  |  |  |  |  |  |  |-- asyoulik.txt.compressed
+|  |  |  |  |  |  |  |-- backward65536
+|  |  |  |  |  |  |  |-- backward65536.compressed
+|  |  |  |  |  |  |  |-- bb.binast
+|  |  |  |  |  |  |  |-- compressed_file
+|  |  |  |  |  |  |  |-- compressed_file.compressed
+|  |  |  |  |  |  |  |-- compressed_repeated
+|  |  |  |  |  |  |  |-- compressed_repeated.compressed
+|  |  |  |  |  |  |  |-- empty
+|  |  |  |  |  |  |  |-- empty.compressed
+|  |  |  |  |  |  |  |-- empty.compressed.00
+|  |  |  |  |  |  |  |-- empty.compressed.01
+|  |  |  |  |  |  |  |-- empty.compressed.02
+|  |  |  |  |  |  |  |-- empty.compressed.03
+|  |  |  |  |  |  |  |-- empty.compressed.04
+|  |  |  |  |  |  |  |-- empty.compressed.05
+|  |  |  |  |  |  |  |-- empty.compressed.06
+|  |  |  |  |  |  |  |-- empty.compressed.07
+|  |  |  |  |  |  |  |-- empty.compressed.08
+|  |  |  |  |  |  |  |-- empty.compressed.09
+|  |  |  |  |  |  |  |-- empty.compressed.10
+|  |  |  |  |  |  |  |-- empty.compressed.11
+|  |  |  |  |  |  |  |-- empty.compressed.12
+|  |  |  |  |  |  |  |-- empty.compressed.13
+|  |  |  |  |  |  |  |-- empty.compressed.14
+|  |  |  |  |  |  |  |-- empty.compressed.15
+|  |  |  |  |  |  |  |-- empty.compressed.16
+|  |  |  |  |  |  |  |-- empty.compressed.17
+|  |  |  |  |  |  |  |-- empty.compressed.18
+|  |  |  |  |  |  |  |-- lcet10.txt
+|  |  |  |  |  |  |  |-- lcet10.txt.compressed
+|  |  |  |  |  |  |  |-- mapsdatazrh
+|  |  |  |  |  |  |  |-- mapsdatazrh.compressed
+|  |  |  |  |  |  |  |-- monkey
+|  |  |  |  |  |  |  |-- monkey.compressed
+|  |  |  |  |  |  |  |-- plrabn12.txt
+|  |  |  |  |  |  |  |-- plrabn12.txt.compressed
+|  |  |  |  |  |  |  |-- quickfox
+|  |  |  |  |  |  |  |-- quickfox.compressed
+|  |  |  |  |  |  |  |-- quickfox_repeated
+|  |  |  |  |  |  |  |-- quickfox_repeated.compressed
+|  |  |  |  |  |  |  |-- random_chunks
+|  |  |  |  |  |  |  |-- random_org_10k.bin
+|  |  |  |  |  |  |  |-- random_org_10k.bin.compressed
+|  |  |  |  |  |  |  |-- ukkonooa
+|  |  |  |  |  |  |  |-- ukkonooa.compressed
+|  |  |  |  |  |  |  |-- x
+|  |  |  |  |  |  |  |-- x.compressed
+|  |  |  |  |  |  |  |-- x.compressed.00
+|  |  |  |  |  |  |  |-- x.compressed.01
+|  |  |  |  |  |  |  |-- x.compressed.02
+|  |  |  |  |  |  |  |-- x.compressed.03
+|  |  |  |  |  |  |  |-- xyzzy
+|  |  |  |  |  |  |  |-- xyzzy.compressed
+|  |  |  |  |  |  |  |-- zeros
+|  |  |  |  |  |  |  |-- zeros.compressed
+|  |  |  |  |  |-- tools
+|  |  |  |  |  |  |-- bro.c
+|  |  |  |  |  |  |-- rfc-format.py
+|  |  |  |  |  |  |-- version.h
+|  |  |  |  |-- build.rs
+|  |  |  |  |-- src
+|  |  |  |  |  |-- lib.rs
+|  |  |  |-- src
+|  |  |  |  |-- bufread.rs
+|  |  |  |  |-- lib.rs
+|  |  |  |  |-- read.rs
+|  |  |  |  |-- stream.rs
+|  |  |  |  |-- write.rs
+|  |  |  |-- systest
+|  |  |  |  |-- Cargo.toml
+|  |  |  |  |-- build.rs
+|  |  |  |  |-- src
+|  |  |  |  |  |-- main.rs
+|  |  |-- bzip2-rs
+|  |  |  |-- .travis.yml
+|  |  |  |-- Cargo.toml
+|  |  |  |-- LICENSE-APACHE
+|  |  |  |-- LICENSE-MIT
+|  |  |  |-- README.md
+|  |  |  |-- appveyor.yml
+|  |  |  |-- bzip2-sys
+|  |  |  |  |-- Cargo.toml
+|  |  |  |  |-- build.rs
+|  |  |  |  |-- bzip2-1.0.6
+|  |  |  |  |  |-- CHANGES
+|  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |-- Makefile
+|  |  |  |  |  |-- Makefile-libbz2_so
+|  |  |  |  |  |-- README
+|  |  |  |  |  |-- README.COMPILATION.PROBLEMS
+|  |  |  |  |  |-- README.XML.STUFF
+|  |  |  |  |  |-- blocksort.c
+|  |  |  |  |  |-- bz-common.xsl
+|  |  |  |  |  |-- bz-fo.xsl
+|  |  |  |  |  |-- bz-html.xsl
+|  |  |  |  |  |-- bzdiff
+|  |  |  |  |  |-- bzdiff.1
+|  |  |  |  |  |-- bzgrep
+|  |  |  |  |  |-- bzgrep.1
+|  |  |  |  |  |-- bzip.css
+|  |  |  |  |  |-- bzip2.1
+|  |  |  |  |  |-- bzip2.1.preformatted
+|  |  |  |  |  |-- bzip2.c
+|  |  |  |  |  |-- bzip2.txt
+|  |  |  |  |  |-- bzip2recover.c
+|  |  |  |  |  |-- bzlib.c
+|  |  |  |  |  |-- bzlib.h
+|  |  |  |  |  |-- bzlib_private.h
+|  |  |  |  |  |-- bzmore
+|  |  |  |  |  |-- bzmore.1
+|  |  |  |  |  |-- compress.c
+|  |  |  |  |  |-- crctable.c
+|  |  |  |  |  |-- decompress.c
+|  |  |  |  |  |-- dlltest.c
+|  |  |  |  |  |-- dlltest.dsp
+|  |  |  |  |  |-- entities.xml
+|  |  |  |  |  |-- format.pl
+|  |  |  |  |  |-- huffman.c
+|  |  |  |  |  |-- libbz2.def
+|  |  |  |  |  |-- libbz2.dsp
+|  |  |  |  |  |-- makefile.msc
+|  |  |  |  |  |-- manual.html
+|  |  |  |  |  |-- manual.ps
+|  |  |  |  |  |-- manual.xml
+|  |  |  |  |  |-- mk251.c
+|  |  |  |  |  |-- randtable.c
+|  |  |  |  |  |-- sample1.bz2
+|  |  |  |  |  |-- sample1.ref
+|  |  |  |  |  |-- sample2.bz2
+|  |  |  |  |  |-- sample2.ref
+|  |  |  |  |  |-- sample3.bz2
+|  |  |  |  |  |-- sample3.ref
+|  |  |  |  |  |-- spewG.c
+|  |  |  |  |  |-- unzcrash.c
+|  |  |  |  |  |-- words0
+|  |  |  |  |  |-- words1
+|  |  |  |  |  |-- words2
+|  |  |  |  |  |-- words3
+|  |  |  |  |  |-- xmlproc.sh
+|  |  |  |  |-- lib.rs
+|  |  |  |-- src
+|  |  |  |  |-- bufread.rs
+|  |  |  |  |-- lib.rs
+|  |  |  |  |-- mem.rs
+|  |  |  |  |-- read.rs
+|  |  |  |  |-- write.rs
+|  |  |-- flate2-rs
+|  |  |  |-- .travis.yml
+|  |  |  |-- Cargo.toml
+|  |  |  |-- LICENSE-APACHE
+|  |  |  |-- LICENSE-MIT
+|  |  |  |-- README.md
+|  |  |  |-- appveyor.yml
+|  |  |  |-- miniz-sys
+|  |  |  |  |-- Cargo.toml
+|  |  |  |  |-- build.rs
+|  |  |  |  |-- lib.rs
+|  |  |  |  |-- miniz.c
+|  |  |  |-- src
+|  |  |  |  |-- bufreader.rs
+|  |  |  |  |-- crc.rs
+|  |  |  |  |-- deflate.rs
+|  |  |  |  |-- ffi.rs
+|  |  |  |  |-- gz.rs
+|  |  |  |  |-- lib.rs
+|  |  |  |  |-- mem.rs
+|  |  |  |  |-- zio.rs
+|  |  |  |  |-- zlib.rs
+|  |  |  |-- tests
+|  |  |  |  |-- corrupt-file.gz
+|  |  |  |  |-- good-file.gz
+|  |  |  |  |-- good-file.txt
+|  |  |  |  |-- gunzip.rs
+|  |  |  |  |-- multi.gz
+|  |  |  |  |-- multi.txt
+|  |  |-- lz4-rs
+|  |  |  |-- .travis.yml
+|  |  |  |-- CHANGELOG.md
+|  |  |  |-- Cargo.toml
+|  |  |  |-- LICENSE
+|  |  |  |-- README.md
+|  |  |  |-- build.rs
+|  |  |  |-- lz4-sys
+|  |  |  |  |-- CHANGELOG.md
+|  |  |  |  |-- Cargo.toml
+|  |  |  |  |-- build.rs
+|  |  |  |  |-- liblz4
+|  |  |  |  |  |-- .travis.yml
+|  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |-- Makefile
+|  |  |  |  |  |-- NEWS
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- appveyor.yml
+|  |  |  |  |  |-- contrib
+|  |  |  |  |  |  |-- cmake_unofficial
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- debian
+|  |  |  |  |  |  |  |-- changelog
+|  |  |  |  |  |  |  |-- compat
+|  |  |  |  |  |  |  |-- control
+|  |  |  |  |  |  |  |-- copyright
+|  |  |  |  |  |  |  |-- dirs
+|  |  |  |  |  |  |  |-- docs
+|  |  |  |  |  |  |  |-- liblz4-dev.install
+|  |  |  |  |  |  |  |-- liblz4.install
+|  |  |  |  |  |  |  |-- rules
+|  |  |  |  |  |  |-- djgpp
+|  |  |  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |  |  |-- Makefile
+|  |  |  |  |  |  |  |-- README.MD
+|  |  |  |  |  |  |-- gen_manual
+|  |  |  |  |  |  |  |-- Makefile
+|  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |-- gen-lz4-manual.sh
+|  |  |  |  |  |  |  |-- gen_manual.cpp
+|  |  |  |  |  |-- doc
+|  |  |  |  |  |  |-- lz4_Block_format.md
+|  |  |  |  |  |  |-- lz4_Frame_format.md
+|  |  |  |  |  |  |-- lz4_manual.html
+|  |  |  |  |  |-- examples
+|  |  |  |  |  |  |-- COPYING
+|  |  |  |  |  |  |-- HCStreaming_ringBuffer.c
+|  |  |  |  |  |  |-- Makefile
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- blockStreaming_doubleBuffer.c
+|  |  |  |  |  |  |-- blockStreaming_doubleBuffer.md
+|  |  |  |  |  |  |-- blockStreaming_lineByLine.c
+|  |  |  |  |  |  |-- blockStreaming_lineByLine.md
+|  |  |  |  |  |  |-- blockStreaming_ringBuffer.c
+|  |  |  |  |  |  |-- compress_functions.c
+|  |  |  |  |  |  |-- dictionaryRandomAccess.c
+|  |  |  |  |  |  |-- dictionaryRandomAccess.md
+|  |  |  |  |  |  |-- frameCompress.c
+|  |  |  |  |  |  |-- printVersion.c
+|  |  |  |  |  |  |-- simple_buffer.c
+|  |  |  |  |  |  |-- streaming_api_basics.md
+|  |  |  |  |  |-- lib
+|  |  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |  |-- Makefile
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- dll
+|  |  |  |  |  |  |  |-- example
+|  |  |  |  |  |  |  |  |-- Makefile
+|  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |-- fullbench-dll.sln
+|  |  |  |  |  |  |  |  |-- fullbench-dll.vcxproj
+|  |  |  |  |  |  |  |-- liblz4.def
+|  |  |  |  |  |  |-- liblz4.pc.in
+|  |  |  |  |  |  |-- lz4.c
+|  |  |  |  |  |  |-- lz4.h
+|  |  |  |  |  |  |-- lz4frame.c
+|  |  |  |  |  |  |-- lz4frame.h
+|  |  |  |  |  |  |-- lz4frame_static.h
+|  |  |  |  |  |  |-- lz4hc.c
+|  |  |  |  |  |  |-- lz4hc.h
+|  |  |  |  |  |  |-- lz4opt.h
+|  |  |  |  |  |  |-- xxhash.c
+|  |  |  |  |  |  |-- xxhash.h
+|  |  |  |  |  |-- programs
+|  |  |  |  |  |  |-- COPYING
+|  |  |  |  |  |  |-- Makefile
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- bench.c
+|  |  |  |  |  |  |-- bench.h
+|  |  |  |  |  |  |-- datagen.c
+|  |  |  |  |  |  |-- datagen.h
+|  |  |  |  |  |  |-- lz4.1
+|  |  |  |  |  |  |-- lz4.1.md
+|  |  |  |  |  |  |-- lz4cli.c
+|  |  |  |  |  |  |-- lz4io.c
+|  |  |  |  |  |  |-- lz4io.h
+|  |  |  |  |  |  |-- platform.h
+|  |  |  |  |  |  |-- util.h
+|  |  |  |  |  |-- tests
+|  |  |  |  |  |  |-- COPYING
+|  |  |  |  |  |  |-- Makefile
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- datagencli.c
+|  |  |  |  |  |  |-- fasttest.c
+|  |  |  |  |  |  |-- frametest.c
+|  |  |  |  |  |  |-- fullbench.c
+|  |  |  |  |  |  |-- fuzzer.c
+|  |  |  |  |  |  |-- test-lz4-speed.py
+|  |  |  |  |  |  |-- test-lz4-versions.py
+|  |  |  |  |  |-- visual
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- VS2010
+|  |  |  |  |  |  |  |-- datagen
+|  |  |  |  |  |  |  |  |-- datagen.vcxproj
+|  |  |  |  |  |  |  |-- frametest
+|  |  |  |  |  |  |  |  |-- frametest.vcxproj
+|  |  |  |  |  |  |  |-- fullbench-dll
+|  |  |  |  |  |  |  |  |-- fullbench-dll.vcxproj
+|  |  |  |  |  |  |  |-- fullbench
+|  |  |  |  |  |  |  |  |-- fullbench.vcxproj
+|  |  |  |  |  |  |  |-- fuzzer
+|  |  |  |  |  |  |  |  |-- fuzzer.vcxproj
+|  |  |  |  |  |  |  |-- liblz4-dll
+|  |  |  |  |  |  |  |  |-- liblz4-dll.rc
+|  |  |  |  |  |  |  |  |-- liblz4-dll.vcxproj
+|  |  |  |  |  |  |  |-- liblz4
+|  |  |  |  |  |  |  |  |-- liblz4.vcxproj
+|  |  |  |  |  |  |  |-- lz4.sln
+|  |  |  |  |  |  |  |-- lz4
+|  |  |  |  |  |  |  |  |-- lz4.rc
+|  |  |  |  |  |  |  |  |-- lz4.vcxproj
+|  |  |  |  |-- src
+|  |  |  |  |  |-- lib.rs
+|  |  |  |-- src
+|  |  |  |  |-- bin
+|  |  |  |  |  |-- lz4.rs
+|  |  |  |  |-- decoder.rs
+|  |  |  |  |-- encoder.rs
+|  |  |  |  |-- lib.rs
+|  |  |  |  |-- liblz4.rs
+|  |  |  |-- tests
+|  |  |  |  |-- skeptic.rs
+|  |  |-- rust-snappy
+|  |  |  |-- .travis.yml
+|  |  |  |-- COPYING
+|  |  |  |-- Cargo.toml
+|  |  |  |-- README.md
+|  |  |  |-- appveyor.yml
+|  |  |  |-- ctags.rust
+|  |  |  |-- data
+|  |  |  |  |-- COPYING
+|  |  |  |  |-- Mark.Twain-Tom.Sawyer.txt
+|  |  |  |  |-- Mark.Twain-Tom.Sawyer.txt.rawsnappy
+|  |  |  |  |-- alice29.txt
+|  |  |  |  |-- asyoulik.txt
+|  |  |  |  |-- baddata1.snappy
+|  |  |  |  |-- baddata2.snappy
+|  |  |  |  |-- baddata3.snappy
+|  |  |  |  |-- fireworks.jpeg
+|  |  |  |  |-- geo.protodata
+|  |  |  |  |-- html
+|  |  |  |  |-- html_x_4
+|  |  |  |  |-- kppkn.gtb
+|  |  |  |  |-- lcet10.txt
+|  |  |  |  |-- paper-100k.pdf
+|  |  |  |  |-- plrabn12.txt
+|  |  |  |  |-- urls.10K
+|  |  |  |-- examples
+|  |  |  |  |-- compress-escaped.rs
+|  |  |  |  |-- compress.rs
+|  |  |  |  |-- decompress.rs
+|  |  |  |-- scripts
+|  |  |  |  |-- gen-tag-lookup-table
+|  |  |  |-- session.vim
+|  |  |  |-- snappy-cpp
+|  |  |  |  |-- Cargo.toml
+|  |  |  |  |-- build.rs
+|  |  |  |  |-- src
+|  |  |  |  |  |-- lib.rs
+|  |  |  |-- src
+|  |  |  |  |-- bench.rs
+|  |  |  |  |-- compress.rs
+|  |  |  |  |-- crc32.rs
+|  |  |  |  |-- decompress.rs
+|  |  |  |  |-- error.rs
+|  |  |  |  |-- frame.rs
+|  |  |  |  |-- lib.rs
+|  |  |  |  |-- tag.rs
+|  |  |  |  |-- tests.rs
+|  |  |  |  |-- varint.rs
+|  |  |  |-- szip
+|  |  |  |  |-- Cargo.toml
+|  |  |  |  |-- src
+|  |  |  |  |  |-- main.rs
+|  |  |-- xz2-rs
+|  |  |  |-- .travis.yml
+|  |  |  |-- Cargo.toml
+|  |  |  |-- LICENSE-APACHE
+|  |  |  |-- LICENSE-MIT
+|  |  |  |-- README.md
+|  |  |  |-- appveyor.yml
+|  |  |  |-- lzma-sys
+|  |  |  |  |-- Cargo.toml
+|  |  |  |  |-- build.rs
+|  |  |  |  |-- src
+|  |  |  |  |  |-- lib.rs
+|  |  |  |  |-- xz-5.2.2
+|  |  |  |  |  |-- ABOUT-NLS
+|  |  |  |  |  |-- AUTHORS
+|  |  |  |  |  |-- COPYING
+|  |  |  |  |  |-- COPYING.GPLv2
+|  |  |  |  |  |-- COPYING.GPLv3
+|  |  |  |  |  |-- COPYING.LGPLv2.1
+|  |  |  |  |  |-- ChangeLog
+|  |  |  |  |  |-- Doxyfile.in
+|  |  |  |  |  |-- INSTALL
+|  |  |  |  |  |-- INSTALL.generic
+|  |  |  |  |  |-- Makefile.am
+|  |  |  |  |  |-- Makefile.in
+|  |  |  |  |  |-- NEWS
+|  |  |  |  |  |-- PACKAGERS
+|  |  |  |  |  |-- README
+|  |  |  |  |  |-- THANKS
+|  |  |  |  |  |-- TODO
+|  |  |  |  |  |-- WindowsFormsApplication1
+|  |  |  |  |  |  |-- App.config
+|  |  |  |  |  |  |-- Form1.Designer.cs
+|  |  |  |  |  |  |-- Form1.cs
+|  |  |  |  |  |  |-- Program.cs
+|  |  |  |  |  |  |-- Properties
+|  |  |  |  |  |  |  |-- AssemblyInfo.cs
+|  |  |  |  |  |  |  |-- Resources.Designer.cs
+|  |  |  |  |  |  |  |-- Resources.resx
+|  |  |  |  |  |  |  |-- Settings.Designer.cs
+|  |  |  |  |  |  |  |-- Settings.settings
+|  |  |  |  |  |  |-- WindowsFormsApplication1.csproj
+|  |  |  |  |  |  |-- bin
+|  |  |  |  |  |  |  |-- Debug
+|  |  |  |  |  |  |  |  |-- WindowsFormsApplication1.exe.config
+|  |  |  |  |  |  |  |  |-- WindowsFormsApplication1.vshost.exe
+|  |  |  |  |  |  |  |  |-- WindowsFormsApplication1.vshost.exe.config
+|  |  |  |  |  |  |  |  |-- WindowsFormsApplication1.vshost.exe.manifest
+|  |  |  |  |  |  |-- obj
+|  |  |  |  |  |  |  |-- Debug
+|  |  |  |  |  |  |  |  |-- DesignTimeResolveAssemblyReferences.cache
+|  |  |  |  |  |  |  |  |-- DesignTimeResolveAssemblyReferencesInput.cache
+|  |  |  |  |  |  |  |  |-- TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+|  |  |  |  |  |  |  |  |-- TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+|  |  |  |  |  |  |  |  |-- TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+|  |  |  |  |  |  |  |  |-- WindowsFormsApplication1.csproj.FileListAbsolute.txt
+|  |  |  |  |  |-- aclocal.m4
+|  |  |  |  |  |-- autogen.sh
+|  |  |  |  |  |-- build-aux
+|  |  |  |  |  |  |-- compile
+|  |  |  |  |  |  |-- config.guess
+|  |  |  |  |  |  |-- config.rpath
+|  |  |  |  |  |  |-- config.sub
+|  |  |  |  |  |  |-- depcomp
+|  |  |  |  |  |  |-- install-sh
+|  |  |  |  |  |  |-- ltmain.sh
+|  |  |  |  |  |  |-- manconv.sh
+|  |  |  |  |  |  |-- missing
+|  |  |  |  |  |  |-- version.sh
+|  |  |  |  |  |-- config.h.in
+|  |  |  |  |  |-- configure
+|  |  |  |  |  |-- configure.ac
+|  |  |  |  |  |-- debug
+|  |  |  |  |  |  |-- Makefile.am
+|  |  |  |  |  |  |-- Makefile.in
+|  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |-- crc32.c
+|  |  |  |  |  |  |-- full_flush.c
+|  |  |  |  |  |  |-- hex2bin.c
+|  |  |  |  |  |  |-- known_sizes.c
+|  |  |  |  |  |  |-- memusage.c
+|  |  |  |  |  |  |-- repeat.c
+|  |  |  |  |  |  |-- sync_flush.c
+|  |  |  |  |  |  |-- translation.bash
+|  |  |  |  |  |-- doc
+|  |  |  |  |  |  |-- examples
+|  |  |  |  |  |  |  |-- 00_README.txt
+|  |  |  |  |  |  |  |-- 01_compress_easy.c
+|  |  |  |  |  |  |  |-- 02_decompress.c
+|  |  |  |  |  |  |  |-- 03_compress_custom.c
+|  |  |  |  |  |  |  |-- 04_compress_easy_mt.c
+|  |  |  |  |  |  |  |-- Makefile
+|  |  |  |  |  |  |-- examples_old
+|  |  |  |  |  |  |  |-- xz_pipe_comp.c
+|  |  |  |  |  |  |  |-- xz_pipe_decomp.c
+|  |  |  |  |  |  |-- faq.txt
+|  |  |  |  |  |  |-- history.txt
+|  |  |  |  |  |  |-- lzma-file-format.txt
+|  |  |  |  |  |  |-- man
+|  |  |  |  |  |  |  |-- txt
+|  |  |  |  |  |  |  |  |-- lzmainfo.txt
+|  |  |  |  |  |  |  |  |-- xz.txt
+|  |  |  |  |  |  |  |  |-- xzdec.txt
+|  |  |  |  |  |  |  |  |-- xzdiff.txt
+|  |  |  |  |  |  |  |  |-- xzgrep.txt
+|  |  |  |  |  |  |  |  |-- xzless.txt
+|  |  |  |  |  |  |  |  |-- xzmore.txt
+|  |  |  |  |  |  |-- xz-file-format.txt
+|  |  |  |  |  |-- dos
+|  |  |  |  |  |  |-- INSTALL.txt
+|  |  |  |  |  |  |-- Makefile
+|  |  |  |  |  |  |-- README.txt
+|  |  |  |  |  |  |-- config.h
+|  |  |  |  |  |-- extra
+|  |  |  |  |  |  |-- 7z2lzma
+|  |  |  |  |  |  |  |-- 7z2lzma.bash
+|  |  |  |  |  |  |-- scanlzma
+|  |  |  |  |  |  |  |-- scanlzma.c
+|  |  |  |  |  |-- lib
+|  |  |  |  |  |  |-- Makefile.am
+|  |  |  |  |  |  |-- Makefile.in
+|  |  |  |  |  |  |-- getopt.c
+|  |  |  |  |  |  |-- getopt.in.h
+|  |  |  |  |  |  |-- getopt1.c
+|  |  |  |  |  |  |-- getopt_int.h
+|  |  |  |  |  |-- m4
+|  |  |  |  |  |  |-- ax_pthread.m4
+|  |  |  |  |  |  |-- getopt.m4
+|  |  |  |  |  |  |-- gettext.m4
+|  |  |  |  |  |  |-- iconv.m4
+|  |  |  |  |  |  |-- intlmacosx.m4
+|  |  |  |  |  |  |-- lib-ld.m4
+|  |  |  |  |  |  |-- lib-link.m4
+|  |  |  |  |  |  |-- lib-prefix.m4
+|  |  |  |  |  |  |-- libtool.m4
+|  |  |  |  |  |  |-- ltoptions.m4
+|  |  |  |  |  |  |-- ltsugar.m4
+|  |  |  |  |  |  |-- ltversion.m4
+|  |  |  |  |  |  |-- lt~obsolete.m4
+|  |  |  |  |  |  |-- nls.m4
+|  |  |  |  |  |  |-- po.m4
+|  |  |  |  |  |  |-- posix-shell.m4
+|  |  |  |  |  |  |-- progtest.m4
+|  |  |  |  |  |  |-- tuklib_common.m4
+|  |  |  |  |  |  |-- tuklib_cpucores.m4
+|  |  |  |  |  |  |-- tuklib_integer.m4
+|  |  |  |  |  |  |-- tuklib_mbstr.m4
+|  |  |  |  |  |  |-- tuklib_physmem.m4
+|  |  |  |  |  |  |-- tuklib_progname.m4
+|  |  |  |  |  |  |-- visibility.m4
+|  |  |  |  |  |-- macosx
+|  |  |  |  |  |  |-- build.sh
+|  |  |  |  |  |-- po
+|  |  |  |  |  |  |-- LINGUAS
+|  |  |  |  |  |  |-- Makefile.in.in
+|  |  |  |  |  |  |-- Makevars
+|  |  |  |  |  |  |-- POTFILES.in
+|  |  |  |  |  |  |-- Rules-quot
+|  |  |  |  |  |  |-- boldquot.sed
+|  |  |  |  |  |  |-- cs.gmo
+|  |  |  |  |  |  |-- cs.po
+|  |  |  |  |  |  |-- de.gmo
+|  |  |  |  |  |  |-- de.po
+|  |  |  |  |  |  |-- en@boldquot.header
+|  |  |  |  |  |  |-- en@quot.header
+|  |  |  |  |  |  |-- fr.gmo
+|  |  |  |  |  |  |-- fr.po
+|  |  |  |  |  |  |-- insert-header.sin
+|  |  |  |  |  |  |-- it.gmo
+|  |  |  |  |  |  |-- it.po
+|  |  |  |  |  |  |-- pl.gmo
+|  |  |  |  |  |  |-- pl.po
+|  |  |  |  |  |  |-- quot.sed
+|  |  |  |  |  |  |-- remove-potcdate.sin
+|  |  |  |  |  |  |-- stamp-po
+|  |  |  |  |  |  |-- vi.gmo
+|  |  |  |  |  |  |-- vi.po
+|  |  |  |  |  |  |-- xz.pot
+|  |  |  |  |  |-- src
+|  |  |  |  |  |  |-- Makefile.am
+|  |  |  |  |  |  |-- Makefile.in
+|  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |-- common_w32res.rc
+|  |  |  |  |  |  |  |-- mythread.h
+|  |  |  |  |  |  |  |-- sysdefs.h
+|  |  |  |  |  |  |  |-- tuklib_common.h
+|  |  |  |  |  |  |  |-- tuklib_config.h
+|  |  |  |  |  |  |  |-- tuklib_cpucores.c
+|  |  |  |  |  |  |  |-- tuklib_cpucores.h
+|  |  |  |  |  |  |  |-- tuklib_exit.c
+|  |  |  |  |  |  |  |-- tuklib_exit.h
+|  |  |  |  |  |  |  |-- tuklib_gettext.h
+|  |  |  |  |  |  |  |-- tuklib_integer.h
+|  |  |  |  |  |  |  |-- tuklib_mbstr.h
+|  |  |  |  |  |  |  |-- tuklib_mbstr_fw.c
+|  |  |  |  |  |  |  |-- tuklib_mbstr_width.c
+|  |  |  |  |  |  |  |-- tuklib_open_stdxxx.c
+|  |  |  |  |  |  |  |-- tuklib_open_stdxxx.h
+|  |  |  |  |  |  |  |-- tuklib_physmem.c
+|  |  |  |  |  |  |  |-- tuklib_physmem.h
+|  |  |  |  |  |  |  |-- tuklib_progname.c
+|  |  |  |  |  |  |  |-- tuklib_progname.h
+|  |  |  |  |  |  |-- liblzma
+|  |  |  |  |  |  |  |-- Makefile.am
+|  |  |  |  |  |  |  |-- Makefile.in
+|  |  |  |  |  |  |  |-- api
+|  |  |  |  |  |  |  |  |-- Makefile.am
+|  |  |  |  |  |  |  |  |-- Makefile.in
+|  |  |  |  |  |  |  |  |-- lzma.h
+|  |  |  |  |  |  |  |  |-- lzma
+|  |  |  |  |  |  |  |  |  |-- base.h
+|  |  |  |  |  |  |  |  |  |-- bcj.h
+|  |  |  |  |  |  |  |  |  |-- block.h
+|  |  |  |  |  |  |  |  |  |-- check.h
+|  |  |  |  |  |  |  |  |  |-- container.h
+|  |  |  |  |  |  |  |  |  |-- delta.h
+|  |  |  |  |  |  |  |  |  |-- filter.h
+|  |  |  |  |  |  |  |  |  |-- hardware.h
+|  |  |  |  |  |  |  |  |  |-- index.h
+|  |  |  |  |  |  |  |  |  |-- index_hash.h
+|  |  |  |  |  |  |  |  |  |-- lzma12.h
+|  |  |  |  |  |  |  |  |  |-- stream_flags.h
+|  |  |  |  |  |  |  |  |  |-- version.h
+|  |  |  |  |  |  |  |  |  |-- vli.h
+|  |  |  |  |  |  |  |-- check
+|  |  |  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |  |  |-- check.c
+|  |  |  |  |  |  |  |  |-- check.h
+|  |  |  |  |  |  |  |  |-- crc32_fast.c
+|  |  |  |  |  |  |  |  |-- crc32_small.c
+|  |  |  |  |  |  |  |  |-- crc32_table.c
+|  |  |  |  |  |  |  |  |-- crc32_table_be.h
+|  |  |  |  |  |  |  |  |-- crc32_table_le.h
+|  |  |  |  |  |  |  |  |-- crc32_tablegen.c
+|  |  |  |  |  |  |  |  |-- crc32_x86.S
+|  |  |  |  |  |  |  |  |-- crc64_fast.c
+|  |  |  |  |  |  |  |  |-- crc64_small.c
+|  |  |  |  |  |  |  |  |-- crc64_table.c
+|  |  |  |  |  |  |  |  |-- crc64_table_be.h
+|  |  |  |  |  |  |  |  |-- crc64_table_le.h
+|  |  |  |  |  |  |  |  |-- crc64_tablegen.c
+|  |  |  |  |  |  |  |  |-- crc64_x86.S
+|  |  |  |  |  |  |  |  |-- crc_macros.h
+|  |  |  |  |  |  |  |  |-- sha256.c
+|  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |  |  |-- alone_decoder.c
+|  |  |  |  |  |  |  |  |-- alone_decoder.h
+|  |  |  |  |  |  |  |  |-- alone_encoder.c
+|  |  |  |  |  |  |  |  |-- auto_decoder.c
+|  |  |  |  |  |  |  |  |-- block_buffer_decoder.c
+|  |  |  |  |  |  |  |  |-- block_buffer_encoder.c
+|  |  |  |  |  |  |  |  |-- block_buffer_encoder.h
+|  |  |  |  |  |  |  |  |-- block_decoder.c
+|  |  |  |  |  |  |  |  |-- block_decoder.h
+|  |  |  |  |  |  |  |  |-- block_encoder.c
+|  |  |  |  |  |  |  |  |-- block_encoder.h
+|  |  |  |  |  |  |  |  |-- block_header_decoder.c
+|  |  |  |  |  |  |  |  |-- block_header_encoder.c
+|  |  |  |  |  |  |  |  |-- block_util.c
+|  |  |  |  |  |  |  |  |-- common.c
+|  |  |  |  |  |  |  |  |-- common.h
+|  |  |  |  |  |  |  |  |-- easy_buffer_encoder.c
+|  |  |  |  |  |  |  |  |-- easy_decoder_memusage.c
+|  |  |  |  |  |  |  |  |-- easy_encoder.c
+|  |  |  |  |  |  |  |  |-- easy_encoder_memusage.c
+|  |  |  |  |  |  |  |  |-- easy_preset.c
+|  |  |  |  |  |  |  |  |-- easy_preset.h
+|  |  |  |  |  |  |  |  |-- filter_buffer_decoder.c
+|  |  |  |  |  |  |  |  |-- filter_buffer_encoder.c
+|  |  |  |  |  |  |  |  |-- filter_common.c
+|  |  |  |  |  |  |  |  |-- filter_common.h
+|  |  |  |  |  |  |  |  |-- filter_decoder.c
+|  |  |  |  |  |  |  |  |-- filter_decoder.h
+|  |  |  |  |  |  |  |  |-- filter_encoder.c
+|  |  |  |  |  |  |  |  |-- filter_encoder.h
+|  |  |  |  |  |  |  |  |-- filter_flags_decoder.c
+|  |  |  |  |  |  |  |  |-- filter_flags_encoder.c
+|  |  |  |  |  |  |  |  |-- hardware_cputhreads.c
+|  |  |  |  |  |  |  |  |-- hardware_physmem.c
+|  |  |  |  |  |  |  |  |-- index.c
+|  |  |  |  |  |  |  |  |-- index.h
+|  |  |  |  |  |  |  |  |-- index_decoder.c
+|  |  |  |  |  |  |  |  |-- index_encoder.c
+|  |  |  |  |  |  |  |  |-- index_encoder.h
+|  |  |  |  |  |  |  |  |-- index_hash.c
+|  |  |  |  |  |  |  |  |-- memcmplen.h
+|  |  |  |  |  |  |  |  |-- outqueue.c
+|  |  |  |  |  |  |  |  |-- outqueue.h
+|  |  |  |  |  |  |  |  |-- stream_buffer_decoder.c
+|  |  |  |  |  |  |  |  |-- stream_buffer_encoder.c
+|  |  |  |  |  |  |  |  |-- stream_decoder.c
+|  |  |  |  |  |  |  |  |-- stream_decoder.h
+|  |  |  |  |  |  |  |  |-- stream_encoder.c
+|  |  |  |  |  |  |  |  |-- stream_encoder_mt.c
+|  |  |  |  |  |  |  |  |-- stream_flags_common.c
+|  |  |  |  |  |  |  |  |-- stream_flags_common.h
+|  |  |  |  |  |  |  |  |-- stream_flags_decoder.c
+|  |  |  |  |  |  |  |  |-- stream_flags_encoder.c
+|  |  |  |  |  |  |  |  |-- vli_decoder.c
+|  |  |  |  |  |  |  |  |-- vli_encoder.c
+|  |  |  |  |  |  |  |  |-- vli_size.c
+|  |  |  |  |  |  |  |-- delta
+|  |  |  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |  |  |-- delta_common.c
+|  |  |  |  |  |  |  |  |-- delta_common.h
+|  |  |  |  |  |  |  |  |-- delta_decoder.c
+|  |  |  |  |  |  |  |  |-- delta_decoder.h
+|  |  |  |  |  |  |  |  |-- delta_encoder.c
+|  |  |  |  |  |  |  |  |-- delta_encoder.h
+|  |  |  |  |  |  |  |  |-- delta_private.h
+|  |  |  |  |  |  |  |-- liblzma.map
+|  |  |  |  |  |  |  |-- liblzma.pc.in
+|  |  |  |  |  |  |  |-- liblzma_w32res.rc
+|  |  |  |  |  |  |  |-- lz
+|  |  |  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |  |  |-- lz_decoder.c
+|  |  |  |  |  |  |  |  |-- lz_decoder.h
+|  |  |  |  |  |  |  |  |-- lz_encoder.c
+|  |  |  |  |  |  |  |  |-- lz_encoder.h
+|  |  |  |  |  |  |  |  |-- lz_encoder_hash.h
+|  |  |  |  |  |  |  |  |-- lz_encoder_hash_table.h
+|  |  |  |  |  |  |  |  |-- lz_encoder_mf.c
+|  |  |  |  |  |  |  |-- lzma
+|  |  |  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |  |  |-- fastpos.h
+|  |  |  |  |  |  |  |  |-- fastpos_table.c
+|  |  |  |  |  |  |  |  |-- fastpos_tablegen.c
+|  |  |  |  |  |  |  |  |-- lzma2_decoder.c
+|  |  |  |  |  |  |  |  |-- lzma2_decoder.h
+|  |  |  |  |  |  |  |  |-- lzma2_encoder.c
+|  |  |  |  |  |  |  |  |-- lzma2_encoder.h
+|  |  |  |  |  |  |  |  |-- lzma_common.h
+|  |  |  |  |  |  |  |  |-- lzma_decoder.c
+|  |  |  |  |  |  |  |  |-- lzma_decoder.h
+|  |  |  |  |  |  |  |  |-- lzma_encoder.c
+|  |  |  |  |  |  |  |  |-- lzma_encoder.h
+|  |  |  |  |  |  |  |  |-- lzma_encoder_optimum_fast.c
+|  |  |  |  |  |  |  |  |-- lzma_encoder_optimum_normal.c
+|  |  |  |  |  |  |  |  |-- lzma_encoder_presets.c
+|  |  |  |  |  |  |  |  |-- lzma_encoder_private.h
+|  |  |  |  |  |  |  |-- rangecoder
+|  |  |  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |  |  |-- price.h
+|  |  |  |  |  |  |  |  |-- price_table.c
+|  |  |  |  |  |  |  |  |-- price_tablegen.c
+|  |  |  |  |  |  |  |  |-- range_common.h
+|  |  |  |  |  |  |  |  |-- range_decoder.h
+|  |  |  |  |  |  |  |  |-- range_encoder.h
+|  |  |  |  |  |  |  |-- simple
+|  |  |  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |  |  |-- arm.c
+|  |  |  |  |  |  |  |  |-- armthumb.c
+|  |  |  |  |  |  |  |  |-- ia64.c
+|  |  |  |  |  |  |  |  |-- powerpc.c
+|  |  |  |  |  |  |  |  |-- simple_coder.c
+|  |  |  |  |  |  |  |  |-- simple_coder.h
+|  |  |  |  |  |  |  |  |-- simple_decoder.c
+|  |  |  |  |  |  |  |  |-- simple_decoder.h
+|  |  |  |  |  |  |  |  |-- simple_encoder.c
+|  |  |  |  |  |  |  |  |-- simple_encoder.h
+|  |  |  |  |  |  |  |  |-- simple_private.h
+|  |  |  |  |  |  |  |  |-- sparc.c
+|  |  |  |  |  |  |  |  |-- x86.c
+|  |  |  |  |  |  |  |-- validate_map.sh
+|  |  |  |  |  |  |-- lzmainfo
+|  |  |  |  |  |  |  |-- Makefile.am
+|  |  |  |  |  |  |  |-- Makefile.in
+|  |  |  |  |  |  |  |-- lzmainfo.1
+|  |  |  |  |  |  |  |-- lzmainfo.c
+|  |  |  |  |  |  |  |-- lzmainfo_w32res.rc
+|  |  |  |  |  |  |-- scripts
+|  |  |  |  |  |  |  |-- Makefile.am
+|  |  |  |  |  |  |  |-- Makefile.in
+|  |  |  |  |  |  |  |-- xzdiff.1
+|  |  |  |  |  |  |  |-- xzdiff.in
+|  |  |  |  |  |  |  |-- xzgrep.1
+|  |  |  |  |  |  |  |-- xzgrep.in
+|  |  |  |  |  |  |  |-- xzless.1
+|  |  |  |  |  |  |  |-- xzless.in
+|  |  |  |  |  |  |  |-- xzmore.1
+|  |  |  |  |  |  |  |-- xzmore.in
+|  |  |  |  |  |  |-- xz
+|  |  |  |  |  |  |  |-- Makefile.am
+|  |  |  |  |  |  |  |-- Makefile.in
+|  |  |  |  |  |  |  |-- args.c
+|  |  |  |  |  |  |  |-- args.h
+|  |  |  |  |  |  |  |-- coder.c
+|  |  |  |  |  |  |  |-- coder.h
+|  |  |  |  |  |  |  |-- file_io.c
+|  |  |  |  |  |  |  |-- file_io.h
+|  |  |  |  |  |  |  |-- hardware.c
+|  |  |  |  |  |  |  |-- hardware.h
+|  |  |  |  |  |  |  |-- list.c
+|  |  |  |  |  |  |  |-- list.h
+|  |  |  |  |  |  |  |-- main.c
+|  |  |  |  |  |  |  |-- main.h
+|  |  |  |  |  |  |  |-- message.c
+|  |  |  |  |  |  |  |-- message.h
+|  |  |  |  |  |  |  |-- mytime.c
+|  |  |  |  |  |  |  |-- mytime.h
+|  |  |  |  |  |  |  |-- options.c
+|  |  |  |  |  |  |  |-- options.h
+|  |  |  |  |  |  |  |-- private.h
+|  |  |  |  |  |  |  |-- signals.c
+|  |  |  |  |  |  |  |-- signals.h
+|  |  |  |  |  |  |  |-- suffix.c
+|  |  |  |  |  |  |  |-- suffix.h
+|  |  |  |  |  |  |  |-- util.c
+|  |  |  |  |  |  |  |-- util.h
+|  |  |  |  |  |  |  |-- xz.1
+|  |  |  |  |  |  |  |-- xz_w32res.rc
+|  |  |  |  |  |  |-- xzdec
+|  |  |  |  |  |  |  |-- Makefile.am
+|  |  |  |  |  |  |  |-- Makefile.in
+|  |  |  |  |  |  |  |-- lzmadec_w32res.rc
+|  |  |  |  |  |  |  |-- xzdec.1
+|  |  |  |  |  |  |  |-- xzdec.c
+|  |  |  |  |  |  |  |-- xzdec_w32res.rc
+|  |  |  |  |  |-- tests
+|  |  |  |  |  |  |-- Makefile.am
+|  |  |  |  |  |  |-- Makefile.in
+|  |  |  |  |  |  |-- bcj_test.c
+|  |  |  |  |  |  |-- compress_prepared_bcj_sparc
+|  |  |  |  |  |  |-- compress_prepared_bcj_x86
+|  |  |  |  |  |  |-- create_compress_files.c
+|  |  |  |  |  |  |-- files
+|  |  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |  |-- bad-0-backward_size.xz
+|  |  |  |  |  |  |  |-- bad-0-empty-truncated.xz
+|  |  |  |  |  |  |  |-- bad-0-footer_magic.xz
+|  |  |  |  |  |  |  |-- bad-0-header_magic.xz
+|  |  |  |  |  |  |  |-- bad-0-nonempty_index.xz
+|  |  |  |  |  |  |  |-- bad-0cat-alone.xz
+|  |  |  |  |  |  |  |-- bad-0cat-header_magic.xz
+|  |  |  |  |  |  |  |-- bad-0catpad-empty.xz
+|  |  |  |  |  |  |  |-- bad-0pad-empty.xz
+|  |  |  |  |  |  |  |-- bad-1-block_header-1.xz
+|  |  |  |  |  |  |  |-- bad-1-block_header-2.xz
+|  |  |  |  |  |  |  |-- bad-1-block_header-3.xz
+|  |  |  |  |  |  |  |-- bad-1-block_header-4.xz
+|  |  |  |  |  |  |  |-- bad-1-block_header-5.xz
+|  |  |  |  |  |  |  |-- bad-1-block_header-6.xz
+|  |  |  |  |  |  |  |-- bad-1-check-crc32.xz
+|  |  |  |  |  |  |  |-- bad-1-check-crc64.xz
+|  |  |  |  |  |  |  |-- bad-1-check-sha256.xz
+|  |  |  |  |  |  |  |-- bad-1-lzma2-1.xz
+|  |  |  |  |  |  |  |-- bad-1-lzma2-2.xz
+|  |  |  |  |  |  |  |-- bad-1-lzma2-3.xz
+|  |  |  |  |  |  |  |-- bad-1-lzma2-4.xz
+|  |  |  |  |  |  |  |-- bad-1-lzma2-5.xz
+|  |  |  |  |  |  |  |-- bad-1-lzma2-6.xz
+|  |  |  |  |  |  |  |-- bad-1-lzma2-7.xz
+|  |  |  |  |  |  |  |-- bad-1-lzma2-8.xz
+|  |  |  |  |  |  |  |-- bad-1-stream_flags-1.xz
+|  |  |  |  |  |  |  |-- bad-1-stream_flags-2.xz
+|  |  |  |  |  |  |  |-- bad-1-stream_flags-3.xz
+|  |  |  |  |  |  |  |-- bad-1-vli-1.xz
+|  |  |  |  |  |  |  |-- bad-1-vli-2.xz
+|  |  |  |  |  |  |  |-- bad-2-compressed_data_padding.xz
+|  |  |  |  |  |  |  |-- bad-2-index-1.xz
+|  |  |  |  |  |  |  |-- bad-2-index-2.xz
+|  |  |  |  |  |  |  |-- bad-2-index-3.xz
+|  |  |  |  |  |  |  |-- bad-2-index-4.xz
+|  |  |  |  |  |  |  |-- bad-2-index-5.xz
+|  |  |  |  |  |  |  |-- good-0-empty.xz
+|  |  |  |  |  |  |  |-- good-0cat-empty.xz
+|  |  |  |  |  |  |  |-- good-0catpad-empty.xz
+|  |  |  |  |  |  |  |-- good-0pad-empty.xz
+|  |  |  |  |  |  |  |-- good-1-3delta-lzma2.xz
+|  |  |  |  |  |  |  |-- good-1-block_header-1.xz
+|  |  |  |  |  |  |  |-- good-1-block_header-2.xz
+|  |  |  |  |  |  |  |-- good-1-block_header-3.xz
+|  |  |  |  |  |  |  |-- good-1-check-crc32.xz
+|  |  |  |  |  |  |  |-- good-1-check-crc64.xz
+|  |  |  |  |  |  |  |-- good-1-check-none.xz
+|  |  |  |  |  |  |  |-- good-1-check-sha256.xz
+|  |  |  |  |  |  |  |-- good-1-delta-lzma2.tiff.xz
+|  |  |  |  |  |  |  |-- good-1-lzma2-1.xz
+|  |  |  |  |  |  |  |-- good-1-lzma2-2.xz
+|  |  |  |  |  |  |  |-- good-1-lzma2-3.xz
+|  |  |  |  |  |  |  |-- good-1-lzma2-4.xz
+|  |  |  |  |  |  |  |-- good-1-lzma2-5.xz
+|  |  |  |  |  |  |  |-- good-1-sparc-lzma2.xz
+|  |  |  |  |  |  |  |-- good-1-x86-lzma2.xz
+|  |  |  |  |  |  |  |-- good-2-lzma2.xz
+|  |  |  |  |  |  |  |-- unsupported-block_header.xz
+|  |  |  |  |  |  |  |-- unsupported-check.xz
+|  |  |  |  |  |  |  |-- unsupported-filter_flags-1.xz
+|  |  |  |  |  |  |  |-- unsupported-filter_flags-2.xz
+|  |  |  |  |  |  |  |-- unsupported-filter_flags-3.xz
+|  |  |  |  |  |  |-- test_bcj_exact_size.c
+|  |  |  |  |  |  |-- test_block_header.c
+|  |  |  |  |  |  |-- test_check.c
+|  |  |  |  |  |  |-- test_compress.sh
+|  |  |  |  |  |  |-- test_files.sh
+|  |  |  |  |  |  |-- test_filter_flags.c
+|  |  |  |  |  |  |-- test_index.c
+|  |  |  |  |  |  |-- test_scripts.sh
+|  |  |  |  |  |  |-- test_stream_flags.c
+|  |  |  |  |  |  |-- tests.h
+|  |  |  |  |  |  |-- xzgrep_expected_output
+|  |  |  |  |  |-- windows
+|  |  |  |  |  |  |-- .vs
+|  |  |  |  |  |  |  |-- xz_win
+|  |  |  |  |  |  |  |  |-- v14
+|  |  |  |  |  |  |  |  |  |-- .suo
+|  |  |  |  |  |  |-- INSTALL-MSVC.txt
+|  |  |  |  |  |  |-- INSTALL-MinGW.txt
+|  |  |  |  |  |  |-- README-Windows.txt
+|  |  |  |  |  |  |-- build.bash
+|  |  |  |  |  |  |-- config.h
+|  |  |  |  |  |  |-- liblzma.vcxproj
+|  |  |  |  |  |  |-- liblzma_dll.vcxproj
+|  |  |  |  |  |  |-- xz_win.VC.db
+|  |  |  |  |  |  |-- xz_win.sln
+|  |  |  |-- src
+|  |  |  |  |-- bufread.rs
+|  |  |  |  |-- lib.rs
+|  |  |  |  |-- read.rs
+|  |  |  |  |-- stream.rs
+|  |  |  |  |-- write.rs
+|  |  |  |-- systest
+|  |  |  |  |-- Cargo.toml
+|  |  |  |  |-- build.rs
+|  |  |  |  |-- src
+|  |  |  |  |  |-- main.rs
+|  |  |-- zstd-rs
+|  |  |  |-- .travis.yml
+|  |  |  |-- Cargo.toml
+|  |  |  |-- LICENSE
+|  |  |  |-- Readme.md
+|  |  |  |-- assets
+|  |  |  |  |-- example.txt
+|  |  |  |  |-- example.txt.v5.zst
+|  |  |  |  |-- example.txt.v6.zst
+|  |  |  |  |-- example.txt.v7.zst
+|  |  |  |  |-- example.txt.v8.zst
+|  |  |  |-- examples
+|  |  |  |  |-- stream.rs
+|  |  |  |  |-- train.rs
+|  |  |  |  |-- zstd.rs
+|  |  |  |  |-- zstdcat.rs
+|  |  |  |-- rustfmt.toml
+|  |  |  |-- src
+|  |  |  |  |-- block
+|  |  |  |  |  |-- compressor.rs
+|  |  |  |  |  |-- decompressor.rs
+|  |  |  |  |  |-- mod.rs
+|  |  |  |  |-- build.rs
+|  |  |  |  |-- dict.rs
+|  |  |  |  |-- lib.rs
+|  |  |  |  |-- ll.rs
+|  |  |  |  |-- stream
+|  |  |  |  |  |-- decoder.rs
+|  |  |  |  |  |-- encoder.rs
+|  |  |  |  |  |-- mod.rs
+|  |  |  |-- update_doc.sh
+|  |  |  |-- zstd
+|  |  |  |  |-- .buckconfig
+|  |  |  |  |-- .buckversion
+|  |  |  |  |-- .travis.yml
+|  |  |  |  |-- CONTRIBUTING.md
+|  |  |  |  |-- LICENSE
+|  |  |  |  |-- LICENSE-examples
+|  |  |  |  |-- Makefile
+|  |  |  |  |-- NEWS
+|  |  |  |  |-- PATENTS
+|  |  |  |  |-- README.md
+|  |  |  |  |-- appveyor.yml
+|  |  |  |  |-- build
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- VS2005
+|  |  |  |  |  |  |-- fullbench
+|  |  |  |  |  |  |  |-- fullbench.vcproj
+|  |  |  |  |  |  |-- fuzzer
+|  |  |  |  |  |  |  |-- fuzzer.vcproj
+|  |  |  |  |  |  |-- zstd.sln
+|  |  |  |  |  |  |-- zstd
+|  |  |  |  |  |  |  |-- zstd.vcproj
+|  |  |  |  |  |  |-- zstdlib
+|  |  |  |  |  |  |  |-- zstdlib.vcproj
+|  |  |  |  |  |-- VS2008
+|  |  |  |  |  |  |-- fullbench
+|  |  |  |  |  |  |  |-- fullbench.vcproj
+|  |  |  |  |  |  |-- fuzzer
+|  |  |  |  |  |  |  |-- fuzzer.vcproj
+|  |  |  |  |  |  |-- zstd.sln
+|  |  |  |  |  |  |-- zstd
+|  |  |  |  |  |  |  |-- zstd.vcproj
+|  |  |  |  |  |  |-- zstdlib
+|  |  |  |  |  |  |  |-- zstdlib.vcproj
+|  |  |  |  |  |-- VS2010
+|  |  |  |  |  |  |-- CompileAsCpp.props
+|  |  |  |  |  |  |-- datagen
+|  |  |  |  |  |  |  |-- datagen.vcxproj
+|  |  |  |  |  |  |-- fullbench-dll
+|  |  |  |  |  |  |  |-- fullbench-dll.vcxproj
+|  |  |  |  |  |  |-- fullbench
+|  |  |  |  |  |  |  |-- fullbench.vcxproj
+|  |  |  |  |  |  |-- fuzzer
+|  |  |  |  |  |  |  |-- fuzzer.vcxproj
+|  |  |  |  |  |  |-- libzstd-dll
+|  |  |  |  |  |  |  |-- libzstd-dll.rc
+|  |  |  |  |  |  |  |-- libzstd-dll.vcxproj
+|  |  |  |  |  |  |-- libzstd
+|  |  |  |  |  |  |  |-- libzstd.vcxproj
+|  |  |  |  |  |  |-- zstd.sln
+|  |  |  |  |  |  |-- zstd
+|  |  |  |  |  |  |  |-- zstd.rc
+|  |  |  |  |  |  |  |-- zstd.vcxproj
+|  |  |  |  |  |-- VS_scripts
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- build.VS2010.cmd
+|  |  |  |  |  |  |-- build.VS2012.cmd
+|  |  |  |  |  |  |-- build.VS2013.cmd
+|  |  |  |  |  |  |-- build.VS2015.cmd
+|  |  |  |  |  |  |-- build.generic.cmd
+|  |  |  |  |  |-- cmake
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- CMakeModules
+|  |  |  |  |  |  |  |-- AddExtraCompilationFlags.cmake
+|  |  |  |  |  |  |-- cmake_uninstall.cmake.in
+|  |  |  |  |  |  |-- lib
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- programs
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- tests
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- contrib
+|  |  |  |  |  |-- gen_html
+|  |  |  |  |  |  |-- Makefile
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- gen-zstd-manual.sh
+|  |  |  |  |  |  |-- gen_html.cpp
+|  |  |  |  |  |-- pzstd
+|  |  |  |  |  |  |-- BUCK
+|  |  |  |  |  |  |-- ErrorHolder.h
+|  |  |  |  |  |  |-- Logging.h
+|  |  |  |  |  |  |-- Makefile
+|  |  |  |  |  |  |-- Options.cpp
+|  |  |  |  |  |  |-- Options.h
+|  |  |  |  |  |  |-- Pzstd.cpp
+|  |  |  |  |  |  |-- Pzstd.h
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- SkippableFrame.cpp
+|  |  |  |  |  |  |-- SkippableFrame.h
+|  |  |  |  |  |  |-- images
+|  |  |  |  |  |  |  |-- Cspeed.png
+|  |  |  |  |  |  |  |-- Dspeed.png
+|  |  |  |  |  |  |-- main.cpp
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUCK
+|  |  |  |  |  |  |  |-- OptionsTest.cpp
+|  |  |  |  |  |  |  |-- PzstdTest.cpp
+|  |  |  |  |  |  |  |-- RoundTrip.h
+|  |  |  |  |  |  |  |-- RoundTripTest.cpp
+|  |  |  |  |  |  |-- utils
+|  |  |  |  |  |  |  |-- BUCK
+|  |  |  |  |  |  |  |-- Buffer.h
+|  |  |  |  |  |  |  |-- FileSystem.h
+|  |  |  |  |  |  |  |-- Likely.h
+|  |  |  |  |  |  |  |-- Range.h
+|  |  |  |  |  |  |  |-- ResourcePool.h
+|  |  |  |  |  |  |  |-- ScopeGuard.h
+|  |  |  |  |  |  |  |-- ThreadPool.h
+|  |  |  |  |  |  |  |-- WorkQueue.h
+|  |  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |  |-- BUCK
+|  |  |  |  |  |  |  |  |-- BufferTest.cpp
+|  |  |  |  |  |  |  |  |-- RangeTest.cpp
+|  |  |  |  |  |  |  |  |-- ResourcePoolTest.cpp
+|  |  |  |  |  |  |  |  |-- ScopeGuardTest.cpp
+|  |  |  |  |  |  |  |  |-- ThreadPoolTest.cpp
+|  |  |  |  |  |  |  |  |-- WorkQueueTest.cpp
+|  |  |  |  |-- doc
+|  |  |  |  |  |-- images
+|  |  |  |  |  |  |-- Cspeed4.png
+|  |  |  |  |  |  |-- DCspeed5.png
+|  |  |  |  |  |  |-- Dspeed4.png
+|  |  |  |  |  |  |-- dict-cr.png
+|  |  |  |  |  |  |-- dict-cs.png
+|  |  |  |  |  |  |-- dict-ds.png
+|  |  |  |  |  |-- zstd_compression_format.md
+|  |  |  |  |  |-- zstd_manual.html
+|  |  |  |  |-- examples
+|  |  |  |  |  |-- Makefile
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- dictionary_compression.c
+|  |  |  |  |  |-- dictionary_decompression.c
+|  |  |  |  |  |-- multiple_streaming_compression.c
+|  |  |  |  |  |-- simple_compression.c
+|  |  |  |  |  |-- simple_decompression.c
+|  |  |  |  |  |-- streaming_compression.c
+|  |  |  |  |  |-- streaming_decompression.c
+|  |  |  |  |-- lib
+|  |  |  |  |  |-- BUCK
+|  |  |  |  |  |-- Makefile
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- common
+|  |  |  |  |  |  |-- bitstream.h
+|  |  |  |  |  |  |-- entropy_common.c
+|  |  |  |  |  |  |-- error_private.c
+|  |  |  |  |  |  |-- error_private.h
+|  |  |  |  |  |  |-- fse.h
+|  |  |  |  |  |  |-- fse_decompress.c
+|  |  |  |  |  |  |-- huf.h
+|  |  |  |  |  |  |-- mem.h
+|  |  |  |  |  |  |-- pool.c
+|  |  |  |  |  |  |-- pool.h
+|  |  |  |  |  |  |-- threading.c
+|  |  |  |  |  |  |-- threading.h
+|  |  |  |  |  |  |-- xxhash.c
+|  |  |  |  |  |  |-- xxhash.h
+|  |  |  |  |  |  |-- zstd_common.c
+|  |  |  |  |  |  |-- zstd_errors.h
+|  |  |  |  |  |  |-- zstd_internal.h
+|  |  |  |  |  |-- compress
+|  |  |  |  |  |  |-- fse_compress.c
+|  |  |  |  |  |  |-- huf_compress.c
+|  |  |  |  |  |  |-- zstd_compress.c
+|  |  |  |  |  |  |-- zstd_opt.h
+|  |  |  |  |  |  |-- zstdmt_compress.c
+|  |  |  |  |  |  |-- zstdmt_compress.h
+|  |  |  |  |  |-- decompress
+|  |  |  |  |  |  |-- huf_decompress.c
+|  |  |  |  |  |  |-- zstd_decompress.c
+|  |  |  |  |  |-- deprecated
+|  |  |  |  |  |  |-- zbuff.h
+|  |  |  |  |  |  |-- zbuff_common.c
+|  |  |  |  |  |  |-- zbuff_compress.c
+|  |  |  |  |  |  |-- zbuff_decompress.c
+|  |  |  |  |  |-- dictBuilder
+|  |  |  |  |  |  |-- cover.c
+|  |  |  |  |  |  |-- divsufsort.c
+|  |  |  |  |  |  |-- divsufsort.h
+|  |  |  |  |  |  |-- zdict.c
+|  |  |  |  |  |  |-- zdict.h
+|  |  |  |  |  |-- dll
+|  |  |  |  |  |  |-- example
+|  |  |  |  |  |  |  |-- Makefile
+|  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |-- build_package.bat
+|  |  |  |  |  |  |  |-- fullbench-dll.sln
+|  |  |  |  |  |  |  |-- fullbench-dll.vcxproj
+|  |  |  |  |  |  |-- libzstd.def
+|  |  |  |  |  |-- legacy
+|  |  |  |  |  |  |-- zstd_legacy.h
+|  |  |  |  |  |  |-- zstd_v01.c
+|  |  |  |  |  |  |-- zstd_v01.h
+|  |  |  |  |  |  |-- zstd_v02.c
+|  |  |  |  |  |  |-- zstd_v02.h
+|  |  |  |  |  |  |-- zstd_v03.c
+|  |  |  |  |  |  |-- zstd_v03.h
+|  |  |  |  |  |  |-- zstd_v04.c
+|  |  |  |  |  |  |-- zstd_v04.h
+|  |  |  |  |  |  |-- zstd_v05.c
+|  |  |  |  |  |  |-- zstd_v05.h
+|  |  |  |  |  |  |-- zstd_v06.c
+|  |  |  |  |  |  |-- zstd_v06.h
+|  |  |  |  |  |  |-- zstd_v07.c
+|  |  |  |  |  |  |-- zstd_v07.h
+|  |  |  |  |  |-- libzstd.pc.in
+|  |  |  |  |  |-- zstd.h
+|  |  |  |  |-- programs
+|  |  |  |  |  |-- BUCK
+|  |  |  |  |  |-- Makefile
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- bench.c
+|  |  |  |  |  |-- bench.h
+|  |  |  |  |  |-- datagen.c
+|  |  |  |  |  |-- datagen.h
+|  |  |  |  |  |-- dibio.c
+|  |  |  |  |  |-- dibio.h
+|  |  |  |  |  |-- fileio.c
+|  |  |  |  |  |-- fileio.h
+|  |  |  |  |  |-- platform.h
+|  |  |  |  |  |-- util.h
+|  |  |  |  |  |-- windres
+|  |  |  |  |  |  |-- generate_res.bat
+|  |  |  |  |  |  |-- verrsrc.h
+|  |  |  |  |  |  |-- zstd.rc
+|  |  |  |  |  |  |-- zstd32.res
+|  |  |  |  |  |  |-- zstd64.res
+|  |  |  |  |  |-- zstd.1
+|  |  |  |  |  |-- zstdcli.c
+|  |  |  |  |  |-- zstdgrep
+|  |  |  |  |  |-- zstdless
+|  |  |  |  |-- tests
+|  |  |  |  |  |-- Makefile
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- datagencli.c
+|  |  |  |  |  |-- fullbench.c
+|  |  |  |  |  |-- fuzzer.c
+|  |  |  |  |  |-- invalidDictionaries.c
+|  |  |  |  |  |-- longmatch.c
+|  |  |  |  |  |-- namespaceTest.c
+|  |  |  |  |  |-- paramgrill.c
+|  |  |  |  |  |-- playTests.sh
+|  |  |  |  |  |-- pool.c
+|  |  |  |  |  |-- roundTripCrash.c
+|  |  |  |  |  |-- symbols.c
+|  |  |  |  |  |-- test-zstd-speed.py
+|  |  |  |  |  |-- test-zstd-versions.py
+|  |  |  |  |  |-- zbufftest.c
+|  |  |  |  |  |-- zstreamtest.c
+|  |  |  |  |-- zlibWrapper
+|  |  |  |  |  |-- BUCK
+|  |  |  |  |  |-- Makefile
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- examples
+|  |  |  |  |  |  |-- example.c
+|  |  |  |  |  |  |-- example_original.c
+|  |  |  |  |  |  |-- fitblk.c
+|  |  |  |  |  |  |-- fitblk_original.c
+|  |  |  |  |  |  |-- minigzip.c
+|  |  |  |  |  |  |-- zwrapbench.c
+|  |  |  |  |  |-- gzclose.c
+|  |  |  |  |  |-- gzcompatibility.h
+|  |  |  |  |  |-- gzguts.h
+|  |  |  |  |  |-- gzlib.c
+|  |  |  |  |  |-- gzread.c
+|  |  |  |  |  |-- gzwrite.c
+|  |  |  |  |  |-- zstd_zlibwrapper.c
+|  |  |  |  |  |-- zstd_zlibwrapper.h
+|  |-- src
+|  |  |-- comp.rs
+|  |  |-- header.rs
+|  |  |-- lib.rs
+|-- src
+|  |-- main.rs

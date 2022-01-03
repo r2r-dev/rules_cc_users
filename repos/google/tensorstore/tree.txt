@@ -1,0 +1,1375 @@
+|-- .bazelrc
+|-- .bazelversion
+|-- .clang-format
+|-- .github
+|  |-- workflows
+|  |  |-- build.yml
+|  |  |-- docs.yml
+|-- .gitignore
+|-- .style.yapf
+|-- AUTHORS
+|-- BUILD.bazel
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- bazelisk.py
+|-- docs
+|  |-- BUILD
+|  |-- build_docs.py
+|  |-- chunk_layout_schema.yml
+|  |-- codec_schema.yml
+|  |-- conf.py
+|  |-- conftest.py
+|  |-- context.rst
+|  |-- context_schema.yml
+|  |-- doctest.bzl
+|  |-- doctest_test.py
+|  |-- docutils.conf
+|  |-- environment.rst
+|  |-- generate_logo.py
+|  |-- index.rst
+|  |-- index_domain_schema.yml
+|  |-- index_space.rst
+|  |-- index_transform_schema.yml
+|  |-- installation.rst
+|  |-- intersphinx_inv
+|  |  |-- dask.inv
+|  |  |-- numpy.inv
+|  |  |-- python3.inv
+|  |  |-- zarr.inv
+|  |-- python
+|  |  |-- api
+|  |  |  |-- index.rst
+|  |  |-- indexing.rst
+|  |  |-- tutorial.rst
+|  |-- schema.rst
+|  |-- schema_schema.yml
+|  |-- spec.rst
+|  |-- tensorstore_schema.yml
+|  |-- tensorstore_sphinx_ext
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- autodoc.py
+|  |  |-- autosummary.py
+|  |  |-- doctest.py
+|  |  |-- json_pprint.py
+|  |  |-- jsonschema_sphinx.py
+|  |  |-- mathjax.py
+|  |  |-- sphinx_utils.py
+|  |-- tensorstore_sphinx_material
+|  |  |-- .style.yapf
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- MKDOCS_MATERIAL_MERGE_BASE
+|  |  |-- README.md
+|  |  |-- build_css.js
+|  |  |-- build_js.js
+|  |  |-- icons.bzl
+|  |  |-- merge_from_mkdocs_material.py
+|  |  |-- minify_html.js
+|  |  |-- nodejs_rules.bzl
+|  |  |-- package-lock.json
+|  |  |-- package.json
+|  |  |-- sphinx_material
+|  |  |  |-- __init__.py
+|  |  |  |-- _version.py
+|  |  |  |-- apidoc_formatting.py
+|  |  |  |-- autodoc_property_type.py
+|  |  |  |-- inlinesyntaxhighlight.py
+|  |  |  |-- nav_adapt.py
+|  |  |  |-- object_toc.py
+|  |  |  |-- postprocess_html.py
+|  |  |  |-- search_adapt.py
+|  |  |  |-- theme.conf
+|  |  |-- src
+|  |  |  |-- assets
+|  |  |  |  |-- javascripts
+|  |  |  |  |  |-- _
+|  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |-- actions
+|  |  |  |  |  |  |-- _
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- anchor
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- dialog
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- header
+|  |  |  |  |  |  |  |-- _
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- title
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- search
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- query
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- result
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- sidebar
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- source
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- tabs
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- top
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |-- browser
+|  |  |  |  |  |  |-- document
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- element
+|  |  |  |  |  |  |  |-- _
+|  |  |  |  |  |  |  |  |-- .eslintrc
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- focus
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- offset
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- selection
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- size
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- keyboard
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- location
+|  |  |  |  |  |  |  |-- _
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- hash
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- media
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- request
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- toggle
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- viewport
+|  |  |  |  |  |  |  |-- _
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- offset
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- size
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |-- bundle.ts
+|  |  |  |  |  |-- components
+|  |  |  |  |  |  |-- _
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- content
+|  |  |  |  |  |  |  |-- _
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- code
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- details
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- table
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- dialog
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- header
+|  |  |  |  |  |  |  |-- _
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- title
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- main
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- palette
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- search
+|  |  |  |  |  |  |  |-- _
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- query
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- result
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- sidebar
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- source
+|  |  |  |  |  |  |  |-- _
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- facts
+|  |  |  |  |  |  |  |  |-- _
+|  |  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |  |-- github
+|  |  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |  |-- gitlab
+|  |  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- tabs
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- toc
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- top
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |-- integrations
+|  |  |  |  |  |  |-- clipboard
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- instant
+|  |  |  |  |  |  |  |-- .eslintrc
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- search
+|  |  |  |  |  |  |  |-- _
+|  |  |  |  |  |  |  |  |-- .eslintrc
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- document
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- highlighter
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |-- query
+|  |  |  |  |  |  |  |  |-- _
+|  |  |  |  |  |  |  |  |  |-- .eslintrc
+|  |  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |  |  |-- transform
+|  |  |  |  |  |  |  |  |  |-- .eslintrc
+|  |  |  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- version
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |-- patches
+|  |  |  |  |  |  |-- indeterminate
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- scrollfix
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- scrolllock
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |-- sphinx_search.ts
+|  |  |  |  |  |-- templates
+|  |  |  |  |  |  |-- clipboard
+|  |  |  |  |  |  |  |-- index.tsx
+|  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- search
+|  |  |  |  |  |  |  |-- index.tsx
+|  |  |  |  |  |  |-- source
+|  |  |  |  |  |  |  |-- index.tsx
+|  |  |  |  |  |  |-- table
+|  |  |  |  |  |  |  |-- index.tsx
+|  |  |  |  |  |  |-- version
+|  |  |  |  |  |  |  |-- index.tsx
+|  |  |  |  |  |-- utilities
+|  |  |  |  |  |  |-- h
+|  |  |  |  |  |  |  |-- .eslintrc
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |  |-- string
+|  |  |  |  |  |  |  |-- index.ts
+|  |  |  |  |  |-- workers
+|  |  |  |  |  |  |-- search.ts
+|  |  |  |  |-- stylesheets
+|  |  |  |  |  |-- _config.scss
+|  |  |  |  |  |-- main.scss
+|  |  |  |  |  |-- main
+|  |  |  |  |  |  |-- _api.scss
+|  |  |  |  |  |  |-- _colors.scss
+|  |  |  |  |  |  |-- _icons.scss
+|  |  |  |  |  |  |-- _modifiers.scss
+|  |  |  |  |  |  |-- _reset.scss
+|  |  |  |  |  |  |-- _shame.scss
+|  |  |  |  |  |  |-- _sphinx.scss
+|  |  |  |  |  |  |-- _typeset.scss
+|  |  |  |  |  |  |-- extensions
+|  |  |  |  |  |  |  |-- markdown
+|  |  |  |  |  |  |  |  |-- _admonition.scss
+|  |  |  |  |  |  |  |  |-- _footnotes.scss
+|  |  |  |  |  |  |  |  |-- _toc.scss
+|  |  |  |  |  |  |  |-- pymdownx
+|  |  |  |  |  |  |  |  |-- _arithmatex.scss
+|  |  |  |  |  |  |  |  |-- _critic.scss
+|  |  |  |  |  |  |  |  |-- _details.scss
+|  |  |  |  |  |  |  |  |-- _emoji.scss
+|  |  |  |  |  |  |  |  |-- _highlight.scss
+|  |  |  |  |  |  |  |  |-- _keys.scss
+|  |  |  |  |  |  |  |  |-- _tabbed.scss
+|  |  |  |  |  |  |  |  |-- _tasklist.scss
+|  |  |  |  |  |  |-- layout
+|  |  |  |  |  |  |  |-- _announce.scss
+|  |  |  |  |  |  |  |-- _base.scss
+|  |  |  |  |  |  |  |-- _clipboard.scss
+|  |  |  |  |  |  |  |-- _content.scss
+|  |  |  |  |  |  |  |-- _dialog.scss
+|  |  |  |  |  |  |  |-- _footer.scss
+|  |  |  |  |  |  |  |-- _form.scss
+|  |  |  |  |  |  |  |-- _header.scss
+|  |  |  |  |  |  |  |-- _hero.scss
+|  |  |  |  |  |  |  |-- _nav.scss
+|  |  |  |  |  |  |  |-- _search.scss
+|  |  |  |  |  |  |  |-- _select.scss
+|  |  |  |  |  |  |  |-- _sidebar.scss
+|  |  |  |  |  |  |  |-- _source.scss
+|  |  |  |  |  |  |  |-- _tabs.scss
+|  |  |  |  |  |  |  |-- _top.scss
+|  |  |  |  |  |  |  |-- _version.scss
+|  |  |  |  |  |-- palette.scss
+|  |  |  |  |  |-- palette
+|  |  |  |  |  |  |-- _accent.scss
+|  |  |  |  |  |  |-- _primary.scss
+|  |  |  |  |  |  |-- _scheme.scss
+|  |  |  |  |  |-- utilities
+|  |  |  |  |  |  |-- _break.scss
+|  |  |  |  |  |  |-- _convert.scss
+|  |  |  |-- base.html
+|  |  |  |-- layout.html
+|  |  |  |-- main.html
+|  |  |  |-- partials
+|  |  |  |  |-- footer.html
+|  |  |  |  |-- header.html
+|  |  |  |  |-- hero.html
+|  |  |  |  |-- integrations
+|  |  |  |  |  |-- analytics.html
+|  |  |  |  |  |-- analytics
+|  |  |  |  |  |  |-- google.html
+|  |  |  |  |  |-- disqus.html
+|  |  |  |  |-- javascripts
+|  |  |  |  |  |-- base.html
+|  |  |  |  |  |-- palette.html
+|  |  |  |  |-- language.html
+|  |  |  |  |-- languages
+|  |  |  |  |  |-- af.html
+|  |  |  |  |  |-- ar.html
+|  |  |  |  |  |-- bg.html
+|  |  |  |  |  |-- bn.html
+|  |  |  |  |  |-- ca.html
+|  |  |  |  |  |-- cs.html
+|  |  |  |  |  |-- da.html
+|  |  |  |  |  |-- de.html
+|  |  |  |  |  |-- en.html
+|  |  |  |  |  |-- eo.html
+|  |  |  |  |  |-- es.html
+|  |  |  |  |  |-- et.html
+|  |  |  |  |  |-- fa.html
+|  |  |  |  |  |-- fi.html
+|  |  |  |  |  |-- fr.html
+|  |  |  |  |  |-- gl.html
+|  |  |  |  |  |-- gr.html
+|  |  |  |  |  |-- he.html
+|  |  |  |  |  |-- hi.html
+|  |  |  |  |  |-- hr.html
+|  |  |  |  |  |-- hu.html
+|  |  |  |  |  |-- id.html
+|  |  |  |  |  |-- is.html
+|  |  |  |  |  |-- it.html
+|  |  |  |  |  |-- ja.html
+|  |  |  |  |  |-- ka.html
+|  |  |  |  |  |-- kr.html
+|  |  |  |  |  |-- mn.html
+|  |  |  |  |  |-- my.html
+|  |  |  |  |  |-- nl.html
+|  |  |  |  |  |-- nn.html
+|  |  |  |  |  |-- no.html
+|  |  |  |  |  |-- pl.html
+|  |  |  |  |  |-- pt.html
+|  |  |  |  |  |-- ro.html
+|  |  |  |  |  |-- ru.html
+|  |  |  |  |  |-- sh.html
+|  |  |  |  |  |-- si.html
+|  |  |  |  |  |-- sk.html
+|  |  |  |  |  |-- sl.html
+|  |  |  |  |  |-- sr.html
+|  |  |  |  |  |-- sv.html
+|  |  |  |  |  |-- th.html
+|  |  |  |  |  |-- tr.html
+|  |  |  |  |  |-- uk.html
+|  |  |  |  |  |-- vi.html
+|  |  |  |  |  |-- zh-Hant.html
+|  |  |  |  |  |-- zh-TW.html
+|  |  |  |  |  |-- zh.html
+|  |  |  |  |-- logo.html
+|  |  |  |  |-- nav-item.html
+|  |  |  |  |-- nav.html
+|  |  |  |  |-- palette.html
+|  |  |  |  |-- search.html
+|  |  |  |  |-- social.html
+|  |  |  |  |-- source-date.html
+|  |  |  |  |-- source-file.html
+|  |  |  |  |-- source.html
+|  |  |  |  |-- tabs-item.html
+|  |  |  |  |-- tabs.html
+|  |  |  |  |-- toc-item.html
+|  |  |  |  |-- toc.html
+|  |  |-- tsconfig.json
+|  |  |-- typings
+|  |  |  |-- _
+|  |  |  |  |-- index.d.ts
+|  |  |  |-- svgo
+|  |  |  |  |-- index.d.ts
+|  |-- update_intersphinx_inventories.py
+|-- external.bzl
+|-- external2.bzl
+|-- pyproject.toml
+|-- python
+|  |-- tensorstore
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- __init__.py
+|  |  |-- array_type_caster.cc
+|  |  |-- array_type_caster.h
+|  |  |-- bazel_pytest_main.py
+|  |  |-- bfloat16.cc
+|  |  |-- bfloat16.h
+|  |  |-- chunk_layout.cc
+|  |  |-- chunk_layout.h
+|  |  |-- chunk_layout_keyword_arguments.h
+|  |  |-- context.cc
+|  |  |-- context.h
+|  |  |-- data_type.cc
+|  |  |-- data_type.h
+|  |  |-- dim_expression.cc
+|  |  |-- dim_expression.h
+|  |  |-- downsample.cc
+|  |  |-- downsample.h
+|  |  |-- future.cc
+|  |  |-- future.h
+|  |  |-- index.cc
+|  |  |-- index.h
+|  |  |-- index_space.cc
+|  |  |-- index_space.h
+|  |  |-- index_test.cc
+|  |  |-- indexing_spec.h
+|  |  |-- intrusive_ptr_holder.h
+|  |  |-- json_type_caster.cc
+|  |  |-- json_type_caster.h
+|  |  |-- keyword_arguments.h
+|  |  |-- keyword_arguments_test.cc
+|  |  |-- numpy.cc
+|  |  |-- numpy.h
+|  |  |-- numpy_indexing_spec.cc
+|  |  |-- numpy_indexing_spec.h
+|  |  |-- pybind11.bzl
+|  |  |-- pytest.bzl
+|  |  |-- pytype.bzl
+|  |  |-- result_type_caster.h
+|  |  |-- shell.py
+|  |  |-- spec.cc
+|  |  |-- spec.h
+|  |  |-- status.cc
+|  |  |-- status.h
+|  |  |-- subscript_method.h
+|  |  |-- tensorstore.cc
+|  |  |-- tensorstore_class.cc
+|  |  |-- tensorstore_class.h
+|  |  |-- tests
+|  |  |  |-- bfloat16_test.py
+|  |  |  |-- chunk_layout_test.py
+|  |  |  |-- context_test.py
+|  |  |  |-- data_type_test.py
+|  |  |  |-- dim_expression_test.py
+|  |  |  |-- dim_test.py
+|  |  |  |-- downsample_test.py
+|  |  |  |-- future_test.py
+|  |  |  |-- index_domain_test.py
+|  |  |  |-- index_transform_test.py
+|  |  |  |-- indexing_test.py
+|  |  |  |-- spec_test.py
+|  |  |  |-- tensorstore_test.py
+|  |  |  |-- transaction_test.py
+|  |  |-- transaction.cc
+|  |  |-- transaction.h
+|  |  |-- write_futures.cc
+|  |  |-- write_futures.h
+|-- setup.py
+|-- tensorstore
+|  |-- BUILD
+|  |-- array.cc
+|  |-- array.h
+|  |-- array_nc_test.cc
+|  |-- array_test.cc
+|  |-- array_testutil.h
+|  |-- array_testutil_matches_array.inc
+|  |-- array_testutil_test.cc
+|  |-- box.cc
+|  |-- box.h
+|  |-- box_test.cc
+|  |-- cast.h
+|  |-- chunk_layout.cc
+|  |-- chunk_layout.h
+|  |-- chunk_layout_test.cc
+|  |-- codec_spec.cc
+|  |-- codec_spec.h
+|  |-- codec_spec_registry.h
+|  |-- container_kind.h
+|  |-- context.cc
+|  |-- context.h
+|  |-- context_impl.h
+|  |-- context_impl_base.h
+|  |-- context_resource_provider.h
+|  |-- context_test.cc
+|  |-- contiguous_layout.cc
+|  |-- contiguous_layout.h
+|  |-- contiguous_layout_test.cc
+|  |-- data_type.cc
+|  |-- data_type.h
+|  |-- data_type_conversion.h
+|  |-- data_type_conversion_test.cc
+|  |-- data_type_test.cc
+|  |-- downsample.h
+|  |-- downsample_method.cc
+|  |-- downsample_method.h
+|  |-- driver
+|  |  |-- BUILD
+|  |  |-- array
+|  |  |  |-- BUILD
+|  |  |  |-- array.cc
+|  |  |  |-- array.h
+|  |  |  |-- array_test.cc
+|  |  |  |-- index.rst
+|  |  |  |-- schema.yml
+|  |  |-- cast
+|  |  |  |-- BUILD
+|  |  |  |-- cast.cc
+|  |  |  |-- cast.h
+|  |  |  |-- cast_test.cc
+|  |  |  |-- index.rst
+|  |  |  |-- schema.yml
+|  |  |-- chunk.h
+|  |  |-- downsample
+|  |  |  |-- BUILD
+|  |  |  |-- downsample.cc
+|  |  |  |-- downsample.h
+|  |  |  |-- downsample_array.cc
+|  |  |  |-- downsample_array.h
+|  |  |  |-- downsample_array_test.cc
+|  |  |  |-- downsample_benchmark_test.cc
+|  |  |  |-- downsample_method_json_binder.h
+|  |  |  |-- downsample_nditerable.cc
+|  |  |  |-- downsample_nditerable.h
+|  |  |  |-- downsample_test.cc
+|  |  |  |-- downsample_util.cc
+|  |  |  |-- downsample_util.h
+|  |  |  |-- downsample_util_test.cc
+|  |  |  |-- grid_occupancy_map.cc
+|  |  |  |-- grid_occupancy_map.h
+|  |  |  |-- grid_occupancy_map_test.cc
+|  |  |  |-- index.rst
+|  |  |  |-- schema.yml
+|  |  |-- driver.cc
+|  |  |-- driver.h
+|  |  |-- driver_test.cc
+|  |  |-- driver_testutil.cc
+|  |  |-- driver_testutil.h
+|  |  |-- index.rst
+|  |  |-- json
+|  |  |  |-- BUILD
+|  |  |  |-- driver.cc
+|  |  |  |-- driver_test.cc
+|  |  |  |-- index.rst
+|  |  |  |-- json_change_map.cc
+|  |  |  |-- json_change_map.h
+|  |  |  |-- json_change_map_test.cc
+|  |  |  |-- schema.yml
+|  |  |-- kvs_backed_chunk_driver.cc
+|  |  |-- kvs_backed_chunk_driver.h
+|  |  |-- kvs_backed_chunk_driver_impl.h
+|  |  |-- kvs_backed_chunk_driver_schema.yml
+|  |  |-- kvs_backed_chunk_driver_test.cc
+|  |  |-- n5
+|  |  |  |-- BUILD
+|  |  |  |-- blosc_compressor.cc
+|  |  |  |-- blosc_compressor_test.cc
+|  |  |  |-- bzip2_compressor.cc
+|  |  |  |-- bzip2_compressor_test.cc
+|  |  |  |-- compressor.cc
+|  |  |  |-- compressor.h
+|  |  |  |-- compressor_registry.h
+|  |  |  |-- driver.cc
+|  |  |  |-- driver_test.cc
+|  |  |  |-- golden_file_test.cc
+|  |  |  |-- gzip_compressor.cc
+|  |  |  |-- gzip_compressor_test.cc
+|  |  |  |-- index.rst
+|  |  |  |-- metadata.cc
+|  |  |  |-- metadata.h
+|  |  |  |-- metadata_test.cc
+|  |  |  |-- schema.yml
+|  |  |  |-- testdata
+|  |  |  |  |-- blosc
+|  |  |  |  |  |-- 0
+|  |  |  |  |  |  |-- 0
+|  |  |  |  |  |  |-- 1
+|  |  |  |  |  |-- 1
+|  |  |  |  |  |  |-- 0
+|  |  |  |  |  |  |-- 1
+|  |  |  |  |  |-- attributes.json
+|  |  |  |  |-- bzip2
+|  |  |  |  |  |-- 0
+|  |  |  |  |  |  |-- 0
+|  |  |  |  |  |  |-- 1
+|  |  |  |  |  |-- 1
+|  |  |  |  |  |  |-- 0
+|  |  |  |  |  |  |-- 1
+|  |  |  |  |  |-- attributes.json
+|  |  |  |  |-- generate.py
+|  |  |  |  |-- gzip
+|  |  |  |  |  |-- 0
+|  |  |  |  |  |  |-- 0
+|  |  |  |  |  |  |-- 1
+|  |  |  |  |  |-- 1
+|  |  |  |  |  |  |-- 0
+|  |  |  |  |  |  |-- 1
+|  |  |  |  |  |-- attributes.json
+|  |  |  |  |-- raw
+|  |  |  |  |  |-- 0
+|  |  |  |  |  |  |-- 0
+|  |  |  |  |  |  |-- 1
+|  |  |  |  |  |-- 1
+|  |  |  |  |  |  |-- 0
+|  |  |  |  |  |  |-- 1
+|  |  |  |  |  |-- attributes.json
+|  |  |  |  |-- xz
+|  |  |  |  |  |-- 0
+|  |  |  |  |  |  |-- 0
+|  |  |  |  |  |  |-- 1
+|  |  |  |  |  |-- 1
+|  |  |  |  |  |  |-- 0
+|  |  |  |  |  |  |-- 1
+|  |  |  |  |  |-- attributes.json
+|  |  |  |-- xz_compressor.cc
+|  |  |  |-- xz_compressor_test.cc
+|  |  |-- neuroglancer_precomputed
+|  |  |  |-- BUILD
+|  |  |  |-- chunk_encoding.cc
+|  |  |  |-- chunk_encoding.h
+|  |  |  |-- chunk_encoding_test.cc
+|  |  |  |-- driver.cc
+|  |  |  |-- driver_test.cc
+|  |  |  |-- index.rst
+|  |  |  |-- metadata.cc
+|  |  |  |-- metadata.h
+|  |  |  |-- metadata_test.cc
+|  |  |  |-- murmurhash3.cc
+|  |  |  |-- murmurhash3.h
+|  |  |  |-- murmurhash3_test.cc
+|  |  |  |-- schema.yml
+|  |  |  |-- uint64_sharded.cc
+|  |  |  |-- uint64_sharded.h
+|  |  |  |-- uint64_sharded_decoder.cc
+|  |  |  |-- uint64_sharded_decoder.h
+|  |  |  |-- uint64_sharded_decoder_test.cc
+|  |  |  |-- uint64_sharded_encoder.cc
+|  |  |  |-- uint64_sharded_encoder.h
+|  |  |  |-- uint64_sharded_encoder_test.cc
+|  |  |  |-- uint64_sharded_key_value_store.cc
+|  |  |  |-- uint64_sharded_key_value_store.h
+|  |  |  |-- uint64_sharded_key_value_store_test.cc
+|  |  |  |-- uint64_sharded_test.cc
+|  |  |-- registry.h
+|  |  |-- zarr
+|  |  |  |-- BUILD
+|  |  |  |-- blosc_compressor.cc
+|  |  |  |-- blosc_compressor_test.cc
+|  |  |  |-- bzip2_compressor.cc
+|  |  |  |-- bzip2_compressor_test.cc
+|  |  |  |-- compressor.cc
+|  |  |  |-- compressor.h
+|  |  |  |-- compressor_registry.h
+|  |  |  |-- compressor_test.cc
+|  |  |  |-- driver.cc
+|  |  |  |-- driver_impl.h
+|  |  |  |-- driver_impl_test.cc
+|  |  |  |-- driver_test.cc
+|  |  |  |-- dtype.cc
+|  |  |  |-- dtype.h
+|  |  |  |-- dtype_test.cc
+|  |  |  |-- index.rst
+|  |  |  |-- metadata.cc
+|  |  |  |-- metadata.h
+|  |  |  |-- metadata_test.cc
+|  |  |  |-- metadata_testutil.cc
+|  |  |  |-- metadata_testutil.h
+|  |  |  |-- schema.yml
+|  |  |  |-- spec.cc
+|  |  |  |-- spec.h
+|  |  |  |-- spec_test.cc
+|  |  |  |-- zlib_compressor.cc
+|  |  |  |-- zlib_compressor_test.cc
+|  |-- examples
+|  |  |-- BUILD
+|  |  |-- compute_percentiles.cc
+|  |  |-- create_array.cc
+|  |  |-- extract_slice.cc
+|  |  |-- image_convolution.cc
+|  |  |-- map_apply.cc
+|  |  |-- python
+|  |  |  |-- beam
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- compute_dfbyf.py
+|  |  |  |  |-- compute_percentiles.py
+|  |  |  |  |-- example.gin
+|  |  |  |  |-- pipeline_test.py
+|  |  |  |  |-- requirements.txt
+|  |  |  |  |-- reshard_tensor.py
+|  |  |  |  |-- run_pipeline.py
+|  |  |  |  |-- setup.py
+|  |  |-- status_result.cc
+|  |-- generate_interval_slice_overloads.py
+|  |-- generate_make_array_overloads.py
+|  |-- generate_matches_array_overloads.py
+|  |-- index.h
+|  |-- index_interval.cc
+|  |-- index_interval.h
+|  |-- index_interval_test.cc
+|  |-- index_space.h
+|  |-- index_space
+|  |  |-- BUILD
+|  |  |-- add_new_dims_op_test.cc
+|  |  |-- alignment.cc
+|  |  |-- alignment.h
+|  |  |-- alignment_test.cc
+|  |  |-- compose_transforms_test.cc
+|  |  |-- deep_copy_transform_rep_ptr_test.cc
+|  |  |-- diagonal_op_test.cc
+|  |  |-- dim_expression.h
+|  |  |-- dim_expression_nc_test.cc
+|  |  |-- dim_expression_test.cc
+|  |  |-- dimension_identifier.cc
+|  |  |-- dimension_identifier.h
+|  |  |-- dimension_identifier_test.cc
+|  |  |-- dimension_index_buffer.h
+|  |  |-- dimension_selection_test.cc
+|  |  |-- get_output_range_test.cc
+|  |  |-- identity_transform_test.cc
+|  |  |-- index_array_slice_op_test.cc
+|  |  |-- index_domain_builder.h
+|  |  |-- index_transform.cc
+|  |  |-- index_transform.h
+|  |  |-- index_transform_builder.cc
+|  |  |-- index_transform_builder.h
+|  |  |-- index_transform_builder_test.cc
+|  |  |-- index_transform_test.cc
+|  |  |-- index_transform_testutil.cc
+|  |  |-- index_transform_testutil.h
+|  |  |-- index_vector_or_scalar.cc
+|  |  |-- index_vector_or_scalar.h
+|  |  |-- index_vector_or_scalar_test.cc
+|  |  |-- internal
+|  |  |  |-- add_new_dims_op.cc
+|  |  |  |-- add_new_dims_op.h
+|  |  |  |-- compose_transforms.cc
+|  |  |  |-- compose_transforms.h
+|  |  |  |-- deep_copy_transform_rep_ptr.h
+|  |  |  |-- diagonal_op.cc
+|  |  |  |-- diagonal_op.h
+|  |  |  |-- dim_expression_helper.h
+|  |  |  |-- dim_expression_testutil.h
+|  |  |  |-- dimension_selection.cc
+|  |  |  |-- dimension_selection.h
+|  |  |  |-- identity_transform.cc
+|  |  |  |-- identity_transform.h
+|  |  |  |-- index_array_slice_op.cc
+|  |  |  |-- index_array_slice_op.h
+|  |  |  |-- interval_slice_op.cc
+|  |  |  |-- interval_slice_op.h
+|  |  |  |-- inverse_transform.cc
+|  |  |  |-- inverse_transform.h
+|  |  |  |-- iterate.cc
+|  |  |  |-- iterate_impl.h
+|  |  |  |-- label_op.cc
+|  |  |  |-- label_op.h
+|  |  |  |-- mark_explicit_op.cc
+|  |  |  |-- mark_explicit_op.h
+|  |  |  |-- numpy_indexing_spec.cc
+|  |  |  |-- numpy_indexing_spec.h
+|  |  |  |-- propagate_bounds.cc
+|  |  |  |-- propagate_bounds.h
+|  |  |  |-- single_index_slice_op.cc
+|  |  |  |-- single_index_slice_op.h
+|  |  |  |-- transform_array.cc
+|  |  |  |-- transform_array.h
+|  |  |  |-- transform_rep.cc
+|  |  |  |-- transform_rep.h
+|  |  |  |-- transform_rep_impl.h
+|  |  |  |-- transformed_array_impl.h
+|  |  |  |-- translate_op.cc
+|  |  |  |-- translate_op.h
+|  |  |  |-- transpose_op.cc
+|  |  |  |-- transpose_op.h
+|  |  |-- interval_slice_op_test.cc
+|  |  |-- inverse_transform_test.cc
+|  |  |-- iterate_benchmark_test.cc
+|  |  |-- iterate_nc_test.cc
+|  |  |-- iterate_test.cc
+|  |  |-- json.cc
+|  |  |-- json.h
+|  |  |-- json_test.cc
+|  |  |-- label_op_test.cc
+|  |  |-- mark_explicit_op_test.cc
+|  |  |-- move_to_op_test.cc
+|  |  |-- output_index_map.h
+|  |  |-- output_index_map_test.cc
+|  |  |-- output_index_method.cc
+|  |  |-- output_index_method.h
+|  |  |-- propagate_bounds_test.cc
+|  |  |-- propagate_input_domain_resize_to_output_test.cc
+|  |  |-- single_index_slice_op_test.cc
+|  |  |-- slice_by_box_test.cc
+|  |  |-- slice_by_index_domain_test.cc
+|  |  |-- transform_array_constraints.h
+|  |  |-- transform_array_constraints_test.cc
+|  |  |-- transform_array_test.cc
+|  |  |-- transform_broadcastable_array.cc
+|  |  |-- transform_broadcastable_array.h
+|  |  |-- transform_broadcastable_array_test.cc
+|  |  |-- transform_rep_test.cc
+|  |  |-- transformed_array.cc
+|  |  |-- transformed_array.h
+|  |  |-- transformed_array_test.cc
+|  |  |-- translate_op_test.cc
+|  |  |-- transpose_op_test.cc
+|  |  |-- transpose_to_op_test.cc
+|  |-- internal
+|  |  |-- BUILD
+|  |  |-- absl_time_json_binder.h
+|  |  |-- absl_time_json_binder_test.cc
+|  |  |-- arena.h
+|  |  |-- arena_test.cc
+|  |  |-- async_write_array.cc
+|  |  |-- async_write_array.h
+|  |  |-- async_write_array_test.cc
+|  |  |-- attributes.h
+|  |  |-- bit_operations.h
+|  |  |-- bit_operations_test.cc
+|  |  |-- box_difference.cc
+|  |  |-- box_difference.h
+|  |  |-- box_difference_test.cc
+|  |  |-- cache
+|  |  |  |-- BUILD
+|  |  |  |-- aggregate_writeback_cache.h
+|  |  |  |-- async_cache.cc
+|  |  |  |-- async_cache.h
+|  |  |  |-- async_cache_test.cc
+|  |  |  |-- async_initialized_cache_mixin.h
+|  |  |  |-- cache.cc
+|  |  |  |-- cache.h
+|  |  |  |-- cache_impl.h
+|  |  |  |-- cache_key.h
+|  |  |  |-- cache_pool_limits.h
+|  |  |  |-- cache_pool_resource.cc
+|  |  |  |-- cache_pool_resource.h
+|  |  |  |-- cache_pool_resource_test.cc
+|  |  |  |-- cache_test.cc
+|  |  |  |-- chunk_cache.cc
+|  |  |  |-- chunk_cache.h
+|  |  |  |-- chunk_cache_benchmark_test.cc
+|  |  |  |-- chunk_cache_test.cc
+|  |  |  |-- kvs_backed_cache.h
+|  |  |  |-- kvs_backed_cache_test.cc
+|  |  |  |-- kvs_backed_cache_testutil.cc
+|  |  |  |-- kvs_backed_cache_testutil.h
+|  |  |-- compressed_pair.h
+|  |  |-- compressed_pair_test.cc
+|  |  |-- compression
+|  |  |  |-- BUILD
+|  |  |  |-- blosc.cc
+|  |  |  |-- blosc.h
+|  |  |  |-- blosc_compressor.h
+|  |  |  |-- blosc_test.cc
+|  |  |  |-- bzip2.cc
+|  |  |  |-- bzip2.h
+|  |  |  |-- bzip2_compressor.h
+|  |  |  |-- bzip2_test.cc
+|  |  |  |-- cord_stream_manager.h
+|  |  |  |-- jpeg.cc
+|  |  |  |-- jpeg.h
+|  |  |  |-- jpeg_test.cc
+|  |  |  |-- json_specified_compressor.cc
+|  |  |  |-- json_specified_compressor.h
+|  |  |  |-- lzma.cc
+|  |  |  |-- lzma.h
+|  |  |  |-- lzma_test.cc
+|  |  |  |-- neuroglancer_compressed_segmentation.cc
+|  |  |  |-- neuroglancer_compressed_segmentation.h
+|  |  |  |-- neuroglancer_compressed_segmentation_test.cc
+|  |  |  |-- xz_compressor.h
+|  |  |  |-- zlib.cc
+|  |  |  |-- zlib.h
+|  |  |  |-- zlib_compressor.h
+|  |  |  |-- zlib_test.cc
+|  |  |-- concurrency_resource.cc
+|  |  |-- concurrency_resource.h
+|  |  |-- concurrency_resource_provider.h
+|  |  |-- concurrent_testutil.cc
+|  |  |-- concurrent_testutil.h
+|  |  |-- container_to_shared.h
+|  |  |-- container_to_shared_test.cc
+|  |  |-- context_binding.h
+|  |  |-- cord_util.cc
+|  |  |-- cord_util.h
+|  |  |-- data_copy_concurrency_resource.cc
+|  |  |-- data_copy_concurrency_resource.h
+|  |  |-- data_type_endian_conversion.cc
+|  |  |-- data_type_endian_conversion.h
+|  |  |-- data_type_endian_conversion_test.cc
+|  |  |-- data_type_json_binder.cc
+|  |  |-- data_type_json_binder.h
+|  |  |-- data_type_json_binder_test.cc
+|  |  |-- data_type_random_generator.cc
+|  |  |-- data_type_random_generator.h
+|  |  |-- decoded_matches.cc
+|  |  |-- decoded_matches.h
+|  |  |-- decoded_matches_test.cc
+|  |  |-- dimension_indexed_json_binder.h
+|  |  |-- element_copy_function.h
+|  |  |-- elementwise_function.h
+|  |  |-- elementwise_function_test.cc
+|  |  |-- endian_elementwise_conversion.h
+|  |  |-- env.cc
+|  |  |-- env.h
+|  |  |-- env_test.cc
+|  |  |-- estimate_heap_usage.h
+|  |  |-- exception_macros.h
+|  |  |-- file_io_concurrency_resource.cc
+|  |  |-- file_io_concurrency_resource.h
+|  |  |-- flat_cord_builder.h
+|  |  |-- gdb_scripting.h
+|  |  |-- global_initializer.h
+|  |  |-- global_initializer_test.cc
+|  |  |-- grid_partition.cc
+|  |  |-- grid_partition.h
+|  |  |-- grid_partition_impl.cc
+|  |  |-- grid_partition_impl.h
+|  |  |-- grid_partition_impl_test.cc
+|  |  |-- grid_partition_test.cc
+|  |  |-- half_gtest.h
+|  |  |-- http
+|  |  |  |-- BUILD
+|  |  |  |-- curl_handle.cc
+|  |  |  |-- curl_handle.h
+|  |  |  |-- curl_handle_test.cc
+|  |  |  |-- curl_request_initialize.cc
+|  |  |  |-- curl_transport.cc
+|  |  |  |-- curl_transport.h
+|  |  |  |-- curl_transport_test.cc
+|  |  |  |-- http_request.cc
+|  |  |  |-- http_request.h
+|  |  |  |-- http_request_test.cc
+|  |  |  |-- http_response.cc
+|  |  |  |-- http_response.h
+|  |  |  |-- http_response_test.cc
+|  |  |  |-- http_transport.h
+|  |  |-- init_tensorstore.cc
+|  |  |-- init_tensorstore.h
+|  |  |-- integer_overflow.h
+|  |  |-- integer_overflow_test.cc
+|  |  |-- integer_range.h
+|  |  |-- integer_types.h
+|  |  |-- intrusive_linked_list.h
+|  |  |-- intrusive_linked_list_test.cc
+|  |  |-- intrusive_ptr.h
+|  |  |-- intrusive_ptr_test.cc
+|  |  |-- intrusive_red_black_tree.cc
+|  |  |-- intrusive_red_black_tree.h
+|  |  |-- intrusive_red_black_tree_test.cc
+|  |  |-- json.cc
+|  |  |-- json.h
+|  |  |-- json_array.cc
+|  |  |-- json_array.h
+|  |  |-- json_array_test.cc
+|  |  |-- json_bindable.h
+|  |  |-- json_fwd.h
+|  |  |-- json_gtest.cc
+|  |  |-- json_gtest.h
+|  |  |-- json_metadata_matching.cc
+|  |  |-- json_metadata_matching.h
+|  |  |-- json_pointer.cc
+|  |  |-- json_pointer.h
+|  |  |-- json_pointer_test.cc
+|  |  |-- json_pprint_python.cc
+|  |  |-- json_pprint_python.h
+|  |  |-- json_pprint_python_test.cc
+|  |  |-- json_registry.h
+|  |  |-- json_registry_fwd.h
+|  |  |-- json_registry_impl.cc
+|  |  |-- json_registry_impl.h
+|  |  |-- json_registry_test.cc
+|  |  |-- json_same.cc
+|  |  |-- json_same.h
+|  |  |-- json_same_test.cc
+|  |  |-- json_test.cc
+|  |  |-- json_value_as.cc
+|  |  |-- json_value_as.h
+|  |  |-- json_value_as_test.cc
+|  |  |-- lock_collection.cc
+|  |  |-- lock_collection.h
+|  |  |-- lock_collection_test.cc
+|  |  |-- log_message.cc
+|  |  |-- log_message.h
+|  |  |-- logging.h
+|  |  |-- masked_array.cc
+|  |  |-- masked_array.h
+|  |  |-- masked_array_test.cc
+|  |  |-- masked_array_testutil.cc
+|  |  |-- masked_array_testutil.h
+|  |  |-- maybe_hard_constraint.h
+|  |  |-- memory.h
+|  |  |-- meta.h
+|  |  |-- meta_test.cc
+|  |  |-- multi_vector.h
+|  |  |-- multi_vector_impl.h
+|  |  |-- multi_vector_test.cc
+|  |  |-- multi_vector_view.h
+|  |  |-- multi_vector_view_test.cc
+|  |  |-- mutex.h
+|  |  |-- nditerable.cc
+|  |  |-- nditerable.h
+|  |  |-- nditerable_array.cc
+|  |  |-- nditerable_array.h
+|  |  |-- nditerable_array_test.cc
+|  |  |-- nditerable_array_util.h
+|  |  |-- nditerable_buffer_management.h
+|  |  |-- nditerable_copy.cc
+|  |  |-- nditerable_copy.h
+|  |  |-- nditerable_copy_test.cc
+|  |  |-- nditerable_data_type_conversion.cc
+|  |  |-- nditerable_data_type_conversion.h
+|  |  |-- nditerable_data_type_conversion_test.cc
+|  |  |-- nditerable_elementwise_input_transform.cc
+|  |  |-- nditerable_elementwise_input_transform.h
+|  |  |-- nditerable_elementwise_input_transform_test.cc
+|  |  |-- nditerable_elementwise_output_transform.cc
+|  |  |-- nditerable_elementwise_output_transform.h
+|  |  |-- nditerable_elementwise_output_transform_test.cc
+|  |  |-- nditerable_transformed_array.cc
+|  |  |-- nditerable_transformed_array.h
+|  |  |-- nditerable_transformed_array_test.cc
+|  |  |-- nditerable_util.cc
+|  |  |-- nditerable_util.h
+|  |  |-- nditerable_util_test.cc
+|  |  |-- no_destructor.h
+|  |  |-- no_destructor_test.cc
+|  |  |-- non_compile_bypass.h
+|  |  |-- oauth2
+|  |  |  |-- BUILD
+|  |  |  |-- auth_provider.cc
+|  |  |  |-- auth_provider.h
+|  |  |  |-- fake_private_key.cc
+|  |  |  |-- fake_private_key.h
+|  |  |  |-- fixed_token_auth_provider.cc
+|  |  |  |-- fixed_token_auth_provider.h
+|  |  |  |-- fixed_token_auth_provider_test.cc
+|  |  |  |-- gce_auth_provider.cc
+|  |  |  |-- gce_auth_provider.h
+|  |  |  |-- gce_auth_provider_test.cc
+|  |  |  |-- google_auth_provider.cc
+|  |  |  |-- google_auth_provider.h
+|  |  |  |-- google_auth_provider_test.cc
+|  |  |  |-- google_service_account_auth_provider.cc
+|  |  |  |-- google_service_account_auth_provider.h
+|  |  |  |-- google_service_account_auth_provider_test.cc
+|  |  |  |-- oauth2_auth_provider.cc
+|  |  |  |-- oauth2_auth_provider.h
+|  |  |  |-- oauth2_auth_provider_test.cc
+|  |  |  |-- oauth_utils.cc
+|  |  |  |-- oauth_utils.h
+|  |  |  |-- oauth_utils_test.cc
+|  |  |-- open_mode_spec.cc
+|  |  |-- open_mode_spec.h
+|  |  |-- os_error_code.cc
+|  |  |-- os_error_code.h
+|  |  |-- parse_json_matches.cc
+|  |  |-- parse_json_matches.h
+|  |  |-- parse_json_matches_test.cc
+|  |  |-- path.cc
+|  |  |-- path.h
+|  |  |-- path_test.cc
+|  |  |-- poly.cc
+|  |  |-- poly.h
+|  |  |-- poly_impl.h
+|  |  |-- poly_test.cc
+|  |  |-- preprocessor.h
+|  |  |-- queue_testutil.h
+|  |  |-- retry.cc
+|  |  |-- retry.h
+|  |  |-- retry_test.cc
+|  |  |-- source_location.h
+|  |  |-- staleness_bound_json_binder.cc
+|  |  |-- staleness_bound_json_binder.h
+|  |  |-- staleness_bound_json_binder_test.cc
+|  |  |-- string_like.h
+|  |  |-- string_like_test.cc
+|  |  |-- tagged_ptr.h
+|  |  |-- tagged_ptr_test.cc
+|  |  |-- test_util.cc
+|  |  |-- test_util.h
+|  |  |-- thread_pool.cc
+|  |  |-- thread_pool.h
+|  |  |-- thread_pool_test.cc
+|  |  |-- type_traits.h
+|  |  |-- type_traits_test.cc
+|  |  |-- unique_with_intrusive_allocator.h
+|  |  |-- unique_with_intrusive_allocator_test.cc
+|  |  |-- unowned_to_shared.h
+|  |  |-- utf8.cc
+|  |  |-- utf8.h
+|  |  |-- utf8_test.cc
+|  |  |-- void_wrapper.h
+|  |  |-- void_wrapper_test.cc
+|  |-- json_serialization_options.h
+|  |-- json_serialization_options_base.h
+|  |-- kvstore
+|  |  |-- BUILD
+|  |  |-- byte_range.cc
+|  |  |-- byte_range.h
+|  |  |-- byte_range_test.cc
+|  |  |-- file
+|  |  |  |-- BUILD
+|  |  |  |-- file_key_value_store.cc
+|  |  |  |-- file_key_value_store_test.cc
+|  |  |  |-- index.rst
+|  |  |  |-- posix_file_util.cc
+|  |  |  |-- posix_file_util.h
+|  |  |  |-- schema.yml
+|  |  |  |-- unique_handle.h
+|  |  |  |-- util.cc
+|  |  |  |-- util.h
+|  |  |  |-- util_test.cc
+|  |  |  |-- windows_file_util.cc
+|  |  |  |-- windows_file_util.h
+|  |  |-- gcs
+|  |  |  |-- BUILD
+|  |  |  |-- gcs_key_value_store.cc
+|  |  |  |-- gcs_key_value_store_test.cc
+|  |  |  |-- gcs_mock.cc
+|  |  |  |-- gcs_mock.h
+|  |  |  |-- index.rst
+|  |  |  |-- object_metadata.cc
+|  |  |  |-- object_metadata.h
+|  |  |  |-- object_metadata_test.cc
+|  |  |  |-- schema.yml
+|  |  |-- generation.cc
+|  |  |-- generation.h
+|  |  |-- generation_test.cc
+|  |  |-- generation_testutil.h
+|  |  |-- index.rst
+|  |  |-- key_range.cc
+|  |  |-- key_range.h
+|  |  |-- key_range_test.cc
+|  |  |-- key_value_store.cc
+|  |  |-- key_value_store.h
+|  |  |-- key_value_store_test.cc
+|  |  |-- key_value_store_testutil.cc
+|  |  |-- key_value_store_testutil.h
+|  |  |-- memory
+|  |  |  |-- BUILD
+|  |  |  |-- index.rst
+|  |  |  |-- memory_key_value_store.cc
+|  |  |  |-- memory_key_value_store.h
+|  |  |  |-- memory_key_value_store_test.cc
+|  |  |  |-- schema.yml
+|  |  |-- registry.h
+|  |  |-- schema.yml
+|  |  |-- transaction.cc
+|  |  |-- transaction.h
+|  |-- make_array.inc
+|  |-- non_compile.bzl
+|  |-- open.cc
+|  |-- open.h
+|  |-- open_mode.cc
+|  |-- open_mode.h
+|  |-- open_mode_test.cc
+|  |-- progress.cc
+|  |-- progress.h
+|  |-- progress_test.cc
+|  |-- rank.cc
+|  |-- rank.h
+|  |-- rank_test.cc
+|  |-- read_write_options.h
+|  |-- resize_options.cc
+|  |-- resize_options.h
+|  |-- resize_options_test.cc
+|  |-- schema.cc
+|  |-- schema.h
+|  |-- schema_test.cc
+|  |-- spec.cc
+|  |-- spec.h
+|  |-- spec_impl.h
+|  |-- spec_test.cc
+|  |-- staleness_bound.h
+|  |-- static_cast.cc
+|  |-- static_cast.h
+|  |-- static_cast_test.cc
+|  |-- strided_layout.cc
+|  |-- strided_layout.h
+|  |-- strided_layout_test.cc
+|  |-- tensorstore.bzl
+|  |-- tensorstore.cc
+|  |-- tensorstore.h
+|  |-- tensorstore_impl.h
+|  |-- transaction.cc
+|  |-- transaction.h
+|  |-- transaction_impl.h
+|  |-- transaction_test.cc
+|  |-- update_generated_source_code.py
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- assert_macros.h
+|  |  |-- assert_macros_test.cc
+|  |  |-- bfloat16.h
+|  |  |-- bfloat16_test.cc
+|  |  |-- bit_span.h
+|  |  |-- bit_span_test.cc
+|  |  |-- bit_vec.h
+|  |  |-- bit_vec_impl.cc
+|  |  |-- bit_vec_impl.h
+|  |  |-- bit_vec_test.cc
+|  |  |-- byte_strided_pointer.h
+|  |  |-- byte_strided_pointer_test.cc
+|  |  |-- collecting_sender.h
+|  |  |-- collecting_sender_test.cc
+|  |  |-- constant_bit_vector.h
+|  |  |-- constant_bit_vector_test.cc
+|  |  |-- constant_vector.cc
+|  |  |-- constant_vector.h
+|  |  |-- constant_vector_test.cc
+|  |  |-- default_iteration_result.h
+|  |  |-- default_iteration_result_test.cc
+|  |  |-- dimension_set.h
+|  |  |-- division.h
+|  |  |-- division_test.cc
+|  |  |-- element_pointer.cc
+|  |  |-- element_pointer.h
+|  |  |-- element_pointer_test.cc
+|  |  |-- element_traits.h
+|  |  |-- element_traits_test.cc
+|  |  |-- endian.h
+|  |  |-- execution.h
+|  |  |-- executor.h
+|  |  |-- executor_test.cc
+|  |  |-- extents.h
+|  |  |-- extents_test.cc
+|  |  |-- future.cc
+|  |  |-- future.h
+|  |  |-- future_impl.h
+|  |  |-- future_sender_test.cc
+|  |  |-- future_test.cc
+|  |  |-- internal
+|  |  |  |-- iterate.h
+|  |  |  |-- iterate_impl.h
+|  |  |-- iterate.cc
+|  |  |-- iterate.h
+|  |  |-- iterate_over_index_range.h
+|  |  |-- iterate_over_index_range_test.cc
+|  |  |-- iterate_test.cc
+|  |  |-- quote_string.cc
+|  |  |-- quote_string.h
+|  |  |-- quote_string_test.cc
+|  |  |-- result.h
+|  |  |-- result_impl.h
+|  |  |-- result_nc_test.cc
+|  |  |-- result_sender_test.cc
+|  |  |-- result_test.cc
+|  |  |-- sender.h
+|  |  |-- sender_test.cc
+|  |  |-- sender_testutil.h
+|  |  |-- small_bit_set.h
+|  |  |-- small_bit_set_test.cc
+|  |  |-- span.h
+|  |  |-- span_json.h
+|  |  |-- span_json_test.cc
+|  |  |-- span_test.cc
+|  |  |-- status.cc
+|  |  |-- status.h
+|  |  |-- status_test.cc
+|  |  |-- status_testutil.cc
+|  |  |-- status_testutil.h
+|  |  |-- str_cat.h
+|  |  |-- str_cat_test.cc
+|  |  |-- sync_flow_sender.h
+|  |  |-- sync_flow_sender_test.cc
+|  |  |-- utf8_string.h
+|-- third_party
+|  |-- BUILD
+|  |-- com_facebook_zstd
+|  |  |-- bundled.BUILD.bazel
+|  |  |-- system.BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- com_github_nlohmann_json
+|  |  |-- bundled.BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- com_github_pybind_pybind11
+|  |  |-- bundled.BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- com_google_absl
+|  |  |-- workspace.bzl
+|  |-- com_google_benchmark
+|  |  |-- workspace.bzl
+|  |-- com_google_boringssl
+|  |  |-- patches
+|  |  |  |-- no-Werror.diff
+|  |  |-- system.BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- com_google_brotli
+|  |  |-- system.BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- com_google_googletest
+|  |  |-- workspace.bzl
+|  |-- com_google_snappy
+|  |  |-- bundled.BUILD.bazel
+|  |  |-- system.BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- jpeg
+|  |  |-- bundled.BUILD.bazel
+|  |  |-- system.BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- nasm
+|  |  |-- bundled.BUILD.bazel
+|  |  |-- system.BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- net_sourceforge_half
+|  |  |-- bundled.BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- net_zlib
+|  |  |-- bundled.BUILD.bazel
+|  |  |-- system.BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- org_blosc_cblosc
+|  |  |-- bundled.BUILD.bazel
+|  |  |-- system.BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- org_lz4
+|  |  |-- bundled.BUILD.bazel
+|  |  |-- system.BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- org_nghttp2
+|  |  |-- bundled.BUILD.bazel
+|  |  |-- system.BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- org_sourceware_bzip2
+|  |  |-- bundled.BUILD.bazel
+|  |  |-- system.BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- org_tukaani_xz
+|  |  |-- bundled.BUILD.bazel
+|  |  |-- system.BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- pypa
+|  |  |-- generate_workspace.py
+|  |  |-- workspace.bzl
+|  |-- python
+|  |  |-- BUILD.tpl
+|  |  |-- python_configure.bzl
+|  |-- repo.bzl
+|  |-- se_curl
+|  |  |-- bundled.BUILD.bazel
+|  |  |-- system.BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- update_versions.py
+|-- tools
+|  |-- ci
+|  |  |-- build_requirements.txt
+|  |  |-- cibuildwheel.py
+|  |  |-- cibuildwheel_linux_cache_setup.sh
+|  |  |-- cibuildwheel_requirement.txt
+|  |  |-- configure_bazel_remote_cache.py
+|  |  |-- prebuild_extension.sh
+|  |  |-- test_requirements.txt
+|-- utils.bzl

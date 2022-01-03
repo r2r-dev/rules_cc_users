@@ -1,0 +1,629 @@
+|-- .bazel.rc
+|-- .clang-format
+|-- .dockerignore
+|-- .doxygen.sh
+|-- .github
+|  |-- ISSUE_TEMPLATE
+|  |  |-- Bug_report.md
+|  |  |-- Feature_request.md
+|  |-- travis
+|  |  |-- before_install.sh
+|  |  |-- deploy.sh
+|  |  |-- install.sh
+|-- .gitignore
+|-- .travis.yml
+|-- BUILD
+|-- CHANGELOG.md
+|-- Dockerfile
+|-- LICENSE.md
+|-- Makefile
+|-- README.md
+|-- WORKSPACE
+|-- argcv
+|  |-- BUILD
+|  |-- argcv.bzl
+|  |-- c
+|  |  |-- macros.h
+|  |-- cxx
+|  |  |-- base
+|  |  |  |-- README.md
+|  |  |  |-- atomic.h
+|  |  |  |-- base.h
+|  |  |  |-- code.h
+|  |  |  |-- concurrency.cc
+|  |  |  |-- concurrency.h
+|  |  |  |-- concurrency_test.cc
+|  |  |  |-- iter.h
+|  |  |  |-- macros.h
+|  |  |  |-- macros_test.cc
+|  |  |  |-- result.h
+|  |  |  |-- result_test.cc
+|  |  |  |-- signal_slot.h
+|  |  |  |-- signal_slot_test.cc
+|  |  |  |-- status.cc
+|  |  |  |-- status.h
+|  |  |  |-- status_test.cc
+|  |  |  |-- thread_pool.h
+|  |  |  |-- thread_pool_test.cc
+|  |  |  |-- types.h
+|  |  |  |-- types_test.cc
+|  |  |-- io
+|  |  |  |-- README.md
+|  |  |  |-- base.h
+|  |  |  |-- base_test.cc
+|  |  |  |-- file.h
+|  |  |  |-- file_test.cc
+|  |  |  |-- io.h
+|  |  |-- net
+|  |  |  |-- README.md
+|  |  |-- os
+|  |  |  |-- README.md
+|  |  |  |-- os.h
+|  |  |-- path
+|  |  |  |-- README.md
+|  |  |  |-- path.cc
+|  |  |  |-- path.h
+|  |  |  |-- path_test.cc
+|  |  |-- sync
+|  |  |  |-- README.md
+|  |  |  |-- base.cc
+|  |  |  |-- base.h
+|  |  |  |-- mutex.cc
+|  |  |  |-- mutex.h
+|  |  |  |-- mutex_test.cc
+|  |  |  |-- once.h
+|  |  |  |-- once_test.cc
+|  |  |  |-- sync.h
+|  |  |  |-- wait_group.cc
+|  |  |  |-- wait_group.h
+|  |  |  |-- wait_group_test.cc
+|  |  |-- test
+|  |  |  |-- BUILD
+|  |  |  |-- test.cc
+|  |  |  |-- test.h
+|  |-- proto
+|  |  |-- BUILD
+|-- docs
+|  |-- html
+|  |  |-- _c_h_a_n_g_e_l_o_g_8md.html
+|  |  |-- _l_i_c_e_n_s_e_8md.html
+|  |  |-- _r_e_a_d_m_e_8md.html
+|  |  |-- absl_2main_8cc.html
+|  |  |-- absl_2main_8cc.js
+|  |  |-- annotated.html
+|  |  |-- annotated_dup.js
+|  |  |-- argcv_2cxx_2base_2_r_e_a_d_m_e_8md.html
+|  |  |-- argcv_2cxx_2io_2_r_e_a_d_m_e_8md.html
+|  |  |-- argcv_2cxx_2net_2_r_e_a_d_m_e_8md.html
+|  |  |-- argcv_2cxx_2os_2_r_e_a_d_m_e_8md.html
+|  |  |-- argcv_2cxx_2path_2_r_e_a_d_m_e_8md.html
+|  |  |-- argcv_2cxx_2sync_2_r_e_a_d_m_e_8md.html
+|  |  |-- atomic_8h.html
+|  |  |-- atomic_8h.js
+|  |  |-- atomic_8h_source.html
+|  |  |-- base_2base_8h.html
+|  |  |-- base_2base_8h_source.html
+|  |  |-- base_8cc.html
+|  |  |-- bc_s.png
+|  |  |-- bdwn.png
+|  |  |-- c_2macros_8h.html
+|  |  |-- c_2macros_8h.js
+|  |  |-- c_2macros_8h_source.html
+|  |  |-- class_comparable-members.html
+|  |  |-- class_comparable.html
+|  |  |-- class_comparable.js
+|  |  |-- classargcv_1_1_iterator-members.html
+|  |  |-- classargcv_1_1_iterator.html
+|  |  |-- classargcv_1_1_iterator.js
+|  |  |-- classargcv_1_1_result-members.html
+|  |  |-- classargcv_1_1_result.html
+|  |  |-- classargcv_1_1_result.js
+|  |  |-- classargcv_1_1_signal_slot-members.html
+|  |  |-- classargcv_1_1_signal_slot.html
+|  |  |-- classargcv_1_1_signal_slot.js
+|  |  |-- classargcv_1_1_status-members.html
+|  |  |-- classargcv_1_1_status.html
+|  |  |-- classargcv_1_1_status.js
+|  |  |-- classargcv_1_1_thread_pool-members.html
+|  |  |-- classargcv_1_1_thread_pool.html
+|  |  |-- classargcv_1_1_thread_pool.js
+|  |  |-- classargcv_1_1io_1_1_closer-members.html
+|  |  |-- classargcv_1_1io_1_1_closer.html
+|  |  |-- classargcv_1_1io_1_1_closer.js
+|  |  |-- classargcv_1_1io_1_1_closer.png
+|  |  |-- classargcv_1_1io_1_1_file-members.html
+|  |  |-- classargcv_1_1io_1_1_file.html
+|  |  |-- classargcv_1_1io_1_1_file.js
+|  |  |-- classargcv_1_1io_1_1_file_info-members.html
+|  |  |-- classargcv_1_1io_1_1_file_info.html
+|  |  |-- classargcv_1_1io_1_1_file_info.js
+|  |  |-- classargcv_1_1io_1_1_nop_closer-members.html
+|  |  |-- classargcv_1_1io_1_1_nop_closer.html
+|  |  |-- classargcv_1_1io_1_1_nop_closer.js
+|  |  |-- classargcv_1_1io_1_1_nop_closer.png
+|  |  |-- classargcv_1_1io_1_1_random_read_closer-members.html
+|  |  |-- classargcv_1_1io_1_1_random_read_closer.html
+|  |  |-- classargcv_1_1io_1_1_random_read_closer.js
+|  |  |-- classargcv_1_1io_1_1_random_read_closer.png
+|  |  |-- classargcv_1_1io_1_1_random_read_write_closer-members.html
+|  |  |-- classargcv_1_1io_1_1_random_read_write_closer.html
+|  |  |-- classargcv_1_1io_1_1_random_read_write_closer.js
+|  |  |-- classargcv_1_1io_1_1_random_read_write_closer.png
+|  |  |-- classargcv_1_1io_1_1_random_reader-members.html
+|  |  |-- classargcv_1_1io_1_1_random_reader.html
+|  |  |-- classargcv_1_1io_1_1_random_reader.js
+|  |  |-- classargcv_1_1io_1_1_random_reader.png
+|  |  |-- classargcv_1_1io_1_1_random_write_closer-members.html
+|  |  |-- classargcv_1_1io_1_1_random_write_closer.html
+|  |  |-- classargcv_1_1io_1_1_random_write_closer.js
+|  |  |-- classargcv_1_1io_1_1_random_write_closer.png
+|  |  |-- classargcv_1_1io_1_1_random_writer-members.html
+|  |  |-- classargcv_1_1io_1_1_random_writer.html
+|  |  |-- classargcv_1_1io_1_1_random_writer.js
+|  |  |-- classargcv_1_1io_1_1_random_writer.png
+|  |  |-- classargcv_1_1io_1_1_read_closer-members.html
+|  |  |-- classargcv_1_1io_1_1_read_closer.html
+|  |  |-- classargcv_1_1io_1_1_read_closer.js
+|  |  |-- classargcv_1_1io_1_1_read_closer.png
+|  |  |-- classargcv_1_1io_1_1_read_seeker-members.html
+|  |  |-- classargcv_1_1io_1_1_read_seeker.html
+|  |  |-- classargcv_1_1io_1_1_read_seeker.js
+|  |  |-- classargcv_1_1io_1_1_read_seeker.png
+|  |  |-- classargcv_1_1io_1_1_read_write_closer-members.html
+|  |  |-- classargcv_1_1io_1_1_read_write_closer.html
+|  |  |-- classargcv_1_1io_1_1_read_write_closer.js
+|  |  |-- classargcv_1_1io_1_1_read_write_closer.png
+|  |  |-- classargcv_1_1io_1_1_read_write_seeker-members.html
+|  |  |-- classargcv_1_1io_1_1_read_write_seeker.html
+|  |  |-- classargcv_1_1io_1_1_read_write_seeker.js
+|  |  |-- classargcv_1_1io_1_1_read_write_seeker.png
+|  |  |-- classargcv_1_1io_1_1_read_writer-members.html
+|  |  |-- classargcv_1_1io_1_1_read_writer.html
+|  |  |-- classargcv_1_1io_1_1_read_writer.js
+|  |  |-- classargcv_1_1io_1_1_read_writer.png
+|  |  |-- classargcv_1_1io_1_1_reader-members.html
+|  |  |-- classargcv_1_1io_1_1_reader.html
+|  |  |-- classargcv_1_1io_1_1_reader.js
+|  |  |-- classargcv_1_1io_1_1_reader.png
+|  |  |-- classargcv_1_1io_1_1_seeker-members.html
+|  |  |-- classargcv_1_1io_1_1_seeker.html
+|  |  |-- classargcv_1_1io_1_1_seeker.js
+|  |  |-- classargcv_1_1io_1_1_seeker.png
+|  |  |-- classargcv_1_1io_1_1_write_closer-members.html
+|  |  |-- classargcv_1_1io_1_1_write_closer.html
+|  |  |-- classargcv_1_1io_1_1_write_closer.js
+|  |  |-- classargcv_1_1io_1_1_write_closer.png
+|  |  |-- classargcv_1_1io_1_1_write_seeker-members.html
+|  |  |-- classargcv_1_1io_1_1_write_seeker.html
+|  |  |-- classargcv_1_1io_1_1_write_seeker.js
+|  |  |-- classargcv_1_1io_1_1_write_seeker.png
+|  |  |-- classargcv_1_1io_1_1_writer-members.html
+|  |  |-- classargcv_1_1io_1_1_writer.html
+|  |  |-- classargcv_1_1io_1_1_writer.js
+|  |  |-- classargcv_1_1io_1_1_writer.png
+|  |  |-- classargcv_1_1sync_1_1_lock_guard-members.html
+|  |  |-- classargcv_1_1sync_1_1_lock_guard.html
+|  |  |-- classargcv_1_1sync_1_1_lock_guard.js
+|  |  |-- classargcv_1_1sync_1_1_locker-members.html
+|  |  |-- classargcv_1_1sync_1_1_locker.html
+|  |  |-- classargcv_1_1sync_1_1_locker.js
+|  |  |-- classargcv_1_1sync_1_1_locker.png
+|  |  |-- classargcv_1_1sync_1_1_mutex-members.html
+|  |  |-- classargcv_1_1sync_1_1_mutex.html
+|  |  |-- classargcv_1_1sync_1_1_mutex.js
+|  |  |-- classargcv_1_1sync_1_1_mutex.png
+|  |  |-- classargcv_1_1sync_1_1_once-members.html
+|  |  |-- classargcv_1_1sync_1_1_once.html
+|  |  |-- classargcv_1_1sync_1_1_once.js
+|  |  |-- classargcv_1_1sync_1_1_wait_group-members.html
+|  |  |-- classargcv_1_1sync_1_1_wait_group.html
+|  |  |-- classargcv_1_1sync_1_1_wait_group.js
+|  |  |-- classes.html
+|  |  |-- closed.png
+|  |  |-- code_8h.html
+|  |  |-- code_8h.js
+|  |  |-- code_8h_source.html
+|  |  |-- concurrency_8cc.html
+|  |  |-- concurrency_8cc.js
+|  |  |-- concurrency_8h.html
+|  |  |-- concurrency_8h.js
+|  |  |-- concurrency_8h_source.html
+|  |  |-- cxx_2base_2macros_8h.html
+|  |  |-- cxx_2base_2macros_8h.js
+|  |  |-- cxx_2base_2macros_8h_source.html
+|  |  |-- dir_19fd8102782f04a8b27d4b75be6d31fb.html
+|  |  |-- dir_19fd8102782f04a8b27d4b75be6d31fb.js
+|  |  |-- dir_2a3e5a8dc51c14043aab1d0e31c63235.html
+|  |  |-- dir_2a3e5a8dc51c14043aab1d0e31c63235.js
+|  |  |-- dir_35fe26ecdb9ad765d53fed138617535f.html
+|  |  |-- dir_35fe26ecdb9ad765d53fed138617535f.js
+|  |  |-- dir_449d0259f140035fdafbc8fb45e3013b.html
+|  |  |-- dir_449d0259f140035fdafbc8fb45e3013b.js
+|  |  |-- dir_49e56c817e5e54854c35e136979f97ca.html
+|  |  |-- dir_49e56c817e5e54854c35e136979f97ca.js
+|  |  |-- dir_4ff35e369128786d97f2bf9e3700b90c.html
+|  |  |-- dir_57c4e43f44a7e2fd8d329ee79386f107.html
+|  |  |-- dir_57c4e43f44a7e2fd8d329ee79386f107.js
+|  |  |-- dir_58f3510fa80942688c44620ee6671e15.html
+|  |  |-- dir_58f3510fa80942688c44620ee6671e15.js
+|  |  |-- dir_6df6542b1223c38c3752260fabab64d0.html
+|  |  |-- dir_6df6542b1223c38c3752260fabab64d0.js
+|  |  |-- dir_7811da2b68ba267fbc9d9334256f2ead.html
+|  |  |-- dir_7811da2b68ba267fbc9d9334256f2ead.js
+|  |  |-- dir_8406e34757e41b9fe978b83e765508d4.html
+|  |  |-- dir_8406e34757e41b9fe978b83e765508d4.js
+|  |  |-- dir_870a8831c56c8d4545dbc7e6e6969963.html
+|  |  |-- dir_870a8831c56c8d4545dbc7e6e6969963.js
+|  |  |-- dir_ad9b03fccc217d3fa6ff19582e0fc789.html
+|  |  |-- dir_ad9b03fccc217d3fa6ff19582e0fc789.js
+|  |  |-- dir_c183064df1291357db1d38c637c6e87c.html
+|  |  |-- dir_d21809716c358ae254c72ce293471cdc.html
+|  |  |-- dir_d21809716c358ae254c72ce293471cdc.js
+|  |  |-- dir_d28a4824dc47e487b107a5db32ef43c4.html
+|  |  |-- dir_d28a4824dc47e487b107a5db32ef43c4.js
+|  |  |-- dir_f4c1d4d5e01226d96972d9b937662d15.html
+|  |  |-- dir_f4c1d4d5e01226d96972d9b937662d15.js
+|  |  |-- doc.png
+|  |  |-- doxygen.css
+|  |  |-- doxygen.svg
+|  |  |-- doxygenextra.css
+|  |  |-- dynsections.js
+|  |  |-- faq_8md.html
+|  |  |-- file_8h.html
+|  |  |-- file_8h.js
+|  |  |-- file_8h_source.html
+|  |  |-- files.html
+|  |  |-- files_dup.js
+|  |  |-- folderclosed.png
+|  |  |-- folderopen.png
+|  |  |-- functions.html
+|  |  |-- functions_func.html
+|  |  |-- functions_type.html
+|  |  |-- gflags_2main_8cc.html
+|  |  |-- gflags_2main_8cc.js
+|  |  |-- globals.html
+|  |  |-- globals_defs.html
+|  |  |-- globals_func.html
+|  |  |-- hierarchy.html
+|  |  |-- hierarchy.js
+|  |  |-- index.html
+|  |  |-- io_2base_8h.html
+|  |  |-- io_2base_8h.js
+|  |  |-- io_2base_8h_source.html
+|  |  |-- io_8h.html
+|  |  |-- io_8h_source.html
+|  |  |-- iter_8h.html
+|  |  |-- iter_8h_source.html
+|  |  |-- jquery.js
+|  |  |-- license.svg
+|  |  |-- md__c_h_a_n_g_e_l_o_g.html
+|  |  |-- md__l_i_c_e_n_s_e.html
+|  |  |-- md_docs_md_faq.html
+|  |  |-- mutex_8cc.html
+|  |  |-- mutex_8h.html
+|  |  |-- mutex_8h_source.html
+|  |  |-- namespaceargcv.html
+|  |  |-- namespaceargcv_1_1error.html
+|  |  |-- namespaceargcv_1_1io.html
+|  |  |-- namespaceargcv_1_1path.html
+|  |  |-- namespaceargcv_1_1sync.html
+|  |  |-- namespacemembers.html
+|  |  |-- namespacemembers_enum.html
+|  |  |-- namespacemembers_eval.html
+|  |  |-- namespacemembers_func.html
+|  |  |-- namespacemembers_type.html
+|  |  |-- nav_f.png
+|  |  |-- nav_g.png
+|  |  |-- nav_h.png
+|  |  |-- navtree.css
+|  |  |-- navtree.js
+|  |  |-- navtreedata.js
+|  |  |-- navtreeindex0.js
+|  |  |-- navtreeindex1.js
+|  |  |-- once_8h.html
+|  |  |-- once_8h_source.html
+|  |  |-- open.png
+|  |  |-- os_8h.html
+|  |  |-- os_8h_source.html
+|  |  |-- pages.html
+|  |  |-- path_8cc.html
+|  |  |-- path_8h.html
+|  |  |-- path_8h.js
+|  |  |-- path_8h_source.html
+|  |  |-- resize.js
+|  |  |-- result_8h.html
+|  |  |-- result_8h_source.html
+|  |  |-- search
+|  |  |  |-- all_0.html
+|  |  |  |-- all_0.js
+|  |  |  |-- all_1.html
+|  |  |  |-- all_1.js
+|  |  |  |-- all_10.html
+|  |  |  |-- all_10.js
+|  |  |  |-- all_11.html
+|  |  |  |-- all_11.js
+|  |  |  |-- all_12.html
+|  |  |  |-- all_12.js
+|  |  |  |-- all_13.html
+|  |  |  |-- all_13.js
+|  |  |  |-- all_14.html
+|  |  |  |-- all_14.js
+|  |  |  |-- all_15.html
+|  |  |  |-- all_15.js
+|  |  |  |-- all_16.html
+|  |  |  |-- all_16.js
+|  |  |  |-- all_17.html
+|  |  |  |-- all_17.js
+|  |  |  |-- all_18.html
+|  |  |  |-- all_18.js
+|  |  |  |-- all_2.html
+|  |  |  |-- all_2.js
+|  |  |  |-- all_3.html
+|  |  |  |-- all_3.js
+|  |  |  |-- all_4.html
+|  |  |  |-- all_4.js
+|  |  |  |-- all_5.html
+|  |  |  |-- all_5.js
+|  |  |  |-- all_6.html
+|  |  |  |-- all_6.js
+|  |  |  |-- all_7.html
+|  |  |  |-- all_7.js
+|  |  |  |-- all_8.html
+|  |  |  |-- all_8.js
+|  |  |  |-- all_9.html
+|  |  |  |-- all_9.js
+|  |  |  |-- all_a.html
+|  |  |  |-- all_a.js
+|  |  |  |-- all_b.html
+|  |  |  |-- all_b.js
+|  |  |  |-- all_c.html
+|  |  |  |-- all_c.js
+|  |  |  |-- all_d.html
+|  |  |  |-- all_d.js
+|  |  |  |-- all_e.html
+|  |  |  |-- all_e.js
+|  |  |  |-- all_f.html
+|  |  |  |-- all_f.js
+|  |  |  |-- classes_0.html
+|  |  |  |-- classes_0.js
+|  |  |  |-- classes_1.html
+|  |  |  |-- classes_1.js
+|  |  |  |-- classes_2.html
+|  |  |  |-- classes_2.js
+|  |  |  |-- classes_3.html
+|  |  |  |-- classes_3.js
+|  |  |  |-- classes_4.html
+|  |  |  |-- classes_4.js
+|  |  |  |-- classes_5.html
+|  |  |  |-- classes_5.js
+|  |  |  |-- classes_6.html
+|  |  |  |-- classes_6.js
+|  |  |  |-- classes_7.html
+|  |  |  |-- classes_7.js
+|  |  |  |-- classes_8.html
+|  |  |  |-- classes_8.js
+|  |  |  |-- classes_9.html
+|  |  |  |-- classes_9.js
+|  |  |  |-- classes_a.html
+|  |  |  |-- classes_a.js
+|  |  |  |-- close.svg
+|  |  |  |-- defines_0.html
+|  |  |  |-- defines_0.js
+|  |  |  |-- defines_1.html
+|  |  |  |-- defines_1.js
+|  |  |  |-- defines_2.html
+|  |  |  |-- defines_2.js
+|  |  |  |-- defines_3.html
+|  |  |  |-- defines_3.js
+|  |  |  |-- defines_4.html
+|  |  |  |-- defines_4.js
+|  |  |  |-- defines_5.html
+|  |  |  |-- defines_5.js
+|  |  |  |-- defines_6.html
+|  |  |  |-- defines_6.js
+|  |  |  |-- defines_7.html
+|  |  |  |-- defines_7.js
+|  |  |  |-- enums_0.html
+|  |  |  |-- enums_0.js
+|  |  |  |-- enums_1.html
+|  |  |  |-- enums_1.js
+|  |  |  |-- enums_2.html
+|  |  |  |-- enums_2.js
+|  |  |  |-- enumvalues_0.html
+|  |  |  |-- enumvalues_0.js
+|  |  |  |-- files_0.html
+|  |  |  |-- files_0.js
+|  |  |  |-- files_1.html
+|  |  |  |-- files_1.js
+|  |  |  |-- files_2.html
+|  |  |  |-- files_2.js
+|  |  |  |-- files_3.html
+|  |  |  |-- files_3.js
+|  |  |  |-- files_4.html
+|  |  |  |-- files_4.js
+|  |  |  |-- files_5.html
+|  |  |  |-- files_5.js
+|  |  |  |-- files_6.html
+|  |  |  |-- files_6.js
+|  |  |  |-- files_7.html
+|  |  |  |-- files_7.js
+|  |  |  |-- files_8.html
+|  |  |  |-- files_8.js
+|  |  |  |-- files_9.html
+|  |  |  |-- files_9.js
+|  |  |  |-- files_a.html
+|  |  |  |-- files_a.js
+|  |  |  |-- files_b.html
+|  |  |  |-- files_b.js
+|  |  |  |-- files_c.html
+|  |  |  |-- files_c.js
+|  |  |  |-- functions_0.html
+|  |  |  |-- functions_0.js
+|  |  |  |-- functions_1.html
+|  |  |  |-- functions_1.js
+|  |  |  |-- functions_10.html
+|  |  |  |-- functions_10.js
+|  |  |  |-- functions_11.html
+|  |  |  |-- functions_11.js
+|  |  |  |-- functions_12.html
+|  |  |  |-- functions_12.js
+|  |  |  |-- functions_13.html
+|  |  |  |-- functions_13.js
+|  |  |  |-- functions_14.html
+|  |  |  |-- functions_14.js
+|  |  |  |-- functions_15.html
+|  |  |  |-- functions_15.js
+|  |  |  |-- functions_2.html
+|  |  |  |-- functions_2.js
+|  |  |  |-- functions_3.html
+|  |  |  |-- functions_3.js
+|  |  |  |-- functions_4.html
+|  |  |  |-- functions_4.js
+|  |  |  |-- functions_5.html
+|  |  |  |-- functions_5.js
+|  |  |  |-- functions_6.html
+|  |  |  |-- functions_6.js
+|  |  |  |-- functions_7.html
+|  |  |  |-- functions_7.js
+|  |  |  |-- functions_8.html
+|  |  |  |-- functions_8.js
+|  |  |  |-- functions_9.html
+|  |  |  |-- functions_9.js
+|  |  |  |-- functions_a.html
+|  |  |  |-- functions_a.js
+|  |  |  |-- functions_b.html
+|  |  |  |-- functions_b.js
+|  |  |  |-- functions_c.html
+|  |  |  |-- functions_c.js
+|  |  |  |-- functions_d.html
+|  |  |  |-- functions_d.js
+|  |  |  |-- functions_e.html
+|  |  |  |-- functions_e.js
+|  |  |  |-- functions_f.html
+|  |  |  |-- functions_f.js
+|  |  |  |-- mag_sel.svg
+|  |  |  |-- namespaces_0.html
+|  |  |  |-- namespaces_0.js
+|  |  |  |-- nomatches.html
+|  |  |  |-- pages_0.html
+|  |  |  |-- pages_0.js
+|  |  |  |-- pages_1.html
+|  |  |  |-- pages_1.js
+|  |  |  |-- pages_2.html
+|  |  |  |-- pages_2.js
+|  |  |  |-- pages_3.html
+|  |  |  |-- pages_3.js
+|  |  |  |-- search.css
+|  |  |  |-- search.js
+|  |  |  |-- search_l.png
+|  |  |  |-- search_m.png
+|  |  |  |-- search_r.png
+|  |  |  |-- searchdata.js
+|  |  |  |-- typedefs_0.html
+|  |  |  |-- typedefs_0.js
+|  |  |  |-- typedefs_1.html
+|  |  |  |-- typedefs_1.js
+|  |  |  |-- typedefs_2.html
+|  |  |  |-- typedefs_2.js
+|  |  |  |-- typedefs_3.html
+|  |  |  |-- typedefs_3.js
+|  |  |  |-- typedefs_4.html
+|  |  |  |-- typedefs_4.js
+|  |  |  |-- typedefs_5.html
+|  |  |  |-- typedefs_5.js
+|  |  |  |-- typedefs_6.html
+|  |  |  |-- typedefs_6.js
+|  |  |  |-- typedefs_7.html
+|  |  |  |-- typedefs_7.js
+|  |  |  |-- typedefs_8.html
+|  |  |  |-- typedefs_8.js
+|  |  |  |-- typedefs_9.html
+|  |  |  |-- typedefs_9.js
+|  |  |  |-- typedefs_a.html
+|  |  |  |-- typedefs_a.js
+|  |  |-- signal__slot_8h.html
+|  |  |-- signal__slot_8h_source.html
+|  |  |-- splitbar.png
+|  |  |-- status_8cc.html
+|  |  |-- status_8cc.js
+|  |  |-- status_8h.html
+|  |  |-- status_8h.js
+|  |  |-- status_8h_source.html
+|  |  |-- stb__c__lexer_8c.html
+|  |  |-- stb__c__lexer_8c.js
+|  |  |-- sync_2base_8h.html
+|  |  |-- sync_2base_8h_source.html
+|  |  |-- sync_8h.html
+|  |  |-- sync_8h_source.html
+|  |  |-- sync_off.png
+|  |  |-- sync_on.png
+|  |  |-- tab_a.png
+|  |  |-- tab_b.png
+|  |  |-- tab_h.png
+|  |  |-- tab_s.png
+|  |  |-- tabs.css
+|  |  |-- thread__pool_8h.html
+|  |  |-- thread__pool_8h_source.html
+|  |  |-- types_8h.html
+|  |  |-- types_8h.js
+|  |  |-- types_8h_source.html
+|  |  |-- wait__group_8cc.html
+|  |  |-- wait__group_8h.html
+|  |  |-- wait__group_8h_source.html
+|  |-- index.html
+|  |-- license.svg
+|  |-- md
+|  |  |-- faq.md
+|  |-- template
+|  |  |-- DoxygenLayout.xml
+|  |  |-- doxygenextra.css
+|  |  |-- footer.html
+|  |  |-- header.html
+|-- examples
+|  |-- BUILD
+|  |-- c
+|  |  |-- stb
+|  |  |  |-- BUILD
+|  |  |  |-- stb_c_lexer.c
+|  |-- cxx
+|  |  |-- BUILD
+|  |  |-- absl
+|  |  |  |-- BUILD
+|  |  |  |-- main.cc
+|  |  |-- gflags
+|  |  |  |-- BUILD
+|  |  |  |-- main.cc
+|  |  |-- test
+|  |  |  |-- BUILD
+|  |  |  |-- example_bench.cc
+|  |  |  |-- example_test.cc
+|  |  |  |-- example_test.h
+|-- third_party
+|  |-- BUILD
+|  |-- gflags.BUILD
+|  |-- glog.BUILD
+|  |-- glog
+|  |  |-- BUILD
+|  |  |-- src
+|  |  |  |-- config.h
+|  |-- gmock.BUILD
+|  |-- infra.bzl
+|  |-- repo.bzl
+|  |-- stb.BUILD
+|  |-- svpng.BUILD
+|-- tools
+|  |-- BUILD
+|  |-- build_rules
+|  |  |-- BUILD
+|  |  |-- arq.bzl
+|  |  |-- config
+|  |  |  |-- BUILD
+|  |  |  |-- BUILD.tpl
+|  |  |  |-- common.bzl
+|  |  |  |-- local.bzl
+|  |  |  |-- pkg_config.bzl
+|  |  |  |-- system.bzl
+|  |  |  |-- wrapped_ctx.bzl
+|  |-- docs
+|  |  |-- Doxyfile
+|  |-- version.bzl

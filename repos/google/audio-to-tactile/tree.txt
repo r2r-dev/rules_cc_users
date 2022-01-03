@@ -1,0 +1,438 @@
+|-- .gitignore
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- Makefile
+|-- README.md
+|-- WORKSPACE
+|-- defs.bzl
+|-- examples
+|  |-- puck
+|  |  |-- analog_external_mic_example
+|  |  |  |-- analog_external_mic_example.ino
+|  |  |-- battery_monitor_example
+|  |  |  |-- battery_monitor_example.ino
+|  |  |-- pdm_onboard_mic_example
+|  |  |  |-- pdm_onboard_mic_example.ino
+|  |  |-- puck_send_mic_to_sleeve
+|  |  |  |-- puck_send_mic_to_sleeve.ino
+|  |  |-- pwm_puck_example
+|  |  |  |-- pwm_puck_example.ino
+|  |  |-- read_accelerometer
+|  |  |  |-- read_accelerometer.ino
+|  |  |-- ui_example
+|  |  |  |-- ui_example.ino
+|  |-- sleeve
+|  |  |-- led_blink
+|  |  |  |-- led_blink.ino
+|  |  |-- lp5012_example
+|  |  |  |-- lp5012_example.ino
+|  |  |-- pwm_sleeve_example
+|  |  |  |-- pwm_sleeve_example.ino
+|  |  |-- sleeve_serial_example
+|  |  |  |-- sleeve_serial_example.ino
+|  |  |-- temperature_monitor_example
+|  |  |  |-- temperature_monitor_example.ino
+|  |-- slim
+|  |  |-- accelerometer_lis3dh
+|  |  |  |-- accelerometer_lis3dh.ino
+|  |  |-- analog_mic_process_send_to_tactors
+|  |  |  |-- analog_mic_process_send_to_tactors.ino
+|  |  |-- process_sound_send_to_tactors_ble
+|  |  |  |-- process_sound_send_to_tactors_ble.ino
+|  |  |-- simple_tactile_output
+|  |  |  |-- simple_tactile_output.ino
+|  |  |-- slim_led_blink
+|  |  |  |-- slim_led_blink.ino
+|  |  |-- streaming_usb_from_pc
+|  |  |  |-- streaming_usb_from_pc.ino
+|-- external
+|  |-- sdl2.BUILD
+|-- extras
+|  |-- benchmark
+|  |  |-- BUILD
+|  |  |-- fast_fun_benchmark.cpp
+|  |  |-- fft_benchmark.cpp
+|  |  |-- q_resampler_benchmark.cpp
+|  |  |-- rational_factor_resampler_benchmark.cpp
+|  |-- doc
+|  |  |-- axis_accelerometer_left_hand.jpg
+|  |  |-- begin-lesson.png
+|  |  |-- carl-frontend-example.png
+|  |  |-- carl-frontend.png
+|  |  |-- encoder.png
+|  |  |-- free-play.png
+|  |  |-- hexagon-norm.png
+|  |  |-- hexagon-rendering.jpg
+|  |  |-- hexagon-sleeve.jpg
+|  |  |-- inference.png
+|  |  |-- lesson-done.png
+|  |  |-- lesson-review.png
+|  |  |-- lesson-trial.png
+|  |  |-- main-menu.png
+|  |  |-- pcen-formula.png
+|  |  |-- phonetics.md
+|  |  |-- play-buzz.gif
+|  |  |-- play_buzz.md
+|  |  |-- sleeve-hw.jpg
+|  |  |-- tactile-visualization.gif
+|  |  |-- tactile_processor.md
+|  |  |-- tactophone.md
+|  |  |-- test-tactors.png
+|  |  |-- training.png
+|  |  |-- vowel-diagram.jpg
+|  |  |-- vowel-embedding.jpg
+|  |-- python
+|  |  |-- BUILD
+|  |  |-- dsp.py
+|  |  |-- dsp_test.py
+|  |  |-- fast_fun_python_bindings.c
+|  |  |-- frontend_python_bindings.c
+|  |  |-- phonetics
+|  |  |  |-- BUILD
+|  |  |  |-- classify_phoneme_python_bindings.c
+|  |  |  |-- classify_phoneme_test.py
+|  |  |  |-- embed_vowel_python_bindings.c
+|  |  |  |-- embed_vowel_test.py
+|  |  |  |-- export_model_as_c_data.py
+|  |  |  |-- hk_util.py
+|  |  |  |-- hk_util_test.py
+|  |  |  |-- ingest_timit.py
+|  |  |  |-- make_training_data.py
+|  |  |  |-- phone_model.py
+|  |  |  |-- phone_model_test.py
+|  |  |  |-- phone_util.py
+|  |  |  |-- phone_util_test.py
+|  |  |  |-- plot.py
+|  |  |  |-- plot_test.py
+|  |  |  |-- read_nist_sphere.py
+|  |  |  |-- read_nist_sphere_test.py
+|  |  |  |-- run_classify_phoneme_on_wav.py
+|  |  |  |-- run_phone_model_on_wav.py
+|  |  |  |-- sliding_window.py
+|  |  |  |-- sliding_window_test.py
+|  |  |  |-- stats.py
+|  |  |  |-- stats_test.py
+|  |  |  |-- train.py
+|  |  |-- psycho
+|  |  |  |-- BUILD
+|  |  |  |-- README.txt
+|  |  |  |-- levitt_experiment.py
+|  |  |  |-- levitt_experiment_test.py
+|  |  |  |-- psycho_gui.py
+|  |  |  |-- sleeve_usb.py
+|  |  |  |-- test_gui.ipynb
+|  |  |-- q_resampler_python_bindings.c
+|  |  |-- tactile
+|  |  |  |-- BUILD
+|  |  |  |-- agc_experiment.py
+|  |  |  |-- energy_envelope_python_bindings.c
+|  |  |  |-- energy_envelope_test.py
+|  |  |  |-- post_processor_python_bindings.c
+|  |  |  |-- tactile_processor_python_bindings.c
+|  |  |  |-- tactile_processor_test.py
+|  |  |  |-- tactile_worker.c
+|  |  |  |-- tactile_worker.h
+|  |  |  |-- tactile_worker_python_bindings.c
+|  |  |  |-- tactile_worker_python_demo.py
+|  |  |-- wav_io_python_bindings.c
+|  |-- references
+|  |  |-- bratakos2001
+|  |  |  |-- BUILD
+|  |  |  |-- bratakos2001.c
+|  |  |  |-- bratakos2001.h
+|  |  |  |-- bratakos2001_test.c
+|  |  |-- taps
+|  |  |  |-- BUILD
+|  |  |  |-- lessons.txt
+|  |  |  |-- phoneme_code.c
+|  |  |  |-- phoneme_code.h
+|  |  |  |-- phoneme_code_test.c
+|  |  |  |-- tactile_player.c
+|  |  |  |-- tactile_player.h
+|  |  |  |-- tactile_player_test.c
+|  |  |  |-- tactophone.c
+|  |  |  |-- tactophone.h
+|  |  |  |-- tactophone_engine.c
+|  |  |  |-- tactophone_engine.h
+|  |  |  |-- tactophone_engine_test.c
+|  |  |  |-- tactophone_lesson.c
+|  |  |  |-- tactophone_lesson.h
+|  |  |  |-- tactophone_lesson_test.c
+|  |  |  |-- tactophone_main.c
+|  |  |  |-- tactophone_state_begin_lesson.c
+|  |  |  |-- tactophone_state_free_play.c
+|  |  |  |-- tactophone_state_lesson_done.c
+|  |  |  |-- tactophone_state_lesson_review.c
+|  |  |  |-- tactophone_state_lesson_trial.c
+|  |  |  |-- tactophone_state_main_menu.c
+|  |  |  |-- tactophone_state_test_tactors.c
+|  |  |  |-- tactophone_states.h
+|  |  |-- yuan2005
+|  |  |  |-- BUILD
+|  |  |  |-- yuan2005.c
+|  |  |  |-- yuan2005.h
+|  |  |  |-- yuan2005_test.c
+|  |-- ses_apps
+|  |  |-- puck
+|  |  |  |-- analog_mic_app
+|  |  |  |  |-- main.cpp
+|  |  |-- sleeve
+|  |  |  |-- sleeve_simple_app.cpp
+|  |-- streaming
+|  |  |-- play_wav.py
+|  |  |-- streaming_teensy_app.ino
+|  |-- test
+|  |  |-- BUILD
+|  |  |-- arduino_format_test.py
+|  |  |-- cpp
+|  |  |  |-- BUILD
+|  |  |  |-- message_test.cpp
+|  |  |  |-- object_pool_test.cpp
+|  |  |  |-- slice_test.cpp
+|  |  |  |-- std_shim_test.cpp
+|  |  |-- dsp
+|  |  |  |-- BUILD
+|  |  |  |-- auto_gain_control_test.c
+|  |  |  |-- biquad_filter_test.c
+|  |  |  |-- butterworth_test.c
+|  |  |  |-- complex_test.c
+|  |  |  |-- convert_sample_test.c
+|  |  |  |-- datestamp_test.c
+|  |  |  |-- elliptic_fun_test.c
+|  |  |  |-- fast_fun_test.c
+|  |  |  |-- fft_test.c
+|  |  |  |-- iir_design_test.c
+|  |  |  |-- logging_test.c
+|  |  |  |-- math_constants_test.c
+|  |  |  |-- number_util_test.c
+|  |  |  |-- oscillator_test.c
+|  |  |  |-- phase32_test.c
+|  |  |  |-- phasor_rotator_test.c
+|  |  |  |-- q_resampler_kernel_test.c
+|  |  |  |-- q_resampler_test.c
+|  |  |  |-- rational_factor_resampler_kernel_test.c
+|  |  |  |-- rational_factor_resampler_test.c
+|  |  |  |-- read_wav_file_generic_test.c
+|  |  |  |-- read_wav_file_test.c
+|  |  |  |-- serialize_test.c
+|  |  |  |-- write_wav_file_test.c
+|  |  |-- frontend
+|  |  |  |-- BUILD
+|  |  |  |-- carl_frontend_test.c
+|  |  |-- mux
+|  |  |  |-- BUILD
+|  |  |  |-- muxer_test.c
+|  |  |  |-- pilot_tracker_test.c
+|  |  |-- phonetics
+|  |  |  |-- BUILD
+|  |  |  |-- classify_phoneme_test.c
+|  |  |  |-- embed_vowel_test.c
+|  |  |  |-- hexagon_interpolation_test.c
+|  |  |  |-- nn_ops_test.c
+|  |  |-- tactile
+|  |  |  |-- BUILD
+|  |  |  |-- energy_envelope_test.c
+|  |  |  |-- envelope_tracker_test.c
+|  |  |  |-- tactile_pattern_test.c
+|  |  |  |-- tactile_processor_test.c
+|  |  |  |-- tactor_equalizer_test.c
+|  |  |  |-- tuning_test.c
+|  |  |-- testdata
+|  |  |  |-- BUILD
+|  |  |  |-- phone_aa.wav
+|  |  |  |-- phone_ae.wav
+|  |  |  |-- phone_eh.wav
+|  |  |  |-- phone_er.wav
+|  |  |  |-- phone_ih.wav
+|  |  |  |-- phone_iy.wav
+|  |  |  |-- phone_uh.wav
+|  |  |  |-- phone_uw.wav
+|  |  |  |-- phone_z.wav
+|  |  |  |-- tactile_pattern_confirm.wav
+|  |  |  |-- tactile_pattern_connect.wav
+|  |  |  |-- tactile_pattern_disconnect.wav
+|  |  |  |-- tow_truck.ivf
+|  |-- tools
+|  |  |-- BUILD
+|  |  |-- channel_map.c
+|  |  |-- channel_map.h
+|  |  |-- channel_map_test.c
+|  |  |-- channel_map_tui.c
+|  |  |-- channel_map_tui.h
+|  |  |-- channel_map_tui_test.c
+|  |  |-- play_buzz.c
+|  |  |-- play_wav.c
+|  |  |-- portaudio_device.c
+|  |  |-- portaudio_device.h
+|  |  |-- run_demuxer_on_wav.c
+|  |  |-- run_energy_envelope.c
+|  |  |-- run_energy_envelope_on_wav.c
+|  |  |-- run_muxer_on_wav.c
+|  |  |-- run_tactile_methods.c
+|  |  |-- run_tactile_processor.c
+|  |  |-- run_tactile_processor_assets.c
+|  |  |-- sdl
+|  |  |  |-- BUILD
+|  |  |  |-- basic_sdl_app.c
+|  |  |  |-- basic_sdl_app.h
+|  |  |  |-- draw_text.c
+|  |  |  |-- draw_text.h
+|  |  |  |-- texture_from_rle_data.c
+|  |  |  |-- texture_from_rle_data.h
+|  |  |  |-- window_icon.c
+|  |  |  |-- window_icon.h
+|  |  |-- tactometer.c
+|  |  |-- util.c
+|  |  |-- util.h
+|  |  |-- util_test.c
+|  |-- web
+|  |  |-- Makefile
+|  |  |-- ble_web_client.html
+|  |  |-- classify_phoneme.html
+|  |  |-- classify_phoneme_web_bindings.cpp
+|  |  |-- example.svg
+|  |  |-- microphone.svg
+|  |  |-- tactile_processor.html
+|  |  |-- tactile_processor_web_bindings.cc
+|  |  |-- tactile_processor_web_bindings.cpp
+|  |  |-- test_audio.wav
+|-- library.properties
+|-- src
+|  |-- accelerometer_lis3dh.cpp
+|  |-- accelerometer_lis3dh.h
+|  |-- analog_external_mic.cpp
+|  |-- analog_external_mic.h
+|  |-- battery_monitor.cpp
+|  |-- battery_monitor.h
+|  |-- benchmarks.c
+|  |-- benchmarks.h
+|  |-- ble_com.cpp
+|  |-- ble_com.h
+|  |-- bmi270.cpp
+|  |-- bmi270.h
+|  |-- board_defs.h
+|  |-- cpp
+|  |  |-- constants.h
+|  |  |-- fixed_or_dynamic.h
+|  |  |-- message.cpp
+|  |  |-- message.h
+|  |  |-- object_pool.h
+|  |  |-- slice.h
+|  |  |-- std_shim.h
+|  |-- dsp
+|  |  |-- auto_gain_control.c
+|  |  |-- auto_gain_control.h
+|  |  |-- biquad_filter.c
+|  |  |-- biquad_filter.h
+|  |  |-- butterworth.c
+|  |  |-- butterworth.h
+|  |  |-- channel_map.c
+|  |  |-- channel_map.h
+|  |  |-- complex.c
+|  |  |-- complex.h
+|  |  |-- convert_sample.c
+|  |  |-- convert_sample.h
+|  |  |-- datestamp.h
+|  |  |-- elliptic_fun.c
+|  |  |-- elliptic_fun.h
+|  |  |-- fast_fun.c
+|  |  |-- fast_fun.h
+|  |  |-- fast_fun_compute_tables.c
+|  |  |-- fast_fun_compute_tables.h
+|  |  |-- fft.c
+|  |  |-- fft.h
+|  |  |-- iir_design.c
+|  |  |-- iir_design.h
+|  |  |-- logging.h
+|  |  |-- math_constants.h
+|  |  |-- number_util.c
+|  |  |-- number_util.h
+|  |  |-- oscillator.c
+|  |  |-- oscillator.h
+|  |  |-- phase32.c
+|  |  |-- phase32.h
+|  |  |-- phasor_rotator.c
+|  |  |-- phasor_rotator.h
+|  |  |-- q_resampler.c
+|  |  |-- q_resampler.h
+|  |  |-- q_resampler_kernel.c
+|  |  |-- q_resampler_kernel.h
+|  |  |-- read_wav_file.c
+|  |  |-- read_wav_file.h
+|  |  |-- read_wav_file_generic.c
+|  |  |-- read_wav_file_generic.h
+|  |  |-- read_wav_info.h
+|  |  |-- serialize.c
+|  |  |-- serialize.h
+|  |  |-- write_wav_file.c
+|  |  |-- write_wav_file.h
+|  |  |-- write_wav_file_generic.c
+|  |  |-- write_wav_file_generic.h
+|  |-- frontend
+|  |  |-- carl_frontend.c
+|  |  |-- carl_frontend.h
+|  |  |-- carl_frontend_design.c
+|  |  |-- carl_frontend_design.h
+|  |-- look_up.h
+|  |-- lp5012.cpp
+|  |-- lp5012.h
+|  |-- lpcomp_common.c
+|  |-- lpcomp_common.h
+|  |-- mux
+|  |  |-- demuxer.c
+|  |  |-- demuxer.h
+|  |  |-- mux_common.c
+|  |  |-- mux_common.h
+|  |  |-- muxer.c
+|  |  |-- muxer.h
+|  |  |-- pilot_tracker.c
+|  |  |-- pilot_tracker.h
+|  |-- pdm.cpp
+|  |-- pdm.h
+|  |-- phonetics
+|  |  |-- classify_phoneme.c
+|  |  |-- classify_phoneme.h
+|  |  |-- classify_phoneme_params.h
+|  |  |-- embed_vowel.c
+|  |  |-- embed_vowel.h
+|  |  |-- embed_vowel_params.h
+|  |  |-- hexagon_interpolation.c
+|  |  |-- hexagon_interpolation.h
+|  |  |-- nn_ops.c
+|  |  |-- nn_ops.h
+|  |-- post_processor_cpp.cpp
+|  |-- post_processor_cpp.h
+|  |-- pwm_common.c
+|  |-- pwm_common.h
+|  |-- pwm_puck.cpp
+|  |-- pwm_puck.h
+|  |-- pwm_sleeve.cpp
+|  |-- pwm_sleeve.h
+|  |-- serial_com.cpp
+|  |-- serial_com.h
+|  |-- serial_puck_sleeve.cpp
+|  |-- serial_puck_sleeve.h
+|  |-- tactile
+|  |  |-- energy_envelope.c
+|  |  |-- energy_envelope.h
+|  |  |-- envelope_tracker.c
+|  |  |-- envelope_tracker.h
+|  |  |-- post_processor.c
+|  |  |-- post_processor.h
+|  |  |-- tactile_pattern.c
+|  |  |-- tactile_pattern.h
+|  |  |-- tactile_processor.c
+|  |  |-- tactile_processor.h
+|  |  |-- tactor_equalizer.c
+|  |  |-- tactor_equalizer.h
+|  |  |-- tuning.c
+|  |  |-- tuning.h
+|  |-- tactile_processor_cpp.cpp
+|  |-- tactile_processor_cpp.h
+|  |-- temperature_monitor.cpp
+|  |-- temperature_monitor.h
+|  |-- two_wire.c
+|  |-- two_wire.h
+|  |-- ui.cpp
+|  |-- ui.h

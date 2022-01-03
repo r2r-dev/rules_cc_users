@@ -1,0 +1,2169 @@
+|-- .gitignore
+|-- .gitmodules
+|-- .travis.yml
+|-- AUTHORS
+|-- CONTRIBUTING.md
+|-- CONTRIBUTORS
+|-- LICENSE
+|-- PULL_REQUEST_TEMPLATE.md
+|-- README.md
+|-- appveyor.yml
+|-- docker
+|  |-- ubuntu20.04
+|  |  |-- Dockerfile
+|  |  |-- clobber-make-buildenv.sh
+|  |  |-- enter-buildenv.sh
+|  |  |-- make-buildenv.sh
+|-- docs
+|  |-- about_branding.md
+|  |-- build_mozc_in_docker.md
+|  |-- build_mozc_in_osx.md
+|  |-- build_mozc_in_windows.md
+|  |-- configurations.md
+|  |-- design_doc
+|  |  |-- data_protection.md
+|  |  |-- input_scope.md
+|  |  |-- mozc_ipc.md
+|  |  |-- surrounding_text.md
+|  |-- release_history.md
+|-- scripts
+|  |-- build
+|  |-- build_fcitx5
+|  |-- clang-format.sh
+|  |-- configure
+|  |-- icons
+|  |  |-- ui-alpha_full.png
+|  |  |-- ui-alpha_half.png
+|  |  |-- ui-dictionary.png
+|  |  |-- ui-direct.png
+|  |  |-- ui-hiragana.png
+|  |  |-- ui-katakana_full.png
+|  |  |-- ui-katakana_half.png
+|  |  |-- ui-properties.png
+|  |  |-- ui-tool.png
+|  |-- install_fcitx
+|  |-- install_fcitx5
+|  |-- install_fcitx5_icons
+|  |-- install_server
+|-- src
+|  |-- .bazelrc
+|  |-- BUILD.bazel
+|  |-- BUILD.fcitx
+|  |-- BUILD.fcitx5
+|  |-- BUILD.gtk2.bazel
+|  |-- BUILD.ibus.bazel
+|  |-- BUILD.ja_usage_dict.bazel
+|  |-- BUILD.qt.bazel
+|  |-- WORKSPACE.bazel
+|  |-- __init__.py
+|  |-- android
+|  |  |-- collected_keyboards.csv
+|  |  |-- gen_mozc_drawable.py
+|  |  |-- gen_touch_event_stats.py
+|  |  |-- jni
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mozcjni.cc
+|  |-- base
+|  |  |-- BUILD.bazel
+|  |  |-- absl.gyp
+|  |  |-- android_util.cc
+|  |  |-- android_util.h
+|  |  |-- android_util_test.cc
+|  |  |-- base.gyp
+|  |  |-- base_test.gyp
+|  |  |-- bitarray.h
+|  |  |-- bitarray_test.cc
+|  |  |-- clock.cc
+|  |  |-- clock.h
+|  |  |-- clock_mock.cc
+|  |  |-- clock_mock.h
+|  |  |-- clock_mock_test.cc
+|  |  |-- clock_test.cc
+|  |  |-- codegen_bytearray_stream.cc
+|  |  |-- codegen_bytearray_stream.h
+|  |  |-- codegen_bytearray_stream_test.cc
+|  |  |-- compiler_specific.h
+|  |  |-- config_file_stream.cc
+|  |  |-- config_file_stream.h
+|  |  |-- config_file_stream_test.cc
+|  |  |-- const.h
+|  |  |-- coordinates.h
+|  |  |-- cpu_stats.cc
+|  |  |-- cpu_stats.h
+|  |  |-- cpu_stats_main.cc
+|  |  |-- cpu_stats_test.cc
+|  |  |-- crash_report_handler.cc
+|  |  |-- crash_report_handler.h
+|  |  |-- crash_report_handler_mac.mm
+|  |  |-- double_array.h
+|  |  |-- embedded_file.h
+|  |  |-- embedded_file_test.cc
+|  |  |-- encryptor.cc
+|  |  |-- encryptor.h
+|  |  |-- encryptor_main.cc
+|  |  |-- encryptor_test.cc
+|  |  |-- environ.cc
+|  |  |-- environ.h
+|  |  |-- environ_mock.h
+|  |  |-- file_stream.cc
+|  |  |-- file_stream.h
+|  |  |-- file_util.cc
+|  |  |-- file_util.h
+|  |  |-- file_util_mock.h
+|  |  |-- file_util_mock_test.cc
+|  |  |-- file_util_test.cc
+|  |  |-- freelist.h
+|  |  |-- gen_character_set.py
+|  |  |-- gen_config_file_stream_data.py
+|  |  |-- hash.cc
+|  |  |-- hash.h
+|  |  |-- hash_test.cc
+|  |  |-- init_mozc.cc
+|  |  |-- init_mozc.h
+|  |  |-- iterator_adapter.h
+|  |  |-- iterator_adapter_test.cc
+|  |  |-- japanese_util_rule.cc
+|  |  |-- japanese_util_rule.h
+|  |  |-- logging.cc
+|  |  |-- logging.h
+|  |  |-- logging_test.cc
+|  |  |-- mac_process.h
+|  |  |-- mac_process.mm
+|  |  |-- mac_util.h
+|  |  |-- mac_util.mm
+|  |  |-- mac_util_main.cc
+|  |  |-- mac_util_test.mm
+|  |  |-- mmap.cc
+|  |  |-- mmap.h
+|  |  |-- mmap_sync_interface.h
+|  |  |-- mmap_test.cc
+|  |  |-- multifile.cc
+|  |  |-- multifile.h
+|  |  |-- multifile_test.cc
+|  |  |-- mutex.cc
+|  |  |-- mutex.h
+|  |  |-- mutex_test.cc
+|  |  |-- number_util.cc
+|  |  |-- number_util.h
+|  |  |-- number_util_test.cc
+|  |  |-- password_manager.cc
+|  |  |-- password_manager.h
+|  |  |-- password_manager_main.cc
+|  |  |-- password_manager_test.cc
+|  |  |-- port.h
+|  |  |-- process.cc
+|  |  |-- process.h
+|  |  |-- process_main.cc
+|  |  |-- process_mutex.cc
+|  |  |-- process_mutex.h
+|  |  |-- process_mutex_main.cc
+|  |  |-- process_mutex_test.cc
+|  |  |-- protobuf
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- descriptor.h
+|  |  |  |-- message.h
+|  |  |  |-- protobuf.h
+|  |  |  |-- repeated_field.h
+|  |  |  |-- text_format.h
+|  |  |  |-- zero_copy_stream_impl.h
+|  |  |-- run_level.cc
+|  |  |-- run_level.h
+|  |  |-- run_level_main.cc
+|  |  |-- scheduler.cc
+|  |  |-- scheduler.h
+|  |  |-- scheduler_stub.cc
+|  |  |-- scheduler_stub.h
+|  |  |-- scheduler_stub_test.cc
+|  |  |-- scheduler_test.cc
+|  |  |-- scoped_cftyperef.h
+|  |  |-- scoped_handle.cc
+|  |  |-- scoped_handle.h
+|  |  |-- serialized_string_array.cc
+|  |  |-- serialized_string_array.h
+|  |  |-- serialized_string_array_test.cc
+|  |  |-- singleton.cc
+|  |  |-- singleton.h
+|  |  |-- singleton_test.cc
+|  |  |-- status.cc
+|  |  |-- status.h
+|  |  |-- status_test.cc
+|  |  |-- statusor.h
+|  |  |-- statusor_test.cc
+|  |  |-- stl_util.h
+|  |  |-- stl_util_test.cc
+|  |  |-- stopwatch.cc
+|  |  |-- stopwatch.h
+|  |  |-- stopwatch_main.cc
+|  |  |-- stopwatch_test.cc
+|  |  |-- system_util.cc
+|  |  |-- system_util.h
+|  |  |-- system_util_test.cc
+|  |  |-- text_normalizer.cc
+|  |  |-- text_normalizer.h
+|  |  |-- text_normalizer_test.cc
+|  |  |-- thread.cc
+|  |  |-- thread.h
+|  |  |-- thread_test.cc
+|  |  |-- trie.h
+|  |  |-- trie_test.cc
+|  |  |-- unnamed_event.cc
+|  |  |-- unnamed_event.h
+|  |  |-- unnamed_event_test.cc
+|  |  |-- unverified_aes256.cc
+|  |  |-- unverified_aes256.h
+|  |  |-- unverified_aes256_test.cc
+|  |  |-- unverified_sha1.cc
+|  |  |-- unverified_sha1.h
+|  |  |-- unverified_sha1_test.cc
+|  |  |-- update_util.cc
+|  |  |-- update_util.h
+|  |  |-- update_util_test.cc
+|  |  |-- url.cc
+|  |  |-- url.h
+|  |  |-- url_test.cc
+|  |  |-- util.cc
+|  |  |-- util.h
+|  |  |-- util_test.cc
+|  |  |-- version.cc
+|  |  |-- version.h
+|  |  |-- version_def_template.h
+|  |  |-- version_test.cc
+|  |  |-- win_api_test_helper.cc
+|  |  |-- win_api_test_helper.h
+|  |  |-- win_api_test_helper_test.cc
+|  |  |-- win_font_test_helper.cc
+|  |  |-- win_font_test_helper.h
+|  |  |-- win_sandbox.cc
+|  |  |-- win_sandbox.h
+|  |  |-- win_sandbox_test.cc
+|  |  |-- win_util.cc
+|  |  |-- win_util.h
+|  |  |-- win_util_test.cc
+|  |  |-- win_util_test_dll.cc
+|  |  |-- win_util_test_dll.def
+|  |  |-- winmain.h
+|  |-- build_defs.bzl
+|  |-- build_mozc.py
+|  |-- build_tools
+|  |  |-- BUILD.bazel
+|  |  |-- __init__.py
+|  |  |-- binary_size_checker.py
+|  |  |-- build_and_sign_pkg_mac.py
+|  |  |-- build_breakpad.py
+|  |  |-- build_diskimage_mac.py
+|  |  |-- change_reference_mac.py
+|  |  |-- code_generator_util.py
+|  |  |-- codesign_mac.py
+|  |  |-- copy_dll_and_symbol.py
+|  |  |-- copy_file.py
+|  |  |-- copy_qt_frameworks_mac.py
+|  |  |-- embed_file.py
+|  |  |-- embed_pathname.py
+|  |  |-- ensure_gyp_module_path.py
+|  |  |-- gen_win32_resource_header.py
+|  |  |-- mozc_version.py
+|  |  |-- mozc_win32_resource_template.rc
+|  |  |-- protoc_wrapper.py
+|  |  |-- redirect.py
+|  |  |-- replace_macros.py
+|  |  |-- replace_version.py
+|  |  |-- run_after_chdir.py
+|  |  |-- serialized_string_array_builder.py
+|  |  |-- test_tools
+|  |  |  |-- __init__.py
+|  |  |  |-- test_launcher.py
+|  |  |-- tweak_data.py
+|  |  |-- tweak_info_plist.py
+|  |  |-- tweak_info_plist_strings.py
+|  |  |-- tweak_macinstaller_script.py
+|  |  |-- tweak_pkgproj.py
+|  |  |-- util.py
+|  |  |-- versioning_files.py
+|  |  |-- zlib_util.py
+|  |-- client
+|  |  |-- BUILD.bazel
+|  |  |-- client.cc
+|  |  |-- client.gyp
+|  |  |-- client.h
+|  |  |-- client_interface.h
+|  |  |-- client_mock.cc
+|  |  |-- client_mock.h
+|  |  |-- client_performance_test_main.cc
+|  |  |-- client_quality_test_main.cc
+|  |  |-- client_scenario_test_main.cc
+|  |  |-- client_stress_test_main.cc
+|  |  |-- client_test.cc
+|  |  |-- client_test.gyp
+|  |  |-- gen_client_quality_test_data.py
+|  |  |-- ping_server_main.cc
+|  |  |-- server_launcher.cc
+|  |  |-- server_launcher_main.cc
+|  |-- composer
+|  |  |-- BUILD.bazel
+|  |  |-- __init__.py
+|  |  |-- composer.cc
+|  |  |-- composer.gyp
+|  |  |-- composer.h
+|  |  |-- composer_main.cc
+|  |  |-- composer_test.cc
+|  |  |-- composer_test.gyp
+|  |  |-- composition_interface.h
+|  |  |-- internal
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- __init__.py
+|  |  |  |-- char_chunk.cc
+|  |  |  |-- char_chunk.h
+|  |  |  |-- char_chunk_test.cc
+|  |  |  |-- composition.cc
+|  |  |  |-- composition.h
+|  |  |  |-- composition_input.cc
+|  |  |  |-- composition_input.h
+|  |  |  |-- composition_input_test.cc
+|  |  |  |-- composition_main.cc
+|  |  |  |-- composition_test.cc
+|  |  |  |-- converter.cc
+|  |  |  |-- converter.h
+|  |  |  |-- converter_main.cc
+|  |  |  |-- converter_test.cc
+|  |  |  |-- gen_typing_model.py
+|  |  |  |-- mode_switching_handler.cc
+|  |  |  |-- mode_switching_handler.h
+|  |  |  |-- mode_switching_handler_test.cc
+|  |  |  |-- transliterator_interface.h
+|  |  |  |-- transliterators.cc
+|  |  |  |-- transliterators.h
+|  |  |  |-- transliterators_test.cc
+|  |  |  |-- typing_corrector.cc
+|  |  |  |-- typing_corrector.h
+|  |  |  |-- typing_corrector_test.cc
+|  |  |  |-- typing_model.cc
+|  |  |  |-- typing_model.h
+|  |  |  |-- typing_model_test.cc
+|  |  |-- key_event_util.cc
+|  |  |-- key_event_util.h
+|  |  |-- key_event_util_test.cc
+|  |  |-- key_parser.cc
+|  |  |-- key_parser.h
+|  |  |-- key_parser_test.cc
+|  |  |-- table.cc
+|  |  |-- table.h
+|  |  |-- table_test.cc
+|  |  |-- type_corrected_query.h
+|  |-- config.bzl
+|  |-- config
+|  |  |-- BUILD.bazel
+|  |  |-- character_form_manager.cc
+|  |  |-- character_form_manager.h
+|  |  |-- character_form_manager_test.cc
+|  |  |-- config.gyp
+|  |  |-- config_handler.cc
+|  |  |-- config_handler.h
+|  |  |-- config_handler_test.cc
+|  |  |-- config_test.gyp
+|  |  |-- stats_config_util.cc
+|  |  |-- stats_config_util.h
+|  |  |-- stats_config_util_mock.h
+|  |  |-- stats_config_util_test.cc
+|  |-- converter
+|  |  |-- BUILD.bazel
+|  |  |-- candidate_filter.cc
+|  |  |-- candidate_filter.h
+|  |  |-- candidate_filter_test.cc
+|  |  |-- connector.cc
+|  |  |-- connector.h
+|  |  |-- connector_test.cc
+|  |  |-- converter.cc
+|  |  |-- converter.gyp
+|  |  |-- converter.h
+|  |  |-- converter_base.gyp
+|  |  |-- converter_interface.h
+|  |  |-- converter_main.cc
+|  |  |-- converter_main.gyp
+|  |  |-- converter_mock.cc
+|  |  |-- converter_mock.h
+|  |  |-- converter_mock_test.cc
+|  |  |-- converter_regression_test.cc
+|  |  |-- converter_test.cc
+|  |  |-- converter_test.gyp
+|  |  |-- converter_util.cc
+|  |  |-- converter_util.h
+|  |  |-- gen_boundary_data.py
+|  |  |-- gen_quality_regression_test_data.py
+|  |  |-- gen_segmenter_bitarray.cc
+|  |  |-- gen_segmenter_bitarray.h
+|  |  |-- gen_segmenter_code.py
+|  |  |-- immutable_converter.cc
+|  |  |-- immutable_converter.h
+|  |  |-- immutable_converter_factory.h
+|  |  |-- immutable_converter_interface.cc
+|  |  |-- immutable_converter_interface.h
+|  |  |-- immutable_converter_test.cc
+|  |  |-- key_corrector.cc
+|  |  |-- key_corrector.h
+|  |  |-- key_corrector_test.cc
+|  |  |-- lattice.cc
+|  |  |-- lattice.h
+|  |  |-- lattice_test.cc
+|  |  |-- nbest_generator.cc
+|  |  |-- nbest_generator.h
+|  |  |-- nbest_generator_test.cc
+|  |  |-- node.h
+|  |  |-- node_allocator.h
+|  |  |-- node_list_builder.h
+|  |  |-- pos_id_printer.cc
+|  |  |-- pos_id_printer.h
+|  |  |-- pos_id_printer_test.cc
+|  |  |-- quality_regression.py
+|  |  |-- quality_regression_main.cc
+|  |  |-- quality_regression_test.bzl
+|  |  |-- quality_regression_test.cc
+|  |  |-- quality_regression_test_lib.cc
+|  |  |-- quality_regression_test_lib.h
+|  |  |-- quality_regression_util.cc
+|  |  |-- quality_regression_util.h
+|  |  |-- segmenter.cc
+|  |  |-- segmenter.h
+|  |  |-- segments.cc
+|  |  |-- segments.h
+|  |  |-- segments_test.cc
+|  |-- data
+|  |  |-- android
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- keyboard_layout_japanese109a.kcm
+|  |  |-- dictionary_manual
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- domain.txt
+|  |  |  |-- era.txt
+|  |  |-- dictionary_oss
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.txt
+|  |  |  |-- collocation.txt
+|  |  |  |-- collocation_suppression.txt
+|  |  |  |-- connection.deflate
+|  |  |  |-- dictionary00.txt
+|  |  |  |-- dictionary01.txt
+|  |  |  |-- dictionary02.txt
+|  |  |  |-- dictionary03.txt
+|  |  |  |-- dictionary04.txt
+|  |  |  |-- dictionary05.txt
+|  |  |  |-- dictionary06.txt
+|  |  |  |-- dictionary07.txt
+|  |  |  |-- dictionary08.txt
+|  |  |  |-- dictionary09.txt
+|  |  |  |-- id.def
+|  |  |  |-- reading_correction.tsv
+|  |  |  |-- regression_test_result.tsv
+|  |  |  |-- suffix.txt
+|  |  |  |-- suggestion_filter.txt
+|  |  |-- emoji
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- emoji_data.tsv
+|  |  |-- emoticon
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- categorized.tsv
+|  |  |  |-- emoticon.tsv
+|  |  |-- images
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- direct.svg
+|  |  |  |-- full_ascii.svg
+|  |  |  |-- full_katakana.svg
+|  |  |  |-- half_ascii.svg
+|  |  |  |-- half_katakana.svg
+|  |  |  |-- hiragana.svg
+|  |  |  |-- mac
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- candidate_window_logo.tiff
+|  |  |  |  |-- direct.tiff
+|  |  |  |  |-- full_ascii.tiff
+|  |  |  |  |-- full_katakana.tiff
+|  |  |  |  |-- half_ascii.tiff
+|  |  |  |  |-- half_katakana.tiff
+|  |  |  |  |-- hiragana.tiff
+|  |  |  |  |-- product_icon.icns
+|  |  |  |-- product_icon_32bpp-128.png
+|  |  |  |-- unix
+|  |  |  |  |-- 48x48
+|  |  |  |  |  |-- alpha_full.png
+|  |  |  |  |  |-- alpha_half.png
+|  |  |  |  |  |-- direct.png
+|  |  |  |  |  |-- hiragana.png
+|  |  |  |  |  |-- katakana_full.png
+|  |  |  |  |  |-- katakana_half.png
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- ime_product_icon_opensource-32.png
+|  |  |  |  |-- ui-alpha_full.png
+|  |  |  |  |-- ui-alpha_half.png
+|  |  |  |  |-- ui-dictionary.png
+|  |  |  |  |-- ui-direct.png
+|  |  |  |  |-- ui-hiragana.png
+|  |  |  |  |-- ui-katakana_full.png
+|  |  |  |  |-- ui-katakana_half.png
+|  |  |  |  |-- ui-properties.png
+|  |  |  |  |-- ui-tool.png
+|  |  |  |-- win
+|  |  |  |  |-- candidate_window_logo_PBGRA32_100.bmp
+|  |  |  |  |-- candidate_window_logo_PBGRA32_125.bmp
+|  |  |  |  |-- candidate_window_logo_PBGRA32_150.bmp
+|  |  |  |  |-- candidate_window_logo_PBGRA32_200.bmp
+|  |  |  |  |-- ms_alpha.ico
+|  |  |  |  |-- ms_alpha_a.ico
+|  |  |  |  |-- ms_alpha_half.ico
+|  |  |  |  |-- ms_alpha_half_a.ico
+|  |  |  |  |-- ms_direct_input.ico
+|  |  |  |  |-- ms_direct_input_a.ico
+|  |  |  |  |-- ms_disabled.ico
+|  |  |  |  |-- ms_disabled_a.ico
+|  |  |  |  |-- ms_hiragana.ico
+|  |  |  |  |-- ms_hiragana_a.ico
+|  |  |  |  |-- ms_katakana.ico
+|  |  |  |  |-- ms_katakana_a.ico
+|  |  |  |  |-- ms_katakana_half.ico
+|  |  |  |  |-- ms_katakana_half_a.ico
+|  |  |  |  |-- product_icon.ico
+|  |  |  |  |-- product_icon_langbar.ico
+|  |  |  |  |-- tools_dictionary.ico
+|  |  |  |  |-- tools_dictionary_a.ico
+|  |  |  |  |-- tools_icon.ico
+|  |  |  |  |-- tools_icon_a.ico
+|  |  |  |  |-- tools_properties.ico
+|  |  |  |  |-- tools_properties_a.ico
+|  |  |-- installer
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- credits_en.html
+|  |  |-- keymap
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- atok.tsv
+|  |  |  |-- chromeos.tsv
+|  |  |  |-- kotoeri.tsv
+|  |  |  |-- mobile.tsv
+|  |  |  |-- ms-ime.tsv
+|  |  |-- mac
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ConfigDialog
+|  |  |  |  |-- English.lproj
+|  |  |  |  |  |-- InfoPlist.strings
+|  |  |  |  |-- Japanese.lproj
+|  |  |  |  |  |-- InfoPlist.strings
+|  |  |  |-- DictionaryTool
+|  |  |  |  |-- English.lproj
+|  |  |  |  |  |-- InfoPlist.strings
+|  |  |  |  |-- Japanese.lproj
+|  |  |  |  |  |-- InfoPlist.strings
+|  |  |  |-- hidden_mozc_tool_info
+|  |  |  |-- ios_test_info
+|  |  |  |-- mozc_tool_info
+|  |  |  |-- mozc_tool_lib_info
+|  |  |  |-- qt.conf
+|  |  |-- oss
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- aux_dictionary.tsv
+|  |  |-- preedit
+|  |  |  |-- 12keys-halfwidthascii.tsv
+|  |  |  |-- 12keys-hiragana.tsv
+|  |  |  |-- 12keys-hiragana_intuitive.tsv
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- flick-halfwidthascii.tsv
+|  |  |  |-- flick-halfwidthascii_ios.tsv
+|  |  |  |-- flick-hiragana.tsv
+|  |  |  |-- flick-hiragana_intuitive.tsv
+|  |  |  |-- flick-number.tsv
+|  |  |  |-- fullwidthascii-halfwidthascii.tsv
+|  |  |  |-- fullwidthkatakana-halfwidthkatakana.tsv
+|  |  |  |-- godan-hiragana.tsv
+|  |  |  |-- halfwidthascii-fullwidthascii.tsv
+|  |  |  |-- halfwidthkatakana-fullwidthkatakana.tsv
+|  |  |  |-- hiragana-katakana.tsv
+|  |  |  |-- hiragana-romanji.tsv
+|  |  |  |-- kana.tsv
+|  |  |  |-- kanjinumber-arabicnumber.tsv
+|  |  |  |-- katakana-hiragana.tsv
+|  |  |  |-- mac-kana.tsv
+|  |  |  |-- mac-specialchars.tsv
+|  |  |  |-- mac-specialkeys.tsv
+|  |  |  |-- normalize-voiced-sound.tsv
+|  |  |  |-- notouch-hiragana.tsv
+|  |  |  |-- qwerty_mobile-halfwidthascii.tsv
+|  |  |  |-- qwerty_mobile-hiragana.tsv
+|  |  |  |-- romanji-hiragana.tsv
+|  |  |  |-- toggle_flick-halfwidthascii.tsv
+|  |  |  |-- toggle_flick-halfwidthascii_ios.tsv
+|  |  |  |-- toggle_flick-hiragana.tsv
+|  |  |  |-- toggle_flick-hiragana_intuitive.tsv
+|  |  |  |-- toggle_flick-number.tsv
+|  |  |-- rules
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- boundary.def
+|  |  |  |-- cforms.def
+|  |  |  |-- pos_matcher_rule.def
+|  |  |  |-- segmenter.def
+|  |  |  |-- sorting_map.tsv
+|  |  |  |-- special_pos.def
+|  |  |  |-- third_party_pos_map.def
+|  |  |  |-- user_pos.def
+|  |  |  |-- user_segment_history_pos_group.def
+|  |  |-- single_kanji
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- single_kanji.tsv
+|  |  |  |-- variant_rule.txt
+|  |  |-- symbol
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- categorized.tsv
+|  |  |  |-- ordering_rule.txt
+|  |  |  |-- symbol.tsv
+|  |  |-- test
+|  |  |  |-- base
+|  |  |  |  |-- compiler_specific
+|  |  |  |  |  |-- README
+|  |  |  |  |  |-- clang0207.txt
+|  |  |  |  |  |-- clang0208.txt
+|  |  |  |  |  |-- clang0209.txt
+|  |  |  |  |  |-- clang0300.txt
+|  |  |  |  |  |-- clang0301.txt
+|  |  |  |  |  |-- gcc0402.txt
+|  |  |  |  |  |-- gcc0404.txt
+|  |  |  |  |  |-- gcc0406.txt
+|  |  |  |  |  |-- gcc0407.txt
+|  |  |  |  |  |-- gcc0500.txt
+|  |  |  |  |  |-- msvc0900.txt
+|  |  |  |  |  |-- msvc1000.txt
+|  |  |  |  |  |-- msvc1100.txt
+|  |  |  |  |  |-- test_input.txt
+|  |  |  |-- calculator
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- gen_test.py
+|  |  |  |  |-- scenario_test.txt
+|  |  |  |  |-- testset.txt
+|  |  |  |-- config
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- linux_config1.db
+|  |  |  |  |-- mac_config1.db
+|  |  |  |  |-- win_config1.db
+|  |  |  |-- dictionary
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- collocation.txt
+|  |  |  |  |-- collocation_suppression.txt
+|  |  |  |  |-- connection.deflate
+|  |  |  |  |-- dictionary.txt
+|  |  |  |  |-- id.def
+|  |  |  |  |-- reading_correction.tsv
+|  |  |  |  |-- suffix.txt
+|  |  |  |  |-- suggestion_filter.txt
+|  |  |  |-- quality_regression_test
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- oss.tsv
+|  |  |  |-- renderer
+|  |  |  |  |-- win32
+|  |  |  |  |  |-- balloon_blur_alpha_-1.png
+|  |  |  |  |  |-- balloon_blur_alpha_-1.png.json
+|  |  |  |  |  |-- balloon_blur_alpha_0.png
+|  |  |  |  |  |-- balloon_blur_alpha_0.png.json
+|  |  |  |  |  |-- balloon_blur_alpha_10.png
+|  |  |  |  |  |-- balloon_blur_alpha_10.png.json
+|  |  |  |  |  |-- balloon_blur_color_32_64_128.png
+|  |  |  |  |  |-- balloon_blur_color_32_64_128.png.json
+|  |  |  |  |  |-- balloon_blur_offset_-20_-10.png
+|  |  |  |  |  |-- balloon_blur_offset_-20_-10.png.json
+|  |  |  |  |  |-- balloon_blur_offset_0_0.png
+|  |  |  |  |  |-- balloon_blur_offset_0_0.png.json
+|  |  |  |  |  |-- balloon_blur_offset_20_5.png
+|  |  |  |  |  |-- balloon_blur_offset_20_5.png.json
+|  |  |  |  |  |-- balloon_blur_sigma_0.0.png
+|  |  |  |  |  |-- balloon_blur_sigma_0.0.png.json
+|  |  |  |  |  |-- balloon_blur_sigma_0.5.png
+|  |  |  |  |  |-- balloon_blur_sigma_0.5.png.json
+|  |  |  |  |  |-- balloon_blur_sigma_1.0.png
+|  |  |  |  |  |-- balloon_blur_sigma_1.0.png.json
+|  |  |  |  |  |-- balloon_blur_sigma_2.0.png
+|  |  |  |  |  |-- balloon_blur_sigma_2.0.png.json
+|  |  |  |  |  |-- balloon_frame_thickness_-1.png
+|  |  |  |  |  |-- balloon_frame_thickness_-1.png.json
+|  |  |  |  |  |-- balloon_frame_thickness_0.png
+|  |  |  |  |  |-- balloon_frame_thickness_0.png.json
+|  |  |  |  |  |-- balloon_frame_thickness_1.5.png
+|  |  |  |  |  |-- balloon_frame_thickness_1.5.png.json
+|  |  |  |  |  |-- balloon_frame_thickness_3.png
+|  |  |  |  |  |-- balloon_frame_thickness_3.png.json
+|  |  |  |  |  |-- balloon_inside_color_32_64_128.png
+|  |  |  |  |  |-- balloon_inside_color_32_64_128.png.json
+|  |  |  |  |  |-- balloon_no_label.png
+|  |  |  |  |  |-- balloon_no_label.png.json
+|  |  |  |  |  |-- balloon_tail_bottom.png
+|  |  |  |  |  |-- balloon_tail_bottom.png.json
+|  |  |  |  |  |-- balloon_tail_left.png
+|  |  |  |  |  |-- balloon_tail_left.png.json
+|  |  |  |  |  |-- balloon_tail_right.png
+|  |  |  |  |  |-- balloon_tail_right.png.json
+|  |  |  |  |  |-- balloon_tail_top.png
+|  |  |  |  |  |-- balloon_tail_top.png.json
+|  |  |  |  |  |-- balloon_tail_width_height_-10_-10.png
+|  |  |  |  |  |-- balloon_tail_width_height_-10_-10.png.json
+|  |  |  |  |  |-- balloon_tail_width_height_0_0.png
+|  |  |  |  |  |-- balloon_tail_width_height_0_0.png.json
+|  |  |  |  |  |-- balloon_tail_width_height_10_20.png
+|  |  |  |  |  |-- balloon_tail_width_height_10_20.png.json
+|  |  |  |  |  |-- balloon_width_height_40_30.png
+|  |  |  |  |  |-- balloon_width_height_40_30.png.json
+|  |  |  |-- session
+|  |  |  |  |-- scenario
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- auto_partial_suggestion.txt
+|  |  |  |  |  |-- b12751061_scenario.txt
+|  |  |  |  |  |-- b16123009_scenario.txt
+|  |  |  |  |  |-- b18112966_scenario.txt
+|  |  |  |  |  |-- b7132535_scenario.txt
+|  |  |  |  |  |-- b7321313_scenario.txt
+|  |  |  |  |  |-- b7548679_scenario.txt
+|  |  |  |  |  |-- b8690065_scenario.txt
+|  |  |  |  |  |-- b8703702_scenario.txt
+|  |  |  |  |  |-- change_request.txt
+|  |  |  |  |  |-- clear_user_prediction.txt
+|  |  |  |  |  |-- commit.txt
+|  |  |  |  |  |-- composing_alphanumeric.txt
+|  |  |  |  |  |-- composition_display_as.txt
+|  |  |  |  |  |-- conversion.txt
+|  |  |  |  |  |-- conversion_display_as.txt
+|  |  |  |  |  |-- conversion_with_history_segment.txt
+|  |  |  |  |  |-- conversion_with_long_history_segments.txt
+|  |  |  |  |  |-- convert_from_full_ascii_to_t13n.txt
+|  |  |  |  |  |-- convert_from_full_katakana_to_t13n.txt
+|  |  |  |  |  |-- convert_from_half_ascii_to_t13n.txt
+|  |  |  |  |  |-- convert_from_half_katakana_to_t13n.txt
+|  |  |  |  |  |-- convert_from_hiragana_to_t13n.txt
+|  |  |  |  |  |-- delete_history.txt
+|  |  |  |  |  |-- desktop_t13n_candidates.txt
+|  |  |  |  |  |-- domain_suggestion.txt
+|  |  |  |  |  |-- input_mode.txt
+|  |  |  |  |  |-- insert_characters.txt
+|  |  |  |  |  |-- kana_modifier_insensitive_conversion.txt
+|  |  |  |  |  |-- mobile_partial_variant_candidates.txt
+|  |  |  |  |  |-- mobile_qwerty_transliteration_scenario.txt
+|  |  |  |  |  |-- mobile_t13n_candidates.txt
+|  |  |  |  |  |-- on_off_cancel.txt
+|  |  |  |  |  |-- partial_suggestion.txt
+|  |  |  |  |  |-- pending_character.txt
+|  |  |  |  |  |-- predict_and_convert.txt
+|  |  |  |  |  |-- reconvert.txt
+|  |  |  |  |  |-- revert.txt
+|  |  |  |  |  |-- scenario.gyp
+|  |  |  |  |  |-- segment_focus.txt
+|  |  |  |  |  |-- segment_width.txt
+|  |  |  |  |  |-- twelvekeys_switch_inputmode_scenario.txt
+|  |  |  |  |  |-- twelvekeys_toggle_flick_alphabet_scenario.txt
+|  |  |  |  |  |-- twelvekeys_toggle_hiragana_preedit_scenario.txt
+|  |  |  |  |  |-- undo.txt
+|  |  |  |  |  |-- usage_stats
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- auto_partial_suggestion.txt
+|  |  |  |  |  |  |-- backspace_after_commit.txt
+|  |  |  |  |  |  |-- backspace_after_commit_after_backspace.txt
+|  |  |  |  |  |  |-- composition.txt
+|  |  |  |  |  |  |-- continue_input.txt
+|  |  |  |  |  |  |-- continuous_input.txt
+|  |  |  |  |  |  |-- conversion.txt
+|  |  |  |  |  |  |-- insert_space.txt
+|  |  |  |  |  |  |-- language_aware_input.txt
+|  |  |  |  |  |  |-- mouse_select_from_suggestion.txt
+|  |  |  |  |  |  |-- multiple_backspace_after_commit.txt
+|  |  |  |  |  |  |-- multiple_segments.txt
+|  |  |  |  |  |  |-- multiple_sessions.txt
+|  |  |  |  |  |  |-- numpad_in_direct_input_mode.txt
+|  |  |  |  |  |  |-- prediction.txt
+|  |  |  |  |  |  |-- select_candidates_in_multiple_segments.txt
+|  |  |  |  |  |  |-- select_candidates_in_multiple_segments_and_expand_segment.txt
+|  |  |  |  |  |  |-- select_minor_conversion.txt
+|  |  |  |  |  |  |-- select_minor_prediction.txt
+|  |  |  |  |  |  |-- select_prediction.txt
+|  |  |  |  |  |  |-- select_t13n_by_key.txt
+|  |  |  |  |  |  |-- select_t13n_on_cascading_window.txt
+|  |  |  |  |  |  |-- suggestion.txt
+|  |  |  |  |  |  |-- switch_kana_type.txt
+|  |  |  |  |  |  |-- usage_stats.gyp
+|  |  |  |  |  |  |-- zero_query_suggestion.txt
+|  |  |  |-- stress_test
+|  |  |  |  |-- sentences.txt
+|  |  |-- typing
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- qwerty.tsv
+|  |  |  |-- touch_event_stats.csv
+|  |  |  |-- typing_model_12keys-hiragana.tsv
+|  |  |  |-- typing_model_flick-hiragana.tsv
+|  |  |  |-- typing_model_godan-hiragana.tsv
+|  |  |  |-- typing_model_qwerty_mobile-hiragana.tsv
+|  |  |  |-- typing_model_toggle_flick-hiragana.tsv
+|  |  |-- unicode
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- JIS0201.TXT
+|  |  |  |-- JIS0208.TXT
+|  |  |  |-- jisx0213-2004-std.txt
+|  |  |-- usage_stats
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- stats.def
+|  |  |-- version
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mozc_version_template.bzl
+|  |  |-- zero_query
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- zero_query.def
+|  |  |  |-- zero_query_number.def
+|  |-- data_manager
+|  |  |-- BUILD.bazel
+|  |  |-- connection_file_reader.cc
+|  |  |-- connection_file_reader.h
+|  |  |-- data_manager.cc
+|  |  |-- data_manager.gyp
+|  |  |-- data_manager.gypi
+|  |  |-- data_manager.h
+|  |  |-- data_manager_base.gyp
+|  |  |-- data_manager_base.gypi
+|  |  |-- data_manager_interface.h
+|  |  |-- data_manager_test.gyp
+|  |  |-- data_manager_test_base.cc
+|  |  |-- data_manager_test_base.h
+|  |  |-- dataset.proto
+|  |  |-- dataset_reader.cc
+|  |  |-- dataset_reader.h
+|  |  |-- dataset_reader_test.cc
+|  |  |-- dataset_writer.cc
+|  |  |-- dataset_writer.h
+|  |  |-- dataset_writer_main.cc
+|  |  |-- dataset_writer_test.cc
+|  |  |-- gen_connection_data.py
+|  |  |-- gen_data_version.py
+|  |  |-- mozc_data.bzl
+|  |  |-- oss
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- gen_oss_segmenter_bitarray_main.cc
+|  |  |  |-- oss_data_manager.cc
+|  |  |  |-- oss_data_manager.gyp
+|  |  |  |-- oss_data_manager.h
+|  |  |  |-- oss_data_manager_base.gyp
+|  |  |  |-- oss_data_manager_test.cc
+|  |  |  |-- oss_data_manager_test.gyp
+|  |  |-- pos_list_provider.cc
+|  |  |-- pos_list_provider.h
+|  |  |-- serialized_dictionary.cc
+|  |  |-- serialized_dictionary.h
+|  |  |-- serialized_dictionary_test.cc
+|  |  |-- testing
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- gen_mock_segmenter_bitarray_main.cc
+|  |  |  |-- mock_data_manager.cc
+|  |  |  |-- mock_data_manager.gyp
+|  |  |  |-- mock_data_manager.h
+|  |  |  |-- mock_data_manager_base.gyp
+|  |  |  |-- mock_data_manager_test.cc
+|  |  |  |-- mock_data_manager_test.gyp
+|  |-- dictionary
+|  |  |-- BUILD.bazel
+|  |  |-- __init__.py
+|  |  |-- dictionary.gyp
+|  |  |-- dictionary_base.gyp
+|  |  |-- dictionary_impl.cc
+|  |  |-- dictionary_impl.h
+|  |  |-- dictionary_impl_test.cc
+|  |  |-- dictionary_interface.h
+|  |  |-- dictionary_mock.cc
+|  |  |-- dictionary_mock.h
+|  |  |-- dictionary_mock_test.cc
+|  |  |-- dictionary_test.gyp
+|  |  |-- dictionary_test_util.cc
+|  |  |-- dictionary_test_util.h
+|  |  |-- dictionary_token.h
+|  |  |-- file
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- codec.cc
+|  |  |  |-- codec.h
+|  |  |  |-- codec_factory.cc
+|  |  |  |-- codec_factory.h
+|  |  |  |-- codec_interface.h
+|  |  |  |-- codec_test.cc
+|  |  |  |-- codec_util.cc
+|  |  |  |-- codec_util.h
+|  |  |  |-- dictionary_file.cc
+|  |  |  |-- dictionary_file.gyp
+|  |  |  |-- dictionary_file.h
+|  |  |  |-- dictionary_file_builder.cc
+|  |  |  |-- dictionary_file_builder.h
+|  |  |  |-- dictionary_file_test.cc
+|  |  |  |-- dictionary_file_test.gyp
+|  |  |  |-- section.h
+|  |  |-- gen_aux_dictionary.py
+|  |  |-- gen_pos_map.py
+|  |  |-- gen_pos_matcher_code.py
+|  |  |-- gen_pos_rewrite_rule.py
+|  |  |-- gen_suffix_data.py
+|  |  |-- gen_system_dictionary_data_main.cc
+|  |  |-- gen_user_pos_data.py
+|  |  |-- gen_zip_code_seed.py
+|  |  |-- pos_group.h
+|  |  |-- pos_util.py
+|  |  |-- suffix_dictionary.cc
+|  |  |-- suffix_dictionary.h
+|  |  |-- suffix_dictionary_test.cc
+|  |  |-- suppression_dictionary.cc
+|  |  |-- suppression_dictionary.h
+|  |  |-- suppression_dictionary_test.cc
+|  |  |-- system
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- codec.cc
+|  |  |  |-- codec.h
+|  |  |  |-- codec_interface.h
+|  |  |  |-- codec_test.cc
+|  |  |  |-- key_expansion_table.h
+|  |  |  |-- key_expansion_table_test.cc
+|  |  |  |-- system_dictionary.cc
+|  |  |  |-- system_dictionary.gyp
+|  |  |  |-- system_dictionary.h
+|  |  |  |-- system_dictionary_benchmark.cc
+|  |  |  |-- system_dictionary_builder.cc
+|  |  |  |-- system_dictionary_builder.h
+|  |  |  |-- system_dictionary_test.cc
+|  |  |  |-- system_dictionary_test.gyp
+|  |  |  |-- token_decode_iterator.h
+|  |  |  |-- value_dictionary.cc
+|  |  |  |-- value_dictionary.h
+|  |  |  |-- value_dictionary_test.cc
+|  |  |  |-- words_info.h
+|  |  |-- text_dictionary_loader.cc
+|  |  |-- text_dictionary_loader.h
+|  |  |-- text_dictionary_loader_test.cc
+|  |  |-- user_dictionary.cc
+|  |  |-- user_dictionary.h
+|  |  |-- user_dictionary_importer.cc
+|  |  |-- user_dictionary_importer.h
+|  |  |-- user_dictionary_importer_test.cc
+|  |  |-- user_dictionary_session.cc
+|  |  |-- user_dictionary_session.h
+|  |  |-- user_dictionary_session_handler.cc
+|  |  |-- user_dictionary_session_handler.h
+|  |  |-- user_dictionary_session_handler_test.cc
+|  |  |-- user_dictionary_session_test.cc
+|  |  |-- user_dictionary_storage.cc
+|  |  |-- user_dictionary_storage.h
+|  |  |-- user_dictionary_storage_test.cc
+|  |  |-- user_dictionary_stub.h
+|  |  |-- user_dictionary_test.cc
+|  |  |-- user_dictionary_util.cc
+|  |  |-- user_dictionary_util.h
+|  |  |-- user_dictionary_util_test.cc
+|  |  |-- user_pos.cc
+|  |  |-- user_pos.h
+|  |  |-- user_pos_interface.h
+|  |  |-- user_pos_test.cc
+|  |  |-- zip_code_util.py
+|  |-- engine
+|  |  |-- BUILD.bazel
+|  |  |-- engine.cc
+|  |  |-- engine.gyp
+|  |  |-- engine.h
+|  |  |-- engine_builder.cc
+|  |  |-- engine_builder.h
+|  |  |-- engine_builder_interface.h
+|  |  |-- engine_builder_test.cc
+|  |  |-- engine_factory.h
+|  |  |-- engine_factory_test.cc
+|  |  |-- engine_interface.h
+|  |  |-- engine_stub.h
+|  |  |-- engine_test.gyp
+|  |  |-- eval_engine_factory.cc
+|  |  |-- eval_engine_factory.h
+|  |  |-- minimal_engine.cc
+|  |  |-- minimal_engine.h
+|  |  |-- mock_converter_engine.cc
+|  |  |-- mock_converter_engine.h
+|  |  |-- mock_data_engine_factory.cc
+|  |  |-- mock_data_engine_factory.h
+|  |  |-- oss_engine_factory.h
+|  |  |-- user_data_manager_interface.h
+|  |  |-- user_data_manager_mock.cc
+|  |  |-- user_data_manager_mock.h
+|  |-- gui
+|  |  |-- BUILD.bazel
+|  |  |-- about_dialog
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- about_dialog.cc
+|  |  |  |-- about_dialog.h
+|  |  |  |-- about_dialog.qrc
+|  |  |  |-- about_dialog.ui
+|  |  |  |-- about_dialog_en.qm
+|  |  |  |-- about_dialog_en.qtts
+|  |  |  |-- about_dialog_ja.qm
+|  |  |  |-- about_dialog_ja.qtts
+|  |  |  |-- about_dialog_libmain.cc
+|  |  |  |-- about_dialog_main.cc
+|  |  |-- administration_dialog
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- administration_dialog.cc
+|  |  |  |-- administration_dialog.h
+|  |  |  |-- administration_dialog.qrc
+|  |  |  |-- administration_dialog.ui
+|  |  |  |-- administration_dialog_en.qm
+|  |  |  |-- administration_dialog_en.qtts
+|  |  |  |-- administration_dialog_ja.qm
+|  |  |  |-- administration_dialog_ja.qtts
+|  |  |  |-- administration_dialog_libmain.cc
+|  |  |  |-- administration_dialog_main.cc
+|  |  |-- base
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- debug_util.cc
+|  |  |  |-- debug_util.h
+|  |  |  |-- encoding_util.cc
+|  |  |  |-- encoding_util.h
+|  |  |  |-- encoding_util_test.cc
+|  |  |  |-- msime_user_dictionary_importer.cc
+|  |  |  |-- msime_user_dictionary_importer.h
+|  |  |  |-- setup_util.cc
+|  |  |  |-- setup_util.h
+|  |  |  |-- singleton_window_helper.cc
+|  |  |  |-- singleton_window_helper.h
+|  |  |  |-- sjis_to_ucs2_table.h
+|  |  |  |-- table_util.cc
+|  |  |  |-- table_util.h
+|  |  |  |-- tr.qrc
+|  |  |  |-- tr_en.qm
+|  |  |  |-- tr_en.qtts
+|  |  |  |-- tr_ja.qm
+|  |  |  |-- tr_ja.qtts
+|  |  |  |-- util.cc
+|  |  |  |-- util.h
+|  |  |  |-- win_util.cc
+|  |  |  |-- win_util.h
+|  |  |  |-- window_title_modifier.cc
+|  |  |  |-- window_title_modifier.h
+|  |  |-- config_dialog
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- character_form_editor.cc
+|  |  |  |-- character_form_editor.h
+|  |  |  |-- combobox_delegate.cc
+|  |  |  |-- combobox_delegate.h
+|  |  |  |-- config_dialog.cc
+|  |  |  |-- config_dialog.h
+|  |  |  |-- config_dialog.qrc
+|  |  |  |-- config_dialog.ui
+|  |  |  |-- config_dialog_en.qm
+|  |  |  |-- config_dialog_en.qtts
+|  |  |  |-- config_dialog_ja.qm
+|  |  |  |-- config_dialog_ja.qtts
+|  |  |  |-- config_dialog_libmain.cc
+|  |  |  |-- config_dialog_main.cc
+|  |  |  |-- generic_table_editor.cc
+|  |  |  |-- generic_table_editor.h
+|  |  |  |-- generic_table_editor.ui
+|  |  |  |-- keybinding_editor.cc
+|  |  |  |-- keybinding_editor.h
+|  |  |  |-- keybinding_editor.ui
+|  |  |  |-- keybinding_editor_delegate.cc
+|  |  |  |-- keybinding_editor_delegate.h
+|  |  |  |-- keymap_editor.cc
+|  |  |  |-- keymap_editor.h
+|  |  |  |-- keymap_en.qm
+|  |  |  |-- keymap_en.qtts
+|  |  |  |-- keymap_ja.qm
+|  |  |  |-- keymap_ja.qtts
+|  |  |  |-- roman_table_editor.cc
+|  |  |  |-- roman_table_editor.h
+|  |  |-- dictionary_tool
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- dictionary_content_table_widget.cc
+|  |  |  |-- dictionary_content_table_widget.h
+|  |  |  |-- dictionary_tool.cc
+|  |  |  |-- dictionary_tool.h
+|  |  |  |-- dictionary_tool.qrc
+|  |  |  |-- dictionary_tool.ui
+|  |  |  |-- dictionary_tool_en.qm
+|  |  |  |-- dictionary_tool_en.qtts
+|  |  |  |-- dictionary_tool_ja.qm
+|  |  |  |-- dictionary_tool_ja.qtts
+|  |  |  |-- dictionary_tool_libmain.cc
+|  |  |  |-- dictionary_tool_main.cc
+|  |  |  |-- find_dialog.cc
+|  |  |  |-- find_dialog.h
+|  |  |  |-- find_dialog.ui
+|  |  |  |-- import_dialog.cc
+|  |  |  |-- import_dialog.h
+|  |  |  |-- import_dialog.ui
+|  |  |  |-- zero_width_splitter.cc
+|  |  |  |-- zero_width_splitter.h
+|  |  |-- error_message_dialog
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- error_message_dialog.cc
+|  |  |  |-- error_message_dialog.h
+|  |  |  |-- error_message_dialog.qrc
+|  |  |  |-- error_message_dialog_en.qm
+|  |  |  |-- error_message_dialog_en.qtts
+|  |  |  |-- error_message_dialog_ja.qm
+|  |  |  |-- error_message_dialog_ja.qtts
+|  |  |  |-- error_message_dialog_libmain.cc
+|  |  |  |-- error_message_dialog_main.cc
+|  |  |-- gui.gyp
+|  |  |-- mac_gui.gypi
+|  |  |-- post_install_dialog
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- post_install_dialog.cc
+|  |  |  |-- post_install_dialog.h
+|  |  |  |-- post_install_dialog.qrc
+|  |  |  |-- post_install_dialog.ui
+|  |  |  |-- post_install_dialog_en.qm
+|  |  |  |-- post_install_dialog_en.qtts
+|  |  |  |-- post_install_dialog_ja.qm
+|  |  |  |-- post_install_dialog_ja.qtts
+|  |  |  |-- post_install_dialog_libmain.cc
+|  |  |  |-- post_install_dialog_main.cc
+|  |  |-- qt.conf
+|  |  |-- qt_libraries.gypi
+|  |  |-- qt_moc.gypi
+|  |  |-- qt_rcc.gypi
+|  |  |-- qt_uic.gypi
+|  |  |-- set_default_dialog
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- set_default_dialog.cc
+|  |  |  |-- set_default_dialog.h
+|  |  |  |-- set_default_dialog.qrc
+|  |  |  |-- set_default_dialog.ui
+|  |  |  |-- set_default_dialog_en.qm
+|  |  |  |-- set_default_dialog_en.qtts
+|  |  |  |-- set_default_dialog_ja.qm
+|  |  |  |-- set_default_dialog_ja.qtts
+|  |  |  |-- set_default_dialog_libmain.cc
+|  |  |  |-- set_default_dialog_main.cc
+|  |  |-- tool
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mozc_tool.exe.manifest
+|  |  |  |-- mozc_tool.rc
+|  |  |  |-- mozc_tool_libmain.cc
+|  |  |  |-- mozc_tool_libmain.h
+|  |  |  |-- mozc_tool_main.cc
+|  |  |  |-- mozc_tool_main_noqt.cc
+|  |  |  |-- prelauncher_libmain.cc
+|  |  |-- word_register_dialog
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- word_register_dialog.cc
+|  |  |  |-- word_register_dialog.h
+|  |  |  |-- word_register_dialog.qrc
+|  |  |  |-- word_register_dialog.ui
+|  |  |  |-- word_register_dialog_en.qm
+|  |  |  |-- word_register_dialog_en.qtts
+|  |  |  |-- word_register_dialog_ja.qm
+|  |  |  |-- word_register_dialog_ja.qtts
+|  |  |  |-- word_register_dialog_libmain.cc
+|  |  |  |-- word_register_dialog_main.cc
+|  |-- gyp
+|  |  |-- common.gypi
+|  |  |-- common_win.gypi
+|  |  |-- defines.gypi
+|  |  |-- directories.gypi
+|  |  |-- gen_win32_resource_header.gypi
+|  |  |-- gyp.patch
+|  |  |-- install_testdata.gypi
+|  |  |-- postbuilds_mac.gypi
+|  |  |-- tests.gyp
+|  |-- ios
+|  |  |-- BUILD.bazel
+|  |  |-- ios.gyp
+|  |  |-- ios_engine.cc
+|  |  |-- ios_engine.h
+|  |  |-- ios_engine_main.cc
+|  |  |-- ios_engine_stub.cc
+|  |-- ipc
+|  |  |-- BUILD.bazel
+|  |  |-- android_ipc.cc
+|  |  |-- ipc.cc
+|  |  |-- ipc.gyp
+|  |  |-- ipc.h
+|  |  |-- ipc.proto
+|  |  |-- ipc_main.cc
+|  |  |-- ipc_mock.cc
+|  |  |-- ipc_mock.h
+|  |  |-- ipc_path_manager.cc
+|  |  |-- ipc_path_manager.h
+|  |  |-- ipc_path_manager_main.cc
+|  |  |-- ipc_path_manager_test.cc
+|  |  |-- ipc_test.cc
+|  |  |-- ipc_test_util.cc
+|  |  |-- ipc_test_util.h
+|  |  |-- mach_ipc.cc
+|  |  |-- named_event.cc
+|  |  |-- named_event.h
+|  |  |-- named_event_main.cc
+|  |  |-- named_event_test.cc
+|  |  |-- process_watch_dog.cc
+|  |  |-- process_watch_dog.h
+|  |  |-- process_watch_dog_main.cc
+|  |  |-- process_watch_dog_test.cc
+|  |  |-- unix_ipc.cc
+|  |  |-- win32_ipc.cc
+|  |  |-- window_info.proto
+|  |-- mac
+|  |  |-- ActivatePane
+|  |  |  |-- ActivatePane.h
+|  |  |  |-- ActivatePane.mm
+|  |  |  |-- ActivatePane.xib
+|  |  |  |-- English.lproj
+|  |  |  |  |-- Localizable.strings
+|  |  |  |-- Info.plist
+|  |  |  |-- Japanese.lproj
+|  |  |  |  |-- Localizable.strings
+|  |  |-- BUILD.bazel
+|  |  |-- DevConfirmPane
+|  |  |  |-- DevConfirmPane.h
+|  |  |  |-- DevConfirmPane.mm
+|  |  |  |-- DevConfirmPane.xib
+|  |  |  |-- English.lproj
+|  |  |  |  |-- Localizable.strings
+|  |  |  |-- Info.plist
+|  |  |  |-- Japanese.lproj
+|  |  |  |  |-- Localizable.strings
+|  |  |-- English.lproj
+|  |  |  |-- Config.xib
+|  |  |  |-- InfoPlist.strings
+|  |  |-- GoogleJapaneseInputController.h
+|  |  |-- GoogleJapaneseInputController.mm
+|  |  |-- GoogleJapaneseInputControllerInterface.h
+|  |  |-- GoogleJapaneseInputController_test.mm
+|  |  |-- GoogleJapaneseInputServer.h
+|  |  |-- GoogleJapaneseInputServer.mm
+|  |  |-- GoogleJapaneseInputServer_test.mm
+|  |  |-- Info.plist
+|  |  |-- Japanese.lproj
+|  |  |  |-- Config.xib
+|  |  |  |-- InfoPlist.strings
+|  |  |-- KeyCodeMap.h
+|  |  |-- KeyCodeMap.mm
+|  |  |-- KeyCodeMap_test.mm
+|  |  |-- Uninstaller
+|  |  |  |-- DialogsController.h
+|  |  |  |-- DialogsController.mm
+|  |  |  |-- English.lproj
+|  |  |  |  |-- Dialogs.xib
+|  |  |  |  |-- InfoPlist.strings
+|  |  |  |-- Info.plist
+|  |  |  |-- Japanese.lproj
+|  |  |  |  |-- Dialogs.xib
+|  |  |  |  |-- InfoPlist.strings
+|  |  |  |-- Uninstaller.h
+|  |  |  |-- Uninstaller.mm
+|  |  |  |-- Uninstaller_main.mm
+|  |  |-- build_installer.py
+|  |  |-- common.h
+|  |  |-- generate_mapping.py
+|  |  |-- installer
+|  |  |  |-- LaunchAgents
+|  |  |  |  |-- org.mozc.inputmethod.Japanese.Converter.plist
+|  |  |  |  |-- org.mozc.inputmethod.Japanese.Renderer.plist
+|  |  |  |-- Mozc_template.pkgproj
+|  |  |  |-- postflight_template.sh
+|  |  |  |-- preflight_template.sh
+|  |  |-- mac.gyp
+|  |  |-- main.mm
+|  |  |-- zip_files.py
+|  |-- net
+|  |  |-- BUILD.bazel
+|  |  |-- json_util.cc
+|  |  |-- json_util.h
+|  |  |-- json_util_test.cc
+|  |  |-- json_util_test.proto
+|  |  |-- jsoncpp.gyp
+|  |  |-- jsoncpp.h
+|  |  |-- jsonpath.cc
+|  |  |-- jsonpath.h
+|  |  |-- jsonpath_test.cc
+|  |  |-- net.gyp
+|  |  |-- net_test.gyp
+|  |  |-- proxy_manager.cc
+|  |  |-- proxy_manager.h
+|  |-- prediction
+|  |  |-- BUILD.bazel
+|  |  |-- __init__.py
+|  |  |-- dictionary_predictor.cc
+|  |  |-- dictionary_predictor.h
+|  |  |-- dictionary_predictor_test.cc
+|  |  |-- gen_suggestion_filter_main.cc
+|  |  |-- gen_zero_query_data.py
+|  |  |-- gen_zero_query_number_data.py
+|  |  |-- gen_zero_query_util.py
+|  |  |-- prediction.gyp
+|  |  |-- prediction_base.gyp
+|  |  |-- prediction_test.gyp
+|  |  |-- predictor.cc
+|  |  |-- predictor.h
+|  |  |-- predictor_interface.h
+|  |  |-- predictor_test.cc
+|  |  |-- suggestion_filter.cc
+|  |  |-- suggestion_filter.h
+|  |  |-- user_history_predictor.cc
+|  |  |-- user_history_predictor.h
+|  |  |-- user_history_predictor.proto
+|  |  |-- user_history_predictor_test.cc
+|  |  |-- zero_query_dict.h
+|  |  |-- zero_query_dict_test.cc
+|  |-- protobuf
+|  |  |-- custom_protoc_main.cc
+|  |  |-- genproto.gypi
+|  |  |-- protobuf.gyp
+|  |-- protocol
+|  |  |-- BUILD.bazel
+|  |  |-- candidates.proto
+|  |  |-- commands.proto
+|  |  |-- config.proto
+|  |  |-- engine_builder.proto
+|  |  |-- protocol.gyp
+|  |  |-- renderer_command.proto
+|  |  |-- renderer_style.proto
+|  |  |-- segmenter_data.proto
+|  |  |-- state.proto
+|  |  |-- user_dictionary_storage.proto
+|  |-- renderer
+|  |  |-- BUILD.bazel
+|  |  |-- mac
+|  |  |  |-- CandidateController.h
+|  |  |  |-- CandidateController.mm
+|  |  |  |-- CandidateView.h
+|  |  |  |-- CandidateView.mm
+|  |  |  |-- CandidateWindow.h
+|  |  |  |-- CandidateWindow.mm
+|  |  |  |-- Info.plist
+|  |  |  |-- InfolistView.h
+|  |  |  |-- InfolistView.mm
+|  |  |  |-- InfolistWindow.h
+|  |  |  |-- InfolistWindow.mm
+|  |  |  |-- RendererBaseWindow.h
+|  |  |  |-- RendererBaseWindow.mm
+|  |  |  |-- mac_server.h
+|  |  |  |-- mac_server.mm
+|  |  |  |-- mac_server_send_command.h
+|  |  |  |-- mac_server_send_command.mm
+|  |  |  |-- mac_view_util.h
+|  |  |  |-- mac_view_util.mm
+|  |  |-- mozc_renderer.exe.manifest
+|  |  |-- mozc_renderer.rc
+|  |  |-- mozc_renderer_main.cc
+|  |  |-- qt
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- qt_receiver_loop.cc
+|  |  |  |-- qt_receiver_loop.h
+|  |  |  |-- qt_renderer.cc
+|  |  |  |-- qt_renderer.h
+|  |  |  |-- qt_server.cc
+|  |  |  |-- qt_server.h
+|  |  |  |-- qt_window_manager.cc
+|  |  |  |-- qt_window_manager.h
+|  |  |  |-- qt_window_manager_interface.h
+|  |  |-- renderer.gyp
+|  |  |-- renderer_client.cc
+|  |  |-- renderer_client.h
+|  |  |-- renderer_client_test.cc
+|  |  |-- renderer_interface.h
+|  |  |-- renderer_mock.h
+|  |  |-- renderer_server.cc
+|  |  |-- renderer_server.h
+|  |  |-- renderer_server_test.cc
+|  |  |-- renderer_style_handler.cc
+|  |  |-- renderer_style_handler.h
+|  |  |-- renderer_style_handler_test.cc
+|  |  |-- table_layout.cc
+|  |  |-- table_layout.h
+|  |  |-- table_layout_interface.h
+|  |  |-- table_layout_mock.h
+|  |  |-- table_layout_test.cc
+|  |  |-- unix
+|  |  |  |-- cairo_factory.cc
+|  |  |  |-- cairo_factory.h
+|  |  |  |-- cairo_factory_interface.h
+|  |  |  |-- cairo_factory_mock.h
+|  |  |  |-- cairo_wrapper.cc
+|  |  |  |-- cairo_wrapper.h
+|  |  |  |-- cairo_wrapper_interface.h
+|  |  |  |-- cairo_wrapper_mock.h
+|  |  |  |-- candidate_window.cc
+|  |  |  |-- candidate_window.h
+|  |  |  |-- candidate_window_test.cc
+|  |  |  |-- const.h
+|  |  |  |-- draw_tool.cc
+|  |  |  |-- draw_tool.h
+|  |  |  |-- draw_tool_interface.h
+|  |  |  |-- draw_tool_mock.h
+|  |  |  |-- draw_tool_test.cc
+|  |  |  |-- font_spec.cc
+|  |  |  |-- font_spec.h
+|  |  |  |-- font_spec_interface.h
+|  |  |  |-- font_spec_test.cc
+|  |  |  |-- gtk_window_base.cc
+|  |  |  |-- gtk_window_base.h
+|  |  |  |-- gtk_window_base_test.cc
+|  |  |  |-- gtk_window_interface.h
+|  |  |  |-- gtk_window_mock.h
+|  |  |  |-- gtk_wrapper.cc
+|  |  |  |-- gtk_wrapper.h
+|  |  |  |-- gtk_wrapper_interface.h
+|  |  |  |-- gtk_wrapper_mock.h
+|  |  |  |-- infolist_window.cc
+|  |  |  |-- infolist_window.h
+|  |  |  |-- infolist_window_test.cc
+|  |  |  |-- pango_wrapper.cc
+|  |  |  |-- pango_wrapper.h
+|  |  |  |-- pango_wrapper_interface.h
+|  |  |  |-- text_renderer.cc
+|  |  |  |-- text_renderer.h
+|  |  |  |-- text_renderer_interface.h
+|  |  |  |-- text_renderer_mock.h
+|  |  |  |-- text_renderer_test.cc
+|  |  |  |-- unix_renderer.cc
+|  |  |  |-- unix_renderer.h
+|  |  |  |-- unix_renderer_test.cc
+|  |  |  |-- unix_server.cc
+|  |  |  |-- unix_server.h
+|  |  |  |-- unix_server_test.cc
+|  |  |  |-- window_manager.cc
+|  |  |  |-- window_manager.h
+|  |  |  |-- window_manager_interface.h
+|  |  |  |-- window_manager_mock.h
+|  |  |  |-- window_manager_test.cc
+|  |  |-- win32
+|  |  |  |-- candidate_window.cc
+|  |  |  |-- candidate_window.h
+|  |  |  |-- composition_window.cc
+|  |  |  |-- composition_window.h
+|  |  |  |-- gen_pbgra32_bitmap.cc
+|  |  |  |-- indicator_window.cc
+|  |  |  |-- indicator_window.h
+|  |  |  |-- infolist_window.cc
+|  |  |  |-- infolist_window.h
+|  |  |  |-- text_renderer.cc
+|  |  |  |-- text_renderer.h
+|  |  |  |-- win32_font_util.cc
+|  |  |  |-- win32_font_util.h
+|  |  |  |-- win32_font_util_test.cc
+|  |  |  |-- win32_image_util.cc
+|  |  |  |-- win32_image_util.h
+|  |  |  |-- win32_image_util_test.cc
+|  |  |  |-- win32_renderer_client.cc
+|  |  |  |-- win32_renderer_client.h
+|  |  |  |-- win32_renderer_util.cc
+|  |  |  |-- win32_renderer_util.h
+|  |  |  |-- win32_renderer_util_test.cc
+|  |  |  |-- win32_server.cc
+|  |  |  |-- win32_server.h
+|  |  |  |-- window_manager.cc
+|  |  |  |-- window_manager.h
+|  |  |-- win_resource.h
+|  |  |-- window_util.cc
+|  |  |-- window_util.h
+|  |  |-- window_util_test.cc
+|  |-- request
+|  |  |-- BUILD.bazel
+|  |  |-- conversion_request.cc
+|  |  |-- conversion_request.h
+|  |  |-- request.gyp
+|  |-- rewriter
+|  |  |-- BUILD.bazel
+|  |  |-- __init__.py
+|  |  |-- calculator
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- calculator.cc
+|  |  |  |-- calculator.gyp
+|  |  |  |-- calculator_interface.h
+|  |  |  |-- calculator_mock.cc
+|  |  |  |-- calculator_mock.h
+|  |  |  |-- calculator_test.cc
+|  |  |  |-- parser.c.inc
+|  |  |  |-- parser
+|  |  |  |  |-- README
+|  |  |  |  |-- parser.y
+|  |  |-- calculator_rewriter.cc
+|  |  |-- calculator_rewriter.h
+|  |  |-- calculator_rewriter_test.cc
+|  |  |-- collocation_rewriter.cc
+|  |  |-- collocation_rewriter.h
+|  |  |-- collocation_rewriter_test.cc
+|  |  |-- collocation_util.cc
+|  |  |-- collocation_util.h
+|  |  |-- collocation_util_test.cc
+|  |  |-- command_rewriter.cc
+|  |  |-- command_rewriter.h
+|  |  |-- command_rewriter_test.cc
+|  |  |-- correction_rewriter.cc
+|  |  |-- correction_rewriter.h
+|  |  |-- correction_rewriter_test.cc
+|  |  |-- date_rewriter.cc
+|  |  |-- date_rewriter.h
+|  |  |-- date_rewriter_test.cc
+|  |  |-- dice_rewriter.cc
+|  |  |-- dice_rewriter.h
+|  |  |-- dice_rewriter_test.cc
+|  |  |-- dictionary_generator.cc
+|  |  |-- dictionary_generator.h
+|  |  |-- dictionary_generator_test.cc
+|  |  |-- emoji_rewriter.cc
+|  |  |-- emoji_rewriter.h
+|  |  |-- emoji_rewriter_test.cc
+|  |  |-- emoticon_rewriter.cc
+|  |  |-- emoticon_rewriter.h
+|  |  |-- emoticon_rewriter_test.cc
+|  |  |-- english_variants_rewriter.cc
+|  |  |-- english_variants_rewriter.h
+|  |  |-- english_variants_rewriter_test.cc
+|  |  |-- focus_candidate_rewriter.cc
+|  |  |-- focus_candidate_rewriter.h
+|  |  |-- focus_candidate_rewriter_test.cc
+|  |  |-- fortune_rewriter.cc
+|  |  |-- fortune_rewriter.h
+|  |  |-- fortune_rewriter_test.cc
+|  |  |-- gen_collocation_data_main.cc
+|  |  |-- gen_collocation_suppression_data_main.cc
+|  |  |-- gen_counter_suffix_array.py
+|  |  |-- gen_emoji_rewriter_data.py
+|  |  |-- gen_emoticon_rewriter_data.cc
+|  |  |-- gen_existence_data.cc
+|  |  |-- gen_existence_data.h
+|  |  |-- gen_reading_correction_data.py
+|  |  |-- gen_single_kanji_noun_prefix_data.cc
+|  |  |-- gen_single_kanji_rewriter_data.py
+|  |  |-- gen_symbol_rewriter_dictionary_main.cc
+|  |  |-- gen_usage_rewriter_dictionary_main.cc
+|  |  |-- katakana_promotion_rewriter.cc
+|  |  |-- katakana_promotion_rewriter.h
+|  |  |-- katakana_promotion_rewriter_test.cc
+|  |  |-- language_aware_rewriter.cc
+|  |  |-- language_aware_rewriter.h
+|  |  |-- language_aware_rewriter_test.cc
+|  |  |-- merger_rewriter.h
+|  |  |-- merger_rewriter_test.cc
+|  |  |-- normalization_rewriter.cc
+|  |  |-- normalization_rewriter.h
+|  |  |-- normalization_rewriter_test.cc
+|  |  |-- number_compound_util.cc
+|  |  |-- number_compound_util.h
+|  |  |-- number_compound_util_test.cc
+|  |  |-- number_rewriter.cc
+|  |  |-- number_rewriter.h
+|  |  |-- number_rewriter_test.cc
+|  |  |-- remove_redundant_candidate_rewriter.cc
+|  |  |-- remove_redundant_candidate_rewriter.h
+|  |  |-- remove_redundant_candidate_rewriter_test.cc
+|  |  |-- rewriter.cc
+|  |  |-- rewriter.gyp
+|  |  |-- rewriter.h
+|  |  |-- rewriter_base.gyp
+|  |  |-- rewriter_interface.h
+|  |  |-- rewriter_test.cc
+|  |  |-- rewriter_test.gyp
+|  |  |-- rewriter_util.cc
+|  |  |-- rewriter_util.h
+|  |  |-- rewriter_util_test.cc
+|  |  |-- single_kanji_rewriter.cc
+|  |  |-- single_kanji_rewriter.h
+|  |  |-- single_kanji_rewriter_test.cc
+|  |  |-- symbol_rewriter.cc
+|  |  |-- symbol_rewriter.h
+|  |  |-- symbol_rewriter_test.cc
+|  |  |-- transliteration_rewriter.cc
+|  |  |-- transliteration_rewriter.h
+|  |  |-- transliteration_rewriter_test.cc
+|  |  |-- unicode_rewriter.cc
+|  |  |-- unicode_rewriter.h
+|  |  |-- unicode_rewriter_test.cc
+|  |  |-- usage_rewriter.cc
+|  |  |-- usage_rewriter.h
+|  |  |-- usage_rewriter_test.cc
+|  |  |-- user_boundary_history_rewriter.cc
+|  |  |-- user_boundary_history_rewriter.h
+|  |  |-- user_boundary_history_rewriter_test.cc
+|  |  |-- user_dictionary_rewriter.cc
+|  |  |-- user_dictionary_rewriter.h
+|  |  |-- user_dictionary_rewriter_test.cc
+|  |  |-- user_segment_history_rewriter.cc
+|  |  |-- user_segment_history_rewriter.h
+|  |  |-- user_segment_history_rewriter_test.cc
+|  |  |-- variants_rewriter.cc
+|  |  |-- variants_rewriter.h
+|  |  |-- variants_rewriter_test.cc
+|  |  |-- version_rewriter.cc
+|  |  |-- version_rewriter.h
+|  |  |-- version_rewriter_test.cc
+|  |  |-- zipcode_rewriter.cc
+|  |  |-- zipcode_rewriter.h
+|  |  |-- zipcode_rewriter_test.cc
+|  |-- server
+|  |  |-- BUILD.bazel
+|  |  |-- Info.plist
+|  |  |-- cache_service_manager.cc
+|  |  |-- cache_service_manager.h
+|  |  |-- mozc_cache_service.cc
+|  |  |-- mozc_cache_service.exe.manifest
+|  |  |-- mozc_cache_service.rc
+|  |  |-- mozc_cache_service_resource.h
+|  |  |-- mozc_rpc_server_main.cc
+|  |  |-- mozc_server.cc
+|  |  |-- mozc_server.exe.manifest
+|  |  |-- mozc_server.h
+|  |  |-- mozc_server.rc
+|  |  |-- mozc_server_main.cc
+|  |  |-- server.gyp
+|  |  |-- win32_service_state.proto
+|  |-- session
+|  |  |-- BUILD.bazel
+|  |  |-- common.h
+|  |  |-- gen_session_stress_test_data.py
+|  |  |-- ime_switch_util.cc
+|  |  |-- ime_switch_util.h
+|  |  |-- ime_switch_util_test.cc
+|  |  |-- internal
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- candidate_list.cc
+|  |  |  |-- candidate_list.h
+|  |  |  |-- candidate_list_test.cc
+|  |  |  |-- ime_context.cc
+|  |  |  |-- ime_context.h
+|  |  |  |-- ime_context_test.cc
+|  |  |  |-- key_event_transformer.cc
+|  |  |  |-- key_event_transformer.h
+|  |  |  |-- key_event_transformer_test.cc
+|  |  |  |-- keymap-inl.h
+|  |  |  |-- keymap.cc
+|  |  |  |-- keymap.h
+|  |  |  |-- keymap_factory.cc
+|  |  |  |-- keymap_factory.h
+|  |  |  |-- keymap_factory_test.cc
+|  |  |  |-- keymap_interface.h
+|  |  |  |-- keymap_test.cc
+|  |  |  |-- session_output.cc
+|  |  |  |-- session_output.h
+|  |  |  |-- session_output_test.cc
+|  |  |-- key_info_util.cc
+|  |  |-- key_info_util.h
+|  |  |-- key_info_util_test.cc
+|  |  |-- output_util.cc
+|  |  |-- output_util.h
+|  |  |-- output_util_test.cc
+|  |  |-- random_keyevents_generator.cc
+|  |  |-- random_keyevents_generator.h
+|  |  |-- random_keyevents_generator_test.cc
+|  |  |-- request_test_util.cc
+|  |  |-- request_test_util.h
+|  |  |-- request_test_util_test.cc
+|  |  |-- session.cc
+|  |  |-- session.gyp
+|  |  |-- session.h
+|  |  |-- session_base.gyp
+|  |  |-- session_client_main.cc
+|  |  |-- session_converter.cc
+|  |  |-- session_converter.h
+|  |  |-- session_converter_interface.h
+|  |  |-- session_converter_stress_test.cc
+|  |  |-- session_converter_test.cc
+|  |  |-- session_handler.cc
+|  |  |-- session_handler.h
+|  |  |-- session_handler_interface.h
+|  |  |-- session_handler_main.cc
+|  |  |-- session_handler_scenario_test.cc
+|  |  |-- session_handler_stress_test.cc
+|  |  |-- session_handler_test.cc
+|  |  |-- session_handler_test_util.cc
+|  |  |-- session_handler_test_util.h
+|  |  |-- session_handler_tool.cc
+|  |  |-- session_handler_tool.h
+|  |  |-- session_interface.h
+|  |  |-- session_observer_handler.cc
+|  |  |-- session_observer_handler.h
+|  |  |-- session_observer_handler_test.cc
+|  |  |-- session_observer_interface.h
+|  |  |-- session_regression_test.cc
+|  |  |-- session_server.cc
+|  |  |-- session_server.h
+|  |  |-- session_server_main.cc
+|  |  |-- session_server_test.cc
+|  |  |-- session_test.cc
+|  |  |-- session_test.gyp
+|  |  |-- session_usage_observer.cc
+|  |  |-- session_usage_observer.h
+|  |  |-- session_usage_observer_test.cc
+|  |  |-- session_usage_stats_util.cc
+|  |  |-- session_usage_stats_util.h
+|  |  |-- session_usage_stats_util_test.cc
+|  |  |-- session_watch_dog.cc
+|  |  |-- session_watch_dog.h
+|  |  |-- session_watch_dog_test.cc
+|  |  |-- testdata
+|  |  |  |-- input.txt
+|  |-- storage
+|  |  |-- BUILD.bazel
+|  |  |-- encrypted_string_storage.cc
+|  |  |-- encrypted_string_storage.h
+|  |  |-- encrypted_string_storage_test.cc
+|  |  |-- existence_filter.cc
+|  |  |-- existence_filter.h
+|  |  |-- existence_filter_main.cc
+|  |  |-- existence_filter_test.cc
+|  |  |-- louds
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bit_stream.cc
+|  |  |  |-- bit_stream.h
+|  |  |  |-- bit_stream_test.cc
+|  |  |  |-- bit_vector_based_array.cc
+|  |  |  |-- bit_vector_based_array.h
+|  |  |  |-- bit_vector_based_array_builder.cc
+|  |  |  |-- bit_vector_based_array_builder.h
+|  |  |  |-- bit_vector_based_array_test.cc
+|  |  |  |-- louds.cc
+|  |  |  |-- louds.gyp
+|  |  |  |-- louds.h
+|  |  |  |-- louds_test.cc
+|  |  |  |-- louds_test.gyp
+|  |  |  |-- louds_trie.cc
+|  |  |  |-- louds_trie.h
+|  |  |  |-- louds_trie_builder.cc
+|  |  |  |-- louds_trie_builder.h
+|  |  |  |-- louds_trie_test.cc
+|  |  |  |-- simple_succinct_bit_vector_index.cc
+|  |  |  |-- simple_succinct_bit_vector_index.h
+|  |  |  |-- simple_succinct_bit_vector_index_test.cc
+|  |  |-- lru_cache.h
+|  |  |-- lru_cache_main.cc
+|  |  |-- lru_storage.cc
+|  |  |-- lru_storage.h
+|  |  |-- lru_storage_main.cc
+|  |  |-- lru_storage_test.cc
+|  |  |-- memory_storage.cc
+|  |  |-- memory_storage.h
+|  |  |-- memory_storage_test.cc
+|  |  |-- registry.cc
+|  |  |-- registry.h
+|  |  |-- registry_test.cc
+|  |  |-- storage.gyp
+|  |  |-- storage_interface.h
+|  |  |-- storage_test.gyp
+|  |  |-- tiny_storage.cc
+|  |  |-- tiny_storage.h
+|  |  |-- tiny_storage_test.cc
+|  |-- testing
+|  |  |-- BUILD.bazel
+|  |  |-- base
+|  |  |  |-- internal
+|  |  |  |  |-- googletest.cc
+|  |  |  |  |-- gtest_main.cc
+|  |  |  |-- public
+|  |  |  |  |-- gmock.h
+|  |  |  |  |-- googletest.h
+|  |  |  |  |-- gunit.h
+|  |  |  |  |-- gunit_prod.h
+|  |  |  |  |-- mozctest.cc
+|  |  |  |  |-- mozctest.h
+|  |  |  |  |-- testing_util.cc
+|  |  |  |  |-- testing_util.h
+|  |  |-- testing.gyp
+|  |-- third_party
+|  |  |-- abseil-cpp
+|  |  |-- breakpad
+|  |  |-- gtest
+|  |  |-- gyp
+|  |  |-- ipa_font
+|  |  |  |-- LICENSE
+|  |  |  |-- README.mozc
+|  |  |  |-- Readme_IPAexfont00201.txt
+|  |  |  |-- ipaexg.ttf
+|  |  |  |-- ipaexm.ttf
+|  |  |-- japanese_usage_dictionary
+|  |  |-- jsoncpp
+|  |  |-- protobuf
+|  |  |-- wtl
+|  |  |  |-- Include
+|  |  |  |  |-- atlapp.h
+|  |  |  |  |-- atlcrack.h
+|  |  |  |  |-- atlctrls.h
+|  |  |  |  |-- atlctrlw.h
+|  |  |  |  |-- atlctrlx.h
+|  |  |  |  |-- atlddx.h
+|  |  |  |  |-- atldlgs.h
+|  |  |  |  |-- atldwm.h
+|  |  |  |  |-- atlfind.h
+|  |  |  |  |-- atlframe.h
+|  |  |  |  |-- atlgdi.h
+|  |  |  |  |-- atlmisc.h
+|  |  |  |  |-- atlprint.h
+|  |  |  |  |-- atlres.h
+|  |  |  |  |-- atlresce.h
+|  |  |  |  |-- atlribbon.h
+|  |  |  |  |-- atlscrl.h
+|  |  |  |  |-- atlsplit.h
+|  |  |  |  |-- atltheme.h
+|  |  |  |  |-- atluser.h
+|  |  |  |  |-- atlwince.h
+|  |  |  |  |-- atlwinx.h
+|  |  |  |-- LICENSE
+|  |  |  |-- MS-PL.txt
+|  |  |  |-- README.mozc
+|  |  |  |-- ReadMe.html
+|  |-- tools
+|  |  |-- build_defs
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- build_cleaner.bzl
+|  |  |  |-- qt.bzl
+|  |  |  |-- stubs.bzl
+|  |  |-- build_rules
+|  |  |  |-- android_cc_test
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- def.bzl
+|  |  |-- cc_target_os
+|  |  |  |-- BUILD.bazel
+|  |-- transliteration
+|  |  |-- BUILD.bazel
+|  |  |-- transliteration.cc
+|  |  |-- transliteration.gyp
+|  |  |-- transliteration.h
+|  |  |-- transliteration_test.cc
+|  |  |-- transliteration_test.gyp
+|  |-- unix
+|  |  |-- BUILD.bazel
+|  |  |-- build_icons.py
+|  |  |-- emacs
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- client_pool.cc
+|  |  |  |-- client_pool.h
+|  |  |  |-- emacs.gyp
+|  |  |  |-- mozc.el
+|  |  |  |-- mozc_emacs_helper.cc
+|  |  |  |-- mozc_emacs_helper_lib.cc
+|  |  |  |-- mozc_emacs_helper_lib.h
+|  |  |  |-- mozc_emacs_helper_lib_test.cc
+|  |  |-- fcitx
+|  |  |  |-- BUILD
+|  |  |  |-- eim.cc
+|  |  |  |-- fcitx-mozc.conf
+|  |  |  |-- fcitx.gyp
+|  |  |  |-- fcitx_key_event_handler.cc
+|  |  |  |-- fcitx_key_event_handler.h
+|  |  |  |-- fcitx_key_translator.cc
+|  |  |  |-- fcitx_key_translator.h
+|  |  |  |-- fcitx_mozc.cc
+|  |  |  |-- fcitx_mozc.h
+|  |  |  |-- gen_fcitx_mozc_i18n.sh
+|  |  |  |-- mozc.conf
+|  |  |  |-- mozc_connection.cc
+|  |  |  |-- mozc_connection.h
+|  |  |  |-- mozc_response_parser.cc
+|  |  |  |-- mozc_response_parser.h
+|  |  |  |-- po
+|  |  |  |  |-- Messages.sh
+|  |  |  |  |-- ca.po
+|  |  |  |  |-- da.po
+|  |  |  |  |-- de.po
+|  |  |  |  |-- fcitx-mozc.pot
+|  |  |  |  |-- ja.po
+|  |  |  |  |-- ko.po
+|  |  |  |  |-- ru.po
+|  |  |  |  |-- zh_CN.po
+|  |  |  |  |-- zh_TW.po
+|  |  |  |-- surrounding_text_util.cc
+|  |  |  |-- surrounding_text_util.h
+|  |  |-- fcitx5
+|  |  |  |-- BUILD
+|  |  |  |-- Messages.sh
+|  |  |  |-- fcitx5.gyp
+|  |  |  |-- fcitx_key_event_handler.cc
+|  |  |  |-- fcitx_key_event_handler.h
+|  |  |  |-- fcitx_key_translator.cc
+|  |  |  |-- fcitx_key_translator.h
+|  |  |  |-- mozc-addon.conf
+|  |  |  |-- mozc.conf
+|  |  |  |-- mozc_connection.cc
+|  |  |  |-- mozc_connection.h
+|  |  |  |-- mozc_engine.cc
+|  |  |  |-- mozc_engine.h
+|  |  |  |-- mozc_engine_factory.cc
+|  |  |  |-- mozc_response_parser.cc
+|  |  |  |-- mozc_response_parser.h
+|  |  |  |-- mozc_state.cc
+|  |  |  |-- mozc_state.h
+|  |  |  |-- org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml.in
+|  |  |  |-- po
+|  |  |  |  |-- LINGUAS
+|  |  |  |  |-- ca.po
+|  |  |  |  |-- da.po
+|  |  |  |  |-- de.po
+|  |  |  |  |-- fcitx5-mozc.pot
+|  |  |  |  |-- he.po
+|  |  |  |  |-- ja.po
+|  |  |  |  |-- ko.po
+|  |  |  |  |-- ru.po
+|  |  |  |  |-- zh_CN.po
+|  |  |  |  |-- zh_TW.po
+|  |  |  |-- surrounding_text_util.cc
+|  |  |  |-- surrounding_text_util.h
+|  |  |-- ibus
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- candidate_window_handler_interface.h
+|  |  |  |-- engine_interface.h
+|  |  |  |-- engine_registrar.cc
+|  |  |  |-- engine_registrar.h
+|  |  |  |-- gen_mozc_xml.py
+|  |  |  |-- gtk_candidate_window_handler.cc
+|  |  |  |-- gtk_candidate_window_handler.h
+|  |  |  |-- gtk_candidate_window_handler_test.cc
+|  |  |  |-- ibus.gyp
+|  |  |  |-- ibus_candidate_window_handler.cc
+|  |  |  |-- ibus_candidate_window_handler.h
+|  |  |  |-- ibus_config.cc
+|  |  |  |-- ibus_config.h
+|  |  |  |-- ibus_config.proto
+|  |  |  |-- ibus_header.h
+|  |  |  |-- key_event_handler.cc
+|  |  |  |-- key_event_handler.h
+|  |  |  |-- key_event_handler_test.cc
+|  |  |  |-- key_translator.cc
+|  |  |  |-- key_translator.h
+|  |  |  |-- key_translator_test.cc
+|  |  |  |-- main.cc
+|  |  |  |-- main_stub.cc
+|  |  |  |-- message_translator.cc
+|  |  |  |-- message_translator.h
+|  |  |  |-- message_translator_test.cc
+|  |  |  |-- mozc_engine.cc
+|  |  |  |-- mozc_engine.h
+|  |  |  |-- mozc_engine_property.cc
+|  |  |  |-- mozc_engine_property.h
+|  |  |  |-- mozc_engine_test.cc
+|  |  |  |-- path_util.cc
+|  |  |  |-- path_util.h
+|  |  |  |-- path_util_test.cc
+|  |  |  |-- preedit_handler.cc
+|  |  |  |-- preedit_handler.h
+|  |  |  |-- preedit_handler_interface.h
+|  |  |  |-- property_handler.cc
+|  |  |  |-- property_handler.h
+|  |  |  |-- property_handler_interface.h
+|  |  |  |-- selection_monitor.cc
+|  |  |  |-- selection_monitor.h
+|  |  |  |-- surrounding_text_util.cc
+|  |  |  |-- surrounding_text_util.h
+|  |  |  |-- surrounding_text_util_test.cc
+|  |-- usage_stats
+|  |  |-- BUILD.bazel
+|  |  |-- gen_stats_list.py
+|  |  |-- usage_stats.cc
+|  |  |-- usage_stats.h
+|  |  |-- usage_stats.proto
+|  |  |-- usage_stats_base.gyp
+|  |  |-- usage_stats_test.cc
+|  |  |-- usage_stats_test.gyp
+|  |  |-- usage_stats_testing_util.cc
+|  |  |-- usage_stats_testing_util.h
+|  |  |-- usage_stats_uploader.cc
+|  |  |-- usage_stats_uploader.h
+|  |  |-- usage_stats_uploader_test.cc
+|  |-- win32
+|  |  |-- base
+|  |  |  |-- accessible_object.cc
+|  |  |  |-- accessible_object.h
+|  |  |  |-- accessible_object_info.cc
+|  |  |  |-- accessible_object_info.h
+|  |  |  |-- browser_info.cc
+|  |  |  |-- browser_info.h
+|  |  |  |-- config_snapshot.cc
+|  |  |  |-- config_snapshot.h
+|  |  |  |-- conversion_mode_util.cc
+|  |  |  |-- conversion_mode_util.h
+|  |  |  |-- conversion_mode_util_test.cc
+|  |  |  |-- deleter.cc
+|  |  |  |-- deleter.h
+|  |  |  |-- deleter_test.cc
+|  |  |  |-- display_name_resource.h
+|  |  |  |-- focus_hierarchy_observer.cc
+|  |  |  |-- focus_hierarchy_observer.h
+|  |  |  |-- imm_reconvert_string.cc
+|  |  |  |-- imm_reconvert_string.h
+|  |  |  |-- imm_reconvert_string_test.cc
+|  |  |  |-- imm_registrar.cc
+|  |  |  |-- imm_registrar.h
+|  |  |  |-- imm_util.cc
+|  |  |  |-- imm_util.h
+|  |  |  |-- immdev.h
+|  |  |  |-- indicator_visibility_tracker.cc
+|  |  |  |-- indicator_visibility_tracker.h
+|  |  |  |-- indicator_visibility_tracker_test.cc
+|  |  |  |-- input_dll.cc
+|  |  |  |-- input_dll.def
+|  |  |  |-- input_dll.h
+|  |  |  |-- input_dll_test.cc
+|  |  |  |-- input_state.cc
+|  |  |  |-- input_state.h
+|  |  |  |-- keyboard.cc
+|  |  |  |-- keyboard.h
+|  |  |  |-- keyboard_layout_id.cc
+|  |  |  |-- keyboard_layout_id.h
+|  |  |  |-- keyboard_layout_id_test.cc
+|  |  |  |-- keyboard_test.cc
+|  |  |  |-- keyevent_handler.cc
+|  |  |  |-- keyevent_handler.h
+|  |  |  |-- keyevent_handler_test.cc
+|  |  |  |-- migration_util.cc
+|  |  |  |-- migration_util.h
+|  |  |  |-- omaha_util.cc
+|  |  |  |-- omaha_util.h
+|  |  |  |-- omaha_util_test.cc
+|  |  |  |-- string_util.cc
+|  |  |  |-- string_util.h
+|  |  |  |-- string_util_test.cc
+|  |  |  |-- surrogate_pair_observer.cc
+|  |  |  |-- surrogate_pair_observer.h
+|  |  |  |-- surrogate_pair_observer_test.cc
+|  |  |  |-- text_icon.cc
+|  |  |  |-- text_icon.h
+|  |  |  |-- text_icon_test.cc
+|  |  |  |-- tsf_profile.cc
+|  |  |  |-- tsf_profile.h
+|  |  |  |-- tsf_registrar.cc
+|  |  |  |-- tsf_registrar.h
+|  |  |  |-- uninstall_helper.cc
+|  |  |  |-- uninstall_helper.h
+|  |  |  |-- uninstall_helper_test.cc
+|  |  |  |-- win32_base.gyp
+|  |  |  |-- win32_window_util.cc
+|  |  |  |-- win32_window_util.h
+|  |  |-- broker
+|  |  |  |-- broker.gyp
+|  |  |  |-- ime_switcher.cc
+|  |  |  |-- mozc_broker.exe.manifest
+|  |  |  |-- mozc_broker.gypi
+|  |  |  |-- mozc_broker.rc
+|  |  |  |-- mozc_broker_main.cc
+|  |  |  |-- mozc_broker_resource.h
+|  |  |  |-- prelauncher.cc
+|  |  |  |-- register_ime.cc
+|  |  |-- build32
+|  |  |  |-- build32.gyp
+|  |  |  |-- build32_dynamic.gyp
+|  |  |-- build64
+|  |  |  |-- build64.gyp
+|  |  |-- custom_action
+|  |  |  |-- custom_action.cc
+|  |  |  |-- custom_action.def
+|  |  |  |-- custom_action.gyp
+|  |  |  |-- custom_action.gypi
+|  |  |  |-- custom_action.h
+|  |  |  |-- custom_action.rc
+|  |  |  |-- resource.h
+|  |  |-- ime
+|  |  |  |-- GoogleIMEJa.def
+|  |  |  |-- GoogleIMEJa.rc
+|  |  |  |-- ime.gyp
+|  |  |  |-- ime_candidate_info.cc
+|  |  |  |-- ime_candidate_info.h
+|  |  |  |-- ime_candidate_info_test.cc
+|  |  |  |-- ime_composition_string.cc
+|  |  |  |-- ime_composition_string.h
+|  |  |  |-- ime_composition_string_test.cc
+|  |  |  |-- ime_core.cc
+|  |  |  |-- ime_core.h
+|  |  |  |-- ime_core_test.cc
+|  |  |  |-- ime_impl_imm.cc
+|  |  |  |-- ime_impl_imm.h
+|  |  |  |-- ime_input_context.cc
+|  |  |  |-- ime_input_context.h
+|  |  |  |-- ime_input_context_test.cc
+|  |  |  |-- ime_language_bar.cc
+|  |  |  |-- ime_language_bar.h
+|  |  |  |-- ime_language_bar_menu.cc
+|  |  |  |-- ime_language_bar_menu.h
+|  |  |  |-- ime_message_queue.cc
+|  |  |  |-- ime_message_queue.h
+|  |  |  |-- ime_module.cc
+|  |  |  |-- ime_private_context.cc
+|  |  |  |-- ime_private_context.h
+|  |  |  |-- ime_resource.h
+|  |  |  |-- ime_scoped_context.h
+|  |  |  |-- ime_types.cc
+|  |  |  |-- ime_types.h
+|  |  |  |-- ime_ui_context.cc
+|  |  |  |-- ime_ui_context.h
+|  |  |  |-- ime_ui_visibility_tracker.cc
+|  |  |  |-- ime_ui_visibility_tracker.h
+|  |  |  |-- ime_ui_visibility_tracker_test.cc
+|  |  |  |-- ime_ui_window.cc
+|  |  |  |-- ime_ui_window.h
+|  |  |-- installer
+|  |  |  |-- installer.gyp
+|  |  |  |-- installer_32bit.wxs
+|  |  |  |-- installer_64bit.wxs
+|  |  |  |-- mozc_version_template.wxi
+|  |  |  |-- postbuilds_win.gypi
+|  |  |  |-- postbuilds_win.py
+|  |  |  |-- wix.gypi
+|  |  |-- tip
+|  |  |  |-- tip.gyp
+|  |  |  |-- tip_candidate_list.cc
+|  |  |  |-- tip_candidate_list.h
+|  |  |  |-- tip_candidate_list_test.cc
+|  |  |  |-- tip_class_factory.cc
+|  |  |  |-- tip_class_factory.h
+|  |  |  |-- tip_compartment_util.cc
+|  |  |  |-- tip_compartment_util.h
+|  |  |  |-- tip_composition_util.cc
+|  |  |  |-- tip_composition_util.h
+|  |  |  |-- tip_display_attributes.cc
+|  |  |  |-- tip_display_attributes.h
+|  |  |  |-- tip_display_attributes_test.cc
+|  |  |  |-- tip_dll_module.cc
+|  |  |  |-- tip_dll_module.def
+|  |  |  |-- tip_dll_module.h
+|  |  |  |-- tip_edit_session.cc
+|  |  |  |-- tip_edit_session.h
+|  |  |  |-- tip_edit_session_impl.cc
+|  |  |  |-- tip_edit_session_impl.h
+|  |  |  |-- tip_enum_display_attributes.cc
+|  |  |  |-- tip_enum_display_attributes.h
+|  |  |  |-- tip_enum_display_attributes_test.cc
+|  |  |  |-- tip_input_mode_manager.cc
+|  |  |  |-- tip_input_mode_manager.h
+|  |  |  |-- tip_input_mode_manager_test.cc
+|  |  |  |-- tip_keyevent_handler.cc
+|  |  |  |-- tip_keyevent_handler.h
+|  |  |  |-- tip_lang_bar.cc
+|  |  |  |-- tip_lang_bar.h
+|  |  |  |-- tip_lang_bar_menu.cc
+|  |  |  |-- tip_lang_bar_menu.h
+|  |  |  |-- tip_linguistic_alternates.cc
+|  |  |  |-- tip_linguistic_alternates.h
+|  |  |  |-- tip_preferred_touch_keyboard.cc
+|  |  |  |-- tip_preferred_touch_keyboard.h
+|  |  |  |-- tip_private_context.cc
+|  |  |  |-- tip_private_context.h
+|  |  |  |-- tip_query_provider.cc
+|  |  |  |-- tip_query_provider.h
+|  |  |  |-- tip_range_util.cc
+|  |  |  |-- tip_range_util.h
+|  |  |  |-- tip_reconvert_function.cc
+|  |  |  |-- tip_reconvert_function.h
+|  |  |  |-- tip_ref_count.cc
+|  |  |  |-- tip_ref_count.h
+|  |  |  |-- tip_ref_count_test.cc
+|  |  |  |-- tip_resource.h
+|  |  |  |-- tip_resource.rc
+|  |  |  |-- tip_search_candidate_provider.cc
+|  |  |  |-- tip_search_candidate_provider.h
+|  |  |  |-- tip_status.cc
+|  |  |  |-- tip_status.h
+|  |  |  |-- tip_surrounding_text.cc
+|  |  |  |-- tip_surrounding_text.h
+|  |  |  |-- tip_surrounding_text_test.cc
+|  |  |  |-- tip_text_service.cc
+|  |  |  |-- tip_text_service.h
+|  |  |  |-- tip_thread_context.cc
+|  |  |  |-- tip_thread_context.h
+|  |  |  |-- tip_transitory_extension.cc
+|  |  |  |-- tip_transitory_extension.h
+|  |  |  |-- tip_ui_element_conventional.cc
+|  |  |  |-- tip_ui_element_conventional.h
+|  |  |  |-- tip_ui_element_delegate.cc
+|  |  |  |-- tip_ui_element_delegate.h
+|  |  |  |-- tip_ui_element_immersive.cc
+|  |  |  |-- tip_ui_element_immersive.h
+|  |  |  |-- tip_ui_element_manager.cc
+|  |  |  |-- tip_ui_element_manager.h
+|  |  |  |-- tip_ui_handler.cc
+|  |  |  |-- tip_ui_handler.h
+|  |  |  |-- tip_ui_handler_conventional.cc
+|  |  |  |-- tip_ui_handler_conventional.h
+|  |  |  |-- tip_ui_handler_immersive.cc
+|  |  |  |-- tip_ui_handler_immersive.h
+|  |  |  |-- tip_ui_renderer_immersive.cc
+|  |  |  |-- tip_ui_renderer_immersive.h

@@ -1,0 +1,1733 @@
+|-- .gitattributes
+|-- LICENSE
+|-- Note-1 RNN-DNC择时
+|  |-- Note-1 初学RqAlpha——PonderLSTM和PonderDNC日频期货的简单应用
+|  |  |-- FixPonderDNCore.ipynb
+|  |  |-- FixPonderDNCore.py
+|  |  |-- RqAlpha-Learning-12-1.ipynb
+|  |  |-- sonnet
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- cc
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- kernels
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- resampler_op.cc
+|  |  |  |  |  |-- resampler_op.h
+|  |  |  |  |  |-- resampler_op_gpu.cu.cc
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- resampler.cc
+|  |  |  |-- contrib
+|  |  |  |  |-- README.md
+|  |  |  |  |-- examples
+|  |  |  |  |  |-- CartPole_policy_gradient.ipynb
+|  |  |  |  |  |-- batch_norm_explained.ipynb
+|  |  |  |-- examples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- data
+|  |  |  |  |  |-- ts.test.txt
+|  |  |  |  |  |-- ts.train.txt
+|  |  |  |  |  |-- ts.valid.txt
+|  |  |  |  |-- dataset_shakespeare.py
+|  |  |  |  |-- module_with_build_args.py
+|  |  |  |  |-- rnn_shakespeare.py
+|  |  |  |  |-- rnn_shakespeare_test.py
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- __pycache__
+|  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- modules
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- attention.cpython-36.pyc
+|  |  |  |  |  |  |-- base.cpython-36.pyc
+|  |  |  |  |  |  |-- basic.cpython-36.pyc
+|  |  |  |  |  |  |-- basic_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- batch_norm.cpython-36.pyc
+|  |  |  |  |  |  |-- clip_gradient.cpython-36.pyc
+|  |  |  |  |  |  |-- conv.cpython-36.pyc
+|  |  |  |  |  |  |-- embed.cpython-36.pyc
+|  |  |  |  |  |  |-- experimental.cpython-36.pyc
+|  |  |  |  |  |  |-- gated_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- layer_norm.cpython-36.pyc
+|  |  |  |  |  |  |-- pondering_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- residual.cpython-36.pyc
+|  |  |  |  |  |  |-- rnn_core.cpython-36.pyc
+|  |  |  |  |  |  |-- scale_gradient.cpython-36.pyc
+|  |  |  |  |  |  |-- sequential.cpython-36.pyc
+|  |  |  |  |  |  |-- spatial_transformer.cpython-36.pyc
+|  |  |  |  |  |  |-- util.cpython-36.pyc
+|  |  |  |  |  |-- attention.py
+|  |  |  |  |  |-- attention_test.py
+|  |  |  |  |  |-- base.py
+|  |  |  |  |  |-- base_test.py
+|  |  |  |  |  |-- basic.py
+|  |  |  |  |  |-- basic_rnn.py
+|  |  |  |  |  |-- basic_rnn_test.py
+|  |  |  |  |  |-- basic_test.py
+|  |  |  |  |  |-- batch_norm.py
+|  |  |  |  |  |-- batch_norm_test.py
+|  |  |  |  |  |-- block_matrix.py
+|  |  |  |  |  |-- block_matrix_test.py
+|  |  |  |  |  |-- clip_gradient.py
+|  |  |  |  |  |-- clip_gradient_test.py
+|  |  |  |  |  |-- conv.py
+|  |  |  |  |  |-- conv_gpu_test.py
+|  |  |  |  |  |-- conv_test.py
+|  |  |  |  |  |-- embed.py
+|  |  |  |  |  |-- embed_test.py
+|  |  |  |  |  |-- experimental.py
+|  |  |  |  |  |-- gated_rnn.py
+|  |  |  |  |  |-- gated_rnn_test.py
+|  |  |  |  |  |-- layer_norm.py
+|  |  |  |  |  |-- layer_norm_test.py
+|  |  |  |  |  |-- nets
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |  |-- alexnet.cpython-36.pyc
+|  |  |  |  |  |  |  |-- convnet.cpython-36.pyc
+|  |  |  |  |  |  |  |-- dilation.cpython-36.pyc
+|  |  |  |  |  |  |  |-- mlp.cpython-36.pyc
+|  |  |  |  |  |  |-- alexnet.py
+|  |  |  |  |  |  |-- alexnet_test.py
+|  |  |  |  |  |  |-- convnet.py
+|  |  |  |  |  |  |-- convnet_test.py
+|  |  |  |  |  |  |-- dilation.py
+|  |  |  |  |  |  |-- dilation_test.py
+|  |  |  |  |  |  |-- mlp.py
+|  |  |  |  |  |  |-- mlp_test.py
+|  |  |  |  |  |-- pondering_rnn.py
+|  |  |  |  |  |-- pondering_rnn_test.py
+|  |  |  |  |  |-- residual.py
+|  |  |  |  |  |-- residual_test.py
+|  |  |  |  |  |-- rnn_core.py
+|  |  |  |  |  |-- rnn_core_test.py
+|  |  |  |  |  |-- scale_gradient.py
+|  |  |  |  |  |-- scale_gradient_test.py
+|  |  |  |  |  |-- sequential.py
+|  |  |  |  |  |-- sequential_test.py
+|  |  |  |  |  |-- spatial_transformer.py
+|  |  |  |  |  |-- spatial_transformer_test.py
+|  |  |  |  |  |-- util.py
+|  |  |  |  |  |-- util_test.py
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- initializers.cpython-36.pyc
+|  |  |  |  |  |  |-- nest.cpython-36.pyc
+|  |  |  |  |  |  |-- resampler.cpython-36.pyc
+|  |  |  |  |  |-- initializers.py
+|  |  |  |  |  |-- initializers_test.py
+|  |  |  |  |  |-- nest.py
+|  |  |  |  |  |-- nest_test.py
+|  |  |  |  |  |-- resampler.py
+|  |  |  |  |  |-- resampler_test.py
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- restore_initializer_test_checkpoint.data-00000-of-00001
+|  |  |  |  |  |  |-- restore_initializer_test_checkpoint.index
+|  |  |  |-- tensorflow.bzl
+|  |  |  |-- testing
+|  |  |  |  |-- parameterized
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- parameterized.cpython-36.pyc
+|  |  |  |  |  |-- parameterized.py
+|  |  |  |  |  |-- parameterized_test.py
+|  |  |-- 期货测试数据
+|  |  |  |-- 焦煤88.csv.baiduyun.uploading.cfg
+|  |  |  |-- 白糖88.csv.baiduyun.uploading.cfg
+|  |  |  |-- 白银88.csv
+|  |  |  |-- 白银88.csv.baiduyun.uploading.cfg
+|  |  |  |-- 螺纹钢88.csv.baiduyun.uploading.cfg
+|  |  |  |-- 鸡蛋88.csv.baiduyun.uploading.cfg
+|  |  |  |-- 黄金88.csv.baiduyun.uploading.cfg
+|  |-- Note-1-1 DNCore L2正则化示例
+|  |  |-- .ipynb_checkpoints
+|  |  |  |-- DNCore-checkpoint.ipynb
+|  |  |  |-- DNCoreDeepLSTM L2正则化-checkpoint.ipynb
+|  |  |  |-- DNCoreDeepLSTM L2正则化-优化器-checkpoint.ipynb
+|  |  |  |-- DNCoreLSTM L2正则化-checkpoint.ipynb
+|  |  |-- DNCore.ipynb
+|  |  |-- DNCore.py
+|  |  |-- DNCoreDeepLSTM L2正则化-优化器.ipynb
+|  |  |-- DNCoreDeepLSTM L2正则化.ipynb
+|  |  |-- DNCoreLSTM L2正则化.ipynb
+|  |  |-- HS300_15m.csv
+|  |  |-- HS300_1d.csv
+|  |  |-- TAF.py
+|  |  |-- __pycache__
+|  |  |  |-- DNCore.cpython-36.pyc
+|  |  |  |-- TAF.cpython-36.pyc
+|  |  |-- models
+|  |  |  |-- DNCoreDeepLSTM_NADM_saver_1.ckpt.data-00000-of-00001
+|  |  |  |-- DNCoreDeepLSTM_NADM_saver_1.ckpt.index
+|  |  |  |-- DNCoreDeepLSTM_NADM_saver_1.ckpt.meta
+|  |  |  |-- R1.ckpt.data-00000-of-00001
+|  |  |  |-- R1.ckpt.index
+|  |  |  |-- R1.ckpt.meta
+|  |  |  |-- R2.ckpt.data-00000-of-00001
+|  |  |  |-- R2.ckpt.index
+|  |  |  |-- R2.ckpt.meta
+|  |  |  |-- checkpoint
+|  |  |-- sonnet
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |-- contrib
+|  |  |  |  |-- README.md
+|  |  |  |  |-- examples
+|  |  |  |  |  |-- CartPole_policy_gradient.ipynb
+|  |  |  |  |  |-- batch_norm_explained.ipynb
+|  |  |  |-- examples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- data
+|  |  |  |  |  |-- ts.test.txt
+|  |  |  |  |  |-- ts.train.txt
+|  |  |  |  |  |-- ts.valid.txt
+|  |  |  |  |-- dataset_shakespeare.py
+|  |  |  |  |-- module_with_build_args.py
+|  |  |  |  |-- rnn_shakespeare.py
+|  |  |  |  |-- rnn_shakespeare_test.py
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- __pycache__
+|  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- custom_getters
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- context.cpython-36.pyc
+|  |  |  |  |  |  |-- non_trainable.cpython-36.pyc
+|  |  |  |  |  |  |-- restore_initializer.cpython-36.pyc
+|  |  |  |  |  |  |-- stop_gradient.cpython-36.pyc
+|  |  |  |  |  |-- context.py
+|  |  |  |  |  |-- context_test.py
+|  |  |  |  |  |-- non_trainable.py
+|  |  |  |  |  |-- non_trainable_test.py
+|  |  |  |  |  |-- restore_initializer.py
+|  |  |  |  |  |-- restore_initializer_test.py
+|  |  |  |  |  |-- stop_gradient.py
+|  |  |  |  |  |-- stop_gradient_test.py
+|  |  |  |  |-- modules
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- attention.cpython-36.pyc
+|  |  |  |  |  |  |-- base.cpython-36.pyc
+|  |  |  |  |  |  |-- basic.cpython-36.pyc
+|  |  |  |  |  |  |-- basic_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- batch_norm.cpython-36.pyc
+|  |  |  |  |  |  |-- clip_gradient.cpython-36.pyc
+|  |  |  |  |  |  |-- conv.cpython-36.pyc
+|  |  |  |  |  |  |-- embed.cpython-36.pyc
+|  |  |  |  |  |  |-- experimental.cpython-36.pyc
+|  |  |  |  |  |  |-- gated_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- layer_norm.cpython-36.pyc
+|  |  |  |  |  |  |-- pondering_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- residual.cpython-36.pyc
+|  |  |  |  |  |  |-- rnn_core.cpython-36.pyc
+|  |  |  |  |  |  |-- scale_gradient.cpython-36.pyc
+|  |  |  |  |  |  |-- sequential.cpython-36.pyc
+|  |  |  |  |  |  |-- spatial_transformer.cpython-36.pyc
+|  |  |  |  |  |  |-- util.cpython-36.pyc
+|  |  |  |  |  |-- attention.py
+|  |  |  |  |  |-- attention_test.py
+|  |  |  |  |  |-- base.py
+|  |  |  |  |  |-- base_test.py
+|  |  |  |  |  |-- basic.py
+|  |  |  |  |  |-- basic_rnn.py
+|  |  |  |  |  |-- basic_rnn_test.py
+|  |  |  |  |  |-- basic_test.py
+|  |  |  |  |  |-- batch_norm.py
+|  |  |  |  |  |-- batch_norm_test.py
+|  |  |  |  |  |-- block_matrix.py
+|  |  |  |  |  |-- block_matrix_test.py
+|  |  |  |  |  |-- clip_gradient.py
+|  |  |  |  |  |-- clip_gradient_test.py
+|  |  |  |  |  |-- conv.py
+|  |  |  |  |  |-- conv_gpu_test.py
+|  |  |  |  |  |-- conv_test.py
+|  |  |  |  |  |-- embed.py
+|  |  |  |  |  |-- embed_test.py
+|  |  |  |  |  |-- experimental.py
+|  |  |  |  |  |-- gated_rnn.py
+|  |  |  |  |  |-- gated_rnn_test.py
+|  |  |  |  |  |-- layer_norm.py
+|  |  |  |  |  |-- layer_norm_test.py
+|  |  |  |  |  |-- nets
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |  |-- alexnet.cpython-36.pyc
+|  |  |  |  |  |  |  |-- convnet.cpython-36.pyc
+|  |  |  |  |  |  |  |-- dilation.cpython-36.pyc
+|  |  |  |  |  |  |  |-- mlp.cpython-36.pyc
+|  |  |  |  |  |  |-- alexnet.py
+|  |  |  |  |  |  |-- alexnet_test.py
+|  |  |  |  |  |  |-- convnet.py
+|  |  |  |  |  |  |-- convnet_test.py
+|  |  |  |  |  |  |-- dilation.py
+|  |  |  |  |  |  |-- dilation_test.py
+|  |  |  |  |  |  |-- mlp.py
+|  |  |  |  |  |  |-- mlp_test.py
+|  |  |  |  |  |-- pondering_rnn.py
+|  |  |  |  |  |-- pondering_rnn_test.py
+|  |  |  |  |  |-- residual.py
+|  |  |  |  |  |-- residual_test.py
+|  |  |  |  |  |-- rnn_core.py
+|  |  |  |  |  |-- rnn_core_test.py
+|  |  |  |  |  |-- scale_gradient.py
+|  |  |  |  |  |-- scale_gradient_test.py
+|  |  |  |  |  |-- sequential.py
+|  |  |  |  |  |-- sequential_test.py
+|  |  |  |  |  |-- spatial_transformer.py
+|  |  |  |  |  |-- spatial_transformer_test.py
+|  |  |  |  |  |-- util.py
+|  |  |  |  |  |-- util_test.py
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- initializers.cpython-36.pyc
+|  |  |  |  |  |  |-- nest.cpython-36.pyc
+|  |  |  |  |  |-- initializers.py
+|  |  |  |  |  |-- initializers_test.py
+|  |  |  |  |  |-- nest.py
+|  |  |  |  |  |-- nest_test.py
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- restore_initializer_test_checkpoint.data-00000-of-00001
+|  |  |  |  |  |  |-- restore_initializer_test_checkpoint.index
+|  |  |  |-- testing
+|  |  |  |  |-- parameterized
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- parameterized.py
+|  |  |  |  |  |-- parameterized_test.py
+|  |  |  |-- util
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- migrate_checkpoint.py
+|  |-- Note-1-2 PonderingDNCore L2正则化示例
+|  |  |-- .ipynb_checkpoints
+|  |  |  |-- PonderingDNCore L2正则化-checkpoint.ipynb
+|  |  |-- DNCore.ipynb
+|  |  |-- DNCore.py
+|  |  |-- PonderingDNCore L2正则化.ipynb
+|  |  |-- __pycache__
+|  |  |  |-- DNCore.cpython-36.pyc
+|  |  |-- models
+|  |  |  |-- DNCoreDeepLSTM_NADM_saver_1.ckpt.data-00000-of-00001
+|  |  |  |-- DNCoreDeepLSTM_NADM_saver_1.ckpt.index
+|  |  |  |-- DNCoreDeepLSTM_NADM_saver_1.ckpt.meta
+|  |  |  |-- checkpoint
+|  |  |-- sonnet
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |-- contrib
+|  |  |  |  |-- README.md
+|  |  |  |  |-- examples
+|  |  |  |  |  |-- CartPole_policy_gradient.ipynb
+|  |  |  |  |  |-- batch_norm_explained.ipynb
+|  |  |  |-- examples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- data
+|  |  |  |  |  |-- ts.test.txt
+|  |  |  |  |  |-- ts.train.txt
+|  |  |  |  |  |-- ts.valid.txt
+|  |  |  |  |-- dataset_shakespeare.py
+|  |  |  |  |-- module_with_build_args.py
+|  |  |  |  |-- rnn_shakespeare.py
+|  |  |  |  |-- rnn_shakespeare_test.py
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- __pycache__
+|  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- custom_getters
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- context.cpython-36.pyc
+|  |  |  |  |  |  |-- non_trainable.cpython-36.pyc
+|  |  |  |  |  |  |-- restore_initializer.cpython-36.pyc
+|  |  |  |  |  |  |-- stop_gradient.cpython-36.pyc
+|  |  |  |  |  |-- context.py
+|  |  |  |  |  |-- context_test.py
+|  |  |  |  |  |-- non_trainable.py
+|  |  |  |  |  |-- non_trainable_test.py
+|  |  |  |  |  |-- restore_initializer.py
+|  |  |  |  |  |-- restore_initializer_test.py
+|  |  |  |  |  |-- stop_gradient.py
+|  |  |  |  |  |-- stop_gradient_test.py
+|  |  |  |  |-- modules
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- attention.cpython-36.pyc
+|  |  |  |  |  |  |-- base.cpython-36.pyc
+|  |  |  |  |  |  |-- basic.cpython-36.pyc
+|  |  |  |  |  |  |-- basic_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- batch_norm.cpython-36.pyc
+|  |  |  |  |  |  |-- clip_gradient.cpython-36.pyc
+|  |  |  |  |  |  |-- conv.cpython-36.pyc
+|  |  |  |  |  |  |-- embed.cpython-36.pyc
+|  |  |  |  |  |  |-- experimental.cpython-36.pyc
+|  |  |  |  |  |  |-- gated_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- layer_norm.cpython-36.pyc
+|  |  |  |  |  |  |-- pondering_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- residual.cpython-36.pyc
+|  |  |  |  |  |  |-- rnn_core.cpython-36.pyc
+|  |  |  |  |  |  |-- scale_gradient.cpython-36.pyc
+|  |  |  |  |  |  |-- sequential.cpython-36.pyc
+|  |  |  |  |  |  |-- spatial_transformer.cpython-36.pyc
+|  |  |  |  |  |  |-- util.cpython-36.pyc
+|  |  |  |  |  |-- attention.py
+|  |  |  |  |  |-- attention_test.py
+|  |  |  |  |  |-- base.py
+|  |  |  |  |  |-- base_test.py
+|  |  |  |  |  |-- basic.py
+|  |  |  |  |  |-- basic_rnn.py
+|  |  |  |  |  |-- basic_rnn_test.py
+|  |  |  |  |  |-- basic_test.py
+|  |  |  |  |  |-- batch_norm.py
+|  |  |  |  |  |-- batch_norm_test.py
+|  |  |  |  |  |-- block_matrix.py
+|  |  |  |  |  |-- block_matrix_test.py
+|  |  |  |  |  |-- clip_gradient.py
+|  |  |  |  |  |-- clip_gradient_test.py
+|  |  |  |  |  |-- conv.py
+|  |  |  |  |  |-- conv_gpu_test.py
+|  |  |  |  |  |-- conv_test.py
+|  |  |  |  |  |-- embed.py
+|  |  |  |  |  |-- embed_test.py
+|  |  |  |  |  |-- experimental.py
+|  |  |  |  |  |-- gated_rnn.py
+|  |  |  |  |  |-- gated_rnn_test.py
+|  |  |  |  |  |-- layer_norm.py
+|  |  |  |  |  |-- layer_norm_test.py
+|  |  |  |  |  |-- nets
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |  |-- alexnet.cpython-36.pyc
+|  |  |  |  |  |  |  |-- convnet.cpython-36.pyc
+|  |  |  |  |  |  |  |-- dilation.cpython-36.pyc
+|  |  |  |  |  |  |  |-- mlp.cpython-36.pyc
+|  |  |  |  |  |  |-- alexnet.py
+|  |  |  |  |  |  |-- alexnet_test.py
+|  |  |  |  |  |  |-- convnet.py
+|  |  |  |  |  |  |-- convnet_test.py
+|  |  |  |  |  |  |-- dilation.py
+|  |  |  |  |  |  |-- dilation_test.py
+|  |  |  |  |  |  |-- mlp.py
+|  |  |  |  |  |  |-- mlp_test.py
+|  |  |  |  |  |-- pondering_rnn.py
+|  |  |  |  |  |-- pondering_rnn_test.py
+|  |  |  |  |  |-- residual.py
+|  |  |  |  |  |-- residual_test.py
+|  |  |  |  |  |-- rnn_core.py
+|  |  |  |  |  |-- rnn_core_test.py
+|  |  |  |  |  |-- scale_gradient.py
+|  |  |  |  |  |-- scale_gradient_test.py
+|  |  |  |  |  |-- sequential.py
+|  |  |  |  |  |-- sequential_test.py
+|  |  |  |  |  |-- spatial_transformer.py
+|  |  |  |  |  |-- spatial_transformer_test.py
+|  |  |  |  |  |-- util.py
+|  |  |  |  |  |-- util_test.py
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- initializers.cpython-36.pyc
+|  |  |  |  |  |  |-- nest.cpython-36.pyc
+|  |  |  |  |  |-- initializers.py
+|  |  |  |  |  |-- initializers_test.py
+|  |  |  |  |  |-- nest.py
+|  |  |  |  |  |-- nest_test.py
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- restore_initializer_test_checkpoint.data-00000-of-00001
+|  |  |  |  |  |  |-- restore_initializer_test_checkpoint.index
+|  |  |  |-- testing
+|  |  |  |  |-- parameterized
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- parameterized.py
+|  |  |  |  |  |-- parameterized_test.py
+|  |  |  |-- util
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- migrate_checkpoint.py
+|  |  |-- 期货测试数据
+|  |  |  |-- 白银88.csv
+|-- Note-2 RNN处理非线性回归
+|  |-- DNCore.ipynb
+|  |-- DNCore.py
+|  |-- DNCoreLSTM 回归测试.ipynb
+|  |-- HS300_15m.csv
+|  |-- HS300_1d.csv
+|  |-- TAF.py
+|  |-- sonnet
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- __pycache__
+|  |  |  |-- __init__.cpython-36.pyc
+|  |  |-- contrib
+|  |  |  |-- README.md
+|  |  |  |-- examples
+|  |  |  |  |-- CartPole_policy_gradient.ipynb
+|  |  |  |  |-- batch_norm_explained.ipynb
+|  |  |-- examples
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- data
+|  |  |  |  |-- ts.test.txt
+|  |  |  |  |-- ts.train.txt
+|  |  |  |  |-- ts.valid.txt
+|  |  |  |-- dataset_shakespeare.py
+|  |  |  |-- module_with_build_args.py
+|  |  |  |-- rnn_shakespeare.py
+|  |  |  |-- rnn_shakespeare_test.py
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |-- modules
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- __pycache__
+|  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |-- attention.cpython-36.pyc
+|  |  |  |  |  |-- base.cpython-36.pyc
+|  |  |  |  |  |-- basic.cpython-36.pyc
+|  |  |  |  |  |-- basic_rnn.cpython-36.pyc
+|  |  |  |  |  |-- batch_norm.cpython-36.pyc
+|  |  |  |  |  |-- clip_gradient.cpython-36.pyc
+|  |  |  |  |  |-- conv.cpython-36.pyc
+|  |  |  |  |  |-- embed.cpython-36.pyc
+|  |  |  |  |  |-- experimental.cpython-36.pyc
+|  |  |  |  |  |-- gated_rnn.cpython-36.pyc
+|  |  |  |  |  |-- layer_norm.cpython-36.pyc
+|  |  |  |  |  |-- pondering_rnn.cpython-36.pyc
+|  |  |  |  |  |-- residual.cpython-36.pyc
+|  |  |  |  |  |-- rnn_core.cpython-36.pyc
+|  |  |  |  |  |-- scale_gradient.cpython-36.pyc
+|  |  |  |  |  |-- sequential.cpython-36.pyc
+|  |  |  |  |  |-- spatial_transformer.cpython-36.pyc
+|  |  |  |  |  |-- util.cpython-36.pyc
+|  |  |  |  |-- attention.py
+|  |  |  |  |-- attention_test.py
+|  |  |  |  |-- base.py
+|  |  |  |  |-- base_test.py
+|  |  |  |  |-- basic.py
+|  |  |  |  |-- basic_rnn.py
+|  |  |  |  |-- basic_rnn_test.py
+|  |  |  |  |-- basic_test.py
+|  |  |  |  |-- batch_norm.py
+|  |  |  |  |-- batch_norm_test.py
+|  |  |  |  |-- block_matrix.py
+|  |  |  |  |-- block_matrix_test.py
+|  |  |  |  |-- clip_gradient.py
+|  |  |  |  |-- clip_gradient_test.py
+|  |  |  |  |-- conv.py
+|  |  |  |  |-- conv_gpu_test.py
+|  |  |  |  |-- conv_test.py
+|  |  |  |  |-- embed.py
+|  |  |  |  |-- embed_test.py
+|  |  |  |  |-- experimental.py
+|  |  |  |  |-- gated_rnn.py
+|  |  |  |  |-- gated_rnn_test.py
+|  |  |  |  |-- layer_norm.py
+|  |  |  |  |-- layer_norm_test.py
+|  |  |  |  |-- nets
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- alexnet.cpython-36.pyc
+|  |  |  |  |  |  |-- convnet.cpython-36.pyc
+|  |  |  |  |  |  |-- dilation.cpython-36.pyc
+|  |  |  |  |  |  |-- mlp.cpython-36.pyc
+|  |  |  |  |  |-- alexnet.py
+|  |  |  |  |  |-- alexnet_test.py
+|  |  |  |  |  |-- convnet.py
+|  |  |  |  |  |-- convnet_test.py
+|  |  |  |  |  |-- dilation.py
+|  |  |  |  |  |-- dilation_test.py
+|  |  |  |  |  |-- mlp.py
+|  |  |  |  |  |-- mlp_test.py
+|  |  |  |  |-- pondering_rnn.py
+|  |  |  |  |-- pondering_rnn_test.py
+|  |  |  |  |-- residual.py
+|  |  |  |  |-- residual_test.py
+|  |  |  |  |-- rnn_core.py
+|  |  |  |  |-- rnn_core_test.py
+|  |  |  |  |-- scale_gradient.py
+|  |  |  |  |-- scale_gradient_test.py
+|  |  |  |  |-- sequential.py
+|  |  |  |  |-- sequential_test.py
+|  |  |  |  |-- spatial_transformer.py
+|  |  |  |  |-- spatial_transformer_test.py
+|  |  |  |  |-- util.py
+|  |  |  |  |-- util_test.py
+|  |  |  |-- ops
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- __pycache__
+|  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |-- initializers.cpython-36.pyc
+|  |  |  |  |  |-- nest.cpython-36.pyc
+|  |  |  |  |-- initializers.py
+|  |  |  |  |-- initializers_test.py
+|  |  |  |  |-- nest.py
+|  |  |  |  |-- nest_test.py
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- restore_initializer_test_checkpoint.data-00000-of-00001
+|  |  |  |  |  |-- restore_initializer_test_checkpoint.index
+|  |  |-- testing
+|  |  |  |-- parameterized
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- LICENSE
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- parameterized.py
+|  |  |  |  |-- parameterized_test.py
+|  |  |-- util
+|  |  |  |-- BUILD
+|  |  |  |-- migrate_checkpoint.py
+|-- Note-3 Tensor Ridge Regression
+|  |-- CP分解.png
+|  |-- CP分解1.PNG
+|  |-- GDR.PNG
+|  |-- Tesnor Ridge Regression 与多信息源因子 Ver 1.2.md
+|  |-- Tesnor Ridge Regression 与多信息源因子 Ver 1.2.pdf
+|  |-- global dimensionality reduction (GDR) algorithm Ver 1.0.ipynb
+|  |-- 因子张量分解重构.PNG
+|  |-- 张量预测结构图.PNG
+|  |-- 马赛克模式.PNG
+|-- Note-4 Simple Deep Reinforcement Learning
+|  |-- 1.0 k摇臂机.ipynb
+|  |-- 1.1 A simple Q-Learning game.ipynb
+|  |-- 2.1 actor-critic.ipynb
+|  |-- 2.2 A2C.ipynb
+|-- Note-5 DQN与HS300指数择时
+|  |-- D3QN_Scale
+|  |  |-- .idea
+|  |  |  |-- DuelingDoubleDQN.iml
+|  |  |  |-- misc.xml
+|  |  |  |-- modules.xml
+|  |  |  |-- other.xml
+|  |  |  |-- workspace.xml
+|  |  |-- .ipynb_checkpoints
+|  |  |  |-- train_and_test-checkpoint.ipynb
+|  |  |-- __pycache__
+|  |  |  |-- params.cpython-36.pyc
+|  |  |-- agent
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- forward.cpython-36.pyc
+|  |  |  |  |-- framework.cpython-36.pyc
+|  |  |  |  |-- main.cpython-36.pyc
+|  |  |  |-- forward.py
+|  |  |  |-- framework.py
+|  |  |  |-- main.py
+|  |  |-- emulator
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- env_data.cpython-36.pyc
+|  |  |  |  |-- env_factor.cpython-36.pyc
+|  |  |  |  |-- main.cpython-36.pyc
+|  |  |  |  |-- quotesmarket.cpython-36.pyc
+|  |  |  |-- env2_simple_HS300.csv
+|  |  |  |-- env_data.py
+|  |  |  |-- env_factor.py
+|  |  |  |-- main.py
+|  |  |  |-- quotesmarket.py
+|  |  |-- model
+|  |  |  |-- checkpoint
+|  |  |  |-- ddqn.ckpt.data-00000-of-00001
+|  |  |  |-- ddqn.ckpt.index
+|  |  |  |-- ddqn.ckpt.meta
+|  |  |-- params.py
+|  |  |-- test_agent.py
+|  |  |-- train_and_test.ipynb
+|  |-- D3QN_Vector
+|  |  |-- .idea
+|  |  |  |-- D3QN_Vector.iml
+|  |  |  |-- misc.xml
+|  |  |  |-- modules.xml
+|  |  |  |-- other.xml
+|  |  |  |-- workspace.xml
+|  |  |-- __pycache__
+|  |  |  |-- config.cpython-36.pyc
+|  |  |-- agent
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- forward.cpython-36.pyc
+|  |  |  |  |-- framework.cpython-36.pyc
+|  |  |  |  |-- main.cpython-36.pyc
+|  |  |  |-- forward.py
+|  |  |  |-- framework.py
+|  |  |  |-- main.py
+|  |  |-- config.py
+|  |  |-- emulator_v0
+|  |  |  |-- Access
+|  |  |  |  |-- stock_600000_XSHG.h5
+|  |  |  |  |-- stock_600010_XSHG.h5
+|  |  |  |  |-- stock_600015_XSHG.h5
+|  |  |  |  |-- stock_600016_XSHG.h5
+|  |  |  |  |-- stock_600018_XSHG.h5
+|  |  |  |  |-- stock_600028_XSHG.h5
+|  |  |  |  |-- stock_600029_XSHG.h5
+|  |  |  |  |-- stock_600030_XSHG.h5
+|  |  |  |  |-- stock_600036_XSHG.h5
+|  |  |  |  |-- stock_600048_XSHG.h5
+|  |  |  |  |-- stock_600050_XSHG.h5
+|  |  |  |  |-- stock_600100_XSHG.h5
+|  |  |  |  |-- stock_600104_XSHG.h5
+|  |  |  |  |-- stock_600109_XSHG.h5
+|  |  |  |  |-- stock_600111_XSHG.h5
+|  |  |  |  |-- stock_600150_XSHG.h5
+|  |  |  |  |-- stock_600340_XSHG.h5
+|  |  |  |  |-- stock_600485_XSHG.h5
+|  |  |  |  |-- stock_600518_XSHG.h5
+|  |  |  |  |-- stock_600519_XSHG.h5
+|  |  |  |  |-- stock_600547_XSHG.h5
+|  |  |  |  |-- stock_600585_XSHG.h5
+|  |  |  |  |-- stock_600606_XSHG.h5
+|  |  |  |  |-- stock_600637_XSHG.h5
+|  |  |  |  |-- stock_600795_XSHG.h5
+|  |  |  |  |-- stock_600837_XSHG.h5
+|  |  |  |  |-- stock_600887_XSHG.h5
+|  |  |  |  |-- stock_600893_XSHG.h5
+|  |  |  |  |-- stock_600919_XSHG.h5
+|  |  |  |  |-- stock_600958_XSHG.h5
+|  |  |  |  |-- stock_600999_XSHG.h5
+|  |  |  |  |-- stock_601006_XSHG.h5
+|  |  |  |  |-- stock_601088_XSHG.h5
+|  |  |  |  |-- stock_601166_XSHG.h5
+|  |  |  |  |-- stock_601169_XSHG.h5
+|  |  |  |  |-- stock_601186_XSHG.h5
+|  |  |  |  |-- stock_601198_XSHG.h5
+|  |  |  |  |-- stock_601211_XSHG.h5
+|  |  |  |  |-- stock_601229_XSHG.h5
+|  |  |  |  |-- stock_601288_XSHG.h5
+|  |  |  |  |-- stock_601318_XSHG.h5
+|  |  |  |  |-- stock_601328_XSHG.h5
+|  |  |  |  |-- stock_601336_XSHG.h5
+|  |  |  |  |-- stock_601377_XSHG.h5
+|  |  |  |  |-- stock_601390_XSHG.h5
+|  |  |  |  |-- stock_601398_XSHG.h5
+|  |  |  |  |-- stock_601601_XSHG.h5
+|  |  |  |  |-- stock_601628_XSHG.h5
+|  |  |  |  |-- stock_601668_XSHG.h5
+|  |  |  |  |-- stock_601669_XSHG.h5
+|  |  |  |  |-- stock_601688_XSHG.h5
+|  |  |  |  |-- stock_601727_XSHG.h5
+|  |  |  |  |-- stock_601766_XSHG.h5
+|  |  |  |  |-- stock_601788_XSHG.h5
+|  |  |  |  |-- stock_601800_XSHG.h5
+|  |  |  |  |-- stock_601818_XSHG.h5
+|  |  |  |  |-- stock_601857_XSHG.h5
+|  |  |  |  |-- stock_601881_XSHG.h5
+|  |  |  |  |-- stock_601901_XSHG.h5
+|  |  |  |  |-- stock_601919_XSHG.h5
+|  |  |  |  |-- stock_601985_XSHG.h5
+|  |  |  |  |-- stock_601988_XSHG.h5
+|  |  |  |  |-- stock_601989_XSHG.h5
+|  |  |  |  |-- stock_601998_XSHG.h5
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- main.cpython-36.pyc
+|  |  |  |  |-- market.cpython-36.pyc
+|  |  |  |  |-- trading.cpython-36.pyc
+|  |  |  |-- dataset_close.h5
+|  |  |  |-- dataset_open.h5
+|  |  |  |-- high2low.py
+|  |  |  |-- main.py
+|  |  |  |-- market.py
+|  |  |  |-- talib2feature.py
+|  |  |  |-- terminal.py
+|  |  |  |-- tradeDays.h5
+|  |  |  |-- trading.py
+|  |  |  |-- universe_SH50.h5
+|  |  |  |-- 交易系统.ipynb
+|  |  |  |-- 行情终端.ipynb
+|  |  |-- test_agent.py
+|  |  |-- test_env.py
+|  |  |-- test_main.py
+|  |  |-- train_and_test.ipynb
+|  |-- README.md
+|  |-- ThinkerV2
+|  |  |-- .ipynb_checkpoints
+|  |  |  |-- DQNCore-checkpoint.ipynb
+|  |  |  |-- env2-checkpoint.ipynb
+|  |  |  |-- main-V2-checkpoint.ipynb
+|  |  |  |-- main-checkpoint.ipynb
+|  |  |-- DQNCore.ipynb
+|  |  |-- DQNCore.py
+|  |  |-- HS300.csv
+|  |  |-- __pycache__
+|  |  |  |-- DQNCore.cpython-36.pyc
+|  |  |  |-- env2.cpython-36.pyc
+|  |  |-- env2.ipynb
+|  |  |-- env2.py
+|  |  |-- main-V2.ipynb
+|  |  |-- main.ipynb
+|  |-- ThinkerV2mini
+|  |  |-- .ipynb_checkpoints
+|  |  |  |-- DQNCoremini-checkpoint.ipynb
+|  |  |  |-- env2mini-checkpoint.ipynb
+|  |  |  |-- main-checkpoint.ipynb
+|  |  |-- DQNCoremini.ipynb
+|  |  |-- DQNCoremini.py
+|  |  |-- HS300.csv
+|  |  |-- __pycache__
+|  |  |  |-- DQNCoremini.cpython-36.pyc
+|  |  |  |-- env2mini.cpython-36.pyc
+|  |  |-- env2mini.ipynb
+|  |  |-- env2mini.py
+|  |  |-- main.ipynb
+|  |  |-- 单文件合集.ipynb
+|  |-- training.png
+|  |-- 样本外.jpg
+|  |-- 样本外.png
+|-- Note-6 A3CNet
+|  |-- Note 6 simple ACNet
+|  |  |-- .idea
+|  |  |  |-- ACNet.iml
+|  |  |  |-- misc.xml
+|  |  |  |-- modules.xml
+|  |  |  |-- workspace.xml
+|  |  |-- .ipynb_checkpoints
+|  |  |  |-- params_adjust-checkpoint.ipynb
+|  |  |  |-- test-checkpoint.ipynb
+|  |  |  |-- test_adjust-checkpoint.ipynb
+|  |  |-- ACNet.py
+|  |  |-- ACNet_adjust.py
+|  |  |-- ACNet_test.py
+|  |  |-- Agent.py
+|  |  |-- Agent_adjust.py
+|  |  |-- Agent_test.py
+|  |  |-- FCNet.py
+|  |  |-- FCNet_test.py
+|  |  |-- README.md
+|  |  |-- __pycache__
+|  |  |  |-- ACNet.cpython-36.pyc
+|  |  |  |-- ACNet_adjust.cpython-36.pyc
+|  |  |  |-- Agent.cpython-36.pyc
+|  |  |  |-- Agent_adjust.cpython-36.pyc
+|  |  |  |-- FCNet.cpython-36.pyc
+|  |  |-- params_adjust.ipynb
+|  |  |-- show.png
+|  |  |-- sonnet
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |-- contrib
+|  |  |  |  |-- README.md
+|  |  |  |  |-- examples
+|  |  |  |  |  |-- CartPole_policy_gradient.ipynb
+|  |  |  |  |  |-- batch_norm_explained.ipynb
+|  |  |  |-- examples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- data
+|  |  |  |  |  |-- ts.test.txt
+|  |  |  |  |  |-- ts.train.txt
+|  |  |  |  |  |-- ts.valid.txt
+|  |  |  |  |-- dataset_shakespeare.py
+|  |  |  |  |-- module_with_build_args.py
+|  |  |  |  |-- rnn_shakespeare.py
+|  |  |  |  |-- rnn_shakespeare_test.py
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- __pycache__
+|  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- custom_getters
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- context.cpython-36.pyc
+|  |  |  |  |  |  |-- non_trainable.cpython-36.pyc
+|  |  |  |  |  |  |-- restore_initializer.cpython-36.pyc
+|  |  |  |  |  |  |-- stop_gradient.cpython-36.pyc
+|  |  |  |  |  |-- context.py
+|  |  |  |  |  |-- context_test.py
+|  |  |  |  |  |-- non_trainable.py
+|  |  |  |  |  |-- non_trainable_test.py
+|  |  |  |  |  |-- restore_initializer.py
+|  |  |  |  |  |-- restore_initializer_test.py
+|  |  |  |  |  |-- stop_gradient.py
+|  |  |  |  |  |-- stop_gradient_test.py
+|  |  |  |  |-- modules
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- attention.cpython-36.pyc
+|  |  |  |  |  |  |-- base.cpython-36.pyc
+|  |  |  |  |  |  |-- basic.cpython-36.pyc
+|  |  |  |  |  |  |-- basic_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- batch_norm.cpython-36.pyc
+|  |  |  |  |  |  |-- clip_gradient.cpython-36.pyc
+|  |  |  |  |  |  |-- conv.cpython-36.pyc
+|  |  |  |  |  |  |-- embed.cpython-36.pyc
+|  |  |  |  |  |  |-- experimental.cpython-36.pyc
+|  |  |  |  |  |  |-- gated_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- layer_norm.cpython-36.pyc
+|  |  |  |  |  |  |-- pondering_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- residual.cpython-36.pyc
+|  |  |  |  |  |  |-- rnn_core.cpython-36.pyc
+|  |  |  |  |  |  |-- scale_gradient.cpython-36.pyc
+|  |  |  |  |  |  |-- sequential.cpython-36.pyc
+|  |  |  |  |  |  |-- spatial_transformer.cpython-36.pyc
+|  |  |  |  |  |  |-- util.cpython-36.pyc
+|  |  |  |  |  |-- attention.py
+|  |  |  |  |  |-- attention_test.py
+|  |  |  |  |  |-- base.py
+|  |  |  |  |  |-- base_test.py
+|  |  |  |  |  |-- basic.py
+|  |  |  |  |  |-- basic_rnn.py
+|  |  |  |  |  |-- basic_rnn_test.py
+|  |  |  |  |  |-- basic_test.py
+|  |  |  |  |  |-- batch_norm.py
+|  |  |  |  |  |-- batch_norm_test.py
+|  |  |  |  |  |-- block_matrix.py
+|  |  |  |  |  |-- block_matrix_test.py
+|  |  |  |  |  |-- clip_gradient.py
+|  |  |  |  |  |-- clip_gradient_test.py
+|  |  |  |  |  |-- conv.py
+|  |  |  |  |  |-- conv_gpu_test.py
+|  |  |  |  |  |-- conv_test.py
+|  |  |  |  |  |-- embed.py
+|  |  |  |  |  |-- embed_test.py
+|  |  |  |  |  |-- experimental.py
+|  |  |  |  |  |-- gated_rnn.py
+|  |  |  |  |  |-- gated_rnn_test.py
+|  |  |  |  |  |-- layer_norm.py
+|  |  |  |  |  |-- layer_norm_test.py
+|  |  |  |  |  |-- nets
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |  |-- alexnet.cpython-36.pyc
+|  |  |  |  |  |  |  |-- convnet.cpython-36.pyc
+|  |  |  |  |  |  |  |-- dilation.cpython-36.pyc
+|  |  |  |  |  |  |  |-- mlp.cpython-36.pyc
+|  |  |  |  |  |  |-- alexnet.py
+|  |  |  |  |  |  |-- alexnet_test.py
+|  |  |  |  |  |  |-- convnet.py
+|  |  |  |  |  |  |-- convnet_test.py
+|  |  |  |  |  |  |-- dilation.py
+|  |  |  |  |  |  |-- dilation_test.py
+|  |  |  |  |  |  |-- mlp.py
+|  |  |  |  |  |  |-- mlp_test.py
+|  |  |  |  |  |-- pondering_rnn.py
+|  |  |  |  |  |-- pondering_rnn_test.py
+|  |  |  |  |  |-- residual.py
+|  |  |  |  |  |-- residual_test.py
+|  |  |  |  |  |-- rnn_core.py
+|  |  |  |  |  |-- rnn_core_test.py
+|  |  |  |  |  |-- scale_gradient.py
+|  |  |  |  |  |-- scale_gradient_test.py
+|  |  |  |  |  |-- sequential.py
+|  |  |  |  |  |-- sequential_test.py
+|  |  |  |  |  |-- spatial_transformer.py
+|  |  |  |  |  |-- spatial_transformer_test.py
+|  |  |  |  |  |-- util.py
+|  |  |  |  |  |-- util_test.py
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- initializers.cpython-36.pyc
+|  |  |  |  |  |  |-- nest.cpython-36.pyc
+|  |  |  |  |  |-- initializers.py
+|  |  |  |  |  |-- initializers_test.py
+|  |  |  |  |  |-- nest.py
+|  |  |  |  |  |-- nest_test.py
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- restore_initializer_test_checkpoint.data-00000-of-00001
+|  |  |  |  |  |  |-- restore_initializer_test_checkpoint.index
+|  |  |  |-- testing
+|  |  |  |  |-- parameterized
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- parameterized.py
+|  |  |  |  |  |-- parameterized_test.py
+|  |  |  |-- util
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- migrate_checkpoint.py
+|  |  |-- test.ipynb
+|  |  |-- test_adjust.ipynb
+|  |-- Note-6.1 simple A3CNet
+|  |  |-- .ipynb_checkpoints
+|  |  |  |-- 异步调参-checkpoint.ipynb
+|  |  |-- ACNet.py
+|  |  |-- Access.py
+|  |  |-- Framework.py
+|  |  |-- Network.py
+|  |  |-- README.md
+|  |  |-- __pycache__
+|  |  |  |-- ACNet.cpython-36.pyc
+|  |  |  |-- Access.cpython-36.pyc
+|  |  |  |-- Network.cpython-36.pyc
+|  |  |  |-- util.cpython-36.pyc
+|  |  |-- main.py
+|  |  |-- sonnet
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |-- contrib
+|  |  |  |  |-- README.md
+|  |  |  |  |-- examples
+|  |  |  |  |  |-- CartPole_policy_gradient.ipynb
+|  |  |  |  |  |-- batch_norm_explained.ipynb
+|  |  |  |-- examples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- data
+|  |  |  |  |  |-- ts.test.txt
+|  |  |  |  |  |-- ts.train.txt
+|  |  |  |  |  |-- ts.valid.txt
+|  |  |  |  |-- dataset_shakespeare.py
+|  |  |  |  |-- module_with_build_args.py
+|  |  |  |  |-- rnn_shakespeare.py
+|  |  |  |  |-- rnn_shakespeare_test.py
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- __pycache__
+|  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- custom_getters
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- context.cpython-36.pyc
+|  |  |  |  |  |  |-- non_trainable.cpython-36.pyc
+|  |  |  |  |  |  |-- restore_initializer.cpython-36.pyc
+|  |  |  |  |  |  |-- stop_gradient.cpython-36.pyc
+|  |  |  |  |  |-- context.py
+|  |  |  |  |  |-- context_test.py
+|  |  |  |  |  |-- non_trainable.py
+|  |  |  |  |  |-- non_trainable_test.py
+|  |  |  |  |  |-- restore_initializer.py
+|  |  |  |  |  |-- restore_initializer_test.py
+|  |  |  |  |  |-- stop_gradient.py
+|  |  |  |  |  |-- stop_gradient_test.py
+|  |  |  |  |-- modules
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- attention.cpython-36.pyc
+|  |  |  |  |  |  |-- base.cpython-36.pyc
+|  |  |  |  |  |  |-- basic.cpython-36.pyc
+|  |  |  |  |  |  |-- basic_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- batch_norm.cpython-36.pyc
+|  |  |  |  |  |  |-- clip_gradient.cpython-36.pyc
+|  |  |  |  |  |  |-- conv.cpython-36.pyc
+|  |  |  |  |  |  |-- embed.cpython-36.pyc
+|  |  |  |  |  |  |-- experimental.cpython-36.pyc
+|  |  |  |  |  |  |-- gated_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- layer_norm.cpython-36.pyc
+|  |  |  |  |  |  |-- pondering_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- residual.cpython-36.pyc
+|  |  |  |  |  |  |-- rnn_core.cpython-36.pyc
+|  |  |  |  |  |  |-- scale_gradient.cpython-36.pyc
+|  |  |  |  |  |  |-- sequential.cpython-36.pyc
+|  |  |  |  |  |  |-- spatial_transformer.cpython-36.pyc
+|  |  |  |  |  |  |-- util.cpython-36.pyc
+|  |  |  |  |  |-- attention.py
+|  |  |  |  |  |-- attention_test.py
+|  |  |  |  |  |-- base.py
+|  |  |  |  |  |-- base_test.py
+|  |  |  |  |  |-- basic.py
+|  |  |  |  |  |-- basic_rnn.py
+|  |  |  |  |  |-- basic_rnn_test.py
+|  |  |  |  |  |-- basic_test.py
+|  |  |  |  |  |-- batch_norm.py
+|  |  |  |  |  |-- batch_norm_test.py
+|  |  |  |  |  |-- block_matrix.py
+|  |  |  |  |  |-- block_matrix_test.py
+|  |  |  |  |  |-- clip_gradient.py
+|  |  |  |  |  |-- clip_gradient_test.py
+|  |  |  |  |  |-- conv.py
+|  |  |  |  |  |-- conv_gpu_test.py
+|  |  |  |  |  |-- conv_test.py
+|  |  |  |  |  |-- embed.py
+|  |  |  |  |  |-- embed_test.py
+|  |  |  |  |  |-- experimental.py
+|  |  |  |  |  |-- gated_rnn.py
+|  |  |  |  |  |-- gated_rnn_test.py
+|  |  |  |  |  |-- layer_norm.py
+|  |  |  |  |  |-- layer_norm_test.py
+|  |  |  |  |  |-- nets
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |  |-- alexnet.cpython-36.pyc
+|  |  |  |  |  |  |  |-- convnet.cpython-36.pyc
+|  |  |  |  |  |  |  |-- dilation.cpython-36.pyc
+|  |  |  |  |  |  |  |-- mlp.cpython-36.pyc
+|  |  |  |  |  |  |-- alexnet.py
+|  |  |  |  |  |  |-- alexnet_test.py
+|  |  |  |  |  |  |-- convnet.py
+|  |  |  |  |  |  |-- convnet_test.py
+|  |  |  |  |  |  |-- dilation.py
+|  |  |  |  |  |  |-- dilation_test.py
+|  |  |  |  |  |  |-- mlp.py
+|  |  |  |  |  |  |-- mlp_test.py
+|  |  |  |  |  |-- pondering_rnn.py
+|  |  |  |  |  |-- pondering_rnn_test.py
+|  |  |  |  |  |-- residual.py
+|  |  |  |  |  |-- residual_test.py
+|  |  |  |  |  |-- rnn_core.py
+|  |  |  |  |  |-- rnn_core_test.py
+|  |  |  |  |  |-- scale_gradient.py
+|  |  |  |  |  |-- scale_gradient_test.py
+|  |  |  |  |  |-- sequential.py
+|  |  |  |  |  |-- sequential_test.py
+|  |  |  |  |  |-- spatial_transformer.py
+|  |  |  |  |  |-- spatial_transformer_test.py
+|  |  |  |  |  |-- util.py
+|  |  |  |  |  |-- util_test.py
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- initializers.cpython-36.pyc
+|  |  |  |  |  |  |-- nest.cpython-36.pyc
+|  |  |  |  |  |-- initializers.py
+|  |  |  |  |  |-- initializers_test.py
+|  |  |  |  |  |-- nest.py
+|  |  |  |  |  |-- nest_test.py
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- restore_initializer_test_checkpoint.data-00000-of-00001
+|  |  |  |  |  |  |-- restore_initializer_test_checkpoint.index
+|  |  |  |-- testing
+|  |  |  |  |-- parameterized
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- parameterized.py
+|  |  |  |  |  |-- parameterized_test.py
+|  |  |  |-- util
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- migrate_checkpoint.py
+|  |  |-- tmp.py
+|  |  |-- util.py
+|  |  |-- 异步调参.ipynb
+|  |-- Note-6.2 A3C与HS300指数择时
+|  |  |-- .idea
+|  |  |  |-- A3C_Scale.iml
+|  |  |  |-- misc.xml
+|  |  |  |-- modules.xml
+|  |  |  |-- other.xml
+|  |  |  |-- workspace.xml
+|  |  |-- .ipynb_checkpoints
+|  |  |  |-- 估值修正-checkpoint.ipynb
+|  |  |  |-- 异步调参-checkpoint.ipynb
+|  |  |  |-- 策略测试-checkpoint.ipynb
+|  |  |  |-- 行为修正-checkpoint.ipynb
+|  |  |-- __pycache__
+|  |  |  |-- config.cpython-36.pyc
+|  |  |-- agent
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- access.cpython-36.pyc
+|  |  |  |  |-- forward.cpython-36.pyc
+|  |  |  |  |-- framework.cpython-36.pyc
+|  |  |  |  |-- main.cpython-36.pyc
+|  |  |  |-- access.py
+|  |  |  |-- forward.py
+|  |  |  |-- framework.py
+|  |  |  |-- main.py
+|  |  |-- config.py
+|  |  |-- emulator
+|  |  |  |-- HS300.csv
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- env_data.cpython-36.pyc
+|  |  |  |  |-- env_factor.cpython-36.pyc
+|  |  |  |  |-- main.cpython-36.pyc
+|  |  |  |-- env_data.py
+|  |  |  |-- env_factor.py
+|  |  |  |-- main.py
+|  |  |-- model
+|  |  |  |-- checkpoint
+|  |  |  |-- saver_1.ckpt.data-00000-of-00001
+|  |  |  |-- saver_1.ckpt.index
+|  |  |  |-- saver_1.ckpt.meta
+|  |  |-- test_access.py
+|  |  |-- test_agent.py
+|  |  |-- test_emulator.py
+|  |  |-- test_framework.py
+|  |  |-- 估值修正.ipynb
+|  |  |-- 异步调参.ipynb
+|  |  |-- 样本外.png
+|  |  |-- 策略测试.ipynb
+|  |  |-- 行为修正.ipynb
+|  |-- Note-6.2.1 代码阅读顺序
+|  |  |-- .ipynb_checkpoints
+|  |  |  |-- 单文件-checkpoint.ipynb
+|  |  |-- README.md
+|  |  |-- env2_simple_HS300.csv
+|  |  |-- model
+|  |  |  |-- checkpoint
+|  |  |  |-- saver_1.ckpt.data-00000-of-00001
+|  |  |  |-- saver_1.ckpt.index
+|  |  |  |-- saver_1.ckpt.meta
+|  |  |-- sonnet
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |-- contrib
+|  |  |  |  |-- README.md
+|  |  |  |  |-- examples
+|  |  |  |  |  |-- CartPole_policy_gradient.ipynb
+|  |  |  |  |  |-- batch_norm_explained.ipynb
+|  |  |  |-- examples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- data
+|  |  |  |  |  |-- ts.test.txt
+|  |  |  |  |  |-- ts.train.txt
+|  |  |  |  |  |-- ts.valid.txt
+|  |  |  |  |-- dataset_shakespeare.py
+|  |  |  |  |-- module_with_build_args.py
+|  |  |  |  |-- rnn_shakespeare.py
+|  |  |  |  |-- rnn_shakespeare_test.py
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- __pycache__
+|  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- custom_getters
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- context.cpython-36.pyc
+|  |  |  |  |  |  |-- non_trainable.cpython-36.pyc
+|  |  |  |  |  |  |-- restore_initializer.cpython-36.pyc
+|  |  |  |  |  |  |-- stop_gradient.cpython-36.pyc
+|  |  |  |  |  |-- context.py
+|  |  |  |  |  |-- context_test.py
+|  |  |  |  |  |-- non_trainable.py
+|  |  |  |  |  |-- non_trainable_test.py
+|  |  |  |  |  |-- restore_initializer.py
+|  |  |  |  |  |-- restore_initializer_test.py
+|  |  |  |  |  |-- stop_gradient.py
+|  |  |  |  |  |-- stop_gradient_test.py
+|  |  |  |  |-- modules
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- attention.cpython-36.pyc
+|  |  |  |  |  |  |-- base.cpython-36.pyc
+|  |  |  |  |  |  |-- basic.cpython-36.pyc
+|  |  |  |  |  |  |-- basic_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- batch_norm.cpython-36.pyc
+|  |  |  |  |  |  |-- clip_gradient.cpython-36.pyc
+|  |  |  |  |  |  |-- conv.cpython-36.pyc
+|  |  |  |  |  |  |-- embed.cpython-36.pyc
+|  |  |  |  |  |  |-- experimental.cpython-36.pyc
+|  |  |  |  |  |  |-- gated_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- layer_norm.cpython-36.pyc
+|  |  |  |  |  |  |-- pondering_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- residual.cpython-36.pyc
+|  |  |  |  |  |  |-- rnn_core.cpython-36.pyc
+|  |  |  |  |  |  |-- scale_gradient.cpython-36.pyc
+|  |  |  |  |  |  |-- sequential.cpython-36.pyc
+|  |  |  |  |  |  |-- spatial_transformer.cpython-36.pyc
+|  |  |  |  |  |  |-- util.cpython-36.pyc
+|  |  |  |  |  |-- attention.py
+|  |  |  |  |  |-- attention_test.py
+|  |  |  |  |  |-- base.py
+|  |  |  |  |  |-- base_test.py
+|  |  |  |  |  |-- basic.py
+|  |  |  |  |  |-- basic_rnn.py
+|  |  |  |  |  |-- basic_rnn_test.py
+|  |  |  |  |  |-- basic_test.py
+|  |  |  |  |  |-- batch_norm.py
+|  |  |  |  |  |-- batch_norm_test.py
+|  |  |  |  |  |-- block_matrix.py
+|  |  |  |  |  |-- block_matrix_test.py
+|  |  |  |  |  |-- clip_gradient.py
+|  |  |  |  |  |-- clip_gradient_test.py
+|  |  |  |  |  |-- conv.py
+|  |  |  |  |  |-- conv_gpu_test.py
+|  |  |  |  |  |-- conv_test.py
+|  |  |  |  |  |-- embed.py
+|  |  |  |  |  |-- embed_test.py
+|  |  |  |  |  |-- experimental.py
+|  |  |  |  |  |-- gated_rnn.py
+|  |  |  |  |  |-- gated_rnn_test.py
+|  |  |  |  |  |-- layer_norm.py
+|  |  |  |  |  |-- layer_norm_test.py
+|  |  |  |  |  |-- nets
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |  |-- alexnet.cpython-36.pyc
+|  |  |  |  |  |  |  |-- convnet.cpython-36.pyc
+|  |  |  |  |  |  |  |-- dilation.cpython-36.pyc
+|  |  |  |  |  |  |  |-- mlp.cpython-36.pyc
+|  |  |  |  |  |  |-- alexnet.py
+|  |  |  |  |  |  |-- alexnet_test.py
+|  |  |  |  |  |  |-- convnet.py
+|  |  |  |  |  |  |-- convnet_test.py
+|  |  |  |  |  |  |-- dilation.py
+|  |  |  |  |  |  |-- dilation_test.py
+|  |  |  |  |  |  |-- mlp.py
+|  |  |  |  |  |  |-- mlp_test.py
+|  |  |  |  |  |-- pondering_rnn.py
+|  |  |  |  |  |-- pondering_rnn_test.py
+|  |  |  |  |  |-- residual.py
+|  |  |  |  |  |-- residual_test.py
+|  |  |  |  |  |-- rnn_core.py
+|  |  |  |  |  |-- rnn_core_test.py
+|  |  |  |  |  |-- scale_gradient.py
+|  |  |  |  |  |-- scale_gradient_test.py
+|  |  |  |  |  |-- sequential.py
+|  |  |  |  |  |-- sequential_test.py
+|  |  |  |  |  |-- spatial_transformer.py
+|  |  |  |  |  |-- spatial_transformer_test.py
+|  |  |  |  |  |-- util.py
+|  |  |  |  |  |-- util_test.py
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- initializers.cpython-36.pyc
+|  |  |  |  |  |  |-- nest.cpython-36.pyc
+|  |  |  |  |  |-- initializers.py
+|  |  |  |  |  |-- initializers_test.py
+|  |  |  |  |  |-- nest.py
+|  |  |  |  |  |-- nest_test.py
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- restore_initializer_test_checkpoint.data-00000-of-00001
+|  |  |  |  |  |  |-- restore_initializer_test_checkpoint.index
+|  |  |  |-- testing
+|  |  |  |  |-- parameterized
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- parameterized.py
+|  |  |  |  |  |-- parameterized_test.py
+|  |  |  |-- util
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- migrate_checkpoint.py
+|  |  |-- 单文件.ipynb
+|  |  |-- 样本外.png
+|  |-- Note-6.3 强化学习选股-SH50指数增强
+|  |  |-- .idea
+|  |  |  |-- A3C_Vector.iml
+|  |  |  |-- misc.xml
+|  |  |  |-- modules.xml
+|  |  |  |-- other.xml
+|  |  |  |-- workspace.xml
+|  |  |-- .ipynb_checkpoints
+|  |  |  |-- test_agent-checkpoint.ipynb
+|  |  |-- README.md
+|  |  |-- agent
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- access.cpython-36.pyc
+|  |  |  |  |-- forward.cpython-36.pyc
+|  |  |  |  |-- framework.cpython-36.pyc
+|  |  |  |  |-- main.cpython-36.pyc
+|  |  |  |-- access.py
+|  |  |  |-- forward.py
+|  |  |  |-- framework.py
+|  |  |  |-- main.py
+|  |  |-- emulator
+|  |  |  |-- 2017_SH50.csv
+|  |  |  |-- SH50.xls
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- env_factor.cpython-36.pyc
+|  |  |  |  |-- env_market.cpython-36.pyc
+|  |  |  |  |-- env_quotes.cpython-36.pyc
+|  |  |  |  |-- main.cpython-36.pyc
+|  |  |  |-- env_factor.py
+|  |  |  |-- env_market.py
+|  |  |  |-- env_quotes.py
+|  |  |  |-- main.py
+|  |  |-- fig1.png
+|  |  |-- model
+|  |  |  |-- checkpoint
+|  |  |  |-- saver_1.ckpt.data-00000-of-00001
+|  |  |  |-- saver_1.ckpt.index
+|  |  |  |-- saver_1.ckpt.meta
+|  |  |-- test_agent.ipynb
+|  |  |-- test_agent.py
+|  |  |-- test_emulator.py
+|  |  |-- 构建说明.ipynb
+|  |-- Note-6.4 HS300指数增强
+|  |  |-- agent
+|  |  |  |-- Conv2DLSTM.py
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- Conv2DLSTM.cpython-36.pyc
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- access.cpython-36.pyc
+|  |  |  |  |-- agent.cpython-36.pyc
+|  |  |  |  |-- forward.cpython-36.pyc
+|  |  |  |  |-- framework.cpython-36.pyc
+|  |  |  |  |-- main.cpython-36.pyc
+|  |  |  |-- access.py
+|  |  |  |-- agent.py
+|  |  |  |-- forward.py
+|  |  |  |-- framework.py
+|  |  |  |-- main.py
+|  |  |-- agent_test.py
+|  |  |-- buffer_test.py
+|  |  |-- env
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- account.cpython-36.pyc
+|  |  |  |  |-- main.cpython-36.pyc
+|  |  |  |-- account.py
+|  |  |  |-- day_quotes.h5
+|  |  |  |-- main.py
+|  |  |  |-- mask.hdf5
+|  |  |  |-- universe.h5
+|  |  |-- framework_test.py
+|  |  |-- params.py
+|  |  |-- sonnet
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |-- cc
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- kernels
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- resampler_op.cc
+|  |  |  |  |  |-- resampler_op.h
+|  |  |  |  |  |-- resampler_op_gpu.cu.cc
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- resampler.cc
+|  |  |  |-- contrib
+|  |  |  |  |-- README.md
+|  |  |  |  |-- examples
+|  |  |  |  |  |-- CartPole_policy_gradient.ipynb
+|  |  |  |  |  |-- batch_norm_explained.ipynb
+|  |  |  |-- examples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- data
+|  |  |  |  |  |-- ts.test.txt
+|  |  |  |  |  |-- ts.train.txt
+|  |  |  |  |  |-- ts.valid.txt
+|  |  |  |  |-- dataset_shakespeare.py
+|  |  |  |  |-- module_with_build_args.py
+|  |  |  |  |-- rnn_shakespeare.py
+|  |  |  |  |-- rnn_shakespeare_test.py
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- __pycache__
+|  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- modules
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- attention.cpython-36.pyc
+|  |  |  |  |  |  |-- base.cpython-36.pyc
+|  |  |  |  |  |  |-- basic.cpython-36.pyc
+|  |  |  |  |  |  |-- basic_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- batch_norm.cpython-36.pyc
+|  |  |  |  |  |  |-- clip_gradient.cpython-36.pyc
+|  |  |  |  |  |  |-- conv.cpython-36.pyc
+|  |  |  |  |  |  |-- embed.cpython-36.pyc
+|  |  |  |  |  |  |-- experimental.cpython-36.pyc
+|  |  |  |  |  |  |-- gated_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- layer_norm.cpython-36.pyc
+|  |  |  |  |  |  |-- pondering_rnn.cpython-36.pyc
+|  |  |  |  |  |  |-- residual.cpython-36.pyc
+|  |  |  |  |  |  |-- rnn_core.cpython-36.pyc
+|  |  |  |  |  |  |-- scale_gradient.cpython-36.pyc
+|  |  |  |  |  |  |-- sequential.cpython-36.pyc
+|  |  |  |  |  |  |-- spatial_transformer.cpython-36.pyc
+|  |  |  |  |  |  |-- util.cpython-36.pyc
+|  |  |  |  |  |-- attention.py
+|  |  |  |  |  |-- attention_test.py
+|  |  |  |  |  |-- base.py
+|  |  |  |  |  |-- base_test.py
+|  |  |  |  |  |-- basic.py
+|  |  |  |  |  |-- basic_rnn.py
+|  |  |  |  |  |-- basic_rnn_test.py
+|  |  |  |  |  |-- basic_test.py
+|  |  |  |  |  |-- batch_norm.py
+|  |  |  |  |  |-- batch_norm_test.py
+|  |  |  |  |  |-- block_matrix.py
+|  |  |  |  |  |-- block_matrix_test.py
+|  |  |  |  |  |-- clip_gradient.py
+|  |  |  |  |  |-- clip_gradient_test.py
+|  |  |  |  |  |-- conv.py
+|  |  |  |  |  |-- conv_gpu_test.py
+|  |  |  |  |  |-- conv_test.py
+|  |  |  |  |  |-- embed.py
+|  |  |  |  |  |-- embed_test.py
+|  |  |  |  |  |-- experimental.py
+|  |  |  |  |  |-- gated_rnn.py
+|  |  |  |  |  |-- gated_rnn_test.py
+|  |  |  |  |  |-- layer_norm.py
+|  |  |  |  |  |-- layer_norm_test.py
+|  |  |  |  |  |-- nets
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |  |-- alexnet.cpython-36.pyc
+|  |  |  |  |  |  |  |-- convnet.cpython-36.pyc
+|  |  |  |  |  |  |  |-- dilation.cpython-36.pyc
+|  |  |  |  |  |  |  |-- mlp.cpython-36.pyc
+|  |  |  |  |  |  |-- alexnet.py
+|  |  |  |  |  |  |-- alexnet_test.py
+|  |  |  |  |  |  |-- convnet.py
+|  |  |  |  |  |  |-- convnet_test.py
+|  |  |  |  |  |  |-- dilation.py
+|  |  |  |  |  |  |-- dilation_test.py
+|  |  |  |  |  |  |-- mlp.py
+|  |  |  |  |  |  |-- mlp_test.py
+|  |  |  |  |  |-- pondering_rnn.py
+|  |  |  |  |  |-- pondering_rnn_test.py
+|  |  |  |  |  |-- residual.py
+|  |  |  |  |  |-- residual_test.py
+|  |  |  |  |  |-- rnn_core.py
+|  |  |  |  |  |-- rnn_core_test.py
+|  |  |  |  |  |-- scale_gradient.py
+|  |  |  |  |  |-- scale_gradient_test.py
+|  |  |  |  |  |-- sequential.py
+|  |  |  |  |  |-- sequential_test.py
+|  |  |  |  |  |-- spatial_transformer.py
+|  |  |  |  |  |-- spatial_transformer_test.py
+|  |  |  |  |  |-- util.py
+|  |  |  |  |  |-- util_test.py
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- initializers.cpython-36.pyc
+|  |  |  |  |  |  |-- nest.cpython-36.pyc
+|  |  |  |  |  |  |-- resampler.cpython-36.pyc
+|  |  |  |  |  |-- initializers.py
+|  |  |  |  |  |-- initializers_test.py
+|  |  |  |  |  |-- nest.py
+|  |  |  |  |  |-- nest_test.py
+|  |  |  |  |  |-- resampler.py
+|  |  |  |  |  |-- resampler_test.py
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- restore_initializer_test_checkpoint.data-00000-of-00001
+|  |  |  |  |  |  |-- restore_initializer_test_checkpoint.index
+|  |  |  |-- tensorflow.bzl
+|  |  |  |-- testing
+|  |  |  |  |-- parameterized
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- __pycache__
+|  |  |  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |  |  |-- parameterized.cpython-36.pyc
+|  |  |  |  |  |-- parameterized.py
+|  |  |  |  |  |-- parameterized_test.py
+|  |  |-- test.py
+|  |  |-- train.py
+|  |  |-- 无法同步.txt
+|-- README.md
+|-- Torch-0 教程笔记
+|  |-- 1.1 LinearRegression.ipynb
+|  |-- 1.2 LogistRegression.ipynb
+|  |-- 2.1 fully connected layers.ipynb
+|-- Torch-1 DDPG
+|  |-- Torch-1 DDPG CPU
+|  |  |-- actor_0.pkl
+|  |  |-- agent
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- agent.cpython-36.pyc
+|  |  |  |  |-- forward.cpython-36.pyc
+|  |  |  |  |-- memory.cpython-36.pyc
+|  |  |  |  |-- utils.cpython-36.pyc
+|  |  |  |-- agent.py
+|  |  |  |-- forward.py
+|  |  |  |-- memory.py
+|  |  |  |-- utils.py
+|  |  |-- config.py
+|  |  |-- critic_0.pkl
+|  |  |-- main.py
+|  |  |-- test_agent.py
+|  |  |-- test_env.py
+|  |  |-- test_forward.py
+|  |  |-- test_memory.py
+|  |  |-- test_utils.py
+|  |-- Torch-2 DDPG GPU
+|  |  |-- actor_0.pkl
+|  |  |-- actor_100.pkl
+|  |  |-- actor_200.pkl
+|  |  |-- agent
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- access.cpython-36.pyc
+|  |  |  |  |-- agent.cpython-36.pyc
+|  |  |  |  |-- forward.cpython-36.pyc
+|  |  |  |-- access.py
+|  |  |  |-- agent.py
+|  |  |  |-- forward.py
+|  |  |-- config.py
+|  |  |-- critic_0.pkl
+|  |  |-- critic_100.pkl
+|  |  |-- critic_200.pkl
+|  |  |-- main.py
+|  |  |-- test_agent.py
+|  |  |-- test_forward.py
+|  |-- Torch-3 DDPG GPU 重构和可视化
+|  |  |-- .idea
+|  |  |  |-- Torch-3 DDPG GPU 重构和可视化.iml
+|  |  |  |-- misc.xml
+|  |  |  |-- modules.xml
+|  |  |  |-- workspace.xml
+|  |  |-- __pycache__
+|  |  |  |-- config.cpython-36.pyc
+|  |  |-- actor_0.pkl
+|  |  |-- agent
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- access.cpython-36.pyc
+|  |  |  |  |-- agent.cpython-36.pyc
+|  |  |  |  |-- forward.cpython-36.pyc
+|  |  |  |  |-- noise.cpython-36.pyc
+|  |  |  |-- access.py
+|  |  |  |-- agent.py
+|  |  |  |-- forward.py
+|  |  |  |-- noise.py
+|  |  |  |-- visdom.py
+|  |  |-- config.py
+|  |  |-- critic_0.pkl
+|  |  |-- train.py
+|  |  |-- train_viz.py
+|  |-- Torch-4 DDPG GPU 重构和可视化
+|  |  |-- .idea
+|  |  |  |-- Torch-4 DDPG GPU 重构和可视化.iml
+|  |  |  |-- misc.xml
+|  |  |  |-- modules.xml
+|  |  |  |-- other.xml
+|  |  |  |-- workspace.xml
+|  |  |-- .ipynb_checkpoints
+|  |  |  |-- test-checkpoint.ipynb
+|  |  |-- __pycache__
+|  |  |  |-- config.cpython-36.pyc
+|  |  |-- actor_0.pkl
+|  |  |-- actor_1000.pkl
+|  |  |-- actor_900.pkl
+|  |  |-- agent
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- access.cpython-36.pyc
+|  |  |  |  |-- agent.cpython-36.pyc
+|  |  |  |  |-- forward.cpython-36.pyc
+|  |  |  |  |-- noise.cpython-36.pyc
+|  |  |  |-- access.py
+|  |  |  |-- agent.py
+|  |  |  |-- forward.py
+|  |  |  |-- noise.py
+|  |  |  |-- visdom.py
+|  |  |-- config.py
+|  |  |-- critic_0.pkl
+|  |  |-- critic_1000.pkl
+|  |  |-- critic_900.pkl
+|  |  |-- newplot.png
+|  |  |-- test.ipynb
+|  |  |-- test
+|  |  |  |-- __init__.py
+|  |  |  |-- test_access.py
+|  |  |  |-- test_agent.py
+|  |  |  |-- test_forward.py
+|  |  |  |-- test_noise.py
+|  |  |-- train.py
+|  |  |-- train_viz.py
+|  |  |-- train_viz_BipedalWalker.py
+|  |  |-- train_viz_Pendulum.py
+|-- Torch-2 DQN
+|  |-- README.md
+|  |-- Torch-5 DQN
+|  |  |-- .idea
+|  |  |  |-- Torch-5 DQN.iml
+|  |  |  |-- misc.xml
+|  |  |  |-- modules.xml
+|  |  |  |-- other.xml
+|  |  |  |-- workspace.xml
+|  |  |-- agent
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- access.cpython-36.pyc
+|  |  |  |  |-- agent.cpython-36.pyc
+|  |  |  |  |-- forward.cpython-36.pyc
+|  |  |  |  |-- main.cpython-36.pyc
+|  |  |  |-- access.py
+|  |  |  |-- agent.py
+|  |  |  |-- forward.py
+|  |  |  |-- main.py
+|  |  |-- emulator
+|  |  |  |-- HS300.csv
+|  |  |  |-- __init__.py
+|  |  |  |-- __pycache__
+|  |  |  |  |-- __init__.cpython-36.pyc
+|  |  |  |  |-- env_data.cpython-36.pyc
+|  |  |  |  |-- env_factor.cpython-36.pyc
+|  |  |  |  |-- main.cpython-36.pyc
+|  |  |  |-- env_data.py
+|  |  |  |-- env_factor.py
+|  |  |  |-- main.py
+|  |  |-- main.py
+|  |  |-- test
+|  |  |  |-- .ipynb_checkpoints
+|  |  |  |  |-- main-checkpoint.ipynb
+|  |  |  |-- __init__.py
+|  |  |  |-- main.ipynb
+|  |  |  |-- test_agent.py
+|  |  |  |-- test_emulator.py
+|  |  |  |-- test_env.py
+|  |  |  |-- test_forward_D3QN.py
+|  |  |  |-- test_forward_DQN.py
+|  |  |  |-- test_forward_one.py
+|  |  |  |-- test_train.py

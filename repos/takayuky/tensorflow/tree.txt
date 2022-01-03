@@ -1,0 +1,3867 @@
+|-- .gitignore
+|-- .gitmodules
+|-- ACKNOWLEDGMENTS
+|-- AUTHORS
+|-- CONTRIBUTING.md
+|-- ISSUE_TEMPLATE.md
+|-- LICENSE
+|-- README.md
+|-- RELEASE.md
+|-- WORKSPACE
+|-- avro.BUILD
+|-- boost.BUILD
+|-- boringssl.BUILD
+|-- bower.BUILD
+|-- bzip2.BUILD
+|-- configure
+|-- eigen.BUILD
+|-- farmhash.BUILD
+|-- gmock.BUILD
+|-- grpc.BUILD
+|-- jpeg.BUILD
+|-- jsoncpp.BUILD
+|-- nanopb.BUILD
+|-- navbar.md
+|-- png.BUILD
+|-- six.BUILD
+|-- tensorflow
+|  |-- BUILD
+|  |-- __init__.py
+|  |-- cc
+|  |  |-- BUILD
+|  |  |-- ops
+|  |  |  |-- cc_op_gen.cc
+|  |  |  |-- cc_op_gen.h
+|  |  |  |-- cc_op_gen_main.cc
+|  |  |  |-- const_op.cc
+|  |  |  |-- const_op.h
+|  |  |  |-- standard_ops.h
+|  |  |-- tutorials
+|  |  |  |-- example_trainer.cc
+|  |-- contrib
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- avro
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- example.json
+|  |  |-- bayesflow
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- python
+|  |  |  |  |-- __init__.py
+|  |  |-- cmake
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- external
+|  |  |  |  |-- eigen.cmake
+|  |  |  |  |-- jpeg.cmake
+|  |  |  |  |-- png.cmake
+|  |  |  |  |-- re2.cmake
+|  |  |  |-- install.cmake
+|  |  |  |-- patches
+|  |  |  |  |-- jpeg
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |-- tests.cmake
+|  |  |  |-- tf_cc_ops.cmake
+|  |  |  |-- tf_core_cpu.cmake
+|  |  |  |-- tf_core_direct_session.cmake
+|  |  |  |-- tf_core_framework.cmake
+|  |  |  |-- tf_core_kernels.cmake
+|  |  |  |-- tf_core_ops.cmake
+|  |  |  |-- tf_models.cmake
+|  |  |  |-- tf_stream_executor.cmake
+|  |  |  |-- tf_tutorials.cmake
+|  |  |-- copy_graph
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- python
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- util
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- copy_elements.py
+|  |  |  |  |  |-- copy_test.py
+|  |  |-- ctc
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- ctc_decoder_ops_test.py
+|  |  |  |-- ctc_loss_op_test.py
+|  |  |  |-- ctc_ops.py
+|  |  |-- distributions
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- python
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- kernel_tests
+|  |  |  |  |  |-- categorical_test.py
+|  |  |  |  |  |-- chi2_test.py
+|  |  |  |  |  |-- dirichlet_multinomial_test.py
+|  |  |  |  |  |-- exponential_test.py
+|  |  |  |  |  |-- gamma_test.py
+|  |  |  |  |  |-- mvn_test.py
+|  |  |  |  |  |-- normal_conjugate_posteriors_test.py
+|  |  |  |  |  |-- normal_test.py
+|  |  |  |  |  |-- student_t_test.py
+|  |  |  |  |  |-- uniform_test.py
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- categorical.py
+|  |  |  |  |  |-- chi2.py
+|  |  |  |  |  |-- dirichlet_multinomial.py
+|  |  |  |  |  |-- distribution.py
+|  |  |  |  |  |-- exponential.py
+|  |  |  |  |  |-- gamma.py
+|  |  |  |  |  |-- mvn.py
+|  |  |  |  |  |-- normal.py
+|  |  |  |  |  |-- normal_conjugate_posteriors.py
+|  |  |  |  |  |-- student_t.py
+|  |  |  |  |  |-- uniform.py
+|  |  |-- ffmpeg
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- decode_audio_op.cc
+|  |  |  |-- decode_audio_op_test.py
+|  |  |  |-- default
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- ffmpeg_lib.cc
+|  |  |  |  |-- ffmpeg_lib_test.cc
+|  |  |  |-- encode_audio_op.cc
+|  |  |  |-- encode_audio_op_test.py
+|  |  |  |-- ffmpeg_lib.h
+|  |  |  |-- ffmpeg_ops.py
+|  |  |  |-- testdata
+|  |  |  |  |-- mono_10khz.ogg
+|  |  |  |  |-- mono_10khz.wav
+|  |  |  |  |-- mono_16khz.mp3
+|  |  |  |  |-- stereo_48khz.mp3
+|  |  |  |  |-- test_sound1.mp3
+|  |  |-- framework
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- python
+|  |  |  |  |-- framework
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- tensor_util.py
+|  |  |  |  |  |-- tensor_util_test.py
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- arg_scope.py
+|  |  |  |  |  |-- arg_scope_test.py
+|  |  |  |  |  |-- embedding_ops.py
+|  |  |  |  |  |-- embedding_ops_test.py
+|  |  |  |  |  |-- ops.py
+|  |  |  |  |  |-- ops_test.py
+|  |  |  |  |  |-- variables.py
+|  |  |  |  |  |-- variables_test.py
+|  |  |-- grid_rnn
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- python
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- kernel_tests
+|  |  |  |  |  |-- grid_rnn_test.py
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- grid_rnn_cell.py
+|  |  |-- ios_examples
+|  |  |  |-- .gitignore
+|  |  |  |-- camera
+|  |  |  |  |-- CameraExampleAppDelegate.h
+|  |  |  |  |-- CameraExampleAppDelegate.m
+|  |  |  |  |-- CameraExampleViewController.h
+|  |  |  |  |-- CameraExampleViewController.mm
+|  |  |  |  |-- Info.plist
+|  |  |  |  |-- camera_example.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |-- data
+|  |  |  |  |  |-- grace_hopper.jpg
+|  |  |  |  |-- en.lproj
+|  |  |  |  |  |-- MainStoryboard_iPhone.storyboard
+|  |  |  |  |-- ios_image_load.h
+|  |  |  |  |-- ios_image_load.mm
+|  |  |  |  |-- main.mm
+|  |  |  |  |-- squarePNG.png
+|  |  |  |  |-- tensorflow_utils.h
+|  |  |  |  |-- tensorflow_utils.mm
+|  |  |  |-- simple
+|  |  |  |  |-- AppDelegate.h
+|  |  |  |  |-- AppDelegate.mm
+|  |  |  |  |-- RunModel-Info.plist
+|  |  |  |  |-- RunModelViewController.h
+|  |  |  |  |-- RunModelViewController.mm
+|  |  |  |  |-- RunModelViewController.xib
+|  |  |  |  |-- data
+|  |  |  |  |  |-- grace_hopper.jpg
+|  |  |  |  |-- ios_image_load.h
+|  |  |  |  |-- ios_image_load.mm
+|  |  |  |  |-- main.mm
+|  |  |  |  |-- tf_ios_makefile_example.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |  |-- layers
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- kernels
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- bucketization_kernel.cc
+|  |  |  |  |-- sparse_feature_cross_kernel.cc
+|  |  |  |-- ops
+|  |  |  |  |-- bucketization_op.cc
+|  |  |  |  |-- sparse_feature_cross_op.cc
+|  |  |  |-- python
+|  |  |  |  |-- kernel_tests
+|  |  |  |  |  |-- bucketization_op_test.py
+|  |  |  |  |  |-- sparse_feature_cross_op_test.py
+|  |  |  |  |-- layers
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- feature_column.py
+|  |  |  |  |  |-- feature_column_ops.py
+|  |  |  |  |  |-- feature_column_ops_test.py
+|  |  |  |  |  |-- feature_column_test.py
+|  |  |  |  |  |-- initializers.py
+|  |  |  |  |  |-- initializers_test.py
+|  |  |  |  |  |-- layers.py
+|  |  |  |  |  |-- layers_test.py
+|  |  |  |  |  |-- optimizers.py
+|  |  |  |  |  |-- optimizers_test.py
+|  |  |  |  |  |-- regularizers.py
+|  |  |  |  |  |-- regularizers_test.py
+|  |  |  |  |  |-- summaries.py
+|  |  |  |  |  |-- summaries_test.py
+|  |  |  |  |  |-- utils.py
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- bucketization_op.py
+|  |  |  |  |  |-- sparse_feature_cross_op.py
+|  |  |-- learn
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- python
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- learn
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- dataframe
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- dataframe.py
+|  |  |  |  |  |  |-- queues
+|  |  |  |  |  |  |  |-- feeding_functions.py
+|  |  |  |  |  |  |  |-- feeding_queue_runner.py
+|  |  |  |  |  |  |-- series.py
+|  |  |  |  |  |  |-- tensorflow_dataframe.py
+|  |  |  |  |  |  |-- transform.py
+|  |  |  |  |  |  |-- transforms
+|  |  |  |  |  |  |  |-- batch.py
+|  |  |  |  |  |  |  |-- csv_parser.py
+|  |  |  |  |  |  |  |-- example_parser.py
+|  |  |  |  |  |  |  |-- in_memory_source.py
+|  |  |  |  |  |  |  |-- reader_source.py
+|  |  |  |  |  |-- datasets
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- base.py
+|  |  |  |  |  |  |-- data
+|  |  |  |  |  |  |  |-- boston_house_prices.csv
+|  |  |  |  |  |  |  |-- iris.csv
+|  |  |  |  |  |  |-- mnist.py
+|  |  |  |  |  |  |-- text_datasets.py
+|  |  |  |  |  |-- estimators
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- _sklearn.py
+|  |  |  |  |  |  |-- autoencoder.py
+|  |  |  |  |  |  |-- base.py
+|  |  |  |  |  |  |-- classifier.py
+|  |  |  |  |  |  |-- classifier_test.py
+|  |  |  |  |  |  |-- dnn.py
+|  |  |  |  |  |  |-- dnn_linear_combined.py
+|  |  |  |  |  |  |-- dnn_linear_combined_test.py
+|  |  |  |  |  |  |-- dnn_test.py
+|  |  |  |  |  |  |-- estimator.py
+|  |  |  |  |  |  |-- estimator_test.py
+|  |  |  |  |  |  |-- linear.py
+|  |  |  |  |  |  |-- linear_test.py
+|  |  |  |  |  |  |-- rnn.py
+|  |  |  |  |  |  |-- run_config.py
+|  |  |  |  |  |  |-- tensor_signature.py
+|  |  |  |  |  |  |-- tensor_signature_test.py
+|  |  |  |  |  |-- experiment.py
+|  |  |  |  |  |-- graph_actions.py
+|  |  |  |  |  |-- io
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- dask_io.py
+|  |  |  |  |  |  |-- data_feeder.py
+|  |  |  |  |  |  |-- graph_io.py
+|  |  |  |  |  |  |-- graph_io_test.py
+|  |  |  |  |  |  |-- pandas_io.py
+|  |  |  |  |  |-- learn_runner.py
+|  |  |  |  |  |-- models.py
+|  |  |  |  |  |-- monitors.py
+|  |  |  |  |  |-- ops
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- array_ops.py
+|  |  |  |  |  |  |-- autoencoder_ops.py
+|  |  |  |  |  |  |-- batch_norm_ops.py
+|  |  |  |  |  |  |-- conv_ops.py
+|  |  |  |  |  |  |-- dnn_ops.py
+|  |  |  |  |  |  |-- dropout_ops.py
+|  |  |  |  |  |  |-- embeddings_ops.py
+|  |  |  |  |  |  |-- losses_ops.py
+|  |  |  |  |  |  |-- seq2seq_ops.py
+|  |  |  |  |  |  |-- tests
+|  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |-- dropout_ops_test.py
+|  |  |  |  |  |  |  |-- ops_test.py
+|  |  |  |  |  |  |  |-- seq2seq_ops_test.py
+|  |  |  |  |  |-- preprocessing
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- categorical.py
+|  |  |  |  |  |  |-- categorical_vocabulary.py
+|  |  |  |  |  |  |-- tests
+|  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |-- categorical_test.py
+|  |  |  |  |  |  |  |-- categorical_vocabulary_test.py
+|  |  |  |  |  |  |  |-- text_test.py
+|  |  |  |  |  |  |-- text.py
+|  |  |  |  |  |-- tests
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- base_test.py
+|  |  |  |  |  |  |-- data_feeder_test.py
+|  |  |  |  |  |  |-- dataframe
+|  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |-- batch_test.py
+|  |  |  |  |  |  |  |-- csv_parser_test.py
+|  |  |  |  |  |  |  |-- dataframe_test.py
+|  |  |  |  |  |  |  |-- example_parser_test.py
+|  |  |  |  |  |  |  |-- feeding_queue_runner_test.py
+|  |  |  |  |  |  |  |-- in_memory_source_test.py
+|  |  |  |  |  |  |  |-- mocks.py
+|  |  |  |  |  |  |  |-- reader_source_test.py
+|  |  |  |  |  |  |  |-- series_test.py
+|  |  |  |  |  |  |  |-- tensorflow_dataframe_test.py
+|  |  |  |  |  |  |  |-- transform_test.py
+|  |  |  |  |  |  |-- early_stopping_test.py
+|  |  |  |  |  |  |-- estimators_test.py
+|  |  |  |  |  |  |-- experiment_test.py
+|  |  |  |  |  |  |-- grid_search_test.py
+|  |  |  |  |  |  |-- io_test.py
+|  |  |  |  |  |  |-- learn_runner_test.py
+|  |  |  |  |  |  |-- multioutput_test.py
+|  |  |  |  |  |  |-- nonlinear_test.py
+|  |  |  |  |  |  |-- regression_test.py
+|  |  |  |  |  |  |-- saver_test.py
+|  |  |  |  |  |  |-- stability_test.py
+|  |  |  |  |  |-- utils
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- checkpoints.py
+|  |  |  |  |  |  |-- checkpoints_test.py
+|  |  |  |  |  |  |-- inspect_checkpoint.py
+|  |  |-- linear_optimizer
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- kernels
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- hinge-loss.h
+|  |  |  |  |-- logistic-loss.h
+|  |  |  |  |-- loss.h
+|  |  |  |  |-- loss_test.cc
+|  |  |  |  |-- resources.cc
+|  |  |  |  |-- resources.h
+|  |  |  |  |-- resources_test.cc
+|  |  |  |  |-- sdca_ops.cc
+|  |  |  |  |-- sdca_ops_test.cc
+|  |  |  |  |-- squared-loss.h
+|  |  |  |-- ops
+|  |  |  |  |-- sdca_ops.cc
+|  |  |  |-- python
+|  |  |  |  |-- kernel_tests
+|  |  |  |  |  |-- sdca_ops_test.py
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- sdca_ops.py
+|  |  |-- lookup
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- lookup_ops.py
+|  |  |  |-- lookup_ops_test.py
+|  |  |-- losses
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- python
+|  |  |  |  |-- losses
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- loss_ops.py
+|  |  |  |  |  |-- loss_ops_test.py
+|  |  |-- makefile
+|  |  |  |-- .gitignore
+|  |  |  |-- Makefile
+|  |  |  |-- README.md
+|  |  |  |-- compile_android_protobuf.sh
+|  |  |  |-- compile_ios_protobuf.sh
+|  |  |  |-- compile_ios_tensorflow.sh
+|  |  |  |-- compile_pi_protobuf.sh
+|  |  |  |-- download_dependencies.sh
+|  |  |  |-- gen_file_lists.sh
+|  |  |  |-- proto_text_cc_files.txt
+|  |  |  |-- proto_text_pb_cc_files.txt
+|  |  |  |-- proto_text_pb_h_files.txt
+|  |  |  |-- tf_cc_files.txt
+|  |  |  |-- tf_pb_text_files.txt
+|  |  |  |-- tf_proto_files.txt
+|  |  |-- metrics
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- kernels
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- set_kernels.cc
+|  |  |  |-- ops
+|  |  |  |  |-- set_ops.cc
+|  |  |  |-- python
+|  |  |  |  |-- kernel_tests
+|  |  |  |  |  |-- confusion_matrix_ops_test.py
+|  |  |  |  |  |-- histogram_ops_test.py
+|  |  |  |  |  |-- set_ops_test.py
+|  |  |  |  |-- metrics
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- classification.py
+|  |  |  |  |  |-- classification_test.py
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- confusion_matrix_ops.py
+|  |  |  |  |  |-- histogram_ops.py
+|  |  |  |  |  |-- metric_ops.py
+|  |  |  |  |  |-- metric_ops_test.py
+|  |  |  |  |  |-- set_ops.py
+|  |  |-- opt
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- python
+|  |  |  |  |-- training
+|  |  |  |  |  |-- external_optimizer.py
+|  |  |  |  |  |-- external_optimizer_test.py
+|  |  |-- quantization
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- kernels
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dequantize_op.cc
+|  |  |  |  |-- load_quantized_kernels_so.py
+|  |  |  |  |-- quantization_utils.h
+|  |  |  |  |-- quantization_utils_test.cc
+|  |  |  |  |-- quantize_down_and_shrink_range.cc
+|  |  |  |  |-- quantize_down_and_shrink_range_op_test.cc
+|  |  |  |  |-- quantize_op.cc
+|  |  |  |  |-- quantize_op_test.cc
+|  |  |  |  |-- quantized_activation_ops.cc
+|  |  |  |  |-- quantized_activation_ops_test.cc
+|  |  |  |  |-- quantized_batch_norm_op.cc
+|  |  |  |  |-- quantized_batch_norm_op_test.cc
+|  |  |  |  |-- quantized_bias_add_op.cc
+|  |  |  |  |-- quantized_bias_add_op_test.cc
+|  |  |  |  |-- quantized_concat_op.cc
+|  |  |  |  |-- quantized_concat_op_test.cc
+|  |  |  |  |-- quantized_conv_ops.cc
+|  |  |  |  |-- quantized_conv_ops_test.cc
+|  |  |  |  |-- quantized_matmul_op.cc
+|  |  |  |  |-- quantized_matmul_op_test.cc
+|  |  |  |  |-- quantized_pooling_ops.cc
+|  |  |  |  |-- quantized_pooling_ops_test.cc
+|  |  |  |  |-- reference_gemm.h
+|  |  |  |-- load_quantized_ops_so.py
+|  |  |  |-- ops
+|  |  |  |  |-- array_ops.cc
+|  |  |  |  |-- math_ops.cc
+|  |  |  |  |-- nn_ops.cc
+|  |  |  |-- python
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- array_ops.py
+|  |  |  |  |-- dequantize_op_test.py
+|  |  |  |  |-- math_ops.py
+|  |  |  |  |-- nn_ops.py
+|  |  |  |  |-- quantized_conv_ops_test.py
+|  |  |  |-- tools
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- graph_to_dot.py
+|  |  |  |  |-- quantize_graph.py
+|  |  |  |  |-- quantize_graph_test.py
+|  |  |-- rnn
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- python
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- kernel_tests
+|  |  |  |  |  |-- rnn_cell_test.py
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- rnn_cell.py
+|  |  |-- session_bundle
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- example
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- export_half_plus_two.py
+|  |  |  |-- exporter.py
+|  |  |  |-- exporter_test.py
+|  |  |  |-- gc.py
+|  |  |  |-- gc_test.py
+|  |  |  |-- manifest.proto
+|  |  |  |-- session_bundle.cc
+|  |  |  |-- session_bundle.h
+|  |  |  |-- session_bundle_test.cc
+|  |  |  |-- signature.cc
+|  |  |  |-- signature.h
+|  |  |  |-- signature_test.cc
+|  |  |  |-- test_util.cc
+|  |  |  |-- test_util.h
+|  |  |-- skflow
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |-- slim
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- python
+|  |  |  |  |-- slim
+|  |  |  |  |  |-- data
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- data_decoder.py
+|  |  |  |  |  |  |-- data_provider.py
+|  |  |  |  |  |  |-- dataset.py
+|  |  |  |  |  |  |-- dataset_data_provider.py
+|  |  |  |  |  |  |-- dataset_data_provider_test.py
+|  |  |  |  |  |  |-- parallel_reader.py
+|  |  |  |  |  |  |-- parallel_reader_test.py
+|  |  |  |  |  |  |-- prefetch_queue.py
+|  |  |  |  |  |  |-- prefetch_queue_test.py
+|  |  |  |  |  |  |-- test_utils.py
+|  |  |  |  |  |  |-- tfexample_decoder.py
+|  |  |  |  |  |  |-- tfexample_decoder_test.py
+|  |  |  |  |  |-- evaluation.py
+|  |  |  |  |  |-- evaluation_test.py
+|  |  |  |  |  |-- learning.py
+|  |  |  |  |  |-- learning_test.py
+|  |  |  |  |  |-- queues.py
+|  |  |-- tensor_forest
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- core
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- best_splits_op.cc
+|  |  |  |  |  |-- count_extremely_random_stats_op.cc
+|  |  |  |  |  |-- finished_nodes_op.cc
+|  |  |  |  |  |-- grow_tree_op.cc
+|  |  |  |  |  |-- sample_inputs_op.cc
+|  |  |  |  |  |-- scatter_add_ndim_op.cc
+|  |  |  |  |  |-- tree_predictions_op.cc
+|  |  |  |  |  |-- tree_utils.cc
+|  |  |  |  |  |-- tree_utils.h
+|  |  |  |  |  |-- tree_utils_test.cc
+|  |  |  |  |  |-- update_fertile_slots_op.cc
+|  |  |  |-- python
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- kernel_tests
+|  |  |  |  |  |-- best_splits_op_test.py
+|  |  |  |  |  |-- count_extremely_random_stats_op_test.py
+|  |  |  |  |  |-- finished_nodes_op_test.py
+|  |  |  |  |  |-- grow_tree_op_test.py
+|  |  |  |  |  |-- sample_inputs_op_test.py
+|  |  |  |  |  |-- scatter_add_ndim_op_test.py
+|  |  |  |  |  |-- tree_predictions_op_test.py
+|  |  |  |  |  |-- update_fertile_slots_op_test.py
+|  |  |  |  |-- ops
+|  |  |  |  |  |-- inference_ops.py
+|  |  |  |  |  |-- training_ops.py
+|  |  |  |  |-- tensor_forest.py
+|  |  |  |  |-- tensor_forest_test.py
+|  |  |-- testing
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- python
+|  |  |  |  |-- framework
+|  |  |  |  |  |-- util_test.py
+|  |  |-- util
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- convert_graphdef_memmapped_format.cc
+|  |  |  |-- convert_graphdef_memmapped_format_lib.cc
+|  |  |  |-- convert_graphdef_memmapped_format_lib.h
+|  |  |  |-- convert_graphdef_memmapped_format_test.cc
+|  |  |  |-- inspect_checkpoint.cc
+|  |-- core
+|  |  |-- BUILD
+|  |  |-- client
+|  |  |  |-- tensor_c_api.cc
+|  |  |  |-- tensor_c_api_test.cc
+|  |  |-- common_runtime
+|  |  |  |-- allocator_retry.cc
+|  |  |  |-- allocator_retry.h
+|  |  |  |-- bfc_allocator.cc
+|  |  |  |-- bfc_allocator.h
+|  |  |  |-- build_graph_options.cc
+|  |  |  |-- build_graph_options.h
+|  |  |  |-- constant_folding.cc
+|  |  |  |-- constant_folding.h
+|  |  |  |-- constant_folding_test.cc
+|  |  |  |-- copy_tensor.cc
+|  |  |  |-- copy_tensor.h
+|  |  |  |-- costmodel_manager.cc
+|  |  |  |-- costmodel_manager.h
+|  |  |  |-- device.cc
+|  |  |  |-- device.h
+|  |  |  |-- device_factory.cc
+|  |  |  |-- device_factory.h
+|  |  |  |-- device_mgr.cc
+|  |  |  |-- device_mgr.h
+|  |  |  |-- device_set.cc
+|  |  |  |-- device_set.h
+|  |  |  |-- device_set_test.cc
+|  |  |  |-- direct_session.cc
+|  |  |  |-- direct_session.h
+|  |  |  |-- direct_session_test.cc
+|  |  |  |-- direct_session_with_tracking_alloc_test.cc
+|  |  |  |-- dma_helper.h
+|  |  |  |-- eigen_thread_pool.h
+|  |  |  |-- executor.cc
+|  |  |  |-- executor.h
+|  |  |  |-- function.cc
+|  |  |  |-- function.h
+|  |  |  |-- function_test.cc
+|  |  |  |-- gpu
+|  |  |  |  |-- cupti_wrapper.cc
+|  |  |  |  |-- cupti_wrapper.h
+|  |  |  |  |-- gpu_allocator_retry_test.cc
+|  |  |  |  |-- gpu_bfc_allocator.cc
+|  |  |  |  |-- gpu_bfc_allocator.h
+|  |  |  |  |-- gpu_bfc_allocator_test.cc
+|  |  |  |  |-- gpu_debug_allocator.cc
+|  |  |  |  |-- gpu_debug_allocator.h
+|  |  |  |  |-- gpu_debug_allocator_test.cc
+|  |  |  |  |-- gpu_device.cc
+|  |  |  |  |-- gpu_device.h
+|  |  |  |  |-- gpu_device_factory.cc
+|  |  |  |  |-- gpu_event_mgr.cc
+|  |  |  |  |-- gpu_event_mgr.h
+|  |  |  |  |-- gpu_event_mgr_test.cc
+|  |  |  |  |-- gpu_init.cc
+|  |  |  |  |-- gpu_init.h
+|  |  |  |  |-- gpu_stream_util.cc
+|  |  |  |  |-- gpu_stream_util.h
+|  |  |  |  |-- gpu_stream_util_test.cc
+|  |  |  |  |-- gpu_tracer.cc
+|  |  |  |  |-- gpu_tracer.h
+|  |  |  |  |-- gpu_tracer_test.cc
+|  |  |  |  |-- gpu_util.cc
+|  |  |  |  |-- gpu_util.h
+|  |  |  |  |-- gpu_util_platform_specific.cc
+|  |  |  |  |-- pool_allocator.cc
+|  |  |  |  |-- pool_allocator.h
+|  |  |  |  |-- pool_allocator_test.cc
+|  |  |  |  |-- process_state.cc
+|  |  |  |  |-- process_state.h
+|  |  |  |-- gpu_device_context.h
+|  |  |  |-- graph_optimizer.cc
+|  |  |  |-- graph_optimizer.h
+|  |  |  |-- kernel_benchmark_testlib.cc
+|  |  |  |-- kernel_benchmark_testlib.h
+|  |  |  |-- local_device.cc
+|  |  |  |-- local_device.h
+|  |  |  |-- memory_types.cc
+|  |  |  |-- memory_types.h
+|  |  |  |-- memory_types_test.cc
+|  |  |  |-- pending_counts.h
+|  |  |  |-- pending_counts_test.cc
+|  |  |  |-- process_util.cc
+|  |  |  |-- process_util.h
+|  |  |  |-- rendezvous_mgr.cc
+|  |  |  |-- rendezvous_mgr.h
+|  |  |  |-- session.cc
+|  |  |  |-- session_factory.cc
+|  |  |  |-- session_factory.h
+|  |  |  |-- session_options.cc
+|  |  |  |-- session_state.cc
+|  |  |  |-- session_test.cc
+|  |  |  |-- simple_graph_execution_state.cc
+|  |  |  |-- simple_graph_execution_state.h
+|  |  |  |-- simple_placer.cc
+|  |  |  |-- simple_placer.h
+|  |  |  |-- simple_placer_test.cc
+|  |  |  |-- step_stats_collector.cc
+|  |  |  |-- step_stats_collector.h
+|  |  |  |-- threadpool_device.cc
+|  |  |  |-- threadpool_device.h
+|  |  |  |-- threadpool_device_factory.cc
+|  |  |  |-- visitable_allocator.h
+|  |  |-- distributed_runtime
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- base_rendezvous_mgr.cc
+|  |  |  |-- base_rendezvous_mgr.h
+|  |  |  |-- call_options.cc
+|  |  |  |-- call_options.h
+|  |  |  |-- call_options_test.cc
+|  |  |  |-- executor_test.cc
+|  |  |  |-- graph_mgr.cc
+|  |  |  |-- graph_mgr.h
+|  |  |  |-- master.cc
+|  |  |  |-- master.h
+|  |  |  |-- master_env.h
+|  |  |  |-- master_interface.h
+|  |  |  |-- master_session.cc
+|  |  |  |-- master_session.h
+|  |  |  |-- master_session_interface.h
+|  |  |  |-- master_test.cc
+|  |  |  |-- remote_device.cc
+|  |  |  |-- remote_device.h
+|  |  |  |-- remote_device_test.cc
+|  |  |  |-- rendezvous_mgr_interface.h
+|  |  |  |-- rpc
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- async_service_interface.h
+|  |  |  |  |-- grpc_call.h
+|  |  |  |  |-- grpc_channel.cc
+|  |  |  |  |-- grpc_channel.h
+|  |  |  |  |-- grpc_channel_test.cc
+|  |  |  |  |-- grpc_client_cq_tag.h
+|  |  |  |  |-- grpc_master_service.cc
+|  |  |  |  |-- grpc_master_service.h
+|  |  |  |  |-- grpc_master_service_impl.cc
+|  |  |  |  |-- grpc_master_service_impl.h
+|  |  |  |  |-- grpc_remote_master.cc
+|  |  |  |  |-- grpc_remote_master.h
+|  |  |  |  |-- grpc_remote_worker.cc
+|  |  |  |  |-- grpc_remote_worker.h
+|  |  |  |  |-- grpc_serialization_traits.h
+|  |  |  |  |-- grpc_server_lib.cc
+|  |  |  |  |-- grpc_server_lib.h
+|  |  |  |  |-- grpc_session.cc
+|  |  |  |  |-- grpc_session.h
+|  |  |  |  |-- grpc_session_test.cc
+|  |  |  |  |-- grpc_tensorflow_server.cc
+|  |  |  |  |-- grpc_testlib.cc
+|  |  |  |  |-- grpc_testlib.h
+|  |  |  |  |-- grpc_testlib_ops.cc
+|  |  |  |  |-- grpc_testlib_server.cc
+|  |  |  |  |-- grpc_util.h
+|  |  |  |  |-- grpc_worker_cache.cc
+|  |  |  |  |-- grpc_worker_cache.h
+|  |  |  |  |-- grpc_worker_service.cc
+|  |  |  |  |-- grpc_worker_service.h
+|  |  |  |  |-- grpc_worker_service_impl.cc
+|  |  |  |  |-- grpc_worker_service_impl.h
+|  |  |  |  |-- rpc_rendezvous_mgr.cc
+|  |  |  |  |-- rpc_rendezvous_mgr.h
+|  |  |  |  |-- rpc_rendezvous_mgr_test.cc
+|  |  |  |-- server_lib.cc
+|  |  |  |-- server_lib.h
+|  |  |  |-- worker_cache.h
+|  |  |  |-- worker_cache_logger.cc
+|  |  |  |-- worker_cache_logger.h
+|  |  |  |-- worker_cache_partial.cc
+|  |  |  |-- worker_cache_partial.h
+|  |  |  |-- worker_env.h
+|  |  |  |-- worker_interface.h
+|  |  |-- example
+|  |  |  |-- example.proto
+|  |  |  |-- example_parser_configuration.cc
+|  |  |  |-- example_parser_configuration.h
+|  |  |  |-- example_parser_configuration_test.cc
+|  |  |  |-- feature.proto
+|  |  |  |-- feature_util.cc
+|  |  |  |-- feature_util.h
+|  |  |  |-- feature_util_test.cc
+|  |  |  |-- testdata
+|  |  |  |  |-- parse_example_graph_def.pbtxt
+|  |  |-- framework
+|  |  |  |-- allocation_description.proto
+|  |  |  |-- allocator.cc
+|  |  |  |-- allocator.h
+|  |  |  |-- allocator_test.cc
+|  |  |  |-- attr_value.proto
+|  |  |  |-- attr_value_util.cc
+|  |  |  |-- attr_value_util.h
+|  |  |  |-- attr_value_util_test.cc
+|  |  |  |-- bfloat16.cc
+|  |  |  |-- bfloat16.h
+|  |  |  |-- bfloat16_test.cc
+|  |  |  |-- cancellation.cc
+|  |  |  |-- cancellation.h
+|  |  |  |-- cancellation_test.cc
+|  |  |  |-- control_flow.h
+|  |  |  |-- cost_graph.proto
+|  |  |  |-- device_attributes.proto
+|  |  |  |-- device_base.cc
+|  |  |  |-- device_base.h
+|  |  |  |-- fake_input.cc
+|  |  |  |-- fake_input.h
+|  |  |  |-- function.cc
+|  |  |  |-- function.h
+|  |  |  |-- function.proto
+|  |  |  |-- function_test.cc
+|  |  |  |-- function_testlib.cc
+|  |  |  |-- function_testlib.h
+|  |  |  |-- graph.proto
+|  |  |  |-- graph_def_util.cc
+|  |  |  |-- graph_def_util.h
+|  |  |  |-- graph_def_util_test.cc
+|  |  |  |-- kernel_def.proto
+|  |  |  |-- kernel_def_builder.cc
+|  |  |  |-- kernel_def_builder.h
+|  |  |  |-- kernel_def_builder_test.cc
+|  |  |  |-- load_library.cc
+|  |  |  |-- log_memory.cc
+|  |  |  |-- log_memory.h
+|  |  |  |-- log_memory.proto
+|  |  |  |-- lookup_interface.cc
+|  |  |  |-- lookup_interface.h
+|  |  |  |-- memory_types.cc
+|  |  |  |-- memory_types.h
+|  |  |  |-- memory_types_test.cc
+|  |  |  |-- node_def_builder.cc
+|  |  |  |-- node_def_builder.h
+|  |  |  |-- node_def_builder_test.cc
+|  |  |  |-- node_def_util.cc
+|  |  |  |-- node_def_util.h
+|  |  |  |-- node_def_util_test.cc
+|  |  |  |-- numeric_op.h
+|  |  |  |-- numeric_types.h
+|  |  |  |-- op.cc
+|  |  |  |-- op.h
+|  |  |  |-- op_compatibility_test.cc
+|  |  |  |-- op_def.proto
+|  |  |  |-- op_def_builder.cc
+|  |  |  |-- op_def_builder.h
+|  |  |  |-- op_def_builder_test.cc
+|  |  |  |-- op_def_util.cc
+|  |  |  |-- op_def_util.h
+|  |  |  |-- op_def_util_test.cc
+|  |  |  |-- op_gen_lib.cc
+|  |  |  |-- op_gen_lib.h
+|  |  |  |-- op_kernel.cc
+|  |  |  |-- op_kernel.h
+|  |  |  |-- op_kernel_test.cc
+|  |  |  |-- op_segment.cc
+|  |  |  |-- op_segment.h
+|  |  |  |-- op_segment_test.cc
+|  |  |  |-- partial_tensor_shape.cc
+|  |  |  |-- partial_tensor_shape.h
+|  |  |  |-- partial_tensor_shape_test.cc
+|  |  |  |-- queue_interface.h
+|  |  |  |-- reader_interface.h
+|  |  |  |-- reader_op_kernel.cc
+|  |  |  |-- reader_op_kernel.h
+|  |  |  |-- register_types.h
+|  |  |  |-- rendezvous.cc
+|  |  |  |-- rendezvous.h
+|  |  |  |-- rendezvous_test.cc
+|  |  |  |-- resource_mgr.cc
+|  |  |  |-- resource_mgr.h
+|  |  |  |-- resource_mgr_test.cc
+|  |  |  |-- selective_registration.h
+|  |  |  |-- session_state.h
+|  |  |  |-- shape_inference.cc
+|  |  |  |-- shape_inference.h
+|  |  |  |-- shape_inference_test.cc
+|  |  |  |-- step_stats.proto
+|  |  |  |-- summary.proto
+|  |  |  |-- tensor.cc
+|  |  |  |-- tensor.h
+|  |  |  |-- tensor.proto
+|  |  |  |-- tensor_description.proto
+|  |  |  |-- tensor_reference.cc
+|  |  |  |-- tensor_reference.h
+|  |  |  |-- tensor_shape.cc
+|  |  |  |-- tensor_shape.h
+|  |  |  |-- tensor_shape.proto
+|  |  |  |-- tensor_shape_test.cc
+|  |  |  |-- tensor_slice.cc
+|  |  |  |-- tensor_slice.h
+|  |  |  |-- tensor_slice.proto
+|  |  |  |-- tensor_slice_test.cc
+|  |  |  |-- tensor_test.cc
+|  |  |  |-- tensor_testutil.cc
+|  |  |  |-- tensor_testutil.h
+|  |  |  |-- tensor_types.h
+|  |  |  |-- tensor_util.cc
+|  |  |  |-- tensor_util.h
+|  |  |  |-- tensor_util_test.cc
+|  |  |  |-- tracking_allocator.cc
+|  |  |  |-- tracking_allocator.h
+|  |  |  |-- tracking_allocator_test.cc
+|  |  |  |-- type_index.h
+|  |  |  |-- type_traits.h
+|  |  |  |-- types.cc
+|  |  |  |-- types.h
+|  |  |  |-- types.proto
+|  |  |  |-- types_test.cc
+|  |  |  |-- unique_tensor_references.cc
+|  |  |  |-- unique_tensor_references.h
+|  |  |  |-- unique_tensor_references_test.cc
+|  |  |  |-- variable.proto
+|  |  |  |-- versions.cc
+|  |  |  |-- versions.h
+|  |  |  |-- versions.proto
+|  |  |-- graph
+|  |  |  |-- algorithm.cc
+|  |  |  |-- algorithm.h
+|  |  |  |-- algorithm_test.cc
+|  |  |  |-- colors.cc
+|  |  |  |-- colors.h
+|  |  |  |-- costmodel.cc
+|  |  |  |-- costmodel.h
+|  |  |  |-- default_device.h
+|  |  |  |-- dot.cc
+|  |  |  |-- dot.h
+|  |  |  |-- edgeset.cc
+|  |  |  |-- edgeset.h
+|  |  |  |-- edgeset_test.cc
+|  |  |  |-- equal_graph_def.cc
+|  |  |  |-- equal_graph_def.h
+|  |  |  |-- equal_graph_def_test.cc
+|  |  |  |-- gradients.cc
+|  |  |  |-- gradients.h
+|  |  |  |-- graph.cc
+|  |  |  |-- graph.h
+|  |  |  |-- graph_constructor.cc
+|  |  |  |-- graph_constructor.h
+|  |  |  |-- graph_constructor_test.cc
+|  |  |  |-- graph_def_builder.cc
+|  |  |  |-- graph_def_builder.h
+|  |  |  |-- graph_def_builder_test.cc
+|  |  |  |-- graph_partition.cc
+|  |  |  |-- graph_partition.h
+|  |  |  |-- graph_partition_test.cc
+|  |  |  |-- graph_test.cc
+|  |  |  |-- node_builder.cc
+|  |  |  |-- node_builder.h
+|  |  |  |-- node_builder_test.cc
+|  |  |  |-- optimizer_cse.cc
+|  |  |  |-- optimizer_cse.h
+|  |  |  |-- optimizer_cse_test.cc
+|  |  |  |-- quantize_training.cc
+|  |  |  |-- quantize_training.h
+|  |  |  |-- quantize_training_test.cc
+|  |  |  |-- subgraph.cc
+|  |  |  |-- subgraph.h
+|  |  |  |-- subgraph_test.cc
+|  |  |  |-- tensor_id.cc
+|  |  |  |-- tensor_id.h
+|  |  |  |-- tensor_id_test.cc
+|  |  |  |-- testlib.cc
+|  |  |  |-- testlib.h
+|  |  |  |-- types.h
+|  |  |  |-- validate.cc
+|  |  |  |-- validate.h
+|  |  |  |-- validate_test.cc
+|  |  |-- kernels
+|  |  |  |-- BUILD
+|  |  |  |-- adjust_contrast_op.cc
+|  |  |  |-- adjust_contrast_op.h
+|  |  |  |-- adjust_contrast_op_benchmark_test.cc
+|  |  |  |-- adjust_contrast_op_gpu.cu.cc
+|  |  |  |-- adjust_contrast_op_test.cc
+|  |  |  |-- aggregate_ops.cc
+|  |  |  |-- aggregate_ops.h
+|  |  |  |-- aggregate_ops_cpu.h
+|  |  |  |-- aggregate_ops_gpu.cu.cc
+|  |  |  |-- argmax_op.cc
+|  |  |  |-- argmax_op.h
+|  |  |  |-- argmax_op_gpu.cu.cc
+|  |  |  |-- assign_op.h
+|  |  |  |-- attention_ops.cc
+|  |  |  |-- avgpooling_op.cc
+|  |  |  |-- avgpooling_op.h
+|  |  |  |-- avgpooling_op_gpu.cu.cc
+|  |  |  |-- basic_ops_benchmark_test.cc
+|  |  |  |-- batch_matmul_op.cc
+|  |  |  |-- batch_matrix_band_part_op.cc
+|  |  |  |-- batch_matrix_band_part_op.h
+|  |  |  |-- batch_matrix_band_part_op_gpu.cu.cc
+|  |  |  |-- batch_matrix_diag_op.cc
+|  |  |  |-- batch_matrix_diag_op.h
+|  |  |  |-- batch_matrix_diag_op_gpu.cu.cc
+|  |  |  |-- batch_norm_op.cc
+|  |  |  |-- batch_norm_op.h
+|  |  |  |-- batch_norm_op_gpu.cu.cc
+|  |  |  |-- batch_norm_op_test.cc
+|  |  |  |-- batchtospace_op.cc
+|  |  |  |-- batchtospace_op.h
+|  |  |  |-- batchtospace_op_gpu.cu.cc
+|  |  |  |-- bcast_ops.cc
+|  |  |  |-- bias_op.cc
+|  |  |  |-- bias_op.h
+|  |  |  |-- bias_op_gpu.cu.cc
+|  |  |  |-- bias_op_gpu.h
+|  |  |  |-- binary_linalg_ops_common.cc
+|  |  |  |-- binary_linalg_ops_common.h
+|  |  |  |-- bitcast_op.cc
+|  |  |  |-- bitcast_op.h
+|  |  |  |-- bounds_check.h
+|  |  |  |-- candidate_sampler_ops.cc
+|  |  |  |-- cast_op.cc
+|  |  |  |-- cast_op.h
+|  |  |  |-- cast_op_gpu.cu.cc
+|  |  |  |-- cast_op_test.cc
+|  |  |  |-- check_numerics_op.cc
+|  |  |  |-- check_numerics_op_gpu.cu.cc
+|  |  |  |-- cholesky_grad.cc
+|  |  |  |-- cholesky_op.cc
+|  |  |  |-- colorspace_op.cc
+|  |  |  |-- colorspace_op.h
+|  |  |  |-- colorspace_op_gpu.cu.cc
+|  |  |  |-- colorspace_op_test.cc
+|  |  |  |-- concat_lib.h
+|  |  |  |-- concat_lib_cpu.cc
+|  |  |  |-- concat_lib_gpu.cu.cc
+|  |  |  |-- concat_op.cc
+|  |  |  |-- concat_op_test.cc
+|  |  |  |-- constant_op.cc
+|  |  |  |-- constant_op.h
+|  |  |  |-- constant_op_gpu.cu.cc
+|  |  |  |-- constant_op_test.cc
+|  |  |  |-- control_flow_ops.cc
+|  |  |  |-- control_flow_ops.h
+|  |  |  |-- control_flow_ops_test.cc
+|  |  |  |-- conv_2d.h
+|  |  |  |-- conv_3d.h
+|  |  |  |-- conv_grad_ops.cc
+|  |  |  |-- conv_grad_ops_3d.cc
+|  |  |  |-- conv_ops.cc
+|  |  |  |-- conv_ops_3d.cc
+|  |  |  |-- conv_ops_gpu.h
+|  |  |  |-- conv_ops_gpu_2.cu.cc
+|  |  |  |-- conv_ops_gpu_3.cu.cc
+|  |  |  |-- count_up_to_op.cc
+|  |  |  |-- cross_op.cc
+|  |  |  |-- cross_op.h
+|  |  |  |-- cross_op_gpu.cu.cc
+|  |  |  |-- cross_op_test.cc
+|  |  |  |-- ctc_decoder_ops.cc
+|  |  |  |-- ctc_loss_op.cc
+|  |  |  |-- cuda_device_array.h
+|  |  |  |-- cuda_device_array_gpu.h
+|  |  |  |-- cudnn_pooling_gpu.cc
+|  |  |  |-- cudnn_pooling_gpu.h
+|  |  |  |-- cwise_op_abs.cc
+|  |  |  |-- cwise_op_acos.cc
+|  |  |  |-- cwise_op_add.cc
+|  |  |  |-- cwise_op_asin.cc
+|  |  |  |-- cwise_op_atan.cc
+|  |  |  |-- cwise_op_ceil.cc
+|  |  |  |-- cwise_op_complex.cc
+|  |  |  |-- cwise_op_conj.cc
+|  |  |  |-- cwise_op_cos.cc
+|  |  |  |-- cwise_op_digamma.cc
+|  |  |  |-- cwise_op_div.cc
+|  |  |  |-- cwise_op_equal_to.cc
+|  |  |  |-- cwise_op_erf.cc
+|  |  |  |-- cwise_op_erfc.cc
+|  |  |  |-- cwise_op_exp.cc
+|  |  |  |-- cwise_op_floor.cc
+|  |  |  |-- cwise_op_gpu_abs.cu.cc
+|  |  |  |-- cwise_op_gpu_acos.cu.cc
+|  |  |  |-- cwise_op_gpu_add.cu.cc
+|  |  |  |-- cwise_op_gpu_asin.cu.cc
+|  |  |  |-- cwise_op_gpu_atan.cu.cc
+|  |  |  |-- cwise_op_gpu_ceil.cu.cc
+|  |  |  |-- cwise_op_gpu_complex.cu.cc
+|  |  |  |-- cwise_op_gpu_conj.cu.cc
+|  |  |  |-- cwise_op_gpu_cos.cu.cc
+|  |  |  |-- cwise_op_gpu_digamma.cu.cc
+|  |  |  |-- cwise_op_gpu_div.cu.cc
+|  |  |  |-- cwise_op_gpu_equal_to.cu.cc
+|  |  |  |-- cwise_op_gpu_erf.cu.cc
+|  |  |  |-- cwise_op_gpu_erfc.cu.cc
+|  |  |  |-- cwise_op_gpu_exp.cu.cc
+|  |  |  |-- cwise_op_gpu_floor.cu.cc
+|  |  |  |-- cwise_op_gpu_greater.cu.cc
+|  |  |  |-- cwise_op_gpu_greater_equal.cu.cc
+|  |  |  |-- cwise_op_gpu_igammas.cu.cc
+|  |  |  |-- cwise_op_gpu_imag.cu.cc
+|  |  |  |-- cwise_op_gpu_inverse.cu.cc
+|  |  |  |-- cwise_op_gpu_isfinite.cu.cc
+|  |  |  |-- cwise_op_gpu_isinf.cu.cc
+|  |  |  |-- cwise_op_gpu_isnan.cu.cc
+|  |  |  |-- cwise_op_gpu_less.cu.cc
+|  |  |  |-- cwise_op_gpu_less_equal.cu.cc
+|  |  |  |-- cwise_op_gpu_lgamma.cu.cc
+|  |  |  |-- cwise_op_gpu_log.cu.cc
+|  |  |  |-- cwise_op_gpu_logical_and.cu.cc
+|  |  |  |-- cwise_op_gpu_logical_not.cu.cc
+|  |  |  |-- cwise_op_gpu_logical_or.cu.cc
+|  |  |  |-- cwise_op_gpu_maximum.cu.cc
+|  |  |  |-- cwise_op_gpu_minimum.cu.cc
+|  |  |  |-- cwise_op_gpu_mod.cu.cc
+|  |  |  |-- cwise_op_gpu_mul.cu.cc
+|  |  |  |-- cwise_op_gpu_neg.cu.cc
+|  |  |  |-- cwise_op_gpu_not_equal_to.cu.cc
+|  |  |  |-- cwise_op_gpu_pow.cu.cc
+|  |  |  |-- cwise_op_gpu_real.cu.cc
+|  |  |  |-- cwise_op_gpu_rsqrt.cu.cc
+|  |  |  |-- cwise_op_gpu_select.cu.cc
+|  |  |  |-- cwise_op_gpu_sigmoid.cu.cc
+|  |  |  |-- cwise_op_gpu_sign.cu.cc
+|  |  |  |-- cwise_op_gpu_sin.cu.cc
+|  |  |  |-- cwise_op_gpu_sqrt.cu.cc
+|  |  |  |-- cwise_op_gpu_square.cu.cc
+|  |  |  |-- cwise_op_gpu_squared_difference.cu.cc
+|  |  |  |-- cwise_op_gpu_sub.cu.cc
+|  |  |  |-- cwise_op_gpu_tan.cu.cc
+|  |  |  |-- cwise_op_gpu_tanh.cu.cc
+|  |  |  |-- cwise_op_gpu_zeta.cu.cc
+|  |  |  |-- cwise_op_greater.cc
+|  |  |  |-- cwise_op_greater_equal.cc
+|  |  |  |-- cwise_op_igammas.cc
+|  |  |  |-- cwise_op_imag.cc
+|  |  |  |-- cwise_op_inverse.cc
+|  |  |  |-- cwise_op_isfinite.cc
+|  |  |  |-- cwise_op_isinf.cc
+|  |  |  |-- cwise_op_isnan.cc
+|  |  |  |-- cwise_op_less.cc
+|  |  |  |-- cwise_op_less_equal.cc
+|  |  |  |-- cwise_op_lgamma.cc
+|  |  |  |-- cwise_op_log.cc
+|  |  |  |-- cwise_op_logical_and.cc
+|  |  |  |-- cwise_op_logical_not.cc
+|  |  |  |-- cwise_op_logical_or.cc
+|  |  |  |-- cwise_op_maximum.cc
+|  |  |  |-- cwise_op_minimum.cc
+|  |  |  |-- cwise_op_mod.cc
+|  |  |  |-- cwise_op_mul.cc
+|  |  |  |-- cwise_op_neg.cc
+|  |  |  |-- cwise_op_not_equal_to.cc
+|  |  |  |-- cwise_op_pow.cc
+|  |  |  |-- cwise_op_real.cc
+|  |  |  |-- cwise_op_rsqrt.cc
+|  |  |  |-- cwise_op_select.cc
+|  |  |  |-- cwise_op_sigmoid.cc
+|  |  |  |-- cwise_op_sign.cc
+|  |  |  |-- cwise_op_sin.cc
+|  |  |  |-- cwise_op_sqrt.cc
+|  |  |  |-- cwise_op_square.cc
+|  |  |  |-- cwise_op_squared_difference.cc
+|  |  |  |-- cwise_op_sub.cc
+|  |  |  |-- cwise_op_tan.cc
+|  |  |  |-- cwise_op_tanh.cc
+|  |  |  |-- cwise_op_zeta.cc
+|  |  |  |-- cwise_ops.h
+|  |  |  |-- cwise_ops_common.cc
+|  |  |  |-- cwise_ops_common.h
+|  |  |  |-- cwise_ops_gpu_common.cu.h
+|  |  |  |-- cwise_ops_test.cc
+|  |  |  |-- decode_csv_op.cc
+|  |  |  |-- decode_jpeg_op.cc
+|  |  |  |-- decode_png_op.cc
+|  |  |  |-- decode_raw_op.cc
+|  |  |  |-- dense_update_ops.cc
+|  |  |  |-- dense_update_ops.h
+|  |  |  |-- dense_update_ops_gpu.cu.cc
+|  |  |  |-- depthtospace_op.cc
+|  |  |  |-- depthtospace_op.h
+|  |  |  |-- depthtospace_op_gpu.cu.cc
+|  |  |  |-- depthwise_conv_grad_op.cc
+|  |  |  |-- depthwise_conv_op.cc
+|  |  |  |-- depthwise_conv_op.h
+|  |  |  |-- depthwise_conv_op_gpu.cu.cc
+|  |  |  |-- determinant_op.cc
+|  |  |  |-- diag_op.cc
+|  |  |  |-- dilation_ops.cc
+|  |  |  |-- dilation_ops.h
+|  |  |  |-- dilation_ops_gpu.cu.cc
+|  |  |  |-- draw_bounding_box_op.cc
+|  |  |  |-- dynamic_partition_op.cc
+|  |  |  |-- dynamic_partition_op_test.cc
+|  |  |  |-- dynamic_stitch_op.cc
+|  |  |  |-- dynamic_stitch_op_test.cc
+|  |  |  |-- edit_distance_op.cc
+|  |  |  |-- eigen_activations.h
+|  |  |  |-- eigen_activations_test.cc
+|  |  |  |-- eigen_attention.h
+|  |  |  |-- eigen_attention_test.cc
+|  |  |  |-- eigen_backward_cuboid_convolutions.h
+|  |  |  |-- eigen_backward_spatial_convolutions.h
+|  |  |  |-- eigen_backward_spatial_convolutions_test.cc
+|  |  |  |-- eigen_cuboid_convolution.h
+|  |  |  |-- eigen_patch_3d.h
+|  |  |  |-- eigen_pooling.h
+|  |  |  |-- eigen_pooling_test.cc
+|  |  |  |-- eigen_softmax.h
+|  |  |  |-- eigen_softmax_test.cc
+|  |  |  |-- eigen_spatial_convolutions.h
+|  |  |  |-- eigen_spatial_convolutions_test.cc
+|  |  |  |-- encode_jpeg_op.cc
+|  |  |  |-- encode_png_op.cc
+|  |  |  |-- example_parsing_ops.cc
+|  |  |  |-- example_parsing_ops_test.cc
+|  |  |  |-- extract_image_patches_op.cc
+|  |  |  |-- extract_image_patches_op.h
+|  |  |  |-- extract_image_patches_op_gpu.cu.cc
+|  |  |  |-- fact_op.cc
+|  |  |  |-- fft_ops.cc
+|  |  |  |-- fifo_queue.cc
+|  |  |  |-- fifo_queue.h
+|  |  |  |-- fifo_queue_op.cc
+|  |  |  |-- fill_functor.h
+|  |  |  |-- fixed_length_record_reader_op.cc
+|  |  |  |-- gather_nd_op.cc
+|  |  |  |-- gather_nd_op.h
+|  |  |  |-- gather_nd_op_gpu.cu.cc
+|  |  |  |-- gather_nd_op_test.cc
+|  |  |  |-- gather_op.cc
+|  |  |  |-- gather_op.h
+|  |  |  |-- gather_op_gpu.cu.cc
+|  |  |  |-- gather_op_test.cc
+|  |  |  |-- identity_op.cc
+|  |  |  |-- identity_op.h
+|  |  |  |-- identity_op_test.cc
+|  |  |  |-- identity_reader_op.cc
+|  |  |  |-- image_resizer_state.h
+|  |  |  |-- immutable_constant_op.cc
+|  |  |  |-- immutable_constant_op.h
+|  |  |  |-- immutable_constant_op_test.cc
+|  |  |  |-- in_topk_op.cc
+|  |  |  |-- initializable_lookup_table.cc
+|  |  |  |-- initializable_lookup_table.h
+|  |  |  |-- l2loss_op.cc
+|  |  |  |-- l2loss_op.h
+|  |  |  |-- l2loss_op_gpu.cu.cc
+|  |  |  |-- linalg_ops_common.cc
+|  |  |  |-- linalg_ops_common.h
+|  |  |  |-- listdiff_op.cc
+|  |  |  |-- logging_ops.cc
+|  |  |  |-- logging_ops_test.cc
+|  |  |  |-- lookup_table_init_op.cc
+|  |  |  |-- lookup_table_op.cc
+|  |  |  |-- lookup_table_op.h
+|  |  |  |-- lookup_util.cc
+|  |  |  |-- lookup_util.h
+|  |  |  |-- lrn_op.cc
+|  |  |  |-- lrn_op_test.cc
+|  |  |  |-- matching_files_op.cc
+|  |  |  |-- matmul_op.cc
+|  |  |  |-- matmul_op.h
+|  |  |  |-- matmul_op_test.cc
+|  |  |  |-- matrix_inverse_op.cc
+|  |  |  |-- matrix_solve_ls_op.cc
+|  |  |  |-- matrix_solve_op.cc
+|  |  |  |-- matrix_triangular_solve_op.cc
+|  |  |  |-- maxpooling_op.cc
+|  |  |  |-- maxpooling_op.h
+|  |  |  |-- maxpooling_op_gpu.cu.cc
+|  |  |  |-- maxpooling_op_gpu.h
+|  |  |  |-- mirror_pad_op.cc
+|  |  |  |-- mirror_pad_op.h
+|  |  |  |-- mirror_pad_op_gpu.cu.cc
+|  |  |  |-- multinomial_op_test.cc
+|  |  |  |-- nn_ops_test.cc
+|  |  |  |-- no_op.cc
+|  |  |  |-- no_op.h
+|  |  |  |-- one_hot_op.cc
+|  |  |  |-- one_hot_op.h
+|  |  |  |-- one_hot_op_gpu.cu.cc
+|  |  |  |-- ops_testutil.h
+|  |  |  |-- ops_util.cc
+|  |  |  |-- ops_util.h
+|  |  |  |-- ops_util_test.cc
+|  |  |  |-- pack_op.cc
+|  |  |  |-- pad_op.cc
+|  |  |  |-- pad_op.h
+|  |  |  |-- pad_op_gpu.cu.cc
+|  |  |  |-- padding_fifo_queue.cc
+|  |  |  |-- padding_fifo_queue.h
+|  |  |  |-- padding_fifo_queue_op.cc
+|  |  |  |-- pooling_ops_3d.cc
+|  |  |  |-- pooling_ops_common.cc
+|  |  |  |-- pooling_ops_common.h
+|  |  |  |-- pooling_ops_common_gpu.h
+|  |  |  |-- quantize_and_dequantize_op.cc
+|  |  |  |-- quantize_and_dequantize_op.h
+|  |  |  |-- quantize_and_dequantize_op_gpu.cu.cc
+|  |  |  |-- quantize_and_dequantize_op_test.cc
+|  |  |  |-- queue_base.cc
+|  |  |  |-- queue_base.h
+|  |  |  |-- queue_op.h
+|  |  |  |-- queue_ops.cc
+|  |  |  |-- random_crop_op.cc
+|  |  |  |-- random_op.cc
+|  |  |  |-- random_op.h
+|  |  |  |-- random_op_gpu.cu.cc
+|  |  |  |-- random_op_test.cc
+|  |  |  |-- random_shuffle_op.cc
+|  |  |  |-- random_shuffle_queue_op.cc
+|  |  |  |-- range_sampler.cc
+|  |  |  |-- range_sampler.h
+|  |  |  |-- range_sampler_test.cc
+|  |  |  |-- reader_base.cc
+|  |  |  |-- reader_base.h
+|  |  |  |-- reader_base.proto
+|  |  |  |-- reader_ops.cc
+|  |  |  |-- reduce_join_op.cc
+|  |  |  |-- reduction_ops.h
+|  |  |  |-- reduction_ops_all.cc
+|  |  |  |-- reduction_ops_any.cc
+|  |  |  |-- reduction_ops_common.cc
+|  |  |  |-- reduction_ops_common.h
+|  |  |  |-- reduction_ops_gpu.cu.cc
+|  |  |  |-- reduction_ops_max.cc
+|  |  |  |-- reduction_ops_mean.cc
+|  |  |  |-- reduction_ops_min.cc
+|  |  |  |-- reduction_ops_prod.cc
+|  |  |  |-- reduction_ops_sum.cc
+|  |  |  |-- reduction_ops_test.cc
+|  |  |  |-- relu_op.cc
+|  |  |  |-- relu_op.h
+|  |  |  |-- relu_op_functor.h
+|  |  |  |-- relu_op_gpu.cu.cc
+|  |  |  |-- reshape_op.cc
+|  |  |  |-- reshape_op.h
+|  |  |  |-- resize_area_op.cc
+|  |  |  |-- resize_bicubic_op.cc
+|  |  |  |-- resize_bicubic_op_test.cc
+|  |  |  |-- resize_bilinear_op.cc
+|  |  |  |-- resize_bilinear_op_test.cc
+|  |  |  |-- resize_nearest_neighbor_op.cc
+|  |  |  |-- resize_nearest_neighbor_op_benchmark_test.cc
+|  |  |  |-- resize_nearest_neighbor_op_gpu.cu.cc
+|  |  |  |-- resize_nearest_neighbor_op_gpu.h
+|  |  |  |-- resize_nearest_neighbor_op_test.cc
+|  |  |  |-- restore_op.cc
+|  |  |  |-- restore_op_test.cc
+|  |  |  |-- reverse_op.cc
+|  |  |  |-- reverse_op.h
+|  |  |  |-- reverse_op_gpu.cu.cc
+|  |  |  |-- reverse_op_test.cc
+|  |  |  |-- reverse_sequence_op.cc
+|  |  |  |-- reverse_sequence_op.h
+|  |  |  |-- reverse_sequence_op_gpu.cu.cc
+|  |  |  |-- sample_distorted_bounding_box_op.cc
+|  |  |  |-- save_op.cc
+|  |  |  |-- save_op_test.cc
+|  |  |  |-- save_restore_tensor.cc
+|  |  |  |-- save_restore_tensor.h
+|  |  |  |-- scatter_op.cc
+|  |  |  |-- scatter_op.h
+|  |  |  |-- scatter_op_gpu.cu.cc
+|  |  |  |-- scatter_op_test.cc
+|  |  |  |-- segment_reduction_ops.cc
+|  |  |  |-- segment_reduction_ops_test.cc
+|  |  |  |-- self_adjoint_eig_op.cc
+|  |  |  |-- sendrecv_ops.cc
+|  |  |  |-- sendrecv_ops.h
+|  |  |  |-- sequence_ops.cc
+|  |  |  |-- serialize_sparse_op.cc
+|  |  |  |-- session_ops.cc
+|  |  |  |-- shape_ops.cc
+|  |  |  |-- slice_op.cc
+|  |  |  |-- slice_op.h
+|  |  |  |-- slice_op_gpu.cu.cc
+|  |  |  |-- slice_op_test.cc
+|  |  |  |-- softmax_op.cc
+|  |  |  |-- softmax_op.h
+|  |  |  |-- softmax_op_functor.h
+|  |  |  |-- softmax_op_gpu.cu.cc
+|  |  |  |-- softplus_op.cc
+|  |  |  |-- softplus_op.h
+|  |  |  |-- softplus_op_gpu.cu.cc
+|  |  |  |-- softsign_op.cc
+|  |  |  |-- softsign_op.h
+|  |  |  |-- softsign_op_gpu.cu.cc
+|  |  |  |-- spacetobatch_op.cc
+|  |  |  |-- spacetobatch_op.h
+|  |  |  |-- spacetobatch_op_gpu.cu.cc
+|  |  |  |-- spacetodepth_op.cc
+|  |  |  |-- spacetodepth_op.h
+|  |  |  |-- spacetodepth_op_gpu.cu.cc
+|  |  |  |-- sparse_add_grad_op.cc
+|  |  |  |-- sparse_add_op.cc
+|  |  |  |-- sparse_add_op_test.cc
+|  |  |  |-- sparse_concat_op.cc
+|  |  |  |-- sparse_dense_binary_op_shared.cc
+|  |  |  |-- sparse_dense_binary_op_shared_test.cc
+|  |  |  |-- sparse_matmul_op.cc
+|  |  |  |-- sparse_matmul_op.h
+|  |  |  |-- sparse_matmul_op_test.cc
+|  |  |  |-- sparse_reduce_sum_op.cc
+|  |  |  |-- sparse_reduce_sum_op_test.cc
+|  |  |  |-- sparse_reorder_op.cc
+|  |  |  |-- sparse_softmax_op.cc
+|  |  |  |-- sparse_split_op.cc
+|  |  |  |-- sparse_tensor_dense_add_op.cc
+|  |  |  |-- sparse_tensor_dense_add_op.h
+|  |  |  |-- sparse_tensor_dense_matmul_op.cc
+|  |  |  |-- sparse_tensor_dense_matmul_op.h
+|  |  |  |-- sparse_tensor_dense_matmul_op_gpu.cu.cc
+|  |  |  |-- sparse_tensor_dense_matmul_op_test.cc
+|  |  |  |-- sparse_to_dense_op.cc
+|  |  |  |-- sparse_to_dense_op_test.cc
+|  |  |  |-- sparse_xent_op.cc
+|  |  |  |-- sparse_xent_op.h
+|  |  |  |-- sparse_xent_op_gpu.cu.cc
+|  |  |  |-- sparse_xent_op_test.cc
+|  |  |  |-- split_lib.h
+|  |  |  |-- split_lib_cpu.cc
+|  |  |  |-- split_lib_gpu.cu.cc
+|  |  |  |-- split_op.cc
+|  |  |  |-- stack_ops.cc
+|  |  |  |-- string_to_hash_bucket_op.cc
+|  |  |  |-- string_to_hash_bucket_op.h
+|  |  |  |-- string_to_number_op.cc
+|  |  |  |-- summary_audio_op.cc
+|  |  |  |-- summary_audio_op_test.cc
+|  |  |  |-- summary_image_op.cc
+|  |  |  |-- summary_image_op_test.cc
+|  |  |  |-- summary_op.cc
+|  |  |  |-- summary_op_test.cc
+|  |  |  |-- tensor_array.cc
+|  |  |  |-- tensor_array.h
+|  |  |  |-- tensor_array_ops.cc
+|  |  |  |-- text_line_reader_op.cc
+|  |  |  |-- tf_record_reader_op.cc
+|  |  |  |-- tile_ops.cc
+|  |  |  |-- tile_ops.h
+|  |  |  |-- tile_ops_gpu.cu.cc
+|  |  |  |-- topk_op.cc
+|  |  |  |-- training_ops.cc
+|  |  |  |-- training_ops.h
+|  |  |  |-- training_ops_gpu.cu.cc
+|  |  |  |-- training_ops_test.cc
+|  |  |  |-- transpose_functor.h
+|  |  |  |-- transpose_functor_cpu.cc
+|  |  |  |-- transpose_functor_gpu.cu.cc
+|  |  |  |-- transpose_op.cc
+|  |  |  |-- transpose_op.h
+|  |  |  |-- typed_queue.h
+|  |  |  |-- unique_op.cc
+|  |  |  |-- unique_op_test.cc
+|  |  |  |-- unpack_op.cc
+|  |  |  |-- variable_ops.cc
+|  |  |  |-- variable_ops.h
+|  |  |  |-- where_op.cc
+|  |  |  |-- where_op.h
+|  |  |  |-- whole_file_read_ops.cc
+|  |  |  |-- xent_op.cc
+|  |  |  |-- xent_op.h
+|  |  |  |-- xent_op_gpu.cu.cc
+|  |  |  |-- xent_op_test.cc
+|  |  |-- lib
+|  |  |  |-- core
+|  |  |  |  |-- arena.cc
+|  |  |  |  |-- arena.h
+|  |  |  |  |-- arena_test.cc
+|  |  |  |  |-- bit_cast_test.cc
+|  |  |  |  |-- bits.h
+|  |  |  |  |-- blocking_counter.h
+|  |  |  |  |-- blocking_counter_test.cc
+|  |  |  |  |-- casts.h
+|  |  |  |  |-- coding.cc
+|  |  |  |  |-- coding.h
+|  |  |  |  |-- coding_test.cc
+|  |  |  |  |-- error_codes.proto
+|  |  |  |  |-- errors.h
+|  |  |  |  |-- notification.h
+|  |  |  |  |-- notification_test.cc
+|  |  |  |  |-- raw_coding.h
+|  |  |  |  |-- refcount.h
+|  |  |  |  |-- refcount_test.cc
+|  |  |  |  |-- status.cc
+|  |  |  |  |-- status.h
+|  |  |  |  |-- status_test.cc
+|  |  |  |  |-- status_test_util.h
+|  |  |  |  |-- stringpiece.cc
+|  |  |  |  |-- stringpiece.h
+|  |  |  |  |-- stringpiece_test.cc
+|  |  |  |  |-- threadpool.cc
+|  |  |  |  |-- threadpool.h
+|  |  |  |  |-- threadpool_test.cc
+|  |  |  |-- gtl
+|  |  |  |  |-- array_slice.h
+|  |  |  |  |-- array_slice_internal.h
+|  |  |  |  |-- array_slice_test.cc
+|  |  |  |  |-- edit_distance.h
+|  |  |  |  |-- edit_distance_test.cc
+|  |  |  |  |-- inlined_vector.h
+|  |  |  |  |-- inlined_vector_test.cc
+|  |  |  |  |-- int_type.h
+|  |  |  |  |-- int_type_test.cc
+|  |  |  |  |-- iterator_range.h
+|  |  |  |  |-- iterator_range_test.cc
+|  |  |  |  |-- manual_constructor.h
+|  |  |  |  |-- manual_constructor_test.cc
+|  |  |  |  |-- map_util.h
+|  |  |  |  |-- map_util_test.cc
+|  |  |  |  |-- stl_util.h
+|  |  |  |  |-- top_n.h
+|  |  |  |  |-- top_n_test.cc
+|  |  |  |-- hash
+|  |  |  |  |-- crc32c.cc
+|  |  |  |  |-- crc32c.h
+|  |  |  |  |-- crc32c_test.cc
+|  |  |  |  |-- hash.cc
+|  |  |  |  |-- hash.h
+|  |  |  |  |-- hash_test.cc
+|  |  |  |-- histogram
+|  |  |  |  |-- histogram.cc
+|  |  |  |  |-- histogram.h
+|  |  |  |  |-- histogram_test.cc
+|  |  |  |-- io
+|  |  |  |  |-- block.cc
+|  |  |  |  |-- block.h
+|  |  |  |  |-- block_builder.cc
+|  |  |  |  |-- block_builder.h
+|  |  |  |  |-- format.cc
+|  |  |  |  |-- format.h
+|  |  |  |  |-- inputbuffer.cc
+|  |  |  |  |-- inputbuffer.h
+|  |  |  |  |-- inputbuffer_test.cc
+|  |  |  |  |-- iterator.cc
+|  |  |  |  |-- iterator.h
+|  |  |  |  |-- match.cc
+|  |  |  |  |-- match.h
+|  |  |  |  |-- match_test.cc
+|  |  |  |  |-- path.cc
+|  |  |  |  |-- path.h
+|  |  |  |  |-- path_test.cc
+|  |  |  |  |-- record_reader.cc
+|  |  |  |  |-- record_reader.h
+|  |  |  |  |-- record_writer.cc
+|  |  |  |  |-- record_writer.h
+|  |  |  |  |-- recordio_test.cc
+|  |  |  |  |-- table.cc
+|  |  |  |  |-- table.h
+|  |  |  |  |-- table_builder.cc
+|  |  |  |  |-- table_builder.h
+|  |  |  |  |-- table_format.txt
+|  |  |  |  |-- table_options.h
+|  |  |  |  |-- table_test.cc
+|  |  |  |  |-- two_level_iterator.cc
+|  |  |  |  |-- two_level_iterator.h
+|  |  |  |-- jpeg
+|  |  |  |  |-- jpeg_handle.cc
+|  |  |  |  |-- jpeg_handle.h
+|  |  |  |  |-- jpeg_mem.cc
+|  |  |  |  |-- jpeg_mem.h
+|  |  |  |  |-- jpeg_mem_unittest.cc
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- bad_huffman.jpg
+|  |  |  |  |  |-- corrupt.jpg
+|  |  |  |  |  |-- corrupt34_2.jpg
+|  |  |  |  |  |-- corrupt34_3.jpg
+|  |  |  |  |  |-- corrupt34_4.jpg
+|  |  |  |  |  |-- jpeg_merge_test1.jpg
+|  |  |  |  |  |-- jpeg_merge_test1_cmyk.jpg
+|  |  |  |-- png
+|  |  |  |  |-- png_io.cc
+|  |  |  |  |-- png_io.h
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- lena_gray.png
+|  |  |  |  |  |-- lena_rgba.png
+|  |  |  |-- random
+|  |  |  |  |-- distribution_sampler.cc
+|  |  |  |  |-- distribution_sampler.h
+|  |  |  |  |-- distribution_sampler_test.cc
+|  |  |  |  |-- exact_uniform_int.h
+|  |  |  |  |-- philox_random.h
+|  |  |  |  |-- philox_random_test.cc
+|  |  |  |  |-- philox_random_test_utils.h
+|  |  |  |  |-- random.cc
+|  |  |  |  |-- random.h
+|  |  |  |  |-- random_distributions.h
+|  |  |  |  |-- random_distributions_test.cc
+|  |  |  |  |-- random_test.cc
+|  |  |  |  |-- simple_philox.cc
+|  |  |  |  |-- simple_philox.h
+|  |  |  |  |-- simple_philox_test.cc
+|  |  |  |  |-- weighted_picker.cc
+|  |  |  |  |-- weighted_picker.h
+|  |  |  |  |-- weighted_picker_test.cc
+|  |  |  |-- strings
+|  |  |  |  |-- numbers.cc
+|  |  |  |  |-- numbers.h
+|  |  |  |  |-- numbers_test.cc
+|  |  |  |  |-- ordered_code.cc
+|  |  |  |  |-- ordered_code.h
+|  |  |  |  |-- ordered_code_test.cc
+|  |  |  |  |-- proto_text_util.cc
+|  |  |  |  |-- proto_text_util.h
+|  |  |  |  |-- regexp.h
+|  |  |  |  |-- scanner.cc
+|  |  |  |  |-- scanner.h
+|  |  |  |  |-- scanner_test.cc
+|  |  |  |  |-- str_util.cc
+|  |  |  |  |-- str_util.h
+|  |  |  |  |-- str_util_test.cc
+|  |  |  |  |-- strcat.cc
+|  |  |  |  |-- strcat.h
+|  |  |  |  |-- strcat_test.cc
+|  |  |  |  |-- stringprintf.cc
+|  |  |  |  |-- stringprintf.h
+|  |  |  |  |-- stringprintf_test.cc
+|  |  |  |-- wav
+|  |  |  |  |-- wav_io.cc
+|  |  |  |  |-- wav_io.h
+|  |  |  |  |-- wav_io_test.cc
+|  |  |-- ops
+|  |  |  |-- array_grad.cc
+|  |  |  |-- array_grad_test.cc
+|  |  |  |-- array_ops.cc
+|  |  |  |-- candidate_sampling_ops.cc
+|  |  |  |-- compat
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- backwards_compatibility_test.cc
+|  |  |  |  |-- op_compatibility_lib.cc
+|  |  |  |  |-- op_compatibility_lib.h
+|  |  |  |  |-- ops_history.v0.pbtxt
+|  |  |  |  |-- update_ops_main.cc
+|  |  |  |-- control_flow_ops.cc
+|  |  |  |-- ctc_ops.cc
+|  |  |  |-- data_flow_ops.cc
+|  |  |  |-- function_ops.cc
+|  |  |  |-- functional_grad.cc
+|  |  |  |-- functional_ops.cc
+|  |  |  |-- image_ops.cc
+|  |  |  |-- io_ops.cc
+|  |  |  |-- linalg_ops.cc
+|  |  |  |-- logging_ops.cc
+|  |  |  |-- math_grad.cc
+|  |  |  |-- math_grad_test.cc
+|  |  |  |-- math_ops.cc
+|  |  |  |-- nn_grad.cc
+|  |  |  |-- nn_ops.cc
+|  |  |  |-- no_op.cc
+|  |  |  |-- ops.pbtxt
+|  |  |  |-- parsing_ops.cc
+|  |  |  |-- random_grad.cc
+|  |  |  |-- random_ops.cc
+|  |  |  |-- script_ops.cc
+|  |  |  |-- sendrecv_ops.cc
+|  |  |  |-- sparse_ops.cc
+|  |  |  |-- state_ops.cc
+|  |  |  |-- string_ops.cc
+|  |  |  |-- training_ops.cc
+|  |  |-- platform
+|  |  |  |-- cloud
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- auth_provider.h
+|  |  |  |  |-- base64.cc
+|  |  |  |  |-- base64.h
+|  |  |  |  |-- base64_test.cc
+|  |  |  |  |-- gcs_file_system.cc
+|  |  |  |  |-- gcs_file_system.h
+|  |  |  |  |-- gcs_file_system_test.cc
+|  |  |  |  |-- google_auth_provider.cc
+|  |  |  |  |-- google_auth_provider.h
+|  |  |  |  |-- google_auth_provider_test.cc
+|  |  |  |  |-- http_request.cc
+|  |  |  |  |-- http_request.h
+|  |  |  |  |-- http_request_fake.h
+|  |  |  |  |-- http_request_test.cc
+|  |  |  |  |-- oauth_client.cc
+|  |  |  |  |-- oauth_client.h
+|  |  |  |  |-- oauth_client_test.cc
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- application_default_credentials.json
+|  |  |  |  |  |-- service_account_credentials.json
+|  |  |  |  |  |-- service_account_public_key.txt
+|  |  |  |-- cuda.h
+|  |  |  |-- default
+|  |  |  |  |-- build_config.bzl
+|  |  |  |  |-- build_config
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- build_config_root.bzl
+|  |  |  |  |-- dynamic_annotations.h
+|  |  |  |  |-- fingerprint.h
+|  |  |  |  |-- integral_types.h
+|  |  |  |  |-- logging.cc
+|  |  |  |  |-- logging.h
+|  |  |  |  |-- mutex.h
+|  |  |  |  |-- platform.bzl
+|  |  |  |  |-- protobuf.h
+|  |  |  |  |-- stream_executor.h
+|  |  |  |  |-- strong_hash.h
+|  |  |  |  |-- test_benchmark.cc
+|  |  |  |  |-- thread_annotations.h
+|  |  |  |  |-- tracing.cc
+|  |  |  |  |-- tracing_impl.h
+|  |  |  |-- demangle.h
+|  |  |  |-- denormal.cc
+|  |  |  |-- denormal.h
+|  |  |  |-- env.cc
+|  |  |  |-- env.h
+|  |  |  |-- env_test.cc
+|  |  |  |-- file_system.cc
+|  |  |  |-- file_system.h
+|  |  |  |-- fingerprint.h
+|  |  |  |-- host_info.h
+|  |  |  |-- init_main.h
+|  |  |  |-- integral_types_test.cc
+|  |  |  |-- jpeg.h
+|  |  |  |-- load_library.cc
+|  |  |  |-- load_library.h
+|  |  |  |-- logging.h
+|  |  |  |-- logging_test.cc
+|  |  |  |-- macros.h
+|  |  |  |-- mem.h
+|  |  |  |-- mutex.h
+|  |  |  |-- platform.h
+|  |  |  |-- png.h
+|  |  |  |-- port_test.cc
+|  |  |  |-- posix
+|  |  |  |  |-- env.cc
+|  |  |  |  |-- port.cc
+|  |  |  |  |-- posix_file_system.cc
+|  |  |  |  |-- posix_file_system.h
+|  |  |  |  |-- test.cc
+|  |  |  |-- protobuf.h
+|  |  |  |-- protobuf_util.cc
+|  |  |  |-- regexp.h
+|  |  |  |-- snappy.h
+|  |  |  |-- stream_executor.h
+|  |  |  |-- strong_hash.h
+|  |  |  |-- tensor_coding.cc
+|  |  |  |-- tensor_coding.h
+|  |  |  |-- test.cc
+|  |  |  |-- test.h
+|  |  |  |-- test_benchmark.h
+|  |  |  |-- test_main.cc
+|  |  |  |-- thread_annotations.h
+|  |  |  |-- tracing.cc
+|  |  |  |-- tracing.h
+|  |  |  |-- types.h
+|  |  |-- protobuf
+|  |  |  |-- config.proto
+|  |  |  |-- master.proto
+|  |  |  |-- master_service.proto
+|  |  |  |-- meta_graph.proto
+|  |  |  |-- named_tensor.proto
+|  |  |  |-- queue_runner.proto
+|  |  |  |-- saver.proto
+|  |  |  |-- tensorflow_server.proto
+|  |  |  |-- worker.proto
+|  |  |  |-- worker_service.proto
+|  |  |-- public
+|  |  |  |-- README.md
+|  |  |  |-- session.h
+|  |  |  |-- session_options.h
+|  |  |  |-- tensor_c_api.h
+|  |  |  |-- version.h
+|  |  |-- user_ops
+|  |  |  |-- fact.cc
+|  |  |-- util
+|  |  |  |-- bcast.cc
+|  |  |  |-- bcast.h
+|  |  |  |-- bcast_test.cc
+|  |  |  |-- checkpoint_reader.cc
+|  |  |  |-- checkpoint_reader.h
+|  |  |  |-- command_line_flags.cc
+|  |  |  |-- command_line_flags.h
+|  |  |  |-- command_line_flags_test.cc
+|  |  |  |-- ctc
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- ctc_beam_entry.h
+|  |  |  |  |-- ctc_beam_scorer.h
+|  |  |  |  |-- ctc_beam_search.h
+|  |  |  |  |-- ctc_beam_search_test.cc
+|  |  |  |  |-- ctc_decoder.h
+|  |  |  |  |-- ctc_loss_calculator.cc
+|  |  |  |  |-- ctc_loss_calculator.h
+|  |  |  |  |-- ctc_loss_util.h
+|  |  |  |-- cuda_kernel_helper.h
+|  |  |  |-- device_name_utils.cc
+|  |  |  |-- device_name_utils.h
+|  |  |  |-- device_name_utils_test.cc
+|  |  |  |-- event.proto
+|  |  |  |-- events_writer.cc
+|  |  |  |-- events_writer.h
+|  |  |  |-- events_writer_test.cc
+|  |  |  |-- example_proto_helper.cc
+|  |  |  |-- example_proto_helper.h
+|  |  |  |-- example_proto_helper_test.cc
+|  |  |  |-- guarded_philox_random.cc
+|  |  |  |-- guarded_philox_random.h
+|  |  |  |-- memmapped_file_system.cc
+|  |  |  |-- memmapped_file_system.h
+|  |  |  |-- memmapped_file_system.proto
+|  |  |  |-- memmapped_file_system_test.cc
+|  |  |  |-- memmapped_file_system_writer.cc
+|  |  |  |-- memmapped_file_system_writer.h
+|  |  |  |-- mirror_pad_mode.cc
+|  |  |  |-- mirror_pad_mode.h
+|  |  |  |-- padding.cc
+|  |  |  |-- padding.h
+|  |  |  |-- port.cc
+|  |  |  |-- port.h
+|  |  |  |-- reporter.cc
+|  |  |  |-- reporter.h
+|  |  |  |-- reporter_test.cc
+|  |  |  |-- saved_tensor_slice.proto
+|  |  |  |-- saved_tensor_slice_util.cc
+|  |  |  |-- saved_tensor_slice_util.h
+|  |  |  |-- saved_tensor_slice_util_test.cc
+|  |  |  |-- sparse
+|  |  |  |  |-- README.md
+|  |  |  |  |-- dim_comparator.h
+|  |  |  |  |-- group_iterator.cc
+|  |  |  |  |-- group_iterator.h
+|  |  |  |  |-- sparse_tensor.h
+|  |  |  |  |-- sparse_tensor_test.cc
+|  |  |  |-- stat_summarizer.cc
+|  |  |  |-- stat_summarizer.h
+|  |  |  |-- tensor_format.cc
+|  |  |  |-- tensor_format.h
+|  |  |  |-- tensor_slice_reader.cc
+|  |  |  |-- tensor_slice_reader.h
+|  |  |  |-- tensor_slice_reader_cache.cc
+|  |  |  |-- tensor_slice_reader_cache.h
+|  |  |  |-- tensor_slice_reader_test.cc
+|  |  |  |-- tensor_slice_set.cc
+|  |  |  |-- tensor_slice_set.h
+|  |  |  |-- tensor_slice_set_test.cc
+|  |  |  |-- tensor_slice_util.h
+|  |  |  |-- tensor_slice_util_test.cc
+|  |  |  |-- tensor_slice_writer.cc
+|  |  |  |-- tensor_slice_writer.h
+|  |  |  |-- tensor_slice_writer_test.cc
+|  |  |  |-- test_log.proto
+|  |  |  |-- tf_status_helper.cc
+|  |  |  |-- tf_status_helper.h
+|  |  |  |-- use_cudnn.cc
+|  |  |  |-- use_cudnn.h
+|  |  |  |-- util.cc
+|  |  |  |-- util.h
+|  |  |  |-- work_sharder.cc
+|  |  |  |-- work_sharder.h
+|  |  |  |-- work_sharder_test.cc
+|  |-- examples
+|  |  |-- __init__.py
+|  |  |-- android
+|  |  |  |-- AndroidManifest.xml
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- jni
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- imageutils_jni.cc
+|  |  |  |  |-- jni_utils.cc
+|  |  |  |  |-- jni_utils.h
+|  |  |  |  |-- limiting_file_input_stream.h
+|  |  |  |  |-- rgb2yuv.cc
+|  |  |  |  |-- rgb2yuv.h
+|  |  |  |  |-- tensorflow_jni.cc
+|  |  |  |  |-- tensorflow_jni.h
+|  |  |  |  |-- yuv2rgb.cc
+|  |  |  |  |-- yuv2rgb.h
+|  |  |  |-- res
+|  |  |  |  |-- drawable-hdpi
+|  |  |  |  |  |-- ic_action_info.png
+|  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |-- tile.9.png
+|  |  |  |  |-- drawable-mdpi
+|  |  |  |  |  |-- ic_action_info.png
+|  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |-- drawable-xhdpi
+|  |  |  |  |  |-- ic_action_info.png
+|  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |-- drawable-xxhdpi
+|  |  |  |  |  |-- ic_action_info.png
+|  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |-- layout-land
+|  |  |  |  |  |-- camera_connection_fragment.xml
+|  |  |  |  |-- layout
+|  |  |  |  |  |-- activity_camera.xml
+|  |  |  |  |  |-- camera_connection_fragment.xml
+|  |  |  |  |-- values-sw600dp
+|  |  |  |  |  |-- template-dimens.xml
+|  |  |  |  |  |-- template-styles.xml
+|  |  |  |  |-- values-v11
+|  |  |  |  |  |-- styles.xml
+|  |  |  |  |  |-- template-styles.xml
+|  |  |  |  |-- values-v14
+|  |  |  |  |  |-- styles.xml
+|  |  |  |  |-- values-v21
+|  |  |  |  |  |-- base-colors.xml
+|  |  |  |  |  |-- base-template-styles.xml
+|  |  |  |  |-- values
+|  |  |  |  |  |-- attrs.xml
+|  |  |  |  |  |-- base-strings.xml
+|  |  |  |  |  |-- colors.xml
+|  |  |  |  |  |-- strings.xml
+|  |  |  |  |  |-- styles.xml
+|  |  |  |  |  |-- template-dimens.xml
+|  |  |  |  |  |-- template-styles.xml
+|  |  |  |-- src
+|  |  |  |  |-- org
+|  |  |  |  |  |-- tensorflow
+|  |  |  |  |  |  |-- demo
+|  |  |  |  |  |  |  |-- AutoFitTextureView.java
+|  |  |  |  |  |  |  |-- CameraActivity.java
+|  |  |  |  |  |  |  |-- CameraConnectionFragment.java
+|  |  |  |  |  |  |  |-- Classifier.java
+|  |  |  |  |  |  |  |-- RecognitionScoreView.java
+|  |  |  |  |  |  |  |-- TensorflowClassifier.java
+|  |  |  |  |  |  |  |-- TensorflowImageListener.java
+|  |  |  |  |  |  |  |-- env
+|  |  |  |  |  |  |  |  |-- ImageUtils.java
+|  |  |  |  |  |  |  |  |-- Logger.java
+|  |  |-- how_tos
+|  |  |  |-- reading_data
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- convert_to_records.py
+|  |  |  |  |-- fully_connected_preloaded.py
+|  |  |  |  |-- fully_connected_preloaded_var.py
+|  |  |  |  |-- fully_connected_reader.py
+|  |  |-- image_retraining
+|  |  |  |-- BUILD
+|  |  |  |-- retrain.py
+|  |  |  |-- retrain_test.py
+|  |  |-- label_image
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- data
+|  |  |  |  |-- grace_hopper.jpg
+|  |  |  |-- main.cc
+|  |  |-- skflow
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- boston.py
+|  |  |  |-- digits.py
+|  |  |  |-- dnn_autoencoder_iris.py
+|  |  |  |-- hdf5_classification.py
+|  |  |  |-- iris.py
+|  |  |  |-- iris_custom_decay_dnn.py
+|  |  |  |-- iris_custom_model.py
+|  |  |  |-- iris_run_config.py
+|  |  |  |-- iris_save_restore.py
+|  |  |  |-- iris_val_based_early_stopping.py
+|  |  |  |-- iris_with_pipeline.py
+|  |  |  |-- language_model.py
+|  |  |  |-- mnist.py
+|  |  |  |-- mnist_weights.py
+|  |  |  |-- multioutput_regression.py
+|  |  |  |-- multiple_gpu.py
+|  |  |  |-- neural_translation.py
+|  |  |  |-- neural_translation_word.py
+|  |  |  |-- out_of_core_data_classification.py
+|  |  |  |-- resnet.py
+|  |  |  |-- text_classification.py
+|  |  |  |-- text_classification_builtin_rnn_model.py
+|  |  |  |-- text_classification_character_cnn.py
+|  |  |  |-- text_classification_character_rnn.py
+|  |  |  |-- text_classification_cnn.py
+|  |  |  |-- text_classification_save_restore.py
+|  |  |-- tutorials
+|  |  |  |-- __init__.py
+|  |  |  |-- deepdream
+|  |  |  |  |-- README.md
+|  |  |  |  |-- deepdream.ipynb
+|  |  |  |  |-- pilatus800.jpg
+|  |  |  |-- mnist
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- fully_connected_feed.py
+|  |  |  |  |-- input_data.py
+|  |  |  |  |-- mnist.py
+|  |  |  |  |-- mnist_softmax.py
+|  |  |  |  |-- mnist_with_summaries.py
+|  |  |  |-- word2vec
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- word2vec_basic.py
+|  |  |-- udacity
+|  |  |  |-- .gitignore
+|  |  |  |-- 1_notmnist.ipynb
+|  |  |  |-- 2_fullyconnected.ipynb
+|  |  |  |-- 3_regularization.ipynb
+|  |  |  |-- 4_convolutions.ipynb
+|  |  |  |-- 5_word2vec.ipynb
+|  |  |  |-- 6_lstm.ipynb
+|  |  |  |-- Dockerfile
+|  |  |  |-- README.md
+|  |-- g3doc
+|  |  |-- __init__.py
+|  |  |-- api_docs
+|  |  |  |-- cc
+|  |  |  |  |-- ClassEnv.md
+|  |  |  |  |-- ClassEnvWrapper.md
+|  |  |  |  |-- ClassPartialTensorShape.md
+|  |  |  |  |-- ClassPartialTensorShapeUtils.md
+|  |  |  |  |-- ClassRandomAccessFile.md
+|  |  |  |  |-- ClassSession.md
+|  |  |  |  |-- ClassStatus.md
+|  |  |  |  |-- ClassTensor.md
+|  |  |  |  |-- ClassTensorShape.md
+|  |  |  |  |-- ClassTensorShapeUtils.md
+|  |  |  |  |-- ClassThread.md
+|  |  |  |  |-- ClassWritableFile.md
+|  |  |  |  |-- StructSessionOptions.md
+|  |  |  |  |-- StructState.md
+|  |  |  |  |-- StructTF_Buffer.md
+|  |  |  |  |-- StructTensorShapeDim.md
+|  |  |  |  |-- StructThreadOptions.md
+|  |  |  |  |-- index.md
+|  |  |  |-- index.md
+|  |  |  |-- leftnav_files
+|  |  |  |-- python
+|  |  |  |  |-- array_ops.md
+|  |  |  |  |-- check_ops.md
+|  |  |  |  |-- client.md
+|  |  |  |  |-- constant_op.md
+|  |  |  |  |-- contrib.copy_graph.md
+|  |  |  |  |-- contrib.distributions.md
+|  |  |  |  |-- contrib.ffmpeg.md
+|  |  |  |  |-- contrib.framework.md
+|  |  |  |  |-- contrib.layers.md
+|  |  |  |  |-- contrib.learn.md
+|  |  |  |  |-- contrib.losses.md
+|  |  |  |  |-- contrib.metrics.md
+|  |  |  |  |-- contrib.util.md
+|  |  |  |  |-- control_flow_ops.md
+|  |  |  |  |-- framework.md
+|  |  |  |  |-- functional_ops.md
+|  |  |  |  |-- functions_and_classes
+|  |  |  |  |  |-- shard0
+|  |  |  |  |  |  |-- tf.ReaderBase.md
+|  |  |  |  |  |  |-- tf.SparseTensorValue.md
+|  |  |  |  |  |  |-- tf.TensorArray.md
+|  |  |  |  |  |  |-- tf.TensorShape.md
+|  |  |  |  |  |  |-- tf.VariableScope.md
+|  |  |  |  |  |  |-- tf.add_check_numerics_ops.md
+|  |  |  |  |  |  |-- tf.add_n.md
+|  |  |  |  |  |  |-- tf.add_to_collection.md
+|  |  |  |  |  |  |-- tf.assert_non_positive.md
+|  |  |  |  |  |  |-- tf.batch_matrix_triangular_solve.md
+|  |  |  |  |  |  |-- tf.case.md
+|  |  |  |  |  |  |-- tf.cholesky.md
+|  |  |  |  |  |  |-- tf.cond.md
+|  |  |  |  |  |  |-- tf.contrib.distributions.MultivariateNormal.md
+|  |  |  |  |  |  |-- tf.contrib.framework.get_global_step.md
+|  |  |  |  |  |  |-- tf.contrib.framework.safe_embedding_lookup_sparse.md
+|  |  |  |  |  |  |-- tf.contrib.layers.l2_regularizer.md
+|  |  |  |  |  |  |-- tf.contrib.learn.LinearRegressor.md
+|  |  |  |  |  |  |-- tf.contrib.learn.extract_pandas_matrix.md
+|  |  |  |  |  |  |-- tf.contrib.learn.read_batch_record_features.md
+|  |  |  |  |  |  |-- tf.contrib.losses.get_losses.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.set_size.md
+|  |  |  |  |  |  |-- tf.contrib.util.ops_used_by_graph_def.md
+|  |  |  |  |  |  |-- tf.delete_session_tensor.md
+|  |  |  |  |  |  |-- tf.depth_to_space.md
+|  |  |  |  |  |  |-- tf.device.md
+|  |  |  |  |  |  |-- tf.errors.CancelledError.md
+|  |  |  |  |  |  |-- tf.errors.DataLossError.md
+|  |  |  |  |  |  |-- tf.errors.DeadlineExceededError.md
+|  |  |  |  |  |  |-- tf.fft.md
+|  |  |  |  |  |  |-- tf.fft2d.md
+|  |  |  |  |  |  |-- tf.get_seed.md
+|  |  |  |  |  |  |-- tf.get_session_handle.md
+|  |  |  |  |  |  |-- tf.global_norm.md
+|  |  |  |  |  |  |-- tf.ifft3d.md
+|  |  |  |  |  |  |-- tf.image.adjust_brightness.md
+|  |  |  |  |  |  |-- tf.image.decode_jpeg.md
+|  |  |  |  |  |  |-- tf.image.grayscale_to_rgb.md
+|  |  |  |  |  |  |-- tf.image.random_brightness.md
+|  |  |  |  |  |  |-- tf.image.rgb_to_grayscale.md
+|  |  |  |  |  |  |-- tf.is_finite.md
+|  |  |  |  |  |  |-- tf.is_nan.md
+|  |  |  |  |  |  |-- tf.is_non_decreasing.md
+|  |  |  |  |  |  |-- tf.is_numeric_tensor.md
+|  |  |  |  |  |  |-- tf.mod.md
+|  |  |  |  |  |  |-- tf.mul.md
+|  |  |  |  |  |  |-- tf.name_scope.md
+|  |  |  |  |  |  |-- tf.nn.avg_pool3d.md
+|  |  |  |  |  |  |-- tf.nn.l2_normalize.md
+|  |  |  |  |  |  |-- tf.not_equal.md
+|  |  |  |  |  |  |-- tf.py_func.md
+|  |  |  |  |  |  |-- tf.reduce_sum.md
+|  |  |  |  |  |  |-- tf.reshape.md
+|  |  |  |  |  |  |-- tf.reverse_sequence.md
+|  |  |  |  |  |  |-- tf.segment_min.md
+|  |  |  |  |  |  |-- tf.sparse_tensor_to_dense.md
+|  |  |  |  |  |  |-- tf.sqrt.md
+|  |  |  |  |  |  |-- tf.train.ExponentialMovingAverage.md
+|  |  |  |  |  |  |-- tf.train.add_queue_runner.md
+|  |  |  |  |  |  |-- tf.train.limit_epochs.md
+|  |  |  |  |  |  |-- tf.tuple.md
+|  |  |  |  |  |  |-- tf.zeros_initializer.md
+|  |  |  |  |  |-- shard1
+|  |  |  |  |  |  |-- tf.AggregationMethod.md
+|  |  |  |  |  |  |-- tf.FIFOQueue.md
+|  |  |  |  |  |  |-- tf.IdentityReader.md
+|  |  |  |  |  |  |-- tf.NoGradient.md
+|  |  |  |  |  |  |-- tf.Print.md
+|  |  |  |  |  |  |-- tf.Tensor.md
+|  |  |  |  |  |  |-- tf.Variable.from_proto.md
+|  |  |  |  |  |  |-- tf.accumulate_n.md
+|  |  |  |  |  |  |-- tf.all_variables.md
+|  |  |  |  |  |  |-- tf.assert_less_equal.md
+|  |  |  |  |  |  |-- tf.assert_rank_at_least.md
+|  |  |  |  |  |  |-- tf.batch_fft.md
+|  |  |  |  |  |  |-- tf.batch_matrix_inverse.md
+|  |  |  |  |  |  |-- tf.batch_to_space.md
+|  |  |  |  |  |  |-- tf.constant_initializer.md
+|  |  |  |  |  |  |-- tf.contrib.distributions.StudentT.md
+|  |  |  |  |  |  |-- tf.contrib.framework.get_graph_from_inputs.md
+|  |  |  |  |  |  |-- tf.contrib.framework.get_local_variables.md
+|  |  |  |  |  |  |-- tf.contrib.framework.get_variables_by_name.md
+|  |  |  |  |  |  |-- tf.contrib.layers.summarize_tensors.md
+|  |  |  |  |  |  |-- tf.contrib.learn.LinearClassifier.md
+|  |  |  |  |  |  |-- tf.contrib.learn.extract_pandas_data.md
+|  |  |  |  |  |  |-- tf.contrib.learn.train.md
+|  |  |  |  |  |  |-- tf.contrib.losses.absolute_difference.md
+|  |  |  |  |  |  |-- tf.contrib.losses.sum_of_pairwise_squares.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.streaming_mean_squared_error.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.streaming_sparse_recall_at_k.md
+|  |  |  |  |  |  |-- tf.contrib.util.constant_value.md
+|  |  |  |  |  |  |-- tf.convert_to_tensor.md
+|  |  |  |  |  |  |-- tf.diag.md
+|  |  |  |  |  |  |-- tf.erf.md
+|  |  |  |  |  |  |-- tf.errors.AlreadyExistsError.md
+|  |  |  |  |  |  |-- tf.get_default_session.md
+|  |  |  |  |  |  |-- tf.gradients.md
+|  |  |  |  |  |  |-- tf.greater_equal.md
+|  |  |  |  |  |  |-- tf.igammac.md
+|  |  |  |  |  |  |-- tf.image.adjust_hue.md
+|  |  |  |  |  |  |-- tf.image.central_crop.md
+|  |  |  |  |  |  |-- tf.image.random_hue.md
+|  |  |  |  |  |  |-- tf.image.resize_bicubic.md
+|  |  |  |  |  |  |-- tf.invert_permutation.md
+|  |  |  |  |  |  |-- tf.is_strictly_increasing.md
+|  |  |  |  |  |  |-- tf.linspace.md
+|  |  |  |  |  |  |-- tf.map_fn.md
+|  |  |  |  |  |  |-- tf.matching_files.md
+|  |  |  |  |  |  |-- tf.merge_all_summaries.md
+|  |  |  |  |  |  |-- tf.nn.compute_accidental_hits.md
+|  |  |  |  |  |  |-- tf.nn.embedding_lookup_sparse.md
+|  |  |  |  |  |  |-- tf.nn.erosion2d.md
+|  |  |  |  |  |  |-- tf.nn.moments.md
+|  |  |  |  |  |  |-- tf.nn.normalize_moments.md
+|  |  |  |  |  |  |-- tf.nn.sampled_softmax_loss.md
+|  |  |  |  |  |  |-- tf.parse_single_example.md
+|  |  |  |  |  |  |-- tf.random_uniform_initializer.md
+|  |  |  |  |  |  |-- tf.read_file.md
+|  |  |  |  |  |  |-- tf.reduce_any.md
+|  |  |  |  |  |  |-- tf.reduce_join.md
+|  |  |  |  |  |  |-- tf.string_to_hash_bucket_strong.md
+|  |  |  |  |  |  |-- tf.test.get_temp_dir.md
+|  |  |  |  |  |  |-- tf.train.AdadeltaOptimizer.md
+|  |  |  |  |  |  |-- tf.train.ClusterSpec.md
+|  |  |  |  |  |  |-- tf.train.GradientDescentOptimizer.md
+|  |  |  |  |  |  |-- tf.train.LooperThread.md
+|  |  |  |  |  |  |-- tf.train.Server.create_local_server.md
+|  |  |  |  |  |  |-- tf.train.generate_checkpoint_state_proto.md
+|  |  |  |  |  |  |-- tf.train.shuffle_batch_join.md
+|  |  |  |  |  |  |-- tf.zeros.md
+|  |  |  |  |  |  |-- tf.zeros_like.md
+|  |  |  |  |  |-- shard2
+|  |  |  |  |  |  |-- tf.DType.md
+|  |  |  |  |  |  |-- tf.Graph.md
+|  |  |  |  |  |  |-- tf.InteractiveSession.md
+|  |  |  |  |  |  |-- tf.TFRecordReader.md
+|  |  |  |  |  |  |-- tf.TextLineReader.md
+|  |  |  |  |  |  |-- tf.WholeFileReader.md
+|  |  |  |  |  |  |-- tf.assert_non_negative.md
+|  |  |  |  |  |  |-- tf.batch_matrix_determinant.md
+|  |  |  |  |  |  |-- tf.cholesky_solve.md
+|  |  |  |  |  |  |-- tf.constant.md
+|  |  |  |  |  |  |-- tf.contrib.copy_graph.get_copied_op.md
+|  |  |  |  |  |  |-- tf.contrib.distributions.Categorical.md
+|  |  |  |  |  |  |-- tf.contrib.distributions.Chi2.md
+|  |  |  |  |  |  |-- tf.contrib.distributions.Uniform.md
+|  |  |  |  |  |  |-- tf.contrib.framework.arg_scope.md
+|  |  |  |  |  |  |-- tf.contrib.framework.assert_global_step.md
+|  |  |  |  |  |  |-- tf.contrib.framework.assert_scalar_int.md
+|  |  |  |  |  |  |-- tf.contrib.framework.get_unique_variable.md
+|  |  |  |  |  |  |-- tf.contrib.framework.get_variables_to_restore.md
+|  |  |  |  |  |  |-- tf.contrib.framework.with_same_shape.md
+|  |  |  |  |  |  |-- tf.contrib.layers.optimize_loss.md
+|  |  |  |  |  |  |-- tf.contrib.learn.BaseEstimator.md
+|  |  |  |  |  |  |-- tf.contrib.learn.ModeKeys.md
+|  |  |  |  |  |  |-- tf.contrib.learn.TensorFlowDNNRegressor.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.set_difference.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.streaming_auc.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.streaming_mean.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.streaming_mean_relative_error.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.streaming_sparse_precision_at_k.md
+|  |  |  |  |  |  |-- tf.digamma.md
+|  |  |  |  |  |  |-- tf.edit_distance.md
+|  |  |  |  |  |  |-- tf.errors.ResourceExhaustedError.md
+|  |  |  |  |  |  |-- tf.expand_dims.md
+|  |  |  |  |  |  |-- tf.gather_nd.md
+|  |  |  |  |  |  |-- tf.get_variable_scope.md
+|  |  |  |  |  |  |-- tf.identity.md
+|  |  |  |  |  |  |-- tf.imag.md
+|  |  |  |  |  |  |-- tf.image.encode_jpeg.md
+|  |  |  |  |  |  |-- tf.image.per_image_whitening.md
+|  |  |  |  |  |  |-- tf.image_summary.md
+|  |  |  |  |  |  |-- tf.initialize_all_variables.md
+|  |  |  |  |  |  |-- tf.initialize_local_variables.md
+|  |  |  |  |  |  |-- tf.is_variable_initialized.md
+|  |  |  |  |  |  |-- tf.matmul.md
+|  |  |  |  |  |  |-- tf.minimum.md
+|  |  |  |  |  |  |-- tf.neg.md
+|  |  |  |  |  |  |-- tf.nn.embedding_lookup.md
+|  |  |  |  |  |  |-- tf.nn.log_uniform_candidate_sampler.md
+|  |  |  |  |  |  |-- tf.nn.relu.md
+|  |  |  |  |  |  |-- tf.random_uniform.md
+|  |  |  |  |  |  |-- tf.real.md
+|  |  |  |  |  |  |-- tf.report_uninitialized_variables.md
+|  |  |  |  |  |  |-- tf.scatter_update.md
+|  |  |  |  |  |  |-- tf.shape_n.md
+|  |  |  |  |  |  |-- tf.sin.md
+|  |  |  |  |  |  |-- tf.sparse_placeholder.md
+|  |  |  |  |  |  |-- tf.split.md
+|  |  |  |  |  |  |-- tf.squeeze.md
+|  |  |  |  |  |  |-- tf.test.assert_equal_graph_def.md
+|  |  |  |  |  |  |-- tf.test.compute_gradient.md
+|  |  |  |  |  |  |-- tf.test.is_built_with_cuda.md
+|  |  |  |  |  |  |-- tf.to_int32.md
+|  |  |  |  |  |  |-- tf.train.Saver.from_proto.md
+|  |  |  |  |  |  |-- tf.train.global_step.md
+|  |  |  |  |  |  |-- tf.train.latest_checkpoint.md
+|  |  |  |  |  |  |-- tf.train.shuffle_batch.md
+|  |  |  |  |  |  |-- tf.train.start_queue_runners.md
+|  |  |  |  |  |  |-- tf.uniform_unit_scaling_initializer.md
+|  |  |  |  |  |-- shard3
+|  |  |  |  |  |  |-- tf.RegisterGradient.md
+|  |  |  |  |  |  |-- tf.SparseTensor.md
+|  |  |  |  |  |  |-- tf.assert_rank.md
+|  |  |  |  |  |  |-- tf.assert_type.md
+|  |  |  |  |  |  |-- tf.batch_ifft3d.md
+|  |  |  |  |  |  |-- tf.batch_self_adjoint_eig.md
+|  |  |  |  |  |  |-- tf.ceil.md
+|  |  |  |  |  |  |-- tf.check_numerics.md
+|  |  |  |  |  |  |-- tf.complex_abs.md
+|  |  |  |  |  |  |-- tf.contrib.copy_graph.copy_op_to_graph.md
+|  |  |  |  |  |  |-- tf.contrib.distributions.ContinuousDistribution.md
+|  |  |  |  |  |  |-- tf.contrib.distributions.DirichletMultinomial.md
+|  |  |  |  |  |  |-- tf.contrib.distributions.Exponential.md
+|  |  |  |  |  |  |-- tf.contrib.distributions.Gamma.md
+|  |  |  |  |  |  |-- tf.contrib.distributions.normal_conjugates_known_sigma_posterior.md
+|  |  |  |  |  |  |-- tf.contrib.ffmpeg.encode_audio.md
+|  |  |  |  |  |  |-- tf.contrib.framework.add_model_variable.md
+|  |  |  |  |  |  |-- tf.contrib.framework.get_model_variables.md
+|  |  |  |  |  |  |-- tf.contrib.framework.local_variable.md
+|  |  |  |  |  |  |-- tf.contrib.layers.summarize_activation.md
+|  |  |  |  |  |  |-- tf.contrib.layers.variance_scaling_initializer.md
+|  |  |  |  |  |  |-- tf.contrib.learn.Estimator.md
+|  |  |  |  |  |  |-- tf.contrib.learn.extract_dask_data.md
+|  |  |  |  |  |  |-- tf.contrib.losses.add_loss.md
+|  |  |  |  |  |  |-- tf.contrib.losses.cosine_distance.md
+|  |  |  |  |  |  |-- tf.contrib.losses.get_regularization_losses.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.auc_using_histogram.md
+|  |  |  |  |  |  |-- tf.control_dependencies.md
+|  |  |  |  |  |  |-- tf.convert_to_tensor_or_indexed_slices.md
+|  |  |  |  |  |  |-- tf.decode_csv.md
+|  |  |  |  |  |  |-- tf.decode_raw.md
+|  |  |  |  |  |  |-- tf.errors.OutOfRangeError.md
+|  |  |  |  |  |  |-- tf.errors.UnauthenticatedError.md
+|  |  |  |  |  |  |-- tf.exp.md
+|  |  |  |  |  |  |-- tf.foldl.md
+|  |  |  |  |  |  |-- tf.group.md
+|  |  |  |  |  |  |-- tf.ifft2d.md
+|  |  |  |  |  |  |-- tf.image.adjust_contrast.md
+|  |  |  |  |  |  |-- tf.image.adjust_saturation.md
+|  |  |  |  |  |  |-- tf.image.convert_image_dtype.md
+|  |  |  |  |  |  |-- tf.image.decode_png.md
+|  |  |  |  |  |  |-- tf.image.random_contrast.md
+|  |  |  |  |  |  |-- tf.image.random_saturation.md
+|  |  |  |  |  |  |-- tf.local_variables.md
+|  |  |  |  |  |  |-- tf.logical_xor.md
+|  |  |  |  |  |  |-- tf.multinomial.md
+|  |  |  |  |  |  |-- tf.nn.dropout.md
+|  |  |  |  |  |  |-- tf.nn.log_softmax.md
+|  |  |  |  |  |  |-- tf.nn.max_pool.md
+|  |  |  |  |  |  |-- tf.nn.softsign.md
+|  |  |  |  |  |  |-- tf.pack.md
+|  |  |  |  |  |  |-- tf.placeholder.md
+|  |  |  |  |  |  |-- tf.random_shuffle.md
+|  |  |  |  |  |  |-- tf.reduce_min.md
+|  |  |  |  |  |  |-- tf.register_tensor_conversion_function.md
+|  |  |  |  |  |  |-- tf.scalar_summary.md
+|  |  |  |  |  |  |-- tf.segment_mean.md
+|  |  |  |  |  |  |-- tf.shape.md
+|  |  |  |  |  |  |-- tf.sparse_concat.md
+|  |  |  |  |  |  |-- tf.sparse_softmax.md
+|  |  |  |  |  |  |-- tf.sparse_split.md
+|  |  |  |  |  |  |-- tf.stop_gradient.md
+|  |  |  |  |  |  |-- tf.test.compute_gradient_error.md
+|  |  |  |  |  |  |-- tf.to_double.md
+|  |  |  |  |  |  |-- tf.trace.md
+|  |  |  |  |  |  |-- tf.train.AdagradOptimizer.md
+|  |  |  |  |  |  |-- tf.train.QueueRunner.md
+|  |  |  |  |  |  |-- tf.train.Server.md
+|  |  |  |  |  |  |-- tf.train.batch_join.md
+|  |  |  |  |  |  |-- tf.train.range_input_producer.md
+|  |  |  |  |  |  |-- tf.unique_with_counts.md
+|  |  |  |  |  |-- shard4
+|  |  |  |  |  |  |-- tf.Assert.md
+|  |  |  |  |  |  |-- tf.FixedLengthRecordReader.md
+|  |  |  |  |  |  |-- tf.argmin.md
+|  |  |  |  |  |  |-- tf.assert_less.md
+|  |  |  |  |  |  |-- tf.batch_ifft.md
+|  |  |  |  |  |  |-- tf.batch_matrix_band_part.md
+|  |  |  |  |  |  |-- tf.batch_matrix_diag_part.md
+|  |  |  |  |  |  |-- tf.batch_matrix_solve.md
+|  |  |  |  |  |  |-- tf.clip_by_value.md
+|  |  |  |  |  |  |-- tf.complex.md
+|  |  |  |  |  |  |-- tf.contrib.framework.VariableDeviceChooser.md
+|  |  |  |  |  |  |-- tf.contrib.framework.add_arg_scope.md
+|  |  |  |  |  |  |-- tf.contrib.learn.DNNClassifier.md
+|  |  |  |  |  |  |-- tf.contrib.learn.RunConfig.md
+|  |  |  |  |  |  |-- tf.contrib.learn.TensorFlowEstimator.md
+|  |  |  |  |  |  |-- tf.contrib.learn.TensorFlowLinearClassifier.md
+|  |  |  |  |  |  |-- tf.contrib.learn.TensorFlowRNNRegressor.md
+|  |  |  |  |  |  |-- tf.contrib.learn.evaluate.md
+|  |  |  |  |  |  |-- tf.contrib.learn.read_batch_features.md
+|  |  |  |  |  |  |-- tf.contrib.learn.run_feeds.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.set_union.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.streaming_recall_at_k.md
+|  |  |  |  |  |  |-- tf.contrib.util.stripped_op_list_for_graph.md
+|  |  |  |  |  |  |-- tf.errors.FailedPreconditionError.md
+|  |  |  |  |  |  |-- tf.extract_image_patches.md
+|  |  |  |  |  |  |-- tf.floor.md
+|  |  |  |  |  |  |-- tf.greater.md
+|  |  |  |  |  |  |-- tf.histogram_fixed_width.md
+|  |  |  |  |  |  |-- tf.image.hsv_to_rgb.md
+|  |  |  |  |  |  |-- tf.initialize_variables.md
+|  |  |  |  |  |  |-- tf.log.md
+|  |  |  |  |  |  |-- tf.nn.conv2d_transpose.md
+|  |  |  |  |  |  |-- tf.nn.depthwise_conv2d.md
+|  |  |  |  |  |  |-- tf.nn.depthwise_conv2d_native.md
+|  |  |  |  |  |  |-- tf.nn.dilation2d.md
+|  |  |  |  |  |  |-- tf.nn.l2_loss.md
+|  |  |  |  |  |  |-- tf.nn.max_pool3d.md
+|  |  |  |  |  |  |-- tf.nn.nce_loss.md
+|  |  |  |  |  |  |-- tf.nn.softplus.md
+|  |  |  |  |  |  |-- tf.nn.sparse_softmax_cross_entropy_with_logits.md
+|  |  |  |  |  |  |-- tf.placeholder_with_default.md
+|  |  |  |  |  |  |-- tf.reduce_all.md
+|  |  |  |  |  |  |-- tf.reduce_mean.md
+|  |  |  |  |  |  |-- tf.segment_max.md
+|  |  |  |  |  |  |-- tf.select.md
+|  |  |  |  |  |  |-- tf.sparse_add.md
+|  |  |  |  |  |  |-- tf.sparse_to_indicator.md
+|  |  |  |  |  |  |-- tf.string_to_hash_bucket_fast.md
+|  |  |  |  |  |  |-- tf.sub.md
+|  |  |  |  |  |  |-- tf.tile.md
+|  |  |  |  |  |  |-- tf.train.match_filenames_once.md
+|  |  |  |  |  |  |-- tf.train.update_checkpoint_state.md
+|  |  |  |  |  |  |-- tf.train.write_graph.md
+|  |  |  |  |  |  |-- tf.unpack.md
+|  |  |  |  |  |  |-- tf.unsorted_segment_sum.md
+|  |  |  |  |  |  |-- tf.while_loop.md
+|  |  |  |  |  |-- shard5
+|  |  |  |  |  |  |-- tf.OpError.md
+|  |  |  |  |  |  |-- tf.RandomShuffleQueue.md
+|  |  |  |  |  |  |-- tf.add.md
+|  |  |  |  |  |  |-- tf.asin.md
+|  |  |  |  |  |  |-- tf.assert_integer.md
+|  |  |  |  |  |  |-- tf.batch_cholesky_solve.md
+|  |  |  |  |  |  |-- tf.batch_matmul.md
+|  |  |  |  |  |  |-- tf.boolean_mask.md
+|  |  |  |  |  |  |-- tf.bytes.md
+|  |  |  |  |  |  |-- tf.cast.md
+|  |  |  |  |  |  |-- tf.clip_by_global_norm.md
+|  |  |  |  |  |  |-- tf.clip_by_norm.md
+|  |  |  |  |  |  |-- tf.contrib.framework.arg_scoped_arguments.md
+|  |  |  |  |  |  |-- tf.contrib.framework.get_variables.md
+|  |  |  |  |  |  |-- tf.contrib.framework.variable.md
+|  |  |  |  |  |  |-- tf.contrib.layers.convolution2d.md
+|  |  |  |  |  |  |-- tf.contrib.layers.fully_connected.md
+|  |  |  |  |  |  |-- tf.contrib.layers.sum_regularizer.md
+|  |  |  |  |  |  |-- tf.contrib.layers.summarize_collection.md
+|  |  |  |  |  |  |-- tf.contrib.learn.TensorFlowDNNClassifier.md
+|  |  |  |  |  |  |-- tf.contrib.learn.run_n.md
+|  |  |  |  |  |  |-- tf.contrib.losses.sigmoid_cross_entropy.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.accuracy.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.streaming_percentage_less.md
+|  |  |  |  |  |  |-- tf.cos.md
+|  |  |  |  |  |  |-- tf.diag_part.md
+|  |  |  |  |  |  |-- tf.div.md
+|  |  |  |  |  |  |-- tf.errors.PermissionDeniedError.md
+|  |  |  |  |  |  |-- tf.errors.UnavailableError.md
+|  |  |  |  |  |  |-- tf.floordiv.md
+|  |  |  |  |  |  |-- tf.histogram_summary.md
+|  |  |  |  |  |  |-- tf.image.flip_left_right.md
+|  |  |  |  |  |  |-- tf.image.flip_up_down.md
+|  |  |  |  |  |  |-- tf.image.pad_to_bounding_box.md
+|  |  |  |  |  |  |-- tf.image.resize_image_with_crop_or_pad.md
+|  |  |  |  |  |  |-- tf.image.resize_nearest_neighbor.md
+|  |  |  |  |  |  |-- tf.image.sample_distorted_bounding_box.md
+|  |  |  |  |  |  |-- tf.inv.md
+|  |  |  |  |  |  |-- tf.listdiff.md
+|  |  |  |  |  |  |-- tf.load_file_system_library.md
+|  |  |  |  |  |  |-- tf.logical_and.md
+|  |  |  |  |  |  |-- tf.logical_not.md
+|  |  |  |  |  |  |-- tf.make_template.md
+|  |  |  |  |  |  |-- tf.merge_summary.md
+|  |  |  |  |  |  |-- tf.nn.conv3d.md
+|  |  |  |  |  |  |-- tf.nn.sigmoid_cross_entropy_with_logits.md
+|  |  |  |  |  |  |-- tf.nn.top_k.md
+|  |  |  |  |  |  |-- tf.no_op.md
+|  |  |  |  |  |  |-- tf.range.md
+|  |  |  |  |  |  |-- tf.sign.md
+|  |  |  |  |  |  |-- tf.sparse_segment_sqrt_n_grad.md
+|  |  |  |  |  |  |-- tf.tan.md
+|  |  |  |  |  |  |-- tf.test.main.md
+|  |  |  |  |  |  |-- tf.to_int64.md
+|  |  |  |  |  |  |-- tf.train.FtrlOptimizer.md
+|  |  |  |  |  |  |-- tf.train.LooperThread.loop.md
+|  |  |  |  |  |  |-- tf.train.Optimizer.md
+|  |  |  |  |  |  |-- tf.train.Saver.md
+|  |  |  |  |  |  |-- tf.train.SessionManager.md
+|  |  |  |  |  |  |-- tf.train.replica_device_setter.md
+|  |  |  |  |  |  |-- tf.transpose.md
+|  |  |  |  |  |  |-- tf.truncated_normal_initializer.md
+|  |  |  |  |  |  |-- tf.variable_op_scope.md
+|  |  |  |  |  |  |-- tf.verify_tensor_all_finite.md
+|  |  |  |  |  |-- shard6
+|  |  |  |  |  |  |-- tf.Dimension.md
+|  |  |  |  |  |  |-- tf.FixedLenSequenceFeature.md
+|  |  |  |  |  |  |-- tf.PaddingFIFOQueue.md
+|  |  |  |  |  |  |-- tf.QueueBase.md
+|  |  |  |  |  |  |-- tf.abs.md
+|  |  |  |  |  |  |-- tf.assert_positive.md
+|  |  |  |  |  |  |-- tf.batch_fft3d.md
+|  |  |  |  |  |  |-- tf.batch_ifft2d.md
+|  |  |  |  |  |  |-- tf.bitcast.md
+|  |  |  |  |  |  |-- tf.concat.md
+|  |  |  |  |  |  |-- tf.conj.md
+|  |  |  |  |  |  |-- tf.contrib.copy_graph.copy_variable_to_graph.md
+|  |  |  |  |  |  |-- tf.contrib.framework.create_global_step.md
+|  |  |  |  |  |  |-- tf.contrib.framework.reduce_sum_n.md
+|  |  |  |  |  |  |-- tf.contrib.layers.summarize_activations.md
+|  |  |  |  |  |  |-- tf.contrib.learn.extract_dask_labels.md
+|  |  |  |  |  |  |-- tf.contrib.learn.read_batch_examples.md
+|  |  |  |  |  |  |-- tf.contrib.losses.log_loss.md
+|  |  |  |  |  |  |-- tf.contrib.losses.sum_of_squares.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.set_intersection.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.streaming_recall.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.streaming_root_mean_squared_error.md
+|  |  |  |  |  |  |-- tf.contrib.util.make_tensor_proto.md
+|  |  |  |  |  |  |-- tf.decode_json_example.md
+|  |  |  |  |  |  |-- tf.dynamic_partition.md
+|  |  |  |  |  |  |-- tf.erfc.md
+|  |  |  |  |  |  |-- tf.errors.AbortedError.md
+|  |  |  |  |  |  |-- tf.errors.InternalError.md
+|  |  |  |  |  |  |-- tf.errors.NotFoundError.md
+|  |  |  |  |  |  |-- tf.errors.UnimplementedError.md
+|  |  |  |  |  |  |-- tf.igamma.md
+|  |  |  |  |  |  |-- tf.image.extract_glimpse.md
+|  |  |  |  |  |  |-- tf.image.rgb_to_hsv.md
+|  |  |  |  |  |  |-- tf.import_graph_def.md
+|  |  |  |  |  |  |-- tf.load_op_library.md
+|  |  |  |  |  |  |-- tf.maximum.md
+|  |  |  |  |  |  |-- tf.moving_average_variables.md
+|  |  |  |  |  |  |-- tf.nn.elu.md
+|  |  |  |  |  |  |-- tf.nn.separable_conv2d.md
+|  |  |  |  |  |  |-- tf.nn.softmax.md
+|  |  |  |  |  |  |-- tf.one_hot.md
+|  |  |  |  |  |  |-- tf.op_scope.md
+|  |  |  |  |  |  |-- tf.parse_example.md
+|  |  |  |  |  |  |-- tf.pow.md
+|  |  |  |  |  |  |-- tf.python_io.tf_record_iterator.md
+|  |  |  |  |  |  |-- tf.random_crop.md
+|  |  |  |  |  |  |-- tf.random_normal_initializer.md
+|  |  |  |  |  |  |-- tf.rank.md
+|  |  |  |  |  |  |-- tf.self_adjoint_eig.md
+|  |  |  |  |  |  |-- tf.sigmoid.md
+|  |  |  |  |  |  |-- tf.slice.md
+|  |  |  |  |  |  |-- tf.space_to_depth.md
+|  |  |  |  |  |  |-- tf.sparse_reset_shape.md
+|  |  |  |  |  |  |-- tf.sparse_segment_mean.md
+|  |  |  |  |  |  |-- tf.sparse_segment_sum.md
+|  |  |  |  |  |  |-- tf.to_float.md
+|  |  |  |  |  |  |-- tf.train.AdamOptimizer.md
+|  |  |  |  |  |  |-- tf.train.Coordinator.md
+|  |  |  |  |  |  |-- tf.train.QueueRunner.from_proto.md
+|  |  |  |  |  |  |-- tf.train.RMSPropOptimizer.md
+|  |  |  |  |  |  |-- tf.train.Supervisor.md
+|  |  |  |  |  |  |-- tf.train.exponential_decay.md
+|  |  |  |  |  |  |-- tf.train.slice_input_producer.md
+|  |  |  |  |  |  |-- tf.trainable_variables.md
+|  |  |  |  |  |  |-- tf.truncated_normal.md
+|  |  |  |  |  |-- shard7
+|  |  |  |  |  |  |-- tf.DeviceSpec.from_string.md
+|  |  |  |  |  |  |-- tf.FixedLenFeature.md
+|  |  |  |  |  |  |-- tf.Operation.md
+|  |  |  |  |  |  |-- tf.QueueBase.from_list.md
+|  |  |  |  |  |  |-- tf.as_dtype.md
+|  |  |  |  |  |  |-- tf.assert_equal.md
+|  |  |  |  |  |  |-- tf.assert_variables_initialized.md
+|  |  |  |  |  |  |-- tf.batch_cholesky.md
+|  |  |  |  |  |  |-- tf.contrib.distributions.BaseDistribution.md
+|  |  |  |  |  |  |-- tf.contrib.distributions.DiscreteDistribution.md
+|  |  |  |  |  |  |-- tf.contrib.distributions.Normal.md
+|  |  |  |  |  |  |-- tf.contrib.distributions.batch_index.md
+|  |  |  |  |  |  |-- tf.contrib.framework.assert_or_get_global_step.md
+|  |  |  |  |  |  |-- tf.contrib.framework.get_variables_by_suffix.md
+|  |  |  |  |  |  |-- tf.contrib.framework.has_arg_scope.md
+|  |  |  |  |  |  |-- tf.contrib.framework.with_shape.md
+|  |  |  |  |  |  |-- tf.contrib.learn.TensorFlowClassifier.md
+|  |  |  |  |  |  |-- tf.contrib.losses.softmax_cross_entropy.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.streaming_mean_absolute_error.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.streaming_precision.md
+|  |  |  |  |  |  |-- tf.contrib.util.make_ndarray.md
+|  |  |  |  |  |  |-- tf.count_up_to.md
+|  |  |  |  |  |  |-- tf.dynamic_stitch.md
+|  |  |  |  |  |  |-- tf.fft3d.md
+|  |  |  |  |  |  |-- tf.get_collection.md
+|  |  |  |  |  |  |-- tf.get_collection_ref.md
+|  |  |  |  |  |  |-- tf.get_session_tensor.md
+|  |  |  |  |  |  |-- tf.ifft.md
+|  |  |  |  |  |  |-- tf.image.random_flip_left_right.md
+|  |  |  |  |  |  |-- tf.image.resize_area.md
+|  |  |  |  |  |  |-- tf.less.md
+|  |  |  |  |  |  |-- tf.lgamma.md
+|  |  |  |  |  |  |-- tf.logical_or.md
+|  |  |  |  |  |  |-- tf.matrix_solve.md
+|  |  |  |  |  |  |-- tf.matrix_solve_ls.md
+|  |  |  |  |  |  |-- tf.nn.atrous_conv2d.md
+|  |  |  |  |  |  |-- tf.nn.avg_pool.md
+|  |  |  |  |  |  |-- tf.nn.fixed_unigram_candidate_sampler.md
+|  |  |  |  |  |  |-- tf.nn.in_top_k.md
+|  |  |  |  |  |  |-- tf.nn.local_response_normalization.md
+|  |  |  |  |  |  |-- tf.nn.softmax_cross_entropy_with_logits.md
+|  |  |  |  |  |  |-- tf.ones_like.md
+|  |  |  |  |  |  |-- tf.polygamma.md
+|  |  |  |  |  |  |-- tf.python_io.TFRecordWriter.md
+|  |  |  |  |  |  |-- tf.random_normal.md
+|  |  |  |  |  |  |-- tf.reduce_max.md
+|  |  |  |  |  |  |-- tf.scatter_sub.md
+|  |  |  |  |  |  |-- tf.segment_prod.md
+|  |  |  |  |  |  |-- tf.segment_sum.md
+|  |  |  |  |  |  |-- tf.sparse_reduce_sum.md
+|  |  |  |  |  |  |-- tf.sparse_tensor_dense_matmul.md
+|  |  |  |  |  |  |-- tf.square.md
+|  |  |  |  |  |  |-- tf.string_to_hash_bucket.md
+|  |  |  |  |  |  |-- tf.train.MomentumOptimizer.md
+|  |  |  |  |  |  |-- tf.train.SummaryWriter.md
+|  |  |  |  |  |  |-- tf.train.export_meta_graph.md
+|  |  |  |  |  |  |-- tf.train.get_checkpoint_state.md
+|  |  |  |  |  |  |-- tf.truediv.md
+|  |  |  |  |  |  |-- tf.unique.md
+|  |  |  |  |  |  |-- tf.variable_scope.md
+|  |  |  |  |  |  |-- tf.where.md
+|  |  |  |  |  |-- shard8
+|  |  |  |  |  |  |-- tf.GraphKeys.md
+|  |  |  |  |  |  |-- tf.IndexedSlices.md
+|  |  |  |  |  |  |-- tf.RegisterShape.md
+|  |  |  |  |  |  |-- tf.Session.md
+|  |  |  |  |  |  |-- tf.VarLenFeature.md
+|  |  |  |  |  |  |-- tf.Variable.md
+|  |  |  |  |  |  |-- tf.acos.md
+|  |  |  |  |  |  |-- tf.argmax.md
+|  |  |  |  |  |  |-- tf.assert_negative.md
+|  |  |  |  |  |  |-- tf.assert_proper_iterable.md
+|  |  |  |  |  |  |-- tf.atan.md
+|  |  |  |  |  |  |-- tf.batch_matrix_diag.md
+|  |  |  |  |  |  |-- tf.batch_matrix_solve_ls.md
+|  |  |  |  |  |  |-- tf.contrib.distributions.normal_congugates_known_sigma_predictive.md
+|  |  |  |  |  |  |-- tf.contrib.framework.assert_same_float_dtype.md
+|  |  |  |  |  |  |-- tf.contrib.layers.apply_regularization.md
+|  |  |  |  |  |  |-- tf.contrib.layers.summarize_tensor.md
+|  |  |  |  |  |  |-- tf.contrib.layers.xavier_initializer_conv2d.md
+|  |  |  |  |  |  |-- tf.contrib.learn.NanLossDuringTrainingError.md
+|  |  |  |  |  |  |-- tf.contrib.learn.TensorFlowRegressor.md
+|  |  |  |  |  |  |-- tf.contrib.learn.extract_pandas_labels.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.confusion_matrix.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.streaming_accuracy.md
+|  |  |  |  |  |  |-- tf.contrib.metrics.streaming_mean_cosine_distance.md
+|  |  |  |  |  |  |-- tf.cross.md
+|  |  |  |  |  |  |-- tf.equal.md
+|  |  |  |  |  |  |-- tf.image.crop_to_bounding_box.md
+|  |  |  |  |  |  |-- tf.image.draw_bounding_boxes.md
+|  |  |  |  |  |  |-- tf.image.resize_bilinear.md
+|  |  |  |  |  |  |-- tf.image.resize_images.md
+|  |  |  |  |  |  |-- tf.image.transpose_image.md
+|  |  |  |  |  |  |-- tf.is_inf.md
+|  |  |  |  |  |  |-- tf.lbeta.md
+|  |  |  |  |  |  |-- tf.less_equal.md
+|  |  |  |  |  |  |-- tf.matrix_inverse.md
+|  |  |  |  |  |  |-- tf.nn.batch_normalization.md
+|  |  |  |  |  |  |-- tf.nn.conv2d.md
+|  |  |  |  |  |  |-- tf.nn.learned_unigram_candidate_sampler.md
+|  |  |  |  |  |  |-- tf.nn.relu6.md
+|  |  |  |  |  |  |-- tf.nn.sufficient_statistics.md
+|  |  |  |  |  |  |-- tf.nn.weighted_cross_entropy_with_logits.md
+|  |  |  |  |  |  |-- tf.no_regularizer.md
+|  |  |  |  |  |  |-- tf.ones_initializer.md
+|  |  |  |  |  |  |-- tf.reduce_prod.md
+|  |  |  |  |  |  |-- tf.reset_default_graph.md
+|  |  |  |  |  |  |-- tf.reverse.md
+|  |  |  |  |  |  |-- tf.round.md
+|  |  |  |  |  |  |-- tf.rsqrt.md
+|  |  |  |  |  |  |-- tf.scatter_add.md
+|  |  |  |  |  |  |-- tf.set_random_seed.md
+|  |  |  |  |  |  |-- tf.sparse_fill_empty_rows.md
+|  |  |  |  |  |  |-- tf.sparse_reorder.md
+|  |  |  |  |  |  |-- tf.sparse_retain.md
+|  |  |  |  |  |  |-- tf.sparse_segment_sqrt_n.md
+|  |  |  |  |  |  |-- tf.sparse_to_dense.md
+|  |  |  |  |  |  |-- tf.train.batch.md
+|  |  |  |  |  |  |-- tf.train.import_meta_graph.md
+|  |  |  |  |  |  |-- tf.variable_axis_size_partitioner.md
+|  |  |  |  |  |  |-- tf.zeta.md
+|  |  |  |  |  |-- shard9
+|  |  |  |  |  |  |-- tf.DeviceSpec.md
+|  |  |  |  |  |  |-- tf.audio_summary.md
+|  |  |  |  |  |  |-- tf.batch_fft2d.md
+|  |  |  |  |  |  |-- tf.clip_by_average_norm.md
+|  |  |  |  |  |  |-- tf.contrib.ffmpeg.decode_audio.md
+|  |  |  |  |  |  |-- tf.contrib.framework.convert_to_tensor_or_sparse_tensor.md
+|  |  |  |  |  |  |-- tf.contrib.framework.get_or_create_global_step.md
+|  |  |  |  |  |  |-- tf.contrib.framework.model_variable.md
+|  |  |  |  |  |  |-- tf.contrib.layers.l1_regularizer.md
+|  |  |  |  |  |  |-- tf.contrib.layers.xavier_initializer.md
+|  |  |  |  |  |  |-- tf.contrib.learn.DNNRegressor.md
+|  |  |  |  |  |  |-- tf.contrib.learn.TensorFlowLinearRegressor.md
+|  |  |  |  |  |  |-- tf.contrib.learn.TensorFlowRNNClassifier.md
+|  |  |  |  |  |  |-- tf.contrib.learn.infer.md
+|  |  |  |  |  |  |-- tf.contrib.losses.get_total_loss.md
+|  |  |  |  |  |  |-- tf.errors.InvalidArgumentError.md
+|  |  |  |  |  |  |-- tf.errors.UnknownError.md
+|  |  |  |  |  |  |-- tf.fill.md
+|  |  |  |  |  |  |-- tf.foldr.md
+|  |  |  |  |  |  |-- tf.gather.md
+|  |  |  |  |  |  |-- tf.get_default_graph.md
+|  |  |  |  |  |  |-- tf.get_variable.md
+|  |  |  |  |  |  |-- tf.image.encode_png.md
+|  |  |  |  |  |  |-- tf.image.random_flip_up_down.md
+|  |  |  |  |  |  |-- tf.matrix_determinant.md
+|  |  |  |  |  |  |-- tf.matrix_triangular_solve.md
+|  |  |  |  |  |  |-- tf.nn.bias_add.md
+|  |  |  |  |  |  |-- tf.nn.max_pool_with_argmax.md
+|  |  |  |  |  |  |-- tf.nn.uniform_candidate_sampler.md
+|  |  |  |  |  |  |-- tf.nn.zero_fraction.md
+|  |  |  |  |  |  |-- tf.ones.md
+|  |  |  |  |  |  |-- tf.pad.md
+|  |  |  |  |  |  |-- tf.saturate_cast.md
+|  |  |  |  |  |  |-- tf.scalar_mul.md
+|  |  |  |  |  |  |-- tf.scan.md
+|  |  |  |  |  |  |-- tf.size.md
+|  |  |  |  |  |  |-- tf.space_to_batch.md
+|  |  |  |  |  |  |-- tf.sparse_mask.md
+|  |  |  |  |  |  |-- tf.sparse_merge.md
+|  |  |  |  |  |  |-- tf.squared_difference.md
+|  |  |  |  |  |  |-- tf.string_to_number.md
+|  |  |  |  |  |  |-- tf.tanh.md
+|  |  |  |  |  |  |-- tf.to_bfloat16.md
+|  |  |  |  |  |  |-- tf.train.input_producer.md
+|  |  |  |  |  |  |-- tf.train.string_input_producer.md
+|  |  |  |  |  |  |-- tf.train.summary_iterator.md
+|  |  |  |  |-- histogram_ops.md
+|  |  |  |  |-- image.md
+|  |  |  |  |-- index.md
+|  |  |  |  |-- io_ops.md
+|  |  |  |  |-- math_ops.md
+|  |  |  |  |-- nn.md
+|  |  |  |  |-- python_io.md
+|  |  |  |  |-- script_ops.md
+|  |  |  |  |-- session_ops.md
+|  |  |  |  |-- sparse_ops.md
+|  |  |  |  |-- state_ops.md
+|  |  |  |  |-- string_ops.md
+|  |  |  |  |-- tensor_array_ops.md
+|  |  |  |  |-- test.md
+|  |  |  |  |-- train.md
+|  |  |-- contrib
+|  |  |  |-- learn
+|  |  |  |  |-- get_started
+|  |  |  |  |  |-- index.md
+|  |  |  |  |-- index.md
+|  |  |-- extras
+|  |  |  |-- README.txt
+|  |  |-- get_started
+|  |  |  |-- basic_usage.md
+|  |  |  |-- index.md
+|  |  |  |-- leftnav_files
+|  |  |  |-- os_setup.md
+|  |  |-- how_tos
+|  |  |  |-- __init__.py
+|  |  |  |-- adding_an_op
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- attr_examples.cc
+|  |  |  |  |-- cuda_op.py
+|  |  |  |  |-- cuda_op_kernel.cc
+|  |  |  |  |-- cuda_op_kernel.cu.cc
+|  |  |  |  |-- cuda_op_test.py
+|  |  |  |  |-- fact_test.py
+|  |  |  |  |-- index.md
+|  |  |  |  |-- zero_out_1_test.py
+|  |  |  |  |-- zero_out_2_test.py
+|  |  |  |  |-- zero_out_3_test.py
+|  |  |  |  |-- zero_out_grad_2.py
+|  |  |  |  |-- zero_out_op_1.py
+|  |  |  |  |-- zero_out_op_2.py
+|  |  |  |  |-- zero_out_op_3.py
+|  |  |  |  |-- zero_out_op_kernel_1.cc
+|  |  |  |  |-- zero_out_op_kernel_2.cc
+|  |  |  |  |-- zero_out_op_kernel_3.cc
+|  |  |  |-- distributed
+|  |  |  |  |-- index.md
+|  |  |  |-- documentation
+|  |  |  |  |-- index.md
+|  |  |  |-- graph_viz
+|  |  |  |  |-- index.md
+|  |  |  |-- image_retraining
+|  |  |  |  |-- index.md
+|  |  |  |-- index.md
+|  |  |  |-- leftnav_files
+|  |  |  |-- meta_graph
+|  |  |  |  |-- index.md
+|  |  |  |-- new_data_formats
+|  |  |  |  |-- index.md
+|  |  |  |-- quantization
+|  |  |  |  |-- index.md
+|  |  |  |-- reading_data
+|  |  |  |  |-- index.md
+|  |  |  |-- style_guide.md
+|  |  |  |-- summaries_and_tensorboard
+|  |  |  |  |-- index.md
+|  |  |  |-- threading_and_queues
+|  |  |  |  |-- index.md
+|  |  |  |-- tool_developers
+|  |  |  |  |-- index.md
+|  |  |  |-- using_gpu
+|  |  |  |  |-- index.md
+|  |  |  |-- variable_scope
+|  |  |  |  |-- index.md
+|  |  |  |-- variables
+|  |  |  |  |-- index.md
+|  |  |-- images
+|  |  |  |-- getting_started.dot
+|  |  |-- index.md
+|  |  |-- resources
+|  |  |  |-- bib.md
+|  |  |  |-- dims_types.md
+|  |  |  |-- faq.md
+|  |  |  |-- glossary.md
+|  |  |  |-- index.md
+|  |  |  |-- leftnav_files
+|  |  |  |-- roadmap.md
+|  |  |  |-- uses.md
+|  |  |  |-- versions.md
+|  |  |-- tutorials
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- deep_cnn
+|  |  |  |  |-- cifar_tensorboard.html
+|  |  |  |  |-- index.md
+|  |  |  |-- image_recognition
+|  |  |  |  |-- index.md
+|  |  |  |-- index.md
+|  |  |  |-- leftnav_files
+|  |  |  |-- mandelbrot
+|  |  |  |  |-- index.md
+|  |  |  |-- mnist
+|  |  |  |  |-- beginners
+|  |  |  |  |  |-- index.md
+|  |  |  |  |-- download
+|  |  |  |  |  |-- index.md
+|  |  |  |  |-- pros
+|  |  |  |  |  |-- index.md
+|  |  |  |  |-- tf
+|  |  |  |  |  |-- index.md
+|  |  |  |-- pdes
+|  |  |  |  |-- index.md
+|  |  |  |-- recurrent
+|  |  |  |  |-- index.md
+|  |  |  |-- seq2seq
+|  |  |  |  |-- index.md
+|  |  |  |-- syntaxnet
+|  |  |  |  |-- index.md
+|  |  |  |-- tfserve
+|  |  |  |  |-- index.md
+|  |  |  |-- word2vec
+|  |  |  |  |-- index.md
+|  |-- models
+|  |  |-- __init__.py
+|  |  |-- embedding
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- word2vec.py
+|  |  |  |-- word2vec_kernels.cc
+|  |  |  |-- word2vec_ops.cc
+|  |  |  |-- word2vec_optimized.py
+|  |  |  |-- word2vec_optimized_test.py
+|  |  |  |-- word2vec_test.py
+|  |  |-- image
+|  |  |  |-- __init__.py
+|  |  |  |-- alexnet
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- alexnet_benchmark.py
+|  |  |  |-- cifar10
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- cifar10.py
+|  |  |  |  |-- cifar10_eval.py
+|  |  |  |  |-- cifar10_input.py
+|  |  |  |  |-- cifar10_input_test.py
+|  |  |  |  |-- cifar10_multi_gpu_train.py
+|  |  |  |  |-- cifar10_train.py
+|  |  |  |-- imagenet
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- classify_image.py
+|  |  |  |-- mnist
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- convolutional.py
+|  |  |-- rnn
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- linear.py
+|  |  |  |-- ptb
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- ptb_word_lm.py
+|  |  |  |  |-- reader.py
+|  |  |  |  |-- reader_test.py
+|  |  |  |-- rnn.py
+|  |  |  |-- rnn_cell.py
+|  |  |  |-- seq2seq.py
+|  |  |  |-- translate
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- data_utils.py
+|  |  |  |  |-- seq2seq_model.py
+|  |  |  |  |-- translate.py
+|  |-- python
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- client
+|  |  |  |-- __init__.py
+|  |  |  |-- client_lib.py
+|  |  |  |-- device_lib.i
+|  |  |  |-- device_lib.py
+|  |  |  |-- device_lib_test.py
+|  |  |  |-- events_writer.i
+|  |  |  |-- events_writer_test.py
+|  |  |  |-- graph_util.py
+|  |  |  |-- graph_util_test.py
+|  |  |  |-- notebook.py
+|  |  |  |-- session.py
+|  |  |  |-- session_test.py
+|  |  |  |-- test_construction_fails_op.cc
+|  |  |  |-- tf_session.i
+|  |  |  |-- tf_session_helper.cc
+|  |  |  |-- tf_session_helper.h
+|  |  |  |-- timeline.py
+|  |  |  |-- timeline_test.py
+|  |  |-- framework
+|  |  |  |-- __init__.py
+|  |  |  |-- contrib_test.py
+|  |  |  |-- device.py
+|  |  |  |-- device_test.py
+|  |  |  |-- docs.py
+|  |  |  |-- dtypes.py
+|  |  |  |-- dtypes_test.py
+|  |  |  |-- errors.py
+|  |  |  |-- errors_test.py
+|  |  |  |-- file_system_test.py
+|  |  |  |-- framework_lib.py
+|  |  |  |-- function.py
+|  |  |  |-- function_test.py
+|  |  |  |-- gen_docs_combined.py
+|  |  |  |-- importer.py
+|  |  |  |-- importer_test.py
+|  |  |  |-- load_library.py
+|  |  |  |-- op_def_registry.py
+|  |  |  |-- ops.py
+|  |  |  |-- ops_test.py
+|  |  |  |-- proto_test.py
+|  |  |  |-- python_op_gen.cc
+|  |  |  |-- python_op_gen.h
+|  |  |  |-- python_op_gen.i
+|  |  |  |-- python_op_gen_main.cc
+|  |  |  |-- random_seed.py
+|  |  |  |-- registry.py
+|  |  |  |-- registry_test.py
+|  |  |  |-- tensor_shape.py
+|  |  |  |-- tensor_shape_div_test.py
+|  |  |  |-- tensor_shape_test.py
+|  |  |  |-- tensor_util.py
+|  |  |  |-- tensor_util_test.py
+|  |  |  |-- test_file_system.cc
+|  |  |  |-- test_ops.cc
+|  |  |  |-- test_util.py
+|  |  |  |-- test_util_test.py
+|  |  |  |-- versions.py
+|  |  |  |-- versions_test.py
+|  |  |-- kernel_tests
+|  |  |  |-- __init__.py
+|  |  |  |-- argmax_op_test.py
+|  |  |  |-- array_ops_test.py
+|  |  |  |-- attention_ops_test.py
+|  |  |  |-- batch_matmul_op_test.py
+|  |  |  |-- batch_matrix_band_part_op_test.py
+|  |  |  |-- batchtospace_op_test.py
+|  |  |  |-- bcast_ops_test.py
+|  |  |  |-- benchmark_test.py
+|  |  |  |-- bias_op_test.py
+|  |  |  |-- bitcast_op_test.py
+|  |  |  |-- candidate_sampler_ops_test.py
+|  |  |  |-- cast_op_test.py
+|  |  |  |-- check_ops_test.py
+|  |  |  |-- cholesky_op_test.py
+|  |  |  |-- clip_ops_test.py
+|  |  |  |-- concat_op_test.py
+|  |  |  |-- constant_op_test.py
+|  |  |  |-- control_flow_ops_py_test.py
+|  |  |  |-- conv_ops_3d_test.py
+|  |  |  |-- conv_ops_test.py
+|  |  |  |-- cross_grad_test.py
+|  |  |  |-- cwise_ops_test.py
+|  |  |  |-- decode_csv_op_test.py
+|  |  |  |-- decode_raw_op_test.py
+|  |  |  |-- denormal_test.py
+|  |  |  |-- dense_update_ops_no_tsan_test.py
+|  |  |  |-- dense_update_ops_test.py
+|  |  |  |-- depthtospace_op_test.py
+|  |  |  |-- depthwise_conv_op_test.py
+|  |  |  |-- determinant_op_test.py
+|  |  |  |-- diag_op_test.py
+|  |  |  |-- division_future_test.py
+|  |  |  |-- division_past_test.py
+|  |  |  |-- dynamic_partition_op_test.py
+|  |  |  |-- dynamic_stitch_op_test.py
+|  |  |  |-- edit_distance_op_test.py
+|  |  |  |-- embedding_ops_test.py
+|  |  |  |-- extract_image_patches_op_test.py
+|  |  |  |-- fft_ops_test.py
+|  |  |  |-- fifo_queue_test.py
+|  |  |  |-- functional_ops_test.py
+|  |  |  |-- gather_nd_op_test.py
+|  |  |  |-- gather_op_test.py
+|  |  |  |-- gradient_checker.py
+|  |  |  |-- gradient_checker_test.py
+|  |  |  |-- gradient_correctness_test.py
+|  |  |  |-- identity_op_py_test.py
+|  |  |  |-- in_topk_op_test.py
+|  |  |  |-- init_ops_test.py
+|  |  |  |-- io_ops_test.py
+|  |  |  |-- linalg_grad_test.py
+|  |  |  |-- linalg_ops_test.py
+|  |  |  |-- listdiff_op_test.py
+|  |  |  |-- logging_ops_test.py
+|  |  |  |-- lrn_op_test.py
+|  |  |  |-- matmul_op_test.py
+|  |  |  |-- matrix_inverse_op_test.py
+|  |  |  |-- matrix_solve_ls_op_test.py
+|  |  |  |-- matrix_solve_op_test.py
+|  |  |  |-- matrix_triangular_solve_op_test.py
+|  |  |  |-- morphological_ops_test.py
+|  |  |  |-- multinomial_op_test.py
+|  |  |  |-- numerics_test.py
+|  |  |  |-- one_hot_op_test.py
+|  |  |  |-- pack_op_test.py
+|  |  |  |-- pad_op_test.py
+|  |  |  |-- padding_fifo_queue_test.py
+|  |  |  |-- parsing_ops_test.py
+|  |  |  |-- partitioned_variables_test.py
+|  |  |  |-- pooling_ops_3d_test.py
+|  |  |  |-- pooling_ops_test.py
+|  |  |  |-- py_func_test.py
+|  |  |  |-- random_crop_test.py
+|  |  |  |-- random_ops_test.py
+|  |  |  |-- random_shuffle_queue_test.py
+|  |  |  |-- reader_ops_test.py
+|  |  |  |-- reduce_join_op_test.py
+|  |  |  |-- reduction_ops_test.py
+|  |  |  |-- relu_op_test.py
+|  |  |  |-- reshape_op_test.py
+|  |  |  |-- reverse_sequence_op_test.py
+|  |  |  |-- rnn_cell_test.py
+|  |  |  |-- rnn_test.py
+|  |  |  |-- save_restore_ops_test.py
+|  |  |  |-- scalar_strict_test.py
+|  |  |  |-- scatter_ops_test.py
+|  |  |  |-- segment_reduction_ops_test.py
+|  |  |  |-- self_adjoint_eig_op_test.py
+|  |  |  |-- seq2seq_test.py
+|  |  |  |-- session_ops_test.py
+|  |  |  |-- shape_ops_test.py
+|  |  |  |-- slice_op_test.py
+|  |  |  |-- softmax_op_test.py
+|  |  |  |-- softplus_op_test.py
+|  |  |  |-- softsign_op_test.py
+|  |  |  |-- spacetobatch_op_test.py
+|  |  |  |-- spacetodepth_op_test.py
+|  |  |  |-- sparse_add_op_test.py
+|  |  |  |-- sparse_concat_op_test.py
+|  |  |  |-- sparse_matmul_op_test.py
+|  |  |  |-- sparse_ops_test.py
+|  |  |  |-- sparse_reorder_op_test.py
+|  |  |  |-- sparse_serialization_ops_test.py
+|  |  |  |-- sparse_split_op_test.py
+|  |  |  |-- sparse_tensor_dense_matmul_grad_test.py
+|  |  |  |-- sparse_tensor_dense_matmul_op_test.py
+|  |  |  |-- sparse_to_dense_op_py_test.py
+|  |  |  |-- sparse_xent_op_test.py
+|  |  |  |-- sparsemask_op_test.py
+|  |  |  |-- split_op_test.py
+|  |  |  |-- stack_ops_test.py
+|  |  |  |-- string_to_hash_bucket_op_test.py
+|  |  |  |-- string_to_number_op_test.py
+|  |  |  |-- summary_audio_op_test.py
+|  |  |  |-- summary_image_op_test.py
+|  |  |  |-- summary_ops_test.py
+|  |  |  |-- template_test.py
+|  |  |  |-- tensor_array_ops_test.py
+|  |  |  |-- topk_op_test.py
+|  |  |  |-- trace_op_test.py
+|  |  |  |-- transpose_op_test.py
+|  |  |  |-- unique_op_test.py
+|  |  |  |-- unpack_op_test.py
+|  |  |  |-- variable_ops_test.py
+|  |  |  |-- variable_scope_test.py
+|  |  |  |-- variables_test.py
+|  |  |  |-- where_op_test.py
+|  |  |  |-- xent_op_test.py
+|  |  |  |-- zero_division_test.py
+|  |  |-- lib
+|  |  |  |-- __init__.py
+|  |  |  |-- core
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- numpy.cc
+|  |  |  |  |-- numpy.h
+|  |  |  |  |-- py_func.cc
+|  |  |  |  |-- py_func.h
+|  |  |  |  |-- py_func.i
+|  |  |  |  |-- status_helper.i
+|  |  |  |  |-- strings.i
+|  |  |  |-- io
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- py_record_reader.cc
+|  |  |  |  |-- py_record_reader.h
+|  |  |  |  |-- py_record_reader.i
+|  |  |  |  |-- py_record_writer.cc
+|  |  |  |  |-- py_record_writer.h
+|  |  |  |  |-- py_record_writer.i
+|  |  |  |  |-- python_io.py
+|  |  |  |  |-- tf_record.py
+|  |  |-- ops
+|  |  |  |-- __init__.py
+|  |  |  |-- array_grad.py
+|  |  |  |-- array_ops.py
+|  |  |  |-- batch_norm_benchmark.py
+|  |  |  |-- candidate_sampling_ops.py
+|  |  |  |-- check_ops.py
+|  |  |  |-- clip_ops.py
+|  |  |  |-- common_shapes.py
+|  |  |  |-- constant_op.py
+|  |  |  |-- control_flow_grad.py
+|  |  |  |-- control_flow_ops.py
+|  |  |  |-- control_flow_ops_test.py
+|  |  |  |-- data_flow_grad.py
+|  |  |  |-- data_flow_ops.py
+|  |  |  |-- embedding_ops.py
+|  |  |  |-- functional_ops.py
+|  |  |  |-- gradients.py
+|  |  |  |-- gradients_test.py
+|  |  |  |-- histogram_ops.py
+|  |  |  |-- histogram_ops_test.py
+|  |  |  |-- image_grad.py
+|  |  |  |-- image_grad_test.py
+|  |  |  |-- image_ops.py
+|  |  |  |-- image_ops_test.py
+|  |  |  |-- init_ops.py
+|  |  |  |-- io_ops.py
+|  |  |  |-- linalg_grad.py
+|  |  |  |-- linalg_ops.py
+|  |  |  |-- logging_ops.py
+|  |  |  |-- math_grad.py
+|  |  |  |-- math_grad_test.py
+|  |  |  |-- math_ops.py
+|  |  |  |-- math_ops_test.py
+|  |  |  |-- nn.py
+|  |  |  |-- nn_batchnorm_test.py
+|  |  |  |-- nn_conv_test.py
+|  |  |  |-- nn_grad.py
+|  |  |  |-- nn_ops.py
+|  |  |  |-- nn_test.py
+|  |  |  |-- nn_xent_test.py
+|  |  |  |-- numerics.py
+|  |  |  |-- op_def_library.py
+|  |  |  |-- op_def_library_test.py
+|  |  |  |-- parsing_ops.py
+|  |  |  |-- partitioned_variables.py
+|  |  |  |-- random_ops.py
+|  |  |  |-- rnn.py
+|  |  |  |-- rnn_cell.py
+|  |  |  |-- script_ops.py
+|  |  |  |-- seq2seq.py
+|  |  |  |-- session_ops.py
+|  |  |  |-- sparse_grad.py
+|  |  |  |-- sparse_ops.py
+|  |  |  |-- special_math_ops.py
+|  |  |  |-- special_math_ops_test.py
+|  |  |  |-- standard_ops.py
+|  |  |  |-- state_grad.py
+|  |  |  |-- state_ops.py
+|  |  |  |-- string_ops.py
+|  |  |  |-- template.py
+|  |  |  |-- tensor_array_grad.py
+|  |  |  |-- tensor_array_ops.py
+|  |  |  |-- variable_scope.py
+|  |  |  |-- variables.py
+|  |  |-- platform
+|  |  |  |-- app.py
+|  |  |  |-- base.i
+|  |  |  |-- benchmark.py
+|  |  |  |-- control_imports.py
+|  |  |  |-- default
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- _app.py
+|  |  |  |  |-- _flags.py
+|  |  |  |  |-- _gfile.py
+|  |  |  |  |-- _googletest.py
+|  |  |  |  |-- _parameterized.py
+|  |  |  |  |-- _resource_loader.py
+|  |  |  |  |-- _resource_loader_test.py
+|  |  |  |  |-- _status_bar.py
+|  |  |  |  |-- flags_test.py
+|  |  |  |  |-- gfile_test.py
+|  |  |  |  |-- logging_test.py
+|  |  |  |-- flags.py
+|  |  |  |-- flags_test.py
+|  |  |  |-- gfile.py
+|  |  |  |-- gfile_test.py
+|  |  |  |-- googletest.py
+|  |  |  |-- logging_test.py
+|  |  |  |-- numpy.i
+|  |  |  |-- parameterized.py
+|  |  |  |-- resource_loader.py
+|  |  |  |-- resource_loader_test.py
+|  |  |  |-- status_bar.py
+|  |  |  |-- sysconfig.py
+|  |  |  |-- test.py
+|  |  |  |-- tf_logging.py
+|  |  |-- summary
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- event_accumulator.py
+|  |  |  |-- event_accumulator_test.py
+|  |  |  |-- event_file_inspector.py
+|  |  |  |-- event_file_inspector_test.py
+|  |  |  |-- event_multiplexer.py
+|  |  |  |-- event_multiplexer_test.py
+|  |  |  |-- impl
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- directory_watcher.py
+|  |  |  |  |-- directory_watcher_test.py
+|  |  |  |  |-- event_file_loader.py
+|  |  |  |  |-- event_file_loader_test.py
+|  |  |  |  |-- gcs.py
+|  |  |  |  |-- gcs_file_loader.py
+|  |  |  |  |-- gcs_file_loader_test.py
+|  |  |  |  |-- io_wrapper.py
+|  |  |  |  |-- reservoir.py
+|  |  |  |  |-- reservoir_test.py
+|  |  |-- tensorflow.i
+|  |  |-- tools
+|  |  |  |-- BUILD
+|  |  |  |-- freeze_graph.py
+|  |  |  |-- freeze_graph_test.py
+|  |  |  |-- graph_metrics.py
+|  |  |  |-- graph_metrics_test.py
+|  |  |  |-- inspect_checkpoint.py
+|  |  |  |-- strip_unused.py
+|  |  |  |-- strip_unused_test.py
+|  |  |-- training
+|  |  |  |-- __init__.py
+|  |  |  |-- adadelta.py
+|  |  |  |-- adadelta_test.py
+|  |  |  |-- adagrad.py
+|  |  |  |-- adagrad_test.py
+|  |  |  |-- adam.py
+|  |  |  |-- adam_test.py
+|  |  |  |-- checkpoint_state.proto
+|  |  |  |-- coordinator.py
+|  |  |  |-- coordinator_test.py
+|  |  |  |-- device_setter.py
+|  |  |  |-- device_setter_test.py
+|  |  |  |-- ftrl.py
+|  |  |  |-- ftrl_test.py
+|  |  |  |-- gradient_descent.py
+|  |  |  |-- gradient_descent_test.py
+|  |  |  |-- input.py
+|  |  |  |-- input_test.py
+|  |  |  |-- learning_rate_decay.py
+|  |  |  |-- learning_rate_decay_test.py
+|  |  |  |-- momentum.py
+|  |  |  |-- momentum_test.py
+|  |  |  |-- moving_averages.py
+|  |  |  |-- moving_averages_test.py
+|  |  |  |-- optimizer.py
+|  |  |  |-- optimizer_test.py
+|  |  |  |-- proximal_adagrad.py
+|  |  |  |-- proximal_adagrad_test.py
+|  |  |  |-- proximal_gradient_descent.py
+|  |  |  |-- proximal_gradient_descent_test.py
+|  |  |  |-- queue_runner.py
+|  |  |  |-- queue_runner_test.py
+|  |  |  |-- rmsprop.py
+|  |  |  |-- rmsprop_test.py
+|  |  |  |-- saver.py
+|  |  |  |-- saver_io.i
+|  |  |  |-- saver_test.py
+|  |  |  |-- server_lib.i
+|  |  |  |-- server_lib.py
+|  |  |  |-- server_lib_test.py
+|  |  |  |-- session_manager.py
+|  |  |  |-- session_manager_test.py
+|  |  |  |-- slot_creator.py
+|  |  |  |-- slot_creator_test.py
+|  |  |  |-- summary_io.py
+|  |  |  |-- summary_writer_test.py
+|  |  |  |-- supervisor.py
+|  |  |  |-- supervisor_test.py
+|  |  |  |-- sync_replicas_optimizer.py
+|  |  |  |-- tensorboard_logging.py
+|  |  |  |-- tensorboard_logging_test.py
+|  |  |  |-- training.py
+|  |  |  |-- training_ops.py
+|  |  |  |-- training_ops_test.py
+|  |  |  |-- training_util.py
+|  |  |-- user_ops
+|  |  |  |-- __init__.py
+|  |  |  |-- user_ops.py
+|  |  |-- util
+|  |  |  |-- __init__.py
+|  |  |  |-- all_util.py
+|  |  |  |-- compat.py
+|  |  |  |-- port.i
+|  |  |  |-- protobuf
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- compare.py
+|  |  |  |  |-- compare_test.proto
+|  |  |  |  |-- compare_test.py
+|  |  |  |-- py_checkpoint_reader.i
+|  |-- stream_executor
+|  |  |-- BUILD
+|  |  |-- blas.cc
+|  |  |-- blas.h
+|  |  |-- cuda
+|  |  |  |-- cuda_activation.cc
+|  |  |  |-- cuda_activation.h
+|  |  |  |-- cuda_blas.cc
+|  |  |  |-- cuda_blas.h
+|  |  |  |-- cuda_diagnostics.cc
+|  |  |  |-- cuda_diagnostics.h
+|  |  |  |-- cuda_dnn.cc
+|  |  |  |-- cuda_dnn.h
+|  |  |  |-- cuda_driver.cc
+|  |  |  |-- cuda_driver.h
+|  |  |  |-- cuda_event.cc
+|  |  |  |-- cuda_event.h
+|  |  |  |-- cuda_fft.cc
+|  |  |  |-- cuda_fft.h
+|  |  |  |-- cuda_gpu_executor.cc
+|  |  |  |-- cuda_gpu_executor.h
+|  |  |  |-- cuda_helpers.h
+|  |  |  |-- cuda_kernel.h
+|  |  |  |-- cuda_platform.cc
+|  |  |  |-- cuda_platform.h
+|  |  |  |-- cuda_platform_id.cc
+|  |  |  |-- cuda_platform_id.h
+|  |  |  |-- cuda_rng.cc
+|  |  |  |-- cuda_rng.h
+|  |  |  |-- cuda_stream.cc
+|  |  |  |-- cuda_stream.h
+|  |  |  |-- cuda_timer.cc
+|  |  |  |-- cuda_timer.h
+|  |  |  |-- multi_op_activation.h
+|  |  |-- device_description.cc
+|  |  |-- device_description.h
+|  |  |-- device_memory.h
+|  |  |-- device_options.h
+|  |  |-- dnn.cc
+|  |  |-- dnn.h
+|  |  |-- dso_loader.cc
+|  |  |-- dso_loader.h
+|  |  |-- event.cc
+|  |  |-- event.h
+|  |  |-- executor_cache.cc
+|  |  |-- executor_cache.h
+|  |  |-- fft.h
+|  |  |-- gcuda.cc
+|  |  |-- gcuda.h
+|  |  |-- gpu_launch_dim.h
+|  |  |-- kernel.cc
+|  |  |-- kernel.h
+|  |  |-- kernel_cache_config.h
+|  |  |-- kernel_spec.cc
+|  |  |-- kernel_spec.h
+|  |  |-- launch_dim.h
+|  |  |-- lib
+|  |  |  |-- array_slice.h
+|  |  |  |-- casts.h
+|  |  |  |-- demangle.cc
+|  |  |  |-- demangle.h
+|  |  |  |-- env.h
+|  |  |  |-- error.h
+|  |  |  |-- human_readable.h
+|  |  |  |-- initialize.h
+|  |  |  |-- inlined_vector.h
+|  |  |  |-- mathutil.h
+|  |  |  |-- notification.h
+|  |  |  |-- numbers.cc
+|  |  |  |-- numbers.h
+|  |  |  |-- path.cc
+|  |  |  |-- path.h
+|  |  |  |-- process_state.cc
+|  |  |  |-- process_state.h
+|  |  |  |-- ptr_util.h
+|  |  |  |-- stacktrace.h
+|  |  |  |-- static_threadlocal.h
+|  |  |  |-- status.h
+|  |  |  |-- status_macros.h
+|  |  |  |-- statusor.h
+|  |  |  |-- str_util.h
+|  |  |  |-- strcat.h
+|  |  |  |-- stringpiece.h
+|  |  |  |-- stringprintf.h
+|  |  |  |-- thread_options.h
+|  |  |  |-- threadpool.h
+|  |  |-- machine_manager.cc
+|  |  |-- machine_manager.h
+|  |  |-- multi_platform_manager.cc
+|  |  |-- multi_platform_manager.h
+|  |  |-- platform.cc
+|  |  |-- platform.h
+|  |  |-- platform
+|  |  |  |-- default
+|  |  |  |  |-- mutex.h
+|  |  |  |-- logging.h
+|  |  |  |-- mutex.h
+|  |  |  |-- port.h
+|  |  |  |-- thread_annotations.h
+|  |  |-- plugin.cc
+|  |  |-- plugin.h
+|  |  |-- plugin_registry.cc
+|  |  |-- plugin_registry.h
+|  |  |-- rng.cc
+|  |  |-- rng.h
+|  |  |-- scratch_allocator.cc
+|  |  |-- scratch_allocator.h
+|  |  |-- shared_memory_config.h
+|  |  |-- stream.cc
+|  |  |-- stream.h
+|  |  |-- stream_executor.h
+|  |  |-- stream_executor_internal.cc
+|  |  |-- stream_executor_internal.h
+|  |  |-- stream_executor_pimpl.cc
+|  |  |-- stream_executor_pimpl.h
+|  |  |-- temporary_device_memory.cc
+|  |  |-- temporary_device_memory.h
+|  |  |-- temporary_memory_manager.cc
+|  |  |-- temporary_memory_manager.h
+|  |  |-- timer.cc
+|  |  |-- timer.h
+|  |  |-- trace_listener.h
+|  |-- tensorboard
+|  |  |-- .bowerrc
+|  |  |-- .gitignore
+|  |  |-- BUILD
+|  |  |-- CHANGES
+|  |  |-- DEVELOPMENT.md
+|  |  |-- README.md
+|  |  |-- TAG
+|  |  |-- __init__.py
+|  |  |-- app
+|  |  |  |-- BUILD
+|  |  |  |-- analytics.js
+|  |  |-- backend
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- handler.py
+|  |  |  |-- handler_test.py
+|  |  |  |-- process_graph.py
+|  |  |  |-- server.py
+|  |  |  |-- server_test.py
+|  |  |-- bower.json
+|  |  |-- bower
+|  |  |  |-- BUILD
+|  |  |-- components
+|  |  |  |-- BUILD
+|  |  |  |-- index.html
+|  |  |  |-- tf-audio-dashboard
+|  |  |  |  |-- demo
+|  |  |  |  |  |-- index.html
+|  |  |  |  |-- test
+|  |  |  |  |  |-- audioDashboardTests.ts
+|  |  |  |  |  |-- data
+|  |  |  |  |  |  |-- runs.json
+|  |  |  |  |  |-- index.html
+|  |  |  |  |-- tf-audio-dashboard.html
+|  |  |  |  |-- tf-audio-grid.html
+|  |  |  |  |-- tf-audio-loader.html
+|  |  |  |-- tf-backend
+|  |  |  |  |-- backend.ts
+|  |  |  |  |-- behavior.ts
+|  |  |  |  |-- requestManager.ts
+|  |  |  |  |-- router.ts
+|  |  |  |  |-- test
+|  |  |  |  |  |-- backendTests.ts
+|  |  |  |  |  |-- behaviorTests.ts
+|  |  |  |  |  |-- data
+|  |  |  |  |  |  |-- audio_run_run1_tag_audio1.json
+|  |  |  |  |  |  |-- compressedHistograms_run_run1_tag_histo1.json
+|  |  |  |  |  |  |-- example.json
+|  |  |  |  |  |  |-- histograms_run_run1_tag_histo1.json
+|  |  |  |  |  |  |-- images_run_run1_tag_im1.json
+|  |  |  |  |  |  |-- individualImage_index_0_tag_im1_run_run1.png
+|  |  |  |  |  |  |-- run_metadata_run_step99_tag_train.pbtxt
+|  |  |  |  |  |  |-- runs.json
+|  |  |  |  |  |  |-- scalars.json
+|  |  |  |  |  |  |-- scalars_run_run1_tag_cross_entropy__281_29.json
+|  |  |  |  |  |-- index.html
+|  |  |  |  |  |-- requestManagerTest.ts
+|  |  |  |  |-- tf-backend.html
+|  |  |  |  |-- urlPathHelpers.ts
+|  |  |  |-- tf-categorizer
+|  |  |  |  |-- categorizer.ts
+|  |  |  |  |-- demo
+|  |  |  |  |  |-- index.html
+|  |  |  |  |-- test
+|  |  |  |  |  |-- categorizerTest.ts
+|  |  |  |  |  |-- index.html
+|  |  |  |  |-- tf-categorizer.html
+|  |  |  |-- tf-collapsable-pane
+|  |  |  |  |-- demo
+|  |  |  |  |  |-- index.html
+|  |  |  |  |-- tf-collapsable-pane.html
+|  |  |  |-- tf-color-scale
+|  |  |  |  |-- colorScale.ts
+|  |  |  |  |-- demo
+|  |  |  |  |  |-- index.html
+|  |  |  |  |  |-- style.css
+|  |  |  |  |-- palettes.ts
+|  |  |  |  |-- test
+|  |  |  |  |  |-- colorScaleTests.ts
+|  |  |  |  |  |-- index.html
+|  |  |  |  |-- tf-color-scale.html
+|  |  |  |-- tf-dashboard-common
+|  |  |  |  |-- dashboard-style.html
+|  |  |  |  |-- reload-behavior.ts
+|  |  |  |  |-- run-color-style.html
+|  |  |  |  |-- scrollbar-style.html
+|  |  |  |  |-- tensorboard-color.html
+|  |  |  |  |-- tf-dashboard-layout.html
+|  |  |  |  |-- tf-dashboard.html
+|  |  |  |  |-- tf-downloader.html
+|  |  |  |  |-- tf-no-data-warning.html
+|  |  |  |-- tf-event-dashboard
+|  |  |  |  |-- demo
+|  |  |  |  |  |-- data
+|  |  |  |  |  |  |-- runs.json
+|  |  |  |  |  |  |-- scalars
+|  |  |  |  |  |  |  |-- alpha
+|  |  |  |  |  |  |  |  |-- d1.json
+|  |  |  |  |  |  |  |  |-- d2.json
+|  |  |  |  |  |  |  |  |-- d3.json
+|  |  |  |  |  |  |  |  |-- d4.json
+|  |  |  |  |  |  |  |-- beta
+|  |  |  |  |  |  |  |  |-- d1.json
+|  |  |  |  |  |  |  |  |-- d2.json
+|  |  |  |  |  |  |  |  |-- d3.json
+|  |  |  |  |  |  |  |  |-- d4.json
+|  |  |  |  |  |-- index.html
+|  |  |  |  |-- dragZoomInteraction.ts
+|  |  |  |  |-- tf-chart.html
+|  |  |  |  |-- tf-chart.ts
+|  |  |  |  |-- tf-event-dashboard.html
+|  |  |  |  |-- tf-run-selector.html
+|  |  |  |  |-- tf-x-type-selector.html
+|  |  |  |-- tf-graph-app
+|  |  |  |  |-- tf-graph-app.html
+|  |  |  |-- tf-graph-board
+|  |  |  |  |-- tf-graph-board.html
+|  |  |  |-- tf-graph-common
+|  |  |  |  |-- lib
+|  |  |  |  |  |-- colors.ts
+|  |  |  |  |  |-- common.ts
+|  |  |  |  |  |-- externs.ts
+|  |  |  |  |  |-- graph.ts
+|  |  |  |  |  |-- hierarchy.ts
+|  |  |  |  |  |-- layout.ts
+|  |  |  |  |  |-- parser.ts
+|  |  |  |  |  |-- proto.ts
+|  |  |  |  |  |-- render.ts
+|  |  |  |  |  |-- scene
+|  |  |  |  |  |  |-- annotation.ts
+|  |  |  |  |  |  |-- contextmenu.ts
+|  |  |  |  |  |  |-- edge.ts
+|  |  |  |  |  |  |-- minimap.ts
+|  |  |  |  |  |  |-- node.ts
+|  |  |  |  |  |  |-- scene.ts
+|  |  |  |  |  |-- template.ts
+|  |  |  |  |  |-- util.ts
+|  |  |  |  |-- test
+|  |  |  |  |  |-- graph-test.ts
+|  |  |  |  |  |-- hierarchy-test.ts
+|  |  |  |  |  |-- index.html
+|  |  |  |  |  |-- layout-test.ts
+|  |  |  |  |  |-- parser-test.ts
+|  |  |  |  |-- tf-graph-common.html
+|  |  |  |-- tf-graph-dashboard
+|  |  |  |  |-- tf-graph-dashboard.html
+|  |  |  |-- tf-graph-info
+|  |  |  |  |-- tf-graph-info.html
+|  |  |  |  |-- tf-node-info.html
+|  |  |  |  |-- tf-node-list-item.html
+|  |  |  |-- tf-graph-loader
+|  |  |  |  |-- test
+|  |  |  |  |  |-- index.html
+|  |  |  |  |  |-- loader.ts
+|  |  |  |  |-- tf-graph-loader.html
+|  |  |  |-- tf-graph
+|  |  |  |  |-- demo
+|  |  |  |  |  |-- index.html
+|  |  |  |  |  |-- tf-graph-demo.html
+|  |  |  |  |-- tf-graph-controls.html
+|  |  |  |  |-- tf-graph-icon.html
+|  |  |  |  |-- tf-graph-minimap.html
+|  |  |  |  |-- tf-graph-scene.html
+|  |  |  |  |-- tf-graph.html
+|  |  |  |-- tf-histogram-dashboard
+|  |  |  |  |-- rebin.ts
+|  |  |  |  |-- test
+|  |  |  |  |  |-- index.html
+|  |  |  |  |  |-- rebinTests.ts
+|  |  |  |  |-- tf-histogram-dashboard.html
+|  |  |  |  |-- tf-vz-histogram-series.html
+|  |  |  |-- tf-image-dashboard
+|  |  |  |  |-- demo
+|  |  |  |  |  |-- index.html
+|  |  |  |  |-- test
+|  |  |  |  |  |-- data
+|  |  |  |  |  |  |-- runs.json
+|  |  |  |  |  |-- imageDashboardTests.ts
+|  |  |  |  |  |-- index.html
+|  |  |  |  |-- tf-image-dashboard.html
+|  |  |  |  |-- tf-image-grid.html
+|  |  |  |  |-- tf-image-loader.html
+|  |  |  |-- tf-imports
+|  |  |  |  |-- README.md
+|  |  |  |  |-- d3.html
+|  |  |  |  |-- dagre.html
+|  |  |  |  |-- google
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- d3.html
+|  |  |  |  |  |-- dagre.html
+|  |  |  |  |  |-- graphlib.html
+|  |  |  |  |  |-- lodash.html
+|  |  |  |  |  |-- plottable.html
+|  |  |  |  |-- graphlib.html
+|  |  |  |  |-- lodash.html
+|  |  |  |  |-- plottable.html
+|  |  |  |-- tf-multi-checkbox
+|  |  |  |  |-- demo
+|  |  |  |  |  |-- index.html
+|  |  |  |  |-- tf-multi-checkbox.html
+|  |  |  |-- tf-regex-group
+|  |  |  |  |-- demo
+|  |  |  |  |  |-- index.html
+|  |  |  |  |-- tf-regex-group.html
+|  |  |  |-- tf-tensorboard
+|  |  |  |  |-- autoReloadBehavior.ts
+|  |  |  |  |-- tensorboard.ts
+|  |  |  |  |-- test
+|  |  |  |  |  |-- autoReloadTests.ts
+|  |  |  |  |  |-- data
+|  |  |  |  |  |  |-- graph_run_run1.pbtxt
+|  |  |  |  |  |  |-- graph_run_run2.pbtxt
+|  |  |  |  |  |  |-- runs.json
+|  |  |  |  |  |-- e2eTests.html
+|  |  |  |  |  |-- e2eTests.ts
+|  |  |  |  |  |-- fastTabSwitch.html
+|  |  |  |  |  |-- fastTabSwitch.ts
+|  |  |  |  |  |-- index.html
+|  |  |  |  |  |-- tensorboardTests.html
+|  |  |  |  |  |-- tensorboardTests.ts
+|  |  |  |  |-- tf-tensorboard-demo.html
+|  |  |  |  |-- tf-tensorboard.html
+|  |  |-- demo
+|  |  |  |-- data
+|  |  |  |  |-- audio_run_run1_tag_au1_2Faudio_2F0.json
+|  |  |  |  |-- audio_run_run2_tag_au2_2Faudio_2F0.json
+|  |  |  |  |-- compressedHistograms_run_run1_tag_histo1.json
+|  |  |  |  |-- compressedHistograms_run_run2_tag_histo1.json
+|  |  |  |  |-- compressedHistograms_run_run2_tag_histo2.json
+|  |  |  |  |-- graph_run_run1.pbtxt
+|  |  |  |  |-- graph_run_run2.pbtxt
+|  |  |  |  |-- histograms_run_run1_tag_histo1.json
+|  |  |  |  |-- histograms_run_run2_tag_histo1.json
+|  |  |  |  |-- histograms_run_run2_tag_histo2.json
+|  |  |  |  |-- images_run_run1_tag_im1_2Fimage_2F0.json
+|  |  |  |  |-- images_run_run1_tag_im2_2Fimage_2F0.json
+|  |  |  |  |-- images_run_run2_tag_im1_2Fimage_2F0.json
+|  |  |  |  |-- individualAudio_index_0_tag_au1_2Faudio_2F0_run_run1.wav
+|  |  |  |  |-- individualAudio_index_0_tag_au2_2Faudio_2F0_run_run2.wav
+|  |  |  |  |-- individualImage_tag_im1_2Fimage_2F0_index_0_run_run1.png
+|  |  |  |  |-- individualImage_tag_im1_2Fimage_2F0_index_0_run_run2.png
+|  |  |  |  |-- individualImage_tag_im2_2Fimage_2F0_index_0_run_run1.png
+|  |  |  |  |-- runs.json
+|  |  |  |  |-- scalars.json
+|  |  |  |  |-- scalars_run_run1_tag_bar_2Fsquare.json
+|  |  |  |  |-- scalars_run_run1_tag_foo_2Fcos.json
+|  |  |  |  |-- scalars_run_run1_tag_foo_2Fsin.json
+|  |  |  |  |-- scalars_run_run1_tag_foo_2Fsquare.json
+|  |  |  |  |-- scalars_run_run2_tag_bar_2Fsquare.json
+|  |  |  |  |-- scalars_run_run2_tag_foo_2Fcos.json
+|  |  |  |  |-- scalars_run_run2_tag_foo_2Fsquare.json
+|  |  |  |-- index.html
+|  |  |-- dist
+|  |  |  |-- index.html
+|  |  |  |-- tf-tensorboard.html
+|  |  |-- gulp_tasks
+|  |  |  |-- bower.js
+|  |  |  |-- compile.js
+|  |  |  |-- test.js
+|  |  |  |-- tslint.js
+|  |  |  |-- vulcanize.js
+|  |  |-- gulpfile.js
+|  |  |-- http_api.md
+|  |  |-- lib
+|  |  |  |-- BUILD
+|  |  |  |-- css
+|  |  |  |  |-- global.css
+|  |  |  |-- js
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- nanite
+|  |  |  |  |  |-- nanite.ts
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- index.html
+|  |  |  |  |  |  |-- naniteTest.ts
+|  |  |  |  |-- node-radar
+|  |  |  |  |  |-- demo
+|  |  |  |  |  |  |-- index.html
+|  |  |  |  |  |-- nodeRadar.ts
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- index.html
+|  |  |  |  |  |  |-- nodeRadarTest.ts
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- json_util.py
+|  |  |  |  |-- json_util_test.py
+|  |  |-- package.json
+|  |  |-- scripts
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- generate_testdata.py
+|  |  |  |-- serialize_tensorboard.py
+|  |  |-- tensorboard.py
+|  |  |-- tsconfig.json
+|  |  |-- tslint.json
+|  |  |-- typings.json
+|  |  |-- wct.conf.json
+|  |-- tensorflow.bzl
+|  |-- tf_exported_symbols.lds
+|  |-- tf_version_script.lds
+|  |-- tools
+|  |  |-- __init__.py
+|  |  |-- benchmark
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- benchmark_model.cc
+|  |  |  |-- benchmark_model.h
+|  |  |  |-- benchmark_model_main.cc
+|  |  |  |-- benchmark_model_test.cc
+|  |  |-- ci_build
+|  |  |  |-- Dockerfile.android
+|  |  |  |-- Dockerfile.cpu
+|  |  |  |-- Dockerfile.debian.jessie.cpu
+|  |  |  |-- Dockerfile.gpu
+|  |  |  |-- Dockerfile.tensorboard
+|  |  |  |-- README.md
+|  |  |  |-- builds
+|  |  |  |  |-- android.sh
+|  |  |  |  |-- benchmark.sh
+|  |  |  |  |-- builds_common.sh
+|  |  |  |  |-- cmake.sh
+|  |  |  |  |-- configured
+|  |  |  |  |-- docker_test.sh
+|  |  |  |  |-- integration_tests.sh
+|  |  |  |  |-- pip.sh
+|  |  |  |  |-- print_build_info.sh
+|  |  |  |  |-- py_test_delegate.sh
+|  |  |  |  |-- tensorboard.sh
+|  |  |  |  |-- test_installation.sh
+|  |  |  |  |-- test_tutorials.sh
+|  |  |  |  |-- test_user_ops.sh
+|  |  |  |  |-- with_the_same_user
+|  |  |  |-- ci_build.sh
+|  |  |  |-- ci_parameterized_build.sh
+|  |  |  |-- ci_sanity.sh
+|  |  |  |-- install
+|  |  |  |  |-- .bazelrc
+|  |  |  |  |-- install_bazel.sh
+|  |  |  |  |-- install_bootstrap_deb_packages.sh
+|  |  |  |  |-- install_deb_packages.sh
+|  |  |  |  |-- install_pip_packages.sh
+|  |  |  |  |-- install_proto3.sh
+|  |  |  |  |-- install_python3.5_pip_packages.sh
+|  |  |  |  |-- install_tensorboard_packages.sh
+|  |  |  |-- pylintrc
+|  |  |  |-- update_version.sh
+|  |  |-- dist_test
+|  |  |  |-- Dockerfile
+|  |  |  |-- Dockerfile.local
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- build_server.sh
+|  |  |  |-- local
+|  |  |  |  |-- Dockerfile
+|  |  |  |  |-- start_local_k8s_service.sh
+|  |  |  |  |-- start_tf_cluster_container.sh
+|  |  |  |  |-- test_local_tf_cluster.sh
+|  |  |  |-- local_test.sh
+|  |  |  |-- python
+|  |  |  |  |-- mnist_replica.py
+|  |  |  |-- remote_test.sh
+|  |  |  |-- scripts
+|  |  |  |  |-- create_tf_cluster.sh
+|  |  |  |  |-- delete_tf_cluster.sh
+|  |  |  |  |-- dist_mnist_test.sh
+|  |  |  |  |-- dist_test.sh
+|  |  |  |  |-- k8s_tensorflow.py
+|  |  |  |  |-- utils.sh
+|  |  |  |-- server
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Dockerfile
+|  |  |  |  |-- Dockerfile.test
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- grpc_tensorflow_server.py
+|  |  |  |  |-- grpc_tensorflow_server_wrapper.sh
+|  |  |  |  |-- parse_cluster_spec_test.py
+|  |  |-- docker
+|  |  |  |-- BUILD
+|  |  |  |-- Dockerfile
+|  |  |  |-- Dockerfile.devel
+|  |  |  |-- Dockerfile.devel-gpu
+|  |  |  |-- Dockerfile.gpu
+|  |  |  |-- LICENSE
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- docker_run_gpu.sh
+|  |  |  |-- jupyter_notebook_config.py
+|  |  |  |-- notebooks
+|  |  |  |  |-- 1_hello_tensorflow.ipynb
+|  |  |  |  |-- 2_getting_started.ipynb
+|  |  |  |  |-- 3_mnist_from_scratch.ipynb
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- LICENSE
+|  |  |  |-- parameterized_docker_build.sh
+|  |  |  |-- run_jupyter.sh
+|  |  |  |-- simple_console.py
+|  |  |-- docs
+|  |  |  |-- BUILD
+|  |  |  |-- gen_cc_md.py
+|  |  |  |-- gen_docs.sh
+|  |  |  |-- gen_docs_test.sh
+|  |  |  |-- tf-doxy_for_md-config
+|  |  |-- pip_package
+|  |  |  |-- BUILD
+|  |  |  |-- MANIFEST.in
+|  |  |  |-- README
+|  |  |  |-- build_pip_package.sh
+|  |  |  |-- setup.py
+|  |  |  |-- simple_console.py
+|  |  |-- proto_text
+|  |  |  |-- BUILD
+|  |  |  |-- gen_proto_text_functions.cc
+|  |  |  |-- gen_proto_text_functions_lib.cc
+|  |  |  |-- gen_proto_text_functions_lib.h
+|  |  |  |-- gen_proto_text_functions_lib_test.cc
+|  |  |  |-- placeholder.txt
+|  |  |  |-- test.proto
+|  |  |-- swig
+|  |  |  |-- .gitignore
+|  |  |  |-- swig.sh
+|  |  |-- test
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- check_futures_test.py
+|  |  |  |-- gpu_info_lib.py
+|  |  |  |-- performance.bzl
+|  |  |  |-- run_and_gather_logs.py
+|  |  |  |-- run_and_gather_logs_lib.py
+|  |  |  |-- system_info.py
+|  |  |  |-- system_info_lib.py
+|  |-- user_ops
+|  |  |-- BUILD
+|  |  |-- ackermann_op.cc
+|  |  |-- ackermann_test.py
+|  |-- workspace.bzl
+|-- third_party
+|  |-- avro
+|  |  |-- BUILD
+|  |  |-- build_defs.bzl
+|  |-- boringssl
+|  |  |-- BUILD
+|  |  |-- err_data.c
+|  |-- eigen3
+|  |  |-- BUILD
+|  |  |-- Eigen
+|  |  |  |-- Cholesky
+|  |  |  |-- Core
+|  |  |  |-- Eigenvalues
+|  |  |  |-- LU
+|  |  |  |-- QR
+|  |  |-- LICENSE
+|  |  |-- unsupported
+|  |  |  |-- Eigen
+|  |  |  |  |-- CXX11
+|  |  |  |  |  |-- Core
+|  |  |  |  |  |-- FixedPoint
+|  |  |  |  |  |-- NeuralNetworks
+|  |  |  |  |  |-- Tensor
+|  |  |  |  |  |-- src
+|  |  |  |  |  |  |-- FixedPoint
+|  |  |  |  |  |  |  |-- FixedPointTypes.h
+|  |  |  |  |  |  |  |-- MatMatProduct.h
+|  |  |  |  |  |  |  |-- MatMatProductAVX2.h
+|  |  |  |  |  |  |  |-- MatMatProductNEON.h
+|  |  |  |  |  |  |  |-- MatVecProduct.h
+|  |  |  |  |  |  |  |-- PacketMathAVX2.h
+|  |  |  |  |  |  |  |-- TypeCastingAVX2.h
+|  |  |  |  |  |  |-- NeuralNetworks
+|  |  |  |  |  |  |  |-- Activations.h
+|  |  |  |  |  |  |  |-- Attention.h
+|  |  |  |  |  |  |  |-- BackwardCuboidConvolutions.h
+|  |  |  |  |  |  |  |-- BackwardSpatialConvolutions.h
+|  |  |  |  |  |  |  |-- CuboidConvolution.h
+|  |  |  |  |  |  |  |-- Patch3d.h
+|  |  |  |  |  |  |  |-- Pooling.h
+|  |  |  |  |  |  |  |-- SoftMax.h
+|  |  |  |  |  |  |  |-- SpatialConvolutions.h
+|  |  |  |  |  |  |  |-- TensorConvolutionByFFT.h
+|  |-- gpus
+|  |  |-- crosstool
+|  |  |  |-- BUILD
+|  |  |  |-- CROSSTOOL
+|  |  |  |-- LICENSE
+|  |  |  |-- clang
+|  |  |  |  |-- bin
+|  |  |  |  |  |-- crosstool_wrapper_driver_is_not_gcc
+|  |  |-- cuda
+|  |  |  |-- BUILD
+|  |  |  |-- LICENSE
+|  |  |  |-- build_defs.bzl
+|  |  |  |-- cuda_config.sh
+|  |  |  |-- platform.bzl
+|  |-- py
+|  |  |-- numpy
+|  |  |  |-- BUILD
+|-- tools
+|  |-- bazel.rc.template
+|-- util
+|  |-- python
+|  |  |-- BUILD
+|  |  |-- python_config.sh
+|-- zlib.BUILD

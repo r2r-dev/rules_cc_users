@@ -1,0 +1,2410 @@
+|-- .gitallowed
+|-- .gitignore
+|-- BUILD
+|-- BUILDING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- dcl
+|  |-- BUILD.bazel
+|  |-- canonicalize.go
+|  |-- client.go
+|  |-- config.go
+|  |-- declarative.go
+|  |-- diff.go
+|  |-- diff_utils.go
+|  |-- errors.go
+|  |-- flatten.go
+|  |-- locations.go
+|  |-- marshallers.go
+|  |-- operations
+|  |  |-- compute.go
+|  |  |-- crm.go
+|  |  |-- datastore.go
+|  |  |-- dns.go
+|  |  |-- knative.go
+|  |  |-- monitoring.go
+|  |  |-- operations.go
+|  |  |-- osconfig.go
+|  |  |-- sql.go
+|  |-- resource.go
+|  |-- retry.go
+|  |-- strings.go
+|  |-- timestamp.go
+|  |-- transport.go
+|  |-- type.go
+|  |-- update.go
+|  |-- utils.go
+|  |-- validate.go
+|-- docs
+|  |-- code-of-conduct.md
+|  |-- contributing.md
+|-- go.mod
+|-- go.sum
+|-- python
+|  |-- BUILD
+|  |-- WORKSPACE
+|  |-- connector
+|  |  |-- BUILD
+|  |  |-- channel.py
+|  |  |-- connector.cc
+|  |  |-- connector.cgo.h
+|  |  |-- connector.go
+|  |  |-- connector.h
+|  |  |-- connector_ext.cc
+|  |  |-- connector_register.go
+|  |  |-- server.go
+|  |-- connector_rules.bzl
+|  |-- external
+|  |  |-- pybind.BUILD
+|  |-- go.mod
+|  |-- proto
+|  |  |-- BUILD
+|  |  |-- accesscontextmanager
+|  |  |  |-- BUILD
+|  |  |  |-- access_level.proto
+|  |  |  |-- access_policy.proto
+|  |  |  |-- service_perimeter.proto
+|  |  |-- apigee
+|  |  |  |-- BUILD
+|  |  |  |-- attachment.proto
+|  |  |  |-- envgroup.proto
+|  |  |  |-- environment.proto
+|  |  |  |-- organization.proto
+|  |  |-- apikeys
+|  |  |  |-- BUILD
+|  |  |  |-- key.proto
+|  |  |-- appengine
+|  |  |  |-- BUILD
+|  |  |  |-- application.proto
+|  |  |  |-- domain_mapping.proto
+|  |  |  |-- firewall_rule.proto
+|  |  |  |-- version.proto
+|  |  |-- assuredworkloads
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- workload.proto
+|  |  |  |-- workload.proto
+|  |  |-- bigquery
+|  |  |  |-- BUILD
+|  |  |  |-- dataset.proto
+|  |  |-- bigqueryconnection
+|  |  |  |-- BUILD
+|  |  |  |-- connection.proto
+|  |  |-- bigqueryreservation
+|  |  |  |-- BUILD
+|  |  |  |-- assignment.proto
+|  |  |  |-- reservation.proto
+|  |  |-- binaryauthorization
+|  |  |  |-- BUILD
+|  |  |  |-- attestor.proto
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- attestor.proto
+|  |  |  |  |-- policy.proto
+|  |  |  |-- policy.proto
+|  |  |-- cloudbilling
+|  |  |  |-- BUILD
+|  |  |  |-- project_billing_info.proto
+|  |  |-- cloudbuild
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- build_trigger.proto
+|  |  |  |  |-- worker_pool.proto
+|  |  |  |-- build_trigger.proto
+|  |  |-- cloudfunctions
+|  |  |  |-- BUILD
+|  |  |  |-- cloud_function.proto
+|  |  |  |-- function.proto
+|  |  |-- cloudresourcemanager
+|  |  |  |-- BUILD
+|  |  |  |-- folder.proto
+|  |  |  |-- project.proto
+|  |  |-- cloudscheduler
+|  |  |  |-- BUILD
+|  |  |  |-- job.proto
+|  |  |-- composer
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- environment.proto
+|  |  |  |-- environment.proto
+|  |  |-- compute
+|  |  |  |-- BUILD
+|  |  |  |-- address.proto
+|  |  |  |-- autoscaler.proto
+|  |  |  |-- backend_bucket.proto
+|  |  |  |-- backend_service.proto
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- address.proto
+|  |  |  |  |-- autoscaler.proto
+|  |  |  |  |-- backend_bucket.proto
+|  |  |  |  |-- backend_service.proto
+|  |  |  |  |-- disk.proto
+|  |  |  |  |-- firewall.proto
+|  |  |  |  |-- firewall_policy.proto
+|  |  |  |  |-- firewall_policy_association.proto
+|  |  |  |  |-- firewall_policy_rule.proto
+|  |  |  |  |-- forwarding_rule.proto
+|  |  |  |  |-- health_check.proto
+|  |  |  |  |-- http_health_check.proto
+|  |  |  |  |-- https_health_check.proto
+|  |  |  |  |-- image.proto
+|  |  |  |  |-- instance.proto
+|  |  |  |  |-- instance_group_manager.proto
+|  |  |  |  |-- instance_template.proto
+|  |  |  |  |-- managed_ssl_certificate.proto
+|  |  |  |  |-- network.proto
+|  |  |  |  |-- network_endpoint.proto
+|  |  |  |  |-- network_endpoint_group.proto
+|  |  |  |  |-- reservation.proto
+|  |  |  |  |-- route.proto
+|  |  |  |  |-- router.proto
+|  |  |  |  |-- router_peer.proto
+|  |  |  |  |-- snapshot.proto
+|  |  |  |  |-- ssl_certificate.proto
+|  |  |  |  |-- ssl_policy.proto
+|  |  |  |  |-- subnetwork.proto
+|  |  |  |  |-- target_http_proxy.proto
+|  |  |  |  |-- target_pool.proto
+|  |  |  |  |-- target_ssl_proxy.proto
+|  |  |  |  |-- target_vpn_gateway.proto
+|  |  |  |  |-- url_map.proto
+|  |  |  |  |-- vpn_gateway.proto
+|  |  |  |  |-- vpn_tunnel.proto
+|  |  |  |-- disk.proto
+|  |  |  |-- firewall.proto
+|  |  |  |-- firewall_policy.proto
+|  |  |  |-- firewall_policy_association.proto
+|  |  |  |-- firewall_policy_rule.proto
+|  |  |  |-- forwarding_rule.proto
+|  |  |  |-- health_check.proto
+|  |  |  |-- http_health_check.proto
+|  |  |  |-- https_health_check.proto
+|  |  |  |-- image.proto
+|  |  |  |-- instance.proto
+|  |  |  |-- instance_group_manager.proto
+|  |  |  |-- instance_template.proto
+|  |  |  |-- interconnect.proto
+|  |  |  |-- managed_ssl_certificate.proto
+|  |  |  |-- network.proto
+|  |  |  |-- network_endpoint.proto
+|  |  |  |-- network_endpoint_group.proto
+|  |  |  |-- reservation.proto
+|  |  |  |-- route.proto
+|  |  |  |-- router.proto
+|  |  |  |-- router_peer.proto
+|  |  |  |-- snapshot.proto
+|  |  |  |-- ssl_certificate.proto
+|  |  |  |-- ssl_policy.proto
+|  |  |  |-- subnetwork.proto
+|  |  |  |-- target_http_proxy.proto
+|  |  |  |-- target_pool.proto
+|  |  |  |-- target_ssl_proxy.proto
+|  |  |  |-- target_vpn_gateway.proto
+|  |  |  |-- url_map.proto
+|  |  |  |-- vpn_gateway.proto
+|  |  |  |-- vpn_tunnel.proto
+|  |  |-- connector
+|  |  |  |-- BUILD
+|  |  |  |-- connector.proto
+|  |  |  |-- sdk.proto
+|  |  |-- container
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- cluster.proto
+|  |  |  |  |-- node_pool.proto
+|  |  |  |-- cluster.proto
+|  |  |  |-- node_pool.proto
+|  |  |-- containeranalysis
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- note.proto
+|  |  |  |-- note.proto
+|  |  |-- datafusion
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- instance.proto
+|  |  |-- dataproc
+|  |  |  |-- BUILD
+|  |  |  |-- autoscaling_policy.proto
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- autoscaling_policy.proto
+|  |  |  |  |-- cluster.proto
+|  |  |  |  |-- job.proto
+|  |  |  |  |-- workflow_template.proto
+|  |  |  |-- cluster.proto
+|  |  |  |-- job.proto
+|  |  |  |-- workflow_template.proto
+|  |  |-- datastore
+|  |  |  |-- BUILD
+|  |  |  |-- index.proto
+|  |  |-- dns
+|  |  |  |-- BUILD
+|  |  |  |-- managed_zone.proto
+|  |  |  |-- resource_record_set.proto
+|  |  |-- empty.proto
+|  |  |-- eventarc
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- trigger.proto
+|  |  |  |-- trigger.proto
+|  |  |-- file
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- backup.proto
+|  |  |  |  |-- instance.proto
+|  |  |  |-- instance.proto
+|  |  |-- gameservices
+|  |  |  |-- BUILD
+|  |  |  |-- realm.proto
+|  |  |-- gkehub
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- feature.proto
+|  |  |  |  |-- feature_membership.proto
+|  |  |  |  |-- membership.proto
+|  |  |-- iam
+|  |  |  |-- BUILD
+|  |  |  |-- role.proto
+|  |  |  |-- service_account.proto
+|  |  |-- iap
+|  |  |  |-- BUILD
+|  |  |  |-- brand.proto
+|  |  |  |-- identity_aware_proxy_client.proto
+|  |  |-- identitytoolkit
+|  |  |  |-- BUILD
+|  |  |  |-- oauth_idp_config.proto
+|  |  |  |-- tenant.proto
+|  |  |  |-- tenant_oauth_idp_config.proto
+|  |  |-- krmapihosting
+|  |  |  |-- alpha
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- krm_api_host.proto
+|  |  |-- logging
+|  |  |  |-- BUILD
+|  |  |  |-- log_bucket.proto
+|  |  |  |-- log_exclusion.proto
+|  |  |  |-- log_metric.proto
+|  |  |-- monitoring
+|  |  |  |-- BUILD
+|  |  |  |-- alert_policy.proto
+|  |  |  |-- dashboard.proto
+|  |  |  |-- group.proto
+|  |  |  |-- metric_descriptor.proto
+|  |  |  |-- notification_channel.proto
+|  |  |  |-- uptime_check_config.proto
+|  |  |-- networksecurity
+|  |  |  |-- alpha
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- authorization_policy.proto
+|  |  |  |  |-- client_tls_policy.proto
+|  |  |  |  |-- server_tls_policy.proto
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- authorization_policy.proto
+|  |  |  |  |-- client_tls_policy.proto
+|  |  |  |  |-- server_tls_policy.proto
+|  |  |-- networkservices
+|  |  |  |-- alpha
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- endpoint_config_selector.proto
+|  |  |  |  |-- http_filter.proto
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- endpoint_config_selector.proto
+|  |  |  |  |-- endpoint_policy.proto
+|  |  |-- osconfig
+|  |  |  |-- alpha
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- os_policy_assignment.proto
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- guest_policy.proto
+|  |  |-- privateca
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- certificate_authority.proto
+|  |  |-- pubsub
+|  |  |  |-- BUILD
+|  |  |  |-- subscription.proto
+|  |  |  |-- topic.proto
+|  |  |-- pubsublite
+|  |  |  |-- BUILD
+|  |  |  |-- subscription.proto
+|  |  |  |-- topic.proto
+|  |  |-- redis
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- instance.proto
+|  |  |  |-- instance.proto
+|  |  |-- run
+|  |  |  |-- BUILD
+|  |  |  |-- service.proto
+|  |  |-- runtimeconfig
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- config.proto
+|  |  |  |  |-- variable.proto
+|  |  |  |-- config.proto
+|  |  |  |-- variable.proto
+|  |  |-- servicemanagement
+|  |  |  |-- BUILD
+|  |  |  |-- service.proto
+|  |  |-- servicenetworking
+|  |  |  |-- BUILD
+|  |  |  |-- connection.proto
+|  |  |-- serviceusage
+|  |  |  |-- BUILD
+|  |  |  |-- service.proto
+|  |  |  |-- serviceusage_service.proto
+|  |  |-- sourcerepo
+|  |  |  |-- BUILD
+|  |  |  |-- repo.proto
+|  |  |-- spanner
+|  |  |  |-- BUILD
+|  |  |  |-- database.proto
+|  |  |  |-- instance.proto
+|  |  |-- sql
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- database.proto
+|  |  |  |  |-- instance.proto
+|  |  |  |  |-- ssl_cert.proto
+|  |  |  |  |-- user.proto
+|  |  |  |-- database.proto
+|  |  |  |-- instance.proto
+|  |  |  |-- ssl_cert.proto
+|  |  |  |-- user.proto
+|  |  |-- storage
+|  |  |  |-- BUILD
+|  |  |  |-- bucket.proto
+|  |  |  |-- default_object_access_control.proto
+|  |  |  |-- hmac_key.proto
+|  |  |  |-- object.proto
+|  |  |  |-- object_access_control.proto
+|  |  |-- tier2
+|  |  |  |-- alpha
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- instance.proto
+|  |  |-- tpu
+|  |  |  |-- BUILD
+|  |  |  |-- node.proto
+|  |  |-- vpcaccess
+|  |  |  |-- BUILD
+|  |  |  |-- connector.proto
+|  |-- py_extension.bzl
+|  |-- pybind.BUILD
+|  |-- services
+|  |  |-- BUILD
+|  |  |-- accesscontextmanager
+|  |  |  |-- BUILD
+|  |  |  |-- access_level.py
+|  |  |  |-- access_level_server.go
+|  |  |  |-- access_policy.py
+|  |  |  |-- access_policy_server.go
+|  |  |  |-- register.go
+|  |  |  |-- service_perimeter.py
+|  |  |  |-- service_perimeter_server.go
+|  |  |-- apigee
+|  |  |  |-- BUILD
+|  |  |  |-- attachment.py
+|  |  |  |-- attachment_server.go
+|  |  |  |-- envgroup.py
+|  |  |  |-- envgroup_server.go
+|  |  |  |-- environment.py
+|  |  |  |-- environment_server.go
+|  |  |  |-- organization.py
+|  |  |  |-- organization_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_organization.yaml
+|  |  |-- apikeys
+|  |  |  |-- BUILD
+|  |  |  |-- key.py
+|  |  |  |-- key_server.go
+|  |  |  |-- register.go
+|  |  |-- appengine
+|  |  |  |-- BUILD
+|  |  |  |-- application.py
+|  |  |  |-- application_server.go
+|  |  |  |-- domain_mapping.py
+|  |  |  |-- domain_mapping_server.go
+|  |  |  |-- firewall_rule.py
+|  |  |  |-- firewall_rule_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_application.yaml
+|  |  |  |  |-- basic_domain_mapping.yaml
+|  |  |  |  |-- basic_firewall_rule.yaml
+|  |  |  |  |-- basic_version.yaml
+|  |  |  |-- version.py
+|  |  |  |-- version_server.go
+|  |  |-- assuredworkloads
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- register.go
+|  |  |  |  |-- workload.py
+|  |  |  |  |-- workload_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_workload.yaml
+|  |  |  |-- workload.py
+|  |  |  |-- workload_server.go
+|  |  |-- bigquery
+|  |  |  |-- BUILD
+|  |  |  |-- dataset.py
+|  |  |  |-- dataset_server.go
+|  |  |  |-- register.go
+|  |  |-- bigqueryconnection
+|  |  |  |-- BUILD
+|  |  |  |-- connection.py
+|  |  |  |-- connection_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_connection.yaml
+|  |  |-- bigqueryreservation
+|  |  |  |-- BUILD
+|  |  |  |-- assignment.py
+|  |  |  |-- assignment_server.go
+|  |  |  |-- register.go
+|  |  |  |-- reservation.py
+|  |  |  |-- reservation_server.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_assignment.yaml
+|  |  |  |  |-- basic_reservation.yaml
+|  |  |-- binaryauthorization
+|  |  |  |-- BUILD
+|  |  |  |-- attestor.py
+|  |  |  |-- attestor_server.go
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- attestor.py
+|  |  |  |  |-- attestor_server.go
+|  |  |  |  |-- policy.py
+|  |  |  |  |-- policy_server.go
+|  |  |  |  |-- register.go
+|  |  |  |-- policy.py
+|  |  |  |-- policy_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_attestor.yaml
+|  |  |  |  |-- basic_policy.yaml
+|  |  |-- cloudbilling
+|  |  |  |-- BUILD
+|  |  |  |-- project_billing_info.py
+|  |  |  |-- project_billing_info_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_project_billing_info.yaml
+|  |  |-- cloudbuild
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- build_trigger.py
+|  |  |  |  |-- build_trigger_server.go
+|  |  |  |  |-- register.go
+|  |  |  |  |-- worker_pool.py
+|  |  |  |  |-- worker_pool_server.go
+|  |  |  |-- build_trigger.py
+|  |  |  |-- build_trigger_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- worker_pool_instance.yaml
+|  |  |-- cloudfunctions
+|  |  |  |-- BUILD
+|  |  |  |-- cloud_function.py
+|  |  |  |-- cloud_function_server.go
+|  |  |  |-- function.py
+|  |  |  |-- function_server.go
+|  |  |  |-- register.go
+|  |  |-- cloudresourcemanager
+|  |  |  |-- BUILD
+|  |  |  |-- folder.py
+|  |  |  |-- folder_server.go
+|  |  |  |-- project.py
+|  |  |  |-- project_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- organization_folder.yaml
+|  |  |-- cloudscheduler
+|  |  |  |-- BUILD
+|  |  |  |-- job.py
+|  |  |  |-- job_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- pubsub_job.yaml
+|  |  |-- composer
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- environment.py
+|  |  |  |  |-- environment_server.go
+|  |  |  |  |-- register.go
+|  |  |  |-- environment.py
+|  |  |  |-- environment_server.go
+|  |  |  |-- register.go
+|  |  |-- compute
+|  |  |  |-- BUILD
+|  |  |  |-- address.py
+|  |  |  |-- address_server.go
+|  |  |  |-- autoscaler.py
+|  |  |  |-- autoscaler_server.go
+|  |  |  |-- backend_bucket.py
+|  |  |  |-- backend_bucket_server.go
+|  |  |  |-- backend_service.py
+|  |  |  |-- backend_service_server.go
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- address.py
+|  |  |  |  |-- address_server.go
+|  |  |  |  |-- autoscaler.py
+|  |  |  |  |-- autoscaler_server.go
+|  |  |  |  |-- backend_bucket.py
+|  |  |  |  |-- backend_bucket_server.go
+|  |  |  |  |-- backend_service.py
+|  |  |  |  |-- backend_service_server.go
+|  |  |  |  |-- disk.py
+|  |  |  |  |-- disk_server.go
+|  |  |  |  |-- firewall.py
+|  |  |  |  |-- firewall_policy.py
+|  |  |  |  |-- firewall_policy_association.py
+|  |  |  |  |-- firewall_policy_association_server.go
+|  |  |  |  |-- firewall_policy_rule.py
+|  |  |  |  |-- firewall_policy_rule_server.go
+|  |  |  |  |-- firewall_policy_server.go
+|  |  |  |  |-- firewall_server.go
+|  |  |  |  |-- forwarding_rule.py
+|  |  |  |  |-- forwarding_rule_server.go
+|  |  |  |  |-- health_check.py
+|  |  |  |  |-- health_check_server.go
+|  |  |  |  |-- http_health_check.py
+|  |  |  |  |-- http_health_check_server.go
+|  |  |  |  |-- https_health_check.py
+|  |  |  |  |-- https_health_check_server.go
+|  |  |  |  |-- image.py
+|  |  |  |  |-- image_server.go
+|  |  |  |  |-- instance.py
+|  |  |  |  |-- instance_group_manager.py
+|  |  |  |  |-- instance_group_manager_server.go
+|  |  |  |  |-- instance_server.go
+|  |  |  |  |-- instance_template.py
+|  |  |  |  |-- instance_template_server.go
+|  |  |  |  |-- managed_ssl_certificate.py
+|  |  |  |  |-- managed_ssl_certificate_server.go
+|  |  |  |  |-- network.py
+|  |  |  |  |-- network_endpoint.py
+|  |  |  |  |-- network_endpoint_group.py
+|  |  |  |  |-- network_endpoint_group_server.go
+|  |  |  |  |-- network_endpoint_server.go
+|  |  |  |  |-- network_server.go
+|  |  |  |  |-- register.go
+|  |  |  |  |-- reservation.py
+|  |  |  |  |-- reservation_server.go
+|  |  |  |  |-- route.py
+|  |  |  |  |-- route_server.go
+|  |  |  |  |-- router.py
+|  |  |  |  |-- router_peer.py
+|  |  |  |  |-- router_peer_server.go
+|  |  |  |  |-- router_server.go
+|  |  |  |  |-- snapshot.py
+|  |  |  |  |-- snapshot_server.go
+|  |  |  |  |-- ssl_certificate.py
+|  |  |  |  |-- ssl_certificate_server.go
+|  |  |  |  |-- ssl_policy.py
+|  |  |  |  |-- ssl_policy_server.go
+|  |  |  |  |-- subnetwork.py
+|  |  |  |  |-- subnetwork_server.go
+|  |  |  |  |-- target_http_proxy.py
+|  |  |  |  |-- target_http_proxy_server.go
+|  |  |  |  |-- target_pool.py
+|  |  |  |  |-- target_pool_server.go
+|  |  |  |  |-- target_ssl_proxy.py
+|  |  |  |  |-- target_ssl_proxy_server.go
+|  |  |  |  |-- target_vpn_gateway.py
+|  |  |  |  |-- target_vpn_gateway_server.go
+|  |  |  |  |-- url_map.py
+|  |  |  |  |-- url_map_server.go
+|  |  |  |  |-- vpn_gateway.py
+|  |  |  |  |-- vpn_gateway_server.go
+|  |  |  |  |-- vpn_tunnel.py
+|  |  |  |  |-- vpn_tunnel_server.go
+|  |  |  |-- disk.py
+|  |  |  |-- disk_server.go
+|  |  |  |-- firewall.py
+|  |  |  |-- firewall_policy.py
+|  |  |  |-- firewall_policy_association.py
+|  |  |  |-- firewall_policy_association_server.go
+|  |  |  |-- firewall_policy_rule.py
+|  |  |  |-- firewall_policy_rule_server.go
+|  |  |  |-- firewall_policy_server.go
+|  |  |  |-- firewall_server.go
+|  |  |  |-- forwarding_rule.py
+|  |  |  |-- forwarding_rule_server.go
+|  |  |  |-- health_check.py
+|  |  |  |-- health_check_server.go
+|  |  |  |-- http_health_check.py
+|  |  |  |-- http_health_check_server.go
+|  |  |  |-- https_health_check.py
+|  |  |  |-- https_health_check_server.go
+|  |  |  |-- image.py
+|  |  |  |-- image_server.go
+|  |  |  |-- instance.py
+|  |  |  |-- instance_group_manager.py
+|  |  |  |-- instance_group_manager_server.go
+|  |  |  |-- instance_server.go
+|  |  |  |-- instance_template.py
+|  |  |  |-- instance_template_server.go
+|  |  |  |-- interconnect.py
+|  |  |  |-- interconnect_server.go
+|  |  |  |-- managed_ssl_certificate.py
+|  |  |  |-- managed_ssl_certificate_server.go
+|  |  |  |-- network.py
+|  |  |  |-- network_endpoint.py
+|  |  |  |-- network_endpoint_group.py
+|  |  |  |-- network_endpoint_group_server.go
+|  |  |  |-- network_endpoint_server.go
+|  |  |  |-- network_server.go
+|  |  |  |-- register.go
+|  |  |  |-- reservation.py
+|  |  |  |-- reservation_server.go
+|  |  |  |-- route.py
+|  |  |  |-- route_server.go
+|  |  |  |-- router.py
+|  |  |  |-- router_peer.py
+|  |  |  |-- router_peer_server.go
+|  |  |  |-- router_server.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_instance_template.yaml
+|  |  |  |  |-- basic_managed_ssl_certificate.yaml
+|  |  |  |  |-- basic_network.yaml
+|  |  |  |  |-- folder_firewall_policy.yaml
+|  |  |  |  |-- organization_firewall_policy.yaml
+|  |  |  |  |-- regional_autoscaler.yaml
+|  |  |  |  |-- regional_instance_group_manager.yaml
+|  |  |  |  |-- regional_network_endpoint_group.yaml
+|  |  |  |  |-- zonal_autoscaler.yaml
+|  |  |  |  |-- zonal_instance_group_manager.yaml
+|  |  |  |  |-- zonal_network_endpoint_group.yaml
+|  |  |  |-- snapshot.py
+|  |  |  |-- snapshot_server.go
+|  |  |  |-- ssl_certificate.py
+|  |  |  |-- ssl_certificate_server.go
+|  |  |  |-- ssl_policy.py
+|  |  |  |-- ssl_policy_server.go
+|  |  |  |-- subnetwork.py
+|  |  |  |-- subnetwork_server.go
+|  |  |  |-- target_http_proxy.py
+|  |  |  |-- target_http_proxy_server.go
+|  |  |  |-- target_pool.py
+|  |  |  |-- target_pool_server.go
+|  |  |  |-- target_ssl_proxy.py
+|  |  |  |-- target_ssl_proxy_server.go
+|  |  |  |-- target_vpn_gateway.py
+|  |  |  |-- target_vpn_gateway_server.go
+|  |  |  |-- url_map.py
+|  |  |  |-- url_map_server.go
+|  |  |  |-- vpn_gateway.py
+|  |  |  |-- vpn_gateway_server.go
+|  |  |  |-- vpn_tunnel.py
+|  |  |  |-- vpn_tunnel_server.go
+|  |  |-- container
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- cluster.py
+|  |  |  |  |-- cluster_server.go
+|  |  |  |  |-- node_pool.py
+|  |  |  |  |-- node_pool_server.go
+|  |  |  |  |-- register.go
+|  |  |  |-- cluster.py
+|  |  |  |-- cluster_server.go
+|  |  |  |-- node_pool.py
+|  |  |  |-- node_pool_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- autopilot_cluster.yaml
+|  |  |-- containeranalysis
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- note.py
+|  |  |  |  |-- note_server.go
+|  |  |  |  |-- register.go
+|  |  |  |-- note.py
+|  |  |  |-- note_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_note.yaml
+|  |  |-- datafusion
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- instance.py
+|  |  |  |  |-- instance_server.go
+|  |  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_instance.yaml
+|  |  |-- dataproc
+|  |  |  |-- BUILD
+|  |  |  |-- autoscaling_policy.py
+|  |  |  |-- autoscaling_policy_server.go
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- autoscaling_policy.py
+|  |  |  |  |-- autoscaling_policy_server.go
+|  |  |  |  |-- cluster.py
+|  |  |  |  |-- cluster_server.go
+|  |  |  |  |-- job.py
+|  |  |  |  |-- job_server.go
+|  |  |  |  |-- register.go
+|  |  |  |  |-- workflow_template.py
+|  |  |  |  |-- workflow_template_server.go
+|  |  |  |-- cluster.py
+|  |  |  |-- cluster_server.go
+|  |  |  |-- job.py
+|  |  |  |-- job_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_autoscaling_policy.yaml
+|  |  |  |  |-- basic_cluster.yaml
+|  |  |  |  |-- basic_job.yaml
+|  |  |  |  |-- basic_workflow_template.yaml
+|  |  |  |  |-- complex_cluster.yaml
+|  |  |  |  |-- kcc_cluster.yaml
+|  |  |  |  |-- kcc_workflow_template.yaml
+|  |  |  |  |-- lots_of_config_cluster.yaml
+|  |  |  |  |-- tf_workflow_template.yaml
+|  |  |  |-- workflow_template.py
+|  |  |  |-- workflow_template_server.go
+|  |  |-- datastore
+|  |  |  |-- BUILD
+|  |  |  |-- index.py
+|  |  |  |-- index_server.go
+|  |  |  |-- register.go
+|  |  |-- dns
+|  |  |  |-- BUILD
+|  |  |  |-- managed_zone.py
+|  |  |  |-- managed_zone_server.go
+|  |  |  |-- register.go
+|  |  |  |-- resource_record_set.py
+|  |  |  |-- resource_record_set_server.go
+|  |  |-- eventarc
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- register.go
+|  |  |  |  |-- trigger.py
+|  |  |  |  |-- trigger_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_trigger.yaml
+|  |  |  |  |-- pubsub_trigger.yaml
+|  |  |  |-- trigger.py
+|  |  |  |-- trigger_server.go
+|  |  |-- file
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- backup.py
+|  |  |  |  |-- backup_server.go
+|  |  |  |  |-- instance.py
+|  |  |  |  |-- instance_server.go
+|  |  |  |  |-- register.go
+|  |  |  |-- instance.py
+|  |  |  |-- instance_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_instance.yaml
+|  |  |-- gameservices
+|  |  |  |-- BUILD
+|  |  |  |-- realm.py
+|  |  |  |-- realm_server.go
+|  |  |  |-- register.go
+|  |  |-- gkehub
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- feature.py
+|  |  |  |  |-- feature_membership.py
+|  |  |  |  |-- feature_membership_server.go
+|  |  |  |  |-- feature_server.go
+|  |  |  |  |-- membership.py
+|  |  |  |  |-- membership_server.go
+|  |  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- acm_feature_membership.yaml
+|  |  |  |  |-- basic_membership.yaml
+|  |  |  |  |-- mcsd_feature.yaml
+|  |  |-- iam
+|  |  |  |-- BUILD
+|  |  |  |-- register.go
+|  |  |  |-- role.py
+|  |  |  |-- role_server.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_service_account.yaml
+|  |  |  |  |-- organization_role.yaml
+|  |  |  |-- service_account.py
+|  |  |  |-- service_account_server.go
+|  |  |-- iap
+|  |  |  |-- BUILD
+|  |  |  |-- brand.py
+|  |  |  |-- brand_server.go
+|  |  |  |-- identity_aware_proxy_client.py
+|  |  |  |-- identity_aware_proxy_client_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_brand.yaml
+|  |  |  |  |-- basic_client.yaml
+|  |  |-- identitytoolkit
+|  |  |  |-- BUILD
+|  |  |  |-- oauth_idp_config.py
+|  |  |  |-- oauth_idp_config_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_oauth_idp_config.yaml
+|  |  |  |  |-- basic_tenant.yaml
+|  |  |  |  |-- basic_tenant_oauth_idp_config.yaml
+|  |  |  |-- tenant.py
+|  |  |  |-- tenant_oauth_idp_config.py
+|  |  |  |-- tenant_oauth_idp_config_server.go
+|  |  |  |-- tenant_server.go
+|  |  |-- krmapihosting
+|  |  |  |-- alpha
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- krm_api_host.py
+|  |  |  |  |-- krm_api_host_server.go
+|  |  |  |  |-- register.go
+|  |  |-- logging
+|  |  |  |-- BUILD
+|  |  |  |-- log_bucket.py
+|  |  |  |-- log_bucket_server.go
+|  |  |  |-- log_exclusion.py
+|  |  |  |-- log_exclusion_server.go
+|  |  |  |-- log_metric.py
+|  |  |  |-- log_metric_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_metric.yaml
+|  |  |  |  |-- billing_account_bucket.yaml
+|  |  |  |  |-- billing_account_exclusion.yaml
+|  |  |  |  |-- folder_bucket.yaml
+|  |  |  |  |-- folder_exclusion.yaml
+|  |  |  |  |-- organization_bucket.yaml
+|  |  |  |  |-- organization_exclusion.yaml
+|  |  |  |  |-- project_bucket.yaml
+|  |  |  |  |-- project_exclusion.yaml
+|  |  |-- monitoring
+|  |  |  |-- BUILD
+|  |  |  |-- alert_policy.py
+|  |  |  |-- alert_policy_server.go
+|  |  |  |-- dashboard.py
+|  |  |  |-- dashboard_server.go
+|  |  |  |-- group.py
+|  |  |  |-- group_server.go
+|  |  |  |-- metric_descriptor.py
+|  |  |  |-- metric_descriptor_server.go
+|  |  |  |-- notification_channel.py
+|  |  |  |-- notification_channel_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_dashboard.yaml
+|  |  |  |  |-- basic_metric_descriptor.yaml
+|  |  |  |  |-- basic_uptime_check_config.yaml
+|  |  |  |-- uptime_check_config.py
+|  |  |  |-- uptime_check_config_server.go
+|  |  |-- networksecurity
+|  |  |  |-- alpha
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- authorization_policy.py
+|  |  |  |  |-- authorization_policy_server.go
+|  |  |  |  |-- client_tls_policy.py
+|  |  |  |  |-- client_tls_policy_server.go
+|  |  |  |  |-- register.go
+|  |  |  |  |-- server_tls_policy.py
+|  |  |  |  |-- server_tls_policy_server.go
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- authorization_policy.py
+|  |  |  |  |-- authorization_policy_server.go
+|  |  |  |  |-- client_tls_policy.py
+|  |  |  |  |-- client_tls_policy_server.go
+|  |  |  |  |-- register.go
+|  |  |  |  |-- server_tls_policy.py
+|  |  |  |  |-- server_tls_policy_server.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_authorization_policy.yaml
+|  |  |  |  |-- basic_client_tls_policy.yaml
+|  |  |  |  |-- basic_server_tls_policy.yaml
+|  |  |-- networkservices
+|  |  |  |-- alpha
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- endpoint_config_selector.py
+|  |  |  |  |-- endpoint_config_selector_server.go
+|  |  |  |  |-- http_filter.py
+|  |  |  |  |-- http_filter_server.go
+|  |  |  |  |-- register.go
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- endpoint_config_selector.py
+|  |  |  |  |-- endpoint_config_selector_server.go
+|  |  |  |  |-- endpoint_policy.py
+|  |  |  |  |-- endpoint_policy_server.go
+|  |  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_endpoint_config_selector.yaml
+|  |  |-- osconfig
+|  |  |  |-- alpha
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- os_policy_assignment.py
+|  |  |  |  |-- os_policy_assignment_server.go
+|  |  |  |  |-- register.go
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- guest_policy.py
+|  |  |  |  |-- guest_policy_server.go
+|  |  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_guest_policy.yaml
+|  |  |  |  |-- complex_guest_policy.yaml
+|  |  |-- privateca
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- certificate_authority.py
+|  |  |  |  |-- certificate_authority_server.go
+|  |  |  |  |-- register.go
+|  |  |-- pubsub
+|  |  |  |-- BUILD
+|  |  |  |-- register.go
+|  |  |  |-- subscription.py
+|  |  |  |-- subscription_server.go
+|  |  |  |-- topic.py
+|  |  |  |-- topic_server.go
+|  |  |-- pubsublite
+|  |  |  |-- BUILD
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_subscription.yaml
+|  |  |  |-- subscription.py
+|  |  |  |-- subscription_server.go
+|  |  |  |-- topic.py
+|  |  |  |-- topic_server.go
+|  |  |-- redis
+|  |  |  |-- BUILD
+|  |  |  |-- __pycache__
+|  |  |  |  |-- instance.cpython-38.pyc
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- instance.py
+|  |  |  |  |-- instance_server.go
+|  |  |  |  |-- register.go
+|  |  |  |-- instance.py
+|  |  |  |-- instance_server.go
+|  |  |  |-- register.go
+|  |  |-- run
+|  |  |  |-- BUILD
+|  |  |  |-- register.go
+|  |  |  |-- service.py
+|  |  |  |-- service_server.go
+|  |  |-- runtimeconfig
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- config.py
+|  |  |  |  |-- config_server.go
+|  |  |  |  |-- register.go
+|  |  |  |  |-- variable.py
+|  |  |  |  |-- variable_server.go
+|  |  |  |-- config.py
+|  |  |  |-- config_server.go
+|  |  |  |-- register.go
+|  |  |  |-- variable.py
+|  |  |  |-- variable_server.go
+|  |  |-- servicemanagement
+|  |  |  |-- BUILD
+|  |  |  |-- register.go
+|  |  |  |-- service.py
+|  |  |  |-- service_server.go
+|  |  |-- servicenetworking
+|  |  |  |-- BUILD
+|  |  |  |-- connection.py
+|  |  |  |-- connection_server.go
+|  |  |  |-- register.go
+|  |  |-- serviceusage
+|  |  |  |-- BUILD
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- drive_service.yaml
+|  |  |  |-- service.py
+|  |  |  |-- service_server.go
+|  |  |  |-- serviceusage_service.py
+|  |  |  |-- serviceusage_service_server.go
+|  |  |-- sourcerepo
+|  |  |  |-- BUILD
+|  |  |  |-- register.go
+|  |  |  |-- repo.py
+|  |  |  |-- repo_server.go
+|  |  |-- spanner
+|  |  |  |-- BUILD
+|  |  |  |-- database.py
+|  |  |  |-- database_server.go
+|  |  |  |-- instance.py
+|  |  |  |-- instance_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_database.yaml
+|  |  |  |  |-- basic_instance.yaml
+|  |  |-- sql
+|  |  |  |-- BUILD
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- database.py
+|  |  |  |  |-- database_server.go
+|  |  |  |  |-- instance.py
+|  |  |  |  |-- instance_server.go
+|  |  |  |  |-- register.go
+|  |  |  |  |-- ssl_cert.py
+|  |  |  |  |-- ssl_cert_server.go
+|  |  |  |  |-- user.py
+|  |  |  |  |-- user_server.go
+|  |  |  |-- database.py
+|  |  |  |-- database_server.go
+|  |  |  |-- instance.py
+|  |  |  |-- instance_server.go
+|  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- private_instance.yaml
+|  |  |  |-- ssl_cert.py
+|  |  |  |-- ssl_cert_server.go
+|  |  |  |-- user.py
+|  |  |  |-- user_server.go
+|  |  |-- storage
+|  |  |  |-- BUILD
+|  |  |  |-- bucket.py
+|  |  |  |-- bucket_server.go
+|  |  |  |-- default_object_access_control.py
+|  |  |  |-- default_object_access_control_server.go
+|  |  |  |-- hmac_key.py
+|  |  |  |-- hmac_key_server.go
+|  |  |  |-- object.py
+|  |  |  |-- object_access_control.py
+|  |  |  |-- object_access_control_server.go
+|  |  |  |-- object_server.go
+|  |  |  |-- register.go
+|  |  |-- tier2
+|  |  |  |-- alpha
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- instance.py
+|  |  |  |  |-- instance_server.go
+|  |  |  |  |-- register.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic_instance.yaml
+|  |  |-- tpu
+|  |  |  |-- BUILD
+|  |  |  |-- node.py
+|  |  |  |-- node_server.go
+|  |  |  |-- register.go
+|  |  |-- vpcaccess
+|  |  |  |-- BUILD
+|  |  |  |-- connector.py
+|  |  |  |-- connector_server.go
+|  |  |  |-- register.go
+|-- services
+|  |-- google
+|  |  |-- accesscontextmanager
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- access_level.go
+|  |  |  |-- access_level.yaml
+|  |  |  |-- access_level_internal.go
+|  |  |  |-- access_policy.go
+|  |  |  |-- access_policy.yaml
+|  |  |  |-- access_policy_internal.go
+|  |  |  |-- accesscontextmanager_utils.go
+|  |  |  |-- client.go
+|  |  |  |-- service_perimeter.go
+|  |  |  |-- service_perimeter.yaml
+|  |  |  |-- service_perimeter_internal.go
+|  |  |-- apigee
+|  |  |  |-- apigee_utils.go
+|  |  |  |-- attachment.go
+|  |  |  |-- attachment.yaml
+|  |  |  |-- attachment_internal.go
+|  |  |  |-- client.go
+|  |  |  |-- envgroup.go
+|  |  |  |-- envgroup.yaml
+|  |  |  |-- envgroup_internal.go
+|  |  |  |-- environment.go
+|  |  |  |-- environment.yaml
+|  |  |  |-- environment_internal.go
+|  |  |  |-- organization.go
+|  |  |  |-- organization.yaml
+|  |  |  |-- organization_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- apigee.serviceusage.service.json
+|  |  |  |  |-- basic.attachment.json
+|  |  |  |  |-- basic.cloudresourcemanager.project.json
+|  |  |  |  |-- basic.envgroup.json
+|  |  |  |  |-- basic.environment.json
+|  |  |  |  |-- basic.organization.json
+|  |  |  |  |-- basic_attachment.yaml
+|  |  |  |  |-- basic_envgroup.yaml
+|  |  |  |  |-- basic_environment.yaml
+|  |  |  |  |-- basic_organization.yaml
+|  |  |  |  |-- update.envgroup.json
+|  |  |  |  |-- update.environment.json
+|  |  |  |  |-- update.organization.json
+|  |  |-- apikeys
+|  |  |  |-- apikeys_utils.go
+|  |  |  |-- client.go
+|  |  |  |-- key.go
+|  |  |  |-- key.yaml
+|  |  |  |-- key_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.key.json
+|  |  |  |  |-- basic_key.yaml
+|  |  |  |  |-- update.key.json
+|  |  |-- appengine
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- appengine_utils.go
+|  |  |  |-- application.go
+|  |  |  |-- application.yaml
+|  |  |  |-- application_internal.go
+|  |  |  |-- client.go
+|  |  |  |-- domain_mapping.go
+|  |  |  |-- domain_mapping.yaml
+|  |  |  |-- domain_mapping_internal.go
+|  |  |  |-- firewall_rule.go
+|  |  |  |-- firewall_rule.yaml
+|  |  |  |-- firewall_rule_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- app_admin.iam.member.json
+|  |  |  |  |-- basic.application.json
+|  |  |  |  |-- basic.cloudbilling.project_billing_info.json
+|  |  |  |  |-- basic.cloudresourcemanager.project.json
+|  |  |  |  |-- basic.domain_mapping.json
+|  |  |  |  |-- basic.firewall_rule.json
+|  |  |  |  |-- basic.iam.member.json
+|  |  |  |  |-- basic.serviceusage.service.json
+|  |  |  |  |-- basic.version.json
+|  |  |  |  |-- basic_application.yaml
+|  |  |  |  |-- basic_domain_mapping.yaml
+|  |  |  |  |-- basic_firewall_rule.yaml
+|  |  |  |  |-- basic_version.yaml
+|  |  |  |  |-- cloudbuild.serviceusage.service.json
+|  |  |  |  |-- storage_admin.iam.member.json
+|  |  |  |  |-- update.application.json
+|  |  |  |-- version.go
+|  |  |  |-- version.yaml
+|  |  |  |-- version_internal.go
+|  |  |-- assuredworkloads
+|  |  |  |-- assuredworkloads_utils.go
+|  |  |  |-- beta
+|  |  |  |  |-- assuredworkloads_utils.go
+|  |  |  |  |-- client.go
+|  |  |  |  |-- workload.go
+|  |  |  |  |-- workload.yaml
+|  |  |  |  |-- workload_internal.go
+|  |  |  |-- client.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.workload.json
+|  |  |  |  |-- basic_workload.yaml
+|  |  |  |  |-- update.workload.json
+|  |  |  |-- workload.go
+|  |  |  |-- workload.yaml
+|  |  |  |-- workload_internal.go
+|  |  |-- bigquery
+|  |  |  |-- bigquery_utils.go
+|  |  |  |-- client.go
+|  |  |  |-- dataset.go
+|  |  |  |-- dataset.yaml
+|  |  |  |-- dataset_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.dataset.json
+|  |  |  |  |-- basic_dataset.yaml
+|  |  |  |  |-- update.dataset.json
+|  |  |-- bigqueryconnection
+|  |  |  |-- client.go
+|  |  |  |-- connection.go
+|  |  |  |-- connection.yaml
+|  |  |  |-- connection_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.connection.json
+|  |  |  |  |-- basic.serviceusage.service.json
+|  |  |  |  |-- basic.sql.database.json
+|  |  |  |  |-- basic.sql.instance.json
+|  |  |  |  |-- basic.sql.user.json
+|  |  |  |  |-- basic_connection.yaml
+|  |  |  |  |-- update.connection.json
+|  |  |-- bigqueryreservation
+|  |  |  |-- assignment.go
+|  |  |  |-- assignment.yaml
+|  |  |  |-- assignment_internal.go
+|  |  |  |-- client.go
+|  |  |  |-- reservation.go
+|  |  |  |-- reservation.yaml
+|  |  |  |-- reservation_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.assignment.json
+|  |  |  |  |-- basic.reservation.json
+|  |  |  |  |-- basic.serviceusage.service.json
+|  |  |  |  |-- basic_assignment.yaml
+|  |  |  |  |-- basic_reservation.yaml
+|  |  |-- binaryauthorization
+|  |  |  |-- attestor.go
+|  |  |  |-- attestor.yaml
+|  |  |  |-- attestor_internal.go
+|  |  |  |-- beta
+|  |  |  |  |-- attestor.go
+|  |  |  |  |-- attestor.yaml
+|  |  |  |  |-- attestor_internal.go
+|  |  |  |  |-- binaryauthorization_utils.go
+|  |  |  |  |-- client.go
+|  |  |  |  |-- policy.go
+|  |  |  |  |-- policy.yaml
+|  |  |  |  |-- policy_internal.go
+|  |  |  |-- binaryauthorization_utils.go
+|  |  |  |-- client.go
+|  |  |  |-- policy.go
+|  |  |  |-- policy.yaml
+|  |  |  |-- policy_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.attestor.json
+|  |  |  |  |-- basic.cloudbilling.project_billing_info.json
+|  |  |  |  |-- basic.cloudresourcemanager.project.json
+|  |  |  |  |-- basic.containeranalysis.note.json
+|  |  |  |  |-- basic.policy.json
+|  |  |  |  |-- basic.serviceusage.service.json
+|  |  |  |  |-- basic_attestor.yaml
+|  |  |  |  |-- basic_attestor_beta.yaml
+|  |  |  |  |-- basic_policy.yaml
+|  |  |  |  |-- basic_policy_beta.yaml
+|  |  |  |  |-- binaryauthorization.serviceusage.service.json
+|  |  |  |  |-- cluster.policy.json
+|  |  |  |  |-- cluster_policy.yaml
+|  |  |  |  |-- default.iam.binding.json
+|  |  |  |  |-- default.policy.json
+|  |  |  |  |-- default_policy.yaml
+|  |  |  |  |-- iam_policy.yaml
+|  |  |  |  |-- keyless.attestor.json
+|  |  |  |  |-- keyless_attestor.yaml
+|  |  |  |  |-- namespace.policy.json
+|  |  |  |  |-- namespace_policy.yaml
+|  |  |  |  |-- service_account.policy.json
+|  |  |  |  |-- service_account_policy.yaml
+|  |  |  |  |-- service_identity.policy.json
+|  |  |  |  |-- service_identity_policy.yaml
+|  |  |  |  |-- update.attestor.json
+|  |  |-- cloudbilling
+|  |  |  |-- client.go
+|  |  |  |-- cloudbilling_utils.go
+|  |  |  |-- project_billing_info.go
+|  |  |  |-- project_billing_info.yaml
+|  |  |  |-- project_billing_info_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.cloudresourcemanager.project.json
+|  |  |  |  |-- basic.project_billing_info.json
+|  |  |  |  |-- basic_project_billing_info.yaml
+|  |  |-- cloudbuild
+|  |  |  |-- beta
+|  |  |  |  |-- build_trigger.go
+|  |  |  |  |-- build_trigger.yaml
+|  |  |  |  |-- build_trigger_internal.go
+|  |  |  |  |-- client.go
+|  |  |  |  |-- worker_pool.go
+|  |  |  |  |-- worker_pool.yaml
+|  |  |  |  |-- worker_pool_internal.go
+|  |  |  |-- build_trigger.go
+|  |  |  |-- build_trigger.yaml
+|  |  |  |-- build_trigger_internal.go
+|  |  |  |-- client.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.compute.address.json
+|  |  |  |  |-- basic.compute.network.json
+|  |  |  |  |-- basic.servicenetworking.connection.json
+|  |  |  |  |-- basic.worker_pool.json
+|  |  |  |  |-- cloudbuild.serviceusage.service.json
+|  |  |  |  |-- other.compute.address.json
+|  |  |  |  |-- other.compute.network.json
+|  |  |  |  |-- other.servicenetworking.connection.json
+|  |  |  |  |-- update.worker_pool.json
+|  |  |  |  |-- worker_pool_instance.yaml
+|  |  |-- cloudfunctions
+|  |  |  |-- client.go
+|  |  |  |-- function.go
+|  |  |  |-- function.yaml
+|  |  |  |-- function_internal.go
+|  |  |  |-- functions_utils.go
+|  |  |-- cloudresourcemanager
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- client.go
+|  |  |  |-- folder.go
+|  |  |  |-- folder.yaml
+|  |  |  |-- folder_internal.go
+|  |  |  |-- project.go
+|  |  |  |-- project.yaml
+|  |  |  |-- project_internal.go
+|  |  |  |-- resourcemanager_utils.go
+|  |  |  |-- samples
+|  |  |  |  |-- organization.folder.json
+|  |  |  |  |-- organization_folder.yaml
+|  |  |-- cloudscheduler
+|  |  |  |-- client.go
+|  |  |  |-- job.go
+|  |  |  |-- job.yaml
+|  |  |  |-- job_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- pubsub.job.json
+|  |  |  |  |-- pubsub.pubsub.topic.json
+|  |  |  |  |-- pubsub_job.yaml
+|  |  |-- composer
+|  |  |  |-- beta
+|  |  |  |  |-- client.go
+|  |  |  |  |-- composer_utils.go
+|  |  |  |  |-- environment.go
+|  |  |  |  |-- environment.yaml
+|  |  |  |  |-- environment_internal.go
+|  |  |  |-- client.go
+|  |  |  |-- composer_utils.go
+|  |  |  |-- environment.go
+|  |  |  |-- environment.yaml
+|  |  |  |-- environment_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- appengine.serviceusage.service.json
+|  |  |  |  |-- basic.cloudbilling.project_billing_info.json
+|  |  |  |  |-- basic.cloudresourcemanager.project.json
+|  |  |  |  |-- basic.compute.network.json
+|  |  |  |  |-- basic.compute.subnetwork.json
+|  |  |  |  |-- basic.environment.json
+|  |  |  |  |-- basic.iam.service_account.json
+|  |  |  |  |-- basic_environment.yaml
+|  |  |  |  |-- composer.serviceusage.service.json
+|  |  |  |  |-- composer_worker.iam.member.json
+|  |  |  |  |-- compute.serviceusage.service.json
+|  |  |  |  |-- container.serviceusage.service.json
+|  |  |  |  |-- iam.serviceusage.service.json
+|  |  |  |  |-- service_account_user.iam.member.json
+|  |  |  |  |-- update.environment.json
+|  |  |-- compute
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- address.go
+|  |  |  |-- address.yaml
+|  |  |  |-- address_internal.go
+|  |  |  |-- autoscaler.go
+|  |  |  |-- autoscaler.yaml
+|  |  |  |-- autoscaler_internal.go
+|  |  |  |-- backend_bucket.go
+|  |  |  |-- backend_bucket.yaml
+|  |  |  |-- backend_bucket_internal.go
+|  |  |  |-- backend_service.go
+|  |  |  |-- backend_service.yaml
+|  |  |  |-- backend_service_internal.go
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- address.go
+|  |  |  |  |-- address.yaml
+|  |  |  |  |-- address_internal.go
+|  |  |  |  |-- autoscaler.go
+|  |  |  |  |-- autoscaler.yaml
+|  |  |  |  |-- autoscaler_internal.go
+|  |  |  |  |-- backend_bucket.go
+|  |  |  |  |-- backend_bucket.yaml
+|  |  |  |  |-- backend_bucket_internal.go
+|  |  |  |  |-- backend_service.go
+|  |  |  |  |-- backend_service.yaml
+|  |  |  |  |-- backend_service_internal.go
+|  |  |  |  |-- client.go
+|  |  |  |  |-- compute_utils.go
+|  |  |  |  |-- disk.go
+|  |  |  |  |-- disk.yaml
+|  |  |  |  |-- disk_internal.go
+|  |  |  |  |-- firewall.go
+|  |  |  |  |-- firewall.yaml
+|  |  |  |  |-- firewall_internal.go
+|  |  |  |  |-- firewall_policy.go
+|  |  |  |  |-- firewall_policy.yaml
+|  |  |  |  |-- firewall_policy_association.go
+|  |  |  |  |-- firewall_policy_association.yaml
+|  |  |  |  |-- firewall_policy_association_internal.go
+|  |  |  |  |-- firewall_policy_internal.go
+|  |  |  |  |-- firewall_policy_rule.go
+|  |  |  |  |-- firewall_policy_rule.yaml
+|  |  |  |  |-- firewall_policy_rule_internal.go
+|  |  |  |  |-- forwarding_rule.go
+|  |  |  |  |-- forwarding_rule.yaml
+|  |  |  |  |-- forwarding_rule_internal.go
+|  |  |  |  |-- health_check.go
+|  |  |  |  |-- health_check.yaml
+|  |  |  |  |-- health_check_internal.go
+|  |  |  |  |-- http_health_check.go
+|  |  |  |  |-- http_health_check.yaml
+|  |  |  |  |-- http_health_check_internal.go
+|  |  |  |  |-- https_health_check.go
+|  |  |  |  |-- https_health_check.yaml
+|  |  |  |  |-- https_health_check_internal.go
+|  |  |  |  |-- image.go
+|  |  |  |  |-- image.yaml
+|  |  |  |  |-- image_internal.go
+|  |  |  |  |-- instance.go
+|  |  |  |  |-- instance.yaml
+|  |  |  |  |-- instance_group_manager.go
+|  |  |  |  |-- instance_group_manager.yaml
+|  |  |  |  |-- instance_group_manager_internal.go
+|  |  |  |  |-- instance_internal.go
+|  |  |  |  |-- instance_template.go
+|  |  |  |  |-- instance_template.yaml
+|  |  |  |  |-- instance_template_internal.go
+|  |  |  |  |-- managed_ssl_certificate.go
+|  |  |  |  |-- managed_ssl_certificate.yaml
+|  |  |  |  |-- managed_ssl_certificate_internal.go
+|  |  |  |  |-- network.go
+|  |  |  |  |-- network.yaml
+|  |  |  |  |-- network_endpoint.go
+|  |  |  |  |-- network_endpoint.yaml
+|  |  |  |  |-- network_endpoint_group.go
+|  |  |  |  |-- network_endpoint_group.yaml
+|  |  |  |  |-- network_endpoint_group_internal.go
+|  |  |  |  |-- network_endpoint_internal.go
+|  |  |  |  |-- network_internal.go
+|  |  |  |  |-- reservation.go
+|  |  |  |  |-- reservation.yaml
+|  |  |  |  |-- reservation_internal.go
+|  |  |  |  |-- route.go
+|  |  |  |  |-- route.yaml
+|  |  |  |  |-- route_internal.go
+|  |  |  |  |-- router.go
+|  |  |  |  |-- router.yaml
+|  |  |  |  |-- router_internal.go
+|  |  |  |  |-- router_peer.go
+|  |  |  |  |-- router_peer.yaml
+|  |  |  |  |-- router_peer_internal.go
+|  |  |  |  |-- snapshot.go
+|  |  |  |  |-- snapshot.yaml
+|  |  |  |  |-- snapshot_internal.go
+|  |  |  |  |-- ssl_certificate.go
+|  |  |  |  |-- ssl_certificate.yaml
+|  |  |  |  |-- ssl_certificate_internal.go
+|  |  |  |  |-- ssl_policy.go
+|  |  |  |  |-- ssl_policy.yaml
+|  |  |  |  |-- ssl_policy_internal.go
+|  |  |  |  |-- subnetwork.go
+|  |  |  |  |-- subnetwork.yaml
+|  |  |  |  |-- subnetwork_internal.go
+|  |  |  |  |-- target_http_proxy.go
+|  |  |  |  |-- target_http_proxy.yaml
+|  |  |  |  |-- target_http_proxy_internal.go
+|  |  |  |  |-- target_pool.go
+|  |  |  |  |-- target_pool.yaml
+|  |  |  |  |-- target_pool_internal.go
+|  |  |  |  |-- target_ssl_proxy.go
+|  |  |  |  |-- target_ssl_proxy.yaml
+|  |  |  |  |-- target_ssl_proxy_internal.go
+|  |  |  |  |-- target_vpn_gateway.go
+|  |  |  |  |-- target_vpn_gateway.yaml
+|  |  |  |  |-- target_vpn_gateway_internal.go
+|  |  |  |  |-- url_map.go
+|  |  |  |  |-- url_map.yaml
+|  |  |  |  |-- url_map_internal.go
+|  |  |  |  |-- vpn_gateway.go
+|  |  |  |  |-- vpn_gateway.yaml
+|  |  |  |  |-- vpn_gateway_internal.go
+|  |  |  |  |-- vpn_tunnel.go
+|  |  |  |  |-- vpn_tunnel.yaml
+|  |  |  |  |-- vpn_tunnel_internal.go
+|  |  |  |-- client.go
+|  |  |  |-- compute_utils.go
+|  |  |  |-- disk.go
+|  |  |  |-- disk.yaml
+|  |  |  |-- disk_internal.go
+|  |  |  |-- firewall.go
+|  |  |  |-- firewall.yaml
+|  |  |  |-- firewall_internal.go
+|  |  |  |-- firewall_policy.go
+|  |  |  |-- firewall_policy.yaml
+|  |  |  |-- firewall_policy_association.go
+|  |  |  |-- firewall_policy_association.yaml
+|  |  |  |-- firewall_policy_association_internal.go
+|  |  |  |-- firewall_policy_internal.go
+|  |  |  |-- firewall_policy_rule.go
+|  |  |  |-- firewall_policy_rule.yaml
+|  |  |  |-- firewall_policy_rule_internal.go
+|  |  |  |-- forwarding_rule.go
+|  |  |  |-- forwarding_rule.yaml
+|  |  |  |-- forwarding_rule_internal.go
+|  |  |  |-- health_check.go
+|  |  |  |-- health_check.yaml
+|  |  |  |-- health_check_internal.go
+|  |  |  |-- http_health_check.go
+|  |  |  |-- http_health_check.yaml
+|  |  |  |-- http_health_check_internal.go
+|  |  |  |-- https_health_check.go
+|  |  |  |-- https_health_check.yaml
+|  |  |  |-- https_health_check_internal.go
+|  |  |  |-- image.go
+|  |  |  |-- image.yaml
+|  |  |  |-- image_internal.go
+|  |  |  |-- instance.go
+|  |  |  |-- instance.yaml
+|  |  |  |-- instance_group_manager.go
+|  |  |  |-- instance_group_manager.yaml
+|  |  |  |-- instance_group_manager_internal.go
+|  |  |  |-- instance_internal.go
+|  |  |  |-- instance_template.go
+|  |  |  |-- instance_template.yaml
+|  |  |  |-- instance_template_internal.go
+|  |  |  |-- interconnect.go
+|  |  |  |-- interconnect.yaml
+|  |  |  |-- interconnect_internal.go
+|  |  |  |-- managed_ssl_certificate.go
+|  |  |  |-- managed_ssl_certificate.yaml
+|  |  |  |-- managed_ssl_certificate_internal.go
+|  |  |  |-- network.go
+|  |  |  |-- network.yaml
+|  |  |  |-- network_endpoint.go
+|  |  |  |-- network_endpoint.yaml
+|  |  |  |-- network_endpoint_group.go
+|  |  |  |-- network_endpoint_group.yaml
+|  |  |  |-- network_endpoint_group_internal.go
+|  |  |  |-- network_endpoint_internal.go
+|  |  |  |-- network_internal.go
+|  |  |  |-- reservation.go
+|  |  |  |-- reservation.yaml
+|  |  |  |-- reservation_internal.go
+|  |  |  |-- route.go
+|  |  |  |-- route.yaml
+|  |  |  |-- route_internal.go
+|  |  |  |-- router.go
+|  |  |  |-- router.yaml
+|  |  |  |-- router_internal.go
+|  |  |  |-- router_peer.go
+|  |  |  |-- router_peer.yaml
+|  |  |  |-- router_peer_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- allow.firewall.json
+|  |  |  |  |-- allow_firewall.yaml
+|  |  |  |  |-- basic.backend_bucket.json
+|  |  |  |  |-- basic.forwarding_rule.json
+|  |  |  |  |-- basic.http_health_check.json
+|  |  |  |  |-- basic.https_health_check.json
+|  |  |  |  |-- basic.image.json
+|  |  |  |  |-- basic.instance.json
+|  |  |  |  |-- basic.instance_template.json
+|  |  |  |  |-- basic.managed_ssl_certificate.json
+|  |  |  |  |-- basic.network.json
+|  |  |  |  |-- basic.router.json
+|  |  |  |  |-- basic.ssl_certificate.json
+|  |  |  |  |-- basic.storage.bucket.json
+|  |  |  |  |-- basic.subnetwork.json
+|  |  |  |  |-- basic.target_http_proxy.json
+|  |  |  |  |-- basic.target_pool.json
+|  |  |  |  |-- basic_firewall_policy_association.yaml
+|  |  |  |  |-- basic_forwarding_rule.yaml
+|  |  |  |  |-- basic_instance.yaml
+|  |  |  |  |-- basic_instance_template.yaml
+|  |  |  |  |-- basic_managed_ssl_certificate.yaml
+|  |  |  |  |-- basic_network.yaml
+|  |  |  |  |-- basic_router.yaml
+|  |  |  |  |-- basic_ssl_certificate.yaml
+|  |  |  |  |-- basic_subnetwork.yaml
+|  |  |  |  |-- basic_target_http_proxy.yaml
+|  |  |  |  |-- compute.serviceusage.service.json
+|  |  |  |  |-- first.instance_template.json
+|  |  |  |  |-- first.target_pool.json
+|  |  |  |  |-- first.url_map.json
+|  |  |  |  |-- fixed.instance_group_manager.json
+|  |  |  |  |-- fixed_instance_group_manager.yaml
+|  |  |  |  |-- folder.cloudbilling.project_billing_info.json
+|  |  |  |  |-- folder.cloudresourcemanager.folder.json
+|  |  |  |  |-- folder.cloudresourcemanager.project.json
+|  |  |  |  |-- folder.firewall_policy.json
+|  |  |  |  |-- folder.firewall_policy_association.json
+|  |  |  |  |-- folder.firewall_policy_rule.json
+|  |  |  |  |-- folder.network.json
+|  |  |  |  |-- folder2_firewall_policy.yaml
+|  |  |  |  |-- folder_compute.iam.member.json
+|  |  |  |  |-- folder_firewall.iam.member.json
+|  |  |  |  |-- folder_firewall_policy.yaml
+|  |  |  |  |-- global.address.json
+|  |  |  |  |-- global.backend_service.json
+|  |  |  |  |-- global.managed_ssl_certificate.json
+|  |  |  |  |-- global.ssl_certificate.json
+|  |  |  |  |-- global_address.yaml
+|  |  |  |  |-- global_backend_service.yaml
+|  |  |  |  |-- global_managed_ssl_certificate.yaml
+|  |  |  |  |-- global_ssl_certificate.yaml
+|  |  |  |  |-- health_check.target_pool.json
+|  |  |  |  |-- health_check_target_pool.yaml
+|  |  |  |  |-- http.health_check.json
+|  |  |  |  |-- https.health_check.json
+|  |  |  |  |-- iam_instance.yaml
+|  |  |  |  |-- instance.iam.binding.json
+|  |  |  |  |-- instance.target_pool.json
+|  |  |  |  |-- instance_target_pool.yaml
+|  |  |  |  |-- internal.address.json
+|  |  |  |  |-- internal_address.yaml
+|  |  |  |  |-- organization.firewall_policy.json
+|  |  |  |  |-- organization_firewall_policy.yaml
+|  |  |  |  |-- regional.address.json
+|  |  |  |  |-- regional.autoscaler.json
+|  |  |  |  |-- regional.backend_service.json
+|  |  |  |  |-- regional.cloudfunctions.function.json
+|  |  |  |  |-- regional.disk.json
+|  |  |  |  |-- regional.instance_group_manager.json
+|  |  |  |  |-- regional.managed_ssl_certificate.json
+|  |  |  |  |-- regional.network_endpoint_group.json
+|  |  |  |  |-- regional.ssl_certificate.json
+|  |  |  |  |-- regional_address.yaml
+|  |  |  |  |-- regional_autoscaler.yaml
+|  |  |  |  |-- regional_backend_service.yaml
+|  |  |  |  |-- regional_disk.yaml
+|  |  |  |  |-- regional_instance_group_manager.yaml
+|  |  |  |  |-- regional_managed_ssl_certificate.yaml
+|  |  |  |  |-- regional_network_endpoint_group.yaml
+|  |  |  |  |-- regional_ssl_certificate.yaml
+|  |  |  |  |-- second.instance_template.json
+|  |  |  |  |-- second.target_pool.json
+|  |  |  |  |-- second.url_map.json
+|  |  |  |  |-- simple.subnetwork.json
+|  |  |  |  |-- update.firewall_policy.json
+|  |  |  |  |-- update.firewall_policy_rule.json
+|  |  |  |  |-- update.instance.json
+|  |  |  |  |-- update.instance_template.json
+|  |  |  |  |-- update.managed_ssl_certificate.json
+|  |  |  |  |-- update.network.json
+|  |  |  |  |-- update.router.json
+|  |  |  |  |-- update.target_http_proxy.json
+|  |  |  |  |-- update_allow.firewall.json
+|  |  |  |  |-- update_fixed.instance_group_manager.json
+|  |  |  |  |-- update_folder.firewall_policy.json
+|  |  |  |  |-- update_folder.firewall_policy_rule.json
+|  |  |  |  |-- update_folder.network.json
+|  |  |  |  |-- update_folder2.firewall_policy_rule.json
+|  |  |  |  |-- update_global.backend_service.json
+|  |  |  |  |-- update_organization.firewall_policy.json
+|  |  |  |  |-- update_regional.autoscaler.json
+|  |  |  |  |-- update_regional.backend_service.json
+|  |  |  |  |-- update_regional.disk.json
+|  |  |  |  |-- update_regional.instance_group_manager.json
+|  |  |  |  |-- update_zonal.autoscaler.json
+|  |  |  |  |-- update_zonal.disk.json
+|  |  |  |  |-- update_zonal.instance_group_manager.json
+|  |  |  |  |-- zonal.autoscaler.json
+|  |  |  |  |-- zonal.disk.json
+|  |  |  |  |-- zonal.instance_group_manager.json
+|  |  |  |  |-- zonal.network_endpoint.json
+|  |  |  |  |-- zonal.network_endpoint_group.json
+|  |  |  |  |-- zonal_autoscaler.yaml
+|  |  |  |  |-- zonal_disk.yaml
+|  |  |  |  |-- zonal_instance_group_manager.yaml
+|  |  |  |  |-- zonal_network_endpoint_group.yaml
+|  |  |  |-- snapshot.go
+|  |  |  |-- snapshot.yaml
+|  |  |  |-- snapshot_internal.go
+|  |  |  |-- ssl_certificate.go
+|  |  |  |-- ssl_certificate.yaml
+|  |  |  |-- ssl_certificate_internal.go
+|  |  |  |-- ssl_policy.go
+|  |  |  |-- ssl_policy.yaml
+|  |  |  |-- ssl_policy_internal.go
+|  |  |  |-- subnetwork.go
+|  |  |  |-- subnetwork.yaml
+|  |  |  |-- subnetwork_internal.go
+|  |  |  |-- target_http_proxy.go
+|  |  |  |-- target_http_proxy.yaml
+|  |  |  |-- target_http_proxy_internal.go
+|  |  |  |-- target_pool.go
+|  |  |  |-- target_pool.yaml
+|  |  |  |-- target_pool_internal.go
+|  |  |  |-- target_ssl_proxy.go
+|  |  |  |-- target_ssl_proxy.yaml
+|  |  |  |-- target_ssl_proxy_internal.go
+|  |  |  |-- target_vpn_gateway.go
+|  |  |  |-- target_vpn_gateway.yaml
+|  |  |  |-- target_vpn_gateway_internal.go
+|  |  |  |-- url_map.go
+|  |  |  |-- url_map.yaml
+|  |  |  |-- url_map_internal.go
+|  |  |  |-- vpn_gateway.go
+|  |  |  |-- vpn_gateway.yaml
+|  |  |  |-- vpn_gateway_internal.go
+|  |  |  |-- vpn_tunnel.go
+|  |  |  |-- vpn_tunnel.yaml
+|  |  |  |-- vpn_tunnel_internal.go
+|  |  |-- container
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- client.go
+|  |  |  |  |-- cluster.go
+|  |  |  |  |-- cluster.yaml
+|  |  |  |  |-- cluster_internal.go
+|  |  |  |  |-- container_utils.go
+|  |  |  |  |-- node_pool.go
+|  |  |  |  |-- node_pool.yaml
+|  |  |  |  |-- node_pool_internal.go
+|  |  |  |-- client.go
+|  |  |  |-- cluster.go
+|  |  |  |-- cluster.yaml
+|  |  |  |-- cluster_internal.go
+|  |  |  |-- container_utils.go
+|  |  |  |-- node_pool.go
+|  |  |  |-- node_pool.yaml
+|  |  |  |-- node_pool_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- autopilot.cluster.json
+|  |  |  |  |-- autopilot.serviceusage.service.json
+|  |  |  |  |-- autopilot_cluster.yaml
+|  |  |  |  |-- autoscaling.cluster.json
+|  |  |  |  |-- autoscaling.node_pool.json
+|  |  |  |  |-- autoscaling_cluster.yaml
+|  |  |  |  |-- autoscaling_node_pool.yaml
+|  |  |  |  |-- basic.cluster.json
+|  |  |  |  |-- basic.node_pool.json
+|  |  |  |  |-- basic_cluster.yaml
+|  |  |  |  |-- basic_node_pool.yaml
+|  |  |  |  |-- master_version.cluster.json
+|  |  |  |  |-- master_version_cluster.yaml
+|  |  |  |  |-- update.cluster.json
+|  |  |  |  |-- update_autopilot.cluster.json
+|  |  |  |  |-- update_master_version.cluster.json
+|  |  |-- containeranalysis
+|  |  |  |-- beta
+|  |  |  |  |-- client.go
+|  |  |  |  |-- containeranalysis_util.go
+|  |  |  |  |-- note.go
+|  |  |  |  |-- note.yaml
+|  |  |  |  |-- note_internal.go
+|  |  |  |-- client.go
+|  |  |  |-- containeranalysis_util.go
+|  |  |  |-- note.go
+|  |  |  |-- note.yaml
+|  |  |  |-- note_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.note.json
+|  |  |  |  |-- basic_note.yaml
+|  |  |  |  |-- update.note.json
+|  |  |-- datafusion
+|  |  |  |-- beta
+|  |  |  |  |-- client.go
+|  |  |  |  |-- instance.go
+|  |  |  |  |-- instance.yaml
+|  |  |  |  |-- instance_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.cloudbilling.project_billing_info.json
+|  |  |  |  |-- basic.cloudresourcemanager.project.json
+|  |  |  |  |-- basic.compute.network.json
+|  |  |  |  |-- basic.instance.json
+|  |  |  |  |-- basic_instance.yaml
+|  |  |  |  |-- compute.serviceusage.service.json
+|  |  |  |  |-- datafusion.serviceusage.service.json
+|  |  |  |  |-- update.instance.json
+|  |  |-- dataproc
+|  |  |  |-- autoscaling_policy.go
+|  |  |  |-- autoscaling_policy.yaml
+|  |  |  |-- autoscaling_policy_internal.go
+|  |  |  |-- beta
+|  |  |  |  |-- autoscaling_policy.go
+|  |  |  |  |-- autoscaling_policy.yaml
+|  |  |  |  |-- autoscaling_policy_internal.go
+|  |  |  |  |-- client.go
+|  |  |  |  |-- cluster.go
+|  |  |  |  |-- cluster.yaml
+|  |  |  |  |-- cluster_internal.go
+|  |  |  |  |-- dataproc_utils.go
+|  |  |  |  |-- job.go
+|  |  |  |  |-- job.yaml
+|  |  |  |  |-- job_internal.go
+|  |  |  |  |-- workflow_template.go
+|  |  |  |  |-- workflow_template.yaml
+|  |  |  |  |-- workflow_template_internal.go
+|  |  |  |-- client.go
+|  |  |  |-- cluster.go
+|  |  |  |-- cluster.yaml
+|  |  |  |-- cluster_internal.go
+|  |  |  |-- dataproc_utils.go
+|  |  |  |-- job.go
+|  |  |  |-- job.yaml
+|  |  |  |-- job_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.autoscaling_policy.json
+|  |  |  |  |-- basic.cluster.json
+|  |  |  |  |-- basic.compute.network.json
+|  |  |  |  |-- basic.compute.subnetwork.json
+|  |  |  |  |-- basic.job.json
+|  |  |  |  |-- basic.workflow_template.json
+|  |  |  |  |-- basic_autoscaling_policy.yaml
+|  |  |  |  |-- basic_cluster.yaml
+|  |  |  |  |-- basic_job.yaml
+|  |  |  |  |-- basic_workflow_template.yaml
+|  |  |  |  |-- complex.cluster.json
+|  |  |  |  |-- complex_cluster.yaml
+|  |  |  |  |-- kcc.cluster.json
+|  |  |  |  |-- kcc.workflow_template.json
+|  |  |  |  |-- kcc_cluster.yaml
+|  |  |  |  |-- kcc_workflow_template.yaml
+|  |  |  |  |-- kccupdate.cluster.json
+|  |  |  |  |-- lots_of_config.cluster.json
+|  |  |  |  |-- lots_of_config_cluster.yaml
+|  |  |  |  |-- tf.workflow_template.json
+|  |  |  |  |-- tf_workflow_template.yaml
+|  |  |  |  |-- update.autoscaling_policy.json
+|  |  |  |  |-- update.job.json
+|  |  |  |-- workflow_template.go
+|  |  |  |-- workflow_template.yaml
+|  |  |  |-- workflow_template_internal.go
+|  |  |-- datastore
+|  |  |  |-- client.go
+|  |  |  |-- index.go
+|  |  |  |-- index.yaml
+|  |  |  |-- index_internal.go
+|  |  |-- dns
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- client.go
+|  |  |  |-- dns_utils.go
+|  |  |  |-- managed_zone.go
+|  |  |  |-- managed_zone.yaml
+|  |  |  |-- managed_zone_internal.go
+|  |  |  |-- resource_record_set.go
+|  |  |  |-- resource_record_set.yaml
+|  |  |  |-- resource_record_set_internal.go
+|  |  |-- eventarc
+|  |  |  |-- beta
+|  |  |  |  |-- client.go
+|  |  |  |  |-- trigger.go
+|  |  |  |  |-- trigger.yaml
+|  |  |  |  |-- trigger_internal.go
+|  |  |  |-- client.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.pubsub.topic.json
+|  |  |  |  |-- basic.trigger.json
+|  |  |  |  |-- basic_trigger.yaml
+|  |  |  |  |-- basicservice.run.service.json
+|  |  |  |  |-- pubsub.trigger.json
+|  |  |  |  |-- pubsub_trigger.yaml
+|  |  |  |  |-- secondservice.run.service.json
+|  |  |  |  |-- update.trigger.json
+|  |  |  |-- trigger.go
+|  |  |  |-- trigger.yaml
+|  |  |  |-- trigger_internal.go
+|  |  |-- file
+|  |  |  |-- beta
+|  |  |  |  |-- backup.go
+|  |  |  |  |-- backup.yaml
+|  |  |  |  |-- backup_internal.go
+|  |  |  |  |-- client.go
+|  |  |  |  |-- file_utils.go
+|  |  |  |  |-- instance.go
+|  |  |  |  |-- instance.yaml
+|  |  |  |  |-- instance_internal.go
+|  |  |  |-- client.go
+|  |  |  |-- file_utils.go
+|  |  |  |-- instance.go
+|  |  |  |-- instance.yaml
+|  |  |  |-- instance_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.backup.json
+|  |  |  |  |-- basic.compute.network.json
+|  |  |  |  |-- basic.instance.json
+|  |  |  |  |-- basic_backup.yaml
+|  |  |  |  |-- basic_instance.yaml
+|  |  |  |  |-- file.serviceusage.service.json
+|  |  |  |  |-- noadmin.instance.json
+|  |  |  |  |-- noadmin_create_instance.yaml
+|  |  |  |  |-- update.backup.json
+|  |  |  |  |-- update.instance.json
+|  |  |-- gameservices
+|  |  |  |-- client.go
+|  |  |  |-- realm.go
+|  |  |  |-- realm.yaml
+|  |  |  |-- realm_internal.go
+|  |  |-- gkehub
+|  |  |  |-- beta
+|  |  |  |  |-- client.go
+|  |  |  |  |-- feature.go
+|  |  |  |  |-- feature.yaml
+|  |  |  |  |-- feature_internal.go
+|  |  |  |  |-- feature_membership.go
+|  |  |  |  |-- feature_membership.yaml
+|  |  |  |  |-- feature_membership_internal.go
+|  |  |  |  |-- hub_utils.go
+|  |  |  |  |-- membership.go
+|  |  |  |  |-- membership.yaml
+|  |  |  |  |-- membership_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- acm.feature.json
+|  |  |  |  |-- acm.feature_membership.json
+|  |  |  |  |-- acm_feature_membership.yaml
+|  |  |  |  |-- anthosconfigmanagement.serviceusage.service.json
+|  |  |  |  |-- basic.cloudbilling.project_billing_info.json
+|  |  |  |  |-- basic.cloudresourcemanager.project.json
+|  |  |  |  |-- basic.membership.json
+|  |  |  |  |-- basic_membership.yaml
+|  |  |  |  |-- basicservice.container.cluster.json
+|  |  |  |  |-- container.serviceusage.service.json
+|  |  |  |  |-- first.container.cluster.json
+|  |  |  |  |-- first.membership.json
+|  |  |  |  |-- gkehub.serviceusage.service.json
+|  |  |  |  |-- mci.feature.json
+|  |  |  |  |-- mci_feature.yaml
+|  |  |  |  |-- mcsd.feature.json
+|  |  |  |  |-- mcsd_feature.yaml
+|  |  |  |  |-- multiclusteringress.serviceusage.service.json
+|  |  |  |  |-- multiclusterservicediscovery.serviceusage.service.json
+|  |  |  |  |-- second.container.cluster.json
+|  |  |  |  |-- second.membership.json
+|  |  |  |  |-- secondservice.container.cluster.json
+|  |  |  |  |-- update.container.cluster.json
+|  |  |  |  |-- update.membership.json
+|  |  |  |  |-- update_acm.feature.json
+|  |  |  |  |-- update_acm.feature_membership.json
+|  |  |  |  |-- update_mci.feature.json
+|  |  |  |  |-- update_mcsd.feature.json
+|  |  |  |  |-- updateservice.container.cluster.json
+|  |  |-- iam
+|  |  |  |-- client.go
+|  |  |  |-- iam.go
+|  |  |  |-- iam_utils.go
+|  |  |  |-- role.go
+|  |  |  |-- role.yaml
+|  |  |  |-- role_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.service_account.json
+|  |  |  |  |-- basic_service_account.yaml
+|  |  |  |  |-- organization.role.json
+|  |  |  |  |-- organization_role.yaml
+|  |  |  |-- service_account.go
+|  |  |  |-- service_account.yaml
+|  |  |  |-- service_account_internal.go
+|  |  |-- iap
+|  |  |  |-- brand.go
+|  |  |  |-- brand.yaml
+|  |  |  |-- brand_internal.go
+|  |  |  |-- client.go
+|  |  |  |-- iap_utils.go
+|  |  |  |-- identity_aware_proxy_client.go
+|  |  |  |-- identity_aware_proxy_client.yaml
+|  |  |  |-- identity_aware_proxy_client_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.brand.json
+|  |  |  |  |-- basic.cloudresourcemanager.project.json
+|  |  |  |  |-- basic.identity_aware_proxy_client.json
+|  |  |  |  |-- basic.serviceusage.service.json
+|  |  |  |  |-- basic_brand.yaml
+|  |  |  |  |-- basic_client.yaml
+|  |  |-- identitytoolkit
+|  |  |  |-- client.go
+|  |  |  |-- identitytoolkit_utils.go
+|  |  |  |-- oauth_idp_config.go
+|  |  |  |-- oauth_idp_config.yaml
+|  |  |  |-- oauth_idp_config_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.oauth_idp_config.json
+|  |  |  |  |-- basic.serviceusage.service.json
+|  |  |  |  |-- basic.tenant.json
+|  |  |  |  |-- basic.tenant_oauth_idp_config.json
+|  |  |  |  |-- basic_oauth_idp_config.yaml
+|  |  |  |  |-- basic_tenant.yaml
+|  |  |  |  |-- basic_tenant_oauth_idp_config.yaml
+|  |  |  |  |-- update.oauth_idp_config.json
+|  |  |  |  |-- update.tenant.json
+|  |  |  |  |-- update.tenant_oauth_idp_config.json
+|  |  |  |-- tenant.go
+|  |  |  |-- tenant.yaml
+|  |  |  |-- tenant_internal.go
+|  |  |  |-- tenant_oauth_idp_config.go
+|  |  |  |-- tenant_oauth_idp_config.yaml
+|  |  |  |-- tenant_oauth_idp_config_internal.go
+|  |  |-- krmapihosting
+|  |  |  |-- alpha
+|  |  |  |  |-- client.go
+|  |  |  |  |-- krm_api_host.go
+|  |  |  |  |-- krm_api_host.yaml
+|  |  |  |  |-- krm_api_host_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.krm_api_host.json
+|  |  |  |  |-- basic_krmapihost.yaml
+|  |  |-- logging
+|  |  |  |-- client.go
+|  |  |  |-- log_bucket.go
+|  |  |  |-- log_bucket.yaml
+|  |  |  |-- log_bucket_internal.go
+|  |  |  |-- log_exclusion.go
+|  |  |  |-- log_exclusion.yaml
+|  |  |  |-- log_exclusion_internal.go
+|  |  |  |-- log_metric.go
+|  |  |  |-- log_metric.yaml
+|  |  |  |-- log_metric_internal.go
+|  |  |  |-- logging_utils.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.log_metric.json
+|  |  |  |  |-- basic_metric.yaml
+|  |  |  |  |-- basic_metric_beta.yaml
+|  |  |  |  |-- billing_account.log_bucket.json
+|  |  |  |  |-- billing_account.log_exclusion.json
+|  |  |  |  |-- billing_account_exclusion.yaml
+|  |  |  |  |-- explicit.log_metric.json
+|  |  |  |  |-- explicit_metric.yaml
+|  |  |  |  |-- exponential.log_metric.json
+|  |  |  |  |-- exponential_metric.yaml
+|  |  |  |  |-- folder.cloudresourcemanager.folder.json
+|  |  |  |  |-- folder.iam.member.json
+|  |  |  |  |-- folder.log_bucket.json
+|  |  |  |  |-- folder.log_exclusion.json
+|  |  |  |  |-- folder_exclusion.yaml
+|  |  |  |  |-- folder_logging_admin.iam.member.json
+|  |  |  |  |-- int.log_metric.json
+|  |  |  |  |-- int_metric.yaml
+|  |  |  |  |-- linear.log_metric.json
+|  |  |  |  |-- linear_metric.yaml
+|  |  |  |  |-- linear_metric_beta.yaml
+|  |  |  |  |-- organization.log_bucket.json
+|  |  |  |  |-- organization.log_exclusion.json
+|  |  |  |  |-- organization_exclusion.yaml
+|  |  |  |  |-- project.cloudbilling.project_billing_info.json
+|  |  |  |  |-- project.cloudresourcemanager.project.json
+|  |  |  |  |-- project.log_bucket.json
+|  |  |  |  |-- project.log_exclusion.json
+|  |  |  |  |-- project_bucket.yaml
+|  |  |  |  |-- project_exclusion.yaml
+|  |  |  |  |-- project_logging_admin.iam.member.json
+|  |  |  |  |-- update.log_metric.json
+|  |  |  |  |-- update_explicit.log_metric.json
+|  |  |  |  |-- update_exponential.log_metric.json
+|  |  |  |  |-- update_linear.log_metric.json
+|  |  |  |  |-- update_project.log_bucket.json
+|  |  |  |  |-- update_project.log_exclusion.json
+|  |  |-- monitoring
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- alert_policy.go
+|  |  |  |-- alert_policy.yaml
+|  |  |  |-- alert_policy_internal.go
+|  |  |  |-- client.go
+|  |  |  |-- dashboard.go
+|  |  |  |-- dashboard.yaml
+|  |  |  |-- dashboard_internal.go
+|  |  |  |-- group.go
+|  |  |  |-- group.yaml
+|  |  |  |-- group_internal.go
+|  |  |  |-- metric_descriptor.go
+|  |  |  |-- metric_descriptor.yaml
+|  |  |  |-- metric_descriptor_internal.go
+|  |  |  |-- monitoring_utils.go
+|  |  |  |-- notification_channel.go
+|  |  |  |-- notification_channel.yaml
+|  |  |  |-- notification_channel_internal.go
+|  |  |  |-- operations.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.dashboard.json
+|  |  |  |  |-- basic.metric_descriptor.json
+|  |  |  |  |-- basic.uptime_check_config.json
+|  |  |  |  |-- basic_dashboard.yaml
+|  |  |  |  |-- basic_metric_descriptor.yaml
+|  |  |  |  |-- basic_uptime_check_config.yaml
+|  |  |  |  |-- update.uptime_check_config.json
+|  |  |  |  |-- update_1.dashboard.json
+|  |  |  |  |-- update_2.dashboard.json
+|  |  |  |-- uptime_check_config.go
+|  |  |  |-- uptime_check_config.yaml
+|  |  |  |-- uptime_check_config_internal.go
+|  |  |-- networksecurity
+|  |  |  |-- alpha
+|  |  |  |  |-- authorization_policy.go
+|  |  |  |  |-- authorization_policy.yaml
+|  |  |  |  |-- authorization_policy_internal.go
+|  |  |  |  |-- client.go
+|  |  |  |  |-- client_tls_policy.go
+|  |  |  |  |-- client_tls_policy.yaml
+|  |  |  |  |-- client_tls_policy_internal.go
+|  |  |  |  |-- server_tls_policy.go
+|  |  |  |  |-- server_tls_policy.yaml
+|  |  |  |  |-- server_tls_policy_internal.go
+|  |  |  |-- beta
+|  |  |  |  |-- authorization_policy.go
+|  |  |  |  |-- authorization_policy.yaml
+|  |  |  |  |-- authorization_policy_internal.go
+|  |  |  |  |-- client.go
+|  |  |  |  |-- client_tls_policy.go
+|  |  |  |  |-- client_tls_policy.yaml
+|  |  |  |  |-- client_tls_policy_internal.go
+|  |  |  |  |-- server_tls_policy.go
+|  |  |  |  |-- server_tls_policy.yaml
+|  |  |  |  |-- server_tls_policy_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.authorization_policy.json
+|  |  |  |  |-- basic.client_tls_policy.json
+|  |  |  |  |-- basic.server_tls_policy.json
+|  |  |  |  |-- basic_authorization_policy.yaml
+|  |  |  |  |-- basic_client_tls_policy.yaml
+|  |  |  |  |-- basic_server_tls_policy.yaml
+|  |  |  |  |-- kcc_authorization_policy.yaml
+|  |  |  |  |-- kccbasic.authorization_policy.json
+|  |  |  |  |-- kccupdate.authorization_policy.json
+|  |  |  |  |-- networksecurity.serviceusage.service.json
+|  |  |  |  |-- update.authorization_policy.json
+|  |  |  |  |-- update.client_tls_policy.json
+|  |  |  |  |-- update.server_tls_policy.json
+|  |  |-- networkservices
+|  |  |  |-- alpha
+|  |  |  |  |-- client.go
+|  |  |  |  |-- endpoint_config_selector.go
+|  |  |  |  |-- endpoint_config_selector.yaml
+|  |  |  |  |-- endpoint_config_selector_internal.go
+|  |  |  |  |-- http_filter.go
+|  |  |  |  |-- http_filter.yaml
+|  |  |  |  |-- http_filter_internal.go
+|  |  |  |-- beta
+|  |  |  |  |-- client.go
+|  |  |  |  |-- endpoint_policy.go
+|  |  |  |  |-- endpoint_policy.yaml
+|  |  |  |  |-- endpoint_policy_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.endpoint_config_selector.json
+|  |  |  |  |-- basic.endpoint_policy.json
+|  |  |  |  |-- basic.http_filter.json
+|  |  |  |  |-- basic.networksecurity.authorization_policy.json
+|  |  |  |  |-- basic.networksecurity.client_tls_policy.json
+|  |  |  |  |-- basic.networksecurity.server_tls_policy.json
+|  |  |  |  |-- basic_endpoint_config_selector.yaml
+|  |  |  |  |-- basic_endpoint_policy.yaml
+|  |  |  |  |-- first.http_filter.json
+|  |  |  |  |-- first.networksecurity.authorization_policy.json
+|  |  |  |  |-- first.networksecurity.client_tls_policy.json
+|  |  |  |  |-- first.networksecurity.server_tls_policy.json
+|  |  |  |  |-- second.http_filter.json
+|  |  |  |  |-- second.networksecurity.authorization_policy.json
+|  |  |  |  |-- second.networksecurity.client_tls_policy.json
+|  |  |  |  |-- second.networksecurity.server_tls_policy.json
+|  |  |  |  |-- update_1.endpoint_config_selector.json
+|  |  |  |  |-- update_1.endpoint_policy.json
+|  |  |  |  |-- update_2.endpoint_config_selector.json
+|  |  |  |  |-- update_2.endpoint_policy.json
+|  |  |-- osconfig
+|  |  |  |-- alpha
+|  |  |  |  |-- client.go
+|  |  |  |  |-- os_policy_assignment.go
+|  |  |  |  |-- os_policy_assignment.yaml
+|  |  |  |  |-- os_policy_assignment_internal.go
+|  |  |  |  |-- osconfig_alpha_utils.go
+|  |  |  |-- beta
+|  |  |  |  |-- client.go
+|  |  |  |  |-- guest_policy.go
+|  |  |  |  |-- guest_policy.yaml
+|  |  |  |  |-- guest_policy_internal.go
+|  |  |  |  |-- osconfig_beta_utils.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.compute.instance.json
+|  |  |  |  |-- basic.guest_policy.json
+|  |  |  |  |-- basic.os_policy_assignment.json
+|  |  |  |  |-- basic_guest_policy.yaml
+|  |  |  |  |-- basic_os_policy_assignment.yaml
+|  |  |  |  |-- complex.guest_policy.json
+|  |  |  |  |-- complex_guest_policy.yaml
+|  |  |  |  |-- fixed.os_policy_assignment.json
+|  |  |  |  |-- fixed_os_policy_assignment.yaml
+|  |  |  |  |-- osconfig.serviceusage.service.json
+|  |  |  |  |-- percent.os_policy_assignment.json
+|  |  |  |  |-- percent_os_policy_assignment.yaml
+|  |  |  |  |-- update.os_policy_assignment.json
+|  |  |  |  |-- update_fixed.os_policy_assignment.json
+|  |  |  |  |-- update_percent.os_policy_assignment.json
+|  |  |-- privateca
+|  |  |  |-- beta
+|  |  |  |  |-- certificate_authority.go
+|  |  |  |  |-- certificate_authority.yaml
+|  |  |  |  |-- certificate_authority_internal.go
+|  |  |  |  |-- client.go
+|  |  |  |  |-- privateca_utils.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.certificate_authority.json
+|  |  |  |  |-- basic_certificate_authority.yaml
+|  |  |-- pubsub
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- client.go
+|  |  |  |-- pubsub_utils.go
+|  |  |  |-- subscription.go
+|  |  |  |-- subscription.yaml
+|  |  |  |-- subscription_internal.go
+|  |  |  |-- topic.go
+|  |  |  |-- topic.yaml
+|  |  |  |-- topic_internal.go
+|  |  |-- pubsublite
+|  |  |  |-- client.go
+|  |  |  |-- pubsublite_utils.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.pubsublite.topic.json
+|  |  |  |  |-- basic.serviceusage.service.json
+|  |  |  |  |-- basic.subscription.json
+|  |  |  |  |-- basic_subscription.yaml
+|  |  |  |  |-- update.subscription.json
+|  |  |  |-- subscription.go
+|  |  |  |-- subscription.yaml
+|  |  |  |-- subscription_internal.go
+|  |  |  |-- topic.go
+|  |  |  |-- topic.yaml
+|  |  |  |-- topic_internal.go
+|  |  |-- redis
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- client.go
+|  |  |  |  |-- instance.go
+|  |  |  |  |-- instance.yaml
+|  |  |  |  |-- instance_internal.go
+|  |  |  |-- client.go
+|  |  |  |-- instance.go
+|  |  |  |-- instance.yaml
+|  |  |  |-- instance_internal.go
+|  |  |-- run
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- client.go
+|  |  |  |-- run_utils.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.service.json
+|  |  |  |  |-- basic_service.yaml
+|  |  |  |  |-- update.service.json
+|  |  |  |-- service.go
+|  |  |  |-- service.yaml
+|  |  |  |-- service_internal.go
+|  |  |-- runtimeconfig
+|  |  |  |-- beta
+|  |  |  |  |-- client.go
+|  |  |  |  |-- config.go
+|  |  |  |  |-- config.yaml
+|  |  |  |  |-- config_internal.go
+|  |  |  |  |-- variable.go
+|  |  |  |  |-- variable.yaml
+|  |  |  |  |-- variable_internal.go
+|  |  |-- servicemanagement
+|  |  |  |-- client.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.appengine.application.json
+|  |  |  |  |-- basic.cloudresourcemanager.project.json
+|  |  |  |  |-- basic.service.json
+|  |  |  |  |-- basic_service.yaml
+|  |  |  |-- service.go
+|  |  |  |-- service.yaml
+|  |  |  |-- service_internal.go
+|  |  |-- servicenetworking
+|  |  |  |-- client.go
+|  |  |  |-- connection.go
+|  |  |  |-- connection.yaml
+|  |  |  |-- connection_internal.go
+|  |  |  |-- servicenetworking_utils.go
+|  |  |-- serviceusage
+|  |  |  |-- client.go
+|  |  |  |-- samples
+|  |  |  |  |-- drive.service.json
+|  |  |  |  |-- drive_service.yaml
+|  |  |  |-- service.go
+|  |  |  |-- service.yaml
+|  |  |  |-- service_internal.go
+|  |  |  |-- serviceusage_utils.go
+|  |  |-- sourcerepo
+|  |  |  |-- client.go
+|  |  |  |-- repo.go
+|  |  |  |-- repo.yaml
+|  |  |  |-- repo_internal.go
+|  |  |  |-- sourcerepo_utils.go
+|  |  |-- spanner
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- client.go
+|  |  |  |-- database.go
+|  |  |  |-- database.yaml
+|  |  |  |-- database_internal.go
+|  |  |  |-- instance.go
+|  |  |  |-- instance.yaml
+|  |  |  |-- instance_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.database.json
+|  |  |  |  |-- basic.instance.json
+|  |  |  |  |-- basic_database.yaml
+|  |  |  |  |-- basic_instance.yaml
+|  |  |  |-- spanner_utils.go
+|  |  |-- sql
+|  |  |  |-- beta
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- client.go
+|  |  |  |  |-- database.go
+|  |  |  |  |-- database.yaml
+|  |  |  |  |-- database_internal.go
+|  |  |  |  |-- instance.go
+|  |  |  |  |-- instance.yaml
+|  |  |  |  |-- instance_internal.go
+|  |  |  |  |-- sql_utils.go
+|  |  |  |  |-- ssl_cert.go
+|  |  |  |  |-- ssl_cert.yaml
+|  |  |  |  |-- ssl_cert_internal.go
+|  |  |  |  |-- user.go
+|  |  |  |  |-- user.yaml
+|  |  |  |  |-- user_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- private.compute.network.json
+|  |  |  |  |-- private.instance.json
+|  |  |  |  |-- private_address.compute.address.json
+|  |  |  |  |-- private_instance.yaml
+|  |  |  |  |-- vpc_connection.servicenetworking.connection.json
+|  |  |-- storage
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bucket.go
+|  |  |  |-- bucket.yaml
+|  |  |  |-- bucket_internal.go
+|  |  |  |-- client.go
+|  |  |  |-- default_object_access_control.go
+|  |  |  |-- default_object_access_control.yaml
+|  |  |  |-- default_object_access_control_internal.go
+|  |  |  |-- hmac_key.go
+|  |  |  |-- hmac_key.yaml
+|  |  |  |-- hmac_key_internal.go
+|  |  |  |-- object.go
+|  |  |  |-- object.yaml
+|  |  |  |-- object_access_control.go
+|  |  |  |-- object_access_control.yaml
+|  |  |  |-- object_access_control_internal.go
+|  |  |  |-- object_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.bucket.json
+|  |  |  |  |-- basic.default_object_access_control.json
+|  |  |  |  |-- basic.hmac_key.json
+|  |  |  |  |-- basic.object.json
+|  |  |  |  |-- basic.object_access_control.json
+|  |  |  |  |-- basic_bucket.yaml
+|  |  |  |  |-- basic_default_object_access_control.yaml
+|  |  |  |  |-- basic_hmac_key.yaml
+|  |  |  |  |-- basic_object.yaml
+|  |  |  |  |-- basic_object_access_control.yaml
+|  |  |  |  |-- update.bucket.json
+|  |  |  |  |-- update.default_object_access_control.json
+|  |  |  |  |-- update.object_access_control.json
+|  |  |  |-- storage_utils.go
+|  |  |-- tier2
+|  |  |  |-- alpha
+|  |  |  |  |-- client.go
+|  |  |  |  |-- instance.go
+|  |  |  |  |-- instance.yaml
+|  |  |  |  |-- instance_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.instance.json
+|  |  |  |  |-- basic_instance.yaml
+|  |  |-- tpu
+|  |  |  |-- client.go
+|  |  |  |-- node.go
+|  |  |  |-- node.yaml
+|  |  |  |-- node_internal.go
+|  |  |-- vpcaccess
+|  |  |  |-- client.go
+|  |  |  |-- connector.go
+|  |  |  |-- connector.yaml
+|  |  |  |-- connector_internal.go
+|  |  |  |-- samples
+|  |  |  |  |-- basic.compute.network.json
+|  |  |  |  |-- basic.connector.json
+|  |  |  |  |-- basic_connector.yaml

@@ -1,0 +1,692 @@
+|-- .bazelci
+|  |-- presubmit.yml
+|-- .bazelrc
+|-- .dockerignore
+|-- .github
+|  |-- PULL_REQUEST_TEMPLATE.md
+|-- .gitignore
+|-- .travis.yml
+|-- AUTHORS
+|-- BUILD.bazel
+|-- CHANGELOG.rst
+|-- CMakeLists.txt
+|-- CONTRIBUTING.md
+|-- Dockerfile.bionic
+|-- Dockerfile.buster
+|-- Dockerfile.focal
+|-- Dockerfile.stretch
+|-- Dockerfile.trusty.bazel
+|-- Dockerfile.xenial
+|-- LICENSE
+|-- README.rst
+|-- RELEASING.rst
+|-- WORKSPACE
+|-- azure-pipelines.yml
+|-- bazel
+|  |-- repositories.bzl
+|  |-- third_party
+|  |  |-- BUILD.bazel
+|  |  |-- cairo
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cairo-features.h
+|  |  |  |-- cairo.BUILD
+|  |  |  |-- config.h
+|  |  |-- ceres.BUILD
+|  |  |-- eigen.BUILD
+|  |  |-- expat.BUILD
+|  |  |-- fontconfig
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- config.h
+|  |  |  |-- fontconfig.BUILD
+|  |  |-- freetype2.BUILD
+|  |  |-- gd.BUILD
+|  |  |-- libjpeg.BUILD
+|  |  |-- libpng.BUILD
+|  |  |-- lua.BUILD
+|  |  |-- pixman
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- config.h
+|  |  |  |-- pixman.BUILD
+|  |  |-- zlib.BUILD
+|-- cartographer-config.cmake.in
+|-- cartographer
+|  |-- .clang-format
+|  |-- BUILD.bazel
+|  |-- cloud
+|  |  |-- BUILD.bazel
+|  |  |-- client
+|  |  |  |-- map_builder_stub.cc
+|  |  |  |-- map_builder_stub.h
+|  |  |-- internal
+|  |  |  |-- client
+|  |  |  |  |-- pose_graph_stub.cc
+|  |  |  |  |-- pose_graph_stub.h
+|  |  |  |  |-- trajectory_builder_stub.cc
+|  |  |  |  |-- trajectory_builder_stub.h
+|  |  |  |-- client_server_test.cc
+|  |  |  |-- handlers
+|  |  |  |  |-- add_fixed_frame_pose_data_handler.cc
+|  |  |  |  |-- add_fixed_frame_pose_data_handler.h
+|  |  |  |  |-- add_fixed_frame_pose_data_handler_test.cc
+|  |  |  |  |-- add_imu_data_handler.cc
+|  |  |  |  |-- add_imu_data_handler.h
+|  |  |  |  |-- add_imu_data_handler_test.cc
+|  |  |  |  |-- add_landmark_data_handler.cc
+|  |  |  |  |-- add_landmark_data_handler.h
+|  |  |  |  |-- add_landmark_data_handler_test.cc
+|  |  |  |  |-- add_odometry_data_handler.cc
+|  |  |  |  |-- add_odometry_data_handler.h
+|  |  |  |  |-- add_odometry_data_handler_test.cc
+|  |  |  |  |-- add_rangefinder_data_handler.cc
+|  |  |  |  |-- add_rangefinder_data_handler.h
+|  |  |  |  |-- add_rangefinder_data_handler_test.cc
+|  |  |  |  |-- add_sensor_data_batch_handler.cc
+|  |  |  |  |-- add_sensor_data_batch_handler.h
+|  |  |  |  |-- add_sensor_data_handler_base.h
+|  |  |  |  |-- add_trajectory_handler.cc
+|  |  |  |  |-- add_trajectory_handler.h
+|  |  |  |  |-- add_trajectory_handler_test.cc
+|  |  |  |  |-- delete_trajectory_handler.cc
+|  |  |  |  |-- delete_trajectory_handler.h
+|  |  |  |  |-- finish_trajectory_handler.cc
+|  |  |  |  |-- finish_trajectory_handler.h
+|  |  |  |  |-- get_all_submap_poses.cc
+|  |  |  |  |-- get_all_submap_poses.h
+|  |  |  |  |-- get_constraints_handler.cc
+|  |  |  |  |-- get_constraints_handler.h
+|  |  |  |  |-- get_landmark_poses_handler.cc
+|  |  |  |  |-- get_landmark_poses_handler.h
+|  |  |  |  |-- get_landmark_poses_handler_test.cc
+|  |  |  |  |-- get_local_to_global_transform_handler.cc
+|  |  |  |  |-- get_local_to_global_transform_handler.h
+|  |  |  |  |-- get_submap_handler.cc
+|  |  |  |  |-- get_submap_handler.h
+|  |  |  |  |-- get_trajectory_node_poses_handler.cc
+|  |  |  |  |-- get_trajectory_node_poses_handler.h
+|  |  |  |  |-- get_trajectory_states_handler.cc
+|  |  |  |  |-- get_trajectory_states_handler.h
+|  |  |  |  |-- is_trajectory_finished_handler.cc
+|  |  |  |  |-- is_trajectory_finished_handler.h
+|  |  |  |  |-- is_trajectory_frozen_handler.cc
+|  |  |  |  |-- is_trajectory_frozen_handler.h
+|  |  |  |  |-- load_state_from_file_handler.cc
+|  |  |  |  |-- load_state_from_file_handler.h
+|  |  |  |  |-- load_state_handler.cc
+|  |  |  |  |-- load_state_handler.h
+|  |  |  |  |-- receive_global_slam_optimizations_handler.cc
+|  |  |  |  |-- receive_global_slam_optimizations_handler.h
+|  |  |  |  |-- receive_local_slam_results_handler.cc
+|  |  |  |  |-- receive_local_slam_results_handler.h
+|  |  |  |  |-- run_final_optimization_handler.cc
+|  |  |  |  |-- run_final_optimization_handler.h
+|  |  |  |  |-- set_landmark_pose_handler.cc
+|  |  |  |  |-- set_landmark_pose_handler.h
+|  |  |  |  |-- set_landmark_pose_handler_test.cc
+|  |  |  |  |-- write_state_handler.cc
+|  |  |  |  |-- write_state_handler.h
+|  |  |  |  |-- write_state_to_file_handler.cc
+|  |  |  |  |-- write_state_to_file_handler.h
+|  |  |  |-- local_trajectory_uploader.cc
+|  |  |  |-- local_trajectory_uploader.h
+|  |  |  |-- local_trajectory_uploader_test.cc
+|  |  |  |-- map_builder_context_impl.cc
+|  |  |  |-- map_builder_context_impl.h
+|  |  |  |-- map_builder_context_interface.h
+|  |  |  |-- map_builder_server.cc
+|  |  |  |-- map_builder_server.h
+|  |  |  |-- mapping
+|  |  |  |  |-- serialization.cc
+|  |  |  |  |-- serialization.h
+|  |  |  |-- sensor
+|  |  |  |  |-- serialization.cc
+|  |  |  |  |-- serialization.h
+|  |  |  |-- testing
+|  |  |  |  |-- handler_test.h
+|  |  |  |  |-- mock_local_trajectory_uploader.h
+|  |  |  |  |-- mock_map_builder_context.h
+|  |  |  |  |-- test_helpers.cc
+|  |  |  |  |-- test_helpers.h
+|  |  |-- map_builder_server_interface.cc
+|  |  |-- map_builder_server_interface.h
+|  |  |-- map_builder_server_main.cc
+|  |  |-- map_builder_server_options.cc
+|  |  |-- map_builder_server_options.h
+|  |  |-- metrics
+|  |  |  |-- prometheus
+|  |  |  |  |-- family_factory.cc
+|  |  |  |  |-- family_factory.h
+|  |  |  |  |-- metrics_test.cc
+|  |  |-- proto
+|  |  |  |-- map_builder_server_options.proto
+|  |  |  |-- map_builder_service.proto
+|  |-- common
+|  |  |-- blocking_queue.h
+|  |  |-- blocking_queue_test.cc
+|  |  |-- ceres_solver_options.cc
+|  |  |-- ceres_solver_options.h
+|  |  |-- config.h.cmake
+|  |  |-- configuration_file_resolver.cc
+|  |  |-- configuration_file_resolver.h
+|  |  |-- configuration_files_test.cc
+|  |  |-- fixed_ratio_sampler.cc
+|  |  |-- fixed_ratio_sampler.h
+|  |  |-- fixed_ratio_sampler_test.cc
+|  |  |-- histogram.cc
+|  |  |-- histogram.h
+|  |  |-- internal
+|  |  |  |-- testing
+|  |  |  |  |-- thread_pool_for_testing.cc
+|  |  |  |  |-- thread_pool_for_testing.h
+|  |  |-- lua.h
+|  |  |-- lua_parameter_dictionary.cc
+|  |  |-- lua_parameter_dictionary.h
+|  |  |-- lua_parameter_dictionary_test.cc
+|  |  |-- lua_parameter_dictionary_test_helpers.h
+|  |  |-- math.h
+|  |  |-- math_test.cc
+|  |  |-- port.h
+|  |  |-- print_configuration_main.cc
+|  |  |-- proto
+|  |  |  |-- ceres_solver_options.proto
+|  |  |-- rate_timer.h
+|  |  |-- rate_timer_test.cc
+|  |  |-- task.cc
+|  |  |-- task.h
+|  |  |-- task_test.cc
+|  |  |-- thread_pool.cc
+|  |  |-- thread_pool.h
+|  |  |-- thread_pool_test.cc
+|  |  |-- time.cc
+|  |  |-- time.h
+|  |  |-- utils.h
+|  |-- ground_truth
+|  |  |-- autogenerate_ground_truth.cc
+|  |  |-- autogenerate_ground_truth.h
+|  |  |-- autogenerate_ground_truth_main.cc
+|  |  |-- compute_relations_metrics_main.cc
+|  |  |-- proto
+|  |  |  |-- relations.proto
+|  |  |-- relations_text_file.cc
+|  |  |-- relations_text_file.h
+|  |-- io
+|  |  |-- color.cc
+|  |  |-- color.h
+|  |  |-- coloring_points_processor.cc
+|  |  |-- coloring_points_processor.h
+|  |  |-- counting_points_processor.cc
+|  |  |-- counting_points_processor.h
+|  |  |-- draw_trajectories.cc
+|  |  |-- draw_trajectories.h
+|  |  |-- fake_file_writer.cc
+|  |  |-- fake_file_writer.h
+|  |  |-- fake_file_writer_test.cc
+|  |  |-- file_writer.cc
+|  |  |-- file_writer.h
+|  |  |-- fixed_ratio_sampling_points_processor.cc
+|  |  |-- fixed_ratio_sampling_points_processor.h
+|  |  |-- frame_id_filtering_points_processor.cc
+|  |  |-- frame_id_filtering_points_processor.h
+|  |  |-- hybrid_grid_points_processor.cc
+|  |  |-- hybrid_grid_points_processor.h
+|  |  |-- image.cc
+|  |  |-- image.h
+|  |  |-- intensity_to_color_points_processor.cc
+|  |  |-- intensity_to_color_points_processor.h
+|  |  |-- internal
+|  |  |  |-- in_memory_proto_stream.cc
+|  |  |  |-- in_memory_proto_stream.h
+|  |  |  |-- in_memory_proto_stream_test.cc
+|  |  |  |-- mapping_state_serialization.cc
+|  |  |  |-- mapping_state_serialization.h
+|  |  |  |-- pbstream_info.cc
+|  |  |  |-- pbstream_info.h
+|  |  |  |-- pbstream_migrate.cc
+|  |  |  |-- pbstream_migrate.h
+|  |  |-- min_max_range_filtering_points_processor.cc
+|  |  |-- min_max_range_filtering_points_processor.h
+|  |  |-- null_points_processor.h
+|  |  |-- outlier_removing_points_processor.cc
+|  |  |-- outlier_removing_points_processor.h
+|  |  |-- pbstream_main.cc
+|  |  |-- pcd_writing_points_processor.cc
+|  |  |-- pcd_writing_points_processor.h
+|  |  |-- ply_writing_points_processor.cc
+|  |  |-- ply_writing_points_processor.h
+|  |  |-- points_batch.cc
+|  |  |-- points_batch.h
+|  |  |-- points_processor.h
+|  |  |-- points_processor_pipeline_builder.cc
+|  |  |-- points_processor_pipeline_builder.h
+|  |  |-- points_processor_pipeline_builder_test.cc
+|  |  |-- probability_grid_points_processor.cc
+|  |  |-- probability_grid_points_processor.h
+|  |  |-- probability_grid_points_processor_test.cc
+|  |  |-- proto_stream.cc
+|  |  |-- proto_stream.h
+|  |  |-- proto_stream_deserializer.cc
+|  |  |-- proto_stream_deserializer.h
+|  |  |-- proto_stream_deserializer_test.cc
+|  |  |-- proto_stream_interface.h
+|  |  |-- proto_stream_test.cc
+|  |  |-- serialization_format_migration.cc
+|  |  |-- serialization_format_migration.h
+|  |  |-- serialization_format_migration_test.cc
+|  |  |-- submap_painter.cc
+|  |  |-- submap_painter.h
+|  |  |-- testing
+|  |  |  |-- test_helpers.cc
+|  |  |  |-- test_helpers.h
+|  |  |-- vertical_range_filtering_points_processor.cc
+|  |  |-- vertical_range_filtering_points_processor.h
+|  |  |-- xray_points_processor.cc
+|  |  |-- xray_points_processor.h
+|  |  |-- xyz_writing_points_processor.cc
+|  |  |-- xyz_writing_points_processor.h
+|  |-- mapping
+|  |  |-- 2d
+|  |  |  |-- grid_2d.cc
+|  |  |  |-- grid_2d.h
+|  |  |  |-- map_limits.h
+|  |  |  |-- map_limits_test.cc
+|  |  |  |-- probability_grid.cc
+|  |  |  |-- probability_grid.h
+|  |  |  |-- probability_grid_range_data_inserter_2d.cc
+|  |  |  |-- probability_grid_range_data_inserter_2d.h
+|  |  |  |-- probability_grid_test.cc
+|  |  |  |-- range_data_inserter_2d_test.cc
+|  |  |  |-- submap_2d.cc
+|  |  |  |-- submap_2d.h
+|  |  |  |-- submap_2d_test.cc
+|  |  |  |-- tsd_value_converter.cc
+|  |  |  |-- tsd_value_converter.h
+|  |  |  |-- tsd_value_converter_test.cc
+|  |  |  |-- tsdf_2d.cc
+|  |  |  |-- tsdf_2d.h
+|  |  |  |-- tsdf_2d_test.cc
+|  |  |  |-- tsdf_range_data_inserter_2d.cc
+|  |  |  |-- tsdf_range_data_inserter_2d.h
+|  |  |  |-- tsdf_range_data_inserter_2d_test.cc
+|  |  |  |-- xy_index.h
+|  |  |  |-- xy_index_test.cc
+|  |  |-- 3d
+|  |  |  |-- hybrid_grid.h
+|  |  |  |-- hybrid_grid_test.cc
+|  |  |  |-- range_data_inserter_3d.cc
+|  |  |  |-- range_data_inserter_3d.h
+|  |  |  |-- range_data_inserter_3d_test.cc
+|  |  |  |-- submap_3d.cc
+|  |  |  |-- submap_3d.h
+|  |  |  |-- submap_3d_test.cc
+|  |  |-- detect_floors.cc
+|  |  |-- detect_floors.h
+|  |  |-- eigen_quaterniond_from_two_vectors.cc
+|  |  |-- eigen_quaterniond_from_two_vectors.h
+|  |  |-- grid_interface.h
+|  |  |-- id.h
+|  |  |-- id_test.cc
+|  |  |-- imu_based_pose_extrapolator.cc
+|  |  |-- imu_based_pose_extrapolator.h
+|  |  |-- imu_tracker.cc
+|  |  |-- imu_tracker.h
+|  |  |-- imu_tracker_test.cc
+|  |  |-- internal
+|  |  |  |-- 2d
+|  |  |  |  |-- local_slam_result_2d.cc
+|  |  |  |  |-- local_slam_result_2d.h
+|  |  |  |  |-- local_trajectory_builder_2d.cc
+|  |  |  |  |-- local_trajectory_builder_2d.h
+|  |  |  |  |-- local_trajectory_builder_options_2d.cc
+|  |  |  |  |-- local_trajectory_builder_options_2d.h
+|  |  |  |  |-- normal_estimation_2d.cc
+|  |  |  |  |-- normal_estimation_2d.h
+|  |  |  |  |-- normal_estimation_2d_test.cc
+|  |  |  |  |-- overlapping_submaps_trimmer_2d.cc
+|  |  |  |  |-- overlapping_submaps_trimmer_2d.h
+|  |  |  |  |-- overlapping_submaps_trimmer_2d_test.cc
+|  |  |  |  |-- pose_graph_2d.cc
+|  |  |  |  |-- pose_graph_2d.h
+|  |  |  |  |-- pose_graph_2d_test.cc
+|  |  |  |  |-- ray_to_pixel_mask.cc
+|  |  |  |  |-- ray_to_pixel_mask.h
+|  |  |  |  |-- ray_to_pixel_mask_test.cc
+|  |  |  |  |-- scan_matching
+|  |  |  |  |  |-- ceres_scan_matcher_2d.cc
+|  |  |  |  |  |-- ceres_scan_matcher_2d.h
+|  |  |  |  |  |-- ceres_scan_matcher_2d_test.cc
+|  |  |  |  |  |-- correlative_scan_matcher_2d.cc
+|  |  |  |  |  |-- correlative_scan_matcher_2d.h
+|  |  |  |  |  |-- correlative_scan_matcher_test.cc
+|  |  |  |  |  |-- fast_correlative_scan_matcher_2d.cc
+|  |  |  |  |  |-- fast_correlative_scan_matcher_2d.h
+|  |  |  |  |  |-- fast_correlative_scan_matcher_2d_test.cc
+|  |  |  |  |  |-- interpolated_tsdf_2d.h
+|  |  |  |  |  |-- interpolated_tsdf_2d_test.cc
+|  |  |  |  |  |-- occupied_space_cost_function_2d.cc
+|  |  |  |  |  |-- occupied_space_cost_function_2d.h
+|  |  |  |  |  |-- occupied_space_cost_function_2d_test.cc
+|  |  |  |  |  |-- real_time_correlative_scan_matcher_2d.cc
+|  |  |  |  |  |-- real_time_correlative_scan_matcher_2d.h
+|  |  |  |  |  |-- real_time_correlative_scan_matcher_2d_test.cc
+|  |  |  |  |  |-- rotation_delta_cost_functor_2d.h
+|  |  |  |  |  |-- translation_delta_cost_functor_2d.h
+|  |  |  |  |  |-- tsdf_match_cost_function_2d.cc
+|  |  |  |  |  |-- tsdf_match_cost_function_2d.h
+|  |  |  |  |  |-- tsdf_match_cost_function_2d_test.cc
+|  |  |  |-- 3d
+|  |  |  |  |-- imu_integration.h
+|  |  |  |  |-- local_slam_result_3d.cc
+|  |  |  |  |-- local_slam_result_3d.h
+|  |  |  |  |-- local_trajectory_builder_3d.cc
+|  |  |  |  |-- local_trajectory_builder_3d.h
+|  |  |  |  |-- local_trajectory_builder_3d_test.cc
+|  |  |  |  |-- local_trajectory_builder_options_3d.cc
+|  |  |  |  |-- local_trajectory_builder_options_3d.h
+|  |  |  |  |-- pose_graph_3d.cc
+|  |  |  |  |-- pose_graph_3d.h
+|  |  |  |  |-- pose_graph_3d_test.cc
+|  |  |  |  |-- rotation_parameterization.h
+|  |  |  |  |-- scan_matching
+|  |  |  |  |  |-- ceres_scan_matcher_3d.cc
+|  |  |  |  |  |-- ceres_scan_matcher_3d.h
+|  |  |  |  |  |-- ceres_scan_matcher_3d_test.cc
+|  |  |  |  |  |-- fast_correlative_scan_matcher_3d.cc
+|  |  |  |  |  |-- fast_correlative_scan_matcher_3d.h
+|  |  |  |  |  |-- fast_correlative_scan_matcher_3d_test.cc
+|  |  |  |  |  |-- interpolated_grid.h
+|  |  |  |  |  |-- interpolated_grid_test.cc
+|  |  |  |  |  |-- low_resolution_matcher.cc
+|  |  |  |  |  |-- low_resolution_matcher.h
+|  |  |  |  |  |-- occupied_space_cost_function_3d.h
+|  |  |  |  |  |-- precomputation_grid_3d.cc
+|  |  |  |  |  |-- precomputation_grid_3d.h
+|  |  |  |  |  |-- precomputation_grid_3d_test.cc
+|  |  |  |  |  |-- real_time_correlative_scan_matcher_3d.cc
+|  |  |  |  |  |-- real_time_correlative_scan_matcher_3d.h
+|  |  |  |  |  |-- real_time_correlative_scan_matcher_3d_test.cc
+|  |  |  |  |  |-- rotation_delta_cost_functor_3d.h
+|  |  |  |  |  |-- rotation_delta_cost_functor_3d_test.cc
+|  |  |  |  |  |-- rotational_scan_matcher.cc
+|  |  |  |  |  |-- rotational_scan_matcher.h
+|  |  |  |  |  |-- rotational_scan_matcher_test.cc
+|  |  |  |  |  |-- translation_delta_cost_functor_3d.h
+|  |  |  |-- collated_trajectory_builder.cc
+|  |  |  |-- collated_trajectory_builder.h
+|  |  |  |-- connected_components.cc
+|  |  |  |-- connected_components.h
+|  |  |  |-- connected_components_test.cc
+|  |  |  |-- constraints
+|  |  |  |  |-- constraint_builder.cc
+|  |  |  |  |-- constraint_builder.h
+|  |  |  |  |-- constraint_builder_2d.cc
+|  |  |  |  |-- constraint_builder_2d.h
+|  |  |  |  |-- constraint_builder_2d_test.cc
+|  |  |  |  |-- constraint_builder_3d.cc
+|  |  |  |  |-- constraint_builder_3d.h
+|  |  |  |  |-- constraint_builder_3d_test.cc
+|  |  |  |-- global_trajectory_builder.cc
+|  |  |  |-- global_trajectory_builder.h
+|  |  |  |-- motion_filter.cc
+|  |  |  |-- motion_filter.h
+|  |  |  |-- motion_filter_test.cc
+|  |  |  |-- optimization
+|  |  |  |  |-- ceres_pose.cc
+|  |  |  |  |-- ceres_pose.h
+|  |  |  |  |-- cost_functions
+|  |  |  |  |  |-- acceleration_cost_function_3d.h
+|  |  |  |  |  |-- cost_helpers.h
+|  |  |  |  |  |-- cost_helpers_impl.h
+|  |  |  |  |  |-- landmark_cost_function_2d.h
+|  |  |  |  |  |-- landmark_cost_function_2d_test.cc
+|  |  |  |  |  |-- landmark_cost_function_3d.h
+|  |  |  |  |  |-- landmark_cost_function_3d_test.cc
+|  |  |  |  |  |-- rotation_cost_function_3d.h
+|  |  |  |  |  |-- spa_cost_function_2d.cc
+|  |  |  |  |  |-- spa_cost_function_2d.h
+|  |  |  |  |  |-- spa_cost_function_2d_test.cc
+|  |  |  |  |  |-- spa_cost_function_3d.h
+|  |  |  |  |-- optimization_problem_2d.cc
+|  |  |  |  |-- optimization_problem_2d.h
+|  |  |  |  |-- optimization_problem_3d.cc
+|  |  |  |  |-- optimization_problem_3d.h
+|  |  |  |  |-- optimization_problem_3d_test.cc
+|  |  |  |  |-- optimization_problem_interface.h
+|  |  |  |  |-- optimization_problem_options.cc
+|  |  |  |  |-- optimization_problem_options.h
+|  |  |  |-- range_data_collator.cc
+|  |  |  |-- range_data_collator.h
+|  |  |  |-- range_data_collator_test.cc
+|  |  |  |-- scan_matching
+|  |  |  |  |-- real_time_correlative_scan_matcher.cc
+|  |  |  |  |-- real_time_correlative_scan_matcher.h
+|  |  |  |-- submap_controller.cc
+|  |  |  |-- submap_controller.h
+|  |  |  |-- testing
+|  |  |  |  |-- fake_trimmable.h
+|  |  |  |  |-- mock_map_builder.h
+|  |  |  |  |-- mock_pose_graph.h
+|  |  |  |  |-- mock_trajectory_builder.h
+|  |  |  |  |-- test_helpers.cc
+|  |  |  |  |-- test_helpers.h
+|  |  |  |-- trajectory_connectivity_state.cc
+|  |  |  |-- trajectory_connectivity_state.h
+|  |  |  |-- trajectory_connectivity_state_test.cc
+|  |  |  |-- work_queue.h
+|  |  |-- local_slam_result_data.h
+|  |  |-- map_builder.cc
+|  |  |-- map_builder.h
+|  |  |-- map_builder_interface.h
+|  |  |-- map_builder_test.cc
+|  |  |-- pose_extrapolator.cc
+|  |  |-- pose_extrapolator.h
+|  |  |-- pose_extrapolator_interface.cc
+|  |  |-- pose_extrapolator_interface.h
+|  |  |-- pose_extrapolator_test.cc
+|  |  |-- pose_graph.cc
+|  |  |-- pose_graph.h
+|  |  |-- pose_graph_data.h
+|  |  |-- pose_graph_interface.h
+|  |  |-- pose_graph_test.cc
+|  |  |-- pose_graph_trimmer.cc
+|  |  |-- pose_graph_trimmer.h
+|  |  |-- pose_graph_trimmer_test.cc
+|  |  |-- probability_values.cc
+|  |  |-- probability_values.h
+|  |  |-- probability_values_test.cc
+|  |  |-- proto
+|  |  |  |-- 2d
+|  |  |  |  |-- cell_limits.proto
+|  |  |  |  |-- grid_2d.proto
+|  |  |  |  |-- grid_2d_options.proto
+|  |  |  |  |-- local_trajectory_builder_options_2d.proto
+|  |  |  |  |-- map_limits.proto
+|  |  |  |  |-- normal_estimation_options_2d.proto
+|  |  |  |  |-- probability_grid.proto
+|  |  |  |  |-- probability_grid_range_data_inserter_options_2d.proto
+|  |  |  |  |-- submaps_options_2d.proto
+|  |  |  |  |-- tsdf_2d.proto
+|  |  |  |  |-- tsdf_range_data_inserter_options_2d.proto
+|  |  |  |-- 3d
+|  |  |  |  |-- hybrid_grid.proto
+|  |  |  |  |-- local_trajectory_builder_options_3d.proto
+|  |  |  |  |-- range_data_inserter_options_3d.proto
+|  |  |  |  |-- submaps_options_3d.proto
+|  |  |  |-- connected_components.proto
+|  |  |  |-- map_builder_options.proto
+|  |  |  |-- motion_filter_options.proto
+|  |  |  |-- pose_extrapolator_options.proto
+|  |  |  |-- pose_graph.proto
+|  |  |  |-- pose_graph
+|  |  |  |  |-- constraint_builder_options.proto
+|  |  |  |  |-- optimization_problem_options.proto
+|  |  |  |-- pose_graph_options.proto
+|  |  |  |-- range_data_inserter_options.proto
+|  |  |  |-- scan_matching
+|  |  |  |  |-- ceres_scan_matcher_options_2d.proto
+|  |  |  |  |-- ceres_scan_matcher_options_3d.proto
+|  |  |  |  |-- fast_correlative_scan_matcher_options_2d.proto
+|  |  |  |  |-- fast_correlative_scan_matcher_options_3d.proto
+|  |  |  |  |-- real_time_correlative_scan_matcher_options.proto
+|  |  |  |-- serialization.proto
+|  |  |  |-- submap.proto
+|  |  |  |-- submap_visualization.proto
+|  |  |  |-- trajectory.proto
+|  |  |  |-- trajectory_builder_options.proto
+|  |  |  |-- trajectory_node_data.proto
+|  |  |-- range_data_inserter_interface.cc
+|  |  |-- range_data_inserter_interface.h
+|  |  |-- submaps.h
+|  |  |-- submaps_test.cc
+|  |  |-- trajectory_builder_interface.cc
+|  |  |-- trajectory_builder_interface.h
+|  |  |-- trajectory_node.cc
+|  |  |-- trajectory_node.h
+|  |  |-- trajectory_node_test.cc
+|  |  |-- value_conversion_tables.cc
+|  |  |-- value_conversion_tables.h
+|  |  |-- value_conversion_tables_test.cc
+|  |-- metrics
+|  |  |-- counter.cc
+|  |  |-- counter.h
+|  |  |-- family_factory.h
+|  |  |-- gauge.cc
+|  |  |-- gauge.h
+|  |  |-- histogram.cc
+|  |  |-- histogram.h
+|  |  |-- register.cc
+|  |  |-- register.h
+|  |-- sensor
+|  |  |-- collator_interface.h
+|  |  |-- compressed_point_cloud.cc
+|  |  |-- compressed_point_cloud.h
+|  |  |-- compressed_point_cloud_test.cc
+|  |  |-- data.h
+|  |  |-- fixed_frame_pose_data.cc
+|  |  |-- fixed_frame_pose_data.h
+|  |  |-- imu_data.cc
+|  |  |-- imu_data.h
+|  |  |-- internal
+|  |  |  |-- collator.cc
+|  |  |  |-- collator.h
+|  |  |  |-- collator_test.cc
+|  |  |  |-- dispatchable.h
+|  |  |  |-- ordered_multi_queue.cc
+|  |  |  |-- ordered_multi_queue.h
+|  |  |  |-- ordered_multi_queue_test.cc
+|  |  |  |-- test_helpers.h
+|  |  |  |-- trajectory_collator.cc
+|  |  |  |-- trajectory_collator.h
+|  |  |  |-- trajectory_collator_test.cc
+|  |  |  |-- voxel_filter.cc
+|  |  |  |-- voxel_filter.h
+|  |  |  |-- voxel_filter_test.cc
+|  |  |-- landmark_data.cc
+|  |  |-- landmark_data.h
+|  |  |-- landmark_data_test.cc
+|  |  |-- map_by_time.h
+|  |  |-- map_by_time_test.cc
+|  |  |-- odometry_data.cc
+|  |  |-- odometry_data.h
+|  |  |-- point_cloud.cc
+|  |  |-- point_cloud.h
+|  |  |-- point_cloud_test.cc
+|  |  |-- proto
+|  |  |  |-- adaptive_voxel_filter_options.proto
+|  |  |  |-- sensor.proto
+|  |  |-- range_data.cc
+|  |  |-- range_data.h
+|  |  |-- range_data_test.cc
+|  |  |-- rangefinder_point.h
+|  |  |-- timed_point_cloud_data.cc
+|  |  |-- timed_point_cloud_data.h
+|  |-- testing
+|  |  |-- test_helpers.h
+|  |-- transform
+|  |  |-- proto
+|  |  |  |-- timestamped_transform.proto
+|  |  |  |-- transform.proto
+|  |  |-- rigid_transform.cc
+|  |  |-- rigid_transform.h
+|  |  |-- rigid_transform_test.cc
+|  |  |-- rigid_transform_test_helpers.h
+|  |  |-- timestamped_transform.cc
+|  |  |-- timestamped_transform.h
+|  |  |-- timestamped_transform_test.cc
+|  |  |-- transform.cc
+|  |  |-- transform.h
+|  |  |-- transform_interpolation_buffer.cc
+|  |  |-- transform_interpolation_buffer.h
+|  |  |-- transform_interpolation_buffer_test.cc
+|  |  |-- transform_test.cc
+|-- cmake
+|  |-- functions.cmake
+|  |-- modules
+|  |  |-- FindEigen3.cmake
+|  |  |-- FindGMock.cmake
+|  |  |-- FindLuaGoogle.cmake
+|  |  |-- FindSphinx.cmake
+|-- configuration_files
+|  |-- map_builder.lua
+|  |-- map_builder_server.lua
+|  |-- pose_graph.lua
+|  |-- trajectory_builder.lua
+|  |-- trajectory_builder_2d.lua
+|  |-- trajectory_builder_3d.lua
+|-- docs
+|  |-- CMakeLists.txt
+|  |-- assets
+|  |  |-- logo_1024dp.png
+|  |  |-- logo_128dp.png
+|  |  |-- logo_16dp.png
+|  |  |-- logo_16dp.svg
+|  |  |-- logo_192dp.png
+|  |  |-- logo_24dp.png
+|  |  |-- logo_24dp.svg
+|  |  |-- logo_32dp.png
+|  |  |-- logo_32dp.svg
+|  |  |-- logo_36dp.png
+|  |  |-- logo_36dp.svg
+|  |  |-- logo_48dp.png
+|  |  |-- logo_48dp.svg
+|  |  |-- logo_512dp.png
+|  |  |-- logo_512dp.svg
+|  |  |-- logo_64dp.png
+|  |  |-- logo_64dp.svg
+|  |  |-- logo_72dp.png
+|  |  |-- logo_96dp.png
+|  |  |-- logo_96dp.svg
+|  |  |-- t_shirt
+|  |  |  |-- logo_cartographer.ai
+|  |  |  |-- logo_cartographer.svg
+|  |  |  |-- logo_cartographer_512dp_shaded.svg
+|  |  |  |-- pantone_lookup.png
+|  |  |  |-- pantone_lookup.txt
+|  |-- source
+|  |  |-- autogenerate_groundtruth.png
+|  |  |-- conf.py
+|  |  |-- configuration.rst
+|  |  |-- cost_functions.rst
+|  |  |-- evaluation.rst
+|  |  |-- high_level_system_overview.png
+|  |  |-- index.rst
+|  |  |-- pbstream_migration.rst
+|  |  |-- terminology.rst
+|-- package.xml
+|-- scripts
+|  |-- build_test_asan.sh
+|  |-- ctest_to_junit.py
+|  |-- ctest_to_junit.xsl
+|  |-- install_abseil.sh
+|  |-- install_async_grpc.sh
+|  |-- install_cartographer_bazel.sh
+|  |-- install_cartographer_cmake.sh
+|  |-- install_cartographer_cmake_with_grpc.sh
+|  |-- install_ceres.sh
+|  |-- install_debs_bazel.sh
+|  |-- install_debs_cmake.sh
+|  |-- install_grpc.sh
+|  |-- install_prometheus_cpp.sh
+|  |-- install_proto3.sh
+|  |-- load_docker_cache.sh
+|  |-- remove_mingw_cygwin_from_path.bat
+|  |-- save_docker_cache.sh
+|  |-- update_configuration_doc.py

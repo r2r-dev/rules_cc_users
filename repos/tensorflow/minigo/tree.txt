@@ -1,0 +1,470 @@
+|-- .bazelrc
+|-- .gitignore
+|-- .pylintrc
+|-- CODE_OF_CONDUCT.md
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- RESULTS.md
+|-- WORKSPACE
+|-- __init__.py
+|-- batch_exporter.py
+|-- bigtable_input.py
+|-- bigtable_output.py
+|-- bootstrap.py
+|-- cc
+|  |-- .clang-format
+|  |-- BUILD
+|  |-- CPPLINT.cfg
+|  |-- README.md
+|  |-- algorithm.cc
+|  |-- algorithm.h
+|  |-- algorithm_test.cc
+|  |-- async
+|  |  |-- BUILD
+|  |  |-- poll_thread.cc
+|  |  |-- poll_thread.h
+|  |  |-- semaphore.h
+|  |  |-- sharded_executor.cc
+|  |  |-- sharded_executor.h
+|  |  |-- thread.cc
+|  |  |-- thread.h
+|  |  |-- thread_safe_queue.h
+|  |  |-- thread_safe_queue_test.cc
+|  |-- benchmark.BUILD
+|  |-- color.cc
+|  |-- color.h
+|  |-- concurrent_selfplay.cc
+|  |-- config
+|  |  |-- BUILD
+|  |  |-- minigo.bzl
+|  |-- configure_tensorflow.sh
+|  |-- constants.h
+|  |-- coord.cc
+|  |-- coord.h
+|  |-- coord_test.cc
+|  |-- dual_net
+|  |  |-- BUILD
+|  |  |-- dual_net_test.cc
+|  |  |-- fake_dual_net.cc
+|  |  |-- fake_dual_net.h
+|  |  |-- lite_dual_net.cc
+|  |  |-- lite_dual_net.h
+|  |  |-- random_dual_net.cc
+|  |  |-- random_dual_net.h
+|  |  |-- test_lite.minigo
+|  |  |-- test_tf.minigo
+|  |  |-- tf_dual_net.cc
+|  |  |-- tf_dual_net.h
+|  |  |-- tpu_dual_net.cc
+|  |  |-- tpu_dual_net.h
+|  |-- eval.cc
+|  |-- file
+|  |  |-- BUILD
+|  |  |-- directory_watcher.cc
+|  |  |-- directory_watcher.h
+|  |  |-- path.cc
+|  |  |-- path.h
+|  |  |-- path_test.cc
+|  |  |-- utils.h
+|  |  |-- utils_posix.cc
+|  |  |-- utils_test.cc
+|  |  |-- utils_tf.cc
+|  |  |-- utils_windows.cc
+|  |-- game.cc
+|  |-- game.h
+|  |-- game_utils.cc
+|  |-- game_utils.h
+|  |-- group.cc
+|  |-- group.h
+|  |-- gtp.cc
+|  |-- gtp_client.cc
+|  |-- gtp_client.h
+|  |-- init.cc
+|  |-- init.h
+|  |-- inline_vector.h
+|  |-- logging.cc
+|  |-- logging.h
+|  |-- mcts_player.cc
+|  |-- mcts_player.h
+|  |-- mcts_player_test.cc
+|  |-- mcts_tree.cc
+|  |-- mcts_tree.h
+|  |-- mcts_tree_test.cc
+|  |-- minigui_gtp_client.cc
+|  |-- minigui_gtp_client.h
+|  |-- model
+|  |  |-- BUILD
+|  |  |-- batching_model.cc
+|  |  |-- batching_model.h
+|  |  |-- batching_model_test.cc
+|  |  |-- buffered_model.cc
+|  |  |-- buffered_model.h
+|  |  |-- factory.cc
+|  |  |-- factory.h
+|  |  |-- features.cc
+|  |  |-- features.h
+|  |  |-- features_benchmark.cc
+|  |  |-- features_internal.h
+|  |  |-- features_test.cc
+|  |  |-- inference_cache.cc
+|  |  |-- inference_cache.h
+|  |  |-- inference_cache_test.cc
+|  |  |-- loader.cc
+|  |  |-- loader.h
+|  |  |-- model.cc
+|  |  |-- model.h
+|  |  |-- types.cc
+|  |  |-- types.h
+|  |  |-- types_test.cc
+|  |-- move.cc
+|  |-- move.h
+|  |-- padded_array.h
+|  |-- pass_alive_test.cc
+|  |-- platform
+|  |  |-- BUILD
+|  |  |-- utils.h
+|  |  |-- utils_linux.cc
+|  |  |-- utils_osx.cc
+|  |  |-- utils_windows.cc
+|  |-- position.cc
+|  |-- position.h
+|  |-- position_test.cc
+|  |-- random.cc
+|  |-- random.h
+|  |-- random_test.cc
+|  |-- replay_games.cc
+|  |-- sample_records.cc
+|  |-- sgf.cc
+|  |-- sgf.h
+|  |-- sgf_test.cc
+|  |-- simple_example.cc
+|  |-- stone.h
+|  |-- symmetries.cc
+|  |-- symmetries.h
+|  |-- symmetries_test.cc
+|  |-- tensorflow
+|  |  |-- BUILD
+|  |  |-- copy_outputs.sh
+|  |-- test.sh
+|  |-- test_utils.cc
+|  |-- test_utils.h
+|  |-- tf_bt_utils.cc
+|  |-- tf_bt_utils_dummy.cc
+|  |-- tf_utils.cc
+|  |-- tf_utils.h
+|  |-- tf_utils_dummy.cc
+|  |-- tfrzz_to_cbt.cc
+|  |-- tiny_set.h
+|  |-- tpu_test.cc
+|  |-- wtf.BUILD
+|  |-- wtf_saver.cc
+|  |-- wtf_saver.h
+|  |-- zobrist.cc
+|  |-- zobrist.h
+|-- cloud_logging.py
+|-- cluster
+|  |-- .gitignore
+|  |-- README.md
+|  |-- base
+|  |  |-- Dockerfile
+|  |  |-- Makefile
+|  |-- calibrator
+|  |  |-- Dockerfile
+|  |  |-- Makefile
+|  |  |-- calibrator-deployment.yaml
+|  |-- cgos
+|  |  |-- Dockerfile
+|  |  |-- Makefile
+|  |  |-- cgos-player.yaml
+|  |-- cluster-down.sh
+|  |-- cluster-up-cpu.sh
+|  |-- cluster-up-gpu-large.sh
+|  |-- cluster-up-gpu.sh
+|  |-- cluster-up-simple.sh
+|  |-- cluster-up-tpu.sh
+|  |-- common.sh
+|  |-- create_table.sh
+|  |-- destroy.sh
+|  |-- eval_server
+|  |  |-- README.md
+|  |  |-- add_model.py
+|  |  |-- launch_eval.py
+|  |-- evaluator
+|  |  |-- Dockerfile-cc
+|  |  |-- Dockerfile-py
+|  |  |-- Dockerfile-ringmaster
+|  |  |-- Makefile
+|  |  |-- cc-evaluator.yaml
+|  |  |-- deploy-cc-evaluator.sh
+|  |  |-- evaluator_cc_wrapper.sh
+|  |  |-- evaluator_py_wrapper.sh
+|  |  |-- evaluator_ringmaster_wrapper.py
+|  |  |-- evaluator_ringmaster_wrapper.sh
+|  |  |-- gpu-evaluator.yaml
+|  |  |-- launch_eval.py
+|  |-- init-credentials.sh
+|  |-- make-all.sh
+|  |-- minigui
+|  |  |-- Dockerfile
+|  |  |-- Makefile
+|  |  |-- minigui-pod.yaml
+|  |  |-- run-local.sh
+|  |  |-- simple-service.yaml
+|  |-- ringmaster
+|  |  |-- Makefile
+|  |  |-- example.ctl
+|  |  |-- lz-Dockerfile
+|  |  |-- mggtp-Dockerfile
+|  |  |-- p100-lz-tuning
+|  |  |-- ringmaster.yaml
+|  |  |-- ringmaster_wrapper.sh
+|  |  |-- setup_ringmaster.py
+|  |-- selfplay
+|  |  |-- Dockerfile-cc
+|  |  |-- Dockerfile-py
+|  |  |-- Dockerfile-tpu
+|  |  |-- Makefile
+|  |  |-- README.md
+|  |  |-- cc-player.yaml
+|  |  |-- deploy-cc-player.sh
+|  |  |-- deploy-cpu-player.sh
+|  |  |-- deploy-gpu-player.sh
+|  |  |-- gpu-player.yaml
+|  |  |-- gpu-provision-daemonset.yaml
+|  |  |-- launch-tpu-deployment.sh
+|  |  |-- tpu-player-deployment-nr.yaml
+|  |  |-- tpu-player-deployment.yaml
+|  |-- trainer
+|  |  |-- Dockerfile
+|  |  |-- Makefile
+|  |  |-- deploy-trainer.sh
+|  |  |-- tpu-trainer-deployment.yaml
+|  |-- unset-common.sh
+|  |-- utils.sh
+|  |-- var-status.sh
+|-- coords.py
+|-- dual_net.py
+|-- dual_net_edge_tpu.py
+|-- evaluate.py
+|-- features.py
+|-- freeze_graph.py
+|-- go.py
+|-- gtp.py
+|-- gtp_cmd_handlers.py
+|-- gtp_engine.py
+|-- mask_flags.py
+|-- mcts.py
+|-- minigo_model.py
+|-- minigui
+|  |-- README.md
+|  |-- app.ts
+|  |-- base.ts
+|  |-- board.ts
+|  |-- control
+|  |  |-- leelaz.ctl
+|  |  |-- minigo_edgetpu.ctl
+|  |  |-- minigo_py.ctl
+|  |  |-- minigo_tf.ctl
+|  |  |-- vs.ctl
+|  |-- demo.ts
+|  |-- edgetpu
+|  |  |-- install_requirements.sh
+|  |  |-- start_chromium.sh
+|  |-- fetch-and-run.sh
+|  |-- graph.ts
+|  |-- gtp_socket.ts
+|  |-- kiosk.ts
+|  |-- layer.ts
+|  |-- log.ts
+|  |-- minigui-common.sh
+|  |-- position.ts
+|  |-- requirements.txt
+|  |-- serve.py
+|  |-- static
+|  |  |-- app.js
+|  |  |-- base.js
+|  |  |-- board.js
+|  |  |-- demo.html
+|  |  |-- demo.js
+|  |  |-- graph.js
+|  |  |-- gtp_socket.js
+|  |  |-- heat_map.js
+|  |  |-- index.html
+|  |  |-- kiosk.html
+|  |  |-- kiosk.js
+|  |  |-- layer.js
+|  |  |-- log.js
+|  |  |-- lw_demo.html
+|  |  |-- position.js
+|  |  |-- require
+|  |  |  |-- LICENSE
+|  |  |  |-- require.js
+|  |  |-- socketio
+|  |  |  |-- LICENSE
+|  |  |  |-- socket.io.min.js
+|  |  |-- study.html
+|  |  |-- study.js
+|  |  |-- style.css
+|  |  |-- util.js
+|  |  |-- variation_tree.js
+|  |  |-- view.js
+|  |  |-- vs.html
+|  |  |-- vs.js
+|  |  |-- winrate_graph.js
+|  |-- study.ts
+|  |-- unset-minigui-common.sh
+|  |-- util.ts
+|  |-- variation_tree.ts
+|  |-- view.ts
+|  |-- vs.ts
+|  |-- winrate_graph.ts
+|-- ml_perf
+|  |-- .gitignore
+|  |-- README.md
+|  |-- eval_models.py
+|  |-- flags
+|  |  |-- 19
+|  |  |  |-- architecture.flags
+|  |  |  |-- bootstrap.flags
+|  |  |  |-- eval.flags
+|  |  |  |-- rl_loop.flags
+|  |  |  |-- selfplay.flags
+|  |  |  |-- train.flags
+|  |  |  |-- train_loop.flags
+|  |  |  |-- validate.flags
+|  |  |-- 9
+|  |  |  |-- architecture.flags
+|  |  |  |-- bootstrap.flags
+|  |  |  |-- eval.flags
+|  |  |  |-- rl_loop.flags
+|  |  |  |-- selfplay.flags
+|  |  |  |-- train.flags
+|  |  |  |-- train_loop.flags
+|  |  |  |-- validate.flags
+|  |-- init_from_checkpoint.py
+|  |-- make_checkpoint.py
+|  |-- repeat_run.sh
+|  |-- scripts
+|  |  |-- bootstrap.sh
+|  |  |-- common.sh
+|  |  |-- init_from_checkpoint.sh
+|  |  |-- make_checkpoint.sh
+|  |  |-- start_selfplay.sh
+|  |  |-- stop_selfplay.sh
+|  |  |-- train.sh
+|  |-- train_loop.py
+|  |-- utils.py
+|-- notes.txt
+|-- oneoffs
+|  |-- __init__.py
+|  |-- bigquery_games_schema.json
+|  |-- bigquery_moves_schema.json
+|  |-- cbt_eval_sgfs.py
+|  |-- cbt_models.py
+|  |-- compare_examples.py
+|  |-- distillation.py
+|  |-- dump_game.py
+|  |-- embeddings.py
+|  |-- embeddings_graphs.py
+|  |-- generate_tpu_graph_def.py
+|  |-- get_tpu_address.py
+|  |-- heatmap.py
+|  |-- inspect_examples.py
+|  |-- joseki
+|  |  |-- .gitignore
+|  |  |-- README.md
+|  |  |-- joseki_query.py
+|  |  |-- joseki_static_report.html
+|  |  |-- opening_freqs.py
+|  |  |-- opening_freqs_export.py
+|  |  |-- package.json
+|  |  |-- public
+|  |  |  |-- favicon.ico
+|  |  |  |-- index.html
+|  |  |  |-- logo192.png
+|  |  |  |-- logo512.png
+|  |  |  |-- manifest.json
+|  |  |-- src
+|  |  |  |-- App.css
+|  |  |  |-- App.js
+|  |  |  |-- App.test.js
+|  |  |  |-- index.css
+|  |  |  |-- index.js
+|  |  |  |-- serviceWorker.js
+|  |-- l2_cost_by_var.py
+|  |-- ladder_detector.py
+|  |-- launch_tensorboard.py
+|  |-- modelstats.sh
+|  |-- oneoff_utils.py
+|  |-- position_pv.py
+|  |-- prepare_bigquery.py
+|  |-- resign_analysis.py
+|  |-- retrain.sh
+|  |-- rotate_examples.py
+|  |-- sharp_positions.py
+|  |-- swa.py
+|  |-- symmetry_analysis.py
+|  |-- training_curve.py
+|  |-- transpose_model.py
+|  |-- unwrap_model.py
+|  |-- validate_misc.py
+|  |-- wrap_model.py
+|-- player_interface.py
+|-- preprocessing.py
+|-- ratings
+|  |-- cbt_ratings.py
+|  |-- math_ratings.py
+|  |-- rate_subdir.py
+|  |-- schema.sql
+|  |-- sqlite_ratings.py
+|-- requirements-analysis.txt
+|-- requirements-colab.txt
+|-- requirements.txt
+|-- rl_loop
+|  |-- bootstrap.py
+|  |-- distributed_flags
+|  |-- distributed_flags_nr
+|  |-- example_buffer.py
+|  |-- fsdb.py
+|  |-- local_flags
+|  |-- local_integration_test.py
+|  |-- selfplay.py
+|  |-- shipname.py
+|  |-- train_and_validate.py
+|  |-- update_resign_threshold.py
+|-- selfplay.py
+|-- sgf
+|  |-- fetch_dataset.sh
+|  |-- opening_stats.sh
+|-- sgf_wrapper.py
+|-- strategies.py
+|-- symmetries.py
+|-- test.sh
+|-- testing
+|  |-- Dockerfile.v2
+|  |-- Makefile
+|  |-- README.md
+|  |-- bootstrap_v2.sh
+|  |-- setup.sh
+|-- tests
+|  |-- __init__.py
+|  |-- example_game.sgf
+|  |-- run_tests.py
+|  |-- test_coords.py
+|  |-- test_dual_net.py
+|  |-- test_features.py
+|  |-- test_flags
+|  |-- test_go.py
+|  |-- test_mask_flags.py
+|  |-- test_mcts.py
+|  |-- test_preprocessing.py
+|  |-- test_sgf_wrapper.py
+|  |-- test_shipname.py
+|  |-- test_strategies.py
+|  |-- test_symmetries.py
+|  |-- test_utils.py
+|-- train.py
+|-- tsconfig.json
+|-- utils.py
+|-- validate.py

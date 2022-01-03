@@ -1,0 +1,760 @@
+|-- .bazelignore
+|-- .bazelrc
+|-- .dockerignore
+|-- .editorconfig
+|-- .gitignore
+|-- .pep8
+|-- BUILD.bazel
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- bazel
+|  |-- BUILD.bazel
+|  |-- app.bzl
+|  |-- app_chart.bzl
+|  |-- build_rules
+|  |  |-- BUILD.bazel
+|  |  |-- CustomResource.java.template
+|  |  |-- app_chart
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- Chart.yaml.template
+|  |  |  |-- cache_gcr_credentials.bzl
+|  |  |  |-- cache_gcr_credentials.sh.tpl
+|  |  |  |-- push_all.bzl
+|  |  |  |-- push_all.sh.tpl
+|  |  |  |-- run_parallel.bzl
+|  |  |  |-- run_parallel.sh.tpl
+|  |  |  |-- run_sequentially.bzl
+|  |  |  |-- run_sequentially.sh.tpl
+|  |  |  |-- values-cloud.yaml
+|  |  |  |-- values-robot.yaml
+|  |  |-- copy.bzl
+|  |  |-- custom_resources.bzl
+|  |  |-- helm_chart.bzl
+|  |  |-- helm_template.bzl
+|  |  |-- proto_descriptor.bzl
+|  |  |-- ros_plugins.bzl
+|  |  |-- rosmsg.bzl
+|  |-- buildcleaner
+|  |  |-- BUILD.bazel
+|  |  |-- README.md
+|  |  |-- cmd
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- fixWorkspace.go
+|  |  |  |-- getLicenses.go
+|  |  |  |-- root.go
+|  |  |  |-- workspace.go
+|  |  |-- main.go
+|  |-- container_push.bzl
+|  |-- proto_crd
+|  |  |-- BUILD.bazel
+|  |  |-- proto_crd.bzl
+|  |  |-- proto_k8s_service.bzl
+|  |  |-- proto_k8s_service.proto.tmpl
+|  |  |-- repositories.bzl
+|  |-- repositories.bzl
+|-- config.sh.tmpl
+|-- deploy.sh
+|-- docs
+|  |-- .gitignore
+|  |-- _config.yml
+|  |-- cloud-robotics-core-layers.png
+|  |-- cloud-robotics-core-overview.png
+|  |-- concepts
+|  |  |-- app-management.md
+|  |  |-- config.md
+|  |  |-- device_identity.md
+|  |  |-- device_identity_auth.png
+|  |  |-- device_identity_setup.png
+|  |  |-- federation.md
+|  |  |-- federation.png
+|  |-- developers
+|  |  |-- debug-auth.md
+|  |-- how-to
+|  |  |-- connecting-robot.md
+|  |  |-- creating-declarative-api.md
+|  |  |-- deploy-from-sources.md
+|  |  |-- deploying-grpc-service.md
+|  |  |-- deploying-service.md
+|  |  |-- examples
+|  |  |  |-- charge-service
+|  |  |  |  |-- Dockerfile
+|  |  |  |  |-- charge-action.yaml
+|  |  |  |  |-- charge-controller.yaml
+|  |  |  |  |-- charge-crd.yaml
+|  |  |  |  |-- server.py
+|  |  |  |-- greeter-service
+|  |  |  |  |-- Makefile
+|  |  |  |  |-- client
+|  |  |  |  |  |-- Dockerfile
+|  |  |  |  |  |-- client.cc
+|  |  |  |  |-- deploy.sh
+|  |  |  |  |-- greeter-server.yaml.tmpl
+|  |  |  |  |-- proto
+|  |  |  |  |  |-- helloworld.proto
+|  |  |  |  |-- server
+|  |  |  |  |  |-- Dockerfile
+|  |  |  |  |  |-- server.cc
+|  |  |  |-- hello-service
+|  |  |  |  |-- client
+|  |  |  |  |  |-- Dockerfile
+|  |  |  |  |  |-- client.py
+|  |  |  |  |-- server
+|  |  |  |  |  |-- Dockerfile
+|  |  |  |  |  |-- hello-server.yaml
+|  |  |  |  |  |-- server.py
+|  |  |-- running-ros-node.md
+|  |  |-- setting-up-oauth.md
+|  |  |-- using-cloud-storage.md
+|  |-- index.md
+|  |-- overview.md
+|  |-- quickstart.md
+|-- scripts
+|  |-- BUILD.bazel
+|  |-- check-images.sh
+|  |-- cleanup-docker.sh
+|  |-- cleanup-services.sh
+|  |-- common.sh
+|  |-- delete-service.sh
+|  |-- dump-services.sh
+|  |-- include-config.sh
+|  |-- pre-commit
+|  |-- robot-sim.sh
+|  |-- set-config.sh
+|  |-- setup-robot-vm.sh
+|  |-- show-resource-usage.sh
+|-- src
+|  |-- .gitignore
+|  |-- Gopkg.lock
+|  |-- Gopkg.toml
+|  |-- README.md
+|  |-- app_charts
+|  |  |-- BUILD.bazel
+|  |  |-- README.md
+|  |  |-- base
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- app_management_test.sh
+|  |  |  |-- cert-manager-cloud.values.yaml
+|  |  |  |-- cloud
+|  |  |  |  |-- apps-crd.yaml
+|  |  |  |  |-- cert-manager-certificate.yaml
+|  |  |  |  |-- cert-manager-issuers.yaml
+|  |  |  |  |-- cert-manager.yaml
+|  |  |  |  |-- cloud-master.yaml
+|  |  |  |  |-- cr-syncer-policy.yaml
+|  |  |  |  |-- fluentd-metrics.yaml
+|  |  |  |  |-- kubernetes-api.yaml
+|  |  |  |  |-- monitoring-crd.yaml
+|  |  |  |  |-- nginx-ingress-controller.yaml
+|  |  |  |  |-- nginx-ingress-lb.yaml
+|  |  |  |  |-- oauth2-proxy.yaml
+|  |  |  |  |-- registry-crd.yaml
+|  |  |  |  |-- token-vendor.yaml
+|  |  |  |-- robot
+|  |  |  |  |-- cr-syncer.yaml
+|  |  |  |  |-- fluentd-gcp-addon.yaml
+|  |  |  |  |-- fluentd-metrics.yaml
+|  |  |  |  |-- gcr-credential-refresher.yaml
+|  |  |  |  |-- metadata-server.yaml
+|  |  |  |  |-- robot-master.yaml
+|  |  |  |-- values-cloud.yaml
+|  |  |  |-- values-robot.yaml
+|  |  |-- k8s-relay
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cloud
+|  |  |  |  |-- ingress.yaml
+|  |  |  |  |-- kubernetes-relay-server.yaml
+|  |  |  |  |-- service-monitor.yaml
+|  |  |  |  |-- service.yaml
+|  |  |  |-- robot
+|  |  |  |  |-- kubernetes-relay-client.yaml
+|  |  |-- mission-crd
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- values.yaml
+|  |  |-- platform-apps
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- values.yaml
+|  |  |-- prometheus
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- cloud
+|  |  |  |  |-- app.yaml
+|  |  |  |  |-- base-alerts.yaml
+|  |  |  |  |-- federation-service-monitor.yaml
+|  |  |  |  |-- grafana-ingress.yaml
+|  |  |  |  |-- prometheus-ingress.yaml
+|  |  |  |  |-- prometheus-operator.yaml
+|  |  |  |  |-- prometheus-relay.yaml
+|  |  |  |  |-- storage-class.yaml
+|  |  |  |-- prometheus-cloud.values.yaml
+|  |  |  |-- prometheus-robot.values.yaml
+|  |  |  |-- robot
+|  |  |  |  |-- prometheus-operator.yaml
+|  |  |  |  |-- prometheus-relay-client.yaml
+|  |  |  |-- values-cloud.yaml
+|  |-- bootstrap
+|  |  |-- cloud
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- INSTALL_FROM_BINARY
+|  |  |  |-- run-install.sh
+|  |  |  |-- terraform
+|  |  |  |  |-- .gitignore
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- README.md
+|  |  |  |  |-- address.tf
+|  |  |  |  |-- cluster.tf
+|  |  |  |  |-- dns.tf
+|  |  |  |  |-- endpoints.tf
+|  |  |  |  |-- gcs.tf
+|  |  |  |  |-- input.tf
+|  |  |  |  |-- iot_registry.tf
+|  |  |  |  |-- output.tf
+|  |  |  |  |-- project.tf
+|  |  |  |  |-- provider.tf
+|  |  |  |  |-- service-account.tf
+|  |  |  |  |-- www.yaml
+|  |  |-- robot
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- install_k8s_on_robot.sh
+|  |  |  |-- setup_robot.sh
+|  |-- dep.sh
+|  |-- go
+|  |  |-- cmd
+|  |  |  |-- cloud-master
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- cr-adapter
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |  |-- main_test.go
+|  |  |  |  |-- util.go
+|  |  |  |-- cr-syncer
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- health.go
+|  |  |  |  |-- health_test.go
+|  |  |  |  |-- main.go
+|  |  |  |  |-- main_test.go
+|  |  |  |  |-- syncer.go
+|  |  |  |  |-- syncer_test.go
+|  |  |  |-- crd-generator
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- gcr-credential-refresher
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- http-relay-client
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |  |-- main_test.go
+|  |  |  |-- http-relay-server
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- broker.go
+|  |  |  |  |-- broker_test.go
+|  |  |  |  |-- main.go
+|  |  |  |  |-- main_test.go
+|  |  |  |-- metadata-server
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- coredns.go
+|  |  |  |  |-- coredns_test.go
+|  |  |  |  |-- main.go
+|  |  |  |  |-- main_test.go
+|  |  |  |-- robot-master
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- setup-dev
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |  |-- setup-dev.md
+|  |  |  |-- setup-robot
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |  |-- main_test.go
+|  |  |  |-- synk
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- README.md
+|  |  |  |  |-- synk.go
+|  |  |-- generate.sh
+|  |  |-- pkg
+|  |  |  |-- apis
+|  |  |  |  |-- apps
+|  |  |  |  |  |-- v1alpha1
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- doc.go
+|  |  |  |  |  |  |-- register.go
+|  |  |  |  |  |  |-- types.go
+|  |  |  |  |  |  |-- zz_generated.deepcopy.go
+|  |  |  |  |-- registry
+|  |  |  |  |  |-- v1alpha1
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- doc.go
+|  |  |  |  |  |  |-- register.go
+|  |  |  |  |  |  |-- types.go
+|  |  |  |  |  |  |-- zz_generated.deepcopy.go
+|  |  |  |-- client
+|  |  |  |  |-- informers
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- apps
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- interface.go
+|  |  |  |  |  |  |-- v1alpha1
+|  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |-- app.go
+|  |  |  |  |  |  |  |-- approllout.go
+|  |  |  |  |  |  |  |-- chartassignment.go
+|  |  |  |  |  |  |  |-- interface.go
+|  |  |  |  |  |  |  |-- resourceset.go
+|  |  |  |  |  |-- factory.go
+|  |  |  |  |  |-- generic.go
+|  |  |  |  |  |-- internalinterfaces
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- factory_interfaces.go
+|  |  |  |  |  |-- registry
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- interface.go
+|  |  |  |  |  |  |-- v1alpha1
+|  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |-- interface.go
+|  |  |  |  |  |  |  |-- robot.go
+|  |  |  |  |-- listers
+|  |  |  |  |  |-- apps
+|  |  |  |  |  |  |-- v1alpha1
+|  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |-- app.go
+|  |  |  |  |  |  |  |-- approllout.go
+|  |  |  |  |  |  |  |-- chartassignment.go
+|  |  |  |  |  |  |  |-- expansion_generated.go
+|  |  |  |  |  |  |  |-- resourceset.go
+|  |  |  |  |  |-- registry
+|  |  |  |  |  |  |-- v1alpha1
+|  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |-- expansion_generated.go
+|  |  |  |  |  |  |  |-- robot.go
+|  |  |  |  |-- versioned
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- clientset.go
+|  |  |  |  |  |-- doc.go
+|  |  |  |  |  |-- fake
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- clientset_generated.go
+|  |  |  |  |  |  |-- doc.go
+|  |  |  |  |  |  |-- register.go
+|  |  |  |  |  |-- scheme
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- doc.go
+|  |  |  |  |  |  |-- register.go
+|  |  |  |  |  |-- typed
+|  |  |  |  |  |  |-- apps
+|  |  |  |  |  |  |  |-- v1alpha1
+|  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |-- app.go
+|  |  |  |  |  |  |  |  |-- approllout.go
+|  |  |  |  |  |  |  |  |-- apps_client.go
+|  |  |  |  |  |  |  |  |-- chartassignment.go
+|  |  |  |  |  |  |  |  |-- doc.go
+|  |  |  |  |  |  |  |  |-- fake
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- doc.go
+|  |  |  |  |  |  |  |  |  |-- fake_app.go
+|  |  |  |  |  |  |  |  |  |-- fake_approllout.go
+|  |  |  |  |  |  |  |  |  |-- fake_apps_client.go
+|  |  |  |  |  |  |  |  |  |-- fake_chartassignment.go
+|  |  |  |  |  |  |  |  |  |-- fake_resourceset.go
+|  |  |  |  |  |  |  |  |-- generated_expansion.go
+|  |  |  |  |  |  |  |  |-- resourceset.go
+|  |  |  |  |  |  |-- registry
+|  |  |  |  |  |  |  |-- v1alpha1
+|  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |-- doc.go
+|  |  |  |  |  |  |  |  |-- fake
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- doc.go
+|  |  |  |  |  |  |  |  |  |-- fake_registry_client.go
+|  |  |  |  |  |  |  |  |  |-- fake_robot.go
+|  |  |  |  |  |  |  |  |-- generated_expansion.go
+|  |  |  |  |  |  |  |  |-- registry_client.go
+|  |  |  |  |  |  |  |  |-- robot.go
+|  |  |  |-- configutil
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- config_reader.go
+|  |  |  |  |-- config_reader_test.go
+|  |  |  |-- controller
+|  |  |  |  |-- approllout
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- controller.go
+|  |  |  |  |  |-- controller_test.go
+|  |  |  |  |-- chartassignment
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- controller.go
+|  |  |  |  |  |-- controller_test.go
+|  |  |  |  |  |-- release.go
+|  |  |  |  |  |-- release_test.go
+|  |  |  |-- gcr
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- update_gcr_credential_test.go
+|  |  |  |  |-- update_gcr_credentials.go
+|  |  |  |-- grpc2rest
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- method.go
+|  |  |  |  |-- method_test.go
+|  |  |  |  |-- resource_info.go
+|  |  |  |  |-- resource_info_test.go
+|  |  |  |-- kubetest
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- kubetest.go
+|  |  |  |-- kubeutils
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- kubeutils.go
+|  |  |  |-- robotauth
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- robotauth.go
+|  |  |  |-- setup
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- connect_test.go
+|  |  |  |  |-- setupcommon.go
+|  |  |  |  |-- util
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- factory.go
+|  |  |  |  |  |-- fake.go
+|  |  |  |-- synk
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- interface.go
+|  |  |  |  |-- synk.go
+|  |  |  |  |-- synk_test.go
+|  |  |-- tests
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- apps
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- apps_test.go
+|  |  |  |  |-- run.sh
+|  |  |  |-- k8s_integration_test.go
+|  |-- java
+|  |  |-- BUILD.bazel
+|  |  |-- com
+|  |  |  |-- cloudrobotics
+|  |  |  |  |-- framework
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- Clock.java
+|  |  |  |  |  |-- ClockModule.java
+|  |  |  |  |  |-- DatastoreModule.java
+|  |  |  |  |  |-- DatastoreTestRule.java
+|  |  |  |  |  |-- ExecutorModule.java
+|  |  |  |  |  |-- FrameworkModule.java
+|  |  |  |  |  |-- HttpServerTestRule.java
+|  |  |  |  |  |-- HttpService.java
+|  |  |  |  |  |-- KubernetesModule.java
+|  |  |  |  |  |-- ModularServer.java
+|  |  |  |  |  |-- OverviewHandler.java
+|  |  |  |  |  |-- StorageModule.java
+|  |  |  |  |  |-- SystemClock.java
+|  |  |  |  |  |-- configuration
+|  |  |  |  |  |  |-- ConfigurationModule.java
+|  |  |  |  |  |  |-- ConfigurationReportingHandler.java
+|  |  |  |  |  |  |-- ConfigurationService.java
+|  |  |  |  |  |  |-- ConfigurationServiceForProto.java
+|  |  |  |  |  |  |-- MessageUtils.java
+|  |  |  |  |  |-- grpc
+|  |  |  |  |  |  |-- AuthenticationContext.java
+|  |  |  |  |  |  |-- AuthenticationContextClientInterceptor.java
+|  |  |  |  |  |  |-- AuthenticationContextServerInterceptor.java
+|  |  |  |  |  |  |-- ChannelModule.java
+|  |  |  |  |  |  |-- GrpcModule.java
+|  |  |  |  |  |  |-- GrpcService.java
+|  |  |  |  |  |-- healthreporting
+|  |  |  |  |  |  |-- HealthReportingHandler.java
+|  |  |  |  |  |  |-- HealthReportingModule.java
+|  |  |  |  |  |-- readinessreporting
+|  |  |  |  |  |  |-- ReadinessReportingHandler.java
+|  |  |  |  |  |  |-- ReadinessReportingModule.java
+|  |  |  |  |  |-- stats
+|  |  |  |  |  |  |-- SystemStatsHandler.java
+|  |  |  |  |  |  |-- SystemStatsModule.java
+|  |  |  |  |-- hello-world-client
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- Main.java
+|  |  |  |  |-- tokenvendor
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- CloudIotTokenVerifier.java
+|  |  |  |  |  |-- CloudIotTokenVerifierTest.java
+|  |  |  |  |  |-- Configuration.java
+|  |  |  |  |  |-- DeviceId.java
+|  |  |  |  |  |-- InMemoryPublicKeyRepository.java
+|  |  |  |  |  |-- InMemoryPublicKeyRepositoryTest.java
+|  |  |  |  |  |-- InvalidTokenException.java
+|  |  |  |  |  |-- PublicKeyPem.java
+|  |  |  |  |  |-- PublicKeyPemTest.java
+|  |  |  |  |  |-- PublicKeyPublishHandler.java
+|  |  |  |  |  |-- PublicKeyPublishHandlerTest.java
+|  |  |  |  |  |-- PublicKeyPublisher.java
+|  |  |  |  |  |-- PublicKeyReadHandler.java
+|  |  |  |  |  |-- PublicKeyReadHandlerTest.java
+|  |  |  |  |  |-- PublicKeyRepository.java
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- TokenSource.java
+|  |  |  |  |  |-- TokenSourceTest.java
+|  |  |  |  |  |-- TokenVendorHandler.java
+|  |  |  |  |  |-- TokenVendorModule.java
+|  |  |  |  |  |-- TokenVendorServer.java
+|  |  |  |  |  |-- VerificationHandler.java
+|  |  |  |  |  |-- VerificationHandlerTest.java
+|  |  |  |  |  |-- cloudiot
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- CloudIotException.java
+|  |  |  |  |  |  |-- CloudIotModule.java
+|  |  |  |  |  |  |-- CloudIotPublicKeyRepository.java
+|  |  |  |  |  |  |-- CloudIotPublicKeyRepositoryTest.java
+|  |  |  |  |  |  |-- FakeCloudIot.java
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- ec_private.pem
+|  |  |  |  |  |  |-- ec_public.pem
+|  |  |  |  |  |  |-- rsa_cert.pem
+|  |  |  |  |  |  |-- rsa_cert_other.pem
+|  |  |  |  |  |  |-- rsa_private.pem
+|  |  |-- logger.properties
+|  |-- proto
+|  |  |-- common
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- transform.proto
+|  |  |-- framework
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- config.proto
+|  |  |-- hello-world
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- spec.proto
+|  |  |-- http-relay
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- http_over_rpc.proto
+|  |  |-- mission
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mission.proto
+|  |  |-- registry
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- registry.proto
+|-- third_party
+|  |-- BUILD
+|  |-- BUILD.bazel
+|  |-- README.md
+|  |-- actionlib.BUILD
+|  |-- app_crd.BUILD
+|  |-- bzip2.BUILD
+|  |-- catkin.BUILD
+|  |-- catkin_pkg.BUILD
+|  |-- ceres.BUILD
+|  |-- cert-manager
+|  |  |-- 00-crds.yaml
+|  |  |-- BUILD.bazel
+|  |  |-- cert-manager-v0.10.1.tgz
+|  |-- class_loader.BUILD
+|  |-- com_github_googleapis_googleapis-0001-remove-unused-import.patch
+|  |-- common_msgs.BUILD
+|  |-- console_bridge.BUILD
+|  |-- eigen.BUILD
+|  |-- empy.BUILD
+|  |-- fluentd_gcp_addon
+|  |  |-- BUILD.bazel
+|  |  |-- fluentd-gcp-configmap.yaml
+|  |  |-- fluentd-gcp-ds.yaml
+|  |-- gencpp.BUILD
+|  |-- genmsg.BUILD
+|  |-- geometry2.BUILD
+|  |-- helm.BUILD
+|  |-- ingress-nginx.BUILD
+|  |-- io_grpc_grpc_java-d3c77f2d870baf8c8340890eb5aed590a5f3940c.patch
+|  |-- java
+|  |  |-- com
+|  |  |  |-- beust
+|  |  |  |  |-- BUILD
+|  |  |  |-- fasterxml
+|  |  |  |  |-- jackson
+|  |  |  |  |  |-- core
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- dataformat
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- module
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |-- github
+|  |  |  |  |-- mifmif
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- stephenc
+|  |  |  |  |  |-- jcip
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |-- google
+|  |  |  |  |-- android
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- api
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- grpc
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |-- api_client
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- apis
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- auth
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- auto
+|  |  |  |  |  |-- value
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |-- cloud
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- datastore
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |-- code
+|  |  |  |  |  |-- findbugs
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- gson
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |-- dagger
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- errorprone
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- flogger
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- googlejavaformat
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- guava
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- http_client
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- j2objc
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- oauth_client
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- protobuf
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- truth
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- extensions
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |-- hubspot
+|  |  |  |  |-- jackson
+|  |  |  |  |  |-- BUILD
+|  |  |  |-- nimbusds
+|  |  |  |  |-- BUILD
+|  |  |  |-- squareup
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- okhttp3
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- okio
+|  |  |  |  |  |-- BUILD
+|  |  |-- commons_codec
+|  |  |  |-- BUILD
+|  |  |-- commons_collections
+|  |  |  |-- BUILD
+|  |  |-- commons_lang
+|  |  |  |-- BUILD
+|  |  |-- commons_logging
+|  |  |  |-- BUILD
+|  |  |-- dk
+|  |  |  |-- brics
+|  |  |  |  |-- automaton
+|  |  |  |  |  |-- BUILD
+|  |  |-- io
+|  |  |  |-- fabric8
+|  |  |  |  |-- BUILD
+|  |  |  |-- grpc
+|  |  |  |  |-- BUILD
+|  |  |  |-- netty
+|  |  |  |  |-- BUILD
+|  |  |  |-- opencensus
+|  |  |  |  |-- BUILD
+|  |  |  |-- perfmark
+|  |  |  |  |-- BUILD
+|  |  |  |-- prometheus
+|  |  |  |  |-- BUILD
+|  |  |  |-- sundr
+|  |  |  |  |-- BUILD
+|  |  |-- javax
+|  |  |  |-- annotation
+|  |  |  |  |-- BUILD
+|  |  |  |-- inject
+|  |  |  |  |-- BUILD
+|  |  |  |-- validation
+|  |  |  |  |-- BUILD
+|  |  |-- joda_time
+|  |  |  |-- BUILD
+|  |  |-- junit
+|  |  |  |-- BUILD
+|  |  |-- net
+|  |  |  |-- bytebuddy
+|  |  |  |  |-- BUILD
+|  |  |  |-- minidev
+|  |  |  |  |-- BUILD
+|  |  |-- org
+|  |  |  |-- apache
+|  |  |  |  |-- httpcomponents
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- velocity
+|  |  |  |  |  |-- BUILD
+|  |  |  |-- apiguardian
+|  |  |  |  |-- BUILD
+|  |  |  |-- bouncycastle
+|  |  |  |  |-- BUILD
+|  |  |  |-- checkerframework
+|  |  |  |  |-- BUILD
+|  |  |  |-- codehaus
+|  |  |  |  |-- jackson
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- mojo
+|  |  |  |  |  |-- BUILD
+|  |  |  |-- hamcrest
+|  |  |  |  |-- BUILD
+|  |  |  |-- java_websocket
+|  |  |  |  |-- BUILD
+|  |  |  |-- junit
+|  |  |  |  |-- jupiter
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |-- platform
+|  |  |  |  |  |-- BUILD
+|  |  |  |-- mockito
+|  |  |  |  |-- BUILD
+|  |  |  |-- objenesis
+|  |  |  |  |-- BUILD
+|  |  |  |-- opentest4j
+|  |  |  |  |-- BUILD
+|  |  |  |-- ow2
+|  |  |  |  |-- asm
+|  |  |  |  |  |-- BUILD
+|  |  |  |-- slf4j
+|  |  |  |  |-- BUILD
+|  |  |  |-- threeten
+|  |  |  |  |-- BUILD
+|  |  |  |-- yaml
+|  |  |  |  |-- BUILD
+|  |  |-- pl
+|  |  |  |-- pragmatists
+|  |  |  |  |-- BUILD
+|  |-- kube-prometheus-stack
+|  |  |-- 00-crds.yaml
+|  |  |-- BUILD.bazel
+|  |  |-- kube-prometheus-stack-10.3.5.tgz
+|  |-- kubernetes_proto
+|  |  |-- meta
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- generated.proto
+|  |  |-- runtime
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- generated.proto
+|  |  |-- schema
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- generated.proto
+|  |-- lua.BUILD
+|  |-- lz4.BUILD
+|  |-- maven_dependencies.bzl
+|  |-- maven_dependencies.yaml
+|  |-- navigation_msgs.BUILD
+|  |-- pluginlib.BUILD
+|  |-- poco.BUILD
+|  |-- robot_model.BUILD
+|  |-- rsa.BUILD
+|  |-- six.BUILD
+|  |-- std_msgs.BUILD
+|  |-- terraform.BUILD
+|  |-- tinyxml.BUILD
+|  |-- tinyxml2.BUILD
+|  |-- urdfdom.BUILD
+|  |-- urdfdom_headers.BUILD
+|  |-- uritemplate.BUILD
+|  |-- xxhash.BUILD
+|  |-- zlib.BUILD

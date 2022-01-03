@@ -1,0 +1,299 @@
+|-- .gitignore
+|-- CONTRIBUTING.md
+|-- ChangeLog.md
+|-- LICENSE
+|-- README.md
+|-- Setup.hs
+|-- WORKSPACE
+|-- app
+|  |-- Main.hs
+|-- bzl
+|  |-- BUILD
+|  |-- README.md
+|  |-- alex.bzl
+|  |-- binary_with_runfiles.bzl
+|  |-- blazerc
+|  |-- c2hs.bzl
+|  |-- cabal_package.bzl
+|  |-- cabal_package
+|  |  |-- BUILD
+|  |  |-- cabal_paths.bzl
+|  |  |-- core_packages_list.bzl
+|  |  |-- forward_binary.bzl
+|  |  |-- overrides.bzl
+|  |  |-- paths.template
+|  |  |-- test.template
+|  |-- check_module_names
+|  |  |-- BUILD
+|  |  |-- CheckModuleNames.hs
+|  |  |-- CheckModuleNamesTest.hs
+|  |-- config.bzl
+|  |-- def.bzl
+|  |-- g3doc
+|  |  |-- BUILD
+|  |  |-- dynamic.md
+|  |  |-- generated_stardoc.bzl
+|  |-- generate_core_libraries.bzl
+|  |-- happy.bzl
+|  |-- hsc2hs.bzl
+|  |-- paths.bzl
+|  |-- private
+|  |  |-- BUILD
+|  |  |-- action.bzl
+|  |  |-- archive.bzl
+|  |  |-- binary.bzl
+|  |  |-- cc.bzl
+|  |  |-- cc_api_test
+|  |  |  |-- BUILD
+|  |  |  |-- lib.cc
+|  |  |  |-- link.bzl
+|  |  |-- compile.bzl
+|  |  |-- compile_srcs_options.bzl
+|  |  |-- default_packages.bzl
+|  |  |-- ghc_options.bzl
+|  |  |-- info.bzl
+|  |  |-- library.bzl
+|  |  |-- link.bzl
+|  |  |-- module_names.bzl
+|  |  |-- package.bzl
+|  |  |-- proto_file.bzl
+|  |  |-- providers.bzl
+|  |  |-- runfiles.bzl
+|  |  |-- toolchains.bzl
+|  |-- settings.bzl
+|  |-- tests
+|  |  |-- attrs
+|  |  |  |-- BUILD
+|  |  |  |-- DefaultOptions.hs
+|  |  |  |-- GhcOptsTest.hs
+|  |  |  |-- GhcRtsoptsTest.hs
+|  |  |  |-- LinkoptsTest.hs
+|  |  |  |-- LiterateHaskell.lhs
+|  |  |  |-- MainIs.hs
+|  |  |  |-- RunfilesLib.hs
+|  |  |  |-- RunfilesMain.hs
+|  |  |  |-- file_c.txt
+|  |  |  |-- file_lib.txt
+|  |  |  |-- file_main.txt
+|  |  |  |-- runfiles_c.h
+|  |  |-- cabal_path
+|  |  |  |-- BUILD
+|  |  |  |-- PathsTest.hs
+|  |  |  |-- foo.txt
+|  |  |  |-- subdir
+|  |  |  |  |-- bar.txt
+|  |  |-- dep_on_haskell
+|  |  |  |-- BUILD
+|  |  |  |-- CDep.hs
+|  |  |  |-- Internal
+|  |  |  |  |-- Inc.hs
+|  |  |  |-- Lib.hs
+|  |  |  |-- Sub
+|  |  |  |  |-- Lib.hs
+|  |  |  |-- cdep_test.cc
+|  |  |  |-- clib.c
+|  |  |  |-- test.cc
+|  |  |-- dynamic
+|  |  |  |-- BUILD
+|  |  |  |-- Binary.hs
+|  |  |  |-- BinaryRunfilesTest.hs
+|  |  |  |-- FfiTest.hs
+|  |  |  |-- FlagProviderTest.hs
+|  |  |  |-- Library.hs
+|  |  |  |-- bin.cc
+|  |  |  |-- flag_provider.cc
+|  |  |  |-- subdir
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CLibrary.hs
+|  |  |  |  |-- Library.hs
+|  |  |  |  |-- clib.cc
+|  |  |-- ffi
+|  |  |  |-- AlwaysLinkTest.hs
+|  |  |  |-- BUILD
+|  |  |  |-- ExtraObjsForward.hs
+|  |  |  |-- ExtraObjsJoinedTest.hs
+|  |  |  |-- ExtraObjsLib.hs
+|  |  |  |-- ExtraObjsTest.hs
+|  |  |  |-- Foo.hs
+|  |  |  |-- HeadersLib.hs
+|  |  |  |-- HeadersTest.hs
+|  |  |  |-- LinkInputsTest.hs
+|  |  |  |-- SimpleFFI.hs
+|  |  |  |-- Stub.hs
+|  |  |  |-- StubTest.hs
+|  |  |  |-- TemplateHaskellBaseTest.hs
+|  |  |  |-- TransitiveFFI.hs
+|  |  |  |-- dynamic.lds
+|  |  |  |-- extra_objs_direct.cc
+|  |  |  |-- foo.cc
+|  |  |  |-- provider.cc
+|  |  |  |-- three.cc
+|  |  |  |-- three.h
+|  |  |  |-- transitive_objs.cc
+|  |  |  |-- user.cc
+|  |  |-- hierarchical
+|  |  |  |-- BUILD
+|  |  |  |-- Baz.hs
+|  |  |  |-- Baz2.hs
+|  |  |  |-- DupeName.hs
+|  |  |  |-- DupeNameTest.hs
+|  |  |  |-- Foo.hs
+|  |  |  |-- Foo
+|  |  |  |  |-- Bar.hs
+|  |  |  |-- Main.hs
+|  |  |  |-- Sub
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- DupeName.hs
+|  |  |  |  |-- Foo.hs
+|  |  |  |  |-- FooTest.hs
+|  |  |-- hsc2hs
+|  |  |  |-- BUILD
+|  |  |  |-- Foo.hsc
+|  |  |-- plugins
+|  |  |  |-- BUILD
+|  |  |  |-- PluginsLib.hs
+|  |  |  |-- PluginsLibTest.hs
+|  |  |  |-- PluginsTest.hs
+|  |  |-- preprocessor
+|  |  |  |-- BUILD
+|  |  |  |-- PreprocessedLib.hs
+|  |  |  |-- PreprocessedTest.hs
+|  |  |  |-- pp.sh
+|  |  |-- proto
+|  |  |  |-- BUILD
+|  |  |  |-- BarTest.hs
+|  |  |  |-- CamelCASE.proto
+|  |  |  |-- CamelCaseDir
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CamelCaseDirTest.hs
+|  |  |  |  |-- foo.proto
+|  |  |  |-- DashedFilePathTest.hs
+|  |  |  |-- GeneratedTest.hs
+|  |  |  |-- SubTest.hs
+|  |  |  |-- bar.proto
+|  |  |  |-- dashed-file_path.proto
+|  |  |  |-- foo.proto
+|  |  |  |-- sub_dir
+|  |  |  |  |-- sub.proto
+|  |  |-- recursive
+|  |  |  |-- BUILD
+|  |  |  |-- Boot.hs
+|  |  |  |-- Boot.hs-boot
+|  |  |  |-- RecursiveTest.hs
+|  |  |  |-- Regular.hs
+|  |  |-- rules
+|  |  |  |-- BUILD
+|  |  |  |-- Binary.hs
+|  |  |  |-- CoreLibraryTest.hs
+|  |  |  |-- Data
+|  |  |  |  |-- ByteString.hs
+|  |  |  |-- DefaultPackageTest.hs
+|  |  |  |-- Library.hs
+|  |  |  |-- NoDefaultPackagesTest.hs
+|  |  |  |-- PackageImportsTest.hs
+|  |  |  |-- ReexportPreludeTest.hs
+|  |  |  |-- ReexportTest1.hs
+|  |  |  |-- ReexportTest2.hs
+|  |  |  |-- UnicodeLib.hs
+|  |  |-- template_haskell
+|  |  |  |-- ANNTest.hs
+|  |  |  |-- BUILD
+|  |  |  |-- Dependency.hs
+|  |  |  |-- TestDependency.hs
+|  |  |  |-- TestDependencyLib.hs
+|  |  |  |-- TestDependencyLibTest.hs
+|  |  |  |-- TransitiveDependency.hs
+|  |  |-- transitive_data
+|  |  |  |-- BUILD
+|  |  |  |-- Provider.hs
+|  |  |  |-- TransitiveDataTest.hs
+|  |  |  |-- data
+|  |  |  |  |-- cc_data.txt
+|  |  |  |  |-- foo.txt
+|  |  |-- version_macros
+|  |  |  |-- BUILD
+|  |  |  |-- Dependency.hs
+|  |  |  |-- VersionTest.hs
+|-- cabal2bazel.cabal
+|-- rule_info
+|  |-- BUILD
+|  |-- rule_info.proto
+|-- settings
+|  |-- BUILD
+|-- src
+|  |-- Google
+|  |  |-- Google3.hs
+|  |  |-- Google3
+|  |  |  |-- Buildifier.hs
+|  |  |  |-- Name.hs
+|  |  |  |-- Package.hs
+|  |  |  |-- Tools
+|  |  |  |  |-- Cabal2Build
+|  |  |  |  |  |-- Actions.hs
+|  |  |  |  |  |-- Build.hs
+|  |  |  |  |  |-- Configuration.hs
+|  |  |  |  |  |-- Description.hs
+|  |  |  |  |  |-- Download.hs
+|  |  |  |  |  |-- License.hs
+|  |  |  |  |  |-- Options.hs
+|  |  |  |  |  |-- PackageName.hs
+|  |  |  |  |  |-- Plan.hs
+|  |  |  |  |  |-- Stackage.hs
+|  |  |  |  |  |-- VersionAgnosticThirdParty.hs
+|  |  |  |-- VCSClient.hs
+|  |  |-- Runtime
+|  |  |  |-- BuildHelper.hs
+|  |  |  |-- FindFiles.hs
+|  |  |-- Utils
+|  |  |  |-- DirectoryUtils.hs
+|  |  |  |-- Env.hs
+|  |  |  |-- Expn.hs
+|  |  |  |-- List.hs
+|  |  |  |-- Monad.hs
+|  |  |  |-- Pick.hs
+|  |  |  |-- ReadPUtils.hs
+|  |  |  |-- When.hs
+|-- stack.yaml
+|-- test
+|  |-- ActionsTest.hs
+|  |-- BuildTest.hs
+|  |-- DownloadTest.hs
+|  |-- LicenseTest.hs
+|  |-- testdata
+|  |  |-- awesome-1.2
+|  |  |  |-- LICENSE
+|  |  |  |-- README.markdown
+|  |  |  |-- awesome.cabal
+|  |  |-- expected_package_description.bzl
+|  |  |-- third_party
+|  |  |  |-- haskell
+|  |  |  |  |-- awesome
+|  |  |  |  |  |-- v1_2
+|  |  |  |  |  |  |-- awesome.cabal
+|  |  |  |  |-- cool
+|  |  |  |  |  |-- v1_8
+|  |  |  |  |  |  |-- cool.cabal
+|  |  |  |  |-- groovy
+|  |  |  |  |  |-- v1_3
+|  |  |  |  |  |  |-- groovy.cabal
+|  |  |  |  |-- knarly
+|  |  |  |  |  |-- v1_4
+|  |  |  |  |  |  |-- knarly.cabal
+|  |  |  |  |-- sweet
+|  |  |  |  |  |-- v1_4
+|  |  |  |  |  |  |-- sweet.cabal
+|  |  |-- verify_package
+|  |  |  |-- fake_package.txt
+|-- test_support
+|  |-- BUILD
+|  |-- includes
+|  |  |-- header_provider.h
+|  |  |-- hsc2hs_dep.h
+|-- third_party
+|  |-- haskell
+|  |  |-- ghc
+|  |  |  |-- BUILD
+|  |  |  |-- v8_6_4
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- global_packages.bzl
+|  |  |  |-- versions.bzl

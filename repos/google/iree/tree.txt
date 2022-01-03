@@ -1,0 +1,2832 @@
+|-- .bazelignore
+|-- .bazelrc
+|-- .bazelversion
+|-- .clang-format
+|-- .github
+|  |-- ISSUE_TEMPLATE
+|  |  |-- bug_report.md
+|  |-- workflows
+|  |  |-- build_package.yml
+|  |  |-- copybara_fixup.yml
+|  |  |-- lint.yml
+|  |  |-- macos_oneshot_build.yml
+|  |  |-- publish_website.yml
+|  |  |-- schedule_snapshot_release.yml
+|  |  |-- update_llvm_dependent_submodules.yml
+|-- .gitignore
+|-- .gitmodules
+|-- .style.yapf
+|-- .yamllint.yml
+|-- AUTHORS
+|-- BUILD.bazel
+|-- CMakeLists.txt
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- SUBMODULE_VERSIONS.txt
+|-- WORKSPACE
+|-- bindings
+|  |-- python
+|  |  |-- CMakeLists.txt
+|  |  |-- README.md
+|  |  |-- build_requirements.txt
+|  |  |-- iree
+|  |  |  |-- compiler
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- core.py
+|  |  |  |  |-- debugging.py
+|  |  |  |  |-- setup.py.in
+|  |  |  |  |-- tf.py
+|  |  |  |  |-- tflite.py
+|  |  |  |  |-- tools.py
+|  |  |  |  |-- version.py.in
+|  |  |  |  |-- xla.py
+|  |  |  |-- jax
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- frontend.py
+|  |  |  |  |-- frontend_test.py
+|  |  |  |  |-- setup.py.in
+|  |  |  |  |-- version.py.in
+|  |  |  |-- runtime
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- binding.h
+|  |  |  |  |-- export.def
+|  |  |  |  |-- function.py
+|  |  |  |  |-- hal.cc
+|  |  |  |  |-- hal.h
+|  |  |  |  |-- hal_test.py
+|  |  |  |  |-- initialize_module.cc
+|  |  |  |  |-- setup.py.in
+|  |  |  |  |-- status_utils.cc
+|  |  |  |  |-- status_utils.h
+|  |  |  |  |-- system_api.py
+|  |  |  |  |-- system_api_test.py
+|  |  |  |  |-- tracing.py
+|  |  |  |  |-- unix_version.lds
+|  |  |  |  |-- version.py.in
+|  |  |  |  |-- vm.cc
+|  |  |  |  |-- vm.h
+|  |  |  |  |-- vm_test.py
+|  |  |  |-- tools
+|  |  |  |  |-- core
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- scripts
+|  |  |  |  |  |  |-- iree_translate
+|  |  |  |  |  |  |  |-- __main__.py
+|  |  |-- tests
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- compiler_core_test.py
+|  |  |  |-- compiler_tf_test.py
+|  |  |  |-- compiler_tflite_test.py
+|  |  |  |-- compiler_xla_test.py
+|  |  |  |-- testdata
+|  |  |  |  |-- generate_tflite.py
+|  |  |  |  |-- generate_xla.py
+|  |  |  |  |-- tflite_sample.fb
+|  |  |  |  |-- xla_sample.hlo
+|  |  |  |  |-- xla_sample.pb
+|  |-- tflite
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- README.md
+|  |  |-- include
+|  |  |  |-- README.md
+|  |  |  |-- tensorflow
+|  |  |  |  |-- lite
+|  |  |  |  |  |-- c
+|  |  |  |  |  |  |-- c_api.h
+|  |  |  |  |  |  |-- c_api_experimental.h
+|  |  |  |  |  |  |-- common.h
+|  |  |-- interpreter.c
+|  |  |-- interpreter.h
+|  |  |-- java
+|  |  |  |-- README.md
+|  |  |  |-- build.gradle
+|  |  |  |-- org
+|  |  |  |  |-- tensorflow
+|  |  |  |  |  |-- lite
+|  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- DataType.java
+|  |  |  |  |  |  |-- Interpreter.java
+|  |  |  |  |  |  |-- Tensor.java
+|  |  |  |  |  |  |-- TensorFlowLite.java
+|  |  |  |  |  |  |-- native
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- interpreter_jni.cc
+|  |  |  |  |  |  |  |-- tensor_jni.cc
+|  |  |  |  |  |  |  |-- tensorflow_lite_jni.cc
+|  |  |  |  |  |  |-- tests
+|  |  |  |  |  |  |  |-- InterpreterTest.java
+|  |  |  |  |  |  |  |-- TestManifest.xml
+|  |  |  |  |  |  |  |-- simple_add.mlir
+|  |  |  |-- settings.gradle
+|  |  |-- model.c
+|  |  |-- model.h
+|  |  |-- options.c
+|  |  |-- options.h
+|  |  |-- shim.c
+|  |  |-- shim.h
+|  |  |-- smoke_test.cc
+|  |  |-- tensor.c
+|  |  |-- tensor.h
+|  |  |-- testdata
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- add_dynamic.mlir
+|  |  |  |-- add_multi.mlir
+|  |  |  |-- add_static.mlir
+|-- build_tools
+|  |-- BUILD
+|  |-- android
+|  |  |-- common
+|  |  |  |-- __init__.py
+|  |  |  |-- benchmark_description.py
+|  |  |-- post_benchmarks_as_pr_comment.py
+|  |  |-- run_benchmarks.py
+|  |  |-- upload_benchmarks_to_dashboard.py
+|  |-- bazel
+|  |  |-- BUILD
+|  |  |-- build_core.sh
+|  |  |-- deep_copy.bzl
+|  |  |-- enforce_glob.bzl
+|  |  |-- iree.bazelrc
+|  |  |-- iree_check_test.bzl
+|  |  |-- iree_flatcc.bzl
+|  |  |-- iree_tablegen_doc.bzl
+|  |  |-- run_binary_test.bzl
+|  |  |-- template_rule.bzl
+|  |  |-- workspace.bzl
+|  |-- bazel_to_cmake
+|  |  |-- __init__.py
+|  |  |-- bazel_to_cmake.py
+|  |  |-- bazel_to_cmake_converter.py
+|  |  |-- bazel_to_cmake_targets.py
+|  |-- buildkite
+|  |  |-- cmake
+|  |  |  |-- android
+|  |  |  |  |-- arm64-v8a
+|  |  |  |  |  |-- benchmark.yml
+|  |  |  |  |  |-- benchmark2.yml
+|  |  |  |  |  |-- pipeline.yml
+|  |  |  |-- build_configurations.yml
+|  |  |-- samples.yml
+|  |-- cmake
+|  |  |-- bazel.bat.in
+|  |  |-- bazel.sh.in
+|  |  |-- build_android.sh
+|  |  |-- build_riscv.sh
+|  |  |-- build_runtime.sh
+|  |  |-- build_tracing.sh
+|  |  |-- clean_build.sh
+|  |  |-- external_cc_library.cmake
+|  |  |-- flatbuffer_c_library.cmake
+|  |  |-- iree_add_all_subdirs.cmake
+|  |  |-- iree_bytecode_module.cmake
+|  |  |-- iree_c_embed_data.cmake
+|  |  |-- iree_c_module.cmake
+|  |  |-- iree_cc_binary.cmake
+|  |  |-- iree_cc_library.cmake
+|  |  |-- iree_cc_test.cmake
+|  |  |-- iree_check_test.cmake
+|  |  |-- iree_copts.cmake
+|  |  |-- iree_installed_test.cmake
+|  |  |-- iree_lit_test.cmake
+|  |  |-- iree_macros.cmake
+|  |  |-- iree_mlir_benchmark_suite.cmake
+|  |  |-- iree_python.cmake
+|  |  |-- iree_run_binary_test.cmake
+|  |  |-- iree_setup_toolchain.cmake
+|  |  |-- iree_tablegen_doc.cmake
+|  |  |-- iree_tablegen_library.cmake
+|  |  |-- iree_test_matrix.cmake
+|  |  |-- rebuild.sh
+|  |  |-- riscv.toolchain.cmake
+|  |  |-- run_android_test.bat
+|  |  |-- run_android_test.ps1
+|  |  |-- run_android_test.sh
+|  |  |-- run_test.bat
+|  |  |-- run_test.ps1
+|  |  |-- run_test.sh
+|  |  |-- sanitizers.cmake
+|  |  |-- test.sh
+|  |-- docker
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- base
+|  |  |  |-- Dockerfile
+|  |  |-- bazel
+|  |  |  |-- Dockerfile
+|  |  |-- cmake-android
+|  |  |  |-- Dockerfile
+|  |  |-- cmake-bazel-frontends-android
+|  |  |  |-- Dockerfile
+|  |  |-- cmake-bazel-frontends-nvidia
+|  |  |  |-- Dockerfile
+|  |  |-- cmake-bazel-frontends-swiftshader
+|  |  |  |-- Dockerfile
+|  |  |-- cmake-bazel-frontends-vulkan
+|  |  |  |-- Dockerfile
+|  |  |-- cmake-bazel-frontends
+|  |  |  |-- Dockerfile
+|  |  |-- cmake-python-nvidia
+|  |  |  |-- Dockerfile
+|  |  |-- cmake-python-swiftshader
+|  |  |  |-- Dockerfile
+|  |  |-- cmake-python-vulkan
+|  |  |  |-- Dockerfile
+|  |  |-- cmake-python
+|  |  |  |-- Dockerfile
+|  |  |-- cmake-riscv
+|  |  |  |-- Dockerfile
+|  |  |-- cmake
+|  |  |  |-- Dockerfile
+|  |  |-- gcloud_setup.sh
+|  |  |-- manage_images.py
+|  |  |-- manage_prod.py
+|  |  |-- prod_digests.txt
+|  |  |-- rbe-toolchain
+|  |  |  |-- Dockerfile
+|  |  |-- samples
+|  |  |  |-- Dockerfile
+|  |  |-- swiftshader
+|  |  |  |-- Dockerfile
+|  |  |-- util
+|  |  |  |-- Dockerfile
+|  |  |-- utils.py
+|  |  |-- vulkan
+|  |  |  |-- Dockerfile
+|  |-- embed_data
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- build_defs.bzl
+|  |  |-- c_embed_data_test.cc
+|  |  |-- data
+|  |  |  |-- file2.bin
+|  |  |  |-- file3.bin
+|  |  |-- file1.bin
+|  |  |-- generate_embed_data_main.cc
+|  |-- github_actions
+|  |  |-- README.md
+|  |  |-- build_dist.py
+|  |  |-- ci_requirements.txt
+|  |  |-- cmake_ci.py
+|  |  |-- configure_dev_environment.ps1
+|  |-- kokoro
+|  |  |-- gcp_ubuntu
+|  |  |  |-- bazel
+|  |  |  |  |-- linux
+|  |  |  |  |  |-- x86-swiftshader
+|  |  |  |  |  |  |-- core
+|  |  |  |  |  |  |  |-- build.sh
+|  |  |  |  |  |  |  |-- build_kokoro.sh
+|  |  |  |  |  |  |  |-- common.cfg
+|  |  |  |  |  |  |  |-- google.cfg
+|  |  |  |  |  |  |  |-- main.cfg
+|  |  |  |  |  |  |  |-- presubmit.cfg
+|  |  |  |-- check_vulkan.sh
+|  |  |  |-- cmake-bazel
+|  |  |  |  |-- linux
+|  |  |  |  |  |-- x86-swiftshader
+|  |  |  |  |  |  |-- build.sh
+|  |  |  |  |  |  |-- build_kokoro.sh
+|  |  |  |  |  |  |-- common.cfg
+|  |  |  |  |  |  |-- google.cfg
+|  |  |  |  |  |  |-- main.cfg
+|  |  |  |  |  |  |-- presubmit.cfg
+|  |  |  |  |  |-- x86-turing
+|  |  |  |  |  |  |-- build.sh
+|  |  |  |  |  |  |-- build_kokoro.sh
+|  |  |  |  |  |  |-- common.cfg
+|  |  |  |  |  |  |-- google.cfg
+|  |  |  |  |  |  |-- main.cfg
+|  |  |  |  |  |  |-- presubmit.cfg
+|  |  |  |-- cmake
+|  |  |  |  |-- android
+|  |  |  |  |  |-- arm64-v8a
+|  |  |  |  |  |  |-- build_kokoro.sh
+|  |  |  |  |  |  |-- common.cfg
+|  |  |  |  |  |  |-- google.cfg
+|  |  |  |  |  |  |-- main.cfg
+|  |  |  |  |  |  |-- presubmit.cfg
+|  |  |  |  |  |-- build.sh
+|  |  |  |  |-- baremetal
+|  |  |  |  |  |-- riscv32
+|  |  |  |  |  |  |-- build.sh
+|  |  |  |  |  |  |-- build_kokoro.sh
+|  |  |  |  |  |  |-- common.cfg
+|  |  |  |  |  |  |-- google.cfg
+|  |  |  |  |  |  |-- main.cfg
+|  |  |  |  |  |  |-- presubmit.cfg
+|  |  |  |  |  |  |-- test.sh
+|  |  |  |  |-- linux
+|  |  |  |  |  |-- riscv64
+|  |  |  |  |  |  |-- build.sh
+|  |  |  |  |  |  |-- build_kokoro.sh
+|  |  |  |  |  |  |-- common.cfg
+|  |  |  |  |  |  |-- google.cfg
+|  |  |  |  |  |  |-- main.cfg
+|  |  |  |  |  |  |-- presubmit.cfg
+|  |  |  |  |  |  |-- test.sh
+|  |  |  |  |  |-- x86-swiftshader-asan
+|  |  |  |  |  |  |-- build.sh
+|  |  |  |  |  |  |-- build_kokoro.sh
+|  |  |  |  |  |  |-- common.cfg
+|  |  |  |  |  |  |-- google.cfg
+|  |  |  |  |  |  |-- main.cfg
+|  |  |  |  |  |  |-- presubmit.cfg
+|  |  |  |  |  |-- x86-swiftshader
+|  |  |  |  |  |  |-- build.sh
+|  |  |  |  |  |  |-- build_kokoro.sh
+|  |  |  |  |  |  |-- common.cfg
+|  |  |  |  |  |  |-- google.cfg
+|  |  |  |  |  |  |-- main.cfg
+|  |  |  |  |  |  |-- presubmit.cfg
+|  |  |  |  |  |-- x86-turing
+|  |  |  |  |  |  |-- build.sh
+|  |  |  |  |  |  |-- build_kokoro.sh
+|  |  |  |  |  |  |-- common.cfg
+|  |  |  |  |  |  |-- google.cfg
+|  |  |  |  |  |  |-- main.cfg
+|  |  |  |  |  |  |-- presubmit.cfg
+|  |  |  |-- docker_common.sh
+|  |  |  |-- simulate_kokoro.sh
+|  |-- mako
+|  |  |-- benchmark_modules_on_android.py
+|  |  |-- compile_android_modules.py
+|  |  |-- config
+|  |  |  |-- README.md
+|  |  |  |-- benchmark_template.config
+|  |  |  |-- mobile-bert-f16-s20.config
+|  |  |  |-- mobile-bert-pixel4.config
+|  |  |  |-- mobile-bert-s20.config
+|  |  |  |-- mobilenet-v2-pixel4.config
+|  |  |  |-- mobilenet-v2-s20.config
+|  |  |  |-- project.config
+|  |  |-- configuration.py
+|  |  |-- prepare_benchmark_files.py
+|  |-- manylinux_py_setup.py
+|  |-- pytype
+|  |  |-- check_diff.sh
+|  |-- riscv
+|  |  |-- riscv_bootstrap.sh
+|  |-- testing
+|  |  |-- gen_test_matrix.py
+|  |  |-- run_python_notebook.sh
+|  |  |-- test_samples.sh
+|  |-- third_party
+|  |  |-- cpuinfo
+|  |  |  |-- BUILD.overlay
+|  |  |-- cuda
+|  |  |  |-- BUILD.overlay
+|  |  |  |-- CMakeLists.txt
+|  |  |-- flatcc
+|  |  |  |-- BUILD.overlay
+|  |  |  |-- CMakeLists.txt
+|  |  |-- google_tracing_framework_cpp
+|  |  |  |-- BUILD.overlay
+|  |  |-- liburing
+|  |  |  |-- .clang-format
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- default_config
+|  |  |  |  |-- config-host.h
+|  |  |  |  |-- config-host.mak
+|  |  |  |  |-- src
+|  |  |  |  |  |-- include
+|  |  |  |  |  |  |-- liburing
+|  |  |  |  |  |  |  |-- compat.h
+|  |  |  |-- update_config.sh
+|  |  |-- libyaml
+|  |  |  |-- BUILD.overlay
+|  |  |  |-- CMakeLists.txt
+|  |  |-- mlir-emitc
+|  |  |  |-- CMakeLists.txt
+|  |  |-- mlir-hlo
+|  |  |  |-- CMakeLists.txt
+|  |  |-- pybind11
+|  |  |  |-- BUILD.overlay
+|  |  |-- rocm
+|  |  |  |-- CMakeLists.txt
+|  |  |-- spirv_cross
+|  |  |  |-- BUILD.overlay
+|  |  |-- stblib
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- stb_image.c
+|  |  |-- swiftshader
+|  |  |  |-- build_vk_swiftshader.sh
+|  |  |-- vulkan_headers
+|  |  |  |-- BUILD.overlay
+|  |  |-- vulkan_memory_allocator
+|  |  |  |-- BUILD.overlay
+|  |  |  |-- CMakeLists.txt
+|  |  |-- vulkan_sdk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- repo.bzl
+|-- colab
+|  |-- README.md
+|  |-- dummy.py
+|  |-- edge_detection.ipynb
+|  |-- low_level_invoke_function.ipynb
+|  |-- mnist_training.ipynb
+|  |-- resnet.ipynb
+|  |-- tensorflow_hub_import.ipynb
+|  |-- test_notebooks.py
+|  |-- tflite_text_classification.ipynb
+|-- configure_bazel.py
+|-- docs
+|  |-- README.md
+|  |-- developers
+|  |  |-- README.md
+|  |  |-- debugging
+|  |  |  |-- releases.md
+|  |  |-- design_docs
+|  |  |  |-- codegen_passes.md
+|  |  |  |-- cuda_backend.md
+|  |  |  |-- dynamic_shapes.md
+|  |  |  |-- function_abi.md
+|  |  |  |-- hal_driver_features.md
+|  |  |  |-- hlo_to_linalg.png
+|  |  |  |-- linalg_to_spirv.png
+|  |  |  |-- simple_ir_walkthrough.md
+|  |  |-- design_roadmap.md
+|  |  |-- developing_iree
+|  |  |  |-- benchmarking.md
+|  |  |  |-- ccache.md
+|  |  |  |-- contributor_tips.md
+|  |  |  |-- developer_overview.md
+|  |  |  |-- e2e_benchmarking.md
+|  |  |  |-- profiling.md
+|  |  |  |-- profiling_cpu_events.md
+|  |  |  |-- profiling_vulkan_gpu.md
+|  |  |  |-- profiling_with_tracy.md
+|  |  |  |-- repository_management.md
+|  |  |  |-- sanitizers.md
+|  |  |  |-- testing_guide.md
+|  |  |-- get_started
+|  |  |  |-- cmake_options_and_variables.md
+|  |  |  |-- generic_vulkan_env_setup.md
+|  |  |  |-- getting_started_android_cmake.md
+|  |  |  |-- getting_started_linux_bazel.md
+|  |  |  |-- getting_started_linux_cmake.md
+|  |  |  |-- getting_started_linux_vulkan.md
+|  |  |  |-- getting_started_macos_bazel.md
+|  |  |  |-- getting_started_macos_cmake.md
+|  |  |  |-- getting_started_python.md
+|  |  |  |-- getting_started_riscv_cmake.md
+|  |  |  |-- getting_started_tensorflow.md
+|  |  |  |-- getting_started_windows_bazel.md
+|  |  |  |-- getting_started_windows_cmake.md
+|  |  |  |-- getting_started_windows_vulkan.md
+|  |  |-- iree_community.md
+|  |  |-- objectives.md
+|  |  |-- tensorflow_coverage
+|  |  |  |-- language_and_speech_coverage.md
+|  |  |  |-- tf_base_coverage.md
+|  |  |  |-- tf_keras_coverage.md
+|  |  |  |-- vision_coverage.md
+|  |-- website
+|  |  |-- README.md
+|  |  |-- docs
+|  |  |  |-- assets
+|  |  |  |  |-- images
+|  |  |  |  |  |-- iree_architecture.svg
+|  |  |  |  |-- stylesheets
+|  |  |  |  |  |-- extra.css
+|  |  |  |-- bindings
+|  |  |  |  |-- c-api.md
+|  |  |  |  |-- python.md
+|  |  |  |  |-- tensorflow-lite.md
+|  |  |  |-- building-from-source
+|  |  |  |  |-- android.md
+|  |  |  |  |-- getting-started.md
+|  |  |  |  |-- index.md
+|  |  |  |  |-- optional-features.md
+|  |  |  |  |-- riscv.md
+|  |  |  |-- community
+|  |  |  |  |-- projects.md
+|  |  |  |-- deployment-configurations
+|  |  |  |  |-- bare-metal.md
+|  |  |  |  |-- cpu-dylib.md
+|  |  |  |  |-- gpu-vulkan.md
+|  |  |  |-- index.md
+|  |  |  |-- ml-frameworks
+|  |  |  |  |-- jax.md
+|  |  |  |  |-- tensorflow-lite.md
+|  |  |  |  |-- tensorflow.md
+|  |  |-- mkdocs.yml
+|  |  |-- overrides
+|  |  |  |-- .icons
+|  |  |  |  |-- iree
+|  |  |  |  |  |-- ghost.svg
+|  |  |  |-- 404.html
+|  |  |  |-- ghost.svg
+|  |  |  |-- partials
+|  |  |  |  |-- footer.html
+|-- experimental
+|  |-- README.md
+|  |-- bindings
+|  |  |-- java
+|  |  |  |-- .clang-format
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- build.gradle
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- iree
+|  |  |  |  |  |  |-- Context.java
+|  |  |  |  |  |  |-- Function.java
+|  |  |  |  |  |  |-- Instance.java
+|  |  |  |  |  |  |-- Module.java
+|  |  |  |  |  |  |-- Status.java
+|  |  |  |  |  |  |-- native
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- context_jni.cc
+|  |  |  |  |  |  |  |-- context_wrapper.cc
+|  |  |  |  |  |  |  |-- context_wrapper.h
+|  |  |  |  |  |  |  |-- function_jni.cc
+|  |  |  |  |  |  |  |-- function_wrapper.cc
+|  |  |  |  |  |  |  |-- function_wrapper.h
+|  |  |  |  |  |  |  |-- instance_jni.cc
+|  |  |  |  |  |  |  |-- instance_wrapper.cc
+|  |  |  |  |  |  |  |-- instance_wrapper.h
+|  |  |  |  |  |  |  |-- module_jni.cc
+|  |  |  |  |  |  |  |-- module_wrapper.cc
+|  |  |  |  |  |  |  |-- module_wrapper.h
+|  |  |  |  |  |  |-- tests
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- IntegrationTest.java
+|  |  |  |  |  |  |  |-- TestManifest.xml
+|  |  |  |  |  |  |  |-- integration_test.cc
+|  |  |  |  |  |  |  |-- simple_mul.mlir
+|  |-- remoting
+|  |  |-- CMakeLists.txt
+|  |  |-- README.md
+|  |-- rocm
+|  |  |-- CMakeLists.txt
+|  |  |-- api.h
+|  |  |-- context_wrapper.h
+|  |  |-- descriptor_set_layout.c
+|  |  |-- descriptor_set_layout.h
+|  |  |-- direct_command_buffer.c
+|  |  |-- direct_command_buffer.h
+|  |  |-- dynamic_symbol_tables.h
+|  |  |-- dynamic_symbols.c
+|  |  |-- dynamic_symbols.h
+|  |  |-- dynamic_symbols_test.cc
+|  |  |-- event_semaphore.c
+|  |  |-- event_semaphore.h
+|  |  |-- executable_layout.c
+|  |  |-- executable_layout.h
+|  |  |-- native_executable.c
+|  |  |-- native_executable.h
+|  |  |-- nop_executable_cache.c
+|  |  |-- nop_executable_cache.h
+|  |  |-- registration
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- driver_module.c
+|  |  |  |-- driver_module.h
+|  |  |-- rocm_allocator.c
+|  |  |-- rocm_allocator.h
+|  |  |-- rocm_buffer.c
+|  |  |-- rocm_buffer.h
+|  |  |-- rocm_device.c
+|  |  |-- rocm_device.h
+|  |  |-- rocm_driver.c
+|  |  |-- rocm_event.c
+|  |  |-- rocm_event.h
+|  |  |-- rocm_headers.h
+|  |  |-- status_util.c
+|  |  |-- status_util.h
+|-- integrations
+|  |-- tensorflow
+|  |  |-- .bazelignore
+|  |  |-- .bazelrc
+|  |  |-- .bazelversion
+|  |  |-- .gitignore
+|  |  |-- CMakeLists.txt
+|  |  |-- WORKSPACE
+|  |  |-- bindings
+|  |  |  |-- python
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- build_requirements.txt
+|  |  |  |  |-- iree
+|  |  |  |  |  |-- tf
+|  |  |  |  |  |  |-- support
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |-- module_utils.py
+|  |  |  |  |  |  |  |-- module_utils_test.py
+|  |  |  |  |  |  |  |-- tf_test_utils.py
+|  |  |  |  |  |  |  |-- tf_test_utils_test.py
+|  |  |  |  |  |  |  |-- tf_utils.py
+|  |  |  |  |  |  |  |-- tf_utils_test.py
+|  |  |  |  |  |  |  |-- trace_utils.py
+|  |  |  |  |  |  |  |-- trace_utils_test.py
+|  |  |  |  |  |-- tools
+|  |  |  |  |  |  |-- tf
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |-- scripts
+|  |  |  |  |  |  |  |  |-- iree_import_tf
+|  |  |  |  |  |  |  |  |  |-- __main__.py
+|  |  |  |  |  |  |  |-- setup.py.in
+|  |  |  |  |  |  |  |-- version.py.in
+|  |  |  |  |  |  |-- tflite
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |-- scripts
+|  |  |  |  |  |  |  |  |-- iree_import_tflite
+|  |  |  |  |  |  |  |  |  |-- __main__.py
+|  |  |  |  |  |  |  |-- setup.py.in
+|  |  |  |  |  |  |  |-- version.py.in
+|  |  |  |  |  |  |-- xla
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |-- scripts
+|  |  |  |  |  |  |  |  |-- iree_import_xla
+|  |  |  |  |  |  |  |  |  |-- __main__.py
+|  |  |  |  |  |  |  |-- setup.py.in
+|  |  |  |  |  |  |  |-- version.py.in
+|  |  |-- build_tools
+|  |  |  |-- bazel
+|  |  |  |  |-- .gitignore
+|  |  |  |  |-- iree-tf.bazelrc
+|  |  |  |  |-- setup_local_llvm.py
+|  |  |  |-- overlay
+|  |  |  |  |-- mlir-hlo
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- WORKSPACE
+|  |  |  |-- testdata
+|  |  |  |  |-- generate_dynamic_samples.py
+|  |  |  |  |-- generate_errors_module.py
+|  |  |  |  |-- generate_signature_samples.py
+|  |  |-- e2e
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- batch_norm_test.py
+|  |  |  |-- batch_to_space_nd_test.py
+|  |  |  |-- broadcast_to_test.py
+|  |  |  |-- broadcasting_test.py
+|  |  |  |-- concat_test.py
+|  |  |  |-- control_flow_test.py
+|  |  |  |-- conv_test.py
+|  |  |  |-- conv_transpose_test.py
+|  |  |  |-- depth_conv_test.py
+|  |  |  |-- dynamic_mlp_relu_test.py
+|  |  |  |-- dynamic_mlp_test.py
+|  |  |  |-- einsum_dynamic_test.py
+|  |  |  |-- einsum_static_test.py
+|  |  |  |-- einsum_vector_test.py
+|  |  |  |-- fft_test.py
+|  |  |  |-- fill_test.py
+|  |  |  |-- gather_test.py
+|  |  |  |-- image_resize_test.py
+|  |  |  |-- iree_e2e_cartesian_product_test_suite.bzl
+|  |  |  |-- iree_e2e_cartesian_product_test_suite.cmake
+|  |  |  |-- keras
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- applications
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- applications_test.py
+|  |  |  |  |  |-- train_vision_models_on_cifar.py
+|  |  |  |  |-- keyword_spotting_streaming_test.py
+|  |  |  |  |-- layers
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- layers_test.py
+|  |  |  |  |-- train
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- classification_training_test.py
+|  |  |  |  |  |-- regression_training_test.py
+|  |  |  |-- linspace_test.py
+|  |  |  |-- mandelbrot_test.py
+|  |  |  |-- math
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- math_test.py
+|  |  |  |-- matrix_ops_dynamic_test.py
+|  |  |  |-- matrix_ops_static_test.py
+|  |  |  |-- mobile_bert_squad_test.py
+|  |  |  |-- pytree_test.py
+|  |  |  |-- quantization_dyn_test.py
+|  |  |  |-- quantization_test.py
+|  |  |  |-- range_test.py
+|  |  |  |-- resource_ops_test.py
+|  |  |  |-- ring_buffer_test.py
+|  |  |  |-- scatter_update_test.py
+|  |  |  |-- simple_arithmetic_test.py
+|  |  |  |-- simple_stateful_test.py
+|  |  |  |-- sliding_window_test.py
+|  |  |  |-- slim_vision_models
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- slim_vision_model_test.py
+|  |  |  |-- space_to_batch_nd_test.py
+|  |  |-- iree_tf_compiler
+|  |  |  |-- BUILD
+|  |  |  |-- MHLO
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- EmitDefaultIREEABI.cpp
+|  |  |  |  |-- FlattenTuplesInCFG.cpp
+|  |  |  |  |-- Passes.cpp
+|  |  |  |  |-- Passes.h
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- emit_default_iree_abi.mlir
+|  |  |  |-- README.md
+|  |  |  |-- TF
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- ConvertToMHLO.cpp
+|  |  |  |  |-- DirectLoweringPatterns.cpp
+|  |  |  |  |-- LowerGlobalTensors.cpp
+|  |  |  |  |-- Passes.cpp
+|  |  |  |  |-- Passes.h
+|  |  |  |  |-- PrettifyDebugInfo.cpp
+|  |  |  |  |-- PropagateResourceCasts.cpp
+|  |  |  |  |-- SavedModelToIreeABI.cpp
+|  |  |  |  |-- StripAsserts.cpp
+|  |  |  |  |-- StripMetadata.cpp
+|  |  |  |  |-- VerifyFullyConverted.cpp
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- convert_to_mhlo.mlir
+|  |  |  |  |  |-- direct_lowering.mlir
+|  |  |  |  |  |-- lower_global_tensors.mlir
+|  |  |  |  |  |-- lower_global_tensors_complex.mlir
+|  |  |  |  |  |-- lower_global_tensors_invalid.mlir
+|  |  |  |  |  |-- propagate_resource_casts.mlir
+|  |  |  |  |  |-- saved_model_to_iree_abi.mlir
+|  |  |  |  |  |-- strip_asserts.mlir
+|  |  |  |  |  |-- strip_metadata.mlir
+|  |  |  |  |  |-- verify_fully_converted.mlir
+|  |  |  |-- TFL
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- ConvertMetadata.cpp
+|  |  |  |  |-- Passes.cpp
+|  |  |  |  |-- Passes.h
+|  |  |  |  |-- StripMetadata.cpp
+|  |  |  |  |-- VerifyFullyConverted.cpp
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- convert_metadata.mlir
+|  |  |  |  |  |-- import
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- add.mlir
+|  |  |  |  |  |  |-- add.tflite
+|  |  |  |  |  |  |-- multi_add.mlir
+|  |  |  |  |  |  |-- multi_add.tflite
+|  |  |  |  |  |-- strip_metadata.mlir
+|  |  |  |  |  |-- verify_fully_converted.mlir
+|  |  |  |-- iree-import-tf-main.cpp
+|  |  |  |-- iree-import-tflite-main.cpp
+|  |  |  |-- iree-import-xla-main.cpp
+|  |  |  |-- iree-opt-tflite-main.cpp
+|  |  |  |-- iree-tf-opt-main.cpp
+|  |  |-- test
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- tf_integration
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- math
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- math_test.py
+|  |  |  |  |  |-- test_matrix.yaml
+|-- iree
+|  |-- BUILD.bazel
+|  |-- base
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- alignment.h
+|  |  |-- allocator.c
+|  |  |-- allocator.h
+|  |  |-- api.c
+|  |  |-- api.h
+|  |  |-- assert.h
+|  |  |-- attributes.h
+|  |  |-- config.h
+|  |  |-- internal
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- arena.c
+|  |  |  |-- arena.h
+|  |  |  |-- atomic_slist.c
+|  |  |  |-- atomic_slist.h
+|  |  |  |-- atomic_slist_test.cc
+|  |  |  |-- atomics.h
+|  |  |  |-- atomics_clang.h
+|  |  |  |-- atomics_disabled.h
+|  |  |  |-- atomics_gcc.h
+|  |  |  |-- atomics_msvc.h
+|  |  |  |-- atomics_test.cc
+|  |  |  |-- call_once.h
+|  |  |  |-- debugging.h
+|  |  |  |-- dynamic_library.h
+|  |  |  |-- dynamic_library_posix.c
+|  |  |  |-- dynamic_library_win32.c
+|  |  |  |-- file_io.c
+|  |  |  |-- file_io.h
+|  |  |  |-- file_io_test.cc
+|  |  |  |-- file_path.c
+|  |  |  |-- file_path.h
+|  |  |  |-- file_path_test.cc
+|  |  |  |-- flags.c
+|  |  |  |-- flags.h
+|  |  |  |-- flags_demo.c
+|  |  |  |-- flags_test.txt
+|  |  |  |-- flatcc.fbs
+|  |  |  |-- flatcc.h
+|  |  |  |-- fpu_state.c
+|  |  |  |-- fpu_state.h
+|  |  |  |-- fpu_state_benchmark.cc
+|  |  |  |-- fpu_state_test.cc
+|  |  |  |-- inline_array.h
+|  |  |  |-- main.h
+|  |  |  |-- main_posix.c
+|  |  |  |-- main_win32.c
+|  |  |  |-- math.h
+|  |  |  |-- math_test.cc
+|  |  |  |-- prng.h
+|  |  |  |-- prng_test.cc
+|  |  |  |-- span.h
+|  |  |  |-- synchronization.c
+|  |  |  |-- synchronization.h
+|  |  |  |-- synchronization_benchmark.cc
+|  |  |  |-- synchronization_test.cc
+|  |  |  |-- threading.c
+|  |  |  |-- threading.h
+|  |  |  |-- threading_darwin.c
+|  |  |  |-- threading_impl.h
+|  |  |  |-- threading_pthreads.c
+|  |  |  |-- threading_test.cc
+|  |  |  |-- threading_win32.c
+|  |  |  |-- wait_handle.c
+|  |  |  |-- wait_handle.h
+|  |  |  |-- wait_handle_epoll.c
+|  |  |  |-- wait_handle_impl.h
+|  |  |  |-- wait_handle_kqueue.c
+|  |  |  |-- wait_handle_poll.c
+|  |  |  |-- wait_handle_posix.c
+|  |  |  |-- wait_handle_posix.h
+|  |  |  |-- wait_handle_test.cc
+|  |  |  |-- wait_handle_win32.c
+|  |  |-- logging.cc
+|  |  |-- logging.h
+|  |  |-- status.c
+|  |  |-- status.h
+|  |  |-- status_cc.cc
+|  |  |-- status_cc.h
+|  |  |-- status_test.cc
+|  |  |-- string_view.c
+|  |  |-- string_view.h
+|  |  |-- string_view_test.cc
+|  |  |-- target_platform.h
+|  |  |-- testing
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- dynamic_library_test.cc
+|  |  |  |-- dynamic_library_test_library.cc
+|  |  |-- time.c
+|  |  |-- time.h
+|  |  |-- tracing.cc
+|  |  |-- tracing.h
+|  |-- benchmark
+|  |  |-- CMakeLists.txt
+|  |  |-- TensorFlow
+|  |  |  |-- CMakeLists.txt
+|  |-- build_defs.oss.bzl
+|  |-- compiler
+|  |  |-- BUILD
+|  |  |-- Bindings
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- Native
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Transforms
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- Passes.cpp
+|  |  |  |  |  |-- Passes.h
+|  |  |  |  |  |-- WrapEntryPoints.cpp
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- wrap_entry_points.mlir
+|  |  |  |-- TFLite
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Transforms
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- MaterializeShapeSupport.cpp
+|  |  |  |  |  |-- Passes.cpp
+|  |  |  |  |  |-- Passes.h
+|  |  |  |  |  |-- WrapEntryPoints.cpp
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- materialize_shape_support.mlir
+|  |  |  |  |  |  |-- wrap_entry_points.mlir
+|  |  |-- CMakeLists.txt
+|  |  |-- Codegen
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- Common
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- CleanupBufferAllocViewPass.cpp
+|  |  |  |  |-- DemoteF32ToF16.cpp
+|  |  |  |  |-- FlattenMemRefSubspanPass.cpp
+|  |  |  |  |-- FoldTensorExtractOp.td
+|  |  |  |  |-- FoldTensorExtractOpPass.cpp
+|  |  |  |  |-- ForOpCanonicalizationPass.cpp
+|  |  |  |  |-- LinalgBufferizePass.cpp
+|  |  |  |  |-- OptimizeVectorTransferPass.cpp
+|  |  |  |  |-- SetNumWorkgroupsPass.cpp
+|  |  |  |  |-- VectorizeConv.cpp
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- affinemin_canonicalization.mlir
+|  |  |  |  |  |-- canonicalize_interface_load_store.mlir
+|  |  |  |  |  |-- dead_alloc.mlir
+|  |  |  |  |  |-- f32Tof16.mlir
+|  |  |  |  |  |-- flatten_memref_subspan.mlir
+|  |  |  |  |  |-- fold_tensor_extract_op.mlir
+|  |  |  |  |  |-- forop_canonicalization.mlir
+|  |  |  |  |  |-- linalg_bufferize.mlir
+|  |  |  |  |  |-- remove_dead_allocs.mlir
+|  |  |  |  |  |-- transpose_canonicalization.mlir
+|  |  |  |  |  |-- vectorize_linalg_conv.mlir
+|  |  |  |-- LLVMCPU
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- ConvertToLLVM.cpp
+|  |  |  |  |-- KernelDispatch.cpp
+|  |  |  |  |-- KernelDispatch.h
+|  |  |  |  |-- LLVMCPULowerExecutableTarget.cpp
+|  |  |  |  |-- LLVMCPUPadWorkgroupTiles.cpp
+|  |  |  |  |-- LLVMCPUPlanConvLoopOrder.cpp
+|  |  |  |  |-- LLVMCPUSynchronizeSymbolVisibility.cpp
+|  |  |  |  |-- LLVMCPUTilePadAndVectorize.cpp
+|  |  |  |  |-- LLVMCPUUnfuseFMAOps.cpp
+|  |  |  |  |-- LLVMCPUVectorization.cpp
+|  |  |  |  |-- Passes.cpp
+|  |  |  |  |-- VectorContractToAArch64InlineAsmOp.cpp
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- hal_interface_bindings.mlir
+|  |  |  |  |  |-- hal_interface_constants.mlir
+|  |  |  |  |  |-- hal_interface_workgroup_info.mlir
+|  |  |  |  |  |-- materialize_launch_configuration.mlir
+|  |  |  |  |  |-- matmul_vectorization.mlir
+|  |  |  |  |  |-- pad_workgroup_tiles.mlir
+|  |  |  |  |  |-- plan_conv_loop_order.mlir
+|  |  |  |  |  |-- synchronize_symbol_visibility.mlir
+|  |  |  |  |  |-- tile_pad_and_vectorize.mlir
+|  |  |  |  |  |-- unfused_fma.mlir
+|  |  |  |  |  |-- vector_contract_to_aarch64_asm.mlir
+|  |  |  |-- LLVMGPU
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- ConvertToLLVM.cpp
+|  |  |  |  |-- ConvertToLLVM.h
+|  |  |  |  |-- ConvertToNVVM.cpp
+|  |  |  |  |-- ConvertToROCDL.cpp
+|  |  |  |  |-- KernelConfig.cpp
+|  |  |  |  |-- KernelConfig.h
+|  |  |  |  |-- LLVMGPULowerExecutableTarget.cpp
+|  |  |  |  |-- LLVMGPURemoveTrivialLoops.cpp
+|  |  |  |  |-- LLVMGPUTileAndDistribute.cpp
+|  |  |  |  |-- LLVMGPUVectorization.cpp
+|  |  |  |  |-- Passes.cpp
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- convert_to_nvvm.mlir
+|  |  |  |  |  |-- convert_to_rocdl.mlir
+|  |  |  |  |  |-- distribute_to_thread.mlir
+|  |  |  |  |  |-- legalize.mlir
+|  |  |  |  |  |-- nvvm_pipeline_test.mlir
+|  |  |  |  |  |-- remove_loops.mlir
+|  |  |  |  |  |-- rocdl_pipeline_test.mlir
+|  |  |  |  |  |-- vectorization.mlir
+|  |  |  |-- PassDetail.h
+|  |  |  |-- Passes.cpp
+|  |  |  |-- Passes.h
+|  |  |  |-- Passes.td
+|  |  |  |-- SPIRV
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- CodeGenOptionUtils.cpp
+|  |  |  |  |-- ConvertToSPIRVPass.cpp
+|  |  |  |  |-- KernelDispatchUtils.cpp
+|  |  |  |  |-- KernelDispatchUtils.h
+|  |  |  |  |-- LaunchConfig.cpp
+|  |  |  |  |-- LaunchConfig.h
+|  |  |  |  |-- MemorySpace.h
+|  |  |  |  |-- Passes.cpp
+|  |  |  |  |-- SPIRVConcretizeWorkgroupTiles.cpp
+|  |  |  |  |-- SPIRVConvertToGPU.cpp
+|  |  |  |  |-- SPIRVFoldGPUProcessorIDUses.cpp
+|  |  |  |  |-- SPIRVTileAndVectorize.cpp
+|  |  |  |  |-- SPIRVVectorToCooperativeMatrix.cpp
+|  |  |  |  |-- SPIRVVectorToGPU.cpp
+|  |  |  |  |-- SPIRVVectorizeLoadStore.cpp
+|  |  |  |  |-- Utils.cpp
+|  |  |  |  |-- Utils.h
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- concretize_workgroup_tiles.mlir
+|  |  |  |  |  |-- concretize_workgroup_tiles_dynamic.mlir
+|  |  |  |  |  |-- convert_to_gpu.mlir
+|  |  |  |  |  |-- convert_to_spirv.mlir
+|  |  |  |  |  |-- fold_gpu_procid_uses.mlir
+|  |  |  |  |  |-- materialize_launch_configuration.mlir
+|  |  |  |  |  |-- materialize_launch_configuration2.mlir
+|  |  |  |  |  |-- pipeline_matmul_cooperative_matrix.mlir
+|  |  |  |  |  |-- pipeline_matmul_vectorization.mlir
+|  |  |  |  |  |-- promote_workgroup_memory.mlir
+|  |  |  |  |  |-- tile_and_vectorize.mlir
+|  |  |  |  |  |-- tile_and_vectorize_batch_matmul.mlir
+|  |  |  |  |  |-- tile_and_vectorize_conv.mlir
+|  |  |  |  |  |-- tile_and_vectorize_matmul.mlir
+|  |  |  |  |  |-- vector_to_cooperative_matrix.mlir
+|  |  |  |  |  |-- vector_to_gpu.mlir
+|  |  |  |  |  |-- vectorize_elementwise_ops.mlir
+|  |  |  |  |  |-- vectorize_load_store.mlir
+|  |  |  |  |  |-- vectorize_matmul.mlir
+|  |  |  |-- Transforms
+|  |  |  |  |-- AffineMinCanonicalization.cpp
+|  |  |  |  |-- AffineMinDistributedSCFCanonicalization.cpp
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- RemoveSingleIterationLoop.cpp
+|  |  |  |  |-- Transforms.cpp
+|  |  |  |  |-- Transforms.h
+|  |  |  |-- Utils
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- MarkerUtils.cpp
+|  |  |  |  |-- MarkerUtils.h
+|  |  |  |  |-- Utils.cpp
+|  |  |  |  |-- Utils.h
+|  |  |-- Dialect
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- Flow
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- IR
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- FlowBase.td
+|  |  |  |  |  |-- FlowDialect.cpp
+|  |  |  |  |  |-- FlowDialect.h
+|  |  |  |  |  |-- FlowInterfaces.td
+|  |  |  |  |  |-- FlowOpFolders.cpp
+|  |  |  |  |  |-- FlowOpUtils.cpp
+|  |  |  |  |  |-- FlowOpUtils.h
+|  |  |  |  |  |-- FlowOps.cpp
+|  |  |  |  |  |-- FlowOps.h
+|  |  |  |  |  |-- FlowOps.td
+|  |  |  |  |  |-- FlowTypes.cpp
+|  |  |  |  |  |-- FlowTypes.h
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- dispatch_ops.mlir
+|  |  |  |  |  |  |-- dispatch_tensor_folding.mlir
+|  |  |  |  |  |  |-- dispatch_workgroups.mlir
+|  |  |  |  |  |  |-- dispatch_workgroups_folding.mlir
+|  |  |  |  |  |  |-- executable_ops.mlir
+|  |  |  |  |  |  |-- stream_folding.mlir
+|  |  |  |  |  |  |-- stream_ops.mlir
+|  |  |  |  |  |  |-- tensor_folding.mlir
+|  |  |  |  |  |  |-- tensor_ops.mlir
+|  |  |  |  |  |  |-- types.mlir
+|  |  |  |  |  |  |-- variable_folding.mlir
+|  |  |  |  |  |  |-- variable_ops.mlir
+|  |  |  |  |-- Transforms
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- ConvertConv2D1x1ToMatmulPass.cpp
+|  |  |  |  |  |-- ConvertConv2DToImg2ColPass.cpp
+|  |  |  |  |  |-- ConvertToFlowTensorOps.cpp
+|  |  |  |  |  |-- DeduplicateExecutables.cpp
+|  |  |  |  |  |-- DestructiveUpdateUtils.cpp
+|  |  |  |  |  |-- DestructiveUpdateUtils.h
+|  |  |  |  |  |-- DispatchLinalgOnTensors.cpp
+|  |  |  |  |  |-- ExpandVariableDynamicDims.cpp
+|  |  |  |  |  |-- ExportBenchmarkFuncs.cpp
+|  |  |  |  |  |-- FormStreams.cpp
+|  |  |  |  |  |-- FusionOfTensorOps.cpp
+|  |  |  |  |  |-- HoistUnstreamableOps.cpp
+|  |  |  |  |  |-- InjectDispatchTracing.cpp
+|  |  |  |  |  |-- InterchangeGenericOp.cpp
+|  |  |  |  |  |-- OutlineDispatchRegions.cpp
+|  |  |  |  |  |-- OutlineLargeConstants.cpp
+|  |  |  |  |  |-- PadLinalgOps.cpp
+|  |  |  |  |  |-- PadTensorToSubTensorInsert.cpp
+|  |  |  |  |  |-- PassDetail.h
+|  |  |  |  |  |-- Passes.cpp
+|  |  |  |  |  |-- Passes.h
+|  |  |  |  |  |-- Passes.td
+|  |  |  |  |  |-- PromoteI1ToI8Pass.cpp
+|  |  |  |  |  |-- PromoteTensorLoads.cpp
+|  |  |  |  |  |-- StripAndSplatConstantVariables.cpp
+|  |  |  |  |  |-- TypeConverter.cpp
+|  |  |  |  |  |-- TypeConverter.h
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- conv1x1_to_matmul.mlir
+|  |  |  |  |  |  |-- conv2d_to_img2col.mlir
+|  |  |  |  |  |  |-- convert_to_flow_tensor_ops.mlir
+|  |  |  |  |  |  |-- deduplicate_executables.mlir
+|  |  |  |  |  |  |-- dispatch_linalg_on_tensors.mlir
+|  |  |  |  |  |  |-- dispatch_linalg_on_tensors_elementwise.mlir
+|  |  |  |  |  |  |-- dispatch_linalg_on_tensors_fusion.mlir
+|  |  |  |  |  |  |-- expand_variable_dynamic_dims.mlir
+|  |  |  |  |  |  |-- export_benchmark_funcs.mlir
+|  |  |  |  |  |  |-- form_streams.mlir
+|  |  |  |  |  |  |-- hoist_unstreamable_ops.mlir
+|  |  |  |  |  |  |-- inject_dispatch_tracing.mlir
+|  |  |  |  |  |  |-- interchange.mlir
+|  |  |  |  |  |  |-- outline_dispatch_regions.mlir
+|  |  |  |  |  |  |-- outline_large_constants.mlir
+|  |  |  |  |  |  |-- pad_linalg_ops.mlir
+|  |  |  |  |  |  |-- pad_tensor_to_tensor.mlir
+|  |  |  |  |  |  |-- promote_i1_to_i8.mlir
+|  |  |  |  |  |  |-- promote_tensor_loads.mlir
+|  |  |  |  |  |  |-- strip_and_splat_constant_variables.mlir
+|  |  |  |  |  |  |-- transformation.mlir
+|  |  |  |-- HAL
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Conversion
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- ConversionDialectInterface.h
+|  |  |  |  |  |-- ConversionTarget.cpp
+|  |  |  |  |  |-- ConversionTarget.h
+|  |  |  |  |  |-- FlowToHAL
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- ConvertFlowToHAL.cpp
+|  |  |  |  |  |  |-- ConvertFlowToHAL.h
+|  |  |  |  |  |  |-- ConvertStreamOps.cpp
+|  |  |  |  |  |  |-- ConvertTensorOps.cpp
+|  |  |  |  |  |  |-- ConvertVariableOps.cpp
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- constant_ops.mlir
+|  |  |  |  |  |  |  |-- stream_ops.mlir
+|  |  |  |  |  |  |  |-- tensor_ops.mlir
+|  |  |  |  |  |  |  |-- variable_ops.mlir
+|  |  |  |  |  |-- HALToHAL
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- ConvertConstantOps.cpp
+|  |  |  |  |  |  |-- ConvertHALToHAL.cpp
+|  |  |  |  |  |  |-- ConvertHALToHAL.h
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- constant_ops.mlir
+|  |  |  |  |  |-- HALToVM
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- ConvertAllocatorOps.cpp
+|  |  |  |  |  |  |-- ConvertBufferOps.cpp
+|  |  |  |  |  |  |-- ConvertBufferViewOps.cpp
+|  |  |  |  |  |  |-- ConvertCommandBufferOps.cpp
+|  |  |  |  |  |  |-- ConvertConstantOps.cpp
+|  |  |  |  |  |  |-- ConvertControlFlowOps.cpp
+|  |  |  |  |  |  |-- ConvertDeviceOps.cpp
+|  |  |  |  |  |  |-- ConvertExecutableOps.cpp
+|  |  |  |  |  |  |-- ConvertExperimentalOps.cpp
+|  |  |  |  |  |  |-- ConvertHALToVM.cpp
+|  |  |  |  |  |  |-- ConvertHALToVM.h
+|  |  |  |  |  |  |-- ConvertSemaphoreOps.cpp
+|  |  |  |  |  |  |-- ConvertVariableOps.cpp
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- allocator_ops.mlir
+|  |  |  |  |  |  |  |-- buffer_ops.mlir
+|  |  |  |  |  |  |  |-- buffer_view_ops.mlir
+|  |  |  |  |  |  |  |-- command_buffer_ops.mlir
+|  |  |  |  |  |  |  |-- constant_ops.mlir
+|  |  |  |  |  |  |  |-- control_flow_ops.mlir
+|  |  |  |  |  |  |  |-- device_ops.mlir
+|  |  |  |  |  |  |  |-- executable_ops.mlir
+|  |  |  |  |  |  |  |-- variable_ops.mlir
+|  |  |  |  |  |-- IREEToHAL
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- ConvertIREEToHAL.cpp
+|  |  |  |  |  |  |-- ConvertIREEToHAL.h
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- shape_constants.mlir
+|  |  |  |  |  |-- Passes.h
+|  |  |  |  |  |-- StandardToHAL
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- ConvertConstantOps.cpp
+|  |  |  |  |  |  |-- ConvertShapeOps.cpp
+|  |  |  |  |  |  |-- ConvertStandardToHAL.cpp
+|  |  |  |  |  |  |-- ConvertStandardToHAL.h
+|  |  |  |  |  |  |-- ConvertStructuralOps.cpp
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- constant_ops.mlir
+|  |  |  |  |  |  |  |-- structural_ops.mlir
+|  |  |  |  |  |-- TypeConverter.cpp
+|  |  |  |  |  |-- TypeConverter.h
+|  |  |  |  |-- IR
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- HALBase.td
+|  |  |  |  |  |-- HALDialect.cpp
+|  |  |  |  |  |-- HALDialect.h
+|  |  |  |  |  |-- HALDialect.td
+|  |  |  |  |  |-- HALInterfaces.td
+|  |  |  |  |  |-- HALOpFolders.cpp
+|  |  |  |  |  |-- HALOps.cpp
+|  |  |  |  |  |-- HALOps.h
+|  |  |  |  |  |-- HALOps.td
+|  |  |  |  |  |-- HALTraits.h
+|  |  |  |  |  |-- HALTypes.cpp
+|  |  |  |  |  |-- HALTypes.h
+|  |  |  |  |  |-- LoweringConfig.cpp
+|  |  |  |  |  |-- LoweringConfig.h
+|  |  |  |  |  |-- LoweringConfig.td
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- allocator_op_folding.mlir
+|  |  |  |  |  |  |-- allocator_ops.mlir
+|  |  |  |  |  |  |-- attributes.mlir
+|  |  |  |  |  |  |-- buffer_folding.mlir
+|  |  |  |  |  |  |-- buffer_ops.mlir
+|  |  |  |  |  |  |-- buffer_view_folding.mlir
+|  |  |  |  |  |  |-- buffer_view_ops.mlir
+|  |  |  |  |  |  |-- command_buffer_folding.mlir
+|  |  |  |  |  |  |-- command_buffer_ops.mlir
+|  |  |  |  |  |  |-- constant_folding.mlir
+|  |  |  |  |  |  |-- constant_ops.mlir
+|  |  |  |  |  |  |-- descriptor_set_ops.mlir
+|  |  |  |  |  |  |-- device_ops.mlir
+|  |  |  |  |  |  |-- executable_ops.mlir
+|  |  |  |  |  |  |-- executable_targets.mlir
+|  |  |  |  |  |  |-- experimental_ops.mlir
+|  |  |  |  |  |  |-- interface_ops.mlir
+|  |  |  |  |  |  |-- invalid.mlir
+|  |  |  |  |  |  |-- semaphore_ops.mlir
+|  |  |  |  |  |  |-- variable_folding.mlir
+|  |  |  |  |  |  |-- variable_ops.mlir
+|  |  |  |  |-- Target
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- CUDA
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- CUDATarget.cpp
+|  |  |  |  |  |  |-- CUDATarget.h
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- smoketest.mlir
+|  |  |  |  |  |-- LLVM
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- LLVMAOTTarget.cpp
+|  |  |  |  |  |  |-- LLVMAOTTarget.h
+|  |  |  |  |  |  |-- LLVMIRPasses.cpp
+|  |  |  |  |  |  |-- LLVMIRPasses.h
+|  |  |  |  |  |  |-- LLVMTargetOptions.cpp
+|  |  |  |  |  |  |-- LLVMTargetOptions.h
+|  |  |  |  |  |  |-- LibraryBuilder.cpp
+|  |  |  |  |  |  |-- LibraryBuilder.h
+|  |  |  |  |  |  |-- LinkerTool.cpp
+|  |  |  |  |  |  |-- LinkerTool.h
+|  |  |  |  |  |  |-- StaticLibraryGenerator.cpp
+|  |  |  |  |  |  |-- StaticLibraryGenerator.h
+|  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |-- AndroidLinkerTool.cpp
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- EmbeddedLinkerTool.cpp
+|  |  |  |  |  |  |  |-- LinkerTools.cpp
+|  |  |  |  |  |  |  |-- RiscvLinkerTool.cpp
+|  |  |  |  |  |  |  |-- UnixLinkerTool.cpp
+|  |  |  |  |  |  |  |-- WasmLinkerTool.cpp
+|  |  |  |  |  |  |  |-- WindowsLinkerTool.cpp
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- smoketest.mlir
+|  |  |  |  |  |-- MetalSPIRV
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- MetalSPIRVTarget.cpp
+|  |  |  |  |  |  |-- MetalSPIRVTarget.h
+|  |  |  |  |  |  |-- SPIRVToMSL.cpp
+|  |  |  |  |  |  |-- SPIRVToMSL.h
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- smoketest.mlir
+|  |  |  |  |  |-- ROCM
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- ROCMTarget.cpp
+|  |  |  |  |  |  |-- ROCMTarget.h
+|  |  |  |  |  |  |-- ROCMTargetUtils.cpp
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- smoketest.mlir
+|  |  |  |  |  |-- SPIRVCommon
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- SPIRVTarget.cpp
+|  |  |  |  |  |  |-- SPIRVTarget.h
+|  |  |  |  |  |-- TargetBackend.cpp
+|  |  |  |  |  |-- TargetBackend.h
+|  |  |  |  |  |-- TargetRegistry.cpp
+|  |  |  |  |  |-- TargetRegistry.h
+|  |  |  |  |  |-- VMVX
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- VMVXTarget.cpp
+|  |  |  |  |  |  |-- VMVXTarget.h
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- linking.mlir
+|  |  |  |  |  |  |  |-- smoketest.mlir
+|  |  |  |  |  |-- VulkanSPIRV
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- VulkanSPIRVTarget.cpp
+|  |  |  |  |  |  |-- VulkanSPIRVTarget.h
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- smoketest.mlir
+|  |  |  |  |-- Transforms
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- BenchmarkBatchDispatches.cpp
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- CSEVariableLoads.cpp
+|  |  |  |  |  |-- ConvertToHAL.cpp
+|  |  |  |  |  |-- IdentifyConstantPools.cpp
+|  |  |  |  |  |-- InlineDeviceSwitches.cpp
+|  |  |  |  |  |-- LinkExecutables.cpp
+|  |  |  |  |  |-- MaterializeConstantPoolBuffers.cpp
+|  |  |  |  |  |-- MaterializeInterfaces.cpp
+|  |  |  |  |  |-- MaterializeResourceCaches.cpp
+|  |  |  |  |  |-- MemoizeDeviceQueries.cpp
+|  |  |  |  |  |-- PackAllocations.cpp
+|  |  |  |  |  |-- PackConstantPoolStorage.cpp
+|  |  |  |  |  |-- Passes.cpp
+|  |  |  |  |  |-- Passes.h
+|  |  |  |  |  |-- PropagateConstantWorkgroupInfo.cpp
+|  |  |  |  |  |-- ResolveEntryPointOrdinals.cpp
+|  |  |  |  |  |-- SerializeExecutables.cpp
+|  |  |  |  |  |-- TranslateExecutableVariants.cpp
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- benchmark_batch_dispatches.mlir
+|  |  |  |  |  |  |-- cse_variable_loads.mlir
+|  |  |  |  |  |  |-- identify_constant_pools.mlir
+|  |  |  |  |  |  |-- inline_device_switches.mlir
+|  |  |  |  |  |  |-- materialize_constant_pool_buffers.mlir
+|  |  |  |  |  |  |-- materialize_interfaces.mlir
+|  |  |  |  |  |  |-- materialize_resource_caches.mlir
+|  |  |  |  |  |  |-- memoize_device_queries.mlir
+|  |  |  |  |  |  |-- pack_allocations.mlir
+|  |  |  |  |  |  |-- pack_constant_pool_storage.mlir
+|  |  |  |  |  |  |-- propagate_constant_workgroup_info.mlir
+|  |  |  |  |  |  |-- resolve_entry_point_ordinals.mlir
+|  |  |  |  |-- Utils
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- DeviceSwitchBuilder.h
+|  |  |  |  |  |-- TypeUtils.cpp
+|  |  |  |  |  |-- TypeUtils.h
+|  |  |  |  |-- hal.imports.mlir
+|  |  |  |-- IREE
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Conversion
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- PreserveCompilerHints.cpp
+|  |  |  |  |  |-- PreserveCompilerHints.h
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- convert_flow_to_hal.mlir
+|  |  |  |  |-- IR
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- IREEBase.td
+|  |  |  |  |  |-- IREEDialect.cpp
+|  |  |  |  |  |-- IREEDialect.h
+|  |  |  |  |  |-- IREEInterfaces.td
+|  |  |  |  |  |-- IREEOps.cpp
+|  |  |  |  |  |-- IREEOps.h
+|  |  |  |  |  |-- IREEOps.td
+|  |  |  |  |  |-- IREETraits.h
+|  |  |  |  |  |-- IREETypes.cpp
+|  |  |  |  |  |-- IREETypes.h
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- byte_buffer_ops.mlir
+|  |  |  |  |  |  |-- do_not_optimize.mlir
+|  |  |  |  |  |  |-- list_ops.mlir
+|  |  |  |  |  |  |-- parse_print.mlir
+|  |  |  |  |-- Tools
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- StructAttrGen.cpp
+|  |  |  |  |-- Transforms
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- DropCompilerHints.cpp
+|  |  |  |  |  |-- Passes.h
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- drop_compiler_hints.mlir
+|  |  |  |-- LinalgExt
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- IR
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- LinalgExtBase.td
+|  |  |  |  |  |-- LinalgExtDialect.cpp
+|  |  |  |  |  |-- LinalgExtDialect.h
+|  |  |  |  |  |-- LinalgExtInterfaces.cpp
+|  |  |  |  |  |-- LinalgExtInterfaces.h
+|  |  |  |  |  |-- LinalgExtInterfaces.td
+|  |  |  |  |  |-- LinalgExtOps.cpp
+|  |  |  |  |  |-- LinalgExtOps.h
+|  |  |  |  |  |-- LinalgExtOps.td
+|  |  |  |  |  |-- TiledOpInterface.cpp
+|  |  |  |  |  |-- TiledOpInterface.h
+|  |  |  |  |  |-- TiledOpInterface.td
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- invalid.mlir
+|  |  |  |  |  |  |-- roundtrip.mlir
+|  |  |  |  |-- Transforms
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- ConvertToLoops.cpp
+|  |  |  |  |  |-- PassDetail.h
+|  |  |  |  |  |-- Passes.cpp
+|  |  |  |  |  |-- Passes.h
+|  |  |  |  |  |-- Passes.td
+|  |  |  |  |  |-- Tiling.cpp
+|  |  |  |  |  |-- Transforms.h
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- convert_to_loops.mlir
+|  |  |  |  |  |  |-- tiling.mlir
+|  |  |  |-- Modules
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Check
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- Conversion
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- ConversionPatterns.cpp
+|  |  |  |  |  |  |-- ConversionPatterns.h
+|  |  |  |  |  |-- IR
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- CheckDialect.cpp
+|  |  |  |  |  |  |-- CheckDialect.h
+|  |  |  |  |  |  |-- CheckOps.cpp
+|  |  |  |  |  |  |-- CheckOps.h
+|  |  |  |  |  |  |-- CheckOps.td
+|  |  |  |  |  |-- check.imports.mlir
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- canonicalize.mlir
+|  |  |  |  |  |  |-- ops.mlir
+|  |  |  |  |-- README.md
+|  |  |  |  |-- VMVX
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- Conversion
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- HALToVMVX
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- ConvertHALToVMVX.cpp
+|  |  |  |  |  |  |  |-- ConvertHALToVMVX.h
+|  |  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |  |-- interface_ops.mlir
+|  |  |  |  |  |  |-- StandardToVMVX
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- ConvertStandardToVMVX.cpp
+|  |  |  |  |  |  |  |-- ConvertStandardToVMVX.h
+|  |  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- VMVXToVM
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- ConvertVMVXToVM.cpp
+|  |  |  |  |  |  |  |-- ConvertVMVXToVM.h
+|  |  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- IR
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- VMVXBase.td
+|  |  |  |  |  |  |-- VMVXDialect.cpp
+|  |  |  |  |  |  |-- VMVXDialect.h
+|  |  |  |  |  |  |-- VMVXOps.cpp
+|  |  |  |  |  |  |-- VMVXOps.h
+|  |  |  |  |  |  |-- VMVXOps.td
+|  |  |  |  |  |  |-- VMVXTypes.cpp
+|  |  |  |  |  |  |-- VMVXTypes.h
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- Transforms
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- Conversion.cpp
+|  |  |  |  |  |  |-- Passes.cpp
+|  |  |  |  |  |  |-- Passes.h
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- vmvx.imports.mlir
+|  |  |  |-- Shape
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- IR
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- Builders.cpp
+|  |  |  |  |  |-- Builders.h
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- Folders.cpp
+|  |  |  |  |  |-- ShapeBase.td
+|  |  |  |  |  |-- ShapeDialect.cpp
+|  |  |  |  |  |-- ShapeDialect.h
+|  |  |  |  |  |-- ShapeInterfaces.td
+|  |  |  |  |  |-- ShapeOps.cpp
+|  |  |  |  |  |-- ShapeOps.h
+|  |  |  |  |  |-- ShapeOps.td
+|  |  |  |  |  |-- ShapeTypes.cpp
+|  |  |  |  |  |-- ShapeTypes.h
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- canonicalize.mlir
+|  |  |  |  |  |  |-- op_verification.mlir
+|  |  |  |  |  |  |-- parse_print.mlir
+|  |  |  |  |  |  |-- ranked_shape_type.mlir
+|  |  |  |  |-- Transforms
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- CleanupPlaceholdersPass.cpp
+|  |  |  |  |  |-- FunctionSignatureExpansionPass.cpp
+|  |  |  |  |  |-- Passes.h
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- expand_function_dynamic_dims.mlir
+|  |  |  |  |  |  |-- expand_function_ranked_shape_dims.mlir
+|  |  |  |  |-- Utils
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- TypeConversion.cpp
+|  |  |  |  |  |-- TypeConversion.h
+|  |  |  |-- VM
+|  |  |  |  |-- Analysis
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- RegisterAllocation.cpp
+|  |  |  |  |  |-- RegisterAllocation.h
+|  |  |  |  |  |-- RegisterAllocationTest.cpp
+|  |  |  |  |  |-- TestPasses.h
+|  |  |  |  |  |-- ValueLiveness.cpp
+|  |  |  |  |  |-- ValueLiveness.h
+|  |  |  |  |  |-- ValueLivenessTest.cpp
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- register_allocation.mlir
+|  |  |  |  |  |  |-- value_liveness.mlir
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- Conversion
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- ConversionDialectInterface.h
+|  |  |  |  |  |-- ConversionTarget.cpp
+|  |  |  |  |  |-- ConversionTarget.h
+|  |  |  |  |  |-- IREEToVM
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- ConvertIREEToVM.cpp
+|  |  |  |  |  |  |-- ConvertIREEToVM.h
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- byte_buffer_ops.mlir
+|  |  |  |  |  |  |  |-- hint_ops.mlir
+|  |  |  |  |  |  |  |-- list_ops.mlir
+|  |  |  |  |  |-- ImportUtils.cpp
+|  |  |  |  |  |-- ImportUtils.h
+|  |  |  |  |  |-- MathToVM
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- ConvertMathToVM.cpp
+|  |  |  |  |  |  |-- ConvertMathToVM.h
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- arithmetic_ops.mlir
+|  |  |  |  |  |-- MemRefToVM
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- ConvertMemRefToVM.cpp
+|  |  |  |  |  |  |-- ConvertMemRefToVM.h
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- load_store_ops.mlir
+|  |  |  |  |  |-- StandardToVM
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- ConvertStandardToVM.cpp
+|  |  |  |  |  |  |-- ConvertStandardToVM.h
+|  |  |  |  |  |  |-- ConvertStandardToVMTest.cpp
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- arithmetic_ops.mlir
+|  |  |  |  |  |  |  |-- assignment_ops.mlir
+|  |  |  |  |  |  |  |-- comparison_ops.mlir
+|  |  |  |  |  |  |  |-- const_ops.mlir
+|  |  |  |  |  |  |  |-- control_flow_ops.mlir
+|  |  |  |  |  |  |  |-- func_attrs.mlir
+|  |  |  |  |  |  |  |-- structural_ops.mlir
+|  |  |  |  |  |-- TargetOptions.cpp
+|  |  |  |  |  |-- TargetOptions.h
+|  |  |  |  |  |-- TypeConverter.cpp
+|  |  |  |  |  |-- TypeConverter.h
+|  |  |  |  |  |-- VMToEmitC
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- ConvertVMToEmitC.cpp
+|  |  |  |  |  |  |-- ConvertVMToEmitC.h
+|  |  |  |  |  |  |-- DropExcludedExports.cpp
+|  |  |  |  |  |  |-- DropExcludedExports.h
+|  |  |  |  |  |  |-- EmitCTypeConverter.h
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- arithmetic_ops.mlir
+|  |  |  |  |  |  |  |-- arithmetic_ops_f32.mlir
+|  |  |  |  |  |  |  |-- arithmetic_ops_i64.mlir
+|  |  |  |  |  |  |  |-- assignment_ops.mlir
+|  |  |  |  |  |  |  |-- assignment_ops_f32.mlir
+|  |  |  |  |  |  |  |-- assignment_ops_i64.mlir
+|  |  |  |  |  |  |  |-- comparison_ops.mlir
+|  |  |  |  |  |  |  |-- comparison_ops_f32.mlir
+|  |  |  |  |  |  |  |-- comparison_ops_i64.mlir
+|  |  |  |  |  |  |  |-- const_ops.mlir
+|  |  |  |  |  |  |  |-- const_ops_f32.mlir
+|  |  |  |  |  |  |  |-- const_ops_i64.mlir
+|  |  |  |  |  |  |  |-- conversion_ops.mlir
+|  |  |  |  |  |  |  |-- conversion_ops_f32.mlir
+|  |  |  |  |  |  |  |-- conversion_ops_i64.mlir
+|  |  |  |  |  |  |  |-- shift_ops.mlir
+|  |  |  |  |  |  |  |-- shift_ops_i64.mlir
+|  |  |  |  |  |  |  |-- type_conversion.mlir
+|  |  |  |  |-- IR
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- VMBase.td
+|  |  |  |  |  |-- VMDialect.cpp
+|  |  |  |  |  |-- VMDialect.h
+|  |  |  |  |  |-- VMFuncEncoder.h
+|  |  |  |  |  |-- VMOpFolders.cpp
+|  |  |  |  |  |-- VMOpcodesCore.td
+|  |  |  |  |  |-- VMOpcodesF32.td
+|  |  |  |  |  |-- VMOpcodesF64.td
+|  |  |  |  |  |-- VMOpcodesI64.td
+|  |  |  |  |  |-- VMOps.cpp
+|  |  |  |  |  |-- VMOps.h
+|  |  |  |  |  |-- VMOps.td
+|  |  |  |  |  |-- VMTraits.h
+|  |  |  |  |  |-- VMTypes.cpp
+|  |  |  |  |  |-- VMTypes.h
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- arithmetic_folding.mlir
+|  |  |  |  |  |  |-- arithmetic_ops.mlir
+|  |  |  |  |  |  |-- assignment_folding.mlir
+|  |  |  |  |  |  |-- assignment_ops.mlir
+|  |  |  |  |  |  |-- comparison_folding.mlir
+|  |  |  |  |  |  |-- comparison_ops.mlir
+|  |  |  |  |  |  |-- const_folding.mlir
+|  |  |  |  |  |  |-- const_ops.mlir
+|  |  |  |  |  |  |-- control_flow_folding.mlir
+|  |  |  |  |  |  |-- control_flow_ops.mlir
+|  |  |  |  |  |  |-- conversion_folding.mlir
+|  |  |  |  |  |  |-- conversion_ops.mlir
+|  |  |  |  |  |  |-- debug_folding.mlir
+|  |  |  |  |  |  |-- debug_ops.mlir
+|  |  |  |  |  |  |-- global_folding.mlir
+|  |  |  |  |  |  |-- global_ops.mlir
+|  |  |  |  |  |  |-- list_op_verification.mlir
+|  |  |  |  |  |  |-- list_ops.mlir
+|  |  |  |  |  |  |-- shift_ops.mlir
+|  |  |  |  |  |  |-- structural_ops.mlir
+|  |  |  |  |-- Target
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- Bytecode
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- BytecodeEncoder.cpp
+|  |  |  |  |  |  |-- BytecodeEncoder.h
+|  |  |  |  |  |  |-- BytecodeModuleTarget.cpp
+|  |  |  |  |  |  |-- BytecodeModuleTarget.h
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- ConstantEncoder.cpp
+|  |  |  |  |  |  |-- ConstantEncoder.h
+|  |  |  |  |  |  |-- TranslationFlags.cpp
+|  |  |  |  |  |  |-- TranslationFlags.h
+|  |  |  |  |  |  |-- TranslationRegistration.cpp
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- constant_encoding.mlir
+|  |  |  |  |  |  |  |-- module_encoding_smoke.mlir
+|  |  |  |  |  |  |  |-- reflection_attrs.mlir
+|  |  |  |  |  |-- C
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- CModuleTarget.cpp
+|  |  |  |  |  |  |-- CModuleTarget.h
+|  |  |  |  |  |  |-- TranslationFlags.cpp
+|  |  |  |  |  |  |-- TranslationFlags.h
+|  |  |  |  |  |  |-- TranslationRegistration.cpp
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |  |-- add.mlir
+|  |  |  |  |  |  |  |-- calling_convention.mlir
+|  |  |  |  |  |  |  |-- constant_ops.mlir
+|  |  |  |  |  |  |  |-- control_flow.mlir
+|  |  |  |  |  |  |  |-- empty_module.mlir
+|  |  |  |  |  |  |  |-- global_ops.mlir
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- init_targets.h
+|  |  |  |  |-- Tools
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- VMOpEncoderGen.cpp
+|  |  |  |  |  |-- VMOpTableGen.cpp
+|  |  |  |  |-- Transforms
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- Conversion.cpp
+|  |  |  |  |  |-- DeduplicateRodata.cpp
+|  |  |  |  |  |-- GlobalInitialization.cpp
+|  |  |  |  |  |-- HoistInlinedRodata.cpp
+|  |  |  |  |  |-- OrdinalAllocation.cpp
+|  |  |  |  |  |-- Passes.cpp
+|  |  |  |  |  |-- Passes.h
+|  |  |  |  |  |-- SinkDefiningOps.cpp
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- deduplicate_rodata.mlir
+|  |  |  |  |  |  |-- global_initialization.mlir
+|  |  |  |  |  |  |-- hoist_inlined_rodata.mlir
+|  |  |  |  |  |  |-- ordinal_allocation.mlir
+|  |  |  |  |  |  |-- sink_defining_ops.mlir
+|  |  |  |  |-- Utils
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- CallingConvention.cpp
+|  |  |  |  |  |-- CallingConvention.h
+|  |  |  |  |  |-- ConstantEncoding.cpp
+|  |  |  |  |  |-- ConstantEncoding.h
+|  |  |  |-- Vulkan
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- IR
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- VulkanAttributes.cpp
+|  |  |  |  |  |-- VulkanAttributes.h
+|  |  |  |  |  |-- VulkanAttributes.td
+|  |  |  |  |  |-- VulkanBase.td
+|  |  |  |  |  |-- VulkanDialect.cpp
+|  |  |  |  |  |-- VulkanDialect.h
+|  |  |  |  |  |-- VulkanTypes.cpp
+|  |  |  |  |  |-- VulkanTypes.h
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- target_env.mlir
+|  |  |  |  |-- Utils
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- TargetEnvironment.cpp
+|  |  |  |  |  |-- TargetEnvironment.h
+|  |  |  |  |  |-- TargetTriple.cpp
+|  |  |  |  |  |-- TargetTriple.h
+|  |  |  |  |  |-- test
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |  |-- target_env_conversion.mlir
+|  |  |-- InputConversion
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- Common
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- ConvertUpstreamToIREE.cpp
+|  |  |  |  |-- PassDetail.h
+|  |  |  |  |-- Passes.cpp
+|  |  |  |  |-- Passes.h
+|  |  |  |  |-- Passes.td
+|  |  |  |  |-- TopLevelSCFToCFG.cpp
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- convert_upstream_to_iree.mlir
+|  |  |  |  |  |-- top_level_scf_to_cfg.mlir
+|  |  |  |-- MHLO
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- BroadcastingToLinalgPatterns.cpp
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- ConvertAndDistributeMHLOToLinalgExt.cpp
+|  |  |  |  |-- ConvertComplexToReal.cpp
+|  |  |  |  |-- ConvertMHLOToFlow.cpp
+|  |  |  |  |-- ConvertMHLOToFlow.h
+|  |  |  |  |-- LegalizeInputTypes.cpp
+|  |  |  |  |-- MHLOToLinalgOnTensors.cpp
+|  |  |  |  |-- MHLOToMHLOPreprocessing.cpp
+|  |  |  |  |-- PassDetail.h
+|  |  |  |  |-- Passes.cpp
+|  |  |  |  |-- Passes.h
+|  |  |  |  |-- Passes.td
+|  |  |  |  |-- Rewriters.h
+|  |  |  |  |-- VerifyCompilerMHLOInputLegality.cpp
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- broadcasting.mlir
+|  |  |  |  |  |-- convert_and_distribute_mhlo_to_linalg_ext.mlir
+|  |  |  |  |  |-- convert_complex_to_real.mlir
+|  |  |  |  |  |-- dynamic_shape.mlir
+|  |  |  |  |  |-- fft.mlir
+|  |  |  |  |  |-- legalize_input_types.mlir
+|  |  |  |  |  |-- mhlo_to_mhlo_preprocessing.mlir
+|  |  |  |  |  |-- mhlo_to_mhlo_preprocessing_canoncalize_dot_general.mlir
+|  |  |  |  |  |-- mhlo_to_mhlo_preprocessing_extract_pad_from_conv.mlir
+|  |  |  |  |  |-- missing_legalizations.mlir
+|  |  |  |  |  |-- verify_compiler_mhlo_input_legality.mlir
+|  |  |  |-- TOSA
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- PassDetail.h
+|  |  |  |  |-- Passes.cpp
+|  |  |  |  |-- Passes.h
+|  |  |  |  |-- Passes.td
+|  |  |  |  |-- VerifyCompilerTOSAInputLegality.cpp
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- verify_compiler_tosa_input_legality.mlir
+|  |  |-- Translation
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- IREEVM.cpp
+|  |  |  |-- IREEVM.h
+|  |  |  |-- test
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- do_not_optimize.mlir
+|  |  |  |  |-- smoketest.mlir
+|  |  |-- Utils
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- FlatbufferUtils.cpp
+|  |  |  |-- FlatbufferUtils.h
+|  |  |  |-- GraphUtils.cpp
+|  |  |  |-- GraphUtils.h
+|  |  |  |-- PatternUtils.h
+|  |  |  |-- TracingUtils.cpp
+|  |  |  |-- TracingUtils.h
+|  |-- hal
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- allocator.c
+|  |  |-- allocator.h
+|  |  |-- allocator_heap.c
+|  |  |-- api.h
+|  |  |-- buffer.c
+|  |  |-- buffer.h
+|  |  |-- buffer_heap.c
+|  |  |-- buffer_heap_impl.h
+|  |  |-- buffer_view.c
+|  |  |-- buffer_view.h
+|  |  |-- command_buffer.c
+|  |  |-- command_buffer.h
+|  |  |-- command_buffer_validation.c
+|  |  |-- cts
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- allocator_test.cc
+|  |  |  |-- buffer_mapping_test.cc
+|  |  |  |-- command_buffer_test.cc
+|  |  |  |-- cts_test_base.h
+|  |  |  |-- descriptor_set_layout_test.cc
+|  |  |  |-- descriptor_set_test.cc
+|  |  |  |-- driver_test.cc
+|  |  |  |-- event_test.cc
+|  |  |  |-- executable_layout_test.cc
+|  |  |  |-- semaphore_submission_test.cc
+|  |  |  |-- semaphore_test.cc
+|  |  |-- cuda
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- api.h
+|  |  |  |-- context_wrapper.h
+|  |  |  |-- cuda_allocator.c
+|  |  |  |-- cuda_allocator.h
+|  |  |  |-- cuda_buffer.c
+|  |  |  |-- cuda_buffer.h
+|  |  |  |-- cuda_device.c
+|  |  |  |-- cuda_device.h
+|  |  |  |-- cuda_driver.c
+|  |  |  |-- cuda_event.c
+|  |  |  |-- cuda_event.h
+|  |  |  |-- cuda_headers.h
+|  |  |  |-- descriptor_set_layout.c
+|  |  |  |-- descriptor_set_layout.h
+|  |  |  |-- dynamic_symbol_tables.h
+|  |  |  |-- dynamic_symbols.c
+|  |  |  |-- dynamic_symbols.h
+|  |  |  |-- dynamic_symbols_test.cc
+|  |  |  |-- event_semaphore.c
+|  |  |  |-- event_semaphore.h
+|  |  |  |-- executable_layout.c
+|  |  |  |-- executable_layout.h
+|  |  |  |-- graph_command_buffer.c
+|  |  |  |-- graph_command_buffer.h
+|  |  |  |-- native_executable.c
+|  |  |  |-- native_executable.h
+|  |  |  |-- nop_executable_cache.c
+|  |  |  |-- nop_executable_cache.h
+|  |  |  |-- registration
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- driver_module.c
+|  |  |  |  |-- driver_module.h
+|  |  |  |-- status_util.c
+|  |  |  |-- status_util.h
+|  |  |-- descriptor_set.c
+|  |  |-- descriptor_set.h
+|  |  |-- descriptor_set_layout.c
+|  |  |-- descriptor_set_layout.h
+|  |  |-- detail.h
+|  |  |-- device.c
+|  |  |-- device.h
+|  |  |-- driver.c
+|  |  |-- driver.h
+|  |  |-- driver_registry.c
+|  |  |-- driver_registry.h
+|  |  |-- drivers
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- init.c
+|  |  |  |-- init.h
+|  |  |-- dylib
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- registration
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- driver_module.c
+|  |  |  |  |-- driver_module.h
+|  |  |  |  |-- driver_module_sync.c
+|  |  |  |  |-- driver_module_sync.h
+|  |  |-- event.c
+|  |  |-- event.h
+|  |  |-- executable.c
+|  |  |-- executable.h
+|  |  |-- executable_cache.c
+|  |  |-- executable_cache.h
+|  |  |-- executable_layout.c
+|  |  |-- executable_layout.h
+|  |  |-- local
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- elf
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- arch.h
+|  |  |  |  |-- arch
+|  |  |  |  |  |-- arm_32.c
+|  |  |  |  |  |-- arm_64.c
+|  |  |  |  |  |-- riscv.c
+|  |  |  |  |  |-- x86_32.c
+|  |  |  |  |  |-- x86_64.c
+|  |  |  |  |  |-- x86_64_msvc.asm
+|  |  |  |  |-- elf_module.c
+|  |  |  |  |-- elf_module.h
+|  |  |  |  |-- elf_module_test_main.c
+|  |  |  |  |-- elf_types.h
+|  |  |  |  |-- platform.h
+|  |  |  |  |-- platform
+|  |  |  |  |  |-- apple.c
+|  |  |  |  |  |-- generic.c
+|  |  |  |  |  |-- linux.c
+|  |  |  |  |  |-- windows.c
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- generate.sh
+|  |  |  |  |  |-- simple_mul_dispatch_arm_32.so
+|  |  |  |  |  |-- simple_mul_dispatch_arm_64.so
+|  |  |  |  |  |-- simple_mul_dispatch_riscv_32.so
+|  |  |  |  |  |-- simple_mul_dispatch_riscv_64.so
+|  |  |  |  |  |-- simple_mul_dispatch_x86_32.so
+|  |  |  |  |  |-- simple_mul_dispatch_x86_64.so
+|  |  |  |-- event_pool.c
+|  |  |  |-- event_pool.h
+|  |  |  |-- executable_library.h
+|  |  |  |-- executable_library_benchmark.c
+|  |  |  |-- executable_library_benchmark.md
+|  |  |  |-- executable_library_demo.c
+|  |  |  |-- executable_library_demo.h
+|  |  |  |-- executable_library_test.c
+|  |  |  |-- executable_loader.c
+|  |  |  |-- executable_loader.h
+|  |  |  |-- inline_command_buffer.c
+|  |  |  |-- inline_command_buffer.h
+|  |  |  |-- loaders
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- embedded_library_loader.c
+|  |  |  |  |-- embedded_library_loader.h
+|  |  |  |  |-- legacy_library_loader.c
+|  |  |  |  |-- legacy_library_loader.h
+|  |  |  |  |-- static_library_loader.c
+|  |  |  |  |-- static_library_loader.h
+|  |  |  |  |-- vmvx_module_loader.c
+|  |  |  |  |-- vmvx_module_loader.h
+|  |  |  |-- local_descriptor_set.c
+|  |  |  |-- local_descriptor_set.h
+|  |  |  |-- local_descriptor_set_layout.c
+|  |  |  |-- local_descriptor_set_layout.h
+|  |  |  |-- local_executable.c
+|  |  |  |-- local_executable.h
+|  |  |  |-- local_executable_cache.c
+|  |  |  |-- local_executable_cache.h
+|  |  |  |-- local_executable_layout.c
+|  |  |  |-- local_executable_layout.h
+|  |  |  |-- sync_device.c
+|  |  |  |-- sync_device.h
+|  |  |  |-- sync_driver.c
+|  |  |  |-- sync_driver.h
+|  |  |  |-- sync_event.c
+|  |  |  |-- sync_event.h
+|  |  |  |-- sync_semaphore.c
+|  |  |  |-- sync_semaphore.h
+|  |  |  |-- task_command_buffer.c
+|  |  |  |-- task_command_buffer.h
+|  |  |  |-- task_device.c
+|  |  |  |-- task_device.h
+|  |  |  |-- task_driver.c
+|  |  |  |-- task_driver.h
+|  |  |  |-- task_event.c
+|  |  |  |-- task_event.h
+|  |  |  |-- task_queue.c
+|  |  |  |-- task_queue.h
+|  |  |  |-- task_queue_state.c
+|  |  |  |-- task_queue_state.h
+|  |  |  |-- task_semaphore.c
+|  |  |  |-- task_semaphore.h
+|  |  |-- resource.h
+|  |  |-- semaphore.c
+|  |  |-- semaphore.h
+|  |  |-- string_util.c
+|  |  |-- string_util.h
+|  |  |-- string_util_test.cc
+|  |  |-- testing
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- driver_registry.h
+|  |  |-- utils
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- deferred_command_buffer.c
+|  |  |  |-- deferred_command_buffer.h
+|  |  |-- vmvx
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- registration
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- driver_module.c
+|  |  |  |  |-- driver_module.h
+|  |  |-- vulkan
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- api.cc
+|  |  |  |-- api.h
+|  |  |  |-- command_queue.h
+|  |  |  |-- debug_reporter.cc
+|  |  |  |-- debug_reporter.h
+|  |  |  |-- descriptor_pool_cache.cc
+|  |  |  |-- descriptor_pool_cache.h
+|  |  |  |-- descriptor_set_arena.cc
+|  |  |  |-- descriptor_set_arena.h
+|  |  |  |-- direct_command_buffer.cc
+|  |  |  |-- direct_command_buffer.h
+|  |  |  |-- direct_command_queue.cc
+|  |  |  |-- direct_command_queue.h
+|  |  |  |-- dynamic_symbol_tables.h
+|  |  |  |-- dynamic_symbols.cc
+|  |  |  |-- dynamic_symbols.h
+|  |  |  |-- dynamic_symbols_test.cc
+|  |  |  |-- emulated_semaphore.cc
+|  |  |  |-- emulated_semaphore.h
+|  |  |  |-- extensibility_util.cc
+|  |  |  |-- extensibility_util.h
+|  |  |  |-- handle_util.h
+|  |  |  |-- internal_vk_mem_alloc.cc
+|  |  |  |-- internal_vk_mem_alloc.h
+|  |  |  |-- native_descriptor_set.cc
+|  |  |  |-- native_descriptor_set.h
+|  |  |  |-- native_descriptor_set_layout.cc
+|  |  |  |-- native_descriptor_set_layout.h
+|  |  |  |-- native_event.cc
+|  |  |  |-- native_event.h
+|  |  |  |-- native_executable.cc
+|  |  |  |-- native_executable.h
+|  |  |  |-- native_executable_layout.cc
+|  |  |  |-- native_executable_layout.h
+|  |  |  |-- native_semaphore.cc
+|  |  |  |-- native_semaphore.h
+|  |  |  |-- nop_executable_cache.cc
+|  |  |  |-- nop_executable_cache.h
+|  |  |  |-- registration
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- driver_module.cc
+|  |  |  |  |-- driver_module.h
+|  |  |  |-- serializing_command_queue.cc
+|  |  |  |-- serializing_command_queue.h
+|  |  |  |-- status_util.c
+|  |  |  |-- status_util.h
+|  |  |  |-- timepoint_util.cc
+|  |  |  |-- timepoint_util.h
+|  |  |  |-- tracing.cc
+|  |  |  |-- tracing.h
+|  |  |  |-- util
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- arena.cc
+|  |  |  |  |-- arena.h
+|  |  |  |  |-- arena_test.cc
+|  |  |  |  |-- intrusive_list.h
+|  |  |  |  |-- intrusive_list_test.cc
+|  |  |  |  |-- intrusive_list_unique_ptr.inc
+|  |  |  |  |-- intrusive_list_unique_ptr_test.cc
+|  |  |  |  |-- ref_ptr.h
+|  |  |  |  |-- ref_ptr_test.cc
+|  |  |  |-- vma_allocator.cc
+|  |  |  |-- vma_allocator.h
+|  |  |  |-- vma_buffer.cc
+|  |  |  |-- vma_buffer.h
+|  |  |  |-- vulkan_device.cc
+|  |  |  |-- vulkan_device.h
+|  |  |  |-- vulkan_driver.cc
+|  |  |  |-- vulkan_driver.h
+|  |  |  |-- vulkan_headers.h
+|  |-- iree.natvis
+|  |-- lit_test.bzl
+|  |-- modules
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- check
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- check_test.cc
+|  |  |  |-- module.cc
+|  |  |  |-- module.h
+|  |  |  |-- test
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- failure.mlir
+|  |  |  |  |-- success.mlir
+|  |  |-- hal
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- exports.inl
+|  |  |  |-- module.c
+|  |  |  |-- module.h
+|  |  |-- vmvx
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- exports.inl
+|  |  |  |-- module.c
+|  |  |  |-- module.h
+|  |-- runtime
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- api.h
+|  |  |-- call.c
+|  |  |-- call.h
+|  |  |-- demo
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- hello_world_explained.c
+|  |  |  |-- hello_world_terse.c
+|  |  |-- instance.c
+|  |  |-- instance.h
+|  |  |-- session.c
+|  |  |-- session.h
+|  |  |-- testdata
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- simple_mul.mlir
+|  |-- samples
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- custom_modules
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- custom_modules_test.cc
+|  |  |  |-- custom_modules_test.mlir
+|  |  |  |-- dialect
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- conversion_patterns.cc
+|  |  |  |  |-- conversion_patterns.h
+|  |  |  |  |-- custom-opt-main.cc
+|  |  |  |  |-- custom-translate-main.cc
+|  |  |  |  |-- custom.imports.mlir
+|  |  |  |  |-- custom_dialect.cc
+|  |  |  |  |-- custom_dialect.h
+|  |  |  |  |-- custom_ops.td
+|  |  |  |  |-- init_dialect.h
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- conversion.mlir
+|  |  |  |  |  |-- custom_ops.mlir
+|  |  |  |-- module.cc
+|  |  |  |-- module.h
+|  |  |-- dynamic_shapes
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- dynamic_shapes.ipynb
+|  |  |  |-- main.c
+|  |  |  |-- test.sh
+|  |  |-- emitc_modules
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- add.mlir
+|  |  |  |-- add_module_test.cc
+|  |  |  |-- import_module_a.mlir
+|  |  |  |-- import_module_b.mlir
+|  |  |  |-- import_module_test.cc
+|  |  |-- models
+|  |  |  |-- README.md
+|  |  |  |-- mnist.mlir
+|  |  |  |-- simple_abs.mlir
+|  |  |-- ops
+|  |  |  |-- dynamic-mhlo-dot.mlir
+|  |  |  |-- mhlo-dot.mlir
+|  |  |-- simple_embedding
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- device_dylib.c
+|  |  |  |-- device_embedded_sync.c
+|  |  |  |-- device_vmvx_sync.c
+|  |  |  |-- device_vulkan.c
+|  |  |  |-- simple_embedding.c
+|  |  |  |-- simple_embedding_test.mlir
+|  |  |-- static_library
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- simple_mul.mlir
+|  |  |  |-- static_library_demo.c
+|  |  |-- variables_and_state
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- README.md
+|  |  |  |-- main.c
+|  |  |  |-- test.sh
+|  |  |  |-- variables_and_state.ipynb
+|  |  |-- vision
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- iree-run-mnist-module.c
+|  |  |  |-- mnist.mlir
+|  |  |  |-- mnist_test.png
+|  |  |  |-- mnist_test.txt
+|  |  |-- vulkan
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- simple_mul.mlir
+|  |  |  |-- vulkan_inference_gui.cc
+|  |-- schemas
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- bytecode_module_def.fbs
+|  |  |-- cuda_executable_def.fbs
+|  |  |-- dylib_executable_def.fbs
+|  |  |-- metal_executable_def.fbs
+|  |  |-- rocm_executable_def.fbs
+|  |  |-- spirv_executable_def.fbs
+|  |-- task
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- affinity_set.h
+|  |  |-- api.c
+|  |  |-- api.h
+|  |  |-- executor.c
+|  |  |-- executor.h
+|  |  |-- executor_impl.h
+|  |  |-- executor_test.cc
+|  |  |-- list.c
+|  |  |-- list.h
+|  |  |-- list_test.cc
+|  |  |-- pool.c
+|  |  |-- pool.h
+|  |  |-- pool_test.cc
+|  |  |-- post_batch.c
+|  |  |-- post_batch.h
+|  |  |-- queue.c
+|  |  |-- queue.h
+|  |  |-- queue_test.cc
+|  |  |-- scope.c
+|  |  |-- scope.h
+|  |  |-- scope_test.cc
+|  |  |-- submission.c
+|  |  |-- submission.h
+|  |  |-- task.c
+|  |  |-- task.h
+|  |  |-- task_impl.h
+|  |  |-- task_test_barrier.cc
+|  |  |-- task_test_call.cc
+|  |  |-- task_test_dispatch.cc
+|  |  |-- task_test_fence.cc
+|  |  |-- task_test_nop.cc
+|  |  |-- task_test_wait.cc
+|  |  |-- testing
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- task_test.h
+|  |  |  |-- test_util.h
+|  |  |-- topology.c
+|  |  |-- topology.h
+|  |  |-- topology_cpuinfo.c
+|  |  |-- topology_cpuinfo.h
+|  |  |-- topology_cpuinfo_test.cc
+|  |  |-- topology_test.cc
+|  |  |-- tuning.h
+|  |  |-- worker.c
+|  |  |-- worker.h
+|  |-- test
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- e2e
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- cuda_specific
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- dot.mlir
+|  |  |  |-- models
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- bert_encoder_unrolled_fake_weights.mlir
+|  |  |  |  |-- collatz.mlir
+|  |  |  |  |-- edge_detection.mlir
+|  |  |  |  |-- fragment_000.mlir
+|  |  |  |  |-- fullyconnected.mlir
+|  |  |  |  |-- mnist_fake_weights.mlir
+|  |  |  |  |-- mobilenetv3_fake_weights.mlir
+|  |  |  |  |-- resnet_fake_weights.mlir
+|  |  |  |  |-- unidirectional_lstm.mlir
+|  |  |  |-- regression
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- dynamic_abs.mlir
+|  |  |  |  |-- dynamic_add.mlir
+|  |  |  |  |-- dynamic_compare_and_select.mlir
+|  |  |  |  |-- dynamic_dot.mlir
+|  |  |  |  |-- dynamic_dot_general.mlir
+|  |  |  |  |-- dynamic_linalg_matmul_on_tensors.mlir
+|  |  |  |  |-- dynamic_linalg_matmul_on_tensors_fuse_0.mlir
+|  |  |  |  |-- dynamic_linalg_matmul_on_tensors_fuse_1.mlir
+|  |  |  |  |-- dynamic_linalg_matmul_on_tensors_fuse_2.mlir
+|  |  |  |  |-- dynamic_torch_index_select_high_rank.mlir
+|  |  |  |  |-- dynamic_torch_index_select_negative.mlir
+|  |  |  |  |-- dynamic_torch_index_select_scalar.mlir
+|  |  |  |  |-- dynamic_torch_index_select_vector.mlir
+|  |  |  |  |-- globals.mlir
+|  |  |  |  |-- linalg_ops.mlir
+|  |  |  |  |-- scalar.mlir
+|  |  |  |  |-- trace_dispatch_tensors.mlir
+|  |  |  |  |-- unused_args.mlir
+|  |  |  |-- tosa_ops
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- abs.mlir
+|  |  |  |  |-- add.mlir
+|  |  |  |  |-- arithmetic_right_shift.mlir
+|  |  |  |  |-- bitwise_and.mlir
+|  |  |  |  |-- bitwise_or.mlir
+|  |  |  |  |-- bitwise_xor.mlir
+|  |  |  |  |-- ceil.mlir
+|  |  |  |  |-- clamp.mlir
+|  |  |  |  |-- const.mlir
+|  |  |  |  |-- equal.mlir
+|  |  |  |  |-- exp.mlir
+|  |  |  |  |-- floor.mlir
+|  |  |  |  |-- fully_connected.mlir
+|  |  |  |  |-- gather.mlir
+|  |  |  |  |-- greater.mlir
+|  |  |  |  |-- greater_equal.mlir
+|  |  |  |  |-- if.mlir
+|  |  |  |  |-- log.mlir
+|  |  |  |  |-- logical_left_shift.mlir
+|  |  |  |  |-- logical_right_shift.mlir
+|  |  |  |  |-- matmul.mlir
+|  |  |  |  |-- max_pool.mlir
+|  |  |  |  |-- maximum.mlir
+|  |  |  |  |-- minimum.mlir
+|  |  |  |  |-- mul.mlir
+|  |  |  |  |-- negate.mlir
+|  |  |  |  |-- pad.mlir
+|  |  |  |  |-- reciprocal.mlir
+|  |  |  |  |-- reduce.mlir
+|  |  |  |  |-- reluN.mlir
+|  |  |  |  |-- reshape.mlir
+|  |  |  |  |-- rsqrt.mlir
+|  |  |  |  |-- select.mlir
+|  |  |  |  |-- sigmoid.mlir
+|  |  |  |  |-- sub.mlir
+|  |  |  |  |-- table.mlir
+|  |  |  |  |-- tanh.mlir
+|  |  |  |  |-- transpose.mlir
+|  |  |  |  |-- while.mlir
+|  |  |  |-- vulkan_specific
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- compare.mlir
+|  |  |  |  |-- conv.mlir
+|  |  |  |  |-- dot_general.mlir
+|  |  |  |  |-- fft.mlir
+|  |  |  |  |-- gemm.mlir
+|  |  |  |  |-- log_plus_one.mlir
+|  |  |  |  |-- pw_add_multiwg.mlir
+|  |  |  |  |-- reduce.mlir
+|  |  |  |  |-- vectorized_conv.mlir
+|  |  |  |-- xla_ops
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- abs.mlir
+|  |  |  |  |-- add.mlir
+|  |  |  |  |-- batch_norm_inference.mlir
+|  |  |  |  |-- broadcast.mlir
+|  |  |  |  |-- broadcast_add.mlir
+|  |  |  |  |-- broadcast_in_dim.mlir
+|  |  |  |  |-- clamp.mlir
+|  |  |  |  |-- compare.mlir
+|  |  |  |  |-- concatenate.mlir
+|  |  |  |  |-- constant.mlir
+|  |  |  |  |-- convert.mlir
+|  |  |  |  |-- convolution.mlir
+|  |  |  |  |-- cosine.mlir
+|  |  |  |  |-- divide.mlir
+|  |  |  |  |-- dot.mlir
+|  |  |  |  |-- dot_general.mlir
+|  |  |  |  |-- dynamic_slice.mlir
+|  |  |  |  |-- dynamic_update_slice.mlir
+|  |  |  |  |-- exponential.mlir
+|  |  |  |  |-- exponential_minus_one.mlir
+|  |  |  |  |-- fft.mlir
+|  |  |  |  |-- finite.mlir
+|  |  |  |  |-- floor.mlir
+|  |  |  |  |-- gather.mlir
+|  |  |  |  |-- iota.mlir
+|  |  |  |  |-- log.mlir
+|  |  |  |  |-- log_plus_one.mlir
+|  |  |  |  |-- maximum.mlir
+|  |  |  |  |-- minimum.mlir
+|  |  |  |  |-- multiply.mlir
+|  |  |  |  |-- negate.mlir
+|  |  |  |  |-- pad.mlir
+|  |  |  |  |-- partial
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |  |-- add_f16.mlir
+|  |  |  |  |  |-- dot_f16.mlir
+|  |  |  |  |-- reduce.mlir
+|  |  |  |  |-- reduce_window.mlir
+|  |  |  |  |-- remainder.mlir
+|  |  |  |  |-- reshape.mlir
+|  |  |  |  |-- reverse.mlir
+|  |  |  |  |-- round.mlir
+|  |  |  |  |-- rsqrt.mlir
+|  |  |  |  |-- scatter.mlir
+|  |  |  |  |-- select.mlir
+|  |  |  |  |-- sine.mlir
+|  |  |  |  |-- slice.mlir
+|  |  |  |  |-- sort.mlir
+|  |  |  |  |-- sqrt.mlir
+|  |  |  |  |-- subtract.mlir
+|  |  |  |  |-- tanh.mlir
+|  |  |  |  |-- torch_index_select.mlir
+|  |  |  |  |-- transpose.mlir
+|  |  |  |  |-- while.mlir
+|  |  |-- microbenchmarks
+|  |  |  |-- mhlo_conv.mlir
+|  |  |  |-- mhlo_dot.mlir
+|  |  |  |-- mhlo_dot_general.mlir
+|  |  |  |-- mhlo_fft_abs.mlir
+|  |-- testing
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- benchmark.h
+|  |  |-- benchmark_full.cc
+|  |  |-- benchmark_main.c
+|  |  |-- benchmark_nop.c
+|  |  |-- gtest.h
+|  |  |-- gtest_main.cc
+|  |  |-- status_matchers.h
+|  |  |-- vulkan
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- iree-run-module-vulkan-gui-main.cc
+|  |  |  |-- vulkan_gui_util.cc
+|  |  |  |-- vulkan_gui_util.h
+|  |-- tools
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- IreeFileCheck.bat
+|  |  |-- IreeFileCheck.sh
+|  |  |-- android
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- run_module_app
+|  |  |  |  |-- AndroidManifest.xml.template
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- README.md
+|  |  |  |  |-- build_apk.sh
+|  |  |  |  |-- res
+|  |  |  |  |  |-- values
+|  |  |  |  |  |  |-- strings.xml
+|  |  |  |  |-- src
+|  |  |  |  |  |-- main.cc
+|  |  |-- compilation.bzl
+|  |  |-- init_compiler_modules.h
+|  |  |-- init_dialects.h
+|  |  |-- init_iree_dialects.h
+|  |  |-- init_iree_passes.h
+|  |  |-- init_mlir_dialects.h
+|  |  |-- init_mlir_passes.h
+|  |  |-- init_passes.h
+|  |  |-- init_targets.cc
+|  |  |-- init_targets.h
+|  |  |-- init_translations.h
+|  |  |-- init_xla_dialects.h
+|  |  |-- iree-benchmark-module-main.cc
+|  |  |-- iree-benchmark-trace-main.c
+|  |  |-- iree-check-module-main.cc
+|  |  |-- iree-dump-module-main.cc
+|  |  |-- iree-mlir-lsp-server.cc
+|  |  |-- iree-opt-main.cc
+|  |  |-- iree-run-mlir-main.cc
+|  |  |-- iree-run-module-main.cc
+|  |  |-- iree-run-trace-main.c
+|  |  |-- iree-translate-main.cc
+|  |  |-- run_lit.bat
+|  |  |-- run_lit.ps1
+|  |  |-- run_lit.sh
+|  |  |-- test
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- benchmark_flags.txt
+|  |  |  |-- iree-benchmark-module.mlir
+|  |  |  |-- iree-run-mlir.mlir
+|  |  |  |-- iree-run-module.mlir
+|  |  |  |-- multiple_args.mlir
+|  |  |  |-- multiple_exported_functions.mlir
+|  |  |  |-- repeated_return.mlir
+|  |  |  |-- scalars.mlir
+|  |  |-- utils
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- image_util.c
+|  |  |  |-- image_util.h
+|  |  |  |-- trace_replay.c
+|  |  |  |-- trace_replay.h
+|  |  |  |-- vm_util.cc
+|  |  |  |-- vm_util.h
+|  |  |  |-- vm_util_test.cc
+|  |  |  |-- yaml_util.c
+|  |  |  |-- yaml_util.h
+|  |-- vm
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- api.h
+|  |  |-- buffer.c
+|  |  |-- buffer.h
+|  |  |-- buffer_test.cc
+|  |  |-- builtin_types.c
+|  |  |-- builtin_types.h
+|  |  |-- bytecode_dispatch.c
+|  |  |-- bytecode_dispatch_test.cc
+|  |  |-- bytecode_dispatch_util.h
+|  |  |-- bytecode_module.c
+|  |  |-- bytecode_module.h
+|  |  |-- bytecode_module_benchmark.cc
+|  |  |-- bytecode_module_benchmark.mlir
+|  |  |-- bytecode_module_impl.h
+|  |  |-- bytecode_module_size_benchmark.cc
+|  |  |-- bytecode_module_size_benchmark.mlir
+|  |  |-- bytecode_module_test.cc
+|  |  |-- context.c
+|  |  |-- context.h
+|  |  |-- generated
+|  |  |  |-- .clang-format
+|  |  |  |-- bytecode_op_table.h
+|  |  |-- instance.c
+|  |  |-- instance.h
+|  |  |-- invocation.c
+|  |  |-- invocation.h
+|  |  |-- list.c
+|  |  |-- list.h
+|  |  |-- list_test.cc
+|  |  |-- module.c
+|  |  |-- module.h
+|  |  |-- native_module.c
+|  |  |-- native_module.h
+|  |  |-- native_module_benchmark.cc
+|  |  |-- native_module_cc.h
+|  |  |-- native_module_packing.h
+|  |  |-- native_module_test.cc
+|  |  |-- native_module_test.h
+|  |  |-- ops.h
+|  |  |-- ref.c
+|  |  |-- ref.h
+|  |  |-- ref_cc.h
+|  |  |-- ref_test.cc
+|  |  |-- shims.c
+|  |  |-- shims.h
+|  |  |-- shims_emitc.h
+|  |  |-- stack.c
+|  |  |-- stack.h
+|  |  |-- stack_test.cc
+|  |  |-- test
+|  |  |  |-- BUILD
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- arithmetic_ops.mlir
+|  |  |  |-- arithmetic_ops_f32.mlir
+|  |  |  |-- arithmetic_ops_i64.mlir
+|  |  |  |-- assignment_ops.mlir
+|  |  |  |-- assignment_ops_f32.mlir
+|  |  |  |-- assignment_ops_i64.mlir
+|  |  |  |-- buffer_ops.mlir
+|  |  |  |-- call_ops.mlir
+|  |  |  |-- comparison_ops.mlir
+|  |  |  |-- comparison_ops_f32.mlir
+|  |  |  |-- comparison_ops_i64.mlir
+|  |  |  |-- control_flow_ops.mlir
+|  |  |  |-- conversion_ops.mlir
+|  |  |  |-- conversion_ops_f32.mlir
+|  |  |  |-- conversion_ops_i64.mlir
+|  |  |  |-- emitc
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- module_test.cc
+|  |  |  |-- global_ops.mlir
+|  |  |  |-- global_ops_f32.mlir
+|  |  |  |-- global_ops_i64.mlir
+|  |  |  |-- list_ops.mlir
+|  |  |  |-- list_variant_ops.mlir
+|  |  |  |-- ref_ops.mlir
+|  |  |  |-- shift_ops.mlir
+|  |  |  |-- shift_ops_i64.mlir
+|  |  |-- type_def.h
+|  |  |-- value.h
+|-- scripts
+|  |-- __init__.py
+|  |-- add_license_header.py
+|  |-- android_symbolize.sh
+|  |-- check_tabs.sh
+|  |-- download_file.py
+|  |-- generate_flagfile.py
+|  |-- get_e2e_artifacts.py
+|  |-- git
+|  |  |-- __init__.py
+|  |  |-- bazel_to_cmake.sh
+|  |  |-- fix_copybara_export.sh
+|  |  |-- git_update.sh
+|  |  |-- google_to_main.sh
+|  |  |-- main_to_google.sh
+|  |  |-- submodule_versions.py
+|  |  |-- summarize_changes.sh
+|  |  |-- update_llvm_dependent_submodules.sh
+|  |  |-- update_to_llvm_syncpoint.py
+|  |  |-- utils.py
+|  |-- ir_to_markdown.py
+|  |-- run_buildifier.sh
+|  |-- utils.py
+|-- third_party
+|  |-- .clang-format
+|  |-- benchmark
+|  |-- cpuinfo
+|  |-- cuda
+|  |  |-- LICENSE
+|  |  |-- README.txt
+|  |  |-- UPDATING.md
+|  |  |-- include
+|  |  |  |-- cuda.h
+|  |  |-- nvvm
+|  |  |  |-- libdevice
+|  |  |  |  |-- libdevice.10.bc
+|  |  |-- version.txt
+|  |-- flatcc
+|  |-- format_diff
+|  |  |-- README.md
+|  |  |-- format_diff.py
+|  |-- googletest
+|  |-- liburing
+|  |-- libyaml
+|  |-- llvm-project
+|  |-- mlir-emitc
+|  |  |-- LICENSE
+|  |  |-- README.md
+|  |  |-- include
+|  |  |  |-- emitc
+|  |  |  |  |-- Target
+|  |  |  |  |  |-- Cpp
+|  |  |  |  |  |  |-- CppEmitter.h
+|  |  |-- lib
+|  |  |  |-- Target
+|  |  |  |  |-- Cpp
+|  |  |  |  |  |-- TranslateToCpp.cpp
+|  |-- mlir-hlo
+|  |-- pybind11
+|  |-- renderdoc_api
+|  |  |-- README.md
+|  |  |-- app
+|  |  |  |-- renderdoc_app.h
+|  |-- spirv_cross
+|  |-- spirv_headers
+|  |-- stblib
+|  |-- tensorflow
+|  |-- tracy
+|  |-- vulkan_headers
+|  |-- vulkan_memory_allocator
+|  |-- webgpu-headers

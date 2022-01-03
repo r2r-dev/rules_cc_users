@@ -1,0 +1,3169 @@
+|-- .gitattributes
+|-- .gitignore
+|-- BUILD
+|-- CHANGELOG.md
+|-- CONTRIBUTING.md
+|-- LICENSE.txt
+|-- README.md
+|-- WORKSPACE
+|-- compile.sh
+|-- examples
+|  |-- BUILD
+|  |-- android
+|  |  |-- README.md
+|  |  |-- java
+|  |  |  |-- bazel
+|  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Jni.java
+|  |  |  |  |-- Lib.java
+|  |  |  |  |-- MainActivity.java
+|  |  |  |  |-- jni.cc
+|  |  |  |  |-- jni_dep.cc
+|  |  |  |  |-- jni_dep.h
+|  |-- cpp
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- hello-fail.cc
+|  |  |-- hello-lib.cc
+|  |  |-- hello-lib.h
+|  |  |-- hello-world.cc
+|  |-- d
+|  |  |-- hello_lib
+|  |  |  |-- BUILD
+|  |  |  |-- greeter.d
+|  |  |  |-- greeter_test.d
+|  |  |  |-- native-greeter.c
+|  |  |  |-- native-greeter.h
+|  |  |  |-- native_greeter.d
+|  |  |-- hello_world
+|  |  |  |-- BUILD
+|  |  |  |-- hello_world.d
+|  |-- gen
+|  |  |-- BUILD
+|  |-- j2objc
+|  |  |-- BUILD
+|  |  |-- J2ObjcExample
+|  |  |  |-- AppDelegate.h
+|  |  |  |-- AppDelegate.m
+|  |  |  |-- GreeterViewController.h
+|  |  |  |-- GreeterViewController.m
+|  |  |  |-- J2ObjcExample-Info.plist
+|  |  |  |-- main.m
+|  |  |-- README.md
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- example
+|  |  |  |  |  |  |  |-- myproject
+|  |  |  |  |  |  |  |  |-- SimpleGreeter.java
+|  |  |  |  |  |  |  |  |-- package-info.java
+|  |-- java-native
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- example
+|  |  |  |  |  |  |  |-- myproject
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- Greeter.java
+|  |  |  |  |  |  |  |  |-- HelloErrorProne.java
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- greeting.txt
+|  |  |  |-- test
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- example
+|  |  |  |  |  |  |  |-- myproject
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- Fail.java
+|  |  |  |  |  |  |  |  |-- TestCustomGreeting.java
+|  |  |  |  |  |  |  |  |-- TestHello.java
+|  |-- java-skylark
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- example
+|  |  |  |  |  |  |  |-- myproject
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- Greeter.java
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- greeting.txt
+|  |  |  |-- test
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- example
+|  |  |  |  |  |  |  |-- myproject
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- Fail.java
+|  |  |  |  |  |  |  |  |-- TestHello.java
+|  |-- objc
+|  |  |-- BUILD
+|  |  |-- PrenotCalculator
+|  |  |  |-- AppDelegate.h
+|  |  |  |-- AppDelegate.m
+|  |  |  |-- CalculatedValues.h
+|  |  |  |-- CalculatedValues.m
+|  |  |  |-- CalculatorViewController.h
+|  |  |  |-- CalculatorViewController.m
+|  |  |  |-- CalculatorViewController.xib
+|  |  |  |-- CoreData.h
+|  |  |  |-- CoreData.m
+|  |  |  |-- DataModel.xcdatamodeld
+|  |  |  |  |-- .xccurrentversion
+|  |  |  |  |-- DataModel-1.0.xcdatamodel
+|  |  |  |  |  |-- contents
+|  |  |  |  |-- DataModel-1.1.xcdatamodel
+|  |  |  |  |  |-- contents
+|  |  |  |-- Equation.h
+|  |  |  |-- Equation.m
+|  |  |  |-- Expression.h
+|  |  |  |-- Expression.m
+|  |  |  |-- Literal.h
+|  |  |  |-- Literal.m
+|  |  |  |-- PrenotCalculator-Info.plist
+|  |  |  |-- Resources
+|  |  |  |  |-- test.txt
+|  |  |  |-- ValuesViewController.h
+|  |  |  |-- ValuesViewController.m
+|  |  |  |-- main.m
+|  |  |-- README.md
+|  |  |-- expression_prebuilt.a
+|  |-- proto
+|  |  |-- BUILD
+|  |  |-- test.proto
+|  |-- py
+|  |  |-- BUILD
+|  |  |-- bin.py
+|  |  |-- lib.py
+|  |-- py_native
+|  |  |-- BUILD
+|  |  |-- bin.py
+|  |  |-- fail.py
+|  |  |-- lib.py
+|  |  |-- test.py
+|  |-- rust
+|  |  |-- hello_lib
+|  |  |  |-- BUILD
+|  |  |  |-- src
+|  |  |  |  |-- greeter.rs
+|  |  |  |  |-- lib.rs
+|  |  |  |-- tests
+|  |  |  |  |-- greeting.rs
+|  |  |-- hello_world
+|  |  |  |-- BUILD
+|  |  |  |-- src
+|  |  |  |  |-- main.rs
+|-- scripts
+|  |-- BUILD
+|  |-- bash_completion_test.sh
+|  |-- bazel-complete-template.bash
+|  |-- bootstrap
+|  |  |-- bootstrap.sh
+|  |  |-- buildenv.sh
+|  |  |-- compile.sh
+|  |  |-- init_workspace.sh
+|  |-- ci
+|  |  |-- build.sh
+|  |  |-- build_status_command.sh
+|  |  |-- ci.sh
+|  |  |-- rc_email.txt
+|  |  |-- release_email.txt
+|  |-- eclipse-generate.sh
+|  |-- get_all_bazel_paths.sh
+|  |-- get_project_paths.sh
+|  |-- packages
+|  |  |-- BUILD
+|  |  |-- package_info_generator.sh
+|  |  |-- self_extract_binary.bzl
+|  |  |-- template_bin.sh
+|  |-- release
+|  |  |-- BUILD
+|  |  |-- common.sh
+|  |  |-- release.sh
+|  |  |-- release_test.sh
+|  |  |-- relnotes.sh
+|  |  |-- relnotes_test.sh
+|  |  |-- testenv.sh
+|  |-- resources
+|  |  |-- idea
+|  |  |  |-- .name
+|  |  |  |-- copyright
+|  |  |  |  |-- profiles_settings.xml
+|  |  |  |-- misc.xml
+|  |  |  |-- modules.xml
+|  |  |  |-- vcs.xml
+|  |-- setup-eclipse.sh
+|  |-- setup-intellij.sh
+|  |-- testenv.sh
+|  |-- zsh_completion
+|  |  |-- _bazel
+|-- site
+|  |-- 404.md
+|  |-- assets
+|  |  |-- bazel-stickers.jpg
+|  |  |-- change-garlic.png
+|  |  |-- ctrl-w-tweet.png
+|  |  |-- dash-shell.png
+|  |  |-- dash.png
+|  |  |-- dirty-unmark.png
+|  |  |-- dirty.png
+|  |  |-- graph.png
+|  |  |-- mobile-install-performance.svg
+|  |  |-- recipe.png
+|  |  |-- simple-graph.png
+|  |-- blog
+|  |  |-- _posts
+|  |  |  |-- 2015-04-06-Simplified-Workspace-Creation.md
+|  |  |  |-- 2015-04-10-bash-completion.md
+|  |  |  |-- 2015-04-15-share-your-project.md
+|  |  |  |-- 2015-04-22-thank-you-stickers.md
+|  |  |  |-- 2015-06-17-visualize-your-build.md
+|  |  |  |-- 2015-06-25-ErrorProne.md
+|  |  |  |-- 2015-07-01-Configuration-File.md
+|  |  |  |-- 2015-07-08-Java-Configuration.md
+|  |  |  |-- 2015-07-23-tree-trimming.md
+|  |  |  |-- 2015-07-28-docker_build.md
+|  |  |  |-- 2015-07-29-dashboard-dogfood.md
+|  |  |  |-- 2015-3-27-Hello-World.md
+|  |  |-- feed.xml
+|  |  |-- index.md
+|  |-- contributing.md
+|  |-- docs
+|  |  |-- bazel-user-manual.html
+|  |  |-- build-ref.html
+|  |  |-- cpp.md
+|  |  |-- docs_style.css
+|  |  |-- external.md
+|  |  |-- getting-started.md
+|  |  |-- install.md
+|  |  |-- mobile-install.md
+|  |  |-- query.html
+|  |  |-- skyframe.md
+|  |  |-- skylark
+|  |  |  |-- concepts.md
+|  |  |  |-- cookbook.md
+|  |  |  |-- index.md
+|  |  |  |-- macros.md
+|  |  |  |-- rules.md
+|  |  |-- supported-rules.md
+|  |  |-- test-encyclopedia.html
+|  |  |-- tutorial
+|  |  |  |-- android-app.md
+|  |  |  |-- backend-server.md
+|  |  |  |-- environment.md
+|  |  |  |-- index.md
+|  |  |  |-- ios-app.md
+|  |  |  |-- review.md
+|  |  |  |-- workspace.md
+|  |  |-- windows.md
+|  |-- faq.md
+|  |-- governance.md
+|  |-- index.html
+|  |-- roadmap.md
+|  |-- search.html
+|  |-- support.md
+|  |-- users.md
+|-- src
+|  |-- BUILD
+|  |-- java_tools
+|  |  |-- buildjar
+|  |  |  |-- BUILD
+|  |  |  |-- java
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- devtools
+|  |  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |  |-- buildjar
+|  |  |  |  |  |  |  |  |  |-- AbstractJavaBuilder.java
+|  |  |  |  |  |  |  |  |  |-- AbstractLibraryBuilder.java
+|  |  |  |  |  |  |  |  |  |-- AbstractPostProcessor.java
+|  |  |  |  |  |  |  |  |  |-- BazelJavaBuilder.java
+|  |  |  |  |  |  |  |  |  |-- CommonJavaLibraryProcessor.java
+|  |  |  |  |  |  |  |  |  |-- InvalidCommandLineException.java
+|  |  |  |  |  |  |  |  |  |-- JarCreator.java
+|  |  |  |  |  |  |  |  |  |-- JarHelper.java
+|  |  |  |  |  |  |  |  |  |-- JavaLibraryBuildRequest.java
+|  |  |  |  |  |  |  |  |  |-- JavacException.java
+|  |  |  |  |  |  |  |  |  |-- OptionsParser.java
+|  |  |  |  |  |  |  |  |  |-- ReducedClasspathJavaLibraryBuilder.java
+|  |  |  |  |  |  |  |  |  |-- SimpleJavaLibraryBuilder.java
+|  |  |  |  |  |  |  |  |  |-- genclass
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- GenClass.java
+|  |  |  |  |  |  |  |  |  |  |-- GenClassOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- GenClassOptionsParser.java
+|  |  |  |  |  |  |  |  |  |-- javac
+|  |  |  |  |  |  |  |  |  |  |-- BlazeJavaCompiler.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeJavacMain.java
+|  |  |  |  |  |  |  |  |  |  |-- JavacOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- JavacRunner.java
+|  |  |  |  |  |  |  |  |  |  |-- JavacRunnerImpl.java
+|  |  |  |  |  |  |  |  |  |  |-- plugins
+|  |  |  |  |  |  |  |  |  |  |  |-- BlazeJavaCompilerPlugin.java
+|  |  |  |  |  |  |  |  |  |  |  |-- dependency
+|  |  |  |  |  |  |  |  |  |  |  |  |-- DependencyModule.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ImplicitDependencyExtractor.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- StrictJavaDepsPlugin.java
+|  |  |  |  |  |  |  |  |  |  |  |-- errorprone
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ErrorPronePlugin.java
+|  |  |  |  |  |  |  |  |  |  |  |-- filemanager
+|  |  |  |  |  |  |  |  |  |  |  |  |-- FileManagerInitializationPlugin.java
+|  |  |  |  |  |  |  |  |  |  |  |-- processing
+|  |  |  |  |  |  |  |  |  |  |  |  |-- AnnotationProcessingModule.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- AnnotationProcessingPlugin.java
+|  |  |  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |  |  |-- bazel
+|  |  |  |  |  |  |  |  |  |  |-- BazelJavaCompiler.java
+|  |  |  |  |  |  |  |  |  |  |-- BazelJavac.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaBuilderConfig.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaBuilderConfigGenerator.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaLangtools.java
+|  |  |  |  |  |  |  |  |  |  |-- JavacBootclasspath.java
+|  |  |  |-- javatests
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- devtools
+|  |  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |  |  |-- bazel
+|  |  |  |  |  |  |  |  |  |  |-- BazelJavaCompilerTest.java
+|  |  |-- singlejar
+|  |  |  |-- BUILD
+|  |  |  |-- java
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- devtools
+|  |  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |  |-- singlejar
+|  |  |  |  |  |  |  |  |  |-- ConcatenateStrategy.java
+|  |  |  |  |  |  |  |  |  |-- CopyEntryFilter.java
+|  |  |  |  |  |  |  |  |  |-- DefaultJarEntryFilter.java
+|  |  |  |  |  |  |  |  |  |-- JarUtils.java
+|  |  |  |  |  |  |  |  |  |-- JavaIoFileSystem.java
+|  |  |  |  |  |  |  |  |  |-- OptionFileExpander.java
+|  |  |  |  |  |  |  |  |  |-- PrefixListPathFilter.java
+|  |  |  |  |  |  |  |  |  |-- SimpleFileSystem.java
+|  |  |  |  |  |  |  |  |  |-- SingleJar.java
+|  |  |  |  |  |  |  |  |  |-- ZipCombiner.java
+|  |  |  |  |  |  |  |  |  |-- ZipEntryFilter.java
+|  |  |  |  |  |  |  |  |-- zip
+|  |  |  |  |  |  |  |  |  |-- CountingInputStream.java
+|  |  |  |  |  |  |  |  |  |-- CountingOutputStream.java
+|  |  |  |  |  |  |  |  |  |-- ExtraData.java
+|  |  |  |  |  |  |  |  |  |-- ExtraDataList.java
+|  |  |  |  |  |  |  |  |  |-- ZipFileData.java
+|  |  |  |  |  |  |  |  |  |-- ZipFileEntry.java
+|  |  |  |  |  |  |  |  |  |-- ZipReader.java
+|  |  |  |  |  |  |  |  |  |-- ZipUtil.java
+|  |  |  |  |  |  |  |  |  |-- ZipWriter.java
+|  |  |  |-- javatests
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- devtools
+|  |  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |  |-- singlejar
+|  |  |  |  |  |  |  |  |  |-- ConcatenateStrategyTest.java
+|  |  |  |  |  |  |  |  |  |-- CopyEntryFilterTest.java
+|  |  |  |  |  |  |  |  |  |-- DefaultJarEntryFilterTest.java
+|  |  |  |  |  |  |  |  |  |-- FakeZipFile.java
+|  |  |  |  |  |  |  |  |  |-- MockSimpleFileSystem.java
+|  |  |  |  |  |  |  |  |  |-- OptionFileExpanderTest.java
+|  |  |  |  |  |  |  |  |  |-- PrefixListPathFilterTest.java
+|  |  |  |  |  |  |  |  |  |-- RecordingCallback.java
+|  |  |  |  |  |  |  |  |  |-- SingleJarTest.java
+|  |  |  |  |  |  |  |  |  |-- SingleJarTests.java
+|  |  |  |  |  |  |  |  |  |-- SlowConcatenateStrategy.java
+|  |  |  |  |  |  |  |  |  |-- ZipCombinerTest.java
+|  |  |  |  |  |  |  |  |  |-- ZipFactory.java
+|  |  |  |  |  |  |  |  |  |-- ZipTester.java
+|  |  |  |  |  |  |  |  |-- zip
+|  |  |  |  |  |  |  |  |  |-- ExtraDataListTest.java
+|  |  |  |  |  |  |  |  |  |-- ExtraDataTest.java
+|  |  |  |  |  |  |  |  |  |-- SlowZipReader.java
+|  |  |  |  |  |  |  |  |  |-- ZipFileDataTest.java
+|  |  |  |  |  |  |  |  |  |-- ZipFileEntryTest.java
+|  |  |  |  |  |  |  |  |  |-- ZipReaderTest.java
+|  |  |  |  |  |  |  |  |  |-- ZipTests.java
+|  |  |  |  |  |  |  |  |  |-- ZipUtilTest.java
+|  |  |  |  |  |  |  |  |  |-- ZipWriterTest.java
+|  |-- main
+|  |  |-- cpp
+|  |  |  |-- BUILD
+|  |  |  |-- blaze.cc
+|  |  |  |-- blaze_startup_options.cc
+|  |  |  |-- blaze_startup_options.h
+|  |  |  |-- blaze_startup_options_common.cc
+|  |  |  |-- blaze_util.cc
+|  |  |  |-- blaze_util.h
+|  |  |  |-- blaze_util_darwin.cc
+|  |  |  |-- blaze_util_freebsd.cc
+|  |  |  |-- blaze_util_linux.cc
+|  |  |  |-- blaze_util_mingw.cc
+|  |  |  |-- blaze_util_platform.h
+|  |  |  |-- blaze_util_posix.cc
+|  |  |  |-- option_processor.cc
+|  |  |  |-- option_processor.h
+|  |  |  |-- util
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- errors.cc
+|  |  |  |  |-- errors.h
+|  |  |  |  |-- exit_code.h
+|  |  |  |  |-- file.cc
+|  |  |  |  |-- file.h
+|  |  |  |  |-- md5.cc
+|  |  |  |  |-- md5.h
+|  |  |  |  |-- numbers.cc
+|  |  |  |  |-- numbers.h
+|  |  |  |  |-- port.cc
+|  |  |  |  |-- port.h
+|  |  |  |  |-- strings.cc
+|  |  |  |  |-- strings.h
+|  |  |-- java
+|  |  |  |-- BUILD
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- devtools
+|  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |-- docgen
+|  |  |  |  |  |  |  |  |-- BlazeRuleHelpPrinter.java
+|  |  |  |  |  |  |  |  |-- BuildDocCollector.java
+|  |  |  |  |  |  |  |  |-- BuildEncyclopediaDocException.java
+|  |  |  |  |  |  |  |  |-- BuildEncyclopediaGenerator.java
+|  |  |  |  |  |  |  |  |-- BuildEncyclopediaProcessor.java
+|  |  |  |  |  |  |  |  |-- DocCheckerUtils.java
+|  |  |  |  |  |  |  |  |-- DocgenConsts.java
+|  |  |  |  |  |  |  |  |-- ListRuleMain.java
+|  |  |  |  |  |  |  |  |-- Page.java
+|  |  |  |  |  |  |  |  |-- PredefinedAttributes.java
+|  |  |  |  |  |  |  |  |-- RuleDocumentation.java
+|  |  |  |  |  |  |  |  |-- RuleDocumentationAttribute.java
+|  |  |  |  |  |  |  |  |-- RuleDocumentationVariable.java
+|  |  |  |  |  |  |  |  |-- SkylarkDocumentationCollector.java
+|  |  |  |  |  |  |  |  |-- SkylarkDocumentationGenerator.java
+|  |  |  |  |  |  |  |  |-- SkylarkDocumentationProcessor.java
+|  |  |  |  |  |  |  |  |-- SourceFileReader.java
+|  |  |  |  |  |  |  |  |-- SummaryRuleFamily.java
+|  |  |  |  |  |  |  |  |-- TemplateEngine.java
+|  |  |  |  |  |  |  |  |-- skylark
+|  |  |  |  |  |  |  |  |  |-- SkylarkBuiltinMethodDoc.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkDoc.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkJavaMethodDoc.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkMethodDoc.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkModuleDoc.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkParamDoc.java
+|  |  |  |  |  |  |  |  |-- templates
+|  |  |  |  |  |  |  |  |  |-- attributes
+|  |  |  |  |  |  |  |  |  |  |-- binary
+|  |  |  |  |  |  |  |  |  |  |  |-- args.html
+|  |  |  |  |  |  |  |  |  |  |  |-- output_licenses.html
+|  |  |  |  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |  |  |  |-- data.html
+|  |  |  |  |  |  |  |  |  |  |  |-- deprecation.html
+|  |  |  |  |  |  |  |  |  |  |  |-- deps.html
+|  |  |  |  |  |  |  |  |  |  |  |-- distribs.html
+|  |  |  |  |  |  |  |  |  |  |  |-- features.html
+|  |  |  |  |  |  |  |  |  |  |  |-- licenses.html
+|  |  |  |  |  |  |  |  |  |  |  |-- tags.html
+|  |  |  |  |  |  |  |  |  |  |  |-- testonly.html
+|  |  |  |  |  |  |  |  |  |  |  |-- visibility.html
+|  |  |  |  |  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |  |  |  |  |-- args.html
+|  |  |  |  |  |  |  |  |  |  |  |-- flaky.html
+|  |  |  |  |  |  |  |  |  |  |  |-- local.html
+|  |  |  |  |  |  |  |  |  |  |  |-- shard_count.html
+|  |  |  |  |  |  |  |  |  |  |  |-- size.html
+|  |  |  |  |  |  |  |  |  |  |  |-- timeout.html
+|  |  |  |  |  |  |  |  |  |-- be-footer.vm
+|  |  |  |  |  |  |  |  |  |-- be-header.vm
+|  |  |  |  |  |  |  |  |  |-- build-encyclopedia.vm
+|  |  |  |  |  |  |  |  |  |-- header-comment.vm
+|  |  |  |  |  |  |  |  |  |-- skylark-library.vm
+|  |  |  |  |  |  |  |  |  |-- skylark-nav.vm
+|  |  |  |  |  |  |  |-- lib
+|  |  |  |  |  |  |  |  |-- Constants.java
+|  |  |  |  |  |  |  |  |-- UnixJniLoader.java
+|  |  |  |  |  |  |  |  |-- actions
+|  |  |  |  |  |  |  |  |  |-- AbstractAction.java
+|  |  |  |  |  |  |  |  |  |-- AbstractActionOwner.java
+|  |  |  |  |  |  |  |  |  |-- Action.java
+|  |  |  |  |  |  |  |  |  |-- ActionCacheChecker.java
+|  |  |  |  |  |  |  |  |  |-- ActionCompletionEvent.java
+|  |  |  |  |  |  |  |  |  |-- ActionContextConsumer.java
+|  |  |  |  |  |  |  |  |  |-- ActionContextMarker.java
+|  |  |  |  |  |  |  |  |  |-- ActionContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- ActionExecutedEvent.java
+|  |  |  |  |  |  |  |  |  |-- ActionExecutionContext.java
+|  |  |  |  |  |  |  |  |  |-- ActionExecutionContextFactory.java
+|  |  |  |  |  |  |  |  |  |-- ActionExecutionException.java
+|  |  |  |  |  |  |  |  |  |-- ActionExecutionStatusReporter.java
+|  |  |  |  |  |  |  |  |  |-- ActionGraph.java
+|  |  |  |  |  |  |  |  |  |-- ActionGraphVisitor.java
+|  |  |  |  |  |  |  |  |  |-- ActionInput.java
+|  |  |  |  |  |  |  |  |  |-- ActionInputFileCache.java
+|  |  |  |  |  |  |  |  |  |-- ActionInputHelper.java
+|  |  |  |  |  |  |  |  |  |-- ActionLogBufferPathGenerator.java
+|  |  |  |  |  |  |  |  |  |-- ActionMetadata.java
+|  |  |  |  |  |  |  |  |  |-- ActionMiddlemanEvent.java
+|  |  |  |  |  |  |  |  |  |-- ActionOwner.java
+|  |  |  |  |  |  |  |  |  |-- ActionRegistry.java
+|  |  |  |  |  |  |  |  |  |-- ActionStartedEvent.java
+|  |  |  |  |  |  |  |  |  |-- ActionStatusMessage.java
+|  |  |  |  |  |  |  |  |  |-- Actions.java
+|  |  |  |  |  |  |  |  |  |-- AlreadyReportedActionExecutionException.java
+|  |  |  |  |  |  |  |  |  |-- Artifact.java
+|  |  |  |  |  |  |  |  |  |-- ArtifactDeserializer.java
+|  |  |  |  |  |  |  |  |  |-- ArtifactFactory.java
+|  |  |  |  |  |  |  |  |  |-- ArtifactIdRegistry.java
+|  |  |  |  |  |  |  |  |  |-- ArtifactOwner.java
+|  |  |  |  |  |  |  |  |  |-- ArtifactPrefixConflictException.java
+|  |  |  |  |  |  |  |  |  |-- ArtifactResolver.java
+|  |  |  |  |  |  |  |  |  |-- ArtifactSerializer.java
+|  |  |  |  |  |  |  |  |  |-- BaseSpawn.java
+|  |  |  |  |  |  |  |  |  |-- BipartiteVisitor.java
+|  |  |  |  |  |  |  |  |  |-- BlazeExecutor.java
+|  |  |  |  |  |  |  |  |  |-- BuildFailedException.java
+|  |  |  |  |  |  |  |  |  |-- CachedActionEvent.java
+|  |  |  |  |  |  |  |  |  |-- ChangedFilesMessage.java
+|  |  |  |  |  |  |  |  |  |-- ConcurrentMultimapWithHeadElement.java
+|  |  |  |  |  |  |  |  |  |-- DelegateSpawn.java
+|  |  |  |  |  |  |  |  |  |-- DigestOfDirectoryException.java
+|  |  |  |  |  |  |  |  |  |-- EmptyRunfilesSupplier.java
+|  |  |  |  |  |  |  |  |  |-- EnvironmentalExecException.java
+|  |  |  |  |  |  |  |  |  |-- ExecException.java
+|  |  |  |  |  |  |  |  |  |-- ExecutionStrategy.java
+|  |  |  |  |  |  |  |  |  |-- Executor.java
+|  |  |  |  |  |  |  |  |  |-- ExecutorInitException.java
+|  |  |  |  |  |  |  |  |  |-- FailAction.java
+|  |  |  |  |  |  |  |  |  |-- FilesetOutputSymlink.java
+|  |  |  |  |  |  |  |  |  |-- FilesetTraversalParams.java
+|  |  |  |  |  |  |  |  |  |-- FilesetTraversalParamsFactory.java
+|  |  |  |  |  |  |  |  |  |-- LocalHostCapacity.java
+|  |  |  |  |  |  |  |  |  |-- MapBasedActionGraph.java
+|  |  |  |  |  |  |  |  |  |-- MiddlemanAction.java
+|  |  |  |  |  |  |  |  |  |-- MiddlemanFactory.java
+|  |  |  |  |  |  |  |  |  |-- MissingInputFileException.java
+|  |  |  |  |  |  |  |  |  |-- MutableActionGraph.java
+|  |  |  |  |  |  |  |  |  |-- NotifyOnActionCacheHit.java
+|  |  |  |  |  |  |  |  |  |-- PackageRootResolutionException.java
+|  |  |  |  |  |  |  |  |  |-- PackageRootResolver.java
+|  |  |  |  |  |  |  |  |  |-- ParameterFile.java
+|  |  |  |  |  |  |  |  |  |-- ResourceManager.java
+|  |  |  |  |  |  |  |  |  |-- ResourceSet.java
+|  |  |  |  |  |  |  |  |  |-- Root.java
+|  |  |  |  |  |  |  |  |  |-- RunfilesSupplier.java
+|  |  |  |  |  |  |  |  |  |-- SimpleActionContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- Spawn.java
+|  |  |  |  |  |  |  |  |  |-- SpawnActionContext.java
+|  |  |  |  |  |  |  |  |  |-- TargetOutOfDateException.java
+|  |  |  |  |  |  |  |  |  |-- TestExecException.java
+|  |  |  |  |  |  |  |  |  |-- TestMiddlemanObserver.java
+|  |  |  |  |  |  |  |  |  |-- UserExecException.java
+|  |  |  |  |  |  |  |  |  |-- cache
+|  |  |  |  |  |  |  |  |  |  |-- ActionCache.java
+|  |  |  |  |  |  |  |  |  |  |-- CompactPersistentActionCache.java
+|  |  |  |  |  |  |  |  |  |  |-- Digest.java
+|  |  |  |  |  |  |  |  |  |  |-- DigestUtils.java
+|  |  |  |  |  |  |  |  |  |  |-- InjectedStat.java
+|  |  |  |  |  |  |  |  |  |  |-- Metadata.java
+|  |  |  |  |  |  |  |  |  |  |-- MetadataHandler.java
+|  |  |  |  |  |  |  |  |  |  |-- NullActionCache.java
+|  |  |  |  |  |  |  |  |  |  |-- PersistentStringIndexer.java
+|  |  |  |  |  |  |  |  |  |  |-- VirtualActionInput.java
+|  |  |  |  |  |  |  |  |-- analysis
+|  |  |  |  |  |  |  |  |  |-- AbstractConfiguredTarget.java
+|  |  |  |  |  |  |  |  |  |-- AnalysisEnvironment.java
+|  |  |  |  |  |  |  |  |  |-- AnalysisFailureEvent.java
+|  |  |  |  |  |  |  |  |  |-- AnalysisHooks.java
+|  |  |  |  |  |  |  |  |  |-- AnalysisPhaseCompleteEvent.java
+|  |  |  |  |  |  |  |  |  |-- AnalysisPhaseStartedEvent.java
+|  |  |  |  |  |  |  |  |  |-- AnalysisUtils.java
+|  |  |  |  |  |  |  |  |  |-- Aspect.java
+|  |  |  |  |  |  |  |  |  |-- AspectCompleteEvent.java
+|  |  |  |  |  |  |  |  |  |-- AspectWithParameters.java
+|  |  |  |  |  |  |  |  |  |-- AutoValueRuleDefinitionMetadata.java
+|  |  |  |  |  |  |  |  |  |-- BaseRuleClasses.java
+|  |  |  |  |  |  |  |  |  |-- BlazeDirectories.java
+|  |  |  |  |  |  |  |  |  |-- BlazeVersionInfo.java
+|  |  |  |  |  |  |  |  |  |-- BuildInfo.java
+|  |  |  |  |  |  |  |  |  |-- BuildInfoEvent.java
+|  |  |  |  |  |  |  |  |  |-- BuildInfoHelper.java
+|  |  |  |  |  |  |  |  |  |-- BuildView.java
+|  |  |  |  |  |  |  |  |  |-- CachingAnalysisEnvironment.java
+|  |  |  |  |  |  |  |  |  |-- CommandHelper.java
+|  |  |  |  |  |  |  |  |  |-- CompilationHelper.java
+|  |  |  |  |  |  |  |  |  |-- CompositeRunfilesSupplier.java
+|  |  |  |  |  |  |  |  |  |-- ConfigurationCollectionFactory.java
+|  |  |  |  |  |  |  |  |  |-- ConfigurationMakeVariableContext.java
+|  |  |  |  |  |  |  |  |  |-- ConfigurationsCreatedEvent.java
+|  |  |  |  |  |  |  |  |  |-- ConfiguredAspectFactory.java
+|  |  |  |  |  |  |  |  |  |-- ConfiguredAttributeMapper.java
+|  |  |  |  |  |  |  |  |  |-- ConfiguredRuleClassProvider.java
+|  |  |  |  |  |  |  |  |  |-- ConfiguredTarget.java
+|  |  |  |  |  |  |  |  |  |-- ConfiguredTargetFactory.java
+|  |  |  |  |  |  |  |  |  |-- DependencyResolver.java
+|  |  |  |  |  |  |  |  |  |-- ErrorConfiguredTarget.java
+|  |  |  |  |  |  |  |  |  |-- ExtraActionArtifactsProvider.java
+|  |  |  |  |  |  |  |  |  |-- ExtraActionsVisitor.java
+|  |  |  |  |  |  |  |  |  |-- FileConfiguredTarget.java
+|  |  |  |  |  |  |  |  |  |-- FileProvider.java
+|  |  |  |  |  |  |  |  |  |-- FilesToRunProvider.java
+|  |  |  |  |  |  |  |  |  |-- FilesetOutputConfiguredTarget.java
+|  |  |  |  |  |  |  |  |  |-- InputFileConfiguredTarget.java
+|  |  |  |  |  |  |  |  |  |-- LabelAndConfiguration.java
+|  |  |  |  |  |  |  |  |  |-- LabelExpander.java
+|  |  |  |  |  |  |  |  |  |-- LanguageDependentFragment.java
+|  |  |  |  |  |  |  |  |  |-- LicensesProvider.java
+|  |  |  |  |  |  |  |  |  |-- LicensesProviderImpl.java
+|  |  |  |  |  |  |  |  |  |-- LocationExpander.java
+|  |  |  |  |  |  |  |  |  |-- MakeEnvironmentEvent.java
+|  |  |  |  |  |  |  |  |  |-- MakeVariableExpander.java
+|  |  |  |  |  |  |  |  |  |-- MiddlemanProvider.java
+|  |  |  |  |  |  |  |  |  |-- NoSuchConfiguredTargetException.java
+|  |  |  |  |  |  |  |  |  |-- OutputFileConfiguredTarget.java
+|  |  |  |  |  |  |  |  |  |-- OutputGroupProvider.java
+|  |  |  |  |  |  |  |  |  |-- PackageGroupConfiguredTarget.java
+|  |  |  |  |  |  |  |  |  |-- PackageSpecificationProvider.java
+|  |  |  |  |  |  |  |  |  |-- PrerequisiteArtifacts.java
+|  |  |  |  |  |  |  |  |  |-- PrintActionVisitor.java
+|  |  |  |  |  |  |  |  |  |-- PseudoAction.java
+|  |  |  |  |  |  |  |  |  |-- RedirectChaser.java
+|  |  |  |  |  |  |  |  |  |-- RuleConfiguredTarget.java
+|  |  |  |  |  |  |  |  |  |-- RuleConfiguredTargetBuilder.java
+|  |  |  |  |  |  |  |  |  |-- RuleContext.java
+|  |  |  |  |  |  |  |  |  |-- RuleDefinition.java
+|  |  |  |  |  |  |  |  |  |-- RuleDefinitionEnvironment.java
+|  |  |  |  |  |  |  |  |  |-- Runfiles.java
+|  |  |  |  |  |  |  |  |  |-- RunfilesProvider.java
+|  |  |  |  |  |  |  |  |  |-- RunfilesSupplierImpl.java
+|  |  |  |  |  |  |  |  |  |-- RunfilesSupport.java
+|  |  |  |  |  |  |  |  |  |-- SkyframePackageRootResolver.java
+|  |  |  |  |  |  |  |  |  |-- SourceManifestAction.java
+|  |  |  |  |  |  |  |  |  |-- SymlinkTreeAction.java
+|  |  |  |  |  |  |  |  |  |-- SymlinkTreeActionContext.java
+|  |  |  |  |  |  |  |  |  |-- TargetAndConfiguration.java
+|  |  |  |  |  |  |  |  |  |-- TargetCompleteEvent.java
+|  |  |  |  |  |  |  |  |  |-- TargetContext.java
+|  |  |  |  |  |  |  |  |  |-- TopLevelArtifactContext.java
+|  |  |  |  |  |  |  |  |  |-- TopLevelArtifactHelper.java
+|  |  |  |  |  |  |  |  |  |-- TransitiveInfoCollection.java
+|  |  |  |  |  |  |  |  |  |-- TransitiveInfoProvider.java
+|  |  |  |  |  |  |  |  |  |-- Util.java
+|  |  |  |  |  |  |  |  |  |-- ViewCreationFailedException.java
+|  |  |  |  |  |  |  |  |  |-- VisibilityProvider.java
+|  |  |  |  |  |  |  |  |  |-- VisibilityProviderImpl.java
+|  |  |  |  |  |  |  |  |  |-- WorkspaceStatusAction.java
+|  |  |  |  |  |  |  |  |  |-- actions
+|  |  |  |  |  |  |  |  |  |  |-- AbstractFileWriteAction.java
+|  |  |  |  |  |  |  |  |  |  |-- ActionConstructionContext.java
+|  |  |  |  |  |  |  |  |  |  |-- BinaryFileWriteAction.java
+|  |  |  |  |  |  |  |  |  |  |-- CommandLine.java
+|  |  |  |  |  |  |  |  |  |  |-- CustomCommandLine.java
+|  |  |  |  |  |  |  |  |  |  |-- ExecutableSymlinkAction.java
+|  |  |  |  |  |  |  |  |  |  |-- FileWriteAction.java
+|  |  |  |  |  |  |  |  |  |  |-- FileWriteActionContext.java
+|  |  |  |  |  |  |  |  |  |  |-- ParamFileHelper.java
+|  |  |  |  |  |  |  |  |  |  |-- ParamFileInfo.java
+|  |  |  |  |  |  |  |  |  |  |-- ParameterFileWriteAction.java
+|  |  |  |  |  |  |  |  |  |  |-- SpawnAction.java
+|  |  |  |  |  |  |  |  |  |  |-- SymlinkAction.java
+|  |  |  |  |  |  |  |  |  |  |-- TemplateExpansionAction.java
+|  |  |  |  |  |  |  |  |  |-- buildinfo
+|  |  |  |  |  |  |  |  |  |  |-- BuildInfoCollection.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildInfoFactory.java
+|  |  |  |  |  |  |  |  |  |-- config
+|  |  |  |  |  |  |  |  |  |  |-- BinTools.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildConfiguration.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildConfigurationCollection.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- CompilationMode.java
+|  |  |  |  |  |  |  |  |  |  |-- ConfigMatchingProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- ConfigRuleClasses.java
+|  |  |  |  |  |  |  |  |  |  |-- ConfigSetting.java
+|  |  |  |  |  |  |  |  |  |  |-- ConfigurationEnvironment.java
+|  |  |  |  |  |  |  |  |  |  |-- ConfigurationFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- ConfigurationFragmentFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- DefaultsPackage.java
+|  |  |  |  |  |  |  |  |  |  |-- FragmentCollection.java
+|  |  |  |  |  |  |  |  |  |  |-- FragmentOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- HostTransition.java
+|  |  |  |  |  |  |  |  |  |  |-- InvalidConfigurationException.java
+|  |  |  |  |  |  |  |  |  |  |-- PackageProviderForConfigurations.java
+|  |  |  |  |  |  |  |  |  |  |-- PatchTransition.java
+|  |  |  |  |  |  |  |  |  |  |-- PerLabelOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- RunUnder.java
+|  |  |  |  |  |  |  |  |  |  |-- RunUnderConverter.java
+|  |  |  |  |  |  |  |  |  |-- constraints
+|  |  |  |  |  |  |  |  |  |  |-- ConstraintSemantics.java
+|  |  |  |  |  |  |  |  |  |  |-- Environment.java
+|  |  |  |  |  |  |  |  |  |  |-- EnvironmentCollection.java
+|  |  |  |  |  |  |  |  |  |  |-- EnvironmentRule.java
+|  |  |  |  |  |  |  |  |  |  |-- SupportedEnvironments.java
+|  |  |  |  |  |  |  |  |  |  |-- SupportedEnvironmentsProvider.java
+|  |  |  |  |  |  |  |  |-- bazel
+|  |  |  |  |  |  |  |  |  |-- BazelDiffAwarenessModule.java
+|  |  |  |  |  |  |  |  |  |-- BazelMain.java
+|  |  |  |  |  |  |  |  |  |-- BazelRepositoryModule.java
+|  |  |  |  |  |  |  |  |  |-- BazelShutdownLoggerModule.java
+|  |  |  |  |  |  |  |  |  |-- BazelWorkspaceStatusModule.java
+|  |  |  |  |  |  |  |  |  |-- commands
+|  |  |  |  |  |  |  |  |  |  |-- FetchCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- FetchOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- fetch.txt
+|  |  |  |  |  |  |  |  |  |-- dash
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- DashModule.java
+|  |  |  |  |  |  |  |  |  |  |-- DashOptions.java
+|  |  |  |  |  |  |  |  |  |-- repository
+|  |  |  |  |  |  |  |  |  |  |-- DecompressorValue.java
+|  |  |  |  |  |  |  |  |  |  |-- FileFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- GitCloneFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- GitProgressMonitor.java
+|  |  |  |  |  |  |  |  |  |  |-- GitRepositoryFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- HttpArchiveFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- HttpDownloadFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- HttpDownloadValue.java
+|  |  |  |  |  |  |  |  |  |  |-- HttpDownloader.java
+|  |  |  |  |  |  |  |  |  |  |-- HttpFileFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- HttpJarFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- JarFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- LocalRepositoryFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- MavenConnector.java
+|  |  |  |  |  |  |  |  |  |  |-- MavenJarFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- NewGitRepositoryFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- NewHttpArchiveFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- NewLocalRepositoryFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- RepositoryDelegatorFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- RepositoryFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- TarGzFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- ZipFunction.java
+|  |  |  |  |  |  |  |  |  |-- rules
+|  |  |  |  |  |  |  |  |  |  |-- BazelBaseRuleClasses.java
+|  |  |  |  |  |  |  |  |  |  |-- BazelConfiguration.java
+|  |  |  |  |  |  |  |  |  |  |-- BazelConfigurationCollection.java
+|  |  |  |  |  |  |  |  |  |  |-- BazelRuleClassProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- BazelRulesModule.java
+|  |  |  |  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |  |  |  |-- AndroidHttpToolsRepositoryFunction.java
+|  |  |  |  |  |  |  |  |  |  |  |-- AndroidLocalToolsRepositoryFunction.java
+|  |  |  |  |  |  |  |  |  |  |  |-- AndroidNdkRepositoryFunction.java
+|  |  |  |  |  |  |  |  |  |  |  |-- AndroidNdkRepositoryRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- AndroidRepositoryRules.java
+|  |  |  |  |  |  |  |  |  |  |  |-- AndroidSdkRepositoryFunction.java
+|  |  |  |  |  |  |  |  |  |  |  |-- AndroidSdkRepositoryRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelAndroidBinary.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelAndroidBinaryRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelAndroidLibrary.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelAndroidLibraryRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelAndroidSemantics.java
+|  |  |  |  |  |  |  |  |  |  |  |-- android.WORKSPACE
+|  |  |  |  |  |  |  |  |  |  |  |-- android_ndk_cc_toolchain_suite_template.txt
+|  |  |  |  |  |  |  |  |  |  |  |-- android_ndk_cc_toolchain_template.txt
+|  |  |  |  |  |  |  |  |  |  |  |-- android_sdk_repository_template.txt
+|  |  |  |  |  |  |  |  |  |  |  |-- ndkcrosstools
+|  |  |  |  |  |  |  |  |  |  |  |  |-- AndroidNdkCrosstools.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ApiLevel.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ArmCrosstools.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- MipsCrosstools.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- NdkPaths.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- NdkRelease.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- X86Crosstools.java
+|  |  |  |  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelActionListenerRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelExtraActionRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelFilegroupRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelTestSuiteRule.java
+|  |  |  |  |  |  |  |  |  |  |-- cpp
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelCcBinary.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelCcLibrary.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelCcTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelCppRuleClasses.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelCppSemantics.java
+|  |  |  |  |  |  |  |  |  |  |-- genrule
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelGenRuleRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- GenRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- GenRuleAction.java
+|  |  |  |  |  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelJavaBinary.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelJavaBinaryRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelJavaBuildInfoFactory.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelJavaImport.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelJavaImportRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelJavaLibrary.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelJavaLibraryRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelJavaPlugin.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelJavaPluginRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelJavaRuleClasses.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelJavaSemantics.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelJavaTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelJavaTestRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- java_stub_template.txt
+|  |  |  |  |  |  |  |  |  |  |  |-- jdk.WORKSPACE
+|  |  |  |  |  |  |  |  |  |  |-- objc
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelIosTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelIosTestRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelJ2ObjcLibraryRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- j2objc.WORKSPACE
+|  |  |  |  |  |  |  |  |  |  |-- python
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelPyBinary.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelPyBinaryRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelPyLibrary.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelPyLibraryRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelPyRuleClasses.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelPyTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelPyTestRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelPythonConfiguration.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelPythonSemantics.java
+|  |  |  |  |  |  |  |  |  |  |  |-- stub_template.txt
+|  |  |  |  |  |  |  |  |  |  |-- sh
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelShBinaryRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelShLibraryRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelShRuleClasses.java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelShTestRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- ShBinary.java
+|  |  |  |  |  |  |  |  |  |  |  |-- ShLibrary.java
+|  |  |  |  |  |  |  |  |  |  |-- workspace
+|  |  |  |  |  |  |  |  |  |  |  |-- GitRepositoryRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- HttpArchiveRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- HttpFileRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- HttpJarRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- LocalRepositoryRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- MavenJarRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- NewGitRepositoryRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- NewHttpArchiveRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- NewLocalRepositoryRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- WorkspaceBaseRule.java
+|  |  |  |  |  |  |  |  |  |  |  |-- WorkspaceConfiguredTargetFactory.java
+|  |  |  |  |  |  |  |  |-- buildtool
+|  |  |  |  |  |  |  |  |  |-- BuildRequest.java
+|  |  |  |  |  |  |  |  |  |-- BuildResult.java
+|  |  |  |  |  |  |  |  |  |-- BuildTool.java
+|  |  |  |  |  |  |  |  |  |-- CachesSavedEvent.java
+|  |  |  |  |  |  |  |  |  |-- ExecutionFinishedEvent.java
+|  |  |  |  |  |  |  |  |  |-- ExecutionTool.java
+|  |  |  |  |  |  |  |  |  |-- LocalEnvironmentException.java
+|  |  |  |  |  |  |  |  |  |-- OutputDirectoryLinksUtils.java
+|  |  |  |  |  |  |  |  |  |-- SkyframeBuilder.java
+|  |  |  |  |  |  |  |  |  |-- TargetValidator.java
+|  |  |  |  |  |  |  |  |  |-- buildevent
+|  |  |  |  |  |  |  |  |  |  |-- BuildCompleteEvent.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildInterruptedEvent.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildStartingEvent.java
+|  |  |  |  |  |  |  |  |  |  |-- ExecutionPhaseCompleteEvent.java
+|  |  |  |  |  |  |  |  |  |  |-- ExecutionStartingEvent.java
+|  |  |  |  |  |  |  |  |  |  |-- TestFilteringCompleteEvent.java
+|  |  |  |  |  |  |  |  |-- cmdline
+|  |  |  |  |  |  |  |  |  |-- LabelValidator.java
+|  |  |  |  |  |  |  |  |  |-- PackageIdentifier.java
+|  |  |  |  |  |  |  |  |  |-- ResolvedTargets.java
+|  |  |  |  |  |  |  |  |  |-- TargetParsingException.java
+|  |  |  |  |  |  |  |  |  |-- TargetPattern.java
+|  |  |  |  |  |  |  |  |  |-- TargetPatternResolver.java
+|  |  |  |  |  |  |  |  |-- collect
+|  |  |  |  |  |  |  |  |  |-- CollectionUtils.java
+|  |  |  |  |  |  |  |  |  |-- CompactHashSet.java
+|  |  |  |  |  |  |  |  |  |-- EquivalenceRelation.java
+|  |  |  |  |  |  |  |  |  |-- ImmutableIterable.java
+|  |  |  |  |  |  |  |  |  |-- ImmutableSortedKeyListMultimap.java
+|  |  |  |  |  |  |  |  |  |-- ImmutableSortedKeyMap.java
+|  |  |  |  |  |  |  |  |  |-- IterablesChain.java
+|  |  |  |  |  |  |  |  |  |-- nestedset
+|  |  |  |  |  |  |  |  |  |  |-- CompileOrderExpander.java
+|  |  |  |  |  |  |  |  |  |  |-- CompileOrderNestedSetFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- EmptyNestedSet.java
+|  |  |  |  |  |  |  |  |  |  |-- ImmutableListDirectsNestedSet.java
+|  |  |  |  |  |  |  |  |  |  |-- LinkOrderExpander.java
+|  |  |  |  |  |  |  |  |  |  |-- LinkOrderNestedSetFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- ManyDirectManyTransitive.java
+|  |  |  |  |  |  |  |  |  |  |-- ManyDirectOneTransitiveNestedSet.java
+|  |  |  |  |  |  |  |  |  |  |-- MemoizedUniquefierNestedSet.java
+|  |  |  |  |  |  |  |  |  |  |-- NaiveLinkOrderExpander.java
+|  |  |  |  |  |  |  |  |  |  |-- NaiveLinkOrderNestedSetFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- NestedSet.java
+|  |  |  |  |  |  |  |  |  |  |-- NestedSetBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- NestedSetExpander.java
+|  |  |  |  |  |  |  |  |  |  |-- NestedSetFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- NestedSetLazyIterator.java
+|  |  |  |  |  |  |  |  |  |  |-- NestedSetVisitor.java
+|  |  |  |  |  |  |  |  |  |  |-- OneDirectManyTransitive.java
+|  |  |  |  |  |  |  |  |  |  |-- OneDirectOneTransitiveNestedSet.java
+|  |  |  |  |  |  |  |  |  |  |-- OnlyDirectsNestedSet.java
+|  |  |  |  |  |  |  |  |  |  |-- OnlyOneTransitiveNestedSet.java
+|  |  |  |  |  |  |  |  |  |  |-- OnlyTransitivesNestedSet.java
+|  |  |  |  |  |  |  |  |  |  |-- Order.java
+|  |  |  |  |  |  |  |  |  |  |-- RecordingUniqueifier.java
+|  |  |  |  |  |  |  |  |  |  |-- SingleDirectNestedSet.java
+|  |  |  |  |  |  |  |  |  |  |-- StableOrderNestedSetFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- Uniqueifier.java
+|  |  |  |  |  |  |  |  |-- concurrent
+|  |  |  |  |  |  |  |  |  |-- AbstractQueueVisitor.java
+|  |  |  |  |  |  |  |  |  |-- ExecutorUtil.java
+|  |  |  |  |  |  |  |  |  |-- KeyedLocker.java
+|  |  |  |  |  |  |  |  |  |-- MoreFutures.java
+|  |  |  |  |  |  |  |  |  |-- RefCountedMultisetKeyedLocker.java
+|  |  |  |  |  |  |  |  |  |-- Sharder.java
+|  |  |  |  |  |  |  |  |  |-- StripedKeyedLocker.java
+|  |  |  |  |  |  |  |  |  |-- ThreadSafety.java
+|  |  |  |  |  |  |  |  |  |-- ThrowableRecordingRunnableWrapper.java
+|  |  |  |  |  |  |  |  |-- events
+|  |  |  |  |  |  |  |  |  |-- AbstractEventHandler.java
+|  |  |  |  |  |  |  |  |  |-- DelegatingEventHandler.java
+|  |  |  |  |  |  |  |  |  |-- DelegatingOnlyErrorsEventHandler.java
+|  |  |  |  |  |  |  |  |  |-- ErrorSensingEventHandler.java
+|  |  |  |  |  |  |  |  |  |-- Event.java
+|  |  |  |  |  |  |  |  |  |-- EventCollector.java
+|  |  |  |  |  |  |  |  |  |-- EventHandler.java
+|  |  |  |  |  |  |  |  |  |-- EventKind.java
+|  |  |  |  |  |  |  |  |  |-- EventSensor.java
+|  |  |  |  |  |  |  |  |  |-- ExceptionListener.java
+|  |  |  |  |  |  |  |  |  |-- Location.java
+|  |  |  |  |  |  |  |  |  |-- NullEventHandler.java
+|  |  |  |  |  |  |  |  |  |-- OutputFilter.java
+|  |  |  |  |  |  |  |  |  |-- PrintingEventHandler.java
+|  |  |  |  |  |  |  |  |  |-- Reporter.java
+|  |  |  |  |  |  |  |  |  |-- ReporterStream.java
+|  |  |  |  |  |  |  |  |  |-- StoredEventHandler.java
+|  |  |  |  |  |  |  |  |-- exec
+|  |  |  |  |  |  |  |  |  |-- AlwaysOutOfDateAction.java
+|  |  |  |  |  |  |  |  |  |-- CheckUpToDateFilter.java
+|  |  |  |  |  |  |  |  |  |-- Digest.java
+|  |  |  |  |  |  |  |  |  |-- ExecutionOptions.java
+|  |  |  |  |  |  |  |  |  |-- FileWriteStrategy.java
+|  |  |  |  |  |  |  |  |  |-- OutputService.java
+|  |  |  |  |  |  |  |  |  |-- SingleBuildFileCache.java
+|  |  |  |  |  |  |  |  |  |-- SymlinkTreeHelper.java
+|  |  |  |  |  |  |  |  |  |-- SymlinkTreeStrategy.java
+|  |  |  |  |  |  |  |  |-- graph
+|  |  |  |  |  |  |  |  |  |-- AbstractGraphVisitor.java
+|  |  |  |  |  |  |  |  |  |-- CollectingVisitor.java
+|  |  |  |  |  |  |  |  |  |-- DFS.java
+|  |  |  |  |  |  |  |  |  |-- Digraph.java
+|  |  |  |  |  |  |  |  |  |-- DotOutputVisitor.java
+|  |  |  |  |  |  |  |  |  |-- DotSyntaxException.java
+|  |  |  |  |  |  |  |  |  |-- GraphVisitor.java
+|  |  |  |  |  |  |  |  |  |-- LabelDeserializer.java
+|  |  |  |  |  |  |  |  |  |-- LabelSerializer.java
+|  |  |  |  |  |  |  |  |  |-- Matrix.java
+|  |  |  |  |  |  |  |  |  |-- Node.java
+|  |  |  |  |  |  |  |  |-- ideinfo
+|  |  |  |  |  |  |  |  |  |-- AndroidStudioInfoAspect.java
+|  |  |  |  |  |  |  |  |  |-- AndroidStudioInfoFilesProvider.java
+|  |  |  |  |  |  |  |  |-- packages
+|  |  |  |  |  |  |  |  |  |-- AbstractAttributeMapper.java
+|  |  |  |  |  |  |  |  |  |-- AggregatingAttributeMapper.java
+|  |  |  |  |  |  |  |  |  |-- AnalysisIssues.java
+|  |  |  |  |  |  |  |  |  |-- AspectDefinition.java
+|  |  |  |  |  |  |  |  |  |-- AspectFactory.java
+|  |  |  |  |  |  |  |  |  |-- AspectParameters.java
+|  |  |  |  |  |  |  |  |  |-- Attribute.java
+|  |  |  |  |  |  |  |  |  |-- AttributeContainer.java
+|  |  |  |  |  |  |  |  |  |-- AttributeMap.java
+|  |  |  |  |  |  |  |  |  |-- BuildFileContainsErrorsException.java
+|  |  |  |  |  |  |  |  |  |-- BuildFileNotFoundException.java
+|  |  |  |  |  |  |  |  |  |-- CachingPackageLocator.java
+|  |  |  |  |  |  |  |  |  |-- ConstantRuleVisibility.java
+|  |  |  |  |  |  |  |  |  |-- DefaultSetting.java
+|  |  |  |  |  |  |  |  |  |-- DelegatingAttributeMapper.java
+|  |  |  |  |  |  |  |  |  |-- DuplicatePackageException.java
+|  |  |  |  |  |  |  |  |  |-- EnumFilterConverter.java
+|  |  |  |  |  |  |  |  |  |-- EnvironmentGroup.java
+|  |  |  |  |  |  |  |  |  |-- ExternalPackage.java
+|  |  |  |  |  |  |  |  |  |-- FileTarget.java
+|  |  |  |  |  |  |  |  |  |-- GlobCache.java
+|  |  |  |  |  |  |  |  |  |-- ImplicitOutputsFunction.java
+|  |  |  |  |  |  |  |  |  |-- InputFile.java
+|  |  |  |  |  |  |  |  |  |-- InvalidPackageNameException.java
+|  |  |  |  |  |  |  |  |  |-- License.java
+|  |  |  |  |  |  |  |  |  |-- MakeEnvironment.java
+|  |  |  |  |  |  |  |  |  |-- NoSuchPackageException.java
+|  |  |  |  |  |  |  |  |  |-- NoSuchTargetException.java
+|  |  |  |  |  |  |  |  |  |-- NoSuchThingException.java
+|  |  |  |  |  |  |  |  |  |-- NonconfigurableAttributeMapper.java
+|  |  |  |  |  |  |  |  |  |-- OutputFile.java
+|  |  |  |  |  |  |  |  |  |-- Package.java
+|  |  |  |  |  |  |  |  |  |-- PackageDeserializer.java
+|  |  |  |  |  |  |  |  |  |-- PackageFactory.java
+|  |  |  |  |  |  |  |  |  |-- PackageGroup.java
+|  |  |  |  |  |  |  |  |  |-- PackageGroupsRuleVisibility.java
+|  |  |  |  |  |  |  |  |  |-- PackageSerializer.java
+|  |  |  |  |  |  |  |  |  |-- PackageSpecification.java
+|  |  |  |  |  |  |  |  |  |-- PredicateWithMessage.java
+|  |  |  |  |  |  |  |  |  |-- PredicatesWithMessage.java
+|  |  |  |  |  |  |  |  |  |-- Preprocessor.java
+|  |  |  |  |  |  |  |  |  |-- ProtoUtils.java
+|  |  |  |  |  |  |  |  |  |-- RawAttributeMapper.java
+|  |  |  |  |  |  |  |  |  |-- RelativePackageNameResolver.java
+|  |  |  |  |  |  |  |  |  |-- Rule.java
+|  |  |  |  |  |  |  |  |  |-- RuleClass.java
+|  |  |  |  |  |  |  |  |  |-- RuleClassProvider.java
+|  |  |  |  |  |  |  |  |  |-- RuleErrorConsumer.java
+|  |  |  |  |  |  |  |  |  |-- RuleFactory.java
+|  |  |  |  |  |  |  |  |  |-- RuleVisibility.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkNativeModule.java
+|  |  |  |  |  |  |  |  |  |-- Target.java
+|  |  |  |  |  |  |  |  |  |-- TargetUtils.java
+|  |  |  |  |  |  |  |  |  |-- TestSize.java
+|  |  |  |  |  |  |  |  |  |-- TestTargetUtils.java
+|  |  |  |  |  |  |  |  |  |-- TestTimeout.java
+|  |  |  |  |  |  |  |  |  |-- TriState.java
+|  |  |  |  |  |  |  |  |  |-- Type.java
+|  |  |  |  |  |  |  |  |  |-- WorkspaceFactory.java
+|  |  |  |  |  |  |  |  |-- pkgcache
+|  |  |  |  |  |  |  |  |  |-- CompileOneDependencyTransformer.java
+|  |  |  |  |  |  |  |  |  |-- FilteringPolicies.java
+|  |  |  |  |  |  |  |  |  |-- FilteringPolicy.java
+|  |  |  |  |  |  |  |  |  |-- LoadedPackage.java
+|  |  |  |  |  |  |  |  |  |-- LoadedPackageProvider.java
+|  |  |  |  |  |  |  |  |  |-- LoadingFailedException.java
+|  |  |  |  |  |  |  |  |  |-- LoadingFailureEvent.java
+|  |  |  |  |  |  |  |  |  |-- LoadingPhaseCompleteEvent.java
+|  |  |  |  |  |  |  |  |  |-- LoadingPhaseRunner.java
+|  |  |  |  |  |  |  |  |  |-- PackageCacheOptions.java
+|  |  |  |  |  |  |  |  |  |-- PackageManager.java
+|  |  |  |  |  |  |  |  |  |-- PackageProvider.java
+|  |  |  |  |  |  |  |  |  |-- ParseFailureListener.java
+|  |  |  |  |  |  |  |  |  |-- ParsingFailedEvent.java
+|  |  |  |  |  |  |  |  |  |-- PathPackageLocator.java
+|  |  |  |  |  |  |  |  |  |-- RecursivePackageProvider.java
+|  |  |  |  |  |  |  |  |  |-- SrcTargetUtil.java
+|  |  |  |  |  |  |  |  |  |-- TargetEdgeObserver.java
+|  |  |  |  |  |  |  |  |  |-- TargetParsingCompleteEvent.java
+|  |  |  |  |  |  |  |  |  |-- TargetPatternEvaluator.java
+|  |  |  |  |  |  |  |  |  |-- TargetPatternResolverUtil.java
+|  |  |  |  |  |  |  |  |  |-- TargetProvider.java
+|  |  |  |  |  |  |  |  |  |-- TestFilter.java
+|  |  |  |  |  |  |  |  |  |-- TransitivePackageLoader.java
+|  |  |  |  |  |  |  |  |-- profiler
+|  |  |  |  |  |  |  |  |  |-- AutoProfiler.java
+|  |  |  |  |  |  |  |  |  |-- Describable.java
+|  |  |  |  |  |  |  |  |  |-- MemoryProfiler.java
+|  |  |  |  |  |  |  |  |  |-- ProfileInfo.java
+|  |  |  |  |  |  |  |  |  |-- ProfilePhase.java
+|  |  |  |  |  |  |  |  |  |-- ProfilePhaseStatistics.java
+|  |  |  |  |  |  |  |  |  |-- Profiler.java
+|  |  |  |  |  |  |  |  |  |-- ProfilerTask.java
+|  |  |  |  |  |  |  |  |  |-- chart
+|  |  |  |  |  |  |  |  |  |  |-- AggregatingChartCreator.java
+|  |  |  |  |  |  |  |  |  |  |-- Chart.java
+|  |  |  |  |  |  |  |  |  |  |-- ChartBar.java
+|  |  |  |  |  |  |  |  |  |  |-- ChartBarType.java
+|  |  |  |  |  |  |  |  |  |  |-- ChartColumn.java
+|  |  |  |  |  |  |  |  |  |  |-- ChartCreator.java
+|  |  |  |  |  |  |  |  |  |  |-- ChartLine.java
+|  |  |  |  |  |  |  |  |  |  |-- ChartRow.java
+|  |  |  |  |  |  |  |  |  |  |-- ChartVisitor.java
+|  |  |  |  |  |  |  |  |  |  |-- Color.java
+|  |  |  |  |  |  |  |  |  |  |-- CommonChartCreator.java
+|  |  |  |  |  |  |  |  |  |  |-- DetailedChartCreator.java
+|  |  |  |  |  |  |  |  |  |  |-- HtmlChartVisitor.java
+|  |  |  |  |  |  |  |  |  |  |-- HtmlCreator.java
+|  |  |  |  |  |  |  |  |  |  |-- SkylarkStatistics.java
+|  |  |  |  |  |  |  |  |  |  |-- TasksStatistics.java
+|  |  |  |  |  |  |  |  |-- query2
+|  |  |  |  |  |  |  |  |  |-- AbstractBlazeQueryEnvironment.java
+|  |  |  |  |  |  |  |  |  |-- BlazeQueryEnvironment.java
+|  |  |  |  |  |  |  |  |  |-- BlazeQueryVisibility.java
+|  |  |  |  |  |  |  |  |  |-- BlazeTargetAccessor.java
+|  |  |  |  |  |  |  |  |  |-- ErrorPrintingTargetEdgeErrorObserver.java
+|  |  |  |  |  |  |  |  |  |-- FakeSubincludeTarget.java
+|  |  |  |  |  |  |  |  |  |-- LabelVisitor.java
+|  |  |  |  |  |  |  |  |  |-- RBuildFilesFunction.java
+|  |  |  |  |  |  |  |  |  |-- SkyQueryEnvironment.java
+|  |  |  |  |  |  |  |  |  |-- TargetEdgeErrorObserver.java
+|  |  |  |  |  |  |  |  |  |-- engine
+|  |  |  |  |  |  |  |  |  |  |-- AllPathsFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- AllRdepsFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- AttrFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- BinaryOperatorExpression.java
+|  |  |  |  |  |  |  |  |  |  |-- BlazeQueryEvalResult.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildFilesFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- DepsFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- FilterFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- FunctionExpression.java
+|  |  |  |  |  |  |  |  |  |  |-- KindFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- LabelsFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- LetExpression.java
+|  |  |  |  |  |  |  |  |  |  |-- Lexer.java
+|  |  |  |  |  |  |  |  |  |  |-- QueryEnvironment.java
+|  |  |  |  |  |  |  |  |  |  |-- QueryEvalResult.java
+|  |  |  |  |  |  |  |  |  |  |-- QueryException.java
+|  |  |  |  |  |  |  |  |  |  |-- QueryExpression.java
+|  |  |  |  |  |  |  |  |  |  |-- QueryParser.java
+|  |  |  |  |  |  |  |  |  |  |-- QueryVisibility.java
+|  |  |  |  |  |  |  |  |  |  |-- RdepsFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- RegexFilterExpression.java
+|  |  |  |  |  |  |  |  |  |  |-- SetExpression.java
+|  |  |  |  |  |  |  |  |  |  |-- SkyframeRestartQueryException.java
+|  |  |  |  |  |  |  |  |  |  |-- SomeFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- SomePathFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- TargetLiteral.java
+|  |  |  |  |  |  |  |  |  |  |-- TestsFunction.java
+|  |  |  |  |  |  |  |  |  |  |-- VisibleFunction.java
+|  |  |  |  |  |  |  |  |  |-- output
+|  |  |  |  |  |  |  |  |  |  |-- AspectResolver.java
+|  |  |  |  |  |  |  |  |  |  |-- ConservativeAspectResolver.java
+|  |  |  |  |  |  |  |  |  |  |-- GraphOutputFormatter.java
+|  |  |  |  |  |  |  |  |  |  |-- NullAspectResolver.java
+|  |  |  |  |  |  |  |  |  |  |-- OutputFormatter.java
+|  |  |  |  |  |  |  |  |  |  |-- PreciseAspectResolver.java
+|  |  |  |  |  |  |  |  |  |  |-- ProtoOutputFormatter.java
+|  |  |  |  |  |  |  |  |  |  |-- QueryOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- QueryOutputUtils.java
+|  |  |  |  |  |  |  |  |  |  |-- XmlOutputFormatter.java
+|  |  |  |  |  |  |  |  |-- rules
+|  |  |  |  |  |  |  |  |  |-- RuleConfiguredTargetFactory.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkApiProvider.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkAttr.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkCommandLine.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkFileType.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkModules.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkRuleClassFunctions.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkRuleConfiguredTargetBuilder.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkRuleContext.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkRuleImplementationFunctions.java
+|  |  |  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |  |  |-- AarGeneratorBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidAaptActionHelper.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidBinary.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidBinaryOnlyRule.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidCcLinkParamsProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidCommon.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidConfiguration.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidIdlProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidLibrary.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidLibraryAarProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidLibraryBaseRule.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidManifestMergeHelper.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidNativeLibraryProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidNeverLinkLibrariesProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidNeverlinkAspect.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidPreDexJarProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidResourceContainerBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidResourcesProcessorBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidResourcesProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidRuleClasses.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidSdk.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidSdkProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidSemantics.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidToolsDefaultsJar.java
+|  |  |  |  |  |  |  |  |  |  |-- ApkProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- ApplicationManifest.java
+|  |  |  |  |  |  |  |  |  |  |-- JackCompilationHelper.java
+|  |  |  |  |  |  |  |  |  |  |-- JackLibraryProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- LocalResourceContainer.java
+|  |  |  |  |  |  |  |  |  |  |-- NativeLibs.java
+|  |  |  |  |  |  |  |  |  |  |-- ProguardMappingProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- ProguardSpecProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- ResourceApk.java
+|  |  |  |  |  |  |  |  |  |  |-- RuleConfigurationException.java
+|  |  |  |  |  |  |  |  |  |  |-- SingleJarBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- WriteAdbArgsAction.java
+|  |  |  |  |  |  |  |  |  |  |-- WriteAdbArgsActionContext.java
+|  |  |  |  |  |  |  |  |  |-- cpp
+|  |  |  |  |  |  |  |  |  |  |-- CcBinary.java
+|  |  |  |  |  |  |  |  |  |  |-- CcCommon.java
+|  |  |  |  |  |  |  |  |  |  |-- CcCompilationOutputs.java
+|  |  |  |  |  |  |  |  |  |  |-- CcExecutionDynamicLibrariesProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- CcLibrary.java
+|  |  |  |  |  |  |  |  |  |  |-- CcLibraryHelper.java
+|  |  |  |  |  |  |  |  |  |  |-- CcLinkParams.java
+|  |  |  |  |  |  |  |  |  |  |-- CcLinkParamsProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- CcLinkParamsStore.java
+|  |  |  |  |  |  |  |  |  |  |-- CcLinkingOutputs.java
+|  |  |  |  |  |  |  |  |  |  |-- CcNativeLibraryProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- CcSkylarkApiProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- CcSpecificLinkParamsProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- CcTest.java
+|  |  |  |  |  |  |  |  |  |  |-- CcToolchain.java
+|  |  |  |  |  |  |  |  |  |  |-- CcToolchainFeatures.java
+|  |  |  |  |  |  |  |  |  |  |-- CcToolchainProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- CcToolchainRule.java
+|  |  |  |  |  |  |  |  |  |  |-- CcToolchainSuite.java
+|  |  |  |  |  |  |  |  |  |  |-- CcToolchainSuiteRule.java
+|  |  |  |  |  |  |  |  |  |  |-- CppBuildInfo.java
+|  |  |  |  |  |  |  |  |  |  |-- CppCompilationContext.java
+|  |  |  |  |  |  |  |  |  |  |-- CppCompileAction.java
+|  |  |  |  |  |  |  |  |  |  |-- CppCompileActionBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- CppCompileActionContext.java
+|  |  |  |  |  |  |  |  |  |  |-- CppConfiguration.java
+|  |  |  |  |  |  |  |  |  |  |-- CppConfigurationLoader.java
+|  |  |  |  |  |  |  |  |  |  |-- CppDebugFileProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- CppDebugPackageProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- CppFileTypes.java
+|  |  |  |  |  |  |  |  |  |  |-- CppHelper.java
+|  |  |  |  |  |  |  |  |  |  |-- CppLinkAction.java
+|  |  |  |  |  |  |  |  |  |  |-- CppLinkActionContext.java
+|  |  |  |  |  |  |  |  |  |  |-- CppModel.java
+|  |  |  |  |  |  |  |  |  |  |-- CppModuleMap.java
+|  |  |  |  |  |  |  |  |  |  |-- CppModuleMapAction.java
+|  |  |  |  |  |  |  |  |  |  |-- CppOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- CppRuleClasses.java
+|  |  |  |  |  |  |  |  |  |  |-- CppRunfilesProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- CppSemantics.java
+|  |  |  |  |  |  |  |  |  |  |-- CrosstoolConfigurationIdentifier.java
+|  |  |  |  |  |  |  |  |  |  |-- CrosstoolConfigurationLoader.java
+|  |  |  |  |  |  |  |  |  |  |-- CrosstoolConfigurationOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- DwoArtifactsCollector.java
+|  |  |  |  |  |  |  |  |  |  |-- ExtractInclusionAction.java
+|  |  |  |  |  |  |  |  |  |  |-- FakeCppCompileAction.java
+|  |  |  |  |  |  |  |  |  |  |-- FdoStubAction.java
+|  |  |  |  |  |  |  |  |  |  |-- FdoSupport.java
+|  |  |  |  |  |  |  |  |  |  |-- IncludeProblems.java
+|  |  |  |  |  |  |  |  |  |  |-- IncludeScannable.java
+|  |  |  |  |  |  |  |  |  |  |-- IncludeScanner.java
+|  |  |  |  |  |  |  |  |  |  |-- IncludeScanningContext.java
+|  |  |  |  |  |  |  |  |  |  |-- LTOBackendArtifacts.java
+|  |  |  |  |  |  |  |  |  |  |-- Link.java
+|  |  |  |  |  |  |  |  |  |  |-- LinkCommandLine.java
+|  |  |  |  |  |  |  |  |  |  |-- LinkStrategy.java
+|  |  |  |  |  |  |  |  |  |  |-- LinkerInput.java
+|  |  |  |  |  |  |  |  |  |  |-- LinkerInputs.java
+|  |  |  |  |  |  |  |  |  |  |-- LinkingMode.java
+|  |  |  |  |  |  |  |  |  |  |-- LipoContextProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- LocalGccStrategy.java
+|  |  |  |  |  |  |  |  |  |  |-- LocalLinkStrategy.java
+|  |  |  |  |  |  |  |  |  |  |-- PrecompiledFiles.java
+|  |  |  |  |  |  |  |  |  |  |-- SolibSymlinkAction.java
+|  |  |  |  |  |  |  |  |  |  |-- TransitiveLipoInfoProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- WriteBuildInfoHeaderAction.java
+|  |  |  |  |  |  |  |  |  |  |-- transitions
+|  |  |  |  |  |  |  |  |  |  |  |-- LipoDataTransition.java
+|  |  |  |  |  |  |  |  |  |-- extra
+|  |  |  |  |  |  |  |  |  |  |-- ActionListener.java
+|  |  |  |  |  |  |  |  |  |  |-- ExtraAction.java
+|  |  |  |  |  |  |  |  |  |  |-- ExtraActionFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- ExtraActionInfoFileWriteAction.java
+|  |  |  |  |  |  |  |  |  |  |-- ExtraActionMapProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- ExtraActionSpec.java
+|  |  |  |  |  |  |  |  |  |-- filegroup
+|  |  |  |  |  |  |  |  |  |  |-- Filegroup.java
+|  |  |  |  |  |  |  |  |  |  |-- FilegroupPathProvider.java
+|  |  |  |  |  |  |  |  |  |-- fileset
+|  |  |  |  |  |  |  |  |  |  |-- FilesetActionContext.java
+|  |  |  |  |  |  |  |  |  |  |-- FilesetActionContextImpl.java
+|  |  |  |  |  |  |  |  |  |  |-- FilesetLinks.java
+|  |  |  |  |  |  |  |  |  |  |-- FilesetProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- SymlinkTraversal.java
+|  |  |  |  |  |  |  |  |  |-- genquery
+|  |  |  |  |  |  |  |  |  |  |-- GenQuery.java
+|  |  |  |  |  |  |  |  |  |  |-- GenQueryRule.java
+|  |  |  |  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |  |  |  |-- BaseJavaCompilationHelper.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildInfoPropertiesTranslator.java
+|  |  |  |  |  |  |  |  |  |  |-- ClasspathConfiguredFragment.java
+|  |  |  |  |  |  |  |  |  |  |-- DeployArchiveBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- DirectDependencyProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- GenericBuildInfoPropertiesTranslator.java
+|  |  |  |  |  |  |  |  |  |  |-- J2ObjcCommandLineOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- J2ObjcConfiguration.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaBinary.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaBuildInfoFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaCcLinkParamsProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaCommon.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaCompilationArgs.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaCompilationArgsProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaCompilationArtifacts.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaCompilationHelper.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaCompileAction.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaConfiguration.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaConfigurationLoader.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaConstraintProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaCpuSupplier.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaExportsProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaHelper.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaImport.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaImportBaseRule.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaLibrary.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaLibraryHelper.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaNativeLibraryProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaNeverlinkInfoProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaPlugin.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaPluginInfoProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaPrimaryClassProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaRuleOutputJarsProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaRunfilesProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaRuntimeClasspathProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaRuntimeJarProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaSemantics.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaSkylarkApiProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaSourceInfoProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaSourceJarsProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaTargetAttributes.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaToolchain.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaToolchainData.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaToolchainDataParser.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaToolchainProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaToolchainRule.java
+|  |  |  |  |  |  |  |  |  |  |-- JavaUtil.java
+|  |  |  |  |  |  |  |  |  |  |-- Jvm.java
+|  |  |  |  |  |  |  |  |  |  |-- JvmConfigurationLoader.java
+|  |  |  |  |  |  |  |  |  |  |-- MessageBundleProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- NativeLibraryNestedSetBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- SourcesJavaCompilationArgsProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- WriteBuildInfoPropertiesAction.java
+|  |  |  |  |  |  |  |  |  |-- nativedeps
+|  |  |  |  |  |  |  |  |  |  |-- NativeDepsHelper.java
+|  |  |  |  |  |  |  |  |  |  |-- NativeDepsRunfiles.java
+|  |  |  |  |  |  |  |  |  |-- objc
+|  |  |  |  |  |  |  |  |  |  |-- ArtifactListAttribute.java
+|  |  |  |  |  |  |  |  |  |  |-- Attribute.java
+|  |  |  |  |  |  |  |  |  |  |-- BinaryLinkingTargetFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- BundleMergeControlBytes.java
+|  |  |  |  |  |  |  |  |  |  |-- BundleSupport.java
+|  |  |  |  |  |  |  |  |  |  |-- BundleableFile.java
+|  |  |  |  |  |  |  |  |  |  |-- Bundling.java
+|  |  |  |  |  |  |  |  |  |  |-- CompilationArtifacts.java
+|  |  |  |  |  |  |  |  |  |  |-- CompilationSupport.java
+|  |  |  |  |  |  |  |  |  |  |-- ExecutionRequirements.java
+|  |  |  |  |  |  |  |  |  |  |-- ExperimentalIosTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ExperimentalIosTestRule.java
+|  |  |  |  |  |  |  |  |  |  |-- IntermediateArtifacts.java
+|  |  |  |  |  |  |  |  |  |  |-- Interspersing.java
+|  |  |  |  |  |  |  |  |  |  |-- IosApplication.java
+|  |  |  |  |  |  |  |  |  |  |-- IosApplicationRule.java
+|  |  |  |  |  |  |  |  |  |  |-- IosDevice.java
+|  |  |  |  |  |  |  |  |  |  |-- IosDeviceProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- IosDeviceRule.java
+|  |  |  |  |  |  |  |  |  |  |-- IosExtension.java
+|  |  |  |  |  |  |  |  |  |  |-- IosExtensionBinary.java
+|  |  |  |  |  |  |  |  |  |  |-- IosExtensionBinaryRule.java
+|  |  |  |  |  |  |  |  |  |  |-- IosExtensionRule.java
+|  |  |  |  |  |  |  |  |  |  |-- IosFramework.java
+|  |  |  |  |  |  |  |  |  |  |-- IosFrameworkBinary.java
+|  |  |  |  |  |  |  |  |  |  |-- IosFrameworkBinaryRule.java
+|  |  |  |  |  |  |  |  |  |  |-- IosFrameworkProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- IosFrameworkRule.java
+|  |  |  |  |  |  |  |  |  |  |-- IosSdkCommands.java
+|  |  |  |  |  |  |  |  |  |  |-- IosTest.java
+|  |  |  |  |  |  |  |  |  |  |-- IosTestSubstitutionProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- IterableWrapper.java
+|  |  |  |  |  |  |  |  |  |  |-- J2ObjcAspect.java
+|  |  |  |  |  |  |  |  |  |  |-- J2ObjcLibrary.java
+|  |  |  |  |  |  |  |  |  |  |-- J2ObjcLibraryBaseRule.java
+|  |  |  |  |  |  |  |  |  |  |-- J2ObjcMappingFileProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- J2ObjcSource.java
+|  |  |  |  |  |  |  |  |  |  |-- J2ObjcSrcsProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- LabDeviceTemplateProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcBinary.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcBinaryRule.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcBuildInfoFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcBundle.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcBundleLibrary.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcBundleLibraryRule.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcBundleRule.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcCommandLineOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcCommon.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcConfiguration.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcConfigurationLoader.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcFramework.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcFrameworkRule.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcImport.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcImportRule.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcLibrary.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcLibraryRule.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcOptionsRule.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcProtoLibrary.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcProtoLibraryRule.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcRuleClasses.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcSdkFrameworks.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcXcodeproj.java
+|  |  |  |  |  |  |  |  |  |  |-- ObjcXcodeprojRule.java
+|  |  |  |  |  |  |  |  |  |  |-- OptionsProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- Platform.java
+|  |  |  |  |  |  |  |  |  |  |-- ReleaseBundlingSupport.java
+|  |  |  |  |  |  |  |  |  |  |-- ReleaseBundlingTargetFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- ResourceSupport.java
+|  |  |  |  |  |  |  |  |  |  |-- SdkFramework.java
+|  |  |  |  |  |  |  |  |  |  |-- Storyboards.java
+|  |  |  |  |  |  |  |  |  |  |-- TargetDeviceFamily.java
+|  |  |  |  |  |  |  |  |  |  |-- TestSupport.java
+|  |  |  |  |  |  |  |  |  |  |-- Value.java
+|  |  |  |  |  |  |  |  |  |  |-- XcTestAppProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- Xcdatamodel.java
+|  |  |  |  |  |  |  |  |  |  |-- Xcdatamodels.java
+|  |  |  |  |  |  |  |  |  |  |-- XcodeProductType.java
+|  |  |  |  |  |  |  |  |  |  |-- XcodeProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- XcodeSupport.java
+|  |  |  |  |  |  |  |  |  |-- proto
+|  |  |  |  |  |  |  |  |  |  |-- BazelProtoLibrary.java
+|  |  |  |  |  |  |  |  |  |  |-- BazelProtoLibraryRule.java
+|  |  |  |  |  |  |  |  |  |  |-- ProtoCommon.java
+|  |  |  |  |  |  |  |  |  |  |-- ProtoSourcesProvider.java
+|  |  |  |  |  |  |  |  |  |-- python
+|  |  |  |  |  |  |  |  |  |  |-- PrecompilePythonMode.java
+|  |  |  |  |  |  |  |  |  |  |-- PyBinary.java
+|  |  |  |  |  |  |  |  |  |  |-- PyCcLinkParamsProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- PyCommon.java
+|  |  |  |  |  |  |  |  |  |  |-- PyLibrary.java
+|  |  |  |  |  |  |  |  |  |  |-- PyRuleClasses.java
+|  |  |  |  |  |  |  |  |  |  |-- PyTest.java
+|  |  |  |  |  |  |  |  |  |  |-- PythonConfiguration.java
+|  |  |  |  |  |  |  |  |  |  |-- PythonConfigurationLoader.java
+|  |  |  |  |  |  |  |  |  |  |-- PythonOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- PythonRunfilesProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- PythonSemantics.java
+|  |  |  |  |  |  |  |  |  |  |-- PythonSourcesProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- PythonUtils.java
+|  |  |  |  |  |  |  |  |  |  |-- PythonVersion.java
+|  |  |  |  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |  |  |  |-- BaselineCoverageAction.java
+|  |  |  |  |  |  |  |  |  |  |-- BaselineCoverageResult.java
+|  |  |  |  |  |  |  |  |  |  |-- CoverageReportActionFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- ExclusiveTestStrategy.java
+|  |  |  |  |  |  |  |  |  |  |-- ExecutionInfoProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- InstrumentedFileManifestAction.java
+|  |  |  |  |  |  |  |  |  |  |-- InstrumentedFilesCollector.java
+|  |  |  |  |  |  |  |  |  |  |-- InstrumentedFilesProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- InstrumentedFilesProviderImpl.java
+|  |  |  |  |  |  |  |  |  |  |-- StandaloneTestStrategy.java
+|  |  |  |  |  |  |  |  |  |  |-- TestActionBuilder.java
+|  |  |  |  |  |  |  |  |  |  |-- TestActionContext.java
+|  |  |  |  |  |  |  |  |  |  |-- TestLogHelper.java
+|  |  |  |  |  |  |  |  |  |  |-- TestProvider.java
+|  |  |  |  |  |  |  |  |  |  |-- TestResult.java
+|  |  |  |  |  |  |  |  |  |  |-- TestRunnerAction.java
+|  |  |  |  |  |  |  |  |  |  |-- TestStrategy.java
+|  |  |  |  |  |  |  |  |  |  |-- TestSuite.java
+|  |  |  |  |  |  |  |  |  |  |-- TestTargetExecutionSettings.java
+|  |  |  |  |  |  |  |  |  |  |-- TestTargetProperties.java
+|  |  |  |  |  |  |  |  |  |  |-- TestXmlOutputParser.java
+|  |  |  |  |  |  |  |  |  |  |-- TestXmlOutputParserException.java
+|  |  |  |  |  |  |  |  |  |  |-- TransitiveTestsProvider.java
+|  |  |  |  |  |  |  |  |  |-- workspace
+|  |  |  |  |  |  |  |  |  |  |-- Bind.java
+|  |  |  |  |  |  |  |  |  |  |-- BindRule.java
+|  |  |  |  |  |  |  |  |-- runtime
+|  |  |  |  |  |  |  |  |  |-- AbstractCriticalPathComponent.java
+|  |  |  |  |  |  |  |  |  |-- AggregatedCriticalPath.java
+|  |  |  |  |  |  |  |  |  |-- AggregatingTestListener.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCommand.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandDispatcher.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandEventHandler.java
+|  |  |  |  |  |  |  |  |  |-- BlazeCommandUtils.java
+|  |  |  |  |  |  |  |  |  |-- BlazeModule.java
+|  |  |  |  |  |  |  |  |  |-- BlazeRuntime.java
+|  |  |  |  |  |  |  |  |  |-- BlazeServerStartupOptions.java
+|  |  |  |  |  |  |  |  |  |-- BugReport.java
+|  |  |  |  |  |  |  |  |  |-- BuildPhase.java
+|  |  |  |  |  |  |  |  |  |-- BuildSummaryStatsModule.java
+|  |  |  |  |  |  |  |  |  |-- Command.java
+|  |  |  |  |  |  |  |  |  |-- CommandCompleteEvent.java
+|  |  |  |  |  |  |  |  |  |-- CommandEvent.java
+|  |  |  |  |  |  |  |  |  |-- CommandPrecompleteEvent.java
+|  |  |  |  |  |  |  |  |  |-- CommandStartEvent.java
+|  |  |  |  |  |  |  |  |  |-- CommonCommandOptions.java
+|  |  |  |  |  |  |  |  |  |-- CriticalPathComputer.java
+|  |  |  |  |  |  |  |  |  |-- EventHandlerPreconditions.java
+|  |  |  |  |  |  |  |  |  |-- FancyTerminalEventHandler.java
+|  |  |  |  |  |  |  |  |  |-- GCStatsRecorder.java
+|  |  |  |  |  |  |  |  |  |-- GotOptionsEvent.java
+|  |  |  |  |  |  |  |  |  |-- HostJvmStartupOptions.java
+|  |  |  |  |  |  |  |  |  |-- ProjectFile.java
+|  |  |  |  |  |  |  |  |  |-- RateLimitingEventHandler.java
+|  |  |  |  |  |  |  |  |  |-- SimpleCriticalPathComponent.java
+|  |  |  |  |  |  |  |  |  |-- SimpleCriticalPathComputer.java
+|  |  |  |  |  |  |  |  |  |-- TerminalTestResultNotifier.java
+|  |  |  |  |  |  |  |  |  |-- TestResultAnalyzer.java
+|  |  |  |  |  |  |  |  |  |-- TestResultNotifier.java
+|  |  |  |  |  |  |  |  |  |-- TestSummary.java
+|  |  |  |  |  |  |  |  |  |-- TestSummaryPrinter.java
+|  |  |  |  |  |  |  |  |  |-- commands
+|  |  |  |  |  |  |  |  |  |  |-- BuildCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- CanonicalizeCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- CleanCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- DumpCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- GotProjectFileEvent.java
+|  |  |  |  |  |  |  |  |  |  |-- HelpCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- InfoCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- InfoKey.java
+|  |  |  |  |  |  |  |  |  |  |-- MobileInstallCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- ProfileCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- ProjectFileSupport.java
+|  |  |  |  |  |  |  |  |  |  |-- QueryCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- RunCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- ShutdownCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- TestCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- VersionCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- analyze-profile.txt
+|  |  |  |  |  |  |  |  |  |  |-- build.txt
+|  |  |  |  |  |  |  |  |  |  |-- canonicalize.txt
+|  |  |  |  |  |  |  |  |  |  |-- clean.txt
+|  |  |  |  |  |  |  |  |  |  |-- help.txt
+|  |  |  |  |  |  |  |  |  |  |-- info.txt
+|  |  |  |  |  |  |  |  |  |  |-- mobile-install.txt
+|  |  |  |  |  |  |  |  |  |  |-- query.txt
+|  |  |  |  |  |  |  |  |  |  |-- run.txt
+|  |  |  |  |  |  |  |  |  |  |-- startup_options.txt
+|  |  |  |  |  |  |  |  |  |  |-- target-syntax.txt
+|  |  |  |  |  |  |  |  |  |  |-- test.txt
+|  |  |  |  |  |  |  |  |  |  |-- version.txt
+|  |  |  |  |  |  |  |  |-- sandbox
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- LinuxSandboxedStrategy.java
+|  |  |  |  |  |  |  |  |  |-- NamespaceSandboxRunner.java
+|  |  |  |  |  |  |  |  |  |-- SandboxActionContextConsumer.java
+|  |  |  |  |  |  |  |  |  |-- SandboxActionContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- SandboxModule.java
+|  |  |  |  |  |  |  |  |  |-- SandboxOptions.java
+|  |  |  |  |  |  |  |  |-- server
+|  |  |  |  |  |  |  |  |  |-- IdleServerTasks.java
+|  |  |  |  |  |  |  |  |  |-- RPCServer.java
+|  |  |  |  |  |  |  |  |  |-- RPCService.java
+|  |  |  |  |  |  |  |  |  |-- ServerCommand.java
+|  |  |  |  |  |  |  |  |  |-- ServerResponse.java
+|  |  |  |  |  |  |  |  |  |-- signal
+|  |  |  |  |  |  |  |  |  |  |-- InterruptSignalHandler.java
+|  |  |  |  |  |  |  |  |-- shell
+|  |  |  |  |  |  |  |  |  |-- AbnormalTerminationException.java
+|  |  |  |  |  |  |  |  |  |-- BadExitStatusException.java
+|  |  |  |  |  |  |  |  |  |-- Command.java
+|  |  |  |  |  |  |  |  |  |-- CommandException.java
+|  |  |  |  |  |  |  |  |  |-- CommandResult.java
+|  |  |  |  |  |  |  |  |  |-- Consumers.java
+|  |  |  |  |  |  |  |  |  |-- ExecFailedException.java
+|  |  |  |  |  |  |  |  |  |-- FutureCommandResult.java
+|  |  |  |  |  |  |  |  |  |-- InputStreamSink.java
+|  |  |  |  |  |  |  |  |  |-- Killable.java
+|  |  |  |  |  |  |  |  |  |-- KillableObserver.java
+|  |  |  |  |  |  |  |  |  |-- LogUtil.java
+|  |  |  |  |  |  |  |  |  |-- ProcessKillable.java
+|  |  |  |  |  |  |  |  |  |-- ShellUtils.java
+|  |  |  |  |  |  |  |  |  |-- SimpleKillableObserver.java
+|  |  |  |  |  |  |  |  |  |-- TerminationStatus.java
+|  |  |  |  |  |  |  |  |  |-- TimeoutKillableObserver.java
+|  |  |  |  |  |  |  |  |-- skyframe
+|  |  |  |  |  |  |  |  |  |-- ASTFileLookupFunction.java
+|  |  |  |  |  |  |  |  |  |-- ASTFileLookupValue.java
+|  |  |  |  |  |  |  |  |  |-- AbstractFileSymlinkExceptionUniquenessFunction.java
+|  |  |  |  |  |  |  |  |  |-- AbstractFileSymlinkExceptionUniquenessValue.java
+|  |  |  |  |  |  |  |  |  |-- AbstractLabelCycleReporter.java
+|  |  |  |  |  |  |  |  |  |-- ActionArtifactCycleReporter.java
+|  |  |  |  |  |  |  |  |  |-- ActionExecutionFunction.java
+|  |  |  |  |  |  |  |  |  |-- ActionExecutionInactivityWatchdog.java
+|  |  |  |  |  |  |  |  |  |-- ActionExecutionValue.java
+|  |  |  |  |  |  |  |  |  |-- ActionLookupValue.java
+|  |  |  |  |  |  |  |  |  |-- ActionMetadataHandler.java
+|  |  |  |  |  |  |  |  |  |-- AggregatingArtifactValue.java
+|  |  |  |  |  |  |  |  |  |-- ArtifactFunction.java
+|  |  |  |  |  |  |  |  |  |-- ArtifactValue.java
+|  |  |  |  |  |  |  |  |  |-- AspectCompletionValue.java
+|  |  |  |  |  |  |  |  |  |-- AspectFunction.java
+|  |  |  |  |  |  |  |  |  |-- AspectValue.java
+|  |  |  |  |  |  |  |  |  |-- BrokenDiffAwarenessException.java
+|  |  |  |  |  |  |  |  |  |-- BuildConfigurationFunction.java
+|  |  |  |  |  |  |  |  |  |-- BuildConfigurationValue.java
+|  |  |  |  |  |  |  |  |  |-- BuildInfoCollectionFunction.java
+|  |  |  |  |  |  |  |  |  |-- BuildInfoCollectionValue.java
+|  |  |  |  |  |  |  |  |  |-- BuildTargetPatternsResultBuilder.java
+|  |  |  |  |  |  |  |  |  |-- Builder.java
+|  |  |  |  |  |  |  |  |  |-- CompletionFunction.java
+|  |  |  |  |  |  |  |  |  |-- CompletionReceiver.java
+|  |  |  |  |  |  |  |  |  |-- ConfigurationCollectionFunction.java
+|  |  |  |  |  |  |  |  |  |-- ConfigurationCollectionValue.java
+|  |  |  |  |  |  |  |  |  |-- ConfigurationFragmentFunction.java
+|  |  |  |  |  |  |  |  |  |-- ConfigurationFragmentValue.java
+|  |  |  |  |  |  |  |  |  |-- ConfiguredTargetCycleReporter.java
+|  |  |  |  |  |  |  |  |  |-- ConfiguredTargetFunction.java
+|  |  |  |  |  |  |  |  |  |-- ConfiguredTargetKey.java
+|  |  |  |  |  |  |  |  |  |-- ConfiguredTargetValue.java
+|  |  |  |  |  |  |  |  |  |-- ContainingPackageLookupFunction.java
+|  |  |  |  |  |  |  |  |  |-- ContainingPackageLookupValue.java
+|  |  |  |  |  |  |  |  |  |-- CoverageReportFunction.java
+|  |  |  |  |  |  |  |  |  |-- CoverageReportValue.java
+|  |  |  |  |  |  |  |  |  |-- DiffAwareness.java
+|  |  |  |  |  |  |  |  |  |-- DiffAwarenessManager.java
+|  |  |  |  |  |  |  |  |  |-- DirectoryListingFunction.java
+|  |  |  |  |  |  |  |  |  |-- DirectoryListingStateFunction.java
+|  |  |  |  |  |  |  |  |  |-- DirectoryListingStateValue.java
+|  |  |  |  |  |  |  |  |  |-- DirectoryListingValue.java
+|  |  |  |  |  |  |  |  |  |-- Dirents.java
+|  |  |  |  |  |  |  |  |  |-- DirtinessCheckerUtils.java
+|  |  |  |  |  |  |  |  |  |-- EnvironmentBackedRecursivePackageProvider.java
+|  |  |  |  |  |  |  |  |  |-- ErrorReadingSkylarkExtensionException.java
+|  |  |  |  |  |  |  |  |  |-- ExternalFilesHelper.java
+|  |  |  |  |  |  |  |  |  |-- FileArtifactValue.java
+|  |  |  |  |  |  |  |  |  |-- FileContentsProxy.java
+|  |  |  |  |  |  |  |  |  |-- FileFunction.java
+|  |  |  |  |  |  |  |  |  |-- FileOutsidePackageRootsException.java
+|  |  |  |  |  |  |  |  |  |-- FileStateFunction.java
+|  |  |  |  |  |  |  |  |  |-- FileStateValue.java
+|  |  |  |  |  |  |  |  |  |-- FileSymlinkCycleException.java
+|  |  |  |  |  |  |  |  |  |-- FileSymlinkCycleUniquenessFunction.java
+|  |  |  |  |  |  |  |  |  |-- FileSymlinkCycleUniquenessValue.java
+|  |  |  |  |  |  |  |  |  |-- FileSymlinkException.java
+|  |  |  |  |  |  |  |  |  |-- FileSymlinkInfiniteExpansionException.java
+|  |  |  |  |  |  |  |  |  |-- FileSymlinkInfiniteExpansionUniquenessFunction.java
+|  |  |  |  |  |  |  |  |  |-- FileSymlinkInfiniteExpansionUniquenessValue.java
+|  |  |  |  |  |  |  |  |  |-- FileValue.java
+|  |  |  |  |  |  |  |  |  |-- FilesetEntryFunction.java
+|  |  |  |  |  |  |  |  |  |-- FilesetEntryValue.java
+|  |  |  |  |  |  |  |  |  |-- FilesystemValueChecker.java
+|  |  |  |  |  |  |  |  |  |-- GlobDescriptor.java
+|  |  |  |  |  |  |  |  |  |-- GlobFunction.java
+|  |  |  |  |  |  |  |  |  |-- GlobValue.java
+|  |  |  |  |  |  |  |  |  |-- GraphBackedRecursivePackageProvider.java
+|  |  |  |  |  |  |  |  |  |-- IncompatibleViewException.java
+|  |  |  |  |  |  |  |  |  |-- InconsistentFilesystemException.java
+|  |  |  |  |  |  |  |  |  |-- LocalDiffAwareness.java
+|  |  |  |  |  |  |  |  |  |-- MutableSupplier.java
+|  |  |  |  |  |  |  |  |  |-- PackageFunction.java
+|  |  |  |  |  |  |  |  |  |-- PackageLookupFunction.java
+|  |  |  |  |  |  |  |  |  |-- PackageLookupValue.java
+|  |  |  |  |  |  |  |  |  |-- PackageValue.java
+|  |  |  |  |  |  |  |  |  |-- PerActionFileCache.java
+|  |  |  |  |  |  |  |  |  |-- PerBuildSyscallCache.java
+|  |  |  |  |  |  |  |  |  |-- PostConfiguredTargetFunction.java
+|  |  |  |  |  |  |  |  |  |-- PostConfiguredTargetValue.java
+|  |  |  |  |  |  |  |  |  |-- PrecomputedFunction.java
+|  |  |  |  |  |  |  |  |  |-- PrecomputedValue.java
+|  |  |  |  |  |  |  |  |  |-- PrepareDepsOfPatternFunction.java
+|  |  |  |  |  |  |  |  |  |-- PrepareDepsOfPatternValue.java
+|  |  |  |  |  |  |  |  |  |-- PrepareDepsOfPatternsFunction.java
+|  |  |  |  |  |  |  |  |  |-- PrepareDepsOfPatternsValue.java
+|  |  |  |  |  |  |  |  |  |-- PrepareDepsOfTargetsUnderDirectoryFunction.java
+|  |  |  |  |  |  |  |  |  |-- PrepareDepsOfTargetsUnderDirectoryValue.java
+|  |  |  |  |  |  |  |  |  |-- RecursiveDirectoryTraversalFunction.java
+|  |  |  |  |  |  |  |  |  |-- RecursiveFilesystemTraversalFunction.java
+|  |  |  |  |  |  |  |  |  |-- RecursiveFilesystemTraversalValue.java
+|  |  |  |  |  |  |  |  |  |-- RecursivePackageProviderBackedTargetPatternResolver.java
+|  |  |  |  |  |  |  |  |  |-- RecursivePkgFunction.java
+|  |  |  |  |  |  |  |  |  |-- RecursivePkgValue.java
+|  |  |  |  |  |  |  |  |  |-- RepositoryValue.java
+|  |  |  |  |  |  |  |  |  |-- SequencedSkyframeExecutor.java
+|  |  |  |  |  |  |  |  |  |-- SequencedSkyframeExecutorFactory.java
+|  |  |  |  |  |  |  |  |  |-- SkyFunctions.java
+|  |  |  |  |  |  |  |  |  |-- SkyValueDirtinessChecker.java
+|  |  |  |  |  |  |  |  |  |-- SkyframeActionExecutor.java
+|  |  |  |  |  |  |  |  |  |-- SkyframeAnalysisResult.java
+|  |  |  |  |  |  |  |  |  |-- SkyframeAwareAction.java
+|  |  |  |  |  |  |  |  |  |-- SkyframeBuildView.java
+|  |  |  |  |  |  |  |  |  |-- SkyframeDependencyResolver.java
+|  |  |  |  |  |  |  |  |  |-- SkyframeExecutor.java
+|  |  |  |  |  |  |  |  |  |-- SkyframeExecutorFactory.java
+|  |  |  |  |  |  |  |  |  |-- SkyframeIncrementalBuildMonitor.java
+|  |  |  |  |  |  |  |  |  |-- SkyframeLabelVisitor.java
+|  |  |  |  |  |  |  |  |  |-- SkyframePackageLoaderWithValueEnvironment.java
+|  |  |  |  |  |  |  |  |  |-- SkyframePackageManager.java
+|  |  |  |  |  |  |  |  |  |-- SkyframeTargetPatternEvaluator.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkFileDependency.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkImportLookupFunction.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkImportLookupValue.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkModuleCycleReporter.java
+|  |  |  |  |  |  |  |  |  |-- TargetCompletionValue.java
+|  |  |  |  |  |  |  |  |  |-- TargetMarkerFunction.java
+|  |  |  |  |  |  |  |  |  |-- TargetMarkerValue.java
+|  |  |  |  |  |  |  |  |  |-- TargetPatternFunction.java
+|  |  |  |  |  |  |  |  |  |-- TargetPatternValue.java
+|  |  |  |  |  |  |  |  |  |-- TargetPatternsResultBuilder.java
+|  |  |  |  |  |  |  |  |  |-- TestCompletionFunction.java
+|  |  |  |  |  |  |  |  |  |-- TestCompletionValue.java
+|  |  |  |  |  |  |  |  |  |-- TestTargetPatternsResultBuilder.java
+|  |  |  |  |  |  |  |  |  |-- TransitiveBaseTraversalFunction.java
+|  |  |  |  |  |  |  |  |  |-- TransitiveTargetCycleReporter.java
+|  |  |  |  |  |  |  |  |  |-- TransitiveTargetFunction.java
+|  |  |  |  |  |  |  |  |  |-- TransitiveTargetValue.java
+|  |  |  |  |  |  |  |  |  |-- TransitiveTraversalFunction.java
+|  |  |  |  |  |  |  |  |  |-- TransitiveTraversalValue.java
+|  |  |  |  |  |  |  |  |  |-- WorkspaceFileFunction.java
+|  |  |  |  |  |  |  |  |  |-- WorkspaceStatusFunction.java
+|  |  |  |  |  |  |  |  |  |-- WorkspaceStatusValue.java
+|  |  |  |  |  |  |  |  |-- standalone
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- StandaloneActionContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- StandaloneModule.java
+|  |  |  |  |  |  |  |  |  |-- StandaloneSpawnStrategy.java
+|  |  |  |  |  |  |  |  |-- syntax
+|  |  |  |  |  |  |  |  |  |-- ASTNode.java
+|  |  |  |  |  |  |  |  |  |-- Argument.java
+|  |  |  |  |  |  |  |  |  |-- AssignmentStatement.java
+|  |  |  |  |  |  |  |  |  |-- BaseFunction.java
+|  |  |  |  |  |  |  |  |  |-- BinaryOperatorExpression.java
+|  |  |  |  |  |  |  |  |  |-- BuildFileAST.java
+|  |  |  |  |  |  |  |  |  |-- BuiltinFunction.java
+|  |  |  |  |  |  |  |  |  |-- ClassObject.java
+|  |  |  |  |  |  |  |  |  |-- CommaSeparatedPackageNameListConverter.java
+|  |  |  |  |  |  |  |  |  |-- Comment.java
+|  |  |  |  |  |  |  |  |  |-- ConditionalExpression.java
+|  |  |  |  |  |  |  |  |  |-- DictComprehension.java
+|  |  |  |  |  |  |  |  |  |-- DictionaryLiteral.java
+|  |  |  |  |  |  |  |  |  |-- DotExpression.java
+|  |  |  |  |  |  |  |  |  |-- Environment.java
+|  |  |  |  |  |  |  |  |  |-- EvalException.java
+|  |  |  |  |  |  |  |  |  |-- EvalExceptionWithStackTrace.java
+|  |  |  |  |  |  |  |  |  |-- EvalUtils.java
+|  |  |  |  |  |  |  |  |  |-- EvaluationContext.java
+|  |  |  |  |  |  |  |  |  |-- Expression.java
+|  |  |  |  |  |  |  |  |  |-- ExpressionStatement.java
+|  |  |  |  |  |  |  |  |  |-- FilesetEntry.java
+|  |  |  |  |  |  |  |  |  |-- FlowStatement.java
+|  |  |  |  |  |  |  |  |  |-- ForStatement.java
+|  |  |  |  |  |  |  |  |  |-- FormatParser.java
+|  |  |  |  |  |  |  |  |  |-- FragmentClassNameResolver.java
+|  |  |  |  |  |  |  |  |  |-- FuncallExpression.java
+|  |  |  |  |  |  |  |  |  |-- FunctionDefStatement.java
+|  |  |  |  |  |  |  |  |  |-- FunctionSignature.java
+|  |  |  |  |  |  |  |  |  |-- GlobCriteria.java
+|  |  |  |  |  |  |  |  |  |-- GlobList.java
+|  |  |  |  |  |  |  |  |  |-- Identifier.java
+|  |  |  |  |  |  |  |  |  |-- IfStatement.java
+|  |  |  |  |  |  |  |  |  |-- IntegerLiteral.java
+|  |  |  |  |  |  |  |  |  |-- LValue.java
+|  |  |  |  |  |  |  |  |  |-- Label.java
+|  |  |  |  |  |  |  |  |  |-- LabelSerializationProxy.java
+|  |  |  |  |  |  |  |  |  |-- Lexer.java
+|  |  |  |  |  |  |  |  |  |-- LineNumberTable.java
+|  |  |  |  |  |  |  |  |  |-- ListComprehension.java
+|  |  |  |  |  |  |  |  |  |-- ListLiteral.java
+|  |  |  |  |  |  |  |  |  |-- Literal.java
+|  |  |  |  |  |  |  |  |  |-- LoadStatement.java
+|  |  |  |  |  |  |  |  |  |-- MethodLibrary.java
+|  |  |  |  |  |  |  |  |  |-- NotExpression.java
+|  |  |  |  |  |  |  |  |  |-- Operator.java
+|  |  |  |  |  |  |  |  |  |-- Parameter.java
+|  |  |  |  |  |  |  |  |  |-- Parser.java
+|  |  |  |  |  |  |  |  |  |-- ParserInputSource.java
+|  |  |  |  |  |  |  |  |  |-- Printer.java
+|  |  |  |  |  |  |  |  |  |-- ReturnStatement.java
+|  |  |  |  |  |  |  |  |  |-- Runtime.java
+|  |  |  |  |  |  |  |  |  |-- SelectorList.java
+|  |  |  |  |  |  |  |  |  |-- SelectorValue.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkCallable.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkCallbackFunction.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkEnvironment.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkList.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkModule.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkModuleNameResolver.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkNestedSet.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkSignature.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkSignatureProcessor.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkType.java
+|  |  |  |  |  |  |  |  |  |-- StackTraceElement.java
+|  |  |  |  |  |  |  |  |  |-- Statement.java
+|  |  |  |  |  |  |  |  |  |-- StringLiteral.java
+|  |  |  |  |  |  |  |  |  |-- SyntaxTreeVisitor.java
+|  |  |  |  |  |  |  |  |  |-- Token.java
+|  |  |  |  |  |  |  |  |  |-- TokenKind.java
+|  |  |  |  |  |  |  |  |  |-- UserDefinedFunction.java
+|  |  |  |  |  |  |  |  |  |-- ValidationEnvironment.java
+|  |  |  |  |  |  |  |  |-- unix
+|  |  |  |  |  |  |  |  |  |-- Directories.java
+|  |  |  |  |  |  |  |  |  |-- ErrnoFileStatus.java
+|  |  |  |  |  |  |  |  |  |-- FileAccessException.java
+|  |  |  |  |  |  |  |  |  |-- FilePermissionException.java
+|  |  |  |  |  |  |  |  |  |-- FileStatus.java
+|  |  |  |  |  |  |  |  |  |-- FilesystemUtils.java
+|  |  |  |  |  |  |  |  |  |-- LocalClientSocket.java
+|  |  |  |  |  |  |  |  |  |-- LocalServerSocket.java
+|  |  |  |  |  |  |  |  |  |-- LocalSocket.java
+|  |  |  |  |  |  |  |  |  |-- LocalSocketAddress.java
+|  |  |  |  |  |  |  |  |  |-- LocalSocketImpl.java
+|  |  |  |  |  |  |  |  |  |-- ProcessUtils.java
+|  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |-- AbruptExitException.java
+|  |  |  |  |  |  |  |  |  |-- AbstractIndexer.java
+|  |  |  |  |  |  |  |  |  |-- AnsiStrippingOutputStream.java
+|  |  |  |  |  |  |  |  |  |-- BinaryPredicate.java
+|  |  |  |  |  |  |  |  |  |-- BlazeClock.java
+|  |  |  |  |  |  |  |  |  |-- CPU.java
+|  |  |  |  |  |  |  |  |  |-- CanonicalStringIndexer.java
+|  |  |  |  |  |  |  |  |  |-- Clock.java
+|  |  |  |  |  |  |  |  |  |-- CommandBuilder.java
+|  |  |  |  |  |  |  |  |  |-- CommandDescriptionForm.java
+|  |  |  |  |  |  |  |  |  |-- CommandFailureUtils.java
+|  |  |  |  |  |  |  |  |  |-- CommandUtils.java
+|  |  |  |  |  |  |  |  |  |-- CompactStringIndexer.java
+|  |  |  |  |  |  |  |  |  |-- DependencySet.java
+|  |  |  |  |  |  |  |  |  |-- ExitCode.java
+|  |  |  |  |  |  |  |  |  |-- FileType.java
+|  |  |  |  |  |  |  |  |  |-- FileTypeSet.java
+|  |  |  |  |  |  |  |  |  |-- Fingerprint.java
+|  |  |  |  |  |  |  |  |  |-- GroupedList.java
+|  |  |  |  |  |  |  |  |  |-- IncludeScanningUtil.java
+|  |  |  |  |  |  |  |  |  |-- JavaClock.java
+|  |  |  |  |  |  |  |  |  |-- LazyString.java
+|  |  |  |  |  |  |  |  |  |-- LoggingUtil.java
+|  |  |  |  |  |  |  |  |  |-- NetUtil.java
+|  |  |  |  |  |  |  |  |  |-- OS.java
+|  |  |  |  |  |  |  |  |  |-- OptionsUtils.java
+|  |  |  |  |  |  |  |  |  |-- OsUtils.java
+|  |  |  |  |  |  |  |  |  |-- Pair.java
+|  |  |  |  |  |  |  |  |  |-- PathFragmentFilter.java
+|  |  |  |  |  |  |  |  |  |-- PatternWithEquality.java
+|  |  |  |  |  |  |  |  |  |-- PersistentMap.java
+|  |  |  |  |  |  |  |  |  |-- ProcMeminfoParser.java
+|  |  |  |  |  |  |  |  |  |-- ProcessUtils.java
+|  |  |  |  |  |  |  |  |  |-- RegexFilter.java
+|  |  |  |  |  |  |  |  |  |-- ResourceFileLoader.java
+|  |  |  |  |  |  |  |  |  |-- ResourceUsage.java
+|  |  |  |  |  |  |  |  |  |-- ShellEscaper.java
+|  |  |  |  |  |  |  |  |  |-- StringCanonicalizer.java
+|  |  |  |  |  |  |  |  |  |-- StringIndexer.java
+|  |  |  |  |  |  |  |  |  |-- StringTrie.java
+|  |  |  |  |  |  |  |  |  |-- StringUtil.java
+|  |  |  |  |  |  |  |  |  |-- StringUtilities.java
+|  |  |  |  |  |  |  |  |  |-- ThreadUtils.java
+|  |  |  |  |  |  |  |  |  |-- TimeUtilities.java
+|  |  |  |  |  |  |  |  |  |-- UserUtils.java
+|  |  |  |  |  |  |  |  |  |-- VarInt.java
+|  |  |  |  |  |  |  |  |  |-- io
+|  |  |  |  |  |  |  |  |  |  |-- AnsiTerminal.java
+|  |  |  |  |  |  |  |  |  |  |-- AnsiTerminalPrinter.java
+|  |  |  |  |  |  |  |  |  |  |-- DelegatingOutErr.java
+|  |  |  |  |  |  |  |  |  |  |-- FileOutErr.java
+|  |  |  |  |  |  |  |  |  |  |-- FileWatcher.java
+|  |  |  |  |  |  |  |  |  |  |-- LineFlushingOutputStream.java
+|  |  |  |  |  |  |  |  |  |  |-- LinePrefixingOutputStream.java
+|  |  |  |  |  |  |  |  |  |  |-- OutErr.java
+|  |  |  |  |  |  |  |  |  |  |-- RecordingOutErr.java
+|  |  |  |  |  |  |  |  |  |  |-- StreamDemultiplexer.java
+|  |  |  |  |  |  |  |  |  |  |-- StreamMultiplexer.java
+|  |  |  |  |  |  |  |  |  |  |-- TimestampGranularityMonitor.java
+|  |  |  |  |  |  |  |  |-- vfs
+|  |  |  |  |  |  |  |  |  |-- AbstractFileSystem.java
+|  |  |  |  |  |  |  |  |  |-- BatchStat.java
+|  |  |  |  |  |  |  |  |  |-- Canonicalizer.java
+|  |  |  |  |  |  |  |  |  |-- Dirent.java
+|  |  |  |  |  |  |  |  |  |-- FileStatus.java
+|  |  |  |  |  |  |  |  |  |-- FileStatusWithDigest.java
+|  |  |  |  |  |  |  |  |  |-- FileStatusWithDigestAdapter.java
+|  |  |  |  |  |  |  |  |  |-- FileSystem.java
+|  |  |  |  |  |  |  |  |  |-- FileSystemUtils.java
+|  |  |  |  |  |  |  |  |  |-- FileSystems.java
+|  |  |  |  |  |  |  |  |  |-- IORuntimeException.java
+|  |  |  |  |  |  |  |  |  |-- JavaIoFileSystem.java
+|  |  |  |  |  |  |  |  |  |-- ModifiedFileSet.java
+|  |  |  |  |  |  |  |  |  |-- Path.java
+|  |  |  |  |  |  |  |  |  |-- PathFragment.java
+|  |  |  |  |  |  |  |  |  |-- PathFragmentSerializationProxy.java
+|  |  |  |  |  |  |  |  |  |-- ReadonlyFileSystem.java
+|  |  |  |  |  |  |  |  |  |-- RootedPath.java
+|  |  |  |  |  |  |  |  |  |-- ScopeEscapableFileSystem.java
+|  |  |  |  |  |  |  |  |  |-- SearchPath.java
+|  |  |  |  |  |  |  |  |  |-- Symlinks.java
+|  |  |  |  |  |  |  |  |  |-- UnionFileSystem.java
+|  |  |  |  |  |  |  |  |  |-- UnixFileSystem.java
+|  |  |  |  |  |  |  |  |  |-- UnixGlob.java
+|  |  |  |  |  |  |  |  |  |-- ZipFileSystem.java
+|  |  |  |  |  |  |  |  |  |-- inmemoryfs
+|  |  |  |  |  |  |  |  |  |  |-- FileInfo.java
+|  |  |  |  |  |  |  |  |  |  |-- InMemoryContentInfo.java
+|  |  |  |  |  |  |  |  |  |  |-- InMemoryDirectoryInfo.java
+|  |  |  |  |  |  |  |  |  |  |-- InMemoryFileInfo.java
+|  |  |  |  |  |  |  |  |  |  |-- InMemoryFileSystem.java
+|  |  |  |  |  |  |  |  |  |  |-- InMemoryLinkInfo.java
+|  |  |  |  |  |  |  |  |  |  |-- OutOfScopeDirectoryStatus.java
+|  |  |  |  |  |  |  |  |  |  |-- OutOfScopeFileStatus.java
+|  |  |  |  |  |  |  |  |  |  |-- ScopeEscapableStatus.java
+|  |  |  |  |  |  |  |  |-- webstatusserver
+|  |  |  |  |  |  |  |  |  |-- IndexPageHandler.java
+|  |  |  |  |  |  |  |  |  |-- StaticResourceHandler.java
+|  |  |  |  |  |  |  |  |  |-- TestStatusHandler.java
+|  |  |  |  |  |  |  |  |  |-- WebStatusBuildLog.java
+|  |  |  |  |  |  |  |  |  |-- WebStatusEventCollector.java
+|  |  |  |  |  |  |  |  |  |-- WebStatusServerModule.java
+|  |  |  |  |  |  |  |  |  |-- static
+|  |  |  |  |  |  |  |  |  |  |-- index.html
+|  |  |  |  |  |  |  |  |  |  |-- index.js
+|  |  |  |  |  |  |  |  |  |  |-- style.css
+|  |  |  |  |  |  |  |  |  |  |-- test.html
+|  |  |  |  |  |  |  |  |  |  |-- test.js
+|  |  |  |  |  |  |  |  |-- worker
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- Worker.java
+|  |  |  |  |  |  |  |  |  |-- WorkerActionContextProvider.java
+|  |  |  |  |  |  |  |  |  |-- WorkerFactory.java
+|  |  |  |  |  |  |  |  |  |-- WorkerKey.java
+|  |  |  |  |  |  |  |  |  |-- WorkerModule.java
+|  |  |  |  |  |  |  |  |  |-- WorkerOptions.java
+|  |  |  |  |  |  |  |  |  |-- WorkerPool.java
+|  |  |  |  |  |  |  |  |  |-- WorkerSpawnStrategy.java
+|  |  |  |  |  |  |  |-- skyframe
+|  |  |  |  |  |  |  |  |-- AbstractSkyFunctionEnvironment.java
+|  |  |  |  |  |  |  |  |-- BuildDriver.java
+|  |  |  |  |  |  |  |  |-- BuildingState.java
+|  |  |  |  |  |  |  |  |-- CycleDeduper.java
+|  |  |  |  |  |  |  |  |-- CycleInfo.java
+|  |  |  |  |  |  |  |  |-- CyclesReporter.java
+|  |  |  |  |  |  |  |  |-- DelegatingWalkableGraph.java
+|  |  |  |  |  |  |  |  |-- Differencer.java
+|  |  |  |  |  |  |  |  |-- DirtiableGraph.java
+|  |  |  |  |  |  |  |  |-- DirtyKeyTracker.java
+|  |  |  |  |  |  |  |  |-- DirtyKeyTrackerImpl.java
+|  |  |  |  |  |  |  |  |-- EagerInvalidator.java
+|  |  |  |  |  |  |  |  |-- EdgelessInMemoryNodeEntry.java
+|  |  |  |  |  |  |  |  |-- ErrorInfo.java
+|  |  |  |  |  |  |  |  |-- ErrorTransienceValue.java
+|  |  |  |  |  |  |  |  |-- EvaluableGraph.java
+|  |  |  |  |  |  |  |  |-- EvaluationProgressReceiver.java
+|  |  |  |  |  |  |  |  |-- EvaluationResult.java
+|  |  |  |  |  |  |  |  |-- Evaluator.java
+|  |  |  |  |  |  |  |  |-- ImmutableDiff.java
+|  |  |  |  |  |  |  |  |-- InMemoryGraph.java
+|  |  |  |  |  |  |  |  |-- InMemoryMemoizingEvaluator.java
+|  |  |  |  |  |  |  |  |-- InMemoryNodeEntry.java
+|  |  |  |  |  |  |  |  |-- Injectable.java
+|  |  |  |  |  |  |  |  |-- IntVersion.java
+|  |  |  |  |  |  |  |  |-- InvalidatingNodeVisitor.java
+|  |  |  |  |  |  |  |  |-- MemoizingEvaluator.java
+|  |  |  |  |  |  |  |  |-- MinimalVersion.java
+|  |  |  |  |  |  |  |  |-- NodeEntry.java
+|  |  |  |  |  |  |  |  |-- NullDirtyKeyTrackerImpl.java
+|  |  |  |  |  |  |  |  |-- ParallelEvaluator.java
+|  |  |  |  |  |  |  |  |-- ProcessableGraph.java
+|  |  |  |  |  |  |  |  |-- QueryableGraph.java
+|  |  |  |  |  |  |  |  |-- RecordingDifferencer.java
+|  |  |  |  |  |  |  |  |-- ReverseDepsUtil.java
+|  |  |  |  |  |  |  |  |-- Scheduler.java
+|  |  |  |  |  |  |  |  |-- SequentialBuildDriver.java
+|  |  |  |  |  |  |  |  |-- SkyFunction.java
+|  |  |  |  |  |  |  |  |-- SkyFunctionException.java
+|  |  |  |  |  |  |  |  |-- SkyFunctionName.java
+|  |  |  |  |  |  |  |  |-- SkyKey.java
+|  |  |  |  |  |  |  |  |-- SkyValue.java
+|  |  |  |  |  |  |  |  |-- TaggedEvents.java
+|  |  |  |  |  |  |  |  |-- ThinNodeEntry.java
+|  |  |  |  |  |  |  |  |-- ThinNodeQueryableGraph.java
+|  |  |  |  |  |  |  |  |-- ValueOrException.java
+|  |  |  |  |  |  |  |  |-- ValueOrException2.java
+|  |  |  |  |  |  |  |  |-- ValueOrException3.java
+|  |  |  |  |  |  |  |  |-- ValueOrException4.java
+|  |  |  |  |  |  |  |  |-- ValueOrExceptionUtils.java
+|  |  |  |  |  |  |  |  |-- ValueOrUntypedException.java
+|  |  |  |  |  |  |  |  |-- ValueWithMetadata.java
+|  |  |  |  |  |  |  |  |-- Version.java
+|  |  |  |  |  |  |  |  |-- WalkableGraph.java
+|  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |-- options
+|  |  |  |  |  |  |  |  |-- BoolOrEnumConverter.java
+|  |  |  |  |  |  |  |  |-- Converter.java
+|  |  |  |  |  |  |  |  |-- Converters.java
+|  |  |  |  |  |  |  |  |-- DuplicateOptionDeclarationException.java
+|  |  |  |  |  |  |  |  |-- EnumConverter.java
+|  |  |  |  |  |  |  |  |-- GenericTypeHelper.java
+|  |  |  |  |  |  |  |  |-- Option.java
+|  |  |  |  |  |  |  |  |-- OptionPriority.java
+|  |  |  |  |  |  |  |  |-- Options.java
+|  |  |  |  |  |  |  |  |-- OptionsBase.java
+|  |  |  |  |  |  |  |  |-- OptionsClassProvider.java
+|  |  |  |  |  |  |  |  |-- OptionsData.java
+|  |  |  |  |  |  |  |  |-- OptionsParser.java
+|  |  |  |  |  |  |  |  |-- OptionsParserImpl.java
+|  |  |  |  |  |  |  |  |-- OptionsParsingException.java
+|  |  |  |  |  |  |  |  |-- OptionsProvider.java
+|  |  |  |  |  |  |  |  |-- OptionsUsage.java
+|  |  |  |  |  |  |  |  |-- TriState.java
+|  |  |  |-- options.BUILD
+|  |  |-- native
+|  |  |  |-- BUILD
+|  |  |  |-- localsocket.cc
+|  |  |  |-- macros.h
+|  |  |  |-- process.cc
+|  |  |  |-- unix_jni.cc
+|  |  |  |-- unix_jni.h
+|  |  |  |-- unix_jni_darwin.cc
+|  |  |  |-- unix_jni_freebsd.cc
+|  |  |  |-- unix_jni_linux.cc
+|  |  |-- protobuf
+|  |  |  |-- BUILD
+|  |  |  |-- android_studio_ide_info.proto
+|  |  |  |-- build.proto
+|  |  |  |-- bundlemerge.proto
+|  |  |  |-- crosstool_config.proto
+|  |  |  |-- dash.proto
+|  |  |  |-- deps.proto
+|  |  |  |-- extra_actions_base.proto
+|  |  |  |-- java_compilation.proto
+|  |  |  |-- test_status.proto
+|  |  |  |-- worker_protocol.proto
+|  |  |  |-- xcodegen.proto
+|  |  |-- tools
+|  |  |  |-- BUILD
+|  |  |  |-- build-runfiles.cc
+|  |  |  |-- build_interface_so
+|  |  |  |-- jdk.BUILD
+|  |  |  |-- namespace-sandbox-dummy.c
+|  |  |  |-- namespace-sandbox.c
+|  |  |  |-- process-tools.c
+|  |  |  |-- process-tools.h
+|  |  |  |-- process-wrapper.c
+|  |-- objc_tools
+|  |  |-- bundlemerge
+|  |  |  |-- BUILD
+|  |  |  |-- README
+|  |  |  |-- java
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- devtools
+|  |  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |  |-- xcode
+|  |  |  |  |  |  |  |  |  |-- bundlemerge
+|  |  |  |  |  |  |  |  |  |  |-- BundleMerge.java
+|  |  |  |  |  |  |  |  |  |  |-- BundleMerging.java
+|  |  |-- momczip
+|  |  |  |-- BUILD
+|  |  |  |-- README
+|  |  |  |-- java
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- devtools
+|  |  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |  |-- xcode
+|  |  |  |  |  |  |  |  |  |-- momczip
+|  |  |  |  |  |  |  |  |  |  |-- MomcZip.java
+|  |  |-- plmerge
+|  |  |  |-- BUILD
+|  |  |  |-- README
+|  |  |  |-- java
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- devtools
+|  |  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |  |-- xcode
+|  |  |  |  |  |  |  |  |  |-- plmerge
+|  |  |  |  |  |  |  |  |  |  |-- KeysToRemoveIfEmptyString.java
+|  |  |  |  |  |  |  |  |  |  |-- PlMerge.java
+|  |  |  |  |  |  |  |  |  |  |-- PlistMerging.java
+|  |  |-- xcodegen
+|  |  |  |-- BUILD
+|  |  |  |-- README
+|  |  |  |-- java
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- devtools
+|  |  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |  |-- xcode
+|  |  |  |  |  |  |  |  |  |-- xcodegen
+|  |  |  |  |  |  |  |  |  |  |-- AggregateKey.java
+|  |  |  |  |  |  |  |  |  |  |-- AggregateReferenceType.java
+|  |  |  |  |  |  |  |  |  |  |-- CurrentVersionSetter.java
+|  |  |  |  |  |  |  |  |  |  |-- FileReference.java
+|  |  |  |  |  |  |  |  |  |  |-- HasProjectNavigatorFiles.java
+|  |  |  |  |  |  |  |  |  |  |-- LibraryObjects.java
+|  |  |  |  |  |  |  |  |  |  |-- LocalPBXContainerItemProxy.java
+|  |  |  |  |  |  |  |  |  |  |-- LocalPBXTargetDependency.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXBuildFiles.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXFileReferences.java
+|  |  |  |  |  |  |  |  |  |  |-- PbxReferencesGrouper.java
+|  |  |  |  |  |  |  |  |  |  |-- PbxReferencesProcessor.java
+|  |  |  |  |  |  |  |  |  |  |-- RelativePaths.java
+|  |  |  |  |  |  |  |  |  |  |-- Resources.java
+|  |  |  |  |  |  |  |  |  |  |-- SourceFile.java
+|  |  |  |  |  |  |  |  |  |  |-- Xcdatamodels.java
+|  |  |  |  |  |  |  |  |  |  |-- XcodeGen.java
+|  |  |  |  |  |  |  |  |  |  |-- XcodeprojGeneration.java
+|  |  |  |  |  |  |  |  |  |  |-- testing
+|  |  |  |  |  |  |  |  |  |  |  |-- PbxTypes.java
+|  |-- test
+|  |  |-- cpp
+|  |  |  |-- BUILD
+|  |  |  |-- blaze_util_test.cc
+|  |  |  |-- util
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- file_test.cc
+|  |  |  |  |-- md5_test.cc
+|  |  |  |  |-- strings_test.cc
+|  |  |-- java
+|  |  |  |-- BUILD
+|  |  |  |-- MOCK_CROSSTOOL
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- devtools
+|  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |-- ziputils
+|  |  |  |  |  |  |  |  |  |-- AllTests.java
+|  |  |  |  |  |  |  |  |  |-- BufferedFileTest.java
+|  |  |  |  |  |  |  |  |  |-- CentralDirectoryTest.java
+|  |  |  |  |  |  |  |  |  |-- DataDescriptorTest.java
+|  |  |  |  |  |  |  |  |  |-- DirectoryEntryTest.java
+|  |  |  |  |  |  |  |  |  |-- EndOfCentralDirectoryTest.java
+|  |  |  |  |  |  |  |  |  |-- FakeFileSystem.java
+|  |  |  |  |  |  |  |  |  |-- FileSystem.java
+|  |  |  |  |  |  |  |  |  |-- LocalFileHeaderTest.java
+|  |  |  |  |  |  |  |  |  |-- ScanUtilTest.java
+|  |  |  |  |  |  |  |  |  |-- SplitZipTest.java
+|  |  |  |  |  |  |  |  |  |-- SplitterTest.java
+|  |  |  |  |  |  |  |  |  |-- ViewTest.java
+|  |  |  |  |  |  |  |  |  |-- ZipFileBuilder.java
+|  |  |  |  |  |  |  |  |  |-- ZipInTest.java
+|  |  |  |  |  |  |  |  |  |-- ZipOutTest.java
+|  |  |  |  |  |  |  |-- lib
+|  |  |  |  |  |  |  |  |-- AllTests.java
+|  |  |  |  |  |  |  |  |-- actions
+|  |  |  |  |  |  |  |  |  |-- ActionExecutionStatusReporterTest.java
+|  |  |  |  |  |  |  |  |  |-- ArtifactFactoryTest.java
+|  |  |  |  |  |  |  |  |  |-- ArtifactTest.java
+|  |  |  |  |  |  |  |  |  |-- BaseSpawnTest.java
+|  |  |  |  |  |  |  |  |  |-- ConcurrentMultimapWithHeadElementTest.java
+|  |  |  |  |  |  |  |  |  |-- CustomCommandLineTest.java
+|  |  |  |  |  |  |  |  |  |-- DigestUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- ExecutableSymlinkActionTest.java
+|  |  |  |  |  |  |  |  |  |-- FailActionTest.java
+|  |  |  |  |  |  |  |  |  |-- LocalHostCapacityTest.java
+|  |  |  |  |  |  |  |  |  |-- MapBasedActionGraphTest.java
+|  |  |  |  |  |  |  |  |  |-- ResourceManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- ResourceSetTest.java
+|  |  |  |  |  |  |  |  |  |-- RootTest.java
+|  |  |  |  |  |  |  |  |  |-- cache
+|  |  |  |  |  |  |  |  |  |  |-- CompactPersistentActionCacheTest.java
+|  |  |  |  |  |  |  |  |  |  |-- MetadataTest.java
+|  |  |  |  |  |  |  |  |  |  |-- PersistentStringIndexerTest.java
+|  |  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |  |-- ActionCacheTestHelper.java
+|  |  |  |  |  |  |  |  |  |  |-- ActionsTestUtil.java
+|  |  |  |  |  |  |  |  |  |  |-- DummyExecutor.java
+|  |  |  |  |  |  |  |  |  |  |-- LabelArtifactOwner.java
+|  |  |  |  |  |  |  |  |  |  |-- TestAction.java
+|  |  |  |  |  |  |  |  |-- analysis
+|  |  |  |  |  |  |  |  |  |-- AspectDefinitionTest.java
+|  |  |  |  |  |  |  |  |  |-- AspectTest.java
+|  |  |  |  |  |  |  |  |  |-- AspectValueTest.java
+|  |  |  |  |  |  |  |  |  |-- BlazeDirectoriesTest.java
+|  |  |  |  |  |  |  |  |  |-- CompositeRunfilesSupplierTest.java
+|  |  |  |  |  |  |  |  |  |-- ConfiguredAttributeMapperTest.java
+|  |  |  |  |  |  |  |  |  |-- DependencyResolverTest.java
+|  |  |  |  |  |  |  |  |  |-- LabelExpanderTest.java
+|  |  |  |  |  |  |  |  |  |-- MakeVariableExpanderTest.java
+|  |  |  |  |  |  |  |  |  |-- RunfilesSupplierImplTest.java
+|  |  |  |  |  |  |  |  |  |-- RunfilesTest.java
+|  |  |  |  |  |  |  |  |  |-- UtilTest.java
+|  |  |  |  |  |  |  |  |  |-- actions
+|  |  |  |  |  |  |  |  |  |  |-- BinaryFileWriteActionTest.java
+|  |  |  |  |  |  |  |  |  |  |-- CustomCommandLineTest.java
+|  |  |  |  |  |  |  |  |  |  |-- FileWriteActionTest.java
+|  |  |  |  |  |  |  |  |  |  |-- FileWriteActionTestCase.java
+|  |  |  |  |  |  |  |  |  |  |-- SpawnActionTest.java
+|  |  |  |  |  |  |  |  |  |  |-- SymlinkActionTest.java
+|  |  |  |  |  |  |  |  |  |  |-- TemplateExpansionActionTest.java
+|  |  |  |  |  |  |  |  |  |-- config
+|  |  |  |  |  |  |  |  |  |  |-- BuildConfigurationTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildOptionsTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ConfigSettingTest.java
+|  |  |  |  |  |  |  |  |  |  |-- PerLabelOptionsTest.java
+|  |  |  |  |  |  |  |  |  |  |-- RunUnderConverterTest.java
+|  |  |  |  |  |  |  |  |  |  |-- StampTest.java
+|  |  |  |  |  |  |  |  |  |-- constraints
+|  |  |  |  |  |  |  |  |  |  |-- AbstractConstraintsTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ConstraintsTest.java
+|  |  |  |  |  |  |  |  |  |-- mock
+|  |  |  |  |  |  |  |  |  |  |-- BazelAnalysisMock.java
+|  |  |  |  |  |  |  |  |  |-- select
+|  |  |  |  |  |  |  |  |  |  |-- AbstractAttributeMapperTest.java
+|  |  |  |  |  |  |  |  |  |  |-- AggregatingAttributeMapperTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ConfiguredAttributeMapperCommonTest.java
+|  |  |  |  |  |  |  |  |  |  |-- NonconfigurableAttributeMapperTest.java
+|  |  |  |  |  |  |  |  |  |  |-- RawAttributeMapperTest.java
+|  |  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |  |-- ActionTester.java
+|  |  |  |  |  |  |  |  |  |  |-- AnalysisMock.java
+|  |  |  |  |  |  |  |  |  |  |-- AnalysisTestCase.java
+|  |  |  |  |  |  |  |  |  |  |-- AnalysisTestUtil.java
+|  |  |  |  |  |  |  |  |  |  |-- BuildViewTestCase.java
+|  |  |  |  |  |  |  |  |  |  |-- CompileOnlyTestCase.java
+|  |  |  |  |  |  |  |  |  |  |-- ConfigurationTestCase.java
+|  |  |  |  |  |  |  |  |  |  |-- DefaultsPackageUtil.java
+|  |  |  |  |  |  |  |  |  |  |-- TestAspects.java
+|  |  |  |  |  |  |  |  |-- bazel
+|  |  |  |  |  |  |  |  |  |-- rules
+|  |  |  |  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |  |  |  |-- ndkcrosstools
+|  |  |  |  |  |  |  |  |  |  |  |  |-- AndroidNdkCrosstoolsTest.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- NdkReleaseTest.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ndkdirectories.txt
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ndkfiles.txt
+|  |  |  |  |  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |  |  |  |  |-- BazelJavaSemanticsTest.java
+|  |  |  |  |  |  |  |  |-- cmdline
+|  |  |  |  |  |  |  |  |  |-- LabelValidatorTest.java
+|  |  |  |  |  |  |  |  |  |-- PackageIdentifierTest.java
+|  |  |  |  |  |  |  |  |  |-- TargetPatternTest.java
+|  |  |  |  |  |  |  |  |-- collect
+|  |  |  |  |  |  |  |  |  |-- CollectionUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- ImmutableSortedKeyListMultimapTest.java
+|  |  |  |  |  |  |  |  |  |-- ImmutableSortedKeyMapTest.java
+|  |  |  |  |  |  |  |  |  |-- IterablesChainTest.java
+|  |  |  |  |  |  |  |  |  |-- nestedset
+|  |  |  |  |  |  |  |  |  |  |-- CompileOrderExpanderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ExpanderTestBase.java
+|  |  |  |  |  |  |  |  |  |  |-- LinkOrderExpanderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- NaiveLinkOrderExpanderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- NestedSetImplTest.java
+|  |  |  |  |  |  |  |  |  |  |-- OrderTest.java
+|  |  |  |  |  |  |  |  |  |  |-- RecordingUniqueifierTest.java
+|  |  |  |  |  |  |  |  |-- concurrent
+|  |  |  |  |  |  |  |  |  |-- AbstractQueueVisitorTest.java
+|  |  |  |  |  |  |  |  |  |-- KeyedLockerTest.java
+|  |  |  |  |  |  |  |  |  |-- MoreFuturesTest.java
+|  |  |  |  |  |  |  |  |  |-- RefCountedMultisetKeyedLockerTest.java
+|  |  |  |  |  |  |  |  |  |-- StripedKeyedLockerTest.java
+|  |  |  |  |  |  |  |  |  |-- ThreadSafetyTest.java
+|  |  |  |  |  |  |  |  |-- events
+|  |  |  |  |  |  |  |  |  |-- AbstractEventHandlerTest.java
+|  |  |  |  |  |  |  |  |  |-- EventCollectorTest.java
+|  |  |  |  |  |  |  |  |  |-- EventSensorTest.java
+|  |  |  |  |  |  |  |  |  |-- EventTest.java
+|  |  |  |  |  |  |  |  |  |-- EventTestTemplate.java
+|  |  |  |  |  |  |  |  |  |-- LocationTest.java
+|  |  |  |  |  |  |  |  |  |-- PrintingEventHandlerTest.java
+|  |  |  |  |  |  |  |  |  |-- ReporterStreamTest.java
+|  |  |  |  |  |  |  |  |  |-- ReporterTest.java
+|  |  |  |  |  |  |  |  |  |-- SimpleReportersTest.java
+|  |  |  |  |  |  |  |  |  |-- StoredErrorEventHandlerTest.java
+|  |  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |  |-- EventCollectionApparatus.java
+|  |  |  |  |  |  |  |  |  |  |-- LocationTestingUtil.java
+|  |  |  |  |  |  |  |  |-- exec
+|  |  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |  |-- TestExecutorBuilder.java
+|  |  |  |  |  |  |  |  |-- packages
+|  |  |  |  |  |  |  |  |  |-- AttributeTest.java
+|  |  |  |  |  |  |  |  |  |-- ExportsFilesTest.java
+|  |  |  |  |  |  |  |  |  |-- GlobCacheTest.java
+|  |  |  |  |  |  |  |  |  |-- RuleClassTest.java
+|  |  |  |  |  |  |  |  |  |-- TestSizeTest.java
+|  |  |  |  |  |  |  |  |  |-- TestTimeoutTest.java
+|  |  |  |  |  |  |  |  |  |-- TypeTest.java
+|  |  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |  |-- MockToolsConfig.java
+|  |  |  |  |  |  |  |  |  |  |-- PackageFactoryApparatus.java
+|  |  |  |  |  |  |  |  |  |  |-- PackageLoadingTestCase.java
+|  |  |  |  |  |  |  |  |-- rules
+|  |  |  |  |  |  |  |  |  |-- filegroup
+|  |  |  |  |  |  |  |  |  |  |-- FilegroupConfiguredTargetTest.java
+|  |  |  |  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |  |  |  |-- WriteBuildInfoPropertiesActionTest.java
+|  |  |  |  |  |  |  |  |-- sandbox
+|  |  |  |  |  |  |  |  |  |-- LinuxSandboxedStrategyTest.java
+|  |  |  |  |  |  |  |  |  |-- LinuxSandboxedStrategyTestCase.java
+|  |  |  |  |  |  |  |  |  |-- LocalLinuxSandboxedStrategyTest.java
+|  |  |  |  |  |  |  |  |  |-- SandboxLocalTests.java
+|  |  |  |  |  |  |  |  |  |-- SandboxTests.java
+|  |  |  |  |  |  |  |  |-- shell
+|  |  |  |  |  |  |  |  |  |-- CommandLargeInputsTest.java
+|  |  |  |  |  |  |  |  |  |-- CommandTest.java
+|  |  |  |  |  |  |  |  |  |-- ConsumersTest.java
+|  |  |  |  |  |  |  |  |  |-- FutureConsumptionTest.java
+|  |  |  |  |  |  |  |  |  |-- InterruptibleTest.java
+|  |  |  |  |  |  |  |  |  |-- LoadTest.java
+|  |  |  |  |  |  |  |  |  |-- ShellUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- TestUtil.java
+|  |  |  |  |  |  |  |  |  |-- ToTruncatedStringTest.java
+|  |  |  |  |  |  |  |  |  |-- killmyself.cc
+|  |  |  |  |  |  |  |  |-- skyframe
+|  |  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |  |-- SkyframeExecutorTestUtils.java
+|  |  |  |  |  |  |  |  |-- syntax
+|  |  |  |  |  |  |  |  |  |-- ASTNodeTest.java
+|  |  |  |  |  |  |  |  |  |-- BaseFunctionTest.java
+|  |  |  |  |  |  |  |  |  |-- BuildFileASTTest.java
+|  |  |  |  |  |  |  |  |  |-- EnvironmentTest.java
+|  |  |  |  |  |  |  |  |  |-- EvalUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- EvaluationTest.java
+|  |  |  |  |  |  |  |  |  |-- EvaluationTestCase.java
+|  |  |  |  |  |  |  |  |  |-- ExceptionTest.java
+|  |  |  |  |  |  |  |  |  |-- FunctionTest.java
+|  |  |  |  |  |  |  |  |  |-- GlobCriteriaTest.java
+|  |  |  |  |  |  |  |  |  |-- GlobListTest.java
+|  |  |  |  |  |  |  |  |  |-- LabelTest.java
+|  |  |  |  |  |  |  |  |  |-- LexerTest.java
+|  |  |  |  |  |  |  |  |  |-- LineNumberTableTest.java
+|  |  |  |  |  |  |  |  |  |-- MethodLibraryTest.java
+|  |  |  |  |  |  |  |  |  |-- ParserInputSourceTest.java
+|  |  |  |  |  |  |  |  |  |-- ParserTest.java
+|  |  |  |  |  |  |  |  |  |-- PrinterTest.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkEvaluationTest.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkListTest.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkNestedSetTest.java
+|  |  |  |  |  |  |  |  |  |-- SkylarkShell.java
+|  |  |  |  |  |  |  |  |  |-- ValidationTests.java
+|  |  |  |  |  |  |  |  |-- testutil
+|  |  |  |  |  |  |  |  |  |-- BlazeTestSuiteBuilder.java
+|  |  |  |  |  |  |  |  |  |-- BlazeTestUtils.java
+|  |  |  |  |  |  |  |  |  |-- BuildRuleBuilder.java
+|  |  |  |  |  |  |  |  |  |-- BuildRuleWithDefaultsBuilder.java
+|  |  |  |  |  |  |  |  |  |-- Classpath.java
+|  |  |  |  |  |  |  |  |  |-- ClasspathSuite.java
+|  |  |  |  |  |  |  |  |  |-- CustomSuite.java
+|  |  |  |  |  |  |  |  |  |-- DebuggingEventHandler.java
+|  |  |  |  |  |  |  |  |  |-- FoundationTestCase.java
+|  |  |  |  |  |  |  |  |  |-- ManualClock.java
+|  |  |  |  |  |  |  |  |  |-- MoreAsserts.java
+|  |  |  |  |  |  |  |  |  |-- Scratch.java
+|  |  |  |  |  |  |  |  |  |-- Suite.java
+|  |  |  |  |  |  |  |  |  |-- TestConstants.java
+|  |  |  |  |  |  |  |  |  |-- TestFileOutErr.java
+|  |  |  |  |  |  |  |  |  |-- TestMode.java
+|  |  |  |  |  |  |  |  |  |-- TestRuleClassProvider.java
+|  |  |  |  |  |  |  |  |  |-- TestRunnableWrapper.java
+|  |  |  |  |  |  |  |  |  |-- TestSpec.java
+|  |  |  |  |  |  |  |  |  |-- TestSuiteBuilder.java
+|  |  |  |  |  |  |  |  |  |-- TestThread.java
+|  |  |  |  |  |  |  |  |  |-- TestUtils.java
+|  |  |  |  |  |  |  |  |  |-- UnknownRuleConfiguredTarget.java
+|  |  |  |  |  |  |  |  |-- testutiltests
+|  |  |  |  |  |  |  |  |  |-- MoreAssertsTest.java
+|  |  |  |  |  |  |  |  |  |-- TestSizeAnnotationTest.java
+|  |  |  |  |  |  |  |  |-- unix
+|  |  |  |  |  |  |  |  |  |-- FilesystemUtilsTest.java
+|  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |-- AnsiStrippingOutputStreamTest.java
+|  |  |  |  |  |  |  |  |  |-- CommandBuilderTest.java
+|  |  |  |  |  |  |  |  |  |-- CommandFailureUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- CommandUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- DependencySetTest.java
+|  |  |  |  |  |  |  |  |  |-- DependencySetWindowsTest.java
+|  |  |  |  |  |  |  |  |  |-- FileTypeTest.java
+|  |  |  |  |  |  |  |  |  |-- FingerprintTest.java
+|  |  |  |  |  |  |  |  |  |-- GroupedListTest.java
+|  |  |  |  |  |  |  |  |  |-- JavaClockTest.java
+|  |  |  |  |  |  |  |  |  |-- OptionsUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- PairTest.java
+|  |  |  |  |  |  |  |  |  |-- PathFragmentFilterTest.java
+|  |  |  |  |  |  |  |  |  |-- PersistentMapTest.java
+|  |  |  |  |  |  |  |  |  |-- ProcMeminfoParserTest.java
+|  |  |  |  |  |  |  |  |  |-- RegexFilterTest.java
+|  |  |  |  |  |  |  |  |  |-- ResourceFileLoaderTest.java
+|  |  |  |  |  |  |  |  |  |-- ResourceFileLoaderTest.message
+|  |  |  |  |  |  |  |  |  |-- ShellEscaperTest.java
+|  |  |  |  |  |  |  |  |  |-- StringCanonicalizerTest.java
+|  |  |  |  |  |  |  |  |  |-- StringIndexerTest.java
+|  |  |  |  |  |  |  |  |  |-- StringTrieTest.java
+|  |  |  |  |  |  |  |  |  |-- StringUtilTest.java
+|  |  |  |  |  |  |  |  |  |-- StringUtilitiesTest.java
+|  |  |  |  |  |  |  |  |  |-- TargetUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- io
+|  |  |  |  |  |  |  |  |  |  |-- AnsiTerminalPrinterTest.java
+|  |  |  |  |  |  |  |  |  |  |-- DelegatingOutErrTest.java
+|  |  |  |  |  |  |  |  |  |  |-- LinePrefixingOutputStreamTest.java
+|  |  |  |  |  |  |  |  |  |  |-- OutErrTest.java
+|  |  |  |  |  |  |  |  |  |  |-- RecordingOutErrTest.java
+|  |  |  |  |  |  |  |  |  |  |-- StreamDemultiplexerTest.java
+|  |  |  |  |  |  |  |  |  |  |-- StreamMultiplexerParallelStressTest.java
+|  |  |  |  |  |  |  |  |  |  |-- StreamMultiplexerTest.java
+|  |  |  |  |  |  |  |  |-- vfs
+|  |  |  |  |  |  |  |  |  |-- FileSystemConcurrencyTest.java
+|  |  |  |  |  |  |  |  |  |-- FileSystemTest.java
+|  |  |  |  |  |  |  |  |  |-- FileSystemUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- FileSystemsTest.java
+|  |  |  |  |  |  |  |  |  |-- GlobTest.java
+|  |  |  |  |  |  |  |  |  |-- JavaIoFileSystemTest.java
+|  |  |  |  |  |  |  |  |  |-- ModifiedFileSetTest.java
+|  |  |  |  |  |  |  |  |  |-- PathFragmentTest.java
+|  |  |  |  |  |  |  |  |  |-- PathFragmentWindowsTest.java
+|  |  |  |  |  |  |  |  |  |-- PathTest.java
+|  |  |  |  |  |  |  |  |  |-- PathWindowsTest.java
+|  |  |  |  |  |  |  |  |  |-- RecursiveGlobTest.java
+|  |  |  |  |  |  |  |  |  |-- RootedPathTest.java
+|  |  |  |  |  |  |  |  |  |-- ScopeEscapableFileSystemTest.java
+|  |  |  |  |  |  |  |  |  |-- SearchPathTest.java
+|  |  |  |  |  |  |  |  |  |-- SymlinkAwareFileSystemTest.java
+|  |  |  |  |  |  |  |  |  |-- UnionFileSystemTest.java
+|  |  |  |  |  |  |  |  |  |-- UnixFileSystemTest.java
+|  |  |  |  |  |  |  |  |  |-- UnixPathEqualityTest.java
+|  |  |  |  |  |  |  |  |  |-- UnixPathGetParentTest.java
+|  |  |  |  |  |  |  |  |  |-- UnixPathTest.java
+|  |  |  |  |  |  |  |  |  |-- ZipFileSystemTest.java
+|  |  |  |  |  |  |  |  |  |-- inmemoryfs
+|  |  |  |  |  |  |  |  |  |  |-- InMemoryContentInfoTest.java
+|  |  |  |  |  |  |  |  |  |  |-- InMemoryFileSystemTest.java
+|  |  |  |  |  |  |  |  |  |-- sample_with_dirs.zip
+|  |  |  |  |  |  |  |  |  |-- sample_without_dirs.zip
+|  |  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |  |-- FileSystems.java
+|  |  |  |  |  |  |  |  |  |  |-- FsApparatus.java
+|  |  |  |  |  |  |  |-- skyframe
+|  |  |  |  |  |  |  |  |-- AllTests.java
+|  |  |  |  |  |  |  |  |-- ChainedFunction.java
+|  |  |  |  |  |  |  |  |-- CycleDeduperTest.java
+|  |  |  |  |  |  |  |  |-- CyclesReporterTest.java
+|  |  |  |  |  |  |  |  |-- DeterministicInMemoryGraph.java
+|  |  |  |  |  |  |  |  |-- EagerInvalidatorTest.java
+|  |  |  |  |  |  |  |  |-- GenericFunctionException.java
+|  |  |  |  |  |  |  |  |-- GraphConcurrencyTest.java
+|  |  |  |  |  |  |  |  |-- GraphTester.java
+|  |  |  |  |  |  |  |  |-- InMemoryGraphConcurrencyTest.java
+|  |  |  |  |  |  |  |  |-- InMemoryNodeEntryTest.java
+|  |  |  |  |  |  |  |  |-- MemoizingEvaluatorTest.java
+|  |  |  |  |  |  |  |  |-- NotifyingInMemoryGraph.java
+|  |  |  |  |  |  |  |  |-- ParallelEvaluatorTest.java
+|  |  |  |  |  |  |  |  |-- ReverseDepsUtilTest.java
+|  |  |  |  |  |  |  |  |-- SkyKeyTest.java
+|  |  |  |  |  |  |  |  |-- SomeErrorException.java
+|  |  |  |  |  |  |  |  |-- TrackingAwaiter.java
+|  |  |  |  |  |  |  |  |-- TrackingInvalidationReceiver.java
+|  |  |  |  |  |  |  |  |-- WalkableGraphUtils.java
+|  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |-- options
+|  |  |  |  |  |  |  |  |-- AllTests.java
+|  |  |  |  |  |  |  |  |-- AssignmentConverterTest.java
+|  |  |  |  |  |  |  |  |-- BoolOrEnumConverterTest.java
+|  |  |  |  |  |  |  |  |-- CommaSeparatedOptionListConverterTest.java
+|  |  |  |  |  |  |  |  |-- EnumConverterTest.java
+|  |  |  |  |  |  |  |  |-- GenericTypeHelperTest.java
+|  |  |  |  |  |  |  |  |-- LogLevelConverterTest.java
+|  |  |  |  |  |  |  |  |-- OptionsParserTest.java
+|  |  |  |  |  |  |  |  |-- OptionsTest.java
+|  |  |-- shell
+|  |  |  |-- BUILD
+|  |  |  |-- bazel
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- android
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- android_integration_test.sh
+|  |  |  |  |-- bazel_docgen_test.sh
+|  |  |  |  |-- bazel_example_test.sh
+|  |  |  |  |-- bazel_execute_testlog.sh
+|  |  |  |  |-- bazel_rules_test.sh
+|  |  |  |  |-- bazel_rust_example_test.sh
+|  |  |  |  |-- bazel_sandboxing_test.sh
+|  |  |  |  |-- bazel_test_test.sh
+|  |  |  |  |-- bazel_worker_test.sh
+|  |  |  |  |-- bazel_workspace_status_test.sh
+|  |  |  |  |-- empty_package.sh
+|  |  |  |  |-- external_integration_test.sh
+|  |  |  |  |-- generate_workspace_test.sh
+|  |  |  |  |-- git_repository_test.sh
+|  |  |  |  |-- help_test.sh
+|  |  |  |  |-- local_repository_test.sh
+|  |  |  |  |-- location_test.sh
+|  |  |  |  |-- maven_test.sh
+|  |  |  |  |-- namespace-runner_test.sh
+|  |  |  |  |-- process-wrapper_test.sh
+|  |  |  |  |-- remote_helpers.sh
+|  |  |  |  |-- runfiles_test.sh
+|  |  |  |  |-- test-setup.sh
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- outer-planets-repo.tar.gz
+|  |  |  |  |  |-- outer-planets.git_log
+|  |  |  |  |  |-- pluto-repo.tar.gz
+|  |  |  |  |  |-- pluto.git_log
+|  |  |  |  |-- testenv.sh
+|  |  |  |  |-- workspace_test.sh
+|  |  |  |-- testenv.sh
+|  |  |  |-- unittest.bash
+|  |  |  |-- unittest_test.sh
+|  |-- tools
+|  |  |-- android
+|  |  |  |-- java
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- devtools
+|  |  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |  |-- AarGeneratorAction.java
+|  |  |  |  |  |  |  |  |  |-- AndroidResourceProcessingAction.java
+|  |  |  |  |  |  |  |  |  |-- AndroidResourceProcessor.java
+|  |  |  |  |  |  |  |  |  |-- AndroidSdkTools.java
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- BazelPlatformTarget.java
+|  |  |  |  |  |  |  |  |  |-- BuildToolInfoBuilder.java
+|  |  |  |  |  |  |  |  |  |-- Converters.java
+|  |  |  |  |  |  |  |  |  |-- DensityFilteredAndroidData.java
+|  |  |  |  |  |  |  |  |  |-- DensitySpecificManifestProcessor.java
+|  |  |  |  |  |  |  |  |  |-- DensitySpecificResourceFilter.java
+|  |  |  |  |  |  |  |  |  |-- DependencyAndroidData.java
+|  |  |  |  |  |  |  |  |  |-- DirectoryModifier.java
+|  |  |  |  |  |  |  |  |  |-- FileDeDuplicator.java
+|  |  |  |  |  |  |  |  |  |-- ManifestProcessingException.java
+|  |  |  |  |  |  |  |  |  |-- MergedAndroidData.java
+|  |  |  |  |  |  |  |  |  |-- PackedResourceTarExpander.java
+|  |  |  |  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |  |  |  |-- UnvalidatedAndroidData.java
+|  |  |  |  |  |  |  |  |  |-- incrementaldeployment
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- IncrementalClassLoader.java
+|  |  |  |  |  |  |  |  |  |  |-- Placeholder.java
+|  |  |  |  |  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |  |  |  |  |-- StubApplication.java
+|  |  |  |  |  |  |  |  |  |-- ziputils
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- BufferedFile.java
+|  |  |  |  |  |  |  |  |  |  |-- CentralDirectory.java
+|  |  |  |  |  |  |  |  |  |  |-- DataDescriptor.java
+|  |  |  |  |  |  |  |  |  |  |-- DexMapper.java
+|  |  |  |  |  |  |  |  |  |  |-- DexReducer.java
+|  |  |  |  |  |  |  |  |  |  |-- DirectoryEntry.java
+|  |  |  |  |  |  |  |  |  |  |-- DosTime.java
+|  |  |  |  |  |  |  |  |  |  |-- EndOfCentralDirectory.java
+|  |  |  |  |  |  |  |  |  |  |-- EntryHandler.java
+|  |  |  |  |  |  |  |  |  |  |-- LocalFileHeader.java
+|  |  |  |  |  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |  |  |  |  |-- ScanUtil.java
+|  |  |  |  |  |  |  |  |  |  |-- SplitZip.java
+|  |  |  |  |  |  |  |  |  |  |-- Splitter.java
+|  |  |  |  |  |  |  |  |  |  |-- View.java
+|  |  |  |  |  |  |  |  |  |  |-- ZipIn.java
+|  |  |  |  |  |  |  |  |  |  |-- ZipOut.java
+|  |  |-- dash
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- src
+|  |  |  |  |-- main
+|  |  |  |  |  |-- java
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |  |-- devtools
+|  |  |  |  |  |  |  |  |  |-- dash
+|  |  |  |  |  |  |  |  |  |  |-- BuildViewServlet.java
+|  |  |  |  |  |  |  |  |  |  |-- DashRequest.java
+|  |  |  |  |  |  |  |  |  |  |-- StoreServlet.java
+|  |  |  |  |  |-- webapp
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- WEB-INF
+|  |  |  |  |  |  |  |-- appengine-web.xml
+|  |  |  |  |  |  |  |-- web.xml
+|  |  |  |  |  |  |-- dashboard.css
+|  |  |  |  |  |  |-- favicon.ico
+|  |  |  |  |  |  |-- index.html
+|  |  |  |  |  |  |-- result.html
+|  |  |  |  |-- test
+|  |  |  |  |  |-- java
+|  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |  |-- devtools
+|  |  |  |  |  |  |  |  |  |-- dash
+|  |  |  |  |  |  |  |  |  |  |-- AllTests.java
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- DashRequestTest.java
+|  |  |  |  |  |  |  |  |  |  |-- ProtoInputStream.java
+|  |  |-- generate_workspace
+|  |  |  |-- BUILD
+|  |  |  |-- src
+|  |  |  |  |-- main
+|  |  |  |  |  |-- java
+|  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |  |-- devtools
+|  |  |  |  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |  |  |  |-- workspace
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- GenerateWorkspace.java
+|  |  |  |  |  |  |  |  |  |  |  |-- GenerateWorkspaceOptions.java
+|  |  |  |  |  |  |  |  |  |  |  |-- Resolver.java
+|  |  |  |  |  |  |  |  |  |  |  |-- maven
+|  |  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |  |-- DefaultModelResolver.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- Resolver.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- Rule.java
+|  |  |-- xcode-common
+|  |  |  |-- BUILD
+|  |  |  |-- java
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- devtools
+|  |  |  |  |  |  |  |-- build
+|  |  |  |  |  |  |  |  |-- xcode
+|  |  |  |  |  |  |  |  |  |-- actoolzip
+|  |  |  |  |  |  |  |  |  |  |-- ActoolZip.java
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |  |  |  |-- common
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- BuildOptionsUtil.java
+|  |  |  |  |  |  |  |  |  |  |-- PathTransformer.java
+|  |  |  |  |  |  |  |  |  |  |-- Platform.java
+|  |  |  |  |  |  |  |  |  |  |-- XcodeprojPath.java
+|  |  |  |  |  |  |  |  |  |-- swiftstdlibtoolzip
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |  |  |  |  |-- SwiftStdlibToolZip.java
+|  |  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- Containing.java
+|  |  |  |  |  |  |  |  |  |  |-- Equaling.java
+|  |  |  |  |  |  |  |  |  |  |-- Mapping.java
+|  |  |  |  |  |  |  |  |  |  |-- Value.java
+|  |  |  |  |  |  |  |  |  |-- zip
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- ZipFiles.java
+|  |  |  |  |  |  |  |  |  |  |-- ZipInputEntry.java
+|  |  |  |  |  |  |  |  |  |-- zippingoutput
+|  |  |  |  |  |  |  |  |  |  |-- Arguments.java
+|  |  |  |  |  |  |  |  |  |  |-- ArgumentsParsing.java
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- Wrapper.java
+|  |  |  |  |  |  |  |  |  |  |-- Wrappers.java
+|  |  |-- xcode
+|  |  |  |-- ibtoolwrapper
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README
+|  |  |  |  |-- ibtoolwrapper.sh
+|  |  |  |-- realpath
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README
+|  |  |  |  |-- realpath.c
+|  |  |  |-- stdredirect
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README
+|  |  |  |  |-- StdRedirect.c
+|  |  |  |  |-- run_tests.sh
+|-- third_party
+|  |-- BUILD
+|  |-- README.md
+|  |-- aether
+|  |  |-- aether-api-1.0.0.v20140518.jar
+|  |  |-- aether-connector-basic-1.0.0.v20140518.jar
+|  |  |-- aether-impl-1.0.0.v20140518.jar
+|  |  |-- aether-spi-1.0.0.v20140518.jar
+|  |  |-- aether-transport-classpath-1.0.0.v20140518.jar
+|  |  |-- aether-transport-file-1.0.0.v20140518.jar
+|  |  |-- aether-transport-http-1.0.0.v20140518.jar
+|  |  |-- aether-transport-wagon-1.0.0.v20140518.jar
+|  |  |-- aether-util-1.0.0.v20140518.jar
+|  |-- android_common
+|  |  |-- com.android.tools.build_builder-model_0.13.3.jar
+|  |  |-- com.android.tools.build_builder_0.13.3.jar
+|  |  |-- com.android.tools.build_manifest-merger_23.1.3.jar
+|  |  |-- com.android.tools.layoutlib_layoutlib_23.1.3.jar
+|  |  |-- com.android.tools_common_23.1.3.jar
+|  |  |-- com.android.tools_sdk-common_23.1.3.jar
+|  |  |-- com.android.tools_sdklib_23.1.3.jar
+|  |-- apache_commons_collections
+|  |  |-- LICENSE
+|  |  |-- commons-collections-3.2.1.jar
+|  |-- apache_commons_compress
+|  |  |-- apache-commons-compress-1.9.jar
+|  |-- apache_commons_logging
+|  |  |-- commons-logging-1.1.1.jar
+|  |-- apache_commons_pool2
+|  |  |-- commons-pool2-2.3.jar
+|  |-- apache_httpclient
+|  |  |-- httpclient-4.2.5.jar
+|  |-- apache_httpcore
+|  |  |-- httpcore-4.2.4.jar
+|  |-- apache_velocity
+|  |  |-- LICENSE
+|  |  |-- velocity-1.7.jar
+|  |-- asm
+|  |  |-- LICENSE
+|  |  |-- asm-5.0.3.jar
+|  |-- auto
+|  |  |-- LICENSE
+|  |  |-- auto-common-0.3.jar
+|  |  |-- auto-service-1.0-rc2.jar
+|  |  |-- auto-value-1.0.jar
+|  |-- checker_framework_dataflow
+|  |  |-- dataflow-1.8.10.jar
+|  |-- error_prone
+|  |  |-- error_prone_annotations-2.0.5-20150630-51ec2fd.jar
+|  |  |-- error_prone_core-2.0.5-20150630-51ec2fd.jar
+|  |-- gson
+|  |  |-- LICENSE
+|  |  |-- gson-2.2.4.jar
+|  |-- gtest
+|  |  |-- LICENSE
+|  |  |-- gtest-all.cc
+|  |  |-- gtest.h
+|  |  |-- gtest_main.cc
+|  |-- guava
+|  |  |-- LICENSE
+|  |  |-- guava-18.0.jar
+|  |  |-- guava-testlib.jar
+|  |-- hamcrest
+|  |  |-- LICENSE
+|  |  |-- hamcrest-core-1.3.jar
+|  |-- ijar
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- README.txt
+|  |  |-- classfile.cc
+|  |  |-- common.h
+|  |  |-- ijar.cc
+|  |  |-- test
+|  |  |  |-- A.java
+|  |  |  |-- AnnotatedClass.java
+|  |  |  |-- Annotations.java
+|  |  |  |-- B.java
+|  |  |  |-- BUILD
+|  |  |  |-- DeprecatedParts.java
+|  |  |  |-- DumbClass.java
+|  |  |  |-- EnclosingMethod.java
+|  |  |  |-- IjarTests.java
+|  |  |  |-- Object.java
+|  |  |  |-- PrivateMembersClass.java
+|  |  |  |-- PrivateNestedClass.java
+|  |  |  |-- StripVerifyingVisitor.java
+|  |  |  |-- TypeAnnotationTest2.java
+|  |  |  |-- UseDeprecatedParts.java
+|  |  |  |-- UseRestrictedAnnotation.java
+|  |  |  |-- WellCompressed1.java
+|  |  |  |-- WellCompressed2.java
+|  |  |  |-- ijar_test.sh
+|  |  |  |-- invokedynamic
+|  |  |  |  |-- ClassWithLambda.java
+|  |  |  |-- libwrongcentraldir.jar
+|  |  |  |-- package-info.java
+|  |  |  |-- testenv.sh
+|  |  |  |-- typeannotations2
+|  |  |  |  |-- NonNull.java
+|  |  |  |  |-- Nullable.java
+|  |  |  |  |-- Util.java
+|  |  |  |  |-- java
+|  |  |  |  |  |-- lang
+|  |  |  |  |  |  |-- annotation
+|  |  |  |  |  |  |  |-- ElementType.java
+|  |  |  |-- zip_test.sh
+|  |  |-- zip.cc
+|  |  |-- zip.h
+|  |  |-- zip_main.cc
+|  |-- iossim
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- iossim
+|  |-- java
+|  |  |-- buck-ios-support
+|  |  |  |-- BUILD
+|  |  |  |-- LICENSE
+|  |  |  |-- README
+|  |  |  |-- java
+|  |  |  |  |-- com
+|  |  |  |  |  |-- facebook
+|  |  |  |  |  |  |-- buck
+|  |  |  |  |  |  |  |-- apple
+|  |  |  |  |  |  |  |  |-- FileTypes.java
+|  |  |  |  |  |  |  |  |-- xcode
+|  |  |  |  |  |  |  |  |  |-- GidGenerator.java
+|  |  |  |  |  |  |  |  |  |-- XcodeprojSerializer.java
+|  |  |  |  |  |  |  |  |  |-- xcodeproj
+|  |  |  |  |  |  |  |  |  |  |-- PBXAggregateTarget.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXBuildFile.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXBuildPhase.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXBuildStyle.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXContainer.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXContainerItem.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXContainerItemProxy.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXCopyFilesBuildPhase.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXFileReference.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXFrameworksBuildPhase.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXGroup.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXHeadersBuildPhase.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXNativeTarget.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXObject.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXProject.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXProjectItem.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXReference.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXResourcesBuildPhase.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXShellScriptBuildPhase.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXSourcesBuildPhase.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXTarget.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXTargetDependency.java
+|  |  |  |  |  |  |  |  |  |  |-- PBXVariantGroup.java
+|  |  |  |  |  |  |  |  |  |  |-- SourceTreePath.java
+|  |  |  |  |  |  |  |  |  |  |-- XCBuildConfiguration.java
+|  |  |  |  |  |  |  |  |  |  |-- XCConfigurationList.java
+|  |  |  |  |  |  |  |  |  |  |-- XCVersionGroup.java
+|  |  |  |  |  |  |  |-- log
+|  |  |  |  |  |  |  |  |-- Logger.java
+|  |  |-- dd_plist
+|  |  |  |-- BUILD
+|  |  |  |-- LICENSE
+|  |  |  |-- README
+|  |  |  |-- java
+|  |  |  |  |-- com
+|  |  |  |  |  |-- dd
+|  |  |  |  |  |  |-- plist
+|  |  |  |  |  |  |  |-- ASCIIPropertyListParser.java
+|  |  |  |  |  |  |  |-- Base64.java
+|  |  |  |  |  |  |  |-- BinaryPropertyListParser.java
+|  |  |  |  |  |  |  |-- BinaryPropertyListWriter.java
+|  |  |  |  |  |  |  |-- NSArray.java
+|  |  |  |  |  |  |  |-- NSData.java
+|  |  |  |  |  |  |  |-- NSDate.java
+|  |  |  |  |  |  |  |-- NSDictionary.java
+|  |  |  |  |  |  |  |-- NSNumber.java
+|  |  |  |  |  |  |  |-- NSObject.java
+|  |  |  |  |  |  |  |-- NSSet.java
+|  |  |  |  |  |  |  |-- NSString.java
+|  |  |  |  |  |  |  |-- PropertyListFormatException.java
+|  |  |  |  |  |  |  |-- PropertyListParser.java
+|  |  |  |  |  |  |  |-- UID.java
+|  |  |  |  |  |  |  |-- XMLPropertyListParser.java
+|  |  |-- j2objc
+|  |  |  |-- BUILD
+|  |  |  |-- BUILD.remote
+|  |  |-- jarjar
+|  |  |  |-- BUILD
+|  |  |  |-- LICENSE
+|  |  |  |-- jarjar-1.4.jar
+|  |  |-- jdk
+|  |  |  |-- langtools
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- javac.jar
+|  |-- java_src
+|  |  |-- j2objc
+|  |  |  |-- jre_emul
+|  |  |  |  |-- BUILD
+|  |-- javascript
+|  |  |-- d3
+|  |  |  |-- LICENSE
+|  |  |  |-- d3-js.js
+|  |  |-- jquery
+|  |  |  |-- v2_0_3
+|  |  |  |  |-- LICENSE
+|  |  |  |  |-- jquery_uncompressed.jslib
+|  |-- jformatstring
+|  |  |-- jFormatString-3.0.0.jar
+|  |-- jgit
+|  |  |-- LICENSE
+|  |  |-- org.eclipse.jgit-4.0.1.201506240215-r.jar
+|  |-- joda-time
+|  |  |-- LICENSE
+|  |  |-- joda-time-2.3.jar
+|  |-- joda_time
+|  |  |-- LICENSE
+|  |  |-- joda-time-2.3.jar
+|  |-- jsr305
+|  |  |-- LICENSE
+|  |  |-- jsr-305.jar
+|  |-- jsr330_inject
+|  |  |-- javax.inject.jar
+|  |-- junit
+|  |  |-- LICENSE
+|  |  |-- junit-4.11.jar
+|  |-- maven_model
+|  |  |-- maven-aether-provider-3.2.3.jar
+|  |  |-- maven-model-3.2.3.jar
+|  |  |-- maven-model-builder-3.2.3.jar
+|  |  |-- maven-repository-metadata-3.2.3.jar
+|  |-- mockito
+|  |  |-- LICENSE
+|  |  |-- mockito-all-1.10.19.jar
+|  |-- plexus_component_annotations
+|  |  |-- plexus-component-annotations-1.6.jar
+|  |-- plexus_interpolation
+|  |  |-- plexus-interpolation-1.22.jar
+|  |-- plexus_utils
+|  |  |-- plexus-utils-3.0.21.jar
+|  |-- protobuf
+|  |  |-- LICENSE
+|  |  |-- README.md
+|  |  |-- protobuf-java-3.0.0-alpha-3.jar
+|  |  |-- protoc-linux-x86_32.exe
+|  |  |-- protoc-linux-x86_64.exe
+|  |  |-- protoc-osx-x86_32.exe
+|  |  |-- protoc-osx-x86_64.exe
+|  |  |-- protoc-windows-x86_32.exe
+|  |  |-- protoc-windows-x86_64.exe
+|  |-- py
+|  |  |-- concurrent
+|  |  |  |-- BUILD
+|  |  |  |-- LICENSE
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- futures
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- _base.py
+|  |  |  |  |-- _compat.py
+|  |  |  |  |-- process.py
+|  |  |  |  |-- thread.py
+|  |  |-- gflags
+|  |  |  |-- AUTHORS
+|  |  |  |-- BUILD
+|  |  |  |-- COPYING
+|  |  |  |-- ChangeLog
+|  |  |  |-- MANIFEST.in
+|  |  |  |-- Makefile
+|  |  |  |-- NEWS
+|  |  |  |-- PKG-INFO
+|  |  |  |-- README
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- debian
+|  |  |  |  |-- README
+|  |  |  |  |-- changelog
+|  |  |  |  |-- compat
+|  |  |  |  |-- control
+|  |  |  |  |-- copyright
+|  |  |  |  |-- docs
+|  |  |  |  |-- rules
+|  |  |  |-- gflags2man.py
+|  |  |  |-- gflags_validators.py
+|  |  |  |-- python_gflags.egg-info
+|  |  |  |  |-- PKG-INFO
+|  |  |  |  |-- SOURCES.txt
+|  |  |  |  |-- dependency_links.txt
+|  |  |  |  |-- top_level.txt
+|  |  |  |-- setup.cfg
+|  |  |  |-- setup.py
+|  |  |  |-- tests
+|  |  |  |  |-- flags_modules_for_testing
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- module_bar.py
+|  |  |  |  |  |-- module_baz.py
+|  |  |  |  |  |-- module_foo.py
+|  |  |  |  |-- gflags_googletest.py
+|  |  |  |  |-- gflags_helpxml_test.py
+|  |  |  |  |-- gflags_unittest.py
+|  |  |  |  |-- gflags_validators_test.py
+|  |  |-- mock
+|  |  |  |-- BUILD
+|  |  |  |-- LICENSE.txt
+|  |  |  |-- MANIFEST.in
+|  |  |  |-- PKG-INFO
+|  |  |  |-- README.md
+|  |  |  |-- README.txt
+|  |  |  |-- __init__.py
+|  |  |  |-- docs
+|  |  |  |  |-- changelog.txt
+|  |  |  |  |-- compare.txt
+|  |  |  |  |-- conf.py
+|  |  |  |  |-- examples.txt
+|  |  |  |  |-- getting-started.txt
+|  |  |  |  |-- helpers.txt
+|  |  |  |  |-- index.txt
+|  |  |  |  |-- magicmock.txt
+|  |  |  |  |-- mock.txt
+|  |  |  |  |-- patch.txt
+|  |  |  |  |-- sentinel.txt
+|  |  |  |-- html
+|  |  |  |  |-- .doctrees
+|  |  |  |  |  |-- changelog.doctree
+|  |  |  |  |  |-- compare.doctree
+|  |  |  |  |  |-- examples.doctree
+|  |  |  |  |  |-- getting-started.doctree
+|  |  |  |  |  |-- index.doctree
+|  |  |  |  |  |-- magicmock.doctree
+|  |  |  |  |  |-- mock.doctree
+|  |  |  |  |  |-- mocksignature.doctree
+|  |  |  |  |  |-- patch.doctree
+|  |  |  |  |  |-- sentinel.doctree
+|  |  |  |  |-- _sources
+|  |  |  |  |  |-- changelog.txt
+|  |  |  |  |  |-- compare.txt
+|  |  |  |  |  |-- examples.txt
+|  |  |  |  |  |-- getting-started.txt
+|  |  |  |  |  |-- index.txt
+|  |  |  |  |  |-- magicmock.txt
+|  |  |  |  |  |-- mock.txt
+|  |  |  |  |  |-- mocksignature.txt
+|  |  |  |  |  |-- patch.txt
+|  |  |  |  |  |-- sentinel.txt
+|  |  |  |  |-- _static
+|  |  |  |  |  |-- adctheme.css
+|  |  |  |  |  |-- basic.css
+|  |  |  |  |  |-- breadcrumb_background.png
+|  |  |  |  |  |-- doctools.js
+|  |  |  |  |  |-- documentation.png
+|  |  |  |  |  |-- file.png
+|  |  |  |  |  |-- header_sm_mid.png
+|  |  |  |  |  |-- jquery.js
+|  |  |  |  |  |-- minus.png
+|  |  |  |  |  |-- mobile.css
+|  |  |  |  |  |-- plus.png
+|  |  |  |  |  |-- pygments.css
+|  |  |  |  |  |-- scrn1.png
+|  |  |  |  |  |-- scrn2.png
+|  |  |  |  |  |-- searchfield_leftcap.png
+|  |  |  |  |  |-- searchfield_repeat.png
+|  |  |  |  |  |-- searchfield_rightcap.png
+|  |  |  |  |  |-- searchtools.js
+|  |  |  |  |  |-- title_background.png
+|  |  |  |  |  |-- toc.js
+|  |  |  |  |  |-- triangle_closed.png
+|  |  |  |  |  |-- triangle_left.png
+|  |  |  |  |  |-- triangle_open.png
+|  |  |  |  |  |-- underscore.js
+|  |  |  |  |-- changelog.html
+|  |  |  |  |-- compare.html
+|  |  |  |  |-- examples.html
+|  |  |  |  |-- genindex.html
+|  |  |  |  |-- getting-started.html
+|  |  |  |  |-- index.html
+|  |  |  |  |-- magicmock.html
+|  |  |  |  |-- mock.html
+|  |  |  |  |-- mocksignature.html
+|  |  |  |  |-- objects.inv
+|  |  |  |  |-- output.txt
+|  |  |  |  |-- patch.html
+|  |  |  |  |-- search.html
+|  |  |  |  |-- searchindex.js
+|  |  |  |  |-- sentinel.html
+|  |  |  |-- mock.egg-info
+|  |  |  |  |-- PKG-INFO
+|  |  |  |  |-- SOURCES.txt
+|  |  |  |  |-- dependency_links.txt
+|  |  |  |  |-- top_level.txt
+|  |  |  |-- setup.cfg
+|  |  |  |-- setup.py
+|  |  |  |-- tests
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- _testwith.py
+|  |  |  |  |-- support.py
+|  |  |  |  |-- support_with.py
+|  |  |  |  |-- testcallable.py
+|  |  |  |  |-- testhelpers.py
+|  |  |  |  |-- testmagicmethods.py
+|  |  |  |  |-- testmock.py
+|  |  |  |  |-- testpatch.py
+|  |  |  |  |-- testsentinel.py
+|  |  |  |  |-- testwith.py
+|  |  |  |-- tox.ini
+|  |-- slf4j
+|  |  |-- LICENSE.txt
+|  |  |-- slf4j-api-1.7.7.jar
+|  |  |-- slf4j-jdk14-1.7.7.jar
+|  |-- tomcat_annotations_api
+|  |  |-- LICENSE
+|  |  |-- tomcat-annotations-api-8.0.5.jar
+|  |-- truth
+|  |  |-- LICENSE
+|  |  |-- truth-0.27.jar
+|-- tools
+|  |-- BUILD
+|  |-- android
+|  |  |-- BUILD
+|  |  |-- aar_generator.sh
+|  |  |-- android_permissions.py
+|  |  |-- bazel_debug.keystore
+|  |  |-- build_incremental_dexmanifest.py
+|  |  |-- build_split_manifest.py
+|  |  |-- build_split_manifest_test.py
+|  |  |-- incremental_install.py
+|  |  |-- incremental_install_test.py
+|  |  |-- jack
+|  |  |  |-- BUILD
+|  |  |  |-- empty
+|  |  |  |-- fail.sh
+|  |  |-- merge_dexzips.sh
+|  |  |-- merge_manifests.py
+|  |  |-- merge_manifests_test.py
+|  |  |-- proguard_whitelister.py
+|  |  |-- proguard_whitelister_input.cfg
+|  |  |-- proguard_whitelister_test.py
+|  |  |-- resources_processor.sh
+|  |  |-- shuffle_jars.sh
+|  |  |-- strip_resources.py
+|  |  |-- stubify_manifest.py
+|  |  |-- stubify_manifest_test.py
+|  |-- bazel.rc
+|  |-- build_defs
+|  |  |-- d
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- d.WORKSPACE
+|  |  |  |-- d.bzl
+|  |  |  |-- dmd.BUILD
+|  |  |-- docker
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- archive.py
+|  |  |  |-- archive_test.py
+|  |  |  |-- build_layer.py
+|  |  |  |-- build_test.sh
+|  |  |  |-- create_image.py
+|  |  |  |-- docker.bzl
+|  |  |  |-- rewrite_json.py
+|  |  |  |-- rewrite_json_test.py
+|  |  |  |-- sha256.py
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- archive
+|  |  |  |  |  |-- a.ar
+|  |  |  |  |  |-- a_ab.ar
+|  |  |  |  |  |-- a_b.ar
+|  |  |  |  |  |-- a_b_ab.ar
+|  |  |  |  |  |-- ab.ar
+|  |  |  |  |  |-- b.ar
+|  |  |  |  |  |-- empty.ar
+|  |  |  |  |  |-- tar_test.tar
+|  |  |  |  |  |-- tar_test.tar.bz2
+|  |  |  |  |  |-- tar_test.tar.gz
+|  |  |  |  |  |-- tar_test.tar.xz
+|  |  |  |  |-- bar
+|  |  |  |  |-- extras_gen.py
+|  |  |  |  |-- foo
+|  |  |  |  |-- one.tar
+|  |  |  |  |-- strip_top.py
+|  |  |  |  |-- two.tar
+|  |  |  |-- testenv.py
+|  |  |  |-- testenv.sh
+|  |  |-- groovy
+|  |  |  |-- README.md
+|  |  |  |-- groovy.BUILD
+|  |  |  |-- groovy.WORKSPACE
+|  |  |  |-- groovy.bzl
+|  |  |-- scala
+|  |  |  |-- README.md
+|  |  |  |-- scala.bzl
+|  |  |  |-- test
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Hello.java
+|  |  |  |  |-- HelloLib.scala
+|  |  |  |  |-- OtherLib.scala
+|  |-- build_rules
+|  |  |-- appengine
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- appengine.BUILD
+|  |  |  |-- appengine.WORKSPACE
+|  |  |  |-- appengine.bzl
+|  |  |  |-- appengine_deploy.sh.template
+|  |  |  |-- appengine_runner.sh.template
+|  |  |-- closure
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- closure.WORKSPACE
+|  |  |  |-- closure_compiler.BUILD
+|  |  |  |-- closure_js_binary.bzl
+|  |  |  |-- closure_js_library.bzl
+|  |  |  |-- closure_library.BUILD
+|  |  |  |-- closure_stylesheet_library.bzl
+|  |  |  |-- closure_template_library.bzl
+|  |  |  |-- closure_templates.BUILD
+|  |  |-- genproto.bzl
+|  |  |-- java_rules_skylark.bzl
+|  |  |-- py_rules.bzl
+|  |  |-- rust
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- rust-darwin-x86_64.BUILD
+|  |  |  |-- rust-linux-x86_64.BUILD
+|  |  |  |-- rust.WORKSPACE
+|  |  |  |-- rust.bzl
+|  |  |  |-- test
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- rust_rule_test.bzl
+|  |  |-- test_rules.bzl
+|  |-- buildstamp
+|  |  |-- BUILD
+|  |  |-- get_workspace_status
+|  |-- cpp
+|  |  |-- BUILD
+|  |  |-- CROSSTOOL
+|  |  |-- osx_gcc_wrapper.sh
+|  |-- defaults
+|  |  |-- BUILD
+|  |-- genrule
+|  |  |-- BUILD
+|  |  |-- genrule-setup.sh
+|  |-- j2objc
+|  |  |-- BUILD
+|  |  |-- j2objc_wrapper.py
+|  |-- jdk
+|  |  |-- BUILD
+|  |-- objc
+|  |  |-- BUILD
+|  |  |-- dummy.c
+|  |  |-- ios_runner.sh.mac_template
+|  |  |-- ios_test.sh.bazel_template
+|  |  |-- j2objc_dead_code_pruner.py
+|  |-- python
+|  |  |-- 2to3.sh
+|  |  |-- BUILD
+|  |-- test
+|  |  |-- BUILD
+|  |  |-- test-setup.sh
+|  |-- test_sharding_compliant

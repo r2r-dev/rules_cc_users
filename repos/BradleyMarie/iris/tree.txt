@@ -1,0 +1,415 @@
+|-- .gitattributes
+|-- .gitignore
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- common
+|  |-- BUILD
+|  |-- alloc.h
+|  |-- alloc_test.cc
+|  |-- const_pointer_list.h
+|  |-- const_pointer_list_test.cc
+|  |-- dynamic_allocator.h
+|  |-- dynamic_allocator_test.cc
+|  |-- free_routine.h
+|  |-- pointer_list.h
+|  |-- pointer_list_test.cc
+|  |-- safe_math.h
+|  |-- safe_math_test.cc
+|  |-- sal.h
+|  |-- static_allocator.h
+|  |-- static_allocator_test.cc
+|  |-- status.h
+|-- external
+|  |-- pcg_c_basic.BUILD
+|  |-- stb.BUILD
+|-- iris
+|  |-- BUILD
+|  |-- full_hit_context.h
+|  |-- hit.h
+|  |-- hit_allocator.c
+|  |-- hit_allocator.h
+|  |-- hit_allocator_internal.h
+|  |-- hit_allocator_test.cc
+|  |-- hit_context.h
+|  |-- hit_tester.c
+|  |-- hit_tester.h
+|  |-- hit_tester_internal.h
+|  |-- hit_tester_test.cc
+|  |-- iris.h
+|  |-- matrix.c
+|  |-- matrix.h
+|  |-- matrix_internal.h
+|  |-- matrix_test.cc
+|  |-- multiply.c
+|  |-- multiply.h
+|  |-- multiply_internal.h
+|  |-- multiply_internal_test.cc
+|  |-- multiply_test.cc
+|  |-- point.h
+|  |-- point_test.cc
+|  |-- ray.h
+|  |-- ray_test.cc
+|  |-- ray_tracer.c
+|  |-- ray_tracer.h
+|  |-- ray_tracer_test.cc
+|  |-- vector.h
+|  |-- vector_test.cc
+|-- iris_advanced
+|  |-- BUILD
+|  |-- bounding_box.h
+|  |-- bounding_box_test.cc
+|  |-- color.c
+|  |-- color.h
+|  |-- color_test.cc
+|  |-- intersection.h
+|  |-- intersection_test.cc
+|  |-- iris_advanced.h
+|  |-- math.c
+|  |-- math.h
+|  |-- random.c
+|  |-- random.h
+|  |-- random_test.cc
+|  |-- ray_differential.h
+|  |-- ray_differential_test.cc
+|-- iris_advanced_toolkit
+|  |-- BUILD
+|  |-- color_io.c
+|  |-- color_io.h
+|  |-- halton_sequence.c
+|  |-- halton_sequence.h
+|  |-- lanczos_upscale.c
+|  |-- lanczos_upscale.h
+|  |-- low_discrepancy_sequence.c
+|  |-- low_discrepancy_sequence.h
+|  |-- low_discrepancy_sequence_vtable.h
+|  |-- pcg_random.c
+|  |-- pcg_random.h
+|  |-- sample_geometry.c
+|  |-- sample_geometry.h
+|  |-- sobol_sequence.c
+|  |-- sobol_sequence.h
+|-- iris_camera
+|  |-- BUILD
+|  |-- camera.c
+|  |-- camera.h
+|  |-- camera_internal.h
+|  |-- camera_vtable.h
+|  |-- framebuffer.c
+|  |-- framebuffer.h
+|  |-- framebuffer_internal.h
+|  |-- image_sampler.c
+|  |-- image_sampler.h
+|  |-- image_sampler_internal.h
+|  |-- image_sampler_vtable.h
+|  |-- iris_camera.h
+|  |-- progress_reporter.c
+|  |-- progress_reporter.h
+|  |-- progress_reporter_internal.h
+|  |-- progress_reporter_vtable.h
+|  |-- render.c
+|  |-- render.h
+|  |-- sample_tracer.c
+|  |-- sample_tracer.h
+|  |-- sample_tracer_internal.h
+|  |-- sample_tracer_vtable.h
+|-- iris_camera_toolkit
+|  |-- BUILD
+|  |-- grid_image_sampler.c
+|  |-- grid_image_sampler.h
+|  |-- low_discrepancy_image_sampler.c
+|  |-- low_discrepancy_image_sampler.h
+|  |-- orthographic_camera.c
+|  |-- orthographic_camera.h
+|  |-- pfm_writer.c
+|  |-- pfm_writer.h
+|  |-- pinhole_camera.c
+|  |-- pinhole_camera.h
+|  |-- status_bar_progress_reporter.c
+|  |-- status_bar_progress_reporter.h
+|  |-- thin_lens_camera.c
+|  |-- thin_lens_camera.h
+|-- iris_physx
+|  |-- BUILD
+|  |-- area_light.c
+|  |-- area_light.h
+|  |-- bsdf.c
+|  |-- bsdf.h
+|  |-- bsdf_allocator.c
+|  |-- bsdf_allocator.h
+|  |-- bsdf_allocator_internal.h
+|  |-- bsdf_internal.h
+|  |-- bsdf_sample_type.h
+|  |-- bsdf_vtable.h
+|  |-- color_integrator.c
+|  |-- color_integrator.h
+|  |-- color_integrator_internal.h
+|  |-- color_integrator_vtable.h
+|  |-- emissive_material.c
+|  |-- emissive_material.h
+|  |-- emissive_material_internal.h
+|  |-- emissive_material_vtable.h
+|  |-- environmental_light.c
+|  |-- environmental_light.h
+|  |-- environmental_light_internal.h
+|  |-- environmental_light_vtable.h
+|  |-- hit_allocator.h
+|  |-- hit_tester.h
+|  |-- integrator.c
+|  |-- integrator.h
+|  |-- integrator_vtable.h
+|  |-- iris_physx.h
+|  |-- light.c
+|  |-- light.h
+|  |-- light_internal.h
+|  |-- light_sample_collector.c
+|  |-- light_sample_collector.h
+|  |-- light_sample_collector_internal.h
+|  |-- light_sample_list.c
+|  |-- light_sample_list.h
+|  |-- light_sample_list_internal.h
+|  |-- light_sampler.c
+|  |-- light_sampler.h
+|  |-- light_sampler_vtable.h
+|  |-- light_vtable.h
+|  |-- material.c
+|  |-- material.h
+|  |-- material_internal.h
+|  |-- material_vtable.h
+|  |-- normal_map.c
+|  |-- normal_map.h
+|  |-- normal_map_internal.h
+|  |-- normal_map_vtable.h
+|  |-- ray_tracer.c
+|  |-- ray_tracer.h
+|  |-- ray_tracer_internal.h
+|  |-- reflector.c
+|  |-- reflector.h
+|  |-- reflector_compositor.c
+|  |-- reflector_compositor.h
+|  |-- reflector_compositor_internal.h
+|  |-- reflector_compositor_test.cc
+|  |-- reflector_compositor_test_util.c
+|  |-- reflector_compositor_test_util.h
+|  |-- reflector_internal.h
+|  |-- reflector_test.cc
+|  |-- reflector_vtable.h
+|  |-- scene.c
+|  |-- scene.h
+|  |-- scene_internal.h
+|  |-- scene_vtable.h
+|  |-- shape.c
+|  |-- shape.h
+|  |-- shape_internal.h
+|  |-- shape_vtable.h
+|  |-- spectrum.c
+|  |-- spectrum.h
+|  |-- spectrum_compositor.c
+|  |-- spectrum_compositor.h
+|  |-- spectrum_compositor_internal.h
+|  |-- spectrum_compositor_test.cc
+|  |-- spectrum_compositor_test_util.c
+|  |-- spectrum_compositor_test_util.h
+|  |-- spectrum_internal.h
+|  |-- spectrum_test.cc
+|  |-- spectrum_vtable.h
+|  |-- texture_coordinate_allocator.c
+|  |-- texture_coordinate_allocator.h
+|  |-- texture_coordinate_allocator_internal.h
+|  |-- texture_coordinate_map.c
+|  |-- texture_coordinate_map.h
+|  |-- texture_coordinate_map_internal.h
+|  |-- texture_coordinate_map_vtable.h
+|  |-- visibility_tester.c
+|  |-- visibility_tester.h
+|  |-- visibility_tester_internal.h
+|-- iris_physx_toolkit
+|  |-- BUILD
+|  |-- aggregate_environmental_light.c
+|  |-- aggregate_environmental_light.h
+|  |-- all_light_sampler.c
+|  |-- all_light_sampler.h
+|  |-- attenuated_reflector.c
+|  |-- attenuated_reflector.h
+|  |-- bsdfs
+|  |  |-- BUILD
+|  |  |-- aggregate.c
+|  |  |-- aggregate.h
+|  |  |-- alpha.c
+|  |  |-- alpha.h
+|  |  |-- fresnel.c
+|  |  |-- fresnel.h
+|  |  |-- fresnels
+|  |  |  |-- BUILD
+|  |  |  |-- dielectric.c
+|  |  |  |-- dielectric.h
+|  |  |  |-- fresnel.h
+|  |  |-- lambertian.c
+|  |  |-- lambertian.h
+|  |  |-- microfacet.c
+|  |  |-- microfacet.h
+|  |  |-- microfacet_distributions
+|  |  |  |-- BUILD
+|  |  |  |-- microfacet_distribution.h
+|  |  |  |-- trowbridge_reitz.c
+|  |  |  |-- trowbridge_reitz.h
+|  |  |-- mirror.c
+|  |  |-- mirror.h
+|  |  |-- oren_nayar.c
+|  |  |-- oren_nayar.h
+|  |-- bump_map.c
+|  |-- bump_map.h
+|  |-- cie_color_integrator.c
+|  |-- cie_color_integrator.h
+|  |-- color_extrapolator.c
+|  |-- color_extrapolator.h
+|  |-- color_extrapolator_vtable.h
+|  |-- color_spectra.c
+|  |-- color_spectra.h
+|  |-- constant_emissive_material.c
+|  |-- constant_emissive_material.h
+|  |-- constant_texture.c
+|  |-- constant_texture.h
+|  |-- directional_light.c
+|  |-- directional_light.h
+|  |-- float_texture.c
+|  |-- float_texture.h
+|  |-- float_texture_vtable.h
+|  |-- image_texture.c
+|  |-- image_texture.h
+|  |-- infinite_environmental_light.c
+|  |-- infinite_environmental_light.h
+|  |-- interpolated_spectrum.c
+|  |-- interpolated_spectrum.h
+|  |-- materials
+|  |  |-- BUILD
+|  |  |-- alpha.c
+|  |  |-- alpha.h
+|  |  |-- constant.c
+|  |  |-- constant.h
+|  |  |-- matte.c
+|  |  |-- matte.h
+|  |  |-- mirror.c
+|  |  |-- mirror.h
+|  |  |-- plastic.c
+|  |  |-- plastic.h
+|  |-- metric_black_body.c
+|  |-- metric_black_body.h
+|  |-- mipmap.c
+|  |-- mipmap.h
+|  |-- one_light_sampler.c
+|  |-- one_light_sampler.h
+|  |-- path_tracer.c
+|  |-- path_tracer.h
+|  |-- perlin_textures.c
+|  |-- perlin_textures.h
+|  |-- png_mipmap.c
+|  |-- png_mipmap.h
+|  |-- point_light.c
+|  |-- point_light.h
+|  |-- product_texture.c
+|  |-- product_texture.h
+|  |-- reflective_color_integrator.c
+|  |-- reflective_color_integrator.h
+|  |-- reflector_texture.c
+|  |-- reflector_texture.h
+|  |-- reflector_texture_vtable.h
+|  |-- sample_direct_lighting.c
+|  |-- sample_direct_lighting.h
+|  |-- sample_tracer.c
+|  |-- sample_tracer.h
+|  |-- scenes
+|  |  |-- BUILD
+|  |  |-- bvh.c
+|  |  |-- bvh.h
+|  |  |-- kd_tree.c
+|  |  |-- kd_tree.h
+|  |  |-- list.c
+|  |  |-- list.h
+|  |-- shapes
+|  |  |-- BUILD
+|  |  |-- constructive_solid_geometry.c
+|  |  |-- constructive_solid_geometry.h
+|  |  |-- sphere.c
+|  |  |-- sphere.h
+|  |  |-- triangle.c
+|  |  |-- triangle.h
+|  |  |-- triangle_mesh.c
+|  |  |-- triangle_mesh.h
+|  |-- smits_color_extrapolator.c
+|  |-- smits_color_extrapolator.h
+|  |-- triangle_mesh_normal_map.c
+|  |-- triangle_mesh_normal_map.h
+|  |-- triangle_mesh_texture_coordinate_map.c
+|  |-- triangle_mesh_texture_coordinate_map.h
+|  |-- uniform_reflector.c
+|  |-- uniform_reflector.h
+|  |-- uv_texture_coordinate.h
+|-- test_cases
+|  |-- BUILD
+|  |-- constructive_solid_geometry.cc
+|  |-- cornell_box.cc
+|  |-- cornell_box_dielectric.cc
+|  |-- deterministic.cc
+|  |-- empty_physx.cc
+|  |-- environmental_light.cc
+|  |-- single_sphere.cc
+|  |-- single_triangle.cc
+|  |-- teapot.cc
+|-- test_results
+|  |-- BUILD
+|  |-- blank.pfm
+|  |-- blue.pfm
+|  |-- cornell_box.pfm
+|  |-- cornell_box_with_dielectric.pfm
+|  |-- csg_cube_sphere_difference.pfm
+|  |-- csg_rounded_cube.pfm
+|  |-- csg_sphere_intersection.pfm
+|  |-- csg_sphere_union.pfm
+|  |-- single_emissive_triangle_xy_triangle.pfm
+|  |-- single_emissive_triangle_xz_triangle.pfm
+|  |-- single_emissive_triangle_yz_triangle.pfm
+|  |-- single_triangle_xy_triangle.pfm
+|  |-- single_triangle_xz_triangle.pfm
+|  |-- single_triangle_yz_triangle.pfm
+|  |-- sphere_away.pfm
+|  |-- sphere_center.pfm
+|  |-- sphere_right.pfm
+|  |-- sphere_up.pfm
+|  |-- teapot_flat.pfm
+|  |-- teapot_smooth.pfm
+|-- test_util
+|  |-- BUILD
+|  |-- cornell_box.c
+|  |-- cornell_box.h
+|  |-- equality.h
+|  |-- pfm.c
+|  |-- pfm.h
+|  |-- quad.c
+|  |-- quad.h
+|  |-- teapot.c
+|  |-- teapot.h
+|-- third_party
+|  |-- gruenschloss
+|  |  |-- double
+|  |  |  |-- BUILD
+|  |  |  |-- sobol.c
+|  |  |  |-- sobol.h
+|  |  |-- halton
+|  |  |  |-- BUILD
+|  |  |  |-- halton_enum.h
+|  |  |  |-- halton_sampler.h
+|  |  |-- single
+|  |  |  |-- BUILD
+|  |  |  |-- sobol.c
+|  |  |  |-- sobol.h
+|  |-- pbrt-v3
+|  |  |-- BUILD
+|  |  |-- sobolmatrices.c
+|  |  |-- sobolmatrices.h
+|  |-- smhasher
+|  |  |-- BUILD
+|  |  |-- MurmurHash2.c
+|  |  |-- MurmurHash2.h
+|  |  |-- MurmurHash3.c
+|  |  |-- MurmurHash3.h

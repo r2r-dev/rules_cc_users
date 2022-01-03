@@ -1,0 +1,525 @@
+|-- .bazelrc
+|-- .github
+|  |-- auto_assign-issues.yml
+|  |-- workflows
+|  |  |-- ci.yml
+|  |  |-- examples.yml
+|-- BUILD
+|-- CMakeLists.txt
+|-- CONTRIBUTING.txt
+|-- Dockerfile
+|-- INSTALL.sh
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- clif
+|  |-- BUILD
+|  |-- CMakeLists.txt
+|  |-- CONTRIBUTORS.md
+|  |-- __init__.py
+|  |-- backend
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- another_file.h
+|  |  |-- ast.cc
+|  |  |-- ast.h
+|  |  |-- ast_test.cc
+|  |  |-- code_builder.cc
+|  |  |-- code_builder.h
+|  |  |-- matcher.cc
+|  |  |-- matcher.h
+|  |  |-- matcher_main.cc
+|  |  |-- matcher_test.cc
+|  |  |-- strutil.h
+|  |  |-- test.h
+|  |  |-- test_clif_aux.h
+|  |  |-- test_subdir
+|  |  |  |-- test_clif_aux.h
+|  |  |-- versioned_smart_ptr_test.h
+|  |-- cmake
+|  |  |-- modules
+|  |  |  |-- CLIFUtils.cmake
+|  |-- extension.py
+|  |-- protos
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- __init__.py
+|  |  |-- ast.proto
+|  |-- pybind11
+|  |  |-- cindex
+|  |  |  |-- extractor.py
+|  |  |  |-- extractor_test.py
+|  |  |-- classes.py
+|  |  |-- enums.py
+|  |  |-- function.py
+|  |  |-- function_lib.py
+|  |  |-- g3doc
+|  |  |  |-- dev_notes.md
+|  |  |-- generator.py
+|  |  |-- lambdas.py
+|  |  |-- operators.py
+|  |  |-- staging
+|  |  |  |-- classes.cc
+|  |  |  |-- classes_test.py
+|  |  |  |-- concrete_base.cc
+|  |  |  |-- concrete_base.h
+|  |  |  |-- concrete_derived.cc
+|  |  |  |-- concrete_derived.h
+|  |  |  |-- concrete_test.py
+|  |  |  |-- enums.cc
+|  |  |  |-- enums_test.py
+|  |  |  |-- extend_classmethods.cc
+|  |  |  |-- extend_classmethods_test.py
+|  |  |  |-- extend_default_value.cc
+|  |  |  |-- extend_default_value_test.py
+|  |  |  |-- extend_from_clifaux.cc
+|  |  |  |-- extend_from_clifaux_test.py
+|  |  |  |-- extend_init.cc
+|  |  |  |-- extend_init_test.py
+|  |  |  |-- extend_properties.cc
+|  |  |  |-- extend_properties_test.py
+|  |  |  |-- nested_inheritance.cc
+|  |  |  |-- nested_inheritance_test.py
+|  |  |  |-- number_methods.cc
+|  |  |  |-- number_methods_test.py
+|  |  |  |-- operators.cc
+|  |  |  |-- operators_test.py
+|  |  |  |-- special_classes.cc
+|  |  |  |-- special_classes_test.py
+|  |  |  |-- static_methods.cc
+|  |  |  |-- static_methods_test.py
+|  |  |  |-- templates.cc
+|  |  |  |-- templates_test.py
+|  |  |  |-- variables.cc
+|  |  |  |-- variables_test.py
+|  |  |  |-- virtual_funcs_basics.cc
+|  |  |  |-- virtual_funcs_basics_test.py
+|  |  |-- type_casters.h
+|  |  |-- type_casters.py
+|  |  |-- utils.py
+|  |  |-- variables.py
+|  |-- pyclif.py
+|  |-- python
+|  |  |-- BUILD
+|  |  |-- CMakeLists.txt
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- ast_manipulations.py
+|  |  |-- astutils.py
+|  |  |-- class_test.py
+|  |  |-- clif_types.py
+|  |  |-- ext.md
+|  |  |-- faq.md
+|  |  |-- func_test.py
+|  |  |-- gen.py
+|  |  |-- gen_test.py
+|  |  |-- instance.h
+|  |  |-- instance_test.cc
+|  |  |-- module_test.py
+|  |  |-- postconv.h
+|  |  |-- postconv.py
+|  |  |-- postconv_test.cc
+|  |  |-- postconv_test.py
+|  |  |-- postproc.py
+|  |  |-- postproc_test.py
+|  |  |-- primer.md
+|  |  |-- proto.py
+|  |  |-- proto_test.py
+|  |  |-- proto_util.cc
+|  |  |-- proto_util.h
+|  |  |-- py2slots.py
+|  |  |-- py3slots.py
+|  |  |-- pyext.py
+|  |  |-- pyext_test.py
+|  |  |-- pyobj.h
+|  |  |-- pyobj_test.cc
+|  |  |-- pyproto.cc
+|  |  |-- pyproto.h
+|  |  |-- pytd2proto.py
+|  |  |-- pytd2proto_test.py
+|  |  |-- pytd_parser.py
+|  |  |-- pytd_parser_test.py
+|  |  |-- runtime.cc
+|  |  |-- runtime.h
+|  |  |-- slot_extractor.py
+|  |  |-- slots.cc
+|  |  |-- slots.h
+|  |  |-- slots.py
+|  |  |-- slots_test.py
+|  |  |-- stltypes.h
+|  |  |-- type_customization.py
+|  |  |-- types.cc
+|  |  |-- types.h
+|  |  |-- types_test.py
+|  |  |-- utils
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- __init__.py
+|  |  |  |-- proto_util.clif
+|  |-- testing
+|  |  |-- CMakeLists.txt
+|  |  |-- absl_int128.h
+|  |  |-- absl_uint128.h
+|  |  |-- call_method.h
+|  |  |-- callback.h
+|  |  |-- capsule_fqcppname.h
+|  |  |-- circular.h
+|  |  |-- class_module_attr.h
+|  |  |-- classes.h
+|  |  |-- const_char_ptr.h
+|  |  |-- const_pointer_return.h
+|  |  |-- default_args.h
+|  |  |-- derived_in_other_header
+|  |  |  |-- concrete_base.h
+|  |  |  |-- concrete_derived.h
+|  |  |  |-- python
+|  |  |  |  |-- concrete_base.clif
+|  |  |  |  |-- concrete_derived.clif
+|  |  |  |  |-- shared_unique_interop.clif
+|  |  |  |  |-- shared_unique_interop_test.py
+|  |  |  |  |-- virtual_base.clif
+|  |  |  |  |-- virtual_derived.clif
+|  |  |  |-- shared_unique_interop.h
+|  |  |  |-- virtual_base.h
+|  |  |  |-- virtual_derived.h
+|  |  |-- diamond_inheritance.h
+|  |  |-- enable_instance_dict.h
+|  |  |-- extend_classmethods.cc
+|  |  |-- extend_classmethods.h
+|  |  |-- extend_default_value.h
+|  |  |-- extend_from_clifaux.h
+|  |  |-- extend_init.h
+|  |  |-- extend_methods.h
+|  |  |-- extend_properties.h
+|  |  |-- extension_type_refcount.h
+|  |  |-- hidden.h
+|  |  |-- implicit_conversion.h
+|  |  |-- imported_inheritance.h
+|  |  |-- imported_methods.h
+|  |  |-- iterator.h
+|  |  |-- nested.proto
+|  |  |-- nested_callbacks.h
+|  |  |-- nested_fields.h
+|  |  |-- nested_inheritance.h
+|  |  |-- nested_types.h
+|  |  |-- non_raising.h
+|  |  |-- nonzero_mapping.h
+|  |  |-- number_methods.h
+|  |  |-- operators.h
+|  |  |-- output_parameter.h
+|  |  |-- overload.h
+|  |  |-- pass_none.h
+|  |  |-- pickle_compatibility.h
+|  |  |-- pointer_parameters.h
+|  |  |-- postproc.h
+|  |  |-- python
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- absl_int128.clif
+|  |  |  |-- absl_int128_test.py
+|  |  |  |-- absl_uint128.clif
+|  |  |  |-- absl_uint128_test.py
+|  |  |  |-- call_method.clif
+|  |  |  |-- call_method_test.py
+|  |  |  |-- callback.clif
+|  |  |  |-- callback_test.py
+|  |  |  |-- capsule_fqcppname.clif
+|  |  |  |-- capsule_fqcppname_test.py
+|  |  |  |-- circular.clif
+|  |  |  |-- circular_test.py
+|  |  |  |-- class_module_attr.clif
+|  |  |  |-- class_module_attr_test.py
+|  |  |  |-- classes.clif
+|  |  |  |-- classes_test.py
+|  |  |  |-- const_char_ptr.clif
+|  |  |  |-- const_char_ptr_test.py
+|  |  |  |-- const_pointer_return.clif
+|  |  |  |-- const_pointer_return_test.py
+|  |  |  |-- default_args.clif
+|  |  |  |-- default_args_test.py
+|  |  |  |-- diamond_inheritance.clif
+|  |  |  |-- diamond_inheritance_test.py
+|  |  |  |-- enable_instance_dict.clif
+|  |  |  |-- enable_instance_dict_test.py
+|  |  |  |-- extend_classmethods.clif
+|  |  |  |-- extend_classmethods_clif_aux.h
+|  |  |  |-- extend_classmethods_test.py
+|  |  |  |-- extend_default_value.clif
+|  |  |  |-- extend_default_value_clif_aux.h
+|  |  |  |-- extend_default_value_test.py
+|  |  |  |-- extend_from_clifaux.clif
+|  |  |  |-- extend_from_clifaux_clif_aux.h
+|  |  |  |-- extend_from_clifaux_test.py
+|  |  |  |-- extend_init.clif
+|  |  |  |-- extend_init_clif_aux.h
+|  |  |  |-- extend_init_test.py
+|  |  |  |-- extend_methods.clif
+|  |  |  |-- extend_methods_test.py
+|  |  |  |-- extend_properties.clif
+|  |  |  |-- extend_properties_clif_aux.h
+|  |  |  |-- extend_properties_test.py
+|  |  |  |-- extension_type_refcount.clif
+|  |  |  |-- extension_type_refcount_test.py
+|  |  |  |-- hidden.clif
+|  |  |  |-- hidden_test.py
+|  |  |  |-- implicit_conversion.clif
+|  |  |  |-- implicit_conversion_test.py
+|  |  |  |-- imported_inheritance.clif
+|  |  |  |-- imported_inheritance_test.py
+|  |  |  |-- imported_methods.clif
+|  |  |  |-- imported_methods_test.py
+|  |  |  |-- iterator.clif
+|  |  |  |-- iterator_test.py
+|  |  |  |-- nested_callbacks.clif
+|  |  |  |-- nested_callbacks_test.py
+|  |  |  |-- nested_fields.clif
+|  |  |  |-- nested_fields_test.py
+|  |  |  |-- nested_inheritance.clif
+|  |  |  |-- nested_inheritance_test.py
+|  |  |  |-- nested_types.clif
+|  |  |  |-- nested_types_test.py
+|  |  |  |-- non_raising.clif
+|  |  |  |-- non_raising_test.py
+|  |  |  |-- nonzero_mapping.clif
+|  |  |  |-- nonzero_mapping_test.py
+|  |  |  |-- number_methods.clif
+|  |  |  |-- number_methods_test.py
+|  |  |  |-- operators.clif
+|  |  |  |-- operators_test.py
+|  |  |  |-- output_parameter.clif
+|  |  |  |-- output_parameter_test.py
+|  |  |  |-- overload.clif
+|  |  |  |-- overload_test.py
+|  |  |  |-- pass_none.clif
+|  |  |  |-- pass_none_test.py
+|  |  |  |-- pickle_compatibility.clif
+|  |  |  |-- pickle_compatibility.py
+|  |  |  |-- pickle_compatibility_helper.py
+|  |  |  |-- pickle_compatibility_test.py
+|  |  |  |-- pickle_compatibility_unpickle_subtest_binary.py
+|  |  |  |-- pointer_parameters.clif
+|  |  |  |-- pointer_parameters_test.py
+|  |  |  |-- postproc.clif
+|  |  |  |-- postproc_test.py
+|  |  |  |-- return_value_policy.clif
+|  |  |  |-- return_value_policy_test.py
+|  |  |  |-- sequence_methods.clif
+|  |  |  |-- sequence_methods_test.py
+|  |  |  |-- shared_ptr_proto_member.clif
+|  |  |  |-- shared_ptr_proto_member_test.py
+|  |  |  |-- simple_type_conversions.clif
+|  |  |  |-- simple_type_conversions_test.py
+|  |  |  |-- slots.clif
+|  |  |  |-- slots_test.py
+|  |  |  |-- smart_ptrs.clif
+|  |  |  |-- smart_ptrs_test.py
+|  |  |  |-- special_classes.clif
+|  |  |  |-- special_classes_test.py
+|  |  |  |-- static_methods.clif
+|  |  |  |-- static_methods_test.py
+|  |  |  |-- std_complex.clif
+|  |  |  |-- std_complex_test.py
+|  |  |  |-- std_containers.clif
+|  |  |  |-- std_containers_test.py
+|  |  |  |-- std_variant.clif
+|  |  |  |-- std_variant_test.py
+|  |  |  |-- supress_upcasts.clif
+|  |  |  |-- supress_upcasts_test.py
+|  |  |  |-- t1.clif
+|  |  |  |-- t10.clif
+|  |  |  |-- t10_test.py
+|  |  |  |-- t12.clif
+|  |  |  |-- t12_test.py
+|  |  |  |-- t1_test.py
+|  |  |  |-- t2.clif
+|  |  |  |-- t2_test.py
+|  |  |  |-- t3.clif
+|  |  |  |-- t3_test.py
+|  |  |  |-- t4.clif
+|  |  |  |-- t4_test.py
+|  |  |  |-- t6.clif
+|  |  |  |-- t6_list.h
+|  |  |  |-- t6_test.py
+|  |  |  |-- t7.clif
+|  |  |  |-- t7_test.py
+|  |  |  |-- t9.clif
+|  |  |  |-- t9_test.py
+|  |  |  |-- template_alias.clif
+|  |  |  |-- template_alias_test.py
+|  |  |  |-- templates.clif
+|  |  |  |-- templates_test.py
+|  |  |  |-- top_level_pass.clif
+|  |  |  |-- top_level_pass_test.py
+|  |  |  |-- type_caster.clif
+|  |  |  |-- type_caster_test.py
+|  |  |  |-- variables.clif
+|  |  |  |-- variables_test.py
+|  |  |  |-- vector_const_elem_ptr.clif
+|  |  |  |-- vector_const_elem_ptr_test.py
+|  |  |  |-- virtual_derived_before_base.clif
+|  |  |  |-- virtual_derived_before_base_test.py
+|  |  |  |-- virtual_funcs.clif
+|  |  |  |-- virtual_funcs_basics.clif
+|  |  |  |-- virtual_funcs_basics_test.py
+|  |  |  |-- virtual_funcs_test.py
+|  |  |  |-- virtual_py_cpp_mix.clif
+|  |  |  |-- virtual_py_cpp_mix_test.py
+|  |  |-- return_value_policy.h
+|  |  |-- sequence_methods.h
+|  |  |-- shared_ptr_proto_member.h
+|  |  |-- simple_type_conversions.h
+|  |  |-- slots.h
+|  |  |-- smart_ptrs.h
+|  |  |-- special_classes.h
+|  |  |-- static_methods.h
+|  |  |-- std_complex.h
+|  |  |-- std_containers.h
+|  |  |-- std_variant.cc
+|  |  |-- std_variant.h
+|  |  |-- supress_upcasts.h
+|  |  |-- t1.h
+|  |  |-- t10.h
+|  |  |-- t12.h
+|  |  |-- t2.cc
+|  |  |-- t2.h
+|  |  |-- t3.h
+|  |  |-- t4.cc
+|  |  |-- t4.h
+|  |  |-- t6.h
+|  |  |-- t7.h
+|  |  |-- t9.cc
+|  |  |-- t9.h
+|  |  |-- template_alias.h
+|  |  |-- template_class.h
+|  |  |-- templates.h
+|  |  |-- top_level_pass.h
+|  |  |-- type_caster.h
+|  |  |-- value_holder.h
+|  |  |-- value_holder_clif_conversions.h
+|  |  |-- variables.h
+|  |  |-- vector_const_elem_ptr.h
+|  |  |-- virtual_derived_before_base.h
+|  |  |-- virtual_funcs.h
+|  |  |-- virtual_funcs_basics.h
+|  |  |-- virtual_py_cpp_mix.h
+|-- clif_build_rule.bzl
+|-- clif_configure.bzl
+|-- clif_deps.bzl
+|-- examples
+|  |-- CMakeLists.txt
+|  |-- README.md
+|  |-- callbacks
+|  |  |-- CMakeLists.txt
+|  |  |-- callbacks.h
+|  |  |-- python
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- callbacks.clif
+|  |  |  |-- callbacks_test.py
+|  |-- clif_aux
+|  |  |-- CMakeLists.txt
+|  |  |-- lib_hello.h
+|  |  |-- python
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- lib_hello.clif
+|  |  |  |-- lib_hello_clif_aux.h
+|  |  |  |-- lib_hello_test.py
+|  |-- extend_from_clifaux
+|  |  |-- CMakeLists.txt
+|  |  |-- example.h
+|  |  |-- python
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- example.clif
+|  |  |  |-- example_clif_aux.h
+|  |  |  |-- example_test.py
+|  |-- extend_from_python
+|  |  |-- CMakeLists.txt
+|  |  |-- example.h
+|  |  |-- python
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- example.clif
+|  |  |  |-- example.py
+|  |  |  |-- example_test.py
+|  |-- inheritance
+|  |  |-- CMakeLists.txt
+|  |  |-- base.h
+|  |  |-- hidden_base.h
+|  |  |-- inheritance.h
+|  |  |-- operation.h
+|  |  |-- python
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- base.clif
+|  |  |  |-- hidden_base.clif
+|  |  |  |-- hidden_base_test.py
+|  |  |  |-- inheritance.clif
+|  |  |  |-- inheritance_test.py
+|  |  |  |-- operation.clif
+|  |  |  |-- operation_test.py
+|  |  |  |-- python_inheritance.clif
+|  |  |-- python_inheritance.h
+|  |-- property
+|  |  |-- CMakeLists.txt
+|  |  |-- myoptions.h
+|  |  |-- python
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- myoptions.clif
+|  |  |  |-- myoptions_test.py
+|  |-- setup.py
+|  |-- templates
+|  |  |-- CMakeLists.txt
+|  |  |-- python
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- templates.clif
+|  |  |  |-- templates_test.py
+|  |  |-- templates.h
+|  |-- unique_ptr_member
+|  |  |-- CMakeLists.txt
+|  |  |-- python
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- unique_ptr_member.clif
+|  |  |  |-- unique_ptr_member_test.py
+|  |  |-- unique_ptr_member.h
+|  |-- wrap_protos
+|  |  |-- CMakeLists.txt
+|  |  |-- protos
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- __init__.py
+|  |  |  |-- sample.proto
+|  |  |-- python
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- wrap_protos.clif
+|  |  |  |-- wrap_protos_test.py
+|  |  |-- wrap_protos.h
+|  |-- wrapfunc
+|  |  |-- CMakeLists.txt
+|  |  |-- default_args.h
+|  |  |-- python
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- default_args.clif
+|  |  |  |-- default_args_test.py
+|  |  |  |-- wrapfunc.clif
+|  |  |  |-- wrapfunc_test.py
+|  |  |-- wrapfunc.cc
+|  |  |-- wrapfunc.h
+|  |-- wrapmethod
+|  |  |-- CMakeLists.txt
+|  |  |-- python
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- wrapmethod.clif
+|  |  |  |-- wrapmethod_test.py
+|  |  |-- wrapmethod.cc
+|  |  |-- wrapmethod.h
+|  |-- wrappod
+|  |  |-- CMakeLists.txt
+|  |  |-- python
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- wrappod.clif
+|  |  |  |-- wrappod_test.py
+|  |  |-- wrappod.h
+|-- requirements.txt
+|-- setup.py
+|-- third_party
+|  |-- BUILD
+|  |-- llvm
+|  |  |-- BUILD
+|  |-- py
+|  |  |-- BUILD
+|  |  |-- BUILD.tpl
+|  |  |-- python_configure.bzl

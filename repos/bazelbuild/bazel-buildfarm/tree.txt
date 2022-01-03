@@ -1,0 +1,615 @@
+|-- .bazelci
+|  |-- docker_unit_test.sh
+|  |-- format.sh
+|  |-- integration_test.sh
+|  |-- package_name_check.sh
+|  |-- presubmit.yml
+|  |-- run_abseil_test.sh
+|  |-- run_generative_cc_many_test.sh
+|  |-- static_analysis_checks.xml
+|  |-- static_analyze.sh
+|  |-- test_buildfarm_container.sh
+|  |-- unused_deps.sh
+|-- .bazelignore
+|-- .bazelrc
+|-- .bazelversion
+|-- .gitignore
+|-- AUTHORS
+|-- BUILD
+|-- CODEOWNERS
+|-- CONTRIBUTING.md
+|-- CONTRIBUTORS
+|-- Dockerfile
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- admin
+|  |-- main
+|  |  |-- README.txt
+|  |  |-- mvn
+|  |  |  |-- wrapper
+|  |  |  |  |-- MavenWrapperDownloader.java
+|  |  |  |  |-- maven-wrapper.jar
+|  |  |  |  |-- maven-wrapper.properties
+|  |  |-- mvnw
+|  |  |-- pom.xml
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- docker
+|  |  |  |  |  |-- Dockerfile
+|  |  |  |  |-- java
+|  |  |  |  |  |-- tech
+|  |  |  |  |  |  |-- aurora
+|  |  |  |  |  |  |  |-- bfadmin
+|  |  |  |  |  |  |  |  |-- BuildfarmAdmin.java
+|  |  |  |  |  |  |  |  |-- controller
+|  |  |  |  |  |  |  |  |  |-- AdminController.java
+|  |  |  |  |  |  |  |  |-- model
+|  |  |  |  |  |  |  |  |  |-- Ec2Instance.java
+|  |  |  |  |  |  |  |  |-- rest
+|  |  |  |  |  |  |  |  |  |-- AdminApi.java
+|  |  |  |  |  |  |  |  |-- service
+|  |  |  |  |  |  |  |  |  |-- AdminService.java
+|  |  |  |  |  |  |  |  |  |-- impl
+|  |  |  |  |  |  |  |  |  |  |-- AdminServiceImpl.java
+|  |  |  |  |-- resources
+|  |  |  |  |  |-- application.properties
+|  |  |  |  |  |-- logback-spring.xml
+|  |  |  |  |  |-- proto
+|  |  |  |  |  |  |-- annotations.proto
+|  |  |  |  |  |  |-- any.proto
+|  |  |  |  |  |  |-- build_event_stream.proto
+|  |  |  |  |  |  |-- build_events.proto
+|  |  |  |  |  |  |-- build_status.proto
+|  |  |  |  |  |  |-- buildfarm.proto
+|  |  |  |  |  |  |-- client.proto
+|  |  |  |  |  |  |-- command_line.proto
+|  |  |  |  |  |  |-- descriptor.proto
+|  |  |  |  |  |  |-- duration.proto
+|  |  |  |  |  |  |-- empty.proto
+|  |  |  |  |  |  |-- http.proto
+|  |  |  |  |  |  |-- invocation_policy.proto
+|  |  |  |  |  |  |-- operations.proto
+|  |  |  |  |  |  |-- option_filters.proto
+|  |  |  |  |  |  |-- publish_build_event.proto
+|  |  |  |  |  |  |-- remote_execution.proto
+|  |  |  |  |  |  |-- semver.proto
+|  |  |  |  |  |  |-- status.proto
+|  |  |  |  |  |  |-- timestamp.proto
+|  |  |  |  |  |-- static
+|  |  |  |  |  |  |-- assets
+|  |  |  |  |  |  |  |-- css
+|  |  |  |  |  |  |  |  |-- bfadmin-custom.css
+|  |  |  |  |  |  |  |  |-- bfadmin.css
+|  |  |  |  |  |  |  |-- img
+|  |  |  |  |  |  |  |  |-- dashboard.png
+|  |  |  |  |  |  |  |  |-- favicon.ico
+|  |  |  |  |  |  |  |  |-- thisisfine.jpg
+|  |  |  |  |  |  |  |-- js
+|  |  |  |  |  |  |  |  |-- bfadmin-events.js
+|  |  |  |  |  |  |  |  |-- bfadmin.js
+|  |  |  |  |  |  |  |  |-- datatables.js
+|  |  |  |  |  |  |  |-- vendor
+|  |  |  |  |  |  |  |  |-- datatables
+|  |  |  |  |  |  |  |  |  |-- dataTables.bootstrap4.css
+|  |  |  |  |  |  |  |  |  |-- dataTables.bootstrap4.js
+|  |  |  |  |  |  |  |  |-- fontawesome-free
+|  |  |  |  |  |  |  |  |  |-- css
+|  |  |  |  |  |  |  |  |  |  |-- all.css
+|  |  |  |  |  |  |  |  |  |-- webfonts
+|  |  |  |  |  |  |  |  |  |  |-- fa-brands-400.eot
+|  |  |  |  |  |  |  |  |  |  |-- fa-brands-400.svg
+|  |  |  |  |  |  |  |  |  |  |-- fa-brands-400.ttf
+|  |  |  |  |  |  |  |  |  |  |-- fa-brands-400.woff
+|  |  |  |  |  |  |  |  |  |  |-- fa-brands-400.woff2
+|  |  |  |  |  |  |  |  |  |  |-- fa-regular-400.eot
+|  |  |  |  |  |  |  |  |  |  |-- fa-regular-400.svg
+|  |  |  |  |  |  |  |  |  |  |-- fa-regular-400.ttf
+|  |  |  |  |  |  |  |  |  |  |-- fa-regular-400.woff
+|  |  |  |  |  |  |  |  |  |  |-- fa-regular-400.woff2
+|  |  |  |  |  |  |  |  |  |  |-- fa-solid-900.eot
+|  |  |  |  |  |  |  |  |  |  |-- fa-solid-900.svg
+|  |  |  |  |  |  |  |  |  |  |-- fa-solid-900.ttf
+|  |  |  |  |  |  |  |  |  |  |-- fa-solid-900.woff
+|  |  |  |  |  |  |  |  |  |  |-- fa-solid-900.woff2
+|  |  |  |  |  |-- templates
+|  |  |  |  |  |  |-- dashboard.html
+|  |  |  |  |  |  |-- error.html
+|  |  |  |  |  |  |-- fragments
+|  |  |  |  |  |  |  |-- template.html
+|  |-- test
+|  |  |-- run.sh
+|-- as-nobody-windows.c
+|-- as-nobody.c
+|-- bazelw
+|-- config
+|  |-- BUILD
+|-- defs.bzl
+|-- delay.sh
+|-- deps.bzl
+|-- examples
+|  |-- BUILD
+|  |-- bf-run
+|  |-- debug.logging.properties
+|  |-- development-redis-cluster.sh
+|  |-- intellij-server-run-config.png
+|  |-- server.config.example
+|  |-- shard-server.config.example
+|  |-- shard-worker.config.example
+|  |-- worker.config.example
+|-- generate_coverage.sh
+|-- ij.bazelproject
+|-- images.bzl
+|-- pip.bzl
+|-- src
+|  |-- main
+|  |  |-- java
+|  |  |  |-- build
+|  |  |  |  |-- buildfarm
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CacheLoad.java
+|  |  |  |  |  |-- Cancel.java
+|  |  |  |  |  |-- Cat.java
+|  |  |  |  |  |-- Executor.java
+|  |  |  |  |  |-- Extract.java
+|  |  |  |  |  |-- FindOperations.java
+|  |  |  |  |  |-- GracefulShutdownTest.java
+|  |  |  |  |  |-- Hist.java
+|  |  |  |  |  |-- IndexWorker.java
+|  |  |  |  |  |-- Mount.java
+|  |  |  |  |  |-- WorkerProfile.java
+|  |  |  |  |  |-- WorkerProfilePrinter.java
+|  |  |  |  |  |-- ac
+|  |  |  |  |  |  |-- ActionCache.java
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- FilesystemActionCache.java
+|  |  |  |  |  |  |-- GrpcActionCache.java
+|  |  |  |  |  |-- admin
+|  |  |  |  |  |  |-- Admin.java
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- aws
+|  |  |  |  |  |  |  |-- AwsAdmin.java
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- gcp
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- GcpAdmin.java
+|  |  |  |  |  |-- backplane
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- Backplane.java
+|  |  |  |  |  |-- cas
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- ContentAddressableStorage.java
+|  |  |  |  |  |  |-- ContentAddressableStorages.java
+|  |  |  |  |  |  |-- DigestMismatchException.java
+|  |  |  |  |  |  |-- GrpcCAS.java
+|  |  |  |  |  |  |-- MemoryCAS.java
+|  |  |  |  |  |  |-- MemoryWriteOutputStream.java
+|  |  |  |  |  |  |-- Writes.java
+|  |  |  |  |  |  |-- cfc
+|  |  |  |  |  |  |  |-- CASFileCache.java
+|  |  |  |  |  |  |  |-- DirectoriesIndex.java
+|  |  |  |  |  |  |  |-- EntryPathStrategy.java
+|  |  |  |  |  |  |  |-- FileDirectoriesIndex.java
+|  |  |  |  |  |  |  |-- HexBucketEntryPathStrategy.java
+|  |  |  |  |  |  |  |-- MemoryDirectoriesIndex.java
+|  |  |  |  |  |  |  |-- MemoryFileDirectoriesIndex.java
+|  |  |  |  |  |  |  |-- ReadThroughInputStream.java
+|  |  |  |  |  |  |  |-- SqliteFileDirectoriesIndex.java
+|  |  |  |  |  |  |  |-- WriteOutputStream.java
+|  |  |  |  |  |-- common
+|  |  |  |  |  |  |-- Actions.java
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CasIndexResults.java
+|  |  |  |  |  |  |-- CasIndexSettings.java
+|  |  |  |  |  |  |-- CommandUtils.java
+|  |  |  |  |  |  |-- DigestUtil.java
+|  |  |  |  |  |  |-- EntryLimitException.java
+|  |  |  |  |  |  |-- Errors.java
+|  |  |  |  |  |  |-- ExecutionProperties.java
+|  |  |  |  |  |  |-- ExecutionWrappers.java
+|  |  |  |  |  |  |-- InputStreamFactory.java
+|  |  |  |  |  |  |-- LinuxSandboxOptions.java
+|  |  |  |  |  |  |-- LoggingMain.java
+|  |  |  |  |  |  |-- MapUtils.java
+|  |  |  |  |  |  |-- Poller.java
+|  |  |  |  |  |  |-- RingBufferInputStream.java
+|  |  |  |  |  |  |-- ScanCount.java
+|  |  |  |  |  |  |-- Size.java
+|  |  |  |  |  |  |-- StringVisitor.java
+|  |  |  |  |  |  |-- ThreadSafety.java
+|  |  |  |  |  |  |-- Time.java
+|  |  |  |  |  |  |-- TokenizableIterator.java
+|  |  |  |  |  |  |-- TreeIterator.java
+|  |  |  |  |  |  |-- Trees.java
+|  |  |  |  |  |  |-- UrlPath.java
+|  |  |  |  |  |  |-- WaitingLogManager.java
+|  |  |  |  |  |  |-- Watchdog.java
+|  |  |  |  |  |  |-- Watcher.java
+|  |  |  |  |  |  |-- WorkerIndexer.java
+|  |  |  |  |  |  |-- Write.java
+|  |  |  |  |  |  |-- function
+|  |  |  |  |  |  |  |-- IOSupplier.java
+|  |  |  |  |  |  |  |-- InterruptingConsumer.java
+|  |  |  |  |  |  |  |-- InterruptingPredicate.java
+|  |  |  |  |  |  |  |-- InterruptingRunnable.java
+|  |  |  |  |  |  |-- grpc
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- ByteStreamHelper.java
+|  |  |  |  |  |  |  |-- DelegateServerCallStreamObserver.java
+|  |  |  |  |  |  |  |-- Retrier.java
+|  |  |  |  |  |  |  |-- RetryException.java
+|  |  |  |  |  |  |  |-- StubWriteOutputStream.java
+|  |  |  |  |  |  |  |-- TracingMetadataUtils.java
+|  |  |  |  |  |  |  |-- UniformDelegateServerCallStreamObserver.java
+|  |  |  |  |  |  |-- io
+|  |  |  |  |  |  |  |-- ByteStringQueueInputStream.java
+|  |  |  |  |  |  |  |-- Directories.java
+|  |  |  |  |  |  |  |-- Dirent.java
+|  |  |  |  |  |  |  |-- EvenMoreFiles.java
+|  |  |  |  |  |  |  |-- FFIdirent.java
+|  |  |  |  |  |  |  |-- FeedbackOutputStream.java
+|  |  |  |  |  |  |  |-- FileStatus.java
+|  |  |  |  |  |  |  |-- JnrDirent.java
+|  |  |  |  |  |  |  |-- LibC.java
+|  |  |  |  |  |  |  |-- NamedFileKey.java
+|  |  |  |  |  |  |  |-- PosixDirent.java
+|  |  |  |  |  |  |  |-- Utils.java
+|  |  |  |  |  |  |-- redis
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- BalancedRedisQueue.java
+|  |  |  |  |  |  |  |-- EligibilityResult.java
+|  |  |  |  |  |  |  |-- FilteredProvisions.java
+|  |  |  |  |  |  |  |-- ProvisionedRedisQueue.java
+|  |  |  |  |  |  |  |-- RedisClient.java
+|  |  |  |  |  |  |  |-- RedisHashtags.java
+|  |  |  |  |  |  |  |-- RedisMap.java
+|  |  |  |  |  |  |  |-- RedisNodeHashes.java
+|  |  |  |  |  |  |  |-- RedisQueue.java
+|  |  |  |  |  |  |  |-- RedisSlotToHash.java
+|  |  |  |  |  |-- instance
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- Instance.java
+|  |  |  |  |  |  |-- MatchListener.java
+|  |  |  |  |  |  |-- Utils.java
+|  |  |  |  |  |  |-- memory
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- ByteStringStreamSource.java
+|  |  |  |  |  |  |  |-- DelegateCASMap.java
+|  |  |  |  |  |  |  |-- MemoryInstance.java
+|  |  |  |  |  |  |-- queues
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- Worker.java
+|  |  |  |  |  |  |  |-- WorkerQueue.java
+|  |  |  |  |  |  |  |-- WorkerQueueConfigurations.java
+|  |  |  |  |  |  |  |-- WorkerQueues.java
+|  |  |  |  |  |  |-- server
+|  |  |  |  |  |  |  |-- AbstractServerInstance.java
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- GetDirectoryFunction.java
+|  |  |  |  |  |  |  |-- OperationsMap.java
+|  |  |  |  |  |  |  |-- WatchFuture.java
+|  |  |  |  |  |  |-- shard
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CasWorkerMap.java
+|  |  |  |  |  |  |  |-- DispatchedMonitor.java
+|  |  |  |  |  |  |  |-- JedisCasWorkerMap.java
+|  |  |  |  |  |  |  |-- JedisClusterFactory.java
+|  |  |  |  |  |  |  |-- OperationQueue.java
+|  |  |  |  |  |  |  |-- ReadThroughActionCache.java
+|  |  |  |  |  |  |  |-- RedisShardBackplane.java
+|  |  |  |  |  |  |  |-- RedisShardSubscriber.java
+|  |  |  |  |  |  |  |-- RedisShardSubscription.java
+|  |  |  |  |  |  |  |-- RedissonCasWorkerMap.java
+|  |  |  |  |  |  |  |-- RemoteInputStreamFactory.java
+|  |  |  |  |  |  |  |-- ShardActionCache.java
+|  |  |  |  |  |  |  |-- ShardInstance.java
+|  |  |  |  |  |  |  |-- TimedWatcher.java
+|  |  |  |  |  |  |  |-- Util.java
+|  |  |  |  |  |  |  |-- WorkerStubs.java
+|  |  |  |  |  |  |  |-- Writes.java
+|  |  |  |  |  |  |-- stub
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- ByteStreamUploader.java
+|  |  |  |  |  |  |  |-- Chunker.java
+|  |  |  |  |  |  |  |-- StubInstance.java
+|  |  |  |  |  |-- logging.properties
+|  |  |  |  |  |-- metrics
+|  |  |  |  |  |  |-- AbstractMetricsPublisher.java
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- MetricsPublisher.java
+|  |  |  |  |  |  |-- aws
+|  |  |  |  |  |  |  |-- AwsMetricsPublisher.java
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- gcp
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- GcpMetricsPublisher.java
+|  |  |  |  |  |  |-- log
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- LogMetricsPublisher.java
+|  |  |  |  |  |  |-- prometheus
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- PrometheusPublisher.java
+|  |  |  |  |  |-- operations
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- EnrichedOperation.java
+|  |  |  |  |  |  |-- FindOperationsResults.java
+|  |  |  |  |  |  |-- FindOperationsSettings.java
+|  |  |  |  |  |  |-- finder
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- EnrichedOperationBuilder.java
+|  |  |  |  |  |  |  |-- OperationsFinder.java
+|  |  |  |  |  |-- proxy
+|  |  |  |  |  |  |-- http
+|  |  |  |  |  |  |  |-- AbstractHttpHandler.java
+|  |  |  |  |  |  |  |-- ActionCacheService.java
+|  |  |  |  |  |  |  |-- AuthAndTLSOptions.java
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- BlobWriteObserver.java
+|  |  |  |  |  |  |  |-- ByteStreamService.java
+|  |  |  |  |  |  |  |-- ChunkOutputStream.java
+|  |  |  |  |  |  |  |-- CompleteWrite.java
+|  |  |  |  |  |  |  |-- ContentAddressableStorageService.java
+|  |  |  |  |  |  |  |-- DownloadCommand.java
+|  |  |  |  |  |  |  |-- GoogleAuthUtils.java
+|  |  |  |  |  |  |  |-- HttpBlobStore.java
+|  |  |  |  |  |  |  |-- HttpDownloadHandler.java
+|  |  |  |  |  |  |  |-- HttpException.java
+|  |  |  |  |  |  |  |-- HttpProxy.java
+|  |  |  |  |  |  |  |-- HttpProxyOptions.java
+|  |  |  |  |  |  |  |-- HttpUploadHandler.java
+|  |  |  |  |  |  |  |-- SimpleBlobStore.java
+|  |  |  |  |  |  |  |-- SkipLimitOutputStream.java
+|  |  |  |  |  |  |  |-- UploadCommand.java
+|  |  |  |  |  |  |  |-- Utils.java
+|  |  |  |  |  |  |  |-- Write.java
+|  |  |  |  |  |  |  |-- WriteObserver.java
+|  |  |  |  |  |  |  |-- WriteObserverSource.java
+|  |  |  |  |  |  |  |-- WriteStreamObserver.java
+|  |  |  |  |  |-- server
+|  |  |  |  |  |  |-- ActionCacheService.java
+|  |  |  |  |  |  |-- AdminService.java
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- BuildFarmInstances.java
+|  |  |  |  |  |  |-- BuildFarmServer.java
+|  |  |  |  |  |  |-- BuildFarmServerOptions.java
+|  |  |  |  |  |  |-- ByteStreamService.java
+|  |  |  |  |  |  |-- CapabilitiesService.java
+|  |  |  |  |  |  |-- ContentAddressableStorageService.java
+|  |  |  |  |  |  |-- ExecutionService.java
+|  |  |  |  |  |  |-- FetchService.java
+|  |  |  |  |  |  |-- InstanceNotFoundException.java
+|  |  |  |  |  |  |-- Instances.java
+|  |  |  |  |  |  |-- OperationQueueService.java
+|  |  |  |  |  |  |-- OperationsService.java
+|  |  |  |  |  |  |-- PublishBuildEventService.java
+|  |  |  |  |  |  |-- ServiceNotFoundException.java
+|  |  |  |  |  |  |-- WriteStreamObserver.java
+|  |  |  |  |  |-- worker
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- ByteStringWriteReader.java
+|  |  |  |  |  |  |-- DequeueMatchEvaluator.java
+|  |  |  |  |  |  |-- DequeueMatchSettings.java
+|  |  |  |  |  |  |-- ExecuteActionStage.java
+|  |  |  |  |  |  |-- ExecutionDebugInfo.java
+|  |  |  |  |  |  |-- ExecutionDebugger.java
+|  |  |  |  |  |  |-- ExecutionPolicies.java
+|  |  |  |  |  |  |-- Executor.java
+|  |  |  |  |  |  |-- FileStatus.java
+|  |  |  |  |  |  |-- FuseCAS.java
+|  |  |  |  |  |  |-- InputFetchStage.java
+|  |  |  |  |  |  |-- InputFetcher.java
+|  |  |  |  |  |  |-- MatchStage.java
+|  |  |  |  |  |  |-- OperationContext.java
+|  |  |  |  |  |  |-- OutputDirectory.java
+|  |  |  |  |  |  |-- Pipeline.java
+|  |  |  |  |  |  |-- PipelineStage.java
+|  |  |  |  |  |  |-- PutOperationStage.java
+|  |  |  |  |  |  |-- ReportResultStage.java
+|  |  |  |  |  |  |-- RetryingMatchListener.java
+|  |  |  |  |  |  |-- SuperscalarPipelineStage.java
+|  |  |  |  |  |  |-- UploadManifest.java
+|  |  |  |  |  |  |-- Utils.java
+|  |  |  |  |  |  |-- WorkerContext.java
+|  |  |  |  |  |  |-- cgroup
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- Controller.java
+|  |  |  |  |  |  |  |-- Cpu.java
+|  |  |  |  |  |  |  |-- Group.java
+|  |  |  |  |  |  |  |-- Mem.java
+|  |  |  |  |  |  |-- memory
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- InjectedCASFileCache.java
+|  |  |  |  |  |  |  |-- OperationQueueClient.java
+|  |  |  |  |  |  |  |-- OperationQueueWorkerContext.java
+|  |  |  |  |  |  |  |-- Worker.java
+|  |  |  |  |  |  |  |-- WorkerOptions.java
+|  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CpuLimits.java
+|  |  |  |  |  |  |  |-- ExecutionPropertiesParser.java
+|  |  |  |  |  |  |  |-- MemLimits.java
+|  |  |  |  |  |  |  |-- NetworkLimits.java
+|  |  |  |  |  |  |  |-- ResourceDecider.java
+|  |  |  |  |  |  |  |-- ResourceLimits.java
+|  |  |  |  |  |  |  |-- TestSizeResourceOverride.java
+|  |  |  |  |  |  |  |-- TestSizeResourceOverrides.java
+|  |  |  |  |  |  |  |-- TimeLimits.java
+|  |  |  |  |  |  |-- shard
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- CFCExecFileSystem.java
+|  |  |  |  |  |  |  |-- CasWriter.java
+|  |  |  |  |  |  |  |-- EmptyInputStreamFactory.java
+|  |  |  |  |  |  |  |-- ExecFileSystem.java
+|  |  |  |  |  |  |  |-- FailoverInputStreamFactory.java
+|  |  |  |  |  |  |  |-- FuseExecFileSystem.java
+|  |  |  |  |  |  |  |-- OperationPoller.java
+|  |  |  |  |  |  |  |-- ShardCASFileCache.java
+|  |  |  |  |  |  |  |-- ShardWorkerContext.java
+|  |  |  |  |  |  |  |-- ShardWorkerInstance.java
+|  |  |  |  |  |  |  |-- ShutDownWorkerGracefully.java
+|  |  |  |  |  |  |  |-- Worker.java
+|  |  |  |  |  |  |  |-- WorkerOptions.java
+|  |  |  |  |  |  |  |-- WorkerProfileService.java
+|  |  |-- protobuf
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- build
+|  |  |  |  |-- buildfarm
+|  |  |  |  |  |-- v1test
+|  |  |  |  |  |  |-- buildfarm.proto
+|  |-- test
+|  |  |-- abseil
+|  |  |  |-- .bazelversion
+|  |  |  |-- README.md
+|  |  |  |-- WORKSPACE
+|  |  |-- java
+|  |  |  |-- build
+|  |  |  |  |-- buildfarm
+|  |  |  |  |  |-- AllTests.java
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- Classpath.java
+|  |  |  |  |  |-- CustomSuite.java
+|  |  |  |  |  |-- TestSuiteBuilder.java
+|  |  |  |  |  |-- ac
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- GrpcActionCacheTest.java
+|  |  |  |  |  |-- cas
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- GrpcCASTest.java
+|  |  |  |  |  |  |-- MemoryCASTest.java
+|  |  |  |  |  |  |-- MemoryWriteOutputStreamTest.java
+|  |  |  |  |  |  |-- cfc
+|  |  |  |  |  |  |  |-- CASFileCacheTest.java
+|  |  |  |  |  |  |  |-- DirectoriesIndexTest.java
+|  |  |  |  |  |  |  |-- HexBucketEntryPathStrategyTest.java
+|  |  |  |  |  |-- common
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- DigestUtilTest.java
+|  |  |  |  |  |  |-- MapUtilsTest.java
+|  |  |  |  |  |  |-- RingBufferInputStreamTest.java
+|  |  |  |  |  |  |-- grpc
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- ByteStreamHelperTest.java
+|  |  |  |  |  |  |  |-- ByteStreamServiceWriter.java
+|  |  |  |  |  |  |  |-- StubWriteOutputStreamTest.java
+|  |  |  |  |  |  |-- io
+|  |  |  |  |  |  |  |-- ByteStringQueueInputStreamTest.java
+|  |  |  |  |  |  |  |-- DirectoriesTest.java
+|  |  |  |  |  |  |  |-- UtilsTest.java
+|  |  |  |  |  |  |-- redis
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- BalancedRedisQueueMockTest.java
+|  |  |  |  |  |  |  |-- BalancedRedisQueueTest.java
+|  |  |  |  |  |  |  |-- ProvisionedRedisQueueTest.java
+|  |  |  |  |  |  |  |-- RedisClientTest.java
+|  |  |  |  |  |  |  |-- RedisHashtagsTest.java
+|  |  |  |  |  |  |  |-- RedisMapMockTest.java
+|  |  |  |  |  |  |  |-- RedisNodeHashesMockTest.java
+|  |  |  |  |  |  |  |-- RedisNodeHashesTest.java
+|  |  |  |  |  |  |  |-- RedisQueueMockTest.java
+|  |  |  |  |  |  |  |-- RedisQueueTest.java
+|  |  |  |  |  |  |  |-- RedisSlotToHashTest.java
+|  |  |  |  |  |-- examples
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- ExampleConfigsTest.java
+|  |  |  |  |  |-- instance
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- memory
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- ByteStringStreamSourceTest.java
+|  |  |  |  |  |  |  |-- DelegateCASMapTest.java
+|  |  |  |  |  |  |  |-- MemoryInstanceTest.java
+|  |  |  |  |  |  |-- queues
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- WorkerQueuesTest.java
+|  |  |  |  |  |  |-- server
+|  |  |  |  |  |  |  |-- AbstractServerInstanceTest.java
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- shard
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- DispatchedMonitorTest.java
+|  |  |  |  |  |  |  |-- RedisShardBackplaneTest.java
+|  |  |  |  |  |  |  |-- RedisShardSubscriberTest.java
+|  |  |  |  |  |  |  |-- ShardInstanceTest.java
+|  |  |  |  |  |  |  |-- TimedWatcherTest.java
+|  |  |  |  |  |  |  |-- UnobservableWatcher.java
+|  |  |  |  |  |  |  |-- UtilTest.java
+|  |  |  |  |  |  |-- stub
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- ByteStreamUploaderTest.java
+|  |  |  |  |  |  |  |-- StubInstanceTest.java
+|  |  |  |  |  |-- logging.properties
+|  |  |  |  |  |-- metrics
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- MetricsPublisherTest.java
+|  |  |  |  |  |-- proxy
+|  |  |  |  |  |  |-- http
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- ByteStreamServiceTest.java
+|  |  |  |  |  |-- server
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- BuildFarmServerTest.java
+|  |  |  |  |  |  |-- ByteStreamServiceTest.java
+|  |  |  |  |  |  |-- ExecutionServiceTest.java
+|  |  |  |  |  |  |-- FutureWriteResponseObserver.java
+|  |  |  |  |  |-- worker
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- DequeueMatchEvaluatorTest.java
+|  |  |  |  |  |  |-- ExecuteActionStageTest.java
+|  |  |  |  |  |  |-- FuseCASTest.java
+|  |  |  |  |  |  |-- InputFetchStageTest.java
+|  |  |  |  |  |  |-- OutputDirectoryTest.java
+|  |  |  |  |  |  |-- PipelineStageTest.java
+|  |  |  |  |  |  |-- PipelineTest.java
+|  |  |  |  |  |  |-- ReportResultStageTest.java
+|  |  |  |  |  |  |-- StubWorkerContext.java
+|  |  |  |  |  |  |-- SuperscalarPipelineStageTest.java
+|  |  |  |  |  |  |-- memory
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- OperationQueueClientTest.java
+|  |  |  |  |  |  |  |-- OsXUploadOutputsTest.java
+|  |  |  |  |  |  |  |-- UnixUploadOutputsTest.java
+|  |  |  |  |  |  |  |-- UploadOutputsTest.java
+|  |  |  |  |  |  |  |-- WindowsUploadOutputsTest.java
+|  |  |  |  |  |  |  |-- WorkerTest.java
+|  |  |  |  |  |  |-- resources
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- ResourceDeciderTest.java
+|  |  |  |  |  |  |-- shard
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- EmptyInputStreamFactoryTest.java
+|  |  |  |  |  |  |  |-- FailoverInputStreamFactoryTest.java
+|  |  |  |  |  |  |  |-- ShardWorkerContextTest.java
+|  |  |  |  |  |  |  |-- ShardWorkerInstanceTest.java
+|  |  |  |  |  |  |  |-- WorkerTest.java
+|  |  |-- many
+|  |  |  |-- .bazelversion
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- WORKSPACE
+|  |  |  |-- many-cc.bzl
+|  |  |  |-- many-params.bzl
+|-- third_party
+|  |-- BUILD
+|  |-- BUILD.googleapis
+|  |-- BUILD.remote_apis
+|  |-- BUILD.skip_sleep
+|  |-- bazel
+|  |  |-- BUILD
+|  |  |-- bazel_visibility.patch
+|  |-- com_google_protobuf
+|  |  |-- 7e1d9e419e.patch
+|  |  |-- BUILD
+|  |  |-- b6375e03aa.patch
+|  |  |-- qualified_error_prone_annotations.patch
+|  |  |-- six.patch
+|  |-- io_bazel_rules_docker
+|  |  |-- BUILD
+|  |  |-- entrypoint.patch
+|  |-- jedis
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |-- remote-apis
+|  |  |-- BUILD
+|  |  |-- remote-apis.patch
+|-- tools
+|  |-- buildfarm-indexer.py

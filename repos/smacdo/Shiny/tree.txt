@@ -1,0 +1,708 @@
+|-- .clang-format
+|-- .gitattributes
+|-- .gitignore
+|-- .reporoot
+|-- .vscode
+|  |-- settings.json
+|  |-- snippets.code-snippets
+|-- CMake
+|  |-- ClangTidy.cmake
+|  |-- CppSanitizers.cmake
+|-- CMakeLists.txt
+|-- LICENSE
+|-- README.md
+|-- ci
+|  |-- init_cmake.sh
+|  |-- notes.txt
+|  |-- run_tests.sh
+|-- src
+|  |-- corelib
+|  |  |-- corelib.scm
+|  |-- interpreter
+|  |  |-- CMakeLists.txt
+|  |  |-- InteractiveSession.cpp
+|  |  |-- InteractiveSession.h
+|  |  |-- ShinyConfig.cmake.in
+|  |  |-- ShinyInterpreter.cpp
+|  |  |-- ShinyInterpreter.vcxproj
+|  |-- runtime
+|  |  |-- Allocator.cpp
+|  |  |-- CMakeLists.txt
+|  |  |-- CharacterStream.cpp
+|  |  |-- EnvironmentFrame.cpp
+|  |  |-- Evaluator.cpp
+|  |  |-- Exception.cpp
+|  |  |-- Procedures.cpp
+|  |  |-- RawString.cpp
+|  |  |-- Reader.cpp
+|  |  |-- RuntimeApi.cpp
+|  |  |-- ShinyRuntimeConfig.cmake.in
+|  |  |-- Value.cpp
+|  |  |-- VmState.cpp
+|  |  |-- allocators
+|  |  |  |-- FreeListAllocator.cpp
+|  |  |  |-- MallocAllocator.cpp
+|  |  |-- include
+|  |  |  |-- runtime
+|  |  |  |  |-- Allocator.h
+|  |  |  |  |-- CharacterStream.h
+|  |  |  |  |-- EnvironmentFrame.h
+|  |  |  |  |-- Evaluator.h
+|  |  |  |  |-- Exception.h
+|  |  |  |  |-- Procedures.h
+|  |  |  |  |-- RawString.h
+|  |  |  |  |-- Reader.h
+|  |  |  |  |-- RuntimeApi.h
+|  |  |  |  |-- SExpression.h
+|  |  |  |  |-- Value.h
+|  |  |  |  |-- VmState.h
+|  |  |  |  |-- allocators
+|  |  |  |  |  |-- FreeListAllocator.h
+|  |  |  |  |  |-- MallocAllocator.h
+|  |  |-- procedures
+|  |  |  |-- BooleanProcedures.cpp
+|  |  |  |-- ListProcedures.cpp
+|  |  |  |-- MathProcedures.cpp
+|  |  |  |-- PairProcedures.cpp
+|  |  |  |-- SymbolProcedures.cpp
+|-- tests
+|  |-- runtime_tests
+|  |  |-- CMakeLists.txt
+|  |  |-- CharacterStreamTests.cpp
+|  |  |-- EnvironmentFrameTests.cpp
+|  |  |-- EnvironmentTests.cpp
+|  |  |-- EvaluatorBooleanTests.cpp
+|  |  |-- EvaluatorListTests.cpp
+|  |  |-- EvaluatorMathTests.cpp
+|  |  |-- EvaluatorPairTests.cpp
+|  |  |-- EvaluatorProcedureTests.cpp
+|  |  |-- EvaluatorSymbolTests.cpp
+|  |  |-- EvaluatorTests.cpp
+|  |  |-- ExceptionTests.cpp
+|  |  |-- FreeListAllocatorTests.cpp
+|  |  |-- MallocAllocatorTests.cpp
+|  |  |-- RawStringTests.cpp
+|  |  |-- ReaderTests.cpp
+|  |  |-- RuntimeApiTests.cpp
+|  |  |-- SExpressionTests.cpp
+|  |  |-- TestMain.cpp
+|  |  |-- ValueApiTests.cpp
+|  |  |-- ValueTests.cpp
+|  |  |-- VmStateTests.cpp
+|  |  |-- support
+|  |  |  |-- EvaluatorFixture.cpp
+|  |  |  |-- EvaluatorFixture.h
+|  |  |  |-- TestHelpers.cpp
+|  |  |  |-- TestHelpers.h
+|-- thirdparty
+|  |-- CMakeLists.txt
+|  |-- Catch2
+|  |  |-- .clang-format
+|  |  |-- .conan
+|  |  |  |-- build.py
+|  |  |  |-- test_package
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- conanfile.py
+|  |  |  |  |-- test_package.cpp
+|  |  |-- .gitattributes
+|  |  |-- .github
+|  |  |  |-- FUNDING.yml
+|  |  |  |-- ISSUE_TEMPLATE
+|  |  |  |  |-- bug_report.md
+|  |  |  |  |-- feature_request.md
+|  |  |  |-- pull_request_template.md
+|  |  |-- .gitignore
+|  |  |-- .travis.yml
+|  |  |-- BUILD.bazel
+|  |  |-- CMake
+|  |  |  |-- Catch2Config.cmake.in
+|  |  |  |-- FindGcov.cmake
+|  |  |  |-- FindLcov.cmake
+|  |  |  |-- Findcodecov.cmake
+|  |  |  |-- MiscFunctions.cmake
+|  |  |  |-- catch2.pc.in
+|  |  |  |-- llvm-cov-wrapper
+|  |  |-- CMakeLists.txt
+|  |  |-- CODE_OF_CONDUCT.md
+|  |  |-- LICENSE.txt
+|  |  |-- README.md
+|  |  |-- WORKSPACE
+|  |  |-- appveyor.yml
+|  |  |-- artwork
+|  |  |  |-- catch2-c-logo.png
+|  |  |  |-- catch2-hand-logo.png
+|  |  |  |-- catch2-logo-small.png
+|  |  |-- codecov.yml
+|  |  |-- conanfile.py
+|  |  |-- contrib
+|  |  |  |-- Catch.cmake
+|  |  |  |-- CatchAddTests.cmake
+|  |  |  |-- ParseAndAddCatchTests.cmake
+|  |  |  |-- gdbinit
+|  |  |  |-- lldbinit
+|  |  |-- docs
+|  |  |  |-- Readme.md
+|  |  |  |-- assertions.md
+|  |  |  |-- benchmarks.md
+|  |  |  |-- ci-and-misc.md
+|  |  |  |-- cmake-integration.md
+|  |  |  |-- command-line.md
+|  |  |  |-- commercial-users.md
+|  |  |  |-- configuration.md
+|  |  |  |-- contributing.md
+|  |  |  |-- deprecations.md
+|  |  |  |-- event-listeners.md
+|  |  |  |-- generators.md
+|  |  |  |-- limitations.md
+|  |  |  |-- list-of-examples.md
+|  |  |  |-- logging.md
+|  |  |  |-- matchers.md
+|  |  |  |-- opensource-users.md
+|  |  |  |-- other-macros.md
+|  |  |  |-- own-main.md
+|  |  |  |-- release-notes.md
+|  |  |  |-- release-process.md
+|  |  |  |-- reporters.md
+|  |  |  |-- slow-compiles.md
+|  |  |  |-- test-cases-and-sections.md
+|  |  |  |-- test-fixtures.md
+|  |  |  |-- tostring.md
+|  |  |  |-- tutorial.md
+|  |  |  |-- why-catch.md
+|  |  |-- examples
+|  |  |  |-- 000-CatchMain.cpp
+|  |  |  |-- 010-TestCase.cpp
+|  |  |  |-- 020-TestCase-1.cpp
+|  |  |  |-- 020-TestCase-2.cpp
+|  |  |  |-- 030-Asn-Require-Check.cpp
+|  |  |  |-- 100-Fix-Section.cpp
+|  |  |  |-- 110-Fix-ClassFixture.cpp
+|  |  |  |-- 120-Bdd-ScenarioGivenWhenThen.cpp
+|  |  |  |-- 200-Rpt-CatchMain.cpp
+|  |  |  |-- 207-Rpt-TeamCityReporter.cpp
+|  |  |  |-- 210-Evt-EventListeners.cpp
+|  |  |  |-- 231-Cfg-OutputStreams.cpp
+|  |  |  |-- 300-Gen-OwnGenerator.cpp
+|  |  |  |-- 301-Gen-MapTypeConversion.cpp
+|  |  |  |-- 302-Gen-Table.cpp
+|  |  |  |-- 310-Gen-VariablesInGenerators.cpp
+|  |  |  |-- 311-Gen-CustomCapture.cpp
+|  |  |  |-- CMakeLists.txt
+|  |  |-- include
+|  |  |  |-- catch.hpp
+|  |  |  |-- catch_with_main.hpp
+|  |  |  |-- external
+|  |  |  |  |-- clara.hpp
+|  |  |  |-- internal
+|  |  |  |  |-- benchmark
+|  |  |  |  |  |-- catch_benchmark.hpp
+|  |  |  |  |  |-- catch_benchmarking_all.hpp
+|  |  |  |  |  |-- catch_chronometer.hpp
+|  |  |  |  |  |-- catch_clock.hpp
+|  |  |  |  |  |-- catch_constructor.hpp
+|  |  |  |  |  |-- catch_environment.hpp
+|  |  |  |  |  |-- catch_estimate.hpp
+|  |  |  |  |  |-- catch_execution_plan.hpp
+|  |  |  |  |  |-- catch_optimizer.hpp
+|  |  |  |  |  |-- catch_outlier_classification.hpp
+|  |  |  |  |  |-- catch_sample_analysis.hpp
+|  |  |  |  |  |-- detail
+|  |  |  |  |  |  |-- catch_analyse.hpp
+|  |  |  |  |  |  |-- catch_benchmark_function.hpp
+|  |  |  |  |  |  |-- catch_complete_invoke.hpp
+|  |  |  |  |  |  |-- catch_estimate_clock.hpp
+|  |  |  |  |  |  |-- catch_measure.hpp
+|  |  |  |  |  |  |-- catch_repeat.hpp
+|  |  |  |  |  |  |-- catch_run_for_at_least.hpp
+|  |  |  |  |  |  |-- catch_stats.cpp
+|  |  |  |  |  |  |-- catch_stats.hpp
+|  |  |  |  |  |  |-- catch_timing.hpp
+|  |  |  |  |-- catch_approx.cpp
+|  |  |  |  |-- catch_approx.h
+|  |  |  |  |-- catch_assertionhandler.cpp
+|  |  |  |  |-- catch_assertionhandler.h
+|  |  |  |  |-- catch_assertioninfo.h
+|  |  |  |  |-- catch_assertionresult.cpp
+|  |  |  |  |-- catch_assertionresult.h
+|  |  |  |  |-- catch_capture.hpp
+|  |  |  |  |-- catch_capture_matchers.cpp
+|  |  |  |  |-- catch_capture_matchers.h
+|  |  |  |  |-- catch_clara.h
+|  |  |  |  |-- catch_commandline.cpp
+|  |  |  |  |-- catch_commandline.h
+|  |  |  |  |-- catch_common.cpp
+|  |  |  |  |-- catch_common.h
+|  |  |  |  |-- catch_compiler_capabilities.h
+|  |  |  |  |-- catch_config.cpp
+|  |  |  |  |-- catch_config.hpp
+|  |  |  |  |-- catch_console_colour.cpp
+|  |  |  |  |-- catch_console_colour.h
+|  |  |  |  |-- catch_context.cpp
+|  |  |  |  |-- catch_context.h
+|  |  |  |  |-- catch_debug_console.cpp
+|  |  |  |  |-- catch_debug_console.h
+|  |  |  |  |-- catch_debugger.cpp
+|  |  |  |  |-- catch_debugger.h
+|  |  |  |  |-- catch_decomposer.cpp
+|  |  |  |  |-- catch_decomposer.h
+|  |  |  |  |-- catch_default_main.hpp
+|  |  |  |  |-- catch_enforce.cpp
+|  |  |  |  |-- catch_enforce.h
+|  |  |  |  |-- catch_enum_values_registry.cpp
+|  |  |  |  |-- catch_enum_values_registry.h
+|  |  |  |  |-- catch_errno_guard.cpp
+|  |  |  |  |-- catch_errno_guard.h
+|  |  |  |  |-- catch_exception_translator_registry.cpp
+|  |  |  |  |-- catch_exception_translator_registry.h
+|  |  |  |  |-- catch_external_interfaces.h
+|  |  |  |  |-- catch_fatal_condition.cpp
+|  |  |  |  |-- catch_fatal_condition.h
+|  |  |  |  |-- catch_generators.cpp
+|  |  |  |  |-- catch_generators.hpp
+|  |  |  |  |-- catch_generators_generic.hpp
+|  |  |  |  |-- catch_generators_specific.hpp
+|  |  |  |  |-- catch_impl.hpp
+|  |  |  |  |-- catch_interfaces_capture.cpp
+|  |  |  |  |-- catch_interfaces_capture.h
+|  |  |  |  |-- catch_interfaces_config.cpp
+|  |  |  |  |-- catch_interfaces_config.h
+|  |  |  |  |-- catch_interfaces_enum_values_registry.h
+|  |  |  |  |-- catch_interfaces_exception.cpp
+|  |  |  |  |-- catch_interfaces_exception.h
+|  |  |  |  |-- catch_interfaces_generatortracker.h
+|  |  |  |  |-- catch_interfaces_registry_hub.cpp
+|  |  |  |  |-- catch_interfaces_registry_hub.h
+|  |  |  |  |-- catch_interfaces_reporter.cpp
+|  |  |  |  |-- catch_interfaces_reporter.h
+|  |  |  |  |-- catch_interfaces_runner.cpp
+|  |  |  |  |-- catch_interfaces_runner.h
+|  |  |  |  |-- catch_interfaces_tag_alias_registry.h
+|  |  |  |  |-- catch_interfaces_testcase.cpp
+|  |  |  |  |-- catch_interfaces_testcase.h
+|  |  |  |  |-- catch_leak_detector.cpp
+|  |  |  |  |-- catch_leak_detector.h
+|  |  |  |  |-- catch_list.cpp
+|  |  |  |  |-- catch_list.h
+|  |  |  |  |-- catch_matchers.cpp
+|  |  |  |  |-- catch_matchers.h
+|  |  |  |  |-- catch_matchers_exception.cpp
+|  |  |  |  |-- catch_matchers_exception.hpp
+|  |  |  |  |-- catch_matchers_floating.cpp
+|  |  |  |  |-- catch_matchers_floating.h
+|  |  |  |  |-- catch_matchers_generic.cpp
+|  |  |  |  |-- catch_matchers_generic.hpp
+|  |  |  |  |-- catch_matchers_string.cpp
+|  |  |  |  |-- catch_matchers_string.h
+|  |  |  |  |-- catch_matchers_vector.h
+|  |  |  |  |-- catch_message.cpp
+|  |  |  |  |-- catch_message.h
+|  |  |  |  |-- catch_meta.hpp
+|  |  |  |  |-- catch_objc.hpp
+|  |  |  |  |-- catch_objc_arc.hpp
+|  |  |  |  |-- catch_option.hpp
+|  |  |  |  |-- catch_output_redirect.cpp
+|  |  |  |  |-- catch_output_redirect.h
+|  |  |  |  |-- catch_platform.h
+|  |  |  |  |-- catch_polyfills.cpp
+|  |  |  |  |-- catch_polyfills.hpp
+|  |  |  |  |-- catch_preprocessor.hpp
+|  |  |  |  |-- catch_random_number_generator.cpp
+|  |  |  |  |-- catch_random_number_generator.h
+|  |  |  |  |-- catch_reenable_warnings.h
+|  |  |  |  |-- catch_registry_hub.cpp
+|  |  |  |  |-- catch_reporter_registrars.hpp
+|  |  |  |  |-- catch_reporter_registry.cpp
+|  |  |  |  |-- catch_reporter_registry.h
+|  |  |  |  |-- catch_result_type.cpp
+|  |  |  |  |-- catch_result_type.h
+|  |  |  |  |-- catch_run_context.cpp
+|  |  |  |  |-- catch_run_context.h
+|  |  |  |  |-- catch_section.cpp
+|  |  |  |  |-- catch_section.h
+|  |  |  |  |-- catch_section_info.cpp
+|  |  |  |  |-- catch_section_info.h
+|  |  |  |  |-- catch_session.cpp
+|  |  |  |  |-- catch_session.h
+|  |  |  |  |-- catch_singletons.cpp
+|  |  |  |  |-- catch_singletons.hpp
+|  |  |  |  |-- catch_startup_exception_registry.cpp
+|  |  |  |  |-- catch_startup_exception_registry.h
+|  |  |  |  |-- catch_stream.cpp
+|  |  |  |  |-- catch_stream.h
+|  |  |  |  |-- catch_string_manip.cpp
+|  |  |  |  |-- catch_string_manip.h
+|  |  |  |  |-- catch_stringref.cpp
+|  |  |  |  |-- catch_stringref.h
+|  |  |  |  |-- catch_suppress_warnings.h
+|  |  |  |  |-- catch_tag_alias.cpp
+|  |  |  |  |-- catch_tag_alias.h
+|  |  |  |  |-- catch_tag_alias_autoregistrar.cpp
+|  |  |  |  |-- catch_tag_alias_autoregistrar.h
+|  |  |  |  |-- catch_tag_alias_registry.cpp
+|  |  |  |  |-- catch_tag_alias_registry.h
+|  |  |  |  |-- catch_test_case_info.cpp
+|  |  |  |  |-- catch_test_case_info.h
+|  |  |  |  |-- catch_test_case_registry_impl.cpp
+|  |  |  |  |-- catch_test_case_registry_impl.h
+|  |  |  |  |-- catch_test_case_tracker.cpp
+|  |  |  |  |-- catch_test_case_tracker.h
+|  |  |  |  |-- catch_test_registry.cpp
+|  |  |  |  |-- catch_test_registry.h
+|  |  |  |  |-- catch_test_spec.cpp
+|  |  |  |  |-- catch_test_spec.h
+|  |  |  |  |-- catch_test_spec_parser.cpp
+|  |  |  |  |-- catch_test_spec_parser.h
+|  |  |  |  |-- catch_text.h
+|  |  |  |  |-- catch_timer.cpp
+|  |  |  |  |-- catch_timer.h
+|  |  |  |  |-- catch_to_string.hpp
+|  |  |  |  |-- catch_tostring.cpp
+|  |  |  |  |-- catch_tostring.h
+|  |  |  |  |-- catch_totals.cpp
+|  |  |  |  |-- catch_totals.h
+|  |  |  |  |-- catch_uncaught_exceptions.cpp
+|  |  |  |  |-- catch_uncaught_exceptions.h
+|  |  |  |  |-- catch_user_interfaces.h
+|  |  |  |  |-- catch_version.cpp
+|  |  |  |  |-- catch_version.h
+|  |  |  |  |-- catch_wildcard_pattern.cpp
+|  |  |  |  |-- catch_wildcard_pattern.h
+|  |  |  |  |-- catch_windows_h_proxy.h
+|  |  |  |  |-- catch_xmlwriter.cpp
+|  |  |  |  |-- catch_xmlwriter.h
+|  |  |  |-- reporters
+|  |  |  |  |-- catch_reporter_automake.hpp
+|  |  |  |  |-- catch_reporter_bases.cpp
+|  |  |  |  |-- catch_reporter_bases.hpp
+|  |  |  |  |-- catch_reporter_compact.cpp
+|  |  |  |  |-- catch_reporter_compact.h
+|  |  |  |  |-- catch_reporter_console.cpp
+|  |  |  |  |-- catch_reporter_console.h
+|  |  |  |  |-- catch_reporter_junit.cpp
+|  |  |  |  |-- catch_reporter_junit.h
+|  |  |  |  |-- catch_reporter_listening.cpp
+|  |  |  |  |-- catch_reporter_listening.h
+|  |  |  |  |-- catch_reporter_sonarqube.hpp
+|  |  |  |  |-- catch_reporter_tap.hpp
+|  |  |  |  |-- catch_reporter_teamcity.hpp
+|  |  |  |  |-- catch_reporter_xml.cpp
+|  |  |  |  |-- catch_reporter_xml.h
+|  |  |-- misc
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- appveyorBuildConfigurationScript.bat
+|  |  |  |-- appveyorMergeCoverageScript.py
+|  |  |  |-- appveyorTestRunScript.bat
+|  |  |  |-- coverage-helper.cpp
+|  |  |  |-- installOpenCppCoverage.ps1
+|  |  |-- projects
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- ExtraTests
+|  |  |  |  |-- CMakeLists.txt
+|  |  |  |  |-- ToDo.txt
+|  |  |  |  |-- X01-PrefixedMacros.cpp
+|  |  |  |  |-- X02-DisabledMacros.cpp
+|  |  |  |  |-- X03-DisabledExceptions-DefaultHandler.cpp
+|  |  |  |  |-- X04-DisabledExceptions-CustomHandler.cpp
+|  |  |  |  |-- X10-FallbackStringifier.cpp
+|  |  |  |  |-- X11-DisableStringification.cpp
+|  |  |  |  |-- X12-CustomDebugBreakMacro.cpp
+|  |  |  |  |-- X20-BenchmarkingMacros.cpp
+|  |  |  |  |-- X90-WindowsHeaderInclusion.cpp
+|  |  |  |-- SelfTest
+|  |  |  |  |-- Baselines
+|  |  |  |  |  |-- automake.std.approved.txt
+|  |  |  |  |  |-- compact.sw.approved.txt
+|  |  |  |  |  |-- console.std.approved.txt
+|  |  |  |  |  |-- console.sw.approved.txt
+|  |  |  |  |  |-- console.swa4.approved.txt
+|  |  |  |  |  |-- junit.sw.approved.txt
+|  |  |  |  |  |-- sonarqube.sw.approved.txt
+|  |  |  |  |  |-- xml.sw.approved.txt
+|  |  |  |  |-- CompileTimePerfTests
+|  |  |  |  |  |-- 10.tests.cpp
+|  |  |  |  |  |-- 100.tests.cpp
+|  |  |  |  |  |-- All.tests.cpp
+|  |  |  |  |-- IntrospectiveTests
+|  |  |  |  |  |-- CmdLine.tests.cpp
+|  |  |  |  |  |-- Details.tests.cpp
+|  |  |  |  |  |-- GeneratorsImpl.tests.cpp
+|  |  |  |  |  |-- InternalBenchmark.tests.cpp
+|  |  |  |  |  |-- PartTracker.tests.cpp
+|  |  |  |  |  |-- RandomNumberGeneration.tests.cpp
+|  |  |  |  |  |-- String.tests.cpp
+|  |  |  |  |  |-- StringManip.tests.cpp
+|  |  |  |  |  |-- Tag.tests.cpp
+|  |  |  |  |  |-- ToString.tests.cpp
+|  |  |  |  |  |-- Xml.tests.cpp
+|  |  |  |  |-- Misc
+|  |  |  |  |  |-- invalid-test-names.input
+|  |  |  |  |  |-- plain-old-tests.input
+|  |  |  |  |  |-- special-characters-in-file.input
+|  |  |  |  |-- SurrogateCpps
+|  |  |  |  |  |-- catch_console_colour.cpp
+|  |  |  |  |  |-- catch_debugger.cpp
+|  |  |  |  |  |-- catch_interfaces_reporter.cpp
+|  |  |  |  |  |-- catch_option.cpp
+|  |  |  |  |  |-- catch_stream.cpp
+|  |  |  |  |  |-- catch_test_case_tracker.cpp
+|  |  |  |  |  |-- catch_test_spec.cpp
+|  |  |  |  |  |-- catch_xmlwriter.cpp
+|  |  |  |  |-- TestMain.cpp
+|  |  |  |  |-- TimingTests
+|  |  |  |  |  |-- Sleep.tests.cpp
+|  |  |  |  |-- UsageTests
+|  |  |  |  |  |-- Approx.tests.cpp
+|  |  |  |  |  |-- BDD.tests.cpp
+|  |  |  |  |  |-- Benchmark.tests.cpp
+|  |  |  |  |  |-- Class.tests.cpp
+|  |  |  |  |  |-- Compilation.tests.cpp
+|  |  |  |  |  |-- Condition.tests.cpp
+|  |  |  |  |  |-- Decomposition.tests.cpp
+|  |  |  |  |  |-- EnumToString.tests.cpp
+|  |  |  |  |  |-- Exception.tests.cpp
+|  |  |  |  |  |-- Generators.tests.cpp
+|  |  |  |  |  |-- Matchers.tests.cpp
+|  |  |  |  |  |-- Message.tests.cpp
+|  |  |  |  |  |-- Misc.tests.cpp
+|  |  |  |  |  |-- ToStringByte.tests.cpp
+|  |  |  |  |  |-- ToStringChrono.tests.cpp
+|  |  |  |  |  |-- ToStringGeneral.tests.cpp
+|  |  |  |  |  |-- ToStringOptional.tests.cpp
+|  |  |  |  |  |-- ToStringPair.tests.cpp
+|  |  |  |  |  |-- ToStringTuple.tests.cpp
+|  |  |  |  |  |-- ToStringVariant.tests.cpp
+|  |  |  |  |  |-- ToStringVector.tests.cpp
+|  |  |  |  |  |-- ToStringWhich.tests.cpp
+|  |  |  |  |  |-- Tricky.tests.cpp
+|  |  |  |  |  |-- VariadicMacros.tests.cpp
+|  |  |  |  |-- WarnAboutNoTests.cmake
+|  |  |  |-- TestScripts
+|  |  |  |  |-- testRandomOrder.py
+|  |  |  |-- XCode
+|  |  |  |  |-- OCTest
+|  |  |  |  |  |-- OCTest.xcodeproj
+|  |  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |  |-- project.xcworkspace
+|  |  |  |  |  |  |  |-- contents.xcworkspacedata
+|  |  |  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |  |  |-- IDEWorkspaceChecks.plist
+|  |  |  |  |  |-- OCTest
+|  |  |  |  |  |  |-- CatchOCTestCase.h
+|  |  |  |  |  |  |-- CatchOCTestCase.mm
+|  |  |  |  |  |  |-- Main.mm
+|  |  |  |  |  |  |-- OCTest.1
+|  |  |  |  |  |  |-- OCTest.mm
+|  |  |  |  |  |  |-- TestObj.h
+|  |  |  |  |  |  |-- TestObj.m
+|  |  |  |  |  |-- catch_objc_impl.mm
+|  |  |-- scripts
+|  |  |  |-- approvalTests.py
+|  |  |  |-- approve.py
+|  |  |  |-- benchmarkCompile.py
+|  |  |  |-- benchmarkRunner.py
+|  |  |  |-- developBuild.py
+|  |  |  |-- embed.py
+|  |  |  |-- embedClara.py
+|  |  |  |-- extractFeaturesFromReleaseNotes.py
+|  |  |  |-- fixWhitespace.py
+|  |  |  |-- generateSingleHeader.py
+|  |  |  |-- majorRelease.py
+|  |  |  |-- minorRelease.py
+|  |  |  |-- patchRelease.py
+|  |  |  |-- releaseCommon.py
+|  |  |  |-- releaseNotes.py
+|  |  |  |-- scriptCommon.py
+|  |  |  |-- updateDocumentToC.py
+|  |  |  |-- updateWandbox.py
+|  |  |-- single_include
+|  |  |  |-- catch2
+|  |  |  |  |-- catch.hpp
+|  |  |  |  |-- catch_reporter_automake.hpp
+|  |  |  |  |-- catch_reporter_sonarqube.hpp
+|  |  |  |  |-- catch_reporter_tap.hpp
+|  |  |  |  |-- catch_reporter_teamcity.hpp
+|  |  |-- third_party
+|  |  |  |-- clara.hpp
+|  |-- cli11
+|  |  |-- CMakeLists.txt
+|  |  |-- LICENSE.txt
+|  |  |-- include
+|  |  |  |-- CLI11
+|  |  |  |  |-- CLI11.hpp
+|  |-- fmt
+|  |  |-- .clang-format
+|  |  |-- .gitignore
+|  |  |-- CMakeLists.txt
+|  |  |-- CONTRIBUTING.md
+|  |  |-- ChangeLog.rst
+|  |  |-- LICENSE.rst
+|  |  |-- README.rst
+|  |  |-- VERSION.txt
+|  |  |-- include
+|  |  |  |-- fmt
+|  |  |  |  |-- chrono.h
+|  |  |  |  |-- color.h
+|  |  |  |  |-- compile.h
+|  |  |  |  |-- core.h
+|  |  |  |  |-- format-inl.h
+|  |  |  |  |-- format.h
+|  |  |  |  |-- locale.h
+|  |  |  |  |-- os.h
+|  |  |  |  |-- ostream.h
+|  |  |  |  |-- posix.h
+|  |  |  |  |-- printf.h
+|  |  |  |  |-- ranges.h
+|  |  |-- src
+|  |  |  |-- format.cc
+|  |  |  |-- os.cc
+|  |  |-- support
+|  |  |  |-- Android.mk
+|  |  |  |-- AndroidManifest.xml
+|  |  |  |-- C++.sublime-syntax
+|  |  |  |-- README
+|  |  |  |-- Vagrantfile
+|  |  |  |-- appveyor-build.py
+|  |  |  |-- appveyor.yml
+|  |  |  |-- build.gradle
+|  |  |  |-- cmake
+|  |  |  |  |-- FindSetEnv.cmake
+|  |  |  |  |-- cxx14.cmake
+|  |  |  |  |-- fmt-config.cmake.in
+|  |  |  |  |-- fmt.pc.in
+|  |  |  |-- compute-powers.py
+|  |  |  |-- docopt.py
+|  |  |  |-- fmt.pro
+|  |  |  |-- manage.py
+|  |  |  |-- rst2md.py
+|  |  |  |-- rtd
+|  |  |  |  |-- conf.py
+|  |  |  |  |-- index.rst
+|  |  |  |  |-- theme
+|  |  |  |  |  |-- layout.html
+|  |  |  |  |  |-- theme.conf
+|  |  |  |-- travis-build.py
+|  |  |  |-- update-coverity-branch.py
+|  |-- spdlog
+|  |  |-- .clang-format
+|  |  |-- .clang-tidy
+|  |  |-- .gitattributes
+|  |  |-- .gitignore
+|  |  |-- CMakeLists.txt
+|  |  |-- INSTALL
+|  |  |-- LICENSE
+|  |  |-- README.md
+|  |  |-- VERSION.txt
+|  |  |-- cmake
+|  |  |  |-- ide.cmake
+|  |  |  |-- pch.h.in
+|  |  |  |-- spdlog.pc.in
+|  |  |  |-- spdlogCPack.cmake
+|  |  |  |-- spdlogConfig.cmake.in
+|  |  |  |-- utils.cmake
+|  |  |  |-- version.rc.in
+|  |  |-- include
+|  |  |  |-- spdlog
+|  |  |  |  |-- async.h
+|  |  |  |  |-- async_logger-inl.h
+|  |  |  |  |-- async_logger.h
+|  |  |  |  |-- cfg
+|  |  |  |  |  |-- argv.h
+|  |  |  |  |  |-- env.h
+|  |  |  |  |  |-- helpers-inl.h
+|  |  |  |  |  |-- helpers.h
+|  |  |  |  |  |-- log_levels.h
+|  |  |  |  |-- common-inl.h
+|  |  |  |  |-- common.h
+|  |  |  |  |-- details
+|  |  |  |  |  |-- backtracer-inl.h
+|  |  |  |  |  |-- backtracer.h
+|  |  |  |  |  |-- circular_q.h
+|  |  |  |  |  |-- console_globals.h
+|  |  |  |  |  |-- file_helper-inl.h
+|  |  |  |  |  |-- file_helper.h
+|  |  |  |  |  |-- fmt_helper.h
+|  |  |  |  |  |-- log_msg-inl.h
+|  |  |  |  |  |-- log_msg.h
+|  |  |  |  |  |-- log_msg_buffer-inl.h
+|  |  |  |  |  |-- log_msg_buffer.h
+|  |  |  |  |  |-- mpmc_blocking_q.h
+|  |  |  |  |  |-- null_mutex.h
+|  |  |  |  |  |-- os-inl.h
+|  |  |  |  |  |-- os.h
+|  |  |  |  |  |-- periodic_worker-inl.h
+|  |  |  |  |  |-- periodic_worker.h
+|  |  |  |  |  |-- registry-inl.h
+|  |  |  |  |  |-- registry.h
+|  |  |  |  |  |-- synchronous_factory.h
+|  |  |  |  |  |-- tcp_client-windows.h
+|  |  |  |  |  |-- tcp_client.h
+|  |  |  |  |  |-- thread_pool-inl.h
+|  |  |  |  |  |-- thread_pool.h
+|  |  |  |  |  |-- windows_include.h
+|  |  |  |  |-- fmt
+|  |  |  |  |  |-- bin_to_hex.h
+|  |  |  |  |  |-- bundled
+|  |  |  |  |  |  |-- LICENSE.rst
+|  |  |  |  |  |  |-- chrono.h
+|  |  |  |  |  |  |-- color.h
+|  |  |  |  |  |  |-- compile.h
+|  |  |  |  |  |  |-- core.h
+|  |  |  |  |  |  |-- format-inl.h
+|  |  |  |  |  |  |-- format.h
+|  |  |  |  |  |  |-- locale.h
+|  |  |  |  |  |  |-- ostream.h
+|  |  |  |  |  |  |-- posix.h
+|  |  |  |  |  |  |-- printf.h
+|  |  |  |  |  |  |-- ranges.h
+|  |  |  |  |  |-- fmt.h
+|  |  |  |  |  |-- ostr.h
+|  |  |  |  |-- formatter.h
+|  |  |  |  |-- fwd.h
+|  |  |  |  |-- logger-inl.h
+|  |  |  |  |-- logger.h
+|  |  |  |  |-- pattern_formatter-inl.h
+|  |  |  |  |-- pattern_formatter.h
+|  |  |  |  |-- sinks
+|  |  |  |  |  |-- android_sink.h
+|  |  |  |  |  |-- ansicolor_sink-inl.h
+|  |  |  |  |  |-- ansicolor_sink.h
+|  |  |  |  |  |-- base_sink-inl.h
+|  |  |  |  |  |-- base_sink.h
+|  |  |  |  |  |-- basic_file_sink-inl.h
+|  |  |  |  |  |-- basic_file_sink.h
+|  |  |  |  |  |-- daily_file_sink.h
+|  |  |  |  |  |-- dist_sink.h
+|  |  |  |  |  |-- dup_filter_sink.h
+|  |  |  |  |  |-- msvc_sink.h
+|  |  |  |  |  |-- null_sink.h
+|  |  |  |  |  |-- ostream_sink.h
+|  |  |  |  |  |-- ringbuffer_sink.h
+|  |  |  |  |  |-- rotating_file_sink-inl.h
+|  |  |  |  |  |-- rotating_file_sink.h
+|  |  |  |  |  |-- sink-inl.h
+|  |  |  |  |  |-- sink.h
+|  |  |  |  |  |-- stdout_color_sinks-inl.h
+|  |  |  |  |  |-- stdout_color_sinks.h
+|  |  |  |  |  |-- stdout_sinks-inl.h
+|  |  |  |  |  |-- stdout_sinks.h
+|  |  |  |  |  |-- syslog_sink.h
+|  |  |  |  |  |-- systemd_sink.h
+|  |  |  |  |  |-- tcp_sink.h
+|  |  |  |  |  |-- win_eventlog_sink.h
+|  |  |  |  |  |-- wincolor_sink-inl.h
+|  |  |  |  |  |-- wincolor_sink.h
+|  |  |  |  |-- spdlog-inl.h
+|  |  |  |  |-- spdlog.h
+|  |  |  |  |-- tweakme.h
+|  |  |  |  |-- version.h
+|  |  |-- scripts
+|  |  |  |-- extract_version.py
+|  |  |  |-- format.sh
+|  |  |-- src
+|  |  |  |-- async.cpp
+|  |  |  |-- cfg.cpp
+|  |  |  |-- color_sinks.cpp
+|  |  |  |-- file_sinks.cpp
+|  |  |  |-- fmt.cpp
+|  |  |  |-- spdlog.cpp
+|  |  |  |-- stdout_sinks.cpp

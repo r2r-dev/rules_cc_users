@@ -1,0 +1,2312 @@
+|-- .bazelci
+|  |-- bazelci_windows.bat
+|  |-- presubmit.yml
+|-- .bazelignore
+|-- .bazelrc
+|-- .bazelversion
+|-- .clang-format
+|-- .editorconfig
+|-- .exclude
+|-- .gdbinit
+|-- .gitignore
+|-- .mergify.yml
+|-- .pre-commit-config.yaml
+|-- .style.yapf
+|-- BUILD
+|-- LICENSE
+|-- README.md
+|-- VERSION
+|-- WORKSPACE
+|-- base
+|  |-- config
+|  |  |-- BUILD
+|  |  |-- config.cc
+|  |  |-- config.h
+|  |-- context
+|  |  |-- BUILD
+|  |  |-- context.cc
+|  |  |-- context.h
+|  |  |-- context.proto
+|  |  |-- context_test.cc
+|  |  |-- eventlog.cc
+|  |  |-- eventlog.h
+|  |  |-- gate.cc
+|  |  |-- gate.h
+|  |  |-- gate_test.cc
+|  |-- eventing
+|  |  |-- file
+|  |  |  |-- BUILD
+|  |  |  |-- eventlog.cc
+|  |  |  |-- eventlog.h
+|  |  |  |-- eventlog.proto
+|  |  |  |-- eventlog_test.cc
+|  |  |  |-- factory.cc
+|  |  |  |-- factory.h
+|  |-- proto
+|  |  |-- BUILD
+|  |  |-- proto.cc
+|  |  |-- proto.h
+|  |-- shim
+|  |  |-- opencl
+|  |  |  |-- BUILD
+|  |  |  |-- opencl.cc
+|  |  |  |-- opencl.h
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- any_factory.h
+|  |  |-- any_factory_map.h
+|  |  |-- callback_map.h
+|  |  |-- catch.h
+|  |  |-- compat.h
+|  |  |-- env.cc
+|  |  |-- env.h
+|  |  |-- error.cc
+|  |  |-- error.h
+|  |  |-- factory.h
+|  |  |-- file.cc
+|  |  |-- file.h
+|  |  |-- hexdump.cc
+|  |  |-- hexdump.h
+|  |  |-- intern.h
+|  |  |-- iterator_util.h
+|  |  |-- json_transfer.cc
+|  |  |-- json_transfer.h
+|  |  |-- logging.cc
+|  |  |-- logging.h
+|  |  |-- lookup.h
+|  |  |-- pdebug.h
+|  |  |-- perf_counter.cc
+|  |  |-- perf_counter.h
+|  |  |-- runfiles_db.cc
+|  |  |-- runfiles_db.h
+|  |  |-- stream_container.h
+|  |  |-- sync.h
+|  |  |-- throw.h
+|  |  |-- transfer_object.h
+|  |  |-- type_url.h
+|  |  |-- uuid.cc
+|  |  |-- uuid.h
+|  |  |-- zipfile.cc
+|  |  |-- zipfile.h
+|-- bzl
+|  |-- BUILD
+|  |-- bazel.rc
+|  |-- boost.BUILD
+|  |-- clean.py
+|  |-- cm_headers.BUILD
+|  |-- conda_repo.bzl
+|  |-- conda_wrapper.py
+|  |-- docs.bzl
+|  |-- easylogging.BUILD
+|  |-- fresh_http_archive.bzl
+|  |-- gmock.BUILD
+|  |-- half.BUILD
+|  |-- jsoncpp.BUILD
+|  |-- libva.BUILD
+|  |-- minizip.BUILD
+|  |-- opencl_headers.BUILD
+|  |-- plaidml.bzl
+|  |-- protobuf.BUILD
+|  |-- pybind11.BUILD
+|  |-- setup.tpl.py
+|  |-- six.BUILD
+|  |-- sphinx.py
+|  |-- template.bzl
+|  |-- version.tpl.cc
+|  |-- version.tpl.py
+|  |-- workspace.bzl
+|  |-- xsmm.BUILD
+|  |-- xsmm_repo.bzl
+|  |-- zlib.BUILD
+|-- ci
+|  |-- BUILD
+|  |-- analysis.py
+|  |-- buildkite.py
+|  |-- conda
+|  |  |-- keras_backend_test.yml
+|  |  |-- ml_gpu.yml
+|  |  |-- tensorflow-dnnl.yml
+|  |  |-- tensorflow.yml
+|  |-- golden
+|  |  |-- infer
+|  |  |  |-- imdb_lstm
+|  |  |  |  |-- keras-plaid-mtl-gt650m
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-hd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-r560
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-uhd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx803
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx804
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx900
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gtx780
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-neo
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- report.json
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx803
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |-- keras-stripe-ocl-gfx804
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |-- keras-stripe-ocl-gfx900
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |-- keras-stripe-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |-- keras-stripe-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |-- keras-tf-cuda-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |-- inception_v3
+|  |  |  |  |-- keras-plaid-mtl-gt650m
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-hd4000
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-hd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-r560
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-uhd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx803
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx804
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx900
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-neo
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- report.json
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-llvm-cpu
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- report.json
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-mtl-uhd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx803
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx804
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx900
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-neo
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-cuda-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-dnnl-cpu
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |-- mobilenet
+|  |  |  |  |-- keras-plaid-mtl-hd4000
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-hd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-r560
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-uhd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx803
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx804
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx900
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gtx780
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-neo
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- report.json
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-llvm-cpu
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- report.json
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-mtl-uhd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx803
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx804
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx900
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-neo
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-cuda-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-dnnl-cpu
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |-- mobilenet_v2
+|  |  |  |  |-- keras-plaid-mtl-uhd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx803
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx804
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx900
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-neo
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- report.json
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-llvm-cpu
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- report.json
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-mtl-uhd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx803
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx804
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx900
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-neo
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-cuda-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-dnnl-cpu
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |-- resnet50
+|  |  |  |  |-- keras-plaid-mtl-gt650m
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-hd4000
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-hd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-r560
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-uhd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx803
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx804
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx900
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-neo
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- report.json
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-llvm-cpu
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- report.json
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-mtl-uhd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx803
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx804
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx900
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-neo
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-cuda-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-dnnl-cpu
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |-- vgg19
+|  |  |  |  |-- keras-plaid-mtl-gt650m
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-hd4000
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-hd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-r560
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-uhd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx803
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx804
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx900
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-neo
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- report.json
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-llvm-cpu
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- report.json
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-mtl-uhd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx803
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx804
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx900
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-neo
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-cuda-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-dnnl-cpu
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |-- xception
+|  |  |  |  |-- keras-plaid-mtl-gt650m
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-hd4000
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-hd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-r560
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-mtl-uhd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx803
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx804
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gfx900
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gtx780
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-neo
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- report.json
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-llvm-cpu
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-mtl-uhd630
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx803
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx804
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gfx900
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-ocl-neo
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-cuda-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=16
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-dnnl-cpu
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |-- smoke
+|  |  |  |-- mobilenet
+|  |  |  |  |-- keras-plaid-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=0
+|  |  |  |  |  |  |-- report.json
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-stripe-llvm-cpu
+|  |  |  |  |  |-- BATCH_SIZE=0
+|  |  |  |  |  |  |-- report.json
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |-- train
+|  |  |  |-- inception_v3_train
+|  |  |  |  |-- keras-plaid-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-wx9100
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-cuda-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |-- mobilenet_train
+|  |  |  |  |-- keras-plaid-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-wx9100
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-cuda-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |-- resnet50_train
+|  |  |  |  |-- keras-plaid-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-wx9100
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-cuda-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |-- vgg19_train
+|  |  |  |  |-- keras-plaid-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-wx9100
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-cuda-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |-- xception_train
+|  |  |  |  |-- keras-plaid-ocl-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-gv100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-plaid-ocl-wx9100
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |-- keras-tf-cuda-gp100gl
+|  |  |  |  |  |-- BATCH_SIZE=1
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |  |  |  |  |-- BATCH_SIZE=32
+|  |  |  |  |  |  |-- result.json
+|  |  |  |  |  |  |-- result.npy
+|  |-- harness.py
+|  |-- pipeline.yml
+|  |-- plan.yml
+|  |-- report.py
+|  |-- templates
+|  |  |-- annotate.html
+|  |  |-- junit.xml
+|  |  |-- report.html
+|  |-- timeline.py
+|  |-- util.py
+|-- conda
+|  |-- BUILD
+|  |-- pytorch.BUILD
+|  |-- unix.BUILD
+|  |-- unix.yml
+|  |-- windows.BUILD
+|  |-- windows.yml
+|-- configure
+|-- demos
+|  |-- TransferLearning
+|  |  |-- README.md
+|  |  |-- TransferLearningDemo.ipynb
+|  |  |-- TransferLearningDemo.py
+|  |  |-- TransferLearningGui.py
+|  |  |-- requirements.txt
+|-- docs
+|  |-- .gitignore
+|  |-- 404.html
+|  |-- BUILD
+|  |-- Doxyfile
+|  |-- Gemfile
+|  |-- Gemfile.lock
+|  |-- README.md
+|  |-- _config.yml
+|  |-- _includes
+|  |  |-- head_custom.html
+|  |-- assets
+|  |  |-- images
+|  |  |  |-- nameonly.png
+|  |  |  |-- plaid-final-black-and-white.png
+|  |  |  |-- plaid-final.png
+|  |-- conf.py
+|  |-- docs
+|  |  |-- building.md
+|  |  |-- configuration.md
+|  |  |-- contributing.md
+|  |  |-- edsl.md
+|  |  |-- install.md
+|  |  |-- release-notes.md
+|  |  |-- troubleshooting.md
+|  |-- index.md
+|  |-- index.rst
+|  |-- manual_api
+|  |  |-- core.rst
+|  |  |-- edsl.rst
+|  |  |-- exec.rst
+|  |  |-- index.rst
+|  |-- usage
+|  |  |-- building.rst
+|  |  |-- install.rst
+|  |-- watch.py
+|-- environment-windows.yml
+|-- environment.yml
+|-- networks
+|  |-- keras
+|  |  |-- BUILD
+|  |  |-- example_correctness_test_utils.py
+|  |  |-- examples
+|  |  |  |-- __init__.py
+|  |  |  |-- addition_rnn.py
+|  |  |  |-- antirectifier.py
+|  |  |  |-- babi_memnn.py
+|  |  |  |-- babi_rnn.py
+|  |  |  |-- cifar10_cnn.py
+|  |  |  |-- conv_filter_visualization.py
+|  |  |  |-- conv_lstm.py
+|  |  |  |-- deep_dream.py
+|  |  |  |-- image_ocr.py
+|  |  |  |-- imdb_bidirectional_lstm.py
+|  |  |  |-- imdb_cnn.py
+|  |  |  |-- imdb_cnn_lstm.py
+|  |  |  |-- imdb_fasttext.py
+|  |  |  |-- imdb_lstm.py
+|  |  |  |-- lstm_benchmark.py
+|  |  |  |-- lstm_text_generation.py
+|  |  |  |-- mnist_acgan.py
+|  |  |  |-- mnist_cnn.py
+|  |  |  |-- mnist_hierarchical_rnn.py
+|  |  |  |-- mnist_irnn.py
+|  |  |  |-- mnist_mlp.py
+|  |  |  |-- mnist_net2net.py
+|  |  |  |-- mnist_siamese_graph.py
+|  |  |  |-- mnist_sklearn_wrapper.py
+|  |  |  |-- mnist_swwae.py
+|  |  |  |-- mnist_transfer_cnn.py
+|  |  |  |-- neural_doodle.py
+|  |  |  |-- neural_style_transfer.py
+|  |  |  |-- plaid.jpg
+|  |  |  |-- pretrained_word_embeddings.py
+|  |  |  |-- reuters_mlp.py
+|  |  |  |-- reuters_mlp_relu_vs_selu.py
+|  |  |  |-- stateful_lstm.py
+|  |  |  |-- style
+|  |  |  |  |-- plaid_mask.png
+|  |  |  |  |-- portrait.jpg
+|  |  |  |  |-- portrait_mask.png
+|  |  |  |-- vai_mnist_acgan.py
+|  |  |  |-- variational_autoencoder.py
+|  |  |  |-- variational_autoencoder_deconv.py
+|  |  |  |-- xception_utils.py
+|  |  |-- harness.py
+|  |  |-- tune.py
+|  |-- oplib
+|  |  |-- BUILD
+|  |  |-- resnet50.cc
+|  |-- scitile
+|  |  |-- pd_solve
+|  |  |  |-- BUILD
+|  |  |  |-- gradtest.py
+|  |  |-- uw_toroidal_shell
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- cuda
+|  |  |  |  |-- README
+|  |  |  |  |-- min_main.py
+|  |  |  |  |-- min_parallel.py
+|  |  |  |-- docs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- partial_diff.py
+|  |  |  |  |-- toroidal_shell_moment.jpg
+|  |  |  |  |-- uw_toroidal_shell_doc.tex
+|  |  |  |-- uw_tests.py
+|  |  |  |-- uw_toroidal_shell.py
+|-- plaidbench
+|  |-- BUILD
+|  |-- LICENSE
+|  |-- README.md
+|  |-- compare.html.template
+|  |-- compare_example.png
+|  |-- docs
+|  |  |-- BUILD
+|  |  |-- Makefile
+|  |  |-- _static
+|  |  |  |-- theme_overrides.css
+|  |  |-- conf.py
+|  |  |-- index.rst
+|  |  |-- requirements.txt
+|  |-- not_setup.cfg
+|  |-- plaidbench.py
+|  |-- plaidbench
+|  |  |-- __init__.py
+|  |  |-- cifar16.npy
+|  |  |-- cli.py
+|  |  |-- core.py
+|  |  |-- frontend_keras.py
+|  |  |-- frontend_ops.py
+|  |  |-- gen-cifar.py
+|  |  |-- gen-imdb.py
+|  |  |-- golden
+|  |  |  |-- densenet121
+|  |  |  |  |-- infer,bs-1.npy
+|  |  |  |-- densenet169
+|  |  |  |  |-- infer,bs-1.npy
+|  |  |  |-- densenet201
+|  |  |  |  |-- infer,bs-1.npy
+|  |  |  |-- imdb_lstm
+|  |  |  |  |-- infer,bs-1.npy
+|  |  |  |-- inception_resnet_v2
+|  |  |  |  |-- infer,bs-1.npy
+|  |  |  |-- inception_v3
+|  |  |  |  |-- infer,bs-1.npy
+|  |  |  |-- mobilenet
+|  |  |  |  |-- infer,bs-1.npy
+|  |  |  |  |-- train,bs-1.npy
+|  |  |  |-- mobilenet_v2
+|  |  |  |  |-- infer,bs-1.npy
+|  |  |  |-- nasnet_large
+|  |  |  |  |-- infer,bs-1.npy
+|  |  |  |-- nasnet_mobile
+|  |  |  |  |-- infer,bs-1.npy
+|  |  |  |-- resnet50
+|  |  |  |  |-- infer,bs-1.npy
+|  |  |  |-- vgg16
+|  |  |  |  |-- infer,bs-1.npy
+|  |  |  |-- vgg19
+|  |  |  |  |-- infer,bs-1.npy
+|  |  |  |-- xception
+|  |  |  |  |-- infer,bs-1.npy
+|  |  |-- imdb16.npy
+|  |  |-- networks
+|  |  |  |-- __init__.py
+|  |  |  |-- keras
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- densenet121.py
+|  |  |  |  |-- densenet169.py
+|  |  |  |  |-- densenet201.py
+|  |  |  |  |-- imdb_lstm.h5
+|  |  |  |  |-- imdb_lstm.py
+|  |  |  |  |-- inception_resnet_v2.py
+|  |  |  |  |-- inception_v3.py
+|  |  |  |  |-- mobilenet.py
+|  |  |  |  |-- mobilenet_v2.py
+|  |  |  |  |-- nasnet_large.py
+|  |  |  |  |-- nasnet_mobile.py
+|  |  |  |  |-- resnet50.py
+|  |  |  |  |-- resnet50_v2.py
+|  |  |  |  |-- resnext50.py
+|  |  |  |  |-- vgg16.py
+|  |  |  |  |-- vgg19.py
+|  |  |  |  |-- xception.py
+|  |  |  |-- ops
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- conv2d.py
+|  |  |  |  |-- dense.py
+|  |  |  |  |-- op.py
+|  |-- plaidplotter.py
+|  |-- setup.py
+|-- plaidml
+|  |-- BUILD
+|  |-- __init__.py
+|  |-- base
+|  |  |-- BUILD
+|  |  |-- base.h
+|  |  |-- base_cpp.h
+|  |  |-- context.cc
+|  |  |-- context.h
+|  |  |-- feature.cc
+|  |  |-- feature_test.cc
+|  |  |-- logging.cc
+|  |  |-- perf_counter.cc
+|  |  |-- status.cc
+|  |  |-- status.h
+|  |  |-- status_strings.cc
+|  |  |-- status_strings.h
+|  |  |-- status_test.cc
+|  |-- config-bazel.cc
+|  |-- config-unix.cc
+|  |-- config-windows.cc
+|  |-- config.h
+|  |-- configs
+|  |  |-- config.json
+|  |  |-- empty.json
+|  |  |-- experimental.json
+|  |  |-- macos.json
+|  |  |-- macos_experimental.json
+|  |-- context.py
+|  |-- cpp_test.cc
+|  |-- enumerate.py
+|  |-- exceptions.py
+|  |-- keras
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- backend.py
+|  |  |-- backend_test.py
+|  |  |-- example_vgg.py
+|  |  |-- mnist_mlp_test.py
+|  |  |-- not_setup.cfg
+|  |  |-- regression_test.py
+|  |  |-- tf_test.py
+|  |  |-- tile_sandbox.py
+|  |  |-- trivial_model_test.py
+|  |  |-- tutorial_test.py
+|  |-- library.py
+|  |-- matmul_fuzz_test.cc
+|  |-- network_test.cc
+|  |-- not_setup.cfg
+|  |-- op.py
+|  |-- plaidml++.h
+|  |-- plaidml-config.cmake
+|  |-- plaidml.cc
+|  |-- plaidml.h
+|  |-- plaidml.proto
+|  |-- plaidml_link.jsonnet
+|  |-- plaidml_setup.py
+|  |-- plaidml_test.cc
+|  |-- plaidml_test.py
+|  |-- settings.py
+|  |-- settings_test.py
+|  |-- testdata
+|  |  |-- resnet50.tpb
+|  |  |-- xception.tpb
+|  |-- tile.py
+|  |-- tile_test.py
+|  |-- uint8_test.cc
+|-- plaidml2
+|  |-- BUILD
+|  |-- __init__.py
+|  |-- bridge
+|  |  |-- keras
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- backend_test.py
+|  |  |  |-- mnist_mlp_test.py
+|  |  |  |-- regression_test.py
+|  |  |  |-- setup.py
+|  |  |  |-- trivial_model_test.py
+|  |  |-- pytorch
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- compiler.cc
+|  |  |  |-- compiler.h
+|  |  |  |-- logging.h
+|  |  |  |-- models_test.py
+|  |  |  |-- ops_test.py
+|  |  |  |-- register.cc
+|  |  |  |-- test_utils.py
+|  |-- core
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- core.h
+|  |  |-- core_test.py
+|  |  |-- ffi.cc
+|  |  |-- ffi.h
+|  |  |-- internal.h
+|  |  |-- settings.cc
+|  |  |-- settings.h
+|  |  |-- settings.py
+|  |-- edsl
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- autodiff.h
+|  |  |-- derivs.cc
+|  |  |-- derivs.h
+|  |  |-- edsl.h
+|  |  |-- edsl_test.cc
+|  |  |-- edsl_test.py
+|  |  |-- ffi.cc
+|  |  |-- ffi.h
+|  |  |-- helper.cc
+|  |  |-- helper.h
+|  |-- exec
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- exec.h
+|  |  |-- ffi.cc
+|  |  |-- ffi.h
+|  |-- ffi.py
+|  |-- op
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- ffi.cc
+|  |  |-- ffi.h
+|  |  |-- lib
+|  |  |  |-- BUILD
+|  |  |  |-- design.md
+|  |  |  |-- ops.cc
+|  |  |  |-- ops.h
+|  |  |-- op.h
+|  |  |-- op_test.cc
+|  |  |-- op_test.py
+|  |-- plaidml2-config.cmake
+|  |-- plaidml_link.jsonnet
+|  |-- plaidml_setup.py
+|  |-- setup.py
+|  |-- testenv.cc
+|-- pmlc
+|  |-- BUILD
+|  |-- CPPLINT.cfg
+|  |-- compiler
+|  |  |-- BUILD
+|  |  |-- compiler.cc
+|  |  |-- compiler.h
+|  |  |-- registry.cc
+|  |  |-- registry.h
+|  |-- conversion
+|  |  |-- affine_to_stripe
+|  |  |  |-- BUILD
+|  |  |  |-- convert_affine_to_stripe.cc
+|  |  |  |-- convert_affine_to_stripe.h
+|  |  |  |-- supported_ops.inc
+|  |  |-- pxa_to_affine
+|  |  |  |-- BUILD
+|  |  |  |-- pxa_to_affine.cc
+|  |  |  |-- pxa_to_affine.h
+|  |  |-- stripe_to_affine
+|  |  |  |-- BUILD
+|  |  |  |-- convert_stripe_to_affine.cc
+|  |  |  |-- convert_stripe_to_affine.h
+|  |  |  |-- supported_ops.inc
+|  |  |-- tests
+|  |  |  |-- stripe_affine_roundtrip
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- affine_for.mlir
+|  |  |  |  |-- function_signature.mlir
+|  |  |  |  |-- load-store.mlir
+|  |  |  |  |-- parallel_for.mlir
+|  |  |-- tile_to_pxa
+|  |  |  |-- BUILD
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- compare.mlir
+|  |  |  |  |-- dot.mlir
+|  |  |  |  |-- double_dot.mlir
+|  |  |  |  |-- eltwise_add.mlir
+|  |  |  |  |-- relu.mlir
+|  |  |  |  |-- shape.mlir
+|  |  |  |-- tile_to_pxa.cc
+|  |  |  |-- tile_to_pxa.h
+|  |  |-- tile_to_stripe
+|  |  |  |-- BUILD
+|  |  |  |-- tile_to_stripe.cc
+|  |  |  |-- tile_to_stripe.h
+|  |-- dialect
+|  |  |-- eltwise
+|  |  |  |-- BUILD
+|  |  |  |-- ir
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dialect.cc
+|  |  |  |  |-- dialect.h
+|  |  |  |  |-- interfaces.td
+|  |  |  |  |-- ops.cc
+|  |  |  |  |-- ops.h
+|  |  |  |  |-- ops.td
+|  |  |  |  |-- predicates.td
+|  |  |  |  |-- registration.cc
+|  |  |  |  |-- types.cc
+|  |  |  |  |-- types.h
+|  |  |  |  |-- util.cc
+|  |  |  |  |-- util.h
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- constant-fold.mlir
+|  |  |-- oplib
+|  |  |  |-- BUILD
+|  |  |  |-- ops.td
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- BasicTensorOp.td
+|  |  |  |  |-- MultiTensorInputOp.td
+|  |  |  |  |-- TensorOpWithIntArrayAttr.td
+|  |  |  |  |-- TensorOpWithIntAttr.td
+|  |  |  |  |-- TensorOpWithStrAttr.td
+|  |  |-- pxa
+|  |  |  |-- BUILD
+|  |  |  |-- ir
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dialect.cc
+|  |  |  |  |-- dialect.h
+|  |  |  |  |-- ops.cc
+|  |  |  |  |-- ops.h
+|  |  |  |  |-- ops.td
+|  |  |  |  |-- registration.cc
+|  |  |  |-- transforms
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- passes.h
+|  |  |-- stripe
+|  |  |  |-- BUILD
+|  |  |  |-- affine_poly.cc
+|  |  |  |-- affine_poly.h
+|  |  |  |-- agginit_pass.cc
+|  |  |  |-- agginit_pass.h
+|  |  |  |-- analysis.cc
+|  |  |  |-- analysis.h
+|  |  |  |-- autostencil_pass.cc
+|  |  |  |-- autostencil_pass.h
+|  |  |  |-- demo_vectorize.cc
+|  |  |  |-- dialect.cc
+|  |  |  |-- dialect.h
+|  |  |  |-- from_mlir.cc
+|  |  |  |-- into_mlir.cc
+|  |  |  |-- jigsaw_pass.cc
+|  |  |  |-- mlir.h
+|  |  |  |-- nop_pass.h
+|  |  |  |-- ops.cc
+|  |  |  |-- ops.h
+|  |  |  |-- ops.td
+|  |  |  |-- padding_pass.cc
+|  |  |  |-- padding_pass.h
+|  |  |  |-- populate_tensor_ref_shape_analysis.cc
+|  |  |  |-- populate_tensor_ref_shape_analysis.h
+|  |  |  |-- rewrites.cc
+|  |  |  |-- rewrites.h
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- canonicalize.mlir
+|  |  |  |  |-- demo_vectorize.mlir
+|  |  |  |  |-- jigsaw.mlir
+|  |  |  |  |-- populate_tensor_ref_shape.mlir
+|  |  |  |  |-- translate
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- double_dot.pbtxt
+|  |  |  |-- transcode.h
+|  |  |  |-- transforms.cc
+|  |  |  |-- transforms.h
+|  |  |  |-- translate_test.cc
+|  |  |  |-- types.cc
+|  |  |  |-- types.h
+|  |  |  |-- util.cc
+|  |  |  |-- util.h
+|  |  |-- tile
+|  |  |  |-- BUILD
+|  |  |  |-- builder.cc
+|  |  |  |-- builder.h
+|  |  |  |-- gradient.cc
+|  |  |  |-- gradient.h
+|  |  |  |-- ir
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dialect.cc
+|  |  |  |  |-- dialect.h
+|  |  |  |  |-- interfaces.td
+|  |  |  |  |-- ops.cc
+|  |  |  |  |-- ops.h
+|  |  |  |  |-- ops.td
+|  |  |  |  |-- registration.cc
+|  |  |  |  |-- types.cc
+|  |  |  |  |-- types.h
+|  |  |  |-- program.h
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- build-cion.mlir
+|  |  |  |  |-- cion-to-stripe.mlir
+|  |  |  |  |-- compute-bounds.mlir
+|  |  |  |  |-- constant-fold.mlir
+|  |  |  |  |-- legalize-to-stripe.mlir
+|  |  |  |  |-- translate-to-stripe.mlir
+|  |  |  |-- transforms
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- contraction.cc
+|  |  |  |  |-- contraction.h
+|  |  |  |  |-- passes.h
+|  |  |  |  |-- registration.cc
+|  |-- lit.bzl
+|  |-- runlit.cfg.py
+|  |-- runlit.site.cfg.py
+|  |-- target
+|  |  |-- intel_gen
+|  |  |  |-- BUILD
+|  |  |  |-- pipeline.cc
+|  |  |-- x86
+|  |  |  |-- BUILD
+|  |  |  |-- pipeline.cc
+|  |-- test.cc
+|  |-- tools
+|  |  |-- pmlc-opt
+|  |  |  |-- BUILD
+|  |  |  |-- pmlc-opt.cc
+|  |  |-- pmlc-tblgen
+|  |  |  |-- BUILD
+|  |  |  |-- cpp
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- impl_gen.cc
+|  |  |  |  |-- impl_gen.h
+|  |  |  |  |-- utils.h
+|  |  |  |  |-- wrapper_gen.cc
+|  |  |  |  |-- wrapper_gen.h
+|  |  |  |-- model.cc
+|  |  |  |-- model.h
+|  |  |  |-- oplib_gen.cc
+|  |  |  |-- python
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- utils.h
+|  |  |  |  |-- wrapper_gen.cc
+|  |  |  |  |-- wrapper_gen.h
+|  |  |-- pmlc-translate
+|  |  |  |-- BUILD
+|  |  |  |-- pmlc-translate.cc
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- enums.cc
+|  |  |-- enums.h
+|  |  |-- enums.td
+|  |  |-- interfaces.cc
+|  |  |-- interfaces.h
+|  |  |-- interfaces.td
+|  |  |-- slice.cc
+|  |  |-- slice.h
+|  |  |-- util.cc
+|  |  |-- util.h
+|-- remote
+|-- testing
+|  |-- BUILD
+|  |-- __init__.py
+|  |-- configs_test.py
+|  |-- gtest_main.cc
+|  |-- matchers.h
+|  |-- plaidml_config.cc
+|  |-- plaidml_config.h
+|  |-- plaidml_config.py
+|-- tile
+|  |-- BUILD
+|  |-- base
+|  |  |-- BUILD
+|  |  |-- buffer.h
+|  |  |-- dbgsync.cc
+|  |  |-- dbgsync.h
+|  |  |-- hal.h
+|  |  |-- lru_cache.h
+|  |  |-- namespaces.h
+|  |  |-- platform.h
+|  |  |-- platform_test.cc
+|  |  |-- platform_test.h
+|  |  |-- program.h
+|  |  |-- program_cache.cc
+|  |  |-- program_cache.h
+|  |  |-- schedule.cc
+|  |  |-- schedule.h
+|  |  |-- shape.cc
+|  |  |-- shape.h
+|  |  |-- validate.cc
+|  |  |-- validate.h
+|  |-- bilp
+|  |  |-- BUILD
+|  |  |-- ilp_solver.cc
+|  |  |-- ilp_solver.h
+|  |  |-- tableau.cc
+|  |  |-- tableau.h
+|  |  |-- test.cc
+|  |-- codegen
+|  |  |-- BUILD
+|  |  |-- aggrinit.cc
+|  |  |-- aggrinit.h
+|  |  |-- alias.cc
+|  |  |-- alias.h
+|  |  |-- autotile.cc
+|  |  |-- autotile.h
+|  |  |-- cache.cc
+|  |  |-- cache.h
+|  |  |-- codec.cc
+|  |  |-- codec.h
+|  |  |-- codegen.proto
+|  |  |-- compile_pass.h
+|  |  |-- const_prop.cc
+|  |  |-- const_prop.h
+|  |  |-- const_tensor.cc
+|  |  |-- const_tensor.h
+|  |  |-- cstr_reduction.cc
+|  |  |-- cstr_reduction.h
+|  |  |-- dce.cc
+|  |  |-- dce.h
+|  |  |-- deps.cc
+|  |  |-- deps.h
+|  |  |-- driver.cc
+|  |  |-- driver.h
+|  |  |-- emitc.cc
+|  |  |-- emitc.h
+|  |  |-- fc.cc
+|  |  |-- fc.h
+|  |  |-- fix_strides.cc
+|  |  |-- fix_strides.h
+|  |  |-- fuse.cc
+|  |  |-- fuse.h
+|  |  |-- idx_order.cc
+|  |  |-- idx_order.h
+|  |  |-- kernel_tag.cc
+|  |  |-- kernel_tag.h
+|  |  |-- localize.cc
+|  |  |-- localize.h
+|  |  |-- mem_rebase.cc
+|  |  |-- mem_rebase.h
+|  |  |-- mlir_passes.cc
+|  |  |-- mlir_passes.h
+|  |  |-- package.cc
+|  |  |-- package.h
+|  |  |-- pad.cc
+|  |  |-- pad.h
+|  |  |-- partition.cc
+|  |  |-- partition.h
+|  |  |-- pattern.cc
+|  |  |-- pattern.h
+|  |  |-- placer.cc
+|  |  |-- placer.h
+|  |  |-- reg_cache.cc
+|  |  |-- reg_cache.h
+|  |  |-- reorder.cc
+|  |  |-- reorder.h
+|  |  |-- rewrite_locs.cc
+|  |  |-- rewrite_locs.h
+|  |  |-- scalarize.cc
+|  |  |-- scalarize.h
+|  |  |-- schedule.cc
+|  |  |-- schedule.h
+|  |  |-- stencil.cc
+|  |  |-- stencil.h
+|  |  |-- subgroup.cc
+|  |  |-- subgroup.h
+|  |  |-- temp_var.cc
+|  |  |-- temp_var.h
+|  |  |-- test
+|  |  |  |-- BUILD
+|  |  |  |-- alias.cc
+|  |  |  |-- cache.cc
+|  |  |  |-- dce.cc
+|  |  |  |-- deps.cc
+|  |  |  |-- fuse.cc
+|  |  |  |-- load_index.cc
+|  |  |  |-- passes
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- main.cc
+|  |  |  |  |-- manager.cc
+|  |  |  |  |-- manager.h
+|  |  |  |  |-- runner.cc
+|  |  |  |  |-- runner.h
+|  |  |  |-- pattern.cc
+|  |  |  |-- placer.cc
+|  |  |  |-- schedule.cc
+|  |  |  |-- tile.cc
+|  |  |-- thread_inner.cc
+|  |  |-- thread_inner.h
+|  |  |-- tidy.cc
+|  |  |-- tidy.h
+|  |  |-- tile.cc
+|  |  |-- tile.h
+|  |  |-- transpose.cc
+|  |  |-- transpose.h
+|  |  |-- unroll.cc
+|  |  |-- unroll.h
+|  |  |-- vm.cc
+|  |  |-- vm.h
+|  |-- hal
+|  |  |-- cm
+|  |  |  |-- BUILD
+|  |  |  |-- buffer.cc
+|  |  |  |-- buffer.h
+|  |  |  |-- cm.cc
+|  |  |  |-- cm.proto
+|  |  |  |-- compiler.cc
+|  |  |  |-- compiler.h
+|  |  |  |-- compute_kernel.cc
+|  |  |  |-- compute_kernel.h
+|  |  |  |-- device.cc
+|  |  |  |-- device.h
+|  |  |  |-- device_set.cc
+|  |  |  |-- device_set.h
+|  |  |  |-- device_state.cc
+|  |  |  |-- device_state.h
+|  |  |  |-- driver.cc
+|  |  |  |-- driver.h
+|  |  |  |-- emitcm.cc
+|  |  |  |-- emitcm.h
+|  |  |  |-- err.cc
+|  |  |  |-- err.h
+|  |  |  |-- event.cc
+|  |  |  |-- event.h
+|  |  |  |-- executable.cc
+|  |  |  |-- executable.h
+|  |  |  |-- executor.cc
+|  |  |  |-- executor.h
+|  |  |  |-- host_memory.cc
+|  |  |  |-- host_memory.h
+|  |  |  |-- info.cc
+|  |  |  |-- info.h
+|  |  |  |-- kernel.h
+|  |  |  |-- library.cc
+|  |  |  |-- library.h
+|  |  |  |-- mem_arena.cc
+|  |  |  |-- mem_arena.h
+|  |  |  |-- mem_buffer.cc
+|  |  |  |-- mem_buffer.h
+|  |  |  |-- platform_test.cc
+|  |  |  |-- result.cc
+|  |  |  |-- result.h
+|  |  |  |-- runtime.h
+|  |  |  |-- shared_memory.cc
+|  |  |  |-- travel.cc
+|  |  |  |-- travel.h
+|  |  |  |-- zero_kernel.cc
+|  |  |  |-- zero_kernel.h
+|  |  |-- cuda
+|  |  |  |-- BUILD
+|  |  |  |-- compiler.cc
+|  |  |  |-- emit.cc
+|  |  |  |-- emit.h
+|  |  |  |-- error.h
+|  |  |  |-- hal.cc
+|  |  |  |-- hal.h
+|  |  |  |-- platform_test.cc
+|  |  |-- metal
+|  |  |  |-- BUILD
+|  |  |  |-- emit.cc
+|  |  |  |-- hal.cc
+|  |  |  |-- hal.h
+|  |  |  |-- platform_test.cc
+|  |  |-- opencl
+|  |  |  |-- BUILD
+|  |  |  |-- buffer.cc
+|  |  |  |-- buffer.h
+|  |  |  |-- cl_mem_arena.cc
+|  |  |  |-- cl_mem_arena.h
+|  |  |  |-- cl_mem_buffer.cc
+|  |  |  |-- cl_mem_buffer.h
+|  |  |  |-- cl_opt.cc
+|  |  |  |-- cl_opt.h
+|  |  |  |-- compiler.cc
+|  |  |  |-- compiler.h
+|  |  |  |-- compute_kernel.cc
+|  |  |  |-- compute_kernel.h
+|  |  |  |-- device.cc
+|  |  |  |-- device.h
+|  |  |  |-- device_memory.cc
+|  |  |  |-- device_memory.h
+|  |  |  |-- device_set.cc
+|  |  |  |-- device_set.h
+|  |  |  |-- device_state.cc
+|  |  |  |-- device_state.h
+|  |  |  |-- driver.cc
+|  |  |  |-- driver.h
+|  |  |  |-- emitocl.cc
+|  |  |  |-- emitocl.h
+|  |  |  |-- event.cc
+|  |  |  |-- event.h
+|  |  |  |-- executable.cc
+|  |  |  |-- executable.h
+|  |  |  |-- executor.cc
+|  |  |  |-- executor.h
+|  |  |  |-- host_memory.cc
+|  |  |  |-- host_memory.h
+|  |  |  |-- info.cc
+|  |  |  |-- info.h
+|  |  |  |-- kernel.h
+|  |  |  |-- library.cc
+|  |  |  |-- library.h
+|  |  |  |-- ocl.cc
+|  |  |  |-- ocl.h
+|  |  |  |-- opencl.cc
+|  |  |  |-- opencl.proto
+|  |  |  |-- platform_test.cc
+|  |  |  |-- result.cc
+|  |  |  |-- result.h
+|  |  |  |-- shared_memory.cc
+|  |  |  |-- zero_kernel.cc
+|  |  |  |-- zero_kernel.h
+|  |  |-- util
+|  |  |  |-- BUILD
+|  |  |  |-- selector.cc
+|  |  |  |-- selector.h
+|  |  |  |-- settings.cc
+|  |  |  |-- settings.h
+|  |-- lang
+|  |  |-- BUILD
+|  |  |-- ast
+|  |  |  |-- BUILD
+|  |  |  |-- ast.cc
+|  |  |  |-- ast.h
+|  |  |  |-- ast_ops.cc
+|  |  |  |-- ast_ops.h
+|  |  |  |-- fold.cc
+|  |  |  |-- fold.h
+|  |  |  |-- gradient.cc
+|  |  |  |-- gradient.h
+|  |  |  |-- jacobian.cc
+|  |  |  |-- jacobian.h
+|  |  |  |-- traversal.cc
+|  |  |  |-- traversal.h
+|  |  |-- bound.cc
+|  |  |-- bound.h
+|  |  |-- builtins.cc
+|  |  |-- builtins.h
+|  |  |-- compile.cc
+|  |  |-- compile.h
+|  |  |-- compose.cc
+|  |  |-- compose.h
+|  |  |-- defract.cc
+|  |  |-- defract.h
+|  |  |-- emitc.cc
+|  |  |-- emitc.h
+|  |  |-- exprtype.cc
+|  |  |-- exprtype.h
+|  |  |-- exprtype_test.cc
+|  |  |-- flat.cc
+|  |  |-- flat.h
+|  |  |-- fnv1a64.h
+|  |  |-- fpconv.cc
+|  |  |-- fpconv.h
+|  |  |-- gen_contract.cc
+|  |  |-- gen_contract.h
+|  |  |-- gen_special.cc
+|  |  |-- gen_special.h
+|  |  |-- gen_stripe.cc
+|  |  |-- gen_stripe.h
+|  |  |-- gen_stripe_test.cc
+|  |  |-- gen_test.cc
+|  |  |-- gen_trivial.cc
+|  |  |-- gen_trivial.h
+|  |  |-- generate.cc
+|  |  |-- generate.h
+|  |  |-- gid.cc
+|  |  |-- gid.h
+|  |  |-- gid_test.cc
+|  |  |-- intrinsic.cc
+|  |  |-- intrinsic.h
+|  |  |-- lang.proto
+|  |  |-- lang_test.cc
+|  |  |-- loop.cc
+|  |  |-- loop.h
+|  |  |-- ops.cc
+|  |  |-- ops.h
+|  |  |-- out_plan.cc
+|  |  |-- out_plan.h
+|  |  |-- parser.cc
+|  |  |-- parser.h
+|  |  |-- read_plan.cc
+|  |  |-- read_plan.h
+|  |  |-- reduce.cc
+|  |  |-- reduce.h
+|  |  |-- replace.cc
+|  |  |-- replace.h
+|  |  |-- runinfo.h
+|  |  |-- scope.h
+|  |  |-- sembuilder.h
+|  |  |-- semprinter.cc
+|  |  |-- semprinter.h
+|  |  |-- semtree.cc
+|  |  |-- semtree.h
+|  |  |-- sim_test.cc
+|  |  |-- simplifier.cc
+|  |  |-- simplifier.h
+|  |  |-- simplifier_test.cc
+|  |  |-- simulate.h
+|  |  |-- sym_poly.cc
+|  |  |-- sym_poly.h
+|  |  |-- symbolic.cc
+|  |  |-- symbolic.h
+|  |  |-- test.cc
+|  |  |-- tile.lex
+|  |  |-- tile.y
+|  |  |-- tile_cache.cc
+|  |  |-- tile_cache.h
+|  |  |-- tile_opt.cc
+|  |  |-- tile_opt.h
+|  |  |-- tile_parse_test.txt
+|  |  |-- type.cc
+|  |  |-- type.h
+|  |  |-- usedef.cc
+|  |  |-- usedef.h
+|  |-- lib
+|  |  |-- BUILD
+|  |  |-- lib.cc
+|  |  |-- lib.h
+|  |  |-- tests.cc
+|  |  |-- tests.h
+|  |-- math
+|  |  |-- BUILD
+|  |  |-- basis.cc
+|  |  |-- basis.h
+|  |  |-- bignum.cc
+|  |  |-- bignum.h
+|  |  |-- math_test.cc
+|  |  |-- matrix.cc
+|  |  |-- matrix.h
+|  |  |-- polynomial.cc
+|  |  |-- polynomial.h
+|  |  |-- test.cc
+|  |  |-- util.cc
+|  |  |-- util.h
+|  |-- ocl_exec
+|  |  |-- BUILD
+|  |  |-- emitsem.cc
+|  |  |-- emitsem.h
+|  |  |-- intrinsic.cc
+|  |  |-- intrinsic.h
+|  |  |-- kern_info.cc
+|  |  |-- kern_info.h
+|  |  |-- stripe_gen.cc
+|  |  |-- stripe_gen.h
+|  |-- platform
+|  |  |-- local_machine
+|  |  |  |-- BUILD
+|  |  |  |-- block_placer.cc
+|  |  |  |-- block_placer.h
+|  |  |  |-- buffer.cc
+|  |  |  |-- buffer.h
+|  |  |  |-- cpu_program.cc
+|  |  |  |-- cpu_program.h
+|  |  |  |-- devinfo.h
+|  |  |  |-- direct_mem_strategy.cc
+|  |  |  |-- direct_mem_strategy.h
+|  |  |  |-- direct_scheduler.h
+|  |  |  |-- factory.cc
+|  |  |  |-- fifo_scheduler.cc
+|  |  |  |-- fifo_scheduler.h
+|  |  |  |-- fifo_scheduler_test.cc
+|  |  |  |-- linear_scheduler.cc
+|  |  |  |-- linear_scheduler.h
+|  |  |  |-- linear_scheduler_test.cc
+|  |  |  |-- local_machine.h
+|  |  |  |-- local_machine.proto
+|  |  |  |-- loose_scheduler.cc
+|  |  |  |-- loose_scheduler.h
+|  |  |  |-- loose_scheduler_test.cc
+|  |  |  |-- mem_cache.cc
+|  |  |  |-- mem_cache.h
+|  |  |  |-- mem_chunk.h
+|  |  |  |-- mem_deps.cc
+|  |  |  |-- mem_deps.h
+|  |  |  |-- mem_strategy.h
+|  |  |  |-- naive_placer.cc
+|  |  |  |-- naive_placer.h
+|  |  |  |-- placer.h
+|  |  |  |-- platform.cc
+|  |  |  |-- platform.h
+|  |  |  |-- program.cc
+|  |  |  |-- program.h
+|  |  |  |-- run_request.cc
+|  |  |  |-- run_request.h
+|  |  |  |-- scheduler.cc
+|  |  |  |-- scheduler.h
+|  |  |  |-- scheduler_test.cc
+|  |  |  |-- scheduler_test.h
+|  |  |  |-- shim.cc
+|  |  |  |-- shim.h
+|  |  |  |-- tdep_scheduler.cc
+|  |  |  |-- tdep_scheduler.h
+|  |  |  |-- tdep_scheduler_test.cc
+|  |  |  |-- testdata
+|  |  |  |  |-- concat.tpb
+|  |  |  |  |-- lstm.tpb
+|  |  |  |  |-- prng.tpb
+|  |  |  |  |-- resnet50_train.tpb
+|  |  |  |  |-- xception.tpb
+|  |  |  |-- tmp_mem_strategy.cc
+|  |  |  |-- tmp_mem_strategy.h
+|  |-- pmlc
+|  |  |-- BUILD
+|  |  |-- main.cc
+|  |  |-- pmlc.cc
+|  |  |-- pmlc.h
+|  |-- proto
+|  |  |-- BUILD
+|  |  |-- hal.proto
+|  |  |-- metadata.proto
+|  |  |-- schedule.proto
+|  |  |-- shape.proto
+|  |  |-- support.cc
+|  |  |-- support.h
+|  |  |-- tile.proto
+|  |-- stripe
+|  |  |-- BUILD
+|  |  |-- impl.h
+|  |  |-- protobuf.cc
+|  |  |-- stripe.cc
+|  |  |-- stripe.h
+|  |  |-- stripe.proto
+|  |  |-- stripe_test.cc
+|  |-- targets
+|  |  |-- BUILD
+|  |  |-- cpu
+|  |  |  |-- BUILD
+|  |  |  |-- compiler.cc
+|  |  |  |-- compiler.h
+|  |  |  |-- config.h
+|  |  |  |-- executable.cc
+|  |  |  |-- executable.h
+|  |  |  |-- heatmap.h
+|  |  |  |-- heatmap.tpl.cc
+|  |  |  |-- heatmap_skx_xeonplat_8180_1-7GHz_mblocked.csv.gz
+|  |  |  |-- jit.cc
+|  |  |  |-- jit.h
+|  |  |  |-- link_names.cc
+|  |  |  |-- link_names.h
+|  |  |  |-- llvm_cpu.jsonnet
+|  |  |  |-- programmodule.h
+|  |  |  |-- test
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- jit.cc
+|  |  |-- gpu
+|  |  |  |-- BUILD
+|  |  |  |-- amd.jsonnet
+|  |  |  |-- cm.jsonnet
+|  |  |  |-- intel_gen9.jsonnet
+|  |  |  |-- nvidia.jsonnet
+|  |  |-- targets.cc
+|  |  |-- targets.h
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- tile_file.cc
+|  |  |-- tile_file.h
+|-- toolchain
+|  |-- BUILD
+|  |-- README.md
+|  |-- build_defs.bzl
+|  |-- crosstool_ng
+|  |  |-- linux_x86_64-gcc_8.3.0
+|  |  |  |-- BUILD
+|  |  |  |-- config
+|  |  |  |-- wrappers
+|  |  |  |  |-- ar
+|  |  |  |  |-- as
+|  |  |  |  |-- gcc
+|  |  |  |  |-- gcov
+|  |  |  |  |-- ld
+|  |  |  |  |-- nm
+|  |  |  |  |-- objcopy
+|  |  |  |  |-- objdump
+|  |  |  |  |-- strip
+|  |  |-- linux_x86_64.BUILD
+|-- tools
+|  |-- analysis
+|  |  |-- Analysis.ipynb
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- analysis_test.py
+|  |  |-- kernel_times.py
+|  |  |-- main.py
+|  |  |-- testdata
+|  |  |  |-- eventlog.gz
+|  |  |  |-- small_mobilenet_coco_log.gz
+|  |  |-- util.py
+|  |  |-- util_test.py
+|  |-- cbake
+|  |  |-- BUILD
+|  |  |-- cbake.py
+|  |  |-- cmake_parser.py
+|  |-- conda_run
+|  |  |-- BUILD
+|  |  |-- conda_unix.cc
+|  |  |-- conda_windows.cc
+|  |-- gencfg
+|  |  |-- BUILD
+|  |  |-- build_defs.bzl
+|  |  |-- gencfg.cc
+|  |-- heatmap
+|  |  |-- BUILD
+|  |  |-- build_defs.bzl
+|  |  |-- heatmap.py
+|  |-- intel-ocl-silent
+|  |-- py_cffi
+|  |  |-- BUILD
+|  |  |-- build_defs.bzl
+|  |  |-- py_cffi.py
+|  |-- py_setup
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- build_defs.bzl
+|-- vendor
+|  |-- bazel
+|  |  |-- BUILD
+|  |  |-- repo.bzl
+|  |-- cm
+|  |  |-- BUILD
+|  |  |-- BUILD.tpl
+|  |  |-- build_defs.bzl.tpl
+|  |  |-- configure.bzl
+|  |-- cuda
+|  |  |-- BUILD
+|  |  |-- BUILD.tpl
+|  |  |-- build_defs.bzl.tpl
+|  |  |-- configure.bzl
+|  |-- latex
+|  |  |-- BUILD
+|  |  |-- fancyvrb_test.tex
+|  |  |-- fvextra_test.tex
+|  |  |-- ifplatform_test.tex
+|  |  |-- minted_test.tex
+|  |-- llvm
+|  |  |-- BUILD
+|  |  |-- expand_cmake_vars.py
+|  |  |-- llvm.BUILD
+|  |  |-- llvm.bzl
+|  |-- mlir
+|  |  |-- BUILD
+|  |  |-- mlir.BUILD
+|  |  |-- mlir.patch
+|  |  |-- tblgen.bzl
+|  |-- tbb
+|  |  |-- BUILD
+|  |  |-- gen_cpu_ctl_env.cc
+|  |  |-- tbb.BUILD

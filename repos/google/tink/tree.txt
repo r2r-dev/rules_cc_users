@@ -1,0 +1,3133 @@
+|-- .bazelversion
+|-- .github
+|  |-- ISSUE_TEMPLATE
+|  |  |-- bug_report.md
+|  |  |-- feature_request.md
+|  |-- workflows
+|  |  |-- codeql-analysis.yml
+|-- .gitignore
+|-- BUILD.bazel
+|-- CMakeLists.txt
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- apps
+|  |-- .bazelversion
+|  |-- BUILD.bazel
+|  |-- README.md
+|  |-- WORKSPACE
+|  |-- paymentmethodtoken
+|  |  |-- BUILD.bazel
+|  |  |-- README.md
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- crypto
+|  |  |  |  |  |  |  |  |-- tink
+|  |  |  |  |  |  |  |  |  |-- apps
+|  |  |  |  |  |  |  |  |  |  |-- paymentmethodtoken
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |  |-- GooglePaymentsPublicKeysManager.java
+|  |  |  |  |  |  |  |  |  |  |  |-- PaymentMethodTokenConstants.java
+|  |  |  |  |  |  |  |  |  |  |  |-- PaymentMethodTokenHybridDecrypt.java
+|  |  |  |  |  |  |  |  |  |  |  |-- PaymentMethodTokenHybridEncrypt.java
+|  |  |  |  |  |  |  |  |  |  |  |-- PaymentMethodTokenRecipient.java
+|  |  |  |  |  |  |  |  |  |  |  |-- PaymentMethodTokenRecipientKem.java
+|  |  |  |  |  |  |  |  |  |  |  |-- PaymentMethodTokenRecipientKeyGen.java
+|  |  |  |  |  |  |  |  |  |  |  |-- PaymentMethodTokenSender.java
+|  |  |  |  |  |  |  |  |  |  |  |-- PaymentMethodTokenUtil.java
+|  |  |  |  |  |  |  |  |  |  |  |-- SenderIntermediateCertFactory.java
+|  |  |  |-- test
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- crypto
+|  |  |  |  |  |  |  |  |-- tink
+|  |  |  |  |  |  |  |  |  |-- apps
+|  |  |  |  |  |  |  |  |  |  |-- paymentmethodtoken
+|  |  |  |  |  |  |  |  |  |  |  |-- GooglePaymentsPublicKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- PaymentMethodJsonEncodingTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- PaymentMethodTokenHybridDecryptTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- PaymentMethodTokenHybridEncryptTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- PaymentMethodTokenRecipientTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- PaymentMethodTokenSenderTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- SenderIntermediateCertFactoryTest.java
+|  |-- rewardedads
+|  |  |-- BUILD.bazel
+|  |  |-- README.md
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- crypto
+|  |  |  |  |  |  |  |  |-- tink
+|  |  |  |  |  |  |  |  |  |-- apps
+|  |  |  |  |  |  |  |  |  |  |-- rewardedads
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |  |-- RewardedAdsVerifier.java
+|  |  |  |-- test
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- crypto
+|  |  |  |  |  |  |  |  |-- tink
+|  |  |  |  |  |  |  |  |  |-- apps
+|  |  |  |  |  |  |  |  |  |  |-- rewardedads
+|  |  |  |  |  |  |  |  |  |  |  |-- RewardedAdsVerifierTest.java
+|  |-- webpush
+|  |  |-- BUILD.bazel
+|  |  |-- README.md
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- crypto
+|  |  |  |  |  |  |  |  |-- tink
+|  |  |  |  |  |  |  |  |  |-- apps
+|  |  |  |  |  |  |  |  |  |  |-- webpush
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |  |-- WebPushConstants.java
+|  |  |  |  |  |  |  |  |  |  |  |-- WebPushHybridDecrypt.java
+|  |  |  |  |  |  |  |  |  |  |  |-- WebPushHybridEncrypt.java
+|  |  |  |  |  |  |  |  |  |  |  |-- WebPushUtil.java
+|  |  |  |-- test
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- crypto
+|  |  |  |  |  |  |  |  |-- tink
+|  |  |  |  |  |  |  |  |  |-- apps
+|  |  |  |  |  |  |  |  |  |  |-- webpush
+|  |  |  |  |  |  |  |  |  |  |  |-- WebPushHybridDecryptTest.java
+|  |  |  |  |  |  |  |  |  |  |  |-- WebPushHybridEncryptTest.java
+|-- cc
+|  |-- .bazelrc
+|  |-- .bazelversion
+|  |-- BUILD.bazel
+|  |-- CMakeLists.txt
+|  |-- WORKSPACE
+|  |-- aead.h
+|  |-- aead
+|  |  |-- BUILD.bazel
+|  |  |-- CMakeLists.txt
+|  |  |-- aead_config.cc
+|  |  |-- aead_config.h
+|  |  |-- aead_config_test.cc
+|  |  |-- aead_factory.cc
+|  |  |-- aead_factory.h
+|  |  |-- aead_factory_test.cc
+|  |  |-- aead_key_templates.cc
+|  |  |-- aead_key_templates.h
+|  |  |-- aead_key_templates_test.cc
+|  |  |-- aead_wrapper.cc
+|  |  |-- aead_wrapper.h
+|  |  |-- aead_wrapper_test.cc
+|  |  |-- aes_ctr_hmac_aead_key_manager.cc
+|  |  |-- aes_ctr_hmac_aead_key_manager.h
+|  |  |-- aes_ctr_hmac_aead_key_manager_test.cc
+|  |  |-- aes_eax_key_manager.h
+|  |  |-- aes_eax_key_manager_test.cc
+|  |  |-- aes_gcm_key_manager.h
+|  |  |-- aes_gcm_key_manager_test.cc
+|  |  |-- aes_gcm_siv_key_manager.h
+|  |  |-- aes_gcm_siv_key_manager_test.cc
+|  |  |-- cord_aead.h
+|  |  |-- cord_aead_wrapper.cc
+|  |  |-- cord_aead_wrapper.h
+|  |  |-- cord_aead_wrapper_test.cc
+|  |  |-- internal
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- cord_aes_gcm_boringssl.cc
+|  |  |  |-- cord_aes_gcm_boringssl.h
+|  |  |  |-- cord_aes_gcm_boringssl_test.cc
+|  |  |-- kms_aead_key_manager.h
+|  |  |-- kms_aead_key_manager_test.cc
+|  |  |-- kms_envelope_aead.cc
+|  |  |-- kms_envelope_aead.h
+|  |  |-- kms_envelope_aead_key_manager.cc
+|  |  |-- kms_envelope_aead_key_manager.h
+|  |  |-- kms_envelope_aead_key_manager_test.cc
+|  |  |-- kms_envelope_aead_test.cc
+|  |  |-- mock_aead.h
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |  |-- xchacha20_poly1305_key_manager.h
+|  |  |-- xchacha20_poly1305_key_manager_test.cc
+|  |-- aead_config.h
+|  |-- aead_factory.h
+|  |-- aead_key_templates.h
+|  |-- binary_keyset_reader.h
+|  |-- binary_keyset_writer.h
+|  |-- catalogue.h
+|  |-- cleartext_keyset_handle.h
+|  |-- config.h
+|  |-- config
+|  |  |-- BUILD.bazel
+|  |  |-- CMakeLists.txt
+|  |  |-- config_util.cc
+|  |  |-- config_util.h
+|  |  |-- config_util_test.cc
+|  |  |-- tink_config.cc
+|  |  |-- tink_config.h
+|  |  |-- tink_config_test.cc
+|  |  |-- tink_fips.cc
+|  |  |-- tink_fips.h
+|  |  |-- tink_fips_test.cc
+|  |-- core
+|  |  |-- binary_keyset_reader.cc
+|  |  |-- binary_keyset_reader_test.cc
+|  |  |-- binary_keyset_writer.cc
+|  |  |-- binary_keyset_writer_test.cc
+|  |  |-- cleartext_keyset_handle.cc
+|  |  |-- cleartext_keyset_handle_test.cc
+|  |  |-- config.cc
+|  |  |-- config_test.cc
+|  |  |-- crypto_format.cc
+|  |  |-- crypto_format_test.cc
+|  |  |-- json_keyset_reader.cc
+|  |  |-- json_keyset_reader_test.cc
+|  |  |-- json_keyset_writer.cc
+|  |  |-- json_keyset_writer_test.cc
+|  |  |-- key_manager.cc
+|  |  |-- key_manager_impl.h
+|  |  |-- key_manager_impl_test.cc
+|  |  |-- key_manager_test.cc
+|  |  |-- key_type_manager.h
+|  |  |-- key_type_manager_test.cc
+|  |  |-- keyset_handle.cc
+|  |  |-- keyset_handle_test.cc
+|  |  |-- keyset_manager.cc
+|  |  |-- keyset_manager_test.cc
+|  |  |-- kms_clients.cc
+|  |  |-- kms_clients_test.cc
+|  |  |-- primitive_set_test.cc
+|  |  |-- private_key_manager_impl.h
+|  |  |-- private_key_manager_impl_test.cc
+|  |  |-- private_key_type_manager.h
+|  |  |-- template_util.h
+|  |  |-- template_util_test.cc
+|  |  |-- version.cc
+|  |  |-- version_test.cc
+|  |-- crypto_format.h
+|  |-- daead
+|  |  |-- BUILD.bazel
+|  |  |-- CMakeLists.txt
+|  |  |-- aes_siv_key_manager.h
+|  |  |-- aes_siv_key_manager_test.cc
+|  |  |-- deterministic_aead_config.cc
+|  |  |-- deterministic_aead_config.h
+|  |  |-- deterministic_aead_config_test.cc
+|  |  |-- deterministic_aead_factory.cc
+|  |  |-- deterministic_aead_factory.h
+|  |  |-- deterministic_aead_factory_test.cc
+|  |  |-- deterministic_aead_key_templates.cc
+|  |  |-- deterministic_aead_key_templates.h
+|  |  |-- deterministic_aead_key_templates_test.cc
+|  |  |-- deterministic_aead_wrapper.cc
+|  |  |-- deterministic_aead_wrapper.h
+|  |  |-- deterministic_aead_wrapper_test.cc
+|  |  |-- internal
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- aead_or_daead.cc
+|  |  |  |-- aead_or_daead.h
+|  |  |  |-- aead_or_daead_test.cc
+|  |-- deterministic_aead.h
+|  |-- deterministic_aead_config.h
+|  |-- deterministic_aead_factory.h
+|  |-- deterministic_aead_key_templates.h
+|  |-- experimental
+|  |  |-- pqcrypto
+|  |  |  |-- README.md
+|  |  |  |-- cecpq2
+|  |  |  |  |-- hybrid
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- cecpq2_aead_hkdf_dem_helper.cc
+|  |  |  |  |  |-- cecpq2_aead_hkdf_dem_helper.h
+|  |  |  |  |  |-- cecpq2_aead_hkdf_dem_helper_test.cc
+|  |  |  |  |  |-- cecpq2_aead_hkdf_private_key_manager.cc
+|  |  |  |  |  |-- cecpq2_aead_hkdf_private_key_manager.h
+|  |  |  |  |  |-- cecpq2_aead_hkdf_private_key_manager_test.cc
+|  |  |  |  |  |-- cecpq2_aead_hkdf_public_key_manager.cc
+|  |  |  |  |  |-- cecpq2_aead_hkdf_public_key_manager.h
+|  |  |  |  |  |-- cecpq2_aead_hkdf_public_key_manager_test.cc
+|  |  |  |  |  |-- cecpq2_hybrid_config.cc
+|  |  |  |  |  |-- cecpq2_hybrid_config.h
+|  |  |  |  |  |-- cecpq2_hybrid_config_test.cc
+|  |  |  |  |  |-- cecpq2_hybrid_key_templates.cc
+|  |  |  |  |  |-- cecpq2_hybrid_key_templates.h
+|  |  |  |  |  |-- cecpq2_hybrid_key_templates_test.cc
+|  |  |  |  |  |-- internal
+|  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |-- cecpq2_aead_hkdf_hybrid_decrypt.cc
+|  |  |  |  |  |  |-- cecpq2_aead_hkdf_hybrid_decrypt.h
+|  |  |  |  |  |  |-- cecpq2_aead_hkdf_hybrid_decrypt_test.cc
+|  |  |  |  |  |  |-- cecpq2_aead_hkdf_hybrid_encrypt.cc
+|  |  |  |  |  |  |-- cecpq2_aead_hkdf_hybrid_encrypt.h
+|  |  |  |  |  |  |-- cecpq2_aead_hkdf_hybrid_encrypt_test.cc
+|  |  |  |  |-- subtle
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- cecpq2_hkdf_recipient_kem_boringssl.cc
+|  |  |  |  |  |-- cecpq2_hkdf_recipient_kem_boringssl.h
+|  |  |  |  |  |-- cecpq2_hkdf_recipient_kem_boringssl_test.cc
+|  |  |  |  |  |-- cecpq2_hkdf_sender_kem_boringssl.cc
+|  |  |  |  |  |-- cecpq2_hkdf_sender_kem_boringssl.h
+|  |  |  |  |  |-- cecpq2_hkdf_sender_kem_boringssl_test.cc
+|  |  |  |  |  |-- cecpq2_subtle_boringssl_util.cc
+|  |  |  |  |  |-- cecpq2_subtle_boringssl_util.h
+|  |  |  |  |  |-- cecpq2_subtle_boringssl_util_test.cc
+|  |  |  |  |-- util
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- test_util.cc
+|  |  |  |  |  |-- test_util.h
+|  |  |  |  |  |-- test_util_test.cc
+|  |  |  |-- proto
+|  |  |  |  |-- BUILD.bazel
+|  |-- exported_symbols.lds
+|  |-- hybrid
+|  |  |-- BUILD.bazel
+|  |  |-- CMakeLists.txt
+|  |  |-- ecies_aead_hkdf_dem_helper.cc
+|  |  |-- ecies_aead_hkdf_dem_helper.h
+|  |  |-- ecies_aead_hkdf_dem_helper_test.cc
+|  |  |-- ecies_aead_hkdf_hybrid_decrypt.cc
+|  |  |-- ecies_aead_hkdf_hybrid_decrypt.h
+|  |  |-- ecies_aead_hkdf_hybrid_decrypt_test.cc
+|  |  |-- ecies_aead_hkdf_hybrid_encrypt.cc
+|  |  |-- ecies_aead_hkdf_hybrid_encrypt.h
+|  |  |-- ecies_aead_hkdf_hybrid_encrypt_test.cc
+|  |  |-- ecies_aead_hkdf_private_key_manager.cc
+|  |  |-- ecies_aead_hkdf_private_key_manager.h
+|  |  |-- ecies_aead_hkdf_private_key_manager_test.cc
+|  |  |-- ecies_aead_hkdf_public_key_manager.cc
+|  |  |-- ecies_aead_hkdf_public_key_manager.h
+|  |  |-- ecies_aead_hkdf_public_key_manager_test.cc
+|  |  |-- hybrid_config.cc
+|  |  |-- hybrid_config.h
+|  |  |-- hybrid_config_test.cc
+|  |  |-- hybrid_decrypt_factory.cc
+|  |  |-- hybrid_decrypt_factory.h
+|  |  |-- hybrid_decrypt_factory_test.cc
+|  |  |-- hybrid_decrypt_wrapper.cc
+|  |  |-- hybrid_decrypt_wrapper.h
+|  |  |-- hybrid_decrypt_wrapper_test.cc
+|  |  |-- hybrid_encrypt_factory.cc
+|  |  |-- hybrid_encrypt_factory.h
+|  |  |-- hybrid_encrypt_factory_test.cc
+|  |  |-- hybrid_encrypt_wrapper.cc
+|  |  |-- hybrid_encrypt_wrapper.h
+|  |  |-- hybrid_encrypt_wrapper_test.cc
+|  |  |-- hybrid_key_templates.cc
+|  |  |-- hybrid_key_templates.h
+|  |  |-- hybrid_key_templates_test.cc
+|  |  |-- internal
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |-- hybrid_config.h
+|  |-- hybrid_decrypt.h
+|  |-- hybrid_decrypt_factory.h
+|  |-- hybrid_encrypt.h
+|  |-- hybrid_encrypt_factory.h
+|  |-- hybrid_key_templates.h
+|  |-- input_stream.h
+|  |-- integration
+|  |  |-- awskms
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- aws_crypto.cc
+|  |  |  |-- aws_crypto.h
+|  |  |  |-- aws_kms_aead.cc
+|  |  |  |-- aws_kms_aead.h
+|  |  |  |-- aws_kms_aead_test.cc
+|  |  |  |-- aws_kms_client.cc
+|  |  |  |-- aws_kms_client.h
+|  |  |  |-- aws_kms_client_test.cc
+|  |  |-- gcpkms
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- gcp_kms_aead.cc
+|  |  |  |-- gcp_kms_aead.h
+|  |  |  |-- gcp_kms_aead_test.cc
+|  |  |  |-- gcp_kms_client.cc
+|  |  |  |-- gcp_kms_client.h
+|  |  |  |-- gcp_kms_client_test.cc
+|  |-- internal
+|  |  |-- BUILD.bazel
+|  |  |-- CMakeLists.txt
+|  |  |-- fips_utils.cc
+|  |  |-- fips_utils.h
+|  |  |-- fips_utils_test.cc
+|  |  |-- key_info.cc
+|  |  |-- key_info.h
+|  |  |-- key_info_test.cc
+|  |  |-- keyset_wrapper.h
+|  |  |-- keyset_wrapper_impl.h
+|  |  |-- keyset_wrapper_impl_test.cc
+|  |  |-- registry_impl.cc
+|  |  |-- registry_impl.h
+|  |  |-- registry_impl_test.cc
+|  |-- json_keyset_reader.h
+|  |-- json_keyset_writer.h
+|  |-- jwt
+|  |  |-- BUILD.bazel
+|  |  |-- CMakeLists.txt
+|  |  |-- internal
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- json_util.cc
+|  |  |  |-- json_util.h
+|  |  |  |-- json_util_test.cc
+|  |  |  |-- jwt_ecdsa_sign_key_manager.cc
+|  |  |  |-- jwt_ecdsa_sign_key_manager.h
+|  |  |  |-- jwt_ecdsa_sign_verify_key_manager_test.cc
+|  |  |  |-- jwt_ecdsa_verify_key_manager.cc
+|  |  |  |-- jwt_ecdsa_verify_key_manager.h
+|  |  |  |-- jwt_format.cc
+|  |  |  |-- jwt_format.h
+|  |  |  |-- jwt_format_test.cc
+|  |  |  |-- jwt_hmac_key_manager.cc
+|  |  |  |-- jwt_hmac_key_manager.h
+|  |  |  |-- jwt_hmac_key_manager_test.cc
+|  |  |  |-- jwt_mac_impl.cc
+|  |  |  |-- jwt_mac_impl.h
+|  |  |  |-- jwt_mac_impl_test.cc
+|  |  |  |-- jwt_mac_internal.h
+|  |  |  |-- jwt_mac_wrapper.cc
+|  |  |  |-- jwt_mac_wrapper.h
+|  |  |  |-- jwt_mac_wrapper_test.cc
+|  |  |  |-- jwt_public_key_sign_impl.cc
+|  |  |  |-- jwt_public_key_sign_impl.h
+|  |  |  |-- jwt_public_key_sign_internal.h
+|  |  |  |-- jwt_public_key_sign_verify_impl_test.cc
+|  |  |  |-- jwt_public_key_sign_wrapper.cc
+|  |  |  |-- jwt_public_key_sign_wrapper.h
+|  |  |  |-- jwt_public_key_verify_impl.cc
+|  |  |  |-- jwt_public_key_verify_impl.h
+|  |  |  |-- jwt_public_key_verify_wrapper.cc
+|  |  |  |-- jwt_public_key_verify_wrapper.h
+|  |  |  |-- jwt_public_key_wrappers_test.cc
+|  |  |  |-- jwt_rsa_ssa_pkcs1_sign_key_manager.cc
+|  |  |  |-- jwt_rsa_ssa_pkcs1_sign_key_manager.h
+|  |  |  |-- jwt_rsa_ssa_pkcs1_sign_verify_key_manager_test.cc
+|  |  |  |-- jwt_rsa_ssa_pkcs1_verify_key_manager.cc
+|  |  |  |-- jwt_rsa_ssa_pkcs1_verify_key_manager.h
+|  |  |  |-- jwt_rsa_ssa_pss_sign_key_manager.cc
+|  |  |  |-- jwt_rsa_ssa_pss_sign_key_manager.h
+|  |  |  |-- jwt_rsa_ssa_pss_sign_verify_key_manager_test.cc
+|  |  |  |-- jwt_rsa_ssa_pss_verify_key_manager.cc
+|  |  |  |-- jwt_rsa_ssa_pss_verify_key_manager.h
+|  |  |  |-- raw_jwt_ecdsa_sign_key_manager.cc
+|  |  |  |-- raw_jwt_ecdsa_sign_key_manager.h
+|  |  |  |-- raw_jwt_ecdsa_sign_key_manager_test.cc
+|  |  |  |-- raw_jwt_ecdsa_verify_key_manager.cc
+|  |  |  |-- raw_jwt_ecdsa_verify_key_manager.h
+|  |  |  |-- raw_jwt_ecdsa_verify_key_manager_test.cc
+|  |  |  |-- raw_jwt_hmac_key_manager.cc
+|  |  |  |-- raw_jwt_hmac_key_manager.h
+|  |  |  |-- raw_jwt_hmac_key_manager_test.cc
+|  |  |  |-- raw_jwt_rsa_ssa_pkcs1_sign_key_manager.cc
+|  |  |  |-- raw_jwt_rsa_ssa_pkcs1_sign_key_manager.h
+|  |  |  |-- raw_jwt_rsa_ssa_pkcs1_sign_key_manager_test.cc
+|  |  |  |-- raw_jwt_rsa_ssa_pkcs1_verify_key_manager.cc
+|  |  |  |-- raw_jwt_rsa_ssa_pkcs1_verify_key_manager.h
+|  |  |  |-- raw_jwt_rsa_ssa_pkcs1_verify_key_manager_test.cc
+|  |  |  |-- raw_jwt_rsa_ssa_pss_sign_key_manager.cc
+|  |  |  |-- raw_jwt_rsa_ssa_pss_sign_key_manager.h
+|  |  |  |-- raw_jwt_rsa_ssa_pss_sign_key_manager_test.cc
+|  |  |  |-- raw_jwt_rsa_ssa_pss_verify_key_manager.cc
+|  |  |  |-- raw_jwt_rsa_ssa_pss_verify_key_manager.h
+|  |  |  |-- raw_jwt_rsa_ssa_pss_verify_key_manager_test.cc
+|  |  |-- jwt_key_templates.cc
+|  |  |-- jwt_key_templates.h
+|  |  |-- jwt_key_templates_test.cc
+|  |  |-- jwt_mac.h
+|  |  |-- jwt_mac_config.cc
+|  |  |-- jwt_mac_config.h
+|  |  |-- jwt_public_key_sign.h
+|  |  |-- jwt_public_key_verify.h
+|  |  |-- jwt_signature_config.cc
+|  |  |-- jwt_signature_config.h
+|  |  |-- jwt_validator.cc
+|  |  |-- jwt_validator.h
+|  |  |-- jwt_validator_test.cc
+|  |  |-- raw_jwt.cc
+|  |  |-- raw_jwt.h
+|  |  |-- raw_jwt_test.cc
+|  |  |-- verified_jwt.cc
+|  |  |-- verified_jwt.h
+|  |  |-- verified_jwt_test.cc
+|  |-- key_manager.h
+|  |-- keyset_handle.h
+|  |-- keyset_manager.h
+|  |-- keyset_reader.h
+|  |-- keyset_writer.h
+|  |-- kms_client.h
+|  |-- kms_clients.h
+|  |-- mac.h
+|  |-- mac
+|  |  |-- BUILD.bazel
+|  |  |-- CMakeLists.txt
+|  |  |-- aes_cmac_key_manager.h
+|  |  |-- aes_cmac_key_manager_test.cc
+|  |  |-- hmac_key_manager.cc
+|  |  |-- hmac_key_manager.h
+|  |  |-- hmac_key_manager_test.cc
+|  |  |-- internal
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |  |-- mac_config.cc
+|  |  |-- mac_config.h
+|  |  |-- mac_config_test.cc
+|  |  |-- mac_factory.cc
+|  |  |-- mac_factory.h
+|  |  |-- mac_factory_test.cc
+|  |  |-- mac_key_templates.cc
+|  |  |-- mac_key_templates.h
+|  |  |-- mac_key_templates_test.cc
+|  |  |-- mac_wrapper.cc
+|  |  |-- mac_wrapper.h
+|  |  |-- mac_wrapper_test.cc
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |-- mac_config.h
+|  |-- mac_factory.h
+|  |-- mac_key_templates.h
+|  |-- output_stream.h
+|  |-- output_stream_with_result.h
+|  |-- prf
+|  |  |-- BUILD.bazel
+|  |  |-- CMakeLists.txt
+|  |  |-- aes_cmac_prf_key_manager.h
+|  |  |-- aes_cmac_prf_key_manager_test.cc
+|  |  |-- hkdf_prf_key_manager.h
+|  |  |-- hkdf_prf_key_manager_test.cc
+|  |  |-- hmac_prf_key_manager.cc
+|  |  |-- hmac_prf_key_manager.h
+|  |  |-- hmac_prf_key_manager_test.cc
+|  |  |-- internal
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |  |-- prf_config.cc
+|  |  |-- prf_config.h
+|  |  |-- prf_config_test.cc
+|  |  |-- prf_key_templates.cc
+|  |  |-- prf_key_templates.h
+|  |  |-- prf_key_templates_test.cc
+|  |  |-- prf_set.cc
+|  |  |-- prf_set.h
+|  |  |-- prf_set_test.cc
+|  |  |-- prf_set_wrapper.cc
+|  |  |-- prf_set_wrapper.h
+|  |  |-- prf_set_wrapper_test.cc
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |-- primitive_set.h
+|  |-- primitive_wrapper.h
+|  |-- proto
+|  |  |-- BUILD.bazel
+|  |-- public_key_sign.h
+|  |-- public_key_sign_factory.h
+|  |-- public_key_verify.h
+|  |-- public_key_verify_factory.h
+|  |-- random_access_stream.h
+|  |-- registry.h
+|  |-- signature
+|  |  |-- BUILD.bazel
+|  |  |-- CMakeLists.txt
+|  |  |-- ecdsa_sign_key_manager.cc
+|  |  |-- ecdsa_sign_key_manager.h
+|  |  |-- ecdsa_sign_key_manager_test.cc
+|  |  |-- ecdsa_verify_key_manager.cc
+|  |  |-- ecdsa_verify_key_manager.h
+|  |  |-- ecdsa_verify_key_manager_test.cc
+|  |  |-- ed25519_sign_key_manager.cc
+|  |  |-- ed25519_sign_key_manager.h
+|  |  |-- ed25519_sign_key_manager_test.cc
+|  |  |-- ed25519_verify_key_manager.cc
+|  |  |-- ed25519_verify_key_manager.h
+|  |  |-- ed25519_verify_key_manager_test.cc
+|  |  |-- internal
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |  |-- public_key_sign_factory.cc
+|  |  |-- public_key_sign_factory.h
+|  |  |-- public_key_sign_factory_test.cc
+|  |  |-- public_key_sign_wrapper.cc
+|  |  |-- public_key_sign_wrapper.h
+|  |  |-- public_key_sign_wrapper_test.cc
+|  |  |-- public_key_verify_factory.cc
+|  |  |-- public_key_verify_factory.h
+|  |  |-- public_key_verify_factory_test.cc
+|  |  |-- public_key_verify_wrapper.cc
+|  |  |-- public_key_verify_wrapper.h
+|  |  |-- public_key_verify_wrapper_test.cc
+|  |  |-- rsa_ssa_pkcs1_sign_key_manager.cc
+|  |  |-- rsa_ssa_pkcs1_sign_key_manager.h
+|  |  |-- rsa_ssa_pkcs1_sign_key_manager_test.cc
+|  |  |-- rsa_ssa_pkcs1_verify_key_manager.cc
+|  |  |-- rsa_ssa_pkcs1_verify_key_manager.h
+|  |  |-- rsa_ssa_pkcs1_verify_key_manager_test.cc
+|  |  |-- rsa_ssa_pss_sign_key_manager.cc
+|  |  |-- rsa_ssa_pss_sign_key_manager.h
+|  |  |-- rsa_ssa_pss_sign_key_manager_test.cc
+|  |  |-- rsa_ssa_pss_verify_key_manager.cc
+|  |  |-- rsa_ssa_pss_verify_key_manager.h
+|  |  |-- rsa_ssa_pss_verify_key_manager_test.cc
+|  |  |-- sig_util.cc
+|  |  |-- sig_util.h
+|  |  |-- signature_config.cc
+|  |  |-- signature_config.h
+|  |  |-- signature_config_test.cc
+|  |  |-- signature_key_templates.cc
+|  |  |-- signature_key_templates.h
+|  |  |-- signature_key_templates_test.cc
+|  |  |-- signature_pem_keyset_reader.cc
+|  |  |-- signature_pem_keyset_reader.h
+|  |  |-- signature_pem_keyset_reader_test.cc
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |-- signature_config.h
+|  |-- signature_key_templates.h
+|  |-- streaming_aead.h
+|  |-- streaming_aead_config.h
+|  |-- streaming_aead_key_templates.h
+|  |-- streaming_mac.h
+|  |-- streamingaead
+|  |  |-- BUILD.bazel
+|  |  |-- CMakeLists.txt
+|  |  |-- aes_ctr_hmac_streaming_key_manager.cc
+|  |  |-- aes_ctr_hmac_streaming_key_manager.h
+|  |  |-- aes_ctr_hmac_streaming_key_manager_test.cc
+|  |  |-- aes_gcm_hkdf_streaming_key_manager.cc
+|  |  |-- aes_gcm_hkdf_streaming_key_manager.h
+|  |  |-- aes_gcm_hkdf_streaming_key_manager_test.cc
+|  |  |-- buffered_input_stream.cc
+|  |  |-- buffered_input_stream.h
+|  |  |-- buffered_input_stream_test.cc
+|  |  |-- decrypting_input_stream.cc
+|  |  |-- decrypting_input_stream.h
+|  |  |-- decrypting_input_stream_test.cc
+|  |  |-- decrypting_random_access_stream.cc
+|  |  |-- decrypting_random_access_stream.h
+|  |  |-- decrypting_random_access_stream_test.cc
+|  |  |-- internal
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |  |-- shared_input_stream.h
+|  |  |-- shared_input_stream_test.cc
+|  |  |-- shared_random_access_stream.h
+|  |  |-- shared_random_access_stream_test.cc
+|  |  |-- streaming_aead_config.cc
+|  |  |-- streaming_aead_config.h
+|  |  |-- streaming_aead_config_test.cc
+|  |  |-- streaming_aead_key_templates.cc
+|  |  |-- streaming_aead_key_templates.h
+|  |  |-- streaming_aead_key_templates_test.cc
+|  |  |-- streaming_aead_wrapper.cc
+|  |  |-- streaming_aead_wrapper.h
+|  |  |-- streaming_aead_wrapper_test.cc
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |-- subtle
+|  |  |-- BUILD.bazel
+|  |  |-- CMakeLists.txt
+|  |  |-- aead_test_util.cc
+|  |  |-- aead_test_util.h
+|  |  |-- aead_test_util_test.cc
+|  |  |-- aes_cmac_boringssl.cc
+|  |  |-- aes_cmac_boringssl.h
+|  |  |-- aes_cmac_boringssl_test.cc
+|  |  |-- aes_ctr_boringssl.cc
+|  |  |-- aes_ctr_boringssl.h
+|  |  |-- aes_ctr_boringssl_test.cc
+|  |  |-- aes_ctr_hmac_streaming.cc
+|  |  |-- aes_ctr_hmac_streaming.h
+|  |  |-- aes_ctr_hmac_streaming_test.cc
+|  |  |-- aes_eax_aesni.cc
+|  |  |-- aes_eax_aesni.h
+|  |  |-- aes_eax_aesni_test.cc
+|  |  |-- aes_eax_boringssl.cc
+|  |  |-- aes_eax_boringssl.h
+|  |  |-- aes_eax_boringssl_test.cc
+|  |  |-- aes_gcm_boringssl.cc
+|  |  |-- aes_gcm_boringssl.h
+|  |  |-- aes_gcm_boringssl_test.cc
+|  |  |-- aes_gcm_hkdf_stream_segment_decrypter.cc
+|  |  |-- aes_gcm_hkdf_stream_segment_decrypter.h
+|  |  |-- aes_gcm_hkdf_stream_segment_decrypter_test.cc
+|  |  |-- aes_gcm_hkdf_stream_segment_encrypter.cc
+|  |  |-- aes_gcm_hkdf_stream_segment_encrypter.h
+|  |  |-- aes_gcm_hkdf_stream_segment_encrypter_test.cc
+|  |  |-- aes_gcm_hkdf_streaming.cc
+|  |  |-- aes_gcm_hkdf_streaming.h
+|  |  |-- aes_gcm_hkdf_streaming_test.cc
+|  |  |-- aes_gcm_siv_boringssl.cc
+|  |  |-- aes_gcm_siv_boringssl.h
+|  |  |-- aes_gcm_siv_boringssl_test.cc
+|  |  |-- aes_siv_boringssl.cc
+|  |  |-- aes_siv_boringssl.h
+|  |  |-- aes_siv_boringssl_test.cc
+|  |  |-- common_enums.cc
+|  |  |-- common_enums.h
+|  |  |-- common_enums_test.cc
+|  |  |-- decrypting_random_access_stream.cc
+|  |  |-- decrypting_random_access_stream.h
+|  |  |-- decrypting_random_access_stream_test.cc
+|  |  |-- ec_util.cc
+|  |  |-- ec_util.h
+|  |  |-- ec_util_test.cc
+|  |  |-- ecdsa_sign_boringssl.cc
+|  |  |-- ecdsa_sign_boringssl.h
+|  |  |-- ecdsa_sign_boringssl_test.cc
+|  |  |-- ecdsa_verify_boringssl.cc
+|  |  |-- ecdsa_verify_boringssl.h
+|  |  |-- ecdsa_verify_boringssl_test.cc
+|  |  |-- ecies_hkdf_recipient_kem_boringssl.cc
+|  |  |-- ecies_hkdf_recipient_kem_boringssl.h
+|  |  |-- ecies_hkdf_recipient_kem_boringssl_test.cc
+|  |  |-- ecies_hkdf_sender_kem_boringssl.cc
+|  |  |-- ecies_hkdf_sender_kem_boringssl.h
+|  |  |-- ecies_hkdf_sender_kem_boringssl_test.cc
+|  |  |-- ed25519_sign_boringssl.cc
+|  |  |-- ed25519_sign_boringssl.h
+|  |  |-- ed25519_sign_boringssl_test.cc
+|  |  |-- ed25519_verify_boringssl.cc
+|  |  |-- ed25519_verify_boringssl.h
+|  |  |-- ed25519_verify_boringssl_test.cc
+|  |  |-- encrypt_then_authenticate.cc
+|  |  |-- encrypt_then_authenticate.h
+|  |  |-- encrypt_then_authenticate_test.cc
+|  |  |-- hkdf.cc
+|  |  |-- hkdf.h
+|  |  |-- hkdf_test.cc
+|  |  |-- hmac_boringssl.cc
+|  |  |-- hmac_boringssl.h
+|  |  |-- hmac_boringssl_test.cc
+|  |  |-- hybrid_test_util.cc
+|  |  |-- hybrid_test_util.h
+|  |  |-- hybrid_test_util_test.cc
+|  |  |-- ind_cpa_cipher.h
+|  |  |-- mac
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- stateful_mac.h
+|  |  |-- nonce_based_streaming_aead.cc
+|  |  |-- nonce_based_streaming_aead.h
+|  |  |-- pem_parser_boringssl.cc
+|  |  |-- pem_parser_boringssl.h
+|  |  |-- pem_parser_boringssl_test.cc
+|  |  |-- prf
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- hkdf_streaming_prf.cc
+|  |  |  |-- hkdf_streaming_prf.h
+|  |  |  |-- hkdf_streaming_prf_test.cc
+|  |  |  |-- prf_set_util.cc
+|  |  |  |-- prf_set_util.h
+|  |  |  |-- prf_set_util_test.cc
+|  |  |  |-- streaming_prf.h
+|  |  |  |-- streaming_prf_wrapper.cc
+|  |  |  |-- streaming_prf_wrapper.h
+|  |  |  |-- streaming_prf_wrapper_test.cc
+|  |  |-- random.cc
+|  |  |-- random.h
+|  |  |-- random_test.cc
+|  |  |-- rsa_ssa_pkcs1_sign_boringssl.cc
+|  |  |-- rsa_ssa_pkcs1_sign_boringssl.h
+|  |  |-- rsa_ssa_pkcs1_sign_boringssl_test.cc
+|  |  |-- rsa_ssa_pkcs1_verify_boringssl.cc
+|  |  |-- rsa_ssa_pkcs1_verify_boringssl.h
+|  |  |-- rsa_ssa_pkcs1_verify_boringssl_test.cc
+|  |  |-- rsa_ssa_pss_sign_boringssl.cc
+|  |  |-- rsa_ssa_pss_sign_boringssl.h
+|  |  |-- rsa_ssa_pss_sign_boringssl_test.cc
+|  |  |-- rsa_ssa_pss_verify_boringssl.cc
+|  |  |-- rsa_ssa_pss_verify_boringssl.h
+|  |  |-- rsa_ssa_pss_verify_boringssl_test.cc
+|  |  |-- stateful_cmac_boringssl.cc
+|  |  |-- stateful_cmac_boringssl.h
+|  |  |-- stateful_cmac_boringssl_test.cc
+|  |  |-- stateful_hmac_boringssl.cc
+|  |  |-- stateful_hmac_boringssl.h
+|  |  |-- stateful_hmac_boringssl_test.cc
+|  |  |-- stream_segment_decrypter.h
+|  |  |-- stream_segment_encrypter.h
+|  |  |-- streaming_aead_decrypting_stream.cc
+|  |  |-- streaming_aead_decrypting_stream.h
+|  |  |-- streaming_aead_decrypting_stream_test.cc
+|  |  |-- streaming_aead_encrypting_stream.cc
+|  |  |-- streaming_aead_encrypting_stream.h
+|  |  |-- streaming_aead_encrypting_stream_test.cc
+|  |  |-- streaming_aead_test_util.cc
+|  |  |-- streaming_aead_test_util.h
+|  |  |-- streaming_aead_test_util_test.cc
+|  |  |-- streaming_mac_impl.cc
+|  |  |-- streaming_mac_impl.h
+|  |  |-- streaming_mac_impl_test.cc
+|  |  |-- subtle_util.cc
+|  |  |-- subtle_util.h
+|  |  |-- subtle_util_boringssl.cc
+|  |  |-- subtle_util_boringssl.h
+|  |  |-- subtle_util_boringssl_test.cc
+|  |  |-- subtle_util_test.cc
+|  |  |-- test_util.cc
+|  |  |-- test_util.h
+|  |  |-- wycheproof_util.cc
+|  |  |-- wycheproof_util.h
+|  |  |-- xchacha20_poly1305_boringssl.cc
+|  |  |-- xchacha20_poly1305_boringssl.h
+|  |  |-- xchacha20_poly1305_boringssl_test.cc
+|  |-- third_party
+|  |  |-- BUILD.bazel
+|  |  |-- aws_c_common.BUILD.bazel
+|  |  |-- aws_c_event_stream.BUILD.bazel
+|  |  |-- aws_checksums.BUILD.bazel
+|  |  |-- aws_sdk_cpp.BUILD.bazel
+|  |  |-- boringssl_fips
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- WORKSPACE
+|  |  |  |-- boringssl_fips.sh
+|  |  |-- curl.BUILD.bazel
+|  |  |-- rapidjson.BUILD.bazel
+|  |  |-- zlib.BUILD.bazel
+|  |-- tink_cc_deps.bzl
+|  |-- tink_cc_deps_init.bzl
+|  |-- tink_config.h
+|  |-- util
+|  |  |-- BUILD.bazel
+|  |  |-- CMakeLists.txt
+|  |  |-- buffer.cc
+|  |  |-- buffer.h
+|  |  |-- buffer_test.cc
+|  |  |-- constants.cc
+|  |  |-- constants.h
+|  |  |-- enums.cc
+|  |  |-- enums.h
+|  |  |-- enums_test.cc
+|  |  |-- errors.h
+|  |  |-- errors_test.cc
+|  |  |-- fake_kms_client.cc
+|  |  |-- fake_kms_client.h
+|  |  |-- fake_kms_client_test.cc
+|  |  |-- file_input_stream.cc
+|  |  |-- file_input_stream.h
+|  |  |-- file_input_stream_test.cc
+|  |  |-- file_output_stream.cc
+|  |  |-- file_output_stream.h
+|  |  |-- file_output_stream_test.cc
+|  |  |-- file_random_access_stream.cc
+|  |  |-- file_random_access_stream.h
+|  |  |-- file_random_access_stream_test.cc
+|  |  |-- input_stream_util.cc
+|  |  |-- input_stream_util.h
+|  |  |-- input_stream_util_test.cc
+|  |  |-- istream_input_stream.cc
+|  |  |-- istream_input_stream.h
+|  |  |-- istream_input_stream_test.cc
+|  |  |-- keyset_util.cc
+|  |  |-- keyset_util.h
+|  |  |-- ostream_output_stream.cc
+|  |  |-- ostream_output_stream.h
+|  |  |-- ostream_output_stream_test.cc
+|  |  |-- protobuf_helper.h
+|  |  |-- secret_data.h
+|  |  |-- secret_data_internal.h
+|  |  |-- secret_data_test.cc
+|  |  |-- secret_proto.h
+|  |  |-- secret_proto_test.cc
+|  |  |-- status.cc
+|  |  |-- status.h
+|  |  |-- statusor.h
+|  |  |-- statusor_test.cc
+|  |  |-- test_keyset_handle.cc
+|  |  |-- test_keyset_handle.h
+|  |  |-- test_matchers.h
+|  |  |-- test_util.cc
+|  |  |-- test_util.h
+|  |  |-- test_util_test.cc
+|  |  |-- validation.cc
+|  |  |-- validation.h
+|  |  |-- validation_test.cc
+|  |-- version.h.templ
+|  |-- version_script.lds
+|-- cmake
+|  |-- HttpArchive.cmake
+|  |-- HttpArchiveDownloader.cmake.in
+|  |-- TinkBuildRules.cmake
+|  |-- TinkUtil.cmake
+|  |-- TinkWorkspace.cmake
+|-- docs
+|  |-- CMAKE-HOWTO.md
+|  |-- CONTRIBUTING.md
+|  |-- CPP-HOWTO.md
+|  |-- FIPS.md
+|  |-- GOLANG-HOWTO.md
+|  |-- JAVA-HACKING.md
+|  |-- JAVA-HOWTO.md
+|  |-- KEY-MANAGEMENT.md
+|  |-- KNOWN-ISSUES.md
+|  |-- OBJC-HOWTO.md
+|  |-- PRIMITIVES.md
+|  |-- PYTHON-HOWTO.md
+|  |-- ROADMAP.md
+|  |-- SECURITY-USABILITY.md
+|  |-- SECURITY.md
+|  |-- TINKEY.md
+|  |-- Tink-a_cryptographic_library--RealWorldCrypto2019.pdf
+|  |-- WIRE-FORMAT.md
+|-- examples
+|  |-- .bazelignore
+|  |-- README.md
+|  |-- android
+|  |  |-- helloworld
+|  |  |  |-- README.md
+|  |  |  |-- app
+|  |  |  |  |-- build.gradle
+|  |  |  |  |-- src
+|  |  |  |  |  |-- main
+|  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |  |-- helloworld
+|  |  |  |  |  |  |  |  |  |-- MainActivity.java
+|  |  |  |  |  |  |  |  |  |-- TinkApplication.java
+|  |  |  |  |  |  |-- res
+|  |  |  |  |  |  |  |-- layout
+|  |  |  |  |  |  |  |  |-- activity_main.xml
+|  |  |  |  |  |  |  |-- mipmap-hdpi
+|  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |-- ic_launcher_round.png
+|  |  |  |  |  |  |  |-- mipmap-mdpi
+|  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |-- ic_launcher_round.png
+|  |  |  |  |  |  |  |-- mipmap-xhdpi
+|  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |-- ic_launcher_round.png
+|  |  |  |  |  |  |  |-- mipmap-xxhdpi
+|  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |-- ic_launcher_round.png
+|  |  |  |  |  |  |  |-- mipmap-xxxhdpi
+|  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |-- ic_launcher_round.png
+|  |  |  |  |  |  |  |-- values
+|  |  |  |  |  |  |  |  |-- colors.xml
+|  |  |  |  |  |  |  |  |-- dimens.xml
+|  |  |  |  |  |  |  |  |-- strings.xml
+|  |  |  |  |  |  |  |  |-- styles.xml
+|  |  |  |-- build.gradle
+|  |  |  |-- gradle.properties
+|  |  |  |-- gradle
+|  |  |  |  |-- wrapper
+|  |  |  |  |  |-- gradle-wrapper.jar
+|  |  |  |  |  |-- gradle-wrapper.properties
+|  |  |  |-- gradlew
+|  |  |  |-- gradlew.bat
+|  |  |  |-- settings.gradle
+|  |-- cc
+|  |  |-- .bazelversion
+|  |  |-- WORKSPACE
+|  |  |-- digital_signatures
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- digital_signatures_cli.cc
+|  |  |  |-- digital_signatures_cli_test.sh
+|  |  |  |-- util.cc
+|  |  |  |-- util.h
+|  |  |-- helloworld
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CMakeLists.txt
+|  |  |  |-- CMakeLists_for_CMakeBuildTest.txt
+|  |  |  |-- README.md
+|  |  |  |-- aes128_gcm_test_keyset_json.txt
+|  |  |  |-- cmake_build_test.sh
+|  |  |  |-- hello_world.cc
+|  |  |  |-- hello_world_test.sh
+|  |  |-- hybrid_encryption
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- hybrid_encryption_cli.cc
+|  |  |  |-- hybrid_encryption_cli_test.sh
+|  |  |  |-- util.cc
+|  |  |  |-- util.h
+|  |  |-- jwt
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- jwt_signature_cli.cc
+|  |  |  |-- jwt_signature_cli_test.sh
+|  |  |  |-- util.cc
+|  |  |  |-- util.h
+|  |-- java_src
+|  |  |-- .bazelversion
+|  |  |-- BUILD
+|  |  |-- WORKSPACE
+|  |  |-- aead
+|  |  |  |-- AeadExample.java
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- aead_example_test.sh
+|  |  |  |-- aead_test_keyset.json
+|  |  |-- cleartextkeyset
+|  |  |  |-- BUILD
+|  |  |  |-- CleartextKeysetExample.java
+|  |  |  |-- README.md
+|  |  |  |-- cleartext_keyset_example_test.sh
+|  |  |-- deterministicaead
+|  |  |  |-- BUILD
+|  |  |  |-- DeterministicAeadExample.java
+|  |  |  |-- README.md
+|  |  |  |-- deterministic_aead_test.sh
+|  |  |  |-- deterministic_aead_test_keyset.json
+|  |  |-- encryptedkeyset
+|  |  |  |-- BUILD
+|  |  |  |-- EncryptedKeysetExample.java
+|  |  |  |-- README.md
+|  |  |  |-- encrypted_keyset_example_test.sh
+|  |  |-- envelopeaead
+|  |  |  |-- BUILD
+|  |  |  |-- EnvelopeAeadExample.java
+|  |  |  |-- README.md
+|  |  |  |-- envelope_aead_example_test.sh
+|  |  |-- examples_java_deps_init.bzl
+|  |  |-- gcs
+|  |  |  |-- BUILD
+|  |  |  |-- GcsEnvelopeAeadExample.java
+|  |  |  |-- README.md
+|  |  |  |-- gcs_envelope_aead_example_test.sh
+|  |  |-- helloworld
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- pom.xml
+|  |  |  |-- src
+|  |  |  |  |-- main
+|  |  |  |  |  |-- java
+|  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |-- helloworld
+|  |  |  |  |  |  |  |  |-- Commands.java
+|  |  |  |  |  |  |  |  |-- HelloWorld.java
+|  |  |-- hybrid
+|  |  |  |-- BUILD
+|  |  |  |-- HybridExample.java
+|  |  |  |-- README.md
+|  |  |  |-- hybrid_example_test.sh
+|  |  |  |-- hybrid_test_private_keyset.json
+|  |  |  |-- hybrid_test_public_keyset.json
+|  |  |-- jwt
+|  |  |  |-- BUILD
+|  |  |  |-- JwtSignatureExample.java
+|  |  |  |-- README.md
+|  |  |  |-- jwt_signature_example_test.sh
+|  |  |  |-- jwt_signature_test_private_keyset.json
+|  |  |  |-- jwt_signature_test_public_keyset.json
+|  |  |-- mac
+|  |  |  |-- BUILD
+|  |  |  |-- MacExample.java
+|  |  |  |-- README.md
+|  |  |  |-- mac_example_test.sh
+|  |  |  |-- mac_test_keyset.json
+|  |  |-- signature
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- SignatureExample.java
+|  |  |  |-- signature_example_test.sh
+|  |  |  |-- signature_test_private_keyset.json
+|  |  |  |-- signature_test_public_keyset.json
+|  |  |-- streamingaead
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- StreamingAeadExample.java
+|  |  |  |-- streaming_aead_example_test.sh
+|  |  |  |-- streaming_aead_test_keyset.json
+|  |-- objc
+|  |  |-- helloworld
+|  |  |  |-- AeadPrimitive.h
+|  |  |  |-- AeadPrimitive.m
+|  |  |  |-- AppDelegate.h
+|  |  |  |-- AppDelegate.m
+|  |  |  |-- Assets.xcassets
+|  |  |  |  |-- AppIcon.appiconset
+|  |  |  |  |  |-- Contents.json
+|  |  |  |  |-- Contents.json
+|  |  |  |-- Base.lproj
+|  |  |  |  |-- LaunchScreen.storyboard
+|  |  |  |  |-- Main.storyboard
+|  |  |  |-- Info.plist
+|  |  |  |-- Podfile
+|  |  |  |-- README.md
+|  |  |  |-- ViewController.h
+|  |  |  |-- ViewController.m
+|  |  |  |-- main.m
+|  |  |  |-- project.pbxproj
+|  |-- python
+|  |  |-- .bazelversion
+|  |  |-- BUILD.bazel
+|  |  |-- WORKSPACE
+|  |  |-- aead
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- aead.py
+|  |  |  |-- aead_test.sh
+|  |  |  |-- aead_test_keyset.json
+|  |  |-- cleartext_keyset
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- cleartext_keyset.py
+|  |  |  |-- cleartext_keyset_test.sh
+|  |  |-- deterministic_aead
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- deterministic_aead.py
+|  |  |  |-- deterministic_aead_test.sh
+|  |  |  |-- deterministic_aead_test_keyset.json
+|  |  |-- encrypted_keyset
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- encrypted_keyset.py
+|  |  |  |-- encrypted_keyset_test.sh
+|  |  |-- envelope_aead
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- envelope.py
+|  |  |  |-- envelope_test.sh
+|  |  |-- gcs
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- gcs_envelope_aead.py
+|  |  |  |-- gcs_envelope_aead_test.sh
+|  |  |-- hybrid
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- hybrid.py
+|  |  |  |-- hybrid_test.sh
+|  |  |  |-- hybrid_test_private_keyset.json
+|  |  |  |-- hybrid_test_public_keyset.json
+|  |  |-- jwt
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- jwt_signature.py
+|  |  |  |-- jwt_signature_test.sh
+|  |  |  |-- jwt_test_private_keyset.json
+|  |  |  |-- jwt_test_public_keyset.json
+|  |  |-- mac
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- mac.py
+|  |  |  |-- mac_test.sh
+|  |  |  |-- mac_test_keyset.json
+|  |  |-- requirements.txt
+|  |  |-- signature
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- signature.py
+|  |  |  |-- signature_test.sh
+|  |  |  |-- signature_test_private_keyset.json
+|  |  |  |-- signature_test_public_keyset.json
+|  |  |-- streaming_aead
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- streaming_aead.py
+|  |  |  |-- streaming_aead_keyset.json
+|  |  |  |-- streaming_aead_test.sh
+|-- go
+|  |-- .bazelversion
+|  |-- BUILD.bazel
+|  |-- WORKSPACE
+|  |-- aead
+|  |  |-- BUILD.bazel
+|  |  |-- aead.go
+|  |  |-- aead_factory.go
+|  |  |-- aead_factory_test.go
+|  |  |-- aead_key_templates.go
+|  |  |-- aead_key_templates_test.go
+|  |  |-- aead_test.go
+|  |  |-- aes_ctr_hmac_aead_key_manager.go
+|  |  |-- aes_ctr_hmac_aead_key_manager_test.go
+|  |  |-- aes_gcm_key_manager.go
+|  |  |-- aes_gcm_key_manager_test.go
+|  |  |-- chacha20poly1305_key_manager.go
+|  |  |-- chacha20poly1305_key_manager_test.go
+|  |  |-- kms_envelope_aead.go
+|  |  |-- kms_envelope_aead_key_manager.go
+|  |  |-- kms_envelope_aead_test.go
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- aes_ctr.go
+|  |  |  |-- aes_ctr_test.go
+|  |  |  |-- aes_gcm.go
+|  |  |  |-- aes_gcm_siv.go
+|  |  |  |-- aes_gcm_siv_test.go
+|  |  |  |-- aes_gcm_test.go
+|  |  |  |-- chacha20poly1305.go
+|  |  |  |-- chacha20poly1305_test.go
+|  |  |  |-- chacha20poly1305_vectors_test.go
+|  |  |  |-- encrypt_then_authenticate.go
+|  |  |  |-- encrypt_then_authenticate_test.go
+|  |  |  |-- ind_cpa.go
+|  |  |  |-- polyval.go
+|  |  |  |-- polyval_test.go
+|  |  |  |-- subtle.go
+|  |  |  |-- subtle_test.go
+|  |  |  |-- xchacha20poly1305.go
+|  |  |  |-- xchacha20poly1305_test.go
+|  |  |  |-- xchacha20poly1305_vectors_test.go
+|  |  |-- xchacha20poly1305_key_manager.go
+|  |  |-- xchacha20poly1305_key_manager_test.go
+|  |-- core
+|  |  |-- cryptofmt
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cryptofmt.go
+|  |  |  |-- cryptofmt_test.go
+|  |  |-- primitiveset
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- primitiveset.go
+|  |  |  |-- primitiveset_test.go
+|  |  |-- registry
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- key_manager.go
+|  |  |  |-- kms_client.go
+|  |  |  |-- private_key_manager.go
+|  |  |  |-- registry.go
+|  |  |  |-- registry_test.go
+|  |-- daead
+|  |  |-- BUILD.bazel
+|  |  |-- aes_siv_key_manager.go
+|  |  |-- aes_siv_key_manager_test.go
+|  |  |-- daead.go
+|  |  |-- daead_factory.go
+|  |  |-- daead_factory_test.go
+|  |  |-- daead_key_templates.go
+|  |  |-- daead_key_templates_test.go
+|  |  |-- daead_test.go
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- aes_siv.go
+|  |  |  |-- aes_siv_test.go
+|  |-- go.mod
+|  |-- go.sum
+|  |-- hybrid
+|  |  |-- BUILD.bazel
+|  |  |-- ecies_aead_hkdf_dem_helper.go
+|  |  |-- ecies_aead_hkdf_dem_helper_test.go
+|  |  |-- ecies_aead_hkdf_hybrid_decrypt_test.go
+|  |  |-- ecies_aead_hkdf_hybrid_encrypt_test.go
+|  |  |-- ecies_aead_hkdf_private_key_manager.go
+|  |  |-- ecies_aead_hkdf_public_key_manager.go
+|  |  |-- hybrid.go
+|  |  |-- hybrid_decrypt_factory.go
+|  |  |-- hybrid_encrypt_factory.go
+|  |  |-- hybrid_factory_test.go
+|  |  |-- hybrid_key_templates.go
+|  |  |-- hybrid_key_templates_test.go
+|  |  |-- hybrid_test.go
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ecies_aead_hkdf_dem_helper.go
+|  |  |  |-- ecies_aead_hkdf_hybrid_decrypt.go
+|  |  |  |-- ecies_aead_hkdf_hybrid_encrypt.go
+|  |  |  |-- ecies_hkdf_recipient_kem.go
+|  |  |  |-- ecies_hkdf_sender_kem.go
+|  |  |  |-- elliptic_curves.go
+|  |  |  |-- elliptic_curves_test.go
+|  |  |  |-- subtle.go
+|  |  |  |-- subtle_test.go
+|  |-- insecurecleartextkeyset
+|  |  |-- BUILD.bazel
+|  |  |-- insecurecleartextkeyset.go
+|  |  |-- insecurecleartextkeyset_test.go
+|  |-- integration
+|  |  |-- awskms
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- aws_kms_aead.go
+|  |  |  |-- aws_kms_aead_test.go
+|  |  |  |-- aws_kms_client.go
+|  |  |  |-- aws_kms_client_test.go
+|  |  |-- gcpkms
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- gcp_kms_aead.go
+|  |  |  |-- gcp_kms_aead_test.go
+|  |  |  |-- gcp_kms_client.go
+|  |  |  |-- gcp_kms_client_test.go
+|  |  |-- hcvault
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- hcvault_aead.go
+|  |  |  |-- hcvault_aead_test.go
+|  |  |  |-- hcvault_client.go
+|  |  |  |-- hcvault_client_test.go
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- server.crt
+|  |  |  |  |-- server.key
+|  |-- internal
+|  |  |-- BUILD.bazel
+|  |  |-- internal.go
+|  |-- keyset
+|  |  |-- BUILD.bazel
+|  |  |-- binary_io.go
+|  |  |-- binary_io_test.go
+|  |  |-- handle.go
+|  |  |-- handle_test.go
+|  |  |-- json_io.go
+|  |  |-- json_io_test.go
+|  |  |-- keyset.go
+|  |  |-- manager.go
+|  |  |-- manager_test.go
+|  |  |-- mem_io.go
+|  |  |-- reader.go
+|  |  |-- validation.go
+|  |  |-- validation_test.go
+|  |  |-- writer.go
+|  |-- kwp
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- kwp.go
+|  |  |  |-- kwp_test.go
+|  |-- mac
+|  |  |-- BUILD.bazel
+|  |  |-- aes_cmac_key_manager.go
+|  |  |-- aes_cmac_key_manager_test.go
+|  |  |-- hmac_key_manager.go
+|  |  |-- hmac_key_manager_test.go
+|  |  |-- mac.go
+|  |  |-- mac_factory.go
+|  |  |-- mac_factory_test.go
+|  |  |-- mac_key_templates.go
+|  |  |-- mac_key_templates_test.go
+|  |  |-- mac_test.go
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cmac.go
+|  |  |  |-- cmac_test.go
+|  |  |  |-- hmac.go
+|  |  |  |-- hmac_test.go
+|  |-- prf
+|  |  |-- BUILD.bazel
+|  |  |-- aes_cmac_prf_key_manager.go
+|  |  |-- aes_cmac_prf_key_manager_test.go
+|  |  |-- hkdf_prf_key_manager.go
+|  |  |-- hkdf_prf_key_manager_test.go
+|  |  |-- hmac_prf_key_manager.go
+|  |  |-- hmac_prf_key_manager_test.go
+|  |  |-- prf_key_templates.go
+|  |  |-- prf_key_templates_test.go
+|  |  |-- prf_set.go
+|  |  |-- prf_set_factory.go
+|  |  |-- prf_set_factory_test.go
+|  |  |-- prf_test.go
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- aes_cmac.go
+|  |  |  |-- aes_cmac_test.go
+|  |  |  |-- hkdf.go
+|  |  |  |-- hkdf_test.go
+|  |  |  |-- hmac.go
+|  |  |  |-- hmac_test.go
+|  |  |  |-- subtle.go
+|  |  |  |-- subtle_test.go
+|  |-- proto
+|  |  |-- BUILD.bazel
+|  |  |-- aes_cmac_go_proto
+|  |  |  |-- aes_cmac.pb.go
+|  |  |-- aes_cmac_prf_go_proto
+|  |  |  |-- aes_cmac_prf.pb.go
+|  |  |-- aes_ctr_go_proto
+|  |  |  |-- aes_ctr.pb.go
+|  |  |-- aes_ctr_hmac_aead_go_proto
+|  |  |  |-- aes_ctr_hmac_aead.pb.go
+|  |  |-- aes_ctr_hmac_streaming_go_proto
+|  |  |  |-- aes_ctr_hmac_streaming.pb.go
+|  |  |-- aes_gcm_go_proto
+|  |  |  |-- aes_gcm.pb.go
+|  |  |-- aes_gcm_hkdf_streaming_go_proto
+|  |  |  |-- aes_gcm_hkdf_streaming.pb.go
+|  |  |-- aes_siv_go_proto
+|  |  |  |-- aes_siv.pb.go
+|  |  |-- chacha20_poly1305_go_proto
+|  |  |  |-- chacha20_poly1305.pb.go
+|  |  |-- common_go_proto
+|  |  |  |-- common.pb.go
+|  |  |-- ecdsa_go_proto
+|  |  |  |-- ecdsa.pb.go
+|  |  |-- ecies_aead_hkdf_go_proto
+|  |  |  |-- ecies_aead_hkdf.pb.go
+|  |  |-- ed25519_go_proto
+|  |  |  |-- ed25519.pb.go
+|  |  |-- hkdf_prf_go_proto
+|  |  |  |-- hkdf_prf.pb.go
+|  |  |-- hmac_go_proto
+|  |  |  |-- hmac.pb.go
+|  |  |-- hmac_prf_go_proto
+|  |  |  |-- hmac_prf.pb.go
+|  |  |-- kms_envelope_go_proto
+|  |  |  |-- kms_envelope.pb.go
+|  |  |-- rsa_ssa_pkcs1_go_proto
+|  |  |  |-- rsa_ssa_pkcs1.pb.go
+|  |  |-- rsa_ssa_pss_go_proto
+|  |  |  |-- rsa_ssa_pss.pb.go
+|  |  |-- tink_go_proto
+|  |  |  |-- tink.pb.go
+|  |  |-- xchacha20_poly1305_go_proto
+|  |  |  |-- xchacha20_poly1305.pb.go
+|  |-- signature
+|  |  |-- BUILD.bazel
+|  |  |-- ecdsa_signer_key_manager.go
+|  |  |-- ecdsa_signer_key_manager_test.go
+|  |  |-- ecdsa_verifier_key_manager.go
+|  |  |-- ecdsa_verifier_key_manager_test.go
+|  |  |-- ed25519_signer_key_manager.go
+|  |  |-- ed25519_signer_key_manager_test.go
+|  |  |-- ed25519_verifier_key_manager.go
+|  |  |-- ed25519_verifier_key_manager_test.go
+|  |  |-- proto.go
+|  |  |-- signature.go
+|  |  |-- signature_factory_test.go
+|  |  |-- signature_key_templates.go
+|  |  |-- signature_key_templates_test.go
+|  |  |-- signature_test.go
+|  |  |-- signer_factory.go
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ecdsa.go
+|  |  |  |-- ecdsa_signer.go
+|  |  |  |-- ecdsa_signer_verifier_test.go
+|  |  |  |-- ecdsa_test.go
+|  |  |  |-- ecdsa_verifier.go
+|  |  |  |-- ed25519_signer.go
+|  |  |  |-- ed25519_signer_verifier_test.go
+|  |  |  |-- ed25519_verifier.go
+|  |  |  |-- encoding.go
+|  |  |  |-- rsa.go
+|  |  |  |-- rsa_test.go
+|  |  |  |-- subtle.go
+|  |  |  |-- subtle_test.go
+|  |  |-- verifier_factory.go
+|  |-- streamingaead
+|  |  |-- BUILD.bazel
+|  |  |-- aes_ctr_hmac_key_manager.go
+|  |  |-- aes_ctr_hmac_key_manager_test.go
+|  |  |-- aes_gcm_hkdf_key_manager.go
+|  |  |-- aes_gcm_hkdf_key_manager_test.go
+|  |  |-- decrypt_reader.go
+|  |  |-- streamingaead.go
+|  |  |-- streamingaead_factory.go
+|  |  |-- streamingaead_factory_test.go
+|  |  |-- streamingaead_key_templates.go
+|  |  |-- streamingaead_key_templates_test.go
+|  |  |-- streamingaead_test.go
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- aes_ctr_hmac.go
+|  |  |  |-- aes_ctr_hmac_test.go
+|  |  |  |-- aes_gcm_hkdf.go
+|  |  |  |-- aes_gcm_hkdf_test.go
+|  |  |  |-- noncebased
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- noncebased.go
+|  |  |  |  |-- noncebased_test.go
+|  |  |  |-- subtle.go
+|  |  |  |-- subtle_test.go
+|  |-- subtle
+|  |  |-- BUILD.bazel
+|  |  |-- hkdf.go
+|  |  |-- hkdf_test.go
+|  |  |-- random
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- random.go
+|  |  |  |-- random_test.go
+|  |  |-- subtle.go
+|  |  |-- subtle_test.go
+|  |-- testing
+|  |  |-- fakekms
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- fakekms.go
+|  |  |  |-- fakekms_test.go
+|  |-- testkeyset
+|  |  |-- BUILD.bazel
+|  |  |-- testkeyset.go
+|  |-- testutil
+|  |  |-- BUILD.bazel
+|  |  |-- constant.go
+|  |  |-- testdata.go
+|  |  |-- testdata_test.go
+|  |  |-- testutil.go
+|  |  |-- testutil_test.go
+|  |  |-- wycheproofutil.go
+|  |  |-- wycheproofutil_test.go
+|  |-- tink
+|  |  |-- BUILD.bazel
+|  |  |-- aead.go
+|  |  |-- deterministic_aead.go
+|  |  |-- hybrid_decrypt.go
+|  |  |-- hybrid_encrypt.go
+|  |  |-- mac.go
+|  |  |-- signer.go
+|  |  |-- streamingaead.go
+|  |  |-- verifier.go
+|  |  |-- version.go
+|  |-- tink_go_deps.bzl
+|  |-- tink_go_deps_init.bzl
+|-- java_src
+|  |-- .bazelversion
+|  |-- BUILD.bazel
+|  |-- WORKSPACE
+|  |-- jar_jar_rules.txt
+|  |-- proto
+|  |  |-- BUILD.bazel
+|  |-- src
+|  |  |-- main
+|  |  |  |-- java
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- crypto
+|  |  |  |  |  |  |  |-- tink
+|  |  |  |  |  |  |  |  |-- Aead.java
+|  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |-- BinaryKeysetReader.java
+|  |  |  |  |  |  |  |  |-- BinaryKeysetWriter.java
+|  |  |  |  |  |  |  |  |-- Catalogue.java
+|  |  |  |  |  |  |  |  |-- CleartextKeysetHandle.java
+|  |  |  |  |  |  |  |  |-- Config.java
+|  |  |  |  |  |  |  |  |-- CryptoFormat.java
+|  |  |  |  |  |  |  |  |-- DeterministicAead.java
+|  |  |  |  |  |  |  |  |-- HybridDecrypt.java
+|  |  |  |  |  |  |  |  |-- HybridEncrypt.java
+|  |  |  |  |  |  |  |  |-- JsonKeysetReader.java
+|  |  |  |  |  |  |  |  |-- JsonKeysetWriter.java
+|  |  |  |  |  |  |  |  |-- KeyManager.java
+|  |  |  |  |  |  |  |  |-- KeyManagerImpl.java
+|  |  |  |  |  |  |  |  |-- KeyTemplate.java
+|  |  |  |  |  |  |  |  |-- KeyTemplates.java
+|  |  |  |  |  |  |  |  |-- KeyTypeManager.java
+|  |  |  |  |  |  |  |  |-- KeyWrap.java
+|  |  |  |  |  |  |  |  |-- KeysetHandle.java
+|  |  |  |  |  |  |  |  |-- KeysetManager.java
+|  |  |  |  |  |  |  |  |-- KeysetReader.java
+|  |  |  |  |  |  |  |  |-- KeysetWriter.java
+|  |  |  |  |  |  |  |  |-- KmsClient.java
+|  |  |  |  |  |  |  |  |-- KmsClients.java
+|  |  |  |  |  |  |  |  |-- Mac.java
+|  |  |  |  |  |  |  |  |-- NoSecretKeysetHandle.java
+|  |  |  |  |  |  |  |  |-- PemKeyType.java
+|  |  |  |  |  |  |  |  |-- PrimitiveSet.java
+|  |  |  |  |  |  |  |  |-- PrimitiveWrapper.java
+|  |  |  |  |  |  |  |  |-- PrivateKeyManager.java
+|  |  |  |  |  |  |  |  |-- PrivateKeyManagerImpl.java
+|  |  |  |  |  |  |  |  |-- PrivateKeyTypeManager.java
+|  |  |  |  |  |  |  |  |-- PrivilegedRegistry.java
+|  |  |  |  |  |  |  |  |-- PublicKeySign.java
+|  |  |  |  |  |  |  |  |-- PublicKeyVerify.java
+|  |  |  |  |  |  |  |  |-- Registry.java
+|  |  |  |  |  |  |  |  |-- StreamingAead.java
+|  |  |  |  |  |  |  |  |-- Util.java
+|  |  |  |  |  |  |  |  |-- Version.java.templ
+|  |  |  |  |  |  |  |  |-- aead
+|  |  |  |  |  |  |  |  |  |-- AeadConfig.java
+|  |  |  |  |  |  |  |  |  |-- AeadFactory.java
+|  |  |  |  |  |  |  |  |  |-- AeadKeyTemplates.java
+|  |  |  |  |  |  |  |  |  |-- AeadWrapper.java
+|  |  |  |  |  |  |  |  |  |-- AesCtrHmacAeadKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- AesCtrKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- AesEaxKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- AesGcmKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- AesGcmSivKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- ChaCha20Poly1305KeyManager.java
+|  |  |  |  |  |  |  |  |  |-- KmsAeadKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- KmsEnvelopeAead.java
+|  |  |  |  |  |  |  |  |  |-- KmsEnvelopeAeadKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- XChaCha20Poly1305KeyManager.java
+|  |  |  |  |  |  |  |  |  |-- subtle
+|  |  |  |  |  |  |  |  |  |  |-- AeadFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- AesGcmFactory.java
+|  |  |  |  |  |  |  |  |  |  |-- AesGcmSiv.java
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |-- annotations
+|  |  |  |  |  |  |  |  |  |-- Alpha.java
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |-- config
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- TinkConfig.java
+|  |  |  |  |  |  |  |  |  |-- TinkFips.java
+|  |  |  |  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |-- TinkFipsDisabled.java
+|  |  |  |  |  |  |  |  |  |  |-- TinkFipsEnabled.java
+|  |  |  |  |  |  |  |  |  |  |-- TinkFipsUtil.java
+|  |  |  |  |  |  |  |  |-- daead
+|  |  |  |  |  |  |  |  |  |-- AesSivKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- DeterministicAeadConfig.java
+|  |  |  |  |  |  |  |  |  |-- DeterministicAeadFactory.java
+|  |  |  |  |  |  |  |  |  |-- DeterministicAeadKeyTemplates.java
+|  |  |  |  |  |  |  |  |  |-- DeterministicAeadWrapper.java
+|  |  |  |  |  |  |  |  |-- hybrid
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- EciesAeadHkdfPrivateKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- EciesAeadHkdfPublicKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- HybridConfig.java
+|  |  |  |  |  |  |  |  |  |-- HybridDecryptConfig.java
+|  |  |  |  |  |  |  |  |  |-- HybridDecryptFactory.java
+|  |  |  |  |  |  |  |  |  |-- HybridDecryptWrapper.java
+|  |  |  |  |  |  |  |  |  |-- HybridEncryptConfig.java
+|  |  |  |  |  |  |  |  |  |-- HybridEncryptFactory.java
+|  |  |  |  |  |  |  |  |  |-- HybridEncryptWrapper.java
+|  |  |  |  |  |  |  |  |  |-- HybridKeyTemplates.java
+|  |  |  |  |  |  |  |  |  |-- HybridUtil.java
+|  |  |  |  |  |  |  |  |  |-- RegistryEciesAeadHkdfDemHelper.java
+|  |  |  |  |  |  |  |  |  |-- subtle
+|  |  |  |  |  |  |  |  |  |  |-- AeadOrDaead.java
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |-- RsaKem.java
+|  |  |  |  |  |  |  |  |  |  |-- RsaKemHybridDecrypt.java
+|  |  |  |  |  |  |  |  |  |  |-- RsaKemHybridEncrypt.java
+|  |  |  |  |  |  |  |  |-- integration
+|  |  |  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |  |  |-- AndroidKeysetManager.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidKeystoreAesGcm.java
+|  |  |  |  |  |  |  |  |  |  |-- AndroidKeystoreKmsClient.java
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |-- SharedPrefKeysetReader.java
+|  |  |  |  |  |  |  |  |  |  |-- SharedPrefKeysetWriter.java
+|  |  |  |  |  |  |  |  |  |-- awskms
+|  |  |  |  |  |  |  |  |  |  |-- AwsKmsAead.java
+|  |  |  |  |  |  |  |  |  |  |-- AwsKmsClient.java
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- gcpkms
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |-- GcpKmsAead.java
+|  |  |  |  |  |  |  |  |  |  |-- GcpKmsClient.java
+|  |  |  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- KeyStatusTypeProtoConverter.java
+|  |  |  |  |  |  |  |  |  |-- KeyTemplateProtoConverter.java
+|  |  |  |  |  |  |  |  |  |-- Util.java
+|  |  |  |  |  |  |  |  |-- jwt
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- JsonUtil.java
+|  |  |  |  |  |  |  |  |  |-- JwkSetConverter.java
+|  |  |  |  |  |  |  |  |  |-- JwtEcdsaSignKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- JwtEcdsaVerifyKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- JwtFormat.java
+|  |  |  |  |  |  |  |  |  |-- JwtHmacKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- JwtInvalidException.java
+|  |  |  |  |  |  |  |  |  |-- JwtMac.java
+|  |  |  |  |  |  |  |  |  |-- JwtMacConfig.java
+|  |  |  |  |  |  |  |  |  |-- JwtMacInternal.java
+|  |  |  |  |  |  |  |  |  |-- JwtMacWrapper.java
+|  |  |  |  |  |  |  |  |  |-- JwtNames.java
+|  |  |  |  |  |  |  |  |  |-- JwtPublicKeySign.java
+|  |  |  |  |  |  |  |  |  |-- JwtPublicKeySignInternal.java
+|  |  |  |  |  |  |  |  |  |-- JwtPublicKeySignWrapper.java
+|  |  |  |  |  |  |  |  |  |-- JwtPublicKeyVerify.java
+|  |  |  |  |  |  |  |  |  |-- JwtPublicKeyVerifyWrapper.java
+|  |  |  |  |  |  |  |  |  |-- JwtRsaSsaPkcs1SignKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- JwtRsaSsaPkcs1VerifyKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- JwtRsaSsaPssSignKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- JwtRsaSsaPssVerifyKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- JwtSignatureConfig.java
+|  |  |  |  |  |  |  |  |  |-- JwtValidator.java
+|  |  |  |  |  |  |  |  |  |-- RawJwt.java
+|  |  |  |  |  |  |  |  |  |-- VerifiedJwt.java
+|  |  |  |  |  |  |  |  |-- mac
+|  |  |  |  |  |  |  |  |  |-- AesCmacKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- HmacKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- MacConfig.java
+|  |  |  |  |  |  |  |  |  |-- MacFactory.java
+|  |  |  |  |  |  |  |  |  |-- MacKeyTemplates.java
+|  |  |  |  |  |  |  |  |  |-- MacWrapper.java
+|  |  |  |  |  |  |  |  |-- prf
+|  |  |  |  |  |  |  |  |  |-- AesCmacPrfKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- HkdfPrfKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- HmacPrfKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- Prf.java
+|  |  |  |  |  |  |  |  |  |-- PrfConfig.java
+|  |  |  |  |  |  |  |  |  |-- PrfKeyTemplates.java
+|  |  |  |  |  |  |  |  |  |-- PrfSet.java
+|  |  |  |  |  |  |  |  |  |-- PrfSetWrapper.java
+|  |  |  |  |  |  |  |  |-- signature
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- EcdsaSignKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- EcdsaVerifyKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- Ed25519PrivateKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- Ed25519PublicKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- PublicKeySignConfig.java
+|  |  |  |  |  |  |  |  |  |-- PublicKeySignFactory.java
+|  |  |  |  |  |  |  |  |  |-- PublicKeySignWrapper.java
+|  |  |  |  |  |  |  |  |  |-- PublicKeyVerifyConfig.java
+|  |  |  |  |  |  |  |  |  |-- PublicKeyVerifyFactory.java
+|  |  |  |  |  |  |  |  |  |-- PublicKeyVerifyWrapper.java
+|  |  |  |  |  |  |  |  |  |-- RsaSsaPkcs1SignKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- RsaSsaPkcs1VerifyKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- RsaSsaPssSignKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- RsaSsaPssVerifyKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- SignatureConfig.java
+|  |  |  |  |  |  |  |  |  |-- SignatureKeyTemplates.java
+|  |  |  |  |  |  |  |  |  |-- SignaturePemKeysetReader.java
+|  |  |  |  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |-- SigUtil.java
+|  |  |  |  |  |  |  |  |-- streamingaead
+|  |  |  |  |  |  |  |  |  |-- AesCtrHmacStreamingKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- AesGcmHkdfStreamingKeyManager.java
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- InputStreamDecrypter.java
+|  |  |  |  |  |  |  |  |  |-- ReadableByteChannelDecrypter.java
+|  |  |  |  |  |  |  |  |  |-- SeekableByteChannelDecrypter.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadConfig.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadFactory.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadHelper.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadKeyTemplates.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadUtil.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadWrapper.java
+|  |  |  |  |  |  |  |  |-- subtle
+|  |  |  |  |  |  |  |  |  |-- AesCtrHmacStreaming.java
+|  |  |  |  |  |  |  |  |  |-- AesCtrJceCipher.java
+|  |  |  |  |  |  |  |  |  |-- AesEaxJce.java
+|  |  |  |  |  |  |  |  |  |-- AesGcmHkdfStreaming.java
+|  |  |  |  |  |  |  |  |  |-- AesGcmJce.java
+|  |  |  |  |  |  |  |  |  |-- AesSiv.java
+|  |  |  |  |  |  |  |  |  |-- AesUtil.java
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- Base64.java
+|  |  |  |  |  |  |  |  |  |-- Bytes.java
+|  |  |  |  |  |  |  |  |  |-- ChaCha20.java
+|  |  |  |  |  |  |  |  |  |-- ChaCha20Base.java
+|  |  |  |  |  |  |  |  |  |-- ChaCha20Poly1305.java
+|  |  |  |  |  |  |  |  |  |-- ChaCha20Poly1305Base.java
+|  |  |  |  |  |  |  |  |  |-- Curve25519.java
+|  |  |  |  |  |  |  |  |  |-- EcdsaSignJce.java
+|  |  |  |  |  |  |  |  |  |-- EcdsaVerifyJce.java
+|  |  |  |  |  |  |  |  |  |-- EciesAeadHkdfDemHelper.java
+|  |  |  |  |  |  |  |  |  |-- EciesAeadHkdfHybridDecrypt.java
+|  |  |  |  |  |  |  |  |  |-- EciesAeadHkdfHybridEncrypt.java
+|  |  |  |  |  |  |  |  |  |-- EciesHkdfRecipientKem.java
+|  |  |  |  |  |  |  |  |  |-- EciesHkdfSenderKem.java
+|  |  |  |  |  |  |  |  |  |-- Ed25519.java
+|  |  |  |  |  |  |  |  |  |-- Ed25519Constants.java
+|  |  |  |  |  |  |  |  |  |-- Ed25519Sign.java
+|  |  |  |  |  |  |  |  |  |-- Ed25519Verify.java
+|  |  |  |  |  |  |  |  |  |-- EllipticCurves.java
+|  |  |  |  |  |  |  |  |  |-- EncryptThenAuthenticate.java
+|  |  |  |  |  |  |  |  |  |-- EngineFactory.java
+|  |  |  |  |  |  |  |  |  |-- EngineWrapper.java
+|  |  |  |  |  |  |  |  |  |-- Enums.java
+|  |  |  |  |  |  |  |  |  |-- Field25519.java
+|  |  |  |  |  |  |  |  |  |-- Hex.java
+|  |  |  |  |  |  |  |  |  |-- Hkdf.java
+|  |  |  |  |  |  |  |  |  |-- ImmutableByteArray.java
+|  |  |  |  |  |  |  |  |  |-- IndCpaCipher.java
+|  |  |  |  |  |  |  |  |  |-- Kwp.java
+|  |  |  |  |  |  |  |  |  |-- NonceBasedStreamingAead.java
+|  |  |  |  |  |  |  |  |  |-- PemKeyType.java
+|  |  |  |  |  |  |  |  |  |-- Poly1305.java
+|  |  |  |  |  |  |  |  |  |-- PrfAesCmac.java
+|  |  |  |  |  |  |  |  |  |-- PrfHmacJce.java
+|  |  |  |  |  |  |  |  |  |-- PrfMac.java
+|  |  |  |  |  |  |  |  |  |-- Random.java
+|  |  |  |  |  |  |  |  |  |-- RewindableReadableByteChannel.java
+|  |  |  |  |  |  |  |  |  |-- RsaSsaPkcs1SignJce.java
+|  |  |  |  |  |  |  |  |  |-- RsaSsaPkcs1VerifyJce.java
+|  |  |  |  |  |  |  |  |  |-- RsaSsaPssSignJce.java
+|  |  |  |  |  |  |  |  |  |-- RsaSsaPssVerifyJce.java
+|  |  |  |  |  |  |  |  |  |-- SelfKeyTestValidators.java
+|  |  |  |  |  |  |  |  |  |-- StreamSegmentDecrypter.java
+|  |  |  |  |  |  |  |  |  |-- StreamSegmentEncrypter.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadDecryptingChannel.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadDecryptingStream.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadEncryptingChannel.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadEncryptingStream.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadSeekableDecryptingChannel.java
+|  |  |  |  |  |  |  |  |  |-- SubtleUtil.java
+|  |  |  |  |  |  |  |  |  |-- Validators.java
+|  |  |  |  |  |  |  |  |  |-- X25519.java
+|  |  |  |  |  |  |  |  |  |-- XChaCha20.java
+|  |  |  |  |  |  |  |  |  |-- XChaCha20Poly1305.java
+|  |  |  |  |  |  |  |  |  |-- prf
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |-- HkdfStreamingPrf.java
+|  |  |  |  |  |  |  |  |  |  |-- PrfImpl.java
+|  |  |  |  |  |  |  |  |  |  |-- StreamingPrf.java
+|  |  |  |  |  |  |  |  |-- testing
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- FakeKmsClient.java
+|  |  |  |  |  |  |  |  |  |-- KeyTypeManagerTestUtil.java
+|  |  |  |  |  |  |  |  |  |-- StreamingTestUtil.java
+|  |  |  |  |  |  |  |  |  |-- TestUtil.java
+|  |  |  |  |  |  |  |  |  |-- Testdata.java
+|  |  |  |  |  |  |  |  |  |-- WycheproofTestUtil.java
+|  |  |  |  |  |  |  |  |-- tinkkey
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- KeyAccess.java
+|  |  |  |  |  |  |  |  |  |-- KeyHandle.java
+|  |  |  |  |  |  |  |  |  |-- SecretKeyAccess.java
+|  |  |  |  |  |  |  |  |  |-- TinkKey.java
+|  |  |  |  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |-- InternalKeyHandle.java
+|  |  |  |  |  |  |  |  |  |  |-- ProtoKey.java
+|  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- KeysDownloader.java
+|  |  |  |-- resources
+|  |  |  |  |-- META-INF
+|  |  |  |  |  |-- proguard
+|  |  |  |  |  |  |-- protobuf.pro
+|  |  |-- test
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- java
+|  |  |  |  |-- com
+|  |  |  |  |  |-- google
+|  |  |  |  |  |  |-- crypto
+|  |  |  |  |  |  |  |-- tink
+|  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |-- CleartextKeysetHandleTest.java
+|  |  |  |  |  |  |  |  |-- ConfigTest.java
+|  |  |  |  |  |  |  |  |-- CryptoFormatTest.java
+|  |  |  |  |  |  |  |  |-- EcdsaProtoTest.java
+|  |  |  |  |  |  |  |  |-- IntegrationTest.java
+|  |  |  |  |  |  |  |  |-- JsonKeysetReaderTest.java
+|  |  |  |  |  |  |  |  |-- JsonKeysetWriterTest.java
+|  |  |  |  |  |  |  |  |-- KeyManagerImplTest.java
+|  |  |  |  |  |  |  |  |-- KeyTemplatesTest.java
+|  |  |  |  |  |  |  |  |-- KeyTypeManagerTest.java
+|  |  |  |  |  |  |  |  |-- KeysetHandleTest.java
+|  |  |  |  |  |  |  |  |-- KeysetManagerTest.java
+|  |  |  |  |  |  |  |  |-- NoSecretKeysetHandleTest.java
+|  |  |  |  |  |  |  |  |-- PemKeyTypeTest.java
+|  |  |  |  |  |  |  |  |-- PrimitiveSetTest.java
+|  |  |  |  |  |  |  |  |-- PrivateKeyManagerImplTest.java
+|  |  |  |  |  |  |  |  |-- RegistryTest.java
+|  |  |  |  |  |  |  |  |-- TinkProtoTest.java
+|  |  |  |  |  |  |  |  |-- UtilTest.java
+|  |  |  |  |  |  |  |  |-- VersionTest.java
+|  |  |  |  |  |  |  |  |-- aead
+|  |  |  |  |  |  |  |  |  |-- AeadConfigTest.java
+|  |  |  |  |  |  |  |  |  |-- AeadFactoryTest.java
+|  |  |  |  |  |  |  |  |  |-- AeadIntegrationTest.java
+|  |  |  |  |  |  |  |  |  |-- AeadKeyTemplatesTest.java
+|  |  |  |  |  |  |  |  |  |-- AeadKeyTemplatesTestdataTest.java
+|  |  |  |  |  |  |  |  |  |-- AeadWrapperTest.java
+|  |  |  |  |  |  |  |  |  |-- AesCtrHmacAeadKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- AesCtrKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- AesEaxKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- AesGcmKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- AesGcmSivKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- ChaCha20Poly1305KeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- KmsAeadKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- KmsAeadKeyManagerWithGcpTest.java
+|  |  |  |  |  |  |  |  |  |-- KmsEnvelopeAeadKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- KmsEnvelopeAeadKeyManagerWithGcpTest.java
+|  |  |  |  |  |  |  |  |  |-- XChaCha20Poly1305KeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- subtle
+|  |  |  |  |  |  |  |  |  |  |-- AesGcmSivTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |-- config
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- TinkConfigTest.java
+|  |  |  |  |  |  |  |  |  |-- TinkFipsTest.java
+|  |  |  |  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |-- TinkFipsUtilTest.java
+|  |  |  |  |  |  |  |  |-- daead
+|  |  |  |  |  |  |  |  |  |-- AesSivKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- DeterministicAeadConfigTest.java
+|  |  |  |  |  |  |  |  |  |-- DeterministicAeadFactoryTest.java
+|  |  |  |  |  |  |  |  |  |-- DeterministicAeadIntegrationTest.java
+|  |  |  |  |  |  |  |  |  |-- DeterministicAeadKeyTemplatesTest.java
+|  |  |  |  |  |  |  |  |  |-- DeterministicAeadWrapperTest.java
+|  |  |  |  |  |  |  |  |-- hybrid
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- EciesAeadHkdfHybridDecryptTest.java
+|  |  |  |  |  |  |  |  |  |-- EciesAeadHkdfHybridEncryptTest.java
+|  |  |  |  |  |  |  |  |  |-- EciesAeadHkdfPrivateKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- EciesAeadHkdfPublicKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- HybridConfigTest.java
+|  |  |  |  |  |  |  |  |  |-- HybridEncryptFactoryTest.java
+|  |  |  |  |  |  |  |  |  |-- HybridEncryptIntegrationTest.java
+|  |  |  |  |  |  |  |  |  |-- HybridEncryptWrapperTest.java
+|  |  |  |  |  |  |  |  |  |-- HybridKeyTemplatesTest.java
+|  |  |  |  |  |  |  |  |  |-- RegistryEciesAeadHkdfDemHelperTest.java
+|  |  |  |  |  |  |  |  |  |-- subtle
+|  |  |  |  |  |  |  |  |  |  |-- AeadOrDaeadTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |-- RsaKemHybridDecryptTest.java
+|  |  |  |  |  |  |  |  |  |  |-- RsaKemHybridEncryptTest.java
+|  |  |  |  |  |  |  |  |  |  |-- RsaKemTest.java
+|  |  |  |  |  |  |  |  |-- integration
+|  |  |  |  |  |  |  |  |  |-- awskms
+|  |  |  |  |  |  |  |  |  |  |-- AwsKmsAeadTest.java
+|  |  |  |  |  |  |  |  |  |  |-- AwsKmsClientTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- gcpkms
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |-- GcpKmsClientTest.java
+|  |  |  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- KeyTemplateProtoConverterTest.java
+|  |  |  |  |  |  |  |  |  |-- UtilTest.java
+|  |  |  |  |  |  |  |  |-- jwt
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- JsonUtilTest.java
+|  |  |  |  |  |  |  |  |  |-- JwkSetConverterTest.java
+|  |  |  |  |  |  |  |  |  |-- JwtEcdsaSignKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- JwtEcdsaVerifyKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- JwtFormatTest.java
+|  |  |  |  |  |  |  |  |  |-- JwtHmacKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- JwtMacWrapperTest.java
+|  |  |  |  |  |  |  |  |  |-- JwtPublicKeySignVerifyWrappersTest.java
+|  |  |  |  |  |  |  |  |  |-- JwtRsaSsaPkcs1SignKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- JwtRsaSsaPkcs1VerifyKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- JwtRsaSsaPssSignKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- JwtRsaSsaPssVerifyKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- JwtValidatorTest.java
+|  |  |  |  |  |  |  |  |  |-- RawJwtTest.java
+|  |  |  |  |  |  |  |  |  |-- VerifiedJwtTest.java
+|  |  |  |  |  |  |  |  |-- mac
+|  |  |  |  |  |  |  |  |  |-- AesCmacKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- HmacKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- MacConfigTest.java
+|  |  |  |  |  |  |  |  |  |-- MacFactoryTest.java
+|  |  |  |  |  |  |  |  |  |-- MacIntegrationTest.java
+|  |  |  |  |  |  |  |  |  |-- MacKeyTemplatesTest.java
+|  |  |  |  |  |  |  |  |  |-- MacWrapperTest.java
+|  |  |  |  |  |  |  |  |-- prf
+|  |  |  |  |  |  |  |  |  |-- AesCmacPrfKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- HkdfPrfKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- HmacPrfKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- PrfKeyTemplatesTest.java
+|  |  |  |  |  |  |  |  |  |-- PrfSetWrapperTest.java
+|  |  |  |  |  |  |  |  |-- signature
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- EcdsaSignKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- EcdsaVerifyKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- Ed25519PrivateKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- Ed25519PublicKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- PublicKeySignFactoryTest.java
+|  |  |  |  |  |  |  |  |  |-- PublicKeySignIntegrationTest.java
+|  |  |  |  |  |  |  |  |  |-- PublicKeySignWrapperTest.java
+|  |  |  |  |  |  |  |  |  |-- PublicKeyVerifyFactoryTest.java
+|  |  |  |  |  |  |  |  |  |-- PublicKeyVerifyIntegrationTest.java
+|  |  |  |  |  |  |  |  |  |-- PublicKeyVerifyWrapperTest.java
+|  |  |  |  |  |  |  |  |  |-- RsaSsaPkcs1SignKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- RsaSsaPkcs1VerifyKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- RsaSsaPssSignKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- RsaSsaPssVerifyKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- SignatureConfigTest.java
+|  |  |  |  |  |  |  |  |  |-- SignatureKeyTemplatesTest.java
+|  |  |  |  |  |  |  |  |  |-- SignaturePemKeysetReaderTest.java
+|  |  |  |  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |-- SigUtilTest.java
+|  |  |  |  |  |  |  |  |-- streamingaead
+|  |  |  |  |  |  |  |  |  |-- AesCtrHmacStreamingKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- AesGcmHkdfStreamingKeyManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadConfigTest.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadFactoryTest.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadIntegrationTest.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadKeyTemplatesTest.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadUtilTest.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadWrapperTest.java
+|  |  |  |  |  |  |  |  |-- subtle
+|  |  |  |  |  |  |  |  |  |-- AeadThreadSafetyTest.java
+|  |  |  |  |  |  |  |  |  |-- AesCtrHmacStreamingTest.java
+|  |  |  |  |  |  |  |  |  |-- AesCtrJceCipherTest.java
+|  |  |  |  |  |  |  |  |  |-- AesEaxJceTest.java
+|  |  |  |  |  |  |  |  |  |-- AesGcmHkdfStreamingTest.java
+|  |  |  |  |  |  |  |  |  |-- AesGcmJceTest.java
+|  |  |  |  |  |  |  |  |  |-- AesSivTest.java
+|  |  |  |  |  |  |  |  |  |-- AesUtilTest.java
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- BytesTest.java
+|  |  |  |  |  |  |  |  |  |-- ChaCha20Poly1305Test.java
+|  |  |  |  |  |  |  |  |  |-- ChaCha20Test.java
+|  |  |  |  |  |  |  |  |  |-- DaeadThreadSafetyTest.java
+|  |  |  |  |  |  |  |  |  |-- EcdsaSignJceTest.java
+|  |  |  |  |  |  |  |  |  |-- EcdsaVerifyJceTest.java
+|  |  |  |  |  |  |  |  |  |-- Ed25519SignTest.java
+|  |  |  |  |  |  |  |  |  |-- Ed25519Test.java
+|  |  |  |  |  |  |  |  |  |-- Ed25519VerifyTest.java
+|  |  |  |  |  |  |  |  |  |-- EllipticCurvesTest.java
+|  |  |  |  |  |  |  |  |  |-- EncryptThenAuthenticateTest.java
+|  |  |  |  |  |  |  |  |  |-- EngineFactoryFipsTest.java
+|  |  |  |  |  |  |  |  |  |-- EngineFactoryTest.java
+|  |  |  |  |  |  |  |  |  |-- Field25519Test.java
+|  |  |  |  |  |  |  |  |  |-- HkdfTest.java
+|  |  |  |  |  |  |  |  |  |-- ImmutableByteArrayTest.java
+|  |  |  |  |  |  |  |  |  |-- KwpTest.java
+|  |  |  |  |  |  |  |  |  |-- PemKeyTypeTest.java
+|  |  |  |  |  |  |  |  |  |-- Poly1305Test.java
+|  |  |  |  |  |  |  |  |  |-- PrfAesCmacTest.java
+|  |  |  |  |  |  |  |  |  |-- PrfHmacJceTest.java
+|  |  |  |  |  |  |  |  |  |-- RewindableReadableByteChannelTest.java
+|  |  |  |  |  |  |  |  |  |-- RsaSsaPkcs1SignJceTest.java
+|  |  |  |  |  |  |  |  |  |-- RsaSsaPkcs1VerifyJceTest.java
+|  |  |  |  |  |  |  |  |  |-- RsaSsaPssSignJceTest.java
+|  |  |  |  |  |  |  |  |  |-- RsaSsaPssVerifyJceTest.java
+|  |  |  |  |  |  |  |  |  |-- SelfKeyTestValidatorsTest.java
+|  |  |  |  |  |  |  |  |  |-- SignatureThreadSafetyTest.java
+|  |  |  |  |  |  |  |  |  |-- StreamingAeadThreadSafetyTest.java
+|  |  |  |  |  |  |  |  |  |-- SubtleUtilTest.java
+|  |  |  |  |  |  |  |  |  |-- ValidatorsTest.java
+|  |  |  |  |  |  |  |  |  |-- X25519Test.java
+|  |  |  |  |  |  |  |  |  |-- XChaCha20Poly1305Test.java
+|  |  |  |  |  |  |  |  |  |-- XChaCha20Test.java
+|  |  |  |  |  |  |  |  |  |-- prf
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |-- HkdfStreamingPrfTest.java
+|  |  |  |  |  |  |  |  |  |  |-- PrfImplTest.java
+|  |  |  |  |  |  |  |  |-- testing
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- FakeKmsClientTest.java
+|  |  |  |  |  |  |  |  |  |-- KeyTypeManagerTestUtilTest.java
+|  |  |  |  |  |  |  |  |  |-- TestUtilTest.java
+|  |  |  |  |  |  |  |  |  |-- TestdataTest.java
+|  |  |  |  |  |  |  |  |-- tinkkey
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- KeyAccessTest.java
+|  |  |  |  |  |  |  |  |  |-- KeyHandleTest.java
+|  |  |  |  |  |  |  |  |  |-- SecretKeyAccessTest.java
+|  |  |  |  |  |  |  |  |  |-- internal
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |-- ProtoKeyTest.java
+|  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |-- KeysDownloaderTest.java
+|  |-- tink_java_deps.bzl
+|  |-- tink_java_deps_init.bzl
+|  |-- tools
+|  |  |-- BUILD.bazel
+|  |  |-- build_defs
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- tink_java_rules.bzl
+|  |  |-- gen_java_test_rules.bzl
+|  |  |-- gen_maven_jar_rules.bzl
+|  |  |-- jar_jar.bzl
+|  |  |-- java_single_jar.bzl
+|  |  |-- javadoc.bzl
+|-- javascript
+|  |-- .bazelversion
+|  |-- BUILD.bazel
+|  |-- JAVASCRIPT-HACKING.md
+|  |-- WORKSPACE
+|  |-- aead
+|  |  |-- BUILD.bazel
+|  |  |-- aead.ts
+|  |  |-- aead_config.ts
+|  |  |-- aead_config_test.ts
+|  |  |-- aead_key_templates.ts
+|  |  |-- aead_key_templates_test.ts
+|  |  |-- aead_wrapper.ts
+|  |  |-- aead_wrapper_test.ts
+|  |  |-- aes_ctr_hmac.ts
+|  |  |-- aes_ctr_hmac_aead_key_manager.ts
+|  |  |-- aes_ctr_hmac_aead_key_manager_test.ts
+|  |  |-- aes_ctr_hmac_aead_key_templates.ts
+|  |  |-- aes_ctr_hmac_aead_key_templates_test.ts
+|  |  |-- aes_gcm.ts
+|  |  |-- aes_gcm_key_manager.ts
+|  |  |-- aes_gcm_key_manager_test.ts
+|  |  |-- aes_gcm_key_templates.ts
+|  |  |-- aes_gcm_key_templates_test.ts
+|  |  |-- index.ts
+|  |  |-- internal
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- aead.ts
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- aes_ctr_hmac.ts
+|  |  |  |-- aes_gcm.ts
+|  |  |  |-- encrypt_then_authenticate.ts
+|  |  |  |-- index.ts
+|  |  |-- wrapper.ts
+|  |-- binary
+|  |  |-- BUILD.bazel
+|  |  |-- index.ts
+|  |  |-- insecure
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |-- exception
+|  |  |-- BUILD.bazel
+|  |  |-- invalid_arguments_exception.ts
+|  |  |-- security_exception.ts
+|  |-- hybrid
+|  |  |-- BUILD.bazel
+|  |  |-- decrypt.ts
+|  |  |-- decrypt_wrapper.ts
+|  |  |-- ecies_aead_hkdf_for_decrypting.ts
+|  |  |-- ecies_aead_hkdf_for_encrypting.ts
+|  |  |-- ecies_aead_hkdf_private_key_manager.ts
+|  |  |-- ecies_aead_hkdf_private_key_manager_test.ts
+|  |  |-- ecies_aead_hkdf_public_key_manager.ts
+|  |  |-- ecies_aead_hkdf_public_key_manager_test.ts
+|  |  |-- ecies_aead_hkdf_util.ts
+|  |  |-- ecies_aead_hkdf_util_test.ts
+|  |  |-- ecies_aead_hkdf_validators.ts
+|  |  |-- ecies_aead_hkdf_validators_test.ts
+|  |  |-- ecies_with_aes_ctr_hmac.ts
+|  |  |-- ecies_with_aes_gcm.ts
+|  |  |-- encrypt.ts
+|  |  |-- encrypt_wrapper.ts
+|  |  |-- hybrid_config.ts
+|  |  |-- hybrid_config_test.ts
+|  |  |-- hybrid_decrypt_wrapper.ts
+|  |  |-- hybrid_decrypt_wrapper_test.ts
+|  |  |-- hybrid_encrypt_wrapper.ts
+|  |  |-- hybrid_encrypt_wrapper_test.ts
+|  |  |-- hybrid_key_templates.ts
+|  |  |-- hybrid_key_templates_test.ts
+|  |  |-- index.ts
+|  |  |-- internal
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- hybrid_decrypt.ts
+|  |  |  |-- hybrid_encrypt.ts
+|  |  |-- registry_ecies_aead_hkdf_dem_helper.ts
+|  |  |-- registry_ecies_aead_hkdf_dem_helper_test.ts
+|  |-- index.ts
+|  |-- internal
+|  |  |-- BUILD.bazel
+|  |  |-- binary_keyset_reader.ts
+|  |  |-- binary_keyset_reader_test.ts
+|  |  |-- binary_keyset_writer.ts
+|  |  |-- binary_keyset_writer_test.ts
+|  |  |-- cleartext_keyset_handle.ts
+|  |  |-- cleartext_keyset_handle_test.ts
+|  |  |-- crypto_format.ts
+|  |  |-- crypto_format_test.ts
+|  |  |-- key_manager.ts
+|  |  |-- keyset_handle.ts
+|  |  |-- keyset_handle_test.ts
+|  |  |-- keyset_reader.ts
+|  |  |-- keyset_writer.ts
+|  |  |-- primitive_set.ts
+|  |  |-- primitive_set_test.ts
+|  |  |-- primitive_wrapper.ts
+|  |  |-- proto_test.ts
+|  |  |-- registry.ts
+|  |  |-- registry_test.ts
+|  |  |-- ts_library_from_closure.bzl
+|  |  |-- util.ts
+|  |  |-- util_test.ts
+|  |-- keyset_handle.ts
+|  |-- mac
+|  |  |-- BUILD.bazel
+|  |  |-- index.ts
+|  |  |-- internal
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mac.ts
+|  |  |-- mac.ts
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- hmac.ts
+|  |  |  |-- index.ts
+|  |-- package.json
+|  |-- signature
+|  |  |-- BUILD.bazel
+|  |  |-- ecdsa_for_signing.ts
+|  |  |-- ecdsa_for_verifying.ts
+|  |  |-- ecdsa_private_key_manager.ts
+|  |  |-- ecdsa_private_key_manager_test.ts
+|  |  |-- ecdsa_public_key_manager.ts
+|  |  |-- ecdsa_public_key_manager_test.ts
+|  |  |-- ecdsa_util.ts
+|  |  |-- index.ts
+|  |  |-- internal
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- public_key_sign.ts
+|  |  |  |-- public_key_verify.ts
+|  |  |-- public_key_sign_wrapper.ts
+|  |  |-- public_key_sign_wrapper_test.ts
+|  |  |-- public_key_verify_wrapper.ts
+|  |  |-- public_key_verify_wrapper_test.ts
+|  |  |-- sign.ts
+|  |  |-- sign_wrapper.ts
+|  |  |-- signature_config.ts
+|  |  |-- signature_config_test.ts
+|  |  |-- signature_key_templates.ts
+|  |  |-- signature_key_templates_test.ts
+|  |  |-- subtle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |-- verify.ts
+|  |  |-- verify_wrapper.ts
+|  |-- subtle
+|  |  |-- BUILD.bazel
+|  |  |-- aes_ctr.ts
+|  |  |-- aes_ctr_test.ts
+|  |  |-- aes_gcm.ts
+|  |  |-- aes_gcm_test.ts
+|  |  |-- bytes.ts
+|  |  |-- bytes_test.ts
+|  |  |-- ecdsa_sign.ts
+|  |  |-- ecdsa_sign_test.ts
+|  |  |-- ecdsa_verify.ts
+|  |  |-- ecdsa_verify_test.ts
+|  |  |-- ecies_aead_hkdf_dem_helper.ts
+|  |  |-- ecies_aead_hkdf_hybrid_decrypt.ts
+|  |  |-- ecies_aead_hkdf_hybrid_decrypt_test.ts
+|  |  |-- ecies_aead_hkdf_hybrid_encrypt.ts
+|  |  |-- ecies_aead_hkdf_hybrid_encrypt_test.ts
+|  |  |-- ecies_hkdf_kem_recipient.ts
+|  |  |-- ecies_hkdf_kem_recipient_test.ts
+|  |  |-- ecies_hkdf_kem_sender.ts
+|  |  |-- ecies_hkdf_kem_sender_test.ts
+|  |  |-- elliptic_curves.ts
+|  |  |-- elliptic_curves_test.ts
+|  |  |-- encrypt_then_authenticate.ts
+|  |  |-- encrypt_then_authenticate_test.ts
+|  |  |-- hkdf.ts
+|  |  |-- hkdf_test.ts
+|  |  |-- hmac.ts
+|  |  |-- hmac_test.ts
+|  |  |-- ind_cpa_cipher.ts
+|  |  |-- random.ts
+|  |  |-- validators.ts
+|  |-- testing
+|  |  |-- BUILD.bazel
+|  |  |-- index.ts
+|  |  |-- internal
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- test_utils.ts
+|  |-- tink_javascript_deps.bzl
+|  |-- tsconfig.json
+|  |-- yarn.lock
+|-- kokoro
+|  |-- README.md
+|  |-- continuous-release.sh
+|  |-- continuous.sh
+|  |-- copy_credentials.sh
+|  |-- gcp_ubuntu_per_language
+|  |  |-- apps
+|  |  |  |-- run_tests.sh
+|  |  |-- cc
+|  |  |  |-- bazel
+|  |  |  |  |-- run_tests.sh
+|  |  |  |-- cmake
+|  |  |  |  |-- run_tests.sh
+|  |  |-- cross_language
+|  |  |  |-- run_tests.sh
+|  |  |-- go
+|  |  |  |-- bazel
+|  |  |  |  |-- run_tests.sh
+|  |  |  |-- gomod
+|  |  |  |  |-- run_tests.sh
+|  |  |-- java_src
+|  |  |  |-- run_tests.sh
+|  |  |-- javascript
+|  |  |  |-- run_tests.sh
+|  |  |-- python
+|  |  |  |-- bazel
+|  |  |  |  |-- run_tests.sh
+|  |  |  |-- pip
+|  |  |  |  |-- run_tests.sh
+|  |  |-- tools
+|  |  |  |-- run_tests.sh
+|  |-- macos_external
+|  |  |-- apps
+|  |  |  |-- run_tests.sh
+|  |  |-- cc
+|  |  |  |-- bazel
+|  |  |  |  |-- run_tests.sh
+|  |  |  |-- cmake
+|  |  |  |  |-- run_tests.sh
+|  |  |-- go
+|  |  |  |-- bazel
+|  |  |  |  |-- run_tests.sh
+|  |  |  |-- gomod
+|  |  |  |  |-- run_tests.sh
+|  |  |-- java_src
+|  |  |  |-- run_tests.sh
+|  |  |-- objc
+|  |  |  |-- run_tests.sh
+|  |  |-- python
+|  |  |  |-- bazel
+|  |  |  |  |-- run_tests.sh
+|  |  |  |-- pip
+|  |  |  |  |-- run_tests.sh
+|  |  |-- tools
+|  |  |  |-- run_tests.sh
+|  |-- presubmit.sh
+|  |-- remote.sh
+|  |-- run_tests.sh
+|  |-- run_tests_cmake_continuous.sh
+|  |-- run_tests_cmake_presubmit.sh
+|-- maven
+|  |-- README.md
+|  |-- apps-paymentmethodtoken.pom.xml
+|  |-- apps-rewardedads.pom.xml
+|  |-- apps-webpush.pom.xml
+|  |-- execute-deploy.sh
+|  |-- publish-snapshot.sh
+|  |-- publish-to-maven-central.sh
+|  |-- settings.xml
+|  |-- test-snapshot.sh
+|  |-- tink-android.pom.xml
+|  |-- tink-awskms.pom.xml
+|  |-- tink-gcpkms.pom.xml
+|  |-- tink.pom.xml
+|-- objc
+|  |-- .bazelversion
+|  |-- .clang-format
+|  |-- BUILD.bazel
+|  |-- CHANGELOG
+|  |-- README.md
+|  |-- TINKAead.h
+|  |-- TINKAeadConfig.h
+|  |-- TINKAeadFactory.h
+|  |-- TINKAeadKeyTemplate.h
+|  |-- TINKAllConfig.h
+|  |-- TINKBinaryKeysetReader.h
+|  |-- TINKConfig.h
+|  |-- TINKDeterministicAead.h
+|  |-- TINKDeterministicAeadConfig.h
+|  |-- TINKDeterministicAeadFactory.h
+|  |-- TINKDeterministicAeadInternal.h
+|  |-- TINKDeterministicAeadKeyTemplate.h
+|  |-- TINKHybridConfig.h
+|  |-- TINKHybridDecrypt.h
+|  |-- TINKHybridDecryptFactory.h
+|  |-- TINKHybridEncrypt.h
+|  |-- TINKHybridEncryptFactory.h
+|  |-- TINKHybridKeyTemplate.h
+|  |-- TINKJSONKeysetReader.h
+|  |-- TINKKeyTemplate.h
+|  |-- TINKKeysetHandle+Cleartext.h
+|  |-- TINKKeysetHandle.h
+|  |-- TINKKeysetReader.h
+|  |-- TINKMac.h
+|  |-- TINKMacConfig.h
+|  |-- TINKMacFactory.h
+|  |-- TINKMacKeyTemplate.h
+|  |-- TINKPublicKeySign.h
+|  |-- TINKPublicKeySignFactory.h
+|  |-- TINKPublicKeyVerify.h
+|  |-- TINKPublicKeyVerifyFactory.h
+|  |-- TINKRegistryConfig.h
+|  |-- TINKSignatureConfig.h
+|  |-- TINKSignatureKeyTemplate.h
+|  |-- TINKVersion.h
+|  |-- Tests
+|  |  |-- Host
+|  |  |  |-- AppDelegate.h
+|  |  |  |-- AppDelegate.m
+|  |  |  |-- main.m
+|  |  |-- Info.plist
+|  |  |-- UnitTests
+|  |  |  |-- aead
+|  |  |  |  |-- TINKAeadFactoryTest.mm
+|  |  |  |  |-- TINKAeadKeyTemplateTest.mm
+|  |  |  |-- core
+|  |  |  |  |-- TINKBinaryKeysetReaderTest.mm
+|  |  |  |  |-- TINKCleartextKeysetHandleTest.mm
+|  |  |  |  |-- TINKJSONKeysetReaderTest.mm
+|  |  |  |  |-- TINKKeysetHandleTest.mm
+|  |  |  |  |-- TINKVersionTest.m
+|  |  |  |-- daead
+|  |  |  |  |-- TINKDeterministicAeadFactoryTest.mm
+|  |  |  |  |-- TINKDeterministicAeadKeyTemplateTest.mm
+|  |  |  |-- hybrid
+|  |  |  |  |-- TINKHybridDecryptFactoryTest.mm
+|  |  |  |  |-- TINKHybridEncryptFactoryTest.mm
+|  |  |  |  |-- TINKHybridKeyTemplateTest.mm
+|  |  |  |-- mac
+|  |  |  |  |-- TINKMacFactoryTest.mm
+|  |  |  |  |-- TINKMacKeyTemplateTest.mm
+|  |  |  |-- signature
+|  |  |  |  |-- TINKPublicKeySignFactory.mm
+|  |  |  |  |-- TINKPublicKeyVerifyFactory.mm
+|  |  |  |  |-- TINKSignatureKeyTemplateTest.mm
+|  |-- WORKSPACE
+|  |-- aead
+|  |  |-- TINKAeadConfig.mm
+|  |  |-- TINKAeadFactory.mm
+|  |  |-- TINKAeadInternal.h
+|  |  |-- TINKAeadInternal.mm
+|  |  |-- TINKAeadKeyTemplate.mm
+|  |-- core
+|  |  |-- TINKAllConfig.mm
+|  |  |-- TINKBinaryKeysetReader.mm
+|  |  |-- TINKConfig.mm
+|  |  |-- TINKJSONKeysetReader.mm
+|  |  |-- TINKKeyTemplate.mm
+|  |  |-- TINKKeyTemplate_Internal.h
+|  |  |-- TINKKeysetHandle+Cleartext.mm
+|  |  |-- TINKKeysetHandle.mm
+|  |  |-- TINKKeysetHandle_Internal.h
+|  |  |-- TINKKeysetReader.mm
+|  |  |-- TINKKeysetReader_Internal.h
+|  |  |-- TINKRegistryConfig.mm
+|  |  |-- TINKRegistryConfig_Internal.h
+|  |  |-- TINKVersion.m.templ
+|  |-- daead
+|  |  |-- TINKDeterministicAeadConfig.mm
+|  |  |-- TINKDeterministicAeadFactory.mm
+|  |  |-- TINKDeterministicAeadInternal.h
+|  |  |-- TINKDeterministicAeadInternal.mm
+|  |  |-- TINKDeterministicAeadKeyTemplate.mm
+|  |-- hybrid
+|  |  |-- TINKHybridConfig.mm
+|  |  |-- TINKHybridDecryptFactory.mm
+|  |  |-- TINKHybridDecryptInternal.h
+|  |  |-- TINKHybridDecryptInternal.mm
+|  |  |-- TINKHybridEncryptFactory.mm
+|  |  |-- TINKHybridEncryptInternal.h
+|  |  |-- TINKHybridEncryptInternal.mm
+|  |  |-- TINKHybridKeyTemplate.mm
+|  |-- mac
+|  |  |-- TINKMacConfig.mm
+|  |  |-- TINKMacFactory.mm
+|  |  |-- TINKMacInternal.h
+|  |  |-- TINKMacInternal.mm
+|  |  |-- TINKMacKeyTemplate.mm
+|  |-- signature
+|  |  |-- TINKPublicKeySignFactory.mm
+|  |  |-- TINKPublicKeySignInternal.h
+|  |  |-- TINKPublicKeySignInternal.mm
+|  |  |-- TINKPublicKeyVerifyFactory.mm
+|  |  |-- TINKPublicKeyVerifyInternal.h
+|  |  |-- TINKPublicKeyVerifyInternal.mm
+|  |  |-- TINKSignatureConfig.mm
+|  |  |-- TINKSignatureKeyTemplate.mm
+|  |-- tink_objc_deps.bzl
+|  |-- tink_objc_deps_init.bzl
+|  |-- util
+|  |  |-- BUILD.bazel
+|  |  |-- TINKErrors.h
+|  |  |-- TINKErrors.mm
+|  |  |-- TINKStrings.h
+|  |  |-- TINKStrings.mm
+|-- passing_test.sh
+|-- proto
+|  |-- BUILD.bazel
+|  |-- CMakeLists.txt
+|  |-- aes_cmac.proto
+|  |-- aes_cmac_prf.proto
+|  |-- aes_ctr.proto
+|  |-- aes_ctr_hmac_aead.proto
+|  |-- aes_ctr_hmac_streaming.proto
+|  |-- aes_eax.proto
+|  |-- aes_gcm.proto
+|  |-- aes_gcm_hkdf_streaming.proto
+|  |-- aes_gcm_siv.proto
+|  |-- aes_siv.proto
+|  |-- chacha20_poly1305.proto
+|  |-- common.proto
+|  |-- config.proto
+|  |-- ecdsa.proto
+|  |-- ecies_aead_hkdf.proto
+|  |-- ed25519.proto
+|  |-- empty.proto
+|  |-- experimental
+|  |  |-- pqcrypto
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cecpq2_aead_hkdf.proto
+|  |-- hkdf_prf.proto
+|  |-- hmac.proto
+|  |-- hmac_prf.proto
+|  |-- hpke.proto
+|  |-- jwt_ecdsa.proto
+|  |-- jwt_hmac.proto
+|  |-- jwt_rsa_ssa_pkcs1.proto
+|  |-- jwt_rsa_ssa_pss.proto
+|  |-- kms_aead.proto
+|  |-- kms_envelope.proto
+|  |-- prf_based_deriver.proto
+|  |-- rsa_ssa_pkcs1.proto
+|  |-- rsa_ssa_pss.proto
+|  |-- test_proto.proto
+|  |-- testing
+|  |  |-- BUILD.bazel
+|  |  |-- testing_api.proto
+|  |-- tink.proto
+|  |-- xchacha20_poly1305.proto
+|-- python
+|  |-- .bazelversion
+|  |-- BUILD.bazel
+|  |-- MANIFEST.in
+|  |-- README.md
+|  |-- VERSION
+|  |-- WORKSPACE
+|  |-- requirements.txt
+|  |-- setup.py
+|  |-- tink
+|  |  |-- BUILD.bazel
+|  |  |-- __init__.py
+|  |  |-- _keyset_handle.py
+|  |  |-- _keyset_handle_test.py
+|  |  |-- _keyset_reader.py
+|  |  |-- _keyset_reader_test.py
+|  |  |-- _keyset_writer.py
+|  |  |-- _keyset_writer_test.py
+|  |  |-- aead
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- __init__.py
+|  |  |  |-- _aead.py
+|  |  |  |-- _aead_key_manager.py
+|  |  |  |-- _aead_key_manager_test.py
+|  |  |  |-- _aead_key_templates.py
+|  |  |  |-- _aead_key_templates_test.py
+|  |  |  |-- _aead_wrapper.py
+|  |  |  |-- _aead_wrapper_test.py
+|  |  |  |-- _kms_envelope_aead.py
+|  |  |  |-- _kms_envelope_aead_test.py
+|  |  |-- cc
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cc_jwt_config.cc
+|  |  |  |-- cc_jwt_config.h
+|  |  |  |-- cc_key_manager.h
+|  |  |  |-- cc_streaming_aead_wrappers.cc
+|  |  |  |-- cc_streaming_aead_wrappers.h
+|  |  |  |-- cc_streaming_aead_wrappers_test.cc
+|  |  |  |-- cc_tink_config.cc
+|  |  |  |-- cc_tink_config.h
+|  |  |  |-- input_stream_adapter.cc
+|  |  |  |-- input_stream_adapter.h
+|  |  |  |-- input_stream_adapter_test.cc
+|  |  |  |-- output_stream_adapter.cc
+|  |  |  |-- output_stream_adapter.h
+|  |  |  |-- output_stream_adapter_test.cc
+|  |  |  |-- pybind
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- aead.cc
+|  |  |  |  |-- aead.h
+|  |  |  |  |-- cc_aws_kms_client.cc
+|  |  |  |  |-- cc_aws_kms_client.h
+|  |  |  |  |-- cc_fake_kms_client_testonly.cc
+|  |  |  |  |-- cc_fake_kms_client_testonly.h
+|  |  |  |  |-- cc_gcp_kms_client.cc
+|  |  |  |  |-- cc_gcp_kms_client.h
+|  |  |  |  |-- cc_jwt_config.cc
+|  |  |  |  |-- cc_jwt_config.h
+|  |  |  |  |-- cc_key_manager.cc
+|  |  |  |  |-- cc_key_manager.h
+|  |  |  |  |-- cc_key_manager_test.py
+|  |  |  |  |-- cc_streaming_aead_wrappers.cc
+|  |  |  |  |-- cc_streaming_aead_wrappers.h
+|  |  |  |  |-- cc_tink_config.cc
+|  |  |  |  |-- cc_tink_config.h
+|  |  |  |  |-- cc_tink_config_test.py
+|  |  |  |  |-- deterministic_aead.cc
+|  |  |  |  |-- deterministic_aead.h
+|  |  |  |  |-- hybrid_decrypt.cc
+|  |  |  |  |-- hybrid_decrypt.h
+|  |  |  |  |-- hybrid_encrypt.cc
+|  |  |  |  |-- hybrid_encrypt.h
+|  |  |  |  |-- import_helper.cc
+|  |  |  |  |-- import_helper.h
+|  |  |  |  |-- input_stream_adapter.cc
+|  |  |  |  |-- input_stream_adapter.h
+|  |  |  |  |-- mac.cc
+|  |  |  |  |-- mac.h
+|  |  |  |  |-- output_stream_adapter.cc
+|  |  |  |  |-- output_stream_adapter.h
+|  |  |  |  |-- prf.cc
+|  |  |  |  |-- prf.h
+|  |  |  |  |-- public_key_sign.cc
+|  |  |  |  |-- public_key_sign.h
+|  |  |  |  |-- public_key_verify.cc
+|  |  |  |  |-- public_key_verify.h
+|  |  |  |  |-- python_file_object_adapter.cc
+|  |  |  |  |-- python_file_object_adapter.h
+|  |  |  |  |-- status.cc
+|  |  |  |  |-- status.h
+|  |  |  |  |-- status_casters.h
+|  |  |  |  |-- status_injector.cc
+|  |  |  |  |-- status_injector.h
+|  |  |  |  |-- status_test.py
+|  |  |  |  |-- status_utils.cc
+|  |  |  |  |-- status_utils.h
+|  |  |  |  |-- streaming_aead.cc
+|  |  |  |  |-- streaming_aead.h
+|  |  |  |  |-- tink_bindings.cc
+|  |  |  |-- python_file_object_adapter.h
+|  |  |  |-- python_input_stream.cc
+|  |  |  |-- python_input_stream.h
+|  |  |  |-- python_input_stream_test.cc
+|  |  |  |-- python_output_stream.cc
+|  |  |  |-- python_output_stream.h
+|  |  |  |-- python_output_stream_test.cc
+|  |  |  |-- test_util.h
+|  |  |-- cleartext_keyset_handle.py
+|  |  |-- cleartext_keyset_handle_test.py
+|  |  |-- core
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- __init__.py
+|  |  |  |-- _crypto_format.py
+|  |  |  |-- _crypto_format_test.py
+|  |  |  |-- _key_manager.py
+|  |  |  |-- _primitive_set.py
+|  |  |  |-- _primitive_set_test.py
+|  |  |  |-- _primitive_wrapper.py
+|  |  |  |-- _registry.py
+|  |  |  |-- _registry_test.py
+|  |  |  |-- _tink_error.py
+|  |  |-- daead
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- __init__.py
+|  |  |  |-- _deterministic_aead.py
+|  |  |  |-- _deterministic_aead_key_manager.py
+|  |  |  |-- _deterministic_aead_key_manager_test.py
+|  |  |  |-- _deterministic_aead_key_templates.py
+|  |  |  |-- _deterministic_aead_key_templates_test.py
+|  |  |  |-- _deterministic_aead_wrapper.py
+|  |  |  |-- _deterministic_aead_wrapper_test.py
+|  |  |-- hybrid
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- __init__.py
+|  |  |  |-- _hybrid_decrypt.py
+|  |  |  |-- _hybrid_encrypt.py
+|  |  |  |-- _hybrid_key_manager.py
+|  |  |  |-- _hybrid_key_manager_test.py
+|  |  |  |-- _hybrid_key_templates.py
+|  |  |  |-- _hybrid_key_templates_test.py
+|  |  |  |-- _hybrid_wrapper.py
+|  |  |  |-- _hybrid_wrapper_test.py
+|  |  |-- integration
+|  |  |  |-- __init__.py
+|  |  |  |-- awskms
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- _aws_kms_aead_test.py
+|  |  |  |  |-- _aws_kms_client.py
+|  |  |  |  |-- _aws_kms_client_test.py
+|  |  |  |-- gcpkms
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- _gcp_kms_aead_test.py
+|  |  |  |  |-- _gcp_kms_client.py
+|  |  |  |  |-- _gcp_kms_client_test.py
+|  |  |-- jwt
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- __init__.py
+|  |  |  |-- _jwt_error.py
+|  |  |  |-- _jwt_format.py
+|  |  |  |-- _jwt_format_test.py
+|  |  |  |-- _jwt_hmac_key_manager.py
+|  |  |  |-- _jwt_hmac_key_manager_test.py
+|  |  |  |-- _jwt_key_templates.py
+|  |  |  |-- _jwt_key_templates_test.py
+|  |  |  |-- _jwt_mac.py
+|  |  |  |-- _jwt_mac_wrapper.py
+|  |  |  |-- _jwt_mac_wrapper_test.py
+|  |  |  |-- _jwt_public_key_sign.py
+|  |  |  |-- _jwt_public_key_verify.py
+|  |  |  |-- _jwt_signature_key_manager.py
+|  |  |  |-- _jwt_signature_key_manager_test.py
+|  |  |  |-- _jwt_signature_wrappers.py
+|  |  |  |-- _jwt_signature_wrappers_test.py
+|  |  |  |-- _jwt_validator.py
+|  |  |  |-- _jwt_validator_test.py
+|  |  |  |-- _raw_jwt.py
+|  |  |  |-- _raw_jwt_test.py
+|  |  |  |-- _verified_jwt.py
+|  |  |  |-- _verified_jwt_test.py
+|  |  |-- mac
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- __init__.py
+|  |  |  |-- _mac.py
+|  |  |  |-- _mac_key_manager.py
+|  |  |  |-- _mac_key_manager_test.py
+|  |  |  |-- _mac_key_templates.py
+|  |  |  |-- _mac_key_templates_test.py
+|  |  |  |-- _mac_wrapper.py
+|  |  |  |-- _mac_wrapper_test.py
+|  |  |-- prf
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- __init__.py
+|  |  |  |-- _prf_key_manager.py
+|  |  |  |-- _prf_key_manager_test.py
+|  |  |  |-- _prf_key_templates.py
+|  |  |  |-- _prf_set.py
+|  |  |  |-- _prf_set_wrapper.py
+|  |  |  |-- _prf_set_wrapper_test.py
+|  |  |-- proto
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- __init__.py
+|  |  |  |-- aes_cmac.proto
+|  |  |  |-- aes_cmac_prf.proto
+|  |  |  |-- aes_ctr.proto
+|  |  |  |-- aes_ctr_hmac_aead.proto
+|  |  |  |-- aes_ctr_hmac_streaming.proto
+|  |  |  |-- aes_eax.proto
+|  |  |  |-- aes_gcm.proto
+|  |  |  |-- aes_gcm_hkdf_streaming.proto
+|  |  |  |-- aes_gcm_siv.proto
+|  |  |  |-- aes_siv.proto
+|  |  |  |-- chacha20_poly1305.proto
+|  |  |  |-- common.proto
+|  |  |  |-- config.proto
+|  |  |  |-- ecdsa.proto
+|  |  |  |-- ecies_aead_hkdf.proto
+|  |  |  |-- ed25519.proto
+|  |  |  |-- empty.proto
+|  |  |  |-- experimental
+|  |  |  |  |-- pqcrypto
+|  |  |  |  |  |-- cecpq2_aead_hkdf.proto
+|  |  |  |-- hkdf_prf.proto
+|  |  |  |-- hmac.proto
+|  |  |  |-- hmac_prf.proto
+|  |  |  |-- hpke.proto
+|  |  |  |-- jwt_ecdsa.proto
+|  |  |  |-- jwt_hmac.proto
+|  |  |  |-- jwt_rsa_ssa_pkcs1.proto
+|  |  |  |-- jwt_rsa_ssa_pss.proto
+|  |  |  |-- kms_aead.proto
+|  |  |  |-- kms_envelope.proto
+|  |  |  |-- prf_based_deriver.proto
+|  |  |  |-- rsa_ssa_pkcs1.proto
+|  |  |  |-- rsa_ssa_pss.proto
+|  |  |  |-- test_proto.proto
+|  |  |  |-- testing
+|  |  |  |  |-- testing_api.proto
+|  |  |  |-- tink.proto
+|  |  |  |-- xchacha20_poly1305.proto
+|  |  |-- signature
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- __init__.py
+|  |  |  |-- _public_key_sign.py
+|  |  |  |-- _public_key_verify.py
+|  |  |  |-- _signature_key_manager.py
+|  |  |  |-- _signature_key_manager_test.py
+|  |  |  |-- _signature_key_templates.py
+|  |  |  |-- _signature_key_templates_test.py
+|  |  |  |-- _signature_wrapper.py
+|  |  |  |-- _signature_wrapper_test.py
+|  |  |-- streaming_aead
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- __init__.py
+|  |  |  |-- _decrypting_stream.py
+|  |  |  |-- _decrypting_stream_test.py
+|  |  |  |-- _encrypting_stream.py
+|  |  |  |-- _encrypting_stream_test.py
+|  |  |  |-- _file_object_adapter.py
+|  |  |  |-- _file_object_adapter_test.py
+|  |  |  |-- _raw_streaming_aead.py
+|  |  |  |-- _rewindable_input_stream.py
+|  |  |  |-- _rewindable_input_stream_test.py
+|  |  |  |-- _streaming_aead.py
+|  |  |  |-- _streaming_aead_key_manager.py
+|  |  |  |-- _streaming_aead_key_manager_test.py
+|  |  |  |-- _streaming_aead_key_templates.py
+|  |  |  |-- _streaming_aead_key_templates_test.py
+|  |  |  |-- _streaming_aead_test.py
+|  |  |  |-- _streaming_aead_wrapper.py
+|  |  |  |-- _streaming_aead_wrapper_test.py
+|  |  |-- testing
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- __init__.py
+|  |  |  |-- bytes_io.py
+|  |  |  |-- bytes_io_test.py
+|  |  |  |-- fake_kms.py
+|  |  |  |-- fake_kms_test.py
+|  |  |  |-- helper.py
+|  |  |  |-- helper_test.py
+|  |  |  |-- keyset_builder.py
+|  |  |  |-- keyset_builder_test.py
+|  |  |-- tink_config.py
+|  |  |-- tink_config_test.py
+|  |-- tink_py_deps.bzl
+|  |-- tink_py_deps_init.bzl
+|  |-- tools
+|  |  |-- BUILD.bazel
+|  |  |-- build_defs
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- tink_python_rules.bzl
+|  |  |-- distribution
+|  |  |  |-- README.md
+|  |  |  |-- build_linux_binary_wheels.sh
+|  |  |  |-- create_release.sh
+|  |  |  |-- test_linux_binary_wheels.sh
+|-- testdata
+|  |-- BUILD.bazel
+|  |-- README.md
+|  |-- aws_credentials_cc.txt
+|  |-- aws_key_arn.txt
+|  |-- bad_access_keys_aws.csv
+|  |-- bad_aws_credentials_cc.txt
+|  |-- bad_aws_key_arn.txt
+|  |-- bad_credentials_aws.csv
+|  |-- bad_gcp_credentials.json
+|  |-- bad_gcp_key_name.txt
+|  |-- credential.json
+|  |-- credentials_aws.cred
+|  |-- credentials_aws.csv
+|  |-- credentials_aws.ini
+|  |-- ecies_private_keyset.bin
+|  |-- ecies_private_keyset2.bin
+|  |-- ecies_public_keyset.bin
+|  |-- ecies_public_keyset2.bin
+|  |-- gcp_key_name.txt
+|  |-- templates
+|  |  |-- BUILD.bazel
+|  |  |-- aead
+|  |  |  |-- AES128_CTR_HMAC_SHA256
+|  |  |  |-- AES128_EAX
+|  |  |  |-- AES128_GCM
+|  |  |  |-- AES128_GCM_SIV
+|  |  |  |-- AES256_CTR_HMAC_SHA256
+|  |  |  |-- AES256_EAX
+|  |  |  |-- AES256_GCM
+|  |  |  |-- AES256_GCM_SIV
+|  |  |  |-- CHACHA20_POLY1305
+|  |  |  |-- XCHACHA20_POLY1305
+|  |  |-- daead
+|  |  |  |-- AES256_SIV
+|  |  |-- hybrid
+|  |  |  |-- ECIES_P256_COMPRESSED_HKDF_HMAC_SHA256_AES128_CTR_HMAC_SHA256
+|  |  |  |-- ECIES_P256_COMPRESSED_HKDF_HMAC_SHA256_AES128_GCM
+|  |  |  |-- ECIES_P256_HKDF_HMAC_SHA256_AES128_CTR_HMAC_SHA256
+|  |  |  |-- ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM
+|  |  |-- jwt
+|  |  |  |-- JWT_ES256
+|  |  |  |-- JWT_ES256_RAW
+|  |  |  |-- JWT_ES384
+|  |  |  |-- JWT_ES384_RAW
+|  |  |  |-- JWT_ES512
+|  |  |  |-- JWT_ES512_RAW
+|  |  |  |-- JWT_HS256
+|  |  |  |-- JWT_HS256_RAW
+|  |  |  |-- JWT_HS384
+|  |  |  |-- JWT_HS384_RAW
+|  |  |  |-- JWT_HS512
+|  |  |  |-- JWT_HS512_RAW
+|  |  |  |-- JWT_PS256_2048_F4
+|  |  |  |-- JWT_PS256_2048_F4_RAW
+|  |  |  |-- JWT_PS256_3072_F4
+|  |  |  |-- JWT_PS256_3072_F4_RAW
+|  |  |  |-- JWT_PS384_3072_F4
+|  |  |  |-- JWT_PS384_3072_F4_RAW
+|  |  |  |-- JWT_PS512_4096_F4
+|  |  |  |-- JWT_PS512_4096_F4_RAW
+|  |  |  |-- JWT_RS256_2048_F4
+|  |  |  |-- JWT_RS256_2048_F4_RAW
+|  |  |  |-- JWT_RS256_3072_F4
+|  |  |  |-- JWT_RS256_3072_F4_RAW
+|  |  |  |-- JWT_RS384_3072_F4
+|  |  |  |-- JWT_RS384_3072_F4_RAW
+|  |  |  |-- JWT_RS512_4096_F4
+|  |  |  |-- JWT_RS512_4096_F4_RAW
+|  |  |-- mac
+|  |  |  |-- AES_CMAC
+|  |  |  |-- HMAC_SHA256_128BITTAG
+|  |  |  |-- HMAC_SHA256_256BITTAG
+|  |  |  |-- HMAC_SHA512_256BITTAG
+|  |  |  |-- HMAC_SHA512_512BITTAG
+|  |  |-- prf
+|  |  |  |-- AES_CMAC_PRF
+|  |  |  |-- HKDF_PRF_SHA256
+|  |  |  |-- HMAC_PRF_SHA256
+|  |  |  |-- HMAC_PRF_SHA512
+|  |  |-- signature
+|  |  |  |-- ECDSA_P256
+|  |  |  |-- ECDSA_P256_IEEE_P1363
+|  |  |  |-- ECDSA_P384
+|  |  |  |-- ECDSA_P384_IEEE_P1363
+|  |  |  |-- ECDSA_P384_SHA384
+|  |  |  |-- ECDSA_P384_SHA384_IEEE_P1363
+|  |  |  |-- ECDSA_P521
+|  |  |  |-- ECDSA_P521_IEEE_P1363
+|  |  |  |-- ED25519
+|  |  |  |-- RSA_SSA_PKCS1_3072_SHA256_F4
+|  |  |  |-- RSA_SSA_PKCS1_4096_SHA512_F4
+|  |  |  |-- RSA_SSA_PSS_3072_SHA256_SHA256_32_F4
+|  |  |  |-- RSA_SSA_PSS_4096_SHA512_SHA512_64_F4
+|  |  |-- streamingaead
+|  |  |  |-- AES128_CTR_HMAC_SHA256_1MB
+|  |  |  |-- AES128_CTR_HMAC_SHA256_4KB
+|  |  |  |-- AES128_GCM_HKDF_1MB
+|  |  |  |-- AES128_GCM_HKDF_4KB
+|  |  |  |-- AES256_CTR_HMAC_SHA256_1MB
+|  |  |  |-- AES256_CTR_HMAC_SHA256_4KB
+|  |  |  |-- AES256_GCM_HKDF_1MB
+|  |  |  |-- AES256_GCM_HKDF_4KB
+|-- testing
+|  |-- cc
+|  |  |-- .bazelversion
+|  |  |-- BUILD.bazel
+|  |  |-- WORKSPACE
+|  |  |-- aead_impl.cc
+|  |  |-- aead_impl.h
+|  |  |-- aead_impl_test.cc
+|  |  |-- deterministic_aead_impl.cc
+|  |  |-- deterministic_aead_impl.h
+|  |  |-- deterministic_aead_impl_test.cc
+|  |  |-- hybrid_impl.cc
+|  |  |-- hybrid_impl.h
+|  |  |-- hybrid_impl_test.cc
+|  |  |-- jwt_impl.cc
+|  |  |-- jwt_impl.h
+|  |  |-- jwt_impl_test.cc
+|  |  |-- keyset_impl.cc
+|  |  |-- keyset_impl.h
+|  |  |-- keyset_impl_test.cc
+|  |  |-- mac_impl.cc
+|  |  |-- mac_impl.h
+|  |  |-- mac_impl_test.cc
+|  |  |-- metadata_impl.cc
+|  |  |-- metadata_impl.h
+|  |  |-- metadata_impl_test.cc
+|  |  |-- prf_set_impl.cc
+|  |  |-- prf_set_impl.h
+|  |  |-- prf_set_impl_test.cc
+|  |  |-- signature_impl.cc
+|  |  |-- signature_impl.h
+|  |  |-- signature_impl_test.cc
+|  |  |-- streaming_aead_impl.cc
+|  |  |-- streaming_aead_impl.h
+|  |  |-- streaming_aead_impl_test.cc
+|  |  |-- testing_server.cc
+|  |-- cross_language
+|  |  |-- .bazelversion
+|  |  |-- BUILD.bazel
+|  |  |-- WORKSPACE
+|  |  |-- aead_consistency_test.py
+|  |  |-- aead_test.py
+|  |  |-- deterministic_aead_test.py
+|  |  |-- external
+|  |  |  |-- portpicker.BUILD.bazel
+|  |  |-- hybrid_encryption_test.py
+|  |  |-- json_test.py
+|  |  |-- jwt_test.py
+|  |  |-- jwt_validation_test.py
+|  |  |-- key_generation_consistency_test.py
+|  |  |-- key_version_test.py
+|  |  |-- mac_test.py
+|  |  |-- prf_set_test.py
+|  |  |-- requirements.txt
+|  |  |-- signature_test.py
+|  |  |-- streaming_aead_test.py
+|  |  |-- util
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- _primitives.py
+|  |  |  |-- _primitives_test.py
+|  |  |  |-- supported_key_types.py
+|  |  |  |-- supported_key_types_test.py
+|  |  |  |-- testing_servers.py
+|  |  |  |-- testing_servers_test.py
+|  |-- go
+|  |  |-- .bazelversion
+|  |  |-- BUILD.bazel
+|  |  |-- WORKSPACE
+|  |  |-- aead_service.go
+|  |  |-- daead_service.go
+|  |  |-- hybrid_service.go
+|  |  |-- keyset_service.go
+|  |  |-- mac_service.go
+|  |  |-- metadata_service.go
+|  |  |-- prf_set_service.go
+|  |  |-- services_test.go
+|  |  |-- signature_service.go
+|  |  |-- streaming_aead_service.go
+|  |  |-- testing_server.go
+|  |-- java_src
+|  |  |-- .bazelversion
+|  |  |-- BUILD.bazel
+|  |  |-- WORKSPACE
+|  |  |-- java
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- crypto
+|  |  |  |  |  |  |-- tink
+|  |  |  |  |  |  |  |-- testing
+|  |  |  |  |  |  |  |  |-- AeadServiceImpl.java
+|  |  |  |  |  |  |  |  |-- DeterministicAeadServiceImpl.java
+|  |  |  |  |  |  |  |  |-- HybridServiceImpl.java
+|  |  |  |  |  |  |  |  |-- JwtServiceImpl.java
+|  |  |  |  |  |  |  |  |-- KeysetServiceImpl.java
+|  |  |  |  |  |  |  |  |-- MacServiceImpl.java
+|  |  |  |  |  |  |  |  |-- MetadataServiceImpl.java
+|  |  |  |  |  |  |  |  |-- PrfSetServiceImpl.java
+|  |  |  |  |  |  |  |  |-- SignatureServiceImpl.java
+|  |  |  |  |  |  |  |  |-- StreamingAeadServiceImpl.java
+|  |  |  |  |  |  |  |  |-- TestingServer.java
+|  |  |-- javatests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- crypto
+|  |  |  |  |  |  |-- tink
+|  |  |  |  |  |  |  |-- testing
+|  |  |  |  |  |  |  |  |-- AsymmetricTestingServicesTest.java
+|  |  |  |  |  |  |  |  |-- JwtServiceImplTest.java
+|  |  |  |  |  |  |  |  |-- TestingServicesTest.java
+|  |-- python
+|  |  |-- .bazelversion
+|  |  |-- BUILD.bazel
+|  |  |-- WORKSPACE
+|  |  |-- external
+|  |  |  |-- portpicker.BUILD.bazel
+|  |  |-- jwt_service.py
+|  |  |-- jwt_service_test.py
+|  |  |-- requirements.txt
+|  |  |-- services.py
+|  |  |-- services_test.py
+|  |  |-- testing_server.py
+|-- third_party
+|  |-- angular
+|  |  |-- BUILD.bazel
+|  |  |-- LICENSE
+|  |  |-- WORKSPACE
+|  |  |-- ng_package.bzl
+|-- tink_base_deps.bzl
+|-- tink_base_deps_init.bzl
+|-- tink_version.bzl
+|-- tink_version.cmake
+|-- tinkey.rb
+|-- tools
+|  |-- .bazelversion
+|  |-- BUILD.bazel
+|  |-- WORKSPACE
+|  |-- build_defs
+|  |  |-- BUILD.bazel
+|  |-- common.bzl
+|  |-- coverage.sh
+|  |-- release_tinkey.sh
+|  |-- remote_build_execution
+|  |  |-- BUILD.bazel
+|  |  |-- README.md
+|  |  |-- bazel-rbe.bazelrc
+|  |-- requirements.txt
+|  |-- testing
+|  |  |-- BUILD.bazel
+|  |  |-- cc
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- aead_cli.cc
+|  |  |  |-- aws_kms_aead_cli.cc
+|  |  |  |-- aws_kms_aead_test.sh
+|  |  |  |-- cli_util.cc
+|  |  |  |-- cli_util.h
+|  |  |  |-- deterministic_aead_cli.cc
+|  |  |  |-- gcp_kms_aead_cli.cc
+|  |  |  |-- gcp_kms_aead_test.sh
+|  |  |  |-- hybrid_decrypt_cli.cc
+|  |  |  |-- hybrid_encrypt_cli.cc
+|  |  |  |-- keyset_reader_writer_cli.cc
+|  |  |  |-- mac_cli.cc
+|  |  |  |-- prf_set_cli.cc
+|  |  |  |-- public_key_sign_cli.cc
+|  |  |  |-- public_key_verify_cli.cc
+|  |  |  |-- streaming_aead_cli.cc
+|  |  |  |-- version_cli.cc
+|  |  |-- cross_language
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- aead_envelope_test.sh
+|  |  |  |-- test_util.sh
+|  |  |-- go
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- aead_cli.go
+|  |  |  |-- deterministic_aead_cli.go
+|  |  |  |-- generate_envelope_keyset.go
+|  |  |  |-- hybrid_decrypt_cli.go
+|  |  |  |-- hybrid_encrypt_cli.go
+|  |  |  |-- mac_cli.go
+|  |  |  |-- prf_set_cli.go
+|  |  |  |-- public_key_sign_cli.go
+|  |  |  |-- public_key_verify_cli.go
+|  |  |  |-- streaming_aead_cli.go
+|  |  |-- java
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- crypto
+|  |  |  |  |  |  |-- tink
+|  |  |  |  |  |  |  |-- testing
+|  |  |  |  |  |  |  |  |-- AeadCli.java
+|  |  |  |  |  |  |  |  |-- CliUtil.java
+|  |  |  |  |  |  |  |  |-- CompareKeysets.java
+|  |  |  |  |  |  |  |  |-- CompareKeysetsCli.java
+|  |  |  |  |  |  |  |  |-- DeterministicAeadCli.java
+|  |  |  |  |  |  |  |  |-- HybridDecryptCli.java
+|  |  |  |  |  |  |  |  |-- HybridEncryptCli.java
+|  |  |  |  |  |  |  |  |-- MacCli.java
+|  |  |  |  |  |  |  |  |-- PrfSetCli.java
+|  |  |  |  |  |  |  |  |-- PublicKeySignCli.java
+|  |  |  |  |  |  |  |  |-- PublicKeyVerifyCli.java
+|  |  |  |  |  |  |  |  |-- StreamingAeadCli.java
+|  |  |  |  |  |  |  |  |-- VersionCli.java
+|  |  |-- javatests
+|  |  |  |-- com
+|  |  |  |  |-- google
+|  |  |  |  |  |-- crypto
+|  |  |  |  |  |  |-- tink
+|  |  |  |  |  |  |  |-- testing
+|  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |-- CompareKeysetsTest.java
+|  |  |-- python
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- aead_cli.py
+|  |  |  |-- deterministic_aead_cli.py
+|  |  |  |-- hybrid_decrypt_cli.py
+|  |  |  |-- hybrid_encrypt_cli.py
+|  |  |  |-- mac_cli.py
+|  |  |  |-- public_key_sign_cli.py
+|  |  |  |-- public_key_verify_cli.py
+|  |-- tinkey
+|  |  |-- BUILD.bazel
+|  |  |-- README.md
+|  |  |-- src
+|  |  |  |-- main
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- crypto
+|  |  |  |  |  |  |  |  |-- tink
+|  |  |  |  |  |  |  |  |  |-- tinkey
+|  |  |  |  |  |  |  |  |  |  |-- AddKeyCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- AddRotateOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |-- Command.java
+|  |  |  |  |  |  |  |  |  |  |-- ConvertKeysetCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- ConvertKeysetOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- CreateKeysetCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- CreateKeysetOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- CreatePublicKeysetCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- DeleteKeyCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- DestroyKeyCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- DisableKeyCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- EnableKeyCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- InOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- InputStreamHandler.java
+|  |  |  |  |  |  |  |  |  |  |-- KeyIdOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- KeyTemplateHandler.java
+|  |  |  |  |  |  |  |  |  |  |-- ListKeyTemplatesCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- ListKeysetCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- OutOptions.java
+|  |  |  |  |  |  |  |  |  |  |-- OutputStreamHandler.java
+|  |  |  |  |  |  |  |  |  |  |-- PromoteKeyCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- RotateKeysetCommand.java
+|  |  |  |  |  |  |  |  |  |  |-- Tinkey.java
+|  |  |  |  |  |  |  |  |  |  |-- TinkeyCommands.java
+|  |  |  |  |  |  |  |  |  |  |-- TinkeyKeyTemplates.java
+|  |  |  |  |  |  |  |  |  |  |-- TinkeyUtil.java
+|  |  |  |-- test
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- crypto
+|  |  |  |  |  |  |  |  |-- tink
+|  |  |  |  |  |  |  |  |  |-- tinkey
+|  |  |  |  |  |  |  |  |  |  |-- AddKeyCommandTest.java
+|  |  |  |  |  |  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |  |  |  |  |  |-- CreateKeysetCommandTest.java
+|  |  |  |  |  |  |  |  |  |  |-- CreatePublicKeysetCommandTest.java
+|  |  |  |  |  |  |  |  |  |  |-- RotateKeysetCommandTest.java

@@ -1,0 +1,3297 @@
+|-- .bazelignore
+|-- .bazelrc
+|-- .buildkite
+|  |-- hooks
+|  |  |-- post-command
+|  |  |-- pre-command
+|  |-- pipeline.yaml
+|-- .devcontainer.json
+|-- .github
+|  |-- ISSUE_TEMPLATE
+|  |  |-- bug_report.yml
+|  |  |-- config.yml
+|  |  |-- feature_request.yml
+|  |-- labeler.yml
+|  |-- workflows
+|  |  |-- go.yml
+|  |  |-- issue_reviver.yml
+|  |  |-- labeler.yml
+|-- .gitignore
+|-- .vscode
+|  |-- tasks.json
+|-- AUTHORS
+|-- BUILD
+|-- CODE_OF_CONDUCT.md
+|-- CONTRIBUTING.md
+|-- GOVERNANCE.md
+|-- LICENSE
+|-- Makefile
+|-- README.md
+|-- SECURITY.md
+|-- WORKSPACE
+|-- debian
+|  |-- BUILD
+|  |-- description
+|  |-- postinst.sh
+|-- g3doc
+|  |-- BUILD
+|  |-- Layers.png
+|  |-- Layers.svg
+|  |-- Machine-Virtualization.png
+|  |-- Machine-Virtualization.svg
+|  |-- README.md
+|  |-- Rule-Based-Execution.png
+|  |-- Rule-Based-Execution.svg
+|  |-- Sentry-Gofer.png
+|  |-- Sentry-Gofer.svg
+|  |-- architecture_guide
+|  |  |-- BUILD
+|  |  |-- performance.md
+|  |  |-- platforms.md
+|  |  |-- platforms.png
+|  |  |-- platforms.svg
+|  |  |-- resources.md
+|  |  |-- resources.png
+|  |  |-- resources.svg
+|  |  |-- security.md
+|  |  |-- security.png
+|  |  |-- security.svg
+|  |-- community.md
+|  |-- logo.png
+|  |-- logo.txt
+|  |-- proposals
+|  |  |-- BUILD
+|  |  |-- gsoc-2021-ideas.md
+|  |  |-- runtime_dedicate_os_thread.md
+|  |-- roadmap.md
+|  |-- style.md
+|  |-- user_guide
+|  |  |-- BUILD
+|  |  |-- FAQ.md
+|  |  |-- checkpoint_restore.md
+|  |  |-- compatibility.md
+|  |  |-- containerd
+|  |  |  |-- BUILD
+|  |  |  |-- configuration.md
+|  |  |  |-- containerd_11.md
+|  |  |  |-- quick_start.md
+|  |  |-- debugging.md
+|  |  |-- filesystem.md
+|  |  |-- install.md
+|  |  |-- networking.md
+|  |  |-- platforms.md
+|  |  |-- quick_start
+|  |  |  |-- BUILD
+|  |  |  |-- docker.md
+|  |  |  |-- kubernetes.md
+|  |  |  |-- oci.md
+|  |  |-- tutorials
+|  |  |  |-- BUILD
+|  |  |  |-- add-node-pool.png
+|  |  |  |-- cni.md
+|  |  |  |-- docker-compose.md
+|  |  |  |-- docker.md
+|  |  |  |-- knative.md
+|  |  |  |-- kubernetes.md
+|  |  |  |-- node-pool-button.png
+|-- go.mod
+|-- go.sum
+|-- images
+|  |-- BUILD
+|  |-- README.md
+|  |-- agent
+|  |  |-- Dockerfile
+|  |  |-- README.md
+|  |-- arm-qemu
+|  |  |-- Dockerfile.x86_64
+|  |  |-- initramfs
+|  |  |  |-- init
+|  |  |-- test.sh
+|  |-- basic
+|  |  |-- alpine
+|  |  |  |-- Dockerfile
+|  |  |-- busybox
+|  |  |  |-- Dockerfile
+|  |  |-- fsstress
+|  |  |  |-- Dockerfile.x86_64
+|  |  |  |-- run.sh
+|  |  |-- httpd
+|  |  |  |-- Dockerfile
+|  |  |-- integrationtest
+|  |  |  |-- Dockerfile.x86_64
+|  |  |  |-- copy_up_testfile.txt
+|  |  |  |-- link_test.c
+|  |  |  |-- ping4.sh
+|  |  |  |-- ping6.sh
+|  |  |  |-- test_copy_up.c
+|  |  |  |-- test_rewinddir.c
+|  |  |  |-- test_sticky.c
+|  |  |-- mysql
+|  |  |  |-- Dockerfile
+|  |  |-- nginx
+|  |  |  |-- Dockerfile
+|  |  |-- python
+|  |  |  |-- Dockerfile
+|  |  |-- resolv
+|  |  |  |-- Dockerfile
+|  |  |-- ruby
+|  |  |  |-- Dockerfile
+|  |  |-- tmpfile
+|  |  |  |-- Dockerfile
+|  |  |-- tomcat
+|  |  |  |-- Dockerfile
+|  |  |  |-- Dockerfile.aarch64
+|  |  |-- ubuntu
+|  |  |  |-- Dockerfile
+|  |-- benchmarks
+|  |  |-- ab
+|  |  |  |-- Dockerfile
+|  |  |-- absl
+|  |  |  |-- Dockerfile.x86_64
+|  |  |-- alpine
+|  |  |  |-- Dockerfile
+|  |  |-- ffmpeg
+|  |  |  |-- Dockerfile
+|  |  |-- fio
+|  |  |  |-- Dockerfile
+|  |  |-- hey
+|  |  |  |-- Dockerfile
+|  |  |-- httpd
+|  |  |  |-- Dockerfile
+|  |  |  |-- apache2-tmpdir.conf
+|  |  |-- iperf
+|  |  |  |-- Dockerfile
+|  |  |-- nginx
+|  |  |  |-- Dockerfile
+|  |  |  |-- nginx.conf
+|  |  |  |-- nginx_gofer.conf
+|  |  |-- node
+|  |  |  |-- Dockerfile
+|  |  |  |-- index.hbs
+|  |  |  |-- index.js
+|  |  |  |-- package-lock.json
+|  |  |  |-- package.json
+|  |  |-- redis
+|  |  |  |-- Dockerfile
+|  |  |-- ruby
+|  |  |  |-- Dockerfile
+|  |  |  |-- Gemfile
+|  |  |  |-- Gemfile.lock
+|  |  |  |-- config.ru
+|  |  |  |-- index.erb
+|  |  |  |-- main.rb
+|  |  |-- runsc
+|  |  |  |-- Dockerfile.x86_64
+|  |  |-- sysbench
+|  |  |  |-- Dockerfile
+|  |  |-- tensorflow
+|  |  |  |-- Dockerfile
+|  |  |-- util
+|  |  |  |-- Dockerfile
+|  |-- default
+|  |  |-- Dockerfile
+|  |-- defs.bzl
+|  |-- iptables
+|  |  |-- Dockerfile
+|  |-- jekyll
+|  |  |-- Dockerfile.x86_64
+|  |  |-- build.sh
+|  |  |-- checks.rb
+|  |-- packetdrill
+|  |  |-- Dockerfile
+|  |-- packetimpact
+|  |  |-- Dockerfile
+|  |-- runtimes
+|  |  |-- go1.12
+|  |  |  |-- Dockerfile.x86_64
+|  |  |-- java11
+|  |  |  |-- Dockerfile
+|  |  |-- nodejs12.4.0
+|  |  |  |-- Dockerfile
+|  |  |-- php7.3.6
+|  |  |  |-- Dockerfile
+|  |  |-- python3.7.3
+|  |  |  |-- Dockerfile
+|  |-- syzkaller
+|  |  |-- Dockerfile
+|  |  |-- README.md
+|  |  |-- default-gvisor-config.cfg
+|-- nogo.yaml
+|-- pkg
+|  |-- abi
+|  |  |-- BUILD
+|  |  |-- abi.go
+|  |  |-- abi_linux.go
+|  |  |-- flag.go
+|  |  |-- linux
+|  |  |  |-- BUILD
+|  |  |  |-- aio.go
+|  |  |  |-- arch_amd64.go
+|  |  |  |-- audit.go
+|  |  |  |-- bpf.go
+|  |  |  |-- capability.go
+|  |  |  |-- clone.go
+|  |  |  |-- context.go
+|  |  |  |-- dev.go
+|  |  |  |-- elf.go
+|  |  |  |-- epoll.go
+|  |  |  |-- epoll_amd64.go
+|  |  |  |-- epoll_arm64.go
+|  |  |  |-- errno
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- errno.go
+|  |  |  |-- errqueue.go
+|  |  |  |-- eventfd.go
+|  |  |  |-- exec.go
+|  |  |  |-- fadvise.go
+|  |  |  |-- fcntl.go
+|  |  |  |-- file.go
+|  |  |  |-- file_amd64.go
+|  |  |  |-- file_arm64.go
+|  |  |  |-- fs.go
+|  |  |  |-- fuse.go
+|  |  |  |-- futex.go
+|  |  |  |-- inotify.go
+|  |  |  |-- ioctl.go
+|  |  |  |-- ioctl_tun.go
+|  |  |  |-- ip.go
+|  |  |  |-- ipc.go
+|  |  |  |-- limits.go
+|  |  |  |-- linux.go
+|  |  |  |-- membarrier.go
+|  |  |  |-- mm.go
+|  |  |  |-- netdevice.go
+|  |  |  |-- netfilter.go
+|  |  |  |-- netfilter_ipv6.go
+|  |  |  |-- netfilter_test.go
+|  |  |  |-- netlink.go
+|  |  |  |-- netlink_route.go
+|  |  |  |-- poll.go
+|  |  |  |-- prctl.go
+|  |  |  |-- ptrace.go
+|  |  |  |-- ptrace_amd64.go
+|  |  |  |-- ptrace_arm64.go
+|  |  |  |-- rseq.go
+|  |  |  |-- rusage.go
+|  |  |  |-- sched.go
+|  |  |  |-- seccomp.go
+|  |  |  |-- sem.go
+|  |  |  |-- sem_amd64.go
+|  |  |  |-- sem_arm64.go
+|  |  |  |-- shm.go
+|  |  |  |-- signal.go
+|  |  |  |-- signalfd.go
+|  |  |  |-- socket.go
+|  |  |  |-- splice.go
+|  |  |  |-- tcp.go
+|  |  |  |-- time.go
+|  |  |  |-- timer.go
+|  |  |  |-- tty.go
+|  |  |  |-- uio.go
+|  |  |  |-- utsname.go
+|  |  |  |-- wait.go
+|  |  |  |-- xattr.go
+|  |-- amutex
+|  |  |-- BUILD
+|  |  |-- amutex.go
+|  |  |-- amutex_test.go
+|  |-- atomicbitops
+|  |  |-- BUILD
+|  |  |-- aligned_32bit_unsafe.go
+|  |  |-- aligned_64bit.go
+|  |  |-- atomicbitops.go
+|  |  |-- atomicbitops_amd64.s
+|  |  |-- atomicbitops_arm64.s
+|  |  |-- atomicbitops_noasm.go
+|  |  |-- atomicbitops_test.go
+|  |-- binary
+|  |  |-- BUILD
+|  |  |-- binary.go
+|  |  |-- binary_test.go
+|  |-- bits
+|  |  |-- BUILD
+|  |  |-- bits.go
+|  |  |-- bits_template.go
+|  |  |-- uint64_arch.go
+|  |  |-- uint64_arch_amd64_asm.s
+|  |  |-- uint64_arch_arm64_asm.s
+|  |  |-- uint64_arch_generic.go
+|  |  |-- uint64_test.go
+|  |-- bpf
+|  |  |-- BUILD
+|  |  |-- bpf.go
+|  |  |-- decoder.go
+|  |  |-- decoder_test.go
+|  |  |-- input_bytes.go
+|  |  |-- interpreter.go
+|  |  |-- interpreter_test.go
+|  |  |-- program_builder.go
+|  |  |-- program_builder_test.go
+|  |-- buffer
+|  |  |-- BUILD
+|  |  |-- buffer.go
+|  |  |-- buffer_test.go
+|  |  |-- pool.go
+|  |  |-- pool_test.go
+|  |  |-- view.go
+|  |  |-- view_test.go
+|  |  |-- view_unsafe.go
+|  |-- cleanup
+|  |  |-- BUILD
+|  |  |-- cleanup.go
+|  |  |-- cleanup_test.go
+|  |-- compressio
+|  |  |-- BUILD
+|  |  |-- compressio.go
+|  |  |-- compressio_test.go
+|  |-- context
+|  |  |-- BUILD
+|  |  |-- context.go
+|  |-- control
+|  |  |-- client
+|  |  |  |-- BUILD
+|  |  |  |-- client.go
+|  |  |-- server
+|  |  |  |-- BUILD
+|  |  |  |-- server.go
+|  |-- coverage
+|  |  |-- BUILD
+|  |  |-- coverage.go
+|  |-- cpuid
+|  |  |-- BUILD
+|  |  |-- cpu_amd64.s
+|  |  |-- cpuid.go
+|  |  |-- cpuid_arm64.go
+|  |  |-- cpuid_arm64_test.go
+|  |  |-- cpuid_parse_x86_test.go
+|  |  |-- cpuid_x86.go
+|  |  |-- cpuid_x86_test.go
+|  |-- crypto
+|  |  |-- BUILD
+|  |  |-- crypto.go
+|  |  |-- crypto_stdlib.go
+|  |-- errors
+|  |  |-- BUILD
+|  |  |-- errors.go
+|  |  |-- linuxerr
+|  |  |  |-- BUILD
+|  |  |  |-- linuxerr.go
+|  |  |  |-- linuxerr_test.go
+|  |-- eventchannel
+|  |  |-- BUILD
+|  |  |-- event.go
+|  |  |-- event.proto
+|  |  |-- event_any.go
+|  |  |-- event_test.go
+|  |  |-- rate.go
+|  |-- fd
+|  |  |-- BUILD
+|  |  |-- fd.go
+|  |  |-- fd_test.go
+|  |-- fdchannel
+|  |  |-- BUILD
+|  |  |-- fdchannel_test.go
+|  |  |-- fdchannel_unsafe.go
+|  |-- fdnotifier
+|  |  |-- BUILD
+|  |  |-- fdnotifier.go
+|  |  |-- poll_unsafe.go
+|  |-- flipcall
+|  |  |-- BUILD
+|  |  |-- ctrl_futex.go
+|  |  |-- flipcall.go
+|  |  |-- flipcall_example_test.go
+|  |  |-- flipcall_test.go
+|  |  |-- flipcall_unsafe.go
+|  |  |-- futex_linux.go
+|  |  |-- io.go
+|  |  |-- packet_window.go
+|  |-- fspath
+|  |  |-- BUILD
+|  |  |-- builder.go
+|  |  |-- builder_test.go
+|  |  |-- fspath.go
+|  |  |-- fspath_test.go
+|  |-- gohacks
+|  |  |-- BUILD
+|  |  |-- gohacks_test.go
+|  |  |-- gohacks_unsafe.go
+|  |-- goid
+|  |  |-- BUILD
+|  |  |-- goid.go
+|  |  |-- goid_amd64.s
+|  |  |-- goid_arm64.s
+|  |  |-- goid_test.go
+|  |-- hostarch
+|  |  |-- BUILD
+|  |  |-- access_type.go
+|  |  |-- addr.go
+|  |  |-- addr_range_seq_test.go
+|  |  |-- addr_range_seq_unsafe.go
+|  |  |-- hostarch.go
+|  |  |-- hostarch_arm64.go
+|  |  |-- hostarch_x86.go
+|  |-- ilist
+|  |  |-- BUILD
+|  |  |-- list.go
+|  |  |-- list_test.go
+|  |-- linewriter
+|  |  |-- BUILD
+|  |  |-- linewriter.go
+|  |  |-- linewriter_test.go
+|  |-- lisafs
+|  |  |-- README.md
+|  |-- log
+|  |  |-- BUILD
+|  |  |-- glog.go
+|  |  |-- json.go
+|  |  |-- json_k8s.go
+|  |  |-- json_test.go
+|  |  |-- log.go
+|  |  |-- log_test.go
+|  |-- marshal
+|  |  |-- BUILD
+|  |  |-- marshal.go
+|  |  |-- marshal_impl_util.go
+|  |  |-- primitive
+|  |  |  |-- BUILD
+|  |  |  |-- primitive.go
+|  |  |-- util.go
+|  |-- memutil
+|  |  |-- BUILD
+|  |  |-- memfd_linux_unsafe.go
+|  |  |-- memutil.go
+|  |  |-- mmap.go
+|  |-- merkletree
+|  |  |-- BUILD
+|  |  |-- merkletree.go
+|  |  |-- merkletree_test.go
+|  |-- metric
+|  |  |-- BUILD
+|  |  |-- metric.go
+|  |  |-- metric.proto
+|  |  |-- metric_test.go
+|  |-- p9
+|  |  |-- BUILD
+|  |  |-- buffer.go
+|  |  |-- buffer_test.go
+|  |  |-- client.go
+|  |  |-- client_file.go
+|  |  |-- client_test.go
+|  |  |-- file.go
+|  |  |-- handlers.go
+|  |  |-- messages.go
+|  |  |-- messages_test.go
+|  |  |-- p9.go
+|  |  |-- p9_test.go
+|  |  |-- p9test
+|  |  |  |-- BUILD
+|  |  |  |-- client_test.go
+|  |  |  |-- p9test.go
+|  |  |-- path_tree.go
+|  |  |-- server.go
+|  |  |-- transport.go
+|  |  |-- transport_flipcall.go
+|  |  |-- transport_test.go
+|  |  |-- version.go
+|  |  |-- version_test.go
+|  |-- pool
+|  |  |-- BUILD
+|  |  |-- pool.go
+|  |  |-- pool_test.go
+|  |-- procid
+|  |  |-- BUILD
+|  |  |-- procid.go
+|  |  |-- procid_amd64.s
+|  |  |-- procid_arm64.s
+|  |  |-- procid_net_test.go
+|  |  |-- procid_test.go
+|  |-- rand
+|  |  |-- BUILD
+|  |  |-- rand.go
+|  |  |-- rand_linux.go
+|  |-- refs
+|  |  |-- BUILD
+|  |  |-- refcounter.go
+|  |  |-- refcounter_state.go
+|  |  |-- refcounter_test.go
+|  |-- refsvfs2
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- refs.go
+|  |  |-- refs_map.go
+|  |  |-- refs_template.go
+|  |-- ring0
+|  |  |-- BUILD
+|  |  |-- aarch64.go
+|  |  |-- defs.go
+|  |  |-- defs_amd64.go
+|  |  |-- defs_arm64.go
+|  |  |-- entry_amd64.go
+|  |  |-- entry_amd64.s
+|  |  |-- entry_arm64.go
+|  |  |-- entry_arm64.s
+|  |  |-- gen_offsets
+|  |  |  |-- BUILD
+|  |  |  |-- main.go
+|  |  |-- kernel.go
+|  |  |-- kernel_amd64.go
+|  |  |-- kernel_arm64.go
+|  |  |-- kernel_unsafe.go
+|  |  |-- lib_amd64.go
+|  |  |-- lib_amd64.s
+|  |  |-- lib_arm64.go
+|  |  |-- lib_arm64.s
+|  |  |-- offsets_amd64.go
+|  |  |-- offsets_arm64.go
+|  |  |-- pagetables
+|  |  |  |-- BUILD
+|  |  |  |-- allocator.go
+|  |  |  |-- allocator_unsafe.go
+|  |  |  |-- pagetables.go
+|  |  |  |-- pagetables_aarch64.go
+|  |  |  |-- pagetables_amd64.go
+|  |  |  |-- pagetables_amd64_test.go
+|  |  |  |-- pagetables_arm64.go
+|  |  |  |-- pagetables_arm64_test.go
+|  |  |  |-- pagetables_test.go
+|  |  |  |-- pagetables_x86.go
+|  |  |  |-- pcids.go
+|  |  |  |-- pcids_aarch64.go
+|  |  |  |-- pcids_aarch64.s
+|  |  |  |-- pcids_x86.go
+|  |  |  |-- walker_amd64.go
+|  |  |  |-- walker_arm64.go
+|  |  |  |-- walker_generic.go
+|  |  |-- ring0.go
+|  |  |-- x86.go
+|  |-- safecopy
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- atomic_amd64.s
+|  |  |-- atomic_arm64.s
+|  |  |-- memclr_amd64.s
+|  |  |-- memclr_arm64.s
+|  |  |-- memcpy_amd64.s
+|  |  |-- memcpy_arm64.s
+|  |  |-- safecopy.go
+|  |  |-- safecopy_test.go
+|  |  |-- safecopy_unsafe.go
+|  |  |-- sighandler_amd64.s
+|  |  |-- sighandler_arm64.s
+|  |-- safemem
+|  |  |-- BUILD
+|  |  |-- block_unsafe.go
+|  |  |-- io.go
+|  |  |-- io_test.go
+|  |  |-- safemem.go
+|  |  |-- seq_test.go
+|  |  |-- seq_unsafe.go
+|  |-- seccomp
+|  |  |-- BUILD
+|  |  |-- seccomp.go
+|  |  |-- seccomp_amd64.go
+|  |  |-- seccomp_arm64.go
+|  |  |-- seccomp_rules.go
+|  |  |-- seccomp_test.go
+|  |  |-- seccomp_test_victim.go
+|  |  |-- seccomp_test_victim_amd64.go
+|  |  |-- seccomp_test_victim_arm64.go
+|  |  |-- seccomp_unsafe.go
+|  |-- secio
+|  |  |-- BUILD
+|  |  |-- full_reader.go
+|  |  |-- secio.go
+|  |  |-- secio_test.go
+|  |-- segment
+|  |  |-- BUILD
+|  |  |-- range.go
+|  |  |-- set.go
+|  |  |-- set_state.go
+|  |  |-- test
+|  |  |  |-- BUILD
+|  |  |  |-- segment_test.go
+|  |  |  |-- set_functions.go
+|  |-- sentry
+|  |  |-- BUILD
+|  |  |-- arch
+|  |  |  |-- BUILD
+|  |  |  |-- aligned.go
+|  |  |  |-- arch.go
+|  |  |  |-- arch_aarch64.go
+|  |  |  |-- arch_amd64.go
+|  |  |  |-- arch_arm64.go
+|  |  |  |-- arch_state_x86.go
+|  |  |  |-- arch_x86.go
+|  |  |  |-- arch_x86_impl.go
+|  |  |  |-- auxv.go
+|  |  |  |-- fpu
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- fpu.go
+|  |  |  |  |-- fpu_amd64.go
+|  |  |  |  |-- fpu_amd64.s
+|  |  |  |  |-- fpu_arm64.go
+|  |  |  |-- registers.proto
+|  |  |  |-- signal_amd64.go
+|  |  |  |-- signal_arm64.go
+|  |  |  |-- stack.go
+|  |  |  |-- stack_unsafe.go
+|  |  |  |-- syscalls_amd64.go
+|  |  |  |-- syscalls_arm64.go
+|  |  |-- contexttest
+|  |  |  |-- BUILD
+|  |  |  |-- contexttest.go
+|  |  |-- control
+|  |  |  |-- BUILD
+|  |  |  |-- control.go
+|  |  |  |-- logging.go
+|  |  |  |-- pprof.go
+|  |  |  |-- proc.go
+|  |  |  |-- proc_test.go
+|  |  |  |-- state.go
+|  |  |-- device
+|  |  |  |-- BUILD
+|  |  |  |-- device.go
+|  |  |  |-- device_test.go
+|  |  |-- devices
+|  |  |  |-- memdev
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- full.go
+|  |  |  |  |-- memdev.go
+|  |  |  |  |-- null.go
+|  |  |  |  |-- random.go
+|  |  |  |  |-- zero.go
+|  |  |  |-- quotedev
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- quotedev.go
+|  |  |  |-- ttydev
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- ttydev.go
+|  |  |  |-- tundev
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- tundev.go
+|  |  |-- fdimport
+|  |  |  |-- BUILD
+|  |  |  |-- fdimport.go
+|  |  |-- fs
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- anon
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- anon.go
+|  |  |  |  |-- device.go
+|  |  |  |-- attr.go
+|  |  |  |-- context.go
+|  |  |  |-- copy_up.go
+|  |  |  |-- copy_up_test.go
+|  |  |  |-- dentry.go
+|  |  |  |-- dev
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dev.go
+|  |  |  |  |-- device.go
+|  |  |  |  |-- fs.go
+|  |  |  |  |-- full.go
+|  |  |  |  |-- net_tun.go
+|  |  |  |  |-- null.go
+|  |  |  |  |-- random.go
+|  |  |  |  |-- tty.go
+|  |  |  |-- dirent.go
+|  |  |  |-- dirent_cache.go
+|  |  |  |-- dirent_cache_limiter.go
+|  |  |  |-- dirent_cache_test.go
+|  |  |  |-- dirent_refs_test.go
+|  |  |  |-- dirent_state.go
+|  |  |  |-- fdpipe
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- pipe.go
+|  |  |  |  |-- pipe_opener.go
+|  |  |  |  |-- pipe_opener_test.go
+|  |  |  |  |-- pipe_state.go
+|  |  |  |  |-- pipe_test.go
+|  |  |  |-- file.go
+|  |  |  |-- file_operations.go
+|  |  |  |-- file_overlay.go
+|  |  |  |-- file_overlay_test.go
+|  |  |  |-- file_state.go
+|  |  |  |-- filesystems.go
+|  |  |  |-- filetest
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- filetest.go
+|  |  |  |-- flags.go
+|  |  |  |-- fs.go
+|  |  |  |-- fsutil
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- dirty_set.go
+|  |  |  |  |-- dirty_set_test.go
+|  |  |  |  |-- file.go
+|  |  |  |  |-- file_range_set.go
+|  |  |  |  |-- frame_ref_set.go
+|  |  |  |  |-- fsutil.go
+|  |  |  |  |-- host_file_mapper.go
+|  |  |  |  |-- host_file_mapper_state.go
+|  |  |  |  |-- host_file_mapper_unsafe.go
+|  |  |  |  |-- host_mappable.go
+|  |  |  |  |-- inode.go
+|  |  |  |  |-- inode_cached.go
+|  |  |  |  |-- inode_cached_test.go
+|  |  |  |-- g3doc
+|  |  |  |  |-- .gitignore
+|  |  |  |  |-- fuse.md
+|  |  |  |  |-- inotify.md
+|  |  |  |-- gofer
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- attr.go
+|  |  |  |  |-- cache_policy.go
+|  |  |  |  |-- context_file.go
+|  |  |  |  |-- device.go
+|  |  |  |  |-- fifo.go
+|  |  |  |  |-- file.go
+|  |  |  |  |-- file_state.go
+|  |  |  |  |-- fs.go
+|  |  |  |  |-- gofer_test.go
+|  |  |  |  |-- handles.go
+|  |  |  |  |-- inode.go
+|  |  |  |  |-- inode_state.go
+|  |  |  |  |-- path.go
+|  |  |  |  |-- session.go
+|  |  |  |  |-- session_state.go
+|  |  |  |  |-- socket.go
+|  |  |  |  |-- util.go
+|  |  |  |-- host
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- control.go
+|  |  |  |  |-- descriptor.go
+|  |  |  |  |-- descriptor_state.go
+|  |  |  |  |-- descriptor_test.go
+|  |  |  |  |-- device.go
+|  |  |  |  |-- file.go
+|  |  |  |  |-- host.go
+|  |  |  |  |-- inode.go
+|  |  |  |  |-- inode_state.go
+|  |  |  |  |-- inode_test.go
+|  |  |  |  |-- ioctl_unsafe.go
+|  |  |  |  |-- socket.go
+|  |  |  |  |-- socket_iovec.go
+|  |  |  |  |-- socket_state.go
+|  |  |  |  |-- socket_test.go
+|  |  |  |  |-- socket_unsafe.go
+|  |  |  |  |-- tty.go
+|  |  |  |  |-- util.go
+|  |  |  |  |-- util_amd64_unsafe.go
+|  |  |  |  |-- util_arm64_unsafe.go
+|  |  |  |  |-- util_unsafe.go
+|  |  |  |  |-- wait_test.go
+|  |  |  |-- inode.go
+|  |  |  |-- inode_inotify.go
+|  |  |  |-- inode_operations.go
+|  |  |  |-- inode_overlay.go
+|  |  |  |-- inode_overlay_test.go
+|  |  |  |-- inotify.go
+|  |  |  |-- inotify_event.go
+|  |  |  |-- inotify_watch.go
+|  |  |  |-- lock
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- lock.go
+|  |  |  |  |-- lock_range_test.go
+|  |  |  |  |-- lock_set_functions.go
+|  |  |  |  |-- lock_test.go
+|  |  |  |-- mock.go
+|  |  |  |-- mount.go
+|  |  |  |-- mount_overlay.go
+|  |  |  |-- mount_test.go
+|  |  |  |-- mounts.go
+|  |  |  |-- mounts_test.go
+|  |  |  |-- offset.go
+|  |  |  |-- overlay.go
+|  |  |  |-- path.go
+|  |  |  |-- path_test.go
+|  |  |  |-- proc
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- cgroup.go
+|  |  |  |  |-- cpuinfo.go
+|  |  |  |  |-- device
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- device.go
+|  |  |  |  |-- exec_args.go
+|  |  |  |  |-- fds.go
+|  |  |  |  |-- filesystems.go
+|  |  |  |  |-- fs.go
+|  |  |  |  |-- inode.go
+|  |  |  |  |-- loadavg.go
+|  |  |  |  |-- meminfo.go
+|  |  |  |  |-- mounts.go
+|  |  |  |  |-- net.go
+|  |  |  |  |-- net_test.go
+|  |  |  |  |-- proc.go
+|  |  |  |  |-- seqfile
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- seqfile.go
+|  |  |  |  |  |-- seqfile_test.go
+|  |  |  |  |-- stat.go
+|  |  |  |  |-- sys.go
+|  |  |  |  |-- sys_net.go
+|  |  |  |  |-- sys_net_state.go
+|  |  |  |  |-- sys_net_test.go
+|  |  |  |  |-- task.go
+|  |  |  |  |-- uid_gid_map.go
+|  |  |  |  |-- uptime.go
+|  |  |  |  |-- version.go
+|  |  |  |-- ramfs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dir.go
+|  |  |  |  |-- socket.go
+|  |  |  |  |-- symlink.go
+|  |  |  |  |-- tree.go
+|  |  |  |  |-- tree_test.go
+|  |  |  |-- restore.go
+|  |  |  |-- save.go
+|  |  |  |-- seek.go
+|  |  |  |-- splice.go
+|  |  |  |-- sync.go
+|  |  |  |-- sys
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- device.go
+|  |  |  |  |-- devices.go
+|  |  |  |  |-- fs.go
+|  |  |  |  |-- sys.go
+|  |  |  |-- timerfd
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- timerfd.go
+|  |  |  |-- tmpfs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- device.go
+|  |  |  |  |-- file_regular.go
+|  |  |  |  |-- file_test.go
+|  |  |  |  |-- fs.go
+|  |  |  |  |-- inode_file.go
+|  |  |  |  |-- tmpfs.go
+|  |  |  |-- tty
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dir.go
+|  |  |  |  |-- fs.go
+|  |  |  |  |-- line_discipline.go
+|  |  |  |  |-- master.go
+|  |  |  |  |-- queue.go
+|  |  |  |  |-- replica.go
+|  |  |  |  |-- terminal.go
+|  |  |  |  |-- tty_test.go
+|  |  |  |-- user
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- path.go
+|  |  |  |  |-- user.go
+|  |  |  |  |-- user_test.go
+|  |  |-- fsbridge
+|  |  |  |-- BUILD
+|  |  |  |-- bridge.go
+|  |  |  |-- fs.go
+|  |  |  |-- vfs.go
+|  |  |-- fsimpl
+|  |  |  |-- cgroupfs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- base.go
+|  |  |  |  |-- cgroupfs.go
+|  |  |  |  |-- cpu.go
+|  |  |  |  |-- cpuacct.go
+|  |  |  |  |-- cpuset.go
+|  |  |  |  |-- job.go
+|  |  |  |  |-- memory.go
+|  |  |  |-- devpts
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- devpts.go
+|  |  |  |  |-- devpts_test.go
+|  |  |  |  |-- line_discipline.go
+|  |  |  |  |-- master.go
+|  |  |  |  |-- queue.go
+|  |  |  |  |-- replica.go
+|  |  |  |  |-- terminal.go
+|  |  |  |-- devtmpfs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- devtmpfs.go
+|  |  |  |  |-- devtmpfs_test.go
+|  |  |  |  |-- save_restore.go
+|  |  |  |-- eventfd
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- eventfd.go
+|  |  |  |  |-- eventfd_test.go
+|  |  |  |-- ext
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- assets
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- bigfile.txt
+|  |  |  |  |  |-- file.txt
+|  |  |  |  |  |-- symlink.txt
+|  |  |  |  |  |-- tiny.ext2
+|  |  |  |  |  |-- tiny.ext3
+|  |  |  |  |  |-- tiny.ext4
+|  |  |  |  |-- benchmark
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- benchmark_test.go
+|  |  |  |  |  |-- make_deep_ext4.sh
+|  |  |  |  |-- block_map_file.go
+|  |  |  |  |-- block_map_test.go
+|  |  |  |  |-- dentry.go
+|  |  |  |  |-- directory.go
+|  |  |  |  |-- disklayout
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- block_group.go
+|  |  |  |  |  |-- block_group_32.go
+|  |  |  |  |  |-- block_group_64.go
+|  |  |  |  |  |-- block_group_test.go
+|  |  |  |  |  |-- dirent.go
+|  |  |  |  |  |-- dirent_new.go
+|  |  |  |  |  |-- dirent_old.go
+|  |  |  |  |  |-- dirent_test.go
+|  |  |  |  |  |-- disklayout.go
+|  |  |  |  |  |-- extent.go
+|  |  |  |  |  |-- extent_test.go
+|  |  |  |  |  |-- inode.go
+|  |  |  |  |  |-- inode_new.go
+|  |  |  |  |  |-- inode_old.go
+|  |  |  |  |  |-- inode_test.go
+|  |  |  |  |  |-- superblock.go
+|  |  |  |  |  |-- superblock_32.go
+|  |  |  |  |  |-- superblock_64.go
+|  |  |  |  |  |-- superblock_old.go
+|  |  |  |  |  |-- superblock_test.go
+|  |  |  |  |  |-- test_utils.go
+|  |  |  |  |-- ext.go
+|  |  |  |  |-- ext_test.go
+|  |  |  |  |-- extent_file.go
+|  |  |  |  |-- extent_test.go
+|  |  |  |  |-- file_description.go
+|  |  |  |  |-- filesystem.go
+|  |  |  |  |-- inode.go
+|  |  |  |  |-- regular_file.go
+|  |  |  |  |-- symlink.go
+|  |  |  |  |-- utils.go
+|  |  |  |-- fuse
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- connection.go
+|  |  |  |  |-- connection_control.go
+|  |  |  |  |-- connection_test.go
+|  |  |  |  |-- dev.go
+|  |  |  |  |-- dev_test.go
+|  |  |  |  |-- directory.go
+|  |  |  |  |-- file.go
+|  |  |  |  |-- fusefs.go
+|  |  |  |  |-- read_write.go
+|  |  |  |  |-- register.go
+|  |  |  |  |-- regular_file.go
+|  |  |  |  |-- request_response.go
+|  |  |  |  |-- utils_test.go
+|  |  |  |-- gofer
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- directory.go
+|  |  |  |  |-- filesystem.go
+|  |  |  |  |-- gofer.go
+|  |  |  |  |-- gofer_test.go
+|  |  |  |  |-- handle.go
+|  |  |  |  |-- host_named_pipe.go
+|  |  |  |  |-- p9file.go
+|  |  |  |  |-- regular_file.go
+|  |  |  |  |-- revalidate.go
+|  |  |  |  |-- save_restore.go
+|  |  |  |  |-- socket.go
+|  |  |  |  |-- special_file.go
+|  |  |  |  |-- symlink.go
+|  |  |  |  |-- time.go
+|  |  |  |-- host
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- control.go
+|  |  |  |  |-- host.go
+|  |  |  |  |-- ioctl_unsafe.go
+|  |  |  |  |-- save_restore.go
+|  |  |  |  |-- socket.go
+|  |  |  |  |-- socket_iovec.go
+|  |  |  |  |-- socket_unsafe.go
+|  |  |  |  |-- tty.go
+|  |  |  |  |-- util.go
+|  |  |  |  |-- util_unsafe.go
+|  |  |  |-- kernfs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dynamic_bytes_file.go
+|  |  |  |  |-- fd_impl_util.go
+|  |  |  |  |-- filesystem.go
+|  |  |  |  |-- inode_impl_util.go
+|  |  |  |  |-- kernfs.go
+|  |  |  |  |-- kernfs_test.go
+|  |  |  |  |-- mmap_util.go
+|  |  |  |  |-- save_restore.go
+|  |  |  |  |-- symlink.go
+|  |  |  |  |-- synthetic_directory.go
+|  |  |  |-- overlay
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- copy_up.go
+|  |  |  |  |-- directory.go
+|  |  |  |  |-- filesystem.go
+|  |  |  |  |-- overlay.go
+|  |  |  |  |-- regular_file.go
+|  |  |  |  |-- save_restore.go
+|  |  |  |-- pipefs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- pipefs.go
+|  |  |  |-- proc
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- filesystem.go
+|  |  |  |  |-- subtasks.go
+|  |  |  |  |-- task.go
+|  |  |  |  |-- task_fds.go
+|  |  |  |  |-- task_files.go
+|  |  |  |  |-- task_net.go
+|  |  |  |  |-- tasks.go
+|  |  |  |  |-- tasks_files.go
+|  |  |  |  |-- tasks_sys.go
+|  |  |  |  |-- tasks_sys_test.go
+|  |  |  |  |-- tasks_test.go
+|  |  |  |  |-- yama.go
+|  |  |  |-- signalfd
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- signalfd.go
+|  |  |  |-- sockfs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- sockfs.go
+|  |  |  |-- sys
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- kcov.go
+|  |  |  |  |-- sys.go
+|  |  |  |  |-- sys_test.go
+|  |  |  |-- testutil
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- kernel.go
+|  |  |  |  |-- testutil.go
+|  |  |  |-- timerfd
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- timerfd.go
+|  |  |  |-- tmpfs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- benchmark_test.go
+|  |  |  |  |-- device_file.go
+|  |  |  |  |-- directory.go
+|  |  |  |  |-- filesystem.go
+|  |  |  |  |-- named_pipe.go
+|  |  |  |  |-- pipe_test.go
+|  |  |  |  |-- regular_file.go
+|  |  |  |  |-- regular_file_test.go
+|  |  |  |  |-- save_restore.go
+|  |  |  |  |-- socket_file.go
+|  |  |  |  |-- stat_test.go
+|  |  |  |  |-- symlink.go
+|  |  |  |  |-- tmpfs.go
+|  |  |  |  |-- tmpfs_test.go
+|  |  |  |-- verity
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- filesystem.go
+|  |  |  |  |-- save_restore.go
+|  |  |  |  |-- verity.go
+|  |  |  |  |-- verity_test.go
+|  |  |-- fsmetric
+|  |  |  |-- BUILD
+|  |  |  |-- fsmetric.go
+|  |  |-- hostcpu
+|  |  |  |-- BUILD
+|  |  |  |-- getcpu_amd64.s
+|  |  |  |-- getcpu_arm64.s
+|  |  |  |-- hostcpu.go
+|  |  |  |-- hostcpu_test.go
+|  |  |-- hostfd
+|  |  |  |-- BUILD
+|  |  |  |-- hostfd.go
+|  |  |  |-- hostfd_linux.go
+|  |  |  |-- hostfd_unsafe.go
+|  |  |-- hostmm
+|  |  |  |-- BUILD
+|  |  |  |-- cgroup.go
+|  |  |  |-- hostmm.go
+|  |  |  |-- membarrier.go
+|  |  |-- inet
+|  |  |  |-- BUILD
+|  |  |  |-- context.go
+|  |  |  |-- inet.go
+|  |  |  |-- namespace.go
+|  |  |  |-- test_stack.go
+|  |  |-- kernel
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- abstract_socket_namespace.go
+|  |  |  |-- aio.go
+|  |  |  |-- auth
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- auth.go
+|  |  |  |  |-- capability_set.go
+|  |  |  |  |-- context.go
+|  |  |  |  |-- credentials.go
+|  |  |  |  |-- id.go
+|  |  |  |  |-- id_map.go
+|  |  |  |  |-- id_map_functions.go
+|  |  |  |  |-- user_namespace.go
+|  |  |  |-- cgroup.go
+|  |  |  |-- context.go
+|  |  |  |-- contexttest
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- contexttest.go
+|  |  |  |-- epoll
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- epoll.go
+|  |  |  |  |-- epoll_state.go
+|  |  |  |  |-- epoll_test.go
+|  |  |  |-- eventfd
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- eventfd.go
+|  |  |  |  |-- eventfd_test.go
+|  |  |  |-- fasync
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- fasync.go
+|  |  |  |-- fd_table.go
+|  |  |  |-- fd_table_test.go
+|  |  |  |-- fd_table_unsafe.go
+|  |  |  |-- fs_context.go
+|  |  |  |-- futex
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- futex.go
+|  |  |  |  |-- futex_test.go
+|  |  |  |-- g3doc
+|  |  |  |  |-- run_states.dot
+|  |  |  |  |-- run_states.png
+|  |  |  |-- ipc_namespace.go
+|  |  |  |-- kcov.go
+|  |  |  |-- kcov_unsafe.go
+|  |  |  |-- kernel.go
+|  |  |  |-- kernel_opts.go
+|  |  |  |-- kernel_state.go
+|  |  |  |-- memevent
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- memory_events.go
+|  |  |  |  |-- memory_events.proto
+|  |  |  |-- pending_signals.go
+|  |  |  |-- pending_signals_state.go
+|  |  |  |-- pipe
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- device.go
+|  |  |  |  |-- node.go
+|  |  |  |  |-- node_test.go
+|  |  |  |  |-- pipe.go
+|  |  |  |  |-- pipe_test.go
+|  |  |  |  |-- pipe_unsafe.go
+|  |  |  |  |-- pipe_util.go
+|  |  |  |  |-- reader.go
+|  |  |  |  |-- reader_writer.go
+|  |  |  |  |-- save_restore.go
+|  |  |  |  |-- vfs.go
+|  |  |  |  |-- writer.go
+|  |  |  |-- posixtimer.go
+|  |  |  |-- ptrace.go
+|  |  |  |-- ptrace_amd64.go
+|  |  |  |-- ptrace_arm64.go
+|  |  |  |-- rseq.go
+|  |  |  |-- sched
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- cpuset.go
+|  |  |  |  |-- cpuset_test.go
+|  |  |  |  |-- sched.go
+|  |  |  |-- seccomp.go
+|  |  |  |-- semaphore
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- semaphore.go
+|  |  |  |  |-- semaphore_test.go
+|  |  |  |-- sessions.go
+|  |  |  |-- shm
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- device.go
+|  |  |  |  |-- shm.go
+|  |  |  |-- signal.go
+|  |  |  |-- signal_handlers.go
+|  |  |  |-- signalfd
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- signalfd.go
+|  |  |  |-- syscalls.go
+|  |  |  |-- syscalls_state.go
+|  |  |  |-- syslog.go
+|  |  |  |-- table_test.go
+|  |  |  |-- task.go
+|  |  |  |-- task_acct.go
+|  |  |  |-- task_block.go
+|  |  |  |-- task_cgroup.go
+|  |  |  |-- task_clone.go
+|  |  |  |-- task_context.go
+|  |  |  |-- task_exec.go
+|  |  |  |-- task_exit.go
+|  |  |  |-- task_futex.go
+|  |  |  |-- task_identity.go
+|  |  |  |-- task_image.go
+|  |  |  |-- task_log.go
+|  |  |  |-- task_net.go
+|  |  |  |-- task_run.go
+|  |  |  |-- task_sched.go
+|  |  |  |-- task_signals.go
+|  |  |  |-- task_start.go
+|  |  |  |-- task_stop.go
+|  |  |  |-- task_syscall.go
+|  |  |  |-- task_test.go
+|  |  |  |-- task_usermem.go
+|  |  |  |-- task_work.go
+|  |  |  |-- thread_group.go
+|  |  |  |-- threads.go
+|  |  |  |-- time
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- context.go
+|  |  |  |  |-- tcpip.go
+|  |  |  |  |-- time.go
+|  |  |  |-- timekeeper.go
+|  |  |  |-- timekeeper_state.go
+|  |  |  |-- timekeeper_test.go
+|  |  |  |-- tty.go
+|  |  |  |-- uncaught_signal.proto
+|  |  |  |-- uts_namespace.go
+|  |  |  |-- vdso.go
+|  |  |  |-- version.go
+|  |  |-- limits
+|  |  |  |-- BUILD
+|  |  |  |-- context.go
+|  |  |  |-- limits.go
+|  |  |  |-- limits_test.go
+|  |  |  |-- linux.go
+|  |  |-- loader
+|  |  |  |-- BUILD
+|  |  |  |-- elf.go
+|  |  |  |-- interpreter.go
+|  |  |  |-- loader.go
+|  |  |  |-- vdso.go
+|  |  |  |-- vdso_state.go
+|  |  |  |-- vdsodata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- vdsodata.go
+|  |  |-- memmap
+|  |  |  |-- BUILD
+|  |  |  |-- mapping_set.go
+|  |  |  |-- mapping_set_test.go
+|  |  |  |-- memmap.go
+|  |  |-- mm
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- address_space.go
+|  |  |  |-- aio_context.go
+|  |  |  |-- aio_context_state.go
+|  |  |  |-- debug.go
+|  |  |  |-- io.go
+|  |  |  |-- lifecycle.go
+|  |  |  |-- metadata.go
+|  |  |  |-- mm.go
+|  |  |  |-- mm_test.go
+|  |  |  |-- pma.go
+|  |  |  |-- procfs.go
+|  |  |  |-- save_restore.go
+|  |  |  |-- shm.go
+|  |  |  |-- special_mappable.go
+|  |  |  |-- syscalls.go
+|  |  |  |-- vma.go
+|  |  |-- pgalloc
+|  |  |  |-- BUILD
+|  |  |  |-- context.go
+|  |  |  |-- pgalloc.go
+|  |  |  |-- pgalloc_test.go
+|  |  |  |-- pgalloc_unsafe.go
+|  |  |  |-- save_restore.go
+|  |  |-- platform
+|  |  |  |-- BUILD
+|  |  |  |-- context.go
+|  |  |  |-- interrupt
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- interrupt.go
+|  |  |  |  |-- interrupt_test.go
+|  |  |  |-- kvm
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- address_space.go
+|  |  |  |  |-- address_space_amd64.go
+|  |  |  |  |-- address_space_arm64.go
+|  |  |  |  |-- bluepill.go
+|  |  |  |  |-- bluepill_allocator.go
+|  |  |  |  |-- bluepill_amd64.go
+|  |  |  |  |-- bluepill_amd64.s
+|  |  |  |  |-- bluepill_amd64_unsafe.go
+|  |  |  |  |-- bluepill_arm64.go
+|  |  |  |  |-- bluepill_arm64.s
+|  |  |  |  |-- bluepill_arm64_unsafe.go
+|  |  |  |  |-- bluepill_fault.go
+|  |  |  |  |-- bluepill_unsafe.go
+|  |  |  |  |-- context.go
+|  |  |  |  |-- filters_amd64.go
+|  |  |  |  |-- filters_arm64.go
+|  |  |  |  |-- kvm.go
+|  |  |  |  |-- kvm_amd64.go
+|  |  |  |  |-- kvm_amd64_test.go
+|  |  |  |  |-- kvm_amd64_test.s
+|  |  |  |  |-- kvm_amd64_unsafe.go
+|  |  |  |  |-- kvm_arm64.go
+|  |  |  |  |-- kvm_arm64_test.go
+|  |  |  |  |-- kvm_arm64_unsafe.go
+|  |  |  |  |-- kvm_const.go
+|  |  |  |  |-- kvm_const_arm64.go
+|  |  |  |  |-- kvm_test.go
+|  |  |  |  |-- machine.go
+|  |  |  |  |-- machine_amd64.go
+|  |  |  |  |-- machine_amd64_unsafe.go
+|  |  |  |  |-- machine_arm64.go
+|  |  |  |  |-- machine_arm64_unsafe.go
+|  |  |  |  |-- machine_unsafe.go
+|  |  |  |  |-- physical_map.go
+|  |  |  |  |-- physical_map_amd64.go
+|  |  |  |  |-- physical_map_arm64.go
+|  |  |  |  |-- testutil
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- testutil.go
+|  |  |  |  |  |-- testutil_amd64.go
+|  |  |  |  |  |-- testutil_amd64.s
+|  |  |  |  |  |-- testutil_arm64.go
+|  |  |  |  |  |-- testutil_arm64.s
+|  |  |  |  |-- virtual_map.go
+|  |  |  |  |-- virtual_map_test.go
+|  |  |  |-- mmap_min_addr.go
+|  |  |  |-- platform.go
+|  |  |  |-- ptrace
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- filters.go
+|  |  |  |  |-- ptrace.go
+|  |  |  |  |-- ptrace_amd64.go
+|  |  |  |  |-- ptrace_arm64.go
+|  |  |  |  |-- ptrace_arm64_unsafe.go
+|  |  |  |  |-- ptrace_unsafe.go
+|  |  |  |  |-- stub_amd64.s
+|  |  |  |  |-- stub_arm64.s
+|  |  |  |  |-- stub_unsafe.go
+|  |  |  |  |-- subprocess.go
+|  |  |  |  |-- subprocess_amd64.go
+|  |  |  |  |-- subprocess_arm64.go
+|  |  |  |  |-- subprocess_linux.go
+|  |  |  |  |-- subprocess_linux_unsafe.go
+|  |  |  |  |-- subprocess_unsafe.go
+|  |  |-- sighandling
+|  |  |  |-- BUILD
+|  |  |  |-- sighandling.go
+|  |  |  |-- sighandling_unsafe.go
+|  |  |-- socket
+|  |  |  |-- BUILD
+|  |  |  |-- control
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- control.go
+|  |  |  |  |-- control_test.go
+|  |  |  |  |-- control_vfs2.go
+|  |  |  |-- hostinet
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- device.go
+|  |  |  |  |-- hostinet.go
+|  |  |  |  |-- save_restore.go
+|  |  |  |  |-- socket.go
+|  |  |  |  |-- socket_unsafe.go
+|  |  |  |  |-- socket_vfs2.go
+|  |  |  |  |-- sockopt_impl.go
+|  |  |  |  |-- stack.go
+|  |  |  |-- netfilter
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- extensions.go
+|  |  |  |  |-- ipv4.go
+|  |  |  |  |-- ipv6.go
+|  |  |  |  |-- netfilter.go
+|  |  |  |  |-- owner_matcher.go
+|  |  |  |  |-- targets.go
+|  |  |  |  |-- tcp_matcher.go
+|  |  |  |  |-- udp_matcher.go
+|  |  |  |-- netlink
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- message.go
+|  |  |  |  |-- message_test.go
+|  |  |  |  |-- port
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- port.go
+|  |  |  |  |  |-- port_test.go
+|  |  |  |  |-- provider.go
+|  |  |  |  |-- provider_vfs2.go
+|  |  |  |  |-- route
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- protocol.go
+|  |  |  |  |-- socket.go
+|  |  |  |  |-- socket_vfs2.go
+|  |  |  |  |-- uevent
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- protocol.go
+|  |  |  |-- netstack
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- device.go
+|  |  |  |  |-- netstack.go
+|  |  |  |  |-- netstack_vfs2.go
+|  |  |  |  |-- provider.go
+|  |  |  |  |-- provider_vfs2.go
+|  |  |  |  |-- save_restore.go
+|  |  |  |  |-- stack.go
+|  |  |  |  |-- tun.go
+|  |  |  |-- socket.go
+|  |  |  |-- unix
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- device.go
+|  |  |  |  |-- io.go
+|  |  |  |  |-- transport
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- connectioned.go
+|  |  |  |  |  |-- connectioned_state.go
+|  |  |  |  |  |-- connectionless.go
+|  |  |  |  |  |-- connectionless_state.go
+|  |  |  |  |  |-- queue.go
+|  |  |  |  |  |-- unix.go
+|  |  |  |  |-- unix.go
+|  |  |  |  |-- unix_vfs2.go
+|  |  |-- state
+|  |  |  |-- BUILD
+|  |  |  |-- state.go
+|  |  |  |-- state_metadata.go
+|  |  |  |-- state_unsafe.go
+|  |  |-- strace
+|  |  |  |-- BUILD
+|  |  |  |-- capability.go
+|  |  |  |-- clone.go
+|  |  |  |-- epoll.go
+|  |  |  |-- futex.go
+|  |  |  |-- linux64_amd64.go
+|  |  |  |-- linux64_arm64.go
+|  |  |  |-- mmap.go
+|  |  |  |-- open.go
+|  |  |  |-- poll.go
+|  |  |  |-- ptrace.go
+|  |  |  |-- select.go
+|  |  |  |-- signal.go
+|  |  |  |-- socket.go
+|  |  |  |-- strace.go
+|  |  |  |-- strace.proto
+|  |  |  |-- syscalls.go
+|  |  |-- syscalls
+|  |  |  |-- BUILD
+|  |  |  |-- epoll.go
+|  |  |  |-- linux
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- error.go
+|  |  |  |  |-- flags.go
+|  |  |  |  |-- linux64.go
+|  |  |  |  |-- sigset.go
+|  |  |  |  |-- sys_aio.go
+|  |  |  |  |-- sys_capability.go
+|  |  |  |  |-- sys_clone_amd64.go
+|  |  |  |  |-- sys_clone_arm64.go
+|  |  |  |  |-- sys_epoll.go
+|  |  |  |  |-- sys_eventfd.go
+|  |  |  |  |-- sys_file.go
+|  |  |  |  |-- sys_futex.go
+|  |  |  |  |-- sys_getdents.go
+|  |  |  |  |-- sys_identity.go
+|  |  |  |  |-- sys_inotify.go
+|  |  |  |  |-- sys_lseek.go
+|  |  |  |  |-- sys_membarrier.go
+|  |  |  |  |-- sys_mempolicy.go
+|  |  |  |  |-- sys_mmap.go
+|  |  |  |  |-- sys_mount.go
+|  |  |  |  |-- sys_pipe.go
+|  |  |  |  |-- sys_poll.go
+|  |  |  |  |-- sys_prctl.go
+|  |  |  |  |-- sys_random.go
+|  |  |  |  |-- sys_read.go
+|  |  |  |  |-- sys_rlimit.go
+|  |  |  |  |-- sys_rseq.go
+|  |  |  |  |-- sys_rusage.go
+|  |  |  |  |-- sys_sched.go
+|  |  |  |  |-- sys_seccomp.go
+|  |  |  |  |-- sys_sem.go
+|  |  |  |  |-- sys_shm.go
+|  |  |  |  |-- sys_signal.go
+|  |  |  |  |-- sys_socket.go
+|  |  |  |  |-- sys_splice.go
+|  |  |  |  |-- sys_stat.go
+|  |  |  |  |-- sys_stat_amd64.go
+|  |  |  |  |-- sys_stat_arm64.go
+|  |  |  |  |-- sys_sync.go
+|  |  |  |  |-- sys_sysinfo.go
+|  |  |  |  |-- sys_syslog.go
+|  |  |  |  |-- sys_thread.go
+|  |  |  |  |-- sys_time.go
+|  |  |  |  |-- sys_timer.go
+|  |  |  |  |-- sys_timerfd.go
+|  |  |  |  |-- sys_tls_amd64.go
+|  |  |  |  |-- sys_tls_arm64.go
+|  |  |  |  |-- sys_utsname.go
+|  |  |  |  |-- sys_write.go
+|  |  |  |  |-- sys_xattr.go
+|  |  |  |  |-- timespec.go
+|  |  |  |  |-- vfs2
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- aio.go
+|  |  |  |  |  |-- epoll.go
+|  |  |  |  |  |-- eventfd.go
+|  |  |  |  |  |-- execve.go
+|  |  |  |  |  |-- fd.go
+|  |  |  |  |  |-- filesystem.go
+|  |  |  |  |  |-- fscontext.go
+|  |  |  |  |  |-- getdents.go
+|  |  |  |  |  |-- inotify.go
+|  |  |  |  |  |-- ioctl.go
+|  |  |  |  |  |-- lock.go
+|  |  |  |  |  |-- memfd.go
+|  |  |  |  |  |-- mmap.go
+|  |  |  |  |  |-- mount.go
+|  |  |  |  |  |-- path.go
+|  |  |  |  |  |-- pipe.go
+|  |  |  |  |  |-- poll.go
+|  |  |  |  |  |-- read_write.go
+|  |  |  |  |  |-- setstat.go
+|  |  |  |  |  |-- signal.go
+|  |  |  |  |  |-- socket.go
+|  |  |  |  |  |-- splice.go
+|  |  |  |  |  |-- stat.go
+|  |  |  |  |  |-- stat_amd64.go
+|  |  |  |  |  |-- stat_arm64.go
+|  |  |  |  |  |-- sync.go
+|  |  |  |  |  |-- timerfd.go
+|  |  |  |  |  |-- vfs2.go
+|  |  |  |  |  |-- xattr.go
+|  |  |  |-- syscalls.go
+|  |  |-- time
+|  |  |  |-- BUILD
+|  |  |  |-- LICENSE
+|  |  |  |-- arith_arm64.go
+|  |  |  |-- calibrated_clock.go
+|  |  |  |-- calibrated_clock_test.go
+|  |  |  |-- clock_id.go
+|  |  |  |-- clocks.go
+|  |  |  |-- muldiv_amd64.s
+|  |  |  |-- muldiv_arm64.s
+|  |  |  |-- parameters.go
+|  |  |  |-- parameters_test.go
+|  |  |  |-- sampler.go
+|  |  |  |-- sampler_amd64.go
+|  |  |  |-- sampler_arm64.go
+|  |  |  |-- sampler_test.go
+|  |  |  |-- sampler_unsafe.go
+|  |  |  |-- tsc_amd64.s
+|  |  |  |-- tsc_arm64.s
+|  |  |-- unimpl
+|  |  |  |-- BUILD
+|  |  |  |-- events.go
+|  |  |  |-- unimplemented_syscall.proto
+|  |  |-- uniqueid
+|  |  |  |-- BUILD
+|  |  |  |-- context.go
+|  |  |-- usage
+|  |  |  |-- BUILD
+|  |  |  |-- cpu.go
+|  |  |  |-- io.go
+|  |  |  |-- memory.go
+|  |  |  |-- memory_unsafe.go
+|  |  |  |-- usage.go
+|  |  |-- vfs
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- anonfs.go
+|  |  |  |-- context.go
+|  |  |  |-- debug.go
+|  |  |  |-- dentry.go
+|  |  |  |-- device.go
+|  |  |  |-- epoll.go
+|  |  |  |-- file_description.go
+|  |  |  |-- file_description_impl_util.go
+|  |  |  |-- file_description_impl_util_test.go
+|  |  |  |-- filesystem.go
+|  |  |  |-- filesystem_impl_util.go
+|  |  |  |-- filesystem_type.go
+|  |  |  |-- g3doc
+|  |  |  |  |-- inotify.md
+|  |  |  |-- genericfstree
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- genericfstree.go
+|  |  |  |-- inotify.go
+|  |  |  |-- lock.go
+|  |  |  |-- memxattr
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- xattr.go
+|  |  |  |-- mount.go
+|  |  |  |-- mount_test.go
+|  |  |  |-- mount_unsafe.go
+|  |  |  |-- opath.go
+|  |  |  |-- options.go
+|  |  |  |-- pathname.go
+|  |  |  |-- permissions.go
+|  |  |  |-- resolving_path.go
+|  |  |  |-- save_restore.go
+|  |  |  |-- vfs.go
+|  |  |-- watchdog
+|  |  |  |-- BUILD
+|  |  |  |-- watchdog.go
+|  |-- shim
+|  |  |-- BUILD
+|  |  |-- api.go
+|  |  |-- debug.go
+|  |  |-- epoll.go
+|  |  |-- options.go
+|  |  |-- proc
+|  |  |  |-- BUILD
+|  |  |  |-- deleted_state.go
+|  |  |  |-- exec.go
+|  |  |  |-- exec_state.go
+|  |  |  |-- init.go
+|  |  |  |-- init_state.go
+|  |  |  |-- io.go
+|  |  |  |-- proc.go
+|  |  |  |-- types.go
+|  |  |  |-- utils.go
+|  |  |-- runsc
+|  |  |  |-- BUILD
+|  |  |  |-- runsc.go
+|  |  |  |-- utils.go
+|  |  |-- runtimeoptions
+|  |  |  |-- BUILD
+|  |  |  |-- runtimeoptions.go
+|  |  |  |-- runtimeoptions.proto
+|  |  |  |-- runtimeoptions_cri.go
+|  |  |  |-- runtimeoptions_test.go
+|  |  |-- service.go
+|  |  |-- service_linux.go
+|  |  |-- service_test.go
+|  |  |-- state.go
+|  |  |-- utils
+|  |  |  |-- BUILD
+|  |  |  |-- annotations.go
+|  |  |  |-- errors.go
+|  |  |  |-- errors_test.go
+|  |  |  |-- utils.go
+|  |  |  |-- volumes.go
+|  |  |  |-- volumes_test.go
+|  |-- sleep
+|  |  |-- BUILD
+|  |  |-- sleep_test.go
+|  |  |-- sleep_unsafe.go
+|  |-- state
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- decode.go
+|  |  |-- decode_unsafe.go
+|  |  |-- encode.go
+|  |  |-- encode_unsafe.go
+|  |  |-- pretty
+|  |  |  |-- BUILD
+|  |  |  |-- pretty.go
+|  |  |-- state.go
+|  |  |-- state_norace.go
+|  |  |-- state_race.go
+|  |  |-- statefile
+|  |  |  |-- BUILD
+|  |  |  |-- statefile.go
+|  |  |  |-- statefile_test.go
+|  |  |-- stats.go
+|  |  |-- tests
+|  |  |  |-- BUILD
+|  |  |  |-- array.go
+|  |  |  |-- array_test.go
+|  |  |  |-- bench.go
+|  |  |  |-- bench_test.go
+|  |  |  |-- bool_test.go
+|  |  |  |-- float_test.go
+|  |  |  |-- integer.go
+|  |  |  |-- integer_test.go
+|  |  |  |-- load.go
+|  |  |  |-- load_test.go
+|  |  |  |-- map.go
+|  |  |  |-- map_test.go
+|  |  |  |-- register.go
+|  |  |  |-- register_test.go
+|  |  |  |-- string_test.go
+|  |  |  |-- struct.go
+|  |  |  |-- struct_test.go
+|  |  |  |-- tests.go
+|  |  |-- types.go
+|  |  |-- wire
+|  |  |  |-- BUILD
+|  |  |  |-- wire.go
+|  |-- sync
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- README.md
+|  |  |-- aliases.go
+|  |  |-- atomicptr
+|  |  |  |-- BUILD
+|  |  |  |-- atomicptr_test.go
+|  |  |  |-- generic_atomicptr_unsafe.go
+|  |  |-- atomicptrmap
+|  |  |  |-- BUILD
+|  |  |  |-- atomicptrmap.go
+|  |  |  |-- atomicptrmap_test.go
+|  |  |  |-- generic_atomicptrmap_unsafe.go
+|  |  |-- checklocks_off_unsafe.go
+|  |  |-- checklocks_on_unsafe.go
+|  |  |-- gate_test.go
+|  |  |-- gate_unsafe.go
+|  |  |-- goyield_go113_unsafe.go
+|  |  |-- goyield_unsafe.go
+|  |  |-- mutex_test.go
+|  |  |-- mutex_unsafe.go
+|  |  |-- nocopy.go
+|  |  |-- norace_unsafe.go
+|  |  |-- race_amd64.s
+|  |  |-- race_arm64.s
+|  |  |-- race_unsafe.go
+|  |  |-- runtime_unsafe.go
+|  |  |-- rwmutex_test.go
+|  |  |-- rwmutex_unsafe.go
+|  |  |-- seqatomic
+|  |  |  |-- BUILD
+|  |  |  |-- generic_seqatomic_unsafe.go
+|  |  |  |-- seqatomic_test.go
+|  |  |-- seqcount.go
+|  |  |-- seqcount_test.go
+|  |  |-- sync.go
+|  |-- syncevent
+|  |  |-- BUILD
+|  |  |-- broadcaster.go
+|  |  |-- broadcaster_test.go
+|  |  |-- receiver.go
+|  |  |-- source.go
+|  |  |-- syncevent.go
+|  |  |-- syncevent_example_test.go
+|  |  |-- waiter_test.go
+|  |  |-- waiter_unsafe.go
+|  |-- syserr
+|  |  |-- BUILD
+|  |  |-- host_linux.go
+|  |  |-- netstack.go
+|  |  |-- syserr.go
+|  |-- syserror
+|  |  |-- BUILD
+|  |  |-- syserror.go
+|  |-- tcpip
+|  |  |-- BUILD
+|  |  |-- adapters
+|  |  |  |-- gonet
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- gonet.go
+|  |  |  |  |-- gonet_test.go
+|  |  |-- buffer
+|  |  |  |-- BUILD
+|  |  |  |-- prependable.go
+|  |  |  |-- view.go
+|  |  |  |-- view_test.go
+|  |  |  |-- view_unsafe.go
+|  |  |-- checker
+|  |  |  |-- BUILD
+|  |  |  |-- checker.go
+|  |  |-- errors.go
+|  |  |-- faketime
+|  |  |  |-- BUILD
+|  |  |  |-- faketime.go
+|  |  |  |-- faketime_test.go
+|  |  |-- hash
+|  |  |  |-- jenkins
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- jenkins.go
+|  |  |  |  |-- jenkins_test.go
+|  |  |-- header
+|  |  |  |-- BUILD
+|  |  |  |-- arp.go
+|  |  |  |-- checksum.go
+|  |  |  |-- checksum_test.go
+|  |  |  |-- eth.go
+|  |  |  |-- eth_test.go
+|  |  |  |-- gue.go
+|  |  |  |-- icmpv4.go
+|  |  |  |-- icmpv6.go
+|  |  |  |-- igmp.go
+|  |  |  |-- igmp_test.go
+|  |  |  |-- interfaces.go
+|  |  |  |-- ipv4.go
+|  |  |  |-- ipv4_test.go
+|  |  |  |-- ipv6.go
+|  |  |  |-- ipv6_extension_headers.go
+|  |  |  |-- ipv6_extension_headers_test.go
+|  |  |  |-- ipv6_fragment.go
+|  |  |  |-- ipv6_test.go
+|  |  |  |-- ipversion_test.go
+|  |  |  |-- mld.go
+|  |  |  |-- mld_test.go
+|  |  |  |-- ndp_neighbor_advert.go
+|  |  |  |-- ndp_neighbor_solicit.go
+|  |  |  |-- ndp_options.go
+|  |  |  |-- ndp_router_advert.go
+|  |  |  |-- ndp_router_solicit.go
+|  |  |  |-- ndp_test.go
+|  |  |  |-- ndpoptionidentifier_string.go
+|  |  |  |-- parse
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- parse.go
+|  |  |  |-- tcp.go
+|  |  |  |-- tcp_test.go
+|  |  |  |-- udp.go
+|  |  |-- link
+|  |  |  |-- channel
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- channel.go
+|  |  |  |-- ethernet
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- ethernet.go
+|  |  |  |  |-- ethernet_test.go
+|  |  |  |-- fdbased
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- endpoint.go
+|  |  |  |  |-- endpoint_test.go
+|  |  |  |  |-- endpoint_unsafe.go
+|  |  |  |  |-- mmap.go
+|  |  |  |  |-- mmap_stub.go
+|  |  |  |  |-- mmap_unsafe.go
+|  |  |  |  |-- packet_dispatchers.go
+|  |  |  |-- loopback
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- loopback.go
+|  |  |  |-- muxed
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- injectable.go
+|  |  |  |  |-- injectable_test.go
+|  |  |  |-- nested
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- nested.go
+|  |  |  |  |-- nested_test.go
+|  |  |  |-- packetsocket
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- endpoint.go
+|  |  |  |-- pipe
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- pipe.go
+|  |  |  |-- qdisc
+|  |  |  |  |-- fifo
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- endpoint.go
+|  |  |  |  |  |-- packet_buffer_queue.go
+|  |  |  |-- rawfile
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- blockingpoll_amd64.s
+|  |  |  |  |-- blockingpoll_arm64.s
+|  |  |  |  |-- blockingpoll_noyield_unsafe.go
+|  |  |  |  |-- blockingpoll_yield_unsafe.go
+|  |  |  |  |-- errors.go
+|  |  |  |  |-- errors_test.go
+|  |  |  |  |-- rawfile_unsafe.go
+|  |  |  |-- sharedmem
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- pipe
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- pipe.go
+|  |  |  |  |  |-- pipe_test.go
+|  |  |  |  |  |-- pipe_unsafe.go
+|  |  |  |  |  |-- rx.go
+|  |  |  |  |  |-- tx.go
+|  |  |  |  |-- queue
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- queue_test.go
+|  |  |  |  |  |-- rx.go
+|  |  |  |  |  |-- tx.go
+|  |  |  |  |-- rx.go
+|  |  |  |  |-- sharedmem.go
+|  |  |  |  |-- sharedmem_test.go
+|  |  |  |  |-- sharedmem_unsafe.go
+|  |  |  |  |-- tx.go
+|  |  |  |-- sniffer
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- pcap.go
+|  |  |  |  |-- sniffer.go
+|  |  |  |-- tun
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- device.go
+|  |  |  |  |-- protocol.go
+|  |  |  |  |-- tun_unsafe.go
+|  |  |  |-- waitable
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- waitable.go
+|  |  |  |  |-- waitable_test.go
+|  |  |-- network
+|  |  |  |-- BUILD
+|  |  |  |-- arp
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- arp.go
+|  |  |  |  |-- arp_test.go
+|  |  |  |  |-- stats.go
+|  |  |  |  |-- stats_test.go
+|  |  |  |-- hash
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- hash.go
+|  |  |  |-- internal
+|  |  |  |  |-- fragmentation
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- fragmentation.go
+|  |  |  |  |  |-- fragmentation_test.go
+|  |  |  |  |  |-- reassembler.go
+|  |  |  |  |  |-- reassembler_test.go
+|  |  |  |  |-- ip
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- duplicate_address_detection.go
+|  |  |  |  |  |-- duplicate_address_detection_test.go
+|  |  |  |  |  |-- errors.go
+|  |  |  |  |  |-- generic_multicast_protocol.go
+|  |  |  |  |  |-- generic_multicast_protocol_test.go
+|  |  |  |  |  |-- stats.go
+|  |  |  |  |-- testutil
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- testutil.go
+|  |  |  |-- ip_test.go
+|  |  |  |-- ipv4
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- icmp.go
+|  |  |  |  |-- igmp.go
+|  |  |  |  |-- igmp_test.go
+|  |  |  |  |-- ipv4.go
+|  |  |  |  |-- ipv4_test.go
+|  |  |  |  |-- stats.go
+|  |  |  |  |-- stats_test.go
+|  |  |  |-- ipv6
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dhcpv6configurationfromndpra_string.go
+|  |  |  |  |-- icmp.go
+|  |  |  |  |-- icmp_test.go
+|  |  |  |  |-- ipv6.go
+|  |  |  |  |-- ipv6_test.go
+|  |  |  |  |-- mld.go
+|  |  |  |  |-- mld_test.go
+|  |  |  |  |-- ndp.go
+|  |  |  |  |-- ndp_test.go
+|  |  |  |  |-- stats.go
+|  |  |  |-- multicast_group_test.go
+|  |  |-- ports
+|  |  |  |-- BUILD
+|  |  |  |-- flags.go
+|  |  |  |-- ports.go
+|  |  |  |-- ports_test.go
+|  |  |-- sample
+|  |  |  |-- tun_tcp_connect
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- main.go
+|  |  |  |-- tun_tcp_echo
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- main.go
+|  |  |-- seqnum
+|  |  |  |-- BUILD
+|  |  |  |-- seqnum.go
+|  |  |-- socketops.go
+|  |  |-- stack
+|  |  |  |-- BUILD
+|  |  |  |-- addressable_endpoint_state.go
+|  |  |  |-- addressable_endpoint_state_test.go
+|  |  |  |-- conntrack.go
+|  |  |  |-- forwarding_test.go
+|  |  |  |-- headertype_string.go
+|  |  |  |-- hook_string.go
+|  |  |  |-- icmp_rate_limit.go
+|  |  |  |-- iptables.go
+|  |  |  |-- iptables_state.go
+|  |  |  |-- iptables_targets.go
+|  |  |  |-- iptables_types.go
+|  |  |  |-- ndp_test.go
+|  |  |  |-- neighbor_cache.go
+|  |  |  |-- neighbor_cache_test.go
+|  |  |  |-- neighbor_entry.go
+|  |  |  |-- neighbor_entry_test.go
+|  |  |  |-- neighborstate_string.go
+|  |  |  |-- nic.go
+|  |  |  |-- nic_stats.go
+|  |  |  |-- nic_test.go
+|  |  |  |-- nud.go
+|  |  |  |-- nud_test.go
+|  |  |  |-- packet_buffer.go
+|  |  |  |-- packet_buffer_test.go
+|  |  |  |-- packet_buffer_unsafe.go
+|  |  |  |-- pending_packets.go
+|  |  |  |-- rand.go
+|  |  |  |-- registration.go
+|  |  |  |-- route.go
+|  |  |  |-- stack.go
+|  |  |  |-- stack_global_state.go
+|  |  |  |-- stack_options.go
+|  |  |  |-- stack_test.go
+|  |  |  |-- tcp.go
+|  |  |  |-- transport_demuxer.go
+|  |  |  |-- transport_demuxer_test.go
+|  |  |  |-- transport_test.go
+|  |  |-- stdclock.go
+|  |  |-- stdclock_state.go
+|  |  |-- tcpip.go
+|  |  |-- tcpip_test.go
+|  |  |-- tests
+|  |  |  |-- integration
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- forward_test.go
+|  |  |  |  |-- iptables_test.go
+|  |  |  |  |-- link_resolution_test.go
+|  |  |  |  |-- loopback_test.go
+|  |  |  |  |-- multicast_broadcast_test.go
+|  |  |  |  |-- route_test.go
+|  |  |  |-- utils
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- utils.go
+|  |  |-- testutil
+|  |  |  |-- BUILD
+|  |  |  |-- testutil.go
+|  |  |  |-- testutil_test.go
+|  |  |  |-- testutil_unsafe.go
+|  |  |-- timer.go
+|  |  |-- timer_test.go
+|  |  |-- transport
+|  |  |  |-- icmp
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- endpoint.go
+|  |  |  |  |-- endpoint_state.go
+|  |  |  |  |-- icmp_test.go
+|  |  |  |  |-- protocol.go
+|  |  |  |-- packet
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- endpoint.go
+|  |  |  |  |-- endpoint_state.go
+|  |  |  |-- raw
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- endpoint.go
+|  |  |  |  |-- endpoint_state.go
+|  |  |  |  |-- protocol.go
+|  |  |  |-- tcp
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- accept.go
+|  |  |  |  |-- connect.go
+|  |  |  |  |-- connect_unsafe.go
+|  |  |  |  |-- cubic.go
+|  |  |  |  |-- dispatcher.go
+|  |  |  |  |-- dual_stack_test.go
+|  |  |  |  |-- endpoint.go
+|  |  |  |  |-- endpoint_state.go
+|  |  |  |  |-- forwarder.go
+|  |  |  |  |-- protocol.go
+|  |  |  |  |-- rack.go
+|  |  |  |  |-- rcv.go
+|  |  |  |  |-- rcv_test.go
+|  |  |  |  |-- reno.go
+|  |  |  |  |-- reno_recovery.go
+|  |  |  |  |-- sack.go
+|  |  |  |  |-- sack_recovery.go
+|  |  |  |  |-- sack_scoreboard.go
+|  |  |  |  |-- sack_scoreboard_test.go
+|  |  |  |  |-- segment.go
+|  |  |  |  |-- segment_heap.go
+|  |  |  |  |-- segment_queue.go
+|  |  |  |  |-- segment_state.go
+|  |  |  |  |-- segment_test.go
+|  |  |  |  |-- segment_unsafe.go
+|  |  |  |  |-- snd.go
+|  |  |  |  |-- tcp_noracedetector_test.go
+|  |  |  |  |-- tcp_rack_test.go
+|  |  |  |  |-- tcp_sack_test.go
+|  |  |  |  |-- tcp_test.go
+|  |  |  |  |-- tcp_timestamp_test.go
+|  |  |  |  |-- testing
+|  |  |  |  |  |-- context
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- context.go
+|  |  |  |  |-- timer.go
+|  |  |  |  |-- timer_test.go
+|  |  |  |-- tcpconntrack
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- tcp_conntrack.go
+|  |  |  |  |-- tcp_conntrack_test.go
+|  |  |  |-- udp
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- endpoint.go
+|  |  |  |  |-- endpoint_state.go
+|  |  |  |  |-- forwarder.go
+|  |  |  |  |-- protocol.go
+|  |  |  |  |-- udp_test.go
+|  |-- test
+|  |  |-- criutil
+|  |  |  |-- BUILD
+|  |  |  |-- criutil.go
+|  |  |-- dockerutil
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- container.go
+|  |  |  |-- dockerutil.go
+|  |  |  |-- exec.go
+|  |  |  |-- network.go
+|  |  |  |-- profile.go
+|  |  |  |-- profile_test.go
+|  |  |-- testutil
+|  |  |  |-- BUILD
+|  |  |  |-- sh.go
+|  |  |  |-- testutil.go
+|  |  |  |-- testutil_runfiles.go
+|  |-- unet
+|  |  |-- BUILD
+|  |  |-- unet.go
+|  |  |-- unet_test.go
+|  |  |-- unet_unsafe.go
+|  |-- urpc
+|  |  |-- BUILD
+|  |  |-- urpc.go
+|  |  |-- urpc_test.go
+|  |-- usermem
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- bytes_io.go
+|  |  |-- bytes_io_unsafe.go
+|  |  |-- marshal.go
+|  |  |-- usermem.go
+|  |  |-- usermem_test.go
+|  |-- waiter
+|  |  |-- BUILD
+|  |  |-- waiter.go
+|  |  |-- waiter_test.go
+|-- runsc
+|  |-- BUILD
+|  |-- boot
+|  |  |-- BUILD
+|  |  |-- compat.go
+|  |  |-- compat_amd64.go
+|  |  |-- compat_arm64.go
+|  |  |-- compat_test.go
+|  |  |-- controller.go
+|  |  |-- debug.go
+|  |  |-- events.go
+|  |  |-- filter
+|  |  |  |-- BUILD
+|  |  |  |-- config.go
+|  |  |  |-- config_amd64.go
+|  |  |  |-- config_arm64.go
+|  |  |  |-- config_profile.go
+|  |  |  |-- extra_filters.go
+|  |  |  |-- extra_filters_msan.go
+|  |  |  |-- extra_filters_race.go
+|  |  |  |-- filter.go
+|  |  |-- fs.go
+|  |  |-- fs_test.go
+|  |  |-- limits.go
+|  |  |-- loader.go
+|  |  |-- loader_test.go
+|  |  |-- network.go
+|  |  |-- platforms
+|  |  |  |-- BUILD
+|  |  |  |-- platforms.go
+|  |  |-- pprof
+|  |  |  |-- BUILD
+|  |  |  |-- pprof.go
+|  |  |-- strace.go
+|  |  |-- vfs.go
+|  |-- cgroup
+|  |  |-- BUILD
+|  |  |-- cgroup.go
+|  |  |-- cgroup_test.go
+|  |-- cli
+|  |  |-- BUILD
+|  |  |-- main.go
+|  |-- cmd
+|  |  |-- BUILD
+|  |  |-- boot.go
+|  |  |-- capability.go
+|  |  |-- capability_test.go
+|  |  |-- checkpoint.go
+|  |  |-- chroot.go
+|  |  |-- cmd.go
+|  |  |-- create.go
+|  |  |-- debug.go
+|  |  |-- delete.go
+|  |  |-- delete_test.go
+|  |  |-- do.go
+|  |  |-- error.go
+|  |  |-- events.go
+|  |  |-- exec.go
+|  |  |-- exec_test.go
+|  |  |-- gofer.go
+|  |  |-- gofer_test.go
+|  |  |-- help.go
+|  |  |-- install.go
+|  |  |-- kill.go
+|  |  |-- list.go
+|  |  |-- mitigate.go
+|  |  |-- mitigate_extras.go
+|  |  |-- mitigate_test.go
+|  |  |-- path.go
+|  |  |-- pause.go
+|  |  |-- ps.go
+|  |  |-- restore.go
+|  |  |-- resume.go
+|  |  |-- run.go
+|  |  |-- spec.go
+|  |  |-- start.go
+|  |  |-- state.go
+|  |  |-- statefile.go
+|  |  |-- symbolize.go
+|  |  |-- syscalls.go
+|  |  |-- verity_prepare.go
+|  |  |-- wait.go
+|  |-- config
+|  |  |-- BUILD
+|  |  |-- config.go
+|  |  |-- config_test.go
+|  |  |-- flags.go
+|  |-- console
+|  |  |-- BUILD
+|  |  |-- console.go
+|  |-- container
+|  |  |-- BUILD
+|  |  |-- console_test.go
+|  |  |-- container.go
+|  |  |-- container_norace_test.go
+|  |  |-- container_race_test.go
+|  |  |-- container_test.go
+|  |  |-- hook.go
+|  |  |-- multi_container_test.go
+|  |  |-- shared_volume_test.go
+|  |  |-- state_file.go
+|  |  |-- status.go
+|  |-- flag
+|  |  |-- BUILD
+|  |  |-- flag.go
+|  |-- fsgofer
+|  |  |-- BUILD
+|  |  |-- filter
+|  |  |  |-- BUILD
+|  |  |  |-- config.go
+|  |  |  |-- config_amd64.go
+|  |  |  |-- config_arm64.go
+|  |  |  |-- extra_filters.go
+|  |  |  |-- extra_filters_msan.go
+|  |  |  |-- extra_filters_race.go
+|  |  |  |-- filter.go
+|  |  |-- fsgofer.go
+|  |  |-- fsgofer_amd64_unsafe.go
+|  |  |-- fsgofer_arm64_unsafe.go
+|  |  |-- fsgofer_test.go
+|  |  |-- fsgofer_unsafe.go
+|  |-- main.go
+|  |-- mitigate
+|  |  |-- BUILD
+|  |  |-- mitigate.go
+|  |  |-- mitigate_test.go
+|  |  |-- mock
+|  |  |  |-- BUILD
+|  |  |  |-- mock.go
+|  |-- sandbox
+|  |  |-- BUILD
+|  |  |-- network.go
+|  |  |-- network_unsafe.go
+|  |  |-- sandbox.go
+|  |-- specutils
+|  |  |-- BUILD
+|  |  |-- cri.go
+|  |  |-- fs.go
+|  |  |-- namespace.go
+|  |  |-- safemount_test
+|  |  |  |-- BUILD
+|  |  |  |-- safemount_runner.go
+|  |  |  |-- safemount_test.go
+|  |  |-- seccomp
+|  |  |  |-- BUILD
+|  |  |  |-- audit_amd64.go
+|  |  |  |-- audit_arm64.go
+|  |  |  |-- seccomp.go
+|  |  |  |-- seccomp_test.go
+|  |  |-- specutils.go
+|  |  |-- specutils_test.go
+|  |-- version.go
+|  |-- version_test.sh
+|-- shim
+|  |-- BUILD
+|  |-- README.md
+|  |-- cli
+|  |  |-- BUILD
+|  |  |-- cli.go
+|  |-- main.go
+|  |-- runsc.toml
+|-- test
+|  |-- BUILD
+|  |-- README.md
+|  |-- benchmarks
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- base
+|  |  |  |-- BUILD
+|  |  |  |-- base.go
+|  |  |  |-- size_test.go
+|  |  |  |-- startup_test.go
+|  |  |  |-- sysbench_test.go
+|  |  |-- database
+|  |  |  |-- BUILD
+|  |  |  |-- database.go
+|  |  |  |-- redis_test.go
+|  |  |-- defs.bzl
+|  |  |-- fs
+|  |  |  |-- BUILD
+|  |  |  |-- bazel_test.go
+|  |  |  |-- fio_test.go
+|  |  |-- harness
+|  |  |  |-- BUILD
+|  |  |  |-- harness.go
+|  |  |  |-- machine.go
+|  |  |  |-- util.go
+|  |  |-- media
+|  |  |  |-- BUILD
+|  |  |  |-- ffmpeg_test.go
+|  |  |  |-- media.go
+|  |  |-- ml
+|  |  |  |-- BUILD
+|  |  |  |-- ml.go
+|  |  |  |-- tensorflow_test.go
+|  |  |-- network
+|  |  |  |-- BUILD
+|  |  |  |-- httpd_test.go
+|  |  |  |-- iperf_test.go
+|  |  |  |-- network.go
+|  |  |  |-- nginx_test.go
+|  |  |  |-- node_test.go
+|  |  |  |-- ruby_test.go
+|  |  |-- tcp
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- nsjoin.c
+|  |  |  |-- tcp_benchmark.sh
+|  |  |  |-- tcp_proxy.go
+|  |  |-- tools
+|  |  |  |-- BUILD
+|  |  |  |-- ab.go
+|  |  |  |-- ab_test.go
+|  |  |  |-- fio.go
+|  |  |  |-- fio_test.go
+|  |  |  |-- hey.go
+|  |  |  |-- hey_test.go
+|  |  |  |-- iperf.go
+|  |  |  |-- iperf_test.go
+|  |  |  |-- meminfo.go
+|  |  |  |-- meminfo_test.go
+|  |  |  |-- parser_util.go
+|  |  |  |-- redis.go
+|  |  |  |-- redis_test.go
+|  |  |  |-- sysbench.go
+|  |  |  |-- sysbench_test.go
+|  |  |  |-- tools.go
+|  |-- cmd
+|  |  |-- test_app
+|  |  |  |-- BUILD
+|  |  |  |-- fds.go
+|  |  |  |-- main.go
+|  |-- e2e
+|  |  |-- BUILD
+|  |  |-- exec_test.go
+|  |  |-- integration.go
+|  |  |-- integration_test.go
+|  |-- fsstress
+|  |  |-- BUILD
+|  |  |-- fsstress.go
+|  |  |-- fsstress_test.go
+|  |-- fuse
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- linux
+|  |  |  |-- BUILD
+|  |  |  |-- create_test.cc
+|  |  |  |-- fuse_base.cc
+|  |  |  |-- fuse_base.h
+|  |  |  |-- fuse_fd_util.cc
+|  |  |  |-- fuse_fd_util.h
+|  |  |  |-- mkdir_test.cc
+|  |  |  |-- mknod_test.cc
+|  |  |  |-- mount_test.cc
+|  |  |  |-- open_test.cc
+|  |  |  |-- read_test.cc
+|  |  |  |-- readdir_test.cc
+|  |  |  |-- readlink_test.cc
+|  |  |  |-- release_test.cc
+|  |  |  |-- rmdir_test.cc
+|  |  |  |-- setstat_test.cc
+|  |  |  |-- stat_test.cc
+|  |  |  |-- symlink_test.cc
+|  |  |  |-- unlink_test.cc
+|  |  |  |-- write_test.cc
+|  |-- image
+|  |  |-- BUILD
+|  |  |-- image.go
+|  |  |-- image_test.go
+|  |  |-- latin10k.txt
+|  |  |-- mysql.sql
+|  |  |-- ruby.rb
+|  |  |-- ruby.sh
+|  |-- iptables
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- filter_input.go
+|  |  |-- filter_output.go
+|  |  |-- iptables.go
+|  |  |-- iptables_test.go
+|  |  |-- iptables_unsafe.go
+|  |  |-- iptables_util.go
+|  |  |-- nat.go
+|  |  |-- runner
+|  |  |  |-- BUILD
+|  |  |  |-- main.go
+|  |-- kubernetes
+|  |  |-- gvisor-injection-admission-webhook.yaml
+|  |-- packetdrill
+|  |  |-- BUILD
+|  |  |-- accept_ack_drop.pkt
+|  |  |-- defs.bzl
+|  |  |-- fin_wait2_timeout.pkt
+|  |  |-- listen_close_before_handshake_complete.pkt
+|  |  |-- no_rst_to_rst.pkt
+|  |  |-- packetdrill_setup.sh
+|  |  |-- packetdrill_test.sh
+|  |  |-- reset_for_ack_when_no_syn_cookies_in_use.pkt
+|  |  |-- sanity_test.pkt
+|  |  |-- tcp_defer_accept.pkt
+|  |  |-- tcp_defer_accept_timeout.pkt
+|  |-- packetimpact
+|  |  |-- README.md
+|  |  |-- dut
+|  |  |  |-- BUILD
+|  |  |  |-- posix_server.cc
+|  |  |-- netdevs
+|  |  |  |-- BUILD
+|  |  |  |-- netdevs.go
+|  |  |  |-- netdevs_test.go
+|  |  |-- proto
+|  |  |  |-- BUILD
+|  |  |  |-- posix_server.proto
+|  |  |-- runner
+|  |  |  |-- BUILD
+|  |  |  |-- defs.bzl
+|  |  |  |-- dut.go
+|  |  |  |-- packetimpact_test.go
+|  |  |-- testbench
+|  |  |  |-- BUILD
+|  |  |  |-- connections.go
+|  |  |  |-- dut.go
+|  |  |  |-- dut_client.go
+|  |  |  |-- layers.go
+|  |  |  |-- layers_test.go
+|  |  |  |-- rawsockets.go
+|  |  |  |-- testbench.go
+|  |  |-- tests
+|  |  |  |-- BUILD
+|  |  |  |-- fin_wait2_timeout_test.go
+|  |  |  |-- generic_dgram_socket_send_recv_test.go
+|  |  |  |-- icmpv6_param_problem_test.go
+|  |  |  |-- ipv4_fragment_reassembly_test.go
+|  |  |  |-- ipv4_id_uniqueness_test.go
+|  |  |  |-- ipv6_fragment_icmp_error_test.go
+|  |  |  |-- ipv6_fragment_reassembly_test.go
+|  |  |  |-- ipv6_unknown_options_action_test.go
+|  |  |  |-- tcp_connect_icmp_error_test.go
+|  |  |  |-- tcp_cork_mss_test.go
+|  |  |  |-- tcp_fin_retransmission_test.go
+|  |  |  |-- tcp_handshake_window_size_test.go
+|  |  |  |-- tcp_info_test.go
+|  |  |  |-- tcp_linger_test.go
+|  |  |  |-- tcp_listen_backlog_test.go
+|  |  |  |-- tcp_network_unreachable_test.go
+|  |  |  |-- tcp_noaccept_close_rst_test.go
+|  |  |  |-- tcp_outside_the_window_test.go
+|  |  |  |-- tcp_paws_mechanism_test.go
+|  |  |  |-- tcp_queue_send_recv_in_syn_sent_test.go
+|  |  |  |-- tcp_rack_test.go
+|  |  |  |-- tcp_rcv_buf_space_test.go
+|  |  |  |-- tcp_retransmits_test.go
+|  |  |  |-- tcp_send_window_sizes_piggyback_test.go
+|  |  |  |-- tcp_syncookie_test.go
+|  |  |  |-- tcp_synrcvd_reset_test.go
+|  |  |  |-- tcp_synsent_reset_test.go
+|  |  |  |-- tcp_timewait_reset_test.go
+|  |  |  |-- tcp_unacc_seq_ack_test.go
+|  |  |  |-- tcp_user_timeout_test.go
+|  |  |  |-- tcp_window_shrink_test.go
+|  |  |  |-- tcp_zero_receive_window_test.go
+|  |  |  |-- tcp_zero_window_probe_retransmit_test.go
+|  |  |  |-- tcp_zero_window_probe_test.go
+|  |  |  |-- tcp_zero_window_probe_usertimeout_test.go
+|  |  |  |-- udp_any_addr_recv_unicast_test.go
+|  |  |  |-- udp_discard_mcast_source_addr_test.go
+|  |  |  |-- udp_icmp_error_propagation_test.go
+|  |-- perf
+|  |  |-- BUILD
+|  |  |-- linux
+|  |  |  |-- BUILD
+|  |  |  |-- clock_getres_benchmark.cc
+|  |  |  |-- clock_gettime_benchmark.cc
+|  |  |  |-- death_benchmark.cc
+|  |  |  |-- epoll_benchmark.cc
+|  |  |  |-- fork_benchmark.cc
+|  |  |  |-- futex_benchmark.cc
+|  |  |  |-- getdents_benchmark.cc
+|  |  |  |-- getpid_benchmark.cc
+|  |  |  |-- gettid_benchmark.cc
+|  |  |  |-- mapping_benchmark.cc
+|  |  |  |-- open_benchmark.cc
+|  |  |  |-- open_read_close_benchmark.cc
+|  |  |  |-- pipe_benchmark.cc
+|  |  |  |-- randread_benchmark.cc
+|  |  |  |-- read_benchmark.cc
+|  |  |  |-- sched_yield_benchmark.cc
+|  |  |  |-- send_recv_benchmark.cc
+|  |  |  |-- seqwrite_benchmark.cc
+|  |  |  |-- signal_benchmark.cc
+|  |  |  |-- sleep_benchmark.cc
+|  |  |  |-- stat_benchmark.cc
+|  |  |  |-- unlink_benchmark.cc
+|  |  |  |-- write_benchmark.cc
+|  |-- root
+|  |  |-- BUILD
+|  |  |-- cgroup_test.go
+|  |  |-- chroot_test.go
+|  |  |-- crictl_test.go
+|  |  |-- main_test.go
+|  |  |-- oom_score_adj_test.go
+|  |  |-- root.go
+|  |  |-- runsc_test.go
+|  |-- runner
+|  |  |-- BUILD
+|  |  |-- defs.bzl
+|  |  |-- gtest
+|  |  |  |-- BUILD
+|  |  |  |-- gtest.go
+|  |  |-- main.go
+|  |  |-- setup_container
+|  |  |  |-- BUILD
+|  |  |  |-- setup_container.cc
+|  |-- runtimes
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- defs.bzl
+|  |  |-- exclude
+|  |  |  |-- go1.12.csv
+|  |  |  |-- java11.csv
+|  |  |  |-- nodejs12.4.0.csv
+|  |  |  |-- php7.3.6.csv
+|  |  |  |-- python3.7.3.csv
+|  |  |-- proctor
+|  |  |  |-- BUILD
+|  |  |  |-- lib
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- go.go
+|  |  |  |  |-- java.go
+|  |  |  |  |-- lib.go
+|  |  |  |  |-- lib_test.go
+|  |  |  |  |-- nodejs.go
+|  |  |  |  |-- php.go
+|  |  |  |  |-- python.go
+|  |  |  |-- main.go
+|  |  |-- runner
+|  |  |  |-- BUILD
+|  |  |  |-- lib
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- exclude_test.go
+|  |  |  |  |-- lib.go
+|  |  |  |-- main.go
+|  |-- syscalls
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- linux
+|  |  |  |-- 32bit.cc
+|  |  |  |-- BUILD
+|  |  |  |-- accept_bind.cc
+|  |  |  |-- accept_bind_stream.cc
+|  |  |  |-- access.cc
+|  |  |  |-- affinity.cc
+|  |  |  |-- aio.cc
+|  |  |  |-- alarm.cc
+|  |  |  |-- arch_prctl.cc
+|  |  |  |-- bad.cc
+|  |  |  |-- base_poll_test.cc
+|  |  |  |-- base_poll_test.h
+|  |  |  |-- bind.cc
+|  |  |  |-- brk.cc
+|  |  |  |-- cgroup.cc
+|  |  |  |-- chdir.cc
+|  |  |  |-- chmod.cc
+|  |  |  |-- chown.cc
+|  |  |  |-- chroot.cc
+|  |  |  |-- clock_getres.cc
+|  |  |  |-- clock_gettime.cc
+|  |  |  |-- clock_nanosleep.cc
+|  |  |  |-- concurrency.cc
+|  |  |  |-- connect_external.cc
+|  |  |  |-- creat.cc
+|  |  |  |-- dev.cc
+|  |  |  |-- dup.cc
+|  |  |  |-- epoll.cc
+|  |  |  |-- eventfd.cc
+|  |  |  |-- exceptions.cc
+|  |  |  |-- exec.cc
+|  |  |  |-- exec.h
+|  |  |  |-- exec_assert_closed_workload.cc
+|  |  |  |-- exec_basic_workload.cc
+|  |  |  |-- exec_binary.cc
+|  |  |  |-- exec_proc_exe_workload.cc
+|  |  |  |-- exec_state_workload.cc
+|  |  |  |-- exit.cc
+|  |  |  |-- exit_script.sh
+|  |  |  |-- fadvise64.cc
+|  |  |  |-- fallocate.cc
+|  |  |  |-- fault.cc
+|  |  |  |-- fchdir.cc
+|  |  |  |-- fcntl.cc
+|  |  |  |-- file_base.h
+|  |  |  |-- flock.cc
+|  |  |  |-- fork.cc
+|  |  |  |-- fpsig_fork.cc
+|  |  |  |-- fpsig_nested.cc
+|  |  |  |-- fsync.cc
+|  |  |  |-- futex.cc
+|  |  |  |-- getcpu.cc
+|  |  |  |-- getdents.cc
+|  |  |  |-- getrandom.cc
+|  |  |  |-- getrusage.cc
+|  |  |  |-- inotify.cc
+|  |  |  |-- ioctl.cc
+|  |  |  |-- ip6tables.cc
+|  |  |  |-- ip_socket_test_util.cc
+|  |  |  |-- ip_socket_test_util.h
+|  |  |  |-- iptables.cc
+|  |  |  |-- iptables.h
+|  |  |  |-- itimer.cc
+|  |  |  |-- kcov.cc
+|  |  |  |-- kill.cc
+|  |  |  |-- link.cc
+|  |  |  |-- lseek.cc
+|  |  |  |-- madvise.cc
+|  |  |  |-- membarrier.cc
+|  |  |  |-- memfd.cc
+|  |  |  |-- memory_accounting.cc
+|  |  |  |-- mempolicy.cc
+|  |  |  |-- mincore.cc
+|  |  |  |-- mkdir.cc
+|  |  |  |-- mknod.cc
+|  |  |  |-- mlock.cc
+|  |  |  |-- mmap.cc
+|  |  |  |-- mount.cc
+|  |  |  |-- mremap.cc
+|  |  |  |-- msync.cc
+|  |  |  |-- munmap.cc
+|  |  |  |-- network_namespace.cc
+|  |  |  |-- open.cc
+|  |  |  |-- open_create.cc
+|  |  |  |-- packet_socket.cc
+|  |  |  |-- packet_socket_raw.cc
+|  |  |  |-- partial_bad_buffer.cc
+|  |  |  |-- pause.cc
+|  |  |  |-- ping_socket.cc
+|  |  |  |-- pipe.cc
+|  |  |  |-- poll.cc
+|  |  |  |-- ppoll.cc
+|  |  |  |-- prctl.cc
+|  |  |  |-- prctl_setuid.cc
+|  |  |  |-- pread64.cc
+|  |  |  |-- preadv.cc
+|  |  |  |-- preadv2.cc
+|  |  |  |-- priority.cc
+|  |  |  |-- priority_execve.cc
+|  |  |  |-- proc.cc
+|  |  |  |-- proc_net.cc
+|  |  |  |-- proc_net_tcp.cc
+|  |  |  |-- proc_net_udp.cc
+|  |  |  |-- proc_net_unix.cc
+|  |  |  |-- proc_pid_oomscore.cc
+|  |  |  |-- proc_pid_smaps.cc
+|  |  |  |-- proc_pid_uid_gid_map.cc
+|  |  |  |-- processes.cc
+|  |  |  |-- pselect.cc
+|  |  |  |-- ptrace.cc
+|  |  |  |-- pty.cc
+|  |  |  |-- pty_root.cc
+|  |  |  |-- pwrite64.cc
+|  |  |  |-- pwritev2.cc
+|  |  |  |-- raw_socket.cc
+|  |  |  |-- raw_socket_hdrincl.cc
+|  |  |  |-- raw_socket_icmp.cc
+|  |  |  |-- read.cc
+|  |  |  |-- readahead.cc
+|  |  |  |-- readv.cc
+|  |  |  |-- readv_common.cc
+|  |  |  |-- readv_common.h
+|  |  |  |-- readv_socket.cc
+|  |  |  |-- rename.cc
+|  |  |  |-- rlimits.cc
+|  |  |  |-- rseq.cc
+|  |  |  |-- rseq
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- critical.h
+|  |  |  |  |-- critical_amd64.S
+|  |  |  |  |-- critical_arm64.S
+|  |  |  |  |-- rseq.cc
+|  |  |  |  |-- start_amd64.S
+|  |  |  |  |-- start_arm64.S
+|  |  |  |  |-- syscalls.h
+|  |  |  |  |-- test.h
+|  |  |  |  |-- types.h
+|  |  |  |  |-- uapi.h
+|  |  |  |-- rtsignal.cc
+|  |  |  |-- sched.cc
+|  |  |  |-- sched_yield.cc
+|  |  |  |-- seccomp.cc
+|  |  |  |-- select.cc
+|  |  |  |-- semaphore.cc
+|  |  |  |-- sendfile.cc
+|  |  |  |-- sendfile_socket.cc
+|  |  |  |-- setgid.cc
+|  |  |  |-- shm.cc
+|  |  |  |-- sigaction.cc
+|  |  |  |-- sigaltstack.cc
+|  |  |  |-- sigaltstack_check.cc
+|  |  |  |-- signalfd.cc
+|  |  |  |-- sigprocmask.cc
+|  |  |  |-- sigreturn_amd64.cc
+|  |  |  |-- sigreturn_arm64.cc
+|  |  |  |-- sigstop.cc
+|  |  |  |-- sigtimedwait.cc
+|  |  |  |-- socket.cc
+|  |  |  |-- socket_abstract.cc
+|  |  |  |-- socket_bind_to_device.cc
+|  |  |  |-- socket_bind_to_device_distribution.cc
+|  |  |  |-- socket_bind_to_device_sequence.cc
+|  |  |  |-- socket_bind_to_device_util.cc
+|  |  |  |-- socket_bind_to_device_util.h
+|  |  |  |-- socket_blocking.cc
+|  |  |  |-- socket_blocking.h
+|  |  |  |-- socket_capability.cc
+|  |  |  |-- socket_filesystem.cc
+|  |  |  |-- socket_generic.h
+|  |  |  |-- socket_generic_stress.cc
+|  |  |  |-- socket_generic_test_cases.cc
+|  |  |  |-- socket_inet_loopback.cc
+|  |  |  |-- socket_inet_loopback_isolated.cc
+|  |  |  |-- socket_inet_loopback_nogotsan.cc
+|  |  |  |-- socket_inet_loopback_test_params.h
+|  |  |  |-- socket_ip_loopback_blocking.cc
+|  |  |  |-- socket_ip_tcp_generic.cc
+|  |  |  |-- socket_ip_tcp_generic.h
+|  |  |  |-- socket_ip_tcp_generic_loopback.cc
+|  |  |  |-- socket_ip_tcp_loopback.cc
+|  |  |  |-- socket_ip_tcp_loopback_blocking.cc
+|  |  |  |-- socket_ip_tcp_loopback_nonblock.cc
+|  |  |  |-- socket_ip_tcp_udp_generic.cc
+|  |  |  |-- socket_ip_udp_generic.cc
+|  |  |  |-- socket_ip_udp_generic.h
+|  |  |  |-- socket_ip_udp_loopback.cc
+|  |  |  |-- socket_ip_udp_loopback_blocking.cc
+|  |  |  |-- socket_ip_udp_loopback_nonblock.cc
+|  |  |  |-- socket_ip_udp_unbound_external_networking.cc
+|  |  |  |-- socket_ip_udp_unbound_external_networking.h
+|  |  |  |-- socket_ip_unbound.cc
+|  |  |  |-- socket_ip_unbound_netlink.cc
+|  |  |  |-- socket_ipv4_udp_unbound.cc
+|  |  |  |-- socket_ipv4_udp_unbound.h
+|  |  |  |-- socket_ipv4_udp_unbound_external_networking.cc
+|  |  |  |-- socket_ipv4_udp_unbound_external_networking.h
+|  |  |  |-- socket_ipv4_udp_unbound_external_networking_test.cc
+|  |  |  |-- socket_ipv4_udp_unbound_loopback.cc
+|  |  |  |-- socket_ipv4_udp_unbound_loopback_netlink.cc
+|  |  |  |-- socket_ipv4_udp_unbound_loopback_nogotsan.cc
+|  |  |  |-- socket_ipv4_udp_unbound_netlink.cc
+|  |  |  |-- socket_ipv4_udp_unbound_netlink.h
+|  |  |  |-- socket_ipv6_udp_unbound.cc
+|  |  |  |-- socket_ipv6_udp_unbound.h
+|  |  |  |-- socket_ipv6_udp_unbound_external_networking.cc
+|  |  |  |-- socket_ipv6_udp_unbound_external_networking.h
+|  |  |  |-- socket_ipv6_udp_unbound_external_networking_test.cc
+|  |  |  |-- socket_ipv6_udp_unbound_loopback.cc
+|  |  |  |-- socket_ipv6_udp_unbound_loopback_netlink.cc
+|  |  |  |-- socket_ipv6_udp_unbound_netlink.cc
+|  |  |  |-- socket_ipv6_udp_unbound_netlink.h
+|  |  |  |-- socket_netdevice.cc
+|  |  |  |-- socket_netlink.cc
+|  |  |  |-- socket_netlink_route.cc
+|  |  |  |-- socket_netlink_route_util.cc
+|  |  |  |-- socket_netlink_route_util.h
+|  |  |  |-- socket_netlink_uevent.cc
+|  |  |  |-- socket_netlink_util.cc
+|  |  |  |-- socket_netlink_util.h
+|  |  |  |-- socket_non_blocking.cc
+|  |  |  |-- socket_non_blocking.h
+|  |  |  |-- socket_non_stream.cc
+|  |  |  |-- socket_non_stream.h
+|  |  |  |-- socket_non_stream_blocking.cc
+|  |  |  |-- socket_non_stream_blocking.h
+|  |  |  |-- socket_stream.cc
+|  |  |  |-- socket_stream.h
+|  |  |  |-- socket_stream_blocking.cc
+|  |  |  |-- socket_stream_blocking.h
+|  |  |  |-- socket_stream_nonblock.cc
+|  |  |  |-- socket_stream_nonblock.h
+|  |  |  |-- socket_test_util.cc
+|  |  |  |-- socket_test_util.h
+|  |  |  |-- socket_test_util_impl.cc
+|  |  |  |-- socket_unix.cc
+|  |  |  |-- socket_unix.h
+|  |  |  |-- socket_unix_abstract_nonblock.cc
+|  |  |  |-- socket_unix_blocking_local.cc
+|  |  |  |-- socket_unix_cmsg.cc
+|  |  |  |-- socket_unix_cmsg.h
+|  |  |  |-- socket_unix_dgram.cc
+|  |  |  |-- socket_unix_dgram.h
+|  |  |  |-- socket_unix_dgram_local.cc
+|  |  |  |-- socket_unix_dgram_non_blocking.cc
+|  |  |  |-- socket_unix_domain.cc
+|  |  |  |-- socket_unix_filesystem_nonblock.cc
+|  |  |  |-- socket_unix_non_stream.cc
+|  |  |  |-- socket_unix_non_stream.h
+|  |  |  |-- socket_unix_non_stream_blocking_local.cc
+|  |  |  |-- socket_unix_pair.cc
+|  |  |  |-- socket_unix_pair_nonblock.cc
+|  |  |  |-- socket_unix_seqpacket.cc
+|  |  |  |-- socket_unix_seqpacket.h
+|  |  |  |-- socket_unix_seqpacket_local.cc
+|  |  |  |-- socket_unix_stream.cc
+|  |  |  |-- socket_unix_stream_blocking_local.cc
+|  |  |  |-- socket_unix_stream_local.cc
+|  |  |  |-- socket_unix_stream_nonblock_local.cc
+|  |  |  |-- socket_unix_unbound_abstract.cc
+|  |  |  |-- socket_unix_unbound_dgram.cc
+|  |  |  |-- socket_unix_unbound_filesystem.cc
+|  |  |  |-- socket_unix_unbound_seqpacket.cc
+|  |  |  |-- socket_unix_unbound_stream.cc
+|  |  |  |-- splice.cc
+|  |  |  |-- stat.cc
+|  |  |  |-- stat_times.cc
+|  |  |  |-- statfs.cc
+|  |  |  |-- sticky.cc
+|  |  |  |-- symlink.cc
+|  |  |  |-- sync.cc
+|  |  |  |-- sync_file_range.cc
+|  |  |  |-- sysinfo.cc
+|  |  |  |-- syslog.cc
+|  |  |  |-- sysret.cc
+|  |  |  |-- tcp_socket.cc
+|  |  |  |-- tgkill.cc
+|  |  |  |-- time.cc
+|  |  |  |-- timerfd.cc
+|  |  |  |-- timers.cc
+|  |  |  |-- tkill.cc
+|  |  |  |-- truncate.cc
+|  |  |  |-- tuntap.cc
+|  |  |  |-- tuntap_hostinet.cc
+|  |  |  |-- udp_bind.cc
+|  |  |  |-- udp_socket.cc
+|  |  |  |-- uidgid.cc
+|  |  |  |-- uname.cc
+|  |  |  |-- unix_domain_socket_test_util.cc
+|  |  |  |-- unix_domain_socket_test_util.h
+|  |  |  |-- unlink.cc
+|  |  |  |-- unshare.cc
+|  |  |  |-- utimes.cc
+|  |  |  |-- vdso.cc
+|  |  |  |-- vdso_clock_gettime.cc
+|  |  |  |-- verity_getdents.cc
+|  |  |  |-- verity_ioctl.cc
+|  |  |  |-- verity_mmap.cc
+|  |  |  |-- verity_mount.cc
+|  |  |  |-- verity_symlink.cc
+|  |  |  |-- vfork.cc
+|  |  |  |-- vsyscall.cc
+|  |  |  |-- wait.cc
+|  |  |  |-- write.cc
+|  |  |  |-- xattr.cc
+|  |-- uds
+|  |  |-- BUILD
+|  |  |-- uds.go
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- capability_util.cc
+|  |  |-- capability_util.h
+|  |  |-- cgroup_util.cc
+|  |  |-- cgroup_util.h
+|  |  |-- cleanup.h
+|  |  |-- epoll_util.cc
+|  |  |-- epoll_util.h
+|  |  |-- eventfd_util.h
+|  |  |-- file_descriptor.h
+|  |  |-- fs_util.cc
+|  |  |-- fs_util.h
+|  |  |-- fs_util_test.cc
+|  |  |-- fuse_util.cc
+|  |  |-- fuse_util.h
+|  |  |-- logging.cc
+|  |  |-- logging.h
+|  |  |-- memory_util.h
+|  |  |-- mount_util.cc
+|  |  |-- mount_util.h
+|  |  |-- mount_util_test.cc
+|  |  |-- multiprocess_util.cc
+|  |  |-- multiprocess_util.h
+|  |  |-- platform_util.cc
+|  |  |-- platform_util.h
+|  |  |-- posix_error.cc
+|  |  |-- posix_error.h
+|  |  |-- posix_error_test.cc
+|  |  |-- proc_util.cc
+|  |  |-- proc_util.h
+|  |  |-- proc_util_test.cc
+|  |  |-- pty_util.cc
+|  |  |-- pty_util.h
+|  |  |-- rlimit_util.cc
+|  |  |-- rlimit_util.h
+|  |  |-- save_util.cc
+|  |  |-- save_util.h
+|  |  |-- save_util_linux.cc
+|  |  |-- save_util_other.cc
+|  |  |-- signal_util.cc
+|  |  |-- signal_util.h
+|  |  |-- temp_path.cc
+|  |  |-- temp_path.h
+|  |  |-- temp_umask.h
+|  |  |-- test_main.cc
+|  |  |-- test_util.cc
+|  |  |-- test_util.h
+|  |  |-- test_util_impl.cc
+|  |  |-- test_util_runfiles.cc
+|  |  |-- test_util_test.cc
+|  |  |-- thread_util.h
+|  |  |-- time_util.cc
+|  |  |-- time_util.h
+|  |  |-- timer_util.cc
+|  |  |-- timer_util.h
+|  |  |-- uid_util.cc
+|  |  |-- uid_util.h
+|  |  |-- verity_util.cc
+|  |  |-- verity_util.h
+|-- tools
+|  |-- BUILD
+|  |-- bazel.mk
+|  |-- bazel_gazelle_generate.patch
+|  |-- bazeldefs
+|  |  |-- BUILD
+|  |  |-- cc.bzl
+|  |  |-- defs.bzl
+|  |  |-- go.bzl
+|  |  |-- pkg.bzl
+|  |  |-- platforms.bzl
+|  |  |-- tags.bzl
+|  |-- bigquery
+|  |  |-- BUILD
+|  |  |-- bigquery.go
+|  |-- checkescape
+|  |  |-- BUILD
+|  |  |-- checkescape.go
+|  |  |-- test1
+|  |  |  |-- BUILD
+|  |  |  |-- test1.go
+|  |  |-- test2
+|  |  |  |-- BUILD
+|  |  |  |-- test2.go
+|  |-- checklocks
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- analysis.go
+|  |  |-- annotations.go
+|  |  |-- checklocks.go
+|  |  |-- facts.go
+|  |  |-- state.go
+|  |  |-- test
+|  |  |  |-- BUILD
+|  |  |  |-- alignment.go
+|  |  |  |-- atomics.go
+|  |  |  |-- basics.go
+|  |  |  |-- branches.go
+|  |  |  |-- closures.go
+|  |  |  |-- defer.go
+|  |  |  |-- incompat.go
+|  |  |  |-- methods.go
+|  |  |  |-- parameters.go
+|  |  |  |-- return.go
+|  |  |  |-- test.go
+|  |-- checkunsafe
+|  |  |-- BUILD
+|  |  |-- check_unsafe.go
+|  |-- defs.bzl
+|  |-- deps.bzl
+|  |-- github
+|  |  |-- BUILD
+|  |  |-- main.go
+|  |  |-- reviver
+|  |  |  |-- BUILD
+|  |  |  |-- github.go
+|  |  |  |-- github_test.go
+|  |  |  |-- reviver.go
+|  |  |  |-- reviver_test.go
+|  |-- go_branch.sh
+|  |-- go_generics
+|  |  |-- BUILD
+|  |  |-- defs.bzl
+|  |  |-- globals
+|  |  |  |-- BUILD
+|  |  |  |-- globals_visitor.go
+|  |  |  |-- scope.go
+|  |  |-- go_merge
+|  |  |  |-- BUILD
+|  |  |  |-- main.go
+|  |  |-- imports.go
+|  |  |-- main.go
+|  |  |-- remove.go
+|  |  |-- rules_tests
+|  |  |  |-- BUILD
+|  |  |  |-- template.go
+|  |  |  |-- template_test.go
+|  |  |-- tests
+|  |  |  |-- BUILD
+|  |  |  |-- all_stmts
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- input.go
+|  |  |  |  |-- output.go
+|  |  |  |-- all_types
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- input.go
+|  |  |  |  |-- lib
+|  |  |  |  |  |-- lib.go
+|  |  |  |  |-- output.go
+|  |  |  |-- anon
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- input.go
+|  |  |  |  |-- output.go
+|  |  |  |-- consts
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- input.go
+|  |  |  |  |-- output.go
+|  |  |  |-- defs.bzl
+|  |  |  |-- imports
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- input.go
+|  |  |  |  |-- output.go
+|  |  |  |-- remove_typedef
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- input.go
+|  |  |  |  |-- output.go
+|  |  |  |-- simple
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- input.go
+|  |  |  |  |-- output.go
+|  |-- go_marshal
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- analysis
+|  |  |  |-- BUILD
+|  |  |  |-- analysis_unsafe.go
+|  |  |-- defs.bzl
+|  |  |-- gomarshal
+|  |  |  |-- BUILD
+|  |  |  |-- generator.go
+|  |  |  |-- generator_interfaces.go
+|  |  |  |-- generator_interfaces_array_newtype.go
+|  |  |  |-- generator_interfaces_dynamic.go
+|  |  |  |-- generator_interfaces_primitive_newtype.go
+|  |  |  |-- generator_interfaces_struct.go
+|  |  |  |-- generator_tests.go
+|  |  |  |-- util.go
+|  |  |-- main.go
+|  |  |-- test
+|  |  |  |-- BUILD
+|  |  |  |-- benchmark_test.go
+|  |  |  |-- dynamic.go
+|  |  |  |-- escape
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- escape.go
+|  |  |  |-- external
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- external.go
+|  |  |  |-- marshal_test.go
+|  |  |  |-- test.go
+|  |-- go_stateify
+|  |  |-- BUILD
+|  |  |-- defs.bzl
+|  |  |-- main.go
+|  |-- images.mk
+|  |-- installers
+|  |  |-- BUILD
+|  |  |-- containerd.sh
+|  |  |-- head.sh
+|  |  |-- images.sh
+|  |  |-- master.sh
+|  |  |-- shim.sh
+|  |-- make_apt.sh
+|  |-- make_release.sh
+|  |-- nogo
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- analyzers.go
+|  |  |-- build.go
+|  |  |-- check
+|  |  |  |-- BUILD
+|  |  |  |-- main.go
+|  |  |-- config-schema.json
+|  |  |-- config.go
+|  |  |-- defs.bzl
+|  |  |-- filter
+|  |  |  |-- BUILD
+|  |  |  |-- main.go
+|  |  |-- findings.go
+|  |  |-- nogo.go
+|  |  |-- objdump
+|  |  |  |-- BUILD
+|  |  |  |-- objdump.go
+|  |-- parsers
+|  |  |-- BUILD
+|  |  |-- go_parser.go
+|  |  |-- go_parser_test.go
+|  |  |-- parser_main.go
+|  |  |-- version.go
+|  |-- rules_go_symbols.patch
+|  |-- rules_go_visibility.patch
+|  |-- tag_release.sh
+|  |-- tags
+|  |  |-- BUILD
+|  |  |-- tags.go
+|  |-- verity
+|  |  |-- BUILD
+|  |  |-- measure_tool.go
+|  |  |-- measure_tool_unsafe.go
+|  |-- worker
+|  |  |-- BUILD
+|  |  |-- worker.go
+|  |-- workspace_status.sh
+|  |-- yamltest
+|  |  |-- BUILD
+|  |  |-- defs.bzl
+|  |  |-- main.go
+|-- vdso
+|  |-- BUILD
+|  |-- barrier.h
+|  |-- check_vdso.py
+|  |-- compiler.h
+|  |-- cycle_clock.h
+|  |-- seqlock.h
+|  |-- syscalls.h
+|  |-- vdso.cc
+|  |-- vdso_amd64.lds
+|  |-- vdso_arm64.lds
+|  |-- vdso_time.cc
+|  |-- vdso_time.h
+|-- webhook
+|  |-- BUILD
+|  |-- main.go
+|  |-- pkg
+|  |  |-- cli
+|  |  |  |-- BUILD
+|  |  |  |-- cli.go
+|  |  |-- injector
+|  |  |  |-- BUILD
+|  |  |  |-- gencerts.sh
+|  |  |  |-- webhook.go
+|-- website
+|  |-- BUILD
+|  |-- _config.yml
+|  |-- _includes
+|  |  |-- byline.html
+|  |  |-- footer-links.html
+|  |  |-- footer.html
+|  |  |-- graph.html
+|  |  |-- header-links.html
+|  |  |-- header.html
+|  |  |-- paginator.html
+|  |  |-- required_linux.html
+|  |-- _layouts
+|  |  |-- base.html
+|  |  |-- blog.html
+|  |  |-- default.html
+|  |  |-- docs.html
+|  |  |-- post.html
+|  |-- _plugins
+|  |  |-- svg_mime_type.rb
+|  |-- _sass
+|  |  |-- footer.scss
+|  |  |-- front.scss
+|  |  |-- navbar.scss
+|  |  |-- sidebar.scss
+|  |  |-- style.scss
+|  |-- archive.key
+|  |-- assets
+|  |  |-- favicons
+|  |  |  |-- apple-touch-icon-180x180.png
+|  |  |  |-- favicon-16x16.png
+|  |  |  |-- favicon-32x32.png
+|  |  |  |-- favicon.ico
+|  |  |  |-- pwa-192x192.png
+|  |  |  |-- pwa-512x512.png
+|  |  |  |-- tile150x150.png
+|  |  |  |-- tile310x150.png
+|  |  |  |-- tile310x310.png
+|  |  |  |-- tile70x70.png
+|  |  |-- images
+|  |  |  |-- 2019-11-18-security-basics-figure1.png
+|  |  |  |-- 2019-11-18-security-basics-figure2.png
+|  |  |  |-- 2019-11-18-security-basics-figure3.png
+|  |  |  |-- 2020-04-02-networking-security-figure1.png
+|  |  |  |-- 2020-09-18-containing-a-real-vulnerability-figure1.png
+|  |  |  |-- background.jpg
+|  |  |  |-- background_1080p.jpg
+|  |  |-- logos
+|  |  |  |-- Makefile
+|  |  |  |-- README.md
+|  |  |  |-- logo_solo_monochrome.png
+|  |  |  |-- logo_solo_monochrome.svg
+|  |  |  |-- logo_solo_on_dark-1024.png
+|  |  |  |-- logo_solo_on_dark-128.png
+|  |  |  |-- logo_solo_on_dark-16.png
+|  |  |  |-- logo_solo_on_dark.png
+|  |  |  |-- logo_solo_on_dark.svg
+|  |  |  |-- logo_solo_on_dark_full-1024.png
+|  |  |  |-- logo_solo_on_dark_full-128.png
+|  |  |  |-- logo_solo_on_dark_full-16.png
+|  |  |  |-- logo_solo_on_dark_full.png
+|  |  |  |-- logo_solo_on_dark_full.svg
+|  |  |  |-- logo_solo_on_white.png
+|  |  |  |-- logo_solo_on_white.svg
+|  |  |  |-- logo_solo_on_white_bordered-1024.png
+|  |  |  |-- logo_solo_on_white_bordered-128.png
+|  |  |  |-- logo_solo_on_white_bordered-16.png
+|  |  |  |-- logo_solo_on_white_bordered.png
+|  |  |  |-- logo_solo_on_white_bordered.svg
+|  |  |  |-- logo_with_text_monochrome.png
+|  |  |  |-- logo_with_text_monochrome.svg
+|  |  |  |-- logo_with_text_on_dark-1024.png
+|  |  |  |-- logo_with_text_on_dark-128.png
+|  |  |  |-- logo_with_text_on_dark-16.png
+|  |  |  |-- logo_with_text_on_dark.png
+|  |  |  |-- logo_with_text_on_dark.svg
+|  |  |  |-- logo_with_text_on_dark_full-1024.png
+|  |  |  |-- logo_with_text_on_dark_full-128.png
+|  |  |  |-- logo_with_text_on_dark_full-16.png
+|  |  |  |-- logo_with_text_on_dark_full.png
+|  |  |  |-- logo_with_text_on_dark_full.svg
+|  |  |  |-- logo_with_text_on_white.png
+|  |  |  |-- logo_with_text_on_white.svg
+|  |  |  |-- logo_with_text_on_white_bordered.png
+|  |  |  |-- logo_with_text_on_white_bordered.svg
+|  |  |  |-- powered-gvisor.png
+|  |-- blog
+|  |  |-- 2019-11-18-security-basics.md
+|  |  |-- 2020-04-02-networking-security.md
+|  |  |-- 2020-09-18-containing-a-real-vulnerability.md
+|  |  |-- 2020-10-22-platform-portability.md
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- index.html
+|  |-- cmd
+|  |  |-- server
+|  |  |  |-- BUILD
+|  |  |  |-- main.go
+|  |  |-- syscalldocs
+|  |  |  |-- BUILD
+|  |  |  |-- main.go
+|  |-- css
+|  |  |-- main.scss
+|  |-- defs.bzl
+|  |-- index.md
+|  |-- performance
+|  |  |-- README.md
+|  |  |-- applications.csv
+|  |  |-- density.csv
+|  |  |-- ffmpeg.csv
+|  |  |-- fio-tmpfs.csv
+|  |  |-- fio.csv
+|  |  |-- httpd100k.csv
+|  |  |-- httpd10240k.csv
+|  |  |-- iperf.csv
+|  |  |-- redis.csv
+|  |  |-- startup.csv
+|  |  |-- sysbench-cpu.csv
+|  |  |-- sysbench-memory.csv
+|  |  |-- syscall.csv
+|  |  |-- tensorflow.csv

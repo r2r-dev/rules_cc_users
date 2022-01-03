@@ -1,0 +1,679 @@
+|-- .gitignore
+|-- .travis.yml
+|-- AUTHORS
+|-- CONTRIBUTING
+|-- CONTRIBUTORS
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- external
+|  |-- zlib.BUILD
+|-- src
+|  |-- BUILD
+|  |-- builder.cc
+|  |-- builder.h
+|  |-- compat
+|  |  |-- BUILD
+|  |  |-- int_compat.h
+|  |  |-- string_compat.h
+|  |  |-- test_compat.h
+|  |-- intervalmap.h
+|  |-- intervalmap_test.cc
+|  |-- path_matching.h
+|  |-- perf_data_converter.cc
+|  |-- perf_data_converter.h
+|  |-- perf_data_converter_test.cc
+|  |-- perf_data_handler.cc
+|  |-- perf_data_handler.h
+|  |-- perf_data_handler_test.cc
+|  |-- perf_to_profile.cc
+|  |-- perf_to_profile_lib.cc
+|  |-- perf_to_profile_lib.h
+|  |-- perf_to_profile_lib_test.cc
+|  |-- profile.proto
+|  |-- quipper
+|  |  |-- .project_alias
+|  |  |-- BUILD
+|  |  |-- BUILD.gn
+|  |  |-- CPPLINT.cfg
+|  |  |-- LICENSE
+|  |  |-- README
+|  |  |-- address_mapper.cc
+|  |  |-- address_mapper.h
+|  |  |-- address_mapper_test.cc
+|  |  |-- base
+|  |  |  |-- logging.cc
+|  |  |  |-- logging.h
+|  |  |  |-- macros.h
+|  |  |-- binary_data_utils.cc
+|  |  |-- binary_data_utils.h
+|  |  |-- binary_data_utils_test.cc
+|  |  |-- buffer_reader.cc
+|  |  |-- buffer_reader.h
+|  |  |-- buffer_reader_test.cc
+|  |  |-- buffer_writer.cc
+|  |  |-- buffer_writer.h
+|  |  |-- buffer_writer_test.cc
+|  |  |-- compat
+|  |  |  |-- cros
+|  |  |  |  |-- detail
+|  |  |  |  |  |-- thread.h
+|  |  |  |-- log_level.cc
+|  |  |  |-- log_level.h
+|  |  |  |-- non_cros
+|  |  |  |  |-- detail
+|  |  |  |  |  |-- thread.h
+|  |  |  |-- proto.h
+|  |  |  |-- string.h
+|  |  |  |-- test.h
+|  |  |  |-- thread.h
+|  |  |-- conversion_utils.cc
+|  |  |-- conversion_utils.h
+|  |  |-- conversion_utils_test.cc
+|  |  |-- corpus
+|  |  |  |-- clusterfuzz-testcase-minimized-quipper_perf_reader_read_fuzzer-4883679740166144
+|  |  |  |-- clusterfuzz-testcase-minimized-quipper_perf_reader_read_fuzzer-5980151822942208
+|  |  |  |-- poc-145fc46ec928e50d7116f6137a3a074bf5c6934c9ab07e3529d0e8e021e7481f
+|  |  |  |-- poc-15c4696aab8d47509154302563290062647df5c1d0156fb35382f62f22e86511
+|  |  |  |-- poc-1d0e6544b4addbadb2ff7c136962f7aab8e290a8275d4a46694758c4e75e7a13
+|  |  |  |-- poc-2125342715d182bd627e7e86e6843cf54654faeb336d0c07893fec760961d853
+|  |  |  |-- poc-2c02c3aa9fb2a613b65097e26fd182d748b0c81b9359a012b09cbe7a358d3ca2
+|  |  |  |-- poc-39297b2ac020d2cec6943a92cd44f1c148f43b8ba4640f1b95ca5ed97fd370d1
+|  |  |  |-- poc-3be2b745d86f9b6e8491a391f14200007b6841fb5c25b010752c87f1e53af9b5
+|  |  |  |-- poc-3c490f25d455ada2b2701674ac183d8abd7b1bccb687235e8e60d390b6c524a6
+|  |  |  |-- poc-4a52fdd4e9d5adcda85329e1f5fb6f425788e63cef41209f83bfd6edcfae4ff3
+|  |  |  |-- poc-56c11c81f1da85a4c5b898b6a9dd14c307b994ff02c6e98445ba22d2e8e957a7
+|  |  |  |-- poc-62e91c55617092aa82376846d050d7353ed899748d8e5990f381c2143d090e53
+|  |  |  |-- poc-66e69c581f80fbfd89c6769ae588cd0920f815d6675686c9b77fbd5cb23940e5
+|  |  |  |-- poc-6811aac63baf66b46afe603c99b882dfeca9bda96e0c0fc6ba9d807ae9370309
+|  |  |  |-- poc-6b01a0404c8a3eb444fad4d88fe4fdd3d6a5b4882c5c77c9f12756983325d3e4
+|  |  |  |-- poc-7bef7f895afc2ab06ed34b6ab7a961edac3c6ef0ff821a59a54f1e30a1ef3aa7
+|  |  |  |-- poc-8b38b630443e3d51347f427ec97a475a68ab3beeea5d52df41e5bbc6ad012999
+|  |  |  |-- poc-95cc7524c6b55c7d26365fdacc8a04e7a8aae7bb2ae2c367e08d2e2872212b9d
+|  |  |  |-- poc-abf23464321bf643602edfb45d6fa9ea39d571a5eff7299e567fe73d93234838
+|  |  |  |-- poc-ba8a4480ea231128f3d5515fdd75f4ff5d20e090a37f701608bd299aee1fb4bd
+|  |  |  |-- poc-c53034701abf35f2cb30d80ea967a540ad3d4eb208e17c78e7159f3df3dae191
+|  |  |  |-- poc-c895bf2ccfcc61dda638783feda6600e4e11a130285ab140faacb5d63399b4f4
+|  |  |  |-- poc-cea30a3a2372cd398b168517619019f49e7865e955ada87233242267f1bd3020
+|  |  |  |-- poc-d8b5768bcbbc2fbe0b5823623a84bb74a1c7bd832e66ecf598d3fc424ca34dc5
+|  |  |  |-- poc-da8445ae650c392d7e75ad11e72fd555d4df90ea7942206378209099fe640004-190120103501633075
+|  |  |  |-- poc-eebb35632622f4e6e07b2908a92de53ee73e9eb83c8c84bcb2cb81c1a3b46327
+|  |  |  |-- poc-fd76c99f4c02a1e3bc42ef962111a3b9991b8a0798746475e894185642eb6679
+|  |  |-- data_reader.cc
+|  |  |-- data_reader.h
+|  |  |-- data_writer.cc
+|  |  |-- data_writer.h
+|  |  |-- dso.cc
+|  |  |-- dso.h
+|  |  |-- dso_test.cc
+|  |  |-- dso_test_utils.cc
+|  |  |-- dso_test_utils.h
+|  |  |-- file_reader.cc
+|  |  |-- file_reader.h
+|  |  |-- file_reader_test.cc
+|  |  |-- file_utils.cc
+|  |  |-- file_utils.h
+|  |  |-- huge_page_deducer.cc
+|  |  |-- huge_page_deducer.h
+|  |  |-- huge_page_deducer_test.cc
+|  |  |-- install_prerequisites.sh
+|  |  |-- kernel
+|  |  |  |-- COPYING
+|  |  |  |-- perf_event.h
+|  |  |  |-- perf_internals.h
+|  |  |-- perf_buildid.cc
+|  |  |-- perf_buildid.h
+|  |  |-- perf_buildid_test.cc
+|  |  |-- perf_converter.cc
+|  |  |-- perf_data.proto
+|  |  |-- perf_data_structures.h
+|  |  |-- perf_data_utils.cc
+|  |  |-- perf_data_utils.h
+|  |  |-- perf_data_utils_test.cc
+|  |  |-- perf_option_parser.cc
+|  |  |-- perf_option_parser.h
+|  |  |-- perf_option_parser_test.cc
+|  |  |-- perf_parser.cc
+|  |  |-- perf_parser.h
+|  |  |-- perf_parser_options.proto
+|  |  |-- perf_parser_test.cc
+|  |  |-- perf_protobuf_io.cc
+|  |  |-- perf_protobuf_io.h
+|  |  |-- perf_reader.cc
+|  |  |-- perf_reader.h
+|  |  |-- perf_reader_fuzzer.cc
+|  |  |-- perf_reader_test.cc
+|  |  |-- perf_recorder.cc
+|  |  |-- perf_recorder.h
+|  |  |-- perf_recorder_test.cc
+|  |  |-- perf_serializer.cc
+|  |  |-- perf_serializer.h
+|  |  |-- perf_serializer_test.cc
+|  |  |-- perf_stat.proto
+|  |  |-- perf_stat_parser.cc
+|  |  |-- perf_stat_parser.h
+|  |  |-- perf_stat_parser_test.cc
+|  |  |-- perf_test_files.cc
+|  |  |-- perf_test_files.h
+|  |  |-- quipper.cc
+|  |  |-- quipper_lib.cc
+|  |  |-- quipper_lib.h
+|  |  |-- quipper_lib_test.cc
+|  |  |-- run_command.cc
+|  |  |-- run_command.h
+|  |  |-- run_command_test.cc
+|  |  |-- sample_info_reader.cc
+|  |  |-- sample_info_reader.h
+|  |  |-- sample_info_reader_test.cc
+|  |  |-- scoped_temp_path.cc
+|  |  |-- scoped_temp_path.h
+|  |  |-- scoped_temp_path_test.cc
+|  |  |-- string_utils.cc
+|  |  |-- string_utils.h
+|  |  |-- test_perf_data.cc
+|  |  |-- test_perf_data.h
+|  |  |-- test_runner.cc
+|  |  |-- test_utils.cc
+|  |  |-- test_utils.h
+|  |  |-- testdata
+|  |  |  |-- hello_world.txt.gz
+|  |  |  |-- perf
+|  |  |  |-- perf.callgraph.pb_text
+|  |  |  |-- perf.data.armv7-3.4
+|  |  |  |-- perf.data.armv7-3.4.io.out.pb_data
+|  |  |  |-- perf.data.armv7-3.4.io.out.pb_text
+|  |  |  |-- perf.data.armv7-3.4.parse.out.pb_data
+|  |  |  |-- perf.data.armv7-3.4.parse.out.pb_text
+|  |  |  |-- perf.data.armv7-3.4.parse.remap.out.pb_data
+|  |  |  |-- perf.data.armv7-3.4.parse.remap.out.pb_text
+|  |  |  |-- perf.data.armv7-3.4.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.armv7-3.4.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.armv7-3.4.pb_data
+|  |  |  |-- perf.data.armv7-3.4.pb_text
+|  |  |  |-- perf.data.armv7-3.4.ser.comm.out.pb_data
+|  |  |  |-- perf.data.armv7-3.4.ser.comm.out.pb_text
+|  |  |  |-- perf.data.armv7-3.4.serialized.out.pb_data
+|  |  |  |-- perf.data.armv7-3.4.serialized.out.pb_text
+|  |  |  |-- perf.data.armv7.perf_3.14-3.8
+|  |  |  |-- perf.data.armv7.perf_3.14-3.8.io.out.pb_data
+|  |  |  |-- perf.data.armv7.perf_3.14-3.8.io.out.pb_text
+|  |  |  |-- perf.data.armv7.perf_3.14-3.8.parse.out.pb_data
+|  |  |  |-- perf.data.armv7.perf_3.14-3.8.parse.out.pb_text
+|  |  |  |-- perf.data.armv7.perf_3.14-3.8.parse.remap.out.pb_data
+|  |  |  |-- perf.data.armv7.perf_3.14-3.8.parse.remap.out.pb_text
+|  |  |  |-- perf.data.armv7.perf_3.14-3.8.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.armv7.perf_3.14-3.8.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.armv7.perf_3.14-3.8.pb_data
+|  |  |  |-- perf.data.armv7.perf_3.14-3.8.pb_text
+|  |  |  |-- perf.data.armv7.perf_3.14-3.8.ser.comm.out.pb_data
+|  |  |  |-- perf.data.armv7.perf_3.14-3.8.ser.comm.out.pb_text
+|  |  |  |-- perf.data.armv7.perf_3.14-3.8.serialized.out.pb_data
+|  |  |  |-- perf.data.armv7.perf_3.14-3.8.serialized.out.pb_text
+|  |  |  |-- perf.data.branch-4.14
+|  |  |  |-- perf.data.branch-4.14.buildids
+|  |  |  |-- perf.data.branch-4.14.io.out.pb_data
+|  |  |  |-- perf.data.branch-4.14.io.out.pb_text
+|  |  |  |-- perf.data.branch-4.14.parse.out.pb_data
+|  |  |  |-- perf.data.branch-4.14.parse.out.pb_text
+|  |  |  |-- perf.data.branch-4.14.parse.remap.out.pb_data
+|  |  |  |-- perf.data.branch-4.14.parse.remap.out.pb_text
+|  |  |  |-- perf.data.branch-4.14.pb_text
+|  |  |  |-- perf.data.branch-4.14.ser.comm.out.pb_data
+|  |  |  |-- perf.data.branch-4.14.ser.comm.out.pb_text
+|  |  |  |-- perf.data.branch-4.14.serialized.out.pb_data
+|  |  |  |-- perf.data.branch-4.14.serialized.out.pb_text
+|  |  |  |-- perf.data.busy.0-3.4
+|  |  |  |-- perf.data.busy.0-3.4.io.out.pb_data
+|  |  |  |-- perf.data.busy.0-3.4.io.out.pb_text
+|  |  |  |-- perf.data.busy.0-3.4.parse.remap.out.pb_data
+|  |  |  |-- perf.data.busy.0-3.4.parse.remap.out.pb_text
+|  |  |  |-- perf.data.busy.0-3.4.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.busy.0-3.4.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.busy.0-3.4.pb_data
+|  |  |  |-- perf.data.busy.0-3.4.pb_text
+|  |  |  |-- perf.data.busy.0-3.4.ser.comm.out.pb_data
+|  |  |  |-- perf.data.busy.0-3.4.ser.comm.out.pb_text
+|  |  |  |-- perf.data.busy.0-3.4.serialized.out.pb_data
+|  |  |  |-- perf.data.busy.0-3.4.serialized.out.pb_text
+|  |  |  |-- perf.data.busy.0-3.8
+|  |  |  |-- perf.data.busy.0-3.8.buildids
+|  |  |  |-- perf.data.busy.0-3.8.io.out.pb_data
+|  |  |  |-- perf.data.busy.0-3.8.io.out.pb_text
+|  |  |  |-- perf.data.busy.0-3.8.parse.remap.out.pb_data
+|  |  |  |-- perf.data.busy.0-3.8.parse.remap.out.pb_text
+|  |  |  |-- perf.data.busy.0-3.8.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.busy.0-3.8.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.busy.0-3.8.pb_data
+|  |  |  |-- perf.data.busy.0-3.8.pb_text
+|  |  |  |-- perf.data.busy.0-3.8.ser.comm.out.pb_data
+|  |  |  |-- perf.data.busy.0-3.8.ser.comm.out.pb_text
+|  |  |  |-- perf.data.busy.0-3.8.serialized.out.pb_data
+|  |  |  |-- perf.data.busy.0-3.8.serialized.out.pb_text
+|  |  |  |-- perf.data.busy.1-3.4
+|  |  |  |-- perf.data.busy.1-3.4.io.out.pb_data
+|  |  |  |-- perf.data.busy.1-3.4.io.out.pb_text
+|  |  |  |-- perf.data.busy.1-3.4.parse.remap.out.pb_data
+|  |  |  |-- perf.data.busy.1-3.4.parse.remap.out.pb_text
+|  |  |  |-- perf.data.busy.1-3.4.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.busy.1-3.4.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.busy.1-3.4.pb_data
+|  |  |  |-- perf.data.busy.1-3.4.pb_text
+|  |  |  |-- perf.data.busy.1-3.4.ser.comm.out.pb_data
+|  |  |  |-- perf.data.busy.1-3.4.ser.comm.out.pb_text
+|  |  |  |-- perf.data.busy.1-3.4.serialized.out.pb_data
+|  |  |  |-- perf.data.busy.1-3.4.serialized.out.pb_text
+|  |  |  |-- perf.data.busy.1-3.8
+|  |  |  |-- perf.data.busy.1-3.8.buildids
+|  |  |  |-- perf.data.busy.1-3.8.io.out.pb_data
+|  |  |  |-- perf.data.busy.1-3.8.io.out.pb_text
+|  |  |  |-- perf.data.busy.1-3.8.parse.remap.out.pb_data
+|  |  |  |-- perf.data.busy.1-3.8.parse.remap.out.pb_text
+|  |  |  |-- perf.data.busy.1-3.8.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.busy.1-3.8.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.busy.1-3.8.pb_data
+|  |  |  |-- perf.data.busy.1-3.8.pb_text
+|  |  |  |-- perf.data.busy.1-3.8.ser.comm.out.pb_data
+|  |  |  |-- perf.data.busy.1-3.8.ser.comm.out.pb_text
+|  |  |  |-- perf.data.busy.1-3.8.serialized.out.pb_data
+|  |  |  |-- perf.data.busy.1-3.8.serialized.out.pb_text
+|  |  |  |-- perf.data.busy.5-3.4
+|  |  |  |-- perf.data.busy.5-3.4.io.out.pb_data
+|  |  |  |-- perf.data.busy.5-3.4.io.out.pb_text
+|  |  |  |-- perf.data.busy.5-3.4.parse.remap.out.pb_data
+|  |  |  |-- perf.data.busy.5-3.4.parse.remap.out.pb_text
+|  |  |  |-- perf.data.busy.5-3.4.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.busy.5-3.4.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.busy.5-3.4.pb_data
+|  |  |  |-- perf.data.busy.5-3.4.pb_text
+|  |  |  |-- perf.data.busy.5-3.4.ser.comm.out.pb_data
+|  |  |  |-- perf.data.busy.5-3.4.ser.comm.out.pb_text
+|  |  |  |-- perf.data.busy.5-3.4.serialized.out.pb_data
+|  |  |  |-- perf.data.busy.5-3.4.serialized.out.pb_text
+|  |  |  |-- perf.data.busy.5-3.8
+|  |  |  |-- perf.data.busy.5-3.8.buildids
+|  |  |  |-- perf.data.busy.5-3.8.io.out.pb_data
+|  |  |  |-- perf.data.busy.5-3.8.io.out.pb_text
+|  |  |  |-- perf.data.busy.5-3.8.parse.remap.out.pb_data
+|  |  |  |-- perf.data.busy.5-3.8.parse.remap.out.pb_text
+|  |  |  |-- perf.data.busy.5-3.8.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.busy.5-3.8.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.busy.5-3.8.pb_data
+|  |  |  |-- perf.data.busy.5-3.8.pb_text
+|  |  |  |-- perf.data.busy.5-3.8.ser.comm.out.pb_data
+|  |  |  |-- perf.data.busy.5-3.8.ser.comm.out.pb_text
+|  |  |  |-- perf.data.busy.5-3.8.serialized.out.pb_data
+|  |  |  |-- perf.data.busy.5-3.8.serialized.out.pb_text
+|  |  |  |-- perf.data.callgraph-3.4
+|  |  |  |-- perf.data.callgraph-3.4.pb_text
+|  |  |  |-- perf.data.callgraph-3.8
+|  |  |  |-- perf.data.callgraph-3.8.buildids
+|  |  |  |-- perf.data.callgraph-3.8.pb_text
+|  |  |  |-- perf.data.callgraph_and_branch-3.4
+|  |  |  |-- perf.data.callgraph_and_branch-3.4.pb_text
+|  |  |  |-- perf.data.callgraph_and_branch-3.8
+|  |  |  |-- perf.data.callgraph_and_branch-3.8.buildids
+|  |  |  |-- perf.data.callgraph_and_branch-3.8.pb_text
+|  |  |  |-- perf.data.ctx_switch_namespaces-4.14
+|  |  |  |-- perf.data.ctx_switch_namespaces-4.14.buildids
+|  |  |  |-- perf.data.ctx_switch_namespaces-4.14.io.out.pb_data
+|  |  |  |-- perf.data.ctx_switch_namespaces-4.14.io.out.pb_text
+|  |  |  |-- perf.data.ctx_switch_namespaces-4.14.parse.out.pb_data
+|  |  |  |-- perf.data.ctx_switch_namespaces-4.14.parse.out.pb_text
+|  |  |  |-- perf.data.ctx_switch_namespaces-4.14.parse.remap.out.pb_data
+|  |  |  |-- perf.data.ctx_switch_namespaces-4.14.parse.remap.out.pb_text
+|  |  |  |-- perf.data.ctx_switch_namespaces-4.14.pb_text
+|  |  |  |-- perf.data.ctx_switch_namespaces-4.14.ser.comm.out.pb_data
+|  |  |  |-- perf.data.ctx_switch_namespaces-4.14.ser.comm.out.pb_text
+|  |  |  |-- perf.data.ctx_switch_namespaces-4.14.serialized.out.pb_data
+|  |  |  |-- perf.data.ctx_switch_namespaces-4.14.serialized.out.pb_text
+|  |  |  |-- perf.data.forkexit-3.4
+|  |  |  |-- perf.data.forkexit-3.4.io.out.pb_data
+|  |  |  |-- perf.data.forkexit-3.4.io.out.pb_text
+|  |  |  |-- perf.data.forkexit-3.4.parse.out.pb_data
+|  |  |  |-- perf.data.forkexit-3.4.parse.out.pb_text
+|  |  |  |-- perf.data.forkexit-3.4.parse.remap.out.pb_data
+|  |  |  |-- perf.data.forkexit-3.4.parse.remap.out.pb_text
+|  |  |  |-- perf.data.forkexit-3.4.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.forkexit-3.4.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.forkexit-3.4.pb_data
+|  |  |  |-- perf.data.forkexit-3.4.pb_text
+|  |  |  |-- perf.data.forkexit-3.4.ser.comm.out.pb_data
+|  |  |  |-- perf.data.forkexit-3.4.ser.comm.out.pb_text
+|  |  |  |-- perf.data.forkexit-3.4.serialized.out.pb_data
+|  |  |  |-- perf.data.forkexit-3.4.serialized.out.pb_text
+|  |  |  |-- perf.data.forkexit-3.8
+|  |  |  |-- perf.data.forkexit-3.8.buildids
+|  |  |  |-- perf.data.forkexit-3.8.io.out.pb_data
+|  |  |  |-- perf.data.forkexit-3.8.io.out.pb_text
+|  |  |  |-- perf.data.forkexit-3.8.parse.out.pb_data
+|  |  |  |-- perf.data.forkexit-3.8.parse.out.pb_text
+|  |  |  |-- perf.data.forkexit-3.8.parse.remap.out.pb_data
+|  |  |  |-- perf.data.forkexit-3.8.parse.remap.out.pb_text
+|  |  |  |-- perf.data.forkexit-3.8.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.forkexit-3.8.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.forkexit-3.8.pb_data
+|  |  |  |-- perf.data.forkexit-3.8.pb_text
+|  |  |  |-- perf.data.forkexit-3.8.ser.comm.out.pb_data
+|  |  |  |-- perf.data.forkexit-3.8.ser.comm.out.pb_text
+|  |  |  |-- perf.data.forkexit-3.8.serialized.out.pb_data
+|  |  |  |-- perf.data.forkexit-3.8.serialized.out.pb_text
+|  |  |  |-- perf.data.group_desc-4.14
+|  |  |  |-- perf.data.group_desc-4.14.buildids
+|  |  |  |-- perf.data.group_desc-4.14.io.out.pb_data
+|  |  |  |-- perf.data.group_desc-4.14.io.out.pb_text
+|  |  |  |-- perf.data.group_desc-4.14.parse.out.pb_data
+|  |  |  |-- perf.data.group_desc-4.14.parse.out.pb_text
+|  |  |  |-- perf.data.group_desc-4.14.parse.remap.out.pb_data
+|  |  |  |-- perf.data.group_desc-4.14.parse.remap.out.pb_text
+|  |  |  |-- perf.data.group_desc-4.14.pb_text
+|  |  |  |-- perf.data.group_desc-4.14.ser.comm.out.pb_data
+|  |  |  |-- perf.data.group_desc-4.14.ser.comm.out.pb_text
+|  |  |  |-- perf.data.group_desc-4.14.serialized.out.pb_data
+|  |  |  |-- perf.data.group_desc-4.14.serialized.out.pb_text
+|  |  |  |-- perf.data.hw_and_sw-3.4
+|  |  |  |-- perf.data.hw_and_sw-3.4.io.out.pb_data
+|  |  |  |-- perf.data.hw_and_sw-3.4.io.out.pb_text
+|  |  |  |-- perf.data.hw_and_sw-3.4.parse.out.pb_data
+|  |  |  |-- perf.data.hw_and_sw-3.4.parse.out.pb_text
+|  |  |  |-- perf.data.hw_and_sw-3.4.parse.remap.out.pb_data
+|  |  |  |-- perf.data.hw_and_sw-3.4.parse.remap.out.pb_text
+|  |  |  |-- perf.data.hw_and_sw-3.4.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.hw_and_sw-3.4.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.hw_and_sw-3.4.pb_data
+|  |  |  |-- perf.data.hw_and_sw-3.4.pb_text
+|  |  |  |-- perf.data.hw_and_sw-3.4.ser.comm.out.pb_data
+|  |  |  |-- perf.data.hw_and_sw-3.4.ser.comm.out.pb_text
+|  |  |  |-- perf.data.hw_and_sw-3.4.serialized.out.pb_data
+|  |  |  |-- perf.data.hw_and_sw-3.4.serialized.out.pb_text
+|  |  |  |-- perf.data.i686-3.4
+|  |  |  |-- perf.data.i686-3.4.io.out.pb_data
+|  |  |  |-- perf.data.i686-3.4.io.out.pb_text
+|  |  |  |-- perf.data.i686-3.4.parse.out.pb_data
+|  |  |  |-- perf.data.i686-3.4.parse.out.pb_text
+|  |  |  |-- perf.data.i686-3.4.parse.remap.out.pb_data
+|  |  |  |-- perf.data.i686-3.4.parse.remap.out.pb_text
+|  |  |  |-- perf.data.i686-3.4.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.i686-3.4.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.i686-3.4.pb_data
+|  |  |  |-- perf.data.i686-3.4.pb_text
+|  |  |  |-- perf.data.i686-3.4.ser.comm.out.pb_data
+|  |  |  |-- perf.data.i686-3.4.ser.comm.out.pb_text
+|  |  |  |-- perf.data.i686-3.4.serialized.out.pb_data
+|  |  |  |-- perf.data.i686-3.4.serialized.out.pb_text
+|  |  |  |-- perf.data.intel_pt-4.14
+|  |  |  |-- perf.data.intel_pt-4.14.buildids
+|  |  |  |-- perf.data.intel_pt-4.14.io.out.pb_data
+|  |  |  |-- perf.data.intel_pt-4.14.io.out.pb_text
+|  |  |  |-- perf.data.intel_pt-4.14.parse.out.pb_data
+|  |  |  |-- perf.data.intel_pt-4.14.parse.out.pb_text
+|  |  |  |-- perf.data.intel_pt-4.14.parse.remap.out.pb_data
+|  |  |  |-- perf.data.intel_pt-4.14.parse.remap.out.pb_text
+|  |  |  |-- perf.data.intel_pt-4.14.pb_text
+|  |  |  |-- perf.data.intel_pt-4.14.ser.comm.out.pb_data
+|  |  |  |-- perf.data.intel_pt-4.14.ser.comm.out.pb_text
+|  |  |  |-- perf.data.intel_pt-4.14.serialized.out.pb_data
+|  |  |  |-- perf.data.intel_pt-4.14.serialized.out.pb_text
+|  |  |  |-- perf.data.lost_samples-4.4
+|  |  |  |-- perf.data.lost_samples-4.4.buildids
+|  |  |  |-- perf.data.lost_samples-4.4.io.out.pb_data
+|  |  |  |-- perf.data.lost_samples-4.4.io.out.pb_text
+|  |  |  |-- perf.data.lost_samples-4.4.parse.out.pb_data
+|  |  |  |-- perf.data.lost_samples-4.4.parse.out.pb_text
+|  |  |  |-- perf.data.lost_samples-4.4.parse.remap.out.pb_data
+|  |  |  |-- perf.data.lost_samples-4.4.parse.remap.out.pb_text
+|  |  |  |-- perf.data.lost_samples-4.4.pb_text
+|  |  |  |-- perf.data.lost_samples-4.4.ser.comm.out.pb_data
+|  |  |  |-- perf.data.lost_samples-4.4.ser.comm.out.pb_text
+|  |  |  |-- perf.data.lost_samples-4.4.serialized.out.pb_data
+|  |  |  |-- perf.data.lost_samples-4.4.serialized.out.pb_text
+|  |  |  |-- perf.data.numatopology-3.2
+|  |  |  |-- perf.data.numatopology-3.2.io.out.pb_data
+|  |  |  |-- perf.data.numatopology-3.2.io.out.pb_text
+|  |  |  |-- perf.data.numatopology-3.2.parse.out.pb_data
+|  |  |  |-- perf.data.numatopology-3.2.parse.out.pb_text
+|  |  |  |-- perf.data.numatopology-3.2.parse.remap.out.pb_data
+|  |  |  |-- perf.data.numatopology-3.2.parse.remap.out.pb_text
+|  |  |  |-- perf.data.numatopology-3.2.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.numatopology-3.2.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.numatopology-3.2.pb_data
+|  |  |  |-- perf.data.numatopology-3.2.pb_text
+|  |  |  |-- perf.data.numatopology-3.2.ser.comm.out.pb_data
+|  |  |  |-- perf.data.numatopology-3.2.ser.comm.out.pb_text
+|  |  |  |-- perf.data.numatopology-3.2.serialized.out.pb_data
+|  |  |  |-- perf.data.numatopology-3.2.serialized.out.pb_text
+|  |  |  |-- perf.data.piped.corrupted.zero_size_sample-3.2
+|  |  |  |-- perf.data.piped.ctx_switch_namespaces-4.14
+|  |  |  |-- perf.data.piped.ctx_switch_namespaces-4.14.pr.out.pb_data
+|  |  |  |-- perf.data.piped.ctx_switch_namespaces-4.14.pr.out.pb_text
+|  |  |  |-- perf.data.piped.header_features-4.16
+|  |  |  |-- perf.data.piped.header_features-4.16.pr.out.pb_data
+|  |  |  |-- perf.data.piped.header_features-4.16.pr.out.pb_text
+|  |  |  |-- perf.data.piped.hw_and_sw-3.4
+|  |  |  |-- perf.data.piped.hw_and_sw-3.4.pb_data
+|  |  |  |-- perf.data.piped.hw_and_sw-3.4.pb_text
+|  |  |  |-- perf.data.piped.hw_and_sw-3.4.pr.out.pb_data
+|  |  |  |-- perf.data.piped.hw_and_sw-3.4.pr.out.pb_text
+|  |  |  |-- perf.data.piped.intel_pt-4.14
+|  |  |  |-- perf.data.piped.intel_pt-4.14.pr.out.pb_data
+|  |  |  |-- perf.data.piped.intel_pt-4.14.pr.out.pb_text
+|  |  |  |-- perf.data.piped.lost_samples-4.4
+|  |  |  |-- perf.data.piped.lost_samples-4.4.pr.out.pb_data
+|  |  |  |-- perf.data.piped.lost_samples-4.4.pr.out.pb_text
+|  |  |  |-- perf.data.piped.no_attr_ids-4.14
+|  |  |  |-- perf.data.piped.no_attr_ids-4.14.pr.out.pb_data
+|  |  |  |-- perf.data.piped.no_attr_ids-4.14.pr.out.pb_text
+|  |  |  |-- perf.data.piped.target-3.4
+|  |  |  |-- perf.data.piped.target-3.4.pb_data
+|  |  |  |-- perf.data.piped.target-3.4.pb_text
+|  |  |  |-- perf.data.piped.target-3.4.pr.out.pb_data
+|  |  |  |-- perf.data.piped.target-3.4.pr.out.pb_text
+|  |  |  |-- perf.data.piped.target-3.8
+|  |  |  |-- perf.data.piped.target-3.8.pb_data
+|  |  |  |-- perf.data.piped.target-3.8.pb_text
+|  |  |  |-- perf.data.piped.target-3.8.pr.out.pb_data
+|  |  |  |-- perf.data.piped.target-3.8.pr.out.pb_text
+|  |  |  |-- perf.data.piped.target.throttled-3.4
+|  |  |  |-- perf.data.piped.target.throttled-3.4.pb_data
+|  |  |  |-- perf.data.piped.target.throttled-3.4.pb_text
+|  |  |  |-- perf.data.piped.target.throttled-3.4.pr.out.pb_data
+|  |  |  |-- perf.data.piped.target.throttled-3.4.pr.out.pb_text
+|  |  |  |-- perf.data.proc.map.timeout-3.18
+|  |  |  |-- perf.data.proc.map.timeout-3.18.buildids
+|  |  |  |-- perf.data.proc.map.timeout-3.18.io.out.pb_data
+|  |  |  |-- perf.data.proc.map.timeout-3.18.io.out.pb_text
+|  |  |  |-- perf.data.proc.map.timeout-3.18.parse.out.pb_data
+|  |  |  |-- perf.data.proc.map.timeout-3.18.parse.out.pb_text
+|  |  |  |-- perf.data.proc.map.timeout-3.18.parse.remap.out.pb_data
+|  |  |  |-- perf.data.proc.map.timeout-3.18.parse.remap.out.pb_text
+|  |  |  |-- perf.data.proc.map.timeout-3.18.pb_text
+|  |  |  |-- perf.data.proc.map.timeout-3.18.ser.comm.out.pb_data
+|  |  |  |-- perf.data.proc.map.timeout-3.18.ser.comm.out.pb_text
+|  |  |  |-- perf.data.proc.map.timeout-3.18.serialized.out.pb_data
+|  |  |  |-- perf.data.proc.map.timeout-3.18.serialized.out.pb_text
+|  |  |  |-- perf.data.raw-3.4
+|  |  |  |-- perf.data.raw-3.4.io.out.pb_data
+|  |  |  |-- perf.data.raw-3.4.io.out.pb_text
+|  |  |  |-- perf.data.raw-3.4.next.buildids
+|  |  |  |-- perf.data.raw-3.4.parse.out.pb_data
+|  |  |  |-- perf.data.raw-3.4.parse.out.pb_text
+|  |  |  |-- perf.data.raw-3.4.parse.remap.out.pb_data
+|  |  |  |-- perf.data.raw-3.4.parse.remap.out.pb_text
+|  |  |  |-- perf.data.raw-3.4.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.raw-3.4.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.raw-3.4.pb_data
+|  |  |  |-- perf.data.raw-3.4.pb_text
+|  |  |  |-- perf.data.raw-3.4.ser.comm.out.pb_data
+|  |  |  |-- perf.data.raw-3.4.ser.comm.out.pb_text
+|  |  |  |-- perf.data.raw-3.4.serialized.out.pb_data
+|  |  |  |-- perf.data.raw-3.4.serialized.out.pb_text
+|  |  |  |-- perf.data.raw_callgraph_branch-3.4
+|  |  |  |-- perf.data.raw_callgraph_branch-3.4.next.buildids
+|  |  |  |-- perf.data.raw_callgraph_branch-3.4.pb_text
+|  |  |  |-- perf.data.remmap-3.2
+|  |  |  |-- perf.data.remmap-3.2.io.out.pb_data
+|  |  |  |-- perf.data.remmap-3.2.io.out.pb_text
+|  |  |  |-- perf.data.remmap-3.2.parse.out.pb_data
+|  |  |  |-- perf.data.remmap-3.2.parse.out.pb_text
+|  |  |  |-- perf.data.remmap-3.2.parse.remap.out.pb_data
+|  |  |  |-- perf.data.remmap-3.2.parse.remap.out.pb_text
+|  |  |  |-- perf.data.remmap-3.2.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.remmap-3.2.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.remmap-3.2.pb_data
+|  |  |  |-- perf.data.remmap-3.2.pb_text
+|  |  |  |-- perf.data.remmap-3.2.ser.comm.out.pb_data
+|  |  |  |-- perf.data.remmap-3.2.ser.comm.out.pb_text
+|  |  |  |-- perf.data.remmap-3.2.serialized.out.pb_data
+|  |  |  |-- perf.data.remmap-3.2.serialized.out.pb_text
+|  |  |  |-- perf.data.singleprocess-3.4
+|  |  |  |-- perf.data.singleprocess-3.4.io.out.pb_data
+|  |  |  |-- perf.data.singleprocess-3.4.io.out.pb_text
+|  |  |  |-- perf.data.singleprocess-3.4.parse.out.pb_data
+|  |  |  |-- perf.data.singleprocess-3.4.parse.out.pb_text
+|  |  |  |-- perf.data.singleprocess-3.4.parse.remap.out.pb_data
+|  |  |  |-- perf.data.singleprocess-3.4.parse.remap.out.pb_text
+|  |  |  |-- perf.data.singleprocess-3.4.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.singleprocess-3.4.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.singleprocess-3.4.pb_data
+|  |  |  |-- perf.data.singleprocess-3.4.pb_text
+|  |  |  |-- perf.data.singleprocess-3.4.ser.comm.out.pb_data
+|  |  |  |-- perf.data.singleprocess-3.4.ser.comm.out.pb_text
+|  |  |  |-- perf.data.singleprocess-3.4.serialized.out.pb_data
+|  |  |  |-- perf.data.singleprocess-3.4.serialized.out.pb_text
+|  |  |  |-- perf.data.singleprocess-3.8
+|  |  |  |-- perf.data.singleprocess-3.8.buildids
+|  |  |  |-- perf.data.singleprocess-3.8.io.out.pb_data
+|  |  |  |-- perf.data.singleprocess-3.8.io.out.pb_text
+|  |  |  |-- perf.data.singleprocess-3.8.parse.out.pb_data
+|  |  |  |-- perf.data.singleprocess-3.8.parse.out.pb_text
+|  |  |  |-- perf.data.singleprocess-3.8.parse.remap.out.pb_data
+|  |  |  |-- perf.data.singleprocess-3.8.parse.remap.out.pb_text
+|  |  |  |-- perf.data.singleprocess-3.8.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.singleprocess-3.8.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.singleprocess-3.8.pb_data
+|  |  |  |-- perf.data.singleprocess-3.8.pb_text
+|  |  |  |-- perf.data.singleprocess-3.8.ser.comm.out.pb_data
+|  |  |  |-- perf.data.singleprocess-3.8.ser.comm.out.pb_text
+|  |  |  |-- perf.data.singleprocess-3.8.serialized.out.pb_data
+|  |  |  |-- perf.data.singleprocess-3.8.serialized.out.pb_text
+|  |  |  |-- perf.data.systemwide.0-3.4
+|  |  |  |-- perf.data.systemwide.0-3.4.io.out.pb_data
+|  |  |  |-- perf.data.systemwide.0-3.4.io.out.pb_text
+|  |  |  |-- perf.data.systemwide.0-3.4.parse.out.pb_data
+|  |  |  |-- perf.data.systemwide.0-3.4.parse.out.pb_text
+|  |  |  |-- perf.data.systemwide.0-3.4.parse.remap.out.pb_data
+|  |  |  |-- perf.data.systemwide.0-3.4.parse.remap.out.pb_text
+|  |  |  |-- perf.data.systemwide.0-3.4.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.systemwide.0-3.4.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.systemwide.0-3.4.pb_data
+|  |  |  |-- perf.data.systemwide.0-3.4.pb_text
+|  |  |  |-- perf.data.systemwide.0-3.4.ser.comm.out.pb_data
+|  |  |  |-- perf.data.systemwide.0-3.4.ser.comm.out.pb_text
+|  |  |  |-- perf.data.systemwide.0-3.4.serialized.out.pb_data
+|  |  |  |-- perf.data.systemwide.0-3.4.serialized.out.pb_text
+|  |  |  |-- perf.data.systemwide.0-3.8
+|  |  |  |-- perf.data.systemwide.0-3.8.buildids
+|  |  |  |-- perf.data.systemwide.0-3.8.io.out.pb_data
+|  |  |  |-- perf.data.systemwide.0-3.8.io.out.pb_text
+|  |  |  |-- perf.data.systemwide.0-3.8.parse.out.pb_data
+|  |  |  |-- perf.data.systemwide.0-3.8.parse.out.pb_text
+|  |  |  |-- perf.data.systemwide.0-3.8.parse.remap.out.pb_data
+|  |  |  |-- perf.data.systemwide.0-3.8.parse.remap.out.pb_text
+|  |  |  |-- perf.data.systemwide.0-3.8.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.systemwide.0-3.8.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.systemwide.0-3.8.pb_data
+|  |  |  |-- perf.data.systemwide.0-3.8.pb_text
+|  |  |  |-- perf.data.systemwide.0-3.8.ser.comm.out.pb_data
+|  |  |  |-- perf.data.systemwide.0-3.8.ser.comm.out.pb_text
+|  |  |  |-- perf.data.systemwide.0-3.8.serialized.out.pb_data
+|  |  |  |-- perf.data.systemwide.0-3.8.serialized.out.pb_text
+|  |  |  |-- perf.data.systemwide.1-3.4
+|  |  |  |-- perf.data.systemwide.1-3.4.io.out.pb_data
+|  |  |  |-- perf.data.systemwide.1-3.4.io.out.pb_text
+|  |  |  |-- perf.data.systemwide.1-3.4.parse.remap.out.pb_data
+|  |  |  |-- perf.data.systemwide.1-3.4.parse.remap.out.pb_text
+|  |  |  |-- perf.data.systemwide.1-3.4.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.systemwide.1-3.4.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.systemwide.1-3.4.pb_data
+|  |  |  |-- perf.data.systemwide.1-3.4.pb_text
+|  |  |  |-- perf.data.systemwide.1-3.4.ser.comm.out.pb_data
+|  |  |  |-- perf.data.systemwide.1-3.4.ser.comm.out.pb_text
+|  |  |  |-- perf.data.systemwide.1-3.4.serialized.out.pb_data
+|  |  |  |-- perf.data.systemwide.1-3.4.serialized.out.pb_text
+|  |  |  |-- perf.data.systemwide.1-3.8
+|  |  |  |-- perf.data.systemwide.1-3.8.buildids
+|  |  |  |-- perf.data.systemwide.1-3.8.io.out.pb_data
+|  |  |  |-- perf.data.systemwide.1-3.8.io.out.pb_text
+|  |  |  |-- perf.data.systemwide.1-3.8.parse.remap.out.pb_data
+|  |  |  |-- perf.data.systemwide.1-3.8.parse.remap.out.pb_text
+|  |  |  |-- perf.data.systemwide.1-3.8.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.systemwide.1-3.8.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.systemwide.1-3.8.pb_data
+|  |  |  |-- perf.data.systemwide.1-3.8.pb_text
+|  |  |  |-- perf.data.systemwide.1-3.8.ser.comm.out.pb_data
+|  |  |  |-- perf.data.systemwide.1-3.8.ser.comm.out.pb_text
+|  |  |  |-- perf.data.systemwide.1-3.8.serialized.out.pb_data
+|  |  |  |-- perf.data.systemwide.1-3.8.serialized.out.pb_text
+|  |  |  |-- perf.data.systemwide.5-3.4
+|  |  |  |-- perf.data.systemwide.5-3.4.io.out.pb_data
+|  |  |  |-- perf.data.systemwide.5-3.4.io.out.pb_text
+|  |  |  |-- perf.data.systemwide.5-3.4.parse.remap.out.pb_data
+|  |  |  |-- perf.data.systemwide.5-3.4.parse.remap.out.pb_text
+|  |  |  |-- perf.data.systemwide.5-3.4.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.systemwide.5-3.4.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.systemwide.5-3.4.pb_data
+|  |  |  |-- perf.data.systemwide.5-3.4.pb_text
+|  |  |  |-- perf.data.systemwide.5-3.4.ser.comm.out.pb_data
+|  |  |  |-- perf.data.systemwide.5-3.4.ser.comm.out.pb_text
+|  |  |  |-- perf.data.systemwide.5-3.4.serialized.out.pb_data
+|  |  |  |-- perf.data.systemwide.5-3.4.serialized.out.pb_text
+|  |  |  |-- perf.data.systemwide.5-3.8
+|  |  |  |-- perf.data.systemwide.5-3.8.buildids
+|  |  |  |-- perf.data.systemwide.5-3.8.io.out.pb_data
+|  |  |  |-- perf.data.systemwide.5-3.8.io.out.pb_text
+|  |  |  |-- perf.data.systemwide.5-3.8.parse.remap.out.pb_data
+|  |  |  |-- perf.data.systemwide.5-3.8.parse.remap.out.pb_text
+|  |  |  |-- perf.data.systemwide.5-3.8.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.systemwide.5-3.8.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.systemwide.5-3.8.pb_data
+|  |  |  |-- perf.data.systemwide.5-3.8.pb_text
+|  |  |  |-- perf.data.systemwide.5-3.8.ser.comm.out.pb_data
+|  |  |  |-- perf.data.systemwide.5-3.8.ser.comm.out.pb_text
+|  |  |  |-- perf.data.systemwide.5-3.8.serialized.out.pb_data
+|  |  |  |-- perf.data.systemwide.5-3.8.serialized.out.pb_text
+|  |  |  |-- perf.data.throttle-3.8
+|  |  |  |-- perf.data.throttle-3.8.buildids
+|  |  |  |-- perf.data.throttle-3.8.io.out.pb_data
+|  |  |  |-- perf.data.throttle-3.8.io.out.pb_text
+|  |  |  |-- perf.data.throttle-3.8.parse.out.pb_data
+|  |  |  |-- perf.data.throttle-3.8.parse.out.pb_text
+|  |  |  |-- perf.data.throttle-3.8.parse.remap.out.pb_data
+|  |  |  |-- perf.data.throttle-3.8.parse.remap.out.pb_text
+|  |  |  |-- perf.data.throttle-3.8.parse.remap2.out.pb_data
+|  |  |  |-- perf.data.throttle-3.8.parse.remap2.out.pb_text
+|  |  |  |-- perf.data.throttle-3.8.pb_data
+|  |  |  |-- perf.data.throttle-3.8.pb_text
+|  |  |  |-- perf.data.throttle-3.8.ser.comm.out.pb_data
+|  |  |  |-- perf.data.throttle-3.8.ser.comm.out.pb_text
+|  |  |  |-- perf.data.throttle-3.8.serialized.out.pb_data
+|  |  |  |-- perf.data.throttle-3.8.serialized.out.pb_text
+|  |-- testdata
+|  |  |-- BUILD
+|  |  |-- multi-event-single-process.perf.data
+|  |  |-- multi-event-single-process.perf_data.pb
+|  |  |-- perf-callchain-non-pebs.textproto
+|  |  |-- perf-callchain-pebs.textproto
+|  |  |-- perf-cgroup-events.textproto
+|  |  |-- perf-comm-and-task-comm.textproto
+|  |  |-- perf-cros-kernel-3_18-mapping.textproto
+|  |  |-- perf-include-comm-md5-prefix.textproto
+|  |  |-- perf-java-classes-jsa.textproto
+|  |  |-- perf-kernel-sample-before-mmap.textproto
+|  |  |-- perf-non-exec-comm-events.textproto
+|  |  |-- perf-overlapping-kernel-mapping.textproto
+|  |  |-- perf-unmapped-callchain-ip.textproto
+|  |  |-- profile-with-data-addresses-callchain.textproto
+|  |  |-- profile-with-data-addresses-flat.textproto
+|  |  |-- single-event-multi-process-single-ip.textproto
+|  |  |-- single-event-multi-process.perf.data
+|  |  |-- single-event-single-process.perf.data
+|  |  |-- with-callchain.perf.data

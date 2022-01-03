@@ -1,0 +1,655 @@
+|-- .bazelci
+|  |-- presubmit.yml
+|  |-- update_workspace_to_deps_heads.sh
+|-- .bazelrc
+|-- .gitignore
+|-- AUTHORS
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- Tulsi.tulsiproj
+|  |-- Configs
+|  |  |-- Tulsi.tulsigen
+|  |-- project.tulsiconf
+|-- WORKSPACE
+|-- build_and_run.sh
+|-- site
+|  |-- CNAME
+|  |-- _config.yml
+|  |-- _includes
+|  |  |-- drawer.html
+|  |  |-- footer.html
+|  |  |-- head.html
+|  |  |-- header.html
+|  |-- _layouts
+|  |  |-- default.html
+|  |  |-- home.html
+|  |-- _sass
+|  |  |-- base.scss
+|  |  |-- docs.scss
+|  |  |-- drawer.scss
+|  |  |-- home.scss
+|  |-- contributing.md
+|  |-- css
+|  |  |-- docs.scss
+|  |  |-- home.scss
+|  |-- docs
+|  |  |-- faq.md
+|  |  |-- gettingstarted.md
+|  |  |-- walkthrough.md
+|  |-- governance.md
+|  |-- images
+|  |  |-- 0000_NewProject.png
+|  |  |-- 0010_SelectWorkspace.png
+|  |  |-- 0020_EmptyPackages.png
+|  |  |-- 0030_SelectBUILDFile.png
+|  |  |-- 0040_DefaultOptions.png
+|  |  |-- 0050_EmptyConfigs.png
+|  |  |-- 0060_ForcedProjectSave.png
+|  |  |-- 0070_ConfigBuildTargets.png
+|  |  |-- 0080_ConfigBuildTargetSelected.png
+|  |  |-- 0090_ConfigAllSourceTargetsSelected.png
+|  |  |-- 0100_ConfigProjectOptions.png
+|  |  |-- 0110_ConfigTargetOptions.png
+|  |  |-- 0120_ConfigEditingProjectOption.png
+|  |  |-- 0130_ConfigModifiedProjectOption.png
+|  |  |-- 0140_ConfigSetName.png
+|  |  |-- 0150_ConfigSave.png
+|  |  |-- 0160_GeneratedConfig.png
+|  |  |-- 0170_SelectedConfig.png
+|  |  |-- 0180_XcodeProjectFolderSelection.png
+|  |  |-- 0300_XcodeProject.png
+|  |  |-- 0310_XcodeEmptyInfoPlist.png
+|  |  |-- 0320_XcodeRunScript.png
+|  |  |-- FAQ_Device_Log_01.png
+|  |  |-- FAQ_Expanded_Build_Log_01.png
+|  |  |-- FAQ_Expanded_Build_Log_02.png
+|  |  |-- favicon.ico
+|  |  |-- screenshot.png
+|  |  |-- tulsi-og-image.png
+|  |-- index.html
+|  |-- search.html
+|-- src
+|  |-- Tulsi
+|  |  |-- AppDelegate.swift
+|  |  |-- Assets.xcassets
+|  |  |  |-- AppIcon.appiconset
+|  |  |  |  |-- Contents.json
+|  |  |  |  |-- bazel_512px.png
+|  |  |  |-- BUILDIcon.iconset
+|  |  |  |  |-- icon_512x512.png
+|  |  |  |-- Contents.json
+|  |  |  |-- NewProject.imageset
+|  |  |  |  |-- Contents.json
+|  |  |  |  |-- new_512x512.png
+|  |  |  |-- OpenProject.imageset
+|  |  |  |  |-- Contents.json
+|  |  |  |  |-- folder_icon.png
+|  |  |  |-- ProjectIcon.iconset
+|  |  |  |  |-- icon_512x512.png
+|  |  |  |-- message_error.imageset
+|  |  |  |  |-- Contents.json
+|  |  |  |  |-- exclamation_circle-r14.png
+|  |  |  |  |-- exclamation_circle-r28.png
+|  |  |  |-- message_info.imageset
+|  |  |  |  |-- Contents.json
+|  |  |  |  |-- info-g14.png
+|  |  |  |  |-- info-g28.png
+|  |  |  |-- message_warning.imageset
+|  |  |  |  |-- Contents.json
+|  |  |  |  |-- warning-y14.png
+|  |  |  |  |-- warning-y28.png
+|  |  |-- BUILD
+|  |  |-- Base.lproj
+|  |  |  |-- BazelOpenSheetAccessoryView.xib
+|  |  |  |-- ErrorAlertDetailView.xib
+|  |  |  |-- Main.storyboard
+|  |  |  |-- NewGeneratorConfigViewController.xib
+|  |  |  |-- NewProjectViewController.xib
+|  |  |  |-- SplashScreenRecentDocumentView.xib
+|  |  |  |-- SplashScreenWindowController.xib
+|  |  |  |-- XcodeProjectGenerationProgressViewController.xib
+|  |  |-- BazelSelectionPanel.swift
+|  |  |-- BugReporter.swift
+|  |  |-- ConfigEditorBuildTargetSelectorViewController.swift
+|  |  |-- ConfigEditorSourceFilterViewController.swift
+|  |  |-- ConfigEditorWizardViewController.swift
+|  |  |-- EventLogger.swift
+|  |  |-- FilteredOpenPanel.swift
+|  |  |-- HeadlessModeError.swift
+|  |  |-- HeadlessTulsiProjectCreator.swift
+|  |  |-- HeadlessXcodeProjectGenerator.swift
+|  |  |-- Info.plist
+|  |  |-- MessageViewController.swift
+|  |  |-- NewGeneratorConfigViewController.swift
+|  |  |-- NewProjectViewController.swift
+|  |  |-- OptionsEditorController.swift
+|  |  |-- OptionsEditorModelProtocol.swift
+|  |  |-- OptionsEditorNode.swift
+|  |  |-- OptionsEditorViewController.swift
+|  |  |-- OptionsTargetSelectorController.swift
+|  |  |-- ProjectEditorConfigManagerViewController.swift
+|  |  |-- ProjectEditorPackageManagerViewController.swift
+|  |  |-- ProjectEditorSplitViewController.swift
+|  |  |-- ProjectEditorTabViewController.swift
+|  |  |-- SplashScreenWindowController.swift
+|  |  |-- TulsiCommandlineParser.swift
+|  |  |-- TulsiDocumentController.swift
+|  |  |-- TulsiError.swift
+|  |  |-- TulsiGeneratorConfigDocument.swift
+|  |  |-- TulsiProjectDocument.swift
+|  |  |-- UIMessage.swift
+|  |  |-- UIRuleEntry.swift
+|  |  |-- UISelectableOutlineViewNode.swift
+|  |  |-- UISourcePath.swift
+|  |  |-- WizardSubviewProtocol.swift
+|  |  |-- XcodeProjectGenerationProgressViewController.swift
+|  |  |-- en.lproj
+|  |  |  |-- Credits.html
+|  |  |  |-- Localizable.strings
+|  |  |-- main.swift
+|  |-- TulsiEndToEndTests
+|  |  |-- BUILD
+|  |  |-- ButtonsEndToEndTest.swift
+|  |  |-- CanaryButtonsEndToEndTest.swift
+|  |  |-- NightlyButtonsEndToEndTest.swift
+|  |  |-- Resources
+|  |  |  |-- Buttons.tulsiproj
+|  |  |  |  |-- Configs
+|  |  |  |  |  |-- Buttons.tulsigen
+|  |  |  |  |-- project.tulsiconf
+|  |  |  |-- Buttons
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Buttons.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |-- project.xcworkspace
+|  |  |  |  |  |  |-- contents.xcworkspacedata
+|  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |-- Buttons.xcscheme
+|  |  |  |  |  |  |  |-- ButtonsMac.xcscheme
+|  |  |  |  |  |  |  |-- ButtonsTV.xcscheme
+|  |  |  |  |  |  |  |-- ButtonsTVExtension.xcscheme
+|  |  |  |  |  |  |  |-- ButtonsWatch(Complication).xcscheme
+|  |  |  |  |  |  |  |-- ButtonsWatch(Notification).xcscheme
+|  |  |  |  |  |  |  |-- ButtonsWatch.xcscheme
+|  |  |  |  |  |  |  |-- xcschememanagement.plist
+|  |  |  |  |-- Buttons
+|  |  |  |  |  |-- AppDelegate.swift
+|  |  |  |  |  |-- Assets.xcassets
+|  |  |  |  |  |  |-- AppIcon.appiconset
+|  |  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |-- Base.lproj
+|  |  |  |  |  |  |-- LaunchScreen.storyboard
+|  |  |  |  |  |  |-- Main.storyboard
+|  |  |  |  |  |-- Info.plist
+|  |  |  |  |  |-- ViewController.swift
+|  |  |  |  |-- ButtonsMac
+|  |  |  |  |  |-- AppDelegate.swift
+|  |  |  |  |  |-- Assets.xcassets
+|  |  |  |  |  |  |-- AppIcon.appiconset
+|  |  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |-- Base.lproj
+|  |  |  |  |  |  |-- Main.storyboard
+|  |  |  |  |  |-- ButtonsMac.entitlements
+|  |  |  |  |  |-- Info.plist
+|  |  |  |  |  |-- ViewController.swift
+|  |  |  |  |-- ButtonsMacTests
+|  |  |  |  |  |-- ButtonsMacTests.swift
+|  |  |  |  |  |-- Info.plist
+|  |  |  |  |-- ButtonsMacUITests
+|  |  |  |  |  |-- ButtonsMacUITests.swift
+|  |  |  |  |  |-- Info.plist
+|  |  |  |  |-- ButtonsTV
+|  |  |  |  |  |-- AppDelegate.swift
+|  |  |  |  |  |-- Assets.xcassets
+|  |  |  |  |  |  |-- AppShelfImage.brandassets
+|  |  |  |  |  |  |  |-- AppIconLarge.imagestack
+|  |  |  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |  |  |-- AppIconSmall.imagestack
+|  |  |  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |  |  |-- TopShelfImage.imageset
+|  |  |  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |  |  |-- TopShelfImageWide.imageset
+|  |  |  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |  |-- LaunchImage.launchimage
+|  |  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |-- Base.lproj
+|  |  |  |  |  |  |-- Main.storyboard
+|  |  |  |  |  |-- Info.plist
+|  |  |  |  |  |-- ViewController.swift
+|  |  |  |  |-- ButtonsTVExtension
+|  |  |  |  |  |-- Info.plist
+|  |  |  |  |  |-- ServiceProvider.swift
+|  |  |  |  |-- ButtonsTVTests
+|  |  |  |  |  |-- ButtonsTVTests.swift
+|  |  |  |  |  |-- Info.plist
+|  |  |  |  |-- ButtonsTVUITests
+|  |  |  |  |  |-- ButtonsTVUITests.swift
+|  |  |  |  |  |-- Info.plist
+|  |  |  |  |-- ButtonsTests
+|  |  |  |  |  |-- ButtonsTests.swift
+|  |  |  |  |  |-- Info.plist
+|  |  |  |  |-- ButtonsUITests
+|  |  |  |  |  |-- ButtonsUITests.swift
+|  |  |  |  |  |-- Info.plist
+|  |  |  |  |-- ButtonsWatch
+|  |  |  |  |  |-- Assets.xcassets
+|  |  |  |  |  |  |-- AppIcon.appiconset
+|  |  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |-- Base.lproj
+|  |  |  |  |  |  |-- Interface.storyboard
+|  |  |  |  |  |-- Info.plist
+|  |  |  |  |-- ButtonsWatchExtension
+|  |  |  |  |  |-- Assets.xcassets
+|  |  |  |  |  |  |-- Complication.complicationset
+|  |  |  |  |  |  |  |-- Circular.imageset
+|  |  |  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |  |  |-- ExtraLarge.imageset
+|  |  |  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |  |  |-- Modular.imageset
+|  |  |  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |  |  |-- Utilitarian.imageset
+|  |  |  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |-- ComplicationController.swift
+|  |  |  |  |  |-- ExtensionDelegate.swift
+|  |  |  |  |  |-- Info.plist
+|  |  |  |  |  |-- InterfaceController.swift
+|  |  |  |  |  |-- NotificationController.swift
+|  |  |  |  |-- CppFoo.cc
+|  |  |  |  |-- CppFoo.h
+|  |  |  |  |-- ObjCFoo.h
+|  |  |  |  |-- ObjCFoo.m
+|  |  |-- TulsiEndToEndTest.swift
+|  |-- TulsiGenerator
+|  |  |-- BUILD
+|  |  |-- Bazel
+|  |  |  |-- BUILD
+|  |  |  |-- WORKSPACE
+|  |  |  |-- tulsi
+|  |  |  |  |-- aspect.BUILD
+|  |  |  |  |-- tulsi_aspects.bzl
+|  |  |  |  |-- tulsi_aspects_paths.bzl
+|  |  |-- BazelAspectInfoExtractor.swift
+|  |  |-- BazelBuildEvents.swift
+|  |  |-- BazelBuildSettings.swift
+|  |  |-- BazelBuildSettingsFeatures.swift
+|  |  |-- BazelErrorExtractor.swift
+|  |  |-- BazelLocator.swift
+|  |  |-- BazelPBXReferencePatcher.swift
+|  |  |-- BazelQueryInfoExtractor.swift
+|  |  |-- BazelSettingsProvider.swift
+|  |  |-- BazelWorkspaceInfoExtractor.swift
+|  |  |-- BazelWorkspaceInfoExtractorProtocol.swift
+|  |  |-- BazelWorkspacePathInfoFetcher.swift
+|  |  |-- BazelXcodeProjectPatcher.swift
+|  |  |-- BuildLabel.swift
+|  |  |-- CommandLineSplitter.swift
+|  |  |-- DeploymentTarget.swift
+|  |  |-- GIDGenerator.swift
+|  |  |-- GeneratedProjectResources
+|  |  |  |-- StubIOSAppExtensionInfoPlist.plist
+|  |  |  |-- StubInfoPlist.plist
+|  |  |  |-- StubWatchOS2AppExtensionInfoPlist.plist
+|  |  |  |-- StubWatchOS2InfoPlist.plist
+|  |  |-- Info.plist
+|  |  |-- LocalizedMessageLogger.swift
+|  |  |-- NSJSONSerializationExtensions.swift
+|  |  |-- NSThreadExtensions.swift
+|  |  |-- NSURLExtensions.swift
+|  |  |-- PBXObjects.swift
+|  |  |-- PBXProjSerializer.swift
+|  |  |-- PBXTargetGenerator.swift
+|  |  |-- PBXUniformTypeIdentifiers.swift
+|  |  |-- ProcessRunner.swift
+|  |  |-- ProgressNotifier.swift
+|  |  |-- QueuedLogging.swift
+|  |  |-- RuleEntry.swift
+|  |  |-- RuleEntryMap.swift
+|  |  |-- Scripts
+|  |  |  |-- BUILD
+|  |  |  |-- apfs_clone_copy.py
+|  |  |  |-- bazel_build.py
+|  |  |  |-- bazel_build_events.py
+|  |  |  |-- bazel_build_events_tests.py
+|  |  |  |-- bazel_build_settings.py.template
+|  |  |  |-- bazel_clean.sh
+|  |  |  |-- bazel_options.py
+|  |  |  |-- bootstrap_lldbinit.py
+|  |  |  |-- clean_symbol_cache.py
+|  |  |  |-- clean_symbol_cache_tests.py
+|  |  |  |-- command_line_splitter.sh
+|  |  |  |-- install_genfiles.py
+|  |  |  |-- install_genfiles_tests.py
+|  |  |  |-- symbol_cache_schema.py
+|  |  |  |-- symbol_cache_schema_tests.py
+|  |  |  |-- tulsi_logging.py
+|  |  |  |-- update_symbol_cache.py
+|  |  |  |-- update_symbol_cache_tests.py
+|  |  |  |-- user_build.py
+|  |  |-- StringExtensions.swift
+|  |  |-- TulsiApplicationSupport.swift
+|  |  |-- TulsiGeneratorConfig.swift
+|  |  |-- TulsiNotifications.swift
+|  |  |-- TulsiOption.swift
+|  |  |-- TulsiOptionSet.swift
+|  |  |-- TulsiParameter.swift
+|  |  |-- TulsiProcessRunner.swift
+|  |  |-- TulsiProject.swift
+|  |  |-- TulsiProjectInfoExtractor.swift
+|  |  |-- TulsiXcodeProjectGenerator.swift
+|  |  |-- XcodeGeneratorInvalidPaths.swift
+|  |  |-- XcodeProjectGenerator.swift
+|  |  |-- XcodeScheme.swift
+|  |  |-- en.lproj
+|  |  |  |-- Localizable.strings
+|  |  |  |-- Options.strings
+|  |  |-- iOSXCTRunner.entitlements
+|  |  |-- macOSXCTRunner.entitlements
+|  |-- TulsiGeneratorIntegrationTests
+|  |  |-- AspectTests.swift
+|  |  |-- BUILD
+|  |  |-- BazelFakeWorkspace.swift
+|  |  |-- BazelIntegrationTestCase.swift
+|  |  |-- EndToEndGenerationTests.swift
+|  |  |-- EndToEndIntegrationTestCase.swift
+|  |  |-- Info.plist
+|  |  |-- PlatformDependentAspectTests.swift
+|  |  |-- PlatformDependentEndToEndGenerationTests.swift
+|  |  |-- QueryTests.swift
+|  |  |-- Resources
+|  |  |  |-- AppClip.BUILD
+|  |  |  |-- BUILD
+|  |  |  |-- ComplexSingle.BUILD
+|  |  |  |-- ComplexSingle.bzl
+|  |  |  |-- GoldenProjects
+|  |  |  |  |-- AppClipProject.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |-- project.xcworkspace
+|  |  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |-- AppClip.xcscheme
+|  |  |  |  |  |  |  |-- Application.xcscheme
+|  |  |  |  |  |  |  |-- _idx_Scheme.xcscheme
+|  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |  |-- xcschememanagement.plist
+|  |  |  |  |-- ComplexSingleProject.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |-- project.xcworkspace
+|  |  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |-- Application.xcscheme
+|  |  |  |  |  |  |  |-- TodayExtension.xcscheme
+|  |  |  |  |  |  |  |-- XCTest.xcscheme
+|  |  |  |  |  |  |  |-- _idx_Scheme.xcscheme
+|  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |  |-- xcschememanagement.plist
+|  |  |  |  |-- MacOSProject.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |-- project.xcworkspace
+|  |  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |-- MyCommandLineApp.xcscheme
+|  |  |  |  |  |  |  |-- MyMacOSApp.xcscheme
+|  |  |  |  |  |  |  |-- MyTodayExtension.xcscheme
+|  |  |  |  |  |  |  |-- _idx_Scheme.xcscheme
+|  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |  |-- xcschememanagement.plist
+|  |  |  |  |-- MacOSTestsProject.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |-- project.xcworkspace
+|  |  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |-- MyMacOSApp.xcscheme
+|  |  |  |  |  |  |  |-- UITests.xcscheme
+|  |  |  |  |  |  |  |-- UnitTests.xcscheme
+|  |  |  |  |  |  |  |-- UnitTestsNoHost.xcscheme
+|  |  |  |  |  |  |  |-- _idx_Scheme.xcscheme
+|  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |  |-- xcschememanagement.plist
+|  |  |  |  |-- MultiExtensionProject.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |-- project.xcworkspace
+|  |  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |-- ApplicationOne.xcscheme
+|  |  |  |  |  |  |  |-- ApplicationOne_TodayExtension.xcscheme
+|  |  |  |  |  |  |  |-- ApplicationTwo.xcscheme
+|  |  |  |  |  |  |  |-- ApplicationTwo_TodayExtension.xcscheme
+|  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |  |-- xcschememanagement.plist
+|  |  |  |  |-- SimpleCCProject.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |-- project.xcworkspace
+|  |  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |-- _idx_Scheme.xcscheme
+|  |  |  |  |  |  |  |-- ccBinary.xcscheme
+|  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |  |-- xcschememanagement.plist
+|  |  |  |  |-- SimpleProject.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |-- project.xcworkspace
+|  |  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |-- Application.xcscheme
+|  |  |  |  |  |  |  |-- TargetApplication.xcscheme
+|  |  |  |  |  |  |  |-- XCTest.xcscheme
+|  |  |  |  |  |  |  |-- _idx_Scheme.xcscheme
+|  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |  |-- xcschememanagement.plist
+|  |  |  |  |-- SkylarkBundlingProject.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |-- project.xcworkspace
+|  |  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |-- _idx_Scheme.xcscheme
+|  |  |  |  |  |  |  |-- tvOSApplication.xcscheme
+|  |  |  |  |  |  |  |-- tvOSExtension.xcscheme
+|  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |  |-- xcschememanagement.plist
+|  |  |  |  |-- SwiftProject.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |-- project.xcworkspace
+|  |  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |-- Application.xcscheme
+|  |  |  |  |  |  |  |-- _idx_Scheme.xcscheme
+|  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |  |-- xcschememanagement.plist
+|  |  |  |  |-- TestSuiteExplicitXCTestsProject.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |-- project.xcworkspace
+|  |  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |-- LogicTest.xcscheme
+|  |  |  |  |  |  |  |-- One-XCTest.xcscheme
+|  |  |  |  |  |  |  |-- TestApplication.xcscheme
+|  |  |  |  |  |  |  |-- Three-XCTest.xcscheme
+|  |  |  |  |  |  |  |-- Two-XCTest.xcscheme
+|  |  |  |  |  |  |  |-- _idx_Scheme.xcscheme
+|  |  |  |  |  |  |  |-- explicit_XCTests_Suite.xcscheme
+|  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |  |-- xcschememanagement.plist
+|  |  |  |  |-- TestSuiteLocalTaggedTestsProject.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |-- project.xcworkspace
+|  |  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |-- TestApplication.xcscheme
+|  |  |  |  |  |  |  |-- TestSuiteXCTest.xcscheme
+|  |  |  |  |  |  |  |-- _idx_Scheme.xcscheme
+|  |  |  |  |  |  |  |-- local_tagged_tests_Suite.xcscheme
+|  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |  |-- xcschememanagement.plist
+|  |  |  |  |-- TestSuiteRecursiveTestSuiteProject.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |-- project.xcworkspace
+|  |  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |-- TestApplication.xcscheme
+|  |  |  |  |  |  |  |-- TestSuiteXCTest.xcscheme
+|  |  |  |  |  |  |  |-- _idx_Scheme.xcscheme
+|  |  |  |  |  |  |  |-- recursive_test_suite_Suite.xcscheme
+|  |  |  |  |  |  |  |-- tagged_tests_Suite.xcscheme
+|  |  |  |  |  |  |  |-- tagged_xctest_1.xcscheme
+|  |  |  |  |  |  |  |-- tagged_xctest_2.xcscheme
+|  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |  |-- xcschememanagement.plist
+|  |  |  |  |-- WatchProject.xcodeproj
+|  |  |  |  |  |-- project.pbxproj
+|  |  |  |  |  |-- project.xcworkspace
+|  |  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |  |  |-- xcshareddata
+|  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |-- Application.xcscheme
+|  |  |  |  |  |  |  |-- WatchApplication.xcscheme
+|  |  |  |  |  |  |  |-- WatchExtension.xcscheme
+|  |  |  |  |  |  |  |-- _idx_Scheme.xcscheme
+|  |  |  |  |  |-- xcuserdata
+|  |  |  |  |  |  |-- _TEST_USER_.xcuserdatad
+|  |  |  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |  |  |-- xcschememanagement.plist
+|  |  |  |-- Mac.BUILD
+|  |  |  |-- MultiExtension.BUILD
+|  |  |  |-- Simple.BUILD
+|  |  |  |-- SimpleBad.BUILD
+|  |  |  |-- Swift.BUILD
+|  |  |  |-- TestSuite
+|  |  |  |  |-- One
+|  |  |  |  |  |-- TestOne.BUILD
+|  |  |  |  |-- TestSuiteRoot.BUILD
+|  |  |  |  |-- Three
+|  |  |  |  |  |-- TestThree.BUILD
+|  |  |  |  |-- Two
+|  |  |  |  |  |-- TestTwo.BUILD
+|  |  |  |-- Watch.BUILD
+|  |  |-- test.WORKSPACE
+|  |  |-- tulsi_integration_test.bzl
+|  |  |-- update_goldens.sh
+|  |-- TulsiGeneratorTests
+|  |  |-- BUILD
+|  |  |-- BazelSettingsProviderTests.swift
+|  |  |-- BuildLabelTests.swift
+|  |  |-- BuildSettingsTests.swift
+|  |  |-- CommandLineSplitterTests.swift
+|  |  |-- Info.plist
+|  |  |-- MockLocalizedMessageLogger.swift
+|  |  |-- MockWorkspaceInfoExtractor.swift
+|  |  |-- NSURLExtensionsTests.swift
+|  |  |-- PBXObjectsTests.swift
+|  |  |-- PBXProjSerializerTests.swift
+|  |  |-- PBXTargetGeneratorTests.swift
+|  |  |-- PythonableTests.swift
+|  |  |-- ShellEscapingTests.swift
+|  |  |-- TulsiGeneratorConfigTests.swift
+|  |  |-- TulsiOptionSetTests.swift
+|  |  |-- TulsiProjectTests.swift
+|  |  |-- XcodeProjectGeneratorTests.swift
+|  |-- tools
+|  |  |-- BUILD
+|  |  |-- BuildTools
+|  |  |  |-- FileTypesFromPBFileSpec.py
+|  |  |  |-- create_dmg.sh
+|  |  |-- bazel_cache_reader
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- bazel_cache_reader.xcodeproj
+|  |  |  |  |-- project.pbxproj
+|  |  |  |-- bazel_cache_reader
+|  |  |  |  |-- main.c
+|  |  |  |-- bazel_cache_reader_speed_test.sh
+|  |  |-- generate_xcodeproj.sh
+|-- version.bzl

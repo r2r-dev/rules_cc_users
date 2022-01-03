@@ -1,0 +1,1895 @@
+|-- .gitignore
+|-- LICENSE
+|-- README.md
+|-- apachespark.ml
+|  |-- demos
+|  |  |-- codegen
+|  |  |  |-- 2.0
+|  |  |  |  |-- build.sbt
+|  |  |  |  |-- evaluate-predictor.sh
+|  |  |  |  |-- experimental
+|  |  |  |  |  |-- sample.java
+|  |  |  |  |-- src
+|  |  |  |  |  |-- main
+|  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |-- ExpressionDemo.java
+|  |  |  |  |  |  |  |-- HelloJaninoJava.java
+|  |  |  |  |  |  |-- scala
+|  |  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |  |-- advancedspark
+|  |  |  |  |  |  |  |  |  |-- codegen
+|  |  |  |  |  |  |  |  |  |  |-- CodeGenUtils.scala
+|  |  |  |  |  |  |  |  |  |  |-- CodeGenerator.scala
+|  |  |  |  |  |  |  |  |  |  |-- Initializable.scala
+|  |  |  |  |  |  |  |  |  |  |-- Predictable.scala
+|  |  |  |  |  |  |  |  |  |  |-- example
+|  |  |  |  |  |  |  |  |  |  |  |-- PredictorMain.scala
+|  |  |  |  |-- start-codegen-predictor.sh
+|  |  |-- pmml
+|  |  |  |-- census.csv
+|  |  |  |-- evaluate-jpmml.sh
+|  |  |  |-- lib
+|  |  |  |  |-- jpmml-sparkml-package-1.0-SNAPSHOT.jar
+|  |  |  |-- pom.xml
+|  |  |  |-- src
+|  |  |  |  |-- main
+|  |  |  |  |  |-- python
+|  |  |  |  |  |  |-- jpmml.py
+|  |  |  |  |  |-- scala
+|  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |-- advancedspark
+|  |  |  |  |  |  |  |  |-- pmml
+|  |  |  |  |  |  |  |  |  |-- spark
+|  |  |  |  |  |  |  |  |  |  |-- ml
+|  |  |  |  |  |  |  |  |  |  |  |-- EvaluatePMML.scala
+|  |  |  |  |  |  |  |  |  |  |  |-- GeneratePMML.scala
+|  |  |  |  |  |  |  |  |  |  |  |-- PMMLSparkML.scala
+|  |  |  |  |  |  |  |  |  |  |  |-- PostPMML.scala
+|  |  |  |-- start-jpmml-classification.sh
+|  |  |-- streaming
+|  |  |  |-- build.sbt
+|  |  |  |-- src
+|  |  |  |  |-- main
+|  |  |  |  |  |-- scala
+|  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |-- advancedspark
+|  |  |  |  |  |  |  |  |-- streaming
+|  |  |  |  |  |  |  |  |  |-- rating
+|  |  |  |  |  |  |  |  |  |  |-- approx
+|  |  |  |  |  |  |  |  |  |  |  |-- AlgebirdCountMinSketchTopK.scala
+|  |  |  |  |  |  |  |  |  |  |  |-- AlgebirdHyperLogLog.scala
+|  |  |  |  |  |  |  |  |  |  |  |-- RedisHyperLogLog.scala
+|  |  |  |  |  |  |  |  |  |  |-- core
+|  |  |  |  |  |  |  |  |  |  |  |-- RatingGeo.scala
+|  |  |  |  |  |  |  |  |  |  |-- ml
+|  |  |  |  |  |  |  |  |  |  |  |-- Recommendation.scala
+|  |  |  |  |  |  |  |  |  |  |  |-- Similarity.scala
+|  |  |  |  |  |  |  |  |  |  |  |-- incremental
+|  |  |  |  |  |  |  |  |  |  |  |  |-- LatentMatrixFactorization.scala
+|  |  |  |  |  |  |  |  |  |  |  |  |-- LatentMatrixFactorizationParams.scala
+|  |  |  |  |  |  |  |  |  |  |  |  |-- TrainMFIncremental.scala
+|  |  |  |  |  |  |  |  |  |  |  |  |-- model
+|  |  |  |  |  |  |  |  |  |  |  |  |  |-- LatentFactor.scala
+|  |  |  |  |  |  |  |  |  |  |  |  |  |-- LatentFactorGenerator.scala
+|  |  |  |  |  |  |  |  |  |  |  |  |  |-- LatentMatrixFactorizationModel.scala
+|  |  |  |  |  |  |  |  |  |  |  |  |  |-- LatentMatrixFactorizationModelOps.scala
+|  |  |  |  |  |  |  |  |  |  |  |  |  |-- StreamingLatentMatrixFactorizationModel.scala
+|  |  |  |  |  |  |  |  |  |  |  |  |-- optimization
+|  |  |  |  |  |  |  |  |  |  |  |  |  |-- MFGradientDescent.scala
+|  |  |  |  |  |  |  |  |  |  |  |  |-- utils
+|  |  |  |  |  |  |  |  |  |  |  |  |  |-- ReadWrite.scala
+|  |  |  |  |  |  |  |  |  |  |  |  |  |-- Utils.scala
+|  |  |  |  |  |  |  |  |  |  |  |  |  |-- VectorUtils.scala
+|  |  |  |  |  |  |  |  |  |  |-- store
+|  |  |  |  |  |  |  |  |  |  |  |-- ElasticSearch.scala
+|  |  |  |  |  |  |  |  |  |  |  |-- KafkaCassandra.scala
+|  |  |  |  |  |  |  |  |  |  |  |-- Redis.scala
+|  |  |  |-- start-streaming-ratings-algebird-cms-topk.sh
+|  |  |  |-- start-streaming-ratings-algebird-hll.sh
+|  |  |  |-- start-streaming-ratings-elasticsearch.sh
+|  |  |  |-- start-streaming-ratings-kafka-cassandra.sh
+|  |  |  |-- start-streaming-ratings-parquet.sh
+|  |  |  |-- start-streaming-ratings-redis-hll.sh
+|  |  |  |-- start-streaming-ratings-redis.sh
+|  |  |  |-- start-streaming-ratings-train-mf-incremental.sh
+|  |  |-- tensorframes
+|  |  |  |-- build.sbt
+|  |  |  |-- lib
+|  |  |  |  |-- tensorframes-assembly-0.2.4.jar
+|  |  |  |-- src
+|  |  |  |  |-- main
+|  |  |  |  |  |-- python
+|  |  |  |  |  |  |-- tfs-example.py
+|  |  |  |  |  |  |-- tfs-example2.py
+|  |  |  |  |  |-- scala
+|  |  |  |  |  |  |-- TfsExample.scala
+|  |  |  |-- start-pyspark-shell.sh
+|  |  |  |-- start-spark-shell.sh
+|  |-- master-deploy.yaml
+|  |-- master-svc.yaml
+|  |-- worker-deploy.yaml
+|  |-- worker-hpa.yaml
+|  |-- worker-svc.yaml
+|-- cassandra.ml
+|  |-- cassandra-deploy.yaml
+|  |-- cassandra-svc.yaml
+|-- dashboard.ml
+|  |-- hystrix-deploy.yaml
+|  |-- hystrix-svc.yaml
+|  |-- kubernetes-dashboard
+|  |  |-- v1.6.0.yaml
+|  |-- logging-elasticsearch
+|  |  |-- v1.5.0.yaml
+|  |-- turbine-deploy.yaml
+|  |-- turbine-svc.yaml
+|  |-- weavescope
+|  |  |-- scope-1.3.0.yaml
+|-- elasticsearch.ml
+|  |-- elasticsearch-2-3-0-deploy.yaml
+|  |-- elasticsearch-2-3-0-svc.yaml
+|  |-- elasticsearch-5-0-0-deploy.yaml
+|  |-- elasticsearch-5-0-0-svc.yaml
+|-- hdfs.ml
+|  |-- namenode-deploy.yaml
+|  |-- namenode-svc.yaml
+|-- jenkins
+|  |-- jenkins-deploy.yaml
+|  |-- jenkins-svc.yaml
+|-- jupyterhub.ml
+|  |-- .gitignore
+|  |-- datasets
+|  |  |-- linear
+|  |  |  |-- training.csv
+|  |  |  |-- validation.csv
+|  |  |-- mnist
+|  |  |  |-- t10k-images-idx3-ubyte.gz
+|  |  |  |-- t10k-labels-idx1-ubyte.gz
+|  |  |  |-- train-images-idx3-ubyte.gz
+|  |  |  |-- train-labels-idx1-ubyte.gz
+|  |-- html
+|  |  |-- css
+|  |  |  |-- bootstrap-responsive.css
+|  |  |  |-- bootstrap-responsive.min.css
+|  |  |  |-- bootstrap.css
+|  |  |  |-- bootstrap.min.css
+|  |  |  |-- github-light.css
+|  |  |  |-- normalize.css
+|  |  |  |-- stylesheet.css
+|  |  |-- img
+|  |  |  |-- datasticks-logo-2638x304.png
+|  |  |  |-- datasticks-logo-500x58.png
+|  |  |  |-- datasticks-logo-no-flame-1960x260.png
+|  |  |  |-- datasticks-logo-no-flame-500x66.png
+|  |  |  |-- datasticks-logo-social.png
+|  |  |  |-- favicon.png
+|  |  |  |-- gce-logo-190x90.png
+|  |  |  |-- gce-logo-296x140.png
+|  |  |  |-- git-ribbon.png
+|  |  |  |-- github-logo-150x125.png
+|  |  |  |-- oreilly-logo-140x140.png
+|  |  |  |-- oreilly-logo-190x190.png
+|  |  |  |-- pipeline-io-logo-shadow-210x186.png
+|  |  |  |-- pipeline-io-logo-shadow-326x300.png
+|  |  |  |-- pipeline-io-logo-shadow-339x300.png
+|  |  |  |-- pipeline-io-logo-shadow-646x572.png
+|  |  |-- index.html
+|  |  |-- js
+|  |  |  |-- bootstrap.js
+|  |  |  |-- bootstrap.min.js
+|  |-- jupyterhub-community-oauth-auth0-deploy-cpu.yaml
+|  |-- jupyterhub-community-oauth-auth0-deploy-gpu.yaml
+|  |-- jupyterhub-deploy-cpu.yaml
+|  |-- jupyterhub-deploy-full-cpu.yaml
+|  |-- jupyterhub-deploy-full-gpu.yaml
+|  |-- jupyterhub-deploy-gpu.yaml
+|  |-- jupyterhub-svc.yaml
+|  |-- lib
+|  |  |-- jpmml-sparkml-1.2-SNAPSHOT.jar
+|  |  |-- jpmml-sparkml-package-1.0-SNAPSHOT.jar
+|  |  |-- jpmml-sparkml-package-1.2-SNAPSHOT.jar
+|  |  |-- jpmml.py
+|  |-- notebooks
+|  |  |-- .gitignore
+|  |  |-- pipeline_workshop
+|  |  |  |-- .gitignore
+|  |  |  |-- 01_Explore_Environment.ipynb
+|  |  |  |-- 01a_Explore_GPU.ipynb
+|  |  |  |-- 01b_Explore_Numba.ipynb
+|  |  |  |-- 02_Feed_Queue_HDFS.ipynb
+|  |  |  |-- 03_Train_Model_CPU.ipynb
+|  |  |  |-- 03a_Train_Model_GPU.ipynb
+|  |  |  |-- 04_Debug_Model.ipynb
+|  |  |  |-- 05_Train_Model_Distributed.ipynb
+|  |  |  |-- 06_Train_Model_XLA_CPU.ipynb
+|  |  |  |-- 06a_Train_Model_XLA_GPU.ipynb
+|  |  |  |-- 07_Optimize_Model.ipynb
+|  |  |  |-- 08_Optimize_Model_Quantize_Activations.ipynb
+|  |  |  |-- 09_Deploy_Optimized_Model.ipynb
+|  |  |  |-- 10_Deploy_Unoptimized_Model.ipynb
+|  |  |  |-- 11_Tune_Model_Server.ipynb
+|  |  |-- train_deploy
+|  |  |  |-- pmml
+|  |  |  |  |-- pmml_balancescale
+|  |  |  |  |  |-- 00_SetupModel.ipynb
+|  |  |  |  |  |-- 01_TrainModel.ipynb
+|  |  |  |  |  |-- 02_TestModel.ipynb
+|  |  |  |  |  |-- 03_DeployModel.ipynb
+|  |  |  |  |  |-- 04_PredictModel.ipynb
+|  |  |  |  |  |-- data
+|  |  |  |  |  |  |-- model_training.csv
+|  |  |  |  |  |  |-- test_request.json
+|  |  |  |  |  |  |-- test_response.json
+|  |  |  |  |  |-- model.pmml
+|  |  |  |-- python3
+|  |  |  |  |-- python3_zscore
+|  |  |  |  |  |-- 00_SetupModel.ipynb
+|  |  |  |  |  |-- 01_TrainModel.ipynb
+|  |  |  |  |  |-- 02_TestModel.ipynb
+|  |  |  |  |  |-- 03_DeployModel.ipynb
+|  |  |  |  |  |-- 04_PredictModel.ipynb
+|  |  |  |  |  |-- 05_MonitorModel.ipynb
+|  |  |  |  |  |-- data
+|  |  |  |  |  |  |-- model_training.csv
+|  |  |  |  |  |  |-- test_request.json
+|  |  |  |  |  |  |-- test_response.json
+|  |  |  |  |  |-- pio_bundle.pkl
+|  |  |  |  |  |-- requirements.txt
+|  |  |  |  |  |-- requirements_conda.txt
+|  |  |  |-- scikit
+|  |  |  |  |-- scikit_balancescale
+|  |  |  |  |  |-- 00_SetupModel.ipynb
+|  |  |  |  |  |-- 01_TrainModel.ipynb
+|  |  |  |  |  |-- 02_TestModel.ipynb
+|  |  |  |  |  |-- 03_DeployModel.ipynb
+|  |  |  |  |  |-- 04_PredictModel.ipynb
+|  |  |  |  |  |-- 05_MonitorModel.ipynb
+|  |  |  |  |  |-- data
+|  |  |  |  |  |  |-- model_training.csv
+|  |  |  |  |  |  |-- test_request.json
+|  |  |  |  |  |  |-- test_response.json
+|  |  |  |  |  |-- pio_bundle.pkl
+|  |  |  |  |  |-- requirements.txt
+|  |  |  |  |  |-- requirements_conda.txt
+|  |  |  |  |-- scikit_linear
+|  |  |  |  |  |-- 00_SetupModel.ipynb
+|  |  |  |  |  |-- 01_TrainModel.ipynb
+|  |  |  |  |  |-- 02_TestModel.ipynb
+|  |  |  |  |  |-- 03_DeployModel.ipynb
+|  |  |  |  |  |-- 04_PredictModel.ipynb
+|  |  |  |  |  |-- 05_MonitorModel.ipynb
+|  |  |  |  |  |-- data
+|  |  |  |  |  |  |-- test_request.json
+|  |  |  |  |  |  |-- test_response.json
+|  |  |  |  |  |-- pio_bundle.pkl
+|  |  |  |  |  |-- requirements.txt
+|  |  |  |  |  |-- requirements_conda.txt
+|  |  |  |-- spark
+|  |  |  |  |-- spark_airbnb
+|  |  |  |  |  |-- 01_TrainModel.ipynb
+|  |  |  |  |  |-- 02_TestModel.ipynb
+|  |  |  |  |  |-- 03_DeployModel.ipynb
+|  |  |  |  |  |-- 04_PredictModel.ipynb
+|  |  |  |  |  |-- 05_MonitorModel.ipynb
+|  |  |  |  |  |-- data
+|  |  |  |  |  |  |-- test_request.json
+|  |  |  |  |  |  |-- test_response.json
+|  |  |  |  |  |-- model.spark
+|  |  |  |  |-- spark_census
+|  |  |  |  |  |-- 01_TrainModel.ipynb
+|  |  |  |  |  |-- 02_TestModel.ipynb
+|  |  |  |  |  |-- 03_DeployModel.ipynb
+|  |  |  |  |  |-- 04_PredictModel.ipynb
+|  |  |  |  |  |-- 05_MonitorModel.ipynb
+|  |  |  |  |  |-- data
+|  |  |  |  |  |  |-- test_request.json
+|  |  |  |  |  |  |-- test_response.json
+|  |  |  |  |  |-- model.spark
+|  |  |  |-- tensorflow
+|  |  |  |  |-- tensorflow_linear
+|  |  |  |  |  |-- 00_SetupModel.ipynb
+|  |  |  |  |  |-- 01_TrainModel.ipynb
+|  |  |  |  |  |-- 02_TestModel.ipynb
+|  |  |  |  |  |-- 03_DeployModel.ipynb
+|  |  |  |  |  |-- 04_PredictModel.ipynb
+|  |  |  |  |  |-- 05_MonitorModel.ipynb
+|  |  |  |  |  |-- data
+|  |  |  |  |  |  |-- model_training.csv
+|  |  |  |  |  |  |-- test_request.json
+|  |  |  |  |  |  |-- test_response.json
+|  |  |  |  |  |-- pio_bundle.pkl
+|  |  |  |  |  |-- requirements.txt
+|  |  |  |  |  |-- requirements_conda.txt
+|  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |  |-- variables
+|  |  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |  |-- variables.index
+|  |  |  |-- zz_under_construction
+|  |  |  |  |-- java
+|  |  |  |  |  |-- airbnb
+|  |  |  |  |  |  |-- java_airbnb.java
+|  |  |  |  |  |  |-- test_inputs.txt
+|  |  |  |  |  |  |-- test_outputs.txt
+|  |  |  |  |  |-- census
+|  |  |  |  |  |  |-- java_census.java
+|  |  |  |  |  |  |-- test_inputs.txt
+|  |  |  |  |  |  |-- test_outputs.txt
+|  |  |  |  |  |-- equals
+|  |  |  |  |  |  |-- Deploy_Java_Simple_Equals.ipynb
+|  |  |  |  |  |  |-- java_equals.java
+|  |  |  |  |  |  |-- test_inputs.txt
+|  |  |  |  |  |  |-- test_outputs.txt
+|  |  |  |  |  |-- httpclient
+|  |  |  |  |  |  |-- Deploy_Java_HttpClient_ExternalRequest.ipynb
+|  |  |  |  |-- keyvalue
+|  |  |  |  |  |-- als_recommendations
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |-- scikit
+|  |  |  |  |  |-- DecisionTreeIris.pmml
+|  |  |  |  |  |-- Deploy_Scikit_Learn_Iris_DecisionTree.ipynb
+|  |  |  |  |  |-- iris
+|  |  |  |  |  |  |-- DecisionTreeIris.pmml
+|  |  |  |  |  |  |-- Deploy_Scikit_Learn_Iris_DecisionTree.ipynb
+|  |  |  |  |-- spark
+|  |  |  |  |  |-- iris
+|  |  |  |  |  |  |-- 01_Train_Model.ipynb
+|  |  |  |  |  |-- movielens
+|  |  |  |  |  |  |-- 01_TrainModel.ipynb
+|  |  |  |  |-- tensorflow
+|  |  |  |  |  |-- linear
+|  |  |  |  |  |  |-- Deploy_Tensorflow_LinearRegression.ipynb
+|  |  |  |  |  |  |-- Deploy_Tensorflow_Simple.ipynb
+|  |  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |  |-- generate_proto_files.sh
+|  |  |  |  |  |  |-- install.sh
+|  |  |  |  |  |  |-- model.proto
+|  |  |  |  |  |  |-- model.py
+|  |  |  |  |  |  |-- model_io_transformers.py
+|  |  |  |  |  |  |-- model_pb2.py
+|  |  |  |  |  |  |-- my_checkpoint.ckpt.data-00000-of-00001
+|  |  |  |  |  |  |-- my_checkpoint.ckpt.index
+|  |  |  |  |  |  |-- my_checkpoint.ckpt.meta
+|  |  |  |  |  |  |-- predict.proto
+|  |  |  |  |  |  |-- predict.py
+|  |  |  |  |  |  |-- predict_pb2.py
+|  |  |  |  |  |  |-- prediction_service.proto
+|  |  |  |  |  |  |-- prediction_service_pb2.py
+|  |  |  |  |  |  |-- requirements.txt
+|  |  |  |  |  |  |-- requirements_conda.txt
+|  |  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |  |  |-- test.sh
+|  |  |  |  |  |  |-- test_model.py
+|  |  |  |  |  |  |-- train.sh
+|  |  |  |  |  |-- optimize
+|  |  |  |  |  |  |-- 01_Explore_Environment.ipynb
+|  |  |  |  |  |  |-- 01a_Explore_GPU.ipynb
+|  |  |  |  |  |  |-- 01b_Explore_Numba.ipynb
+|  |  |  |  |  |  |-- 02_Feed_Queue_HDFS.ipynb
+|  |  |  |  |  |  |-- 03_Train_Model_CPU.ipynb
+|  |  |  |  |  |  |-- 03a_Train_Model_GPU.ipynb
+|  |  |  |  |  |  |-- 04_Debug_Model.ipynb
+|  |  |  |  |  |  |-- 05_Train_Model_Distributed.ipynb
+|  |  |  |  |  |  |-- 06_Train_Model_XLA_CPU.ipynb
+|  |  |  |  |  |  |-- 06a_Train_Model_XLA_GPU.ipynb
+|  |  |  |  |  |  |-- 07_Optimize_Model.ipynb
+|  |  |  |  |  |  |-- 08_Optimize_Model_Quantize_Activations.ipynb
+|  |  |  |  |  |  |-- 09_Deploy_Optimized_Model.ipynb
+|  |  |  |  |  |  |-- 10_Deploy_Unoptimized_Model.ipynb
+|  |  |  |  |  |  |-- 11_Tune_Model_Server.ipynb
+|  |  |  |  |-- tf_record
+|  |  |  |  |  |-- Spark_CSV_2_TFRecord
+|  |  |  |  |-- xgboost
+|  |  |  |  |  |-- data
+|  |  |  |  |  |  |-- test_inputs.csv
+|  |  |  |  |  |-- deploy
+|  |  |  |  |  |  |-- airlines-deploy.yaml
+|  |  |  |  |  |  |-- airlines-svc.yaml
+|  |  |  |  |  |  |-- xgboost_airlines.pmml
+|  |  |  |  |  |-- xgboost pipeline example.ipynb
+|  |  |  |  |-- zz_old
+|  |  |  |  |  |-- Conferences
+|  |  |  |  |  |  |-- ODSC
+|  |  |  |  |  |  |  |-- MasterClass
+|  |  |  |  |  |  |  |  |-- Mar-01-2017
+|  |  |  |  |  |  |  |  |  |-- SparkMLTensorflowAI-HybridCloud-ContinuousDeployment.ipynb
+|  |  |  |  |  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |  |  |  |  |  |-- checkpoint.ckpt.data-00000-of-00001
+|  |  |  |  |  |  |  |  |  |  |-- checkpoint.ckpt.index
+|  |  |  |  |  |  |  |  |  |  |-- checkpoint.ckpt.meta
+|  |  |  |  |  |  |  |  |  |  |-- trained_model.pb
+|  |  |  |  |  |  |  |  |  |  |-- trained_model.txt
+|  |  |  |  |  |  |-- StartupML
+|  |  |  |  |  |  |  |-- Jan-20-2017
+|  |  |  |  |  |  |  |  |-- SparkMLTensorflowAI-HybridCloud-ContinuousDeployment.ipynb
+|  |  |  |  |  |-- Python
+|  |  |  |  |  |  |-- Basics
+|  |  |  |  |  |  |  |-- ListComprehension.ipynb
+|  |  |  |  |  |  |  |-- Sets.ipynb
+|  |  |  |  |  |  |-- BeyondBasics
+|  |  |  |  |  |  |  |-- solutions
+|  |  |  |  |  |  |  |  |-- helloworld.ipynb
+|  |  |  |  |  |  |-- ProgressBar.ipynb
+|  |  |  |  |  |-- Scikit-Learn
+|  |  |  |  |  |  |-- PMML
+|  |  |  |  |  |  |  |-- DecisionTreeIris.pmml
+|  |  |  |  |  |  |  |-- Scikit-Learn-PMML-Deploy.ipynb
+|  |  |  |  |  |  |-- Python_Codegen.ipynb
+|  |  |  |  |  |  |-- Scikit-Learn+Demos.ipynb
+|  |  |  |  |  |-- Spark
+|  |  |  |  |  |  |-- ApacheArrow-FeatherDataFormat-Python.ipynb
+|  |  |  |  |  |  |-- Codegen
+|  |  |  |  |  |  |  |-- SparkML_To_Production_Codegen_Equals_Hybrid_Cloud.ipynb
+|  |  |  |  |  |  |  |-- SparkML_To_Production_Codegen_HttpClient_Request_Hybrid_Cloud.ipynb
+|  |  |  |  |  |  |-- Configuring Packages and Jars in PySpark Notebooks.ipynb
+|  |  |  |  |  |  |-- Converting Jupyter Notebooks into Python and PySpark Scripts
+|  |  |  |  |  |  |-- Intro
+|  |  |  |  |  |  |  |-- Lab 1 - Hello Spark
+|  |  |  |  |  |  |  |  |-- Lab 1 - Hello Spark - Instructor.ipynb
+|  |  |  |  |  |  |  |  |-- Lab 1 - Hello Spark - Student.ipynb
+|  |  |  |  |  |  |  |-- Lab 2 - Spark SQL
+|  |  |  |  |  |  |  |  |-- Lab 2 - Spark SQL - Instructor Notebook.ipynb
+|  |  |  |  |  |  |  |  |-- world_bank.json.gz
+|  |  |  |  |  |  |  |-- Lab 3 - Machine Learning
+|  |  |  |  |  |  |  |  |-- IntroToSparkMLlib.ipynb
+|  |  |  |  |  |  |-- ML
+|  |  |  |  |  |  |  |-- ALS Collaborative Filtering.ipynb
+|  |  |  |  |  |  |  |-- DecisionTree.ipynb
+|  |  |  |  |  |  |  |-- Live_Recommendations_TopK.ipynb
+|  |  |  |  |  |  |  |-- RandomForest.ipynb
+|  |  |  |  |  |  |  |-- Scratch.ipynb
+|  |  |  |  |  |  |  |-- SparkML_To_Production_Airbnb_Hybrid_Cloud.ipynb
+|  |  |  |  |  |  |  |-- SparkML_To_Production_Census_Hybrid_Cloud-Full.ipynb
+|  |  |  |  |  |  |  |-- SparkML_To_Production_Census_Hybrid_Cloud.ipynb
+|  |  |  |  |  |  |-- NotebookJobs
+|  |  |  |  |  |  |  |-- PySpark-Notebook-Job.ipynb
+|  |  |  |  |  |  |  |-- pyspark_pi.ipynb
+|  |  |  |  |  |  |-- Scratch
+|  |  |  |  |  |  |  |-- Basic.ipynb
+|  |  |  |  |  |  |  |-- TestPySpark.ipynb
+|  |  |  |  |  |  |-- SparkMLTensorflowAI-HybridCloud-ContinuousDeployment-Azure.ipynb
+|  |  |  |  |  |  |-- SparkR
+|  |  |  |  |  |  |  |-- ApacheArrow-FeatherDataFormat-R.ipynb
+|  |  |  |  |  |  |  |-- BasicR.ipynb
+|  |  |  |  |  |  |  |-- SparkR.ipynb
+|  |  |  |  |  |-- TensorFlow
+|  |  |  |  |  |  |-- DeepDream
+|  |  |  |  |  |  |  |-- deepdream.ipynb
+|  |  |  |  |  |  |-- Distributed
+|  |  |  |  |  |  |  |-- Basic-Distributed-TensorFlow.ipynb
+|  |  |  |  |  |  |  |-- Configuration.png
+|  |  |  |  |  |  |  |-- Distributed Tensorflow.ipynb
+|  |  |  |  |  |  |  |-- Distributed_Tensorflow_Training_HybridCloud.ipynb
+|  |  |  |  |  |  |  |-- SubGraphReplication.png
+|  |  |  |  |  |  |  |-- WholeGraphReplication.png
+|  |  |  |  |  |  |  |-- distributed_cnn.py
+|  |  |  |  |  |  |  |-- grpc_communication.png
+|  |  |  |  |  |  |  |-- ps_workers.png
+|  |  |  |  |  |  |  |-- tensors_flowing.gif
+|  |  |  |  |  |  |-- Fundamentals
+|  |  |  |  |  |  |  |-- Basic-ConvolutionNeuralNetworks-ImageProcessing.ipynb
+|  |  |  |  |  |  |  |-- Basic-Distributed-TensorFlow.ipynb
+|  |  |  |  |  |  |  |-- CNN.ipynb
+|  |  |  |  |  |  |  |-- Feedforward Network.ipynb
+|  |  |  |  |  |  |  |-- Fractal Example.ipynb
+|  |  |  |  |  |  |  |-- TensorFlow Fundamentals.ipynb
+|  |  |  |  |  |  |  |-- TensorFlow Hello World.ipynb
+|  |  |  |  |  |  |  |-- distributed_cnn.py
+|  |  |  |  |  |  |-- GPU
+|  |  |  |  |  |  |  |-- BasicGPU.ipynb
+|  |  |  |  |  |  |  |-- CPU vs GPU Matrix Multiplication.ipynb
+|  |  |  |  |  |  |  |-- Test GPU.ipynb
+|  |  |  |  |  |  |-- GoogleTraining
+|  |  |  |  |  |  |  |-- INSTALL.md
+|  |  |  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |-- TLDR_CLOUD_INSTALL.md
+|  |  |  |  |  |  |  |-- assets
+|  |  |  |  |  |  |  |  |-- api_manager.png
+|  |  |  |  |  |  |  |  |-- cloudshell.png
+|  |  |  |  |  |  |  |  |-- hamburger.png
+|  |  |  |  |  |  |  |-- workshop_image
+|  |  |  |  |  |  |  |  |-- Dockerfile
+|  |  |  |  |  |  |  |  |-- download_git_repo.py
+|  |  |  |  |  |  |  |-- workshop_sections
+|  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |-- extras
+|  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |-- cnn_text_classification
+|  |  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |  |-- data_helpers2.py
+|  |  |  |  |  |  |  |  |  |  |-- eval.py
+|  |  |  |  |  |  |  |  |  |  |-- text_cnn.py
+|  |  |  |  |  |  |  |  |  |  |-- train.py
+|  |  |  |  |  |  |  |  |  |-- intro_word2vec
+|  |  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |  |-- word2vec_basic_nearby.py
+|  |  |  |  |  |  |  |  |  |  |-- word2vec_basic_summaries.ipynb
+|  |  |  |  |  |  |  |  |  |  |-- word2vec_basic_summaries.py
+|  |  |  |  |  |  |  |  |  |-- lstm_text_classification
+|  |  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |  |-- preprocess.py
+|  |  |  |  |  |  |  |  |  |  |-- trainer
+|  |  |  |  |  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |  |  |  |  |-- model.py
+|  |  |  |  |  |  |  |  |  |  |  |-- task.py
+|  |  |  |  |  |  |  |  |  |  |  |-- utils.py
+|  |  |  |  |  |  |  |  |  |-- word2vec_optimized
+|  |  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |  |-- questions-words.txt
+|  |  |  |  |  |  |  |  |  |  |-- word2vec_optimized.py
+|  |  |  |  |  |  |  |  |-- mnist_series
+|  |  |  |  |  |  |  |  |  |-- 01_README_mnist_simple.md
+|  |  |  |  |  |  |  |  |  |-- 02_README_mnist_tflearn.md
+|  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |-- cloudml
+|  |  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |  |-- config.yaml
+|  |  |  |  |  |  |  |  |  |  |-- prepare_data.py
+|  |  |  |  |  |  |  |  |  |  |-- trainer
+|  |  |  |  |  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |  |  |  |  |-- model.py
+|  |  |  |  |  |  |  |  |  |  |  |-- model_skeleton.py
+|  |  |  |  |  |  |  |  |  |  |  |-- task.py
+|  |  |  |  |  |  |  |  |  |  |  |-- task_skeleton.py
+|  |  |  |  |  |  |  |  |  |  |  |-- util.py
+|  |  |  |  |  |  |  |  |  |-- mnist_cnn
+|  |  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |  |-- mnist_cnn.py
+|  |  |  |  |  |  |  |  |  |  |-- mnist_cnn_estim_layers.py
+|  |  |  |  |  |  |  |  |  |  |-- mnist_cnn_estimator.py
+|  |  |  |  |  |  |  |  |  |  |-- mnist_cnn_estimator_skeleton.py
+|  |  |  |  |  |  |  |  |  |-- mnist_simple.ipynb
+|  |  |  |  |  |  |  |  |  |-- mnist_simple.py
+|  |  |  |  |  |  |  |  |  |-- mnist_tflearn.ipynb
+|  |  |  |  |  |  |  |  |  |-- mnist_tflearn.py
+|  |  |  |  |  |  |  |  |  |-- the_hard_way
+|  |  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |  |-- mnist_hidden.py
+|  |  |  |  |  |  |  |  |  |  |-- mnist_onehlayer.ipynb
+|  |  |  |  |  |  |  |  |  |  |-- mnist_onehlayer.py
+|  |  |  |  |  |  |  |  |-- starter_tf_graph
+|  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |-- tf_matrix_mul.ipynb
+|  |  |  |  |  |  |  |  |  |-- tf_matrix_mul.py
+|  |  |  |  |  |  |  |  |  |-- tf_matrix_mul_add.py
+|  |  |  |  |  |  |  |  |-- transfer_learning
+|  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |-- TF_Estimator
+|  |  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |  |-- prediction_images
+|  |  |  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |  |  |-- hedgehog.jpg
+|  |  |  |  |  |  |  |  |  |  |  |-- knife.jpg
+|  |  |  |  |  |  |  |  |  |  |  |-- puppy.jpg
+|  |  |  |  |  |  |  |  |  |  |-- transfer_learning.py
+|  |  |  |  |  |  |  |  |  |  |-- transfer_learning_prediction.ipynb
+|  |  |  |  |  |  |  |  |  |  |-- transfer_learning_skeleton.py
+|  |  |  |  |  |  |  |  |  |-- cloudml
+|  |  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |  |-- config.yaml
+|  |  |  |  |  |  |  |  |  |  |-- flowers_preproc.sh
+|  |  |  |  |  |  |  |  |  |  |-- flowers_train.sh
+|  |  |  |  |  |  |  |  |  |  |-- hugs_preproc.sh
+|  |  |  |  |  |  |  |  |  |  |-- hugs_train.sh
+|  |  |  |  |  |  |  |  |  |  |-- image-classification-3-1.png
+|  |  |  |  |  |  |  |  |  |  |-- images_to_json.py
+|  |  |  |  |  |  |  |  |  |  |-- model.sh
+|  |  |  |  |  |  |  |  |  |  |-- prediction_images
+|  |  |  |  |  |  |  |  |  |  |  |-- 1310117470_0001565741.jpg
+|  |  |  |  |  |  |  |  |  |  |  |-- 247769206_a5a564ee8a.jpg
+|  |  |  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |  |  |-- daisy.jpg
+|  |  |  |  |  |  |  |  |  |  |  |-- hedgehog.jpg
+|  |  |  |  |  |  |  |  |  |  |  |-- knife.jpg
+|  |  |  |  |  |  |  |  |  |  |  |-- puppy1.jpg
+|  |  |  |  |  |  |  |  |  |  |  |-- puppy2.jpg
+|  |  |  |  |  |  |  |  |  |  |-- setup.py
+|  |  |  |  |  |  |  |  |  |  |-- trainer
+|  |  |  |  |  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |  |  |  |  |-- model.py
+|  |  |  |  |  |  |  |  |  |  |  |-- preprocess.py
+|  |  |  |  |  |  |  |  |  |  |  |-- task.py
+|  |  |  |  |  |  |  |  |  |  |  |-- util.py
+|  |  |  |  |  |  |  |  |  |  |-- web_server
+|  |  |  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |  |  |-- predict_server.py
+|  |  |  |  |  |  |  |  |  |  |  |-- requirements.txt
+|  |  |  |  |  |  |  |  |  |  |  |-- static
+|  |  |  |  |  |  |  |  |  |  |  |  |-- css
+|  |  |  |  |  |  |  |  |  |  |  |  |  |-- style.css
+|  |  |  |  |  |  |  |  |  |  |  |  |-- dict.txt
+|  |  |  |  |  |  |  |  |  |  |  |  |-- js
+|  |  |  |  |  |  |  |  |  |  |  |  |  |-- jquery.uploadPreview.js
+|  |  |  |  |  |  |  |  |  |  |  |-- templates
+|  |  |  |  |  |  |  |  |  |  |  |  |-- error.html
+|  |  |  |  |  |  |  |  |  |  |  |  |-- index.html
+|  |  |  |  |  |  |  |  |  |  |  |  |-- jresults.html
+|  |  |  |  |  |  |  |  |  |-- view_inception_model.ipynb
+|  |  |  |  |  |  |  |  |-- wide_n_deep
+|  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |-- setup.py
+|  |  |  |  |  |  |  |  |  |-- wide_n_deep.ipynb
+|  |  |  |  |  |  |  |  |  |-- wide_n_deep_flow.ipynb
+|  |  |  |  |  |  |  |  |  |-- widendeep
+|  |  |  |  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |  |  |  |-- model.py
+|  |  |  |  |  |  |  |  |-- word2vec
+|  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |-- hptuning_config.yaml
+|  |  |  |  |  |  |  |  |  |-- preprocess.py
+|  |  |  |  |  |  |  |  |  |-- word2vec
+|  |  |  |  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |  |  |  |-- model.py
+|  |  |  |  |  |  |  |  |  |  |-- task.py
+|  |  |  |  |  |  |  |  |  |  |-- util.py
+|  |  |  |  |  |  |  |  |-- xor
+|  |  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |  |-- xor.ipynb
+|  |  |  |  |  |  |  |  |  |-- xor
+|  |  |  |  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |  |  |  |-- xor.py
+|  |  |  |  |  |  |  |  |  |  |-- xor_summaries.py
+|  |  |  |  |  |  |  |  |  |  |-- xor_summaries_softmax.py
+|  |  |  |  |  |  |  |  |  |-- xor_summaries.ipynb
+|  |  |  |  |  |  |-- HvassLabsTutorials
+|  |  |  |  |  |  |  |-- 01_Simple_Linear_Model.ipynb
+|  |  |  |  |  |  |  |-- 02_Convolutional_Neural_Network.ipynb
+|  |  |  |  |  |  |  |-- 03_PrettyTensor.ipynb
+|  |  |  |  |  |  |  |-- 04_Save_Restore.ipynb
+|  |  |  |  |  |  |  |-- 05_Ensemble_Learning.ipynb
+|  |  |  |  |  |  |  |-- 06_CIFAR-10.ipynb
+|  |  |  |  |  |  |  |-- 07_Inception_Model.ipynb
+|  |  |  |  |  |  |  |-- 08_Transfer_Learning.ipynb
+|  |  |  |  |  |  |  |-- 09_Video_Data.ipynb
+|  |  |  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |-- cifar10.py
+|  |  |  |  |  |  |  |-- download.py
+|  |  |  |  |  |  |  |-- images
+|  |  |  |  |  |  |  |  |-- 02_convolution.png
+|  |  |  |  |  |  |  |  |-- 02_convolution.svg
+|  |  |  |  |  |  |  |  |-- 02_network_flowchart.png
+|  |  |  |  |  |  |  |  |-- 02_network_flowchart.svg
+|  |  |  |  |  |  |  |  |-- 06_network_flowchart.png
+|  |  |  |  |  |  |  |  |-- 06_network_flowchart.svg
+|  |  |  |  |  |  |  |  |-- 07_inception_flowchart.png
+|  |  |  |  |  |  |  |  |-- 08_transfer_learning_flowchart.png
+|  |  |  |  |  |  |  |  |-- 08_transfer_learning_flowchart.svg
+|  |  |  |  |  |  |  |  |-- elon_musk.jpg
+|  |  |  |  |  |  |  |  |-- elon_musk_100x100.jpg
+|  |  |  |  |  |  |  |  |-- parrot.jpg
+|  |  |  |  |  |  |  |  |-- parrot_cropped1.jpg
+|  |  |  |  |  |  |  |  |-- parrot_cropped2.jpg
+|  |  |  |  |  |  |  |  |-- parrot_cropped3.jpg
+|  |  |  |  |  |  |  |  |-- parrot_padded.jpg
+|  |  |  |  |  |  |  |  |-- willy_wonka_new.jpg
+|  |  |  |  |  |  |  |  |-- willy_wonka_old.jpg
+|  |  |  |  |  |  |  |-- inception.py
+|  |  |  |  |  |  |-- ImageClassification
+|  |  |  |  |  |  |  |-- Nearest Neighbor MNIST Image Classifier.ipynb
+|  |  |  |  |  |  |-- Labs
+|  |  |  |  |  |  |  |-- classify_image.ipynb
+|  |  |  |  |  |  |  |-- inception.ipynb
+|  |  |  |  |  |  |  |-- lab1_testTensor.ipynb
+|  |  |  |  |  |  |  |-- lab2_NN.ipynb
+|  |  |  |  |  |  |  |-- lab3_mnist.ipynb
+|  |  |  |  |  |  |  |-- lab4_word2Vec.ipynb
+|  |  |  |  |  |  |  |-- lstm.ipynb
+|  |  |  |  |  |  |  |-- modern_net.py
+|  |  |  |  |  |  |  |-- plot.ipynb
+|  |  |  |  |  |  |  |-- room_results.ipynb
+|  |  |  |  |  |  |  |-- simple_nn.py
+|  |  |  |  |  |  |-- Optimizations
+|  |  |  |  |  |  |  |-- Train, Optimize, and Deploy Tensorflow AI Model.ipynb
+|  |  |  |  |  |  |-- Queues
+|  |  |  |  |  |  |  |-- queues.ipynb
+|  |  |  |  |  |  |-- Recommendations
+|  |  |  |  |  |  |  |-- Matrix Factorization.ipynb
+|  |  |  |  |  |  |-- SkFlow_DEPRECATED
+|  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |-- Scikit-Learn + TensorFlow.ipynb
+|  |  |  |  |  |  |  |-- boston.py
+|  |  |  |  |  |  |  |-- digits.py
+|  |  |  |  |  |  |  |-- iris.py
+|  |  |  |  |  |  |  |-- iris_config_addon.py
+|  |  |  |  |  |  |  |-- iris_custom_decay_dnn.py
+|  |  |  |  |  |  |  |-- iris_custom_model.py
+|  |  |  |  |  |  |  |-- iris_save_restore.py
+|  |  |  |  |  |  |  |-- iris_val_based_early_stopping.py
+|  |  |  |  |  |  |  |-- iris_with_pipeline.py
+|  |  |  |  |  |  |  |-- language_model.py
+|  |  |  |  |  |  |  |-- mnist.py
+|  |  |  |  |  |  |  |-- mnist_weights.py
+|  |  |  |  |  |  |  |-- multioutput_regression.py
+|  |  |  |  |  |  |  |-- multiple_gpu.py
+|  |  |  |  |  |  |  |-- neural_translation.py
+|  |  |  |  |  |  |  |-- neural_translation_word.py
+|  |  |  |  |  |  |  |-- out_of_core_data_classification.py
+|  |  |  |  |  |  |  |-- resnet.py
+|  |  |  |  |  |  |  |-- text_classification.py
+|  |  |  |  |  |  |  |-- text_classification_builtin_rnn_model.py
+|  |  |  |  |  |  |  |-- text_classification_character_cnn.py
+|  |  |  |  |  |  |  |-- text_classification_character_rnn.py
+|  |  |  |  |  |  |  |-- text_classification_cnn.py
+|  |  |  |  |  |  |  |-- text_classification_save_restore.py
+|  |  |  |  |  |  |-- TFLearn
+|  |  |  |  |  |  |  |-- AdversarialWorkshop
+|  |  |  |  |  |  |  |  |-- Adversarial Workshop - Adversarial Examples for MNIST.ipynb
+|  |  |  |  |  |  |  |  |-- Adversarial Workshop - Adversarial Examples for Sentiment.ipynb
+|  |  |  |  |  |  |  |  |-- Adversarial Workshop - Dropout Classification.ipynb
+|  |  |  |  |  |  |  |  |-- Adversarial Workshop - Dropout Credit.ipynb
+|  |  |  |  |  |  |  |  |-- Adversarial Workshop - Dropout Intuition.ipynb
+|  |  |  |  |  |  |  |  |-- References
+|  |  |  |  |  |  |-- TFSlim
+|  |  |  |  |  |  |  |-- slim_walkthrough.ipynb
+|  |  |  |  |  |  |-- TensorFrames
+|  |  |  |  |  |  |  |-- Basic-TensorFrames.ipynb
+|  |  |  |  |  |  |  |-- Geometric Mean.ipynb
+|  |  |  |  |  |  |  |-- ML
+|  |  |  |  |  |  |  |  |-- KMeans Demo.ipynb
+|  |  |  |  |  |  |  |  |-- KMeans.ipynb
+|  |  |  |  |  |  |  |-- RowBlocks.ipynb
+|  |  |  |  |  |  |  |-- SQL
+|  |  |  |  |  |  |  |  |-- GroupBy.ipynb
+|  |  |  |  |  |  |-- Tutorials
+|  |  |  |  |  |  |  |-- 01_basics.ipynb
+|  |  |  |  |  |  |  |-- 02_linear_regression.ipynb
+|  |  |  |  |  |  |  |-- 03_polynomial_regression.ipynb
+|  |  |  |  |  |  |  |-- 04_logistic_regression.ipynb
+|  |  |  |  |  |  |  |-- 05_basic_convnet.ipynb
+|  |  |  |  |  |  |  |-- 06_modern_convnet.ipynb
+|  |  |  |  |  |  |  |-- 07_autoencoder.ipynb
+|  |  |  |  |  |  |  |-- 08_denoising_autoencoder.ipynb
+|  |  |  |  |  |  |  |-- 09_convolutional_autoencoder.ipynb
+|  |  |  |  |  |  |  |-- 10_residual_network.ipynb
+|  |  |  |  |  |  |  |-- 11_variational_autoencoder.ipynb
+|  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |-- android
+|  |  |  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |  |-- jni
+|  |  |  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |  |  |-- imageutils_jni.cc
+|  |  |  |  |  |  |  |  |  |-- jni_utils.cc
+|  |  |  |  |  |  |  |  |  |-- jni_utils.h
+|  |  |  |  |  |  |  |  |  |-- rgb2yuv.cc
+|  |  |  |  |  |  |  |  |  |-- rgb2yuv.h
+|  |  |  |  |  |  |  |  |  |-- tensorflow_jni.cc
+|  |  |  |  |  |  |  |  |  |-- tensorflow_jni.h
+|  |  |  |  |  |  |  |  |  |-- yuv2rgb.cc
+|  |  |  |  |  |  |  |  |  |-- yuv2rgb.h
+|  |  |  |  |  |  |  |  |-- res
+|  |  |  |  |  |  |  |  |  |-- drawable-hdpi
+|  |  |  |  |  |  |  |  |  |  |-- ic_action_info.png
+|  |  |  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |  |  |-- tile.9.png
+|  |  |  |  |  |  |  |  |  |-- drawable-mdpi
+|  |  |  |  |  |  |  |  |  |  |-- ic_action_info.png
+|  |  |  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |  |-- drawable-xhdpi
+|  |  |  |  |  |  |  |  |  |  |-- ic_action_info.png
+|  |  |  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |  |-- drawable-xxhdpi
+|  |  |  |  |  |  |  |  |  |  |-- ic_action_info.png
+|  |  |  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |  |-- layout-land
+|  |  |  |  |  |  |  |  |  |  |-- camera_connection_fragment.xml
+|  |  |  |  |  |  |  |  |  |-- layout
+|  |  |  |  |  |  |  |  |  |  |-- activity_camera.xml
+|  |  |  |  |  |  |  |  |  |  |-- camera_connection_fragment.xml
+|  |  |  |  |  |  |  |  |  |-- values-sw600dp
+|  |  |  |  |  |  |  |  |  |  |-- template-dimens.xml
+|  |  |  |  |  |  |  |  |  |  |-- template-styles.xml
+|  |  |  |  |  |  |  |  |  |-- values-v11
+|  |  |  |  |  |  |  |  |  |  |-- styles.xml
+|  |  |  |  |  |  |  |  |  |  |-- template-styles.xml
+|  |  |  |  |  |  |  |  |  |-- values-v14
+|  |  |  |  |  |  |  |  |  |  |-- styles.xml
+|  |  |  |  |  |  |  |  |  |-- values-v21
+|  |  |  |  |  |  |  |  |  |  |-- base-colors.xml
+|  |  |  |  |  |  |  |  |  |  |-- base-template-styles.xml
+|  |  |  |  |  |  |  |  |  |-- values
+|  |  |  |  |  |  |  |  |  |  |-- attrs.xml
+|  |  |  |  |  |  |  |  |  |  |-- base-strings.xml
+|  |  |  |  |  |  |  |  |  |  |-- colors.xml
+|  |  |  |  |  |  |  |  |  |  |-- strings.xml
+|  |  |  |  |  |  |  |  |  |  |-- styles.xml
+|  |  |  |  |  |  |  |  |  |  |-- template-dimens.xml
+|  |  |  |  |  |  |  |  |  |  |-- template-styles.xml
+|  |  |  |  |  |  |  |  |-- src
+|  |  |  |  |  |  |  |  |  |-- org
+|  |  |  |  |  |  |  |  |  |  |-- tensorflow
+|  |  |  |  |  |  |  |  |  |  |  |-- demo
+|  |  |  |  |  |  |  |  |  |  |  |  |-- AutoFitTextureView.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- CameraActivity.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- CameraConnectionFragment.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- Classifier.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- RecognitionScoreView.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- TensorflowClassifier.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- TensorflowImageListener.java
+|  |  |  |  |  |  |  |  |  |  |  |  |-- env
+|  |  |  |  |  |  |  |  |  |  |  |  |  |-- ImageUtils.java
+|  |  |  |  |  |  |  |  |  |  |  |  |  |-- Logger.java
+|  |  |  |  |  |  |  |-- convert.py
+|  |  |  |  |  |  |  |-- how_tos
+|  |  |  |  |  |  |  |  |-- reading_data
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |  |  |-- convert_to_records.py
+|  |  |  |  |  |  |  |  |  |-- fully_connected_preloaded.py
+|  |  |  |  |  |  |  |  |  |-- fully_connected_preloaded_var.py
+|  |  |  |  |  |  |  |  |  |-- fully_connected_reader.py
+|  |  |  |  |  |  |  |-- image_retraining
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- retrain.py
+|  |  |  |  |  |  |  |  |-- retrain_test.py
+|  |  |  |  |  |  |  |-- label_image
+|  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |-- main.cc
+|  |  |  |  |  |  |  |-- tutorials
+|  |  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |  |-- mnist
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |  |  |-- fully_connected_feed.py
+|  |  |  |  |  |  |  |  |  |-- input_data.py
+|  |  |  |  |  |  |  |  |  |-- mnist.py
+|  |  |  |  |  |  |  |  |  |-- mnist_softmax.py
+|  |  |  |  |  |  |  |  |  |-- mnist_with_summaries.py
+|  |  |  |  |  |  |  |  |-- word2vec
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |  |  |  |-- word2vec_basic.py
+|  |  |  |  |  |  |  |-- udacity
+|  |  |  |  |  |  |  |  |-- 1_notmnist.ipynb
+|  |  |  |  |  |  |  |  |-- 2_fullyconnected.ipynb
+|  |  |  |  |  |  |  |  |-- 3_regularization.ipynb
+|  |  |  |  |  |  |  |  |-- 4_convolutions.ipynb
+|  |  |  |  |  |  |  |  |-- 5_word2vec.ipynb
+|  |  |  |  |  |  |  |  |-- 6_lstm.ipynb
+|  |  |  |  |  |  |  |  |-- Dockerfile
+|  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- Word2Vec
+|  |  |  |  |  |  |  |-- 0_welcome.ipynb
+|  |  |  |  |  |  |  |-- 1_word2vec_intro.ipynb
+|  |  |  |  |  |  |  |-- 2_word2vec_application.ipynb
+|  |  |  |  |  |  |  |-- 3_word2vec_activity.ipynb
+|  |  |  |  |  |  |  |-- 4_everything2vec.ipynb
+|  |  |  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |-- environment.yml
+|  |  |  |  |  |  |  |-- images
+|  |  |  |  |  |  |  |  |-- DBOW.png
+|  |  |  |  |  |  |  |  |-- WMD_linear.png
+|  |  |  |  |  |  |  |  |-- WMD_problem_statement.png
+|  |  |  |  |  |  |  |  |-- WMD_worked_example.png
+|  |  |  |  |  |  |  |  |-- activation_equation copy.png
+|  |  |  |  |  |  |  |  |-- activation_equation.png
+|  |  |  |  |  |  |  |  |-- all_the_things.jpg
+|  |  |  |  |  |  |  |  |-- back_prop_overvview.png
+|  |  |  |  |  |  |  |  |-- bag_of_popcorn.png
+|  |  |  |  |  |  |  |  |-- basic_neural_net.png
+|  |  |  |  |  |  |  |  |-- beer_space.jpg
+|  |  |  |  |  |  |  |  |-- binary_tree.png
+|  |  |  |  |  |  |  |  |-- book.png
+|  |  |  |  |  |  |  |  |-- catdog_word2vec_cropped.jpg
+|  |  |  |  |  |  |  |  |-- cbow.png
+|  |  |  |  |  |  |  |  |-- compare_models.png
+|  |  |  |  |  |  |  |  |-- country.png
+|  |  |  |  |  |  |  |  |-- country_and_capitals.png
+|  |  |  |  |  |  |  |  |-- d2v.png
+|  |  |  |  |  |  |  |  |-- defination.png
+|  |  |  |  |  |  |  |  |-- dense_repsentations.png
+|  |  |  |  |  |  |  |  |-- dependency_results.png
+|  |  |  |  |  |  |  |  |-- doc_matrix.png
+|  |  |  |  |  |  |  |  |-- doc_vec.png
+|  |  |  |  |  |  |  |  |-- duck.png
+|  |  |  |  |  |  |  |  |-- input.png
+|  |  |  |  |  |  |  |  |-- lda2vec.png
+|  |  |  |  |  |  |  |  |-- like2vec.png
+|  |  |  |  |  |  |  |  |-- logistic_function.png
+|  |  |  |  |  |  |  |  |-- logistic_function_graph.png
+|  |  |  |  |  |  |  |  |-- machine_translation.png
+|  |  |  |  |  |  |  |  |-- matrix_layer.png
+|  |  |  |  |  |  |  |  |-- me.png
+|  |  |  |  |  |  |  |  |-- model_defination.png
+|  |  |  |  |  |  |  |  |-- moody_lda.png
+|  |  |  |  |  |  |  |  |-- multinomial_distributions.png
+|  |  |  |  |  |  |  |  |-- naive_doc.png
+|  |  |  |  |  |  |  |  |-- network.png
+|  |  |  |  |  |  |  |  |-- neuron_math.png
+|  |  |  |  |  |  |  |  |-- objective_function.png
+|  |  |  |  |  |  |  |  |-- one_layer.png
+|  |  |  |  |  |  |  |  |-- output.png
+|  |  |  |  |  |  |  |  |-- overview_paragraph.png
+|  |  |  |  |  |  |  |  |-- overview_word.png
+|  |  |  |  |  |  |  |  |-- parse.png
+|  |  |  |  |  |  |  |  |-- plurals.png
+|  |  |  |  |  |  |  |  |-- prob_of_word.png
+|  |  |  |  |  |  |  |  |-- punchline.png
+|  |  |  |  |  |  |  |  |-- relationship_vectors.png
+|  |  |  |  |  |  |  |  |-- representation.png
+|  |  |  |  |  |  |  |  |-- single_neuron.png
+|  |  |  |  |  |  |  |  |-- skip-gram-equation.png
+|  |  |  |  |  |  |  |  |-- skip-gram-objective-function.png
+|  |  |  |  |  |  |  |  |-- skip-gram.png
+|  |  |  |  |  |  |  |  |-- skip_gram_detailed.png
+|  |  |  |  |  |  |  |  |-- skip_gram_loss.png
+|  |  |  |  |  |  |  |  |-- softmax_equation.png
+|  |  |  |  |  |  |  |  |-- softmax_function.png
+|  |  |  |  |  |  |  |  |-- softmax_use.png
+|  |  |  |  |  |  |  |  |-- stat sig.gif
+|  |  |  |  |  |  |  |  |-- stochastic_gradient_descent.png
+|  |  |  |  |  |  |  |  |-- topic_lda2vec.png
+|  |  |  |  |  |  |  |  |-- trained_doc.png
+|  |  |  |  |  |  |  |  |-- vector.png
+|  |  |  |  |  |  |  |  |-- vectors.png
+|  |  |  |  |  |  |  |  |-- verb.png
+|  |  |  |  |  |  |  |  |-- verb_tenses.png
+|  |  |  |  |  |  |  |  |-- w2v_neural_net.png
+|  |  |  |  |  |  |  |  |-- wmd_illustration_1.png
+|  |  |  |  |  |  |  |  |-- word2vec_model_example.png
+|  |  |  |  |  |  |  |-- setup_instructions.md
+|  |  |  |  |  |  |  |-- word2vec_basic.py
+|  |  |  |  |  |  |-- Workshop
+|  |  |  |  |  |  |  |-- 1_warm_up.ipynb
+|  |  |  |  |  |  |  |-- 1_warm_up_solution.ipynb
+|  |  |  |  |  |  |  |-- 2_linear_regression.ipynb
+|  |  |  |  |  |  |  |-- 2b_regression_tf_learn.ipynb
+|  |  |  |  |  |  |  |-- 3_comparing_classifiers.ipynb
+|  |  |  |  |  |  |  |-- 4_mnist.ipynb
+|  |  |  |  |  |  |  |-- 5_word_embeddings.ipynb
+|  |  |  |  |  |  |  |-- LICENSE
+|  |  |  |  |  |  |  |-- README
+|  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |-- Slides.pdf
+|  |  |  |  |  |  |  |-- cab_test.csv
+|  |  |  |  |  |  |  |-- cab_train.csv
+|  |  |  |  |  |  |  |-- images
+|  |  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |  |-- graph-01-01.png
+|  |  |  |  |  |  |  |  |-- graph-01-02.png
+|  |  |  |  |  |  |  |  |-- graph-01-03.png
+|  |  |  |  |  |  |  |  |-- graph-01-04.png
+|  |  |  |  |  |  |  |  |-- graph-01-05.png
+|  |  |  |  |  |  |  |  |-- graph-01-06.png
+|  |  |  |  |  |  |  |  |-- graph-01-07.png
+|  |  |  |  |  |  |  |  |-- graph-01-08.png
+|  |  |  |  |  |  |  |  |-- graph-01-09.png
+|  |  |  |  |  |  |  |  |-- graph-01-10.png
+|  |  |  |  |  |  |  |  |-- graph-01-11.png
+|  |  |  |  |  |  |  |  |-- tensorboard1.png
+|  |  |  |  |  |  |  |-- install-mac-docker.md
+|  |  |  |  |  |  |  |-- install-mac-native.md
+|  |  |  |  |  |  |  |-- install-ubuntu.md
+|  |  |  |  |  |-- kafka
+|  |  |  |  |  |  |-- kafka.ipynb
+|  |  |  |  |  |-- talks
+|  |  |  |  |  |  |-- DataWeekends
+|  |  |  |  |  |  |  |-- SparkMLDeployment
+|  |  |  |  |  |  |  |  |-- DataWeekends-Mar182017-SparkMLDeployment.ipynb
+|  |  |  |  |  |  |  |  |-- DecisionTreeIris.pmml
+|  |  |  |  |  |  |  |  |-- Deploy_SparkML_Airbnb_LinearRegression.ipynb
+|  |  |  |  |  |  |-- GlobalDataScience
+|  |  |  |  |  |  |  |-- Mar272017-SantaClara-Deploy-SparkML-TensorflowAI
+|  |  |  |  |  |  |  |  |-- GlobalDataScience-SparkMLTensorflowAI-HybridCloud-ContinuousDeployment.ipynb
+|  |  |  |  |  |  |-- ODSC
+|  |  |  |  |  |  |  |-- MasterClass
+|  |  |  |  |  |  |  |  |-- Mar-01-2017
+|  |  |  |  |  |  |  |  |  |-- SparkMLTensorflowAI-HybridCloud-ContinuousDeployment.ipynb
+|  |  |  |  |  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |  |  |  |  |  |-- checkpoint.ckpt.data-00000-of-00001
+|  |  |  |  |  |  |  |  |  |  |-- checkpoint.ckpt.index
+|  |  |  |  |  |  |  |  |  |  |-- checkpoint.ckpt.meta
+|  |  |  |  |  |  |  |  |  |  |-- trained_model.pb
+|  |  |  |  |  |  |  |  |  |  |-- trained_model.txt
+|  |  |  |  |  |  |-- StartupML
+|  |  |  |  |  |  |  |-- Jan-20-2017
+|  |  |  |  |  |  |  |  |-- SparkMLTensorflowAI-HybridCloud-ContinuousDeployment.ipynb
+|  |  |  |  |  |-- xgboost
+|  |  |  |  |  |  |-- xgboost.ipynb
+|  |-- oauth-secret-template.yaml
+|  |-- scripts
+|  |  |-- debug
+|  |  |-- http_grpc_proxy
+|  |  |-- loadtest
+|  |  |-- predict
+|  |  |-- pull_force_overwrite_local
+|  |  |-- sum_arrays
+|  |  |-- sum_arrays_async_memcpy
+|  |-- src
+|  |  |-- main
+|  |  |  |-- cuda
+|  |  |  |  |-- SumArrays.cu
+|  |  |  |  |-- SumArraysAsyncMemcpy.cu
+|  |  |  |-- python
+|  |  |  |  |-- debug
+|  |  |  |  |  |-- debug_model.py
+|  |  |  |  |  |-- debug_model_gpu.py
+|  |  |  |  |  |-- debug_model_xla.py
+|  |  |  |  |-- numba
+|  |  |  |  |  |-- histogram.py
+|  |  |  |  |-- serving
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- generate_python_files
+|  |  |  |  |  |  |-- generate_proto_files.sh
+|  |  |  |  |  |  |-- model.proto
+|  |  |  |  |  |  |-- predict.proto
+|  |  |  |  |  |  |-- prediction_service.proto
+|  |  |  |  |  |  |-- tensorflow
+|  |  |  |  |  |  |  |-- contrib
+|  |  |  |  |  |  |  |  |-- ios_examples
+|  |  |  |  |  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |  |  |  |-- makefile
+|  |  |  |  |  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |  |  |  |-- pi_examples
+|  |  |  |  |  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |  |  |  |-- session_bundle
+|  |  |  |  |  |  |  |  |  |-- manifest.proto
+|  |  |  |  |  |  |  |  |-- tensorboard
+|  |  |  |  |  |  |  |  |  |-- plugins
+|  |  |  |  |  |  |  |  |  |  |-- projector
+|  |  |  |  |  |  |  |  |  |  |  |-- projector_config.proto
+|  |  |  |  |  |  |  |-- core
+|  |  |  |  |  |  |  |  |-- debug
+|  |  |  |  |  |  |  |  |  |-- debug_service.proto
+|  |  |  |  |  |  |  |  |-- example
+|  |  |  |  |  |  |  |  |  |-- example.proto
+|  |  |  |  |  |  |  |  |  |-- example_parser_configuration.proto
+|  |  |  |  |  |  |  |  |  |-- feature.proto
+|  |  |  |  |  |  |  |  |-- framework
+|  |  |  |  |  |  |  |  |  |-- allocation_description.proto
+|  |  |  |  |  |  |  |  |  |-- attr_value.proto
+|  |  |  |  |  |  |  |  |  |-- cost_graph.proto
+|  |  |  |  |  |  |  |  |  |-- device_attributes.proto
+|  |  |  |  |  |  |  |  |  |-- function.proto
+|  |  |  |  |  |  |  |  |  |-- graph.proto
+|  |  |  |  |  |  |  |  |  |-- kernel_def.proto
+|  |  |  |  |  |  |  |  |  |-- log_memory.proto
+|  |  |  |  |  |  |  |  |  |-- node_def.proto
+|  |  |  |  |  |  |  |  |  |-- op_def.proto
+|  |  |  |  |  |  |  |  |  |-- resource_handle.proto
+|  |  |  |  |  |  |  |  |  |-- step_stats.proto
+|  |  |  |  |  |  |  |  |  |-- summary.proto
+|  |  |  |  |  |  |  |  |  |-- tensor.proto
+|  |  |  |  |  |  |  |  |  |-- tensor_description.proto
+|  |  |  |  |  |  |  |  |  |-- tensor_shape.proto
+|  |  |  |  |  |  |  |  |  |-- tensor_slice.proto
+|  |  |  |  |  |  |  |  |  |-- types.proto
+|  |  |  |  |  |  |  |  |  |-- variable.proto
+|  |  |  |  |  |  |  |  |  |-- versions.proto
+|  |  |  |  |  |  |  |  |-- kernels
+|  |  |  |  |  |  |  |  |  |-- reader_base.proto
+|  |  |  |  |  |  |  |  |-- protobuf
+|  |  |  |  |  |  |  |  |  |-- config.proto
+|  |  |  |  |  |  |  |  |  |-- control_flow.proto
+|  |  |  |  |  |  |  |  |  |-- master.proto
+|  |  |  |  |  |  |  |  |  |-- master_service.proto
+|  |  |  |  |  |  |  |  |  |-- meta_graph.proto
+|  |  |  |  |  |  |  |  |  |-- named_tensor.proto
+|  |  |  |  |  |  |  |  |  |-- queue_runner.proto
+|  |  |  |  |  |  |  |  |  |-- saved_model.proto
+|  |  |  |  |  |  |  |  |  |-- saver.proto
+|  |  |  |  |  |  |  |  |  |-- tensor_bundle.proto
+|  |  |  |  |  |  |  |  |  |-- tensorflow_server.proto
+|  |  |  |  |  |  |  |  |  |-- worker.proto
+|  |  |  |  |  |  |  |  |  |-- worker_service.proto
+|  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |-- event.proto
+|  |  |  |  |  |  |  |  |  |-- memmapped_file_system.proto
+|  |  |  |  |  |  |  |  |  |-- saved_tensor_slice.proto
+|  |  |  |  |  |  |  |  |  |-- test_log.proto
+|  |  |  |  |  |  |  |-- examples
+|  |  |  |  |  |  |  |  |-- udacity
+|  |  |  |  |  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |  |  |-- go
+|  |  |  |  |  |  |  |  |-- genop
+|  |  |  |  |  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |  |  |  |-- op
+|  |  |  |  |  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |  |  |-- python
+|  |  |  |  |  |  |  |  |-- framework
+|  |  |  |  |  |  |  |  |  |-- cpp_shape_inference.proto
+|  |  |  |  |  |  |  |  |-- training
+|  |  |  |  |  |  |  |  |  |-- checkpoint_state.proto
+|  |  |  |  |  |  |  |  |-- util
+|  |  |  |  |  |  |  |  |  |-- protobuf
+|  |  |  |  |  |  |  |  |  |  |-- compare_test.proto
+|  |  |  |  |  |  |  |-- tensorboard
+|  |  |  |  |  |  |  |  |-- .bowerrc
+|  |  |  |  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |  |  |-- tools
+|  |  |  |  |  |  |  |  |-- ci_build
+|  |  |  |  |  |  |  |  |  |-- install
+|  |  |  |  |  |  |  |  |  |  |-- .bazelrc
+|  |  |  |  |  |  |  |  |-- git
+|  |  |  |  |  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |  |  |  |-- proto_text
+|  |  |  |  |  |  |  |  |  |-- test.proto
+|  |  |  |  |  |  |  |  |-- swig
+|  |  |  |  |  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |  |  |  |-- tfprof
+|  |  |  |  |  |  |  |  |  |-- tfprof_log.proto
+|  |  |  |  |  |  |  |  |  |-- tfprof_options.proto
+|  |  |  |  |  |  |  |  |  |-- tfprof_output.proto
+|  |  |  |  |  |-- http_grpc_proxy.py
+|  |  |  |  |  |-- linear_predict.py
+|  |  |  |  |  |-- model_pb2.py
+|  |  |  |  |  |-- predict.py
+|  |  |  |  |  |-- predict_pb2.py
+|  |  |  |  |  |-- prediction_service_pb2.py
+|  |  |  |  |  |-- requirements.txt
+|  |-- tests
+|  |  |-- predict-high.jmx
+|  |  |-- predict-low.jmx
+|  |  |-- predict-medium.jmx
+|-- keyvalue.ml
+|  |-- redis-master-deploy.yaml
+|  |-- redis-master-svc.yaml
+|  |-- redis
+|  |  |-- data
+|  |  |  |-- dump.rdb
+|-- kibana.ml
+|  |-- kibana-4-5-0-deploy.yaml
+|  |-- kibana-4-5-0-svc.yaml
+|  |-- kibana-5-0-0-deploy.yaml
+|  |-- kibana-5-0-0-svc.yaml
+|-- metastore.ml
+|  |-- metastore-deploy.yaml
+|  |-- metastore-svc.yaml
+|-- metrics.ml
+|  |-- monitoring-standalone
+|  |  |-- v1.3.0.yaml
+|-- prediction.ml
+|  |-- .gitignore
+|  |-- ensemble-deploy.yaml
+|  |-- ensemble-svc.yaml
+|  |-- java-deploy.yaml
+|  |-- java-svc.yaml
+|  |-- keyvalue-deploy.yaml
+|  |-- keyvalue-svc.yaml
+|  |-- model_store
+|  |  |-- R
+|  |  |  |-- default
+|  |  |  |  |-- R_census
+|  |  |  |  |  |-- v0
+|  |  |  |  |  |  |-- model.R
+|  |  |-- java
+|  |  |  |-- default
+|  |  |  |  |-- java_airbnb
+|  |  |  |  |  |-- v0
+|  |  |  |  |  |  |-- model.java
+|  |  |  |  |  |  |-- test_inputs.txt
+|  |  |  |  |  |  |-- test_outputs.txt
+|  |  |  |  |-- java_census
+|  |  |  |  |  |-- v0
+|  |  |  |  |  |  |-- model.java
+|  |  |  |  |  |  |-- test_inputs.txt
+|  |  |  |  |  |  |-- test_outputs.txt
+|  |  |  |  |-- java_equals
+|  |  |  |  |  |-- v0
+|  |  |  |  |  |  |-- .pioignore
+|  |  |  |  |  |  |-- model.java
+|  |  |  |  |  |  |-- test_inputs.txt
+|  |  |  |  |  |  |-- test_outputs.txt
+|  |  |  |  |-- java_httpclient
+|  |  |  |  |  |-- v0
+|  |  |  |  |  |  |-- model.java
+|  |  |-- pmml
+|  |  |  |-- default
+|  |  |  |  |-- pmml_airbnb
+|  |  |  |  |  |-- v0
+|  |  |  |  |  |  |-- model.pmml
+|  |  |  |  |  |  |-- model_training.csv
+|  |  |  |  |  |  |-- test_inputs.json
+|  |  |  |  |  |  |-- test_outputs.json
+|  |  |  |  |-- pmml_census
+|  |  |  |  |  |-- v0
+|  |  |  |  |  |  |-- model.pmml
+|  |  |  |  |  |  |-- model_training.csv
+|  |  |  |  |  |  |-- test_inputs.json
+|  |  |  |  |  |  |-- test_outputs.json
+|  |  |-- python3
+|  |  |  |-- default
+|  |  |  |  |-- python3_zscore
+|  |  |  |  |  |-- v0
+|  |  |  |  |  |  |-- data
+|  |  |  |  |  |  |  |-- model_training.csv
+|  |  |  |  |  |  |  |-- test_inputs.txt
+|  |  |  |  |  |  |  |-- test_outputs.txt
+|  |  |  |  |  |  |  |-- test_request.json
+|  |  |  |  |  |  |  |-- test_response.json
+|  |  |  |  |  |  |-- pio_bundle.pkl
+|  |  |  |  |  |  |-- requirements.txt
+|  |  |  |  |  |  |-- requirements_conda.txt
+|  |  |-- scikit
+|  |  |  |-- default
+|  |  |  |  |-- scikit_balancescale
+|  |  |  |  |  |-- v0
+|  |  |  |  |  |  |-- .pioignore
+|  |  |  |  |  |  |-- data
+|  |  |  |  |  |  |  |-- model_training.csv
+|  |  |  |  |  |  |  |-- test_request.json
+|  |  |  |  |  |  |  |-- test_response.json
+|  |  |  |  |  |  |-- pio_bundle.pkl
+|  |  |  |  |  |  |-- requirements.txt
+|  |  |  |  |  |  |-- requirements_conda.txt
+|  |  |  |  |-- scikit_linear
+|  |  |  |  |  |-- v0
+|  |  |  |  |  |  |-- data
+|  |  |  |  |  |  |  |-- test_request.json
+|  |  |  |  |  |  |  |-- test_response.json
+|  |  |  |  |  |  |-- pio_bundle.pkl
+|  |  |  |  |  |  |-- requirements.txt
+|  |  |  |  |  |  |-- requirements_conda.txt
+|  |  |-- spark
+|  |  |  |-- default
+|  |  |  |  |-- spark_airbnb
+|  |  |  |  |  |-- v0
+|  |  |  |  |  |  |-- data
+|  |  |  |  |  |  |  |-- test_request.json
+|  |  |  |  |  |  |  |-- test_response.json
+|  |  |  |  |  |  |-- model.spark
+|  |  |  |  |-- spark_census
+|  |  |  |  |  |-- v0
+|  |  |  |  |  |  |-- data
+|  |  |  |  |  |  |  |-- test_request.json
+|  |  |  |  |  |  |  |-- test_response.json
+|  |  |  |  |  |  |-- model.spark
+|  |  |-- tensorflow
+|  |  |  |-- default
+|  |  |  |  |-- tensorflow_linear
+|  |  |  |  |  |-- 0
+|  |  |  |  |  |  |-- data
+|  |  |  |  |  |  |  |-- model_training.csv
+|  |  |  |  |  |  |  |-- test_request.json
+|  |  |  |  |  |  |  |-- test_response.json
+|  |  |  |  |  |  |-- pio_bundle.pkl
+|  |  |  |  |  |  |-- requirements.txt
+|  |  |  |  |  |  |-- requirements_conda.txt
+|  |  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |  |  |-- variables
+|  |  |  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |  |  |-- variables.index
+|  |  |-- xgboost
+|  |  |  |-- default
+|  |  |  |  |-- xgboost_airlines
+|  |  |  |  |  |-- v0
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- model.xgboost
+|  |-- pmml-deploy.yaml
+|  |-- pmml-svc.yaml
+|  |-- python3-deploy.yaml
+|  |-- python3-svc.yaml
+|  |-- scikit-deploy.yaml
+|  |-- scikit-svc.yaml
+|  |-- spark-deploy.yaml
+|  |-- spark-svc.yaml
+|  |-- tensorflow-deploy.yaml
+|  |-- tensorflow-gpu-deploy.yaml
+|  |-- tensorflow-gpu-svc.yaml
+|  |-- tensorflow-svc.yaml
+|-- presto.ml
+|  |-- master-deploy.yaml
+|  |-- master-svc.yaml
+|  |-- ui-deploy.yaml
+|  |-- ui-svc.yaml
+|  |-- worker-deploy.yaml
+|  |-- worker-hpa.yaml
+|  |-- worker-svc.yaml
+|-- scheduler.ml
+|  |-- airflow-deploy.yaml
+|  |-- airflow-svc.yaml
+|  |-- airflow
+|  |  |-- dags
+|  |  |  |-- deploy_prediction_codegen.py
+|  |  |  |-- deploy_prediction_pmml.py
+|  |  |  |-- deploy_prediction_tensorflow.py
+|  |  |  |-- pyspark_pi.py
+|  |  |  |-- pyspark_submit_pi.py
+|  |  |  |-- spark_pi.py
+|  |  |  |-- spark_submit_pi.py
+|  |  |  |-- undeploy_prediction_codegen.py
+|  |  |  |-- undeploy_prediction_pmml.py
+|  |  |  |-- undeploy_prediction_tensorflow.py
+|  |  |  |-- update_prediction_codegen.py
+|  |  |  |-- update_prediction_pmml.py
+|  |  |  |-- update_prediction_tensorflow.py
+|  |  |  |-- update_sparksubmit_pyspark.py
+|  |  |-- triggers
+|  |  |  |-- README.md
+|-- scripts
+|  |-- github
+|  |  |-- update-tag.sh
+|-- sql.ml
+|  |-- mysql-master-deploy.yaml
+|  |-- mysql-master-svc.yaml
+|-- stream.ml
+|  |-- kafka-0.10-deploy.yaml
+|  |-- kafka-0.10-svc.yaml
+|  |-- tensorflow-producer-rc.yaml
+|  |-- tensorflow-rc-learning-rate-1.yaml
+|  |-- tensorflow-rc-learning-rate-2.yaml
+|-- web.ml
+|  |-- home-deploy.yaml
+|  |-- home-svc.yaml
+|  |-- home
+|  |  |-- config
+|  |  |  |-- apache2.conf
+|  |  |  |-- www.conf
+|  |  |-- html
+|  |  |  |-- css
+|  |  |  |  |-- bootstrap-responsive.css
+|  |  |  |  |-- bootstrap-responsive.min.css
+|  |  |  |  |-- bootstrap.css
+|  |  |  |  |-- bootstrap.min.css
+|  |  |  |  |-- github-light.css
+|  |  |  |  |-- normalize.css
+|  |  |  |  |-- stylesheet.css
+|  |  |  |  |-- w3-theme-deep-orange.css
+|  |  |  |  |-- w3-theme-orange.css
+|  |  |  |-- img
+|  |  |  |  |-- datasticks-logo-2638x304.png
+|  |  |  |  |-- datasticks-logo-500x58.png
+|  |  |  |  |-- datasticks-logo-no-flame-1960x260.png
+|  |  |  |  |-- datasticks-logo-no-flame-500x66.png
+|  |  |  |  |-- datasticks-logo-social.png
+|  |  |  |  |-- favicon.png
+|  |  |  |  |-- git-ribbon.png
+|  |  |  |  |-- glyphicons-halflings.png
+|  |  |  |  |-- pipeline-io-logo-shadow-210x186.png
+|  |  |  |  |-- pipeline-io-logo-shadow-326x300.png
+|  |  |  |  |-- pipeline-io-logo-shadow-339x300.png
+|  |  |  |  |-- pipeline-io-logo-shadow-646x572.png
+|  |  |  |-- index.html
+|  |  |  |-- js
+|  |  |  |  |-- bootstrap.js
+|  |  |  |  |-- bootstrap.min.js
+|  |-- sparkafterdark-deploy.yaml
+|  |-- sparkafterdark-svc.yaml
+|  |-- sparkafterdark
+|  |  |-- config
+|  |  |  |-- apache2.conf
+|  |  |  |-- sparkafterdark.conf
+|  |  |  |-- www.conf
+|  |  |-- html
+|  |  |  |-- classify.html
+|  |  |  |-- config
+|  |  |  |  |-- apache2.conf
+|  |  |  |  |-- sparkafterdark.conf
+|  |  |  |  |-- www.conf
+|  |  |  |-- css
+|  |  |  |  |-- bootstrap-responsive.css
+|  |  |  |  |-- bootstrap-responsive.min.css
+|  |  |  |  |-- bootstrap.css
+|  |  |  |  |-- bootstrap.min.css
+|  |  |  |  |-- jquery.mobile-1.2.0.min.css
+|  |  |  |  |-- jquery.mobile-1.4.5.css
+|  |  |  |  |-- jquery.mobile-1.4.5.min.css
+|  |  |  |  |-- jquery.mobile.external-png-1.4.5.css
+|  |  |  |  |-- jquery.mobile.external-png-1.4.5.min.css
+|  |  |  |  |-- jquery.mobile.icons-1.4.5.css
+|  |  |  |  |-- jquery.mobile.icons-1.4.5.min.css
+|  |  |  |  |-- jquery.mobile.inline-png-1.4.5.css
+|  |  |  |  |-- jquery.mobile.inline-png-1.4.5.min.css
+|  |  |  |  |-- jquery.mobile.inline-svg-1.4.5.css
+|  |  |  |  |-- jquery.mobile.inline-svg-1.4.5.min.css
+|  |  |  |  |-- jquery.mobile.structure-1.4.5.css
+|  |  |  |  |-- jquery.mobile.structure-1.4.5.min.css
+|  |  |  |  |-- jquery.mobile.theme-1.4.5.css
+|  |  |  |  |-- jquery.mobile.theme-1.4.5.min.css
+|  |  |  |-- experimental
+|  |  |  |  |-- classify-with-file-upload.html
+|  |  |  |  |-- mdb.min.css
+|  |  |  |  |-- mdb.min.js
+|  |  |  |  |-- style.css
+|  |  |  |-- favicon.ico
+|  |  |  |-- favicon.png
+|  |  |  |-- img
+|  |  |  |  |-- actors
+|  |  |  |  |  |-- 10001.jpg
+|  |  |  |  |  |-- 10002.jpg
+|  |  |  |  |  |-- 10003.jpg
+|  |  |  |  |  |-- 10004.jpg
+|  |  |  |  |  |-- 10005.jpg
+|  |  |  |  |  |-- 10006.jpg
+|  |  |  |  |  |-- 10007.jpg
+|  |  |  |  |  |-- 10008.jpg
+|  |  |  |  |  |-- 10009.jpg
+|  |  |  |  |  |-- 10010.jpg
+|  |  |  |  |  |-- 10011.jpg
+|  |  |  |  |  |-- 10012.jpg
+|  |  |  |  |  |-- 10013.jpg
+|  |  |  |  |  |-- 10014.jpg
+|  |  |  |  |  |-- 10015.jpg
+|  |  |  |  |  |-- 90001.jpg
+|  |  |  |  |  |-- 90002.jpg
+|  |  |  |  |  |-- 90003.jpg
+|  |  |  |  |  |-- 90004.jpg
+|  |  |  |  |  |-- 90005.jpg
+|  |  |  |  |  |-- 90006.jpg
+|  |  |  |  |  |-- 90007.jpg
+|  |  |  |  |  |-- 90008.jpg
+|  |  |  |  |  |-- 90009.jpg
+|  |  |  |  |  |-- 90010.jpg
+|  |  |  |  |  |-- 90011.jpg
+|  |  |  |  |  |-- 90012.jpg
+|  |  |  |  |  |-- 90013.jpg
+|  |  |  |  |  |-- 90014.jpg
+|  |  |  |  |  |-- 90015.jpg
+|  |  |  |  |-- advancedspark.png
+|  |  |  |  |-- ajax-loader.gif
+|  |  |  |  |-- dislike_button.png
+|  |  |  |  |-- fluxcapacitor-logo-250x250.png
+|  |  |  |  |-- fluxcapacitor.png
+|  |  |  |  |-- heart.png
+|  |  |  |  |-- icons-png
+|  |  |  |  |  |-- action-black.png
+|  |  |  |  |  |-- action-white.png
+|  |  |  |  |  |-- alert-black.png
+|  |  |  |  |  |-- alert-white.png
+|  |  |  |  |  |-- arrow-d-black.png
+|  |  |  |  |  |-- arrow-d-l-black.png
+|  |  |  |  |  |-- arrow-d-l-white.png
+|  |  |  |  |  |-- arrow-d-r-black.png
+|  |  |  |  |  |-- arrow-d-r-white.png
+|  |  |  |  |  |-- arrow-d-white.png
+|  |  |  |  |  |-- arrow-l-black.png
+|  |  |  |  |  |-- arrow-l-white.png
+|  |  |  |  |  |-- arrow-r-black.png
+|  |  |  |  |  |-- arrow-r-white.png
+|  |  |  |  |  |-- arrow-u-black.png
+|  |  |  |  |  |-- arrow-u-l-black.png
+|  |  |  |  |  |-- arrow-u-l-white.png
+|  |  |  |  |  |-- arrow-u-r-black.png
+|  |  |  |  |  |-- arrow-u-r-white.png
+|  |  |  |  |  |-- arrow-u-white.png
+|  |  |  |  |  |-- audio-black.png
+|  |  |  |  |  |-- audio-white.png
+|  |  |  |  |  |-- back-black.png
+|  |  |  |  |  |-- back-white.png
+|  |  |  |  |  |-- bars-black.png
+|  |  |  |  |  |-- bars-white.png
+|  |  |  |  |  |-- bullets-black.png
+|  |  |  |  |  |-- bullets-white.png
+|  |  |  |  |  |-- calendar-black.png
+|  |  |  |  |  |-- calendar-white.png
+|  |  |  |  |  |-- camera-black.png
+|  |  |  |  |  |-- camera-white.png
+|  |  |  |  |  |-- carat-d-black.png
+|  |  |  |  |  |-- carat-d-white.png
+|  |  |  |  |  |-- carat-l-black.png
+|  |  |  |  |  |-- carat-l-white.png
+|  |  |  |  |  |-- carat-r-black.png
+|  |  |  |  |  |-- carat-r-white.png
+|  |  |  |  |  |-- carat-u-black.png
+|  |  |  |  |  |-- carat-u-white.png
+|  |  |  |  |  |-- check-black.png
+|  |  |  |  |  |-- check-white.png
+|  |  |  |  |  |-- clock-black.png
+|  |  |  |  |  |-- clock-white.png
+|  |  |  |  |  |-- cloud-black.png
+|  |  |  |  |  |-- cloud-white.png
+|  |  |  |  |  |-- comment-black.png
+|  |  |  |  |  |-- comment-white.png
+|  |  |  |  |  |-- delete-black.png
+|  |  |  |  |  |-- delete-white.png
+|  |  |  |  |  |-- edit-black.png
+|  |  |  |  |  |-- edit-white.png
+|  |  |  |  |  |-- eye-black.png
+|  |  |  |  |  |-- eye-white.png
+|  |  |  |  |  |-- forbidden-black.png
+|  |  |  |  |  |-- forbidden-white.png
+|  |  |  |  |  |-- forward-black.png
+|  |  |  |  |  |-- forward-white.png
+|  |  |  |  |  |-- gear-black.png
+|  |  |  |  |  |-- gear-white.png
+|  |  |  |  |  |-- grid-black.png
+|  |  |  |  |  |-- grid-white.png
+|  |  |  |  |  |-- heart-black.png
+|  |  |  |  |  |-- heart-white.png
+|  |  |  |  |  |-- home-black.png
+|  |  |  |  |  |-- home-white.png
+|  |  |  |  |  |-- info-black.png
+|  |  |  |  |  |-- info-white.png
+|  |  |  |  |  |-- location-black.png
+|  |  |  |  |  |-- location-white.png
+|  |  |  |  |  |-- lock-black.png
+|  |  |  |  |  |-- lock-white.png
+|  |  |  |  |  |-- mail-black.png
+|  |  |  |  |  |-- mail-white.png
+|  |  |  |  |  |-- minus-black.png
+|  |  |  |  |  |-- minus-white.png
+|  |  |  |  |  |-- navigation-black.png
+|  |  |  |  |  |-- navigation-white.png
+|  |  |  |  |  |-- phone-black.png
+|  |  |  |  |  |-- phone-white.png
+|  |  |  |  |  |-- plus-black.png
+|  |  |  |  |  |-- plus-white.png
+|  |  |  |  |  |-- power-black.png
+|  |  |  |  |  |-- power-white.png
+|  |  |  |  |  |-- recycle-black.png
+|  |  |  |  |  |-- recycle-white.png
+|  |  |  |  |  |-- refresh-black.png
+|  |  |  |  |  |-- refresh-white.png
+|  |  |  |  |  |-- search-black.png
+|  |  |  |  |  |-- search-white.png
+|  |  |  |  |  |-- shop-black.png
+|  |  |  |  |  |-- shop-white.png
+|  |  |  |  |  |-- star-black.png
+|  |  |  |  |  |-- star-white.png
+|  |  |  |  |  |-- tag-black.png
+|  |  |  |  |  |-- tag-white.png
+|  |  |  |  |  |-- user-black.png
+|  |  |  |  |  |-- user-white.png
+|  |  |  |  |  |-- video-black.png
+|  |  |  |  |  |-- video-white.png
+|  |  |  |  |-- icons-svg
+|  |  |  |  |  |-- action-black.svg
+|  |  |  |  |  |-- action-white.svg
+|  |  |  |  |  |-- alert-black.svg
+|  |  |  |  |  |-- alert-white.svg
+|  |  |  |  |  |-- arrow-d-black.svg
+|  |  |  |  |  |-- arrow-d-l-black.svg
+|  |  |  |  |  |-- arrow-d-l-white.svg
+|  |  |  |  |  |-- arrow-d-r-black.svg
+|  |  |  |  |  |-- arrow-d-r-white.svg
+|  |  |  |  |  |-- arrow-d-white.svg
+|  |  |  |  |  |-- arrow-l-black.svg
+|  |  |  |  |  |-- arrow-l-white.svg
+|  |  |  |  |  |-- arrow-r-black.svg
+|  |  |  |  |  |-- arrow-r-white.svg
+|  |  |  |  |  |-- arrow-u-black.svg
+|  |  |  |  |  |-- arrow-u-l-black.svg
+|  |  |  |  |  |-- arrow-u-l-white.svg
+|  |  |  |  |  |-- arrow-u-r-black.svg
+|  |  |  |  |  |-- arrow-u-r-white.svg
+|  |  |  |  |  |-- arrow-u-white.svg
+|  |  |  |  |  |-- audio-black.svg
+|  |  |  |  |  |-- audio-white.svg
+|  |  |  |  |  |-- back-black.svg
+|  |  |  |  |  |-- back-white.svg
+|  |  |  |  |  |-- bars-black.svg
+|  |  |  |  |  |-- bars-white.svg
+|  |  |  |  |  |-- bullets-black.svg
+|  |  |  |  |  |-- bullets-white.svg
+|  |  |  |  |  |-- calendar-black.svg
+|  |  |  |  |  |-- calendar-white.svg
+|  |  |  |  |  |-- camera-black.svg
+|  |  |  |  |  |-- camera-white.svg
+|  |  |  |  |  |-- carat-d-black.svg
+|  |  |  |  |  |-- carat-d-white.svg
+|  |  |  |  |  |-- carat-l-black.svg
+|  |  |  |  |  |-- carat-l-white.svg
+|  |  |  |  |  |-- carat-r-black.svg
+|  |  |  |  |  |-- carat-r-white.svg
+|  |  |  |  |  |-- carat-u-black.svg
+|  |  |  |  |  |-- carat-u-white.svg
+|  |  |  |  |  |-- check-black.svg
+|  |  |  |  |  |-- check-white.svg
+|  |  |  |  |  |-- clock-black.svg
+|  |  |  |  |  |-- clock-white.svg
+|  |  |  |  |  |-- cloud-black.svg
+|  |  |  |  |  |-- cloud-white.svg
+|  |  |  |  |  |-- comment-black.svg
+|  |  |  |  |  |-- comment-white.svg
+|  |  |  |  |  |-- delete-black.svg
+|  |  |  |  |  |-- delete-white.svg
+|  |  |  |  |  |-- edit-black.svg
+|  |  |  |  |  |-- edit-white.svg
+|  |  |  |  |  |-- eye-black.svg
+|  |  |  |  |  |-- eye-white.svg
+|  |  |  |  |  |-- forbidden-black.svg
+|  |  |  |  |  |-- forbidden-white.svg
+|  |  |  |  |  |-- forward-black.svg
+|  |  |  |  |  |-- forward-white.svg
+|  |  |  |  |  |-- gear-black.svg
+|  |  |  |  |  |-- gear-white.svg
+|  |  |  |  |  |-- grid-black.svg
+|  |  |  |  |  |-- grid-white.svg
+|  |  |  |  |  |-- heart-black.svg
+|  |  |  |  |  |-- heart-white.svg
+|  |  |  |  |  |-- home-black.svg
+|  |  |  |  |  |-- home-white.svg
+|  |  |  |  |  |-- info-black.svg
+|  |  |  |  |  |-- info-white.svg
+|  |  |  |  |  |-- location-black.svg
+|  |  |  |  |  |-- location-white.svg
+|  |  |  |  |  |-- lock-black.svg
+|  |  |  |  |  |-- lock-white.svg
+|  |  |  |  |  |-- mail-black.svg
+|  |  |  |  |  |-- mail-white.svg
+|  |  |  |  |  |-- minus-black.svg
+|  |  |  |  |  |-- minus-white.svg
+|  |  |  |  |  |-- navigation-black.svg
+|  |  |  |  |  |-- navigation-white.svg
+|  |  |  |  |  |-- phone-black.svg
+|  |  |  |  |  |-- phone-white.svg
+|  |  |  |  |  |-- plus-black.svg
+|  |  |  |  |  |-- plus-white.svg
+|  |  |  |  |  |-- power-black.svg
+|  |  |  |  |  |-- power-white.svg
+|  |  |  |  |  |-- recycle-black.svg
+|  |  |  |  |  |-- recycle-white.svg
+|  |  |  |  |  |-- refresh-black.svg
+|  |  |  |  |  |-- refresh-white.svg
+|  |  |  |  |  |-- search-black.svg
+|  |  |  |  |  |-- search-white.svg
+|  |  |  |  |  |-- shop-black.svg
+|  |  |  |  |  |-- shop-white.svg
+|  |  |  |  |  |-- star-black.svg
+|  |  |  |  |  |-- star-white.svg
+|  |  |  |  |  |-- tag-black.svg
+|  |  |  |  |  |-- tag-white.svg
+|  |  |  |  |  |-- user-black.svg
+|  |  |  |  |  |-- user-white.svg
+|  |  |  |  |  |-- video-black.svg
+|  |  |  |  |  |-- video-white.svg
+|  |  |  |  |-- like.png
+|  |  |  |  |-- like_button.png
+|  |  |  |  |-- liked.png
+|  |  |  |  |-- nope.png
+|  |  |  |  |-- software
+|  |  |  |  |  |-- accumulo.png
+|  |  |  |  |  |-- ambari.png
+|  |  |  |  |  |-- aws.png
+|  |  |  |  |  |-- azure.png
+|  |  |  |  |  |-- biginsights.png
+|  |  |  |  |  |-- cassandra.png
+|  |  |  |  |  |-- cloudera.png
+|  |  |  |  |  |-- corenlp.png
+|  |  |  |  |  |-- csv.png
+|  |  |  |  |  |-- deeplearning4j.png
+|  |  |  |  |  |-- docker.png
+|  |  |  |  |  |-- drill.png
+|  |  |  |  |  |-- dynamodb.png
+|  |  |  |  |  |-- elasticsearch.png
+|  |  |  |  |  |-- emr.png
+|  |  |  |  |  |-- flink.png
+|  |  |  |  |  |-- flume.png
+|  |  |  |  |  |-- giraph.png
+|  |  |  |  |  |-- googlecloud.png
+|  |  |  |  |  |-- graphlab.png
+|  |  |  |  |  |-- hbase.png
+|  |  |  |  |  |-- hdfs.png
+|  |  |  |  |  |-- hive.png
+|  |  |  |  |  |-- hortonworks.png
+|  |  |  |  |  |-- hue.png
+|  |  |  |  |  |-- impala.png
+|  |  |  |  |  |-- ipython.png
+|  |  |  |  |  |-- java.png
+|  |  |  |  |  |-- json.png
+|  |  |  |  |  |-- kafka.png
+|  |  |  |  |  |-- kinesis.png
+|  |  |  |  |  |-- knime.png
+|  |  |  |  |  |-- lucene.png
+|  |  |  |  |  |-- mahout.png
+|  |  |  |  |  |-- mapr.png
+|  |  |  |  |  |-- mapreduce.png
+|  |  |  |  |  |-- maven.png
+|  |  |  |  |  |-- memcached.png
+|  |  |  |  |  |-- mesos.png
+|  |  |  |  |  |-- microstrategy.png
+|  |  |  |  |  |-- mongodb.jpg
+|  |  |  |  |  |-- mongodb.png
+|  |  |  |  |  |-- mysql.png
+|  |  |  |  |  |-- neo4j.png
+|  |  |  |  |  |-- nifi.png
+|  |  |  |  |  |-- nltk.png
+|  |  |  |  |  |-- onpremise.png
+|  |  |  |  |  |-- oozie.jpg
+|  |  |  |  |  |-- oozie.png
+|  |  |  |  |  |-- oracle.png
+|  |  |  |  |  |-- orc.png
+|  |  |  |  |  |-- parquet.png
+|  |  |  |  |  |-- pig.png
+|  |  |  |  |  |-- postgres.png
+|  |  |  |  |  |-- presto.png
+|  |  |  |  |  |-- protobuffers.png
+|  |  |  |  |  |-- python.png
+|  |  |  |  |  |-- r.png
+|  |  |  |  |  |-- redis.png
+|  |  |  |  |  |-- redshift.png
+|  |  |  |  |  |-- s3.png
+|  |  |  |  |  |-- scala.png
+|  |  |  |  |  |-- scikit-learn.png
+|  |  |  |  |  |-- solr.png
+|  |  |  |  |  |-- spark-graphx.png
+|  |  |  |  |  |-- spark-ml.png
+|  |  |  |  |  |-- spark-sql.png
+|  |  |  |  |  |-- spark-streaming.png
+|  |  |  |  |  |-- spark.png
+|  |  |  |  |  |-- sql.png
+|  |  |  |  |  |-- sqlserver.png
+|  |  |  |  |  |-- sqoop.png
+|  |  |  |  |  |-- storm.png
+|  |  |  |  |  |-- tableau.png
+|  |  |  |  |  |-- tachyon.png
+|  |  |  |  |  |-- tensorflow.png
+|  |  |  |  |  |-- teradata.png
+|  |  |  |  |  |-- tez.png
+|  |  |  |  |  |-- titandb.png
+|  |  |  |  |  |-- vertica.png
+|  |  |  |  |  |-- xml.png
+|  |  |  |  |  |-- yarn.png
+|  |  |  |  |  |-- zeppelin.png
+|  |  |  |  |  |-- zookeeper.png
+|  |  |  |  |-- spark-logo.png
+|  |  |  |  |-- sparkafterdark.png
+|  |  |  |  |-- spinner.gif
+|  |  |  |-- index.html
+|  |  |  |-- js
+|  |  |  |  |-- bootstrap.js
+|  |  |  |  |-- bootstrap.min.js
+|  |  |  |  |-- jquery-1.12.4.min.js
+|  |  |  |  |-- jquery-1.12.4.min.map
+|  |  |  |  |-- jquery.mobile-1.4.5.js
+|  |  |  |  |-- jquery.mobile-1.4.5.min.js
+|  |  |  |  |-- jquery.mobile-1.4.5.min.map
+|  |  |  |  |-- jquery.transform2d.js
+|  |  |  |-- json
+|  |  |  |  |-- actors.json
+|  |  |  |  |-- software.json
+|  |  |  |-- realtime.html
+|-- zeppelin.ml
+|  |-- lib
+|  |  |-- jpmml-sparkml-package-1.0-SNAPSHOT.jar
+|  |  |-- jpmml.py
+|  |  |-- tensorframes-assembly-0.2.4.jar
+|  |-- notebook
+|  |  |-- 2ASEWJ19K
+|  |  |  |-- note.json
+|  |  |-- 2AUUDPT56
+|  |  |  |-- note.json
+|  |  |-- 2AUYFSKXN
+|  |  |  |-- note.json
+|  |  |-- 2AZ37ZY6H
+|  |  |  |-- note.json
+|  |  |-- 2B2H2FUXV
+|  |  |  |-- note.json
+|  |  |-- 2B2M4DMJK
+|  |  |  |-- note.json
+|  |  |-- 2B3N77G95
+|  |  |  |-- note.json
+|  |  |-- 2B42HQF6Z
+|  |  |  |-- note.json
+|  |  |-- 2B68NAUVG
+|  |  |  |-- note.json
+|  |  |-- 2B7DV97DX
+|  |  |  |-- note.json
+|  |  |-- 2B7DVVKW2
+|  |  |  |-- note.json
+|  |  |-- 2B7JQJT2G
+|  |  |  |-- note.json
+|  |  |-- 2B7RXDS6A
+|  |  |  |-- note.json
+|  |  |-- 2B7S5BZQV
+|  |  |  |-- note.json
+|  |  |-- 2B89S6BYQ
+|  |  |  |-- note.json
+|  |  |-- 2B8DEJYQS
+|  |  |  |-- note.json
+|  |  |-- 2B8GP7GBZ
+|  |  |  |-- note.json
+|  |  |-- 2B8KKS3KC
+|  |  |  |-- note.json
+|  |  |-- 2B8PEZVN5
+|  |  |  |-- note.json
+|  |  |-- 2B8QW48PE
+|  |  |  |-- note.json
+|  |  |-- 2B8YJZJB1
+|  |  |  |-- note.json
+|  |  |-- 2B951KEK9
+|  |  |  |-- note.json
+|  |  |-- 2B988GJEV
+|  |  |  |-- note.json
+|  |  |-- 2BA4YA8KU
+|  |  |  |-- note.json
+|  |  |-- 2BA66E1K5
+|  |  |  |-- note.json
+|  |  |-- 2BABNNMGH
+|  |  |  |-- note.json
+|  |  |-- 2BACHDY7W
+|  |  |  |-- note.json
+|  |  |-- 2BAFTUCBH
+|  |  |  |-- note.json
+|  |  |-- 2BAFX81J2
+|  |  |  |-- note.json
+|  |  |-- 2BAXQPPAV
+|  |  |  |-- note.json
+|  |  |-- 2BB6PN8P2
+|  |  |  |-- note.json
+|  |  |-- 2BBC8NSFW
+|  |  |  |-- note.json
+|  |  |-- 2BBE9WA6B
+|  |  |  |-- note.json
+|  |  |-- 2BBMC1Y3V
+|  |  |  |-- note.json
+|  |  |-- 2BBMXHV56
+|  |  |  |-- note.json
+|  |  |-- 2BBNJKC1N
+|  |  |  |-- note.json
+|  |  |-- 2BC3X1P5W
+|  |  |  |-- note.json
+|  |  |-- 2BCXNCS88
+|  |  |  |-- note.json
+|  |  |-- 2BCZTBQS6
+|  |  |  |-- note.json
+|  |  |-- 2BD537PTT
+|  |  |  |-- note.json
+|  |  |-- 2BD9RCPC4
+|  |  |  |-- note.json
+|  |  |-- 2BDAF991E
+|  |  |  |-- note.json
+|  |  |-- 2BDETGBPB
+|  |  |  |-- note.json
+|  |  |-- 2BDV24YNY
+|  |  |  |-- note.json
+|  |  |-- 2BDVAZRNT
+|  |  |  |-- note.json
+|  |  |-- 2BEM3Q1QQ
+|  |  |  |-- note.json
+|  |  |-- 2BEYVS77Q
+|  |  |  |-- note.json
+|  |  |-- 2BF4C1KPJ
+|  |  |  |-- note.json
+|  |  |-- 2BF6P8Q3D
+|  |  |  |-- note.json
+|  |  |-- 2BFDVKBEM
+|  |  |  |-- note.json
+|  |  |-- 2BFQJSXNS
+|  |  |  |-- note.json
+|  |  |-- 2BG5N4U8E
+|  |  |  |-- note.json
+|  |  |-- 2BHDJNWAZ
+|  |  |  |-- note.json
+|  |  |-- 2BHU69J72
+|  |  |  |-- note.json
+|  |  |-- 2BHYJBBHV
+|  |  |  |-- note.json
+|  |  |-- 2BJ5A8BRM
+|  |  |  |-- note.json
+|  |  |-- 2BJB7GHA8
+|  |  |  |-- note.json
+|  |  |-- 2BJCP2T28
+|  |  |  |-- note.json
+|  |  |-- 2BJDWZ822
+|  |  |  |-- note.json
+|  |  |-- 2BJFFS9X2
+|  |  |  |-- note.json
+|  |  |-- 2BJGMHZND
+|  |  |  |-- note.json
+|  |  |-- 2BJQKR2G5
+|  |  |  |-- note.json
+|  |  |-- 2BJUT3P52
+|  |  |  |-- note.json
+|  |  |-- 2BJVSQ3J6
+|  |  |  |-- note.json
+|  |  |-- 2BKMYGEP3
+|  |  |  |-- note.json
+|  |  |-- 2BKS5GT8Z
+|  |  |  |-- note.json
+|  |  |-- 2BKT24QMZ
+|  |  |  |-- note.json
+|  |  |-- 2BMDD3W5J
+|  |  |  |-- note.json
+|  |  |-- 2BMM3NH9D
+|  |  |  |-- note.json
+|  |  |-- 2BNQNXKH5
+|  |  |  |-- note.json
+|  |  |-- 2BPMNPH1J
+|  |  |  |-- note.json
+|  |  |-- 2BUQ41ZY4
+|  |  |  |-- note.json
+|  |  |-- 2BVPDZGPM
+|  |  |  |-- note.json
+|  |  |-- 2BZFV8AQN
+|  |  |  |-- note.json
+|-- zookeeper.ml
+|  |-- zookeeper-deploy.yaml
+|  |-- zookeeper-svc.yaml

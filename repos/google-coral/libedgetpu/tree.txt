@@ -1,0 +1,406 @@
+|-- .gitignore
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- Makefile
+|-- README.md
+|-- WORKSPACE
+|-- api
+|  |-- BUILD
+|  |-- allocated_buffer.cc
+|  |-- allocated_buffer.h
+|  |-- buffer.cc
+|  |-- buffer.h
+|  |-- chip.h
+|  |-- dram_buffer.h
+|  |-- driver.h
+|  |-- driver_factory.cc
+|  |-- driver_factory.h
+|  |-- driver_options.fbs
+|  |-- driver_options_helper.cc
+|  |-- driver_options_helper.h
+|  |-- execution_context_interface.h
+|  |-- layer_information.cc
+|  |-- layer_information.h
+|  |-- package_reference.h
+|  |-- request.h
+|  |-- runtime_version.h
+|  |-- telemeter_interface.h
+|  |-- tensor_util.cc
+|  |-- tensor_util.h
+|  |-- timing.h
+|  |-- watchdog.cc
+|  |-- watchdog.h
+|-- build.bat
+|-- build_defs.bzl
+|-- debian
+|  |-- changelog
+|  |-- compat
+|  |-- control
+|  |-- copyright
+|  |-- edgetpu-accelerator.rules
+|  |-- libedgetpu-dev.install
+|  |-- libedgetpu1-max.lintian-overrides
+|  |-- libedgetpu1-max.preinst
+|  |-- libedgetpu1-max.templates
+|  |-- libedgetpu1-max.triggers
+|  |-- libedgetpu1-max.udev
+|  |-- libedgetpu1-std.lintian-overrides
+|  |-- libedgetpu1-std.triggers
+|  |-- libedgetpu1-std.udev
+|  |-- rules
+|-- docker
+|  |-- Dockerfile
+|  |-- Dockerfile.windows
+|  |-- update_sources.sh
+|-- driver
+|  |-- BUILD
+|  |-- aligned_allocator.cc
+|  |-- aligned_allocator.h
+|  |-- allocator.cc
+|  |-- allocator.h
+|  |-- beagle
+|  |  |-- BUILD
+|  |  |-- beagle_ioctl.h
+|  |  |-- beagle_kernel_top_level_handler.cc
+|  |  |-- beagle_kernel_top_level_handler.h
+|  |  |-- beagle_pci_driver_provider.cc
+|  |  |-- beagle_pci_driver_provider.h
+|  |  |-- beagle_pci_driver_provider_linux.cc
+|  |  |-- beagle_pci_driver_provider_windows.cc
+|  |  |-- beagle_top_level_handler.cc
+|  |  |-- beagle_top_level_handler.h
+|  |  |-- beagle_top_level_interrupt_manager.cc
+|  |  |-- beagle_top_level_interrupt_manager.h
+|  |  |-- beagle_usb_driver_provider.cc
+|  |-- bitfield.h
+|  |-- config
+|  |  |-- BUILD
+|  |  |-- apex_csr_offsets.h
+|  |  |-- beagle
+|  |  |  |-- BUILD
+|  |  |  |-- beagle_chip_config.h
+|  |  |  |-- beagle_chip_structures.h
+|  |  |  |-- beagle_csr_offsets.h
+|  |  |-- beagle_csr_helper.h
+|  |  |-- breakpoint_csr_offsets.h
+|  |  |-- cb_bridge_csr_offsets.h
+|  |  |-- chip_config.h
+|  |  |-- chip_structures.h
+|  |  |-- common_csr_helper.h
+|  |  |-- debug_hib_user_csr_offsets.h
+|  |  |-- debug_scalar_core_csr_offsets.h
+|  |  |-- debug_tile_csr_offsets.h
+|  |  |-- hib_kernel_csr_offsets.h
+|  |  |-- hib_user_csr_offsets.h
+|  |  |-- interrupt_csr_offsets.h
+|  |  |-- lpm_csr_offsets.h
+|  |  |-- memory_csr_offsets.h
+|  |  |-- misc_csr_offsets.h
+|  |  |-- msix_csr_offsets.h
+|  |  |-- power_throttle_csr_helper.h
+|  |  |-- queue_csr_offsets.h
+|  |  |-- register_constants.h
+|  |  |-- register_file_csr_offsets.h
+|  |  |-- scalar_core_csr_offsets.h
+|  |  |-- scu_csr_offsets.h
+|  |  |-- sync_flag_csr_offsets.h
+|  |  |-- tile_config_csr_offsets.h
+|  |  |-- tile_csr_offsets.h
+|  |  |-- tile_thread_csr_offsets.h
+|  |  |-- tile_thread_trace_csr_offsets.h
+|  |  |-- trace_csr_offsets.h
+|  |  |-- usb_csr_offsets.h
+|  |  |-- wire_csr_offsets.h
+|  |-- default_telemeter.h
+|  |-- device_buffer.cc
+|  |-- device_buffer.h
+|  |-- device_buffer_mapper.cc
+|  |-- device_buffer_mapper.h
+|  |-- dma_chunker.cc
+|  |-- dma_chunker.h
+|  |-- dma_info.cc
+|  |-- dma_info.h
+|  |-- dma_info_extractor.cc
+|  |-- dma_info_extractor.h
+|  |-- dma_scheduler.h
+|  |-- driver.cc
+|  |-- driver.h
+|  |-- driver_factory.cc
+|  |-- driver_factory.h
+|  |-- driver_factory_darwin.cc
+|  |-- driver_factory_default.cc
+|  |-- driver_factory_windows.cc
+|  |-- driver_helper.cc
+|  |-- driver_helper.h
+|  |-- executable_util.cc
+|  |-- executable_util.h
+|  |-- hardware_structures.h
+|  |-- instruction_buffers.cc
+|  |-- instruction_buffers.h
+|  |-- interrupt
+|  |  |-- BUILD
+|  |  |-- dummy_interrupt_controller.h
+|  |  |-- grouped_interrupt_controller.cc
+|  |  |-- grouped_interrupt_controller.h
+|  |  |-- interrupt_controller.cc
+|  |  |-- interrupt_controller.h
+|  |  |-- interrupt_controller_interface.h
+|  |  |-- interrupt_handler.h
+|  |  |-- top_level_interrupt_manager.cc
+|  |  |-- top_level_interrupt_manager.h
+|  |  |-- wire_interrupt_handler.cc
+|  |  |-- wire_interrupt_handler.h
+|  |-- kernel
+|  |  |-- BUILD
+|  |  |-- common_gasket_ioctl.inc
+|  |  |-- gasket_ioctl.h
+|  |  |-- kernel_coherent_allocator.cc
+|  |  |-- kernel_coherent_allocator.h
+|  |  |-- kernel_event.h
+|  |  |-- kernel_event_handler.cc
+|  |  |-- kernel_event_handler.h
+|  |  |-- kernel_interrupt_handler.cc
+|  |  |-- kernel_interrupt_handler.h
+|  |  |-- kernel_mmu_mapper.cc
+|  |  |-- kernel_mmu_mapper.h
+|  |  |-- kernel_registers.cc
+|  |  |-- kernel_registers.h
+|  |  |-- kernel_wire_interrupt_handler.cc
+|  |  |-- kernel_wire_interrupt_handler.h
+|  |  |-- linux
+|  |  |  |-- BUILD
+|  |  |  |-- kernel_coherent_allocator_linux.cc
+|  |  |  |-- kernel_coherent_allocator_linux.h
+|  |  |  |-- kernel_event_handler_linux.cc
+|  |  |  |-- kernel_event_handler_linux.h
+|  |  |  |-- kernel_event_linux.cc
+|  |  |  |-- kernel_event_linux.h
+|  |  |  |-- kernel_registers_linux.cc
+|  |  |  |-- kernel_registers_linux.h
+|  |  |-- windows
+|  |  |  |-- BUILD
+|  |  |  |-- kernel_coherent_allocator_windows.cc
+|  |  |  |-- kernel_coherent_allocator_windows.h
+|  |  |  |-- kernel_event_handler_windows.cc
+|  |  |  |-- kernel_event_handler_windows.h
+|  |  |  |-- kernel_event_windows.cc
+|  |  |  |-- kernel_event_windows.h
+|  |  |  |-- kernel_registers_windows.cc
+|  |  |  |-- kernel_registers_windows.h
+|  |  |  |-- windows_gasket_ioctl.inc
+|  |-- libdarwinn_driver.lds
+|  |-- memory
+|  |  |-- BUILD
+|  |  |-- address_space.h
+|  |  |-- address_space_allocator.h
+|  |  |-- address_utilities.h
+|  |  |-- buddy_address_space.cc
+|  |  |-- buddy_address_space.h
+|  |  |-- buddy_allocator.cc
+|  |  |-- buddy_allocator.h
+|  |  |-- dma_direction.h
+|  |  |-- dram_allocator.h
+|  |  |-- dual_address_space.cc
+|  |  |-- dual_address_space.h
+|  |  |-- fake_dram_allocator.cc
+|  |  |-- fake_dram_allocator.h
+|  |  |-- fake_mmu_mapper.cc
+|  |  |-- fake_mmu_mapper.h
+|  |  |-- mmio_address_space.cc
+|  |  |-- mmio_address_space.h
+|  |  |-- mmu_mapper.cc
+|  |  |-- mmu_mapper.h
+|  |  |-- nop_address_space.cc
+|  |  |-- nop_address_space.h
+|  |  |-- null_dram_allocator.h
+|  |-- mmio
+|  |  |-- BUILD
+|  |  |-- coherent_allocator.cc
+|  |  |-- coherent_allocator.h
+|  |  |-- host_queue.h
+|  |-- mmio_driver.cc
+|  |-- mmio_driver.h
+|  |-- package_registry.cc
+|  |-- package_registry.h
+|  |-- package_verifier.cc
+|  |-- package_verifier.h
+|  |-- real_time_dma_scheduler.cc
+|  |-- real_time_dma_scheduler.h
+|  |-- registers
+|  |  |-- BUILD
+|  |  |-- registers.cc
+|  |  |-- registers.h
+|  |  |-- socket_registers.cc
+|  |  |-- socket_registers.h
+|  |-- request.cc
+|  |-- request.h
+|  |-- run_controller.cc
+|  |-- run_controller.h
+|  |-- scalar_core_controller.cc
+|  |-- scalar_core_controller.h
+|  |-- single_queue_dma_scheduler.cc
+|  |-- single_queue_dma_scheduler.h
+|  |-- single_tpu_request.cc
+|  |-- single_tpu_request.h
+|  |-- top_level_handler.h
+|  |-- tpu_request.h
+|  |-- usb
+|  |  |-- BUILD
+|  |  |-- apex_latest_multi_ep.bin
+|  |  |-- apex_latest_single_ep.bin
+|  |  |-- libusb_options.h
+|  |  |-- libusb_options_default.cc
+|  |  |-- libusb_options_windows.cc
+|  |  |-- local_usb_device.cc
+|  |  |-- local_usb_device.h
+|  |  |-- usb_device_interface.h
+|  |  |-- usb_dfu_commands.cc
+|  |  |-- usb_dfu_commands.h
+|  |  |-- usb_dfu_util.cc
+|  |  |-- usb_dfu_util.h
+|  |  |-- usb_driver.cc
+|  |  |-- usb_driver.h
+|  |  |-- usb_io_request.cc
+|  |  |-- usb_io_request.h
+|  |  |-- usb_ml_commands.cc
+|  |  |-- usb_ml_commands.h
+|  |  |-- usb_registers.cc
+|  |  |-- usb_registers.h
+|  |  |-- usb_standard_commands.cc
+|  |  |-- usb_standard_commands.h
+|-- driver_shared
+|  |-- BUILD
+|  |-- registers.h
+|  |-- time_stamper
+|  |  |-- BUILD
+|  |  |-- driver_time_stamper.cc
+|  |  |-- driver_time_stamper.h
+|  |  |-- driver_time_stamper_factory.h
+|  |  |-- time_stamper.h
+|  |  |-- time_stamper_factory.h
+|-- executable
+|  |-- BUILD
+|  |-- executable.fbs
+|-- port
+|  |-- BUILD
+|  |-- aligned_malloc.h
+|  |-- array_slice.h
+|  |-- blocking_counter.cc
+|  |-- blocking_counter.h
+|  |-- builddata.h
+|  |-- casts.h
+|  |-- cleanup.h
+|  |-- default
+|  |  |-- BUILD
+|  |  |-- aligned_malloc.h
+|  |  |-- aligned_malloc_default.h
+|  |  |-- aligned_malloc_windows.h
+|  |  |-- array_slice.h
+|  |  |-- builddata.cc
+|  |  |-- builddata.h
+|  |  |-- casts.h
+|  |  |-- cleanup.h
+|  |  |-- error_codes.h
+|  |  |-- errors.h
+|  |  |-- integral_types.h
+|  |  |-- logging.h
+|  |  |-- macros.h
+|  |  |-- math_util.h
+|  |  |-- memory_barriers.h
+|  |  |-- mutex.h
+|  |  |-- port_from_tf
+|  |  |  |-- BUILD
+|  |  |  |-- LICENSE
+|  |  |  |-- array_slice.h
+|  |  |  |-- array_slice_internal.h
+|  |  |  |-- casts.h
+|  |  |  |-- errors.h
+|  |  |  |-- logging.cc
+|  |  |  |-- logging.h
+|  |  |  |-- macros.h
+|  |  |  |-- math_util.h
+|  |  |  |-- ptr_util.h
+|  |  |  |-- status.cc
+|  |  |  |-- status.h
+|  |  |  |-- statusor.cc
+|  |  |  |-- statusor.h
+|  |  |  |-- statusor_internals.h
+|  |  |  |-- thread_annotations.h
+|  |  |-- ptr_util.h
+|  |  |-- semaphore.h
+|  |  |-- status.h
+|  |  |-- status_macros.cc
+|  |  |-- status_macros.h
+|  |  |-- statusor.h
+|  |  |-- strcat.h
+|  |  |-- stringprintf.cc
+|  |  |-- stringprintf.h
+|  |  |-- thread_annotations.h
+|  |  |-- unreachable.h
+|  |  |-- unreachable_default.h
+|  |  |-- unreachable_windows.h
+|  |-- defs.h
+|  |-- errors.h
+|  |-- fileio.h
+|  |-- fileio_linux.h
+|  |-- fileio_windows.cc
+|  |-- fileio_windows.h
+|  |-- gflags.h
+|  |-- integral_types.h
+|  |-- logging.h
+|  |-- macros.h
+|  |-- math_util.h
+|  |-- mutex.h
+|  |-- openssl.h
+|  |-- posix_time.cc
+|  |-- posix_time.h
+|  |-- ptr_util.h
+|  |-- semaphore.h
+|  |-- shared_mutex.cc
+|  |-- shared_mutex.h
+|  |-- status.h
+|  |-- status_macros.h
+|  |-- statusor.h
+|  |-- std_mutex_lock.h
+|  |-- string_util.h
+|  |-- stringprintf.h
+|  |-- thread_annotations.h
+|  |-- time.h
+|  |-- timer.h
+|  |-- timer_portable.cc
+|  |-- timer_portable.h
+|  |-- timer_windows.cc
+|  |-- timer_windows.h
+|  |-- tracing.h
+|  |-- unreachable.h
+|-- rename_library.py
+|-- scripts
+|  |-- install.sh
+|  |-- uninstall.sh
+|-- tflite
+|  |-- BUILD
+|  |-- custom_op.cc
+|  |-- custom_op.h
+|  |-- custom_op_data.cc
+|  |-- custom_op_data.h
+|  |-- custom_op_direct.cc
+|  |-- custom_op_user_data_direct.cc
+|  |-- custom_op_user_data_direct.h
+|  |-- edgetpu_c.cc
+|  |-- edgetpu_context_direct.cc
+|  |-- edgetpu_context_direct.h
+|  |-- edgetpu_context_factory.cc
+|  |-- edgetpu_context_factory.h
+|  |-- edgetpu_delegate_for_custom_op.cc
+|  |-- edgetpu_delegate_for_custom_op.h
+|  |-- edgetpu_delegate_for_custom_op_tflite_plugin.cc
+|  |-- edgetpu_manager_direct.cc
+|  |-- edgetpu_manager_direct.h
+|  |-- public
+|  |  |-- BUILD
+|  |  |-- edgetpu.h
+|  |  |-- edgetpu.rc
+|  |  |-- edgetpu_c.h
+|  |  |-- libedgetpu.lds
+|-- workspace.bzl

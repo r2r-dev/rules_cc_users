@@ -1,0 +1,2464 @@
+|-- .bazelrc
+|-- .bazelversion
+|-- .dockerignore
+|-- .github
+|  |-- ISSUE_TEMPLATE
+|  |  |-- 00-build-installation-issue.md
+|  |  |-- 10-solution-issue.md
+|  |  |-- 20-documentation-issue.md
+|  |  |-- 30-bug-issue.md
+|  |  |-- 40-feature-request.md
+|  |  |-- 50-other-issues.md
+|  |-- bot_config.yml
+|  |-- stale.yml
+|-- .gitignore
+|-- BUILD.bazel
+|-- CONTRIBUTING.md
+|-- Dockerfile
+|-- LICENSE
+|-- MANIFEST.in
+|-- README.md
+|-- WORKSPACE
+|-- build_android_examples.sh
+|-- build_desktop_examples.sh
+|-- build_ios_examples.sh
+|-- docs
+|  |-- Makefile
+|  |-- _config.yml
+|  |-- _sass
+|  |  |-- color_schemes
+|  |  |  |-- mediapipe.scss
+|  |-- conf.py
+|  |-- data
+|  |  |-- visualizer
+|  |  |  |-- sample_trace.binarypb
+|  |-- framework_concepts
+|  |  |-- calculators.md
+|  |  |-- framework_concepts.md
+|  |  |-- gpu.md
+|  |  |-- graphs.md
+|  |  |-- packets.md
+|  |  |-- realtime_streams.md
+|  |  |-- synchronization.md
+|  |-- getting_started
+|  |  |-- android.md
+|  |  |-- android_archive_library.md
+|  |  |-- building_examples.md
+|  |  |-- cpp.md
+|  |  |-- faq.md
+|  |  |-- getting_started.md
+|  |  |-- gpu_support.md
+|  |  |-- hello_world_android.md
+|  |  |-- hello_world_cpp.md
+|  |  |-- hello_world_ios.md
+|  |  |-- help.md
+|  |  |-- install.md
+|  |  |-- ios.md
+|  |  |-- javascript.md
+|  |  |-- python.md
+|  |  |-- python_framework.md
+|  |  |-- troubleshooting.md
+|  |-- images
+|  |  |-- accelerated.png
+|  |  |-- accelerated_small.png
+|  |  |-- add_ipa.png
+|  |  |-- app_ipa.png
+|  |  |-- app_ipa_added.png
+|  |  |-- autoflip_edited_example.gif
+|  |  |-- autoflip_graph.png
+|  |  |-- autoflip_is_required.gif
+|  |  |-- bazel_permission.png
+|  |  |-- box_coordinate.svg
+|  |  |-- camera_coordinate.svg
+|  |  |-- click_subgraph_handdetection.png
+|  |  |-- console_error.png
+|  |  |-- cross_platform.png
+|  |  |-- cross_platform_small.png
+|  |  |-- cyclic_integer_sum_graph.svg
+|  |  |-- device.png
+|  |  |-- editor_view.png
+|  |  |-- face_detection_desktop.png
+|  |  |-- face_geometry_metric_3d_space.gif
+|  |  |-- face_geometry_renderer.gif
+|  |  |-- face_mesh_ar_effects.gif
+|  |  |-- favicon.ico
+|  |  |-- faviconv2.ico
+|  |  |-- gpu_example_graph.png
+|  |  |-- graph_visual.png
+|  |  |-- hand_tracking_desktop.png
+|  |  |-- hello_world.png
+|  |  |-- iconv2.png
+|  |  |-- knift_stop_sign.gif
+|  |  |-- logo.png
+|  |  |-- logo_horizontal_black.png
+|  |  |-- logo_horizontal_color.png
+|  |  |-- logo_horizontal_white.png
+|  |  |-- logov2.png
+|  |  |-- maingraph_visualizer.png
+|  |  |-- mediapipe_small.png
+|  |  |-- mobile
+|  |  |  |-- aar_location.png
+|  |  |  |-- assets_location.png
+|  |  |  |-- bazel_hello_world_android.png
+|  |  |  |-- box_tracking_subgraph.png
+|  |  |  |-- edge_detection_android_gpu.gif
+|  |  |  |-- edge_detection_ios_gpu.gif
+|  |  |  |-- edge_detection_mobile_gpu.png
+|  |  |  |-- face_detection_android_gpu.gif
+|  |  |  |-- face_detection_android_gpu_small.gif
+|  |  |  |-- face_detection_mobile_cpu.png
+|  |  |  |-- face_detection_mobile_gpu.png
+|  |  |  |-- face_landmark_front_gpu_subgraph.png
+|  |  |  |-- face_mesh_android_gpu.gif
+|  |  |  |-- face_mesh_android_gpu_small.gif
+|  |  |  |-- face_mesh_mobile.png
+|  |  |  |-- face_renderer_gpu_subgraph.png
+|  |  |  |-- hair_segmentation_android_gpu.gif
+|  |  |  |-- hair_segmentation_android_gpu_small.gif
+|  |  |  |-- hair_segmentation_mobile_gpu.png
+|  |  |  |-- hand_crops.png
+|  |  |  |-- hand_detection_android_gpu.gif
+|  |  |  |-- hand_detection_android_gpu_small.gif
+|  |  |  |-- hand_detection_gpu_subgraph.png
+|  |  |  |-- hand_detection_mobile.png
+|  |  |  |-- hand_landmark_gpu_subgraph.png
+|  |  |  |-- hand_landmarks.png
+|  |  |  |-- hand_renderer_gpu_subgraph.png
+|  |  |  |-- hand_tracking_3d_android_gpu.gif
+|  |  |  |-- hand_tracking_android_gpu.gif
+|  |  |  |-- hand_tracking_android_gpu_small.gif
+|  |  |  |-- hand_tracking_mobile.png
+|  |  |  |-- holistic_pipeline_example.jpg
+|  |  |  |-- holistic_sports_and_gestures_example.gif
+|  |  |  |-- holistic_tracking_android_gpu_small.gif
+|  |  |  |-- instant_motion_tracking_android_small.gif
+|  |  |  |-- iris_tracking_android_gpu.gif
+|  |  |  |-- iris_tracking_android_gpu_small.gif
+|  |  |  |-- iris_tracking_depth_from_iris.gif
+|  |  |  |-- iris_tracking_example.gif
+|  |  |  |-- iris_tracking_eye_and_iris_landmarks.png
+|  |  |  |-- missing_camera_permission_android.png
+|  |  |  |-- multi_hand_detection_gpu_subgraph.png
+|  |  |  |-- multi_hand_landmark_subgraph.png
+|  |  |  |-- multi_hand_renderer_gpu_subgraph.png
+|  |  |  |-- multi_hand_tracking_3d_android_gpu.gif
+|  |  |  |-- multi_hand_tracking_3d_android_gpu_small.gif
+|  |  |  |-- multi_hand_tracking_android_gpu.gif
+|  |  |  |-- multi_hand_tracking_mobile.png
+|  |  |  |-- object_detection_3d_android_gpu.png
+|  |  |  |-- object_detection_android_cpu.gif
+|  |  |  |-- object_detection_android_gpu.gif
+|  |  |  |-- object_detection_android_gpu_small.gif
+|  |  |  |-- object_detection_gpu_subgraph.png
+|  |  |  |-- object_detection_mobile_cpu.png
+|  |  |  |-- object_detection_mobile_gpu.png
+|  |  |  |-- object_tracking_android_gpu.gif
+|  |  |  |-- object_tracking_android_gpu_detection_only.gif
+|  |  |  |-- object_tracking_android_gpu_small.gif
+|  |  |  |-- object_tracking_mobile_gpu.png
+|  |  |  |-- object_tracking_renderer_gpu_subgraph.png
+|  |  |  |-- object_tracking_subgraph.png
+|  |  |  |-- objectron_camera_android_gpu.gif
+|  |  |  |-- objectron_chair_android_gpu.gif
+|  |  |  |-- objectron_chair_android_gpu_small.gif
+|  |  |  |-- objectron_cup_android_gpu.gif
+|  |  |  |-- objectron_detection_subgraph.png
+|  |  |  |-- objectron_shoe_android_gpu.gif
+|  |  |  |-- objectron_shoe_android_gpu_small.gif
+|  |  |  |-- objectron_tracking_subgraph.png
+|  |  |  |-- pose_classification_pairwise_distances.png
+|  |  |  |-- pose_classification_pushups_and_squats.gif
+|  |  |  |-- pose_classification_pushups_un_and_down_samples.jpg
+|  |  |  |-- pose_tracking_android_gpu.gif
+|  |  |  |-- pose_tracking_android_gpu_small.gif
+|  |  |  |-- pose_tracking_detector_vitruvian_man.png
+|  |  |  |-- pose_tracking_example.gif
+|  |  |  |-- pose_tracking_full_body_landmarks.png
+|  |  |  |-- pose_tracking_pck_chart.png
+|  |  |  |-- pose_tracking_upper_body_landmarks.png
+|  |  |  |-- pose_world_landmarks.mp4
+|  |  |  |-- renderer_gpu.png
+|  |  |  |-- template_matching_android_cpu.gif
+|  |  |  |-- template_matching_android_cpu_small.gif
+|  |  |  |-- template_matching_mobile_graph.png
+|  |  |  |-- template_matching_mobile_template.jpg
+|  |  |-- multi_hand_tracking_android_gpu.gif
+|  |  |-- multi_hand_tracking_android_gpu_small.gif
+|  |  |-- multi_hand_tracking_desktop.png
+|  |  |-- ndc_coordinate.svg
+|  |  |-- object_detection_desktop_tensorflow.png
+|  |  |-- object_detection_desktop_tflite.png
+|  |  |-- objectron_2stage_network_architecture.png
+|  |  |-- objectron_data_annotation.gif
+|  |  |-- objectron_example_results.png
+|  |  |-- objectron_network_architecture.png
+|  |  |-- objectron_sample_network_results.png
+|  |  |-- objectron_synthetic_data_generation.gif
+|  |  |-- open_source.png
+|  |  |-- open_source_small.png
+|  |  |-- packet_cloner_calculator.png
+|  |  |-- ready_to_use.png
+|  |  |-- ready_to_use_small.png
+|  |  |-- realtime_face_detection.gif
+|  |  |-- selfie_segmentation_web.mp4
+|  |  |-- side_packet.png
+|  |  |-- side_packet_code.png
+|  |  |-- special_nodes.png
+|  |  |-- special_nodes_code.png
+|  |  |-- startup_screen.png
+|  |  |-- stream_code.png
+|  |  |-- stream_ui.png
+|  |  |-- upload_2pbtxt.png
+|  |  |-- upload_button.png
+|  |  |-- upload_graph_button.png
+|  |  |-- visualizer
+|  |  |  |-- ios_download_container.png
+|  |  |  |-- ios_window_devices.png
+|  |  |  |-- viz_chart_view.png
+|  |  |  |-- viz_click_upload.png
+|  |  |  |-- viz_click_upload_trace_file.png
+|  |  |-- visualizer_runner.png
+|  |  |-- web_effect.gif
+|  |  |-- web_segmentation.gif
+|  |-- index.md
+|  |-- index.rst
+|  |-- solutions
+|  |  |-- autoflip.md
+|  |  |-- box_tracking.md
+|  |  |-- face_detection.md
+|  |  |-- face_mesh.md
+|  |  |-- hair_segmentation.md
+|  |  |-- hands.md
+|  |  |-- holistic.md
+|  |  |-- instant_motion_tracking.md
+|  |  |-- iris.md
+|  |  |-- knift.md
+|  |  |-- media_sequence.md
+|  |  |-- models.md
+|  |  |-- object_detection.md
+|  |  |-- objectron.md
+|  |  |-- pose.md
+|  |  |-- pose_classification.md
+|  |  |-- selfie_segmentation.md
+|  |  |-- solutions.md
+|  |  |-- youtube_8m.md
+|  |-- tools
+|  |  |-- performance_benchmarking.md
+|  |  |-- tools.md
+|  |  |-- tracing_and_profiling.md
+|  |  |-- visualizer.md
+|-- mediapipe
+|  |-- BUILD
+|  |-- MediaPipe.tulsiproj
+|  |  |-- Configs
+|  |  |  |-- MediaPipe.tulsigen
+|  |  |-- project.tulsiconf
+|  |-- __init__.py
+|  |-- calculators
+|  |  |-- audio
+|  |  |  |-- BUILD
+|  |  |  |-- audio_decoder_calculator.cc
+|  |  |  |-- audio_decoder_calculator_test.cc
+|  |  |  |-- basic_time_series_calculators.cc
+|  |  |  |-- basic_time_series_calculators.h
+|  |  |  |-- basic_time_series_calculators_test.cc
+|  |  |  |-- mfcc_mel_calculators.cc
+|  |  |  |-- mfcc_mel_calculators.proto
+|  |  |  |-- mfcc_mel_calculators_test.cc
+|  |  |  |-- rational_factor_resample_calculator.cc
+|  |  |  |-- rational_factor_resample_calculator.h
+|  |  |  |-- rational_factor_resample_calculator.proto
+|  |  |  |-- rational_factor_resample_calculator_test.cc
+|  |  |  |-- spectrogram_calculator.cc
+|  |  |  |-- spectrogram_calculator.proto
+|  |  |  |-- spectrogram_calculator_test.cc
+|  |  |  |-- stabilized_log_calculator.cc
+|  |  |  |-- stabilized_log_calculator.proto
+|  |  |  |-- stabilized_log_calculator_test.cc
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- sine_wave_1k_44100_mono_2_sec_wav.audio
+|  |  |  |  |-- sine_wave_1k_44100_stereo_2_sec_aac.audio
+|  |  |  |  |-- sine_wave_1k_44100_stereo_2_sec_mp3.audio
+|  |  |  |  |-- sine_wave_1k_48000_stereo_2_sec_wav.audio
+|  |  |  |-- time_series_framer_calculator.cc
+|  |  |  |-- time_series_framer_calculator.proto
+|  |  |  |-- time_series_framer_calculator_test.cc
+|  |  |-- core
+|  |  |  |-- BUILD
+|  |  |  |-- add_header_calculator.cc
+|  |  |  |-- add_header_calculator_test.cc
+|  |  |  |-- begin_end_loop_calculator_graph_test.cc
+|  |  |  |-- begin_loop_calculator.cc
+|  |  |  |-- begin_loop_calculator.h
+|  |  |  |-- clip_detection_vector_size_calculator.cc
+|  |  |  |-- clip_vector_size_calculator.cc
+|  |  |  |-- clip_vector_size_calculator.h
+|  |  |  |-- clip_vector_size_calculator.proto
+|  |  |  |-- clip_vector_size_calculator_test.cc
+|  |  |  |-- concatenate_detection_vector_calculator.cc
+|  |  |  |-- concatenate_normalized_landmark_list_calculator.cc
+|  |  |  |-- concatenate_normalized_landmark_list_calculator_test.cc
+|  |  |  |-- concatenate_vector_calculator.cc
+|  |  |  |-- concatenate_vector_calculator.h
+|  |  |  |-- concatenate_vector_calculator.proto
+|  |  |  |-- concatenate_vector_calculator_test.cc
+|  |  |  |-- constant_side_packet_calculator.cc
+|  |  |  |-- constant_side_packet_calculator.proto
+|  |  |  |-- constant_side_packet_calculator_test.cc
+|  |  |  |-- counting_source_calculator.cc
+|  |  |  |-- default_side_packet_calculator.cc
+|  |  |  |-- dequantize_byte_array_calculator.cc
+|  |  |  |-- dequantize_byte_array_calculator.proto
+|  |  |  |-- dequantize_byte_array_calculator_test.cc
+|  |  |  |-- end_loop_calculator.cc
+|  |  |  |-- end_loop_calculator.h
+|  |  |  |-- flow_limiter_calculator.cc
+|  |  |  |-- flow_limiter_calculator.proto
+|  |  |  |-- flow_limiter_calculator_test.cc
+|  |  |  |-- gate_calculator.cc
+|  |  |  |-- gate_calculator.proto
+|  |  |  |-- gate_calculator_test.cc
+|  |  |  |-- immediate_mux_calculator.cc
+|  |  |  |-- immediate_mux_calculator_test.cc
+|  |  |  |-- make_pair_calculator.cc
+|  |  |  |-- make_pair_calculator_test.cc
+|  |  |  |-- matrix_multiply_calculator.cc
+|  |  |  |-- matrix_multiply_calculator_test.cc
+|  |  |  |-- matrix_subtract_calculator.cc
+|  |  |  |-- matrix_subtract_calculator_test.cc
+|  |  |  |-- matrix_to_vector_calculator.cc
+|  |  |  |-- matrix_to_vector_calculator_test.cc
+|  |  |  |-- merge_calculator.cc
+|  |  |  |-- merge_calculator_test.cc
+|  |  |  |-- mux_calculator.cc
+|  |  |  |-- mux_calculator_test.cc
+|  |  |  |-- non_zero_calculator.cc
+|  |  |  |-- non_zero_calculator_test.cc
+|  |  |  |-- packet_cloner_calculator.cc
+|  |  |  |-- packet_cloner_calculator.proto
+|  |  |  |-- packet_inner_join_calculator.cc
+|  |  |  |-- packet_inner_join_calculator_test.cc
+|  |  |  |-- packet_presence_calculator.cc
+|  |  |  |-- packet_presence_calculator_test.cc
+|  |  |  |-- packet_resampler_calculator.cc
+|  |  |  |-- packet_resampler_calculator.h
+|  |  |  |-- packet_resampler_calculator.proto
+|  |  |  |-- packet_resampler_calculator_test.cc
+|  |  |  |-- packet_thinner_calculator.cc
+|  |  |  |-- packet_thinner_calculator.proto
+|  |  |  |-- packet_thinner_calculator_test.cc
+|  |  |  |-- pass_through_calculator.cc
+|  |  |  |-- previous_loopback_calculator.cc
+|  |  |  |-- previous_loopback_calculator_test.cc
+|  |  |  |-- quantize_float_vector_calculator.cc
+|  |  |  |-- quantize_float_vector_calculator.proto
+|  |  |  |-- quantize_float_vector_calculator_test.cc
+|  |  |  |-- real_time_flow_limiter_calculator.cc
+|  |  |  |-- real_time_flow_limiter_calculator_test.cc
+|  |  |  |-- round_robin_demux_calculator.cc
+|  |  |  |-- sequence_shift_calculator.cc
+|  |  |  |-- sequence_shift_calculator.proto
+|  |  |  |-- sequence_shift_calculator_test.cc
+|  |  |  |-- side_packet_to_stream_calculator.cc
+|  |  |  |-- side_packet_to_stream_calculator_test.cc
+|  |  |  |-- split_landmarks_calculator.cc
+|  |  |  |-- split_landmarks_calculator_test.cc
+|  |  |  |-- split_vector_calculator.cc
+|  |  |  |-- split_vector_calculator.h
+|  |  |  |-- split_vector_calculator.proto
+|  |  |  |-- split_vector_calculator_test.cc
+|  |  |  |-- stream_to_side_packet_calculator.cc
+|  |  |  |-- stream_to_side_packet_calculator_test.cc
+|  |  |  |-- string_to_int_calculator.cc
+|  |  |-- image
+|  |  |  |-- BUILD
+|  |  |  |-- bilateral_filter_calculator.cc
+|  |  |  |-- bilateral_filter_calculator.proto
+|  |  |  |-- color_convert_calculator.cc
+|  |  |  |-- feature_detector_calculator.cc
+|  |  |  |-- feature_detector_calculator.proto
+|  |  |  |-- image_clone_calculator.cc
+|  |  |  |-- image_clone_calculator.proto
+|  |  |  |-- image_cropping_calculator.cc
+|  |  |  |-- image_cropping_calculator.h
+|  |  |  |-- image_cropping_calculator.proto
+|  |  |  |-- image_cropping_calculator_test.cc
+|  |  |  |-- image_file_properties_calculator.cc
+|  |  |  |-- image_file_properties_calculator_test.cc
+|  |  |  |-- image_properties_calculator.cc
+|  |  |  |-- image_transformation_calculator.cc
+|  |  |  |-- image_transformation_calculator.proto
+|  |  |  |-- luminance_calculator.cc
+|  |  |  |-- mask_overlay_calculator.cc
+|  |  |  |-- mask_overlay_calculator.proto
+|  |  |  |-- opencv_encoded_image_to_image_frame_calculator.cc
+|  |  |  |-- opencv_encoded_image_to_image_frame_calculator.proto
+|  |  |  |-- opencv_encoded_image_to_image_frame_calculator_test.cc
+|  |  |  |-- opencv_image_encoder_calculator.cc
+|  |  |  |-- opencv_image_encoder_calculator.proto
+|  |  |  |-- opencv_image_encoder_calculator_test.cc
+|  |  |  |-- opencv_put_text_calculator.cc
+|  |  |  |-- recolor_calculator.cc
+|  |  |  |-- recolor_calculator.proto
+|  |  |  |-- scale_image_calculator.cc
+|  |  |  |-- scale_image_calculator.proto
+|  |  |  |-- scale_image_utils.cc
+|  |  |  |-- scale_image_utils.h
+|  |  |  |-- scale_image_utils_test.cc
+|  |  |  |-- segmentation_smoothing_calculator.cc
+|  |  |  |-- segmentation_smoothing_calculator.proto
+|  |  |  |-- segmentation_smoothing_calculator_test.cc
+|  |  |  |-- set_alpha_calculator.cc
+|  |  |  |-- set_alpha_calculator.proto
+|  |  |  |-- sobel_edges_calculator.cc
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dino.jpg
+|  |  |  |  |-- dino_quality_50.jpg
+|  |  |  |  |-- dino_quality_80.jpg
+|  |  |  |  |-- front_camera_pixel2.jpg
+|  |  |-- internal
+|  |  |  |-- BUILD
+|  |  |  |-- callback_packet_calculator.cc
+|  |  |  |-- callback_packet_calculator.proto
+|  |  |-- tensor
+|  |  |  |-- BUILD
+|  |  |  |-- image_to_tensor_calculator.cc
+|  |  |  |-- image_to_tensor_calculator.proto
+|  |  |  |-- image_to_tensor_calculator_test.cc
+|  |  |  |-- image_to_tensor_converter.h
+|  |  |  |-- image_to_tensor_converter_gl_buffer.cc
+|  |  |  |-- image_to_tensor_converter_gl_buffer.h
+|  |  |  |-- image_to_tensor_converter_gl_texture.cc
+|  |  |  |-- image_to_tensor_converter_gl_texture.h
+|  |  |  |-- image_to_tensor_converter_gl_utils.cc
+|  |  |  |-- image_to_tensor_converter_gl_utils.h
+|  |  |  |-- image_to_tensor_converter_gl_utils_test.cc
+|  |  |  |-- image_to_tensor_converter_metal.cc
+|  |  |  |-- image_to_tensor_converter_metal.h
+|  |  |  |-- image_to_tensor_converter_opencv.cc
+|  |  |  |-- image_to_tensor_converter_opencv.h
+|  |  |  |-- image_to_tensor_utils.cc
+|  |  |  |-- image_to_tensor_utils.h
+|  |  |  |-- image_to_tensor_utils_test.cc
+|  |  |  |-- inference_calculator.cc
+|  |  |  |-- inference_calculator.h
+|  |  |  |-- inference_calculator.proto
+|  |  |  |-- inference_calculator_cpu.cc
+|  |  |  |-- inference_calculator_face_detection_test.cc
+|  |  |  |-- inference_calculator_gl.cc
+|  |  |  |-- inference_calculator_metal.cc
+|  |  |  |-- inference_calculator_test.cc
+|  |  |  |-- tensor_converter_calculator.cc
+|  |  |  |-- tensor_converter_calculator.proto
+|  |  |  |-- tensor_converter_calculator_test.cc
+|  |  |  |-- tensors_to_classification_calculator.cc
+|  |  |  |-- tensors_to_classification_calculator.proto
+|  |  |  |-- tensors_to_classification_calculator_test.cc
+|  |  |  |-- tensors_to_detections_calculator.cc
+|  |  |  |-- tensors_to_detections_calculator.proto
+|  |  |  |-- tensors_to_floats_calculator.cc
+|  |  |  |-- tensors_to_floats_calculator.proto
+|  |  |  |-- tensors_to_floats_calculator_test.cc
+|  |  |  |-- tensors_to_landmarks_calculator.cc
+|  |  |  |-- tensors_to_landmarks_calculator.proto
+|  |  |  |-- tensors_to_segmentation_calculator.cc
+|  |  |  |-- tensors_to_segmentation_calculator.proto
+|  |  |  |-- testdata
+|  |  |  |  |-- add.bin
+|  |  |  |  |-- expected_detection.pbtxt
+|  |  |  |  |-- face_detection_expected.png
+|  |  |  |  |-- face_detection_test.pbtxt
+|  |  |  |  |-- image_to_tensor
+|  |  |  |  |  |-- input.jpg
+|  |  |  |  |  |-- large_sub_rect.png
+|  |  |  |  |  |-- large_sub_rect_border_zero.png
+|  |  |  |  |  |-- large_sub_rect_keep_aspect.png
+|  |  |  |  |  |-- large_sub_rect_keep_aspect_border_zero.png
+|  |  |  |  |  |-- large_sub_rect_keep_aspect_with_rotation.png
+|  |  |  |  |  |-- large_sub_rect_keep_aspect_with_rotation_border_zero.png
+|  |  |  |  |  |-- medium_sub_rect_keep_aspect.png
+|  |  |  |  |  |-- medium_sub_rect_keep_aspect_border_zero.png
+|  |  |  |  |  |-- medium_sub_rect_keep_aspect_with_rotation.png
+|  |  |  |  |  |-- medium_sub_rect_keep_aspect_with_rotation_border_zero.png
+|  |  |  |  |  |-- medium_sub_rect_with_rotation.png
+|  |  |  |  |  |-- medium_sub_rect_with_rotation_border_zero.png
+|  |  |  |  |  |-- noop_except_range.png
+|  |  |  |  |-- labelmap.txt
+|  |  |-- tensorflow
+|  |  |  |-- BUILD
+|  |  |  |-- graph_tensors_packet_generator.cc
+|  |  |  |-- graph_tensors_packet_generator.proto
+|  |  |  |-- graph_tensors_packet_generator_test.cc
+|  |  |  |-- image_frame_to_tensor_calculator.cc
+|  |  |  |-- image_frame_to_tensor_calculator.proto
+|  |  |  |-- image_frame_to_tensor_calculator_test.cc
+|  |  |  |-- lapped_tensor_buffer_calculator.cc
+|  |  |  |-- lapped_tensor_buffer_calculator.proto
+|  |  |  |-- lapped_tensor_buffer_calculator_test.cc
+|  |  |  |-- matrix_to_tensor_calculator.cc
+|  |  |  |-- matrix_to_tensor_calculator_options.proto
+|  |  |  |-- matrix_to_tensor_calculator_test.cc
+|  |  |  |-- object_detection_tensors_to_detections_calculator.cc
+|  |  |  |-- object_detection_tensors_to_detections_calculator.proto
+|  |  |  |-- object_detection_tensors_to_detections_calculator_test.cc
+|  |  |  |-- pack_media_sequence_calculator.cc
+|  |  |  |-- pack_media_sequence_calculator.proto
+|  |  |  |-- pack_media_sequence_calculator_test.cc
+|  |  |  |-- string_to_sequence_example_calculator.cc
+|  |  |  |-- tensor_squeeze_dimensions_calculator.cc
+|  |  |  |-- tensor_squeeze_dimensions_calculator.proto
+|  |  |  |-- tensor_squeeze_dimensions_calculator_test.cc
+|  |  |  |-- tensor_to_image_frame_calculator.cc
+|  |  |  |-- tensor_to_image_frame_calculator.proto
+|  |  |  |-- tensor_to_image_frame_calculator_test.cc
+|  |  |  |-- tensor_to_matrix_calculator.cc
+|  |  |  |-- tensor_to_matrix_calculator.proto
+|  |  |  |-- tensor_to_matrix_calculator_test.cc
+|  |  |  |-- tensor_to_vector_float_calculator.cc
+|  |  |  |-- tensor_to_vector_float_calculator_options.proto
+|  |  |  |-- tensor_to_vector_float_calculator_test.cc
+|  |  |  |-- tensorflow_inference_calculator.cc
+|  |  |  |-- tensorflow_inference_calculator.proto
+|  |  |  |-- tensorflow_inference_calculator_test.cc
+|  |  |  |-- tensorflow_session.h
+|  |  |  |-- tensorflow_session_from_frozen_graph_calculator.cc
+|  |  |  |-- tensorflow_session_from_frozen_graph_calculator.proto
+|  |  |  |-- tensorflow_session_from_frozen_graph_calculator_test.cc
+|  |  |  |-- tensorflow_session_from_frozen_graph_generator.cc
+|  |  |  |-- tensorflow_session_from_frozen_graph_generator.proto
+|  |  |  |-- tensorflow_session_from_frozen_graph_generator_test.cc
+|  |  |  |-- tensorflow_session_from_saved_model_calculator.cc
+|  |  |  |-- tensorflow_session_from_saved_model_calculator.proto
+|  |  |  |-- tensorflow_session_from_saved_model_calculator_test.cc
+|  |  |  |-- tensorflow_session_from_saved_model_generator.cc
+|  |  |  |-- tensorflow_session_from_saved_model_generator.proto
+|  |  |  |-- tensorflow_session_from_saved_model_generator_test.cc
+|  |  |  |-- testdata
+|  |  |  |  |-- bundle
+|  |  |  |  |  |-- 00000000
+|  |  |  |  |  |  |-- checkpoint
+|  |  |  |  |  |  |-- export-00000-of-00001
+|  |  |  |  |  |  |-- export.meta
+|  |  |  |  |-- frozen_graph_def.pb
+|  |  |  |  |-- model.chkpt-0
+|  |  |  |  |-- model.chkpt-0.meta
+|  |  |  |  |-- tensorflow_saved_model
+|  |  |  |  |  |-- 00000000
+|  |  |  |  |  |  |-- saved_model.pb
+|  |  |  |  |  |  |-- variables
+|  |  |  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |  |  |-- variables.index
+|  |  |  |  |-- tf_graph_def.pb
+|  |  |  |-- tfrecord_reader_calculator.cc
+|  |  |  |-- unpack_media_sequence_calculator.cc
+|  |  |  |-- unpack_media_sequence_calculator.proto
+|  |  |  |-- unpack_media_sequence_calculator_test.cc
+|  |  |  |-- unpack_yt8m_sequence_example_calculator.cc
+|  |  |  |-- vector_float_to_tensor_calculator.cc
+|  |  |  |-- vector_float_to_tensor_calculator_options.proto
+|  |  |  |-- vector_float_to_tensor_calculator_test.cc
+|  |  |  |-- vector_int_to_tensor_calculator.cc
+|  |  |  |-- vector_int_to_tensor_calculator_options.proto
+|  |  |  |-- vector_int_to_tensor_calculator_test.cc
+|  |  |  |-- vector_string_to_tensor_calculator.cc
+|  |  |  |-- vector_string_to_tensor_calculator_options.proto
+|  |  |  |-- vector_string_to_tensor_calculator_test.cc
+|  |  |-- tflite
+|  |  |  |-- BUILD
+|  |  |  |-- ssd_anchors_calculator.cc
+|  |  |  |-- ssd_anchors_calculator.proto
+|  |  |  |-- ssd_anchors_calculator_test.cc
+|  |  |  |-- testdata
+|  |  |  |  |-- README.md
+|  |  |  |  |-- add.bin
+|  |  |  |  |-- add.json
+|  |  |  |  |-- add_quantized.bin
+|  |  |  |  |-- add_quantized.json
+|  |  |  |  |-- anchor_golden_file_0.txt
+|  |  |  |  |-- anchor_golden_file_1.txt
+|  |  |  |  |-- labelmap.txt
+|  |  |  |-- tflite_converter_calculator.cc
+|  |  |  |-- tflite_converter_calculator.proto
+|  |  |  |-- tflite_converter_calculator_test.cc
+|  |  |  |-- tflite_custom_op_resolver_calculator.cc
+|  |  |  |-- tflite_custom_op_resolver_calculator.proto
+|  |  |  |-- tflite_inference_calculator.cc
+|  |  |  |-- tflite_inference_calculator.proto
+|  |  |  |-- tflite_inference_calculator_test.cc
+|  |  |  |-- tflite_inference_calculator_test_common.h
+|  |  |  |-- tflite_inference_calculator_tpu_test.cc
+|  |  |  |-- tflite_model_calculator.cc
+|  |  |  |-- tflite_model_calculator_test.cc
+|  |  |  |-- tflite_tensors_to_classification_calculator.cc
+|  |  |  |-- tflite_tensors_to_classification_calculator.proto
+|  |  |  |-- tflite_tensors_to_classification_calculator_test.cc
+|  |  |  |-- tflite_tensors_to_detections_calculator.cc
+|  |  |  |-- tflite_tensors_to_detections_calculator.proto
+|  |  |  |-- tflite_tensors_to_floats_calculator.cc
+|  |  |  |-- tflite_tensors_to_landmarks_calculator.cc
+|  |  |  |-- tflite_tensors_to_landmarks_calculator.proto
+|  |  |  |-- tflite_tensors_to_segmentation_calculator.cc
+|  |  |  |-- tflite_tensors_to_segmentation_calculator.proto
+|  |  |-- util
+|  |  |  |-- BUILD
+|  |  |  |-- alignment_points_to_rects_calculator.cc
+|  |  |  |-- annotation_overlay_calculator.cc
+|  |  |  |-- annotation_overlay_calculator.proto
+|  |  |  |-- association_calculator.h
+|  |  |  |-- association_calculator.proto
+|  |  |  |-- association_calculator_test.cc
+|  |  |  |-- association_detection_calculator.cc
+|  |  |  |-- association_norm_rect_calculator.cc
+|  |  |  |-- clock_latency_calculator.cc
+|  |  |  |-- clock_timestamp_calculator.cc
+|  |  |  |-- collection_has_min_size_calculator.cc
+|  |  |  |-- collection_has_min_size_calculator.h
+|  |  |  |-- collection_has_min_size_calculator.proto
+|  |  |  |-- collection_has_min_size_calculator_test.cc
+|  |  |  |-- detection_classifications_merger_calculator.cc
+|  |  |  |-- detection_classifications_merger_calculator_test.cc
+|  |  |  |-- detection_label_id_to_text_calculator.cc
+|  |  |  |-- detection_label_id_to_text_calculator.proto
+|  |  |  |-- detection_letterbox_removal_calculator.cc
+|  |  |  |-- detection_letterbox_removal_calculator_test.cc
+|  |  |  |-- detection_projection_calculator.cc
+|  |  |  |-- detection_projection_calculator_test.cc
+|  |  |  |-- detection_to_landmarks_calculator.cc
+|  |  |  |-- detection_unique_id_calculator.cc
+|  |  |  |-- detections_to_rects_calculator.cc
+|  |  |  |-- detections_to_rects_calculator.h
+|  |  |  |-- detections_to_rects_calculator.proto
+|  |  |  |-- detections_to_rects_calculator_test.cc
+|  |  |  |-- detections_to_render_data_calculator.cc
+|  |  |  |-- detections_to_render_data_calculator.proto
+|  |  |  |-- detections_to_render_data_calculator_test.cc
+|  |  |  |-- detections_to_timed_box_list_calculator.cc
+|  |  |  |-- filter_collection_calculator.cc
+|  |  |  |-- filter_collection_calculator.h
+|  |  |  |-- from_image_calculator.cc
+|  |  |  |-- labels_to_render_data_calculator.cc
+|  |  |  |-- labels_to_render_data_calculator.proto
+|  |  |  |-- landmark_letterbox_removal_calculator.cc
+|  |  |  |-- landmark_letterbox_removal_calculator_test.cc
+|  |  |  |-- landmark_projection_calculator.cc
+|  |  |  |-- landmark_projection_calculator.proto
+|  |  |  |-- landmark_projection_calculator_test.cc
+|  |  |  |-- landmark_visibility_calculator.cc
+|  |  |  |-- landmarks_smoothing_calculator.cc
+|  |  |  |-- landmarks_smoothing_calculator.proto
+|  |  |  |-- landmarks_to_detection_calculator.cc
+|  |  |  |-- landmarks_to_detection_calculator.proto
+|  |  |  |-- landmarks_to_floats_calculator.cc
+|  |  |  |-- landmarks_to_floats_calculator.proto
+|  |  |  |-- landmarks_to_render_data_calculator.cc
+|  |  |  |-- landmarks_to_render_data_calculator.h
+|  |  |  |-- landmarks_to_render_data_calculator.proto
+|  |  |  |-- latency.proto
+|  |  |  |-- local_file_contents_calculator.cc
+|  |  |  |-- local_file_contents_calculator.proto
+|  |  |  |-- local_file_pattern_contents_calculator.cc
+|  |  |  |-- logic_calculator.cc
+|  |  |  |-- logic_calculator.proto
+|  |  |  |-- non_max_suppression_calculator.cc
+|  |  |  |-- non_max_suppression_calculator.proto
+|  |  |  |-- packet_frequency.proto
+|  |  |  |-- packet_frequency_calculator.cc
+|  |  |  |-- packet_frequency_calculator.proto
+|  |  |  |-- packet_frequency_calculator_test.cc
+|  |  |  |-- packet_latency_calculator.cc
+|  |  |  |-- packet_latency_calculator.proto
+|  |  |  |-- packet_latency_calculator_test.cc
+|  |  |  |-- rect_projection_calculator.cc
+|  |  |  |-- rect_to_render_data_calculator.cc
+|  |  |  |-- rect_to_render_data_calculator.proto
+|  |  |  |-- rect_to_render_scale_calculator.cc
+|  |  |  |-- rect_to_render_scale_calculator.proto
+|  |  |  |-- rect_transformation_calculator.cc
+|  |  |  |-- rect_transformation_calculator.proto
+|  |  |  |-- refine_landmarks_from_heatmap_calculator.cc
+|  |  |  |-- refine_landmarks_from_heatmap_calculator.h
+|  |  |  |-- refine_landmarks_from_heatmap_calculator.proto
+|  |  |  |-- refine_landmarks_from_heatmap_calculator_test.cc
+|  |  |  |-- set_landmark_visibility_calculator.cc
+|  |  |  |-- thresholding_calculator.cc
+|  |  |  |-- thresholding_calculator.proto
+|  |  |  |-- timed_box_list_id_to_label_calculator.cc
+|  |  |  |-- timed_box_list_id_to_label_calculator.proto
+|  |  |  |-- timed_box_list_to_render_data_calculator.cc
+|  |  |  |-- timed_box_list_to_render_data_calculator.proto
+|  |  |  |-- to_image_calculator.cc
+|  |  |  |-- top_k_scores_calculator.cc
+|  |  |  |-- top_k_scores_calculator.proto
+|  |  |  |-- top_k_scores_calculator_test.cc
+|  |  |  |-- visibility_copy_calculator.cc
+|  |  |  |-- visibility_copy_calculator.proto
+|  |  |  |-- visibility_smoothing_calculator.cc
+|  |  |  |-- visibility_smoothing_calculator.proto
+|  |  |  |-- world_landmark_projection_calculator.cc
+|  |  |-- video
+|  |  |  |-- BUILD
+|  |  |  |-- box_detector_calculator.cc
+|  |  |  |-- box_detector_calculator.proto
+|  |  |  |-- box_tracker_calculator.cc
+|  |  |  |-- box_tracker_calculator.proto
+|  |  |  |-- flow_packager_calculator.cc
+|  |  |  |-- flow_packager_calculator.proto
+|  |  |  |-- flow_to_image_calculator.cc
+|  |  |  |-- flow_to_image_calculator.proto
+|  |  |  |-- motion_analysis_calculator.cc
+|  |  |  |-- motion_analysis_calculator.proto
+|  |  |  |-- opencv_video_decoder_calculator.cc
+|  |  |  |-- opencv_video_decoder_calculator_test.cc
+|  |  |  |-- opencv_video_encoder_calculator.cc
+|  |  |  |-- opencv_video_encoder_calculator.proto
+|  |  |  |-- opencv_video_encoder_calculator_test.cc
+|  |  |  |-- testdata
+|  |  |  |  |-- format_FLV_H264_AAC.video
+|  |  |  |  |-- format_MKV_VP8_VORBIS.video
+|  |  |  |  |-- format_MP4_AVC720P_AAC.video
+|  |  |  |  |-- lenna.png
+|  |  |  |  |-- parallel_tracker_graph.pbtxt
+|  |  |  |  |-- tracker_graph.pbtxt
+|  |  |  |-- tool
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- flow_quantizer_model.cc
+|  |  |  |  |-- flow_quantizer_model.h
+|  |  |  |  |-- flow_quantizer_model.proto
+|  |  |  |-- tracked_detection_manager_calculator.cc
+|  |  |  |-- tracked_detection_manager_calculator.proto
+|  |  |  |-- tracking_graph_test.cc
+|  |  |  |-- tvl1_optical_flow_calculator.cc
+|  |  |  |-- tvl1_optical_flow_calculator_test.cc
+|  |  |  |-- video_pre_stream_calculator.cc
+|  |  |  |-- video_pre_stream_calculator.proto
+|  |  |  |-- video_pre_stream_calculator_test.cc
+|  |-- docs
+|  |  |-- README.md
+|  |  |-- autoflip.md
+|  |  |-- face_detection_desktop.md
+|  |  |-- face_detection_mobile_gpu.md
+|  |  |-- hair_segmentation_mobile_gpu.md
+|  |  |-- hand_tracking_desktop.md
+|  |  |-- hand_tracking_mobile_gpu.md
+|  |  |-- multi_hand_tracking_mobile_gpu.md
+|  |  |-- object_detection_desktop.md
+|  |  |-- object_detection_mobile_gpu.md
+|  |  |-- object_tracking_mobile_gpu.md
+|  |  |-- objectron_mobile_gpu.md
+|  |  |-- template_matching_mobile_cpu.md
+|  |-- examples
+|  |  |-- __init__.py
+|  |  |-- android
+|  |  |  |-- README.md
+|  |  |  |-- src
+|  |  |  |  |-- java
+|  |  |  |  |  |-- com
+|  |  |  |  |  |  |-- google
+|  |  |  |  |  |  |  |-- mediapipe
+|  |  |  |  |  |  |  |  |-- apps
+|  |  |  |  |  |  |  |  |  |-- basic
+|  |  |  |  |  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- MainActivity.java
+|  |  |  |  |  |  |  |  |  |  |-- res
+|  |  |  |  |  |  |  |  |  |  |  |-- drawable-v24
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher_foreground.xml
+|  |  |  |  |  |  |  |  |  |  |  |-- drawable
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher_background.xml
+|  |  |  |  |  |  |  |  |  |  |  |-- layout
+|  |  |  |  |  |  |  |  |  |  |  |  |-- activity_main.xml
+|  |  |  |  |  |  |  |  |  |  |  |-- mipmap-anydpi-v26
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher.xml
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher_round.xml
+|  |  |  |  |  |  |  |  |  |  |  |-- mipmap-hdpi
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher_foreground.png
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher_round.png
+|  |  |  |  |  |  |  |  |  |  |  |-- mipmap-mdpi
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher_foreground.png
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher_round.png
+|  |  |  |  |  |  |  |  |  |  |  |-- mipmap-xhdpi
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher_foreground.png
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher_round.png
+|  |  |  |  |  |  |  |  |  |  |  |-- mipmap-xxhdpi
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher_foreground.png
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher_round.png
+|  |  |  |  |  |  |  |  |  |  |  |-- mipmap-xxxhdpi
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher_foreground.png
+|  |  |  |  |  |  |  |  |  |  |  |  |-- ic_launcher_round.png
+|  |  |  |  |  |  |  |  |  |  |  |-- values
+|  |  |  |  |  |  |  |  |  |  |  |  |-- colors.xml
+|  |  |  |  |  |  |  |  |  |  |  |  |-- strings.xml
+|  |  |  |  |  |  |  |  |  |  |  |  |-- styles.xml
+|  |  |  |  |  |  |  |  |  |-- facedetectioncpu
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- facedetectionfullrangegpu
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- facedetectiongpu
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- faceeffect
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- MainActivity.java
+|  |  |  |  |  |  |  |  |  |-- facemeshgpu
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- MainActivity.java
+|  |  |  |  |  |  |  |  |  |-- hairsegmentationgpu
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- handdetectiongpu
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- handtrackinggpu
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- MainActivity.java
+|  |  |  |  |  |  |  |  |  |-- holistictrackinggpu
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- instantmotiontracking
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- GIFEditText.java
+|  |  |  |  |  |  |  |  |  |  |-- MainActivity.java
+|  |  |  |  |  |  |  |  |  |  |-- StickerManager.java
+|  |  |  |  |  |  |  |  |  |  |-- assets
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- gif
+|  |  |  |  |  |  |  |  |  |  |  |  |-- default_gif_texture.jpg
+|  |  |  |  |  |  |  |  |  |  |  |  |-- gif.obj.uuu
+|  |  |  |  |  |  |  |  |  |  |  |-- robot
+|  |  |  |  |  |  |  |  |  |  |  |  |-- robot.obj.uuu.zip
+|  |  |  |  |  |  |  |  |  |  |  |  |-- robot_texture.jpg
+|  |  |  |  |  |  |  |  |  |  |-- res
+|  |  |  |  |  |  |  |  |  |  |  |-- drawable
+|  |  |  |  |  |  |  |  |  |  |  |  |-- asset_3d_preview.png
+|  |  |  |  |  |  |  |  |  |  |  |  |-- asset_gif_preview.xml
+|  |  |  |  |  |  |  |  |  |  |  |  |-- baseline_add_24.xml
+|  |  |  |  |  |  |  |  |  |  |  |  |-- baseline_arrow_back_24.xml
+|  |  |  |  |  |  |  |  |  |  |  |  |-- baseline_clear_24.xml
+|  |  |  |  |  |  |  |  |  |  |  |  |-- baseline_clear_all_24.xml
+|  |  |  |  |  |  |  |  |  |  |  |  |-- baseline_loop_24.xml
+|  |  |  |  |  |  |  |  |  |  |  |  |-- baseline_search_24.xml
+|  |  |  |  |  |  |  |  |  |  |  |  |-- circle_button.xml
+|  |  |  |  |  |  |  |  |  |  |  |-- layout
+|  |  |  |  |  |  |  |  |  |  |  |  |-- instant_motion_tracking_activity_main.xml
+|  |  |  |  |  |  |  |  |  |-- iristrackinggpu
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- MainActivity.java
+|  |  |  |  |  |  |  |  |  |-- objectdetection3d
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- MainActivity.java
+|  |  |  |  |  |  |  |  |  |  |-- assets
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |-- box.obj.uuu
+|  |  |  |  |  |  |  |  |  |  |  |-- camera
+|  |  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |  |-- model.obj.uuu
+|  |  |  |  |  |  |  |  |  |  |  |  |-- texture.jpg
+|  |  |  |  |  |  |  |  |  |  |  |-- chair
+|  |  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |  |-- model.obj.uuu
+|  |  |  |  |  |  |  |  |  |  |  |  |-- texture.jpg
+|  |  |  |  |  |  |  |  |  |  |  |-- classic_colors.png
+|  |  |  |  |  |  |  |  |  |  |  |-- colors.bmp
+|  |  |  |  |  |  |  |  |  |  |  |-- cup
+|  |  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |  |-- model.obj.uuu
+|  |  |  |  |  |  |  |  |  |  |  |  |-- texture.jpg
+|  |  |  |  |  |  |  |  |  |  |  |-- sneaker
+|  |  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |  |  |-- model.obj.uuu
+|  |  |  |  |  |  |  |  |  |  |  |  |-- texture.jpg
+|  |  |  |  |  |  |  |  |  |  |-- build_defs.bzl
+|  |  |  |  |  |  |  |  |  |  |-- manifests
+|  |  |  |  |  |  |  |  |  |  |  |-- AndroidManifestCamera.xml
+|  |  |  |  |  |  |  |  |  |  |  |-- AndroidManifestChair.xml
+|  |  |  |  |  |  |  |  |  |  |  |-- AndroidManifestCup.xml
+|  |  |  |  |  |  |  |  |  |  |  |-- AndroidManifestSneaker.xml
+|  |  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- objectdetectioncpu
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- objectdetectiongpu
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- objecttrackinggpu
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- posetrackinggpu
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |  |-- MainActivity.java
+|  |  |  |  |  |  |  |  |  |-- selfiesegmentationgpu
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- templatematchingcpu
+|  |  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |-- coral
+|  |  |  |-- BUILD
+|  |  |  |-- Dockerfile
+|  |  |  |-- README.md
+|  |  |  |-- WORKSPACE.coral
+|  |  |  |-- demo_run_graph_main.cc
+|  |  |  |-- graphs
+|  |  |  |  |-- face_detection_desktop_live.pbtxt
+|  |  |  |  |-- object_detection_desktop_live.pbtxt
+|  |  |  |-- images
+|  |  |  |  |-- face_detection_demo_coral.gif
+|  |  |  |  |-- object_detection_demo_coral.jpg
+|  |  |  |-- models
+|  |  |  |  |-- face-detector-quantized_edgetpu.tflite
+|  |  |  |  |-- object-detector-quantized_edgetpu.tflite
+|  |  |  |  |-- object_detection_labelmap.txt
+|  |  |  |-- setup.sh
+|  |  |  |-- update_sources.sh
+|  |  |-- desktop
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- autoflip
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- autoflip_graph.pbtxt
+|  |  |  |  |-- autoflip_graph_development.pbtxt
+|  |  |  |  |-- autoflip_messages.proto
+|  |  |  |  |-- calculators
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- border_detection_calculator.cc
+|  |  |  |  |  |-- border_detection_calculator.proto
+|  |  |  |  |  |-- border_detection_calculator_test.cc
+|  |  |  |  |  |-- content_zooming_calculator.cc
+|  |  |  |  |  |-- content_zooming_calculator.proto
+|  |  |  |  |  |-- content_zooming_calculator_state.h
+|  |  |  |  |  |-- content_zooming_calculator_test.cc
+|  |  |  |  |  |-- face_box_adjuster_calculator.proto
+|  |  |  |  |  |-- face_to_region_calculator.cc
+|  |  |  |  |  |-- face_to_region_calculator.proto
+|  |  |  |  |  |-- face_to_region_calculator_test.cc
+|  |  |  |  |  |-- localization_to_region_calculator.cc
+|  |  |  |  |  |-- localization_to_region_calculator.proto
+|  |  |  |  |  |-- localization_to_region_calculator_test.cc
+|  |  |  |  |  |-- scene_cropping_calculator.cc
+|  |  |  |  |  |-- scene_cropping_calculator.h
+|  |  |  |  |  |-- scene_cropping_calculator.proto
+|  |  |  |  |  |-- scene_cropping_calculator_test.cc
+|  |  |  |  |  |-- shot_boundary_calculator.cc
+|  |  |  |  |  |-- shot_boundary_calculator.proto
+|  |  |  |  |  |-- shot_boundary_calculator_test.cc
+|  |  |  |  |  |-- signal_fusing_calculator.cc
+|  |  |  |  |  |-- signal_fusing_calculator.proto
+|  |  |  |  |  |-- signal_fusing_calculator_test.cc
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- dino.jpg
+|  |  |  |  |  |-- video_filtering_calculator.cc
+|  |  |  |  |  |-- video_filtering_calculator.proto
+|  |  |  |  |  |-- video_filtering_calculator_test.cc
+|  |  |  |  |-- quality
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- cropping.proto
+|  |  |  |  |  |-- focus_point.proto
+|  |  |  |  |  |-- frame_crop_region_computer.cc
+|  |  |  |  |  |-- frame_crop_region_computer.h
+|  |  |  |  |  |-- frame_crop_region_computer_test.cc
+|  |  |  |  |  |-- kinematic_path_solver.cc
+|  |  |  |  |  |-- kinematic_path_solver.h
+|  |  |  |  |  |-- kinematic_path_solver.proto
+|  |  |  |  |  |-- kinematic_path_solver_test.cc
+|  |  |  |  |  |-- math_utils.h
+|  |  |  |  |  |-- padding_effect_generator.cc
+|  |  |  |  |  |-- padding_effect_generator.h
+|  |  |  |  |  |-- padding_effect_generator_test.cc
+|  |  |  |  |  |-- piecewise_linear_function.cc
+|  |  |  |  |  |-- piecewise_linear_function.h
+|  |  |  |  |  |-- piecewise_linear_function_test.cc
+|  |  |  |  |  |-- polynomial_regression_path_solver.cc
+|  |  |  |  |  |-- polynomial_regression_path_solver.h
+|  |  |  |  |  |-- polynomial_regression_path_solver_test.cc
+|  |  |  |  |  |-- scene_camera_motion_analyzer.cc
+|  |  |  |  |  |-- scene_camera_motion_analyzer.h
+|  |  |  |  |  |-- scene_camera_motion_analyzer_test.cc
+|  |  |  |  |  |-- scene_cropper.cc
+|  |  |  |  |  |-- scene_cropper.h
+|  |  |  |  |  |-- scene_cropper_test.cc
+|  |  |  |  |  |-- scene_cropping_viz.cc
+|  |  |  |  |  |-- scene_cropping_viz.h
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- camera_motion_tracking_scene_frame_results.csv
+|  |  |  |  |  |  |-- google.jpg
+|  |  |  |  |  |  |-- result_0.3.jpg
+|  |  |  |  |  |  |-- result_0.3_solid_background.jpg
+|  |  |  |  |  |  |-- result_0.6.jpg
+|  |  |  |  |  |  |-- result_0.6_solid_background.jpg
+|  |  |  |  |  |  |-- result_1.6.jpg
+|  |  |  |  |  |  |-- result_1.6_solid_background.jpg
+|  |  |  |  |  |  |-- result_1.jpg
+|  |  |  |  |  |  |-- result_1_solid_background.jpg
+|  |  |  |  |  |  |-- result_2.5.jpg
+|  |  |  |  |  |  |-- result_2.5_solid_background.jpg
+|  |  |  |  |  |  |-- result_3.4.jpg
+|  |  |  |  |  |  |-- result_3.4_solid_background.jpg
+|  |  |  |  |  |-- utils.cc
+|  |  |  |  |  |-- utils.h
+|  |  |  |  |  |-- utils_test.cc
+|  |  |  |  |  |-- visual_scorer.cc
+|  |  |  |  |  |-- visual_scorer.h
+|  |  |  |  |  |-- visual_scorer.proto
+|  |  |  |  |  |-- visual_scorer_test.cc
+|  |  |  |  |-- subgraph
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- autoflip_object_detection_subgraph.pbtxt
+|  |  |  |  |  |-- face_detection_subgraph.pbtxt
+|  |  |  |  |  |-- front_face_detection_subgraph.pbtxt
+|  |  |  |-- demo_run_graph_main.cc
+|  |  |  |-- demo_run_graph_main_gpu.cc
+|  |  |  |-- face_detection
+|  |  |  |  |-- BUILD
+|  |  |  |-- face_mesh
+|  |  |  |  |-- BUILD
+|  |  |  |-- hair_segmentation
+|  |  |  |  |-- BUILD
+|  |  |  |-- hand_tracking
+|  |  |  |  |-- BUILD
+|  |  |  |-- hello_world
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- hello_world.cc
+|  |  |  |-- holistic_tracking
+|  |  |  |  |-- BUILD
+|  |  |  |-- iris_tracking
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- iris_depth_from_image_desktop.cc
+|  |  |  |-- media_sequence
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- charades_dataset.py
+|  |  |  |  |-- demo_dataset.py
+|  |  |  |  |-- kinetics_dataset.py
+|  |  |  |  |-- read_demo_dataset.py
+|  |  |  |  |-- run_graph_file_io_main.cc
+|  |  |  |-- object_detection
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- test_video.mp4
+|  |  |  |-- object_detection_3d
+|  |  |  |  |-- BUILD
+|  |  |  |-- object_tracking
+|  |  |  |  |-- BUILD
+|  |  |  |-- pose_tracking
+|  |  |  |  |-- BUILD
+|  |  |  |-- selfie_segmentation
+|  |  |  |  |-- BUILD
+|  |  |  |-- simple_run_graph_main.cc
+|  |  |  |-- template_matching
+|  |  |  |  |-- BUILD
+|  |  |  |-- youtube8m
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- extract_yt8m_features.cc
+|  |  |  |  |-- generate_input_sequence_example.py
+|  |  |  |  |-- generate_vggish_frozen_graph.py
+|  |  |  |  |-- viewer
+|  |  |  |  |  |-- server.py
+|  |  |  |  |  |-- static
+|  |  |  |  |  |  |-- index.html
+|  |  |  |  |  |  |-- main.js
+|  |  |-- ios
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- bundle_id.bzl
+|  |  |  |-- common
+|  |  |  |  |-- AppDelegate.h
+|  |  |  |  |-- AppDelegate.mm
+|  |  |  |  |-- Assets.xcassets
+|  |  |  |  |  |-- AppIcon.appiconset
+|  |  |  |  |  |  |-- 40_c_1x.png
+|  |  |  |  |  |  |-- 40_c_2x.png
+|  |  |  |  |  |  |-- 40_c_3x.png
+|  |  |  |  |  |  |-- 60_c_iphone_2x.png
+|  |  |  |  |  |  |-- 60_c_iphone_3x.png
+|  |  |  |  |  |  |-- 76_c_Ipad.png
+|  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |-- Contents.json
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Base.lproj
+|  |  |  |  |  |-- LaunchScreen.storyboard
+|  |  |  |  |  |-- Main.storyboard
+|  |  |  |  |-- CommonViewController.h
+|  |  |  |  |-- CommonViewController.mm
+|  |  |  |  |-- Info.plist
+|  |  |  |  |-- main.m
+|  |  |  |-- facedetectioncpu
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Info.plist
+|  |  |  |-- facedetectiongpu
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Info.plist
+|  |  |  |-- faceeffect
+|  |  |  |  |-- AppDelegate.h
+|  |  |  |  |-- AppDelegate.m
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Base.lproj
+|  |  |  |  |  |-- LaunchScreen.storyboard
+|  |  |  |  |  |-- Main.storyboard
+|  |  |  |  |-- FaceEffectViewController.h
+|  |  |  |  |-- FaceEffectViewController.mm
+|  |  |  |  |-- Info.plist
+|  |  |  |  |-- main.m
+|  |  |  |-- facemeshgpu
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- FaceMeshGpuViewController.h
+|  |  |  |  |-- FaceMeshGpuViewController.mm
+|  |  |  |  |-- Info.plist
+|  |  |  |-- handdetectiongpu
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Info.plist
+|  |  |  |-- handtrackinggpu
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- HandTrackingViewController.h
+|  |  |  |  |-- HandTrackingViewController.mm
+|  |  |  |  |-- Info.plist
+|  |  |  |-- helloworld
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Info.plist
+|  |  |  |-- holistictrackinggpu
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Info.plist
+|  |  |  |-- iristrackinggpu
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Info.plist
+|  |  |  |  |-- IrisTrackingViewController.h
+|  |  |  |  |-- IrisTrackingViewController.mm
+|  |  |  |-- link_local_profiles.py
+|  |  |  |-- objectdetectioncpu
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Info.plist
+|  |  |  |-- objectdetectiongpu
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Info.plist
+|  |  |  |-- objectdetectiontrackinggpu
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Info.plist
+|  |  |  |-- posetrackinggpu
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Info.plist
+|  |  |  |  |-- PoseTrackingViewController.h
+|  |  |  |  |-- PoseTrackingViewController.mm
+|  |  |  |-- selfiesegmentationgpu
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Info.plist
+|  |-- framework
+|  |  |-- BUILD
+|  |  |-- api2
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- builder.h
+|  |  |  |-- builder_test.cc
+|  |  |  |-- const_str.h
+|  |  |  |-- contract.h
+|  |  |  |-- contract_test.cc
+|  |  |  |-- node.cc
+|  |  |  |-- node.h
+|  |  |  |-- node_test.cc
+|  |  |  |-- packet.cc
+|  |  |  |-- packet.h
+|  |  |  |-- packet_nc.cc
+|  |  |  |-- packet_test.cc
+|  |  |  |-- port.h
+|  |  |  |-- port_test.cc
+|  |  |  |-- subgraph_test.cc
+|  |  |  |-- tag.h
+|  |  |  |-- tag_test.cc
+|  |  |  |-- test_contracts.h
+|  |  |  |-- tuple.h
+|  |  |  |-- tuple_test.cc
+|  |  |  |-- type_list.h
+|  |  |  |-- type_list_test.cc
+|  |  |-- basic_types_registration.cc
+|  |  |-- calculator.proto
+|  |  |-- calculator_base.cc
+|  |  |-- calculator_base.h
+|  |  |-- calculator_base_test.cc
+|  |  |-- calculator_context.cc
+|  |  |-- calculator_context.h
+|  |  |-- calculator_context_manager.cc
+|  |  |-- calculator_context_manager.h
+|  |  |-- calculator_context_test.cc
+|  |  |-- calculator_contract.cc
+|  |  |-- calculator_contract.h
+|  |  |-- calculator_contract_test.cc
+|  |  |-- calculator_contract_test.proto
+|  |  |-- calculator_framework.h
+|  |  |-- calculator_graph.cc
+|  |  |-- calculator_graph.h
+|  |  |-- calculator_graph_bounds_test.cc
+|  |  |-- calculator_graph_event_loop_test.cc
+|  |  |-- calculator_graph_side_packet_test.cc
+|  |  |-- calculator_graph_stopping_test.cc
+|  |  |-- calculator_graph_test.cc
+|  |  |-- calculator_node.cc
+|  |  |-- calculator_node.h
+|  |  |-- calculator_node_test.cc
+|  |  |-- calculator_options.proto
+|  |  |-- calculator_parallel_execution_test.cc
+|  |  |-- calculator_profile.proto
+|  |  |-- calculator_registry.h
+|  |  |-- calculator_runner.cc
+|  |  |-- calculator_runner.h
+|  |  |-- calculator_runner_test.cc
+|  |  |-- calculator_state.cc
+|  |  |-- calculator_state.h
+|  |  |-- camera_intrinsics.h
+|  |  |-- collection.h
+|  |  |-- collection_item_id.cc
+|  |  |-- collection_item_id.h
+|  |  |-- collection_test.cc
+|  |  |-- counter.h
+|  |  |-- counter_factory.cc
+|  |  |-- counter_factory.h
+|  |  |-- delegating_executor.cc
+|  |  |-- delegating_executor.h
+|  |  |-- demangle.h
+|  |  |-- deps
+|  |  |  |-- BUILD
+|  |  |  |-- aligned_malloc_and_free.h
+|  |  |  |-- canonical_errors.h
+|  |  |  |-- cleanup.h
+|  |  |  |-- clock.cc
+|  |  |  |-- clock.h
+|  |  |  |-- expand_template.bzl
+|  |  |  |-- file_helpers.cc
+|  |  |  |-- file_helpers.h
+|  |  |  |-- file_path.cc
+|  |  |  |-- file_path.h
+|  |  |  |-- image_resizer.h
+|  |  |  |-- map_util.h
+|  |  |  |-- mathutil.h
+|  |  |  |-- mathutil_unittest.cc
+|  |  |  |-- message_matchers.h
+|  |  |  |-- monotonic_clock.cc
+|  |  |  |-- monotonic_clock.h
+|  |  |  |-- monotonic_clock_test.cc
+|  |  |  |-- no_destructor.h
+|  |  |  |-- numbers.h
+|  |  |  |-- point2.h
+|  |  |  |-- proto_descriptor.proto
+|  |  |  |-- random_base.h
+|  |  |  |-- re2.h
+|  |  |  |-- rectangle.h
+|  |  |  |-- registration.cc
+|  |  |  |-- registration.h
+|  |  |  |-- registration_token.cc
+|  |  |  |-- registration_token.h
+|  |  |  |-- registration_token_test.cc
+|  |  |  |-- ret_check.cc
+|  |  |  |-- ret_check.h
+|  |  |  |-- safe_int.h
+|  |  |  |-- safe_int_test.cc
+|  |  |  |-- singleton.h
+|  |  |  |-- source_location.h
+|  |  |  |-- status.cc
+|  |  |  |-- status.h
+|  |  |  |-- status_builder.cc
+|  |  |  |-- status_builder.h
+|  |  |  |-- status_builder_test.cc
+|  |  |  |-- status_macros.h
+|  |  |  |-- status_matchers.h
+|  |  |  |-- status_test.cc
+|  |  |  |-- strong_int.h
+|  |  |  |-- thread_options.h
+|  |  |  |-- threadpool.h
+|  |  |  |-- threadpool_pthread_impl.cc
+|  |  |  |-- threadpool_std_thread_impl.cc
+|  |  |  |-- threadpool_test.cc
+|  |  |  |-- topologicalsorter.cc
+|  |  |  |-- topologicalsorter.h
+|  |  |  |-- topologicalsorter_test.cc
+|  |  |  |-- vector.h
+|  |  |-- encode_binary_proto.bzl
+|  |  |-- executor.cc
+|  |  |-- executor.h
+|  |  |-- executor_external_build_test.cc
+|  |  |-- formats
+|  |  |  |-- BUILD
+|  |  |  |-- annotation
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- locus.proto
+|  |  |  |  |-- rasterization.proto
+|  |  |  |-- classification.proto
+|  |  |  |-- deleting_file.cc
+|  |  |  |-- deleting_file.h
+|  |  |  |-- detection.proto
+|  |  |  |-- image.cc
+|  |  |  |-- image.h
+|  |  |  |-- image_file_properties.proto
+|  |  |  |-- image_format.proto
+|  |  |  |-- image_frame.cc
+|  |  |  |-- image_frame.h
+|  |  |  |-- image_frame_opencv.cc
+|  |  |  |-- image_frame_opencv.h
+|  |  |  |-- image_frame_opencv_test.cc
+|  |  |  |-- image_frame_pool.cc
+|  |  |  |-- image_frame_pool.h
+|  |  |  |-- image_frame_pool_test.cc
+|  |  |  |-- image_multi_pool.cc
+|  |  |  |-- image_multi_pool.h
+|  |  |  |-- image_opencv.cc
+|  |  |  |-- image_opencv.h
+|  |  |  |-- landmark.proto
+|  |  |  |-- location.cc
+|  |  |  |-- location.h
+|  |  |  |-- location_data.proto
+|  |  |  |-- matrix.cc
+|  |  |  |-- matrix.h
+|  |  |  |-- matrix_data.proto
+|  |  |  |-- motion
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- optical_flow_field.cc
+|  |  |  |  |-- optical_flow_field.h
+|  |  |  |  |-- optical_flow_field_data.proto
+|  |  |  |  |-- optical_flow_field_test.cc
+|  |  |  |-- object_detection
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- anchor.proto
+|  |  |  |-- rect.proto
+|  |  |  |-- tensor.cc
+|  |  |  |-- tensor.h
+|  |  |  |-- tensor_test.cc
+|  |  |  |-- time_series_header.proto
+|  |  |  |-- video_stream_header.h
+|  |  |  |-- yuv_image.h
+|  |  |-- graph_output_stream.cc
+|  |  |-- graph_output_stream.h
+|  |  |-- graph_service.h
+|  |  |-- graph_service_manager.cc
+|  |  |-- graph_service_manager.h
+|  |  |-- graph_service_manager_test.cc
+|  |  |-- graph_service_test.cc
+|  |  |-- graph_validation.h
+|  |  |-- graph_validation_test.cc
+|  |  |-- input_side_packet_handler.cc
+|  |  |-- input_side_packet_handler.h
+|  |  |-- input_stream.h
+|  |  |-- input_stream_handler.cc
+|  |  |-- input_stream_handler.h
+|  |  |-- input_stream_manager.cc
+|  |  |-- input_stream_manager.h
+|  |  |-- input_stream_manager_test.cc
+|  |  |-- input_stream_shard.cc
+|  |  |-- input_stream_shard.h
+|  |  |-- legacy_calculator_support.cc
+|  |  |-- legacy_calculator_support.h
+|  |  |-- lifetime_tracker.h
+|  |  |-- mediapipe_cc_test.bzl
+|  |  |-- mediapipe_options.proto
+|  |  |-- mediapipe_profiling.h
+|  |  |-- mediapipe_register_type.bzl
+|  |  |-- output_side_packet.h
+|  |  |-- output_side_packet_impl.cc
+|  |  |-- output_side_packet_impl.h
+|  |  |-- output_stream.h
+|  |  |-- output_stream_handler.cc
+|  |  |-- output_stream_handler.h
+|  |  |-- output_stream_manager.cc
+|  |  |-- output_stream_manager.h
+|  |  |-- output_stream_manager_test.cc
+|  |  |-- output_stream_poller.h
+|  |  |-- output_stream_shard.cc
+|  |  |-- output_stream_shard.h
+|  |  |-- packet.cc
+|  |  |-- packet.h
+|  |  |-- packet_delete_test.cc
+|  |  |-- packet_factory.proto
+|  |  |-- packet_generator.h
+|  |  |-- packet_generator.proto
+|  |  |-- packet_generator_graph.cc
+|  |  |-- packet_generator_graph.h
+|  |  |-- packet_generator_test.cc
+|  |  |-- packet_registration_test.cc
+|  |  |-- packet_set.h
+|  |  |-- packet_test.cc
+|  |  |-- packet_test.proto
+|  |  |-- packet_type.cc
+|  |  |-- packet_type.h
+|  |  |-- platform_specific_profiling.h
+|  |  |-- port.h
+|  |  |-- port
+|  |  |  |-- BUILD
+|  |  |  |-- advanced_proto_inc.h
+|  |  |  |-- advanced_proto_lite_inc.h
+|  |  |  |-- aligned_malloc_and_free.h
+|  |  |  |-- any_proto.h
+|  |  |  |-- benchmark.h
+|  |  |  |-- build_config.bzl
+|  |  |  |-- canonical_errors.h
+|  |  |  |-- core_proto_inc.h
+|  |  |  |-- file_helpers.h
+|  |  |  |-- gmock.h
+|  |  |  |-- gtest-spi.h
+|  |  |  |-- gtest.h
+|  |  |  |-- image_resizer.h
+|  |  |  |-- integral_types.h
+|  |  |  |-- logging.h
+|  |  |  |-- map_util.h
+|  |  |  |-- numbers.h
+|  |  |  |-- opencv_calib3d_inc.h
+|  |  |  |-- opencv_core_inc.h
+|  |  |  |-- opencv_features2d_inc.h
+|  |  |  |-- opencv_highgui_inc.h
+|  |  |  |-- opencv_imgcodecs_inc.h
+|  |  |  |-- opencv_imgproc_inc.h
+|  |  |  |-- opencv_video_inc.h
+|  |  |  |-- parse_text_proto.h
+|  |  |  |-- point2.h
+|  |  |  |-- port.h
+|  |  |  |-- proto_ns.h
+|  |  |  |-- re2.h
+|  |  |  |-- rectangle.h
+|  |  |  |-- ret_check.h
+|  |  |  |-- singleton.h
+|  |  |  |-- source_location.h
+|  |  |  |-- status.h
+|  |  |  |-- status_builder.h
+|  |  |  |-- status_macros.h
+|  |  |  |-- status_matchers.h
+|  |  |  |-- statusor.h
+|  |  |  |-- threadpool.h
+|  |  |  |-- topologicalsorter.h
+|  |  |  |-- vector.h
+|  |  |-- profiler
+|  |  |  |-- BUILD
+|  |  |  |-- circular_buffer.h
+|  |  |  |-- circular_buffer_test.cc
+|  |  |  |-- gl_context_profiler.cc
+|  |  |  |-- graph_profiler.cc
+|  |  |  |-- graph_profiler.h
+|  |  |  |-- graph_profiler_ios_test.mm
+|  |  |  |-- graph_profiler_stub.h
+|  |  |  |-- graph_profiler_test.cc
+|  |  |  |-- graph_tracer.cc
+|  |  |  |-- graph_tracer.h
+|  |  |  |-- graph_tracer_test.cc
+|  |  |  |-- profiler_resource_util.cc
+|  |  |  |-- profiler_resource_util.h
+|  |  |  |-- profiler_resource_util_android.cc
+|  |  |  |-- profiler_resource_util_common.cc
+|  |  |  |-- profiler_resource_util_ios.cc
+|  |  |  |-- reporter
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- print_profile.cc
+|  |  |  |  |-- reporter.cc
+|  |  |  |  |-- reporter.h
+|  |  |  |  |-- statistic.cc
+|  |  |  |  |-- statistic.h
+|  |  |  |-- reporter_test.cc
+|  |  |  |-- sharded_map.h
+|  |  |  |-- sharded_map_test.cc
+|  |  |  |-- test_context_builder.h
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- profile_latency_test.pbtxt
+|  |  |  |  |-- profile_opencv_0.pbtxt
+|  |  |  |  |-- profile_opencv_1.pbtxt
+|  |  |  |  |-- profile_process_test.pbtxt
+|  |  |  |-- testing
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- simple_calculator.cc
+|  |  |  |-- trace_buffer.h
+|  |  |  |-- trace_builder.cc
+|  |  |  |-- trace_builder.h
+|  |  |-- scheduler.cc
+|  |  |-- scheduler.h
+|  |  |-- scheduler_queue.cc
+|  |  |-- scheduler_queue.h
+|  |  |-- scheduler_shared.h
+|  |  |-- status_handler.h
+|  |  |-- status_handler.proto
+|  |  |-- stream_handler.proto
+|  |  |-- stream_handler
+|  |  |  |-- BUILD
+|  |  |  |-- barrier_input_stream_handler.cc
+|  |  |  |-- barrier_input_stream_handler_test.cc
+|  |  |  |-- default_input_stream_handler.cc
+|  |  |  |-- default_input_stream_handler.h
+|  |  |  |-- default_input_stream_handler.proto
+|  |  |  |-- default_input_stream_handler_test.cc
+|  |  |  |-- early_close_input_stream_handler.cc
+|  |  |  |-- fixed_size_input_stream_handler.cc
+|  |  |  |-- fixed_size_input_stream_handler.proto
+|  |  |  |-- fixed_size_input_stream_handler_test.cc
+|  |  |  |-- immediate_input_stream_handler.cc
+|  |  |  |-- immediate_input_stream_handler_test.cc
+|  |  |  |-- in_order_output_stream_handler.cc
+|  |  |  |-- in_order_output_stream_handler.h
+|  |  |  |-- mux_input_stream_handler.cc
+|  |  |  |-- mux_input_stream_handler_test.cc
+|  |  |  |-- set_input_stream_handler_test.cc
+|  |  |  |-- sync_set_input_stream_handler.cc
+|  |  |  |-- sync_set_input_stream_handler.proto
+|  |  |  |-- sync_set_input_stream_handler_test.cc
+|  |  |  |-- timestamp_align_input_stream_handler.cc
+|  |  |  |-- timestamp_align_input_stream_handler.proto
+|  |  |  |-- timestamp_align_input_stream_handler_test.cc
+|  |  |-- subgraph.cc
+|  |  |-- subgraph.h
+|  |  |-- subgraph_test.cc
+|  |  |-- test_calculators.cc
+|  |  |-- test_calculators.proto
+|  |  |-- test_service.cc
+|  |  |-- test_service.h
+|  |  |-- testdata
+|  |  |  |-- BUILD
+|  |  |  |-- night_light_calculator.proto
+|  |  |  |-- sky_light_calculator.proto
+|  |  |  |-- zoo_mutation_calculator.proto
+|  |  |  |-- zoo_mutator.proto
+|  |  |-- thread_pool_executor.cc
+|  |  |-- thread_pool_executor.h
+|  |  |-- thread_pool_executor.proto
+|  |  |-- throttler.h
+|  |  |-- timestamp.cc
+|  |  |-- timestamp.h
+|  |  |-- timestamp_test.cc
+|  |  |-- tool
+|  |  |  |-- BUILD
+|  |  |  |-- build_defs.bzl
+|  |  |  |-- calculator_graph_template.proto
+|  |  |  |-- container_util.cc
+|  |  |  |-- container_util.h
+|  |  |  |-- data_as_c_string_test.cc
+|  |  |  |-- encode_as_c_string.cc
+|  |  |  |-- executor_util.cc
+|  |  |  |-- executor_util.h
+|  |  |  |-- executor_util_test.cc
+|  |  |  |-- fill_packet_set.cc
+|  |  |  |-- fill_packet_set.h
+|  |  |  |-- fill_packet_set_test.cc
+|  |  |  |-- mediapipe_graph.bzl
+|  |  |  |-- name_util.cc
+|  |  |  |-- name_util.h
+|  |  |  |-- node_chain_subgraph.proto
+|  |  |  |-- options_map.h
+|  |  |  |-- options_util.cc
+|  |  |  |-- options_util.h
+|  |  |  |-- options_util_test.cc
+|  |  |  |-- proto_util_lite.cc
+|  |  |  |-- proto_util_lite.h
+|  |  |  |-- simple_subgraph_template.cc
+|  |  |  |-- simulation_clock.cc
+|  |  |  |-- simulation_clock.h
+|  |  |  |-- simulation_clock_executor.cc
+|  |  |  |-- simulation_clock_executor.h
+|  |  |  |-- simulation_clock_test.cc
+|  |  |  |-- sink.cc
+|  |  |  |-- sink.h
+|  |  |  |-- sink_test.cc
+|  |  |  |-- source.cc
+|  |  |  |-- source.proto
+|  |  |  |-- status_util.cc
+|  |  |  |-- status_util.h
+|  |  |  |-- status_util_test.cc
+|  |  |  |-- subgraph_expansion.cc
+|  |  |  |-- subgraph_expansion.h
+|  |  |  |-- subgraph_expansion_test.cc
+|  |  |  |-- switch_container.cc
+|  |  |  |-- switch_container.proto
+|  |  |  |-- switch_container_test.cc
+|  |  |  |-- switch_demux_calculator.cc
+|  |  |  |-- switch_mux_calculator.cc
+|  |  |  |-- tag_map.cc
+|  |  |  |-- tag_map.h
+|  |  |  |-- tag_map_helper.cc
+|  |  |  |-- tag_map_helper.h
+|  |  |  |-- tag_map_test.cc
+|  |  |  |-- template_expander.cc
+|  |  |  |-- template_expander.h
+|  |  |  |-- template_parser.cc
+|  |  |  |-- template_parser.h
+|  |  |  |-- test_util.cc
+|  |  |  |-- test_util.h
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dub_quad_test_subgraph.pbtxt
+|  |  |  |  |-- nested_test_subgraph.pbtxt
+|  |  |  |  |-- test.pbtxt
+|  |  |  |-- text_to_binary_graph.cc
+|  |  |  |-- type_util.h
+|  |  |  |-- validate.cc
+|  |  |  |-- validate.h
+|  |  |  |-- validate_name.cc
+|  |  |  |-- validate_name.h
+|  |  |  |-- validate_name_test.cc
+|  |  |  |-- validate_type.cc
+|  |  |  |-- validate_type.h
+|  |  |-- transitive_protos.bzl
+|  |  |-- type_map.h
+|  |  |-- validated_graph_config.cc
+|  |  |-- validated_graph_config.h
+|  |  |-- validated_graph_config_test.cc
+|  |-- gpu
+|  |  |-- BUILD
+|  |  |-- MPPGraphGPUData.h
+|  |  |-- MPPGraphGPUData.mm
+|  |  |-- MPPGraphGPUDataTests.mm
+|  |  |-- MPPMetalHelper.h
+|  |  |-- MPPMetalHelper.mm
+|  |  |-- MPPMetalUtil.h
+|  |  |-- MPPMetalUtil.mm
+|  |  |-- copy_calculator.proto
+|  |  |-- egl_surface_holder.h
+|  |  |-- gl_base.h
+|  |  |-- gl_calculator_helper.cc
+|  |  |-- gl_calculator_helper.h
+|  |  |-- gl_calculator_helper_impl.h
+|  |  |-- gl_calculator_helper_impl_android.cc
+|  |  |-- gl_calculator_helper_impl_common.cc
+|  |  |-- gl_calculator_helper_impl_ios.mm
+|  |  |-- gl_context.cc
+|  |  |-- gl_context.h
+|  |  |-- gl_context_eagl.cc
+|  |  |-- gl_context_egl.cc
+|  |  |-- gl_context_internal.h
+|  |  |-- gl_context_nsgl.cc
+|  |  |-- gl_context_options.proto
+|  |  |-- gl_context_webgl.cc
+|  |  |-- gl_ios_test.mm
+|  |  |-- gl_quad_renderer.cc
+|  |  |-- gl_quad_renderer.h
+|  |  |-- gl_scaler_calculator.cc
+|  |  |-- gl_scaler_calculator.proto
+|  |  |-- gl_simple_calculator.cc
+|  |  |-- gl_simple_calculator.h
+|  |  |-- gl_simple_shaders.cc
+|  |  |-- gl_simple_shaders.h
+|  |  |-- gl_surface_sink_calculator.cc
+|  |  |-- gl_surface_sink_calculator.proto
+|  |  |-- gl_texture_buffer.cc
+|  |  |-- gl_texture_buffer.h
+|  |  |-- gl_texture_buffer_pool.cc
+|  |  |-- gl_texture_buffer_pool.h
+|  |  |-- gl_thread_collector.h
+|  |  |-- gpu_buffer.h
+|  |  |-- gpu_buffer_format.cc
+|  |  |-- gpu_buffer_format.h
+|  |  |-- gpu_buffer_multi_pool.cc
+|  |  |-- gpu_buffer_multi_pool.h
+|  |  |-- gpu_buffer_test.cc
+|  |  |-- gpu_buffer_to_image_frame_calculator.cc
+|  |  |-- gpu_origin.proto
+|  |  |-- gpu_service.cc
+|  |  |-- gpu_service.h
+|  |  |-- gpu_shared_data_internal.cc
+|  |  |-- gpu_shared_data_internal.h
+|  |  |-- gpu_test_base.h
+|  |  |-- graph_support.h
+|  |  |-- image_frame_to_gpu_buffer_calculator.cc
+|  |  |-- metal.bzl
+|  |  |-- metal_shader_base.h
+|  |  |-- pixel_buffer_pool_util.h
+|  |  |-- pixel_buffer_pool_util.mm
+|  |  |-- scale_mode.proto
+|  |  |-- shader_util.cc
+|  |  |-- shader_util.h
+|  |-- graphs
+|  |  |-- edge_detection
+|  |  |  |-- BUILD
+|  |  |  |-- edge_detection_mobile_gpu.pbtxt
+|  |  |-- face_detection
+|  |  |  |-- BUILD
+|  |  |  |-- face_detection_desktop_live.pbtxt
+|  |  |  |-- face_detection_full_range_desktop_live.pbtxt
+|  |  |  |-- face_detection_full_range_mobile_gpu.pbtxt
+|  |  |  |-- face_detection_mobile_cpu.pbtxt
+|  |  |  |-- face_detection_mobile_gpu.pbtxt
+|  |  |-- face_effect
+|  |  |  |-- BUILD
+|  |  |  |-- data
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- axis.pbtxt
+|  |  |  |  |-- axis.pngblob
+|  |  |  |  |-- facepaint.pngblob
+|  |  |  |  |-- glasses.pbtxt
+|  |  |  |  |-- glasses.pngblob
+|  |  |  |-- face_effect_gpu.pbtxt
+|  |  |  |-- subgraphs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- face_landmarks_smoothing.pbtxt
+|  |  |  |  |-- single_face_geometry_from_detection_gpu.pbtxt
+|  |  |  |  |-- single_face_geometry_from_landmarks_gpu.pbtxt
+|  |  |-- face_mesh
+|  |  |  |-- BUILD
+|  |  |  |-- calculators
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- face_landmarks_to_render_data_calculator.cc
+|  |  |  |-- face_mesh_desktop.pbtxt
+|  |  |  |-- face_mesh_desktop_live.pbtxt
+|  |  |  |-- face_mesh_desktop_live_gpu.pbtxt
+|  |  |  |-- face_mesh_mobile.pbtxt
+|  |  |  |-- subgraphs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- face_renderer_cpu.pbtxt
+|  |  |  |  |-- face_renderer_gpu.pbtxt
+|  |  |-- hair_segmentation
+|  |  |  |-- BUILD
+|  |  |  |-- hair_segmentation_desktop_live.pbtxt
+|  |  |  |-- hair_segmentation_mobile_gpu.pbtxt
+|  |  |-- hand_tracking
+|  |  |  |-- BUILD
+|  |  |  |-- calculators
+|  |  |  |  |-- BUILD
+|  |  |  |-- hand_detection_desktop.pbtxt
+|  |  |  |-- hand_detection_desktop_live.pbtxt
+|  |  |  |-- hand_detection_mobile.pbtxt
+|  |  |  |-- hand_tracking_desktop.pbtxt
+|  |  |  |-- hand_tracking_desktop_live.pbtxt
+|  |  |  |-- hand_tracking_desktop_live_gpu.pbtxt
+|  |  |  |-- hand_tracking_mobile.pbtxt
+|  |  |  |-- subgraphs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- hand_renderer_cpu.pbtxt
+|  |  |  |  |-- hand_renderer_gpu.pbtxt
+|  |  |-- holistic_tracking
+|  |  |  |-- BUILD
+|  |  |  |-- holistic_tracking_cpu.pbtxt
+|  |  |  |-- holistic_tracking_gpu.pbtxt
+|  |  |  |-- holistic_tracking_to_render_data.pbtxt
+|  |  |-- instant_motion_tracking
+|  |  |  |-- BUILD
+|  |  |  |-- calculators
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- matrices_manager_calculator.cc
+|  |  |  |  |-- sticker_buffer.proto
+|  |  |  |  |-- sticker_manager_calculator.cc
+|  |  |  |  |-- tracked_anchor_manager_calculator.cc
+|  |  |  |  |-- transformations.h
+|  |  |  |-- instant_motion_tracking.pbtxt
+|  |  |  |-- subgraphs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- region_tracking.pbtxt
+|  |  |-- iris_tracking
+|  |  |  |-- BUILD
+|  |  |  |-- calculators
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- iris_to_depth_calculator.cc
+|  |  |  |  |-- iris_to_depth_calculator.proto
+|  |  |  |  |-- iris_to_render_data_calculator.cc
+|  |  |  |  |-- iris_to_render_data_calculator.proto
+|  |  |  |  |-- update_face_landmarks_calculator.cc
+|  |  |  |-- iris_depth_cpu.pbtxt
+|  |  |  |-- iris_tracking_cpu.pbtxt
+|  |  |  |-- iris_tracking_cpu_video_input.pbtxt
+|  |  |  |-- iris_tracking_gpu.pbtxt
+|  |  |  |-- subgraphs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- iris_and_depth_renderer_cpu.pbtxt
+|  |  |  |  |-- iris_and_depth_renderer_gpu.pbtxt
+|  |  |  |  |-- iris_renderer_cpu.pbtxt
+|  |  |-- media_sequence
+|  |  |  |-- BUILD
+|  |  |  |-- clipped_images_from_file_at_24fps.pbtxt
+|  |  |  |-- tvl1_flow_and_rgb_from_file.pbtxt
+|  |  |-- object_detection
+|  |  |  |-- BUILD
+|  |  |  |-- object_detection_desktop_live.pbtxt
+|  |  |  |-- object_detection_desktop_tensorflow_graph.pbtxt
+|  |  |  |-- object_detection_desktop_tflite_graph.pbtxt
+|  |  |  |-- object_detection_mobile_cpu.pbtxt
+|  |  |  |-- object_detection_mobile_gpu.pbtxt
+|  |  |-- object_detection_3d
+|  |  |  |-- BUILD
+|  |  |  |-- calculators
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- annotations_to_model_matrices_calculator.cc
+|  |  |  |  |-- annotations_to_model_matrices_calculator.proto
+|  |  |  |  |-- annotations_to_render_data_calculator.cc
+|  |  |  |  |-- annotations_to_render_data_calculator.proto
+|  |  |  |  |-- gl_animation_overlay_calculator.cc
+|  |  |  |  |-- gl_animation_overlay_calculator.proto
+|  |  |  |  |-- model_matrix.proto
+|  |  |  |-- obj_parser
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- ObjParserMain.java
+|  |  |  |  |-- SimpleObjParser.java
+|  |  |  |  |-- obj_cleanup.sh
+|  |  |  |-- object_occlusion_tracking.pbtxt
+|  |  |  |-- object_occlusion_tracking_1stage.pbtxt
+|  |  |  |-- objectron_desktop_cpu.pbtxt
+|  |  |  |-- subgraphs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- renderer_cpu.pbtxt
+|  |  |-- pose_tracking
+|  |  |  |-- BUILD
+|  |  |  |-- pose_tracking_cpu.pbtxt
+|  |  |  |-- pose_tracking_gpu.pbtxt
+|  |  |  |-- subgraphs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- pose_renderer_cpu.pbtxt
+|  |  |  |  |-- pose_renderer_gpu.pbtxt
+|  |  |-- selfie_segmentation
+|  |  |  |-- BUILD
+|  |  |  |-- selfie_segmentation_cpu.pbtxt
+|  |  |  |-- selfie_segmentation_gpu.pbtxt
+|  |  |-- template_matching
+|  |  |  |-- BUILD
+|  |  |  |-- index_building.pbtxt
+|  |  |  |-- template_matching_desktop.pbtxt
+|  |  |  |-- template_matching_mobile_cpu.pbtxt
+|  |  |-- tracking
+|  |  |  |-- BUILD
+|  |  |  |-- object_detection_tracking_desktop_live.pbtxt
+|  |  |  |-- object_detection_tracking_mobile_gpu.pbtxt
+|  |  |  |-- subgraphs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- box_tracking_cpu.pbtxt
+|  |  |  |  |-- box_tracking_gpu.pbtxt
+|  |  |  |  |-- object_detection_cpu.pbtxt
+|  |  |  |  |-- object_detection_gpu.pbtxt
+|  |  |  |  |-- object_tracking_cpu.pbtxt
+|  |  |  |  |-- object_tracking_gpu.pbtxt
+|  |  |  |  |-- renderer_cpu.pbtxt
+|  |  |  |  |-- renderer_gpu.pbtxt
+|  |  |-- youtube8m
+|  |  |  |-- BUILD
+|  |  |  |-- feature_extraction.pbtxt
+|  |  |  |-- label_map.txt
+|  |  |  |-- local_video_model_inference.pbtxt
+|  |  |  |-- yt8m_dataset_model_inference.pbtxt
+|  |-- java
+|  |  |-- com
+|  |  |  |-- google
+|  |  |  |  |-- mediapipe
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- components
+|  |  |  |  |  |  |-- AudioDataConsumer.java
+|  |  |  |  |  |  |-- AudioDataProcessor.java
+|  |  |  |  |  |  |-- AudioDataProducer.java
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CameraHelper.java
+|  |  |  |  |  |  |-- CameraXPreviewHelper.java
+|  |  |  |  |  |  |-- ExternalTextureConverter.java
+|  |  |  |  |  |  |-- FrameProcessor.java
+|  |  |  |  |  |  |-- GlSurfaceViewRenderer.java
+|  |  |  |  |  |  |-- MicrophoneHelper.java
+|  |  |  |  |  |  |-- PermissionHelper.java
+|  |  |  |  |  |  |-- TextureFrameConsumer.java
+|  |  |  |  |  |  |-- TextureFrameProcessor.java
+|  |  |  |  |  |  |-- TextureFrameProducer.java
+|  |  |  |  |  |-- framework
+|  |  |  |  |  |  |-- AndroidAssetUtil.java
+|  |  |  |  |  |  |-- AndroidPacketCreator.java
+|  |  |  |  |  |  |-- AndroidPacketGetter.java
+|  |  |  |  |  |  |-- AppTextureFrame.java
+|  |  |  |  |  |  |-- AssetCache.java
+|  |  |  |  |  |  |-- AssetCacheDbHelper.java
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- Compat.java
+|  |  |  |  |  |  |-- DummyAndroidManifest.xml
+|  |  |  |  |  |  |-- GlSyncToken.java
+|  |  |  |  |  |  |-- Graph.java
+|  |  |  |  |  |  |-- GraphGlSyncToken.java
+|  |  |  |  |  |  |-- GraphProfiler.java
+|  |  |  |  |  |  |-- GraphService.java
+|  |  |  |  |  |  |-- GraphTextureFrame.java
+|  |  |  |  |  |  |-- MediaPipeException.java
+|  |  |  |  |  |  |-- MediaPipeRunner.java
+|  |  |  |  |  |  |-- Packet.java
+|  |  |  |  |  |  |-- PacketCallback.java
+|  |  |  |  |  |  |-- PacketCreator.java
+|  |  |  |  |  |  |-- PacketGetter.java
+|  |  |  |  |  |  |-- PacketListCallback.java
+|  |  |  |  |  |  |-- PacketWithHeaderCallback.java
+|  |  |  |  |  |  |-- ProtoUtil.java
+|  |  |  |  |  |  |-- SurfaceOutput.java
+|  |  |  |  |  |  |-- TextureFrame.java
+|  |  |  |  |  |  |-- TextureReleaseCallback.java
+|  |  |  |  |  |  |-- TypeNameRegistry.java
+|  |  |  |  |  |  |-- TypeNameRegistryFull.java
+|  |  |  |  |  |  |-- TypeNameRegistryLite.java
+|  |  |  |  |  |  |-- jni
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- android_asset_util_jni.cc
+|  |  |  |  |  |  |  |-- android_asset_util_jni.h
+|  |  |  |  |  |  |  |-- android_packet_creator_jni.cc
+|  |  |  |  |  |  |  |-- android_packet_creator_jni.h
+|  |  |  |  |  |  |  |-- class_registry.cc
+|  |  |  |  |  |  |  |-- class_registry.h
+|  |  |  |  |  |  |  |-- colorspace.h
+|  |  |  |  |  |  |  |-- compat_jni.cc
+|  |  |  |  |  |  |  |-- compat_jni.h
+|  |  |  |  |  |  |  |-- graph.cc
+|  |  |  |  |  |  |  |-- graph.h
+|  |  |  |  |  |  |  |-- graph_gl_sync_token.cc
+|  |  |  |  |  |  |  |-- graph_gl_sync_token.h
+|  |  |  |  |  |  |  |-- graph_jni.cc
+|  |  |  |  |  |  |  |-- graph_jni.h
+|  |  |  |  |  |  |  |-- graph_profiler_jni.cc
+|  |  |  |  |  |  |  |-- graph_profiler_jni.h
+|  |  |  |  |  |  |  |-- graph_service_jni.cc
+|  |  |  |  |  |  |  |-- graph_service_jni.h
+|  |  |  |  |  |  |  |-- graph_texture_frame_jni.cc
+|  |  |  |  |  |  |  |-- graph_texture_frame_jni.h
+|  |  |  |  |  |  |  |-- jni_util.cc
+|  |  |  |  |  |  |  |-- jni_util.h
+|  |  |  |  |  |  |  |-- packet_context_jni.cc
+|  |  |  |  |  |  |  |-- packet_context_jni.h
+|  |  |  |  |  |  |  |-- packet_creator_jni.cc
+|  |  |  |  |  |  |  |-- packet_creator_jni.h
+|  |  |  |  |  |  |  |-- packet_getter_jni.cc
+|  |  |  |  |  |  |  |-- packet_getter_jni.h
+|  |  |  |  |  |  |  |-- register_natives.cc
+|  |  |  |  |  |  |  |-- register_natives.h
+|  |  |  |  |  |  |  |-- surface_output_jni.cc
+|  |  |  |  |  |  |  |-- surface_output_jni.h
+|  |  |  |  |  |  |-- proguard.pgcfg
+|  |  |  |  |  |-- glutil
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CommonShaders.java
+|  |  |  |  |  |  |-- EglManager.java
+|  |  |  |  |  |  |-- ExternalTextureRenderer.java
+|  |  |  |  |  |  |-- GlThread.java
+|  |  |  |  |  |  |-- ShaderUtil.java
+|  |  |  |  |  |  |-- TextureRenderer.java
+|  |  |  |  |  |-- mediapipe_aar.bzl
+|  |  |  |  |  |-- solutioncore
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- CameraInput.java
+|  |  |  |  |  |  |-- ErrorListener.java
+|  |  |  |  |  |  |-- ImageSolutionBase.java
+|  |  |  |  |  |  |-- ImageSolutionResult.java
+|  |  |  |  |  |  |-- OutputHandler.java
+|  |  |  |  |  |  |-- ResultGlRenderer.java
+|  |  |  |  |  |  |-- ResultListener.java
+|  |  |  |  |  |  |-- SolutionBase.java
+|  |  |  |  |  |  |-- SolutionGlSurfaceView.java
+|  |  |  |  |  |  |-- SolutionGlSurfaceViewRenderer.java
+|  |  |  |  |  |  |-- SolutionInfo.java
+|  |  |  |  |  |  |-- SolutionResult.java
+|  |  |  |  |  |  |-- proguard.cfg
+|  |  |  |  |  |-- solutions
+|  |  |  |  |  |  |-- hands
+|  |  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |-- HandLandmark.java
+|  |  |  |  |  |  |  |-- Hands.java
+|  |  |  |  |  |  |  |-- HandsOptions.java
+|  |  |  |  |  |  |  |-- HandsResult.java
+|  |-- models
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- hair_segmentation.tflite
+|  |  |-- iris_landmark.tflite
+|  |  |-- knift_float.tflite
+|  |  |-- knift_float_1k.tflite
+|  |  |-- knift_float_400.tflite
+|  |  |-- knift_index.pb
+|  |  |-- knift_labelmap.txt
+|  |  |-- object_detection_saved_model
+|  |  |  |-- README.md
+|  |  |  |-- model.ckpt.data-00000-of-00001
+|  |  |  |-- model.ckpt.index
+|  |  |  |-- model.ckpt.meta
+|  |  |  |-- pipeline.config
+|  |  |  |-- saved_model.pb
+|  |  |-- ssdlite_object_detection.tflite
+|  |  |-- ssdlite_object_detection_labelmap.txt
+|  |-- modules
+|  |  |-- README.md
+|  |  |-- face_detection
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- face_detection_full_range.tflite
+|  |  |  |-- face_detection_full_range_common.pbtxt
+|  |  |  |-- face_detection_full_range_cpu.pbtxt
+|  |  |  |-- face_detection_full_range_gpu.pbtxt
+|  |  |  |-- face_detection_full_range_sparse.tflite
+|  |  |  |-- face_detection_short_range.tflite
+|  |  |  |-- face_detection_short_range_by_roi_cpu.pbtxt
+|  |  |  |-- face_detection_short_range_by_roi_gpu.pbtxt
+|  |  |  |-- face_detection_short_range_common.pbtxt
+|  |  |  |-- face_detection_short_range_cpu.pbtxt
+|  |  |  |-- face_detection_short_range_gpu.pbtxt
+|  |  |-- face_geometry
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- data
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- canonical_face_model.fbx
+|  |  |  |  |-- canonical_face_model.obj
+|  |  |  |  |-- canonical_face_model_uv_visualization.png
+|  |  |  |  |-- geometry_pipeline_metadata_detection.pbtxt
+|  |  |  |  |-- geometry_pipeline_metadata_landmarks.pbtxt
+|  |  |  |-- effect_renderer_calculator.cc
+|  |  |  |-- effect_renderer_calculator.proto
+|  |  |  |-- env_generator_calculator.cc
+|  |  |  |-- env_generator_calculator.proto
+|  |  |  |-- face_geometry.pbtxt
+|  |  |  |-- face_geometry_from_detection.pbtxt
+|  |  |  |-- face_geometry_from_landmarks.pbtxt
+|  |  |  |-- geometry_pipeline_calculator.cc
+|  |  |  |-- geometry_pipeline_calculator.proto
+|  |  |  |-- libs
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- effect_renderer.cc
+|  |  |  |  |-- effect_renderer.h
+|  |  |  |  |-- geometry_pipeline.cc
+|  |  |  |  |-- geometry_pipeline.h
+|  |  |  |  |-- mesh_3d_utils.cc
+|  |  |  |  |-- mesh_3d_utils.h
+|  |  |  |  |-- procrustes_solver.cc
+|  |  |  |  |-- procrustes_solver.h
+|  |  |  |  |-- validation_utils.cc
+|  |  |  |  |-- validation_utils.h
+|  |  |  |-- protos
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- environment.proto
+|  |  |  |  |-- face_geometry.proto
+|  |  |  |  |-- geometry_pipeline_metadata.proto
+|  |  |  |  |-- mesh_3d.proto
+|  |  |-- face_landmark
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- face_detection_front_detection_to_roi.pbtxt
+|  |  |  |-- face_landmark.tflite
+|  |  |  |-- face_landmark_cpu.pbtxt
+|  |  |  |-- face_landmark_front_cpu.pbtxt
+|  |  |  |-- face_landmark_front_gpu.pbtxt
+|  |  |  |-- face_landmark_front_side_model_cpu.pbtxt
+|  |  |  |-- face_landmark_front_side_model_gpu.pbtxt
+|  |  |  |-- face_landmark_gpu.pbtxt
+|  |  |  |-- face_landmark_landmarks_to_roi.pbtxt
+|  |  |-- hand_landmark
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- calculators
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- hand_landmarks_to_rect_calculator.cc
+|  |  |  |-- hand_landmark.tflite
+|  |  |  |-- hand_landmark_cpu.pbtxt
+|  |  |  |-- hand_landmark_gpu.pbtxt
+|  |  |  |-- hand_landmark_landmarks_to_roi.pbtxt
+|  |  |  |-- hand_landmark_sparse.tflite
+|  |  |  |-- hand_landmark_tracking_cpu.pbtxt
+|  |  |  |-- hand_landmark_tracking_cpu_image.pbtxt
+|  |  |  |-- hand_landmark_tracking_gpu.pbtxt
+|  |  |  |-- hand_landmark_tracking_gpu_image.pbtxt
+|  |  |  |-- handedness.txt
+|  |  |  |-- palm_detection_detection_to_roi.pbtxt
+|  |  |-- holistic_landmark
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- calculators
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- hand_detections_from_pose_to_rects_calculator.cc
+|  |  |  |  |-- roi_tracking_calculator.cc
+|  |  |  |  |-- roi_tracking_calculator.proto
+|  |  |  |-- face_detection_front_detections_to_roi.pbtxt
+|  |  |  |-- face_landmarks_from_pose_cpu.pbtxt
+|  |  |  |-- face_landmarks_from_pose_gpu.pbtxt
+|  |  |  |-- face_landmarks_from_pose_to_recrop_roi.pbtxt
+|  |  |  |-- face_landmarks_to_roi.pbtxt
+|  |  |  |-- face_tracking.pbtxt
+|  |  |  |-- hand_landmarks_from_pose_cpu.pbtxt
+|  |  |  |-- hand_landmarks_from_pose_gpu.pbtxt
+|  |  |  |-- hand_landmarks_from_pose_to_recrop_roi.pbtxt
+|  |  |  |-- hand_landmarks_left_and_right_cpu.pbtxt
+|  |  |  |-- hand_landmarks_left_and_right_gpu.pbtxt
+|  |  |  |-- hand_landmarks_to_roi.pbtxt
+|  |  |  |-- hand_recrop.tflite
+|  |  |  |-- hand_recrop_by_roi_cpu.pbtxt
+|  |  |  |-- hand_recrop_by_roi_gpu.pbtxt
+|  |  |  |-- hand_tracking.pbtxt
+|  |  |  |-- hand_visibility_from_hand_landmarks_from_pose.pbtxt
+|  |  |  |-- hand_wrist_for_pose.pbtxt
+|  |  |  |-- holistic_landmark_cpu.pbtxt
+|  |  |  |-- holistic_landmark_gpu.pbtxt
+|  |  |-- iris_landmark
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- iris_landmark.tflite
+|  |  |  |-- iris_landmark_cpu.pbtxt
+|  |  |  |-- iris_landmark_gpu.pbtxt
+|  |  |  |-- iris_landmark_landmarks_to_roi.pbtxt
+|  |  |  |-- iris_landmark_left_and_right_cpu.pbtxt
+|  |  |  |-- iris_landmark_left_and_right_gpu.pbtxt
+|  |  |-- objectron
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- box_landmark_cpu.pbtxt
+|  |  |  |-- box_landmark_gpu.pbtxt
+|  |  |  |-- calculators
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- a_r_capture_metadata.proto
+|  |  |  |  |-- annotation_data.proto
+|  |  |  |  |-- belief_decoder_config.proto
+|  |  |  |  |-- box.cc
+|  |  |  |  |-- box.h
+|  |  |  |  |-- box_util.cc
+|  |  |  |  |-- box_util.h
+|  |  |  |  |-- box_util_test.cc
+|  |  |  |  |-- camera_parameters.proto
+|  |  |  |  |-- decoder.cc
+|  |  |  |  |-- decoder.h
+|  |  |  |  |-- filter_detection_calculator.cc
+|  |  |  |  |-- filter_detection_calculator.proto
+|  |  |  |  |-- frame_annotation_to_rect_calculator.cc
+|  |  |  |  |-- frame_annotation_to_rect_calculator.proto
+|  |  |  |  |-- frame_annotation_to_timed_box_list_calculator.cc
+|  |  |  |  |-- frame_annotation_tracker.cc
+|  |  |  |  |-- frame_annotation_tracker.h
+|  |  |  |  |-- frame_annotation_tracker_calculator.cc
+|  |  |  |  |-- frame_annotation_tracker_calculator.proto
+|  |  |  |  |-- frame_annotation_tracker_test.cc
+|  |  |  |  |-- landmarks_to_frame_annotation_calculator.cc
+|  |  |  |  |-- lift_2d_frame_annotation_to_3d_calculator.cc
+|  |  |  |  |-- lift_2d_frame_annotation_to_3d_calculator.proto
+|  |  |  |  |-- model.cc
+|  |  |  |  |-- model.h
+|  |  |  |  |-- object.proto
+|  |  |  |  |-- tensor_util.cc
+|  |  |  |  |-- tensor_util.h
+|  |  |  |  |-- tensors_to_objects_calculator.cc
+|  |  |  |  |-- tensors_to_objects_calculator.proto
+|  |  |  |  |-- tflite_tensors_to_objects_calculator.cc
+|  |  |  |  |-- tflite_tensors_to_objects_calculator.proto
+|  |  |  |  |-- types.h
+|  |  |  |-- object_detection_3d_camera.tflite
+|  |  |  |-- object_detection_3d_chair.tflite
+|  |  |  |-- object_detection_3d_chair_1stage.tflite
+|  |  |  |-- object_detection_3d_cup.tflite
+|  |  |  |-- object_detection_3d_sneakers.tflite
+|  |  |  |-- object_detection_3d_sneakers_1stage.tflite
+|  |  |  |-- object_detection_oid_v4_cpu.pbtxt
+|  |  |  |-- object_detection_oid_v4_gpu.pbtxt
+|  |  |  |-- object_detection_oidv4_labelmap.txt
+|  |  |  |-- object_detection_ssd_mobilenetv2_oidv4_fp16.tflite
+|  |  |  |-- objectron_cpu.pbtxt
+|  |  |  |-- objectron_detection_1stage_gpu.pbtxt
+|  |  |  |-- objectron_gpu.pbtxt
+|  |  |  |-- objectron_tracking_1stage_gpu.pbtxt
+|  |  |-- palm_detection
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- palm_detection.tflite
+|  |  |  |-- palm_detection_cpu.pbtxt
+|  |  |  |-- palm_detection_gpu.pbtxt
+|  |  |-- pose_detection
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- pose_detection.tflite
+|  |  |  |-- pose_detection_cpu.pbtxt
+|  |  |  |-- pose_detection_gpu.pbtxt
+|  |  |-- pose_landmark
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- pose_detection_to_roi.pbtxt
+|  |  |  |-- pose_landmark_by_roi_cpu.pbtxt
+|  |  |  |-- pose_landmark_by_roi_gpu.pbtxt
+|  |  |  |-- pose_landmark_by_roi_post_processing.pbtxt
+|  |  |  |-- pose_landmark_cpu.pbtxt
+|  |  |  |-- pose_landmark_filtering.pbtxt
+|  |  |  |-- pose_landmark_full.tflite
+|  |  |  |-- pose_landmark_gpu.pbtxt
+|  |  |  |-- pose_landmark_heavy.tflite
+|  |  |  |-- pose_landmark_lite.tflite
+|  |  |  |-- pose_landmark_model_loader.pbtxt
+|  |  |  |-- pose_landmark_topology.svg
+|  |  |  |-- pose_landmarks_to_roi.pbtxt
+|  |  |-- selfie_segmentation
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- selfie_segmentation.tflite
+|  |  |  |-- selfie_segmentation_cpu.pbtxt
+|  |  |  |-- selfie_segmentation_gpu.pbtxt
+|  |  |  |-- selfie_segmentation_landscape.tflite
+|  |  |  |-- selfie_segmentation_model_loader.pbtxt
+|  |-- objc
+|  |  |-- BUILD
+|  |  |-- CFHolder.h
+|  |  |-- CFHolderTests.mm
+|  |  |-- CGImageRefUtils.h
+|  |  |-- CGImageRefUtils.mm
+|  |  |-- MPPCameraInputSource.h
+|  |  |-- MPPCameraInputSource.m
+|  |  |-- MPPDisplayLinkWeakTarget.h
+|  |  |-- MPPDisplayLinkWeakTarget.m
+|  |  |-- MPPGLViewRenderer.h
+|  |  |-- MPPGLViewRenderer.mm
+|  |  |-- MPPGpuSimpleTest.mm
+|  |  |-- MPPGraph.h
+|  |  |-- MPPGraph.mm
+|  |  |-- MPPGraphTestBase.h
+|  |  |-- MPPGraphTestBase.mm
+|  |  |-- MPPGraphTests.mm
+|  |  |-- MPPInputSource.h
+|  |  |-- MPPInputSource.m
+|  |  |-- MPPLayerRenderer.h
+|  |  |-- MPPLayerRenderer.m
+|  |  |-- MPPPlayerInputSource.h
+|  |  |-- MPPPlayerInputSource.m
+|  |  |-- MPPTimestampConverter.h
+|  |  |-- MPPTimestampConverter.mm
+|  |  |-- NSError+util_status.h
+|  |  |-- NSError+util_status.mm
+|  |  |-- Weakify.h
+|  |  |-- testdata
+|  |  |  |-- googlelogo_color_272x92dp.png
+|  |  |  |-- googlelogo_color_272x92dp_luminance.png
+|  |  |  |-- sergey.png
+|  |  |  |-- sobel_reference.png
+|  |  |  |-- test_sobel.pbtxt
+|  |  |-- util.cc
+|  |  |-- util.h
+|  |-- python
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- calculator_graph_test.py
+|  |  |-- framework_bindings.cc
+|  |  |-- image_frame_test.py
+|  |  |-- image_test.py
+|  |  |-- packet_creator.py
+|  |  |-- packet_getter.py
+|  |  |-- packet_test.py
+|  |  |-- pybind
+|  |  |  |-- BUILD
+|  |  |  |-- calculator_graph.cc
+|  |  |  |-- calculator_graph.h
+|  |  |  |-- image.cc
+|  |  |  |-- image.h
+|  |  |  |-- image_frame.cc
+|  |  |  |-- image_frame.h
+|  |  |  |-- image_frame_util.h
+|  |  |  |-- matrix.cc
+|  |  |  |-- matrix.h
+|  |  |  |-- packet.cc
+|  |  |  |-- packet.h
+|  |  |  |-- packet_creator.cc
+|  |  |  |-- packet_creator.h
+|  |  |  |-- packet_getter.cc
+|  |  |  |-- packet_getter.h
+|  |  |  |-- resource_util.cc
+|  |  |  |-- resource_util.h
+|  |  |  |-- timestamp.cc
+|  |  |  |-- timestamp.h
+|  |  |  |-- util.h
+|  |  |  |-- validated_graph_config.cc
+|  |  |  |-- validated_graph_config.h
+|  |  |-- solution_base.py
+|  |  |-- solution_base_test.py
+|  |  |-- solutions
+|  |  |  |-- __init__.py
+|  |  |  |-- download_utils.py
+|  |  |  |-- drawing_utils.py
+|  |  |  |-- drawing_utils_test.py
+|  |  |  |-- face_detection.py
+|  |  |  |-- face_detection_test.py
+|  |  |  |-- face_mesh.py
+|  |  |  |-- face_mesh_test.py
+|  |  |  |-- hands.py
+|  |  |  |-- hands_test.py
+|  |  |  |-- holistic.py
+|  |  |  |-- holistic_test.py
+|  |  |  |-- objectron.py
+|  |  |  |-- objectron_test.py
+|  |  |  |-- pose.py
+|  |  |  |-- pose_test.py
+|  |  |  |-- selfie_segmentation.py
+|  |  |  |-- selfie_segmentation_test.py
+|  |  |-- timestamp_test.py
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- android
+|  |  |  |-- BUILD
+|  |  |  |-- asset_manager_util.cc
+|  |  |  |-- asset_manager_util.h
+|  |  |  |-- file
+|  |  |  |  |-- base
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- file.cc
+|  |  |  |  |  |-- file.h
+|  |  |  |  |  |-- filesystem.cc
+|  |  |  |  |  |-- filesystem.h
+|  |  |  |  |  |-- helpers.cc
+|  |  |  |  |  |-- helpers.h
+|  |  |  |-- logging.h
+|  |  |-- annotation_renderer.cc
+|  |  |-- annotation_renderer.h
+|  |  |-- audio_decoder.cc
+|  |  |-- audio_decoder.h
+|  |  |-- audio_decoder.proto
+|  |  |-- color.proto
+|  |  |-- cpu_util.cc
+|  |  |-- cpu_util.h
+|  |  |-- filtering
+|  |  |  |-- BUILD
+|  |  |  |-- low_pass_filter.cc
+|  |  |  |-- low_pass_filter.h
+|  |  |  |-- low_pass_filter_test.cc
+|  |  |  |-- one_euro_filter.cc
+|  |  |  |-- one_euro_filter.h
+|  |  |  |-- relative_velocity_filter.cc
+|  |  |  |-- relative_velocity_filter.h
+|  |  |  |-- relative_velocity_filter_test.cc
+|  |  |-- header_util.cc
+|  |  |-- header_util.h
+|  |  |-- image_frame_util.cc
+|  |  |-- image_frame_util.h
+|  |  |-- packet_test_util.h
+|  |  |-- packet_test_util_test.cc
+|  |  |-- render_data.proto
+|  |  |-- resource_cache.h
+|  |  |-- resource_cache_test.cc
+|  |  |-- resource_util.cc
+|  |  |-- resource_util.h
+|  |  |-- resource_util_android.cc
+|  |  |-- resource_util_apple.cc
+|  |  |-- resource_util_custom.h
+|  |  |-- resource_util_default.cc
+|  |  |-- resource_util_internal.h
+|  |  |-- sequence
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- media_sequence.cc
+|  |  |  |-- media_sequence.h
+|  |  |  |-- media_sequence.py
+|  |  |  |-- media_sequence_test.cc
+|  |  |  |-- media_sequence_test.py
+|  |  |  |-- media_sequence_util.h
+|  |  |  |-- media_sequence_util.py
+|  |  |  |-- media_sequence_util_test.cc
+|  |  |  |-- media_sequence_util_test.py
+|  |  |-- tensor_to_detection.cc
+|  |  |-- tensor_to_detection.h
+|  |  |-- tflite
+|  |  |  |-- BUILD
+|  |  |  |-- config.h
+|  |  |  |-- cpu_op_resolver.cc
+|  |  |  |-- cpu_op_resolver.h
+|  |  |  |-- op_resolver.cc
+|  |  |  |-- op_resolver.h
+|  |  |  |-- operations
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- max_pool_argmax.cc
+|  |  |  |  |-- max_pool_argmax.h
+|  |  |  |  |-- max_unpooling.cc
+|  |  |  |  |-- max_unpooling.h
+|  |  |  |  |-- transpose_conv_bias.cc
+|  |  |  |  |-- transpose_conv_bias.h
+|  |  |  |-- tflite_gpu_runner.cc
+|  |  |  |-- tflite_gpu_runner.h
+|  |  |  |-- tflite_model_loader.cc
+|  |  |  |-- tflite_model_loader.h
+|  |  |-- time_series_test_util.h
+|  |  |-- time_series_util.cc
+|  |  |-- time_series_util.h
+|  |  |-- time_series_util_test.cc
+|  |  |-- tracking
+|  |  |  |-- BUILD
+|  |  |  |-- box_detector.cc
+|  |  |  |-- box_detector.h
+|  |  |  |-- box_detector.proto
+|  |  |  |-- box_tracker.cc
+|  |  |  |-- box_tracker.h
+|  |  |  |-- box_tracker.proto
+|  |  |  |-- box_tracker_test.cc
+|  |  |  |-- camera_motion.cc
+|  |  |  |-- camera_motion.h
+|  |  |  |-- camera_motion.proto
+|  |  |  |-- flow_packager.cc
+|  |  |  |-- flow_packager.h
+|  |  |  |-- flow_packager.proto
+|  |  |  |-- frame_selection.proto
+|  |  |  |-- frame_selection_solution_evaluator.proto
+|  |  |  |-- image_util.cc
+|  |  |  |-- image_util.h
+|  |  |  |-- image_util_test.cc
+|  |  |  |-- measure_time.cc
+|  |  |  |-- measure_time.h
+|  |  |  |-- motion_analysis.cc
+|  |  |  |-- motion_analysis.h
+|  |  |  |-- motion_analysis.proto
+|  |  |  |-- motion_estimation.cc
+|  |  |  |-- motion_estimation.h
+|  |  |  |-- motion_estimation.proto
+|  |  |  |-- motion_models.cc
+|  |  |  |-- motion_models.h
+|  |  |  |-- motion_models.proto
+|  |  |  |-- motion_models_cv.cc
+|  |  |  |-- motion_models_cv.h
+|  |  |  |-- motion_models_test.cc
+|  |  |  |-- motion_saliency.cc
+|  |  |  |-- motion_saliency.h
+|  |  |  |-- motion_saliency.proto
+|  |  |  |-- parallel_invoker.cc
+|  |  |  |-- parallel_invoker.h
+|  |  |  |-- parallel_invoker_forbid_mixed.cc
+|  |  |  |-- parallel_invoker_test.cc
+|  |  |  |-- push_pull_filtering.h
+|  |  |  |-- push_pull_filtering.proto
+|  |  |  |-- region_flow.cc
+|  |  |  |-- region_flow.h
+|  |  |  |-- region_flow.proto
+|  |  |  |-- region_flow_computation.cc
+|  |  |  |-- region_flow_computation.h
+|  |  |  |-- region_flow_computation.proto
+|  |  |  |-- region_flow_computation_test.cc
+|  |  |  |-- region_flow_visualization.cc
+|  |  |  |-- region_flow_visualization.h
+|  |  |  |-- streaming_buffer.cc
+|  |  |  |-- streaming_buffer.h
+|  |  |  |-- testdata
+|  |  |  |  |-- box_tracker
+|  |  |  |  |  |-- chunk_0000
+|  |  |  |  |  |-- chunk_0001
+|  |  |  |  |  |-- chunk_0002
+|  |  |  |  |  |-- chunk_0003
+|  |  |  |  |  |-- chunk_0004
+|  |  |  |  |  |-- chunk_0005
+|  |  |  |  |  |-- chunk_0006
+|  |  |  |  |-- stabilize_test.png
+|  |  |  |-- tone_estimation.cc
+|  |  |  |-- tone_estimation.h
+|  |  |  |-- tone_estimation.proto
+|  |  |  |-- tone_models.cc
+|  |  |  |-- tone_models.h
+|  |  |  |-- tone_models.proto
+|  |  |  |-- tracked_detection.cc
+|  |  |  |-- tracked_detection.h
+|  |  |  |-- tracked_detection_manager.cc
+|  |  |  |-- tracked_detection_manager.h
+|  |  |  |-- tracked_detection_manager_config.proto
+|  |  |  |-- tracked_detection_test.cc
+|  |  |  |-- tracking.cc
+|  |  |  |-- tracking.h
+|  |  |  |-- tracking.proto
+|  |  |  |-- tracking_visualization_utilities.cc
+|  |  |  |-- tracking_visualization_utilities.h
+|-- requirements.txt
+|-- setup.py
+|-- setup_android_sdk_and_ndk.sh
+|-- setup_opencv.sh
+|-- third_party
+|  |-- BUILD
+|  |-- benchmark.BUILD
+|  |-- build_bazel_rules_apple_bypass_test_runner_check.diff
+|  |-- ceres_solver_compatibility_fixes.diff
+|  |-- com_github_glog_glog_9779e5ea6ef59562b030248947f787d1256132ae.diff
+|  |-- com_github_glog_glog_f2cf2e1bd040fd15016af53598db0cb9b16a6655.diff
+|  |-- com_google_absl_f863b622fe13612433fdf43f76547d5edda0c93001.diff
+|  |-- com_google_googletest_9d580ea80592189e6d44fa35bcf9cdea8bf620d6.diff
+|  |-- com_google_protobuf_fixes.diff
+|  |-- easyexif.BUILD
+|  |-- ffmpeg_linux.BUILD
+|  |-- ffmpeg_macos.BUILD
+|  |-- glog_no_gflags.BUILD
+|  |-- google_toolbox_for_mac.BUILD
+|  |-- libyuv.BUILD
+|  |-- opencv_android.BUILD
+|  |-- opencv_ios.BUILD
+|  |-- opencv_linux.BUILD
+|  |-- opencv_macos.BUILD
+|  |-- opencv_windows.BUILD
+|  |-- org_tensorflow_compatibility_fixes.diff
+|  |-- org_tensorflow_objc_cxx17.diff
+|  |-- stb_image_impl.diff
+|  |-- stblib.BUILD

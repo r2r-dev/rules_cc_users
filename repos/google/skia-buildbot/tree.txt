@@ -1,0 +1,6571 @@
+|-- .bazelignore
+|-- .bazelrc
+|-- .bazelversion
+|-- .eslintrc.js
+|-- .gitattributes
+|-- .gitignore
+|-- .mocharc.json
+|-- BAZEL_CHEATSHEET.md
+|-- BUILD.bazel
+|-- DATASTORE.md
+|-- DEPS
+|-- LICENSE
+|-- Makefile
+|-- PRESUBMIT.py
+|-- PRIVACY_POLICY.md
+|-- README.md
+|-- STYLEGUIDE.md
+|-- WORKSPACE
+|-- am
+|  |-- DESIGN.md
+|  |-- Makefile
+|  |-- PROD.md
+|  |-- README.md
+|  |-- TODO.md
+|  |-- alert-manager
+|  |  |-- Dockerfile
+|  |-- alert-to-pubsub
+|  |  |-- Dockerfile
+|  |-- build_alert_manager_release
+|  |-- build_alert_to_pubsub_release
+|  |-- create-skia-alert-manager-sa.sh
+|  |-- create-skia-alert-to-pubsub-sa-skia-corp.sh
+|  |-- create-skia-alert-to-pubsub-sa.sh
+|  |-- create-skia-alert-to-pubsub-skolo-rpi2.sh
+|  |-- go
+|  |  |-- alert-manager
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- alert-to-pubsub
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- alertclient
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- client.go
+|  |  |  |-- client_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- APIClient.go
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- generate.go
+|  |  |-- incident
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- incident.go
+|  |  |  |-- incident_manual_test.go
+|  |  |  |-- incident_test.go
+|  |  |-- note
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- note.go
+|  |  |-- reminder
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- reminder.go
+|  |  |  |-- reminder_test.go
+|  |  |-- silence
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- silence.go
+|  |  |  |-- silence_test.go
+|  |  |-- types
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ts
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- types.go
+|  |-- images
+|  |  |-- icon-active.png
+|  |  |-- icon.png
+|  |  |-- icon.svg
+|  |-- karma.conf.ts
+|  |-- modules
+|  |  |-- alert-manager-sk
+|  |  |  |-- alert-manager-sk.scss
+|  |  |  |-- alert-manager-sk.ts
+|  |  |  |-- index.ts
+|  |  |-- am.ts
+|  |  |-- am_test.ts
+|  |  |-- bot-chooser-sk
+|  |  |  |-- bot-chooser-sk.scss
+|  |  |  |-- bot-chooser-sk.ts
+|  |  |  |-- index.ts
+|  |  |-- email-chooser-sk
+|  |  |  |-- email-chooser-sk-demo.html
+|  |  |  |-- email-chooser-sk-demo.ts
+|  |  |  |-- email-chooser-sk.scss
+|  |  |  |-- email-chooser-sk.ts
+|  |  |  |-- email-chooser-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- incident-sk
+|  |  |  |-- incident-sk.scss
+|  |  |  |-- incident-sk.ts
+|  |  |  |-- index.ts
+|  |  |-- json
+|  |  |  |-- index.ts
+|  |  |-- paramset
+|  |  |  |-- index.ts
+|  |  |  |-- paramset_test.ts
+|  |  |-- silence-sk
+|  |  |  |-- index.ts
+|  |  |  |-- silence-sk.scss
+|  |  |  |-- silence-sk.ts
+|  |  |-- themes
+|  |  |  |-- themes.scss
+|  |-- pages
+|  |  |-- index.html
+|  |  |-- index.scss
+|  |  |-- index.ts
+|  |-- probersk.json
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- android_ingest
+|  |-- Makefile
+|  |-- PROD.md
+|  |-- README.md
+|  |-- go
+|  |  |-- androidingest
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- buildapi
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- buildapi.go
+|  |  |-- continuous
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- continuous.go
+|  |  |  |-- continuous_test.go
+|  |  |-- lookup
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- lookup.go
+|  |  |  |-- lookup_test.go
+|  |  |-- parser
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- parser.go
+|  |  |  |-- parser_test.go
+|  |  |-- poprepo
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- poprepo.go
+|  |  |  |-- poprepo_test.go
+|  |  |-- query_buildapi
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- recent
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- recent.go
+|  |  |  |-- recent_test.go
+|  |  |-- upload
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- upload.go
+|  |  |  |-- upload_test.go
+|  |-- images
+|  |  |-- androidingest
+|  |  |  |-- Dockerfile
+|  |  |  |-- release
+|  |-- replay-log.sh
+|  |-- secrets
+|  |  |-- create-android-ingest-sa.sh
+|  |-- templates
+|  |  |-- index.html
+|-- android_stats
+|  |-- go
+|  |  |-- android_stats
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|-- api
+|  |-- Makefile
+|  |-- README.md
+|  |-- api
+|  |  |-- Dockerfile
+|  |-- build_docker_release
+|  |-- build_docker_release_ci
+|  |-- go
+|  |  |-- api
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- probersk.json
+|-- autoroll
+|  |-- Makefile
+|  |-- PROD.md
+|  |-- README.md
+|  |-- bin
+|  |  |-- create-autoroll-be-android-sa.sh
+|  |  |-- create-autoroll-be-angle-sa.sh
+|  |  |-- create-autoroll-be-chrome-internal-release-sa.sh
+|  |  |-- create-autoroll-be-chromium-internal-sa.sh
+|  |  |-- create-autoroll-be-chromium-release-sa.sh
+|  |  |-- create-autoroll-be-chromium-sa.sh
+|  |  |-- create-autoroll-be-dawn-sa.sh
+|  |  |-- create-autoroll-be-flutter-engine-sa.sh
+|  |  |-- create-autoroll-be-flutter-sa.sh
+|  |  |-- create-autoroll-be-fuchsia-internal-sa.sh
+|  |  |-- create-autoroll-be-fuchsia-sa.sh
+|  |  |-- create-autoroll-be-libassistant-internal-sa.sh
+|  |  |-- create-autoroll-be-pdfium-sa.sh
+|  |  |-- create-autoroll-be-skia-internal-sa.sh
+|  |  |-- create-autoroll-be-skia-sa.sh
+|  |  |-- create-autoroll-email-creds-secret.sh
+|  |  |-- create-autoroll-fe-internal-sa.sh
+|  |  |-- create-autoroll-fe-sa.sh
+|  |  |-- create-flutter-engine-github-token-secret.sh
+|  |  |-- create-flutter-engine-ssh-key-secret.sh
+|  |  |-- create-flutter-github-token-secret.sh
+|  |  |-- create-flutter-ssh-key-secret.sh
+|  |-- build_backend_release
+|  |-- build_frontend_release
+|  |-- build_google3_release
+|  |-- config
+|  |  |-- afdo-chromium-beta.cfg
+|  |  |-- afdo-chromium-stable.cfg
+|  |  |-- afdo-chromium.cfg
+|  |  |-- androidx-chromium.cfg
+|  |  |-- angle-android-master.cfg
+|  |  |-- angle-chromium.cfg
+|  |  |-- angle-skia.cfg
+|  |  |-- binaryen-emscripten-releases.cfg
+|  |  |-- cas-recipes-py.cfg
+|  |  |-- catapult-chromium.cfg
+|  |  |-- catapult-pdfium.cfg
+|  |  |-- chromite-chromium.cfg
+|  |  |-- chromium-angle.cfg
+|  |  |-- chromium-rts-linux-amd64.cfg
+|  |  |-- chromium-rts-mac-amd64.cfg
+|  |  |-- chromium-rts-windows-amd64.cfg
+|  |  |-- chromium-skia.cfg
+|  |  |-- chromiumos-config-infra.cfg
+|  |  |-- clang-linux-flutter-engine.cfg
+|  |  |-- clang-mac-flutter-engine.cfg
+|  |  |-- code-coverage-pdfium.cfg
+|  |  |-- cros-afdo-atom-chromium-beta.cfg
+|  |  |-- cros-afdo-atom-chromium-stable.cfg
+|  |  |-- cros-afdo-atom-chromium.cfg
+|  |  |-- cros-afdo-bigcore-chromium-beta.cfg
+|  |  |-- cros-afdo-bigcore-chromium-stable.cfg
+|  |  |-- cros-afdo-bigcore-chromium.cfg
+|  |  |-- cros-orderfile-chromium-beta.cfg
+|  |  |-- cros-orderfile-chromium-stable.cfg
+|  |  |-- cros-orderfile-chromium.cfg
+|  |  |-- cros-proto-infra.cfg
+|  |  |-- dart-sdk-flutter-engine.cfg
+|  |  |-- dawn-chromium.cfg
+|  |  |-- dawn-skia.cfg
+|  |  |-- depot-tools-chromium.cfg
+|  |  |-- devtools-frontend-chromium.cfg
+|  |  |-- earlgrey2-chromium.cfg
+|  |  |-- edo-chromium.cfg
+|  |  |-- emscripten-emscripten-releases.cfg
+|  |  |-- flutter-engine-flutter.cfg
+|  |  |-- flutter-plugins-flutter.cfg
+|  |  |-- freetype-chromium.cfg
+|  |  |-- fuchsia-aemu-chromium.cfg
+|  |  |-- fuchsia-linux-sdk-flutter-engine.cfg
+|  |  |-- fuchsia-mac-sdk-flutter-engine.cfg
+|  |  |-- fuchsia-sdk-chromium.cfg
+|  |  |-- glslang-vulkan-deps.cfg
+|  |  |-- gn-chromium.cfg
+|  |  |-- goldctl-linux-chromium.cfg
+|  |  |-- goldctl-mac-chromium.cfg
+|  |  |-- goldctl-win-chromium.cfg
+|  |  |-- googletest-chromium.cfg
+|  |  |-- infra-chromium.cfg
+|  |  |-- jinja2-pdfium.cfg
+|  |  |-- libcxxabi-chromium.cfg
+|  |  |-- libunwind-chromium.cfg
+|  |  |-- llvm-project-emscripten-releases.cfg
+|  |  |-- lottie-android-lottie-ci.cfg
+|  |  |-- lottie-web-lottie-ci.cfg
+|  |  |-- luci-go-infra.cfg
+|  |  |-- luci-py-infra.cfg
+|  |  |-- markupsafe-pdfium.cfg
+|  |  |-- nacl-chromium.cfg
+|  |  |-- nearby-connections-chromium.cfg
+|  |  |-- openscreen-chromium.cfg
+|  |  |-- pdfium-chromium.cfg
+|  |  |-- perfetto-chromium.cfg
+|  |  |-- perfetto-trace-processor-linux-chromium.cfg
+|  |  |-- perfetto-trace-processor-mac-chromium.cfg
+|  |  |-- perfetto-trace-processor-win-chromium.cfg
+|  |  |-- pgo-linux-chromium-beta.cfg
+|  |  |-- pgo-linux-chromium.cfg
+|  |  |-- pgo-mac-chromium-beta.cfg
+|  |  |-- pgo-mac-chromium.cfg
+|  |  |-- pgo-win32-chromium-beta.cfg
+|  |  |-- pgo-win32-chromium.cfg
+|  |  |-- pgo-win64-chromium-beta.cfg
+|  |  |-- pgo-win64-chromium.cfg
+|  |  |-- re2-chromium.cfg
+|  |  |-- shaderc-chromium.cfg
+|  |  |-- sk-skia.cfg
+|  |  |-- skcms-skia.cfg
+|  |  |-- skia-chromium-lts.cfg
+|  |  |-- skia-chromium.cfg
+|  |  |-- skia-flutter.cfg
+|  |  |-- skia-lottie-ci.cfg
+|  |  |-- skia-skiabot-test.cfg
+|  |  |-- spirv-cross-vulkan-deps.cfg
+|  |  |-- spirv-headers-vulkan-deps.cfg
+|  |  |-- spirv-tools-vulkan-deps.cfg
+|  |  |-- swiftshader-android-master.cfg
+|  |  |-- swiftshader-angle.cfg
+|  |  |-- swiftshader-chromium.cfg
+|  |  |-- swiftshader-skia.cfg
+|  |  |-- tint-dawn.cfg
+|  |  |-- v8-chromium-lts.cfg
+|  |  |-- v8-emscripten-releases.cfg
+|  |  |-- vk-gl-cts-angle.cfg
+|  |  |-- vulkan-deps-angle.cfg
+|  |  |-- vulkan-deps-chromium.cfg
+|  |  |-- vulkan-headers-vulkan-deps.cfg
+|  |  |-- vulkan-loader-vulkan-deps.cfg
+|  |  |-- vulkan-tools-vulkan-deps.cfg
+|  |  |-- vulkan-validation-layers-vulkan-deps.cfg
+|  |  |-- webgpu-cts-chromium.cfg
+|  |  |-- webrtc-chromium-lts.cfg
+|  |  |-- webrtc-chromium.cfg
+|  |-- go
+|  |  |-- autoroll-be
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- Dockerfile
+|  |  |  |-- autoroll-be.yaml.template
+|  |  |  |-- main.go
+|  |  |-- autoroll-fe
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- Dockerfile
+|  |  |  |-- autoroll-fe.yaml.template
+|  |  |  |-- cfg-corp.json
+|  |  |  |-- cfg-public.json
+|  |  |  |-- main.go
+|  |  |-- autoroll-google3
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- Dockerfile
+|  |  |  |-- google3.go
+|  |  |  |-- google3_test.go
+|  |  |  |-- main.go
+|  |  |-- autoroll-pusher
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- codereview
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- codereview.go
+|  |  |  |-- config.go
+|  |  |  |-- roll.go
+|  |  |  |-- roll_test.go
+|  |  |-- commit_msg
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- android.go
+|  |  |  |-- android_test.go
+|  |  |  |-- cmd
+|  |  |  |  |-- mock-commit-msg
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- main.go
+|  |  |  |-- commit_msg.go
+|  |  |  |-- commit_msg_test.go
+|  |  |  |-- default.go
+|  |  |  |-- default_test.go
+|  |  |-- config
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- config.go
+|  |  |  |-- config.pb.go
+|  |  |  |-- config.proto
+|  |  |  |-- convert_configs
+|  |  |  |  |-- BUILD.bazel
+|  |  |-- config_vars
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- config_vars.go
+|  |  |  |-- config_vars_test.go
+|  |  |-- manual
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- db.go
+|  |  |  |-- db_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- DB.go
+|  |  |  |  |-- generate.go
+|  |  |-- modes
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- ModeHistory.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- modes.go
+|  |  |  |-- modes_test.go
+|  |  |-- notifier
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- notifier.go
+|  |  |  |-- notifier_test.go
+|  |  |-- recent_rolls
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- recent_rolls.go
+|  |  |  |-- recent_test.go
+|  |  |-- repo_manager
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- android_repo_manager.go
+|  |  |  |-- android_repo_manager_test.go
+|  |  |  |-- child
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- child.go
+|  |  |  |  |-- cipd.go
+|  |  |  |  |-- cipd_manual_test.go
+|  |  |  |  |-- cipd_test.go
+|  |  |  |  |-- fuchsia_sdk.go
+|  |  |  |  |-- gcs.go
+|  |  |  |  |-- git_checkout.go
+|  |  |  |  |-- git_checkout_github.go
+|  |  |  |  |-- gitiles.go
+|  |  |  |  |-- gitiles_test.go
+|  |  |  |  |-- revision_filter
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- buildbucket.go
+|  |  |  |  |  |-- revision_filter.go
+|  |  |  |  |-- semver_gcs.go
+|  |  |  |  |-- semver_gcs_test.go
+|  |  |  |-- command_repo_manager.go
+|  |  |  |-- command_repo_manager_test.go
+|  |  |  |-- common
+|  |  |  |  |-- gerrit_common
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- gerrit_common.go
+|  |  |  |  |-- git_common
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- git_common.go
+|  |  |  |  |-- github_common
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- github_common.go
+|  |  |  |  |-- gitiles_common
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- gitiles_common.go
+|  |  |  |  |-- version_file_common
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- version_file_common.go
+|  |  |  |-- copy_repo_manager_test.go
+|  |  |  |-- deps_repo_manager_test.go
+|  |  |  |-- freetype_repo_manager.go
+|  |  |  |-- freetype_repo_manager_test.go
+|  |  |  |-- fuchsia_sdk_android_repo_manager.go
+|  |  |  |-- fuchsia_sdk_android_repo_manager_test.go
+|  |  |  |-- fuchsia_sdk_repo_manager_test.go
+|  |  |  |-- github_cipd_deps_repo_manager_test.go
+|  |  |  |-- github_deps_repo_manager_test.go
+|  |  |  |-- github_repo_manager_test.go
+|  |  |  |-- no_checkout_deps_repo_manager_test.go
+|  |  |  |-- parent
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- copy.go
+|  |  |  |  |-- deps_local.go
+|  |  |  |  |-- freetype.go
+|  |  |  |  |-- git_checkout.go
+|  |  |  |  |-- git_checkout_gerrit.go
+|  |  |  |  |-- git_checkout_github.go
+|  |  |  |  |-- git_checkout_github_file.go
+|  |  |  |  |-- gitiles.go
+|  |  |  |  |-- gitiles_file.go
+|  |  |  |  |-- parent.go
+|  |  |  |  |-- pre_upload_steps.go
+|  |  |  |  |-- pre_upload_steps_test.go
+|  |  |  |-- parent_child_repo_manager.go
+|  |  |  |-- repo_manager.go
+|  |  |  |-- repo_manager_test.go
+|  |  |  |-- semver_gcs_repo_manager_test.go
+|  |  |-- revision
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- revision.go
+|  |  |  |-- revision_test.go
+|  |  |-- roller
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- autoroller.go
+|  |  |  |-- autoroller_test.go
+|  |  |  |-- reviewers.go
+|  |  |-- rpc
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- rpc.pb.go
+|  |  |  |-- rpc.proto
+|  |  |  |-- rpc.twirp.go
+|  |  |  |-- rpc_impl.go
+|  |  |  |-- rpc_impl_test.go
+|  |  |-- state_machine
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- state_machine.go
+|  |  |  |-- state_machine_test.go
+|  |  |-- status
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cache.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- DB.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- status.go
+|  |  |  |-- status_test.go
+|  |  |-- strategy
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- StrategyHistory.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- strategies.go
+|  |  |  |-- strategies_test.go
+|  |  |  |-- strategy.go
+|  |  |  |-- strategy_test.go
+|  |  |-- time_window
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- time_window.go
+|  |  |  |-- time_window_test.go
+|  |  |-- unthrottle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- Throttle.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- unthrottle.go
+|  |  |  |-- unthrottle_test.go
+|  |-- modules
+|  |  |-- arb-config-sk
+|  |  |  |-- arb-config-sk-demo.html
+|  |  |  |-- arb-config-sk-demo.ts
+|  |  |  |-- arb-config-sk.scss
+|  |  |  |-- arb-config-sk.ts
+|  |  |  |-- index.ts
+|  |  |-- arb-scaffold-sk
+|  |  |  |-- arb-scaffold-sk-demo.html
+|  |  |  |-- arb-scaffold-sk-demo.ts
+|  |  |  |-- arb-scaffold-sk.scss
+|  |  |  |-- arb-scaffold-sk.ts
+|  |  |  |-- index.ts
+|  |  |-- arb-status-sk
+|  |  |  |-- arb-status-sk-demo.html
+|  |  |  |-- arb-status-sk-demo.ts
+|  |  |  |-- arb-status-sk.scss
+|  |  |  |-- arb-status-sk.ts
+|  |  |  |-- index.ts
+|  |  |-- arb-table-sk
+|  |  |  |-- arb-table-sk-demo.html
+|  |  |  |-- arb-table-sk-demo.ts
+|  |  |  |-- arb-table-sk.scss
+|  |  |  |-- arb-table-sk.ts
+|  |  |  |-- index.ts
+|  |  |-- colors.css
+|  |  |-- config
+|  |  |  |-- config.ts
+|  |  |  |-- index.ts
+|  |  |  |-- twirp.ts
+|  |  |-- rpc-mock
+|  |  |  |-- fake-config.ts
+|  |  |  |-- fake-ministatuses.ts
+|  |  |  |-- fake-status.ts
+|  |  |  |-- index.ts
+|  |  |-- rpc
+|  |  |  |-- README.md
+|  |  |  |-- index.ts
+|  |  |  |-- rpc.ts
+|  |  |  |-- twirp.ts
+|  |-- pages
+|  |  |-- config.html
+|  |  |-- config.ts
+|  |  |-- index.html
+|  |  |-- index.ts
+|  |  |-- roller.html
+|  |  |-- roller.ts
+|  |-- probersk.json
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- bash
+|  |-- docker_build.sh
+|  |-- ramdisk.sh
+|  |-- release.sh
+|-- bazel
+|  |-- BUILD.bazel
+|  |-- gazelle
+|  |  |-- BUILD.bazel
+|  |  |-- frontend
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- allowlist.go
+|  |  |  |-- common
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- common.go
+|  |  |  |-- configurer
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- configurer.go
+|  |  |  |-- extension.go
+|  |  |  |-- extension_test.go
+|  |  |  |-- language
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- language.go
+|  |  |  |  |-- language_test.go
+|  |  |  |-- parsers
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- parsers.go
+|  |  |  |  |-- parsers_test.go
+|  |  |  |-- resolver
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- resolver.go
+|  |  |  |  |-- resolver_test.go
+|  |-- get_workspace_status.sh
+|  |-- go
+|  |  |-- BUILD.bazel
+|  |  |-- bazel
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bazel.go
+|  |  |  |-- test
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- bazel_test.go
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- hello.txt
+|  |  |-- go_test.bzl
+|  |-- rbe
+|  |  |-- LICENSE
+|  |  |-- README.md
+|  |  |-- cc
+|  |  |  |-- BUILD
+|  |  |  |-- WORKSPACE
+|  |  |  |-- armeabi_cc_toolchain_config.bzl
+|  |  |  |-- builtin_include_directory_paths
+|  |  |  |-- cc_toolchain_config.bzl
+|  |  |  |-- cc_wrapper.sh
+|  |  |  |-- module.modulemap
+|  |  |  |-- tools
+|  |  |  |  |-- cpp
+|  |  |  |  |  |-- empty.cc
+|  |  |-- config
+|  |  |  |-- BUILD
+|  |  |-- java
+|  |  |  |-- BUILD
+|  |-- skia_app_container.bzl
+|  |-- test_on_env
+|  |  |-- BUILD.bazel
+|  |  |-- examples
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- env.go
+|  |  |  |-- go
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- go_test.go
+|  |  |  |-- typescript
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- typescript_nodejs_test.ts
+|  |  |-- test_on_env.bzl
+|  |  |-- test_on_env.sh
+|-- blamer
+|  |-- Makefile
+|  |-- go
+|  |  |-- blamer
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|-- bugs-central
+|  |-- Makefile
+|  |-- README.md
+|  |-- bin
+|  |  |-- create-github-token-secret.sh
+|  |  |-- create-sa.sh
+|  |-- go
+|  |  |-- bugs-central
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- bugs
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bugs.go
+|  |  |  |-- github
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- github.go
+|  |  |  |  |-- github_test.go
+|  |  |  |-- issuetracker
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- issuetracker.go
+|  |  |  |  |-- issuetracker_test.go
+|  |  |  |-- monorail
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- monorail.go
+|  |  |  |  |-- monorail_test.go
+|  |  |  |-- open_issues.go
+|  |  |  |-- open_issues_test.go
+|  |  |-- db
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- db.go
+|  |  |-- poller
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- poller.go
+|  |  |-- types
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ts
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- types.go
+|  |  |  |-- types_test.go
+|  |-- images
+|  |  |-- bugs-central-server
+|  |  |  |-- Dockerfile
+|  |  |  |-- build_release
+|  |  |-- favicon.ico
+|  |-- modules
+|  |  |-- bugs-central-scaffold-sk
+|  |  |  |-- bugs-central-scaffold-sk-demo.html
+|  |  |  |-- bugs-central-scaffold-sk-demo.ts
+|  |  |  |-- bugs-central-scaffold-sk.scss
+|  |  |  |-- bugs-central-scaffold-sk.ts
+|  |  |  |-- bugs-central-scaffold-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- bugs-central-sk
+|  |  |  |-- bugs-central-sk-demo.html
+|  |  |  |-- bugs-central-sk-demo.ts
+|  |  |  |-- bugs-central-sk.scss
+|  |  |  |-- bugs-central-sk.ts
+|  |  |  |-- bugs-central-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- bugs-chart-sk
+|  |  |  |-- bugs-chart-sk-demo.html
+|  |  |  |-- bugs-chart-sk-demo.ts
+|  |  |  |-- bugs-chart-sk.scss
+|  |  |  |-- bugs-chart-sk.ts
+|  |  |  |-- bugs-chart-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- bugs-slo-popup-sk
+|  |  |  |-- bugs-slo-popup-sk-demo.html
+|  |  |  |-- bugs-slo-popup-sk-demo.ts
+|  |  |  |-- bugs-slo-popup-sk.scss
+|  |  |  |-- bugs-slo-popup-sk.ts
+|  |  |  |-- bugs-slo-popup-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- json
+|  |  |  |-- index.ts
+|  |  |-- style.scss
+|  |-- pages
+|  |  |-- index.html
+|  |  |-- index.scss
+|  |  |-- index.ts
+|  |-- tsconfig.json
+|  |-- tslint.json
+|  |-- webpack.config.ts
+|-- build_infra_prod.sh
+|-- cipd.ensure
+|-- codereview-watcher
+|  |-- Makefile
+|  |-- README.md
+|  |-- bin
+|  |  |-- create-github-token-secret.sh
+|  |  |-- create-sa.sh
+|  |-- go
+|  |  |-- codereview-watcher
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- db
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- db.go
+|  |-- images
+|  |  |-- Dockerfile
+|  |  |-- build_release
+|-- codereview.settings
+|-- comments
+|  |-- Makefile
+|  |-- go
+|  |  |-- extract
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- extract.go
+|  |  |  |-- extract_test.go
+|  |  |-- extract_comments
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|-- contestk
+|  |-- Makefile
+|  |-- README.md
+|  |-- build_docker_release
+|  |-- contest
+|  |  |-- Dockerfile
+|  |-- create-skia-contest-sa.sh
+|  |-- go
+|  |  |-- contest
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- probersk.json
+|-- cq_watcher
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- PROD.md
+|  |-- README.md
+|  |-- build_docker_release
+|  |-- go
+|  |  |-- cq_watcher
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|-- ct
+|  |-- DESIGN.md
+|  |-- Makefile
+|  |-- PROD.md
+|  |-- build_ctfe_release
+|  |-- create-ct-master-sa.sh
+|  |-- create-ctfe-sa.sh
+|  |-- create-email-secrets.sh
+|  |-- ctfe
+|  |  |-- Dockerfile
+|  |-- go
+|  |  |-- adb
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- adb.go
+|  |  |-- copy_datastore
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- ct_autoscaler
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ct_autoscaler.go
+|  |  |  |-- ct_autoscaler_test.go
+|  |  |  |-- mock_ct_autoscaler.go
+|  |  |-- ctfe
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- admin_tasks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- admin_tasks.go
+|  |  |  |-- chromium_analysis
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- chromium_analysis.go
+|  |  |  |-- chromium_perf
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- chromium_perf.go
+|  |  |  |-- main.go
+|  |  |  |-- metrics_analysis
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- metrics_analysis.go
+|  |  |  |-- pending_tasks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- pending_tasks.go
+|  |  |  |  |-- pending_tasks_test.go
+|  |  |  |-- task_common
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- task_common.go
+|  |  |  |-- task_types
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- task_types.go
+|  |  |  |-- util
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- mail.go
+|  |  |  |  |-- util.go
+|  |  |-- master_scripts
+|  |  |  |-- capture_archives_on_workers
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- create_pagesets_on_workers
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- master_common
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- master_common.go
+|  |  |  |-- metrics_analysis_on_workers
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- run_chromium_analysis_on_workers
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- run_chromium_perf_on_workers
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |-- types
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- util
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- chromium_builds.go
+|  |  |  |-- constants.go
+|  |  |  |-- ct_perf.go
+|  |  |  |-- ct_perf_test.go
+|  |  |  |-- gs.go
+|  |  |  |-- gs_test.go
+|  |  |  |-- local.go
+|  |  |  |-- testdata
+|  |  |  |  |-- test.csv
+|  |  |  |  |-- testupload
+|  |  |  |  |  |-- 10ktest
+|  |  |  |  |  |  |-- TIMESTAMP
+|  |  |  |  |  |  |-- alexa1-1.py
+|  |  |  |  |  |  |-- alexa2-2.py
+|  |  |  |-- util.go
+|  |  |  |-- util_test.go
+|  |  |-- worker_scripts
+|  |  |  |-- build_repo
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- capture_archives
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- create_pagesets
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- isolate_telemetry
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- metrics_analysis
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- run_chromium_analysis
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- run_chromium_perf
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- worker_common
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- worker_common.go
+|  |-- karma.conf.ts
+|  |-- maintenance.md
+|  |-- modules
+|  |  |-- admin-task-runs-sk
+|  |  |  |-- admin-task-runs-sk-demo.html
+|  |  |  |-- admin-task-runs-sk-demo.ts
+|  |  |  |-- admin-task-runs-sk.ts
+|  |  |  |-- admin-task-runs-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- admin-tasks-sk
+|  |  |  |-- admin-tasks-sk-demo.html
+|  |  |  |-- admin-tasks-sk-demo.ts
+|  |  |  |-- admin-tasks-sk.scss
+|  |  |  |-- admin-tasks-sk.ts
+|  |  |  |-- admin-tasks-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- chromium-analysis-runs-sk
+|  |  |  |-- chromium-analysis-runs-sk-demo.html
+|  |  |  |-- chromium-analysis-runs-sk-demo.ts
+|  |  |  |-- chromium-analysis-runs-sk.ts
+|  |  |  |-- chromium-analysis-runs-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- chromium-analysis-sk
+|  |  |  |-- chromium-analysis-sk-demo.html
+|  |  |  |-- chromium-analysis-sk-demo.ts
+|  |  |  |-- chromium-analysis-sk.ts
+|  |  |  |-- chromium-analysis-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- chromium-perf-runs-sk
+|  |  |  |-- chromium-perf-runs-sk-demo.html
+|  |  |  |-- chromium-perf-runs-sk-demo.ts
+|  |  |  |-- chromium-perf-runs-sk.ts
+|  |  |  |-- chromium-perf-runs-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- chromium-perf-sk
+|  |  |  |-- chromium-perf-sk-demo.html
+|  |  |  |-- chromium-perf-sk-demo.ts
+|  |  |  |-- chromium-perf-sk.ts
+|  |  |  |-- chromium-perf-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- colors.css
+|  |  |-- ct-scaffold-sk
+|  |  |  |-- ct-scaffold-sk-demo.html
+|  |  |  |-- ct-scaffold-sk-demo.ts
+|  |  |  |-- ct-scaffold-sk.scss
+|  |  |  |-- ct-scaffold-sk.ts
+|  |  |  |-- ct-scaffold-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- ctfe_utils.ts
+|  |  |-- ctfe_utils_test.ts
+|  |  |-- input-sk
+|  |  |  |-- index.ts
+|  |  |  |-- input-sk-demo.html
+|  |  |  |-- input-sk-demo.ts
+|  |  |  |-- input-sk.scss
+|  |  |  |-- input-sk.ts
+|  |  |-- json
+|  |  |  |-- index.ts
+|  |  |-- metrics-analysis-runs-sk
+|  |  |  |-- index.ts
+|  |  |  |-- metrics-analysis-runs-sk-demo.html
+|  |  |  |-- metrics-analysis-runs-sk-demo.ts
+|  |  |  |-- metrics-analysis-runs-sk.ts
+|  |  |  |-- metrics-analysis-runs-sk_test.ts
+|  |  |  |-- test_data.ts
+|  |  |-- metrics-analysis-sk
+|  |  |  |-- index.ts
+|  |  |  |-- metrics-analysis-sk-demo.html
+|  |  |  |-- metrics-analysis-sk-demo.ts
+|  |  |  |-- metrics-analysis-sk.ts
+|  |  |  |-- metrics-analysis-sk_test.ts
+|  |  |-- pageset-selector-sk
+|  |  |  |-- index.ts
+|  |  |  |-- pageset-selector-sk-demo.html
+|  |  |  |-- pageset-selector-sk-demo.ts
+|  |  |  |-- pageset-selector-sk.ts
+|  |  |  |-- pageset-selector-sk_test.ts
+|  |  |  |-- test_data.ts
+|  |  |-- pagination-sk
+|  |  |  |-- index.ts
+|  |  |  |-- pagination-sk-demo.html
+|  |  |  |-- pagination-sk-demo.ts
+|  |  |  |-- pagination-sk.scss
+|  |  |  |-- pagination-sk.ts
+|  |  |  |-- pagination-sk_test.ts
+|  |  |  |-- test_data.ts
+|  |  |-- patch-sk
+|  |  |  |-- index.ts
+|  |  |  |-- patch-sk-demo.html
+|  |  |  |-- patch-sk-demo.ts
+|  |  |  |-- patch-sk.scss
+|  |  |  |-- patch-sk.ts
+|  |  |  |-- patch-sk_test.ts
+|  |  |  |-- test_data.ts
+|  |  |-- runs-history-summary-sk
+|  |  |  |-- index.ts
+|  |  |  |-- runs-history-summary-sk-demo.html
+|  |  |  |-- runs-history-summary-sk-demo.ts
+|  |  |  |-- runs-history-summary-sk.ts
+|  |  |  |-- runs-history-summary-sk_test.ts
+|  |  |  |-- test_data.ts
+|  |  |-- style.scss
+|  |  |-- suggest-input-sk
+|  |  |  |-- index.ts
+|  |  |  |-- suggest-input-sk-demo.html
+|  |  |  |-- suggest-input-sk-demo.ts
+|  |  |  |-- suggest-input-sk.scss
+|  |  |  |-- suggest-input-sk.ts
+|  |  |  |-- suggest-input-sk_puppeteer_test.ts
+|  |  |  |-- suggest-input-sk_test.ts
+|  |  |  |-- test_data.ts
+|  |  |-- task-priority-sk
+|  |  |  |-- index.ts
+|  |  |  |-- task-priority-sk-demo.html
+|  |  |  |-- task-priority-sk-demo.ts
+|  |  |  |-- task-priority-sk.scss
+|  |  |  |-- task-priority-sk.ts
+|  |  |  |-- task-priority-sk_test.ts
+|  |  |  |-- test_data.ts
+|  |  |-- task-queue-sk
+|  |  |  |-- index.ts
+|  |  |  |-- task-queue-sk-demo.html
+|  |  |  |-- task-queue-sk-demo.ts
+|  |  |  |-- task-queue-sk.ts
+|  |  |  |-- task-queue-sk_puppeteer_test.ts
+|  |  |  |-- task-queue-sk_test.ts
+|  |  |  |-- test_data.ts
+|  |  |-- task-repeater-sk
+|  |  |  |-- index.ts
+|  |  |  |-- task-repeater-sk-demo.html
+|  |  |  |-- task-repeater-sk-demo.ts
+|  |  |  |-- task-repeater-sk.scss
+|  |  |  |-- task-repeater-sk.ts
+|  |  |  |-- task-repeater-sk_test.ts
+|  |-- pages
+|  |  |-- admin_tasks.html
+|  |  |-- admin_tasks.ts
+|  |  |-- chromium_analysis.html
+|  |  |-- chromium_analysis.ts
+|  |  |-- chromium_analysis_runs.html
+|  |  |-- chromium_analysis_runs.ts
+|  |  |-- chromium_perf.html
+|  |  |-- chromium_perf.ts
+|  |  |-- chromium_perf_runs.html
+|  |  |-- chromium_perf_runs.ts
+|  |  |-- metrics_analysis.html
+|  |  |-- metrics_analysis.ts
+|  |  |-- metrics_analysis_runs.html
+|  |  |-- metrics_analysis_runs.ts
+|  |  |-- queue.html
+|  |  |-- queue.ts
+|  |  |-- recreate_page_sets_runs.html
+|  |  |-- recreate_page_sets_runs.ts
+|  |  |-- recreate_webpage_archives_runs.html
+|  |  |-- recreate_webpage_archives_runs.ts
+|  |  |-- runs_history.html
+|  |  |-- runs_history.ts
+|  |-- probersk.json
+|  |-- py
+|  |  |-- create_page_set.py
+|  |  |-- csv-django-settings.py
+|  |  |-- csv_comparer.py
+|  |  |-- csv_comparer_test.py
+|  |  |-- csv_merger.py
+|  |  |-- csv_merger_test.py
+|  |  |-- csv_pivot_table_merger.py
+|  |  |-- csv_pivot_table_merger_test.py
+|  |  |-- gclient_utils.py
+|  |  |-- html-templates
+|  |  |  |-- column_threshold_css.html
+|  |  |  |-- csv_per_page.html
+|  |  |  |-- csv_totals.html
+|  |  |-- misc.py
+|  |  |-- shell_utils.py
+|  |  |-- sync_skia_in_chrome.py
+|  |  |-- test_data
+|  |  |  |-- csv_comparer
+|  |  |  |  |-- comparer_csv1.csv
+|  |  |  |  |-- comparer_csv2.csv
+|  |  |  |  |-- discard_outliers
+|  |  |  |  |  |-- fieldname1.html
+|  |  |  |  |  |-- index.html
+|  |  |  |  |-- keep_outliers
+|  |  |  |  |  |-- fieldname1.html
+|  |  |  |  |  |-- fieldname2.html
+|  |  |  |  |  |-- fieldname3.html
+|  |  |  |  |  |-- index.html
+|  |  |  |-- csv_merger
+|  |  |  |  |-- empty_file.csv
+|  |  |  |  |-- expected_output
+|  |  |  |  |-- expected_output_with_strings
+|  |  |  |  |-- four_entries.csv
+|  |  |  |  |-- four_entries_with_quotes.csv
+|  |  |  |  |-- one_entry.csv
+|  |  |  |  |-- one_entry2.csv
+|  |  |  |  |-- page1-1.csv
+|  |  |  |  |-- page1-2.csv
+|  |  |  |  |-- page1-3.csv
+|  |  |  |  |-- page1-4.csv
+|  |  |  |  |-- page2-1.csv
+|  |  |  |  |-- page2-2.csv
+|  |  |  |  |-- page2-3.csv
+|  |  |  |  |-- page2-4.csv
+|  |  |  |  |-- page3-1.csv
+|  |  |  |  |-- three_entries.csv
+|  |  |  |  |-- two_entries.csv
+|  |  |  |-- csv_pivot_table_merger
+|  |  |  |  |-- empty_file.csv
+|  |  |  |  |-- expected_output
+|  |  |  |  |-- expected_output_diff_col_name
+|  |  |  |  |-- expected_output_with_strings
+|  |  |  |  |-- four_entries.csv
+|  |  |  |  |-- four_entries_with_quotes.csv
+|  |  |  |  |-- one_entry.csv
+|  |  |  |  |-- one_entry2.csv
+|  |  |  |  |-- page1-1.csv
+|  |  |  |  |-- page1-2.csv
+|  |  |  |  |-- page1-3.csv
+|  |  |  |  |-- page1-4.csv
+|  |  |  |  |-- page2-1.csv
+|  |  |  |  |-- page2-2.csv
+|  |  |  |  |-- page2-3.csv
+|  |  |  |  |-- page2-4.csv
+|  |  |  |  |-- page3-1.csv
+|  |  |  |  |-- three_entries.csv
+|  |  |  |  |-- two_entries.csv
+|  |-- res
+|  |  |-- img
+|  |  |  |-- favicon.ico
+|  |-- setup-script-master.sh
+|  |-- sys
+|  |  |-- ct-masterd.service
+|  |  |-- ctfe.service
+|  |-- tools
+|  |  |-- setup_local.sh
+|  |-- tsconfig.json
+|  |-- tslint.json
+|  |-- webpack.config.ts
+|-- datahopper
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- PROD.md
+|  |-- build_release
+|  |-- create-datahopper-internal-sa.sh
+|  |-- create-datahopper-sa.sh
+|  |-- go
+|  |  |-- bot_metrics
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bot_metrics.go
+|  |  |-- datahopper
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- firestore_backup_metrics.go
+|  |  |  |-- jobs.go
+|  |  |  |-- jobs_test.go
+|  |  |  |-- last_modified.go
+|  |  |  |-- main.go
+|  |  |  |-- tasks.go
+|  |  |  |-- tasks_test.go
+|  |  |-- supported_branches
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- supported_branches.go
+|  |  |-- swarming_metrics
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bots.go
+|  |  |  |-- bots_test.go
+|  |  |  |-- tasks.go
+|  |  |  |-- tasks_test.go
+|-- debugger-app
+|  |-- .gitignore
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- README.md
+|  |-- build_release
+|  |-- favicon.png
+|  |-- go
+|  |  |-- debugger-app
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- karma.conf.ts
+|  |-- modules
+|  |  |-- android-layers-sk
+|  |  |  |-- android-layers-sk-demo.html
+|  |  |  |-- android-layers-sk-demo.ts
+|  |  |  |-- android-layers-sk.scss
+|  |  |  |-- android-layers-sk.ts
+|  |  |  |-- android-layers-sk_puppeteer_test.ts
+|  |  |  |-- android-layers-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- commands-sk
+|  |  |  |-- commands-sk-demo.html
+|  |  |  |-- commands-sk-demo.ts
+|  |  |  |-- commands-sk.scss
+|  |  |  |-- commands-sk.ts
+|  |  |  |-- commands-sk_puppeteer_test.ts
+|  |  |  |-- commands-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test-data.ts
+|  |  |-- cycler-button-sk
+|  |  |  |-- cycler-button-sk.ts
+|  |  |  |-- index.ts
+|  |  |-- debug-view-sk
+|  |  |  |-- debug-view-sk-demo.html
+|  |  |  |-- debug-view-sk-demo.ts
+|  |  |  |-- debug-view-sk.scss
+|  |  |  |-- debug-view-sk.ts
+|  |  |  |-- debug-view-sk_puppeteer_test.ts
+|  |  |  |-- debug-view-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- debugger-page-sk
+|  |  |  |-- debugger-page-sk-demo.html
+|  |  |  |-- debugger-page-sk-demo.ts
+|  |  |  |-- debugger-page-sk.scss
+|  |  |  |-- debugger-page-sk.ts
+|  |  |  |-- debugger-page-sk_puppeteer_test.ts
+|  |  |  |-- debugger-page-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- debugger.d.ts
+|  |  |-- default-map.ts
+|  |  |-- default-map_test.ts
+|  |  |-- element-doc-sk
+|  |  |  |-- element-doc-sk.ts
+|  |  |  |-- index.ts
+|  |  |-- histogram-sk
+|  |  |  |-- histogram-sk-demo.html
+|  |  |  |-- histogram-sk-demo.ts
+|  |  |  |-- histogram-sk.scss
+|  |  |  |-- histogram-sk.ts
+|  |  |  |-- histogram-sk_puppeteer_test.ts
+|  |  |  |-- histogram-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- play-sk
+|  |  |  |-- index.ts
+|  |  |  |-- play-sk-demo.html
+|  |  |  |-- play-sk-demo.ts
+|  |  |  |-- play-sk.scss
+|  |  |  |-- play-sk.ts
+|  |  |  |-- play-sk_puppeteer_test.ts
+|  |  |  |-- play-sk_test.ts
+|  |  |-- resources-sk
+|  |  |  |-- index.ts
+|  |  |  |-- resources-sk-demo.html
+|  |  |  |-- resources-sk-demo.ts
+|  |  |  |-- resources-sk.scss
+|  |  |  |-- resources-sk.ts
+|  |  |  |-- resources-sk_puppeteer_test.ts
+|  |  |-- timeline-sk
+|  |  |  |-- index.ts
+|  |  |  |-- timeline-sk-demo.html
+|  |  |  |-- timeline-sk-demo.ts
+|  |  |  |-- timeline-sk.scss
+|  |  |  |-- timeline-sk.ts
+|  |  |  |-- timeline-sk_puppeteer_test.ts
+|  |  |  |-- timeline-sk_test.ts
+|  |  |-- zoom-sk
+|  |  |  |-- index.ts
+|  |  |  |-- zoom-sk-demo.html
+|  |  |  |-- zoom-sk-demo.ts
+|  |  |  |-- zoom-sk.scss
+|  |  |  |-- zoom-sk.ts
+|  |  |  |-- zoom-sk_puppeteer_test.ts
+|  |  |  |-- zoom-sk_test.ts
+|  |-- pages
+|  |  |-- main.html
+|  |  |-- main.scss
+|  |  |-- main.ts
+|  |-- static
+|  |  |-- .gitkeep
+|  |  |-- both.png
+|  |  |-- bottom.png
+|  |  |-- favicon.png
+|  |  |-- image.png
+|  |  |-- right.png
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- demos
+|  |-- .gitignore
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- build_release
+|  |-- create-skia-demos-sa-public.sh
+|  |-- create-skia-demos-sa.sh
+|  |-- go
+|  |  |-- demoserver
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- karma.conf.ts
+|  |-- modules
+|  |  |-- colors.css
+|  |  |-- demo-list-sk
+|  |  |  |-- demo-list-sk-demo.html
+|  |  |  |-- demo-list-sk-demo.js
+|  |  |  |-- demo-list-sk.js
+|  |  |  |-- demo-list-sk.scss
+|  |  |  |-- demo-list-sk_puppeteer_test.ts
+|  |  |  |-- demo-list-sk_test.js
+|  |  |  |-- index.js
+|  |  |  |-- test_data.js
+|  |  |-- header-sk
+|  |  |  |-- header-sk-demo.html
+|  |  |  |-- header-sk-demo.js
+|  |  |  |-- header-sk.js
+|  |  |  |-- header-sk.scss
+|  |  |  |-- header-sk_puppeteer_test.ts
+|  |  |  |-- index.js
+|  |-- pages
+|  |  |-- main.html
+|  |  |-- main.js
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- docker
+|  |-- Dockerfile
+|  |-- README.md
+|-- docker_pushes_watcher
+|  |-- Dockerfile
+|  |-- FIRESTORE.md
+|  |-- Makefile
+|  |-- README.md
+|  |-- build_docker_release
+|  |-- create-sa.sh
+|  |-- go
+|  |  |-- docker_pushes_watcher
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |  |-- main_test.go
+|-- docs
+|  |-- Overview.md
+|  |-- PROD.md
+|-- docsyserver
+|  |-- Makefile
+|  |-- README.md
+|  |-- go
+|  |  |-- codereview
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- codereview.go
+|  |  |  |-- gerrit
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- gerrit.go
+|  |  |  |  |-- gerrit_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- CodeReview.go
+|  |  |  |  |-- generate.go
+|  |  |-- docset
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- docset.go
+|  |  |  |-- docset_test.go
+|  |  |-- docsy
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- docsy.go
+|  |  |  |-- docsy_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- Docsy.go
+|  |  |  |  |-- generate.go
+|  |  |-- docsyserver
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- images
+|  |  |-- Dockerfile
+|  |  |-- build.sh
+|  |  |-- favicon.ico
+|  |  |-- head-end.html
+|  |  |-- head.html
+|  |  |-- page-meta-lastmod.html
+|  |  |-- release
+|  |  |-- serve.sh
+|  |-- probersk.json
+|-- dot
+|  |-- Makefile
+|  |-- README.md
+|  |-- build_release
+|  |-- go
+|  |  |-- dotserver
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |  |-- main_test.go
+|  |-- images
+|  |  |-- dot
+|  |  |  |-- Dockerfile
+|  |-- probersk.json
+|-- ds
+|  |-- Makefile
+|  |-- PROD.md
+|  |-- README.md
+|  |-- build_docker_release
+|  |-- create-datastore-backup-k-sa.sh
+|  |-- datastore-backup-k
+|  |  |-- Dockerfile
+|  |-- go
+|  |  |-- backup
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- backup.go
+|  |  |-- datastore-backup-k
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- index-skia-public.yaml
+|  |-- index.yaml
+|-- elements-sk-scss.bzl
+|-- external
+|  |-- BUILD.googleapis
+|-- fiddlek
+|  |-- .gitignore
+|  |-- BUILD.bazel
+|  |-- DESIGN.md
+|  |-- Makefile
+|  |-- PROD.md
+|  |-- README.md
+|  |-- build_fiddle_release
+|  |-- build_fiddler_release
+|  |-- cpp
+|  |  |-- fail_execve.cpp
+|  |  |-- fail_link.cpp
+|  |  |-- fail_mknod.cpp
+|  |  |-- fail_rename.cpp
+|  |  |-- fail_socket.cpp
+|  |  |-- fiddle_secwrap.cpp
+|  |  |-- seccomp_bpf.h
+|  |-- create-fiddle-sa.sh
+|  |-- create-fiddler-pool.sh
+|  |-- create-fiddler-sa.sh
+|  |-- demo
+|  |  |-- testbulk.json
+|  |-- fiddle
+|  |  |-- Dockerfile
+|  |-- fiddler
+|  |  |-- Dockerfile
+|  |-- fiddler_restart.sh
+|  |-- go
+|  |  |-- client
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- client.go
+|  |  |-- fiddle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |  |-- main_test.go
+|  |  |-- fiddlecli
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- fiddler
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- linenumbers
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- linenumbers.go
+|  |  |  |-- linenumbers_test.go
+|  |  |-- named
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- named.go
+|  |  |  |-- named_test.go
+|  |  |-- runner
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- runner.go
+|  |  |  |-- runner_test.go
+|  |  |-- smoketest
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- source
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- source.go
+|  |  |  |-- source_test.go
+|  |  |-- store
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- Store.go
+|  |  |  |  |-- mocks.go
+|  |  |  |-- store.go
+|  |  |  |-- store_test.go
+|  |  |-- ts
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- types
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- types.go
+|  |  |  |-- types_test.go
+|  |-- karma.conf.ts
+|  |-- modules
+|  |  |-- fiddle-embed
+|  |  |  |-- fiddle-embed-demo.html
+|  |  |  |-- fiddle-embed-demo.ts
+|  |  |  |-- fiddle-embed.scss
+|  |  |  |-- fiddle-embed.ts
+|  |  |  |-- fiddle-embed_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- fiddle-sk
+|  |  |  |-- fiddle-sk-demo.html
+|  |  |  |-- fiddle-sk-demo.ts
+|  |  |  |-- fiddle-sk.scss
+|  |  |  |-- fiddle-sk.ts
+|  |  |  |-- fiddle-sk_puppeteer_test.ts
+|  |  |  |-- fiddle-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- json
+|  |  |  |-- index.ts
+|  |  |-- test-src-sk
+|  |  |  |-- index.ts
+|  |  |  |-- test-src-sk-demo.html
+|  |  |  |-- test-src-sk-demo.ts
+|  |  |  |-- test-src-sk.scss
+|  |  |  |-- test-src-sk.ts
+|  |  |  |-- test-src-sk_puppeteer_test.ts
+|  |  |  |-- test-src-sk_test.ts
+|  |  |-- textarea-numbers-sk
+|  |  |  |-- index.ts
+|  |  |  |-- textarea-numbers-sk-demo.html
+|  |  |  |-- textarea-numbers-sk-demo.ts
+|  |  |  |-- textarea-numbers-sk.scss
+|  |  |  |-- textarea-numbers-sk.ts
+|  |  |  |-- textarea-numbers-sk_puppeteer_test.ts
+|  |  |-- themes
+|  |  |  |-- themes.scss
+|  |-- pages
+|  |  |-- embed.html
+|  |  |-- embed.ts
+|  |  |-- named.html
+|  |  |-- named.scss
+|  |  |-- named.ts
+|  |  |-- newindex.html
+|  |  |-- newindex.scss
+|  |  |-- newindex.ts
+|  |-- probersk.json
+|  |-- source
+|  |  |-- 1.png
+|  |  |-- 2.png
+|  |  |-- 3.png
+|  |  |-- 4.png
+|  |  |-- 5.png
+|  |  |-- 6.png
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- firestore
+|  |-- Makefile
+|  |-- create-firestore-export-sa.sh
+|-- get_service_account
+|  |-- Makefile
+|  |-- go
+|  |  |-- get_service_account
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|-- git_cookie_authdaemon
+|  |-- Makefile
+|  |-- build_release
+|  |-- sys
+|  |  |-- git-cookie-authdaemon.service
+|-- gitsync
+|  |-- .gitignore
+|  |-- Makefile
+|  |-- PROD.md
+|  |-- build_release
+|  |-- create-skia-gitsync-internal-sa.sh
+|  |-- go
+|  |  |-- btgit
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- gitsync
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- Dockerfile
+|  |  |  |-- config.go
+|  |  |  |-- main.go
+|  |  |-- watcher
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- initial.go
+|  |  |  |-- initial_test.go
+|  |  |  |-- watcher.go
+|  |  |  |-- watcher_test.go
+|-- go.mod
+|-- go.sum
+|-- go
+|  |-- Makefile
+|  |-- alerts
+|  |  |-- BUILD.bazel
+|  |  |-- alerts.go
+|  |-- allowed
+|  |  |-- BUILD.bazel
+|  |  |-- allowed.go
+|  |  |-- allowed_test.go
+|  |  |-- infra_auth_allowed.go
+|  |  |-- infra_auth_allowed_test.go
+|  |  |-- mocks
+|  |  |  |-- Allow.go
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- generate.go
+|  |-- alogin
+|  |  |-- BUILD.bazel
+|  |  |-- login.go
+|  |  |-- mocks
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- Login.go
+|  |  |  |-- generate.go
+|  |  |-- proxylogin
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- proxyauth.go
+|  |  |  |-- proxyauth_test.go
+|  |  |-- sklogin
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- sklogin.go
+|  |  |  |-- sklogin_test.go
+|  |-- android_hashlookup
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |-- android_skia_checkout
+|  |  |-- BUILD.bazel
+|  |  |-- android_skia_checkout.go
+|  |-- androidbuild
+|  |  |-- BUILD.bazel
+|  |  |-- androidbuild.go
+|  |  |-- androidbuild_test.go
+|  |  |-- commits.go
+|  |-- androidbuildinternal
+|  |  |-- v2beta1
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- androidbuildinternal.go
+|  |  |  |-- rebuild.sh
+|  |-- atomic_miss_cache
+|  |  |-- BUILD.bazel
+|  |  |-- atomic_miss_cache.go
+|  |  |-- atomic_miss_cache_test.go
+|  |-- auditlog
+|  |  |-- BUILD.bazel
+|  |  |-- auditlog.go
+|  |-- auth
+|  |  |-- BUILD.bazel
+|  |  |-- auth.go
+|  |  |-- auth_test.go
+|  |-- autoroll
+|  |  |-- BUILD.bazel
+|  |  |-- autoroll.go
+|  |  |-- autoroll_test.go
+|  |-- baseapp
+|  |  |-- BUILD.bazel
+|  |  |-- baseapp.go
+|  |  |-- baseapp_test.go
+|  |-- benchmarks
+|  |  |-- BUILD.bazel
+|  |  |-- runtime_test.go
+|  |-- bt
+|  |  |-- BUILD.bazel
+|  |  |-- bt.go
+|  |  |-- testutil
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- testutil.go
+|  |-- buildbucket
+|  |  |-- BUILD.bazel
+|  |  |-- bb_testutils
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- testutils.go
+|  |  |-- buildbucket.go
+|  |  |-- buildbucket_test.go
+|  |  |-- common
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- common.go
+|  |  |-- mocks
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- BuildBucketInterface.go
+|  |  |  |-- generate.go
+|  |-- buildskia
+|  |  |-- BUILD.bazel
+|  |  |-- buildskia.go
+|  |  |-- buildskia_test.go
+|  |  |-- continuous.go
+|  |  |-- continuous_test.go
+|  |  |-- skia_build
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- calc
+|  |  |-- BUILD.bazel
+|  |  |-- doc.go
+|  |  |-- funcs.go
+|  |  |-- lex.go
+|  |  |-- lex_test.go
+|  |  |-- parser.go
+|  |  |-- parser_test.go
+|  |-- cas
+|  |  |-- BUILD.bazel
+|  |  |-- cas.go
+|  |  |-- mocks
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CAS.go
+|  |  |  |-- generate.go
+|  |  |-- rbe
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cmd
+|  |  |  |  |-- cas
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- main.go
+|  |  |  |-- rbe.go
+|  |  |  |-- rbe_manual_test.go
+|  |-- chatbot
+|  |  |-- BUILD.bazel
+|  |  |-- bot.go
+|  |-- chrome_branch
+|  |  |-- BUILD.bazel
+|  |  |-- chrome_branch.go
+|  |  |-- chrome_branch_test.go
+|  |  |-- mocks
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- Client.go
+|  |  |  |-- generate.go
+|  |-- cipd
+|  |  |-- BUILD.bazel
+|  |  |-- asset_versions_gen.go
+|  |  |-- cipd.go
+|  |  |-- gen_versions.go
+|  |  |-- mocks
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CIPDClient.go
+|  |  |  |-- generate.go
+|  |-- cleanup
+|  |  |-- BUILD.bazel
+|  |  |-- cleanup.go
+|  |  |-- cleanup_test.go
+|  |  |-- signal.go
+|  |-- codesearch
+|  |  |-- BUILD.bazel
+|  |  |-- codesearch.go
+|  |  |-- codesearch_test.go
+|  |-- comment
+|  |  |-- BUILD.bazel
+|  |  |-- comment.go
+|  |-- common
+|  |  |-- BUILD.bazel
+|  |  |-- common.go
+|  |  |-- common_test.go
+|  |  |-- with.go
+|  |-- config
+|  |  |-- BUILD.bazel
+|  |  |-- config.go
+|  |  |-- config_test.go
+|  |  |-- testdata
+|  |  |  |-- TestParseConfigFile.json5
+|  |-- counters
+|  |  |-- BUILD.bazel
+|  |  |-- counters.go
+|  |  |-- counters_test.go
+|  |-- cq
+|  |  |-- BUILD.bazel
+|  |  |-- cmd
+|  |  |  |-- check-cq
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- new-branch-cq
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |-- cq.go
+|  |  |-- update.go
+|  |  |-- update_expectations_test.go
+|  |  |-- update_manual_test.go
+|  |  |-- update_test.go
+|  |-- dataproc
+|  |  |-- BUILD.bazel
+|  |  |-- pyspark.go
+|  |-- deepequal
+|  |  |-- BUILD.bazel
+|  |  |-- assertdeep
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- assertdeep.go
+|  |  |-- deep_equals.go
+|  |  |-- deep_equals_test.go
+|  |-- depot_tools
+|  |  |-- BUILD.bazel
+|  |  |-- depot_tools.go
+|  |  |-- deps_parser
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- deps_parser.go
+|  |  |  |-- deps_parser_manual_test.go
+|  |  |  |-- deps_parser_test.go
+|  |  |-- testutils
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- testutils.go
+|  |-- docker
+|  |  |-- build
+|  |  |  |-- pubsub
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- pubsub.go
+|  |-- ds
+|  |  |-- BUILD.bazel
+|  |  |-- ds.go
+|  |  |-- ds_manual_test.go
+|  |  |-- ds_test.go
+|  |  |-- testutil
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- testutil.go
+|  |-- email
+|  |  |-- BUILD.bazel
+|  |  |-- email.go
+|  |  |-- three_legged_flow
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- emulators
+|  |  |-- BUILD.bazel
+|  |  |-- emulators.go
+|  |  |-- emulators_sysprocattr.go
+|  |  |-- emulators_sysprocattr_linux.go
+|  |-- exec
+|  |  |-- BUILD.bazel
+|  |  |-- context.go
+|  |  |-- exec.go
+|  |  |-- exec_linux.go
+|  |  |-- exec_test.go
+|  |  |-- exec_testutil.go
+|  |  |-- exec_windows.go
+|  |  |-- testutils
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- testutils.go
+|  |-- executil
+|  |  |-- BUILD.bazel
+|  |  |-- executil.go
+|  |  |-- executil_test.go
+|  |-- fileutil
+|  |  |-- BUILD.bazel
+|  |  |-- filepath.go
+|  |  |-- filepath_test.go
+|  |  |-- fileutil.go
+|  |  |-- fileutil_test.go
+|  |  |-- testdata
+|  |  |  |-- no_lines_file.txt
+|  |  |  |-- one_line_file.txt
+|  |  |  |-- ten_lines_file.txt
+|  |-- firestore
+|  |  |-- BUILD.bazel
+|  |  |-- firestore.go
+|  |  |-- firestore_manual_test.go
+|  |  |-- firestore_test.go
+|  |-- gce
+|  |  |-- BUILD.bazel
+|  |  |-- autoscaler
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- autoscaler.go
+|  |  |  |-- mock_autoscaler.go
+|  |  |-- cmd
+|  |  |  |-- find_unused_disks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- find_unused_disks.go
+|  |  |  |-- run_on_vms
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- run_on_vms.go
+|  |  |-- ct
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ct_vm.go
+|  |  |  |-- instance_types
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- instance_types.go
+|  |  |  |-- setup-script.sh
+|  |  |-- format_and_mount.sh
+|  |  |-- gce.go
+|  |  |-- safe_format_and_mount
+|  |  |-- server
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- base-image
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- create_image.go
+|  |  |  |  |-- setup-script.sh
+|  |  |  |-- server.go
+|  |  |-- swarming
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- base-image
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- create_image.go
+|  |  |  |  |-- setup-script.sh
+|  |  |  |-- instance_types
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- instance_types.go
+|  |  |  |-- setup-script-linux.sh
+|  |  |  |-- swarming_vm.go
+|  |-- gcr
+|  |  |-- BUILD.bazel
+|  |  |-- gcr.go
+|  |  |-- gcr_test.go
+|  |-- gcs
+|  |  |-- BUILD.bazel
+|  |  |-- download_helper.go
+|  |  |-- download_helper_test.go
+|  |  |-- gcs_testutils
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- testing.go
+|  |  |-- gcsclient
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- gcsclient.go
+|  |  |-- helpers.go
+|  |  |-- helpers_test.go
+|  |  |-- mem_gcsclient
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- memory_client.go
+|  |  |-- test_gcsclient
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- GCSClient.go
+|  |  |  |-- README.md
+|  |  |  |-- mock_client.go
+|  |  |-- types.go
+|  |-- gerrit
+|  |  |-- BUILD.bazel
+|  |  |-- change_edit_helpers.go
+|  |  |-- config.go
+|  |  |-- config_test.go
+|  |  |-- gerrit.go
+|  |  |-- gerrit_test.go
+|  |  |-- mocks
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- GerritInterface.go
+|  |  |  |-- generate.go
+|  |  |-- testutils
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- testutils.go
+|  |-- git
+|  |  |-- BUILD.bazel
+|  |  |-- checkout.go
+|  |  |-- checkout_test.go
+|  |  |-- git_common
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- git_common.go
+|  |  |  |-- git_common_test.go
+|  |  |-- gitdir.go
+|  |  |-- gitdir_test.go
+|  |  |-- gitinfo
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- gitinfo.go
+|  |  |  |-- gitinfo_test.go
+|  |  |-- repo.go
+|  |  |-- repo_test.go
+|  |  |-- repograph
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- graph.go
+|  |  |  |-- graph_test.go
+|  |  |  |-- local.go
+|  |  |  |-- local_serialize_test.go
+|  |  |  |-- local_test.go
+|  |  |  |-- mem.go
+|  |  |  |-- mem_test.go
+|  |  |  |-- shared_tests
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- shared_tests.go
+|  |  |-- testutils
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- git_builder.go
+|  |  |  |-- git_builder_test.go
+|  |  |  |-- mem_git
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- mem.go
+|  |  |  |  |-- mem_test.go
+|  |  |-- util.go
+|  |  |-- util_test.go
+|  |  |-- vfs.go
+|  |  |-- vfs_test.go
+|  |-- gitauth
+|  |  |-- BUILD.bazel
+|  |  |-- gitauth.go
+|  |  |-- gitauth_test.go
+|  |-- github
+|  |  |-- BUILD.bazel
+|  |  |-- github.go
+|  |  |-- github_test.go
+|  |-- gitiles
+|  |  |-- BUILD.bazel
+|  |  |-- gitiles.go
+|  |  |-- gitiles_test.go
+|  |  |-- mocks
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- GitilesRepo.go
+|  |  |  |-- generate.go
+|  |  |-- testutils
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- testutils.go
+|  |  |  |-- vfs_test.go
+|  |  |-- vfs.go
+|  |-- gitstore
+|  |  |-- BUILD.bazel
+|  |  |-- bt_gitstore
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bt_gitstore.go
+|  |  |  |-- bt_gitstore_test.go
+|  |  |  |-- helpers.go
+|  |  |  |-- repo_impl_test.go
+|  |  |  |-- sharded_result.go
+|  |  |  |-- testutils
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- bt_testutils.go
+|  |  |  |-- types.go
+|  |  |-- mem_gitstore
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mem_gitstore.go
+|  |  |  |-- mem_gitstore_test.go
+|  |  |  |-- repo_impl_test.go
+|  |  |-- mocks
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- GitStore.go
+|  |  |  |-- generate.go
+|  |  |-- pubsub
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- graph.go
+|  |  |  |-- pubsub.go
+|  |  |  |-- pubsub_test.go
+|  |  |-- repo_impl.go
+|  |  |-- shared_tests
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- shared_tests.go
+|  |  |-- types.go
+|  |-- go_install
+|  |  |-- BUILD.bazel
+|  |  |-- go_install.go
+|  |-- httputils
+|  |  |-- BUILD.bazel
+|  |  |-- http.go
+|  |  |-- http_test.go
+|  |-- human
+|  |  |-- BUILD.bazel
+|  |  |-- human.go
+|  |  |-- human_test.go
+|  |-- imports
+|  |  |-- BUILD.bazel
+|  |  |-- imports.go
+|  |  |-- imports_test.go
+|  |-- isolate
+|  |  |-- BUILD.bazel
+|  |  |-- isolate.go
+|  |-- issues
+|  |  |-- BUILD.bazel
+|  |  |-- issues.go
+|  |  |-- issues_helper
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- jsonschema
+|  |  |-- BUILD.bazel
+|  |  |-- jsonschema.go
+|  |  |-- jsonschema_test.go
+|  |  |-- testdata
+|  |  |  |-- empty.json
+|  |-- jsonutils
+|  |  |-- BUILD.bazel
+|  |  |-- jsonutils.go
+|  |  |-- jsonutils_test.go
+|  |  |-- testdata
+|  |  |  |-- mediumparams.json
+|  |  |  |-- smallparams.json
+|  |-- kube
+|  |  |-- clusterconfig
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- clusterconfig.go
+|  |-- login
+|  |  |-- BUILD.bazel
+|  |  |-- login.go
+|  |  |-- login_test.go
+|  |-- luciauth
+|  |  |-- BUILD.bazel
+|  |  |-- luciauth.go
+|  |-- metadata
+|  |  |-- BUILD.bazel
+|  |  |-- metadata.go
+|  |-- metrics2
+|  |  |-- BUILD.bazel
+|  |  |-- counter.go
+|  |  |-- docs.go
+|  |  |-- events
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bigtable.go
+|  |  |  |-- bigtable_test.go
+|  |  |  |-- db.go
+|  |  |  |-- db_test.go
+|  |  |  |-- events.go
+|  |  |  |-- events_test.go
+|  |  |  |-- stream.go
+|  |  |-- liveness.go
+|  |  |-- metrics.go
+|  |  |-- metrics_helpers.go
+|  |  |-- prom.go
+|  |  |-- prom_test.go
+|  |  |-- testutils
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- testutils.go
+|  |  |-- timer.go
+|  |-- mockhttpclient
+|  |  |-- BUILD.bazel
+|  |  |-- muxclient.go
+|  |  |-- muxclient_test.go
+|  |  |-- urlmock.go
+|  |  |-- urlmock_test.go
+|  |-- monorail
+|  |  |-- v1
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- monorail.go
+|  |  |  |-- rebuild.sh
+|  |-- notifier
+|  |  |-- BUILD.bazel
+|  |  |-- filter.go
+|  |  |-- notifier.go
+|  |  |-- notifier_test.go
+|  |  |-- router.go
+|  |  |-- router_test.go
+|  |-- now
+|  |  |-- BUILD.bazel
+|  |  |-- now.go
+|  |  |-- now_test.go
+|  |-- packages
+|  |  |-- BUILD.bazel
+|  |  |-- packages.go
+|  |-- paramreducer
+|  |  |-- BUILD.bazel
+|  |  |-- paramreducer.go
+|  |  |-- paramreducer_test.go
+|  |-- paramtools
+|  |  |-- BUILD.bazel
+|  |  |-- params.go
+|  |  |-- params_test.go
+|  |-- periodic
+|  |  |-- BUILD.bazel
+|  |  |-- periodic.go
+|  |  |-- periodic_test.go
+|  |-- pubsub
+|  |  |-- BUILD.bazel
+|  |  |-- pubsub.go
+|  |  |-- pubsub_test.go
+|  |-- query
+|  |  |-- BUILD.bazel
+|  |  |-- query.go
+|  |  |-- query_test.go
+|  |-- recipe_cfg
+|  |  |-- BUILD.bazel
+|  |  |-- recipe_cfg.go
+|  |-- reconnectingmemcached
+|  |  |-- BUILD.bazel
+|  |  |-- client.go
+|  |  |-- client_test.go
+|  |-- repo_root
+|  |  |-- BUILD.bazel
+|  |  |-- repo_root.go
+|  |-- revportforward
+|  |  |-- BUILD.bazel
+|  |  |-- revportforward.go
+|  |-- ring
+|  |  |-- BUILD.bazel
+|  |  |-- ring.go
+|  |  |-- ring_test.go
+|  |-- rotations
+|  |  |-- BUILD.bazel
+|  |  |-- rotations.go
+|  |  |-- rotations_test.go
+|  |-- rtcache
+|  |  |-- BUILD.bazel
+|  |  |-- memrtc.go
+|  |  |-- memrtc_test.go
+|  |  |-- rtcache.go
+|  |-- skerr
+|  |  |-- BUILD.bazel
+|  |  |-- alpha_test
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- alpha.go
+|  |  |-- beta_test
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- beta.go
+|  |  |-- skerr.go
+|  |  |-- skerr_test.go
+|  |-- sklog
+|  |  |-- BUILD.bazel
+|  |  |-- cloud_logging
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cloud_logging.go
+|  |  |-- glog_and_cloud
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cloud_logging.go
+|  |  |  |-- glog_and_cloud.go
+|  |  |  |-- slog.go
+|  |  |-- sklog.go
+|  |  |-- sklog_impl
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- sklog_impl.go
+|  |-- sktest
+|  |  |-- BUILD.bazel
+|  |  |-- sktest.go
+|  |-- state_machine
+|  |  |-- BUILD.bazel
+|  |  |-- state_machine.go
+|  |  |-- state_machine_test.go
+|  |-- supported_branches
+|  |  |-- BUILD.bazel
+|  |  |-- cmd
+|  |  |  |-- new-branch
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- helper
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- helper.go
+|  |  |  |  |-- main.go
+|  |  |-- supported_branches.go
+|  |-- swarming
+|  |  |-- BUILD.bazel
+|  |  |-- apiclient.go
+|  |  |-- mock_apiclient.go
+|  |  |-- pubsub.go
+|  |  |-- swarming.go
+|  |-- systemd
+|  |  |-- BUILD.bazel
+|  |  |-- systemd.go
+|  |  |-- ts
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- tar
+|  |  |-- BUILD.bazel
+|  |  |-- tar.go
+|  |-- taskname
+|  |  |-- BUILD.bazel
+|  |  |-- gen_schema.go
+|  |  |-- mock_task_name_schema.go
+|  |  |-- task_name_schema.go
+|  |  |-- task_name_schema_gen.go
+|  |  |-- task_name_schema_test.go
+|  |-- test2json
+|  |  |-- BUILD.bazel
+|  |  |-- test2json.go
+|  |  |-- test2json_test.go
+|  |  |-- testutils.go
+|  |-- testutils
+|  |  |-- BUILD.bazel
+|  |  |-- testutils.go
+|  |  |-- testutils_test.go
+|  |  |-- unittest
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- uncategorized_tests.py
+|  |  |  |-- unittest.go
+|  |-- timeout
+|  |  |-- BUILD.bazel
+|  |  |-- timeout.go
+|  |  |-- timeout_test.go
+|  |-- timer
+|  |  |-- BUILD.bazel
+|  |  |-- timer.go
+|  |-- travisci
+|  |  |-- BUILD.bazel
+|  |  |-- travisci.go
+|  |  |-- travisci_test.go
+|  |-- trie
+|  |  |-- BUILD.bazel
+|  |  |-- trie.go
+|  |  |-- trie_test.go
+|  |-- twirp_auth
+|  |  |-- BUILD.bazel
+|  |  |-- twirp_auth.go
+|  |-- untar
+|  |  |-- BUILD.bazel
+|  |  |-- untar.go
+|  |-- urfavecli
+|  |  |-- BUILD.bazel
+|  |  |-- urfavecli.go
+|  |  |-- urfavecli_test.go
+|  |-- util
+|  |  |-- BUILD.bazel
+|  |  |-- codec.go
+|  |  |-- codec_test.go
+|  |  |-- errgroup.go
+|  |  |-- gob.go
+|  |  |-- gob_test.go
+|  |  |-- limitwriter
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- limitwriter.go
+|  |  |  |-- limitwriter_test.go
+|  |  |-- string_set.go
+|  |  |-- string_set_test.go
+|  |  |-- util.go
+|  |  |-- util_test.go
+|  |  |-- zip
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- zip.go
+|  |  |  |-- zip_test.go
+|  |-- vcsinfo
+|  |  |-- BUILD.bazel
+|  |  |-- bt_vcs
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bt_vcs.go
+|  |  |  |-- bt_vcs_test.go
+|  |  |-- mocks
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- VCS.go
+|  |  |  |-- generate.go
+|  |  |-- testutils
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- repo.go
+|  |  |  |-- testdata
+|  |  |  |  |-- testrepo.zip
+|  |  |  |-- vcsinfo_testutils.go
+|  |  |-- types.go
+|  |-- vec32
+|  |  |-- BUILD.bazel
+|  |  |-- vec.go
+|  |  |-- vec_test.go
+|  |-- vfs
+|  |  |-- BUILD.bazel
+|  |  |-- local.go
+|  |  |-- mocks
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CloseFS.go
+|  |  |  |-- FS.go
+|  |  |  |-- File.go
+|  |  |  |-- ReadDirFile.go
+|  |  |  |-- generate.go
+|  |  |-- shared_tests
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- local_test.go
+|  |  |  |-- shared_tests.go
+|  |  |  |-- vfs_test.go
+|  |  |-- vfs.go
+|  |-- webhook
+|  |  |-- BUILD.bazel
+|  |  |-- webhook.go
+|  |  |-- webhook_test.go
+|  |-- workerpool
+|  |  |-- BUILD.bazel
+|  |  |-- workerpool.go
+|  |  |-- workerpool_test.go
+|-- go_repositories.bzl
+|-- gold-client
+|  |-- Makefile
+|  |-- README.md
+|  |-- cmd
+|  |  |-- goldctl
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cmd_auth.go
+|  |  |  |-- cmd_auth_test.go
+|  |  |  |-- cmd_diff.go
+|  |  |  |-- cmd_diff_test.go
+|  |  |  |-- cmd_dump.go
+|  |  |  |-- cmd_dump_test.go
+|  |  |  |-- cmd_imgtest.go
+|  |  |  |-- cmd_imgtest_test.go
+|  |  |  |-- cmd_match.go
+|  |  |  |-- cmd_match_test.go
+|  |  |  |-- cmd_whoami.go
+|  |  |  |-- cmd_whoami_test.go
+|  |  |  |-- main.go
+|  |  |  |-- testdata
+|  |  |  |  |-- 00000000000000000000000000000000.png
+|  |  |  |  |-- a01a01a01a01a01a01a01a01a01a01a0.png
+|  |  |  |  |-- a05a05a05a05a05a05a05a05a05a05a0.png
+|  |  |  |  |-- a09a09a09a09a09a09a09a09a09a09a0.png
+|  |-- go
+|  |  |-- auth
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- goldauth.go
+|  |  |-- gcsuploader
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- gcsuploader.go
+|  |  |  |-- gcsuploader_manual_test.go
+|  |  |  |-- gcsuploader_test.go
+|  |  |-- goldclient
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- common.go
+|  |  |  |-- common_test.go
+|  |  |  |-- context.go
+|  |  |  |-- context_test.go
+|  |  |  |-- goldclient.go
+|  |  |  |-- goldclient_test.go
+|  |  |  |-- resultstate.go
+|  |  |-- httpclient
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- httpclient.go
+|  |  |-- imagedownloader
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- imagedownloader.go
+|  |  |-- imgmatching
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- constants.go
+|  |  |  |-- factory.go
+|  |  |  |-- factory_test.go
+|  |  |  |-- fuzzy
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- fuzzy.go
+|  |  |  |  |-- fuzzy_test.go
+|  |  |  |-- matcher.go
+|  |  |  |-- sobel
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- sobel.go
+|  |  |  |  |-- sobel_test.go
+|  |  |  |  |-- test
+|  |  |  |  |  |-- input.png
+|  |  |  |  |  |-- sobel-expected-output.png
+|  |  |  |  |  |-- zero-out-edges-expected-output.png
+|  |  |-- mocks
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- GCSUploader.go
+|  |  |  |-- HTTPClient.go
+|  |  |  |-- ImageDownloader.go
+|  |  |  |-- Matcher.go
+|  |  |  |-- generate.go
+|-- golden
+|  |-- .gitignore
+|  |-- BUILD.bazel
+|  |-- Makefile
+|  |-- README.md
+|  |-- cmd
+|  |  |-- baseline_server
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- baseline_server.go
+|  |  |-- diffcalculator
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- diffcalculator.go
+|  |  |  |-- diffcalculator_test.go
+|  |  |-- file_reingester
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- file_reingester.go
+|  |  |-- fsmigrator
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- fsmigrator.go
+|  |  |-- gitilesfollower
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- gitilesfollower.go
+|  |  |  |-- gitilesfollower_manual_test.go
+|  |  |  |-- gitilesfollower_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- GitilesLogger.go
+|  |  |  |  |-- generate.go
+|  |  |-- gold_frontend
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- gold_frontend.go
+|  |  |  |-- gold_frontend_test.go
+|  |  |-- gold_ingestion
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- gold_ingestion.go
+|  |  |  |-- gold_ingestion_test.go
+|  |  |-- goldpushk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- goldpushk
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- goldpushk.go
+|  |  |  |  |-- goldpushk_test.go
+|  |  |  |  |-- services_map.go
+|  |  |  |  |-- services_map_test.go
+|  |  |  |  |-- types.go
+|  |  |  |  |-- types_test.go
+|  |  |  |-- kill-test-services.sh
+|  |  |  |-- main.go
+|  |  |  |-- main_test.go
+|  |  |  |-- testing
+|  |  |  |  |-- crashing_server
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- main.go
+|  |  |  |  |-- healthy_server
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- config-template.json5
+|  |  |  |  |  |-- main.go
+|  |  |-- ignorerulestool
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ignorerulestool.go
+|  |  |-- periodictasks
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- periodictasks.go
+|  |  |  |-- periodictasks_test.go
+|  |  |-- pubsubtool
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- pubsubtool.go
+|  |  |-- sqlinit
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- sqlinit.go
+|  |  |  |-- sqlinit_test.go
+|  |-- create-github-token-secret.sh
+|  |-- create-gold-corp-sa.sh
+|  |-- create-gold-public-sa.sh
+|  |-- demo-page-assets
+|  |  |-- 2fa58aa430e9c815755624ca6cca4a72-ed4a8cf9ea9fbb57bf1f302537e07572.png
+|  |  |-- 2fa58aa430e9c815755624ca6cca4a72.png
+|  |  |-- 5d8c80eda80e015d633a4125ab0232dc-fbd3de3fff6b852ae0bb6751b9763d27.png
+|  |  |-- 5d8c80eda80e015d633a4125ab0232dc.png
+|  |  |-- 6246b773851984c726cb2e1cb13510c2-99c58c7002073346ff55f446d47d6311.png
+|  |  |-- 6246b773851984c726cb2e1cb13510c2-ec3b8f27397d99581e06eaa46d6d5837.png
+|  |  |-- 6246b773851984c726cb2e1cb13510c2.png
+|  |  |-- 99c58c7002073346ff55f446d47d6311.png
+|  |  |-- BUILD.bazel
+|  |  |-- README.md
+|  |  |-- ec3b8f27397d99581e06eaa46d6d5837.png
+|  |  |-- ed4a8cf9ea9fbb57bf1f302537e07572.png
+|  |  |-- fbd3de3fff6b852ae0bb6751b9763d27.png
+|  |  |-- index.bzl
+|  |-- dockerfiles
+|  |  |-- Dockerfile_baseline_server
+|  |  |-- Dockerfile_diffcalculator
+|  |  |-- Dockerfile_frontend
+|  |  |-- Dockerfile_gitilesfollower
+|  |  |-- Dockerfile_goldpushk_crashing_server
+|  |  |-- Dockerfile_goldpushk_healthy_server
+|  |  |-- Dockerfile_ingestion
+|  |  |-- Dockerfile_periodictasks
+|  |-- docs
+|  |  |-- INGESTION.md
+|  |  |-- PROD.md
+|  |  |-- README.md
+|  |-- go
+|  |  |-- blame
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- blame.go
+|  |  |  |-- blame_test.go
+|  |  |-- clstore
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- clstore.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- Store.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- sqlclstore
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- sqlclstore.go
+|  |  |  |  |-- sqlclstore_test.go
+|  |  |-- code_review
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- commenter
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- commenter.go
+|  |  |  |  |-- commenter_test.go
+|  |  |  |-- gerrit_crs
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- gerrit_crs.go
+|  |  |  |  |-- gerrit_crs_test.go
+|  |  |  |-- github_crs
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- github_crs.go
+|  |  |  |  |-- github_crs_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- ChangelistLandedUpdater.go
+|  |  |  |  |-- Client.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- types.go
+|  |  |  |-- updater
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- updater.go
+|  |  |  |  |-- updater_test.go
+|  |  |-- config
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- config.go
+|  |  |  |-- config_test.go
+|  |  |  |-- testdata
+|  |  |  |  |-- common.json5
+|  |  |  |  |-- common_missing_field.json5
+|  |  |  |  |-- specific.json5
+|  |  |  |  |-- specific_duration.json5
+|  |  |-- continuous_integration
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- buildbucket_cis
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- buildbucket_cis.go
+|  |  |  |  |-- buildbucket_cis_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- Client.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- simple_cis
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- simple_cis.go
+|  |  |  |-- types.go
+|  |  |-- diff
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- diff.go
+|  |  |  |-- diff_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- Calculator.go
+|  |  |  |  |-- ImageSource.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- testdata
+|  |  |  |  |-- 11069776588985027208.png
+|  |  |  |  |-- 16465366847175223174.png
+|  |  |  |  |-- 4029959456464745507-inverted.png
+|  |  |  |  |-- 4029959456464745507.png
+|  |  |  |  |-- 5024150605949408692.png
+|  |  |  |  |-- b716a12d5b98d04b15db1d9dd82c82ea.png
+|  |  |  |  |-- df1591dde35907399734ea19feb76663-6-alpha-diff.png
+|  |  |  |  |-- df1591dde35907399734ea19feb76663.png
+|  |  |  |  |-- ffce5042b4ac4a57bd7c8657b557d495.png
+|  |  |  |  |-- fffbcca7e8913ec45b88cc2c6a3a73ad-rotated.png
+|  |  |  |  |-- fffbcca7e8913ec45b88cc2c6a3a73ad.png
+|  |  |  |  |-- get_diffmetric.py
+|  |  |  |-- worker
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- worker.go
+|  |  |  |  |-- worker_test.go
+|  |  |-- digest_counter
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- digest_counter.go
+|  |  |  |-- digest_counter_test.go
+|  |  |-- expectations
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cleanup
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- cleanup.go
+|  |  |  |  |-- cleanup_test.go
+|  |  |  |-- expectations.go
+|  |  |  |-- expectations_test.go
+|  |  |  |-- fs_expectationstore
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- FIRESTORE.md
+|  |  |  |  |-- fs_expstore.go
+|  |  |  |  |-- fs_expstore_test.go
+|  |  |  |-- labels.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- Classifier.go
+|  |  |  |  |-- GarbageCollector.go
+|  |  |  |  |-- Store.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- sqlwrapped
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- sqlwrapped.go
+|  |  |  |  |-- sqlwrapped_test.go
+|  |  |  |-- store.go
+|  |  |  |-- store_test.go
+|  |  |-- fs_utils
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- fs_utils.go
+|  |  |-- ignore
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ignore.go
+|  |  |  |-- ignore_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- Store.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- sqlignorestore
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- sqlignorestore.go
+|  |  |  |  |-- sqlignorestore_test.go
+|  |  |  |  |-- util.go
+|  |  |  |  |-- util_test.go
+|  |  |-- image
+|  |  |  |-- text
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- text.go
+|  |  |  |  |-- text_test.go
+|  |  |-- indexer
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- indexer.go
+|  |  |  |-- indexer_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- IndexSearcher.go
+|  |  |  |  |-- IndexSource.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- types.go
+|  |  |  |-- types_test.go
+|  |  |-- ingestion
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- FileSearcher.go
+|  |  |  |  |-- Processor.go
+|  |  |  |  |-- Source.go
+|  |  |  |  |-- Store.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- sources.go
+|  |  |  |-- sqlingestionstore
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- sqlingestionstore.go
+|  |  |  |  |-- sqlingestionstore_test.go
+|  |  |  |-- types.go
+|  |  |-- ingestion_processors
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- buildbucketlookup.go
+|  |  |  |-- buildbucketlookup_manual_test.go
+|  |  |  |-- common.go
+|  |  |  |-- common_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- LookupSystem.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- primarysql.go
+|  |  |  |-- primarysql_test.go
+|  |  |  |-- testdata
+|  |  |  |  |-- between_tile_1_and_2.json
+|  |  |  |  |-- dm.json
+|  |  |  |  |-- duplicate_traces.json
+|  |  |  |  |-- fake_token
+|  |  |  |  |-- from_goldctl_legacy_fields.json
+|  |  |  |  |-- from_goldctl_patchset_order_provided.json
+|  |  |  |  |-- from_goldctl_recent_fields.json
+|  |  |  |  |-- has_metadata.json
+|  |  |  |  |-- missing_git_hash.json
+|  |  |  |  |-- needs_lookup.json
+|  |  |  |  |-- no_results.json
+|  |  |  |  |-- primary1.json
+|  |  |  |  |-- primary2.json
+|  |  |  |  |-- should_create_in_tile_1.json
+|  |  |  |  |-- should_start_tile_2.json
+|  |  |  |  |-- trace_with_new_option.json
+|  |  |  |  |-- use_existing_commit_in_tile1.json
+|  |  |  |  |-- values_at_head1.json
+|  |  |  |  |-- values_at_head2.json
+|  |  |  |-- tracestore_impl.go
+|  |  |  |-- tracestore_impl_manual_test.go
+|  |  |  |-- tracestore_impl_test.go
+|  |  |  |-- tryjob_ingestion.go
+|  |  |  |-- tryjob_ingestion_test.go
+|  |  |-- jsonio
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- jsonio.go
+|  |  |  |-- jsonio_test.go
+|  |  |-- mocks
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ComplexTile.go
+|  |  |  |-- DigestCounter.go
+|  |  |  |-- GCSClient.go
+|  |  |  |-- TileSource.go
+|  |  |  |-- TraceStore.go
+|  |  |  |-- generate.go
+|  |  |-- paramsets
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- paramsets.go
+|  |  |  |-- paramsets_test.go
+|  |  |-- pdag
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- pdag.go
+|  |  |  |-- pdag_test.go
+|  |  |-- publicparams
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- publicparams.go
+|  |  |  |-- publicparams_test.go
+|  |  |-- search
+|  |  |  |-- .gitignore
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- benchmarks_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- SearchAPI.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- query
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- query.go
+|  |  |  |  |-- query_test.go
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- valid_queries.txt
+|  |  |  |  |-- types.go
+|  |  |  |-- ref_differ
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- sql_differ.go
+|  |  |  |  |-- sql_differ_test.go
+|  |  |  |-- search.go
+|  |  |  |-- search_test.go
+|  |  |  |-- types.go
+|  |  |  |-- util.go
+|  |  |  |-- util_test.go
+|  |  |-- search2
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mocks
+|  |  |  |  |-- API.go
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- generate.go
+|  |  |  |-- search2.go
+|  |  |  |-- search2_test.go
+|  |  |-- sql
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- databuilder
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- databuilder.go
+|  |  |  |  |-- databuilder_test.go
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.png
+|  |  |  |  |  |-- bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.png
+|  |  |  |  |  |-- cccccccccccccccccccccccccccccccc.png
+|  |  |  |  |  |-- dddddddddddddddddddddddddddddddd.png
+|  |  |  |-- datakitchensink
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- img
+|  |  |  |  |  |-- 00000000000000000000000000000000.png
+|  |  |  |  |  |-- a01a01a01a01a01a01a01a01a01a01a0.png
+|  |  |  |  |  |-- a02a02a02a02a02a02a02a02a02a02a0.png
+|  |  |  |  |  |-- a03a03a03a03a03a03a03a03a03a03a0.png
+|  |  |  |  |  |-- a04a04a04a04a04a04a04a04a04a04a0.png
+|  |  |  |  |  |-- a05a05a05a05a05a05a05a05a05a05a0.png
+|  |  |  |  |  |-- a06a06a06a06a06a06a06a06a06a06a0.png
+|  |  |  |  |  |-- a07a07a07a07a07a07a07a07a07a07a0.png
+|  |  |  |  |  |-- a08a08a08a08a08a08a08a08a08a08a0.png
+|  |  |  |  |  |-- a09a09a09a09a09a09a09a09a09a09a0.png
+|  |  |  |  |  |-- b01b01b01b01b01b01b01b01b01b01b0.png
+|  |  |  |  |  |-- b02b02b02b02b02b02b02b02b02b02b0.png
+|  |  |  |  |  |-- b03b03b03b03b03b03b03b03b03b03b0.png
+|  |  |  |  |  |-- b04b04b04b04b04b04b04b04b04b04b0.png
+|  |  |  |  |  |-- c01c01c01c01c01c01c01c01c01c01c0.png
+|  |  |  |  |  |-- c02c02c02c02c02c02c02c02c02c02c0.png
+|  |  |  |  |  |-- c03c03c03c03c03c03c03c03c03c03c0.png
+|  |  |  |  |  |-- c04c04c04c04c04c04c04c04c04c04c0.png
+|  |  |  |  |  |-- c05c05c05c05c05c05c05c05c05c05c0.png
+|  |  |  |  |  |-- c06c06c06c06c06c06c06c06c06c06c0.png
+|  |  |  |  |  |-- c07c07c07c07c07c07c07c07c07c07c0.png
+|  |  |  |  |  |-- d01d01d01d01d01d01d01d01d01d01d0.png
+|  |  |  |  |  |-- e01e01e01e01e01e01e01e01e01e01e0.png
+|  |  |  |  |  |-- e02e02e02e02e02e02e02e02e02e02e0.png
+|  |  |  |  |  |-- e03e03e03e03e03e03e03e03e03e03e0.png
+|  |  |  |  |-- kitchensink.go
+|  |  |  |  |-- kitchensink_test.go
+|  |  |  |-- exporter
+|  |  |  |  |-- tosql
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- tosql.go
+|  |  |  |  |  |-- tosql_test.go
+|  |  |  |-- query_test.go
+|  |  |  |-- schema
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- sql.go
+|  |  |  |  |-- sql_test.go
+|  |  |  |  |-- tables.go
+|  |  |  |-- sqltest
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- sqltest.go
+|  |  |  |  |-- sqltest_test.go
+|  |  |  |-- util.go
+|  |  |  |-- util_test.go
+|  |  |-- status
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- status.go
+|  |  |  |-- status_test.go
+|  |  |-- storage
+|  |  |  |-- .gitignore
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- gcsclient.go
+|  |  |  |-- gcsclient_manual_test.go
+|  |  |-- summary
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- summary.go
+|  |  |  |-- summary_test.go
+|  |  |-- testutils
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- data_bug_revert
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- bug_revert.go
+|  |  |  |-- data_one_by_five
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- one_by_five.go
+|  |  |  |-- data_three_devices
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- three_devices.go
+|  |  |  |-- testutils.go
+|  |  |-- tilesource
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- tilesource.go
+|  |  |  |-- tilesource_test.go
+|  |  |  |-- tilestream.go
+|  |  |-- tiling
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- complex_tile.go
+|  |  |  |-- tiling.go
+|  |  |  |-- trace.go
+|  |  |  |-- trace_test.go
+|  |  |-- tjstore
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- Store.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- sqltjstore
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- sqltjstore.go
+|  |  |  |  |-- sqltjstore_test.go
+|  |  |  |-- tjstore.go
+|  |  |  |-- tjstore_test.go
+|  |  |-- tracestore
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bt_tracestore
+|  |  |  |  |-- .gitignore
+|  |  |  |  |-- BIGTABLE.md
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- bt_tracestore.go
+|  |  |  |  |-- bt_tracestore_test.go
+|  |  |  |  |-- types.go
+|  |  |  |  |-- types_test.go
+|  |  |  |  |-- util.go
+|  |  |  |  |-- util_test.go
+|  |  |  |-- types.go
+|  |  |-- tracing
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- tracing.go
+|  |  |-- types
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- sets.go
+|  |  |  |-- types.go
+|  |  |-- validation
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- validation.go
+|  |  |  |-- validation_test.go
+|  |  |-- web
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- frontend
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- generate_typescript_rpc_types
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- main.go
+|  |  |  |  |-- types.go
+|  |  |  |-- helpers.go
+|  |  |  |-- web.go
+|  |  |  |-- web_test.go
+|  |-- k8s-config-templates
+|  |  |-- README.md
+|  |  |-- gold-baselineserver-template.yaml
+|  |  |-- gold-common.json5
+|  |  |-- gold-crashing-server-template.yaml
+|  |  |-- gold-diffcalculator-template.yaml
+|  |  |-- gold-frontend-template.yaml
+|  |  |-- gold-gitilesfollower-template.yaml
+|  |  |-- gold-healthy-server-template.yaml
+|  |  |-- gold-ingestion-bt-template.yaml
+|  |  |-- gold-ingestion-template.yaml
+|  |  |-- gold-periodictasks-template.yaml
+|  |-- k8s-instances
+|  |  |-- .gitignore
+|  |  |-- angle
+|  |  |  |-- angle-baselineserver.json5
+|  |  |  |-- angle-diffcalculator.json5
+|  |  |  |-- angle-frontend.json5
+|  |  |  |-- angle-gitilesfollower.json5
+|  |  |  |-- angle-ingestion-bt.json5
+|  |  |  |-- angle-ingestion.json5
+|  |  |  |-- angle-periodictasks.json5
+|  |  |  |-- angle.json5
+|  |  |-- chrome-public
+|  |  |  |-- chrome-public-frontend.json5
+|  |  |  |-- chrome-public.json5
+|  |  |-- chrome
+|  |  |  |-- chrome-baselineserver.json5
+|  |  |  |-- chrome-diffcalculator.json5
+|  |  |  |-- chrome-frontend.json5
+|  |  |  |-- chrome-gitilesfollower.json5
+|  |  |  |-- chrome-ingestion-bt.json5
+|  |  |  |-- chrome-ingestion.json5
+|  |  |  |-- chrome-periodictasks.json5
+|  |  |  |-- chrome.json5
+|  |  |-- cros-tast-dev
+|  |  |  |-- cros-tast-dev-baselineserver.json5
+|  |  |  |-- cros-tast-dev-diffcalculator.json5
+|  |  |  |-- cros-tast-dev-frontend.json5
+|  |  |  |-- cros-tast-dev-gitilesfollower.json5
+|  |  |  |-- cros-tast-dev-ingestion-bt.json5
+|  |  |  |-- cros-tast-dev-ingestion.json5
+|  |  |  |-- cros-tast-dev-periodictasks.json5
+|  |  |  |-- cros-tast-dev.json5
+|  |  |-- flutter-engine
+|  |  |  |-- flutter-engine-baselineserver.json5
+|  |  |  |-- flutter-engine-diffcalculator.json5
+|  |  |  |-- flutter-engine-frontend.json5
+|  |  |  |-- flutter-engine-gitilesfollower.json5
+|  |  |  |-- flutter-engine-ingestion-bt.json5
+|  |  |  |-- flutter-engine-ingestion.json5
+|  |  |  |-- flutter-engine-periodictasks.json5
+|  |  |  |-- flutter-engine.json5
+|  |  |-- flutter
+|  |  |  |-- flutter-baselineserver.json5
+|  |  |  |-- flutter-diffcalculator.json5
+|  |  |  |-- flutter-frontend.json5
+|  |  |  |-- flutter-gitilesfollower.json5
+|  |  |  |-- flutter-ingestion-bt.json5
+|  |  |  |-- flutter-ingestion.json5
+|  |  |  |-- flutter-periodictasks.json5
+|  |  |  |-- flutter.json5
+|  |  |-- goldpushk-corp-test1-instance.json5
+|  |  |-- goldpushk-corp-test2-instance.json5
+|  |  |-- goldpushk-test1-instance.json5
+|  |  |-- goldpushk-test2-instance.json5
+|  |  |-- lottie
+|  |  |  |-- lottie-diffcalculator.json5
+|  |  |  |-- lottie-frontend.json5
+|  |  |  |-- lottie-gitilesfollower.json5
+|  |  |  |-- lottie-ingestion-bt.json5
+|  |  |  |-- lottie-ingestion.json5
+|  |  |  |-- lottie-periodictasks.json5
+|  |  |  |-- lottie.json5
+|  |  |-- pdfium
+|  |  |  |-- pdfium-baselineserver.json5
+|  |  |  |-- pdfium-diffcalculator.json5
+|  |  |  |-- pdfium-frontend.json5
+|  |  |  |-- pdfium-gitilesfollower.json5
+|  |  |  |-- pdfium-ingestion-bt.json5
+|  |  |  |-- pdfium-ingestion.json5
+|  |  |  |-- pdfium-periodictasks.json5
+|  |  |  |-- pdfium.json5
+|  |  |-- skia-infra
+|  |  |  |-- skia-infra-baselineserver.json5
+|  |  |  |-- skia-infra-diffcalculator.json5
+|  |  |  |-- skia-infra-frontend.json5
+|  |  |  |-- skia-infra-gitilesfollower.json5
+|  |  |  |-- skia-infra-ingestion-bt.json5
+|  |  |  |-- skia-infra-ingestion.json5
+|  |  |  |-- skia-infra-periodictasks.json5
+|  |  |  |-- skia-infra.json5
+|  |  |-- skia-public
+|  |  |  |-- skia-public-frontend.json5
+|  |  |  |-- skia-public.json5
+|  |  |-- skia
+|  |  |  |-- skia-diffcalculator.json5
+|  |  |  |-- skia-frontend.json5
+|  |  |  |-- skia-gitilesfollower.json5
+|  |  |  |-- skia-ingestion-bt.json5
+|  |  |  |-- skia-ingestion.json5
+|  |  |  |-- skia-periodictasks.json5
+|  |  |  |-- skia.json5
+|  |-- k8s_release_baseline_server
+|  |-- k8s_release_diffcalculator
+|  |-- k8s_release_frontend
+|  |-- k8s_release_gitilesfollower
+|  |-- k8s_release_goldpushk_crashing_server
+|  |-- k8s_release_goldpushk_healthy_server
+|  |-- k8s_release_ingestion
+|  |-- k8s_release_periodictasks
+|  |-- karma.conf.ts
+|  |-- modules
+|  |  |-- BUILD.bazel
+|  |  |-- blamelist-panel-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- blamelist-panel-sk-demo.html
+|  |  |  |-- blamelist-panel-sk-demo.ts
+|  |  |  |-- blamelist-panel-sk.scss
+|  |  |  |-- blamelist-panel-sk.ts
+|  |  |  |-- blamelist-panel-sk_puppeteer_test.ts
+|  |  |  |-- demo_data.ts
+|  |  |  |-- index.ts
+|  |  |-- bulk-triage-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bulk-triage-sk-demo.html
+|  |  |  |-- bulk-triage-sk-demo.ts
+|  |  |  |-- bulk-triage-sk.scss
+|  |  |  |-- bulk-triage-sk.ts
+|  |  |  |-- bulk-triage-sk_po.ts
+|  |  |  |-- bulk-triage-sk_puppeteer_test.ts
+|  |  |  |-- bulk-triage-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- byblame-page-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- byblame-page-sk-demo.html
+|  |  |  |-- byblame-page-sk-demo.ts
+|  |  |  |-- byblame-page-sk.scss
+|  |  |  |-- byblame-page-sk.ts
+|  |  |  |-- byblame-page-sk_puppeteer_test.ts
+|  |  |  |-- byblame-page-sk_test.ts
+|  |  |  |-- demo_data.ts
+|  |  |  |-- index.ts
+|  |  |-- byblameentry-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- byblameentry-sk-demo.html
+|  |  |  |-- byblameentry-sk-demo.ts
+|  |  |  |-- byblameentry-sk.scss
+|  |  |  |-- byblameentry-sk.ts
+|  |  |  |-- byblameentry-sk_puppeteer_test.ts
+|  |  |  |-- byblameentry-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- changelist-controls-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- changelist-controls-sk-demo.html
+|  |  |  |-- changelist-controls-sk-demo.ts
+|  |  |  |-- changelist-controls-sk.scss
+|  |  |  |-- changelist-controls-sk.ts
+|  |  |  |-- changelist-controls-sk_po.ts
+|  |  |  |-- changelist-controls-sk_puppeteer_test.ts
+|  |  |  |-- changelist-controls-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- changelists-page-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- changelists-page-sk-demo.html
+|  |  |  |-- changelists-page-sk-demo.ts
+|  |  |  |-- changelists-page-sk.scss
+|  |  |  |-- changelists-page-sk.ts
+|  |  |  |-- changelists-page-sk_puppeteer_test.ts
+|  |  |  |-- changelists-page-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- cluster-digests-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cluster-digests-sk-demo.html
+|  |  |  |-- cluster-digests-sk-demo.ts
+|  |  |  |-- cluster-digests-sk.scss
+|  |  |  |-- cluster-digests-sk.ts
+|  |  |  |-- cluster-digests-sk_po.ts
+|  |  |  |-- cluster-digests-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- cluster-page-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cluster-page-sk-demo.html
+|  |  |  |-- cluster-page-sk-demo.ts
+|  |  |  |-- cluster-page-sk.scss
+|  |  |  |-- cluster-page-sk.ts
+|  |  |  |-- cluster-page-sk_po.ts
+|  |  |  |-- cluster-page-sk_puppeteer_test.ts
+|  |  |  |-- cluster-page-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- colors.scss
+|  |  |-- common.ts
+|  |  |-- common_test.ts
+|  |  |-- corpus-selector-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- corpus-selector-sk-demo.html
+|  |  |  |-- corpus-selector-sk-demo.ts
+|  |  |  |-- corpus-selector-sk.scss
+|  |  |  |-- corpus-selector-sk.ts
+|  |  |  |-- corpus-selector-sk_po.ts
+|  |  |  |-- corpus-selector-sk_puppeteer_test.ts
+|  |  |  |-- corpus-selector-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- demo_util.ts
+|  |  |-- details-page-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- details-page-sk-demo.html
+|  |  |  |-- details-page-sk-demo.ts
+|  |  |  |-- details-page-sk.scss
+|  |  |  |-- details-page-sk.ts
+|  |  |  |-- details-page-sk_po.ts
+|  |  |  |-- details-page-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- diff-page-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- diff-page-sk-demo.html
+|  |  |  |-- diff-page-sk-demo.ts
+|  |  |  |-- diff-page-sk.scss
+|  |  |  |-- diff-page-sk.ts
+|  |  |  |-- diff-page-sk_po.ts
+|  |  |  |-- diff-page-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- digest-details-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- digest-details-sk-demo.html
+|  |  |  |-- digest-details-sk-demo.ts
+|  |  |  |-- digest-details-sk.scss
+|  |  |  |-- digest-details-sk.ts
+|  |  |  |-- digest-details-sk_po.ts
+|  |  |  |-- digest-details-sk_puppeteer_test.ts
+|  |  |  |-- digest-details-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- dots-legend-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- dots-legend-sk-demo.html
+|  |  |  |-- dots-legend-sk-demo.ts
+|  |  |  |-- dots-legend-sk.scss
+|  |  |  |-- dots-legend-sk.ts
+|  |  |  |-- dots-legend-sk_po.ts
+|  |  |  |-- dots-legend-sk_puppeteer_test.ts
+|  |  |  |-- dots-legend-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- dots-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- constants.ts
+|  |  |  |-- demo_data.ts
+|  |  |  |-- dots-sk-demo.html
+|  |  |  |-- dots-sk-demo.ts
+|  |  |  |-- dots-sk.scss
+|  |  |  |-- dots-sk.ts
+|  |  |  |-- dots-sk_puppeteer_test.ts
+|  |  |  |-- dots-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- edit-ignore-rule-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- edit-ignore-rule-sk-demo.html
+|  |  |  |-- edit-ignore-rule-sk-demo.ts
+|  |  |  |-- edit-ignore-rule-sk.scss
+|  |  |  |-- edit-ignore-rule-sk.ts
+|  |  |  |-- edit-ignore-rule-sk_po.ts
+|  |  |  |-- edit-ignore-rule-sk_puppeteer_test.ts
+|  |  |  |-- edit-ignore-rule-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- filter-dialog-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- filter-dialog-sk-demo.html
+|  |  |  |-- filter-dialog-sk-demo.ts
+|  |  |  |-- filter-dialog-sk.scss
+|  |  |  |-- filter-dialog-sk.ts
+|  |  |  |-- filter-dialog-sk_po.ts
+|  |  |  |-- filter-dialog-sk_puppeteer_test.ts
+|  |  |  |-- filter-dialog-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- gold-scaffold-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- gold-scaffold-sk-demo.html
+|  |  |  |-- gold-scaffold-sk-demo.ts
+|  |  |  |-- gold-scaffold-sk.scss
+|  |  |  |-- gold-scaffold-sk.ts
+|  |  |  |-- gold-scaffold-sk_puppeteer_test.ts
+|  |  |  |-- gold-scaffold-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- ignores-page-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ignores-page-sk-demo.html
+|  |  |  |-- ignores-page-sk-demo.ts
+|  |  |  |-- ignores-page-sk.scss
+|  |  |  |-- ignores-page-sk.ts
+|  |  |  |-- ignores-page-sk_puppeteer_test.ts
+|  |  |  |-- ignores-page-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- image-compare-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- image-compare-sk-demo.html
+|  |  |  |-- image-compare-sk-demo.ts
+|  |  |  |-- image-compare-sk.scss
+|  |  |  |-- image-compare-sk.ts
+|  |  |  |-- image-compare-sk_po.ts
+|  |  |  |-- image-compare-sk_puppeteer_test.ts
+|  |  |  |-- image-compare-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- last-commit-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- demo_data.ts
+|  |  |  |-- index.ts
+|  |  |  |-- last-commit-sk-demo.html
+|  |  |  |-- last-commit-sk-demo.ts
+|  |  |  |-- last-commit-sk.scss
+|  |  |  |-- last-commit-sk.ts
+|  |  |  |-- last-commit-sk_puppeteer_test.ts
+|  |  |-- list-page-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- list-page-sk-demo.html
+|  |  |  |-- list-page-sk-demo.ts
+|  |  |  |-- list-page-sk.scss
+|  |  |  |-- list-page-sk.ts
+|  |  |  |-- list-page-sk_puppeteer_test.ts
+|  |  |  |-- list-page-sk_test.ts
+|  |  |  |-- test_data.ts
+|  |  |-- multi-zoom-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- multi-zoom-sk-demo.html
+|  |  |  |-- multi-zoom-sk-demo.ts
+|  |  |  |-- multi-zoom-sk.scss
+|  |  |  |-- multi-zoom-sk.ts
+|  |  |  |-- multi-zoom-sk_po.ts
+|  |  |  |-- multi-zoom-sk_puppeteer_test.ts
+|  |  |  |-- multi-zoom-sk_test.ts
+|  |  |  |-- test_data.ts
+|  |  |-- pagination-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- pagination-sk.scss
+|  |  |  |-- pagination-sk.ts
+|  |  |  |-- pagination-sk_test.ts
+|  |  |-- query-dialog-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- query-dialog-sk-demo.html
+|  |  |  |-- query-dialog-sk-demo.ts
+|  |  |  |-- query-dialog-sk.scss
+|  |  |  |-- query-dialog-sk.ts
+|  |  |  |-- query-dialog-sk_po.ts
+|  |  |  |-- query-dialog-sk_puppeteer_test.ts
+|  |  |  |-- query-dialog-sk_test.ts
+|  |  |-- rpc_types.ts
+|  |  |-- search-controls-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- search-controls-sk-demo.html
+|  |  |  |-- search-controls-sk-demo.ts
+|  |  |  |-- search-controls-sk.scss
+|  |  |  |-- search-controls-sk.ts
+|  |  |  |-- search-controls-sk_po.ts
+|  |  |  |-- search-controls-sk_puppeteer_test.ts
+|  |  |  |-- search-controls-sk_test.ts
+|  |  |-- search-page-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- demo_data.ts
+|  |  |  |-- index.ts
+|  |  |  |-- search-page-sk-demo.html
+|  |  |  |-- search-page-sk-demo.ts
+|  |  |  |-- search-page-sk.scss
+|  |  |  |-- search-page-sk.ts
+|  |  |  |-- search-page-sk_po.ts
+|  |  |  |-- search-page-sk_puppeteer_test.ts
+|  |  |  |-- search-page-sk_test.ts
+|  |  |-- settings.ts
+|  |  |-- shared_demo_data.ts
+|  |  |-- sort-toggle-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- sort-toggle-sk-demo.html
+|  |  |  |-- sort-toggle-sk-demo.ts
+|  |  |  |-- sort-toggle-sk.scss
+|  |  |  |-- sort-toggle-sk.ts
+|  |  |  |-- sort-toggle-sk_puppeteer_test.ts
+|  |  |-- trace-filter-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- trace-filter-sk-demo.html
+|  |  |  |-- trace-filter-sk-demo.ts
+|  |  |  |-- trace-filter-sk.scss
+|  |  |  |-- trace-filter-sk.ts
+|  |  |  |-- trace-filter-sk_po.ts
+|  |  |  |-- trace-filter-sk_puppeteer_test.ts
+|  |  |  |-- trace-filter-sk_test.ts
+|  |  |-- triage-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- triage-sk-demo.html
+|  |  |  |-- triage-sk-demo.ts
+|  |  |  |-- triage-sk.scss
+|  |  |  |-- triage-sk.ts
+|  |  |  |-- triage-sk_po.ts
+|  |  |  |-- triage-sk_puppeteer_test.ts
+|  |  |  |-- triage-sk_test.ts
+|  |  |-- triagelog-page-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- demo_data.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |  |-- triagelog-page-sk-demo.html
+|  |  |  |-- triagelog-page-sk-demo.ts
+|  |  |  |-- triagelog-page-sk.scss
+|  |  |  |-- triagelog-page-sk.ts
+|  |  |  |-- triagelog-page-sk_puppeteer_test.ts
+|  |  |  |-- triagelog-page-sk_test.ts
+|  |-- pages
+|  |  |-- BUILD.bazel
+|  |  |-- all_gold_pages.bzl
+|  |  |-- by_test_list.html
+|  |  |-- by_test_list.ts
+|  |  |-- byblame.html
+|  |  |-- byblame.ts
+|  |  |-- changelists.html
+|  |  |-- changelists.ts
+|  |  |-- cluster.html
+|  |  |-- cluster.ts
+|  |  |-- details.html
+|  |  |-- details.ts
+|  |  |-- diff.html
+|  |  |-- diff.ts
+|  |  |-- help.html
+|  |  |-- help.ts
+|  |  |-- ignorelist.html
+|  |  |-- ignorelist.ts
+|  |  |-- search.html
+|  |  |-- search.ts
+|  |  |-- triagelog.html
+|  |  |-- triagelog.ts
+|  |-- probersk.json
+|  |-- static
+|  |  |-- BUILD.bazel
+|  |  |-- favicon.ico
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- hashtag
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- README.md
+|  |-- build_release
+|  |-- config.json
+|  |-- create-hashtag-sa.sh
+|  |-- go
+|  |  |-- codesearchsource
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- codesearchsource.go
+|  |  |-- drivesource
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- drivesource.go
+|  |  |-- gerritsource
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- gerritsource.go
+|  |  |-- hashtag
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- hiddenstore
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- hiddenstore.go
+|  |  |  |-- hiddenstore_test.go
+|  |  |-- monorailsource
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- monorailsource.go
+|  |  |-- source
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- source.go
+|  |-- modules
+|  |  |-- placeholder.ts
+|  |-- pages
+|  |  |-- index.html
+|  |  |-- index.scss
+|  |  |-- index.ts
+|  |-- probersk.json
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- html-template-minifier
+|  |-- Makefile
+|  |-- README.md
+|  |-- loader.js
+|  |-- package.json
+|  |-- test
+|  |  |-- minify_spec.js
+|-- infra-sk
+|  |-- BUILD.bazel
+|  |-- Makefile
+|  |-- README.md
+|  |-- generate_elements_sk_scss_imports
+|  |  |-- BUILD.bazel
+|  |  |-- generate_elements_sk_scss_imports.go
+|  |  |-- generate_elements_sk_scss_imports_test.go
+|  |-- go
+|  |  |-- ts
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- html-webpack-inject-attributes-plugin.d.ts
+|  |-- html_insert_nonce_attribute
+|  |  |-- BUILD.bazel
+|  |  |-- index.bzl
+|  |  |-- testdata
+|  |  |  |-- expected_output.html
+|  |  |  |-- input.html
+|  |-- index.bzl
+|  |-- karma.common.ts
+|  |-- karma.conf.ts
+|  |-- karma_test
+|  |  |-- BUILD.bazel
+|  |  |-- index.bzl
+|  |  |-- karma.conf.js
+|  |-- modules
+|  |  |-- BUILD.bazel
+|  |  |-- ElementSk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ElementSk.ts
+|  |  |  |-- ElementSk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- alogin-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- alogin-sk-demo.html
+|  |  |  |-- alogin-sk-demo.scss
+|  |  |  |-- alogin-sk-demo.ts
+|  |  |  |-- alogin-sk.scss
+|  |  |  |-- alogin-sk.ts
+|  |  |  |-- alogin-sk_puppeteer_test.ts
+|  |  |  |-- alogin-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- app-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- app-sk-demo.html
+|  |  |  |-- app-sk-demo.scss
+|  |  |  |-- app-sk-demo.ts
+|  |  |  |-- app-sk.scss
+|  |  |  |-- app-sk.ts
+|  |  |  |-- app-sk_puppeteer_test.ts
+|  |  |  |-- app-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- async.ts
+|  |  |-- async_test.ts
+|  |  |-- autogrow-textarea-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- autogrow-textarea-sk-demo.html
+|  |  |  |-- autogrow-textarea-sk-demo.ts
+|  |  |  |-- autogrow-textarea-sk.scss
+|  |  |  |-- autogrow-textarea-sk.ts
+|  |  |  |-- autogrow-textarea-sk_puppeteer_test.ts
+|  |  |  |-- autogrow-textarea-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- confirm-dialog-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- confirm-dialog-sk-demo.html
+|  |  |  |-- confirm-dialog-sk-demo.ts
+|  |  |  |-- confirm-dialog-sk.scss
+|  |  |  |-- confirm-dialog-sk.ts
+|  |  |  |-- confirm-dialog-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- expandable-textarea-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- expandable-textarea-sk-demo.html
+|  |  |  |-- expandable-textarea-sk-demo.ts
+|  |  |  |-- expandable-textarea-sk.scss
+|  |  |  |-- expandable-textarea-sk.ts
+|  |  |  |-- expandable-textarea-sk_puppeteer_test.ts
+|  |  |  |-- expandable-textarea-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- fps
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- fps.ts
+|  |  |  |-- fps_test.ts
+|  |  |  |-- index.ts
+|  |  |-- human-date-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- human-date-sk-demo.html
+|  |  |  |-- human-date-sk-demo.ts
+|  |  |  |-- human-date-sk.ts
+|  |  |  |-- human-date-sk_puppeteer_test.ts
+|  |  |  |-- human-date-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- json
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |-- linkify.ts
+|  |  |-- linkify_test.ts
+|  |  |-- login-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- login-sk-demo.html
+|  |  |  |-- login-sk-demo.ts
+|  |  |  |-- login-sk.scss
+|  |  |  |-- login-sk.ts
+|  |  |-- login.ts
+|  |  |-- multi-input-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- multi-input-sk-demo.html
+|  |  |  |-- multi-input-sk-demo.ts
+|  |  |  |-- multi-input-sk.scss
+|  |  |  |-- multi-input-sk.ts
+|  |  |  |-- multi-input-sk_puppeteer_test.ts
+|  |  |  |-- multi-input-sk_test.ts
+|  |  |-- page_object
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- page_object.ts
+|  |  |  |-- page_object_element.ts
+|  |  |  |-- page_object_element_karma_test.ts
+|  |  |  |-- page_object_element_nodejs_test.ts
+|  |  |  |-- page_object_element_test_cases.ts
+|  |  |-- paramset-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- paramset-sk-demo.html
+|  |  |  |-- paramset-sk-demo.scss
+|  |  |  |-- paramset-sk-demo.ts
+|  |  |  |-- paramset-sk.scss
+|  |  |  |-- paramset-sk.ts
+|  |  |  |-- paramset-sk_po.ts
+|  |  |  |-- paramset-sk_puppeteer_test.ts
+|  |  |  |-- paramset-sk_test.ts
+|  |  |-- query-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- query-sk-demo.html
+|  |  |  |-- query-sk-demo.scss
+|  |  |  |-- query-sk-demo.ts
+|  |  |  |-- query-sk.scss
+|  |  |  |-- query-sk.ts
+|  |  |  |-- query-sk_po.ts
+|  |  |  |-- query-sk_puppeteer_test.ts
+|  |  |  |-- query-sk_test.ts
+|  |  |-- query-values-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- query-values-sk-demo.html
+|  |  |  |-- query-values-sk-demo.scss
+|  |  |  |-- query-values-sk-demo.ts
+|  |  |  |-- query-values-sk.scss
+|  |  |  |-- query-values-sk.ts
+|  |  |  |-- query-values-sk_po.ts
+|  |  |  |-- query-values-sk_test.ts
+|  |  |-- results.css
+|  |  |-- sort-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- sort-sk-demo.html
+|  |  |  |-- sort-sk-demo.ts
+|  |  |  |-- sort-sk.scss
+|  |  |  |-- sort-sk.ts
+|  |  |  |-- sort-sk_puppeteer_test.ts
+|  |  |  |-- sort-sk_test.ts
+|  |  |-- string.ts
+|  |  |-- string_test.ts
+|  |  |-- systemd-unit-status-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- json
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- index.ts
+|  |  |  |-- systemd-unit-status-sk-demo.html
+|  |  |  |-- systemd-unit-status-sk-demo.ts
+|  |  |  |-- systemd-unit-status-sk.scss
+|  |  |  |-- systemd-unit-status-sk.ts
+|  |  |  |-- systemd-unit-status-sk_test.ts
+|  |  |-- task-driver-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- task-driver-sk-demo.html
+|  |  |  |-- task-driver-sk-demo.ts
+|  |  |  |-- task-driver-sk.scss
+|  |  |  |-- task-driver-sk.ts
+|  |  |  |-- test_data.ts
+|  |  |-- test_util.ts
+|  |  |-- test_util_test.ts
+|  |  |-- theme-chooser-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- theme-chooser-sk-demo.html
+|  |  |  |-- theme-chooser-sk-demo.scss
+|  |  |  |-- theme-chooser-sk-demo.ts
+|  |  |  |-- theme-chooser-sk.scss
+|  |  |  |-- theme-chooser-sk.ts
+|  |  |  |-- theme-chooser-sk_puppeteer_test.ts
+|  |  |  |-- theme-chooser-sk_test.ts
+|  |  |-- uniform-color-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- uniform-color-sk-demo.html
+|  |  |  |-- uniform-color-sk-demo.ts
+|  |  |  |-- uniform-color-sk.scss
+|  |  |  |-- uniform-color-sk.ts
+|  |  |  |-- uniform-color-sk_puppeteer_test.ts
+|  |  |  |-- uniform-color-sk_test.ts
+|  |  |-- uniform-dimensions-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- uniform-dimensions-sk-demo.html
+|  |  |  |-- uniform-dimensions-sk-demo.ts
+|  |  |  |-- uniform-dimensions-sk.scss
+|  |  |  |-- uniform-dimensions-sk.ts
+|  |  |  |-- uniform-dimensions-sk_puppeteer_test.ts
+|  |  |  |-- uniform-dimensions-sk_test.ts
+|  |  |-- uniform-fps-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- uniform-fps-sk-demo.html
+|  |  |  |-- uniform-fps-sk-demo.ts
+|  |  |  |-- uniform-fps-sk.scss
+|  |  |  |-- uniform-fps-sk.ts
+|  |  |  |-- uniform-fps-sk_test.ts
+|  |  |-- uniform-generic-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- uniform-generic-sk-demo.html
+|  |  |  |-- uniform-generic-sk-demo.ts
+|  |  |  |-- uniform-generic-sk.scss
+|  |  |  |-- uniform-generic-sk.ts
+|  |  |  |-- uniform-generic-sk_puppeteer_test.ts
+|  |  |  |-- uniform-generic-sk_test.ts
+|  |  |-- uniform-imageresolution-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- uniform-imageresolution-sk-demo.html
+|  |  |  |-- uniform-imageresolution-sk-demo.ts
+|  |  |  |-- uniform-imageresolution-sk.scss
+|  |  |  |-- uniform-imageresolution-sk.ts
+|  |  |  |-- uniform-imageresolution-sk_test.ts
+|  |  |-- uniform-mouse-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- uniform-mouse-sk-demo.html
+|  |  |  |-- uniform-mouse-sk-demo.ts
+|  |  |  |-- uniform-mouse-sk.scss
+|  |  |  |-- uniform-mouse-sk.ts
+|  |  |  |-- uniform-mouse-sk_test.ts
+|  |  |-- uniform-slider-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- uniform-slider-sk-demo.html
+|  |  |  |-- uniform-slider-sk-demo.ts
+|  |  |  |-- uniform-slider-sk.scss
+|  |  |  |-- uniform-slider-sk.ts
+|  |  |  |-- uniform-slider-sk_puppeteer_test.ts
+|  |  |  |-- uniform-slider-sk_test.ts
+|  |  |-- uniform-time-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- uniform-time-sk-demo.html
+|  |  |  |-- uniform-time-sk-demo.ts
+|  |  |  |-- uniform-time-sk.scss
+|  |  |  |-- uniform-time-sk.ts
+|  |  |  |-- uniform-time-sk_puppeteer_test.ts
+|  |  |  |-- uniform-time-sk_test.ts
+|  |  |-- uniform
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- uniform.ts
+|  |-- pulito
+|  |  |-- README.md
+|  |  |-- dev
+|  |  |  |-- postcss.config.js
+|  |  |-- prod
+|  |  |  |-- postcss.config.js
+|  |  |-- webpack.common.ts
+|  |-- rollup.config.js
+|  |-- sk_demo_page_server
+|  |  |-- BUILD.bazel
+|  |  |-- demo_page_server.go
+|  |  |-- index.bzl
+|  |-- themes.scss
+|  |-- ts_library.bzl
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- infra
+|  |-- OWNERS
+|  |-- README.md
+|  |-- bots
+|  |  |-- BUILD.bazel
+|  |  |-- Makefile
+|  |  |-- README.recipes.md
+|  |  |-- assets
+|  |  |  |-- bazel
+|  |  |  |  |-- README.md
+|  |  |  |  |-- VERSION
+|  |  |  |-- cockroachdb
+|  |  |  |  |-- README.md
+|  |  |  |  |-- VERSION
+|  |  |  |-- gcloud_linux
+|  |  |  |  |-- README.md
+|  |  |  |  |-- VERSION
+|  |  |  |-- go
+|  |  |  |  |-- README.md
+|  |  |  |  |-- VERSION
+|  |  |  |-- go_win
+|  |  |  |  |-- VERSION
+|  |  |  |-- mockery
+|  |  |  |  |-- README.md
+|  |  |  |  |-- VERSION
+|  |  |  |-- node
+|  |  |  |  |-- VERSION
+|  |  |  |-- protoc
+|  |  |  |  |-- VERSION
+|  |  |-- autoroll_configs.isolate
+|  |  |-- build_task_drivers.sh
+|  |  |-- bundle_recipes.sh
+|  |  |-- empty.isolate
+|  |  |-- gen_tasks.go
+|  |  |-- infra_tests.py
+|  |  |-- recipes.isolate
+|  |  |-- recipes.py
+|  |  |-- recipes
+|  |  |  |-- puppeteer_tests.expected
+|  |  |  |  |-- Infra-PerCommit-Puppeteer.json
+|  |  |  |  |-- Infra-PerCommit-Puppeteer_tryjob.json
+|  |  |  |-- puppeteer_tests.py
+|  |  |  |-- swarm_infra.expected
+|  |  |  |  |-- Infra-PerCommit-Build.json
+|  |  |  |  |-- Infra-PerCommit-Large.json
+|  |  |  |  |-- Infra-PerCommit-Medium.json
+|  |  |  |  |-- Infra-PerCommit-Race.json
+|  |  |  |  |-- Infra-PerCommit.json
+|  |  |  |  |-- Infra-PerCommit_initialcheckout.json
+|  |  |  |  |-- Infra-PerCommit_try_gerrit.json
+|  |  |  |-- swarm_infra.py
+|  |  |-- run_recipe.isolate
+|  |  |-- run_recipe.py
+|  |  |-- task_drivers
+|  |  |  |-- bazel_build_all
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- bazel_build_all.go
+|  |  |  |-- bazel_test_all
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- bazel_test_all.go
+|  |  |  |-- build_and_deploy_cipd
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- build_and_deploy_cipd.go
+|  |  |  |-- build_push_docker_image
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- build_push_docker_image.go
+|  |  |  |-- infra_tests
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- infra_tests.go
+|  |  |  |-- push_apps_from_infra_image
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- push_apps_from_infra_image.go
+|  |  |  |-- push_apps_from_skia_image
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- push_apps_from_skia_image.go
+|  |  |  |-- push_apps_from_wasm_image
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- push_apps_from_wasm_image.go
+|  |  |  |-- roll_cipd_packages
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- roll_cipd_packages.go
+|  |  |  |-- update_go_deps
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- update_go_deps.go
+|  |  |  |-- validate_autoroll_configs
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- validate_autoroll_configs.go
+|  |  |-- tasks.json
+|  |  |-- tools
+|  |  |  |-- luci-go
+|  |  |  |  |-- README.md
+|  |  |  |  |-- linux64
+|  |  |  |  |  |-- isolate.sha1
+|  |  |  |  |-- mac64
+|  |  |  |  |  |-- isolate.sha1
+|  |  |  |  |-- win64
+|  |  |  |  |  |-- isolate.exe.sha1
+|  |  |-- whole_repo.isolate
+|  |-- config
+|  |  |-- BUILD.bazel
+|  |  |-- recipes.cfg
+|  |-- project-config
+|  |  |-- README.md
+|  |  |-- project.cfg
+|  |  |-- refs.cfg
+|  |-- skcq.json
+|-- jsdoc
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- PROD.md
+|  |-- README.md
+|  |-- build_docker_release
+|  |-- go
+|  |  |-- jsdoc
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- jsdoc.config.js
+|  |-- jsdoc
+|  |  |-- README.md
+|  |-- package-lock.json
+|  |-- package.json
+|  |-- probersk.json
+|-- jsfiddle
+|  |-- .gitignore
+|  |-- DESIGN.md
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- README.md
+|  |-- build_release
+|  |-- create-jsfiddle-sa.sh
+|  |-- go
+|  |  |-- jsfiddle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- store
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- store.go
+|  |-- karma.conf.ts
+|  |-- modules
+|  |  |-- canvaskit-fiddle
+|  |  |  |-- canvaskit-fiddle-demo.html
+|  |  |  |-- canvaskit-fiddle-demo.ts
+|  |  |  |-- canvaskit-fiddle.ts
+|  |  |  |-- index.ts
+|  |  |-- pathkit-fiddle
+|  |  |  |-- index.ts
+|  |  |  |-- pathkit-fiddle-demo.html
+|  |  |  |-- pathkit-fiddle-demo.ts
+|  |  |  |-- pathkit-fiddle.ts
+|  |  |-- wasm-fiddle
+|  |  |  |-- index.ts
+|  |  |  |-- wasm-fiddle.scss
+|  |  |  |-- wasm-fiddle.ts
+|  |  |  |-- wasm-fiddle_test.ts
+|  |-- pages
+|  |  |-- canvaskit-index.html
+|  |  |-- canvaskit-index.ts
+|  |  |-- pathkit-index.html
+|  |  |-- pathkit-index.ts
+|  |-- probersk.json
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- k8s-checker
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- PROD.md
+|  |-- bin
+|  |  |-- create-k8s-checker-sa.sh
+|  |-- build_docker_release
+|  |-- go
+|  |  |-- k8s-checker
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|-- kube
+|  |-- Makefile
+|  |-- README.md
+|  |-- attach.sh
+|  |-- auth-proxy
+|  |  |-- Dockerfile
+|  |-- backup-secrets.sh
+|  |-- base-cipd
+|  |  |-- Dockerfile
+|  |-- basealpine
+|  |  |-- Dockerfile
+|  |-- build_auth_proxy_release
+|  |-- build_base_cipd_release
+|  |-- build_basealpine_release
+|  |-- build_configmap_reload_release
+|  |-- build_doxygen_release
+|  |-- build_expand_and_reload_release
+|  |-- build_reposync_release
+|  |-- clusters.sh
+|  |-- clusters
+|  |  |-- config.json
+|  |-- config.sh
+|  |-- configmap-reload
+|  |  |-- Dockerfile
+|  |-- corp-config.sh
+|  |-- create-cluster-corp.sh
+|  |-- create-cluster.sh
+|  |-- create-cq-watcher-sa.sh
+|  |-- create-csrf-salt-secret.sh
+|  |-- create-node-pool.sh
+|  |-- create-prober-sa.sh
+|  |-- create-skia-corp-cert.sh
+|  |-- create-skia-doc-sa.sh
+|  |-- create-skia-public-auth-sa.sh
+|  |-- create-webhook-request-salt-secret.sh
+|  |-- doxygen
+|  |  |-- Dockerfile
+|  |-- edit-corp-legacy-login-secrets.sh
+|  |-- expand-and-reload
+|  |  |-- Dockerfile
+|  |-- go
+|  |  |-- auth-proxy
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- auth
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- auth.go
+|  |  |  |  |-- impl.go
+|  |  |  |  |-- mocks
+|  |  |  |  |  |-- Auth.go
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- generate.go
+|  |  |  |-- main.go
+|  |  |  |-- main_test.go
+|  |  |-- expand-and-reload
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- kube-conf-gen
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- pushk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |  |-- main_test.go
+|  |  |  |-- testdata
+|  |  |  |  |-- config.json
+|  |  |  |  |-- file1.yaml
+|  |  |  |  |-- file2.yaml
+|  |-- kube.mk
+|  |-- restore-secret.sh
+|  |-- secrets
+|  |  |-- README.md
+|  |  |-- add-secret-from-directory.sh
+|  |  |-- add-secret-from-stdin.sh
+|  |  |-- add-service-account-from-stdin.sh
+|  |  |-- add-service-account.sh
+|  |  |-- apply-all-secrets-to-cluster.sh
+|  |  |-- apply-secret-to-cluster.sh
+|  |  |-- config.sh
+|  |  |-- copy-between-clusters.sh
+|  |  |-- copy-from-cluster.sh
+|  |  |-- copy-secret-between-clusters.sh
+|  |  |-- delete-secret.sh
+|  |  |-- download-secret.sh
+|  |  |-- edit-secret.sh
+|  |  |-- get-secret.sh
+|  |  |-- init-berglas.sh
+|  |  |-- list-secrets-by-cluster.sh
+|  |  |-- list-secrets.sh
+|  |-- set-backend-timeouts.sh
+|  |-- switchboard-config.sh
+|-- launch.md
+|-- leasing
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- PROD.md
+|  |-- README.md
+|  |-- artifacts
+|  |  |-- leasing.py
+|  |-- build_docker_release
+|  |-- create-email-secrets.sh
+|  |-- create-leasing-sa.sh
+|  |-- go
+|  |  |-- copy_datastore
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- leasing
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- datastore.go
+|  |  |  |-- mail.go
+|  |  |  |-- main.go
+|  |  |  |-- poller.go
+|  |  |  |-- swarming.go
+|  |  |-- types
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ts
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- types.go
+|  |-- images
+|  |  |-- favicon.ico
+|  |-- modules
+|  |  |-- colors.css
+|  |  |-- json
+|  |  |  |-- index.ts
+|  |  |-- leasing-list-sk
+|  |  |  |-- index.ts
+|  |  |  |-- leasing-list-sk.scss
+|  |  |  |-- leasing-list-sk.ts
+|  |  |-- leasing-scaffold-sk
+|  |  |  |-- index.ts
+|  |  |  |-- leasing-scaffold-sk.scss
+|  |  |  |-- leasing-scaffold-sk.ts
+|  |  |-- leasing-selections-sk
+|  |  |  |-- index.ts
+|  |  |  |-- leasing-selections-sk.scss
+|  |  |  |-- leasing-selections-sk.ts
+|  |  |-- leasing-task-sk
+|  |  |  |-- index.ts
+|  |  |  |-- leasing-task-sk.scss
+|  |  |  |-- leasing-task-sk.ts
+|  |  |-- leasing.ts
+|  |-- pages
+|  |  |-- index.html
+|  |  |-- index.scss
+|  |  |-- index.ts
+|  |  |-- leases_list.html
+|  |  |-- leases_list.scss
+|  |  |-- leases_list.ts
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- licenses
+|  |-- LICENSES.md
+|  |-- Makefile
+|  |-- README.md
+|  |-- check.sh
+|-- machine
+|  |-- .gitignore
+|  |-- BUILD.bazel
+|  |-- Makefile
+|  |-- README.md
+|  |-- go
+|  |  |-- common
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- common.go
+|  |  |-- configs
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- configs_embed.go
+|  |  |  |-- prod.json
+|  |  |  |-- test.json
+|  |  |-- machine
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- machine.go
+|  |  |  |-- machine_test.go
+|  |  |  |-- processor
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- impl.go
+|  |  |  |  |-- impl_test.go
+|  |  |  |  |-- processor.go
+|  |  |  |-- sink
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- impl.go
+|  |  |  |  |-- impl_manual_test.go
+|  |  |  |  |-- sink.go
+|  |  |  |-- source
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- pubsubsource
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- pubsubsource.go
+|  |  |  |  |  |-- pubsubsource_manual_test.go
+|  |  |  |  |-- source.go
+|  |  |  |-- store
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- impl.go
+|  |  |  |  |-- impl_manual_test.go
+|  |  |  |  |-- impl_test.go
+|  |  |  |  |-- mocks
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- Store.go
+|  |  |  |  |  |-- mocks.go
+|  |  |  |  |-- store.go
+|  |  |  |-- targetconnect
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- mocks
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- RevPortForward.go
+|  |  |  |  |  |-- generate.go
+|  |  |  |  |-- targetconnect.go
+|  |  |  |  |-- targetconnect_test.go
+|  |  |  |-- ts
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |-- machineserver
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- config
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- config.go
+|  |  |  |-- main.go
+|  |  |  |-- main_test.go
+|  |  |-- switchboard
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cleanup
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- cleanup.go
+|  |  |  |  |-- cleanup_test.go
+|  |  |  |-- impl.go
+|  |  |  |-- impl_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- Switchboard.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- switchboard.go
+|  |  |-- test_machine_monitor
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- adb
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- adb.go
+|  |  |  |  |-- adb_test.go
+|  |  |  |  |-- mocks
+|  |  |  |  |  |-- Adb.go
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- generate.go
+|  |  |  |-- machine
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- machine.go
+|  |  |  |  |-- machine_manual_test.go
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- power-cycle-rack4.json5
+|  |  |  |-- main.go
+|  |  |  |-- server
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- server.go
+|  |  |  |  |-- server_test.go
+|  |  |  |-- swarming
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- swarming.go
+|  |  |  |  |-- swarming_test.go
+|  |-- images
+|  |  |-- firestore-emulator
+|  |  |  |-- Dockerfile
+|  |  |  |-- release.sh
+|  |  |-- machineserver
+|  |  |  |-- Dockerfile
+|  |  |  |-- release
+|  |  |  |-- release_legacy
+|  |-- karma.conf.ts
+|  |-- modules
+|  |  |-- auto-refresh-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- auto-refresh-sk-demo.html
+|  |  |  |-- auto-refresh-sk-demo.scss
+|  |  |  |-- auto-refresh-sk-demo.ts
+|  |  |  |-- auto-refresh-sk.scss
+|  |  |  |-- auto-refresh-sk.ts
+|  |  |  |-- auto-refresh-sk_puppeteer_test.ts
+|  |  |  |-- auto-refresh-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- filter-array
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- index_test.ts
+|  |  |-- json
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |-- machine-server-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- demo_data.ts
+|  |  |  |-- index.ts
+|  |  |  |-- machine-server-sk-demo.html
+|  |  |  |-- machine-server-sk-demo.ts
+|  |  |  |-- machine-server-sk.scss
+|  |  |  |-- machine-server-sk.ts
+|  |  |  |-- machine-server-sk_puppeteer_test.ts
+|  |  |  |-- machine-server-sk_test.ts
+|  |  |-- note-editor-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- note-editor-sk-demo.html
+|  |  |  |-- note-editor-sk-demo.scss
+|  |  |  |-- note-editor-sk-demo.ts
+|  |  |  |-- note-editor-sk.scss
+|  |  |  |-- note-editor-sk.ts
+|  |  |  |-- note-editor-sk_puppeteer_test.ts
+|  |  |  |-- note-editor-sk_test.ts
+|  |  |-- theme
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- theme.scss
+|  |-- pages
+|  |  |-- BUILD.bazel
+|  |  |-- index.html
+|  |  |-- index.ts
+|  |-- secrets
+|  |  |-- create-machine-state-server-service-account.sh
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- make
+|  |-- clusters.mk
+|  |-- npm.mk
+|-- modules
+|  |-- devices
+|  |  |-- BUILD.bazel
+|  |  |-- README.md
+|  |  |-- devices.ts
+|-- named-fiddles
+|  |-- Makefile
+|  |-- README.md
+|  |-- go
+|  |  |-- named-fiddles
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- parse
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- parse.go
+|  |  |  |-- parse_test.go
+|  |-- images
+|  |  |-- named-fiddles
+|  |  |  |-- Dockerfile
+|  |  |  |-- release
+|-- new_element
+|  |-- BUILD.bazel
+|  |-- Makefile
+|  |-- karma.conf.ts
+|  |-- main.go
+|  |-- modules
+|  |  |-- example-control-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- example-control-sk-demo.html
+|  |  |  |-- example-control-sk-demo.scss
+|  |  |  |-- example-control-sk-demo.ts
+|  |  |  |-- example-control-sk.scss
+|  |  |  |-- example-control-sk.ts
+|  |  |  |-- example-control-sk_puppeteer_test.ts
+|  |  |  |-- example-control-sk_test.ts
+|  |  |  |-- index.ts
+|  |-- pages
+|  |  |-- index.html
+|  |  |-- index.ts
+|  |-- templates
+|  |  |-- BUILD.bazel.template
+|  |  |-- file-demo.html
+|  |  |-- file-demo.scss
+|  |  |-- file-demo.ts
+|  |  |-- file.scss
+|  |  |-- file.ts
+|  |  |-- file_puppeteer_test.ts
+|  |  |-- file_test.ts
+|  |  |-- index.ts
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- package-lock.json
+|-- package.json
+|-- particles
+|  |-- .gitignore
+|  |-- BUILD.bazel
+|  |-- Makefile
+|  |-- README.md
+|  |-- build_release
+|  |-- create-named-scraps.sh
+|  |-- create-particles-sa.sh
+|  |-- go
+|  |  |-- particles
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- ts
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- karma.conf.ts
+|  |-- modules
+|  |  |-- json
+|  |  |  |-- index.ts
+|  |  |-- particles-config-sk
+|  |  |  |-- index.ts
+|  |  |  |-- particles-config-sk-demo.css
+|  |  |  |-- particles-config-sk-demo.html
+|  |  |  |-- particles-config-sk-demo.ts
+|  |  |  |-- particles-config-sk.scss
+|  |  |  |-- particles-config-sk.ts
+|  |  |-- particles-player-sk
+|  |  |  |-- index.ts
+|  |  |  |-- particles-player-sk-demo.css
+|  |  |  |-- particles-player-sk-demo.html
+|  |  |  |-- particles-player-sk-demo.ts
+|  |  |  |-- particles-player-sk.scss
+|  |  |  |-- particles-player-sk.ts
+|  |  |  |-- particles-player-sk_puppeteer_test.ts
+|  |  |-- particles-sk
+|  |  |  |-- index.ts
+|  |  |  |-- particles-sk-demo.css
+|  |  |  |-- particles-sk-demo.html
+|  |  |  |-- particles-sk-demo.ts
+|  |  |  |-- particles-sk.scss
+|  |  |  |-- particles-sk.ts
+|  |  |  |-- particles-sk_puppeteer_test.ts
+|  |  |-- themes
+|  |  |  |-- themes.scss
+|  |-- pages
+|  |  |-- main.html
+|  |  |-- main.scss
+|  |  |-- main.ts
+|  |-- particles
+|  |  |-- Dockerfile
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- perdiff
+|  |-- Makefile
+|  |-- README.md
+|  |-- go
+|  |  |-- perdiff
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- adjust_image.go
+|  |  |  |-- float_image.go
+|  |  |  |-- lpyramid.go
+|  |  |  |-- parallel.go
+|  |  |  |-- perdiff.go
+|  |  |  |-- utils.go
+|  |  |  |-- yee_compare.go
+|-- perf
+|  |-- .345007205
+|  |-- .gitignore
+|  |-- API.md
+|  |-- BACKUPS.md
+|  |-- BUILD.bazel
+|  |-- CHECKLIST.md
+|  |-- COCKROACHDB.md
+|  |-- DESIGN.md
+|  |-- FORMAT.md
+|  |-- Makefile
+|  |-- PERFSERVER.md
+|  |-- PERFTOOL.md
+|  |-- PROD.md
+|  |-- README.md
+|  |-- TRIAGE.md
+|  |-- cockroachdb
+|  |  |-- admin.sh
+|  |  |-- connect.sh
+|  |-- configs
+|  |  |-- README.md
+|  |  |-- cdb-android-prod.json
+|  |  |-- cdb-android-x.json
+|  |  |-- cdb-ct-prod.json
+|  |  |-- cdb-nano.json
+|  |  |-- flutter-engine2.json
+|  |  |-- flutter-flutter2.json
+|  |-- create-ingestion-android-pubsub-topics.sh
+|  |-- create-ingestion-android-x-pubsub-topics.sh
+|  |-- create-ingestion-android-x2-pubsub-topics.sh
+|  |-- create-ingestion-ct-pubsub-topics.sh
+|  |-- create-ingestion-flutter-engine2-pubsub-topics.sh
+|  |-- create-ingestion-flutter-flutter-pubsub-topics.sh
+|  |-- create-ingestion-flutter-flutter2-pubsub-topics.sh
+|  |-- create-ingestion-flutter-pubsub-topics.sh
+|  |-- create-ingestion-pubsub-topics.sh
+|  |-- go
+|  |  |-- alertfilter
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- alertfilter.go
+|  |  |-- alerts
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- alertstest
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- alertstest.go
+|  |  |  |-- config.go
+|  |  |  |-- config_test.go
+|  |  |  |-- sqlalertstore
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- sqlalertstore.go
+|  |  |  |  |-- sqlalertstore_test.go
+|  |  |  |-- store.go
+|  |  |-- bug
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bug.go
+|  |  |  |-- bug_test.go
+|  |  |-- builders
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- builders.go
+|  |  |  |-- builders_test.go
+|  |  |-- cache
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cache.go
+|  |  |  |-- local
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- local.go
+|  |  |  |  |-- local_test.go
+|  |  |  |-- memcached
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- memcached.go
+|  |  |  |  |-- memcached_manual_test.go
+|  |  |-- clustering2
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- clustering.go
+|  |  |  |-- clustering_test.go
+|  |  |  |-- valuepercent.go
+|  |  |  |-- valuepercent_test.go
+|  |  |-- config
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- config.go
+|  |  |  |-- config_test.go
+|  |  |  |-- generate
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- instanceConfigSchema.json
+|  |  |  |-- testdata
+|  |  |  |  |-- empty.json
+|  |  |-- ctrace2
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ctrace.go
+|  |  |  |-- ctrace_test.go
+|  |  |-- dataframe
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- async.go
+|  |  |  |-- async_test.go
+|  |  |  |-- dataframe.go
+|  |  |  |-- dataframe_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- DataFrameBuilder.go
+|  |  |  |  |-- generate.go
+|  |  |-- dfbuilder
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- dfbuilder.go
+|  |  |  |-- dfbuilder_test.go
+|  |  |-- dfiter
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- dfiter.go
+|  |  |  |-- dfiter_test.go
+|  |  |-- dryrun
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- dryrun.go
+|  |  |-- file
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- dirsource
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- dirsource.go
+|  |  |  |  |-- dirsource_test.go
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- filea.json
+|  |  |  |  |  |-- fileb.json
+|  |  |  |-- file.go
+|  |  |  |-- gcssource
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- gcssource.go
+|  |  |  |  |-- gcssource_manual_test.go
+|  |  |-- filestore
+|  |  |  |-- gcs
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- gcs.go
+|  |  |  |  |-- gcs_test.go
+|  |  |-- frontend
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- frontend.go
+|  |  |-- git
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- git.go
+|  |  |  |-- git_test.go
+|  |  |  |-- gittest
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- gittest.go
+|  |  |-- ingest
+|  |  |  |-- filter
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- filter.go
+|  |  |  |  |-- filter_test.go
+|  |  |  |-- format
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- format.go
+|  |  |  |  |-- formatSchema.json
+|  |  |  |  |-- format_test.go
+|  |  |  |  |-- generate
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- main.go
+|  |  |  |  |-- leagacyformat.go
+|  |  |  |-- parser
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- parser.go
+|  |  |  |  |-- parser_test.go
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- legacy
+|  |  |  |  |  |  |-- invalid.json
+|  |  |  |  |  |  |-- no_results.json
+|  |  |  |  |  |  |-- one_measurement.json
+|  |  |  |  |  |  |-- samples_no_results.json
+|  |  |  |  |  |  |-- samples_success.json
+|  |  |  |  |  |  |-- success.json
+|  |  |  |  |  |  |-- unknown_branch.json
+|  |  |  |  |  |  |-- zero_measurement.json
+|  |  |  |  |  |-- version_1
+|  |  |  |  |  |  |-- invalid.json
+|  |  |  |  |  |  |-- no_results.json
+|  |  |  |  |  |  |-- one_measurement.json
+|  |  |  |  |  |  |-- success.json
+|  |  |  |  |  |  |-- unknown_branch.json
+|  |  |  |  |  |  |-- zero_measurement.json
+|  |  |  |-- process
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- process.go
+|  |  |  |  |-- process_manual_test.go
+|  |  |-- ingestevents
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ingestevents.go
+|  |  |  |-- ingestevents_test.go
+|  |  |-- kmeans
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- kmeans.go
+|  |  |  |-- kmeans_test.go
+|  |  |-- notify
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- notify.go
+|  |  |  |-- notify_test.go
+|  |  |-- perf-tool
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- application
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- application.go
+|  |  |  |  |-- mocks
+|  |  |  |  |  |-- Application.go
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- generate.go
+|  |  |  |-- main.go
+|  |  |  |-- main_test.go
+|  |  |-- perfclient
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mock_perf_client.go
+|  |  |  |-- perf_client.go
+|  |  |  |-- perf_client_test.go
+|  |  |-- perfserver
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- progress
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- progress.go
+|  |  |  |-- progress_test.go
+|  |  |  |-- tracker.go
+|  |  |  |-- tracker_test.go
+|  |  |-- psrefresh
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- OPSProvider.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- psrefresh.go
+|  |  |  |-- psrefresh_test.go
+|  |  |-- regression
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- continuous
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- continuous.go
+|  |  |  |  |-- continuous_test.go
+|  |  |  |-- detector.go
+|  |  |  |-- detector_test.go
+|  |  |  |-- fromsummary.go
+|  |  |  |-- regression.go
+|  |  |  |-- regression_test.go
+|  |  |  |-- regressiontest
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- regressiontest.go
+|  |  |  |-- sqlregressionstore
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- sqlregressionstore.go
+|  |  |  |  |-- sqlregressionstore_test.go
+|  |  |  |-- stepfit.go
+|  |  |  |-- stepfit_test.go
+|  |  |  |-- types.go
+|  |  |-- samplestats
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- analyze.go
+|  |  |  |-- analyze_test.go
+|  |  |  |-- metrics.go
+|  |  |  |-- metrics_test.go
+|  |  |  |-- sort.go
+|  |  |-- shortcut
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- shortcut.go
+|  |  |  |-- shortcut_test.go
+|  |  |  |-- shortcuttest
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- shortcuttest.go
+|  |  |  |-- sqlshortcutstore
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- sqlshortcutstore.go
+|  |  |  |  |-- sqlshortcutstore_test.go
+|  |  |-- sql
+|  |  |  |-- migrations
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- cockroachdb
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- cockroachdb.go
+|  |  |  |  |-- migrations.go
+|  |  |  |  |-- migrations_test.go
+|  |  |  |-- sqltest
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- sqltest.go
+|  |  |-- stepfit
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- stepfit.go
+|  |  |  |-- stepfit_test.go
+|  |  |-- tracesetbuilder
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- tracesetbuilder.go
+|  |  |  |-- tracesetbuilder_test.go
+|  |  |-- tracestore
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- TraceStore.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- sqltracestore
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- intersect.go
+|  |  |  |  |-- intersect_test.go
+|  |  |  |  |-- sqltracestore.go
+|  |  |  |  |-- sqltracestore_test.go
+|  |  |  |-- tracestore.go
+|  |  |-- tracing
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- tracing.go
+|  |  |-- trybot
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ingester
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- gerrit
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- gerrit.go
+|  |  |  |  |  |-- gerrit_test.go
+|  |  |  |  |  |-- testdata
+|  |  |  |  |  |  |-- invalid.json
+|  |  |  |  |  |  |-- invalid_patch_number.json
+|  |  |  |  |  |  |-- success.json
+|  |  |  |  |-- ingester.go
+|  |  |  |-- results
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- dfloader
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- dfloader.go
+|  |  |  |  |  |-- dfloader_test.go
+|  |  |  |  |-- results.go
+|  |  |  |-- samplesloader
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- gcssamplesloader
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- gcssamplesloader.go
+|  |  |  |  |  |-- gcssamplesloader_test.go
+|  |  |  |  |-- samplesloader.go
+|  |  |  |-- store
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- mocks
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- TryBotStore.go
+|  |  |  |  |  |-- generate.go
+|  |  |  |  |-- store.go
+|  |  |  |-- trybot.go
+|  |  |-- ts
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- types
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- types.go
+|  |  |  |-- types_test.go
+|  |-- images
+|  |  |-- backup
+|  |  |  |-- Dockerfile
+|  |  |  |-- backup.sh
+|  |  |  |-- release
+|  |  |-- perfserver
+|  |  |  |-- Dockerfile
+|  |  |  |-- release
+|  |-- integration
+|  |  |-- BUILD.bazel
+|  |  |-- README.md
+|  |  |-- data
+|  |  |  |-- demo_data_commit_1.json
+|  |  |  |-- demo_data_commit_10.json
+|  |  |  |-- demo_data_commit_2.json
+|  |  |  |-- demo_data_commit_3.json
+|  |  |  |-- demo_data_commit_4.json
+|  |  |  |-- demo_data_commit_5.json
+|  |  |  |-- demo_data_commit_6.json
+|  |  |  |-- demo_data_commit_7.json
+|  |  |  |-- demo_data_commit_8.json
+|  |  |  |-- demo_data_commit_9.json
+|  |  |  |-- malformed.json
+|  |  |-- generate_data.go
+|  |-- jupyter
+|  |  |-- Perf+Query.ipynb
+|  |  |-- README.md
+|  |-- karma.conf.ts
+|  |-- lint
+|  |  |-- reporter.js
+|  |-- migrate.sh
+|  |-- migrations
+|  |  |-- BUILD.bazel
+|  |  |-- README.md
+|  |  |-- cdb.sql
+|  |  |-- cockroachdb
+|  |  |  |-- 0001_create_initial_tables.down.sql
+|  |  |  |-- 0001_create_initial_tables.up.sql
+|  |  |-- test.sql
+|  |-- modules
+|  |  |-- alert-config-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- alert-config-sk-demo.html
+|  |  |  |-- alert-config-sk-demo.ts
+|  |  |  |-- alert-config-sk.scss
+|  |  |  |-- alert-config-sk.ts
+|  |  |  |-- alert-config-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- alert
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |-- alerts-page-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- alerts-page-sk-demo.html
+|  |  |  |-- alerts-page-sk-demo.ts
+|  |  |  |-- alerts-page-sk.scss
+|  |  |  |-- alerts-page-sk.ts
+|  |  |  |-- alerts-page-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- algo-select-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- algo-select-sk-demo.html
+|  |  |  |-- algo-select-sk-demo.ts
+|  |  |  |-- algo-select-sk.scss
+|  |  |  |-- algo-select-sk.ts
+|  |  |  |-- algo-select-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- calendar-input-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- calendar-input-sk-demo.html
+|  |  |  |-- calendar-input-sk-demo.ts
+|  |  |  |-- calendar-input-sk.scss
+|  |  |  |-- calendar-input-sk.ts
+|  |  |  |-- calendar-input-sk_puppeteer_test.ts
+|  |  |  |-- calendar-input-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- calendar-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- calendar-sk-demo.html
+|  |  |  |-- calendar-sk-demo.ts
+|  |  |  |-- calendar-sk.scss
+|  |  |  |-- calendar-sk.ts
+|  |  |  |-- calendar-sk_puppeteer_test.ts
+|  |  |  |-- calendar-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- cluster-lastn-page-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cluster-lastn-page-sk-demo.html
+|  |  |  |-- cluster-lastn-page-sk-demo.ts
+|  |  |  |-- cluster-lastn-page-sk.scss
+|  |  |  |-- cluster-lastn-page-sk.ts
+|  |  |  |-- cluster-lastn-page-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- cluster-page-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cluster-page-sk-demo.html
+|  |  |  |-- cluster-page-sk-demo.ts
+|  |  |  |-- cluster-page-sk.scss
+|  |  |  |-- cluster-page-sk.ts
+|  |  |  |-- cluster-page-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- cluster-summary2-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cluster-summary2-sk-demo.html
+|  |  |  |-- cluster-summary2-sk-demo.ts
+|  |  |  |-- cluster-summary2-sk.scss
+|  |  |  |-- cluster-summary2-sk.ts
+|  |  |  |-- cluster-summary2-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- commit-detail-panel-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- commit-detail-panel-sk-demo.html
+|  |  |  |-- commit-detail-panel-sk-demo.ts
+|  |  |  |-- commit-detail-panel-sk.scss
+|  |  |  |-- commit-detail-panel-sk.ts
+|  |  |  |-- commit-detail-panel-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- commit-detail-picker-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- commit-detail-picker-sk-demo.html
+|  |  |  |-- commit-detail-picker-sk-demo.ts
+|  |  |  |-- commit-detail-picker-sk.scss
+|  |  |  |-- commit-detail-picker-sk.ts
+|  |  |  |-- commit-detail-picker-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- commit-detail-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- commit-detail-sk-demo.html
+|  |  |  |-- commit-detail-sk-demo.ts
+|  |  |  |-- commit-detail-sk.scss
+|  |  |  |-- commit-detail-sk.ts
+|  |  |  |-- commit-detail-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- day-range-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- day-range-sk-demo.html
+|  |  |  |-- day-range-sk-demo.ts
+|  |  |  |-- day-range-sk.scss
+|  |  |  |-- day-range-sk.ts
+|  |  |  |-- day-range-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- domain-picker-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- domain-picker-sk-demo.html
+|  |  |  |-- domain-picker-sk-demo.ts
+|  |  |  |-- domain-picker-sk.scss
+|  |  |  |-- domain-picker-sk.ts
+|  |  |  |-- domain-picker-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- errorMessage
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |-- explore-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- explore-sk.scss
+|  |  |  |-- explore-sk.ts
+|  |  |  |-- explore-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- json-source-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- json-source-sk-demo.html
+|  |  |  |-- json-source-sk-demo.ts
+|  |  |  |-- json-source-sk.scss
+|  |  |  |-- json-source-sk.ts
+|  |  |  |-- json-source-sk_puppeteer_test.ts
+|  |  |-- json
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |-- paramtools
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- index_test.ts
+|  |  |-- perf-scaffold-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- perf-scaffold-sk-demo.html
+|  |  |  |-- perf-scaffold-sk-demo.ts
+|  |  |  |-- perf-scaffold-sk.scss
+|  |  |  |-- perf-scaffold-sk.ts
+|  |  |  |-- perf-scaffold-sk_puppeteer_test.ts
+|  |  |-- plot-simple-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- kd.ts
+|  |  |  |-- kd_test.ts
+|  |  |  |-- plot-simple-sk-demo.html
+|  |  |  |-- plot-simple-sk-demo.ts
+|  |  |  |-- plot-simple-sk.scss
+|  |  |  |-- plot-simple-sk.ts
+|  |  |  |-- plot-simple-sk_puppeteer_test.ts
+|  |  |  |-- plot-simple-sk_test.ts
+|  |  |  |-- ticks.ts
+|  |  |  |-- ticks_test.ts
+|  |  |-- progress
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- progress.ts
+|  |  |  |-- progress_test.ts
+|  |  |-- query-chooser-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- query-chooser-sk-demo.html
+|  |  |  |-- query-chooser-sk-demo.ts
+|  |  |  |-- query-chooser-sk.scss
+|  |  |  |-- query-chooser-sk.ts
+|  |  |  |-- query-chooser-sk_puppeteer_test.ts
+|  |  |-- query-count-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- query-count-sk-demo.html
+|  |  |  |-- query-count-sk-demo.ts
+|  |  |  |-- query-count-sk.scss
+|  |  |  |-- query-count-sk.ts
+|  |  |  |-- query-count-sk_puppeteer_test.ts
+|  |  |-- themes
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- themes.scss
+|  |  |-- triage-page-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- triage-page-sk-demo.html
+|  |  |  |-- triage-page-sk-demo.ts
+|  |  |  |-- triage-page-sk.scss
+|  |  |  |-- triage-page-sk.ts
+|  |  |-- triage-status-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- triage-status-sk-demo.html
+|  |  |  |-- triage-status-sk-demo.ts
+|  |  |  |-- triage-status-sk.scss
+|  |  |  |-- triage-status-sk.ts
+|  |  |  |-- triage-status-sk_puppeteer_test.ts
+|  |  |-- triage2-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- triage2-sk-demo.html
+|  |  |  |-- triage2-sk-demo.ts
+|  |  |  |-- triage2-sk.scss
+|  |  |  |-- triage2-sk.ts
+|  |  |  |-- triage2-sk_puppeteer_test.ts
+|  |  |  |-- triage2-sk_test.ts
+|  |  |-- tricon2-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- tricon2-sk-demo.html
+|  |  |  |-- tricon2-sk-demo.ts
+|  |  |  |-- tricon2-sk.scss
+|  |  |  |-- tricon2-sk.ts
+|  |  |  |-- tricon2-sk_puppeteer_test.ts
+|  |  |-- trybot-page-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- trybot-page-sk-demo.html
+|  |  |  |-- trybot-page-sk-demo.ts
+|  |  |  |-- trybot-page-sk.scss
+|  |  |  |-- trybot-page-sk.ts
+|  |  |  |-- trybot-page-sk_puppeteer_test.ts
+|  |  |-- trybot
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- calcs.ts
+|  |  |  |-- calcs_test.ts
+|  |  |-- window
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- window.ts
+|  |  |-- word-cloud-sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |  |-- word-cloud-sk-demo.html
+|  |  |  |-- word-cloud-sk-demo.ts
+|  |  |  |-- word-cloud-sk.scss
+|  |  |  |-- word-cloud-sk.ts
+|  |  |  |-- word-cloud-sk_puppeteer_test.ts
+|  |-- nanostat
+|  |  |-- BUILD.bazel
+|  |  |-- Makefile
+|  |  |-- README.md
+|  |  |-- main.go
+|  |  |-- main_test.go
+|  |  |-- testdata
+|  |  |  |-- all.golden
+|  |  |  |-- iqrr.golden
+|  |  |  |-- nanobench_new.json
+|  |  |  |-- nanobench_old.json
+|  |  |  |-- nochange.golden
+|  |  |  |-- sort.golden
+|  |  |  |-- test.golden
+|  |-- pages
+|  |  |-- BUILD.bazel
+|  |  |-- alerts.html
+|  |  |-- alerts.scss
+|  |  |-- alerts.ts
+|  |  |-- body.scss
+|  |  |-- clusters2.html
+|  |  |-- clusters2.scss
+|  |  |-- clusters2.ts
+|  |  |-- dryRunAlert.html
+|  |  |-- dryRunAlert.scss
+|  |  |-- dryRunAlert.ts
+|  |  |-- help.html
+|  |  |-- help.scss
+|  |  |-- help.ts
+|  |  |-- newindex.html
+|  |  |-- newindex.scss
+|  |  |-- newindex.ts
+|  |  |-- triage.html
+|  |  |-- triage.scss
+|  |  |-- triage.ts
+|  |  |-- trybot.html
+|  |  |-- trybot.scss
+|  |  |-- trybot.ts
+|  |-- probersk.json
+|  |-- reingest-android-data.sh
+|  |-- res
+|  |  |-- img
+|  |  |  |-- favicon.ico
+|  |-- samplevariance
+|  |  |-- BUILD.bazel
+|  |  |-- Makefile
+|  |  |-- README.md
+|  |  |-- main.go
+|  |  |-- main_test.go
+|  |-- scripts
+|  |  |-- upload_extracted_json_files.sh
+|  |-- secrets
+|  |  |-- create-email-secrets.sh
+|  |  |-- create-flutter-perf-service-account.sh
+|  |  |-- create-perf-cockroachdb-backup-service-account.sh
+|  |  |-- create-perf-ingest-sa.sh
+|  |  |-- create-perf-sa.sh
+|  |-- tsconfig.json
+|  |-- tslint.json
+|  |-- webpack.config.ts
+|-- periodic-trigger
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- build_release
+|  |-- go
+|  |  |-- periodic-trigger
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|-- power
+|  |-- .gitignore
+|  |-- BUILD.bazel
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- README.md
+|  |-- create-power-controller-sa.sh
+|  |-- go
+|  |  |-- decider
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- decider.go
+|  |  |  |-- decider_test.go
+|  |  |  |-- mock_decider.go
+|  |  |-- gatherer
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- gatherer.go
+|  |  |  |-- gatherer_test.go
+|  |  |-- power-controller
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- recorder
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mock_recorder.go
+|  |  |  |-- recorder.go
+|  |  |-- testdata
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- data.go
+|  |  |  |-- testdata
+|  |  |  |  |-- booting_device.json
+|  |  |  |  |-- dead_and_quarantined.json
+|  |  |  |  |-- dead_bot.json
+|  |  |  |  |-- deleted_bot.json
+|  |  |  |  |-- missing_device.json
+|  |  |  |  |-- too_hot.json
+|  |  |  |  |-- usb_failure.json
+|  |-- modules
+|  |  |-- power-index-sk
+|  |  |  |-- index.js
+|  |  |  |-- power-index-demo.html
+|  |  |  |-- power-index-demo.js
+|  |  |  |-- power-index-sk.js
+|  |  |  |-- power-index-sk.scss
+|  |-- pages
+|  |  |-- index.html
+|  |  |-- index.js
+|  |-- power_release
+|  |-- res
+|  |  |-- img
+|  |  |  |-- favicon.ico
+|  |-- tsconfig.json
+|  |-- vm.go
+|  |-- webpack.config.ts
+|-- proberk
+|  |-- Makefile
+|  |-- README.md
+|  |-- build_docker_release
+|  |-- expectations
+|  |  |-- gob.json
+|  |-- go
+|  |  |-- build_probersk_json
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- proberk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |  |-- main_test.go
+|  |  |-- types
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- generate
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- probesSchema.json
+|  |  |  |-- testdata
+|  |  |  |  |-- invalid.json
+|  |  |  |  |-- probersk.json
+|  |  |  |-- types.go
+|  |  |  |-- types_test.go
+|  |-- proberk
+|  |  |-- Dockerfile
+|  |-- probersk.json
+|-- promk
+|  |-- .gitignore
+|  |-- COLLECTD.md
+|  |-- GRAFANA.md
+|  |-- Makefile
+|  |-- README.md
+|  |-- backup-to-gcs
+|  |  |-- Dockerfile
+|  |-- build_backup_to_gcs_release
+|  |-- create-backup-to-gcs-internal-sa.sh
+|  |-- create-backup-to-gcs-sa.sh
+|  |-- create-pagerduty-secret.sh
+|  |-- edit-grafana-config.sh
+|  |-- edit-grafana-internal-config.sh
+|  |-- go
+|  |  |-- backup-to-gcs
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- promk-absent
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |  |-- main_test.go
+|  |-- grafana
+|  |  |-- grafana.ini
+|  |-- images
+|  |  |-- thanos-bounce
+|  |  |  |-- Dockerfile
+|  |  |  |-- README.md
+|  |  |  |-- bouncer.sh
+|  |  |  |-- kubeconfig.yaml
+|  |  |  |-- release
+|  |  |-- thanos
+|  |  |  |-- Dockerfile
+|  |  |  |-- release
+|  |-- prometheus
+|  |  |-- alerts_alert_to_pubsub.yml
+|  |  |-- alerts_corp.yml
+|  |  |-- alerts_general.yml
+|  |  |-- alerts_perf_cockroachdb.yml
+|  |  |-- alerts_public.yml
+|  |  |-- alerts_rack4.yaml
+|  |  |-- alerts_thanos.yml
+|  |  |-- perf_cockroachdb_aggregation_rules.yml
+|  |  |-- prometheus-corp.yml
+|  |  |-- prometheus-public.yml
+|  |  |-- prometheus-rack4.yml
+|  |-- secrets
+|  |  |-- create-thanos-bounce-service-account.sh
+|  |  |-- create-thanos-sidecar-service-account.sh
+|-- pulld
+|  |-- .gitignore
+|  |-- Makefile
+|  |-- README.md
+|  |-- build_release
+|  |-- build_release_arm
+|  |-- build_release_not_gce
+|  |-- go
+|  |  |-- pulld
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |  |-- pull.go
+|  |  |  |-- reboot.go
+|  |-- modules
+|  |  |-- pulld-app-sk
+|  |  |  |-- index.js
+|  |  |  |-- pulld-app-sk.js
+|  |  |  |-- pulld-app-sk.scss
+|  |-- pages
+|  |  |-- index.html
+|  |  |-- index.js
+|  |-- sys
+|  |  |-- pulld-arm.service
+|  |  |-- pulld-not-gce.service
+|  |  |-- pulld.service
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- puppeteer-tests
+|  |-- .gitignore
+|  |-- BUILD.bazel
+|  |-- Makefile
+|  |-- README.md
+|  |-- bazel
+|  |  |-- extract_puppeteer_screenshots
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- extract_puppeteer_screenshots.go
+|  |-- docker
+|  |  |-- Dockerfile
+|  |  |-- Makefile
+|  |  |-- run-tests.sh
+|  |-- output
+|  |  |-- .gitkeep
+|  |  |-- README.md
+|  |-- tsconfig.json
+|  |-- upload-screenshots-to-gold.py
+|  |-- util.ts
+|  |-- util_nodejs_test.ts
+|-- push
+|  |-- DESIGN.md
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- README.md
+|  |-- build_push_release
+|  |-- create-push-sa.sh
+|  |-- go
+|  |  |-- build_skiapush_json5
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- push
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- pushcli
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- trigger
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- trigger.go
+|  |  |-- types
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- types.go
+|  |-- jsdoc.config.js
+|  |-- karma.conf.ts
+|  |-- modules
+|  |  |-- push-app-sk
+|  |  |  |-- index.js
+|  |  |  |-- push-app-sk-demo.html
+|  |  |  |-- push-app-sk-demo.js
+|  |  |  |-- push-app-sk.js
+|  |  |  |-- push-app-sk.scss
+|  |  |-- push-selection-sk
+|  |  |  |-- index.js
+|  |  |  |-- push-selection-sk-demo.html
+|  |  |  |-- push-selection-sk-demo.js
+|  |  |  |-- push-selection-sk.js
+|  |  |  |-- push-selection-sk.scss
+|  |  |  |-- push-selection-sk_test.js
+|  |-- pages
+|  |  |-- index.html
+|  |  |-- index.js
+|  |-- probersk.json
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- run_unittests
+|-- run_unittests.go
+|-- scrap
+|  |-- Makefile
+|  |-- README.md
+|  |-- create-named-svg-scrap.sh
+|  |-- go
+|  |  |-- api
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- api.go
+|  |  |  |-- api_test.go
+|  |  |-- client
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- client.go
+|  |  |  |-- client_test.go
+|  |  |-- scrap
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- ScrapExchange.go
+|  |  |  |  |-- mocks.go
+|  |  |  |-- scrap.go
+|  |  |  |-- scrap_test.go
+|  |  |  |-- templates.go
+|  |  |  |-- templates_test.go
+|  |  |-- scrapexchange
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- images
+|  |  |-- scrapexchange
+|  |  |  |-- Dockerfile
+|  |  |  |-- release
+|  |-- integration.sh
+|  |-- karma.conf.ts
+|  |-- modules
+|  |  |-- scrap-exchange-sk
+|  |  |  |-- index.ts
+|  |  |  |-- scrap-exchange-sk-demo.html
+|  |  |  |-- scrap-exchange-sk-demo.ts
+|  |  |  |-- scrap-exchange-sk.scss
+|  |  |  |-- scrap-exchange-sk.ts
+|  |  |  |-- scrap-exchange-sk_puppeteer_test.ts
+|  |  |  |-- scrap-exchange-sk_test.ts
+|  |-- pages
+|  |  |-- index.html
+|  |  |-- index.scss
+|  |  |-- index.ts
+|  |-- probersk.json
+|  |-- secrets
+|  |  |-- create-skia-public-service-account.sh
+|  |-- smile-svg-scrap.json
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- scripts
+|  |-- BUILD.bazel
+|  |-- __init__.py
+|  |-- abandon_gerrit_cls
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |-- add_gce_scopes
+|  |  |-- BUILD.bazel
+|  |  |-- add_gce_scopes.go
+|  |-- bots_failing_in_reverted_cls
+|  |  |-- BUILD.bazel
+|  |  |-- main.go
+|  |-- check_python3_compatibility.py
+|  |-- chromebot-schtask.ps1
+|  |-- find_go_import_paths
+|  |  |-- BUILD.bazel
+|  |  |-- find_go_import_paths.go
+|  |-- find_noncompliant_commits
+|  |  |-- BUILD.bazel
+|  |  |-- find_noncompliant_commits.go
+|  |-- gcr_image_cleanup
+|  |  |-- BUILD.bazel
+|  |  |-- gcr_image_cleanup.go
+|  |-- gcs_cleanup
+|  |  |-- BUILD.bazel
+|  |  |-- gcs_cleanup.go
+|  |-- gcs_usage
+|  |  |-- BUILD.bazel
+|  |  |-- gcs_usage.go
+|  |-- insert_file.py
+|  |-- install_go_deps.sh
+|  |-- lsbots
+|  |  |-- BUILD.bazel
+|  |  |-- lsbots.go
+|  |-- make_dummy_staging_tasks
+|  |  |-- BUILD.bazel
+|  |  |-- make_dummy_staging_tasks.go
+|  |-- pubsub_recorder
+|  |  |-- BUILD.bazel
+|  |  |-- pubsub_recorder.go
+|  |-- radix_dir.go
+|  |-- roll_recipe_deps
+|  |  |-- BUILD.bazel
+|  |  |-- roll_recipe_deps.go
+|  |-- rotate_keys
+|  |  |-- BUILD.bazel
+|  |  |-- rotate_keys.go
+|  |-- run_daily.sh
+|  |-- run_emulators
+|  |  |-- BUILD.bazel
+|  |  |-- run_emulators
+|  |  |-- run_emulators.go
+|  |-- run_on_swarming_bots
+|  |  |-- BUILD.bazel
+|  |  |-- README.md
+|  |  |-- apt-full-upgrade.py
+|  |  |-- cleanup_docker.py
+|  |  |-- delete_cached_repos.py
+|  |  |-- delete_isolate_cache.py
+|  |  |-- delete_out_dirs.py
+|  |  |-- delete_tmp_dirs.py
+|  |  |-- install_docker.py
+|  |  |-- power_off_bot.py
+|  |  |-- reboot_bot.py
+|  |  |-- run_on_swarming_bots.go
+|  |-- run_swarming_tasks_api
+|  |  |-- BUILD.bazel
+|  |  |-- run_swarming_tasks_api.go
+|  |-- shutdown_swarming_bots
+|  |  |-- BUILD.bazel
+|  |  |-- shutdown_swarming_bots.go
+|  |-- ssh_swarm
+|  |-- win_setup.ps1
+|  |-- win_startup.ps1
+|-- shaders
+|  |-- .gitignore
+|  |-- Makefile
+|  |-- README.md
+|  |-- create-named-scraps.sh
+|  |-- go
+|  |  |-- shaders
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- ts
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- images
+|  |  |-- shaders
+|  |  |  |-- Dockerfile
+|  |  |  |-- release
+|  |-- karma.conf.ts
+|  |-- modules
+|  |  |-- edit-child-shader-sk
+|  |  |  |-- edit-child-shader-sk-demo.html
+|  |  |  |-- edit-child-shader-sk-demo.ts
+|  |  |  |-- edit-child-shader-sk.scss
+|  |  |  |-- edit-child-shader-sk.ts
+|  |  |  |-- edit-child-shader-sk_puppeteer_test.ts
+|  |  |  |-- edit-child-shader-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- json
+|  |  |  |-- index.ts
+|  |  |-- shadernode
+|  |  |  |-- index.ts
+|  |  |  |-- index_test.ts
+|  |  |-- shaders-app-sk
+|  |  |  |-- index.ts
+|  |  |  |-- shaders-app-sk-demo.html
+|  |  |  |-- shaders-app-sk-demo.ts
+|  |  |  |-- shaders-app-sk.scss
+|  |  |  |-- shaders-app-sk.ts
+|  |  |  |-- shaders-app-sk_puppeteer_test.ts
+|  |  |-- themes
+|  |  |  |-- themes.scss
+|  |-- pages
+|  |  |-- main.html
+|  |  |-- main.scss
+|  |  |-- main.ts
+|  |-- sources
+|  |  |-- mandrill.png
+|  |  |-- soccer.png
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- sk
+|  |-- Makefile
+|  |-- go
+|  |  |-- asset
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- asset.go
+|  |  |-- release-branch
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- release-branch.go
+|  |  |-- sk
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- try
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- try.go
+|  |  |  |-- try_test.go
+|-- sk8s
+|  |-- .gitignore
+|  |-- DESIGN.md
+|  |-- Makefile
+|  |-- README.md
+|  |-- RPI_DESIGN.md
+|  |-- go
+|  |  |-- metadata
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- podwatcher
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- deleter
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- deleter.go
+|  |  |  |  |-- impl.go
+|  |  |  |  |-- impl_test.go
+|  |  |  |-- main.go
+|  |-- images
+|  |  |-- metadata
+|  |  |  |-- Dockerfile
+|  |  |  |-- release
+|  |  |-- podwatcher
+|  |  |  |-- Dockerfile
+|  |  |  |-- release
+|  |  |-- rpi-swarming-client
+|  |  |  |-- Dockerfile
+|  |  |  |-- oauth2_access_token_config.json
+|  |  |  |-- release
+|  |  |  |-- sudo
+|  |-- secrets
+|  |  |-- create-bot-state-service-account.sh
+|  |  |-- create-gcr-io-skia-public.sh
+|  |  |-- create-podwatcher-service-account.sh
+|  |  |-- edit-powercycle-password.sh
+|  |  |-- edit-skolo-rpi-adb-key.sh
+|-- skbug
+|  |-- .firebase
+|  |  |-- hosting.cHVibGlj.cache
+|  |-- .firebaserc
+|  |-- Makefile
+|  |-- README.md
+|  |-- firebase.json
+|  |-- probersk.json
+|  |-- public
+|  |  |-- index.html
+|-- skcq
+|  |-- Makefile
+|  |-- README.md
+|  |-- bin
+|  |  |-- create-skcq-be-sa.sh
+|  |  |-- create-skcq-fe-internal-sa.sh
+|  |  |-- create-skcq-fe-sa.sh
+|  |-- go
+|  |  |-- caches
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- current_changes_cache.go
+|  |  |  |-- current_changes_cache_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- CurrentChangesCache.go
+|  |  |  |  |-- generate.go
+|  |  |-- codereview
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- codereview.go
+|  |  |  |-- codereview_impl.go
+|  |  |  |-- codereview_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- CodeReview.go
+|  |  |  |  |-- generate.go
+|  |  |-- config
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cfg_reader.go
+|  |  |  |-- cfg_reader_test.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- ConfigReader.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- skcq_cfg.go
+|  |  |-- db
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- db.go
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- DB.go
+|  |  |  |  |-- generate.go
+|  |  |-- footers
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- footers.go
+|  |  |  |-- footers_test.go
+|  |  |-- poller
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- poller.go
+|  |  |  |-- poller_test.go
+|  |  |-- skcq-be
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- skcq-fe
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- throttler
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- throttler.go
+|  |  |  |-- throttler_test.go
+|  |  |-- types
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- mocks
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- ThrottlerManager.go
+|  |  |  |  |-- Verifier.go
+|  |  |  |  |-- VerifiersManager.go
+|  |  |  |  |-- generate.go
+|  |  |  |-- ts
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- types.go
+|  |  |-- verifiers
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- commit_footer_verifier.go
+|  |  |  |-- commit_footer_verifier_test.go
+|  |  |  |-- cq_access_list_verifier.go
+|  |  |  |-- cq_access_list_verifier_test.go
+|  |  |  |-- dryrun_access_list_verifier.go
+|  |  |  |-- dryrun_access_list_verifier_test.go
+|  |  |  |-- submittable_verifier.go
+|  |  |  |-- submittable_verifier_test.go
+|  |  |  |-- submitted_together_verifier.go
+|  |  |  |-- submitted_together_verifier_test.go
+|  |  |  |-- throttler_verifier.go
+|  |  |  |-- tree_status_verifier.go
+|  |  |  |-- tree_status_verifier_test.go
+|  |  |  |-- tryjobs_verifier.go
+|  |  |  |-- tryjobs_verifier_test.go
+|  |  |  |-- util.go
+|  |  |  |-- verifiers_manager.go
+|  |  |  |-- verifiers_manager_test.go
+|  |  |  |-- wip_verifier.go
+|  |  |  |-- wip_verifier_test.go
+|  |-- images
+|  |  |-- favicon.ico
+|  |  |-- skcq-be
+|  |  |  |-- Dockerfile
+|  |  |  |-- build_release
+|  |  |-- skcq-fe
+|  |  |  |-- Dockerfile
+|  |  |  |-- build_release
+|  |-- modules
+|  |  |-- colors.css
+|  |  |-- json
+|  |  |  |-- index.ts
+|  |  |-- processing-table-sk
+|  |  |  |-- index.ts
+|  |  |  |-- processing-table-sk-demo.html
+|  |  |  |-- processing-table-sk-demo.ts
+|  |  |  |-- processing-table-sk.scss
+|  |  |  |-- processing-table-sk.ts
+|  |  |  |-- processing-table-sk_puppeteer_test.ts
+|  |  |-- skcq-scaffold
+|  |  |  |-- index.ts
+|  |  |  |-- skcq-scaffold-demo.html
+|  |  |  |-- skcq-scaffold-demo.ts
+|  |  |  |-- skcq-scaffold.scss
+|  |  |  |-- skcq-scaffold.ts
+|  |  |  |-- skcq-scaffold_puppeteer_test.ts
+|  |  |-- skcq-sk
+|  |  |  |-- index.ts
+|  |  |  |-- skcq-sk-demo.html
+|  |  |  |-- skcq-sk-demo.ts
+|  |  |  |-- skcq-sk.scss
+|  |  |  |-- skcq-sk.ts
+|  |  |  |-- skcq-sk_puppeteer_test.ts
+|  |  |-- skcq.ts
+|  |  |-- style.scss
+|  |  |-- verifiers-detail-sk
+|  |  |  |-- index.ts
+|  |  |  |-- verifiers-detail-sk-demo.html
+|  |  |  |-- verifiers-detail-sk-demo.ts
+|  |  |  |-- verifiers-detail-sk.scss
+|  |  |  |-- verifiers-detail-sk.ts
+|  |  |  |-- verifiers-detail-sk_puppeteer_test.ts
+|  |-- pages
+|  |  |-- index.html
+|  |  |-- index.scss
+|  |  |-- index.ts
+|  |  |-- verifiers_detail.html
+|  |  |-- verifiers_detail.scss
+|  |  |-- verifiers_detail.ts
+|  |-- tsconfig.json
+|  |-- tslint.json
+|  |-- webpack.config.ts
+|-- skfe
+|  |-- .gitignore
+|  |-- Makefile
+|  |-- PROD.md
+|  |-- README.md
+|  |-- build_envoy_json
+|  |-- build_envoy_skia_org_release
+|  |-- computed.json
+|  |-- deploy_new_certs.sh
+|  |-- envoy-skia-org
+|  |  |-- Dockerfile
+|  |-- envoy-starter.json
+|  |-- go
+|  |  |-- loadtest
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- merge_envoy
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- update_probers
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- probersk.json
+|-- skolo
+|  |-- .gitignore
+|  |-- 3dmodels
+|  |  |-- NUC-foot-over-button-v1.stl
+|  |  |-- NUC-foot-standard-v1.stl
+|  |  |-- NUC-foot-v1-photo-1.jpg
+|  |  |-- NUC-foot-v1-photo-2.jpg
+|  |  |-- NUC-foot-v1.md
+|  |  |-- README.md
+|  |  |-- chromebook-rack-v1.stl
+|  |  |-- chromebook-rack-v2.stl
+|  |  |-- lasercut_device_holder_v1.stl
+|  |  |-- lasercut_pi_plate_v1.stl
+|  |  |-- lasercut_pi_rack_base_v1.stl
+|  |  |-- raspirack_pi_holder.stl
+|  |  |-- raspirack_v1.stl
+|  |  |-- raspirack_v2.stl
+|  |  |-- raspirack_v3.stl
+|  |  |-- raspirack_v4.stl
+|  |  |-- raspirack_v5.stl
+|  |  |-- raspirack_v5_extended.stl
+|  |  |-- raspirack_v6.stl
+|  |  |-- raspirack_v6_extended.stl
+|  |  |-- raspirack_v6_narrow.stl
+|  |  |-- raspirack_v7_extended.stl
+|  |  |-- raspirack_v7_narrow.stl
+|  |-- Makefile
+|  |-- PROD.md
+|  |-- README.md
+|  |-- ansible
+|  |  |-- Makefile
+|  |  |-- README.md
+|  |  |-- add-chrome-bot-to-sudoers.yaml
+|  |  |-- ansible.cfg
+|  |  |-- hosts.ini
+|  |  |-- push_authorized_keys_to_linux.yml
+|  |  |-- push_authorized_keys_to_mac.yml
+|  |  |-- push_authorized_keys_to_router.yml
+|  |  |-- push_authorized_keys_to_win.yml
+|  |  |-- rack4
+|  |  |  |-- get-k3s-version.yaml
+|  |  |-- ssh.cfg
+|  |  |-- switchboard
+|  |  |  |-- install-test-machine-monitor.yml
+|  |  |  |-- setup-switchboard-rpi.yml
+|  |  |  |-- test_machine_monitor.service
+|  |  |-- templates
+|  |  |  |-- win_sshd_config
+|  |-- arduino
+|  |  |-- README.md
+|  |  |-- cmd_runner
+|  |  |  |-- cmd_runner.ino
+|  |  |-- rebootwebserver
+|  |  |  |-- rebootwebserver.ino
+|  |-- authorized_keys
+|  |-- bash
+|  |  |-- skolo.sh
+|  |-- build_release_get_oauth2_token
+|  |-- build_release_hotspare
+|  |-- build_release_metadata_server
+|  |-- build_release_router_backup
+|  |-- build_release_rpi_backup
+|  |-- build_release_trooper_tools
+|  |-- common
+|  |  |-- ansible
+|  |  |  |-- bootstrap-swarming.yml
+|  |  |  |-- skolo-credentials.yml
+|  |  |-- collectd.conf
+|  |  |-- oauth2_access_token_config.json
+|  |  |-- udev-rules
+|  |-- dockerfiles
+|  |  |-- Dockerfile_metadata_server
+|  |  |-- Dockerfile_router_backup
+|  |-- go
+|  |  |-- censustaker
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- README.md
+|  |  |  |-- arp.go
+|  |  |  |-- censustaker.go
+|  |  |  |-- censustaker_test.go
+|  |  |  |-- edgeswitchinterfaces.go
+|  |  |-- file-backup
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- get_oauth2_token
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- hotspare
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- metadata_server
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- metadata_server_k8s
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |  |-- svc_config.go
+|  |  |-- powercycle-cli
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- autofix.go
+|  |  |  |-- autofix_test.go
+|  |  |  |-- main.go
+|  |  |-- powercycle-daemon
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- powercycle
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- DESIGN.md
+|  |  |  |-- command_runner.go
+|  |  |  |-- edgeswitch.go
+|  |  |  |-- edgeswitch_test.go
+|  |  |  |-- example.json5
+|  |  |  |-- mpower.go
+|  |  |  |-- mpower_test.go
+|  |  |  |-- powercycle.go
+|  |  |  |-- powercycle_test.go
+|  |  |-- service_accounts
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- service_accounts.go
+|  |  |-- skmetadata
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- skmetadata.go
+|  |-- grep_token_logs.py
+|  |-- img
+|  |  |-- master-design.png
+|  |-- ios
+|  |  |-- .gitignore
+|  |  |-- README.md
+|  |  |-- build.sh
+|  |  |-- clean.sh
+|  |  |-- install-dependencies.sh
+|  |  |-- package.sh
+|  |-- ip_map.json
+|  |-- k8s_release_metadata_server
+|  |-- k8s_release_router_backup
+|  |-- laser_cutter_models
+|  |  |-- 18xside.v2.svg
+|  |  |-- 24x12_set.v1.svg
+|  |  |-- 4xbase.v2.svg
+|  |  |-- Assembled_laser_cut_rack.jpg
+|  |  |-- Readme.md
+|  |  |-- base.v1.svg
+|  |  |-- base.v2.svg
+|  |  |-- side.v1.svg
+|  |  |-- side.v2.svg
+|  |-- linux
+|  |  |-- README.md
+|  |  |-- ansible
+|  |  |  |-- interfaces.j2
+|  |  |  |-- setup-skolo-bot.yml
+|  |  |  |-- setup_linux_bot.sh
+|  |  |  |-- skolo-settings.yml
+|  |  |  |-- upgrade.yml
+|  |  |-- debian-preseed.cfg
+|  |  |-- nsswitch.conf
+|  |-- mac
+|  |  |-- ansible
+|  |  |  |-- python.yml
+|  |  |  |-- setup-skolo-bot.yml
+|  |  |  |-- setup_mac_bot.sh
+|  |  |  |-- skolo-settings.yml
+|  |  |  |-- swarming-bot-settings.yml
+|  |  |-- org.skia.caffeinated.plist
+|  |-- raspberry-pi
+|  |  |-- README.md
+|  |  |-- ansible_scripts
+|  |  |  |-- README.md
+|  |  |  |-- cleanup-disk.yml
+|  |  |  |-- cp_authorized_keys.yml
+|  |  |  |-- cp_gitconfig_netrc.yml
+|  |  |  |-- df_check.yml
+|  |  |  |-- disk_check.yml
+|  |  |  |-- migrate_to_prod.yml
+|  |  |  |-- ntpdate.yml
+|  |  |  |-- restart-collectd.yml
+|  |  |  |-- restart_if_not_busy.yml
+|  |  |  |-- rpi-hosts
+|  |  |  |-- shutdown.yml
+|  |  |-- collectd.conf
+|  |  |-- finalize_image.yml
+|  |  |-- format_new_card
+|  |  |-- format_new_card.yml
+|  |  |-- master.interfaces
+|  |  |-- partition.j2
+|  |  |-- resolv.conf
+|  |  |-- serve_staging_readwrite_start.yml
+|  |  |-- serve_staging_readwrite_stop.yml
+|  |  |-- setup-swarming.sh
+|  |  |-- setup_for_chroot.yml
+|  |  |-- setup_master.yml
+|  |  |-- spare.interfaces
+|  |  |-- start_serving_image.yml
+|  |  |-- start_swarming
+|  |  |-- stop_serving_image.yml
+|  |  |-- swarming
+|  |  |-- switchboard
+|  |  |  |-- README.md
+|  |  |  |-- configure-image-impl.sh
+|  |  |  |-- configure-image.sh
+|  |  |-- transfer_image.yml
+|  |-- skiapush.json5
+|  |-- sys
+|  |  |-- all-hosts
+|  |  |-- ansible.cfg
+|  |  |-- enumerate_hostnames.yml
+|  |  |-- get-oauth2-token.service
+|  |  |-- get-oauth2-token.timer
+|  |  |-- hotspare.service
+|  |  |-- metadata-linux.json5
+|  |  |-- metadata-rpi-internal.json5
+|  |  |-- metadata-rpi.json5
+|  |  |-- metadata-server.service
+|  |  |-- metadata-win.json5
+|  |  |-- power-cycle-rack4.json5
+|  |  |-- powercycle-daemon.service
+|  |  |-- powercycle-internal-01.json5
+|  |  |-- powercycle-rack-01.json5
+|  |  |-- powercycle-rack-02.json5
+|  |  |-- powercycle-rack-03.json5
+|  |  |-- router-backup.service
+|  |  |-- rpi-backup.service
+|  |-- win
+|  |  |-- ansible
+|  |  |  |-- README.md
+|  |  |  |-- bootstrap-swarming.yml
+|  |  |  |-- default-profile-auto-reboot.bat
+|  |  |  |-- disk-cleanup.yml
+|  |  |  |-- egpu-lenovo-drivers.yml
+|  |  |  |-- intel-graphics-driver-broadwell.yml
+|  |  |  |-- intel-graphics-driver-skylake.yml
+|  |  |  |-- nvidia-graphics-driver.yml
+|  |  |  |-- prep-for-capture.yml
+|  |  |  |-- python.yml
+|  |  |  |-- radeon-graphics-driver.yml
+|  |  |  |-- setup-skolo-bot.yml
+|  |  |  |-- skolo-credentials.yml
+|  |  |  |-- skolo-settings.yml
+|  |  |  |-- ssh.yml
+|  |  |  |-- swarming-bot-settings.yml
+|  |  |  |-- vnc-server.yml
+|  |  |  |-- win-02-hosts
+|  |  |  |-- win-03-hosts
+|  |  |  |-- windows-update.yml
+|-- skottie
+|  |-- .gitignore
+|  |-- Makefile
+|  |-- README.md
+|  |-- assets
+|  |  |-- favicon.ico
+|  |  |-- full-logo-220x140.png
+|  |  |-- logo.svg
+|  |  |-- logo128.png
+|  |  |-- logo32.png
+|  |  |-- previewer-screenshot.png
+|  |-- build_release
+|  |-- create-skottie-internal-sa.sh
+|  |-- create-skottie-sa.sh
+|  |-- go
+|  |  |-- skottie
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- skottie.go
+|  |  |  |-- skottie_test.go
+|  |  |  |-- testdata
+|  |  |  |  |-- skottie-images-asset.json
+|  |  |  |  |-- skottie-luma-matte-request.json
+|  |-- modules
+|  |  |-- audio.js
+|  |  |-- helpers
+|  |  |  |-- domains.js
+|  |  |  |-- gifStorage.js
+|  |  |  |-- localStorage.js
+|  |  |  |-- templates.js
+|  |  |  |-- viewModes.js
+|  |  |-- lottie-annotations
+|  |  |  |-- annotations-demo.html
+|  |  |  |-- annotations-demo.js
+|  |  |  |-- annotations.js
+|  |  |  |-- annotations.scss
+|  |  |  |-- index.js
+|  |  |  |-- schema.js
+|  |  |-- skottie-audio-sk
+|  |  |  |-- index.js
+|  |  |  |-- skottie-audio-sk.js
+|  |  |  |-- skottie-audio-sk.scss
+|  |  |-- skottie-config-sk
+|  |  |  |-- index.js
+|  |  |  |-- skottie-config-sk-demo.html
+|  |  |  |-- skottie-config-sk-demo.js
+|  |  |  |-- skottie-config-sk.js
+|  |  |  |-- skottie-config-sk.scss
+|  |  |-- skottie-drive-sk
+|  |  |  |-- index.js
+|  |  |  |-- skottie-drive-sk.js
+|  |  |  |-- skottie-drive-sk.scss
+|  |  |-- skottie-embed-sk
+|  |  |  |-- index.js
+|  |  |  |-- skottie-embed-sk-demo.html
+|  |  |  |-- skottie-embed-sk-demo.js
+|  |  |  |-- skottie-embed-sk.js
+|  |  |  |-- skottie-embed-sk.scss
+|  |  |  |-- test_gear.js
+|  |  |-- skottie-gif-exporter
+|  |  |  |-- LICENSE
+|  |  |  |-- README.md
+|  |  |  |-- gif.js
+|  |  |  |-- gif.worker.js
+|  |  |  |-- index.js
+|  |  |  |-- skottie-gif-exporter.js
+|  |  |  |-- skottie-gif-exporter.scss
+|  |  |-- skottie-inline-sk
+|  |  |  |-- index.js
+|  |  |  |-- skottie-inline-sk-demo.html
+|  |  |  |-- skottie-inline-sk-demo.js
+|  |  |  |-- skottie-inline-sk.js
+|  |  |  |-- skottie-inline-sk.scss
+|  |  |-- skottie-library-sk
+|  |  |  |-- index.js
+|  |  |  |-- skottie-library-sk.js
+|  |  |  |-- skottie-library-sk.scss
+|  |  |-- skottie-performance-sk
+|  |  |  |-- index.js
+|  |  |  |-- skottie-performance-sk.js
+|  |  |  |-- skottie-performance-sk.scss
+|  |  |-- skottie-player-sk
+|  |  |  |-- index.js
+|  |  |  |-- skottie-player-sk.js
+|  |  |  |-- skottie-player-sk.scss
+|  |  |-- skottie-sk
+|  |  |  |-- index.js
+|  |  |  |-- skottie-sk-demo.css
+|  |  |  |-- skottie-sk-demo.html
+|  |  |  |-- skottie-sk-demo.js
+|  |  |  |-- skottie-sk.js
+|  |  |  |-- skottie-sk.scss
+|  |  |  |-- test_gear.js
+|  |  |-- skottie-text-editor
+|  |  |  |-- index.js
+|  |  |  |-- skottie-text-editor.js
+|  |  |  |-- skottie-text-editor.scss
+|  |  |  |-- text-replace.js
+|  |-- pages
+|  |  |-- drive.html
+|  |  |-- drive.js
+|  |  |-- drive.scss
+|  |  |-- embed.html
+|  |  |-- embed.js
+|  |  |-- embed.scss
+|  |  |-- index.html
+|  |  |-- index.js
+|  |  |-- index.scss
+|  |  |-- inline.html
+|  |  |-- inline.js
+|  |-- probersk.json
+|  |-- skottie
+|  |  |-- Dockerfile
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- status
+|  |-- DESIGN.md
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- PROD.md
+|  |-- README.md
+|  |-- build_release
+|  |-- create-skia-status-internal-sa.sh
+|  |-- create-skia-status-sa.sh
+|  |-- go
+|  |  |-- capacity
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- capacity.go
+|  |  |-- incremental
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- comments.go
+|  |  |  |-- commits.go
+|  |  |  |-- commits_test.go
+|  |  |  |-- incremental.go
+|  |  |  |-- incremental_test.go
+|  |  |  |-- tasks.go
+|  |  |-- lkgr
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- lkgr.go
+|  |  |-- mocks
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- CapacityClient.go
+|  |  |  |-- IncrementalCache.go
+|  |  |  |-- generate.go
+|  |  |-- rpc
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- server_impl.go
+|  |  |  |-- server_impl_test.go
+|  |  |  |-- status.pb.go
+|  |  |  |-- status.proto
+|  |  |  |-- status.twirp.go
+|  |  |-- status
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |  |-- tasks_per_commit.go
+|  |-- karma.conf.ts
+|  |-- modules
+|  |  |-- autoroller-status-sk
+|  |  |  |-- autoroller-status-sk-demo.html
+|  |  |  |-- autoroller-status-sk-demo.ts
+|  |  |  |-- autoroller-status-sk.scss
+|  |  |  |-- autoroller-status-sk.ts
+|  |  |  |-- autoroller-status-sk_puppeteer_test.ts
+|  |  |  |-- autoroller-status-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- branches-sk
+|  |  |  |-- branches-sk-demo.html
+|  |  |  |-- branches-sk-demo.ts
+|  |  |  |-- branches-sk.scss
+|  |  |  |-- branches-sk.ts
+|  |  |  |-- branches-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- bugs-status-sk
+|  |  |  |-- bugs-status-sk-demo.html
+|  |  |  |-- bugs-status-sk-demo.ts
+|  |  |  |-- bugs-status-sk.scss
+|  |  |  |-- bugs-status-sk.ts
+|  |  |  |-- bugs-status-sk_puppeteer_test.ts
+|  |  |  |-- bugs-status-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- capacity-sk
+|  |  |  |-- capacity-sk-demo.html
+|  |  |  |-- capacity-sk-demo.ts
+|  |  |  |-- capacity-sk.scss
+|  |  |  |-- capacity-sk.ts
+|  |  |  |-- capacity-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test-data.ts
+|  |  |-- comments-sk
+|  |  |  |-- comments-sk-demo.html
+|  |  |  |-- comments-sk-demo.ts
+|  |  |  |-- comments-sk.scss
+|  |  |  |-- comments-sk.ts
+|  |  |  |-- comments-sk_puppeteer_test.ts
+|  |  |  |-- comments-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- commits-table-sk
+|  |  |  |-- commits-table-sk-demo.html
+|  |  |  |-- commits-table-sk-demo.ts
+|  |  |  |-- commits-table-sk.scss
+|  |  |  |-- commits-table-sk.ts
+|  |  |  |-- commits-table-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- details-dialog-sk
+|  |  |  |-- details-dialog-sk-demo.html
+|  |  |  |-- details-dialog-sk-demo.ts
+|  |  |  |-- details-dialog-sk.scss
+|  |  |  |-- details-dialog-sk.ts
+|  |  |  |-- details-dialog-sk_puppeteer_test.ts
+|  |  |  |-- details-dialog-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |-- gold-status-sk
+|  |  |  |-- gold-status-sk-demo.html
+|  |  |  |-- gold-status-sk-demo.ts
+|  |  |  |-- gold-status-sk.scss
+|  |  |  |-- gold-status-sk.ts
+|  |  |  |-- gold-status-sk_puppeteer_test.ts
+|  |  |  |-- gold-status-sk_test.ts
+|  |  |  |-- index.ts
+|  |  |-- navigation-sk
+|  |  |  |-- index.ts
+|  |  |  |-- navigation-sk-demo.html
+|  |  |  |-- navigation-sk-demo.ts
+|  |  |  |-- navigation-sk.scss
+|  |  |  |-- navigation-sk.ts
+|  |  |  |-- navigation-sk_puppeteer_test.ts
+|  |  |  |-- navigation-sk_test.ts
+|  |  |-- perf-status-sk
+|  |  |  |-- index.ts
+|  |  |  |-- perf-status-sk-demo.html
+|  |  |  |-- perf-status-sk-demo.ts
+|  |  |  |-- perf-status-sk.scss
+|  |  |  |-- perf-status-sk.ts
+|  |  |  |-- perf-status-sk_puppeteer_test.ts
+|  |  |  |-- perf-status-sk_test.ts
+|  |  |-- rotations-sk
+|  |  |  |-- index.ts
+|  |  |  |-- rotations-sk-demo.html
+|  |  |  |-- rotations-sk-demo.ts
+|  |  |  |-- rotations-sk.scss
+|  |  |  |-- rotations-sk.ts
+|  |  |  |-- rotations-sk_puppeteer_test.ts
+|  |  |  |-- rotations-sk_test.ts
+|  |  |-- rpc-mock
+|  |  |  |-- index.ts
+|  |  |  |-- mock_data.ts
+|  |  |  |-- test_data.ts
+|  |  |-- rpc
+|  |  |  |-- index.ts
+|  |  |  |-- status.ts
+|  |  |  |-- statusFe.ts
+|  |  |  |-- twirp.ts
+|  |  |-- settings.ts
+|  |  |-- status-sk
+|  |  |  |-- index.ts
+|  |  |  |-- status-sk-demo.html
+|  |  |  |-- status-sk-demo.ts
+|  |  |  |-- status-sk.scss
+|  |  |  |-- status-sk.ts
+|  |  |  |-- status-sk_puppeteer_test.ts
+|  |  |  |-- status-sk_test.ts
+|  |  |-- styles.scss
+|  |  |-- tree-status-sk
+|  |  |  |-- index.ts
+|  |  |  |-- test_data.ts
+|  |  |  |-- tree-status-sk-demo.html
+|  |  |  |-- tree-status-sk-demo.ts
+|  |  |  |-- tree-status-sk.scss
+|  |  |  |-- tree-status-sk.ts
+|  |  |  |-- tree-status-sk_puppeteer_test.ts
+|  |  |  |-- tree-status-sk_test.ts
+|  |-- pages
+|  |  |-- capacity.html
+|  |  |-- capacity.ts
+|  |  |-- status.html
+|  |  |-- status.ts
+|  |-- probersk.json
+|  |-- res
+|  |  |-- img
+|  |  |  |-- favicon-caution.ico
+|  |  |  |-- favicon-closed.ico
+|  |  |  |-- favicon-open.ico
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- switchboard
+|  |-- Makefile
+|  |-- README.md
+|  |-- create-switch-pod-sa.sh
+|  |-- go
+|  |  |-- kubeconfig
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- kubeconfig.go
+|  |  |  |-- kubeconfig.yaml
+|  |  |-- ncrev
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- revportforward
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- kubeconfig.yaml
+|  |  |  |-- main.go
+|  |  |-- switch-pod-monitor
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |  |-- main_test.go
+|  |-- images
+|  |  |-- switch-pod
+|  |  |  |-- Dockerfile
+|  |  |  |-- release
+|  |-- kubeconfig.yaml
+|-- task_driver
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- build_release
+|  |-- create-task-driver-server-sa.sh
+|  |-- examples
+|  |  |-- basic
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- basic.go
+|  |  |  |-- basic_test.go
+|  |  |-- file_stream
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- file_stream.go
+|  |  |  |-- write_logs.py
+|  |  |-- panic
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- panic.go
+|  |-- go
+|  |  |-- db
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- bigtable
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- bigtable.go
+|  |  |  |  |-- bigtable_test.go
+|  |  |  |-- db.go
+|  |  |  |-- memory
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- memory.go
+|  |  |  |  |-- memory_test.go
+|  |  |  |-- shared_tests
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- shared_tests.go
+|  |  |-- display
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- display.go
+|  |  |  |-- display_test.go
+|  |  |-- handlers
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- handlers.go
+|  |  |-- lib
+|  |  |  |-- auth_steps
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- auth_steps.go
+|  |  |  |-- bazel
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- bazel.go
+|  |  |  |-- checkout
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- checkout.go
+|  |  |  |  |-- checkout_test.go
+|  |  |  |-- dirs
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- dirs.go
+|  |  |  |-- docker
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- docker.go
+|  |  |  |  |-- docker_test.go
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- docker_mock
+|  |  |  |-- gerrit_steps
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- gerrit_steps.go
+|  |  |  |-- git_steps
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- git_steps.go
+|  |  |  |-- golang
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- golang.go
+|  |  |  |  |-- golang_test.go
+|  |  |  |-- log_parser
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- log_parser.go
+|  |  |  |  |-- log_parser_test.go
+|  |  |  |-- os_steps
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- os_steps.go
+|  |  |  |  |-- os_steps_test.go
+|  |  |  |-- rotations
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- rotations.go
+|  |  |-- logs
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- logs.go
+|  |  |-- retrieve-messages
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- retrieve-messages.go
+|  |  |-- task-driver-server
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- td
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- context.go
+|  |  |  |-- context_test.go
+|  |  |  |-- message.go
+|  |  |  |-- message_test.go
+|  |  |  |-- receiver.go
+|  |  |  |-- run.go
+|  |  |  |-- run_test.go
+|  |  |  |-- step.go
+|  |  |  |-- step_properties.go
+|  |  |  |-- step_test.go
+|  |  |  |-- testutil.go
+|  |  |-- ts
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |-- modules
+|  |  |-- json
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- index.ts
+|  |  |-- placeholder.txt
+|  |-- pages
+|  |  |-- task-driver-index.html
+|  |  |-- task-driver-index.js
+|  |-- setup-bigtable.sh
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- task_scheduler
+|  |-- Makefile
+|  |-- PROD.md
+|  |-- README.md
+|  |-- bucket-lifecycle-config.json
+|  |-- build_be_release
+|  |-- build_fe_release
+|  |-- build_jc_release
+|  |-- create-task-scheduler-internal-sa.sh
+|  |-- create-task-scheduler-sa.sh
+|  |-- go
+|  |  |-- cacher
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cacher.go
+|  |  |  |-- cacher_test.go
+|  |  |-- db
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cache
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- cache.go
+|  |  |  |  |-- cache_test.go
+|  |  |  |-- comments.go
+|  |  |  |-- db.go
+|  |  |  |-- delete_firestore
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- delete_firestore.go
+|  |  |  |-- firestore
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- comments.go
+|  |  |  |  |-- firestore.go
+|  |  |  |  |-- firestore_test.go
+|  |  |  |  |-- jobs.go
+|  |  |  |  |-- modified_chan.go
+|  |  |  |  |-- modified_chan_test.go
+|  |  |  |  |-- tasks.go
+|  |  |  |-- memory
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- comments.go
+|  |  |  |  |-- comments_test.go
+|  |  |  |  |-- memory.go
+|  |  |  |  |-- memory_test.go
+|  |  |  |  |-- modified_chan_test.go
+|  |  |  |-- modified_chan_testutil.go
+|  |  |  |-- search_test.go
+|  |  |  |-- testutil.go
+|  |  |  |-- validate_db
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |-- flakes
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- flakes.go
+|  |  |-- job_creation
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- job_creation.go
+|  |  |  |-- job_creation_test.go
+|  |  |-- mocks
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- RemoteDB.go
+|  |  |  |-- generate.go
+|  |  |-- parse_task_cfg
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|  |  |-- rpc
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- rpc.go
+|  |  |  |-- rpc.pb.go
+|  |  |  |-- rpc.proto
+|  |  |  |-- rpc.twirp.go
+|  |  |  |-- rpc_test.go
+|  |  |-- scheduling
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- busy_bots.go
+|  |  |  |-- busy_bots_test.go
+|  |  |  |-- cache_wrapper.go
+|  |  |  |-- perftest
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- perftest.go
+|  |  |  |-- task_candidate.go
+|  |  |  |-- task_candidate_test.go
+|  |  |  |-- task_scheduler.go
+|  |  |  |-- task_scheduler_test.go
+|  |  |-- skip_tasks
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- skip_tasks.go
+|  |  |  |-- skip_tasks_test.go
+|  |  |-- specs
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- cmd
+|  |  |  |  |-- validate-tasks-json
+|  |  |  |  |  |-- BUILD.bazel
+|  |  |  |  |  |-- main.go
+|  |  |  |-- helpers.go
+|  |  |  |-- specs.go
+|  |  |  |-- specs_test.go
+|  |  |-- syncer
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- syncer.go
+|  |  |  |-- syncer_manual_test.go
+|  |  |  |-- syncer_test.go
+|  |  |-- task-scheduler-be
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- Dockerfile
+|  |  |  |-- main.go
+|  |  |-- task-scheduler-fe
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- Dockerfile
+|  |  |  |-- main.go
+|  |  |-- task-scheduler-jc
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- Dockerfile
+|  |  |  |-- main.go
+|  |  |-- task_cfg_cache
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- task_cfg_cache.go
+|  |  |  |-- task_cfg_cache_test.go
+|  |  |  |-- testutils
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- testutils.go
+|  |  |-- task_execution
+|  |  |  |-- swarming
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- swarming.go
+|  |  |-- testutils
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- swarming_helpers.go
+|  |  |  |-- testutils.go
+|  |  |-- tryjobs
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- testutils.go
+|  |  |  |-- tryjobs.go
+|  |  |  |-- tryjobs_test.go
+|  |  |-- types
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- comments.go
+|  |  |  |-- comments_test.go
+|  |  |  |-- job.go
+|  |  |  |-- job_test.go
+|  |  |  |-- repo_state.go
+|  |  |  |-- repo_state_test.go
+|  |  |  |-- task.go
+|  |  |  |-- task_execution.go
+|  |  |  |-- task_test.go
+|  |  |  |-- testutil.go
+|  |  |  |-- types.go
+|  |  |-- window
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- window.go
+|  |  |  |-- window_test.go
+|  |-- karma.conf.ts
+|  |-- modules
+|  |  |-- colors.css
+|  |  |-- gantt-chart-sk
+|  |  |  |-- gantt-chart-sk-demo.html
+|  |  |  |-- gantt-chart-sk-demo.ts
+|  |  |  |-- gantt-chart-sk.scss
+|  |  |  |-- gantt-chart-sk.ts
+|  |  |  |-- gantt-chart-sk_puppeteer_test.ts
+|  |  |  |-- index.ts
+|  |  |-- job-search-sk
+|  |  |  |-- index.ts
+|  |  |  |-- job-search-sk-demo.html
+|  |  |  |-- job-search-sk-demo.ts
+|  |  |  |-- job-search-sk.scss
+|  |  |  |-- job-search-sk.ts
+|  |  |  |-- job-search-sk_puppeteer_test.ts
+|  |  |-- job-sk
+|  |  |  |-- index.ts
+|  |  |  |-- job-sk-demo.html
+|  |  |  |-- job-sk-demo.ts
+|  |  |  |-- job-sk.scss
+|  |  |  |-- job-sk.ts
+|  |  |  |-- job-sk_puppeteer_test.ts
+|  |  |-- job-timeline-sk
+|  |  |  |-- index.ts
+|  |  |  |-- job-timeline-sk-demo.html
+|  |  |  |-- job-timeline-sk-demo.ts
+|  |  |  |-- job-timeline-sk.scss
+|  |  |  |-- job-timeline-sk.ts
+|  |  |  |-- job-timeline-sk_puppeteer_test.ts
+|  |  |-- job-trigger-sk
+|  |  |  |-- index.ts
+|  |  |  |-- job-trigger-sk-demo.html
+|  |  |  |-- job-trigger-sk-demo.ts
+|  |  |  |-- job-trigger-sk.scss
+|  |  |  |-- job-trigger-sk.ts
+|  |  |  |-- job-trigger-sk_puppeteer_test.ts
+|  |  |-- rpc-mock
+|  |  |  |-- fake-data.ts
+|  |  |  |-- index.ts
+|  |  |-- rpc
+|  |  |  |-- index.ts
+|  |  |  |-- rpc.ts
+|  |  |  |-- twirp.ts
+|  |  |-- skip-tasks-sk
+|  |  |  |-- index.ts
+|  |  |  |-- skip-tasks-sk-demo.html
+|  |  |  |-- skip-tasks-sk-demo.ts
+|  |  |  |-- skip-tasks-sk.scss
+|  |  |  |-- skip-tasks-sk.ts
+|  |  |  |-- skip-tasks-sk_puppeteer_test.ts
+|  |  |-- task-graph-sk
+|  |  |  |-- index.ts
+|  |  |  |-- task-graph-sk-demo.html
+|  |  |  |-- task-graph-sk-demo.ts
+|  |  |  |-- task-graph-sk.scss
+|  |  |  |-- task-graph-sk.ts
+|  |  |  |-- task-graph-sk_puppeteer_test.ts
+|  |  |  |-- task-graph-sk_test.ts
+|  |  |-- task-scheduler-scaffold-sk
+|  |  |  |-- index.ts
+|  |  |  |-- task-scheduler-scaffold-sk-demo.html
+|  |  |  |-- task-scheduler-scaffold-sk-demo.ts
+|  |  |  |-- task-scheduler-scaffold-sk.scss
+|  |  |  |-- task-scheduler-scaffold-sk.ts
+|  |  |  |-- task-scheduler-scaffold-sk_puppeteer_test.ts
+|  |  |-- task-sk
+|  |  |  |-- index.ts
+|  |  |  |-- task-sk-demo.html
+|  |  |  |-- task-sk-demo.ts
+|  |  |  |-- task-sk.scss
+|  |  |  |-- task-sk.ts
+|  |  |  |-- task-sk_puppeteer_test.ts
+|  |-- pages
+|  |  |-- index.html
+|  |  |-- index.ts
+|  |  |-- job.html
+|  |  |-- job.ts
+|  |  |-- job_search.html
+|  |  |-- job_search.ts
+|  |  |-- job_timeline.html
+|  |  |-- job_timeline.ts
+|  |  |-- job_trigger.html
+|  |  |-- job_trigger.ts
+|  |  |-- skip_tasks.html
+|  |  |-- skip_tasks.ts
+|  |  |-- task.html
+|  |  |-- task.ts
+|  |-- probersk.json
+|  |-- res
+|  |  |-- img
+|  |  |  |-- favicon.ico
+|  |-- setup-bigtable.sh
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- tools.go
+|-- tools
+|  |-- README
+|  |-- create_page_set.py
+|  |-- go_build_all_platforms.sh
+|  |-- go_build_and_upload_all_platforms.sh
+|  |-- page_sets
+|  |  |-- README
+|-- tree_status
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- build_tree_status_release
+|  |-- create-tree-status-sa.sh
+|  |-- go
+|  |  |-- tree_status
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- autorollers.go
+|  |  |  |-- main.go
+|  |  |  |-- status.go
+|  |  |-- types
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- ts
+|  |  |  |  |-- BUILD.bazel
+|  |  |  |  |-- main.go
+|  |  |  |-- types.go
+|  |-- images
+|  |  |-- favicon.ico
+|  |-- modules
+|  |  |-- colors.css
+|  |  |-- display-tree-status-sk
+|  |  |  |-- display-tree-status-sk.scss
+|  |  |  |-- display-tree-status-sk.ts
+|  |  |  |-- index.ts
+|  |  |-- enter-tree-status-sk
+|  |  |  |-- enter-tree-status-sk.scss
+|  |  |  |-- enter-tree-status-sk.ts
+|  |  |  |-- index.ts
+|  |  |-- json
+|  |  |  |-- index.ts
+|  |  |-- list-autorollers-sk
+|  |  |  |-- index.ts
+|  |  |  |-- list-autorollers-sk.scss
+|  |  |  |-- list-autorollers-sk.ts
+|  |  |-- tree-scaffold-sk
+|  |  |  |-- index.ts
+|  |  |  |-- tree-scaffold-sk.scss
+|  |  |  |-- tree-scaffold-sk.ts
+|  |  |-- tree-status-sk
+|  |  |  |-- index.ts
+|  |  |  |-- tree-status-sk.scss
+|  |  |  |-- tree-status-sk.ts
+|  |-- pages
+|  |  |-- index.html
+|  |  |-- index.scss
+|  |  |-- index.ts
+|  |-- tsconfig.json
+|  |-- webpack.config.ts
+|-- trybot_updater
+|  |-- Dockerfile
+|  |-- Makefile
+|  |-- bin
+|  |  |-- create-trybot-updater-sa.sh
+|  |-- build_release
+|  |-- go
+|  |  |-- trybot-updater
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- main.go
+|-- tsconfig.json
+|-- velero
+|  |-- PROD.md
+|  |-- README.md
+|  |-- config.sh
+|  |-- create-schedule.sh
+|  |-- create-velero-backup-sa.sh
+|  |-- install-velero-corp.sh
+|  |-- install-velero.sh
+|-- whitespace.txt

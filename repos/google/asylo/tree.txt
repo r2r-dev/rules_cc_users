@@ -1,0 +1,1414 @@
+|-- .bazelrc
+|-- AUTHORS
+|-- CONTRIBUTING.md
+|-- Doxyfile
+|-- INSTALL.md
+|-- LICENSE
+|-- README.md
+|-- SECURITY.md
+|-- WORKSPACE
+|-- asylo
+|  |-- BUILD
+|  |-- bazel
+|  |  |-- BUILD
+|  |  |-- application_wrapper
+|  |  |  |-- BUILD
+|  |  |  |-- application_wrapper.proto
+|  |  |  |-- application_wrapper_driver.cc
+|  |  |  |-- application_wrapper_driver_main.cc
+|  |  |  |-- application_wrapper_driver_main.h
+|  |  |  |-- application_wrapper_driver_main_test.cc
+|  |  |  |-- application_wrapper_enclave.cc
+|  |  |  |-- application_wrapper_enclave_test.cc
+|  |  |  |-- application_wrapper_end_to_end_sgx_sim_test.sh
+|  |  |  |-- argv.cc
+|  |  |  |-- argv.h
+|  |  |  |-- argv_test.cc
+|  |  |  |-- default_config.cc
+|  |  |  |-- test_application.cc
+|  |  |  |-- test_config.cc
+|  |  |-- asylo.bzl
+|  |  |-- asylo_copy_from_host.bzl
+|  |  |-- asylo_deps.bzl
+|  |  |-- asylo_internal.bzl
+|  |  |-- asylo_transitions.bzl
+|  |  |-- copts.bzl
+|  |  |-- dlopen_enclave.bzl
+|  |  |-- embed_enclaves_test.sh
+|  |  |-- gtest_test.cc
+|  |  |-- installation_path.bzl
+|  |  |-- java_deps.bzl
+|  |  |-- remote_deps.bzl
+|  |  |-- sgx_deps.bzl
+|  |  |-- sgx_rules.bzl
+|  |  |-- test_shim_enclave.cc
+|  |  |-- test_shim_enclave.proto
+|  |  |-- test_shim_loader.cc
+|  |-- binding
+|  |  |-- java
+|  |  |  |-- src
+|  |  |  |  |-- main
+|  |  |  |  |  |-- java
+|  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |-- asylo
+|  |  |  |  |  |  |  |  |-- client
+|  |  |  |  |  |  |  |  |  |-- AutoCloseablePointer.java
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- EnclaveClient.java
+|  |  |  |  |  |  |  |  |  |-- EnclaveException.java
+|  |  |  |  |  |  |  |  |  |-- EnclaveManager.java
+|  |  |  |  |  |-- native
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- enclave_client.cc
+|  |  |  |  |  |  |-- enclave_client.h
+|  |  |  |  |  |  |-- enclave_manager.cc
+|  |  |  |  |  |  |-- enclave_manager.h
+|  |  |  |  |  |  |-- jni_utils.cc
+|  |  |  |  |  |  |-- jni_utils.h
+|  |  |  |  |-- test
+|  |  |  |  |  |-- java
+|  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |-- asylo
+|  |  |  |  |  |  |  |  |-- client
+|  |  |  |  |  |  |  |  |  |-- AllTests.java
+|  |  |  |  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |  |  |  |-- EnclaveClientTest.java
+|  |  |  |  |  |  |  |  |  |-- EnclaveManagerTest.java
+|  |  |  |  |  |  |  |  |  |-- EnclaveNativeJniUtilsTest.java
+|  |  |  |  |  |  |  |  |  |-- jni_utils_test.proto
+|  |  |  |  |  |-- native
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- enclave_native_jni_utils_tests.cc
+|  |  |  |  |  |  |-- enclave_native_jni_utils_tests.h
+|  |-- client.h
+|  |-- crypto
+|  |  |-- BUILD
+|  |  |-- aead_cryptor.cc
+|  |  |-- aead_cryptor.h
+|  |  |-- aead_cryptor_test.cc
+|  |  |-- aead_key.cc
+|  |  |-- aead_key.h
+|  |  |-- aead_key_test.cc
+|  |  |-- aead_test_vector.cc
+|  |  |-- aead_test_vector.h
+|  |  |-- algorithms.proto
+|  |  |-- asn1.cc
+|  |  |-- asn1.h
+|  |  |-- asn1_schema.cc
+|  |  |-- asn1_schema.h
+|  |  |-- asn1_schema_test.cc
+|  |  |-- asn1_test.cc
+|  |  |-- asymmetric_encryption_key.cc
+|  |  |-- asymmetric_encryption_key.h
+|  |  |-- asymmetric_encryption_key_test.cc
+|  |  |-- bignum_util.cc
+|  |  |-- bignum_util.h
+|  |  |-- bignum_util_test.cc
+|  |  |-- certificate.proto
+|  |  |-- certificate_interface.h
+|  |  |-- certificate_util.cc
+|  |  |-- certificate_util.h
+|  |  |-- certificate_util_test.cc
+|  |  |-- ecdsa_p256_sha256_signing_key.h
+|  |  |-- ecdsa_p256_sha256_signing_key_test.cc
+|  |  |-- ecdsa_p384_sha384_signing_key.h
+|  |  |-- ecdsa_p384_sha384_signing_key_test.cc
+|  |  |-- ecdsa_signing_key.cc
+|  |  |-- ecdsa_signing_key.h
+|  |  |-- ecdsa_signing_key_test.h
+|  |  |-- fake_certificate.cc
+|  |  |-- fake_certificate.h
+|  |  |-- fake_certificate.proto
+|  |  |-- fake_certificate_test.cc
+|  |  |-- fake_signing_key.cc
+|  |  |-- fake_signing_key.h
+|  |  |-- fake_signing_key_test.cc
+|  |  |-- hash_interface.h
+|  |  |-- keys.proto
+|  |  |-- nonce_generator.h
+|  |  |-- nonce_generator_interface.h
+|  |  |-- random_nonce_generator.cc
+|  |  |-- random_nonce_generator.h
+|  |  |-- random_nonce_generator_test.cc
+|  |  |-- rsa_oaep_encryption_key.cc
+|  |  |-- rsa_oaep_encryption_key.h
+|  |  |-- rsa_oaep_encryption_key_test.cc
+|  |  |-- rsa_x509_signer.cc
+|  |  |-- rsa_x509_signer.h
+|  |  |-- rsa_x509_signer_test.cc
+|  |  |-- sha256_hash.h
+|  |  |-- sha256_hash.proto
+|  |  |-- sha256_hash_test.cc
+|  |  |-- sha256_hash_util.cc
+|  |  |-- sha256_hash_util.h
+|  |  |-- sha256_hash_util_test.cc
+|  |  |-- sha384_hash.h
+|  |  |-- sha384_hash_test.cc
+|  |  |-- sha_hash.h
+|  |  |-- sha_hash_test.h
+|  |  |-- signing_key.cc
+|  |  |-- signing_key.h
+|  |  |-- util
+|  |  |  |-- BUILD
+|  |  |  |-- bssl_util.cc
+|  |  |  |-- bssl_util.h
+|  |  |  |-- byte_container_reader.h
+|  |  |  |-- byte_container_reader_test.cc
+|  |  |  |-- byte_container_util.h
+|  |  |  |-- byte_container_util_internal.h
+|  |  |  |-- byte_container_util_test.cc
+|  |  |  |-- byte_container_view.h
+|  |  |  |-- byte_container_view_internal.h
+|  |  |  |-- byte_container_view_test.cc
+|  |  |  |-- bytes.h
+|  |  |  |-- bytes_test.cc
+|  |  |  |-- trivial_object_util.h
+|  |  |  |-- trivial_object_util_test.cc
+|  |  |-- x509_certificate.cc
+|  |  |-- x509_certificate.h
+|  |  |-- x509_certificate_test.cc
+|  |  |-- x509_signer.h
+|  |-- daemon
+|  |  |-- identity
+|  |  |  |-- BUILD
+|  |  |  |-- attestation_domain.cc
+|  |  |  |-- attestation_domain.h
+|  |  |  |-- attestation_domain_test.cc
+|  |-- distrib
+|  |  |-- BUILD
+|  |  |-- backend
+|  |  |  |-- BUILD
+|  |  |  |-- BUILD.tpl
+|  |  |  |-- README.md
+|  |  |  |-- WORKSPACE.tpl
+|  |  |  |-- empty.txt
+|  |  |  |-- enclave_info.bzl.tpl
+|  |  |  |-- tools
+|  |  |  |  |-- allowlists
+|  |  |  |  |  |-- function_transition_allowlist
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- BUILD.tpl
+|  |  |  |-- transitions.bzl.tpl
+|  |  |  |-- true.c
+|  |  |-- grpc_1_37_1.patch
+|  |  |-- redis.BUILD
+|  |  |-- sgx_dcap_1_5.patch
+|  |  |-- sgx_x86_64
+|  |  |  |-- BUILD
+|  |  |  |-- enclave_test_pem.patch
+|  |  |  |-- linux_sgx_2_9.patch
+|  |  |-- sqlite.BUILD
+|  |  |-- toolchain
+|  |  |  |-- BUILD.tpl
+|  |  |  |-- Dockerfile
+|  |  |  |-- README.md
+|  |  |  |-- binutils-lvi.patch
+|  |  |  |-- crosstool.bzl
+|  |  |  |-- install-toolchain
+|  |  |  |-- newlib-4.1.0.patch
+|  |  |  |-- objcopy-alignment.patch
+|  |-- docs
+|  |  |-- BUILD
+|  |  |-- assets
+|  |  |  |-- doxygen_footer.html
+|  |  |  |-- doxygen_header.html
+|  |  |-- bzl_function.vm
+|  |  |-- linux_sgx
+|  |  |  |-- BUILD
+|  |-- enclave.proto
+|  |-- enclave_manager.h
+|  |-- examples
+|  |  |-- grpc_server
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- grpc_server_config.proto
+|  |  |  |-- grpc_server_driver.cc
+|  |  |  |-- grpc_server_enclave.cc
+|  |  |  |-- grpc_server_test.cc
+|  |  |  |-- grpc_server_util.cc
+|  |  |  |-- grpc_server_util.h
+|  |  |  |-- translator_client.cc
+|  |  |  |-- translator_client.h
+|  |  |  |-- translator_server.proto
+|  |  |  |-- translator_server_impl.cc
+|  |  |  |-- translator_server_impl.h
+|  |  |-- hello_world
+|  |  |  |-- BUILD
+|  |  |  |-- hello.proto
+|  |  |  |-- hello_driver.cc
+|  |  |  |-- hello_enclave.cc
+|  |  |-- java
+|  |  |  |-- quickstart_client
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- src
+|  |  |  |  |  |-- main
+|  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |  |-- example
+|  |  |  |  |  |  |  |  |  |-- DemoDriver.java
+|  |  |-- quickstart
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- demo.proto
+|  |  |  |-- demo_driver.cc
+|  |  |  |-- demo_enclave.cc
+|  |  |  |-- solution
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- demo.proto
+|  |  |  |  |-- demo_driver.cc
+|  |  |  |  |-- demo_enclave.cc
+|  |  |-- redis
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- redis_enclave_config.cc
+|  |  |  |-- redis_test.cc
+|  |  |-- remote
+|  |  |  |-- bouncing_circles
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- build.sh
+|  |  |  |  |-- circle_client.cc
+|  |  |  |  |-- circle_client.h
+|  |  |  |  |-- circle_enclave.cc
+|  |  |  |  |-- circles.proto
+|  |  |  |  |-- web_application.cc
+|  |  |  |  |-- web_server.cc
+|  |  |  |  |-- web_server.h
+|  |  |  |  |-- web_server_test.cc
+|  |  |  |-- grpc_server
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- grpc_server_driver.cc
+|  |  |  |-- provision_server
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- base64_server_cert
+|  |  |  |  |-- base64_server_key
+|  |  |  |  |-- build.sh
+|  |  |  |-- quickstart
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- build.sh
+|  |  |  |  |-- demo.proto
+|  |  |  |  |-- demo_driver.cc
+|  |  |  |  |-- demo_enclave.cc
+|  |  |  |  |-- demo_enclave_remote_test.cc
+|  |  |-- secure_grpc
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- acl_isvprodid_2.textproto
+|  |  |  |-- acl_isvprodid_3.textproto
+|  |  |  |-- acl_non_debug.textproto
+|  |  |  |-- attestation_domain.cc
+|  |  |  |-- attestation_domain.h
+|  |  |  |-- grpc_client_enclave.cc
+|  |  |  |-- grpc_client_enclave.h
+|  |  |  |-- grpc_client_enclave.proto
+|  |  |  |-- grpc_client_main.cc
+|  |  |  |-- grpc_client_util.cc
+|  |  |  |-- grpc_client_util.h
+|  |  |  |-- grpc_server_config.proto
+|  |  |  |-- grpc_server_enclave.cc
+|  |  |  |-- grpc_server_main.cc
+|  |  |  |-- grpc_server_util.cc
+|  |  |  |-- grpc_server_util.h
+|  |  |  |-- secure_grpc_test.cc
+|  |  |  |-- translator_server_impl.cc
+|  |  |  |-- translator_server_impl.h
+|  |  |-- sgx_release_enclaves
+|  |  |  |-- README.md
+|  |  |-- sqlite
+|  |  |  |-- README.md
+|  |-- grpc
+|  |  |-- auth
+|  |  |  |-- BUILD
+|  |  |  |-- core
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- client_ekep_handshaker.cc
+|  |  |  |  |-- client_ekep_handshaker.h
+|  |  |  |  |-- ekep_crypto.cc
+|  |  |  |  |-- ekep_crypto.h
+|  |  |  |  |-- ekep_crypto_test.cc
+|  |  |  |  |-- ekep_error_matchers.cc
+|  |  |  |  |-- ekep_error_matchers.h
+|  |  |  |  |-- ekep_errors.cc
+|  |  |  |  |-- ekep_errors.h
+|  |  |  |  |-- ekep_errors_test.cc
+|  |  |  |  |-- ekep_handshaker.cc
+|  |  |  |  |-- ekep_handshaker.h
+|  |  |  |  |-- ekep_handshaker_util.cc
+|  |  |  |  |-- ekep_handshaker_util.h
+|  |  |  |  |-- ekep_handshaker_util_test.cc
+|  |  |  |  |-- enclave_credentials.cc
+|  |  |  |  |-- enclave_credentials.h
+|  |  |  |  |-- enclave_grpc_security_constants.h
+|  |  |  |  |-- enclave_security_connector.cc
+|  |  |  |  |-- enclave_security_connector.h
+|  |  |  |  |-- enclave_transport_security.cc
+|  |  |  |  |-- enclave_transport_security.h
+|  |  |  |  |-- handshake.proto
+|  |  |  |  |-- server_ekep_handshaker.cc
+|  |  |  |  |-- server_ekep_handshaker.h
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- generate_test_vectors_test.go
+|  |  |  |  |-- transcript.cc
+|  |  |  |  |-- transcript.h
+|  |  |  |  |-- transcript_test.cc
+|  |  |  |-- enclave_auth_context.cc
+|  |  |  |-- enclave_auth_context.h
+|  |  |  |-- enclave_auth_context_test.cc
+|  |  |  |-- enclave_channel_credentials.cc
+|  |  |  |-- enclave_channel_credentials.h
+|  |  |  |-- enclave_credentials_options.cc
+|  |  |  |-- enclave_credentials_options.h
+|  |  |  |-- enclave_credentials_options_test.cc
+|  |  |  |-- enclave_server_credentials.cc
+|  |  |  |-- enclave_server_credentials.h
+|  |  |  |-- null_credentials_options.cc
+|  |  |  |-- null_credentials_options.h
+|  |  |  |-- peer_sgx_age_remote_credentials_options.cc
+|  |  |  |-- peer_sgx_age_remote_credentials_options.h
+|  |  |  |-- sgx_age_remote_credentials_options.cc
+|  |  |  |-- sgx_age_remote_credentials_options.h
+|  |  |  |-- sgx_local_credentials_options.cc
+|  |  |  |-- sgx_local_credentials_options.h
+|  |  |  |-- test
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- end2end_test.sh
+|  |  |  |  |-- generate_end2end_tests.bzl
+|  |  |  |  |-- h2_enclave_security_test.cc
+|  |  |  |  |-- mock_enclave_auth_context.h
+|  |  |  |-- util
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- multi_buffer_input_stream.cc
+|  |  |  |  |-- multi_buffer_input_stream.h
+|  |  |-- util
+|  |  |  |-- BUILD
+|  |  |  |-- enclave_server.h
+|  |  |  |-- enclave_server.proto
+|  |  |  |-- grpc_server_launcher.cc
+|  |  |  |-- grpc_server_launcher.h
+|  |  |  |-- grpc_server_launcher_test.cc
+|  |-- identity
+|  |  |-- BUILD
+|  |  |-- additional_authenticated_data_generator.cc
+|  |  |-- additional_authenticated_data_generator.h
+|  |  |-- additional_authenticated_data_generator_test.cc
+|  |  |-- assertion_description_util.cc
+|  |  |-- assertion_description_util.h
+|  |  |-- assertion_description_util_test.cc
+|  |  |-- attestation
+|  |  |  |-- BUILD
+|  |  |  |-- enclave_assertion_generator.h
+|  |  |  |-- enclave_assertion_verifier.h
+|  |  |  |-- null
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- internal
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- null_assertion.proto
+|  |  |  |  |  |-- null_identity_constants.cc
+|  |  |  |  |  |-- null_identity_constants.h
+|  |  |  |  |-- null_assertion_authority_test.cc
+|  |  |  |  |-- null_assertion_generator.cc
+|  |  |  |  |-- null_assertion_generator.h
+|  |  |  |  |-- null_assertion_verifier.cc
+|  |  |  |  |-- null_assertion_verifier.h
+|  |  |  |  |-- null_identity_expectation_matcher.cc
+|  |  |  |  |-- null_identity_expectation_matcher.h
+|  |  |  |  |-- null_identity_expectation_matcher_test.cc
+|  |  |  |  |-- null_identity_util.cc
+|  |  |  |  |-- null_identity_util.h
+|  |  |  |  |-- null_identity_util_test.cc
+|  |  |  |-- sgx
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- age_main.cc
+|  |  |  |  |-- age_main_test.cc
+|  |  |  |  |-- internal
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- attestation_key.proto
+|  |  |  |  |  |-- attestation_key_certificate.proto
+|  |  |  |  |  |-- attestation_key_certificate_impl.cc
+|  |  |  |  |  |-- attestation_key_certificate_impl.h
+|  |  |  |  |  |-- attestation_key_certificate_impl_test.cc
+|  |  |  |  |  |-- certificate_util.cc
+|  |  |  |  |  |-- certificate_util.h
+|  |  |  |  |  |-- dcap_intel_architectural_enclave_interface.cc
+|  |  |  |  |  |-- dcap_intel_architectural_enclave_interface.h
+|  |  |  |  |  |-- dcap_intel_architectural_enclave_interface_e2e_test.cc
+|  |  |  |  |  |-- dcap_intel_architectural_enclave_interface_test.cc
+|  |  |  |  |  |-- dcap_intel_architectural_enclave_path_setter.cc
+|  |  |  |  |  |-- dcap_intel_architectural_enclave_path_setter.h
+|  |  |  |  |  |-- dcap_library_interface.h
+|  |  |  |  |  |-- enclave_dcap_library_interface.cc
+|  |  |  |  |  |-- enclave_dcap_library_interface.h
+|  |  |  |  |  |-- fake_pce.cc
+|  |  |  |  |  |-- fake_pce.h
+|  |  |  |  |  |-- fake_pce_test.cc
+|  |  |  |  |  |-- host_dcap_library_interface.cc
+|  |  |  |  |  |-- host_dcap_library_interface.h
+|  |  |  |  |  |-- intel_architectural_enclave_interface.h
+|  |  |  |  |  |-- intel_certs
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- intel_sgx_root_ca_cert.cc
+|  |  |  |  |  |  |-- intel_sgx_root_ca_cert.h
+|  |  |  |  |  |  |-- intel_sgx_root_ca_cert_test.cc
+|  |  |  |  |  |  |-- qe_identity.cc
+|  |  |  |  |  |  |-- qe_identity.h
+|  |  |  |  |  |-- intel_ecdsa_quote.cc
+|  |  |  |  |  |-- intel_ecdsa_quote.h
+|  |  |  |  |  |-- intel_ecdsa_quote_test.cc
+|  |  |  |  |  |-- local_assertion.proto
+|  |  |  |  |  |-- mock_intel_architectural_enclave_interface.h
+|  |  |  |  |  |-- mock_sgx_infrastructural_enclave_manager.h
+|  |  |  |  |  |-- pce_util.cc
+|  |  |  |  |  |-- pce_util.h
+|  |  |  |  |  |-- pce_util_test.cc
+|  |  |  |  |  |-- remote_assertion.proto
+|  |  |  |  |  |-- remote_assertion_generator_constants.cc
+|  |  |  |  |  |-- remote_assertion_generator_constants.h
+|  |  |  |  |  |-- remote_assertion_generator_enclave.cc
+|  |  |  |  |  |-- remote_assertion_generator_enclave.h
+|  |  |  |  |  |-- remote_assertion_generator_enclave.proto
+|  |  |  |  |  |-- remote_assertion_generator_enclave_test.cc
+|  |  |  |  |  |-- remote_assertion_generator_enclave_util.cc
+|  |  |  |  |  |-- remote_assertion_generator_enclave_util.h
+|  |  |  |  |  |-- remote_assertion_generator_enclave_util_test.cc
+|  |  |  |  |  |-- remote_assertion_generator_test_util_enclave.cc
+|  |  |  |  |  |-- remote_assertion_generator_test_util_enclave.proto
+|  |  |  |  |  |-- remote_assertion_util.cc
+|  |  |  |  |  |-- remote_assertion_util.h
+|  |  |  |  |  |-- remote_assertion_util_test.cc
+|  |  |  |  |  |-- report_oracle_enclave.cc
+|  |  |  |  |  |-- report_oracle_enclave.proto
+|  |  |  |  |  |-- report_oracle_enclave_wrapper.cc
+|  |  |  |  |  |-- report_oracle_enclave_wrapper.h
+|  |  |  |  |  |-- report_oracle_enclave_wrapper_test.cc
+|  |  |  |  |  |-- sgx_infrastructural_enclave_manager.cc
+|  |  |  |  |  |-- sgx_infrastructural_enclave_manager.h
+|  |  |  |  |  |-- sgx_infrastructural_enclave_manager_test.cc
+|  |  |  |  |  |-- sgx_remote_assertion_generator.proto
+|  |  |  |  |  |-- sgx_remote_assertion_generator_client.cc
+|  |  |  |  |  |-- sgx_remote_assertion_generator_client.h
+|  |  |  |  |  |-- sgx_remote_assertion_generator_client_test.cc
+|  |  |  |  |  |-- sgx_remote_assertion_generator_impl.cc
+|  |  |  |  |  |-- sgx_remote_assertion_generator_impl.h
+|  |  |  |  |  |-- sgx_remote_assertion_generator_impl_test.cc
+|  |  |  |  |-- sgx_age_remote_assertion_authority_config.proto
+|  |  |  |  |-- sgx_age_remote_assertion_generator.cc
+|  |  |  |  |-- sgx_age_remote_assertion_generator.h
+|  |  |  |  |-- sgx_age_remote_assertion_generator_test.cc
+|  |  |  |  |-- sgx_age_remote_assertion_verifier.cc
+|  |  |  |  |-- sgx_age_remote_assertion_verifier.h
+|  |  |  |  |-- sgx_age_remote_assertion_verifier_test.cc
+|  |  |  |  |-- sgx_intel_ecdsa_qe_remote_assertion_authority_config.proto
+|  |  |  |  |-- sgx_intel_ecdsa_qe_remote_assertion_e2e_test.cc
+|  |  |  |  |-- sgx_intel_ecdsa_qe_remote_assertion_generator.cc
+|  |  |  |  |-- sgx_intel_ecdsa_qe_remote_assertion_generator.h
+|  |  |  |  |-- sgx_intel_ecdsa_qe_remote_assertion_generator_test.cc
+|  |  |  |  |-- sgx_intel_ecdsa_qe_remote_assertion_verifier.cc
+|  |  |  |  |-- sgx_intel_ecdsa_qe_remote_assertion_verifier.h
+|  |  |  |  |-- sgx_intel_ecdsa_qe_remote_assertion_verifier_test.cc
+|  |  |  |  |-- sgx_local_assertion_authority_config.proto
+|  |  |  |  |-- sgx_local_assertion_authority_test.cc
+|  |  |  |  |-- sgx_local_assertion_generator.cc
+|  |  |  |  |-- sgx_local_assertion_generator.h
+|  |  |  |  |-- sgx_local_assertion_generator_test.cc
+|  |  |  |  |-- sgx_local_assertion_verifier.cc
+|  |  |  |  |-- sgx_local_assertion_verifier.h
+|  |  |  |  |-- sgx_local_assertion_verifier_test.cc
+|  |  |  |  |-- sgx_remote_assertion_generator_test_enclave.cc
+|  |  |  |  |-- sgx_remote_assertion_generator_test_enclave.proto
+|  |  |  |  |-- sgx_remote_assertion_generator_test_enclave_wrapper.cc
+|  |  |  |  |-- sgx_remote_assertion_generator_test_enclave_wrapper.h
+|  |  |-- delegating_identity_expectation_matcher.cc
+|  |  |-- delegating_identity_expectation_matcher.h
+|  |  |-- descriptions.h
+|  |  |-- enclave_assertion_authority.h
+|  |  |-- enclave_assertion_authority_config.proto
+|  |  |-- enclave_assertion_authority_config_verifiers.cc
+|  |  |-- enclave_assertion_authority_config_verifiers.h
+|  |  |-- enclave_assertion_authority_config_verifiers_test.cc
+|  |  |-- enclave_assertion_authority_configs.cc
+|  |  |-- enclave_assertion_authority_configs.h
+|  |  |-- enclave_assertion_authority_configs_test.cc
+|  |  |-- identity.proto
+|  |  |-- identity_acl.proto
+|  |  |-- identity_acl_evaluator.cc
+|  |  |-- identity_acl_evaluator.h
+|  |  |-- identity_expectation_matcher.h
+|  |  |-- identity_expectation_matcher_test.cc
+|  |  |-- init.cc
+|  |  |-- init.h
+|  |  |-- init_internal.h
+|  |  |-- init_test.cc
+|  |  |-- named_identity_expectation_matcher.cc
+|  |  |-- named_identity_expectation_matcher.h
+|  |  |-- platform
+|  |  |  |-- sgx
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- architecture_bits.cc
+|  |  |  |  |-- architecture_bits.h
+|  |  |  |  |-- architecture_bits_test.cc
+|  |  |  |  |-- attributes.proto
+|  |  |  |  |-- attributes_util.cc
+|  |  |  |  |-- attributes_util.h
+|  |  |  |  |-- attributes_util_test.cc
+|  |  |  |  |-- code_identity.proto
+|  |  |  |  |-- internal
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- code_identity_constants.cc
+|  |  |  |  |  |-- code_identity_constants.h
+|  |  |  |  |  |-- fake_enclave.cc
+|  |  |  |  |  |-- fake_enclave.h
+|  |  |  |  |  |-- fake_hardware_interface.cc
+|  |  |  |  |  |-- fake_hardware_interface_test.cc
+|  |  |  |  |  |-- fake_self_identity.cc
+|  |  |  |  |  |-- hardware_interface.h
+|  |  |  |  |  |-- identity_key_management_structs.h
+|  |  |  |  |  |-- mock_hardware_interface.h
+|  |  |  |  |  |-- ppid_ek.cc
+|  |  |  |  |  |-- ppid_ek.h
+|  |  |  |  |  |-- ppid_ek_test.cc
+|  |  |  |  |  |-- proto_format.cc
+|  |  |  |  |  |-- proto_format.h
+|  |  |  |  |  |-- proto_format_test.cc
+|  |  |  |  |  |-- real_hardware_interface.cc
+|  |  |  |  |  |-- secs_attributes.cc
+|  |  |  |  |  |-- secs_attributes.h
+|  |  |  |  |  |-- secs_attributes_test.cc
+|  |  |  |  |  |-- self_identity.cc
+|  |  |  |  |  |-- self_identity.h
+|  |  |  |  |  |-- self_identity_internal.h
+|  |  |  |  |  |-- sgx_identity_test_util.cc
+|  |  |  |  |  |-- sgx_identity_test_util.h
+|  |  |  |  |  |-- sgx_identity_util_internal.cc
+|  |  |  |  |  |-- sgx_identity_util_internal.h
+|  |  |  |  |  |-- sgx_identity_util_internal_test.cc
+|  |  |  |  |  |-- verify_hardware_report_test.cc
+|  |  |  |  |-- machine_configuration.proto
+|  |  |  |  |-- miscselect.proto
+|  |  |  |  |-- miscselect_util.cc
+|  |  |  |  |-- miscselect_util.h
+|  |  |  |  |-- miscselect_util_test.cc
+|  |  |  |  |-- sgx_identity.proto
+|  |  |  |  |-- sgx_identity_expectation_matcher.cc
+|  |  |  |  |-- sgx_identity_expectation_matcher.h
+|  |  |  |  |-- sgx_identity_expectation_matcher_test.cc
+|  |  |  |  |-- sgx_identity_util.cc
+|  |  |  |  |-- sgx_identity_util.h
+|  |  |  |  |-- sgx_identity_util_test.cc
+|  |  |-- provisioning
+|  |  |  |-- sgx
+|  |  |  |  |-- internal
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- container_util.h
+|  |  |  |  |  |-- container_util_test.cc
+|  |  |  |  |  |-- fake_sgx_pcs_client.cc
+|  |  |  |  |  |-- fake_sgx_pcs_client.h
+|  |  |  |  |  |-- fake_sgx_pcs_client_test.cc
+|  |  |  |  |  |-- fake_sgx_pki.cc
+|  |  |  |  |  |-- fake_sgx_pki.h
+|  |  |  |  |  |-- fake_sgx_pki_test.cc
+|  |  |  |  |  |-- mock_sgx_pcs_client.h
+|  |  |  |  |  |-- pck_certificate_util.cc
+|  |  |  |  |  |-- pck_certificate_util.h
+|  |  |  |  |  |-- pck_certificate_util_test.cc
+|  |  |  |  |  |-- pck_certificates.proto
+|  |  |  |  |  |-- pck_certs_from_json.cc
+|  |  |  |  |  |-- pck_certs_from_json.h
+|  |  |  |  |  |-- pck_certs_from_json_test.cc
+|  |  |  |  |  |-- platform_provisioning.cc
+|  |  |  |  |  |-- platform_provisioning.h
+|  |  |  |  |  |-- platform_provisioning.proto
+|  |  |  |  |  |-- platform_provisioning_test.cc
+|  |  |  |  |  |-- sgx_pcs_client.h
+|  |  |  |  |  |-- sgx_pcs_client.proto
+|  |  |  |  |  |-- sgx_pcs_client_impl.cc
+|  |  |  |  |  |-- sgx_pcs_client_impl.h
+|  |  |  |  |  |-- sgx_pcs_client_impl_test.cc
+|  |  |  |  |  |-- sgx_pcs_tool.cc
+|  |  |  |  |  |-- sgx_pcs_tool_lib.cc
+|  |  |  |  |  |-- sgx_pcs_tool_lib.h
+|  |  |  |  |  |-- sgx_pcs_tool_lib_test.cc
+|  |  |  |  |  |-- signed_tcb_info_from_json.cc
+|  |  |  |  |  |-- signed_tcb_info_from_json.h
+|  |  |  |  |  |-- signed_tcb_info_from_json_test.cc
+|  |  |  |  |  |-- tcb.cc
+|  |  |  |  |  |-- tcb.h
+|  |  |  |  |  |-- tcb.proto
+|  |  |  |  |  |-- tcb_info_from_json.cc
+|  |  |  |  |  |-- tcb_info_from_json.h
+|  |  |  |  |  |-- tcb_info_from_json_test.cc
+|  |  |  |  |  |-- tcb_info_reader.cc
+|  |  |  |  |  |-- tcb_info_reader.h
+|  |  |  |  |  |-- tcb_info_reader_test.cc
+|  |  |  |  |  |-- tcb_test.cc
+|  |  |-- sealing
+|  |  |  |-- BUILD
+|  |  |  |-- sealed_secret.proto
+|  |  |  |-- secret_sealer.cc
+|  |  |  |-- secret_sealer.h
+|  |  |  |-- sgx
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- internal
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- generate_local_secret_sealer_test_data.cc
+|  |  |  |  |  |-- local_secret_sealer_helpers.cc
+|  |  |  |  |  |-- local_secret_sealer_helpers.h
+|  |  |  |  |  |-- local_secret_sealer_test_data.proto
+|  |  |  |  |-- sgx_local_secret_sealer.cc
+|  |  |  |  |-- sgx_local_secret_sealer.h
+|  |  |  |  |-- sgx_local_secret_sealer_test.cc
+|  |  |  |  |-- testdata
+|  |  |  |  |  |-- local_secret_sealer_test_data
+|  |  |-- test
+|  |  |  |-- BUILD
+|  |  |  |-- mock_identity_expectation_matcher.h
+|  |-- platform
+|  |  |-- arch
+|  |  |  |-- BUILD
+|  |  |  |-- sgx
+|  |  |  |  |-- untrusted
+|  |  |  |  |  |-- sgx_client.cc
+|  |  |  |  |  |-- sgx_client.h
+|  |  |-- common
+|  |  |  |-- BUILD
+|  |  |  |-- enclave_state.cc
+|  |  |  |-- enclave_state.h
+|  |  |  |-- futex.cc
+|  |  |  |-- futex.h
+|  |  |  |-- hash_combine.h
+|  |  |  |-- memory.h
+|  |  |  |-- ring_buffer.h
+|  |  |  |-- ring_buffer_test.cc
+|  |  |  |-- singleton.h
+|  |  |  |-- singleton_test.cc
+|  |  |  |-- static_map.h
+|  |  |  |-- static_map_internal.h
+|  |  |  |-- static_map_test.cc
+|  |  |  |-- time_util.cc
+|  |  |  |-- time_util.h
+|  |  |  |-- time_util_test.cc
+|  |  |-- core
+|  |  |  |-- BUILD
+|  |  |  |-- atomic.h
+|  |  |  |-- enclave_client.h
+|  |  |  |-- enclave_config_util.cc
+|  |  |  |-- enclave_config_util.h
+|  |  |  |-- enclave_manager.cc
+|  |  |  |-- enclave_manager.h
+|  |  |  |-- entry_points.h
+|  |  |  |-- entry_selectors.h
+|  |  |  |-- fake_trusted_global_state.cc
+|  |  |  |-- generic_enclave_client.cc
+|  |  |  |-- generic_enclave_client.h
+|  |  |  |-- shared_name.h
+|  |  |  |-- shared_name_kind.h
+|  |  |  |-- shared_resource_manager.cc
+|  |  |  |-- shared_resource_manager.h
+|  |  |  |-- test
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- enclave_api_test_driver.cc
+|  |  |  |  |-- enclave_api_test_enclave.cc
+|  |  |  |  |-- getenv_test_driver.cc
+|  |  |  |  |-- getenv_test_enclave.cc
+|  |  |  |  |-- lock_test.cc
+|  |  |  |  |-- proto_test.proto
+|  |  |  |  |-- proto_test_driver.cc
+|  |  |  |  |-- proto_test_enclave.cc
+|  |  |  |  |-- random_test.cc
+|  |  |  |  |-- shared_resource_test.cc
+|  |  |  |-- trusted_application.cc
+|  |  |  |-- trusted_application.h
+|  |  |  |-- trusted_global_state.cc
+|  |  |  |-- trusted_global_state.h
+|  |  |  |-- trusted_mutex.cc
+|  |  |  |-- trusted_mutex.h
+|  |  |  |-- trusted_spin_lock.cc
+|  |  |  |-- trusted_spin_lock.h
+|  |  |-- crypto
+|  |  |  |-- gcmlib
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- gcm_cryptor.cc
+|  |  |  |  |-- gcm_cryptor.h
+|  |  |  |  |-- gcm_cryptor_test.cc
+|  |  |-- host_call
+|  |  |  |-- BUILD
+|  |  |  |-- exit_handler_constants.h
+|  |  |  |-- serializer_functions.cc
+|  |  |  |-- serializer_functions.h
+|  |  |  |-- test
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- enclave_test_selectors.h
+|  |  |  |  |-- host_call_test.cc
+|  |  |  |  |-- test_enclave.cc
+|  |  |  |  |-- wait_queue_test.cc
+|  |  |  |-- trusted
+|  |  |  |  |-- concurrency.cc
+|  |  |  |  |-- host_call_dispatcher.cc
+|  |  |  |  |-- host_call_dispatcher.h
+|  |  |  |  |-- host_calls.cc
+|  |  |  |  |-- host_calls.h
+|  |  |  |-- untrusted
+|  |  |  |  |-- host_call_handlers.cc
+|  |  |  |  |-- host_call_handlers.h
+|  |  |  |  |-- host_call_handlers_initializer.cc
+|  |  |  |  |-- host_call_handlers_initializer.h
+|  |  |  |  |-- host_call_handlers_initializer_test.cc
+|  |  |  |  |-- host_call_handlers_test.cc
+|  |  |  |  |-- host_call_handlers_util.cc
+|  |  |  |  |-- host_call_handlers_util.h
+|  |  |-- posix
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- bswap_test.cc
+|  |  |  |-- clock_time_test.proto
+|  |  |  |-- clock_time_test_enclave.cc
+|  |  |  |-- clock_time_test_loader.cc
+|  |  |  |-- dirent.cc
+|  |  |  |-- dlfcn.cc
+|  |  |  |-- endian.cc
+|  |  |  |-- endian_test.cc
+|  |  |  |-- epoll.cc
+|  |  |  |-- errno.cc
+|  |  |  |-- errno_test.cc
+|  |  |  |-- eventfd.cc
+|  |  |  |-- file.cc
+|  |  |  |-- fnmatch.cc
+|  |  |  |-- fork_consistency_test_enclave.cc
+|  |  |  |-- fork_multithread_test_enclave.cc
+|  |  |  |-- fork_security_test.proto
+|  |  |  |-- fork_security_test_driver.cc
+|  |  |  |-- fork_security_test_enclave.cc
+|  |  |  |-- fork_test_driver.cc
+|  |  |  |-- fork_test_enclave.cc
+|  |  |  |-- grp.cc
+|  |  |  |-- if.cc
+|  |  |  |-- ifaddrs.cc
+|  |  |  |-- in6_macro_test.proto
+|  |  |  |-- in6_macro_test_enclave.cc
+|  |  |  |-- in6_macro_test_loader.cc
+|  |  |  |-- include
+|  |  |  |  |-- arpa
+|  |  |  |  |  |-- inet.h
+|  |  |  |  |  |-- nameser.h
+|  |  |  |  |-- byteswap.h
+|  |  |  |  |-- dlfcn.h
+|  |  |  |  |-- endian.h
+|  |  |  |  |-- errno.h
+|  |  |  |  |-- fcntl.h
+|  |  |  |  |-- ifaddrs.h
+|  |  |  |  |-- internal
+|  |  |  |  |  |-- sched.h
+|  |  |  |  |-- math.h
+|  |  |  |  |-- net
+|  |  |  |  |  |-- if.h
+|  |  |  |  |-- netdb.h
+|  |  |  |  |-- netinet
+|  |  |  |  |  |-- in.h
+|  |  |  |  |  |-- tcp.h
+|  |  |  |  |  |-- udp.h
+|  |  |  |  |-- poll.h
+|  |  |  |  |-- sched.h
+|  |  |  |  |-- semaphore.h
+|  |  |  |  |-- signal.h
+|  |  |  |  |-- sys
+|  |  |  |  |  |-- epoll.h
+|  |  |  |  |  |-- eventfd.h
+|  |  |  |  |  |-- inotify.h
+|  |  |  |  |  |-- poll.h
+|  |  |  |  |  |-- resource.h
+|  |  |  |  |  |-- socket.h
+|  |  |  |  |  |-- syslog.h
+|  |  |  |  |  |-- termios.h
+|  |  |  |  |  |-- ucontext.h
+|  |  |  |  |  |-- uio.h
+|  |  |  |  |  |-- un.h
+|  |  |  |  |  |-- utsname.h
+|  |  |  |  |  |-- wait.h
+|  |  |  |  |-- syslog.h
+|  |  |  |  |-- time.h
+|  |  |  |  |-- ucontext.h
+|  |  |  |  |-- utime.h
+|  |  |  |-- inotify.cc
+|  |  |  |-- io
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- cwd_test.cc
+|  |  |  |  |-- epoll_test.cc
+|  |  |  |  |-- eventfd_test.cc
+|  |  |  |  |-- inotify_test.cc
+|  |  |  |  |-- io_context_epoll.cc
+|  |  |  |  |-- io_context_epoll.h
+|  |  |  |  |-- io_context_eventfd.cc
+|  |  |  |  |-- io_context_eventfd.h
+|  |  |  |  |-- io_context_inotify.cc
+|  |  |  |  |-- io_context_inotify.h
+|  |  |  |  |-- io_manager.cc
+|  |  |  |  |-- io_manager.h
+|  |  |  |  |-- io_syscalls.cc
+|  |  |  |  |-- native_paths.cc
+|  |  |  |  |-- native_paths.h
+|  |  |  |  |-- path_normalization_test.cc
+|  |  |  |  |-- pipe_test_driver.cc
+|  |  |  |  |-- pipe_test_enclave.cc
+|  |  |  |  |-- random_devices.cc
+|  |  |  |  |-- random_devices.h
+|  |  |  |  |-- read_write_multithread_test.cc
+|  |  |  |  |-- read_write_test.cc
+|  |  |  |  |-- realpath_test.cc
+|  |  |  |  |-- secure_paths.cc
+|  |  |  |  |-- secure_paths.h
+|  |  |  |  |-- util.cc
+|  |  |  |  |-- util.h
+|  |  |  |  |-- virtual_test.cc
+|  |  |  |-- ioctl.cc
+|  |  |  |-- malloc_lock.cc
+|  |  |  |-- memory
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- heap_switch_test.cc
+|  |  |  |  |-- memory.cc
+|  |  |  |  |-- memory.h
+|  |  |  |-- nl_types.cc
+|  |  |  |-- pipe_test.cc
+|  |  |  |-- poll.cc
+|  |  |  |-- pthread.cc
+|  |  |  |-- pthread_impl.h
+|  |  |  |-- pwd.cc
+|  |  |  |-- resource.cc
+|  |  |  |-- sched.cc
+|  |  |  |-- select.cc
+|  |  |  |-- select_test.cc
+|  |  |  |-- signal.cc
+|  |  |  |-- signal
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- signal_manager.cc
+|  |  |  |  |-- signal_manager.h
+|  |  |  |-- sockets
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- addrinfo_test_driver.cc
+|  |  |  |  |-- addrinfo_test_enclave.cc
+|  |  |  |  |-- domain_socket_test_driver.cc
+|  |  |  |  |-- domain_socket_test_enclave.cc
+|  |  |  |  |-- in.cc
+|  |  |  |  |-- inet.cc
+|  |  |  |  |-- inet6_socket_test_driver.cc
+|  |  |  |  |-- inet6_socket_test_enclave.cc
+|  |  |  |  |-- inet_aton_test.cc
+|  |  |  |  |-- inet_pton_test.cc
+|  |  |  |  |-- netdb.cc
+|  |  |  |  |-- socket.cc
+|  |  |  |  |-- socket_client.cc
+|  |  |  |  |-- socket_client.h
+|  |  |  |  |-- socket_server.cc
+|  |  |  |  |-- socket_server.h
+|  |  |  |  |-- socket_test.proto
+|  |  |  |  |-- socket_test_transmit.cc
+|  |  |  |  |-- socket_test_transmit.h
+|  |  |  |  |-- socket_transmit.cc
+|  |  |  |  |-- socket_transmit.h
+|  |  |  |-- stat.cc
+|  |  |  |-- statfs.cc
+|  |  |  |-- stdio.cc
+|  |  |  |-- stdlib.cc
+|  |  |  |-- syscall
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- enclave_clone.cc
+|  |  |  |  |-- enclave_clone.h
+|  |  |  |  |-- enclave_syscall.cc
+|  |  |  |  |-- enclave_syscall.h
+|  |  |  |  |-- enclave_syscall_helper.cc
+|  |  |  |  |-- enclave_syscall_helper.h
+|  |  |  |  |-- enclave_syscall_test.cc
+|  |  |  |  |-- signal_syscalls.cc
+|  |  |  |  |-- signal_syscalls.h
+|  |  |  |-- syscalls_test.proto
+|  |  |  |-- syscalls_test_driver.cc
+|  |  |  |-- syscalls_test_enclave.cc
+|  |  |  |-- syslog.cc
+|  |  |  |-- syslog_test.cc
+|  |  |  |-- termios.cc
+|  |  |  |-- threading
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- thread_manager.cc
+|  |  |  |  |-- thread_manager.h
+|  |  |  |-- time.cc
+|  |  |  |-- times_test.cc
+|  |  |  |-- uio.cc
+|  |  |  |-- unistd.cc
+|  |  |  |-- utime.cc
+|  |  |  |-- utsname.cc
+|  |  |  |-- wait.cc
+|  |  |-- primitives
+|  |  |  |-- BUILD
+|  |  |  |-- dlopen
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dlopen_remote_proxy.cc
+|  |  |  |  |-- loader.proto
+|  |  |  |  |-- runtime_stubs.c
+|  |  |  |  |-- runtime_syscalls.c
+|  |  |  |  |-- shared_dlopen.h
+|  |  |  |  |-- trusted_dlopen.cc
+|  |  |  |  |-- trusted_runtime.cc
+|  |  |  |  |-- untrusted_dlopen.cc
+|  |  |  |  |-- untrusted_dlopen.h
+|  |  |  |-- enclave_loader.h
+|  |  |  |-- examples
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- hello_driver.cc
+|  |  |  |  |-- hello_enclave.cc
+|  |  |  |  |-- hello_enclave.h
+|  |  |  |  |-- hello_test.cc
+|  |  |  |-- extent.h
+|  |  |  |-- extent_test.cc
+|  |  |  |-- long_living_test
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- long_living_test.cc
+|  |  |  |  |-- long_living_test_enclave.cc
+|  |  |  |  |-- long_living_test_selectors.h
+|  |  |  |-- primitive_status.h
+|  |  |  |-- primitive_status_test.cc
+|  |  |  |-- primitives.h
+|  |  |  |-- random_bytes.cc
+|  |  |  |-- random_bytes.h
+|  |  |  |-- remote
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- communicator.cc
+|  |  |  |  |-- communicator.h
+|  |  |  |  |-- communicator_test.cc
+|  |  |  |  |-- enclave_loader.cc
+|  |  |  |  |-- grpc_client_impl.cc
+|  |  |  |  |-- grpc_client_impl.h
+|  |  |  |  |-- grpc_server_impl.cc
+|  |  |  |  |-- grpc_server_impl.h
+|  |  |  |  |-- grpc_service.proto
+|  |  |  |  |-- local_exit_calls.cc
+|  |  |  |  |-- local_exit_calls.h
+|  |  |  |  |-- metrics
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- clients
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- opencensus_client.cc
+|  |  |  |  |  |  |-- opencensus_client.h
+|  |  |  |  |  |  |-- opencensus_client_config.h
+|  |  |  |  |  |  |-- opencensus_client_test.cc
+|  |  |  |  |  |  |-- proc_system_service_client.cc
+|  |  |  |  |  |  |-- proc_system_service_client.h
+|  |  |  |  |  |  |-- proc_system_service_client_test.cc
+|  |  |  |  |  |-- mocks
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- mock_proc_system_parser.h
+|  |  |  |  |  |  |-- mock_proc_system_service.h
+|  |  |  |  |  |  |-- mock_proc_system_service_server.cc
+|  |  |  |  |  |  |-- mock_proc_system_service_server.h
+|  |  |  |  |  |-- proc_system.proto
+|  |  |  |  |  |-- proc_system_parser.cc
+|  |  |  |  |  |-- proc_system_parser.h
+|  |  |  |  |  |-- proc_system_parser_test.cc
+|  |  |  |  |  |-- proc_system_service.cc
+|  |  |  |  |  |-- proc_system_service.h
+|  |  |  |  |  |-- proc_system_service_test.cc
+|  |  |  |  |-- proxy_client.cc
+|  |  |  |  |-- proxy_client.h
+|  |  |  |  |-- proxy_selectors.h
+|  |  |  |  |-- proxy_server.cc
+|  |  |  |  |-- proxy_server.h
+|  |  |  |  |-- util
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- grpc_credential_builder.cc
+|  |  |  |  |  |-- grpc_credential_builder.h
+|  |  |  |  |  |-- grpc_credential_builder_test.cc
+|  |  |  |  |  |-- proxy_launcher.cc
+|  |  |  |  |  |-- proxy_launcher.h
+|  |  |  |  |  |-- remote_proxy_lib.cc
+|  |  |  |  |  |-- remote_proxy_lib.h
+|  |  |  |-- sgx
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- bridge.edl
+|  |  |  |  |-- ecalls.cc
+|  |  |  |  |-- enclave_loader.cc
+|  |  |  |  |-- enclave_syscalls.cc
+|  |  |  |  |-- errno.edl
+|  |  |  |  |-- exceptions.cc
+|  |  |  |  |-- exit_handlers.cc
+|  |  |  |  |-- exit_handlers.h
+|  |  |  |  |-- fork.cc
+|  |  |  |  |-- fork.h
+|  |  |  |  |-- fork.proto
+|  |  |  |  |-- fork_internal.h
+|  |  |  |  |-- fork_sgx_hw.cc
+|  |  |  |  |-- fork_sgx_sim.cc
+|  |  |  |  |-- loader.proto
+|  |  |  |  |-- ocalls.cc
+|  |  |  |  |-- register_signal_sgx_hw.cc
+|  |  |  |  |-- register_signal_sgx_sim.cc
+|  |  |  |  |-- sgx_error_code.proto
+|  |  |  |  |-- sgx_error_matchers.cc
+|  |  |  |  |-- sgx_error_matchers.h
+|  |  |  |  |-- sgx_errors.cc
+|  |  |  |  |-- sgx_errors.h
+|  |  |  |  |-- sgx_errors_test.cc
+|  |  |  |  |-- sgx_params.h
+|  |  |  |  |-- sgx_remote_proxy.cc
+|  |  |  |  |-- signal_dispatcher.cc
+|  |  |  |  |-- signal_dispatcher.h
+|  |  |  |  |-- trusted_runtime.cc
+|  |  |  |  |-- trusted_sgx.cc
+|  |  |  |  |-- trusted_sgx.h
+|  |  |  |  |-- untrusted_cache_malloc.cc
+|  |  |  |  |-- untrusted_cache_malloc.h
+|  |  |  |  |-- untrusted_cache_malloc_test.cc
+|  |  |  |  |-- untrusted_sgx.cc
+|  |  |  |  |-- untrusted_sgx.h
+|  |  |  |-- test
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dlopen_test_backend.cc
+|  |  |  |  |-- dlopen_test_backend.h
+|  |  |  |  |-- primitives_test.cc
+|  |  |  |  |-- remote_dlopen_test_backend.cc
+|  |  |  |  |-- remote_dlopen_test_backend.h
+|  |  |  |  |-- remote_sgx_test_backend.cc
+|  |  |  |  |-- remote_sgx_test_backend.h
+|  |  |  |  |-- remote_test_backend.cc
+|  |  |  |  |-- remote_test_backend.h
+|  |  |  |  |-- sgx_test_backend.cc
+|  |  |  |  |-- sgx_test_backend.h
+|  |  |  |  |-- test_backend.h
+|  |  |  |  |-- test_enclave.cc
+|  |  |  |  |-- test_selectors.h
+|  |  |  |-- trusted_primitives.h
+|  |  |  |-- trusted_runtime.h
+|  |  |  |-- untrusted_primitives.cc
+|  |  |  |-- untrusted_primitives.h
+|  |  |  |-- util
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- dispatch_table.cc
+|  |  |  |  |-- dispatch_table.h
+|  |  |  |  |-- dispatch_table_test.cc
+|  |  |  |  |-- exit_log.cc
+|  |  |  |  |-- exit_log.h
+|  |  |  |  |-- message.h
+|  |  |  |  |-- message_test.cc
+|  |  |  |  |-- status_conversions.cc
+|  |  |  |  |-- status_conversions.h
+|  |  |  |  |-- status_conversions_test.cc
+|  |  |  |  |-- status_serializer.h
+|  |  |  |  |-- trusted_memory.h
+|  |  |  |  |-- trusted_runtime_helper.cc
+|  |  |  |  |-- trusted_runtime_helper.h
+|  |  |-- storage
+|  |  |  |-- secure
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- aead_handler.cc
+|  |  |  |  |-- aead_handler.h
+|  |  |  |  |-- authenticated_dictionary.h
+|  |  |  |  |-- ctmmt_authenticated_dictionary.cc
+|  |  |  |  |-- ctmmt_authenticated_dictionary.h
+|  |  |  |  |-- enclave_storage_secure.cc
+|  |  |  |  |-- enclave_storage_secure.h
+|  |  |  |  |-- enclave_storage_secure_test.cc
+|  |  |  |-- utils
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- fd_closer.cc
+|  |  |  |  |-- fd_closer.h
+|  |  |  |  |-- fd_closer_test.cc
+|  |  |  |  |-- offset_translator.cc
+|  |  |  |  |-- offset_translator.h
+|  |  |  |  |-- offset_translator_test.cc
+|  |  |  |  |-- random_access_storage.h
+|  |  |  |  |-- record_store.h
+|  |  |  |  |-- record_store_test.cc
+|  |  |  |  |-- test_utils.cc
+|  |  |  |  |-- test_utils.h
+|  |  |  |  |-- untrusted_file.cc
+|  |  |  |  |-- untrusted_file.h
+|  |  |  |  |-- untrusted_file_test.cc
+|  |  |-- system
+|  |  |  |-- BUILD
+|  |  |  |-- cmath_test.cc
+|  |  |  |-- include
+|  |  |  |  |-- arpa
+|  |  |  |  |  |-- nameser.h
+|  |  |  |  |  |-- nameser_compat.h
+|  |  |  |  |-- cmath
+|  |  |  |  |-- sys
+|  |  |  |  |  |-- sysmacros.h
+|  |  |-- system_call
+|  |  |  |-- BUILD
+|  |  |  |-- generate_sysno.cc
+|  |  |  |-- generate_tables.cc
+|  |  |  |-- message.cc
+|  |  |  |-- message.h
+|  |  |  |-- message_test.cc
+|  |  |  |-- metadata.cc
+|  |  |  |-- metadata.h
+|  |  |  |-- metadata_test.cc
+|  |  |  |-- preprocess.py
+|  |  |  |-- serialize.cc
+|  |  |  |-- serialize.h
+|  |  |  |-- serialize_test.cc
+|  |  |  |-- syscalls.txt
+|  |  |  |-- system_call.cc
+|  |  |  |-- system_call.h
+|  |  |  |-- system_call_message_fuzzer.cc
+|  |  |  |-- system_call_test.cc
+|  |  |  |-- type_conversions
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- define_types.py
+|  |  |  |  |-- generated_types_functions_test.cc
+|  |  |  |  |-- kernel_types.h
+|  |  |  |  |-- kernel_types_test.cc
+|  |  |  |  |-- manual_types_functions.cc
+|  |  |  |  |-- manual_types_functions.h
+|  |  |  |  |-- manual_types_functions_test.cc
+|  |  |  |  |-- types.h
+|  |  |  |  |-- types_conversions_generator.cc
+|  |  |  |  |-- types_functions.h
+|  |  |  |  |-- types_parse_functions.py
+|  |  |  |  |-- types_parse_functions_test.py
+|  |  |  |-- untrusted_invoke.cc
+|  |  |  |-- untrusted_invoke.h
+|  |-- secure_storage.h
+|  |-- test
+|  |  |-- grpc
+|  |  |  |-- BUILD
+|  |  |  |-- channel_test.cc
+|  |  |  |-- client_enclave.cc
+|  |  |  |-- client_enclave.h
+|  |  |  |-- client_enclave.proto
+|  |  |  |-- client_side_auth_test_constants.cc
+|  |  |  |-- client_side_auth_test_constants.h
+|  |  |  |-- client_side_authorization_test.cc
+|  |  |  |-- enclave_communication_test.cc
+|  |  |  |-- enclave_insecure_server.cc
+|  |  |  |-- enclave_insecure_server_test.cc
+|  |  |  |-- enclave_secure_server.cc
+|  |  |  |-- enclave_secure_server_test.cc
+|  |  |  |-- messenger_client_impl.h
+|  |  |  |-- messenger_server_impl.h
+|  |  |  |-- server_enclave.cc
+|  |  |  |-- service.proto
+|  |  |  |-- sgx_age_remote_server_enclave.cc
+|  |  |  |-- sgx_age_remote_server_enclave_test.cc
+|  |  |-- loader
+|  |  |  |-- BUILD
+|  |  |  |-- loader_test.cc
+|  |  |-- misc
+|  |  |  |-- BUILD
+|  |  |  |-- active_enclave_signal_test_driver.cc
+|  |  |  |-- active_enclave_signal_test_enclave.cc
+|  |  |  |-- block_enclave_entries_test.proto
+|  |  |  |-- block_enclave_entries_test_driver.cc
+|  |  |  |-- block_enclave_entries_test_enclave.cc
+|  |  |  |-- condvar_test.cc
+|  |  |  |-- die.cc
+|  |  |  |-- die_test.cc
+|  |  |  |-- double_die.cc
+|  |  |  |-- embedded_enclave_test_driver.cc
+|  |  |  |-- enclave_entry_count_test.proto
+|  |  |  |-- enclave_entry_count_test_driver.cc
+|  |  |  |-- enclave_entry_count_test_enclave.cc
+|  |  |  |-- error_propagation_enclave.cc
+|  |  |  |-- error_propagation_test.cc
+|  |  |  |-- exception.cc
+|  |  |  |-- exception.h
+|  |  |  |-- exception_app.cc
+|  |  |  |-- exception_enclave.cc
+|  |  |  |-- exception_test.cc
+|  |  |  |-- exhaust_sgx_tcs.cc
+|  |  |  |-- exhaust_sgx_tcs_test.cc
+|  |  |  |-- fail_finalize_enclave.cc
+|  |  |  |-- fail_finalize_enclave_test.cc
+|  |  |  |-- hello_world.cc
+|  |  |  |-- hello_world_test.cc
+|  |  |  |-- inactive_enclave_signal_test_driver.cc
+|  |  |  |-- inactive_enclave_signal_test_enclave.cc
+|  |  |  |-- initfini.cc
+|  |  |  |-- logging_test_driver.cc
+|  |  |  |-- logging_test_enclave.cc
+|  |  |  |-- malloc_stress_test.cc
+|  |  |  |-- memory_layout_test.cc
+|  |  |  |-- mutex_test.cc
+|  |  |  |-- nanosleep_test.cc
+|  |  |  |-- now_test.cc
+|  |  |  |-- pthread_test.cc
+|  |  |  |-- raise_signal_test.cc
+|  |  |  |-- rdrand_test.cc
+|  |  |  |-- rwlock_test.cc
+|  |  |  |-- sem_test.cc
+|  |  |  |-- signal_test.proto
+|  |  |  |-- threaded_finalize.cc
+|  |  |  |-- threaded_test.cc
+|  |  |-- run_enclave_tests.sh
+|  |  |-- util
+|  |  |  |-- BUILD
+|  |  |  |-- do_nothing_enclave.cc
+|  |  |  |-- enclave_assertion_authority_configs.cc
+|  |  |  |-- enclave_assertion_authority_configs.h
+|  |  |  |-- enclave_assertion_authority_configs_test.cc
+|  |  |  |-- enclave_test.cc
+|  |  |  |-- enclave_test.h
+|  |  |  |-- enclave_test_application.cc
+|  |  |  |-- enclave_test_application.h
+|  |  |  |-- enclave_test_launcher.cc
+|  |  |  |-- enclave_test_launcher.h
+|  |  |  |-- exec_tester.cc
+|  |  |  |-- exec_tester.h
+|  |  |  |-- exec_tester_test.cc
+|  |  |  |-- exit_app.cc
+|  |  |  |-- fake_enclave_loader.cc
+|  |  |  |-- fake_enclave_loader.h
+|  |  |  |-- finite_domain_fuzz.cc
+|  |  |  |-- finite_domain_fuzz.h
+|  |  |  |-- grpc_debug_config.cc
+|  |  |  |-- grpc_debug_config.h
+|  |  |  |-- integral_type_test_data.h
+|  |  |  |-- lorem_ipsum.txt
+|  |  |  |-- memory_matchers.h
+|  |  |  |-- memory_matchers_test.cc
+|  |  |  |-- mock_enclave_client.h
+|  |  |  |-- mock_enclave_loader.h
+|  |  |  |-- mock_test.cc
+|  |  |  |-- output_collector.cc
+|  |  |  |-- output_collector.h
+|  |  |  |-- proto_matchers.h
+|  |  |  |-- pthread_test_util.cc
+|  |  |  |-- pthread_test_util.h
+|  |  |  |-- shell_testing.sh
+|  |  |  |-- status_matchers.h
+|  |  |  |-- status_matchers_test.cc
+|  |  |  |-- string_matchers.h
+|  |  |  |-- string_matchers_test.cc
+|  |  |  |-- test_binary.cc
+|  |  |  |-- test_flags.cc
+|  |  |  |-- test_flags.h
+|  |  |  |-- test_main.cc
+|  |  |  |-- test_string.proto
+|  |-- third_party
+|  |  |-- BUILD
+|  |  |-- curl.BUILD
+|  |  |-- intel
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- posix
+|  |  |  |  |-- sgx_defs.h
+|  |  |  |  |-- sgx_thread.h
+|  |  |  |-- sgx_tstdc.edl
+|  |-- trusted_application.h
+|  |-- util
+|  |  |-- BUILD
+|  |  |-- aligned_object_ptr.h
+|  |  |-- aligned_object_ptr_test.cc
+|  |  |-- asylo_macros.h
+|  |  |-- binary_search.h
+|  |  |-- binary_search_test.cc
+|  |  |-- cleansing_allocator.h
+|  |  |-- cleansing_allocator_test.cc
+|  |  |-- cleansing_types.h
+|  |  |-- cleanup.h
+|  |  |-- cleanup_test.cc
+|  |  |-- elf_reader.cc
+|  |  |-- elf_reader.h
+|  |  |-- elf_reader_test.cc
+|  |  |-- error_codes.h
+|  |  |-- error_space.cc
+|  |  |-- error_space.h
+|  |  |-- error_space_test.cc
+|  |  |-- fd_utils.cc
+|  |  |-- fd_utils.h
+|  |  |-- fd_utils_test.cc
+|  |  |-- file_mapping.cc
+|  |  |-- file_mapping.h
+|  |  |-- file_mapping_test.cc
+|  |  |-- function_deleter.h
+|  |  |-- function_deleter_test.cc
+|  |  |-- function_traits.h
+|  |  |-- function_traits_test.cc
+|  |  |-- hex_util.cc
+|  |  |-- hex_util.h
+|  |  |-- hex_util_test.cc
+|  |  |-- http_fetcher.h
+|  |  |-- http_fetcher_impl.cc
+|  |  |-- http_fetcher_impl.h
+|  |  |-- http_fetcher_impl_test.cc
+|  |  |-- lock_guard.h
+|  |  |-- lock_guard_test.cc
+|  |  |-- logging.cc
+|  |  |-- logging.h
+|  |  |-- mutex_guarded.h
+|  |  |-- mutex_guarded_test.cc
+|  |  |-- path.cc
+|  |  |-- path.h
+|  |  |-- path_test.cc
+|  |  |-- posix_error_matchers.cc
+|  |  |-- posix_error_matchers.h
+|  |  |-- posix_error_space.cc
+|  |  |-- posix_error_space.h
+|  |  |-- posix_error_space_test.cc
+|  |  |-- posix_errors.cc
+|  |  |-- posix_errors.h
+|  |  |-- posix_errors_test.cc
+|  |  |-- proto_enum_util.h
+|  |  |-- proto_enum_util_test.cc
+|  |  |-- proto_enum_util_test.proto
+|  |  |-- proto_flag.h
+|  |  |-- proto_flag_test.cc
+|  |  |-- proto_parse_util.h
+|  |  |-- proto_parse_util_test.cc
+|  |  |-- proto_parse_util_test.proto
+|  |  |-- proto_struct_util.cc
+|  |  |-- proto_struct_util.h
+|  |  |-- proto_struct_util_test.cc
+|  |  |-- remote
+|  |  |  |-- BUILD
+|  |  |  |-- grpc_channel_builder.cc
+|  |  |  |-- grpc_channel_builder.h
+|  |  |  |-- grpc_server_main_wrapper.h
+|  |  |  |-- local_provision.cc
+|  |  |  |-- process_main_wrapper.h
+|  |  |  |-- provision.h
+|  |  |  |-- remote_loader.proto
+|  |  |  |-- remote_provision.proto
+|  |  |  |-- remote_provision_client.cc
+|  |  |  |-- remote_provision_host_server.cc
+|  |  |  |-- remote_provision_server_lib.cc
+|  |  |  |-- remote_provision_server_lib.h
+|  |  |  |-- remote_proxy_config.cc
+|  |  |  |-- remote_proxy_config.h
+|  |  |  |-- remote_proxy_config_test.cc
+|  |  |-- status.cc
+|  |  |-- status.h
+|  |  |-- status.proto
+|  |  |-- status_error_space.cc
+|  |  |-- status_error_space.h
+|  |  |-- status_helpers.cc
+|  |  |-- status_helpers.h
+|  |  |-- status_helpers_internal.h
+|  |  |-- status_helpers_test.cc
+|  |  |-- status_internal.h
+|  |  |-- status_macros.h
+|  |  |-- status_macros_test.cc
+|  |  |-- status_test.cc
+|  |  |-- statusor.cc
+|  |  |-- statusor.h
+|  |  |-- statusor_test.cc
+|  |  |-- std_thread.h
+|  |  |-- thread.h
+|  |  |-- thread_test.cc
+|  |  |-- time_conversions.h
+|  |  |-- time_conversions_internal.cc
+|  |  |-- time_conversions_internal.h
+|  |  |-- time_conversions_test.cc
+|  |  |-- url_util.cc
+|  |  |-- url_util.h
+|  |  |-- url_util_test.cc
+|-- buildkite
+|  |-- collect_artifacts.py
+|  |-- docker-test.sh
+|  |-- pipeline.yml
+|-- tools
+|  |-- allowlists
+|  |  |-- function_transition_allowlist
+|  |  |  |-- BUILD

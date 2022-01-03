@@ -1,0 +1,830 @@
+|-- .bazelrc
+|-- .bazelversion
+|-- .github
+|  |-- ISSUE_TEMPLATE
+|  |  |-- bug_report.md
+|  |  |-- feature_request.md
+|-- .gitignore
+|-- .pylintrc
+|-- .style.yapf
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- Dockerfile
+|-- LICENSE
+|-- README.md
+|-- RELEASE.md
+|-- WORKSPACE
+|-- docs
+|  |-- _book.yaml
+|  |-- _index.yaml
+|  |-- deployment.md
+|  |-- design
+|  |  |-- backend.dot
+|  |  |-- backend.md
+|  |  |-- compilation.md
+|  |  |-- context.md
+|  |  |-- execution.md
+|  |  |-- life_of_a_computation.md
+|  |  |-- package_structure.dot
+|  |  |-- package_structure.md
+|  |  |-- tracing.md
+|  |-- experimental
+|  |  |-- multiframework.md
+|  |  |-- tutorials
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- jax_support.ipynb
+|  |-- faq.md
+|  |-- federated_core.md
+|  |-- federated_learning.md
+|  |-- gcp_setup.md
+|  |-- get_started.md
+|  |-- golden_tests.md
+|  |-- install.md
+|  |-- openmined2020
+|  |  |-- BUILD
+|  |  |-- openmined_conference_2020.ipynb
+|  |-- tff_for_research.md
+|  |-- tutorials
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- building_your_own_federated_learning_algorithm.ipynb
+|  |  |-- custom_aggregators.ipynb
+|  |  |-- custom_federated_algorithms_1.ipynb
+|  |  |-- custom_federated_algorithms_2.ipynb
+|  |  |-- federated_learning_for_image_classification.ipynb
+|  |  |-- federated_learning_for_text_generation.ipynb
+|  |  |-- federated_select.ipynb
+|  |  |-- high_performance_simulation_with_kubernetes.ipynb
+|  |  |-- random_noise_generation.ipynb
+|  |  |-- simulations.ipynb
+|  |  |-- simulations_with_accelerators.ipynb
+|  |  |-- sparse_federated_learning.ipynb
+|  |  |-- tff_for_federated_learning_research_compression.ipynb
+|  |  |-- tuning_recommended_aggregators.ipynb
+|  |  |-- tutorials_overview.md
+|  |  |-- working_with_client_data.ipynb
+|-- requirements.txt
+|-- tensorflow_federated
+|  |-- BUILD
+|  |-- __init__.py
+|  |-- cc
+|  |  |-- core
+|  |  |  |-- impl
+|  |  |  |  |-- executor_stacks
+|  |  |  |  |  |-- executor_stack_bindings.cc
+|  |  |  |  |  |-- local_stacks.cc
+|  |  |  |  |  |-- local_stacks.h
+|  |  |  |  |  |-- local_stacks_test.cc
+|  |  |  |  |  |-- remote_stacks.cc
+|  |  |  |  |  |-- remote_stacks.h
+|  |  |  |  |  |-- remote_stacks_test.cc
+|  |  |  |  |-- executors
+|  |  |  |  |  |-- cardinalities.cc
+|  |  |  |  |  |-- cardinalities.h
+|  |  |  |  |  |-- composing_executor.cc
+|  |  |  |  |  |-- composing_executor.h
+|  |  |  |  |  |-- composing_executor_test.cc
+|  |  |  |  |  |-- computations.h
+|  |  |  |  |  |-- executor.cc
+|  |  |  |  |  |-- executor.h
+|  |  |  |  |  |-- executor_bindings.cc
+|  |  |  |  |  |-- executor_service.cc
+|  |  |  |  |  |-- executor_service.h
+|  |  |  |  |  |-- executor_service_test.cc
+|  |  |  |  |  |-- executor_test_base.h
+|  |  |  |  |  |-- federated_intrinsics.cc
+|  |  |  |  |  |-- federated_intrinsics.h
+|  |  |  |  |  |-- federating_executor.cc
+|  |  |  |  |  |-- federating_executor.h
+|  |  |  |  |  |-- federating_executor_test.cc
+|  |  |  |  |  |-- mock_executor.h
+|  |  |  |  |  |-- mock_grpc.h
+|  |  |  |  |  |-- reference_resolving_executor.cc
+|  |  |  |  |  |-- reference_resolving_executor.h
+|  |  |  |  |  |-- reference_resolving_executor_test.cc
+|  |  |  |  |  |-- remote_executor.cc
+|  |  |  |  |  |-- remote_executor.h
+|  |  |  |  |  |-- remote_executor_test.cc
+|  |  |  |  |  |-- serialization_bindings.cc
+|  |  |  |  |  |-- status_macros.h
+|  |  |  |  |  |-- tensor_serialization.cc
+|  |  |  |  |  |-- tensor_serialization.h
+|  |  |  |  |  |-- tensorflow_executor.cc
+|  |  |  |  |  |-- tensorflow_executor.h
+|  |  |  |  |  |-- tensorflow_executor_test.cc
+|  |  |  |  |  |-- threading.cc
+|  |  |  |  |  |-- threading.h
+|  |  |  |  |  |-- threading_test.cc
+|  |  |  |  |  |-- value_test_utils.h
+|  |  |  |  |  |-- value_validation.cc
+|  |  |  |  |  |-- value_validation.h
+|  |  |  |  |  |-- value_validation_test.cc
+|  |-- experimental
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- __init__.py
+|  |  |-- python
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- core
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- api
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- computations.py
+|  |  |  |  |-- impl
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- jax_context
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- jax_computation_context.py
+|  |  |  |  |  |  |-- jax_computation_context_test.py
+|  |  |  |  |  |  |-- jax_serialization.py
+|  |  |  |  |  |  |-- jax_serialization_test.py
+|  |  |  |  |  |-- wrappers
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |  |-- computation_wrapper_instances.py
+|  |  |  |  |  |  |-- computation_wrapper_instances_test.py
+|  |  |  |-- learning
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- jax_components.py
+|  |  |  |  |-- jax_components_test.py
+|  |  |  |-- tests
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- jax_training_test.py
+|  |-- proto
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- v0
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- computation.proto
+|  |  |  |-- computation_pb2_test.py
+|  |  |  |-- executor.proto
+|  |-- python
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- aggregators
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- differential_privacy.py
+|  |  |  |-- differential_privacy_test.py
+|  |  |  |-- encoded.py
+|  |  |  |-- encoded_test.py
+|  |  |  |-- factory.py
+|  |  |  |-- mean.py
+|  |  |  |-- mean_test.py
+|  |  |  |-- measurements.py
+|  |  |  |-- measurements_test.py
+|  |  |  |-- primitives.py
+|  |  |  |-- primitives_test.py
+|  |  |  |-- quantile_estimation.py
+|  |  |  |-- quantile_estimation_test.py
+|  |  |  |-- robust.py
+|  |  |  |-- robust_test.py
+|  |  |  |-- sampling.py
+|  |  |  |-- sampling_test.py
+|  |  |  |-- secure.py
+|  |  |  |-- secure_test.py
+|  |  |  |-- sum_factory.py
+|  |  |  |-- sum_factory_test.py
+|  |  |  |-- test_utils.py
+|  |  |  |-- test_utils_test.py
+|  |  |-- analytics
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- data_processing.py
+|  |  |  |-- data_processing_test.py
+|  |  |  |-- hierarchical_histogram
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- build_tree_from_leaf.py
+|  |  |  |  |-- build_tree_from_leaf_test.py
+|  |  |  |  |-- hierarchical_histogram.py
+|  |  |  |  |-- hierarchical_histogram_decoder.py
+|  |  |  |  |-- hierarchical_histogram_decoder_test.py
+|  |  |  |  |-- hierarchical_histogram_factory.py
+|  |  |  |  |-- hierarchical_histogram_factory_test.py
+|  |  |  |  |-- hierarchical_histogram_test.py
+|  |  |  |-- histogram_processing.py
+|  |  |  |-- histogram_processing_test.py
+|  |  |  |-- histogram_test_utils.py
+|  |  |-- common_libs
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- golden.py
+|  |  |  |-- golden_test.py
+|  |  |  |-- golden_test_goldens
+|  |  |  |  |-- test_check_raises_traceback.expected
+|  |  |  |  |-- test_check_string_fails.expected
+|  |  |  |  |-- test_check_string_succeeds.expected
+|  |  |  |  |-- test_check_string_updates.expected
+|  |  |  |-- py_typecheck.py
+|  |  |  |-- py_typecheck_test.py
+|  |  |  |-- serialization_utils.py
+|  |  |  |-- serialization_utils_test.py
+|  |  |  |-- structure.py
+|  |  |  |-- structure_test.py
+|  |  |  |-- test_utils.py
+|  |  |  |-- tracing.py
+|  |  |  |-- tracing_test.py
+|  |  |-- core
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- api
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- computation_base.py
+|  |  |  |  |-- computations.py
+|  |  |  |  |-- test_case.py
+|  |  |  |  |-- test_case_test.py
+|  |  |  |-- backends
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- iree
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- backend_info.py
+|  |  |  |  |  |-- backend_info_test.py
+|  |  |  |  |  |-- compiler.py
+|  |  |  |  |  |-- compiler_test.py
+|  |  |  |  |  |-- computation_module.py
+|  |  |  |  |  |-- computation_module_test.py
+|  |  |  |  |  |-- executor.py
+|  |  |  |  |  |-- executor_test.py
+|  |  |  |  |  |-- runtime.py
+|  |  |  |  |  |-- runtime_test.py
+|  |  |  |  |-- mapreduce
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- form_utils.py
+|  |  |  |  |  |-- form_utils_test.py
+|  |  |  |  |  |-- form_utils_test_goldens
+|  |  |  |  |  |  |-- type_info_for_sum_example.expected
+|  |  |  |  |  |-- forms.py
+|  |  |  |  |  |-- forms_test.py
+|  |  |  |  |  |-- test_utils.py
+|  |  |  |  |  |-- transformations.py
+|  |  |  |  |  |-- transformations_test.py
+|  |  |  |  |-- native
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- compiler.py
+|  |  |  |  |  |-- execution_contexts.py
+|  |  |  |  |  |-- execution_contexts_test.py
+|  |  |  |  |-- reference
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- reference_context.py
+|  |  |  |  |  |-- reference_context_test.py
+|  |  |  |  |-- test
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- execution_contexts.py
+|  |  |  |  |-- xla
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- compiler.py
+|  |  |  |  |  |-- compiler_test.py
+|  |  |  |  |  |-- execution_contexts.py
+|  |  |  |  |  |-- execution_contexts_test.py
+|  |  |  |  |  |-- executor.py
+|  |  |  |  |  |-- executor_test.py
+|  |  |  |  |  |-- runtime.py
+|  |  |  |  |  |-- runtime_test.py
+|  |  |  |-- framework
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |-- impl
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- compiler
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- building_block_analysis.py
+|  |  |  |  |  |-- building_block_analysis_test.py
+|  |  |  |  |  |-- building_block_factory.py
+|  |  |  |  |  |-- building_block_factory_test.py
+|  |  |  |  |  |-- building_block_factory_test_goldens
+|  |  |  |  |  |  |-- constructs_correct_computation_clients.expected
+|  |  |  |  |  |  |-- constructs_correct_computation_server.expected
+|  |  |  |  |  |  |-- federated_zip_at_clients_with_three_values_different_typed.expected
+|  |  |  |  |  |  |-- federated_zip_at_clients_with_three_values_different_typed_tuple.expected
+|  |  |  |  |  |  |-- federated_zip_at_clients_with_three_values_named.expected
+|  |  |  |  |  |  |-- federated_zip_at_clients_with_three_values_named_tuple.expected
+|  |  |  |  |  |  |-- federated_zip_at_clients_with_three_values_unnamed.expected
+|  |  |  |  |  |  |-- federated_zip_at_clients_with_three_values_unnamed_tuple.expected
+|  |  |  |  |  |  |-- federated_zip_at_clients_with_two_values_named.expected
+|  |  |  |  |  |  |-- federated_zip_at_clients_with_two_values_named_tuple.expected
+|  |  |  |  |  |  |-- federated_zip_at_clients_with_two_values_unnamed.expected
+|  |  |  |  |  |  |-- federated_zip_at_clients_with_two_values_unnamed_tuple.expected
+|  |  |  |  |  |  |-- federated_zip_at_server_with_three_values_different_typed.expected
+|  |  |  |  |  |  |-- federated_zip_at_server_with_three_values_named.expected
+|  |  |  |  |  |  |-- federated_zip_at_server_with_three_values_unnamed.expected
+|  |  |  |  |  |  |-- federated_zip_at_server_with_two_values_named.expected
+|  |  |  |  |  |  |-- nested_returns_federated_zip_at_clients.expected
+|  |  |  |  |  |  |-- nested_returns_federated_zip_at_server.expected
+|  |  |  |  |  |  |-- replaces_single_element.expected
+|  |  |  |  |  |  |-- skips_unnamed_element.expected
+|  |  |  |  |  |  |-- tuple_federated_apply_with_two_values_different_typed.expected
+|  |  |  |  |  |  |-- tuple_federated_apply_with_two_values_named.expected
+|  |  |  |  |  |  |-- tuple_federated_apply_with_two_values_unnamed.expected
+|  |  |  |  |  |  |-- tuple_federated_map_with_two_values_different_typed.expected
+|  |  |  |  |  |  |-- tuple_federated_map_with_two_values_named.expected
+|  |  |  |  |  |  |-- tuple_federated_map_with_two_values_unnamed.expected
+|  |  |  |  |  |  |-- wide_zip_creates_minimum_depth_binary_tree.expected
+|  |  |  |  |  |  |-- zips_reference.expected
+|  |  |  |  |  |  |-- zips_tuple_named.expected
+|  |  |  |  |  |  |-- zips_tuple_unnamed.expected
+|  |  |  |  |  |-- building_blocks.py
+|  |  |  |  |  |-- building_blocks_test.py
+|  |  |  |  |  |-- compiled_computation_transforms.py
+|  |  |  |  |  |-- compiled_computation_transforms_test.py
+|  |  |  |  |  |-- compiler_pipeline.py
+|  |  |  |  |  |-- compiler_pipeline_test.py
+|  |  |  |  |  |-- computation_factory.py
+|  |  |  |  |  |-- computation_factory_test.py
+|  |  |  |  |  |-- intrinsic_defs.py
+|  |  |  |  |  |-- intrinsic_defs_test.py
+|  |  |  |  |  |-- intrinsic_reductions.py
+|  |  |  |  |  |-- intrinsic_reductions_test.py
+|  |  |  |  |  |-- local_computation_factory_base.py
+|  |  |  |  |  |-- tensorflow_computation_factory.py
+|  |  |  |  |  |-- tensorflow_computation_factory_test.py
+|  |  |  |  |  |-- tensorflow_computation_transformations.py
+|  |  |  |  |  |-- tensorflow_computation_transformations_test.py
+|  |  |  |  |  |-- test_utils.py
+|  |  |  |  |  |-- transformation_utils.py
+|  |  |  |  |  |-- transformation_utils_test.py
+|  |  |  |  |  |-- transformations.py
+|  |  |  |  |  |-- transformations_test.py
+|  |  |  |  |  |-- tree_analysis.py
+|  |  |  |  |  |-- tree_analysis_test.py
+|  |  |  |  |  |-- tree_to_cc_transformations.py
+|  |  |  |  |  |-- tree_to_cc_transformations_test.py
+|  |  |  |  |  |-- tree_transformations.py
+|  |  |  |  |  |-- tree_transformations_test.py
+|  |  |  |  |  |-- tree_transformations_test_goldens
+|  |  |  |  |  |  |-- extract_computations_complex_comp.expected
+|  |  |  |  |  |  |-- extract_computations_federated_aggregate.expected
+|  |  |  |  |  |  |-- extract_computations_federated_broadcast.expected
+|  |  |  |  |  |  |-- extract_computations_from_block_multiple_comps.expected
+|  |  |  |  |  |  |-- extract_computations_from_block_one_comp.expected
+|  |  |  |  |  |  |-- extract_computations_from_call_multiple_comps.expected
+|  |  |  |  |  |  |-- extract_computations_from_call_one_comp.expected
+|  |  |  |  |  |  |-- extract_computations_from_lambda_multiple_comps.expected
+|  |  |  |  |  |  |-- extract_computations_from_lambda_one_comp.expected
+|  |  |  |  |  |  |-- extract_computations_from_no_arg_lambda.expected
+|  |  |  |  |  |  |-- extract_computations_from_no_arg_lambda_to_block.expected
+|  |  |  |  |  |  |-- extract_computations_from_selection_multiple_comps.expected
+|  |  |  |  |  |  |-- extract_computations_from_selection_one_comp.expected
+|  |  |  |  |  |  |-- extract_computations_from_tuple_multiple_comps.expected
+|  |  |  |  |  |  |-- extract_computations_from_tuple_named_comps.expected
+|  |  |  |  |  |  |-- extract_computations_from_tuple_one_comp.expected
+|  |  |  |  |-- computation
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- computation_impl.py
+|  |  |  |  |  |-- computation_impl_test.py
+|  |  |  |  |  |-- computation_serialization.py
+|  |  |  |  |  |-- computation_serialization_test.py
+|  |  |  |  |  |-- function_utils.py
+|  |  |  |  |  |-- function_utils_test.py
+|  |  |  |  |-- context_stack
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- context_base.py
+|  |  |  |  |  |-- context_stack_base.py
+|  |  |  |  |  |-- context_stack_impl.py
+|  |  |  |  |  |-- context_stack_impl_test.py
+|  |  |  |  |  |-- context_stack_test_utils.py
+|  |  |  |  |  |-- get_context_stack.py
+|  |  |  |  |  |-- get_context_stack_test.py
+|  |  |  |  |  |-- runtime_error_context.py
+|  |  |  |  |  |-- set_default_context.py
+|  |  |  |  |  |-- set_default_context_test.py
+|  |  |  |  |  |-- symbol_binding_context.py
+|  |  |  |  |-- execution_contexts
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- async_execution_context.py
+|  |  |  |  |  |-- sync_execution_context.py
+|  |  |  |  |  |-- sync_execution_context_test.py
+|  |  |  |  |-- executor_stacks
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- executor_stack_bindings.py
+|  |  |  |  |  |-- executor_stack_bindings_test.py
+|  |  |  |  |-- executors
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- caching_executor.py
+|  |  |  |  |  |-- caching_executor_test.py
+|  |  |  |  |  |-- cardinalities_utils.py
+|  |  |  |  |  |-- cardinalities_utils_test.py
+|  |  |  |  |  |-- cardinality_carrying_base.py
+|  |  |  |  |  |-- data_backend_base.py
+|  |  |  |  |  |-- data_conversions.py
+|  |  |  |  |  |-- data_conversions_test.py
+|  |  |  |  |  |-- data_executor.py
+|  |  |  |  |  |-- data_executor_test.py
+|  |  |  |  |  |-- eager_tf_executor.py
+|  |  |  |  |  |-- eager_tf_executor_multi_gpu_test.py
+|  |  |  |  |  |-- eager_tf_executor_test.py
+|  |  |  |  |  |-- executor_base.py
+|  |  |  |  |  |-- executor_bindings.py
+|  |  |  |  |  |-- executor_bindings_test.py
+|  |  |  |  |  |-- executor_factory.py
+|  |  |  |  |  |-- executor_serialization.py
+|  |  |  |  |  |-- executor_serialization_test.py
+|  |  |  |  |  |-- executor_service.py
+|  |  |  |  |  |-- executor_service_test.py
+|  |  |  |  |  |-- executor_stacks.py
+|  |  |  |  |  |-- executor_stacks_multi_gpu_test.py
+|  |  |  |  |  |-- executor_stacks_test.py
+|  |  |  |  |  |-- executor_test_utils.py
+|  |  |  |  |  |-- executor_test_utils_test.py
+|  |  |  |  |  |-- executor_utils.py
+|  |  |  |  |  |-- executor_utils_test.py
+|  |  |  |  |  |-- executor_value_base.py
+|  |  |  |  |  |-- executors_errors.py
+|  |  |  |  |  |-- federated_composing_strategy.py
+|  |  |  |  |  |-- federated_composing_strategy_test.py
+|  |  |  |  |  |-- federated_resolving_strategy.py
+|  |  |  |  |  |-- federated_resolving_strategy_test.py
+|  |  |  |  |  |-- federating_executor.py
+|  |  |  |  |  |-- federating_executor_test.py
+|  |  |  |  |  |-- ingestable_base.py
+|  |  |  |  |  |-- reference_resolving_executor.py
+|  |  |  |  |  |-- reference_resolving_executor_test.py
+|  |  |  |  |  |-- remote_executor.py
+|  |  |  |  |  |-- remote_executor_test.py
+|  |  |  |  |  |-- sequence_executor.py
+|  |  |  |  |  |-- sequence_executor_test.py
+|  |  |  |  |  |-- serialization_bindings.py
+|  |  |  |  |  |-- serialization_bindings_test.py
+|  |  |  |  |  |-- sizing_executor.py
+|  |  |  |  |  |-- sizing_executor_test.py
+|  |  |  |  |  |-- thread_delegating_executor.py
+|  |  |  |  |  |-- thread_delegating_executor_test.py
+|  |  |  |  |  |-- transforming_executor.py
+|  |  |  |  |  |-- transforming_executor_test.py
+|  |  |  |  |  |-- value_serialization.py
+|  |  |  |  |  |-- value_serialization_test.py
+|  |  |  |  |-- federated_context
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- data.py
+|  |  |  |  |  |-- data_test.py
+|  |  |  |  |  |-- federated_computation_context.py
+|  |  |  |  |  |-- federated_computation_context_test.py
+|  |  |  |  |  |-- federated_computation_utils.py
+|  |  |  |  |  |-- federated_computation_utils_test.py
+|  |  |  |  |  |-- intrinsics.py
+|  |  |  |  |  |-- intrinsics_test.py
+|  |  |  |  |  |-- value_impl.py
+|  |  |  |  |  |-- value_impl_test.py
+|  |  |  |  |  |-- value_utils.py
+|  |  |  |  |  |-- value_utils_test.py
+|  |  |  |  |-- tensorflow_context
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- tensorflow_computation_context.py
+|  |  |  |  |  |-- tensorflow_computation_context_test.py
+|  |  |  |  |  |-- tensorflow_serialization.py
+|  |  |  |  |  |-- tensorflow_serialization_test.py
+|  |  |  |  |-- types
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- computation_types.py
+|  |  |  |  |  |-- computation_types_test.py
+|  |  |  |  |  |-- computation_types_test_goldens
+|  |  |  |  |  |  |-- constructor_argument_normalization_error.expected
+|  |  |  |  |  |  |-- container_types_full_repr.expected
+|  |  |  |  |  |  |-- long_formatted_with_diff.expected
+|  |  |  |  |  |  |-- short_compact_repr.expected
+|  |  |  |  |  |-- placements.py
+|  |  |  |  |  |-- placements_test.py
+|  |  |  |  |  |-- type_analysis.py
+|  |  |  |  |  |-- type_analysis_test.py
+|  |  |  |  |  |-- type_conversions.py
+|  |  |  |  |  |-- type_conversions_test.py
+|  |  |  |  |  |-- type_factory.py
+|  |  |  |  |  |-- type_factory_test.py
+|  |  |  |  |  |-- type_serialization.py
+|  |  |  |  |  |-- type_serialization_test.py
+|  |  |  |  |  |-- type_transformations.py
+|  |  |  |  |  |-- type_transformations_test.py
+|  |  |  |  |  |-- typed_object.py
+|  |  |  |  |-- utils
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- tensorflow_utils.py
+|  |  |  |  |  |-- tensorflow_utils_test.py
+|  |  |  |  |  |-- tensorflow_utils_test_goldens
+|  |  |  |  |  |  |-- capture_result_with_sequence_of_dicts.expected
+|  |  |  |  |-- wrappers
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- computation_wrapper.py
+|  |  |  |  |  |-- computation_wrapper_instances.py
+|  |  |  |  |  |-- computation_wrapper_instances_test.py
+|  |  |  |  |  |-- computation_wrapper_instances_test_goldens
+|  |  |  |  |  |  |-- federated_computation_wrapper_traceback.expected
+|  |  |  |  |  |  |-- non_callable_non_type_traceback.expected
+|  |  |  |  |  |  |-- returns_type_container_mismatch_traceback.expected
+|  |  |  |  |  |  |-- tensorflow_wrapper_traceback.expected
+|  |  |  |  |  |-- computation_wrapper_test.py
+|  |  |  |  |-- xla_context
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- xla_serialization.py
+|  |  |  |  |  |-- xla_serialization_test.py
+|  |  |  |-- templates
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- aggregation_process.py
+|  |  |  |  |-- aggregation_process_test.py
+|  |  |  |  |-- errors.py
+|  |  |  |  |-- estimation_process.py
+|  |  |  |  |-- estimation_process_test.py
+|  |  |  |  |-- iterative_process.py
+|  |  |  |  |-- iterative_process_test.py
+|  |  |  |  |-- measured_process.py
+|  |  |  |  |-- measured_process_test.py
+|  |  |  |-- test
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- static_assert.py
+|  |  |  |  |-- static_assert_test.py
+|  |  |  |-- types
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |-- examples
+|  |  |  |-- README.md
+|  |  |  |-- personalization
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- emnist_p13n_main.py
+|  |  |  |  |-- p13n_utils.py
+|  |  |  |  |-- p13n_utils_test.py
+|  |  |  |-- remote_execution
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- remote_executor_example.py
+|  |  |  |-- simple_fedavg
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- emnist_fedavg_main.py
+|  |  |  |  |-- simple_fedavg_test.py
+|  |  |  |  |-- simple_fedavg_tf.py
+|  |  |  |  |-- simple_fedavg_tff.py
+|  |  |  |-- stateful_clients
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- emnist_fedavg_main.py
+|  |  |  |  |-- stateful_fedavg_test.py
+|  |  |  |  |-- stateful_fedavg_tf.py
+|  |  |  |  |-- stateful_fedavg_tff.py
+|  |  |-- learning
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- client_weight_lib.py
+|  |  |  |-- federated_averaging.py
+|  |  |  |-- federated_averaging_test.py
+|  |  |  |-- federated_evaluation.py
+|  |  |  |-- federated_evaluation_test.py
+|  |  |  |-- federated_sgd.py
+|  |  |  |-- federated_sgd_test.py
+|  |  |  |-- framework
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- client_works.py
+|  |  |  |  |-- client_works_test.py
+|  |  |  |  |-- composers.py
+|  |  |  |  |-- composers_test.py
+|  |  |  |  |-- dataset_reduce.py
+|  |  |  |  |-- dataset_reduce_test.py
+|  |  |  |  |-- distributors.py
+|  |  |  |  |-- distributors_test.py
+|  |  |  |  |-- encoding_utils.py
+|  |  |  |  |-- encoding_utils_test.py
+|  |  |  |  |-- finalizers.py
+|  |  |  |  |-- finalizers_test.py
+|  |  |  |  |-- optimizer_utils.py
+|  |  |  |  |-- optimizer_utils_test.py
+|  |  |  |-- keras_utils.py
+|  |  |  |-- keras_utils_test.py
+|  |  |  |-- learning_process.py
+|  |  |  |-- learning_process_test.py
+|  |  |  |-- model.py
+|  |  |  |-- model_examples.py
+|  |  |  |-- model_examples_test.py
+|  |  |  |-- model_update_aggregator.py
+|  |  |  |-- model_update_aggregator_test.py
+|  |  |  |-- model_utils.py
+|  |  |  |-- model_utils_test.py
+|  |  |  |-- optimizers
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- keras_optimizer.py
+|  |  |  |  |-- keras_optimizer_test.py
+|  |  |  |  |-- optimizer.py
+|  |  |  |  |-- optimizer_test.py
+|  |  |  |  |-- optimizer_test_utils.py
+|  |  |  |  |-- optimizer_test_utils_test.py
+|  |  |  |  |-- sgdm.py
+|  |  |  |  |-- sgdm_test.py
+|  |  |  |-- personalization_eval.py
+|  |  |  |-- personalization_eval_test.py
+|  |  |  |-- reconstruction
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- evaluation_computation.py
+|  |  |  |  |-- evaluation_computation_test.py
+|  |  |  |  |-- keras_utils.py
+|  |  |  |  |-- keras_utils_test.py
+|  |  |  |  |-- model.py
+|  |  |  |  |-- reconstruction_utils.py
+|  |  |  |  |-- reconstruction_utils_test.py
+|  |  |  |  |-- training_process.py
+|  |  |  |  |-- training_process_test.py
+|  |  |-- research
+|  |  |  |-- README.md
+|  |  |  |-- gans
+|  |  |  |  |-- README.md
+|  |  |  |-- triehh
+|  |  |  |  |-- README.md
+|  |  |-- simulation
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- baselines
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- baseline_task.py
+|  |  |  |  |-- baseline_task_test.py
+|  |  |  |  |-- cifar100
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- image_classification_preprocessing.py
+|  |  |  |  |  |-- image_classification_preprocessing_test.py
+|  |  |  |  |  |-- image_classification_tasks.py
+|  |  |  |  |  |-- image_classification_tasks_test.py
+|  |  |  |  |  |-- resnet_models.py
+|  |  |  |  |  |-- resnet_models_test.py
+|  |  |  |  |-- client_spec.py
+|  |  |  |  |-- emnist
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- autoencoder_tasks.py
+|  |  |  |  |  |-- autoencoder_tasks_test.py
+|  |  |  |  |  |-- char_recognition_tasks.py
+|  |  |  |  |  |-- char_recognition_tasks_test.py
+|  |  |  |  |  |-- emnist_models.py
+|  |  |  |  |  |-- emnist_models_test.py
+|  |  |  |  |  |-- emnist_preprocessing.py
+|  |  |  |  |  |-- emnist_preprocessing_test.py
+|  |  |  |  |-- keras_metrics.py
+|  |  |  |  |-- keras_metrics_test.py
+|  |  |  |  |-- shakespeare
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- char_prediction_models.py
+|  |  |  |  |  |-- char_prediction_models_test.py
+|  |  |  |  |  |-- char_prediction_preprocessing.py
+|  |  |  |  |  |-- char_prediction_preprocessing_test.py
+|  |  |  |  |  |-- char_prediction_tasks.py
+|  |  |  |  |  |-- char_prediction_tasks_test.py
+|  |  |  |  |-- stackoverflow
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- constants.py
+|  |  |  |  |  |-- tag_prediction_preprocessing.py
+|  |  |  |  |  |-- tag_prediction_preprocessing_test.py
+|  |  |  |  |  |-- tag_prediction_tasks.py
+|  |  |  |  |  |-- tag_prediction_tasks_test.py
+|  |  |  |  |  |-- word_prediction_models.py
+|  |  |  |  |  |-- word_prediction_models_test.py
+|  |  |  |  |  |-- word_prediction_preprocessing.py
+|  |  |  |  |  |-- word_prediction_preprocessing_test.py
+|  |  |  |  |  |-- word_prediction_tasks.py
+|  |  |  |  |  |-- word_prediction_tasks_test.py
+|  |  |  |  |-- task_data.py
+|  |  |  |  |-- task_data_test.py
+|  |  |  |-- checkpoint_manager.py
+|  |  |  |-- checkpoint_manager_test.py
+|  |  |  |-- csv_manager.py
+|  |  |  |-- csv_manager_test.py
+|  |  |  |-- datasets
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- celeba.py
+|  |  |  |  |-- celeba_test.py
+|  |  |  |  |-- cifar100.py
+|  |  |  |  |-- cifar100_test.py
+|  |  |  |  |-- client_data.py
+|  |  |  |  |-- client_data_test.py
+|  |  |  |  |-- dataset_utils.py
+|  |  |  |  |-- dataset_utils_test.py
+|  |  |  |  |-- download.py
+|  |  |  |  |-- download_test.py
+|  |  |  |  |-- emnist.py
+|  |  |  |  |-- emnist_test.py
+|  |  |  |  |-- file_per_user_client_data.py
+|  |  |  |  |-- file_per_user_client_data_test.py
+|  |  |  |  |-- from_tensor_slices_client_data.py
+|  |  |  |  |-- from_tensor_slices_client_data_test.py
+|  |  |  |  |-- gldv2.py
+|  |  |  |  |-- gldv2_test.py
+|  |  |  |  |-- inaturalist.py
+|  |  |  |  |-- inaturalist_test.py
+|  |  |  |  |-- shakespeare.py
+|  |  |  |  |-- shakespeare_test.py
+|  |  |  |  |-- sql_client_data.py
+|  |  |  |  |-- sql_client_data_test.py
+|  |  |  |  |-- stackoverflow.py
+|  |  |  |  |-- stackoverflow_test.py
+|  |  |  |  |-- transforming_client_data.py
+|  |  |  |  |-- transforming_client_data_test.py
+|  |  |  |  |-- vision_datasets_utils.py
+|  |  |  |  |-- vision_datasets_utils_test.py
+|  |  |  |-- dictionary_manager.py
+|  |  |  |-- dictionary_manager_test.py
+|  |  |  |-- iterative_process_compositions.py
+|  |  |  |-- iterative_process_compositions_test.py
+|  |  |  |-- metrics_manager.py
+|  |  |  |-- models
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- group_norm.py
+|  |  |  |  |-- group_norm_test.py
+|  |  |  |  |-- mnist.py
+|  |  |  |-- sampling_utils.py
+|  |  |  |-- sampling_utils_test.py
+|  |  |  |-- server_utils.py
+|  |  |  |-- server_utils_test.py
+|  |  |  |-- tensorboard_manager.py
+|  |  |  |-- tensorboard_manager_test.py
+|  |  |  |-- training_loop.py
+|  |  |  |-- training_loop_test.py
+|  |  |-- tensorflow_libs
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- function.py
+|  |  |  |-- function_test.py
+|  |  |  |-- graph_merge.py
+|  |  |  |-- graph_merge_test.py
+|  |  |  |-- graph_optimizations.py
+|  |  |  |-- graph_optimizations_test.py
+|  |  |  |-- graph_spec.py
+|  |  |  |-- graph_spec_test.py
+|  |  |  |-- tensor_utils.py
+|  |  |  |-- tensor_utils_test.py
+|  |  |  |-- variable_utils.py
+|  |  |  |-- variable_utils_test.py
+|  |  |  |-- version_check.py
+|  |  |  |-- version_check_test.py
+|  |  |-- tests
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- ast_generation_test.py
+|  |  |  |-- backend_accelerators_test.py
+|  |  |  |-- backend_test.py
+|  |  |  |-- composite_tensor_e2e_test.py
+|  |  |  |-- map_reduce_form_test.py
+|  |  |  |-- perf_regression_test.py
+|  |  |  |-- remote_runtime_integration_test.py
+|  |  |  |-- remote_runtime_test_utils.py
+|  |  |  |-- simulation_test.py
+|  |  |  |-- temperature_sensor_example.py
+|  |  |  |-- test_aggregator.py
+|  |  |  |-- test_contexts.py
+|  |-- tools
+|  |  |-- BUILD
+|  |  |-- build_defs.bzl
+|  |  |-- build_docs.py
+|  |  |-- client
+|  |  |  |-- BUILD
+|  |  |  |-- latest.Dockerfile
+|  |  |  |-- test.py
+|  |  |-- python_package
+|  |  |  |-- BUILD
+|  |  |  |-- build_python_package.sh
+|  |  |  |-- common.sh
+|  |  |  |-- publish_python_package.sh
+|  |  |  |-- setup.py
+|  |  |  |-- test_python_package.sh
+|  |  |-- runtime
+|  |  |  |-- BUILD
+|  |  |  |-- container
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- latest.Dockerfile
+|  |  |  |  |-- release.Dockerfile
+|  |  |  |-- remote_executor_service.py
+|  |-- version.py

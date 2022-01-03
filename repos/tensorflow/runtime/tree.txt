@@ -1,0 +1,1319 @@
+|-- .bazelignore
+|-- .bazelrc
+|-- .bazelversion
+|-- .clang-format
+|-- .github
+|  |-- mistaken-pull-closer.yml
+|  |-- pull_request_template.md
+|-- .gitignore
+|-- AUTHORS
+|-- BUILD
+|-- CODEOWNERS
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- RELEASE.md
+|-- WORKSPACE
+|-- backends
+|  |-- common
+|  |  |-- BUILD
+|  |  |-- cpp_tests
+|  |  |  |-- BUILD
+|  |  |  |-- bcast_test.cc
+|  |  |-- include
+|  |  |  |-- tfrt
+|  |  |  |  |-- common
+|  |  |  |  |  |-- compat
+|  |  |  |  |  |  |-- eigen
+|  |  |  |  |  |  |  |-- contraction_kernel.h
+|  |  |  |  |  |  |  |-- contraction_output_kernel.h
+|  |  |  |  |  |  |  |-- eigen_dtype.h
+|  |  |  |  |  |  |  |-- eigen_evaluator.h
+|  |  |  |  |  |  |  |-- eigen_kernel.h
+|  |  |  |  |  |  |  |-- kernels
+|  |  |  |  |  |  |  |  |-- shape_functions.h
+|  |  |  |  |  |  |  |-- partial_packets.h
+|  |  |  |  |  |  |  |-- spatial_convolution.h
+|  |  |  |  |  |  |  |-- spatial_convolution_data_mapper.h
+|  |  |  |  |  |  |  |-- tensor_types.h
+|  |  |  |  |  |  |  |-- thread_pool_device.h
+|  |  |  |  |  |-- ops
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- metadata_functions.h
+|  |  |  |  |  |  |-- tf
+|  |  |  |  |  |  |  |-- bcast.h
+|  |  |  |  |  |  |  |-- dnn_ops_util.h
+|  |  |  |  |  |  |  |-- metadata_functions.h
+|  |  |-- lib
+|  |  |  |-- compat
+|  |  |  |  |-- eigen
+|  |  |  |  |  |-- contraction_kernel.cc
+|  |  |  |  |  |-- kernels
+|  |  |  |  |  |  |-- batch_norm.h
+|  |  |  |  |  |  |-- batch_norm_grad.cc
+|  |  |  |  |  |  |-- conv2d.h
+|  |  |  |  |  |  |-- conv2d_grad_filter.cc
+|  |  |  |  |  |  |-- conv2d_grad_input.cc
+|  |  |  |  |  |  |-- conv2d_shape_functions.cc
+|  |  |  |  |  |  |-- conv2d_shape_functions.h
+|  |  |  |  |  |  |-- cpu_kernels.cc
+|  |  |  |  |  |  |-- matmul.cc
+|  |  |  |  |  |  |-- max_pooling.h
+|  |  |  |  |  |  |-- shape_functions.cc
+|  |  |  |  |  |  |-- static_registration.cc
+|  |  |  |  |  |  |-- zero_padding.h
+|  |  |  |  |  |-- ops
+|  |  |  |  |  |  |-- cpu_ops.cc
+|  |  |  |  |  |  |-- static_registration.cc
+|  |  |  |-- ops
+|  |  |  |  |-- test
+|  |  |  |  |  |-- metadata
+|  |  |  |  |  |  |-- test_ops.cc
+|  |  |  |  |-- tf
+|  |  |  |  |  |-- bcast.cc
+|  |  |  |  |  |-- dnn_ops_util.cc
+|  |  |  |  |  |-- metadata_functions.cc
+|  |  |-- mlir_tests
+|  |  |  |-- compat
+|  |  |  |  |-- eigen
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- batch_norm.mlir
+|  |  |  |  |  |-- batch_norm_grad.benchmarks.mlir
+|  |  |  |  |  |-- batch_norm_grad.mlir
+|  |  |  |  |  |-- conv2d.batch_norm.benchmarks.mlir
+|  |  |  |  |  |-- conv2d.batch_norm.mlir
+|  |  |  |  |  |-- conv2d.bias.benchmarks.mlir
+|  |  |  |  |  |-- conv2d.bias.mlir
+|  |  |  |  |  |-- conv2d_grad_filter.benchmarks.mlir
+|  |  |  |  |  |-- conv2d_grad_filter.mlir
+|  |  |  |  |  |-- conv2d_grad_input.benchmarks.mlir
+|  |  |  |  |  |-- conv2d_grad_input.mlir
+|  |  |  |  |  |-- matmul.benchmarks.mlir
+|  |  |  |  |  |-- matmul.mlir
+|  |  |  |  |  |-- max_pooling.benchmarks.mlir
+|  |  |  |  |  |-- max_pooling.mlir
+|  |  |  |  |  |-- test_data
+|  |  |  |  |  |  |-- batch_norm_f32.btf
+|  |  |  |  |  |  |-- batch_norm_grad_f32.btf
+|  |  |  |  |  |  |-- conv2d_batch_norm_f32.btf
+|  |  |  |  |  |  |-- conv2d_bias_f32.btf
+|  |  |  |  |  |  |-- conv2d_grad_filter_f32.btf
+|  |  |  |  |  |  |-- conv2d_grad_input_f32.btf
+|  |  |  |  |  |  |-- matmul_f32.btf
+|  |  |  |  |  |  |-- matmul_i32.btf
+|  |  |  |  |  |  |-- max_pooling_f32.btf
+|  |  |  |  |  |-- zero_padding.benchmarks.mlir
+|  |-- cpu
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- cpp_tests
+|  |  |  |-- BUILD
+|  |  |  |-- kernels
+|  |  |  |  |-- cwise_binary_kernels_test.cc
+|  |  |  |-- ops
+|  |  |  |  |-- tf
+|  |  |  |  |  |-- buffer_forwarding_test.cc
+|  |  |  |  |  |-- type_dispatch_test.cc
+|  |  |-- include
+|  |  |  |-- tfrt
+|  |  |  |  |-- cpu
+|  |  |  |  |  |-- core_runtime
+|  |  |  |  |  |  |-- cpu_op_handler.h
+|  |  |  |  |  |  |-- cpu_op_registry.h
+|  |  |  |  |  |  |-- null_op_handler.h
+|  |  |  |  |  |-- jit
+|  |  |  |  |  |  |-- async_runtime.h
+|  |  |  |  |  |  |-- async_runtime_api.h
+|  |  |  |  |  |  |-- cpurt.h
+|  |  |  |  |  |  |-- cpurt_support.h
+|  |  |  |  |  |  |-- opdefs
+|  |  |  |  |  |  |  |-- cpurt_base.td
+|  |  |  |  |  |  |  |-- cpurt_ops.h
+|  |  |  |  |  |  |  |-- cpurt_ops.td
+|  |  |  |  |  |-- kernels
+|  |  |  |  |  |  |-- proto
+|  |  |  |  |  |  |  |-- example.proto
+|  |  |  |  |  |-- ops
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- cpu_ops_and_kernels.h
+|  |  |  |  |  |  |-- tf
+|  |  |  |  |  |  |  |-- cpu_jit_ops.h
+|  |  |  |  |  |  |  |-- cpu_ops.h
+|  |  |-- lib
+|  |  |  |-- core_runtime
+|  |  |  |  |-- cpu_op_handler.cc
+|  |  |  |  |-- cpu_op_registry.cc
+|  |  |  |  |-- cpu_op_registry_impl.h
+|  |  |  |  |-- null_op_handler.cc
+|  |  |  |  |-- op_handler_kernels.cc
+|  |  |  |  |-- op_handler_kernels.h
+|  |  |  |  |-- static_registration.cc
+|  |  |  |-- jit
+|  |  |  |  |-- async_runtime.cc
+|  |  |  |  |-- async_runtime_api.cc
+|  |  |  |  |-- cpurt.cc
+|  |  |  |  |-- cpurt_corert_kernels.cc
+|  |  |  |  |-- cpurt_corert_kernels_registration.cc
+|  |  |  |  |-- cpurt_kernels.cc
+|  |  |  |  |-- cpurt_kernels_registration.cc
+|  |  |  |  |-- opdefs
+|  |  |  |  |  |-- cpurt_ops.cc
+|  |  |  |-- kernels
+|  |  |  |  |-- concat_kernel.h
+|  |  |  |  |-- cpu_kernels.h
+|  |  |  |  |-- cwise_binary_kernels.h
+|  |  |  |  |-- cwise_unary_kernels.h
+|  |  |  |  |-- fused_matmul_kernel.h
+|  |  |  |  |-- image
+|  |  |  |  |  |-- image_kernels.cc
+|  |  |  |  |  |-- jpeg
+|  |  |  |  |  |  |-- jpeg_handle.cc
+|  |  |  |  |  |  |-- jpeg_handle.h
+|  |  |  |  |  |  |-- jpeg_mem.cc
+|  |  |  |  |  |  |-- jpeg_mem.h
+|  |  |  |  |  |-- resize_bilinear_op.cc
+|  |  |  |  |  |-- resize_bilinear_op.h
+|  |  |  |  |  |-- static_registration.cc
+|  |  |  |  |-- matmul_kernel.h
+|  |  |  |  |-- proto
+|  |  |  |  |  |-- proto_kernels.cc
+|  |  |  |  |  |-- static_registration.cc
+|  |  |  |  |-- softmax_kernel.h
+|  |  |  |  |-- tf
+|  |  |  |  |  |-- concat_kernels.cc
+|  |  |  |  |  |-- const_kernels.cc
+|  |  |  |  |  |-- cwise_binary_kernels.cc
+|  |  |  |  |  |-- cwise_unary_kernels.cc
+|  |  |  |  |  |-- fused_matmul_kernels.cc
+|  |  |  |  |  |-- softmax_kernels.cc
+|  |  |  |  |  |-- static_registration.cc
+|  |  |  |  |  |-- tile_kernels.cc
+|  |  |  |  |-- tile_kernel.cc
+|  |  |  |  |-- tile_kernel.h
+|  |  |  |-- ops
+|  |  |  |  |-- test
+|  |  |  |  |  |-- btf_kernels.cc
+|  |  |  |  |  |-- coo_host_tensor_kernels.cc
+|  |  |  |  |  |-- example_ops.cc
+|  |  |  |  |  |-- mnist_tensor_kernels.cc
+|  |  |  |  |  |-- resnet_tensor_kernels.cc
+|  |  |  |  |  |-- static_registration.cc
+|  |  |  |  |-- tf
+|  |  |  |  |  |-- buffer_forwarding.cc
+|  |  |  |  |  |-- buffer_forwarding.h
+|  |  |  |  |  |-- concat_op.cc
+|  |  |  |  |  |-- concat_op.h
+|  |  |  |  |  |-- constant_ops.cc
+|  |  |  |  |  |-- constant_ops.h
+|  |  |  |  |  |-- cpu_jit_ops.cc
+|  |  |  |  |  |-- cpu_ops.cc
+|  |  |  |  |  |-- cwise_binary_ops.cc
+|  |  |  |  |  |-- cwise_binary_ops.h
+|  |  |  |  |  |-- cwise_unary_ops.cc
+|  |  |  |  |  |-- cwise_unary_ops.h
+|  |  |  |  |  |-- matmul_fusion_ops.cc
+|  |  |  |  |  |-- matmul_fusion_ops.h
+|  |  |  |  |  |-- matmul_ops.cc
+|  |  |  |  |  |-- matmul_ops.h
+|  |  |  |  |  |-- shape_ops.cc
+|  |  |  |  |  |-- shape_ops.h
+|  |  |  |  |  |-- softmax_ops.cc
+|  |  |  |  |  |-- softmax_ops.h
+|  |  |  |  |  |-- static_registration.cc
+|  |  |  |  |  |-- static_registration_jit.cc
+|  |  |  |  |  |-- tile_op.cc
+|  |  |  |  |  |-- tile_op.h
+|  |  |  |  |  |-- type_dispatch.h
+|  |  |-- mlir_tests
+|  |  |  |-- core_runtime
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- op_handler.mlir
+|  |  |  |  |-- test_ops.mlir
+|  |  |  |  |-- tf_addv2.mlir
+|  |  |  |  |-- tf_biasadd.mlir
+|  |  |  |  |-- tf_buffer_forwarding.mlir
+|  |  |  |  |-- tf_concat.mlir
+|  |  |  |  |-- tf_conv2d.mlir
+|  |  |  |  |-- tf_expanddims.mlir
+|  |  |  |  |-- tf_fusedbatchnorm.mlir
+|  |  |  |  |-- tf_fusedmatmul.benchmark.mlir
+|  |  |  |  |-- tf_fusedmatmul.mlir
+|  |  |  |  |-- tf_less.mlir
+|  |  |  |  |-- tf_maxpool.mlir
+|  |  |  |  |-- tf_mean.mlir
+|  |  |  |  |-- tf_mul.mlir
+|  |  |  |  |-- tf_ops_cpu.mlir
+|  |  |  |  |-- tf_pad.mlir
+|  |  |  |  |-- tf_realdiv.mlir
+|  |  |  |  |-- tf_shape.mlir
+|  |  |  |  |-- tf_softmax.mlir
+|  |  |  |  |-- tf_sub.mlir
+|  |  |  |  |-- tf_tile.mlir
+|  |  |  |  |-- tf_unary_ops.mlir
+|  |  |  |  |-- tf_zeroslike.mlir
+|  |  |  |-- jit
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- benchmark.compile.bufferized.mlir
+|  |  |  |  |-- benchmark.compile.corert.mlir
+|  |  |  |  |-- compile.allocating.mlir
+|  |  |  |  |-- compile.bufferized.mlir
+|  |  |  |  |-- compile.corert.mlir
+|  |  |  |  |-- compile.corert.sync.mlir
+|  |  |  |  |-- compile.global.memref.mlir
+|  |  |  |-- mnist
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- btf_kernels.mlir
+|  |  |  |  |-- matmul.mlir
+|  |  |  |  |-- mnist_tensor_kernels.mlir
+|  |  |  |  |-- test_data
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- matmul_test_f32.btf
+|  |  |  |  |  |-- matmul_test_i32.btf
+|  |  |  |  |  |-- test_tensor.btf
+|  |  |  |-- resnet
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- max_pool.mlir
+|  |  |  |  |-- resnet_tensor_kernels.mlir
+|  |  |  |  |-- test_data
+|  |  |  |  |  |-- max_pool.btf
+|  |  |  |-- tf_kernels
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- tf_addv2.mlir
+|  |  |  |  |-- tf_concat.mlir
+|  |  |  |  |-- tf_const.mlir
+|  |  |  |  |-- tf_fusedmatmul.mlir
+|  |  |  |  |-- tf_mul.mlir
+|  |  |  |  |-- tf_realdiv.mlir
+|  |  |  |  |-- tf_softmax.mlir
+|  |  |  |  |-- tf_sub.mlir
+|  |  |  |  |-- tf_tile.mlir
+|  |  |  |  |-- unary_kernels.mlir
+|  |-- gpu
+|  |  |-- BUILD
+|  |  |-- cpp_tests
+|  |  |  |-- BUILD
+|  |  |  |-- gpu_types_test.cc
+|  |  |  |-- include
+|  |  |  |  |-- common.h
+|  |  |  |-- instantiate_suite.cc
+|  |  |  |-- wrapper
+|  |  |  |  |-- blas_wrapper_test.cc
+|  |  |  |  |-- dnn_wrapper_test.cc
+|  |  |  |  |-- driver_wrapper_test.cc
+|  |  |  |  |-- fft_wrapper_test.cc
+|  |  |  |  |-- runtime_wrapper_test.cc
+|  |  |  |  |-- solver_wrapper_test.cc
+|  |  |-- include
+|  |  |  |-- tfrt
+|  |  |  |  |-- gpu
+|  |  |  |  |  |-- core_runtime
+|  |  |  |  |  |  |-- gpu_dispatch_context.h
+|  |  |  |  |  |  |-- gpu_op_handler.h
+|  |  |  |  |  |  |-- gpu_op_registry.h
+|  |  |  |  |  |  |-- gpu_op_utils.h
+|  |  |  |  |  |-- device
+|  |  |  |  |  |  |-- conversion_function.h
+|  |  |  |  |  |  |-- device.h
+|  |  |  |  |  |  |-- device_util.h
+|  |  |  |  |  |  |-- gpu_config.h
+|  |  |  |  |  |-- gpu_types.h
+|  |  |  |  |  |-- kernels
+|  |  |  |  |  |  |-- gpu_blas_ops.td
+|  |  |  |  |  |  |-- gpu_conversion_helper_ops.td
+|  |  |  |  |  |  |-- gpu_dnn_ops.td
+|  |  |  |  |  |  |-- gpu_driver_ops.td
+|  |  |  |  |  |  |-- gpu_ops.h
+|  |  |  |  |  |  |-- gpu_ops.td
+|  |  |  |  |  |  |-- gpu_ops_base.td
+|  |  |  |  |  |  |-- gpu_solver_ops.td
+|  |  |  |  |  |-- memory
+|  |  |  |  |  |  |-- bfc_gpu_allocator.h
+|  |  |  |  |  |-- ops
+|  |  |  |  |  |  |-- test
+|  |  |  |  |  |  |  |-- gpu_ops_and_kernels.h
+|  |  |  |  |  |  |-- tf
+|  |  |  |  |  |  |  |-- bias_add_f16_kernel.h
+|  |  |  |  |  |  |  |-- bias_add_f32_kernel.h
+|  |  |  |  |  |  |  |-- bias_add_f64_kernel.h
+|  |  |  |  |  |  |  |-- gpu_ops.h
+|  |  |  |  |  |  |  |-- relu_f16_kernel.h
+|  |  |  |  |  |  |  |-- relu_f32_kernel.h
+|  |  |  |  |  |  |  |-- relu_f64_kernel.h
+|  |  |  |  |  |-- pass
+|  |  |  |  |  |  |-- pass.h
+|  |  |  |  |  |-- system
+|  |  |  |  |  |  |-- system.h
+|  |  |  |  |  |-- tensor
+|  |  |  |  |  |  |-- dense_gpu_tensor.h
+|  |  |  |  |  |-- wrapper
+|  |  |  |  |  |  |-- blas_wrapper.h
+|  |  |  |  |  |  |-- cublas_wrapper.h
+|  |  |  |  |  |  |-- cuda_forwards.h
+|  |  |  |  |  |  |-- cuda_wrapper.h
+|  |  |  |  |  |  |-- cudart_wrapper.h
+|  |  |  |  |  |  |-- cudnn_wrapper.h
+|  |  |  |  |  |  |-- cufft_wrapper.h
+|  |  |  |  |  |  |-- cusolver_wrapper.h
+|  |  |  |  |  |  |-- dense_map_utils.h
+|  |  |  |  |  |  |-- dnn_wrapper.h
+|  |  |  |  |  |  |-- driver_wrapper.h
+|  |  |  |  |  |  |-- fft_wrapper.h
+|  |  |  |  |  |  |-- hash_utils.h
+|  |  |  |  |  |  |-- hip_forwards.h
+|  |  |  |  |  |  |-- hip_stub.h
+|  |  |  |  |  |  |-- hip_wrapper.h
+|  |  |  |  |  |  |-- miopen_stub.h
+|  |  |  |  |  |  |-- miopen_wrapper.h
+|  |  |  |  |  |  |-- rocblas_stub.h
+|  |  |  |  |  |  |-- rocblas_wrapper.h
+|  |  |  |  |  |  |-- rocfft_stub.h
+|  |  |  |  |  |  |-- rocfft_wrapper.h
+|  |  |  |  |  |  |-- solver_wrapper.h
+|  |  |  |  |  |  |-- wrapper.h
+|  |  |-- lib
+|  |  |  |-- core_runtime
+|  |  |  |  |-- gpu_op_handler.cc
+|  |  |  |  |-- gpu_op_registry.cc
+|  |  |  |  |-- gpu_op_registry_impl.h
+|  |  |  |  |-- op_handler_kernels.cc
+|  |  |  |  |-- op_handler_kernels.h
+|  |  |  |  |-- static_registration.cc
+|  |  |  |-- device
+|  |  |  |  |-- conversion_function.cc
+|  |  |  |  |-- device.cc
+|  |  |  |  |-- device_util.cc
+|  |  |  |  |-- eigen_support.cc
+|  |  |  |  |-- eigen_support.h
+|  |  |  |  |-- gpu_config.cc
+|  |  |  |  |-- static_registration.cc
+|  |  |  |-- gpu_types.cc
+|  |  |  |-- kernels
+|  |  |  |  |-- blas_kernels.cc
+|  |  |  |  |-- dnn_kernels.cc
+|  |  |  |  |-- driver_kernels.cc
+|  |  |  |  |-- gpu_ops.cc
+|  |  |  |  |-- kernels_detail.h
+|  |  |  |  |-- solver_kernels.cc
+|  |  |  |  |-- static_registration.cc
+|  |  |  |-- memory
+|  |  |  |  |-- bfc_gpu_allocator.cc
+|  |  |  |-- ops
+|  |  |  |  |-- test
+|  |  |  |  |  |-- static_registration.cc
+|  |  |  |  |  |-- test_cuda_kernels.cu.cc
+|  |  |  |  |  |-- test_ops.cc
+|  |  |  |  |-- tf
+|  |  |  |  |  |-- binary_ops.cu.cc
+|  |  |  |  |  |-- blas_support.h
+|  |  |  |  |  |-- dnn_ops.cc
+|  |  |  |  |  |-- dnn_ops.cu.cc
+|  |  |  |  |  |-- dnn_ops_cu.h
+|  |  |  |  |  |-- eigen_helper.cu.h
+|  |  |  |  |  |-- gpu_ops.cc
+|  |  |  |  |  |-- matmul_op.cc
+|  |  |  |  |  |-- matmul_op.h
+|  |  |  |  |  |-- mlir_ops.cc
+|  |  |  |  |  |-- nullary_ops.cc
+|  |  |  |  |  |-- pad_op.cc
+|  |  |  |  |  |-- pad_op.cu.cc
+|  |  |  |  |  |-- pad_op.h
+|  |  |  |  |  |-- pad_op_noncuda.cc
+|  |  |  |  |  |-- pad_op_noncuda.h
+|  |  |  |  |  |-- reduction_ops.cu.cc
+|  |  |  |  |  |-- static_registration.cc
+|  |  |  |  |  |-- transpose_op.cu.cc
+|  |  |  |  |  |-- unary_ops.cu.cc
+|  |  |  |-- pass
+|  |  |  |  |-- pass.cc
+|  |  |  |-- system
+|  |  |  |  |-- system.cc
+|  |  |  |-- tensor
+|  |  |  |  |-- dense_gpu_tensor.cc
+|  |  |  |-- wrapper
+|  |  |  |  |-- blas_wrapper.cc
+|  |  |  |  |-- cublas_compat.cc
+|  |  |  |  |-- cublas_enums.cc
+|  |  |  |  |-- cublas_stub.cc
+|  |  |  |  |-- cublas_wrapper.cc
+|  |  |  |  |-- cuda_stub.cc
+|  |  |  |  |-- cuda_wrapper.cc
+|  |  |  |  |-- cudart_stub.cc
+|  |  |  |  |-- cudart_wrapper.cc
+|  |  |  |  |-- cudnn_enums.cc
+|  |  |  |  |-- cudnn_stub.cc
+|  |  |  |  |-- cudnn_wrapper.cc
+|  |  |  |  |-- cufft_stub.cc
+|  |  |  |  |-- cufft_wrapper.cc
+|  |  |  |  |-- cusolver_stub.cc
+|  |  |  |  |-- cusolver_wrapper.cc
+|  |  |  |  |-- dnn_wrapper.cc
+|  |  |  |  |-- driver_wrapper.cc
+|  |  |  |  |-- fft_wrapper.cc
+|  |  |  |  |-- hash_utils.cc
+|  |  |  |  |-- hip_stub.cc
+|  |  |  |  |-- hip_wrapper.cc
+|  |  |  |  |-- miopen_enums.cc
+|  |  |  |  |-- miopen_stub.cc
+|  |  |  |  |-- miopen_wrapper.cc
+|  |  |  |  |-- rocblas_enums.cc
+|  |  |  |  |-- rocblas_stub.cc
+|  |  |  |  |-- rocblas_wrapper.cc
+|  |  |  |  |-- rocfft_stub.cc
+|  |  |  |  |-- rocfft_wrapper.cc
+|  |  |  |  |-- solver_wrapper.cc
+|  |  |  |  |-- symbol_loader.h
+|  |  |  |  |-- wrapper_detail.h
+|  |  |-- mlir_tests
+|  |  |  |-- BUILD
+|  |  |  |-- core_runtime
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- current_context_lifetime.mlir
+|  |  |  |  |-- get_device.mlir
+|  |  |  |  |-- logging_with_results.mlir
+|  |  |  |  |-- multi_gpu.mlir
+|  |  |  |  |-- op_handler.mlir
+|  |  |  |  |-- tensor_conversion.mlir
+|  |  |  |  |-- test_ops.mlir
+|  |  |  |  |-- tf_addv2.mlir
+|  |  |  |  |-- tf_biasadd.benchmark.mlir
+|  |  |  |  |-- tf_biasadd.mlir
+|  |  |  |  |-- tf_cast.mlir
+|  |  |  |  |-- tf_const.mlir
+|  |  |  |  |-- tf_conv2d.benchmark.mlir
+|  |  |  |  |-- tf_conv2d.mlir
+|  |  |  |  |-- tf_fusedbatchnorm.benchmark.mlir
+|  |  |  |  |-- tf_fusedbatchnorm.mlir
+|  |  |  |  |-- tf_matmul.mlir
+|  |  |  |  |-- tf_maxpool.mlir
+|  |  |  |  |-- tf_mean.mlir
+|  |  |  |  |-- tf_pad.mlir
+|  |  |  |  |-- tf_reduction.benchmark.mlir
+|  |  |  |  |-- tf_reduction_ops.mlir
+|  |  |  |  |-- tf_relu.benchmark.mlir
+|  |  |  |  |-- tf_relu.mlir
+|  |  |  |  |-- tf_softmax.mlir
+|  |  |  |  |-- tf_tanh.mlir
+|  |  |  |  |-- tf_transpose.mlir
+|  |  |  |-- cuda
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- blas.mlir
+|  |  |  |  |-- dnn.mlir
+|  |  |  |  |-- event.mlir
+|  |  |  |  |-- launch.mlir
+|  |  |  |  |-- memcpy.mlir
+|  |  |  |  |-- module.mlir
+|  |  |  |  |-- stream.mlir
+|  |  |-- tools
+|  |  |  |-- stub_codegen
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- cublas.json
+|  |  |  |  |-- cuda.json
+|  |  |  |  |-- cudart.json
+|  |  |  |  |-- cudnn.json
+|  |  |  |  |-- cufft.json
+|  |  |  |  |-- cufftxt.json
+|  |  |  |  |-- cusolverdn.json
+|  |  |  |  |-- generate.sh
+|  |  |  |  |-- header_codegen.py
+|  |  |  |  |-- hip.json
+|  |  |  |  |-- impl_codegen.py
+|  |  |  |  |-- miopen.json
+|  |  |  |  |-- rocblas.json
+|  |  |  |  |-- rocfft.json
+|  |  |  |-- tfrt_gpu_opt
+|  |  |  |  |-- tfrt_gpu_opt.cc
+|  |  |  |-- tfrt_gpu_translate
+|  |  |  |  |-- static_registration.cc
+|-- build_defs.bzl
+|-- cpp_tests
+|  |-- BUILD
+|  |-- bef_converter
+|  |  |-- bef_attr_emitter_test.cc
+|  |  |-- bef_attr_encoder_test.cc
+|  |  |-- bef_attr_reader_test.cc
+|  |  |-- bef_location_emitter_test.cc
+|  |  |-- bef_location_reader_test.cc
+|  |  |-- bef_string_emitter_test.cc
+|  |-- core_runtime
+|  |  |-- driver.cc
+|  |  |-- driver.h
+|  |  |-- driver_test.cc
+|  |  |-- op_attrs_test.cc
+|  |  |-- op_handler_test.cc
+|  |-- distributed_runtime
+|  |  |-- BUILD
+|  |  |-- callback_registry_test.cc
+|  |  |-- cluster_info_test.cc
+|  |  |-- distributed_context_test.cc
+|  |-- dtype
+|  |  |-- dtype_test.cc
+|  |-- host_context
+|  |  |-- async_value_ptr_test.cc
+|  |  |-- async_value_ref_test.cc
+|  |  |-- async_value_test.cc
+|  |  |-- host_allocator_test.cc
+|  |  |-- host_buffer_test.cc
+|  |  |-- host_context_test.cc
+|  |  |-- location_test.cc
+|  |  |-- parallel_for_test.cc
+|  |  |-- request_context_test.cc
+|  |  |-- request_deadline_tracker_test.cc
+|  |  |-- resource_context_test.cc
+|  |  |-- sync_kernel_test.cc
+|  |  |-- timer_queue_test.cc
+|  |  |-- value_test.cc
+|  |-- host_runtime
+|  |  |-- concurrent_work_queue_test.cc
+|  |-- include
+|  |  |-- tfrt
+|  |  |  |-- cpp_tests
+|  |  |  |  |-- error_util.h
+|  |  |  |  |-- test_util.h
+|  |-- support
+|  |  |-- aligned_buffer_test.cc
+|  |  |-- bef_encoding_test.cc
+|  |  |-- bef_reader_test.cc
+|  |  |-- concurrent_vector_test.cc
+|  |  |-- crc32c_test.cc
+|  |  |-- dense_host_tensor_test.cc
+|  |  |-- error_test.cc
+|  |  |-- hash_util_test.cc
+|  |  |-- latch_test.cc
+|  |  |-- map_by_type_test.cc
+|  |  |-- philox_random_test.cc
+|  |  |-- random_util_test.cc
+|  |  |-- ranges_test.cc
+|  |  |-- ref_count_test.cc
+|  |  |-- string_util_test.cc
+|  |  |-- tensor_type_registration_test.cc
+|  |  |-- thread_local_test.cc
+|  |  |-- variant_test.cc
+|  |-- tensor
+|  |  |-- btf_test.cc
+|  |  |-- tensor_serialize_utils_test.cc
+|  |  |-- tensor_shape_test.cc
+|  |  |-- tensor_test.cc
+|  |-- tracing
+|  |  |-- tracing_benchmark.cc
+|  |  |-- tracing_test.cc
+|-- dependencies.bzl
+|-- documents
+|  |-- async_value.md
+|  |-- bef_benchmark.md
+|  |-- binary_executable_format.md
+|  |-- binary_tensor_format.md
+|  |-- code_size_test_app.md
+|  |-- cuda-proposal.md
+|  |-- design_philosophy.md
+|  |-- error_handling.md
+|  |-- explicit_dependency.md
+|  |-- high_level_overview.md
+|  |-- img
+|  |  |-- BEF_conversion.svg
+|  |  |-- TFRT_overview.svg
+|  |  |-- async-values.svg
+|  |  |-- graph-execution.svg
+|  |  |-- host-runtime.svg
+|  |  |-- mlir-bef.svg
+|  |  |-- reg-states.svg
+|  |  |-- tfrt-arch.svg
+|  |-- mnist.md
+|  |-- mnist_training.md
+|  |-- resnet.md
+|  |-- style_guide.md
+|  |-- subsystems.md
+|  |-- tfrt_host_runtime_design.md
+|  |-- tfrt_op_by_op_execution_design.md
+|  |-- tutorial.md
+|-- include
+|  |-- tfrt
+|  |  |-- basic_kernels
+|  |  |  |-- basic_kernels.h
+|  |  |  |-- opdefs
+|  |  |  |  |-- basic_kernels.h
+|  |  |  |  |-- basic_kernels.td
+|  |  |  |  |-- tfrt_base.h
+|  |  |  |  |-- tfrt_base.td
+|  |  |  |  |-- types.h
+|  |  |-- bef
+|  |  |  |-- bef_buffer.h
+|  |  |  |-- bef_encoding.h
+|  |  |  |-- bef_location.h
+|  |  |  |-- bef_reader.h
+|  |  |-- bef_converter
+|  |  |  |-- bef_attr_encoder.h
+|  |  |  |-- bef_emitter.h
+|  |  |  |-- bef_to_mlir.h
+|  |  |  |-- bef_to_mlir_translate.h
+|  |  |  |-- mlir_src_to_bef.h
+|  |  |  |-- mlir_to_bef.h
+|  |  |  |-- mlir_to_bef_translate.h
+|  |  |-- bef_executor
+|  |  |  |-- bef_file.h
+|  |  |  |-- bef_interpreter.h
+|  |  |  |-- function_util.h
+|  |  |-- bef_executor_driver
+|  |  |  |-- bef_executor_driver.h
+|  |  |-- compiler
+|  |  |  |-- compiler_pass.h
+|  |  |  |-- opdefs
+|  |  |  |  |-- tfrt_op_interfaces.h
+|  |  |  |  |-- tfrt_op_interfaces.td
+|  |  |  |  |-- tfrt_traits.h
+|  |  |  |  |-- tfrt_traits.td
+|  |  |  |-- stream_analysis.h
+|  |  |-- core_runtime
+|  |  |  |-- core_runtime.h
+|  |  |  |-- core_runtime_op.h
+|  |  |  |-- dispatch_utils.h
+|  |  |  |-- execute_op_impl.h
+|  |  |  |-- kernels.h
+|  |  |  |-- logging_op_handler.h
+|  |  |  |-- op_args.h
+|  |  |  |-- op_attr_type.def
+|  |  |  |-- op_attr_type.h
+|  |  |  |-- op_attrs.h
+|  |  |  |-- op_handler.h
+|  |  |  |-- op_invocation.h
+|  |  |  |-- op_metadata_function.h
+|  |  |  |-- op_utils.h
+|  |  |  |-- opdefs
+|  |  |  |  |-- attributes.h
+|  |  |  |  |-- core_runtime.h
+|  |  |  |  |-- core_runtime.td
+|  |  |  |  |-- corert_base.td
+|  |  |  |  |-- corert_traits.td
+|  |  |  |  |-- corert_utils.h
+|  |  |  |  |-- sync
+|  |  |  |  |  |-- core_runtime.h
+|  |  |  |  |  |-- core_runtime.td
+|  |  |  |  |-- traits.h
+|  |  |  |  |-- types.h
+|  |  |  |-- tensor_handle.h
+|  |  |-- data
+|  |  |  |-- dataset.h
+|  |  |  |-- opdefs
+|  |  |  |  |-- data_ops.h
+|  |  |  |  |-- data_ops.td
+|  |  |  |  |-- types.h
+|  |  |-- distributed_runtime
+|  |  |  |-- callback_registry.h
+|  |  |  |-- cluster_info.h
+|  |  |  |-- distributed_context.h
+|  |  |  |-- distributed_init_helper.h
+|  |  |  |-- distributed_kernels.h
+|  |  |  |-- fabric_communicator.h
+|  |  |  |-- function_cache.h
+|  |  |  |-- opdefs
+|  |  |  |  |-- kernels.h
+|  |  |  |  |-- kernels.td
+|  |  |  |  |-- types.h
+|  |  |  |-- payload.h
+|  |  |  |-- proto
+|  |  |  |  |-- cluster_config.proto
+|  |  |  |  |-- remote_message.proto
+|  |  |  |-- remote_chain_manager.h
+|  |  |  |-- remote_client.h
+|  |  |  |-- remote_device.h
+|  |  |  |-- remote_execute.h
+|  |  |  |-- remote_object.h
+|  |  |  |-- remote_object_manager.h
+|  |  |  |-- remote_op_handler.h
+|  |  |  |-- remote_tensor.h
+|  |  |  |-- request_handler.h
+|  |  |  |-- request_handler_impl.h
+|  |  |  |-- server_context.h
+|  |  |  |-- task_handle.h
+|  |  |  |-- task_name_util.h
+|  |  |-- dtype
+|  |  |  |-- dtype.def
+|  |  |  |-- dtype.h
+|  |  |  |-- dtype_formatter.h
+|  |  |  |-- quantized_types.h
+|  |  |-- host_context
+|  |  |  |-- async_dispatch.h
+|  |  |  |-- async_value.h
+|  |  |  |-- async_value_ref.h
+|  |  |  |-- attribute_utils.h
+|  |  |  |-- chain.h
+|  |  |  |-- concurrent_work_queue.h
+|  |  |  |-- device.h
+|  |  |  |-- diagnostic.h
+|  |  |  |-- execution_context.h
+|  |  |  |-- function.h
+|  |  |  |-- host_allocator.h
+|  |  |  |-- host_buffer.h
+|  |  |  |-- host_context.h
+|  |  |  |-- host_context_ptr.h
+|  |  |  |-- kernel_frame.h
+|  |  |  |-- kernel_registry.h
+|  |  |  |-- kernel_utils.h
+|  |  |  |-- location.h
+|  |  |  |-- native_function.h
+|  |  |  |-- parallel_for.h
+|  |  |  |-- profiled_allocator.h
+|  |  |  |-- request_deadline_tracker.h
+|  |  |  |-- resource_context.h
+|  |  |  |-- shared_context.h
+|  |  |  |-- sync_kernel_frame.h
+|  |  |  |-- sync_kernel_utils.h
+|  |  |  |-- task_function.h
+|  |  |  |-- timer_queue.h
+|  |  |  |-- type_name.h
+|  |  |  |-- value.h
+|  |  |-- init_tfrt_dialects.h
+|  |  |-- io
+|  |  |  |-- buffered_input_stream.h
+|  |  |  |-- file_input_stream.h
+|  |  |  |-- file_system.h
+|  |  |  |-- input_stream.h
+|  |  |-- metrics
+|  |  |  |-- common_metrics.h
+|  |  |  |-- gauge.h
+|  |  |  |-- histogram.h
+|  |  |  |-- metrics.h
+|  |  |  |-- metrics_registry.h
+|  |  |-- support
+|  |  |  |-- absl_mutex.h
+|  |  |  |-- aligned_buffer.h
+|  |  |  |-- alloc.h
+|  |  |  |-- bf16.h
+|  |  |  |-- byte_order.h
+|  |  |  |-- concurrent_vector.h
+|  |  |  |-- crc32c.h
+|  |  |  |-- error_type.def
+|  |  |  |-- error_util.h
+|  |  |  |-- forward_decls.h
+|  |  |  |-- fp16.h
+|  |  |  |-- hash_util.h
+|  |  |  |-- latch.h
+|  |  |  |-- logging.h
+|  |  |  |-- map_by_type.h
+|  |  |  |-- msan.h
+|  |  |  |-- op_registry_impl.h
+|  |  |  |-- philox_random.h
+|  |  |  |-- pointer_util.h
+|  |  |  |-- random_util.h
+|  |  |  |-- ranges.h
+|  |  |  |-- ranges_util.h
+|  |  |  |-- raw_coding.h
+|  |  |  |-- rc_array.h
+|  |  |  |-- ref_count.h
+|  |  |  |-- refcounted_callback.h
+|  |  |  |-- std_mutex.h
+|  |  |  |-- string_util.h
+|  |  |  |-- template_util.h
+|  |  |  |-- thread_annotations.h
+|  |  |  |-- thread_environment_std.h
+|  |  |  |-- thread_local.h
+|  |  |  |-- type_id.h
+|  |  |  |-- type_traits.h
+|  |  |  |-- variant.h
+|  |  |-- tensor
+|  |  |  |-- btf.h
+|  |  |  |-- btf_util.h
+|  |  |  |-- conversion_registry.h
+|  |  |  |-- conversion_utils.h
+|  |  |  |-- coo_host_tensor.h
+|  |  |  |-- dense_host_tensor.h
+|  |  |  |-- dense_host_tensor_kernels.h
+|  |  |  |-- dense_host_tensor_view.h
+|  |  |  |-- dense_tensor_utils.h
+|  |  |  |-- dense_view.h
+|  |  |  |-- host_tensor.h
+|  |  |  |-- opdefs
+|  |  |  |  |-- coo_host_tensor.h
+|  |  |  |  |-- coo_host_tensor.td
+|  |  |  |  |-- dense_host_tensor.h
+|  |  |  |  |-- dense_host_tensor.td
+|  |  |  |  |-- dense_host_tensor_sync.h
+|  |  |  |  |-- dense_host_tensor_sync.td
+|  |  |  |  |-- host_tensor.h
+|  |  |  |  |-- host_tensor.td
+|  |  |  |  |-- tensor.h
+|  |  |  |  |-- tensor.td
+|  |  |  |  |-- tensor_shape.h
+|  |  |  |  |-- tensor_shape.td
+|  |  |  |  |-- tensor_shape_base.td
+|  |  |  |  |-- tensor_shape_sync.h
+|  |  |  |  |-- tensor_shape_sync.td
+|  |  |  |-- scalar_host_tensor.h
+|  |  |  |-- string_host_tensor.h
+|  |  |  |-- string_host_tensor_kernels.h
+|  |  |  |-- tensor.h
+|  |  |  |-- tensor_metadata.h
+|  |  |  |-- tensor_serialize_utils.h
+|  |  |  |-- tensor_shape.h
+|  |  |  |-- tensor_type_registration.h
+|  |  |-- test_kernels.h
+|  |  |-- test_kernels
+|  |  |  |-- opdefs
+|  |  |  |  |-- test_kernels.h
+|  |  |  |  |-- test_kernels.td
+|  |  |  |  |-- test_kernels_sync.h
+|  |  |  |  |-- test_kernels_sync.td
+|  |  |-- tfrt_op_base.td
+|  |  |-- tpu
+|  |  |  |-- opdefs
+|  |  |  |  |-- tpu_ops.h
+|  |  |  |  |-- tpu_ops.td
+|  |  |-- tracing
+|  |  |  |-- simple_tracing_sink
+|  |  |  |  |-- simple_tracing_sink.h
+|  |  |  |-- tracing.h
+|-- integrationtest
+|  |-- BUILD
+|  |-- fizzbuzz
+|  |  |-- BUILD
+|  |  |-- fizzbuzz.mlir
+|  |-- mnist
+|  |  |-- BUILD
+|  |  |-- eager_mnist.mlir
+|  |  |-- mnist.mlir
+|  |  |-- mnist_training.mlir
+|  |  |-- test_data
+|  |  |  |-- mnist_metadata.btf
+|  |  |  |-- mnist_tensors.btf
+|  |-- resnet
+|  |  |-- BUILD
+|  |  |-- resnet50_graph_inference.mlir
+|-- lib
+|  |-- basic_kernels
+|  |  |-- boolean_kernels.cc
+|  |  |-- control_flow_kernels.cc
+|  |  |-- device_kernels.cc
+|  |  |-- float_kernels.cc
+|  |  |-- integer_kernels.cc
+|  |  |-- opdefs
+|  |  |  |-- basic_kernels.cc
+|  |  |  |-- tfrt_base.cc
+|  |  |-- parallel_kernels.cc
+|  |  |-- static_registration.cc
+|  |-- bef
+|  |  |-- bef_location.cc
+|  |-- bef_converter
+|  |  |-- bef_attr_encoder
+|  |  |  |-- bef_attr_encoder.cc
+|  |  |-- bef_emitter.cc
+|  |  |-- bef_to_mlir
+|  |  |  |-- bef_attr_reader.cc
+|  |  |  |-- bef_attr_reader.h
+|  |  |  |-- bef_location_reader.cc
+|  |  |  |-- bef_location_reader.h
+|  |  |  |-- bef_to_mlir.cc
+|  |  |  |-- bef_to_mlir_translate.cc
+|  |  |  |-- static_registration.cc
+|  |  |-- mlir_to_bef
+|  |  |  |-- bef_attr_emitter.cc
+|  |  |  |-- bef_attr_emitter.h
+|  |  |  |-- bef_compilation_units.cc
+|  |  |  |-- bef_compilation_units.h
+|  |  |  |-- bef_location_emitter.cc
+|  |  |  |-- bef_location_emitter.h
+|  |  |  |-- bef_string_emitter.cc
+|  |  |  |-- bef_string_emitter.h
+|  |  |  |-- mlir_src_to_bef.cc
+|  |  |  |-- mlir_to_bef.cc
+|  |  |  |-- mlir_to_bef_translate.cc
+|  |  |  |-- static_registration.cc
+|  |-- bef_executor
+|  |  |-- bef_executor.cc
+|  |  |-- bef_file.cc
+|  |  |-- bef_file_impl.h
+|  |  |-- bef_interpreter.cc
+|  |-- bef_executor_driver
+|  |  |-- bef_executor_driver.cc
+|  |-- compiler
+|  |  |-- compiler_pass.cc
+|  |  |-- opdefs
+|  |  |  |-- tfrt_op_interfaces.cc
+|  |  |  |-- tfrt_traits.cc
+|  |  |-- print_stream_pass.cc
+|  |  |-- stream_analysis.cc
+|  |-- core_runtime
+|  |  |-- core_runtime.cc
+|  |  |-- core_runtime_op.cc
+|  |  |-- dispatch_utils.cc
+|  |  |-- execute_op_impl.cc
+|  |  |-- kernels.cc
+|  |  |-- logging_op_handler.cc
+|  |  |-- op_attrs.cc
+|  |  |-- opdefs
+|  |  |  |-- core_runtime.cc
+|  |  |  |-- corert_utils.cc
+|  |  |  |-- sync
+|  |  |  |  |-- core_runtime.cc
+|  |  |-- static_registration.cc
+|  |  |-- tensor_handle.cc
+|  |  |-- test_kernels.cc
+|  |-- data
+|  |  |-- batch_dataset.h
+|  |  |-- data_kernels.cc
+|  |  |-- dataset.cc
+|  |  |-- filter_dataset.cc
+|  |  |-- filter_dataset.h
+|  |  |-- interleave_dataset.cc
+|  |  |-- interleave_dataset.h
+|  |  |-- io.cc
+|  |  |-- io.h
+|  |  |-- log_dataset.h
+|  |  |-- map_dataset.cc
+|  |  |-- map_dataset.h
+|  |  |-- memory_dataset.h
+|  |  |-- opdefs
+|  |  |  |-- data_ops.cc
+|  |  |-- prefetch_dataset.cc
+|  |  |-- prefetch_dataset.h
+|  |  |-- range_dataset.cc
+|  |  |-- range_dataset.h
+|  |  |-- repeat_dataset.cc
+|  |  |-- repeat_dataset.h
+|  |  |-- shuffle_dataset.cc
+|  |  |-- shuffle_dataset.h
+|  |  |-- skip_dataset.cc
+|  |  |-- skip_dataset.h
+|  |  |-- slice_dataset.h
+|  |  |-- static_registration.cc
+|  |  |-- tf_record_dataset.cc
+|  |  |-- tf_record_dataset.h
+|  |-- distributed_runtime
+|  |  |-- callback_registry.cc
+|  |  |-- cluster_info.cc
+|  |  |-- distributed_context.cc
+|  |  |-- distributed_init_helper.cc
+|  |  |-- function_cache.cc
+|  |  |-- kernels.cc
+|  |  |-- kernels_static_registration.cc
+|  |  |-- op_handler_kernels.cc
+|  |  |-- op_handler_kernels.h
+|  |  |-- opdefs
+|  |  |  |-- kernels.cc
+|  |  |-- remote_chain_manager.cc
+|  |  |-- remote_device.cc
+|  |  |-- remote_object_manager.cc
+|  |  |-- remote_op_handler.cc
+|  |  |-- remote_tensor.cc
+|  |  |-- request_handler_impl.cc
+|  |  |-- server_context.cc
+|  |  |-- static_registration.cc
+|  |  |-- task_handle.cc
+|  |  |-- task_name_util.cc
+|  |  |-- test_kernels.cc
+|  |-- dtype
+|  |  |-- dtype.cc
+|  |-- host_context
+|  |  |-- async_dispatch.cc
+|  |  |-- async_value.cc
+|  |  |-- async_value_ref.cc
+|  |  |-- chain.cc
+|  |  |-- concurrent_work_queue.cc
+|  |  |-- device.cc
+|  |  |-- diagnostic.cc
+|  |  |-- execution_context.cc
+|  |  |-- host_allocator.cc
+|  |  |-- host_buffer.cc
+|  |  |-- host_context.cc
+|  |  |-- host_context_ptr.cc
+|  |  |-- kernel_frame.cc
+|  |  |-- kernel_registry.cc
+|  |  |-- location.cc
+|  |  |-- native_function.cc
+|  |  |-- parallel_for.cc
+|  |  |-- profiled_allocator.cc
+|  |  |-- shared_context.cc
+|  |  |-- single_threaded_work_queue.cc
+|  |  |-- static_registration.cc
+|  |  |-- test_fixed_size_allocator.cc
+|  |  |-- timer_queue.cc
+|  |-- init_tfrt_dialects.cc
+|  |-- io
+|  |  |-- buffered_input_stream.cc
+|  |  |-- file_input_stream.cc
+|  |  |-- file_system.cc
+|  |  |-- posix_file_system.cc
+|  |  |-- posix_file_system.h
+|  |  |-- static_registration.cc
+|  |  |-- windows_file_system.cc
+|  |  |-- windows_file_system.h
+|  |-- metrics
+|  |  |-- metrics.cc
+|  |  |-- metrics_registry.cc
+|  |-- support
+|  |  |-- alloc.cc
+|  |  |-- crc32c.cc
+|  |  |-- crc32c_accelerate.cc
+|  |  |-- error_util.cc
+|  |  |-- hash_util.cc
+|  |  |-- logging.cc
+|  |  |-- random_util.cc
+|  |  |-- ref_count.cc
+|  |  |-- stack_trace.cc
+|  |  |-- string_util.cc
+|  |-- tensor
+|  |  |-- btf.cc
+|  |  |-- btf_util.cc
+|  |  |-- conversion_registry.cc
+|  |  |-- coo_host_tensor.cc
+|  |  |-- coo_host_tensor_kernels.cc
+|  |  |-- dense_host_tensor.cc
+|  |  |-- dense_host_tensor_kernels.cc
+|  |  |-- dense_tensor_utils.cc
+|  |  |-- opdefs
+|  |  |  |-- coo_host_tensor.cc
+|  |  |  |-- dense_host_tensor.cc
+|  |  |  |-- dense_host_tensor_sync.cc
+|  |  |  |-- host_tensor.cc
+|  |  |  |-- tensor.cc
+|  |  |  |-- tensor_shape.cc
+|  |  |  |-- tensor_shape_sync.cc
+|  |  |-- scalar_host_tensor.cc
+|  |  |-- static_registration.cc
+|  |  |-- string_host_tensor.cc
+|  |  |-- string_host_tensor_kernels.cc
+|  |  |-- tensor.cc
+|  |  |-- tensor_serialize_utils.cc
+|  |  |-- tensor_shape.cc
+|  |  |-- tensor_shape_kernels.cc
+|  |  |-- tensor_type_registration.cc
+|  |-- test_kernels
+|  |  |-- async_kernels.cc
+|  |  |-- async_test_kernels.cc
+|  |  |-- atomic_test_kernels.cc
+|  |  |-- benchmark_kernels.cc
+|  |  |-- opdefs
+|  |  |  |-- test_kernels.cc
+|  |  |  |-- test_kernels_sync.cc
+|  |  |-- simple_kernels.cc
+|  |  |-- simple_test_kernels.cc
+|  |  |-- static_registration.cc
+|  |  |-- test_native_functions.cc
+|  |  |-- tutorial_kernels.cc
+|  |-- tpu
+|  |  |-- opdefs
+|  |  |  |-- tpu_ops.cc
+|  |-- tracing
+|  |  |-- debug_tracing_sink.cc
+|  |  |-- simple_tracing_sink
+|  |  |  |-- simple_tracing_sink.cc
+|  |  |  |-- static_registration.cc
+|  |  |-- tracing.cc
+|-- mlir_tests
+|  |-- BUILD
+|  |-- basic_kernels
+|  |  |-- BUILD
+|  |  |-- control_flow.mlir
+|  |  |-- float_kernels.mlir
+|  |  |-- kernel_errors.mlir
+|  |  |-- kernels.mlir
+|  |  |-- parallel.benchmark.mlir
+|  |  |-- parallel.mlir
+|  |-- bef_executor
+|  |  |-- BUILD
+|  |  |-- allocator.mlir
+|  |  |-- async.mlir
+|  |  |-- basics.mlir
+|  |  |-- benchmark.mlir
+|  |  |-- concurrent.mlir
+|  |  |-- cost.mlir
+|  |  |-- debug_info.mlir
+|  |  |-- err_unknown_kernel.mlir
+|  |  |-- error_code.mlir
+|  |  |-- init.mlir
+|  |  |-- lifetimes.mlir
+|  |  |-- memory_leak.mlir
+|  |  |-- native_function.mlir
+|  |  |-- scheduling.mlir
+|  |  |-- single_threaded_work_queue.mlir
+|  |  |-- sync_basics.mlir
+|  |  |-- sync_benchmark.mlir
+|  |  |-- tutorial.mlir
+|  |  |-- unique_loc.mlir
+|  |  |-- uniqueness.mlir
+|  |-- bef_perf
+|  |  |-- BUILD
+|  |  |-- bef_perf.py
+|  |  |-- bef_perf_test.sh
+|  |  |-- benchmark_utils.py
+|  |  |-- gen_benchmark.bzl
+|  |  |-- gen_benchmark_mlir.py
+|  |  |-- gen_benchmark_mlir_lib.py
+|  |-- bef_to_mlir
+|  |  |-- BUILD
+|  |  |-- attributes.mlir
+|  |  |-- basics.mlir
+|  |  |-- disable_optional_sections.mlir
+|  |  |-- many_users.mlir
+|  |  |-- modules.mlir
+|  |  |-- native_function.mlir
+|  |  |-- sync_function.mlir
+|  |-- code_size_test_app
+|  |  |-- BUILD
+|  |  |-- fib.mlir
+|  |-- compiler
+|  |  |-- BUILD
+|  |  |-- inline.mlir
+|  |  |-- opt_err.mlir
+|  |  |-- stream_analysis.mlir
+|  |-- core_runtime
+|  |  |-- BUILD
+|  |  |-- basic_ops.mlir
+|  |  |-- benchmark.mlir
+|  |  |-- composite_op.mlir
+|  |  |-- const_tensor.mlir
+|  |  |-- fp16.mlir
+|  |  |-- logging.mlir
+|  |  |-- op_attrs.mlir
+|  |  |-- op_handler.mlir
+|  |  |-- opt.mlir
+|  |  |-- opt_err.mlir
+|  |-- lit.bzl
+|  |-- lit.cfg.py
+|  |-- lit.site.cfg.py
+|  |-- mlir_to_bef
+|  |  |-- BUILD
+|  |  |-- basics.mlir
+|  |  |-- encoding.mlir
+|  |  |-- err.mlir
+|  |  |-- modules.mlir
+|  |-- tensor
+|  |  |-- BUILD
+|  |  |-- coo_host_tensor.mlir
+|  |  |-- dense_host_tensor.mlir
+|  |  |-- kernel_errors.mlir
+|  |  |-- string_host_tensor.mlir
+|  |  |-- tensor_shape.mlir
+|  |-- tracing
+|  |  |-- BUILD
+|  |  |-- core_runtime.mlir
+|  |  |-- simple.mlir
+|-- opensource_only.files
+|-- third_party
+|  |-- BUILD
+|  |-- clang_toolchain
+|  |  |-- BUILD
+|  |  |-- download_clang.bzl
+|  |-- common.bzl
+|  |-- concurrent_work_queue
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- cpp_tests
+|  |  |  |-- blocking_work_queue_test.cc
+|  |  |  |-- multi_threaded_work_queue_test.cc
+|  |  |  |-- non_blocking_work_queue_test.cc
+|  |  |  |-- task_deque_test.cc
+|  |  |  |-- task_priority_deque_test.cc
+|  |  |  |-- task_queue_test.cc
+|  |  |-- lib
+|  |  |  |-- blocking_work_queue.h
+|  |  |  |-- event_count.h
+|  |  |  |-- multi_threaded_work_queue.cc
+|  |  |  |-- non_blocking_work_queue.h
+|  |  |  |-- task_deque.h
+|  |  |  |-- task_priority_deque.h
+|  |  |  |-- task_queue.cc
+|  |  |  |-- task_queue.h
+|  |  |  |-- work_queue_base.h
+|  |-- cub
+|  |  |-- BUILD
+|  |  |-- pr170.patch
+|  |-- cuda
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- cuda_headers.BUILD
+|  |  |-- cuda_headers.patch
+|  |  |-- cudnn_headers.BUILD
+|  |  |-- cudnn_headers.patch
+|  |  |-- dependencies.bzl
+|  |-- dnnl
+|  |  |-- BUILD
+|  |-- eigen
+|  |  |-- BUILD
+|  |  |-- upgrade_eigen.py
+|  |  |-- workspace.bzl
+|  |-- hip
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- hip_stub.cc.inc
+|  |  |-- hip_stub.h.inc
+|  |  |-- miopen_stub.cc.inc
+|  |  |-- miopen_stub.h.inc
+|  |  |-- rocblas_stub.cc.inc
+|  |  |-- rocblas_stub.h.inc
+|  |  |-- rocfft_stub.cc.inc
+|  |  |-- rocfft_stub.h.inc
+|  |-- llvm
+|  |  |-- BUILD
+|  |  |-- expand_cmake_vars.py
+|  |  |-- llvm.autogenerated.BUILD
+|  |  |-- llvm.bzl
+|  |  |-- workspace.bzl
+|  |-- llvm_derived
+|  |  |-- BUILD
+|  |  |-- LICENSE
+|  |  |-- cpp_tests
+|  |  |  |-- BUILD
+|  |  |  |-- Support
+|  |  |  |  |-- unique_any_test.cc
+|  |  |-- include
+|  |  |  |-- llvm_derived
+|  |  |  |  |-- Support
+|  |  |  |  |  |-- in_place.h
+|  |  |  |  |  |-- raw_ostream.h
+|  |  |  |  |  |-- unique_any.h
+|  |  |-- lib
+|  |  |  |-- Support
+|  |  |  |  |-- raw_ostream.cpp
+|  |  |-- tools
+|  |  |  |-- mlir-translate
+|  |  |  |  |-- mlir-translate.cpp
+|  |-- mlir
+|  |  |-- BUILD
+|  |  |-- build_defs.bzl
+|  |  |-- linalggen.bzl
+|  |  |-- tblgen.bzl
+|  |  |-- test.BUILD
+|  |-- py-cpuinfo.BUILD
+|  |-- repo.bzl
+|  |-- rules_cuda
+|  |  |-- .bazelrc
+|  |  |-- README.md
+|  |  |-- WORKSPACE
+|  |  |-- cuda
+|  |  |  |-- BUILD
+|  |  |  |-- defs.bzl
+|  |  |  |-- dependencies.bzl
+|  |  |  |-- toolchain.bzl
+|  |  |-- examples
+|  |  |  |-- BUILD
+|  |  |  |-- kernel.cu.cc
+|  |  |  |-- kernel.h
+|  |  |  |-- main.cc
+|  |  |  |-- no_cuda.cc
+|  |  |-- private
+|  |  |  |-- BUILD
+|  |  |  |-- BUILD.local_cuda
+|  |  |  |-- build.bzl
+|  |  |  |-- rules_cc.patch
+|  |  |-- test
+|  |  |  |-- BUILD
+|  |  |  |-- cuda.h
+|  |  |  |-- defs.bzl
+|  |  |  |-- test.cu.cc
+|  |-- systemlibs
+|  |  |-- protobuf.BUILD
+|  |  |-- protobuf.bzl
+|  |  |-- zlib.BUILD
+|  |-- zlib.BUILD
+|-- tools
+|  |-- BUILD
+|  |-- bef_executor
+|  |  |-- main.cc
+|  |-- bef_name.cc
+|  |-- btf_info_tool
+|  |  |-- btf_info_test.py
+|  |  |-- main.cc
+|  |-- code_size_test_app
+|  |  |-- main.cc
+|  |-- mlir_to_bef.bzl
+|  |-- tfrt_opt
+|  |  |-- tfrt_opt.cc

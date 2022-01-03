@@ -1,0 +1,668 @@
+|-- .bazelrc
+|-- .gitignore
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- PUBLICATIONS.md
+|-- README.md
+|-- WORKSPACE
+|-- codelabs
+|  |-- introduction.ipynb
+|-- docker
+|  |-- __init__.py
+|  |-- dev.dockerfile
+|  |-- lib.dockerfile
+|  |-- run_distributed.py
+|-- docs
+|  |-- apidoc
+|  |  |-- conf.py
+|  |  |-- index.rst
+|  |-- generate_apidoc.sh
+|  |-- single
+|  |  |-- build.sh
+|  |  |-- conf.py
+|  |  |-- index.rst
+|-- lingvo
+|  |-- BUILD
+|  |-- __init__.py
+|  |-- base_runner.py
+|  |-- base_trial.py
+|  |-- compat.py
+|  |-- compat_test.py
+|  |-- core
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- activations.py
+|  |  |-- activations_test.py
+|  |  |-- adagraft.py
+|  |  |-- adagraft_test.py
+|  |  |-- attention.py
+|  |  |-- attention_test.py
+|  |  |-- attention_util.py
+|  |  |-- attention_util_test.py
+|  |  |-- base_decoder.py
+|  |  |-- base_input_generator.py
+|  |  |-- base_input_generator_test.py
+|  |  |-- base_layer.py
+|  |  |-- base_layer_test.py
+|  |  |-- base_model.py
+|  |  |-- base_model_params.py
+|  |  |-- base_model_params_test.py
+|  |  |-- base_model_test.py
+|  |  |-- batch_major_attention.py
+|  |  |-- batch_major_attention_test.py
+|  |  |-- batch_utils.py
+|  |  |-- batch_utils_test.py
+|  |  |-- beam_search_helper.py
+|  |  |-- beam_search_helper_test.py
+|  |  |-- bfloat16_variables.py
+|  |  |-- bfloat16_variables_test.py
+|  |  |-- bn_layers.py
+|  |  |-- build_data.py
+|  |  |-- builder.py
+|  |  |-- builder_layers.py
+|  |  |-- builder_layers_test.py
+|  |  |-- builder_test.py
+|  |  |-- checkpointer.py
+|  |  |-- checkpointer_test.py
+|  |  |-- cluster.py
+|  |  |-- cluster_factory.py
+|  |  |-- cluster_test.py
+|  |  |-- computation_cost.py
+|  |  |-- conformer_layer.py
+|  |  |-- conformer_layer_test.py
+|  |  |-- constants.py
+|  |  |-- conv_layers_builder.py
+|  |  |-- conv_layers_builder_test.py
+|  |  |-- conv_layers_with_time_padding.py
+|  |  |-- conv_layers_with_time_padding_test.py
+|  |  |-- datasource.py
+|  |  |-- datasource_test.py
+|  |  |-- decoder_lib.py
+|  |  |-- distillation_task.py
+|  |  |-- distributed_shampoo.py
+|  |  |-- distributed_shampoo_test.py
+|  |  |-- early_stop.py
+|  |  |-- early_stop_test.py
+|  |  |-- egdd.py
+|  |  |-- egdd_test.py
+|  |  |-- ema_test.py
+|  |  |-- entmax.py
+|  |  |-- entmax_test.py
+|  |  |-- favor_attention.py
+|  |  |-- favor_attention_test.py
+|  |  |-- generic_input.py
+|  |  |-- generic_input_test.py
+|  |  |-- gpipe.py
+|  |  |-- gpipe_test.py
+|  |  |-- graddrop.py
+|  |  |-- graddrop_test.py
+|  |  |-- gradient_combiner.py
+|  |  |-- gshard_builder.py
+|  |  |-- gshard_builder_test.py
+|  |  |-- gshard_layers.py
+|  |  |-- gshard_layers_test.py
+|  |  |-- gshard_utils.py
+|  |  |-- hyperparams.proto
+|  |  |-- hyperparams.py
+|  |  |-- hyperparams_test.py
+|  |  |-- inference_graph.proto
+|  |  |-- inference_graph_exporter.py
+|  |  |-- inference_graph_exporter_test.py
+|  |  |-- input_generator_helper.py
+|  |  |-- input_generator_helper_test.py
+|  |  |-- input_policy.py
+|  |  |-- insertion.py
+|  |  |-- insertion_test.py
+|  |  |-- inspect_utils.py
+|  |  |-- inspect_utils_test.py
+|  |  |-- layers.py
+|  |  |-- layers_test.py
+|  |  |-- layers_with_attention.py
+|  |  |-- layers_with_attention_test.py
+|  |  |-- layers_with_gpipe.py
+|  |  |-- layers_with_gpipe_test.py
+|  |  |-- learner.py
+|  |  |-- learner_test.py
+|  |  |-- lstm_frnn_layer.py
+|  |  |-- lstm_frnn_layer_test.py
+|  |  |-- matrix_functions.py
+|  |  |-- matrix_functions_test.py
+|  |  |-- metrics.py
+|  |  |-- metrics_test.py
+|  |  |-- ml_perf_bleu_metric.py
+|  |  |-- ml_perf_bleu_metric_test.py
+|  |  |-- ml_perf_log.py
+|  |  |-- ml_perf_log_test.py
+|  |  |-- ml_perf_tokenizer.py
+|  |  |-- model_helper.py
+|  |  |-- multitask_model.py
+|  |  |-- multitask_model_test.py
+|  |  |-- nested_map.py
+|  |  |-- ops
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- ascii_tokenizer.cc
+|  |  |  |-- ascii_tokenizer.h
+|  |  |  |-- assert_kernels.cc
+|  |  |  |-- assert_ops_test.py
+|  |  |  |-- beam_search_step_op_kernels.cc
+|  |  |  |-- beam_search_step_op_kernels.h
+|  |  |  |-- beam_search_step_op_test.py
+|  |  |  |-- beam_search_step_op_top_k_test.cc
+|  |  |  |-- best_step_op_kernels.cc
+|  |  |  |-- best_step_op_test.py
+|  |  |  |-- functional_ops_kernels.cc
+|  |  |  |-- functional_ops_test.py
+|  |  |  |-- generic_input_op_kernels.cc
+|  |  |  |-- hyps.proto
+|  |  |  |-- input_common.cc
+|  |  |  |-- input_common.h
+|  |  |  |-- input_common_test.cc
+|  |  |  |-- mass_op.cc
+|  |  |  |-- mass_op_test.py
+|  |  |  |-- ml_perf_subword_op.cc
+|  |  |  |-- ml_perf_subword_op.h
+|  |  |  |-- pack_ops.cc
+|  |  |  |-- pack_ops_test.py
+|  |  |  |-- preconditioner_captain.cc
+|  |  |  |-- preconditioner_captain.h
+|  |  |  |-- preconditioner_op_kernels.cc
+|  |  |  |-- preconditioner_op_kernels_test.py
+|  |  |  |-- random_ops_kernels.cc
+|  |  |  |-- random_ops_test.py
+|  |  |  |-- record.proto
+|  |  |  |-- record_batcher.cc
+|  |  |  |-- record_batcher.h
+|  |  |  |-- record_batcher_test.cc
+|  |  |  |-- record_debug.cc
+|  |  |  |-- record_yielder.cc
+|  |  |  |-- record_yielder.h
+|  |  |  |-- record_yielder_test.cc
+|  |  |  |-- rope.h
+|  |  |  |-- sequential_record_yielder.cc
+|  |  |  |-- sequential_record_yielder.h
+|  |  |  |-- simple_vocab.cc
+|  |  |  |-- simple_vocab.h
+|  |  |  |-- simple_vocab_test.py
+|  |  |  |-- static_map_op.cc
+|  |  |  |-- static_map_op_test.py
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- bpe_codes.vocab
+|  |  |  |  |-- bpe_words.vocab
+|  |  |  |  |-- events.out.tfevents.test
+|  |  |  |  |-- history.txt
+|  |  |  |  |-- history_bleu.txt
+|  |  |  |  |-- mlperf.ende.subwords.vocab
+|  |  |  |  |-- test_ngrams.txt
+|  |  |  |  |-- test_vocab.txt
+|  |  |  |  |-- wmt
+|  |  |  |  |  |-- sm18.txt
+|  |  |  |-- text_packing.cc
+|  |  |  |-- text_packing.h
+|  |  |  |-- text_packing_test.cc
+|  |  |  |-- thread_local_runner.cc
+|  |  |  |-- thread_local_runner.h
+|  |  |  |-- tokenizer_op_headers.h
+|  |  |  |-- tokenizer_ops_kernels.cc
+|  |  |  |-- tokenizer_ops_test.py
+|  |  |  |-- versioned_file_set.proto
+|  |  |  |-- weighted_mix_record_yielder.cc
+|  |  |  |-- weighted_mix_record_yielder.h
+|  |  |  |-- weighted_mix_record_yielder_test.cc
+|  |  |  |-- x_ops.cc
+|  |  |  |-- x_ops_helper.h
+|  |  |  |-- yielder_test_helper.cc
+|  |  |  |-- yielder_test_helper.h
+|  |  |-- optimizer.py
+|  |  |-- optimizer_test.py
+|  |  |-- plot.py
+|  |  |-- plot_test.py
+|  |  |-- predictor.py
+|  |  |-- predictor_runner_base.py
+|  |  |-- predictor_test.py
+|  |  |-- program.py
+|  |  |-- pruning_utils.py
+|  |  |-- py_utils.py
+|  |  |-- py_utils_eager_test.py
+|  |  |-- py_utils_flags.py
+|  |  |-- py_utils_test.py
+|  |  |-- quant_test_lib.py
+|  |  |-- quant_utils.py
+|  |  |-- quant_utils_test.py
+|  |  |-- recurrent.py
+|  |  |-- recurrent_test.py
+|  |  |-- repeat_layer.py
+|  |  |-- retry.py
+|  |  |-- retry_test.py
+|  |  |-- reversible_layers.py
+|  |  |-- reversible_layers_test.py
+|  |  |-- rnn_cell.py
+|  |  |-- rnn_cell_test.py
+|  |  |-- rnn_layers.py
+|  |  |-- rnn_layers_test.py
+|  |  |-- routing_config_helper.py
+|  |  |-- routing_config_helper_test.py
+|  |  |-- saver.py
+|  |  |-- saver_test.py
+|  |  |-- scatter_update.py
+|  |  |-- schedule.py
+|  |  |-- schedule_test.py
+|  |  |-- scorers.py
+|  |  |-- scorers_test.py
+|  |  |-- self_attention_layer.py
+|  |  |-- self_attention_layer_test.py
+|  |  |-- sendrecv.py
+|  |  |-- sendrecv_test.py
+|  |  |-- spectrum_augmenter.py
+|  |  |-- spectrum_augmenter_on_device.py
+|  |  |-- spectrum_augmenter_on_device_test.py
+|  |  |-- spectrum_augmenter_test.py
+|  |  |-- step.py
+|  |  |-- step_test.py
+|  |  |-- steps
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- attention_steps.py
+|  |  |  |-- attention_steps_test.py
+|  |  |  |-- embedding_steps.py
+|  |  |  |-- embedding_steps_test.py
+|  |  |  |-- rnn_steps.py
+|  |  |  |-- rnn_steps_test.py
+|  |  |-- stream_step_test_base.py
+|  |  |-- summary_utils.py
+|  |  |-- summary_utils_test.py
+|  |  |-- symbolic.py
+|  |  |-- symbolic_test.py
+|  |  |-- target_sequence_sampler.py
+|  |  |-- target_sequence_sampler_test.py
+|  |  |-- task_scheduler.py
+|  |  |-- task_scheduler_test.py
+|  |  |-- test_helper.py
+|  |  |-- test_trainer_utils.py
+|  |  |-- test_utils.py
+|  |  |-- test_utils_test.py
+|  |  |-- testdata
+|  |  |  |-- BUILD
+|  |  |  |-- en-1k.spm.model
+|  |  |  |-- en-1k.spm.vocab
+|  |  |  |-- lenet_test_model.data-00000-of-00001
+|  |  |  |-- lenet_test_model.index
+|  |  |  |-- test_mat_1.pickle
+|  |  |  |-- test_mat_2.pickle
+|  |  |  |-- test_mat_3.pickle
+|  |  |-- thread_local_utils.py
+|  |  |-- tokenizers.py
+|  |  |-- tokenizers_test.py
+|  |  |-- tpu_embedding_layers.py
+|  |  |-- tpu_summary.py
+|  |  |-- tpu_summary_test.py
+|  |  |-- trainer_test_utils.py
+|  |  |-- tshape.py
+|  |  |-- tshape_test.py
+|  |  |-- var_tmp_wrappers.py
+|  |  |-- var_tmp_wrappers_test.py
+|  |  |-- wpm_encoder.py
+|  |  |-- wpm_encoder_test.py
+|  |  |-- wpm_tokenizer_test.py
+|  |-- datasets.py
+|  |-- datasets_test.py
+|  |-- executor.py
+|  |-- ipython_kernel.py
+|  |-- lingvo.bzl
+|  |-- model_import_test.py
+|  |-- model_imports.py
+|  |-- model_registry.py
+|  |-- model_registry_test.py
+|  |-- models_test.py
+|  |-- models_test_helper.py
+|  |-- repo.bzl
+|  |-- tasks
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- asr
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- contextualizer_base.py
+|  |  |  |-- decoder.py
+|  |  |  |-- decoder_metrics.py
+|  |  |  |-- decoder_test.py
+|  |  |  |-- decoder_utils.py
+|  |  |  |-- decoder_utils_test.py
+|  |  |  |-- encoder.py
+|  |  |  |-- encoder_test.py
+|  |  |  |-- frontend.py
+|  |  |  |-- frontend_test.py
+|  |  |  |-- fusion.py
+|  |  |  |-- input_generator.py
+|  |  |  |-- input_generator_test.py
+|  |  |  |-- levenshtein_distance.py
+|  |  |  |-- model.py
+|  |  |  |-- model_test.py
+|  |  |  |-- model_test_input_generator.py
+|  |  |  |-- params
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- librispeech.py
+|  |  |  |  |-- params.py
+|  |  |  |-- tools
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- librispeech.01.download_train.sh
+|  |  |  |  |-- librispeech.02.download_devtest.sh
+|  |  |  |  |-- librispeech.03.parameterize_train.sh
+|  |  |  |  |-- librispeech.04.parameterize_devtest.sh
+|  |  |  |  |-- librispeech_get_data.sh
+|  |  |  |  |-- librispeech_lib.sh
+|  |  |  |  |-- simple_wer.py
+|  |  |  |  |-- simple_wer_test.py
+|  |  |  |  |-- simple_wer_v2.py
+|  |  |  |  |-- simple_wer_v2_test.py
+|  |  |  |-- wpm_16k_librispeech.vocab
+|  |  |-- car
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- ap_metric.py
+|  |  |  |-- base_decoder.py
+|  |  |  |-- base_extractor.py
+|  |  |  |-- breakdown_metric.py
+|  |  |  |-- breakdown_metric_test.py
+|  |  |  |-- builder_lib.py
+|  |  |  |-- builder_lib_test.py
+|  |  |  |-- calibration_processing.py
+|  |  |  |-- calibration_processing_test.py
+|  |  |  |-- car_layers.py
+|  |  |  |-- car_layers_test.py
+|  |  |  |-- car_lib.py
+|  |  |  |-- car_lib_test.py
+|  |  |  |-- detection_3d_lib.py
+|  |  |  |-- detection_3d_lib_test.py
+|  |  |  |-- detection_3d_metrics.py
+|  |  |  |-- detection_3d_metrics_test.py
+|  |  |  |-- detection_decoder.py
+|  |  |  |-- detection_decoder_test.py
+|  |  |  |-- evaluation_metadata.py
+|  |  |  |-- geometry.py
+|  |  |  |-- geometry_test.py
+|  |  |  |-- input_extractor.py
+|  |  |  |-- input_extractor_test.py
+|  |  |  |-- input_preprocessors.py
+|  |  |  |-- input_preprocessors_test.py
+|  |  |  |-- kitti_ap_metric.py
+|  |  |  |-- kitti_decoder.py
+|  |  |  |-- kitti_input_generator.py
+|  |  |  |-- kitti_metadata.py
+|  |  |  |-- lr_util.py
+|  |  |  |-- lr_util_test.py
+|  |  |  |-- ops
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- average_precision_3d_op.cc
+|  |  |  |  |-- average_precision_3d_op_test.py
+|  |  |  |  |-- box_util.cc
+|  |  |  |  |-- box_util.h
+|  |  |  |  |-- car_ops.cc
+|  |  |  |  |-- image_metrics.cc
+|  |  |  |  |-- image_metrics.h
+|  |  |  |  |-- nms_3d_op.cc
+|  |  |  |  |-- nms_3d_op_test.py
+|  |  |  |  |-- pairwise_iou_op.cc
+|  |  |  |  |-- point_grid_op.cc
+|  |  |  |  |-- point_grid_op_test.py
+|  |  |  |  |-- ps_utils.cc
+|  |  |  |  |-- ps_utils.h
+|  |  |  |  |-- ps_utils_test.cc
+|  |  |  |  |-- sampling_ops.cc
+|  |  |  |  |-- sampling_ops_test.py
+|  |  |  |-- params
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- kitti.py
+|  |  |  |  |-- params.py
+|  |  |  |  |-- waymo.py
+|  |  |  |-- pillars.py
+|  |  |  |-- point_detector.py
+|  |  |  |-- pointnet.py
+|  |  |  |-- pointnet_test.py
+|  |  |  |-- starnet.py
+|  |  |  |-- summary.py
+|  |  |  |-- summary_test.py
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- kitti_raw_calib_testdata.txt
+|  |  |  |  |-- kitti_raw_label_testdata.txt
+|  |  |  |-- tools
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- compare_params_main.py
+|  |  |  |  |-- create_kitti_crop_dataset.py
+|  |  |  |  |-- export_kitti_detection.py
+|  |  |  |  |-- kitti_data.py
+|  |  |  |  |-- kitti_data_test.py
+|  |  |  |  |-- kitti_exporter.py
+|  |  |  |-- transform_util.py
+|  |  |  |-- transform_util_test.py
+|  |  |  |-- waymo
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- export_to_submission_format.py
+|  |  |  |  |-- tools
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- __init__.py
+|  |  |  |  |  |-- generate_waymo_tf.py
+|  |  |  |  |  |-- waymo_proto_to_tfe.py
+|  |  |  |  |-- waymo_ap_metric.py
+|  |  |  |  |-- waymo_ap_metric_test.py
+|  |  |  |  |-- waymo_decoder.py
+|  |  |  |  |-- waymo_metadata.py
+|  |  |  |  |-- waymo_open_input_generator.py
+|  |  |  |  |-- waymo_open_input_generator_test.py
+|  |  |-- image
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- classifier.py
+|  |  |  |-- classifier_test.py
+|  |  |  |-- input_generator.py
+|  |  |  |-- input_generator_test.py
+|  |  |  |-- params
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- mnist.py
+|  |  |  |  |-- params.py
+|  |  |-- lm
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- input_generator.py
+|  |  |  |-- input_generator_test.py
+|  |  |  |-- layers.py
+|  |  |  |-- layers_test.py
+|  |  |  |-- model.py
+|  |  |  |-- model_test.py
+|  |  |  |-- params
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- one_billion_wds.py
+|  |  |  |  |-- params.py
+|  |  |  |  |-- synthetic_packed_input.py
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- lm1b_100.txt
+|  |  |  |  |-- small_word_vocab.txt
+|  |  |  |-- tools
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- download_lm1b.py
+|  |  |-- milan
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- common_schema.py
+|  |  |  |-- constants.py
+|  |  |  |-- dataset_spec.py
+|  |  |  |-- dataset_spec_test.py
+|  |  |  |-- dual_encoder.py
+|  |  |  |-- dual_encoder_test.py
+|  |  |  |-- image_preprocessor.py
+|  |  |  |-- image_preprocessor_test.py
+|  |  |  |-- input_generator.py
+|  |  |  |-- input_generator_test.py
+|  |  |  |-- labels.py
+|  |  |  |-- labels_test.py
+|  |  |  |-- params
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- cxc.py
+|  |  |  |  |-- dual_encoder_recipe.py
+|  |  |  |  |-- generic_datasets.py
+|  |  |  |  |-- generic_datasets_test.py
+|  |  |  |  |-- params.py
+|  |  |  |-- score_functions.py
+|  |  |  |-- score_functions_test.py
+|  |  |  |-- tf_hub_layers.py
+|  |  |  |-- tf_hub_layers_test.py
+|  |  |  |-- tools
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- prepare_coco.py
+|  |  |  |-- tpu_utils.py
+|  |  |  |-- tpu_utils_test.py
+|  |  |  |-- transformers.py
+|  |  |  |-- transformers_test.py
+|  |  |  |-- utils.py
+|  |  |  |-- utils_test.py
+|  |  |-- mt
+|  |  |  |-- BUILD
+|  |  |  |-- README.md
+|  |  |  |-- __init__.py
+|  |  |  |-- base_config.py
+|  |  |  |-- data_augmenter.py
+|  |  |  |-- data_augmenter_test.py
+|  |  |  |-- decoder.py
+|  |  |  |-- decoder_test.py
+|  |  |  |-- encoder.py
+|  |  |  |-- encoder_test.py
+|  |  |  |-- input_generator.py
+|  |  |  |-- input_generator_test.py
+|  |  |  |-- layers.py
+|  |  |  |-- layers_test.py
+|  |  |  |-- model.py
+|  |  |  |-- model_test.py
+|  |  |  |-- params
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- params.py
+|  |  |  |  |-- wmt14_en_de.py
+|  |  |  |  |-- wmtm16_en_de.py
+|  |  |  |-- testdata
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- en_de.text
+|  |  |  |  |-- en_fr.tfrecord
+|  |  |  |  |-- translate_ende_mlperf.packed.tfrecord
+|  |  |  |  |-- translate_ende_wmt32k-train-00511-of-00512
+|  |  |  |  |-- wmt14_ende_wpm_32k_test.tfrecord
+|  |  |  |  |-- wmt14_ende_wpm_32k_test.vocab
+|  |  |  |-- text_input.proto
+|  |  |  |-- tools
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- wmt14.01.download_moses_scripts.sh
+|  |  |  |  |-- wmt14.02.download_train.sh
+|  |  |  |  |-- wmt14.03.download_devtest.sh
+|  |  |  |  |-- wmt14.04.unpack_train.sh
+|  |  |  |  |-- wmt14.05.unpack_devtest.sh
+|  |  |  |  |-- wmt14.06.tokenize_train.sh
+|  |  |  |  |-- wmt14.07.tokenize_devtest.sh
+|  |  |  |  |-- wmt14.08.wpm_encode_train.sh
+|  |  |  |  |-- wmt14.09.wpm_encode_devtest.sh
+|  |  |  |  |-- wmt14_get_data.sh
+|  |  |  |  |-- wmt14_lib.sh
+|  |  |  |  |-- wmtm16.01.download_moses_scripts.sh
+|  |  |  |  |-- wmtm16.02.download_data.sh
+|  |  |  |  |-- wmtm16.03.unpack_data.sh
+|  |  |  |  |-- wmtm16.04.tokenize_data.sh
+|  |  |  |  |-- wmtm16.05.wpm_encode_data.sh
+|  |  |  |  |-- wmtm16_get_data.sh
+|  |  |  |  |-- wmtm16_lib.sh
+|  |  |  |-- wpm-ende-2k.voc
+|  |  |  |-- wpm-ende.voc
+|  |  |-- punctuator
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- input_generator.py
+|  |  |  |-- input_generator_test.py
+|  |  |  |-- model.py
+|  |  |  |-- model_test.py
+|  |  |  |-- params
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- brown_corpus_wpm.16000.vocab
+|  |  |  |  |-- codelab.py
+|  |  |  |  |-- params.py
+|  |  |  |-- tools
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- download_brown_corpus.py
+|  |-- tools
+|  |  |-- BUILD
+|  |  |-- __init__.py
+|  |  |-- audio_lib.py
+|  |  |-- audio_lib_test.py
+|  |  |-- beam_utils.py
+|  |  |-- beam_utils_test.py
+|  |  |-- bpe_word_tokenizer.py
+|  |  |-- compare_params.py
+|  |  |-- compare_params_test.py
+|  |  |-- compute_stats.py
+|  |  |-- count_records.py
+|  |  |-- create_asr_features.py
+|  |  |-- generate_proto_def.cc
+|  |  |-- generate_tf_dot_protos.sh
+|  |  |-- gke_launch.py
+|  |  |-- keras2ckpt.py
+|  |  |-- print_tf_records.py
+|  |  |-- testdata
+|  |  |  |-- BUILD
+|  |  |  |-- gan_or_vae.16k.wav
+|  |  |  |-- gan_or_vae.flac
+|  |  |  |-- gan_or_vae.wav
+|  |  |-- wpm_encode_file.py
+|  |-- trainer.py
+|  |-- trainer_impl.py
+|  |-- trainer_test.py
+|-- pip_package
+|  |-- MANIFEST.in
+|  |-- README.md
+|  |-- build.Dockerfile
+|  |-- build.sh
+|  |-- build_pip_pkg.sh
+|  |-- setup.py
+|-- publications.bib
+|-- tf_env_collect.sh
+|-- third_party
+|  |-- BUILD
+|  |-- __init__.py
+|  |-- auditwheel.sh
+|  |-- icu
+|  |  |-- BUILD
+|  |  |-- BUILD.bazel
+|  |  |-- BUILD.system
+|  |  |-- LICENSE
+|  |  |-- data
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- LICENSE
+|  |  |  |-- icu_conversion_data.c.gz.aa
+|  |  |  |-- icu_conversion_data.c.gz.ab
+|  |  |  |-- icu_conversion_data.c.gz.ac
+|  |  |  |-- icu_conversion_data.c.gz.ad
+|  |  |  |-- icu_conversion_data.c.gz.ae
+|  |  |  |-- icu_conversion_data.c.gz.af
+|  |  |  |-- icu_conversion_data.c.gz.ag
+|  |  |  |-- icu_conversion_data.c.gz.ah
+|  |  |  |-- icu_conversion_data.c.gz.ai
+|  |  |  |-- icu_conversion_data.c.gz.aj
+|  |  |-- udata.patch
+|  |-- repo.bzl
+|  |-- toolchains
+|  |  |-- preconfig
+|  |  |  |-- ubuntu16.04
+|  |  |  |  |-- gcc7_manylinux2010-nvcc-cuda10.0
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- cc_toolchain_config.bzl
+|  |  |  |  |  |-- clang
+|  |  |  |  |  |  |-- bin
+|  |  |  |  |  |  |  |-- crosstool_wrapper_driver_is_not_gcc
+|  |  |  |  |  |-- windows
+|  |  |  |  |  |  |-- msvc_wrapper_for_nvcc.py
+|-- update_publications.sh

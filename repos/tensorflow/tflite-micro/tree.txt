@@ -1,0 +1,1136 @@
+|-- .bazelrc
+|-- .clang-format
+|-- .github
+|  |-- actions
+|  |  |-- docker_action
+|  |  |  |-- Dockerfile
+|  |  |  |-- action.yml
+|  |-- assets
+|  |  |-- write_json.py
+|  |-- workflows
+|  |  |-- arduino.yml
+|  |  |-- check_pr_has_bug.yml
+|  |  |-- check_tflite_files.yml
+|  |  |-- ci-test.yml
+|  |  |-- ci.yml
+|  |  |-- cortex_m.yml
+|  |  |-- esp32.yml
+|  |  |-- ghcr_test.yml
+|  |  |-- remove-labels.yml
+|  |  |-- sparkfun_edge.yml
+|  |  |-- sync.yml
+|  |  |-- xtensa.yml
+|-- .gitignore
+|-- AUTHORS
+|-- CODEOWNERS
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- ci
+|  |-- Dockerfile.hexagon
+|  |-- Dockerfile.micro
+|  |-- check_tflite_files.py
+|  |-- install_bazel.sh
+|  |-- install_buildifier.sh
+|  |-- sync_from_upstream_tf.sh
+|  |-- temp_patches
+|  |  |-- tf_update_visibility.patch
+|  |-- tflite_files.txt
+|-- docs
+|  |-- continuous_integration.md
+|-- tensorflow
+|  |-- BUILD
+|  |-- extra_rules.bzl
+|  |-- lite
+|  |  |-- BUILD
+|  |  |-- build_def.bzl
+|  |  |-- c
+|  |  |  |-- BUILD
+|  |  |  |-- builtin_op_data.h
+|  |  |  |-- c_api_types.h
+|  |  |  |-- common.c
+|  |  |  |-- common.h
+|  |  |-- core
+|  |  |  |-- api
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- error_reporter.cc
+|  |  |  |  |-- error_reporter.h
+|  |  |  |  |-- flatbuffer_conversions.cc
+|  |  |  |  |-- flatbuffer_conversions.h
+|  |  |  |  |-- op_resolver.cc
+|  |  |  |  |-- op_resolver.h
+|  |  |  |  |-- tensor_utils.cc
+|  |  |  |  |-- tensor_utils.h
+|  |  |-- experimental
+|  |  |  |-- microfrontend
+|  |  |  |  |-- README.md
+|  |  |  |  |-- lib
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- bits.h
+|  |  |  |  |  |-- fft.cc
+|  |  |  |  |  |-- fft.h
+|  |  |  |  |  |-- fft_io.c
+|  |  |  |  |  |-- fft_io.h
+|  |  |  |  |  |-- fft_test.cc
+|  |  |  |  |  |-- fft_util.cc
+|  |  |  |  |  |-- fft_util.h
+|  |  |  |  |  |-- filterbank.c
+|  |  |  |  |  |-- filterbank.h
+|  |  |  |  |  |-- filterbank_io.c
+|  |  |  |  |  |-- filterbank_io.h
+|  |  |  |  |  |-- filterbank_test.cc
+|  |  |  |  |  |-- filterbank_util.c
+|  |  |  |  |  |-- filterbank_util.h
+|  |  |  |  |  |-- frontend.c
+|  |  |  |  |  |-- frontend.h
+|  |  |  |  |  |-- frontend_io.c
+|  |  |  |  |  |-- frontend_io.h
+|  |  |  |  |  |-- frontend_main.c
+|  |  |  |  |  |-- frontend_memmap_generator.c
+|  |  |  |  |  |-- frontend_memmap_main.c
+|  |  |  |  |  |-- frontend_test.cc
+|  |  |  |  |  |-- frontend_util.c
+|  |  |  |  |  |-- frontend_util.h
+|  |  |  |  |  |-- log_lut.c
+|  |  |  |  |  |-- log_lut.h
+|  |  |  |  |  |-- log_scale.c
+|  |  |  |  |  |-- log_scale.h
+|  |  |  |  |  |-- log_scale_io.c
+|  |  |  |  |  |-- log_scale_io.h
+|  |  |  |  |  |-- log_scale_test.cc
+|  |  |  |  |  |-- log_scale_util.c
+|  |  |  |  |  |-- log_scale_util.h
+|  |  |  |  |  |-- noise_reduction.c
+|  |  |  |  |  |-- noise_reduction.h
+|  |  |  |  |  |-- noise_reduction_io.c
+|  |  |  |  |  |-- noise_reduction_io.h
+|  |  |  |  |  |-- noise_reduction_test.cc
+|  |  |  |  |  |-- noise_reduction_util.c
+|  |  |  |  |  |-- noise_reduction_util.h
+|  |  |  |  |  |-- pcan_gain_control.c
+|  |  |  |  |  |-- pcan_gain_control.h
+|  |  |  |  |  |-- pcan_gain_control_test.cc
+|  |  |  |  |  |-- pcan_gain_control_util.c
+|  |  |  |  |  |-- pcan_gain_control_util.h
+|  |  |  |  |  |-- window.c
+|  |  |  |  |  |-- window.h
+|  |  |  |  |  |-- window_io.c
+|  |  |  |  |  |-- window_io.h
+|  |  |  |  |  |-- window_test.cc
+|  |  |  |  |  |-- window_util.c
+|  |  |  |  |  |-- window_util.h
+|  |  |-- kernels
+|  |  |  |-- BUILD
+|  |  |  |-- internal
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- common.h
+|  |  |  |  |-- compatibility.h
+|  |  |  |  |-- cppmath.h
+|  |  |  |  |-- max.h
+|  |  |  |  |-- min.h
+|  |  |  |  |-- optimized
+|  |  |  |  |  |-- neon_check.h
+|  |  |  |  |-- portable_tensor.h
+|  |  |  |  |-- quantization_util.cc
+|  |  |  |  |-- quantization_util.h
+|  |  |  |  |-- reference
+|  |  |  |  |  |-- add.h
+|  |  |  |  |  |-- add_n.h
+|  |  |  |  |  |-- arg_min_max.h
+|  |  |  |  |  |-- batch_matmul.h
+|  |  |  |  |  |-- batch_to_space_nd.h
+|  |  |  |  |  |-- binary_function.h
+|  |  |  |  |  |-- ceil.h
+|  |  |  |  |  |-- comparisons.h
+|  |  |  |  |  |-- concatenation.h
+|  |  |  |  |  |-- conv.h
+|  |  |  |  |  |-- cumsum.h
+|  |  |  |  |  |-- depth_to_space.h
+|  |  |  |  |  |-- depthwiseconv_float.h
+|  |  |  |  |  |-- depthwiseconv_uint8.h
+|  |  |  |  |  |-- dequantize.h
+|  |  |  |  |  |-- elu.h
+|  |  |  |  |  |-- exp.h
+|  |  |  |  |  |-- fill.h
+|  |  |  |  |  |-- floor.h
+|  |  |  |  |  |-- floor_div.h
+|  |  |  |  |  |-- floor_mod.h
+|  |  |  |  |  |-- fully_connected.h
+|  |  |  |  |  |-- hard_swish.h
+|  |  |  |  |  |-- integer_ops
+|  |  |  |  |  |  |-- add.h
+|  |  |  |  |  |  |-- conv.h
+|  |  |  |  |  |  |-- depthwise_conv.h
+|  |  |  |  |  |  |-- fully_connected.h
+|  |  |  |  |  |  |-- l2normalization.h
+|  |  |  |  |  |  |-- logistic.h
+|  |  |  |  |  |  |-- mean.h
+|  |  |  |  |  |  |-- mul.h
+|  |  |  |  |  |  |-- pooling.h
+|  |  |  |  |  |  |-- tanh.h
+|  |  |  |  |  |  |-- transpose_conv.h
+|  |  |  |  |  |-- l2normalization.h
+|  |  |  |  |  |-- leaky_relu.h
+|  |  |  |  |  |-- log_softmax.h
+|  |  |  |  |  |-- logistic.h
+|  |  |  |  |  |-- maximum_minimum.h
+|  |  |  |  |  |-- mul.h
+|  |  |  |  |  |-- neg.h
+|  |  |  |  |  |-- pad.h
+|  |  |  |  |  |-- pooling.h
+|  |  |  |  |  |-- prelu.h
+|  |  |  |  |  |-- process_broadcast_shapes.h
+|  |  |  |  |  |-- quantize.h
+|  |  |  |  |  |-- reduce.h
+|  |  |  |  |  |-- requantize.h
+|  |  |  |  |  |-- resize_bilinear.h
+|  |  |  |  |  |-- resize_nearest_neighbor.h
+|  |  |  |  |  |-- round.h
+|  |  |  |  |  |-- softmax.h
+|  |  |  |  |  |-- space_to_batch_nd.h
+|  |  |  |  |  |-- space_to_depth.h
+|  |  |  |  |  |-- strided_slice.h
+|  |  |  |  |  |-- sub.h
+|  |  |  |  |  |-- tanh.h
+|  |  |  |  |  |-- transpose.h
+|  |  |  |  |  |-- transpose_conv.h
+|  |  |  |  |-- strided_slice_logic.h
+|  |  |  |  |-- tensor_ctypes.h
+|  |  |  |  |-- tensor_utils_common.h
+|  |  |  |  |-- types.h
+|  |  |  |-- kernel_util.cc
+|  |  |  |-- kernel_util.h
+|  |  |  |-- op_macros.h
+|  |  |  |-- padding.h
+|  |  |-- micro
+|  |  |  |-- BUILD
+|  |  |  |-- all_ops_resolver.cc
+|  |  |  |-- all_ops_resolver.h
+|  |  |  |-- apollo3evb
+|  |  |  |  |-- debug_log.cc
+|  |  |  |  |-- micro_time.cc
+|  |  |  |-- arc_emsdp
+|  |  |  |  |-- debug_log.cc
+|  |  |  |-- arduino
+|  |  |  |  |-- abi.cc
+|  |  |  |  |-- debug_log.cc
+|  |  |  |  |-- system_setup.cc
+|  |  |  |-- benchmarks
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Makefile.inc
+|  |  |  |  |-- README.md
+|  |  |  |  |-- keyword_benchmark.cc
+|  |  |  |  |-- keyword_scrambled_model_data.cc
+|  |  |  |  |-- keyword_scrambled_model_data.h
+|  |  |  |  |-- micro_benchmark.h
+|  |  |  |  |-- person_detection_benchmark.cc
+|  |  |  |-- bluepill
+|  |  |  |  |-- debug_log.cc
+|  |  |  |-- build_def.bzl
+|  |  |  |-- ceva
+|  |  |  |  |-- micro_time.cc
+|  |  |  |  |-- system_setup.cc
+|  |  |  |-- chre
+|  |  |  |  |-- debug_log.cc
+|  |  |  |-- compatibility.h
+|  |  |  |-- cortex_m_corstone_300
+|  |  |  |  |-- README.md
+|  |  |  |  |-- micro_time.cc
+|  |  |  |  |-- system_setup.cc
+|  |  |  |-- cortex_m_generic
+|  |  |  |  |-- README.md
+|  |  |  |  |-- debug_log.cc
+|  |  |  |  |-- debug_log_callback.h
+|  |  |  |  |-- micro_time.cc
+|  |  |  |-- debug_log.cc
+|  |  |  |-- debug_log.h
+|  |  |  |-- docs
+|  |  |  |  |-- images
+|  |  |  |  |  |-- preallocated_tensors
+|  |  |  |  |  |  |-- preallocated_tensors_bg_1.png
+|  |  |  |  |  |  |-- preallocated_tensors_bg_2.png
+|  |  |  |  |  |  |-- preallocated_tensors_impl1.png
+|  |  |  |  |  |-- tflm_continuous_integration_1.png
+|  |  |  |  |-- memory_management.md
+|  |  |  |  |-- new_platform_support.md
+|  |  |  |  |-- online_memory_allocation_overview.md
+|  |  |  |  |-- optimized_kernel_implementations.md
+|  |  |  |  |-- porting_reference_ops.md
+|  |  |  |  |-- profiling.md
+|  |  |  |  |-- renode.md
+|  |  |  |  |-- rfc
+|  |  |  |  |  |-- 001_preallocated_tensors.md
+|  |  |  |  |  |-- 002_16x8_quantization_port.md
+|  |  |  |-- ecm3531
+|  |  |  |  |-- debug_log.cc
+|  |  |  |-- examples
+|  |  |  |  |-- hello_world
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- arduino
+|  |  |  |  |  |  |-- constants.cc
+|  |  |  |  |  |  |-- main.cc
+|  |  |  |  |  |  |-- output_handler.cc
+|  |  |  |  |  |-- constants.cc
+|  |  |  |  |  |-- constants.h
+|  |  |  |  |  |-- create_sine_model.ipynb
+|  |  |  |  |  |-- disco_f746ng
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- constants.cc
+|  |  |  |  |  |  |-- output_handler.cc
+|  |  |  |  |  |-- esp
+|  |  |  |  |  |  |-- main.cc
+|  |  |  |  |  |-- hello_world_binary_test.sh
+|  |  |  |  |  |-- hello_world_test.cc
+|  |  |  |  |  |-- images
+|  |  |  |  |  |  |-- animation_on_STM32F746.gif
+|  |  |  |  |  |  |-- animation_on_arduino_mkrzero.gif
+|  |  |  |  |  |  |-- animation_on_sparkfun_edge.gif
+|  |  |  |  |  |  |-- model_architecture.png
+|  |  |  |  |  |-- main.cc
+|  |  |  |  |  |-- main_functions.cc
+|  |  |  |  |  |-- main_functions.h
+|  |  |  |  |  |-- model.cc
+|  |  |  |  |  |-- model.h
+|  |  |  |  |  |-- output_handler.cc
+|  |  |  |  |  |-- output_handler.h
+|  |  |  |  |  |-- output_handler_test.cc
+|  |  |  |  |  |-- riscv32_mcu
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- sparkfun_edge
+|  |  |  |  |  |  |-- constants.cc
+|  |  |  |  |  |  |-- output_handler.cc
+|  |  |  |  |  |-- spresense
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- train
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- train_hello_world_model.ipynb
+|  |  |  |  |  |-- zephyr_riscv
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- prj.conf
+|  |  |  |  |  |  |-- src
+|  |  |  |  |  |  |  |-- assert.cc
+|  |  |  |  |-- magic_wand
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- accelerometer_handler.cc
+|  |  |  |  |  |-- accelerometer_handler.h
+|  |  |  |  |  |-- accelerometer_handler_test.cc
+|  |  |  |  |  |-- arduino
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- accelerometer_handler.cc
+|  |  |  |  |  |  |-- main.cc
+|  |  |  |  |  |  |-- output_handler.cc
+|  |  |  |  |  |-- constants.h
+|  |  |  |  |  |-- gesture_predictor.cc
+|  |  |  |  |  |-- gesture_predictor.h
+|  |  |  |  |  |-- gesture_predictor_test.cc
+|  |  |  |  |  |-- himax_we1_evb
+|  |  |  |  |  |  |-- accelerometer_handler.cc
+|  |  |  |  |  |-- magic_wand_model_data.cc
+|  |  |  |  |  |-- magic_wand_model_data.h
+|  |  |  |  |  |-- magic_wand_test.cc
+|  |  |  |  |  |-- main.cc
+|  |  |  |  |  |-- main_functions.cc
+|  |  |  |  |  |-- main_functions.h
+|  |  |  |  |  |-- output_handler.cc
+|  |  |  |  |  |-- output_handler.h
+|  |  |  |  |  |-- output_handler_test.cc
+|  |  |  |  |  |-- ring_micro_features_data.cc
+|  |  |  |  |  |-- ring_micro_features_data.h
+|  |  |  |  |  |-- riscv32_mcu
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- slope_micro_features_data.cc
+|  |  |  |  |  |-- slope_micro_features_data.h
+|  |  |  |  |  |-- sparkfun_edge
+|  |  |  |  |  |  |-- accelerometer_handler.cc
+|  |  |  |  |  |  |-- output_handler.cc
+|  |  |  |  |  |-- train
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- data_augmentation.py
+|  |  |  |  |  |  |-- data_augmentation_test.py
+|  |  |  |  |  |  |-- data_load.py
+|  |  |  |  |  |  |-- data_load_test.py
+|  |  |  |  |  |  |-- data_prepare.py
+|  |  |  |  |  |  |-- data_prepare_test.py
+|  |  |  |  |  |  |-- data_split.py
+|  |  |  |  |  |  |-- data_split_person.py
+|  |  |  |  |  |  |-- data_split_person_test.py
+|  |  |  |  |  |  |-- data_split_test.py
+|  |  |  |  |  |  |-- netmodels
+|  |  |  |  |  |  |  |-- CNN
+|  |  |  |  |  |  |  |  |-- weights.h5
+|  |  |  |  |  |  |-- requirements.txt
+|  |  |  |  |  |  |-- train.py
+|  |  |  |  |  |  |-- train_magic_wand_model.ipynb
+|  |  |  |  |  |  |-- train_test.py
+|  |  |  |  |  |-- zephyr_riscv
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- boards
+|  |  |  |  |  |  |  |-- litex_vexriscv.overlay
+|  |  |  |  |  |  |-- prj.conf
+|  |  |  |  |  |  |-- src
+|  |  |  |  |  |  |  |-- accelerometer_handler.cc
+|  |  |  |  |  |  |  |-- accelerometer_handler.h
+|  |  |  |  |  |  |  |-- assert.cc
+|  |  |  |  |-- micro_speech
+|  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- CMSIS
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- create_constants.py
+|  |  |  |  |  |  |-- hanning.cc
+|  |  |  |  |  |  |-- hanning.h
+|  |  |  |  |  |  |-- sin_1k.cc
+|  |  |  |  |  |  |-- sin_1k.h
+|  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- apollo3
+|  |  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- _main.c
+|  |  |  |  |  |  |-- captured_data_to_wav.py
+|  |  |  |  |  |  |-- compare_1k.py
+|  |  |  |  |  |  |-- preprocessor_1k.cc
+|  |  |  |  |  |  |-- preprocessor_1k_cmsis_test.cmd
+|  |  |  |  |  |  |-- preprocessor_1k_micro_test.cmd
+|  |  |  |  |  |  |-- preprocessor_test.cmd
+|  |  |  |  |  |  |-- pushbutton_cmsis_scores.cmd
+|  |  |  |  |  |  |-- pushbutton_cmsis_voice.cmd
+|  |  |  |  |  |  |-- pushbutton_main.c
+|  |  |  |  |  |  |-- pushbutton_test.cc
+|  |  |  |  |  |-- apollo3evb
+|  |  |  |  |  |  |-- audio_provider.cc
+|  |  |  |  |  |  |-- command_responder.cc
+|  |  |  |  |  |  |-- micro_speech.cmd
+|  |  |  |  |  |-- arc_emsdp
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- emsdp.lcf
+|  |  |  |  |  |-- arduino
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- audio_provider.cc
+|  |  |  |  |  |  |-- command_responder.cc
+|  |  |  |  |  |  |-- main.cc
+|  |  |  |  |  |-- audio_provider.cc
+|  |  |  |  |  |-- audio_provider.h
+|  |  |  |  |  |-- audio_provider_mock.cc
+|  |  |  |  |  |-- audio_provider_mock_test.cc
+|  |  |  |  |  |-- audio_provider_test.cc
+|  |  |  |  |  |-- ceva
+|  |  |  |  |  |  |-- audio_provider.cc
+|  |  |  |  |  |  |-- main_functions.cc
+|  |  |  |  |  |-- command_responder.cc
+|  |  |  |  |  |-- command_responder.h
+|  |  |  |  |  |-- command_responder_test.cc
+|  |  |  |  |  |-- disco_f746ng
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- audio_provider.cc
+|  |  |  |  |  |  |-- command_responder.cc
+|  |  |  |  |  |  |-- timer.cc
+|  |  |  |  |  |-- esp
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- audio_provider.cc
+|  |  |  |  |  |  |-- main.cc
+|  |  |  |  |  |  |-- ringbuf.c
+|  |  |  |  |  |  |-- ringbuf.h
+|  |  |  |  |  |  |-- sdkconfig.defaults
+|  |  |  |  |  |-- feature_provider.cc
+|  |  |  |  |  |-- feature_provider.h
+|  |  |  |  |  |-- feature_provider_mock_test.cc
+|  |  |  |  |  |-- feature_provider_test.cc
+|  |  |  |  |  |-- himax_we1_evb
+|  |  |  |  |  |  |-- audio_provider.cc
+|  |  |  |  |  |  |-- command_responder.cc
+|  |  |  |  |  |-- images
+|  |  |  |  |  |  |-- animation_on_arduino.gif
+|  |  |  |  |  |  |-- model_architecture.png
+|  |  |  |  |  |-- main.cc
+|  |  |  |  |  |-- main_functions.cc
+|  |  |  |  |  |-- main_functions.h
+|  |  |  |  |  |-- micro_features
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- micro_features_generator.cc
+|  |  |  |  |  |  |-- micro_features_generator.h
+|  |  |  |  |  |  |-- micro_features_generator_test.cc
+|  |  |  |  |  |  |-- micro_model_settings.cc
+|  |  |  |  |  |  |-- micro_model_settings.h
+|  |  |  |  |  |  |-- model.cc
+|  |  |  |  |  |  |-- model.h
+|  |  |  |  |  |  |-- no_feature_data_slice.cc
+|  |  |  |  |  |  |-- no_feature_data_slice.h
+|  |  |  |  |  |  |-- no_micro_features_data.cc
+|  |  |  |  |  |  |-- no_micro_features_data.h
+|  |  |  |  |  |  |-- static_alloc.h
+|  |  |  |  |  |  |-- yes_feature_data_slice.cc
+|  |  |  |  |  |  |-- yes_feature_data_slice.h
+|  |  |  |  |  |  |-- yes_micro_features_data.cc
+|  |  |  |  |  |  |-- yes_micro_features_data.h
+|  |  |  |  |  |-- micro_speech_binary_mock_test.sh
+|  |  |  |  |  |-- micro_speech_test.cc
+|  |  |  |  |  |-- no_1000ms_sample_data.cc
+|  |  |  |  |  |-- no_1000ms_sample_data.h
+|  |  |  |  |  |-- no_30ms_sample_data.cc
+|  |  |  |  |  |-- no_30ms_sample_data.h
+|  |  |  |  |  |-- nxp_k66f
+|  |  |  |  |  |  |-- audio_provider.cc
+|  |  |  |  |  |-- osx
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- audio_provider.cc
+|  |  |  |  |  |-- recognize_commands.cc
+|  |  |  |  |  |-- recognize_commands.h
+|  |  |  |  |  |-- recognize_commands_test.cc
+|  |  |  |  |  |-- riscv32_mcu
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- simple_features
+|  |  |  |  |  |  |-- CMSIS
+|  |  |  |  |  |  |  |-- simple_features_generator.cc
+|  |  |  |  |  |  |-- fixed_point
+|  |  |  |  |  |  |  |-- simple_features_generator.cc
+|  |  |  |  |  |  |-- model.cc
+|  |  |  |  |  |  |-- model.h
+|  |  |  |  |  |  |-- no_power_spectrum_data.cc
+|  |  |  |  |  |  |-- no_power_spectrum_data.h
+|  |  |  |  |  |  |-- no_simple_features_data.cc
+|  |  |  |  |  |  |-- no_simple_features_data.h
+|  |  |  |  |  |  |-- simple_features_generator.cc
+|  |  |  |  |  |  |-- simple_features_generator.h
+|  |  |  |  |  |  |-- simple_features_generator_test.cc
+|  |  |  |  |  |  |-- simple_model_settings.cc
+|  |  |  |  |  |  |-- simple_model_settings.h
+|  |  |  |  |  |  |-- yes_power_spectrum_data.cc
+|  |  |  |  |  |  |-- yes_power_spectrum_data.h
+|  |  |  |  |  |  |-- yes_simple_features_data.cc
+|  |  |  |  |  |  |-- yes_simple_features_data.h
+|  |  |  |  |  |-- sparkfun_edge
+|  |  |  |  |  |  |-- audio_provider.cc
+|  |  |  |  |  |  |-- command_responder.cc
+|  |  |  |  |  |-- spresense
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- src
+|  |  |  |  |  |  |  |-- spresense_audio_provider.cc
+|  |  |  |  |  |  |  |-- spresense_command_responder.cc
+|  |  |  |  |  |-- train
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- train_micro_speech_model.ipynb
+|  |  |  |  |  |-- train_speech_model.ipynb
+|  |  |  |  |  |-- yes_1000ms_sample_data.cc
+|  |  |  |  |  |-- yes_1000ms_sample_data.h
+|  |  |  |  |  |-- yes_30ms_sample_data.cc
+|  |  |  |  |  |-- yes_30ms_sample_data.h
+|  |  |  |  |-- network_tester
+|  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- expected_output_data.h
+|  |  |  |  |  |-- input_data.h
+|  |  |  |  |  |-- network_model.h
+|  |  |  |  |  |-- network_tester_test.cc
+|  |  |  |  |-- person_detection
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- apollo3evb
+|  |  |  |  |  |  |-- image_provider.cc
+|  |  |  |  |  |-- arc_emsdp
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- emsdp.lcf
+|  |  |  |  |  |-- arduino
+|  |  |  |  |  |  |-- HM01B0_platform.h
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- detection_responder.cc
+|  |  |  |  |  |  |-- image_provider.cc
+|  |  |  |  |  |  |-- main.cc
+|  |  |  |  |  |-- detection_responder.cc
+|  |  |  |  |  |-- detection_responder.h
+|  |  |  |  |  |-- detection_responder_test.cc
+|  |  |  |  |  |-- esp
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- README_ESP.md
+|  |  |  |  |  |  |-- app_camera_esp.c
+|  |  |  |  |  |  |-- app_camera_esp.h
+|  |  |  |  |  |  |-- image_provider.cc
+|  |  |  |  |  |  |-- main.cc
+|  |  |  |  |  |  |-- main
+|  |  |  |  |  |  |  |-- Kconfig.projbuild
+|  |  |  |  |  |  |-- sdkconfig.defaults
+|  |  |  |  |  |-- himax_driver
+|  |  |  |  |  |  |-- HM01B0.c
+|  |  |  |  |  |  |-- HM01B0.h
+|  |  |  |  |  |  |-- HM01B0_RAW8_QVGA_8bits_lsb_5fps.h
+|  |  |  |  |  |  |-- HM01B0_Walking1s_01.h
+|  |  |  |  |  |  |-- HM01B0_Walking1s_01.txt
+|  |  |  |  |  |  |-- HM01B0_debug.c
+|  |  |  |  |  |  |-- HM01B0_debug.h
+|  |  |  |  |  |  |-- HM01B0_optimized.c
+|  |  |  |  |  |  |-- HM01B0_optimized.h
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- himax_we1_evb
+|  |  |  |  |  |  |-- detection_responder.cc
+|  |  |  |  |  |  |-- image_provider.cc
+|  |  |  |  |  |-- image_provider.cc
+|  |  |  |  |  |-- image_provider.h
+|  |  |  |  |  |-- image_provider_test.cc
+|  |  |  |  |  |-- main.cc
+|  |  |  |  |  |-- main_functions.cc
+|  |  |  |  |  |-- main_functions.h
+|  |  |  |  |  |-- model_settings.cc
+|  |  |  |  |  |-- model_settings.h
+|  |  |  |  |  |-- no_person_image_data.h
+|  |  |  |  |  |-- person_detect_model_data.h
+|  |  |  |  |  |-- person_detection_binary_test.sh
+|  |  |  |  |  |-- person_detection_test.cc
+|  |  |  |  |  |-- person_image_data.h
+|  |  |  |  |  |-- riscv32_mcu
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |-- sparkfun_edge
+|  |  |  |  |  |  |-- detection_responder.cc
+|  |  |  |  |  |  |-- image_provider.cc
+|  |  |  |  |  |-- spresense
+|  |  |  |  |  |  |-- Makefile.inc
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- src
+|  |  |  |  |  |  |  |-- spresense_image_provider.cc
+|  |  |  |  |  |-- training_a_model.md
+|  |  |  |  |  |-- utils
+|  |  |  |  |  |  |-- BUILD
+|  |  |  |  |  |  |-- raw_to_bitmap.py
+|  |  |  |  |  |  |-- raw_to_bitmap_test.py
+|  |  |  |-- flatbuffer_utils.cc
+|  |  |  |-- flatbuffer_utils.h
+|  |  |  |-- flatbuffer_utils_test.cc
+|  |  |  |-- hexagon
+|  |  |  |  |-- micro_time.cc
+|  |  |  |  |-- system_setup.cc
+|  |  |  |-- himax_we1_evb
+|  |  |  |  |-- debug_log.cc
+|  |  |  |-- kernels
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- README.md
+|  |  |  |  |-- activation_utils.h
+|  |  |  |  |-- activations.cc
+|  |  |  |  |-- activations_test.cc
+|  |  |  |  |-- add.cc
+|  |  |  |  |-- add_n.cc
+|  |  |  |  |-- add_n_test.cc
+|  |  |  |  |-- add_test.cc
+|  |  |  |  |-- arc_mli
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- conv.cc
+|  |  |  |  |  |-- conv_slicing_test.cc
+|  |  |  |  |  |-- depthwise_conv.cc
+|  |  |  |  |  |-- depthwise_conv_slicing_test.cc
+|  |  |  |  |  |-- fully_connected.cc
+|  |  |  |  |  |-- fully_connected_slicing_test.cc
+|  |  |  |  |  |-- mli_interface.cc
+|  |  |  |  |  |-- mli_interface.h
+|  |  |  |  |  |-- mli_interface_mli_20.cc
+|  |  |  |  |  |-- mli_slicers.cc
+|  |  |  |  |  |-- mli_slicers.h
+|  |  |  |  |  |-- mli_tf_utils.h
+|  |  |  |  |  |-- pooling.cc
+|  |  |  |  |  |-- pooling_slicing_test.cc
+|  |  |  |  |  |-- scratch_buf_mgr.cc
+|  |  |  |  |  |-- scratch_buf_mgr.h
+|  |  |  |  |  |-- scratch_buffers.cc
+|  |  |  |  |  |-- scratch_buffers.h
+|  |  |  |  |-- arg_min_max.cc
+|  |  |  |  |-- arg_min_max_test.cc
+|  |  |  |  |-- batch_to_space_nd.cc
+|  |  |  |  |-- batch_to_space_nd_test.cc
+|  |  |  |  |-- cast.cc
+|  |  |  |  |-- cast_test.cc
+|  |  |  |  |-- ceil.cc
+|  |  |  |  |-- ceil_test.cc
+|  |  |  |  |-- ceva
+|  |  |  |  |  |-- ceva_common.cc
+|  |  |  |  |  |-- ceva_common.h
+|  |  |  |  |  |-- ceva_tflm_lib.h
+|  |  |  |  |  |-- conv.cc
+|  |  |  |  |  |-- depthwise_conv.cc
+|  |  |  |  |  |-- fully_connected.cc
+|  |  |  |  |  |-- mcps_macros.h
+|  |  |  |  |  |-- quantize.cc
+|  |  |  |  |  |-- softmax.cc
+|  |  |  |  |  |-- types.h
+|  |  |  |  |-- circular_buffer.cc
+|  |  |  |  |-- circular_buffer_flexbuffers_generated_data.cc
+|  |  |  |  |-- circular_buffer_flexbuffers_generated_data.h
+|  |  |  |  |-- circular_buffer_test.cc
+|  |  |  |  |-- cmsis_nn
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- add.cc
+|  |  |  |  |  |-- conv.cc
+|  |  |  |  |  |-- depthwise_conv.cc
+|  |  |  |  |  |-- fully_connected.cc
+|  |  |  |  |  |-- mul.cc
+|  |  |  |  |  |-- pooling.cc
+|  |  |  |  |  |-- softmax.cc
+|  |  |  |  |  |-- svdf.cc
+|  |  |  |  |-- comparisons.cc
+|  |  |  |  |-- comparisons_test.cc
+|  |  |  |  |-- concatenation.cc
+|  |  |  |  |-- concatenation_test.cc
+|  |  |  |  |-- conv.cc
+|  |  |  |  |-- conv.h
+|  |  |  |  |-- conv_common.cc
+|  |  |  |  |-- conv_test.cc
+|  |  |  |  |-- conv_test.h
+|  |  |  |  |-- conv_test_common.cc
+|  |  |  |  |-- cumsum.cc
+|  |  |  |  |-- cumsum_test.cc
+|  |  |  |  |-- depth_to_space.cc
+|  |  |  |  |-- depth_to_space_test.cc
+|  |  |  |  |-- depthwise_conv.cc
+|  |  |  |  |-- depthwise_conv.h
+|  |  |  |  |-- depthwise_conv_common.cc
+|  |  |  |  |-- depthwise_conv_test.cc
+|  |  |  |  |-- dequantize.cc
+|  |  |  |  |-- dequantize_test.cc
+|  |  |  |  |-- detection_postprocess.cc
+|  |  |  |  |-- detection_postprocess_flexbuffers_generated_data.cc
+|  |  |  |  |-- detection_postprocess_flexbuffers_generated_data.h
+|  |  |  |  |-- detection_postprocess_test.cc
+|  |  |  |  |-- elementwise.cc
+|  |  |  |  |-- elementwise_test.cc
+|  |  |  |  |-- elu.cc
+|  |  |  |  |-- elu_test.cc
+|  |  |  |  |-- ethos_u
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- ethosu.cc
+|  |  |  |  |-- ethosu.cc
+|  |  |  |  |-- ethosu.h
+|  |  |  |  |-- exp.cc
+|  |  |  |  |-- exp_test.cc
+|  |  |  |  |-- expand_dims.cc
+|  |  |  |  |-- expand_dims_test.cc
+|  |  |  |  |-- fill.cc
+|  |  |  |  |-- fill_test.cc
+|  |  |  |  |-- floor.cc
+|  |  |  |  |-- floor_div.cc
+|  |  |  |  |-- floor_div_test.cc
+|  |  |  |  |-- floor_mod.cc
+|  |  |  |  |-- floor_mod_test.cc
+|  |  |  |  |-- floor_test.cc
+|  |  |  |  |-- fully_connected.cc
+|  |  |  |  |-- fully_connected.h
+|  |  |  |  |-- fully_connected_common.cc
+|  |  |  |  |-- fully_connected_test.cc
+|  |  |  |  |-- gather.cc
+|  |  |  |  |-- gather_nd.cc
+|  |  |  |  |-- gather_nd_test.cc
+|  |  |  |  |-- gather_test.cc
+|  |  |  |  |-- hard_swish.cc
+|  |  |  |  |-- hard_swish_test.cc
+|  |  |  |  |-- if.cc
+|  |  |  |  |-- if_test.cc
+|  |  |  |  |-- kernel_runner.cc
+|  |  |  |  |-- kernel_runner.h
+|  |  |  |  |-- kernel_util.cc
+|  |  |  |  |-- kernel_util.h
+|  |  |  |  |-- l2_pool_2d.cc
+|  |  |  |  |-- l2_pool_2d_test.cc
+|  |  |  |  |-- l2norm.cc
+|  |  |  |  |-- l2norm_test.cc
+|  |  |  |  |-- leaky_relu.cc
+|  |  |  |  |-- leaky_relu_test.cc
+|  |  |  |  |-- log_softmax.cc
+|  |  |  |  |-- log_softmax_test.cc
+|  |  |  |  |-- logical.cc
+|  |  |  |  |-- logical_test.cc
+|  |  |  |  |-- logistic.cc
+|  |  |  |  |-- logistic_test.cc
+|  |  |  |  |-- maximum_minimum.cc
+|  |  |  |  |-- maximum_minimum_test.cc
+|  |  |  |  |-- micro_ops.h
+|  |  |  |  |-- micro_utils.h
+|  |  |  |  |-- mul.cc
+|  |  |  |  |-- mul_test.cc
+|  |  |  |  |-- neg.cc
+|  |  |  |  |-- neg_test.cc
+|  |  |  |  |-- pack.cc
+|  |  |  |  |-- pack_test.cc
+|  |  |  |  |-- pad.cc
+|  |  |  |  |-- pad_test.cc
+|  |  |  |  |-- pooling.cc
+|  |  |  |  |-- pooling.h
+|  |  |  |  |-- pooling_common.cc
+|  |  |  |  |-- pooling_test.cc
+|  |  |  |  |-- prelu.cc
+|  |  |  |  |-- prelu_test.cc
+|  |  |  |  |-- quantization_util_test.cc
+|  |  |  |  |-- quantize.cc
+|  |  |  |  |-- quantize.h
+|  |  |  |  |-- quantize_common.cc
+|  |  |  |  |-- quantize_test.cc
+|  |  |  |  |-- reduce.cc
+|  |  |  |  |-- reduce_test.cc
+|  |  |  |  |-- reshape.cc
+|  |  |  |  |-- reshape_test.cc
+|  |  |  |  |-- resize_bilinear.cc
+|  |  |  |  |-- resize_bilinear_test.cc
+|  |  |  |  |-- resize_nearest_neighbor.cc
+|  |  |  |  |-- resize_nearest_neighbor_test.cc
+|  |  |  |  |-- round.cc
+|  |  |  |  |-- round_test.cc
+|  |  |  |  |-- shape.cc
+|  |  |  |  |-- shape_test.cc
+|  |  |  |  |-- softmax.cc
+|  |  |  |  |-- softmax.h
+|  |  |  |  |-- softmax_common.cc
+|  |  |  |  |-- softmax_test.cc
+|  |  |  |  |-- space_to_batch_nd.cc
+|  |  |  |  |-- space_to_batch_nd_test.cc
+|  |  |  |  |-- space_to_depth.cc
+|  |  |  |  |-- space_to_depth_test.cc
+|  |  |  |  |-- split.cc
+|  |  |  |  |-- split_test.cc
+|  |  |  |  |-- split_v.cc
+|  |  |  |  |-- split_v_test.cc
+|  |  |  |  |-- squeeze.cc
+|  |  |  |  |-- squeeze_test.cc
+|  |  |  |  |-- strided_slice.cc
+|  |  |  |  |-- strided_slice_test.cc
+|  |  |  |  |-- sub.cc
+|  |  |  |  |-- sub_test.cc
+|  |  |  |  |-- svdf.cc
+|  |  |  |  |-- svdf.h
+|  |  |  |  |-- svdf_common.cc
+|  |  |  |  |-- svdf_test.cc
+|  |  |  |  |-- tanh.cc
+|  |  |  |  |-- tanh_test.cc
+|  |  |  |  |-- test_data_generation
+|  |  |  |  |  |-- BUILD
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- generate_circular_buffer_flexbuffers_data.cc
+|  |  |  |  |  |-- generate_detection_postprocess_flexbuffers_data.cc
+|  |  |  |  |-- transpose.cc
+|  |  |  |  |-- transpose_conv.cc
+|  |  |  |  |-- transpose_conv_test.cc
+|  |  |  |  |-- transpose_test.cc
+|  |  |  |  |-- unpack.cc
+|  |  |  |  |-- unpack_test.cc
+|  |  |  |  |-- vexriscv
+|  |  |  |  |  |-- README.md
+|  |  |  |  |  |-- depthwise_conv.cc
+|  |  |  |  |  |-- doc
+|  |  |  |  |  |  |-- DepthwiseConv2D_int8.md
+|  |  |  |  |  |-- utils
+|  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |-- gdb_regex.json
+|  |  |  |  |  |  |-- log_parser.py
+|  |  |  |  |-- xtensa
+|  |  |  |  |  |-- conv.cc
+|  |  |  |  |  |-- conv_hifi.cc
+|  |  |  |  |  |-- conv_hifimini.cc
+|  |  |  |  |  |-- conv_int8_reference.cc
+|  |  |  |  |  |-- depthwise_conv.cc
+|  |  |  |  |  |-- depthwise_conv_hifi.cc
+|  |  |  |  |  |-- depthwise_conv_hifimini.cc
+|  |  |  |  |  |-- fixedpoint_utils.h
+|  |  |  |  |  |-- fully_connected.cc
+|  |  |  |  |  |-- quantize.cc
+|  |  |  |  |  |-- softmax.cc
+|  |  |  |  |  |-- softmax_int8_int16.cc
+|  |  |  |  |  |-- svdf.cc
+|  |  |  |  |  |-- xtensa.h
+|  |  |  |  |  |-- xtensa_conv.h
+|  |  |  |  |  |-- xtensa_depthwise_conv.h
+|  |  |  |  |  |-- xtensa_softmax.h
+|  |  |  |  |-- zeros_like.cc
+|  |  |  |  |-- zeros_like_test.cc
+|  |  |  |-- mbed
+|  |  |  |  |-- debug_log.cc
+|  |  |  |-- memory_arena_threshold_test.cc
+|  |  |  |-- memory_helpers.cc
+|  |  |  |-- memory_helpers.h
+|  |  |  |-- memory_helpers_test.cc
+|  |  |  |-- memory_planner
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- greedy_memory_planner.cc
+|  |  |  |  |-- greedy_memory_planner.h
+|  |  |  |  |-- greedy_memory_planner_test.cc
+|  |  |  |  |-- linear_memory_planner.cc
+|  |  |  |  |-- linear_memory_planner.h
+|  |  |  |  |-- linear_memory_planner_test.cc
+|  |  |  |  |-- memory_planner.h
+|  |  |  |-- micro_allocator.cc
+|  |  |  |-- micro_allocator.h
+|  |  |  |-- micro_allocator_test.cc
+|  |  |  |-- micro_error_reporter.cc
+|  |  |  |-- micro_error_reporter.h
+|  |  |  |-- micro_error_reporter_test.cc
+|  |  |  |-- micro_graph.cc
+|  |  |  |-- micro_graph.h
+|  |  |  |-- micro_interpreter.cc
+|  |  |  |-- micro_interpreter.h
+|  |  |  |-- micro_interpreter_test.cc
+|  |  |  |-- micro_mutable_op_resolver.h
+|  |  |  |-- micro_mutable_op_resolver_test.cc
+|  |  |  |-- micro_op_resolver.h
+|  |  |  |-- micro_profiler.cc
+|  |  |  |-- micro_profiler.h
+|  |  |  |-- micro_string.cc
+|  |  |  |-- micro_string.h
+|  |  |  |-- micro_string_test.cc
+|  |  |  |-- micro_time.cc
+|  |  |  |-- micro_time.h
+|  |  |  |-- micro_time_test.cc
+|  |  |  |-- micro_utils.cc
+|  |  |  |-- micro_utils.h
+|  |  |  |-- micro_utils_test.cc
+|  |  |  |-- mock_micro_graph.cc
+|  |  |  |-- mock_micro_graph.h
+|  |  |  |-- openmvcam
+|  |  |  |  |-- debug_log.cc
+|  |  |  |-- recording_micro_allocator.cc
+|  |  |  |-- recording_micro_allocator.h
+|  |  |  |-- recording_micro_allocator_test.cc
+|  |  |  |-- recording_micro_interpreter.h
+|  |  |  |-- recording_simple_memory_allocator.cc
+|  |  |  |-- recording_simple_memory_allocator.h
+|  |  |  |-- recording_simple_memory_allocator_test.cc
+|  |  |  |-- riscv32_mcu
+|  |  |  |  |-- README.md
+|  |  |  |  |-- debug_log.cc
+|  |  |  |-- simple_memory_allocator.cc
+|  |  |  |-- simple_memory_allocator.h
+|  |  |  |-- simple_memory_allocator_test.cc
+|  |  |  |-- sparkfun_edge
+|  |  |  |  |-- debug_log.cc
+|  |  |  |  |-- micro_time.cc
+|  |  |  |  |-- system_setup.cc
+|  |  |  |-- spresense
+|  |  |  |  |-- compiler_specific.cc
+|  |  |  |  |-- debug_log.cc
+|  |  |  |-- stm32f4
+|  |  |  |  |-- debug_log.cc
+|  |  |  |-- stm32f4HAL
+|  |  |  |  |-- debug_log.cc
+|  |  |  |-- system_setup.cc
+|  |  |  |-- system_setup.h
+|  |  |  |-- test_helpers.cc
+|  |  |  |-- test_helpers.h
+|  |  |  |-- testing
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- Dockerfile.riscv
+|  |  |  |  |-- bluepill.resc
+|  |  |  |  |-- bluepill_nontest.resc
+|  |  |  |  |-- generate_test_models.py
+|  |  |  |  |-- leon_commands
+|  |  |  |  |-- micro_test.h
+|  |  |  |  |-- robot.resource.txt
+|  |  |  |  |-- sifive_fe310.resc
+|  |  |  |  |-- stm32f4.resc
+|  |  |  |  |-- test_conv_model.cc
+|  |  |  |  |-- test_conv_model.h
+|  |  |  |  |-- test_ecm3531_binary.sh
+|  |  |  |  |-- test_hexagon_binary.sh
+|  |  |  |  |-- test_leon_binary.sh
+|  |  |  |  |-- test_with_arm_corstone_300.sh
+|  |  |  |  |-- test_with_renode.sh
+|  |  |  |  |-- test_xcore_binary.sh
+|  |  |  |  |-- test_xtensa_binary.sh
+|  |  |  |  |-- util_test.cc
+|  |  |  |-- testing_helpers_test.cc
+|  |  |  |-- tools
+|  |  |  |  |-- ci_build
+|  |  |  |  |  |-- ci_build_micro_projects.sh
+|  |  |  |  |  |-- helper_functions.sh
+|  |  |  |  |  |-- install_arduino_cli.sh
+|  |  |  |  |  |-- install_mbed_cli.sh
+|  |  |  |  |  |-- test_all.sh
+|  |  |  |  |  |-- test_arc.sh
+|  |  |  |  |  |-- test_arduino.sh
+|  |  |  |  |  |-- test_arduino_library.sh
+|  |  |  |  |  |-- test_bazel.sh
+|  |  |  |  |  |-- test_bluepill.sh
+|  |  |  |  |  |-- test_code_style.sh
+|  |  |  |  |  |-- test_cortex_m_corstone_300.sh
+|  |  |  |  |  |-- test_cortex_m_generic.sh
+|  |  |  |  |  |-- test_esp32.sh
+|  |  |  |  |  |-- test_makefile.sh
+|  |  |  |  |  |-- test_mbed.sh
+|  |  |  |  |  |-- test_mbed_library.sh
+|  |  |  |  |  |-- test_project_generation.sh
+|  |  |  |  |  |-- test_sparkfun.sh
+|  |  |  |  |  |-- test_stm32f4.sh
+|  |  |  |  |  |-- test_x86.sh
+|  |  |  |  |  |-- test_xtensa_fusion_f1.sh
+|  |  |  |  |  |-- test_xtensa_hifi5.sh
+|  |  |  |  |  |-- test_xtensa_vision_p6.sh
+|  |  |  |  |-- dev_setup
+|  |  |  |  |  |-- pre-push.tflm
+|  |  |  |  |-- make
+|  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |-- Makefile
+|  |  |  |  |  |-- additional_kernels.inc
+|  |  |  |  |  |-- additional_tests.inc
+|  |  |  |  |  |-- arm_gcc_download.sh
+|  |  |  |  |  |-- bash_helpers.sh
+|  |  |  |  |  |-- check_optimized_kernel_dir.sh
+|  |  |  |  |  |-- corstone_300_download.sh
+|  |  |  |  |  |-- download_and_extract.sh
+|  |  |  |  |  |-- ethos_u_core_platform_download.sh
+|  |  |  |  |  |-- ext_libs
+|  |  |  |  |  |  |-- arc_mli.inc
+|  |  |  |  |  |  |-- ceva.inc
+|  |  |  |  |  |  |-- cmsis_download.sh
+|  |  |  |  |  |  |-- cmsis_nn.inc
+|  |  |  |  |  |  |-- ethos_u.inc
+|  |  |  |  |  |  |-- hexagon.inc
+|  |  |  |  |  |  |-- person_detection_int8_vela_convert.sh
+|  |  |  |  |  |  |-- stm32_bare_lib.patch
+|  |  |  |  |  |  |-- stm32_bare_lib_download.sh
+|  |  |  |  |  |  |-- vexriscv.inc
+|  |  |  |  |  |  |-- xtensa.inc
+|  |  |  |  |  |  |-- xtensa_download.sh
+|  |  |  |  |  |  |-- xtensa_patch.patch
+|  |  |  |  |  |-- fix_arduino_subfolders.py
+|  |  |  |  |  |-- fix_arduino_subfolders_test.sh
+|  |  |  |  |  |-- flatbuffers.patch
+|  |  |  |  |  |-- flatbuffers_download.sh
+|  |  |  |  |  |-- generate_keil_project.py
+|  |  |  |  |  |-- generate_keil_project_test.sh
+|  |  |  |  |  |-- helper_functions.inc
+|  |  |  |  |  |-- merge_arduino_zips.py
+|  |  |  |  |  |-- merge_arduino_zips_test.sh
+|  |  |  |  |  |-- person_detection_int8_download.sh
+|  |  |  |  |  |-- pigweed.patch
+|  |  |  |  |  |-- pigweed_download.sh
+|  |  |  |  |  |-- renode_download.sh
+|  |  |  |  |  |-- specialize_files.py
+|  |  |  |  |  |-- targets
+|  |  |  |  |  |  |-- apollo3evb
+|  |  |  |  |  |  |  |-- .gitignore
+|  |  |  |  |  |  |  |-- apollo3evb.ld
+|  |  |  |  |  |  |  |-- prep_apollo3_files.sh
+|  |  |  |  |  |  |-- apollo3evb_makefile.inc
+|  |  |  |  |  |  |-- arc
+|  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |-- arc_common.inc
+|  |  |  |  |  |  |  |-- emsdp
+|  |  |  |  |  |  |  |  |-- emsdp.lcf
+|  |  |  |  |  |  |  |  |-- emsdp_v2.lcf
+|  |  |  |  |  |  |-- arc_custom_makefile.inc
+|  |  |  |  |  |  |-- arc_emsdp_makefile.inc
+|  |  |  |  |  |  |-- bluepill
+|  |  |  |  |  |  |  |-- bluepill.lds
+|  |  |  |  |  |  |-- bluepill_makefile.inc
+|  |  |  |  |  |  |-- ceva
+|  |  |  |  |  |  |  |-- CEVA_BX1_TFLM.ld
+|  |  |  |  |  |  |  |-- CEVA_BX1_TFLM_18.0.2.ld
+|  |  |  |  |  |  |  |-- CEVA_BX1_TFLM_18.0.3.ld
+|  |  |  |  |  |  |  |-- CEVA_BX1_TFLM_18.0.5.ld
+|  |  |  |  |  |  |  |-- CEVA_SP500_TFLM.ld
+|  |  |  |  |  |  |-- ceva_makefile.inc
+|  |  |  |  |  |  |-- chre_makefile.inc
+|  |  |  |  |  |  |-- cortex_m_corstone_300_makefile.inc
+|  |  |  |  |  |  |-- cortex_m_generic_makefile.inc
+|  |  |  |  |  |  |-- disco_f746ng_makefile.inc
+|  |  |  |  |  |  |-- ecm3531
+|  |  |  |  |  |  |  |-- README.md
+|  |  |  |  |  |  |  |-- _main.c
+|  |  |  |  |  |  |  |-- ecm3531.lds
+|  |  |  |  |  |  |  |-- ecm3531_flash.lds
+|  |  |  |  |  |  |  |-- flash_erase
+|  |  |  |  |  |  |  |-- flash_program
+|  |  |  |  |  |  |  |-- load_program
+|  |  |  |  |  |  |  |-- startup.c
+|  |  |  |  |  |  |-- ecm3531_makefile.inc
+|  |  |  |  |  |  |-- esp_makefile.inc
+|  |  |  |  |  |  |-- hexagon
+|  |  |  |  |  |  |  |-- download_hexagon.sh
+|  |  |  |  |  |  |-- hexagon_makefile.inc
+|  |  |  |  |  |  |-- himax_we1_evb_makefile.inc
+|  |  |  |  |  |  |-- leon_makefile.inc
+|  |  |  |  |  |  |-- mcu_riscv_makefile.inc
+|  |  |  |  |  |  |-- sparkfun_edge_makefile.inc
+|  |  |  |  |  |  |-- spresense_makefile.inc
+|  |  |  |  |  |  |-- stm32f4
+|  |  |  |  |  |  |  |-- stm32f4.lds
+|  |  |  |  |  |  |-- stm32f4_makefile.inc
+|  |  |  |  |  |  |-- xcore_makefile.inc
+|  |  |  |  |  |  |-- xtensa_makefile.inc
+|  |  |  |  |  |  |-- zephyr_vexriscv_makefile.inc
+|  |  |  |  |  |-- templates
+|  |  |  |  |  |  |-- AUDIO_DISCO_F746NG.lib.tpl
+|  |  |  |  |  |  |-- BSP_DISCO_F746NG.lib.tpl
+|  |  |  |  |  |  |-- LCD_DISCO_F746NG.lib.tpl
+|  |  |  |  |  |  |-- Makefile.tpl
+|  |  |  |  |  |  |-- README_KEIL.md.tpl
+|  |  |  |  |  |  |-- README_MAKE.md.tpl
+|  |  |  |  |  |  |-- README_MBED.md.tpl
+|  |  |  |  |  |  |-- SDRAM_DISCO_F746NG.lib.tpl
+|  |  |  |  |  |  |-- TensorFlowLite.h
+|  |  |  |  |  |  |-- arc
+|  |  |  |  |  |  |  |-- README_ARC.md.tpl
+|  |  |  |  |  |  |  |-- README_ARC_EMSDP.md.tpl
+|  |  |  |  |  |  |  |-- arc_app_makefile.tpl
+|  |  |  |  |  |  |-- arduino_example.ino
+|  |  |  |  |  |  |-- ceva
+|  |  |  |  |  |  |  |-- ceva_app_makefile_v18.0.5.tpl
+|  |  |  |  |  |  |-- ceva_SP500
+|  |  |  |  |  |  |  |-- ceva_app_makefile.tpl
+|  |  |  |  |  |  |-- esp
+|  |  |  |  |  |  |  |-- CMakeLists.txt.tpl
+|  |  |  |  |  |  |  |-- README_ESP.md.tpl
+|  |  |  |  |  |  |  |-- components
+|  |  |  |  |  |  |  |  |-- tfmicro
+|  |  |  |  |  |  |  |  |  |-- CMakeLists.txt.tpl
+|  |  |  |  |  |  |  |-- main
+|  |  |  |  |  |  |  |  |-- CMakeLists.txt.tpl
+|  |  |  |  |  |  |-- keil_project.uvprojx.tpl
+|  |  |  |  |  |  |-- library.properties
+|  |  |  |  |  |  |-- mbed-os.lib.tpl
+|  |  |  |  |  |  |-- mbed_app.json.tpl
+|  |  |  |  |  |  |-- tasks.json.make.tpl
+|  |  |  |  |  |  |-- tasks.json.mbed.tpl
+|  |  |  |  |  |  |-- zephyr_cmake_project.cmake.tpl
+|  |  |  |  |  |-- third_party_downloads.inc
+|  |  |  |  |  |-- transform_arduino_source.py
+|  |  |  |  |  |-- transform_arduino_source_test.sh
+|  |  |  |  |  |-- transform_esp_source_test.sh
+|  |  |  |  |  |-- transform_source.py
+|  |  |  |  |-- project_generation
+|  |  |  |  |  |-- Makefile
+|  |  |  |  |  |-- create_tflm_tree.py
+|  |  |  |-- xcore
+|  |  |  |  |-- README.md
+|  |  |  |  |-- debug_log.cc
+|  |  |-- portable_type_to_tflitetype.h
+|  |  |-- schema
+|  |  |  |-- BUILD
+|  |  |  |-- schema_generated.h
+|  |  |  |-- schema_utils.cc
+|  |  |  |-- schema_utils.h
+|  |-- workspace.bzl
+|-- third_party
+|  |-- BUILD
+|  |-- flatbuffers
+|  |  |-- BUILD
+|  |  |-- BUILD.bazel
+|  |  |-- BUILD.system
+|  |  |-- build_defs.bzl
+|  |  |-- workspace.bzl
+|  |-- hexagon
+|  |  |-- LICENSE
+|  |  |-- fully_connected.cc
+|  |  |-- hexagon_tflm_translation_fully_connected.h
+|  |  |-- hexagon_tflm_translation_svdf.h
+|  |  |-- svdf.cc
+|  |-- kissfft
+|  |  |-- BUILD
+|  |  |-- BUILD.bazel
+|  |  |-- workspace.bzl
+|  |-- repo.bzl
+|  |-- ruy
+|  |  |-- BUILD
+|  |  |-- workspace.bzl

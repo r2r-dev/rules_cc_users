@@ -1,0 +1,542 @@
+|-- BUILDING.md
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- seurat
+|  |-- api
+|  |  |-- BUILD
+|  |  |-- api.proto
+|  |  |-- camera.proto
+|  |  |-- image.proto
+|  |  |-- ldi_exporter.cc
+|  |  |-- ldi_exporter.h
+|  |  |-- ldi_exporter_test.cc
+|  |  |-- math.proto
+|  |-- artifact
+|  |  |-- BUILD
+|  |  |-- artifact.h
+|  |  |-- artifact_processor.h
+|  |  |-- artifact_processor_test.cc
+|  |  |-- artifact_test_util.cc
+|  |  |-- artifact_test_util.h
+|  |  |-- atlas_mesh_transform.cc
+|  |  |-- atlas_mesh_transform.h
+|  |  |-- atlas_mesh_transform_test.cc
+|  |  |-- compress_atlas_transform.cc
+|  |  |-- compress_atlas_transform.h
+|  |  |-- compress_atlas_transform_test.cc
+|  |  |-- compress_tiles_transform.cc
+|  |  |-- compress_tiles_transform.h
+|  |  |-- compress_tiles_transform_test.cc
+|  |  |-- evaluation
+|  |  |  |-- BUILD
+|  |  |  |-- artifact_evaluator.cc
+|  |  |  |-- artifact_evaluator.h
+|  |  |  |-- artifact_evaluator_test.cc
+|  |  |  |-- cost_estimator.cc
+|  |  |  |-- cost_estimator.h
+|  |  |  |-- cost_estimator_test.cc
+|  |  |  |-- render_sim.cc
+|  |  |  |-- render_sim.h
+|  |  |  |-- render_sim_test.cc
+|  |  |-- exporter_test.cc
+|  |  |-- exr_exporter.cc
+|  |  |-- exr_exporter.h
+|  |  |-- ice_exporter.cc
+|  |  |-- ice_exporter.h
+|  |  |-- mesh_artifact_util.cc
+|  |  |-- mesh_artifact_util.h
+|  |  |-- mesh_artifact_util_test.cc
+|  |  |-- obj_exporter.cc
+|  |  |-- obj_exporter.h
+|  |  |-- png_exporter.cc
+|  |  |-- png_exporter.h
+|  |  |-- separate_opaque.cc
+|  |  |-- separate_opaque.h
+|  |  |-- separate_opaque_test.cc
+|  |  |-- sort_atlas_tiles_transform.cc
+|  |  |-- sort_atlas_tiles_transform.h
+|  |  |-- sort_atlas_tiles_transform_test.cc
+|  |-- baker
+|  |  |-- diffuse
+|  |  |  |-- BUILD
+|  |  |  |-- diffuse_baker.cc
+|  |  |  |-- diffuse_baker.h
+|  |  |  |-- diffuse_pipeline.cc
+|  |  |  |-- diffuse_pipeline.h
+|  |  |  |-- diffuse_pipeline_test.cc
+|  |  |-- framework
+|  |  |  |-- BUILD
+|  |  |  |-- frame.cc
+|  |  |  |-- frame.h
+|  |  |  |-- frame_generator.cc
+|  |  |  |-- frame_generator.h
+|  |  |  |-- frame_generator_test.cc
+|  |  |  |-- frame_sorter.cc
+|  |  |  |-- frame_sorter.h
+|  |  |  |-- frame_sorter_test.cc
+|  |  |  |-- frame_test.cc
+|  |  |  |-- radiance_accumulator.cc
+|  |  |  |-- radiance_accumulator.h
+|  |  |  |-- rasterizer.cc
+|  |  |  |-- rasterizer.h
+|  |  |  |-- ray_bundle.cc
+|  |  |  |-- ray_bundle.h
+|  |  |  |-- ray_classifier.cc
+|  |  |  |-- ray_classifier.h
+|  |  |  |-- ray_classifier_test.cc
+|  |  |  |-- sample_accumulator.h
+|  |  |  |-- sample_accumulator_set.h
+|  |  |  |-- silhouette.cc
+|  |  |  |-- silhouette.h
+|  |  |  |-- silhouette_accumulator.cc
+|  |  |  |-- silhouette_accumulator.h
+|  |  |  |-- silhouette_test.cc
+|  |  |  |-- texture_sizer.cc
+|  |  |  |-- texture_sizer.h
+|  |  |  |-- texture_sizer_test.cc
+|  |-- base
+|  |  |-- BUILD
+|  |  |-- array2d.h
+|  |  |-- array2d_test.cc
+|  |  |-- array2d_util.h
+|  |  |-- array2d_util_test.cc
+|  |  |-- array2d_view.h
+|  |  |-- array2d_view_test.cc
+|  |  |-- braced_init_list.h
+|  |  |-- braced_init_list_test.cc
+|  |  |-- bytestream.cc
+|  |  |-- bytestream.h
+|  |  |-- camera.h
+|  |  |-- camera_util.cc
+|  |  |-- camera_util.h
+|  |  |-- camera_util_test.cc
+|  |  |-- color.h
+|  |  |-- color_test.cc
+|  |  |-- file_system.h
+|  |  |-- file_system_common.cc
+|  |  |-- file_system_portable.cc
+|  |  |-- file_system_test.cc
+|  |  |-- ion_util_no_gl.cc
+|  |  |-- ion_util_no_gl.h
+|  |  |-- ion_util_no_gl_test.cc
+|  |  |-- math_util.cc
+|  |  |-- math_util.h
+|  |  |-- math_util_test.cc
+|  |  |-- parallel.cc
+|  |  |-- parallel.h
+|  |  |-- parallel_test.cc
+|  |  |-- progress.cc
+|  |  |-- progress.h
+|  |  |-- progress_test.cc
+|  |  |-- projective_camera.cc
+|  |  |-- projective_camera.h
+|  |  |-- projective_camera_test.cc
+|  |  |-- projective_camera_util.cc
+|  |  |-- projective_camera_util.h
+|  |  |-- projective_camera_util_test.cc
+|  |  |-- reporting.cc
+|  |  |-- reporting.h
+|  |  |-- reporting_test.cc
+|  |  |-- status.cc
+|  |  |-- status.h
+|  |  |-- status_test.cc
+|  |  |-- status_util.cc
+|  |  |-- status_util.h
+|  |  |-- status_util_test.cc
+|  |  |-- structured_io.cc
+|  |  |-- structured_io.h
+|  |  |-- structured_io_test.cc
+|  |  |-- structured_io_tests_utils.h
+|  |  |-- util.h
+|  |  |-- util_test.cc
+|  |-- component
+|  |  |-- BUILD
+|  |  |-- component.cc
+|  |  |-- component.h
+|  |  |-- component_io_test.cc
+|  |  |-- component_test.cc
+|  |  |-- component_tests_utils.cc
+|  |  |-- component_tests_utils.h
+|  |  |-- group_component.cc
+|  |  |-- group_component.h
+|  |  |-- group_component_test.cc
+|  |  |-- ice_io.cc
+|  |  |-- ice_io.h
+|  |  |-- ice_io_test.cc
+|  |  |-- point_cloud
+|  |  |  |-- BUILD
+|  |  |  |-- point_cloud.frag
+|  |  |  |-- point_cloud.vert
+|  |  |  |-- point_cloud_assets.iad
+|  |  |  |-- point_cloud_component.cc
+|  |  |  |-- point_cloud_component.h
+|  |  |  |-- point_cloud_renderable.cc
+|  |  |  |-- point_cloud_renderable.h
+|  |  |-- renderable.h
+|  |  |-- renderable_util.cc
+|  |  |-- renderable_util.h
+|  |  |-- shaders
+|  |  |  |-- shape.frag
+|  |  |  |-- shape.vert
+|  |  |-- shape_assets.iad
+|  |  |-- shape_component.cc
+|  |  |-- shape_component.h
+|  |  |-- shape_component_test.cc
+|  |  |-- shape_component_utils.cc
+|  |  |-- shape_component_utils.h
+|  |  |-- shape_component_utils_test.cc
+|  |  |-- shape_renderable.cc
+|  |  |-- shape_renderable.h
+|  |  |-- transform_component.cc
+|  |  |-- transform_component.h
+|  |  |-- transform_component_test.cc
+|  |-- compressor
+|  |  |-- BUILD
+|  |  |-- image_metrics
+|  |  |  |-- BUILD
+|  |  |  |-- image_metrics.cc
+|  |  |  |-- image_metrics.h
+|  |  |  |-- image_metrics_test.cc
+|  |  |-- resampler
+|  |  |  |-- BUILD
+|  |  |  |-- box_downsampler.cc
+|  |  |  |-- box_downsampler.h
+|  |  |  |-- downsampler_test.cc
+|  |  |  |-- gl_linear_upsampler.cc
+|  |  |  |-- gl_linear_upsampler.h
+|  |  |  |-- resampler.h
+|  |  |  |-- upsampler_test.cc
+|  |  |-- rgba
+|  |  |  |-- BUILD
+|  |  |  |-- rgba_compressor.h
+|  |  |  |-- rgba_compressor_util.cc
+|  |  |  |-- rgba_compressor_util.h
+|  |  |  |-- rgba_encoding_selector.cc
+|  |  |  |-- rgba_encoding_selector.h
+|  |  |  |-- rgba_encoding_selector_test.cc
+|  |  |  |-- rgba_nop_compressor.cc
+|  |  |  |-- rgba_nop_compressor.h
+|  |  |  |-- rgba_rate_resizer.cc
+|  |  |  |-- rgba_rate_resizer.h
+|  |  |  |-- rgba_rate_resizer_test.cc
+|  |  |  |-- rgba_selecting_compressor.cc
+|  |  |  |-- rgba_selecting_compressor.h
+|  |  |  |-- rgba_selecting_compressor_test.cc
+|  |  |-- texture_encoder.h
+|  |-- dev
+|  |  |-- BUILD
+|  |  |-- build_defs.bzl
+|  |-- generation
+|  |  |-- maya
+|  |  |  |-- seurat_rig.py
+|  |-- geometry
+|  |  |-- BUILD
+|  |  |-- bilinear_interpolator.h
+|  |  |-- bilinear_interpolator_test.cc
+|  |  |-- binning_point_cloud_builder.cc
+|  |  |-- binning_point_cloud_builder.h
+|  |  |-- binning_point_cloud_builder_test.cc
+|  |  |-- convex_hull2d.cc
+|  |  |-- convex_hull2d.h
+|  |  |-- convex_hull2d_test.cc
+|  |  |-- cube_face.cc
+|  |  |-- cube_face.h
+|  |  |-- cube_face_test.cc
+|  |  |-- fibonacci_sphere.cc
+|  |  |-- fibonacci_sphere.h
+|  |  |-- fibonacci_sphere_test.cc
+|  |  |-- kdtree.cc
+|  |  |-- kdtree.h
+|  |  |-- kdtree_test.cc
+|  |  |-- mesh.cc
+|  |  |-- mesh.h
+|  |  |-- mesh_obj_io.cc
+|  |  |-- mesh_obj_io.h
+|  |  |-- mesh_obj_io_test.cc
+|  |  |-- mesh_test.cc
+|  |  |-- mesh_util.cc
+|  |  |-- mesh_util.h
+|  |  |-- mesh_util_test.cc
+|  |  |-- plane.h
+|  |  |-- plane_test.cc
+|  |  |-- point_cloud_builder.h
+|  |  |-- polygon.cc
+|  |  |-- polygon.h
+|  |  |-- polygon_test.cc
+|  |  |-- quad.h
+|  |  |-- quad_mesh.cc
+|  |  |-- quad_mesh.h
+|  |  |-- quad_mesh_test.cc
+|  |  |-- quad_mesh_util.cc
+|  |  |-- quad_mesh_util.h
+|  |  |-- ray_sphere_intersection.cc
+|  |  |-- ray_sphere_intersection.h
+|  |  |-- ray_sphere_intersection_test.cc
+|  |  |-- raytracer.cc
+|  |  |-- raytracer.h
+|  |  |-- raytracer_test.cc
+|  |  |-- triangle.h
+|  |  |-- triangle_test.cc
+|  |-- image
+|  |  |-- BUILD
+|  |  |-- atlaser.h
+|  |  |-- atlaser_util.cc
+|  |  |-- atlaser_util.h
+|  |  |-- atlaser_util_test.cc
+|  |  |-- codec.h
+|  |  |-- color_processor.cc
+|  |  |-- color_processor.h
+|  |  |-- color_processor_test.cc
+|  |  |-- deep_exr_image_reader.cc
+|  |  |-- deep_exr_image_reader.h
+|  |  |-- deep_exr_image_writer.cc
+|  |  |-- deep_exr_image_writer.h
+|  |  |-- deep_exr_io_test.cc
+|  |  |-- exr_image_reader.cc
+|  |  |-- exr_image_reader.h
+|  |  |-- exr_image_writer.cc
+|  |  |-- exr_image_writer.h
+|  |  |-- exr_io_test.cc
+|  |  |-- exr_util.cc
+|  |  |-- exr_util.h
+|  |  |-- filter.h
+|  |  |-- filter_test.cc
+|  |  |-- fixed_width_atlaser.cc
+|  |  |-- fixed_width_atlaser.h
+|  |  |-- fixed_width_atlaser_test.cc
+|  |  |-- image.h
+|  |  |-- image_reader.h
+|  |  |-- image_test.cc
+|  |  |-- image_test_utils.cc
+|  |  |-- image_test_utils.h
+|  |  |-- image_util.cc
+|  |  |-- image_util.h
+|  |  |-- image_util_test.cc
+|  |  |-- image_writer.h
+|  |  |-- inpainting.cc
+|  |  |-- inpainting.h
+|  |  |-- inpainting_test.cc
+|  |  |-- ion_image_reader.cc
+|  |  |-- ion_image_reader.h
+|  |  |-- ion_image_writer.cc
+|  |  |-- ion_image_writer.h
+|  |  |-- ion_io_test.cc
+|  |  |-- ldi.h
+|  |  |-- ldi_test.cc
+|  |  |-- ldi_test_utils.h
+|  |  |-- ldi_util.cc
+|  |  |-- ldi_util.h
+|  |  |-- ldi_util_test.cc
+|  |  |-- low_discrepancy_sampling.h
+|  |  |-- low_discrepancy_sampling_test.cc
+|  |  |-- nearly_square_atlaser.cc
+|  |  |-- nearly_square_atlaser.h
+|  |  |-- nearly_square_atlaser_test.cc
+|  |  |-- rgbaui8_codec.cc
+|  |  |-- rgbaui8_codec.h
+|  |  |-- rgbaui8_codec_test.cc
+|  |  |-- testdata
+|  |  |  |-- color.exr
+|  |  |  |-- color.png
+|  |  |  |-- depth.exr
+|  |  |-- texture_atlas.cc
+|  |  |-- texture_atlas.h
+|  |  |-- texture_atlas_test.cc
+|  |-- ingest
+|  |  |-- BUILD
+|  |  |-- clamping_view_group_loader.cc
+|  |  |-- clamping_view_group_loader.h
+|  |  |-- clamping_view_group_loader_test.cc
+|  |  |-- json_converter.cc
+|  |  |-- json_converter.h
+|  |  |-- json_converter_test.cc
+|  |  |-- json_utils.cc
+|  |  |-- json_utils.h
+|  |  |-- json_utils_test.cc
+|  |  |-- json_validator.cc
+|  |  |-- json_validator.h
+|  |  |-- json_validator_test.cc
+|  |  |-- ldi_loader.cc
+|  |  |-- ldi_loader.h
+|  |  |-- ldi_loader_test.cc
+|  |  |-- ldi_loader_test_utils.cc
+|  |  |-- ldi_loader_test_utils.h
+|  |  |-- pattern_loader.cc
+|  |  |-- pattern_loader.h
+|  |  |-- pattern_loader_test.cc
+|  |  |-- point_cloud_assembler.cc
+|  |  |-- point_cloud_assembler.h
+|  |  |-- point_cloud_assembler_factory.cc
+|  |  |-- point_cloud_assembler_factory.h
+|  |  |-- point_cloud_assembler_test.cc
+|  |  |-- proto_view_group_loader.cc
+|  |  |-- proto_view_group_loader.h
+|  |  |-- proto_view_group_loader_test.cc
+|  |  |-- single_face_view_group_loader.cc
+|  |  |-- single_face_view_group_loader.h
+|  |  |-- single_face_view_group_loader_test.cc
+|  |  |-- sphere_view_group_loader.cc
+|  |  |-- sphere_view_group_loader.h
+|  |  |-- sphere_view_group_loader_test.cc
+|  |  |-- subset_view_group_loader.cc
+|  |  |-- subset_view_group_loader.h
+|  |  |-- subset_view_group_loader_test.cc
+|  |  |-- testdata
+|  |  |  |-- arnold_deep_exr.exr
+|  |  |  |-- color.exr
+|  |  |  |-- depth.exr
+|  |  |  |-- depth_image_with_transparency.exr
+|  |  |  |-- invalid_manifest.json
+|  |  |  |-- manifest_v3.json
+|  |  |-- tone_mapping_view_group_loader.cc
+|  |  |-- tone_mapping_view_group_loader.h
+|  |  |-- view_group_loader.h
+|  |  |-- view_group_loader_factory.cc
+|  |  |-- view_group_loader_factory.h
+|  |  |-- view_group_loader_factory_test.cc
+|  |  |-- view_group_loader_test_utils.cc
+|  |  |-- view_group_loader_test_utils.h
+|  |  |-- view_group_loader_util.cc
+|  |  |-- view_group_loader_util.h
+|  |  |-- view_group_loader_util_test.cc
+|  |-- mesh
+|  |  |-- BUILD
+|  |  |-- mesh_component.cc
+|  |  |-- mesh_component.h
+|  |  |-- mesh_component_assets.iad
+|  |  |-- mesh_component_test.cc
+|  |  |-- mesh_component_util.cc
+|  |  |-- mesh_component_util.h
+|  |  |-- mesh_component_util_test.cc
+|  |  |-- mesh_renderable.cc
+|  |  |-- mesh_renderable.h
+|  |  |-- mesh_renderable_util.cc
+|  |  |-- mesh_renderable_util.h
+|  |  |-- shaders
+|  |  |  |-- mesh.frag
+|  |  |  |-- mesh.vert
+|  |  |  |-- solid_depth_mesh.frag
+|  |  |  |-- solid_depth_mesh.vert
+|  |-- pipeline
+|  |  |-- BUILD
+|  |  |-- flags.proto
+|  |  |-- pipeline.cc
+|  |  |-- pipeline.h
+|  |  |-- seurat.cc
+|  |-- testing
+|  |  |-- BUILD
+|  |  |-- ion_test_utils.h
+|  |  |-- ion_test_utils_test.cc
+|  |  |-- test_flags.cc
+|  |  |-- test_flags.h
+|  |  |-- test_flags_test.cc
+|  |-- tiler
+|  |  |-- BUILD
+|  |  |-- build_partition.cc
+|  |  |-- build_partition.h
+|  |  |-- build_partition_test.cc
+|  |  |-- candidate_tile_generator.cc
+|  |  |-- candidate_tile_generator.h
+|  |  |-- geometry_model.h
+|  |  |-- geometry_solver.h
+|  |  |-- geometry_solver_util.cc
+|  |  |-- geometry_solver_util.h
+|  |  |-- partitioner_stage.h
+|  |  |-- partitioner_stages.cc
+|  |  |-- partitioner_stages.h
+|  |  |-- partitioner_stages_test.cc
+|  |  |-- plane_projection_cost_function.cc
+|  |  |-- plane_projection_cost_function.h
+|  |  |-- point_set.h
+|  |  |-- rail_disk_solver.cc
+|  |  |-- rail_disk_solver.h
+|  |  |-- rail_disk_solver_test.cc
+|  |  |-- rail_penalty_cost_function.cc
+|  |  |-- rail_penalty_cost_function.h
+|  |  |-- selection
+|  |  |  |-- BUILD
+|  |  |  |-- bisection_solver.cc
+|  |  |  |-- bisection_solver.h
+|  |  |  |-- bisection_solver_test.cc
+|  |  |  |-- cost_calculator.cc
+|  |  |  |-- cost_calculator.h
+|  |  |  |-- cost_calculator_test.cc
+|  |  |  |-- parallel_solver.cc
+|  |  |  |-- parallel_solver.h
+|  |  |  |-- parallel_solver_test.cc
+|  |  |  |-- relaxed_solver.cc
+|  |  |  |-- relaxed_solver.h
+|  |  |  |-- relaxed_solver_test.cc
+|  |  |  |-- selection_problem.cc
+|  |  |  |-- selection_problem.h
+|  |  |  |-- selection_problem_test.cc
+|  |  |  |-- selection_solver.h
+|  |  |  |-- selection_test_util.cc
+|  |  |  |-- selection_test_util.h
+|  |  |  |-- selection_util.cc
+|  |  |  |-- selection_util.h
+|  |  |  |-- selection_util_test.cc
+|  |  |  |-- sequential_solver.h
+|  |  |  |-- simplifying_solver.cc
+|  |  |  |-- simplifying_solver.h
+|  |  |  |-- simplifying_solver_test.cc
+|  |  |  |-- solver_factory.cc
+|  |  |  |-- solver_factory.h
+|  |  |  |-- solver_factory_test.cc
+|  |  |  |-- subgradient_descent_solver.cc
+|  |  |  |-- subgradient_descent_solver.h
+|  |  |  |-- subgradient_descent_solver_test.cc
+|  |  |-- selection_tiler.cc
+|  |  |-- selection_tiler.h
+|  |  |-- subdivision.cc
+|  |  |-- subdivision.h
+|  |  |-- subdivision_test.cc
+|  |  |-- subdivision_util.cc
+|  |  |-- subdivision_util.h
+|  |  |-- subdivision_util_test.cc
+|  |  |-- subset_geometry_solver.cc
+|  |  |-- subset_geometry_solver.h
+|  |  |-- subset_geometry_solver_test.cc
+|  |  |-- tangential_disk_cost_function.cc
+|  |  |-- tangential_disk_cost_function.h
+|  |  |-- tile.h
+|  |  |-- tile_resolver.cc
+|  |  |-- tile_resolver.h
+|  |  |-- tile_resolver_test.cc
+|  |  |-- tile_weight_model.cc
+|  |  |-- tile_weight_model.h
+|  |  |-- tile_weight_model_test.cc
+|  |  |-- tiler.cc
+|  |  |-- tiler.h
+|  |  |-- tiler_test.cc
+|  |  |-- tiler_test_util.cc
+|  |  |-- tiler_test_util.h
+|  |-- viewer
+|  |  |-- BUILD
+|  |  |-- butterfly
+|  |  |  |-- BUILD
+|  |  |  |-- butterfly.cc
+|  |  |  |-- viewer_camera.cc
+|  |  |  |-- viewer_camera.h
+|  |  |-- rendering_pipeline.cc
+|  |  |-- rendering_pipeline.h
+|  |  |-- scene.cc
+|  |  |-- scene.h
+|  |  |-- scene_test.cc
+|  |  |-- viewer_util.cc
+|  |  |-- viewer_util.h
+|-- third_party
+|  |-- ceres.BUILD
+|  |-- eigen.BUILD
+|  |-- embree.BUILD
+|  |-- gl.BUILD
+|  |-- glfw.BUILD
+|  |-- nanoflann.BUILD
+|  |-- openexr.BUILD
+|  |-- tbb.BUILD
+|  |-- zlib.BUILD
+|-- tools
+|  |-- bazel_linux.rc
+|  |-- bazel_windows.rc

@@ -1,0 +1,274 @@
+|-- .gitattributes
+|-- .gitignore
+|-- LICENSE
+|-- README.md
+|-- extract_caffe_features.py
+|-- extract_caffe_weights.py
+|-- features
+|  |-- README.md
+|-- gemmlowp-master
+|  |-- .gitignore
+|  |-- AUTHORS
+|  |-- BUILD
+|  |-- CONTRIBUTING
+|  |-- CONTRIBUTORS
+|  |-- LICENSE
+|  |-- README.md
+|  |-- WORKSPACE
+|  |-- doc
+|  |  |-- design.md
+|  |  |-- kernel.md
+|  |  |-- less-than-8-bit.md
+|  |  |-- low-precision.md
+|  |  |-- output.md
+|  |  |-- packing.md
+|  |  |-- public.md
+|  |  |-- quantization.md
+|  |  |-- quantization_example.cc
+|  |-- eight_bit_int_gemm
+|  |  |-- eight_bit_int_gemm.cc
+|  |  |-- eight_bit_int_gemm.h
+|  |-- fixedpoint
+|  |  |-- fixedpoint.h
+|  |  |-- fixedpoint_neon.h
+|  |  |-- fixedpoint_sse.h
+|  |-- flags.bzl
+|  |-- internal
+|  |  |-- allocator.h
+|  |  |-- block_params.h
+|  |  |-- common.h
+|  |  |-- compute.h
+|  |  |-- iterator.h
+|  |  |-- kernel.h
+|  |  |-- kernel_default.h
+|  |  |-- kernel_neon.h
+|  |  |-- kernel_reference.h
+|  |  |-- kernel_sse.h
+|  |  |-- multi_thread_gemm.h
+|  |  |-- output.h
+|  |  |-- output_neon.h
+|  |  |-- output_sse.h
+|  |  |-- pack.h
+|  |  |-- pack_neon.h
+|  |  |-- pack_sse.h
+|  |  |-- single_thread_gemm.h
+|  |  |-- unpack.h
+|  |  |-- unpack_neon.h
+|  |  |-- unpack_sse.h
+|  |-- meta
+|  |  |-- README
+|  |  |-- base.h
+|  |  |-- generators
+|  |  |  |-- cc_emitter.py
+|  |  |  |-- common.py
+|  |  |  |-- metagemm_generate_headers.sh
+|  |  |  |-- neon_emitter.py
+|  |  |  |-- neon_emitter_64.py
+|  |  |  |-- quantized_mul_kernels_arm_32.py
+|  |  |  |-- quantized_mul_kernels_arm_64.py
+|  |  |  |-- quantized_mul_kernels_common.py
+|  |  |  |-- streams_arm_32.py
+|  |  |  |-- streams_arm_64.py
+|  |  |  |-- streams_common.py
+|  |  |  |-- transform_kernels_arm_32.py
+|  |  |  |-- transform_kernels_arm_64.py
+|  |  |  |-- transform_kernels_common.py
+|  |  |-- legacy_multi_thread_common.h
+|  |  |-- legacy_multi_thread_gemm.h
+|  |  |-- legacy_multi_thread_gemv.h
+|  |  |-- legacy_operations_common.h
+|  |  |-- legacy_single_thread_gemm.h
+|  |  |-- multi_thread_common.h
+|  |  |-- multi_thread_gemm.h
+|  |  |-- multi_thread_transform.h
+|  |  |-- quantized_mul_kernels.h
+|  |  |-- quantized_mul_kernels_arm_32.h
+|  |  |-- quantized_mul_kernels_arm_64.h
+|  |  |-- single_thread_gemm.h
+|  |  |-- single_thread_transform.h
+|  |  |-- streams.h
+|  |  |-- streams_arm_32.h
+|  |  |-- streams_arm_64.h
+|  |  |-- test_gemm_correctness.cc
+|  |  |-- test_streams_correctness.cc
+|  |  |-- test_transform_benchmark.cc
+|  |  |-- test_transform_correctness.cc
+|  |  |-- transform_kernels.h
+|  |  |-- transform_kernels_arm_32.h
+|  |  |-- transform_kernels_arm_64.h
+|  |-- profiling
+|  |  |-- instrumentation.h
+|  |  |-- profiler.h
+|  |-- public
+|  |  |-- bit_depth.h
+|  |  |-- gemmlowp.h
+|  |  |-- map.h
+|  |  |-- output_stages.h
+|  |-- scripts
+|  |  |-- test-android.sh
+|  |-- standalone
+|  |  |-- neon-gemm-kernel-benchmark.cc
+|  |-- test
+|  |  |-- benchmark.cc
+|  |  |-- benchmark_meta_gemm.cc
+|  |  |-- correctness_meta_gemm.cc
+|  |  |-- ios
+|  |  |  |-- gemmlowp_test.xcodeproj
+|  |  |  |  |-- project.pbxproj
+|  |  |  |-- gemmlowp_test
+|  |  |  |  |-- AppDelegate.h
+|  |  |  |  |-- AppDelegate.mm
+|  |  |  |  |-- Base.lproj
+|  |  |  |  |  |-- LaunchScreen.xib
+|  |  |  |  |  |-- Main.storyboard
+|  |  |  |  |-- Images.xcassets
+|  |  |  |  |  |-- AppIcon.appiconset
+|  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |-- Info.plist
+|  |  |  |  |-- ViewController.h
+|  |  |  |  |-- ViewController.m
+|  |  |  |  |-- main.m
+|  |  |-- test.cc
+|  |  |-- test.h
+|  |  |-- test_allocator.cc
+|  |  |-- test_blocking_counter.cc
+|  |  |-- test_data.cc
+|  |  |-- test_data.h
+|  |  |-- test_fixedpoint.cc
+|  |  |-- test_math_helpers.cc
+|  |-- todo
+|  |  |-- armv8-64bit-kernel-for-less-than-8-bit.txt
+|  |  |-- error-diffusion-experiments.txt
+|  |  |-- fast-gemv.txt
+|  |  |-- less-than-8-bit-without-requantization.txt
+|  |  |-- multi-threading-experiments.txt
+|  |  |-- neon-depth-major-sources-packing.txt
+|  |  |-- remove-default-template-param-values.txt
+|  |  |-- x86-kernels.txt
+|-- generate_cpp.py
+|-- helper
+|  |-- __init__.py
+|  |-- cifar-10_tools
+|  |  |-- README.md
+|  |  |-- cifar-10_1000
+|  |  |  |-- README.md
+|  |  |  |-- cifar-10_1000.csv
+|  |  |-- mean.binaryproto
+|  |  |-- mean_image_reduced
+|  |  |  |-- README.md
+|  |  |-- preprocess_cifar-10.py
+|  |-- compile_results.R
+|  |-- extract_architecture.py
+|  |-- imagenet_tools
+|  |  |-- README.md
+|  |  |-- imagenet_1000
+|  |  |  |-- README.md
+|  |  |-- imagenet_1000_labels.csv
+|  |  |-- imagenet_mean.npy
+|  |  |-- mean_image_reduced
+|  |  |  |-- README.md
+|  |  |-- mean_pixel_reduced
+|  |  |  |-- README.md
+|  |  |-- preprocess_imagenet.py
+|  |-- unpickler.py
+|-- inference
+|  |-- Makefile.ResNet101
+|  |-- Makefile.ResNet50
+|  |-- Makefile.VGG_16
+|  |-- Makefile.VGG_19
+|  |-- Makefile.cifar-10
+|  |-- Makefile.mnist
+|  |-- helper
+|  |  |-- input_parser.h
+|  |  |-- makefile_template
+|  |  |-- reader.h
+|  |  |-- template.cpp
+|  |  |-- writer.cpp
+|  |  |-- writer.h
+|  |-- main_ResNet101.cpp
+|  |-- main_ResNet50.cpp
+|  |-- main_VGG_16.cpp
+|  |-- main_VGG_19.cpp
+|  |-- main_cifar-10.cpp
+|  |-- main_mnist.cpp
+|-- inputs
+|  |-- README.md
+|-- layers
+|  |-- batchnorm_layer
+|  |  |-- batchnorm.cpp
+|  |  |-- batchnorm.h
+|  |-- convolution_layer
+|  |  |-- convolution.cpp
+|  |  |-- convolution.h
+|  |  |-- lowp.cpp
+|  |  |-- lowp.h
+|  |-- eltwise_layer
+|  |  |-- eltwise.cpp
+|  |  |-- eltwise.h
+|  |-- fully_connected_layer
+|  |  |-- fully_connected.cpp
+|  |  |-- fully_connected.h
+|  |-- pooling_layer
+|  |  |-- pooling.cpp
+|  |  |-- pooling.h
+|  |-- relu_layer
+|  |  |-- relu.cpp
+|  |  |-- relu.h
+|  |-- scale_layer
+|  |  |-- scale.cpp
+|  |  |-- scale.h
+|-- models
+|  |-- README.md
+|  |-- ResNet101
+|  |  |-- ResNet101.prototxt
+|  |-- ResNet50
+|  |  |-- ResNet50.prototxt
+|  |-- VGG_16
+|  |  |-- VGG_16.prototxt
+|  |-- VGG_19
+|  |  |-- VGG_19.prototxt
+|  |-- cifar-10
+|  |  |-- cifar10_quick.prototxt
+|  |-- mnist
+|  |  |-- lenet.prototxt
+|-- results
+|  |-- README.md
+|-- run_routine.sh
+|-- tex
+|  |-- README.tex
+|  |-- abstractd.tex
+|  |-- abstracte.tex
+|  |-- appendices.tex
+|  |-- chapters
+|  |  |-- background.tex
+|  |  |-- conclusion.tex
+|  |  |-- experiments.tex
+|  |  |-- introduction.tex
+|  |  |-- methodology.tex
+|  |-- detailed_results.tex
+|  |-- dsfont.sty
+|  |-- figures
+|  |  |-- 04_Humjpg.jpg
+|  |  |-- 06_Matjpg.jpg
+|  |  |-- cnn.png
+|  |  |-- convlayer.png
+|  |  |-- matrixmult.png
+|  |  |-- nn.png
+|  |  |-- resnet.png
+|  |  |-- trend.png
+|  |  |-- vgg16.png
+|  |-- floatflt.sty
+|  |-- master's_thesis.aux
+|  |-- master's_thesis.idx
+|  |-- master's_thesis.lof
+|  |-- master's_thesis.log
+|  |-- master's_thesis.lot
+|  |-- master's_thesis.pdf
+|  |-- master's_thesis.synctex.gz
+|  |-- master's_thesis.tex
+|  |-- master's_thesis.toc
+|  |-- picins.sty
+|  |-- references.bib
+|  |-- wmaainf.bst
+|-- weights
+|  |-- README.md

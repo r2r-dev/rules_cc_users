@@ -1,0 +1,175 @@
+|-- .bazelrc
+|-- .bazelversion
+|-- .gitignore
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- paragraph
+|  |-- bridging
+|  |  |-- hlo
+|  |  |  |-- BUILD
+|  |  |  |-- hlo_bridge.cc
+|  |  |  |-- hlo_compute_cost_analysis.cc
+|  |  |  |-- hlo_compute_cost_analysis.h
+|  |  |  |-- hlo_compute_cost_analysis_test.cc
+|  |  |  |-- hlo_converter.cc
+|  |  |  |-- hlo_converter.h
+|  |  |  |-- hlo_converter_test.cc
+|  |  |  |-- tensorflow_patches
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- build.patch
+|  |  |  |  |-- tf.patch
+|  |-- graph
+|  |  |-- BUILD
+|  |  |-- graph.cc
+|  |  |-- graph.h
+|  |  |-- graph.proto
+|  |  |-- graph_converter.cc
+|  |  |-- graph_test.cc
+|  |  |-- instruction.cc
+|  |  |-- instruction.h
+|  |  |-- instruction_test.cc
+|  |  |-- opcode.cc
+|  |  |-- opcode.h
+|  |  |-- opcode_test.cc
+|  |  |-- subroutine.cc
+|  |  |-- subroutine.h
+|  |  |-- subroutine_test.cc
+|  |-- scheduling
+|  |  |-- BUILD
+|  |  |-- graph_scheduler.cc
+|  |  |-- graph_scheduler.h
+|  |  |-- graph_scheduler_test.cc
+|  |  |-- instruction_fsm.cc
+|  |  |-- instruction_fsm.h
+|  |  |-- instruction_fsm_test.cc
+|  |  |-- logger.cc
+|  |  |-- logger.h
+|  |  |-- logger_test.cc
+|  |  |-- subroutine_fsm.cc
+|  |  |-- subroutine_fsm.h
+|  |  |-- subroutine_fsm_test.cc
+|  |-- shim
+|  |  |-- BUILD
+|  |  |-- README.md
+|  |  |-- macros.h
+|  |  |-- macros_test.cc
+|  |  |-- statusor.h
+|  |  |-- statusor_internals.h
+|  |  |-- statusor_test.cc
+|  |  |-- test_macros.h
+|  |  |-- test_macros_test.cc
+|  |-- simulator
+|  |  |-- BUILD
+|  |  |-- simple_sim.cc
+|  |  |-- simple_sim.h
+|  |  |-- simple_sim_test.cc
+|  |  |-- simulator.cc
+|  |-- translation
+|  |  |-- BUILD
+|  |  |-- allgather
+|  |  |  |-- BUILD
+|  |  |  |-- allgather_translator.cc
+|  |  |  |-- allgather_translator.h
+|  |  |  |-- bidir_ring_allgather_translator.cc
+|  |  |  |-- bidir_ring_allgather_translator.h
+|  |  |  |-- bidir_ring_allgather_translator_test.cc
+|  |  |  |-- mesh_1d_allgather_translator.cc
+|  |  |  |-- mesh_1d_allgather_translator.h
+|  |  |  |-- mesh_1d_allgather_translator_test.cc
+|  |  |  |-- mesh_2d_allgather_translator.cc
+|  |  |  |-- mesh_2d_allgather_translator.h
+|  |  |  |-- mesh_2d_allgather_translator_test.cc
+|  |  |  |-- ring_over_2d_grid_allgather_translator.cc
+|  |  |  |-- ring_over_2d_grid_allgather_translator.h
+|  |  |  |-- ring_over_2d_grid_allgather_translator_test.cc
+|  |  |  |-- torus_2d_allgather_translator.cc
+|  |  |  |-- torus_2d_allgather_translator.h
+|  |  |  |-- torus_2d_allgather_translator_test.cc
+|  |  |  |-- unidir_ring_allgather_translator.cc
+|  |  |  |-- unidir_ring_allgather_translator.h
+|  |  |  |-- unidir_ring_allgather_translator_test.cc
+|  |  |-- allreduce
+|  |  |  |-- BUILD
+|  |  |  |-- allreduce_translator.cc
+|  |  |  |-- allreduce_translator.h
+|  |  |  |-- bidir_ring_allreduce_translator.cc
+|  |  |  |-- bidir_ring_allreduce_translator.h
+|  |  |  |-- bidir_ring_allreduce_translator_test.cc
+|  |  |  |-- mesh_1d_allreduce_translator.cc
+|  |  |  |-- mesh_1d_allreduce_translator.h
+|  |  |  |-- mesh_1d_allreduce_translator_test.cc
+|  |  |  |-- mesh_2d_allreduce_translator.cc
+|  |  |  |-- mesh_2d_allreduce_translator.h
+|  |  |  |-- mesh_2d_allreduce_translator_test.cc
+|  |  |  |-- ring_over_2d_grid_allreduce_translator.cc
+|  |  |  |-- ring_over_2d_grid_allreduce_translator.h
+|  |  |  |-- ring_over_2d_grid_allreduce_translator_test.cc
+|  |  |  |-- torus_2d_allreduce_translator.cc
+|  |  |  |-- torus_2d_allreduce_translator.h
+|  |  |  |-- torus_2d_allreduce_translator_test.cc
+|  |  |  |-- unidir_ring_allreduce_translator.cc
+|  |  |  |-- unidir_ring_allreduce_translator.h
+|  |  |  |-- unidir_ring_allreduce_translator_test.cc
+|  |  |-- barrier
+|  |  |  |-- BUILD
+|  |  |  |-- barrier_translator.cc
+|  |  |  |-- barrier_translator.h
+|  |  |  |-- centralized_barrier_translator.cc
+|  |  |  |-- centralized_barrier_translator.h
+|  |  |  |-- centralized_barrier_translator_test.cc
+|  |  |-- graph_translator.cc
+|  |  |-- recv
+|  |  |  |-- BUILD
+|  |  |  |-- push_recv_translator.cc
+|  |  |  |-- push_recv_translator.h
+|  |  |  |-- push_recv_translator_test.cc
+|  |  |  |-- recv_translator.cc
+|  |  |  |-- recv_translator.h
+|  |  |-- reducescatter
+|  |  |  |-- BUILD
+|  |  |  |-- bidir_ring_reducescatter_translator.cc
+|  |  |  |-- bidir_ring_reducescatter_translator.h
+|  |  |  |-- bidir_ring_reducescatter_translator_test.cc
+|  |  |  |-- mesh_1d_reducescatter_translator.cc
+|  |  |  |-- mesh_1d_reducescatter_translator.h
+|  |  |  |-- mesh_1d_reducescatter_translator_test.cc
+|  |  |  |-- mesh_2d_reducescatter_translator.cc
+|  |  |  |-- mesh_2d_reducescatter_translator.h
+|  |  |  |-- mesh_2d_reducescatter_translator_test.cc
+|  |  |  |-- reducescatter_translator.cc
+|  |  |  |-- reducescatter_translator.h
+|  |  |  |-- ring_over_2d_grid_reducescatter_translator.cc
+|  |  |  |-- ring_over_2d_grid_reducescatter_translator.h
+|  |  |  |-- ring_over_2d_grid_reducescatter_translator_test.cc
+|  |  |  |-- torus_2d_reducescatter_translator.cc
+|  |  |  |-- torus_2d_reducescatter_translator.h
+|  |  |  |-- torus_2d_reducescatter_translator_test.cc
+|  |  |  |-- unidir_ring_reducescatter_translator.cc
+|  |  |  |-- unidir_ring_reducescatter_translator.h
+|  |  |  |-- unidir_ring_reducescatter_translator_test.cc
+|  |  |-- send
+|  |  |  |-- BUILD
+|  |  |  |-- push_send_translator.cc
+|  |  |  |-- push_send_translator.h
+|  |  |  |-- push_send_translator_test.cc
+|  |  |  |-- send_translator.cc
+|  |  |  |-- send_translator.h
+|  |  |-- sendrecv
+|  |  |  |-- BUILD
+|  |  |  |-- push_sendrecv_translator.cc
+|  |  |  |-- push_sendrecv_translator.h
+|  |  |  |-- push_sendrecv_translator_test.cc
+|  |  |  |-- sendrecv_translator.cc
+|  |  |  |-- sendrecv_translator.h
+|  |  |-- translation.cc
+|  |  |-- translation.h
+|  |  |-- translation_map.cc
+|  |  |-- translation_map.h
+|  |  |-- translation_test.cc
+|  |  |-- translator.h
+|  |  |-- utils.cc
+|  |  |-- utils.h
+|  |  |-- utils_test.cc

@@ -1,0 +1,414 @@
+|-- .bazelrc
+|-- .clang-format
+|-- .github
+|  |-- workflows
+|  |  |-- ci.yml
+|-- .gitignore
+|-- BUILD
+|-- CONTRIBUTING.md
+|-- Doxyfile
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- android_example
+|  |-- AndroidManifest.xml
+|  |-- BUILD
+|  |-- LibraryManifest.xml
+|  |-- java
+|  |  |-- com
+|  |  |  |-- example
+|  |  |  |  |-- android
+|  |  |  |  |  |-- lyra
+|  |  |  |  |  |  |-- MainActivity.java
+|  |-- jni_benchmark_decode_lib.cc
+|  |-- res
+|  |  |-- drawable-v24
+|  |  |  |-- ic_launcher_foreground.xml
+|  |  |-- drawable
+|  |  |  |-- ic_launcher_background.xml
+|  |  |-- layout
+|  |  |  |-- activity_main.xml
+|  |  |-- mipmap-anydpi-v26
+|  |  |  |-- ic_launcher.xml
+|  |  |  |-- ic_launcher_round.xml
+|  |  |-- mipmap-hdpi
+|  |  |  |-- ic_launcher.png
+|  |  |  |-- ic_launcher_round.png
+|  |  |-- mipmap-mdpi
+|  |  |  |-- ic_launcher.png
+|  |  |  |-- ic_launcher_round.png
+|  |  |-- mipmap-xhdpi
+|  |  |  |-- ic_launcher.png
+|  |  |  |-- ic_launcher_round.png
+|  |  |-- mipmap-xxhdpi
+|  |  |  |-- ic_launcher.png
+|  |  |  |-- ic_launcher_round.png
+|  |  |-- mipmap-xxxhdpi
+|  |  |  |-- ic_launcher.png
+|  |  |  |-- ic_launcher_round.png
+|  |  |-- values
+|  |  |  |-- colors.xml
+|  |  |  |-- strings.xml
+|  |  |  |-- styles.xml
+|-- architecture_utils.h
+|-- benchmark_decode.cc
+|-- benchmark_decode_lib.cc
+|-- benchmark_decode_lib.h
+|-- buffer_merger.cc
+|-- buffer_merger.h
+|-- buffer_merger_test.cc
+|-- causal_convolutional_conditioning.h
+|-- causal_convolutional_conditioning_test.cc
+|-- comfort_noise_generator.cc
+|-- comfort_noise_generator.h
+|-- comfort_noise_generator_test.cc
+|-- conv1d_layer_wrapper.h
+|-- conv1d_layer_wrapper_test.cc
+|-- decoder_main.cc
+|-- decoder_main_lib.cc
+|-- decoder_main_lib.h
+|-- decoder_main_lib_test.cc
+|-- denoiser_interface.h
+|-- dilated_convolutional_layer_wrapper.h
+|-- dilated_convolutional_layer_wrapper_test.cc
+|-- dsp_util.cc
+|-- dsp_util.h
+|-- dsp_util_test.cc
+|-- encoder_main.cc
+|-- encoder_main_lib.cc
+|-- encoder_main_lib.h
+|-- encoder_main_lib_test.cc
+|-- exported_layers_test.h
+|-- external
+|  |-- eigen.BUILD
+|  |-- fft2d.BUILD
+|-- feature_extractor_interface.h
+|-- filter_banks.cc
+|-- filter_banks.h
+|-- filter_banks_interface.h
+|-- filter_banks_test.cc
+|-- generative_model_interface.h
+|-- gilbert_model.cc
+|-- gilbert_model.h
+|-- gilbert_model_test.cc
+|-- layer_wrapper.h
+|-- layer_wrapper_interface.h
+|-- layer_wrapper_test_common.h
+|-- layer_wrappers_lib.h
+|-- log_mel_spectrogram_extractor_impl.cc
+|-- log_mel_spectrogram_extractor_impl.h
+|-- log_mel_spectrogram_extractor_impl_benchmark.cc
+|-- log_mel_spectrogram_extractor_impl_test.cc
+|-- lyra_components.cc
+|-- lyra_components.h
+|-- lyra_config.cc
+|-- lyra_config.h
+|-- lyra_config.proto
+|-- lyra_config_test.cc
+|-- lyra_decoder.cc
+|-- lyra_decoder.h
+|-- lyra_decoder_interface.h
+|-- lyra_decoder_test.cc
+|-- lyra_encoder.cc
+|-- lyra_encoder.h
+|-- lyra_encoder_interface.h
+|-- lyra_encoder_test.cc
+|-- lyra_integration_test.cc
+|-- lyra_types.h
+|-- lyra_wavegru.h
+|-- lyra_wavegru_test.cc
+|-- naive_spectrogram_predictor.cc
+|-- naive_spectrogram_predictor.h
+|-- naive_spectrogram_predictor_test.cc
+|-- no_op_preprocessor.h
+|-- no_op_preprocessor_test.cc
+|-- noise_estimator.cc
+|-- noise_estimator.h
+|-- noise_estimator_interface.h
+|-- noise_estimator_test.cc
+|-- packet.h
+|-- packet_interface.h
+|-- packet_loss_handler.cc
+|-- packet_loss_handler.h
+|-- packet_loss_handler_interface.h
+|-- packet_loss_handler_test.cc
+|-- packet_test.cc
+|-- preprocessor_interface.h
+|-- project_and_sample.h
+|-- project_and_sample_test.cc
+|-- quadrature_mirror_filter.cc
+|-- quadrature_mirror_filter.h
+|-- quadrature_mirror_filter_test.cc
+|-- resampler.cc
+|-- resampler.h
+|-- resampler_interface.h
+|-- resampler_test.cc
+|-- sparse_matmul
+|  |-- BUILD
+|  |-- compute
+|  |  |-- BUILD
+|  |  |-- ar_inputs.h
+|  |  |-- gru_gates.h
+|  |  |-- gru_gates_arm.h
+|  |  |-- gru_gates_avx_fixed.h
+|  |  |-- gru_gates_generic.h
+|  |  |-- gru_gates_test.cc
+|  |  |-- kernels_arm.h
+|  |  |-- kernels_avx.h
+|  |  |-- kernels_generic.h
+|  |  |-- matmul.h
+|  |  |-- matmul_fixed_avx2.cc
+|  |  |-- matmul_fixed_avx2.h
+|  |  |-- matmul_generic.cc
+|  |  |-- matmul_generic.h
+|  |  |-- thread_bounds.cc
+|  |  |-- thread_bounds.h
+|  |-- layers
+|  |  |-- BUILD
+|  |  |-- csr_blocksparse_matrix.h
+|  |  |-- csrblocksparse_test.cc
+|  |  |-- errno_mapping.cc
+|  |  |-- errno_mapping.h
+|  |  |-- masked_sparse_matrix.h
+|  |  |-- read_array_ifstream.h
+|  |  |-- sparse_linear_layer.h
+|  |  |-- sparse_linear_layer_test.cc
+|  |  |-- status_macros.h
+|  |  |-- testdata
+|  |  |  |-- 768_512_95_4x4_QRhat_weights.raw.gz
+|  |  |  |-- 768_512_95_4x4_What_weights.raw.gz
+|  |  |  |-- 768_512_95_4x4_coarselogit_bias.raw.gz
+|  |  |  |-- 768_512_95_4x4_coarselogit_mask.raw.gz
+|  |  |  |-- 768_512_95_4x4_coarselogit_weights.raw.gz
+|  |  |  |-- 768_512_95_4x4_coarseproj_bias.raw.gz
+|  |  |  |-- 768_512_95_4x4_coarseproj_mask.raw.gz
+|  |  |  |-- 768_512_95_4x4_coarseproj_weights.raw.gz
+|  |  |  |-- 768_512_95_4x4_finelogit_bias.raw.gz
+|  |  |  |-- 768_512_95_4x4_finelogit_mask.raw.gz
+|  |  |  |-- 768_512_95_4x4_finelogit_weights.raw.gz
+|  |  |  |-- 768_512_95_4x4_fineproj_bias.raw.gz
+|  |  |  |-- 768_512_95_4x4_fineproj_mask.raw.gz
+|  |  |  |-- 768_512_95_4x4_fineproj_weights.raw.gz
+|  |  |  |-- 768_512_95_4x4_wavernn_gru_bias.raw.gz
+|  |  |  |-- 768_512_95_4x4_wavernn_gru_mask.raw.gz
+|  |  |  |-- 768_512_95_4x4_wavernn_gru_weights.raw.gz
+|  |  |  |-- lyra_conv1d_bias.raw.gz
+|  |  |  |-- lyra_conv1d_mask.raw.gz
+|  |  |  |-- lyra_conv1d_weights.raw.gz
+|  |  |-- utils.cc
+|  |  |-- utils.h
+|  |  |-- utils_test.cc
+|  |-- numerics
+|  |  |-- BUILD
+|  |  |-- fast_transcendentals.cc
+|  |  |-- fast_transcendentals.h
+|  |  |-- fasttranscendentals_test.cc
+|  |  |-- fixed_types.h
+|  |  |-- fixed_types_test.cc
+|  |  |-- float16_types.h
+|  |  |-- test_utils.h
+|  |  |-- type_utils.h
+|  |-- os
+|  |  |-- BUILD
+|  |  |-- coop_threads.cc
+|  |  |-- coop_threads.h
+|  |  |-- coop_threads_test.cc
+|  |-- sparse_matmul.h
+|  |-- vector
+|  |  |-- BUILD
+|  |  |-- aligned_malloc.cc
+|  |  |-- aligned_malloc.h
+|  |  |-- cache_aligned_vector.h
+|  |  |-- cachealignedvector_benchmark.cc
+|  |  |-- cachealignedvector_test.cc
+|  |-- zlib_wrapper
+|  |  |-- BUILD
+|  |  |-- gzipheader.cc
+|  |  |-- gzipheader.h
+|  |  |-- zlibwrapper.cc
+|  |  |-- zlibwrapper.h
+|-- spectrogram_predictor_interface.h
+|-- testdata
+|  |-- 16khz_increasing.wav
+|  |-- 16khz_sample_000001.wav
+|  |-- 16khz_stereo_white_noise.wav
+|  |-- 32khz_sample_000002.wav
+|  |-- 48khz_increasing.wav
+|  |-- 48khz_playback.wav
+|  |-- 48khz_sample_000003.wav
+|  |-- 8khz_sample_000000.wav
+|  |-- BUILD
+|  |-- codec.gz
+|  |-- decoding_stream_dump.textproto
+|  |-- encoding_stream_dump.textproto
+|  |-- incomplete_encoded_frame
+|  |-- invalid.wav
+|  |-- lyra_conditioning_stack_0_bias.raw.gz
+|  |-- lyra_conditioning_stack_0_fixed16_weights.raw.gz
+|  |-- lyra_conditioning_stack_0_mask.raw.gz
+|  |-- lyra_conditioning_stack_0_weights.raw.gz
+|  |-- lyra_conditioning_stack_1_bias.raw.gz
+|  |-- lyra_conditioning_stack_1_fixed16_weights.raw.gz
+|  |-- lyra_conditioning_stack_1_mask.raw.gz
+|  |-- lyra_conditioning_stack_1_weights.raw.gz
+|  |-- lyra_conditioning_stack_2_bias.raw.gz
+|  |-- lyra_conditioning_stack_2_fixed16_weights.raw.gz
+|  |-- lyra_conditioning_stack_2_mask.raw.gz
+|  |-- lyra_conditioning_stack_2_weights.raw.gz
+|  |-- lyra_config.textproto
+|  |-- lyra_conv1d_bias.raw.gz
+|  |-- lyra_conv1d_fixed16_weights.raw.gz
+|  |-- lyra_conv1d_mask.raw.gz
+|  |-- lyra_conv1d_weights.raw.gz
+|  |-- lyra_conv_cond_bias.raw.gz
+|  |-- lyra_conv_cond_fixed16_weights.raw.gz
+|  |-- lyra_conv_cond_mask.raw.gz
+|  |-- lyra_conv_cond_weights.raw.gz
+|  |-- lyra_conv_to_gates_bias.raw.gz
+|  |-- lyra_conv_to_gates_fixed16_weights.raw.gz
+|  |-- lyra_conv_to_gates_mask.raw.gz
+|  |-- lyra_conv_to_gates_weights.raw.gz
+|  |-- lyra_gru_layer_bias.raw.gz
+|  |-- lyra_gru_layer_fixed16_weights.raw.gz
+|  |-- lyra_gru_layer_mask.raw.gz
+|  |-- lyra_gru_layer_weights.raw.gz
+|  |-- lyra_means_bias.raw.gz
+|  |-- lyra_means_fixed16_weights.raw.gz
+|  |-- lyra_means_mask.raw.gz
+|  |-- lyra_means_weights.raw.gz
+|  |-- lyra_mix_bias.raw.gz
+|  |-- lyra_mix_fixed16_weights.raw.gz
+|  |-- lyra_mix_mask.raw.gz
+|  |-- lyra_mix_weights.raw.gz
+|  |-- lyra_proj_bias.raw.gz
+|  |-- lyra_proj_fixed16_weights.raw.gz
+|  |-- lyra_proj_mask.raw.gz
+|  |-- lyra_proj_weights.raw.gz
+|  |-- lyra_scales_bias.raw.gz
+|  |-- lyra_scales_fixed16_weights.raw.gz
+|  |-- lyra_scales_mask.raw.gz
+|  |-- lyra_scales_weights.raw.gz
+|  |-- lyra_transpose_0_bias.raw.gz
+|  |-- lyra_transpose_0_fixed16_weights.raw.gz
+|  |-- lyra_transpose_0_mask.raw.gz
+|  |-- lyra_transpose_0_weights.raw.gz
+|  |-- lyra_transpose_1_bias.raw.gz
+|  |-- lyra_transpose_1_fixed16_weights.raw.gz
+|  |-- lyra_transpose_1_mask.raw.gz
+|  |-- lyra_transpose_1_weights.raw.gz
+|  |-- lyra_transpose_2_bias.raw.gz
+|  |-- lyra_transpose_2_fixed16_weights.raw.gz
+|  |-- lyra_transpose_2_mask.raw.gz
+|  |-- lyra_transpose_2_weights.raw.gz
+|  |-- no_encoded_frames
+|  |-- one_encoded_frame_16khz
+|  |-- test_conv1d_bias.raw.gz
+|  |-- test_conv1d_fixed16_weights.raw.gz
+|  |-- test_conv1d_mask.raw.gz
+|  |-- test_conv1d_weights.raw.gz
+|  |-- test_dilated_bias.raw.gz
+|  |-- test_dilated_fixed16_weights.raw.gz
+|  |-- test_dilated_mask.raw.gz
+|  |-- test_dilated_weights.raw.gz
+|  |-- test_transpose_bias.raw.gz
+|  |-- test_transpose_fixed16_weights.raw.gz
+|  |-- test_transpose_mask.raw.gz
+|  |-- test_transpose_weights.raw.gz
+|  |-- transpose_2.gz
+|  |-- two_encoded_frames_16khz.lyra
+|-- testing
+|  |-- BUILD
+|  |-- mock_denoiser.h
+|  |-- mock_feature_extractor.h
+|  |-- mock_filter_banks.h
+|  |-- mock_generative_model.h
+|  |-- mock_lyra_decoder.h
+|  |-- mock_lyra_encoder.h
+|  |-- mock_noise_estimator.h
+|  |-- mock_packet_loss_handler.h
+|  |-- mock_resampler.h
+|  |-- mock_spectrogram_predictor.h
+|  |-- mock_vector_quantizer.h
+|-- toolchain
+|  |-- BUILD
+|  |-- README.md
+|  |-- cc_toolchain_config.bzl
+|-- transpose_convolutional_layer_wrapper.h
+|-- transpose_convolutional_layer_wrapper_test.cc
+|-- vector_quantizer_impl.cc
+|-- vector_quantizer_impl.h
+|-- vector_quantizer_impl_test.cc
+|-- vector_quantizer_interface.h
+|-- wav_util.cc
+|-- wav_util.h
+|-- wav_util_test.cc
+|-- wavegru
+|  |-- lyra_16khz_ar_to_gates_bias.raw.gz
+|  |-- lyra_16khz_ar_to_gates_fixed16_weights.raw.gz
+|  |-- lyra_16khz_ar_to_gates_mask.raw.gz
+|  |-- lyra_16khz_ar_to_gates_weights.raw.gz
+|  |-- lyra_16khz_conditioning_stack_0_bias.raw.gz
+|  |-- lyra_16khz_conditioning_stack_0_fixed16_weights.raw.gz
+|  |-- lyra_16khz_conditioning_stack_0_mask.raw.gz
+|  |-- lyra_16khz_conditioning_stack_0_weights.raw.gz
+|  |-- lyra_16khz_conditioning_stack_1_bias.raw.gz
+|  |-- lyra_16khz_conditioning_stack_1_fixed16_weights.raw.gz
+|  |-- lyra_16khz_conditioning_stack_1_mask.raw.gz
+|  |-- lyra_16khz_conditioning_stack_1_weights.raw.gz
+|  |-- lyra_16khz_conditioning_stack_2_bias.raw.gz
+|  |-- lyra_16khz_conditioning_stack_2_fixed16_weights.raw.gz
+|  |-- lyra_16khz_conditioning_stack_2_mask.raw.gz
+|  |-- lyra_16khz_conditioning_stack_2_weights.raw.gz
+|  |-- lyra_16khz_conv1d_bias.raw.gz
+|  |-- lyra_16khz_conv1d_fixed16_weights.raw.gz
+|  |-- lyra_16khz_conv1d_mask.raw.gz
+|  |-- lyra_16khz_conv1d_weights.raw.gz
+|  |-- lyra_16khz_conv_cond_bias.raw.gz
+|  |-- lyra_16khz_conv_cond_fixed16_weights.raw.gz
+|  |-- lyra_16khz_conv_cond_mask.raw.gz
+|  |-- lyra_16khz_conv_cond_weights.raw.gz
+|  |-- lyra_16khz_conv_to_gates_bias.raw.gz
+|  |-- lyra_16khz_conv_to_gates_fixed16_weights.raw.gz
+|  |-- lyra_16khz_conv_to_gates_mask.raw.gz
+|  |-- lyra_16khz_conv_to_gates_weights.raw.gz
+|  |-- lyra_16khz_gru_layer_bias.raw.gz
+|  |-- lyra_16khz_gru_layer_fixed16_weights.raw.gz
+|  |-- lyra_16khz_gru_layer_mask.raw.gz
+|  |-- lyra_16khz_gru_layer_weights.raw.gz
+|  |-- lyra_16khz_means_bias.raw.gz
+|  |-- lyra_16khz_means_fixed16_weights.raw.gz
+|  |-- lyra_16khz_means_mask.raw.gz
+|  |-- lyra_16khz_means_weights.raw.gz
+|  |-- lyra_16khz_mix_bias.raw.gz
+|  |-- lyra_16khz_mix_fixed16_weights.raw.gz
+|  |-- lyra_16khz_mix_mask.raw.gz
+|  |-- lyra_16khz_mix_weights.raw.gz
+|  |-- lyra_16khz_proj_bias.raw.gz
+|  |-- lyra_16khz_proj_fixed16_weights.raw.gz
+|  |-- lyra_16khz_proj_mask.raw.gz
+|  |-- lyra_16khz_proj_weights.raw.gz
+|  |-- lyra_16khz_quant_code_vectors.gz
+|  |-- lyra_16khz_quant_codebook_dimensions.gz
+|  |-- lyra_16khz_quant_mean_vectors.gz
+|  |-- lyra_16khz_quant_transmat.gz
+|  |-- lyra_16khz_scales_bias.raw.gz
+|  |-- lyra_16khz_scales_fixed16_weights.raw.gz
+|  |-- lyra_16khz_scales_mask.raw.gz
+|  |-- lyra_16khz_scales_weights.raw.gz
+|  |-- lyra_16khz_transpose_0_bias.raw.gz
+|  |-- lyra_16khz_transpose_0_fixed16_weights.raw.gz
+|  |-- lyra_16khz_transpose_0_mask.raw.gz
+|  |-- lyra_16khz_transpose_0_weights.raw.gz
+|  |-- lyra_16khz_transpose_1_bias.raw.gz
+|  |-- lyra_16khz_transpose_1_fixed16_weights.raw.gz
+|  |-- lyra_16khz_transpose_1_mask.raw.gz
+|  |-- lyra_16khz_transpose_1_weights.raw.gz
+|  |-- lyra_16khz_transpose_2_bias.raw.gz
+|  |-- lyra_16khz_transpose_2_fixed16_weights.raw.gz
+|  |-- lyra_16khz_transpose_2_mask.raw.gz
+|  |-- lyra_16khz_transpose_2_weights.raw.gz
+|  |-- lyra_config.textproto
+|  |-- test_playback.wav
+|-- wavegru_model_impl.cc
+|-- wavegru_model_impl.h
+|-- wavegru_model_impl_test.cc

@@ -1,0 +1,620 @@
+|-- .appveyor.yml
+|-- .bazelrc
+|-- .clang-format
+|-- .doxygen
+|-- .gitignore
+|-- .gitmodules
+|-- .travis.yml
+|-- BUILD.bazel
+|-- BUILD.gtest
+|-- CHANGELOG.md
+|-- CMakeLists.txt
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- assets
+|  |-- images
+|  |  |-- cpp_redis_logger.png
+|  |  |-- cpp_redis_logo.jpg
+|  |  |-- logger.png
+|-- clang_format.sh
+|-- cpp_redis.pc.in
+|-- docs
+|  |-- html
+|  |  |-- annotated.html
+|  |  |-- array__builder_8hpp.html
+|  |  |-- array__builder_8hpp_source.html
+|  |  |-- bc_s.png
+|  |  |-- bdwn.png
+|  |  |-- builder__iface_8hpp.html
+|  |  |-- builder__iface_8hpp_source.html
+|  |  |-- builders__factory_8hpp.html
+|  |  |-- builders__factory_8hpp_source.html
+|  |  |-- bulk__string__builder_8hpp.html
+|  |  |-- bulk__string__builder_8hpp_source.html
+|  |  |-- classcpp__redis_1_1builders_1_1array__builder-members.html
+|  |  |-- classcpp__redis_1_1builders_1_1array__builder.html
+|  |  |-- classcpp__redis_1_1builders_1_1array__builder.png
+|  |  |-- classcpp__redis_1_1builders_1_1builder__iface-members.html
+|  |  |-- classcpp__redis_1_1builders_1_1builder__iface.html
+|  |  |-- classcpp__redis_1_1builders_1_1builder__iface.png
+|  |  |-- classcpp__redis_1_1builders_1_1bulk__string__builder-members.html
+|  |  |-- classcpp__redis_1_1builders_1_1bulk__string__builder.html
+|  |  |-- classcpp__redis_1_1builders_1_1bulk__string__builder.png
+|  |  |-- classcpp__redis_1_1builders_1_1error__builder-members.html
+|  |  |-- classcpp__redis_1_1builders_1_1error__builder.html
+|  |  |-- classcpp__redis_1_1builders_1_1error__builder.png
+|  |  |-- classcpp__redis_1_1builders_1_1integer__builder-members.html
+|  |  |-- classcpp__redis_1_1builders_1_1integer__builder.html
+|  |  |-- classcpp__redis_1_1builders_1_1integer__builder.png
+|  |  |-- classcpp__redis_1_1builders_1_1reply__builder-members.html
+|  |  |-- classcpp__redis_1_1builders_1_1reply__builder.html
+|  |  |-- classcpp__redis_1_1builders_1_1simple__string__builder-members.html
+|  |  |-- classcpp__redis_1_1builders_1_1simple__string__builder.html
+|  |  |-- classcpp__redis_1_1builders_1_1simple__string__builder.png
+|  |  |-- classcpp__redis_1_1client-members.html
+|  |  |-- classcpp__redis_1_1client.html
+|  |  |-- classcpp__redis_1_1logger-members.html
+|  |  |-- classcpp__redis_1_1logger.html
+|  |  |-- classcpp__redis_1_1logger.png
+|  |  |-- classcpp__redis_1_1logger__iface-members.html
+|  |  |-- classcpp__redis_1_1logger__iface.html
+|  |  |-- classcpp__redis_1_1logger__iface.png
+|  |  |-- classcpp__redis_1_1network_1_1redis__connection-members.html
+|  |  |-- classcpp__redis_1_1network_1_1redis__connection.html
+|  |  |-- classcpp__redis_1_1network_1_1tcp__client-members.html
+|  |  |-- classcpp__redis_1_1network_1_1tcp__client.html
+|  |  |-- classcpp__redis_1_1network_1_1tcp__client.png
+|  |  |-- classcpp__redis_1_1network_1_1tcp__client__iface-members.html
+|  |  |-- classcpp__redis_1_1network_1_1tcp__client__iface.html
+|  |  |-- classcpp__redis_1_1network_1_1tcp__client__iface.png
+|  |  |-- classcpp__redis_1_1redis__error-members.html
+|  |  |-- classcpp__redis_1_1redis__error.html
+|  |  |-- classcpp__redis_1_1redis__error.png
+|  |  |-- classcpp__redis_1_1reply-members.html
+|  |  |-- classcpp__redis_1_1reply.html
+|  |  |-- classcpp__redis_1_1sentinel-members.html
+|  |  |-- classcpp__redis_1_1sentinel.html
+|  |  |-- classcpp__redis_1_1sentinel_1_1sentinel__def-members.html
+|  |  |-- classcpp__redis_1_1sentinel_1_1sentinel__def.html
+|  |  |-- classcpp__redis_1_1subscriber-members.html
+|  |  |-- classcpp__redis_1_1subscriber.html
+|  |  |-- classes.html
+|  |  |-- client_8hpp.html
+|  |  |-- client_8hpp_source.html
+|  |  |-- client_8ipp.html
+|  |  |-- closed.png
+|  |  |-- cpp_redis_logo.jpg
+|  |  |-- dir_09e761304027c904456130627fd4dcf5.html
+|  |  |-- dir_352251206f2e216e88810b5fb29f51c8.html
+|  |  |-- dir_385d11d1b9f28fad9d9928b9e15978bd.html
+|  |  |-- dir_4a9a619cb35b7ba799bd8912e91a56ec.html
+|  |  |-- dir_4c391377e6d701cd473ddfe3ca211243.html
+|  |  |-- dir_4cd0548f4edb17fdac03175eefab51fa.html
+|  |  |-- dir_a1e54deb92a7436074f1a80a5fcea478.html
+|  |  |-- dir_aabee9b2b90be9a3c8dcec590ad04d13.html
+|  |  |-- doc.png
+|  |  |-- doxygen.css
+|  |  |-- doxygen.png
+|  |  |-- dynsections.js
+|  |  |-- error_8hpp.html
+|  |  |-- error_8hpp_source.html
+|  |  |-- error__builder_8hpp.html
+|  |  |-- error__builder_8hpp_source.html
+|  |  |-- files.html
+|  |  |-- folderclosed.png
+|  |  |-- folderopen.png
+|  |  |-- functions.html
+|  |  |-- functions_0x7e.html
+|  |  |-- functions_b.html
+|  |  |-- functions_c.html
+|  |  |-- functions_d.html
+|  |  |-- functions_e.html
+|  |  |-- functions_enum.html
+|  |  |-- functions_f.html
+|  |  |-- functions_func.html
+|  |  |-- functions_func_0x7e.html
+|  |  |-- functions_func_b.html
+|  |  |-- functions_func_c.html
+|  |  |-- functions_func_d.html
+|  |  |-- functions_func_e.html
+|  |  |-- functions_func_f.html
+|  |  |-- functions_func_g.html
+|  |  |-- functions_func_h.html
+|  |  |-- functions_func_i.html
+|  |  |-- functions_func_k.html
+|  |  |-- functions_func_l.html
+|  |  |-- functions_func_m.html
+|  |  |-- functions_func_o.html
+|  |  |-- functions_func_p.html
+|  |  |-- functions_func_q.html
+|  |  |-- functions_func_r.html
+|  |  |-- functions_func_s.html
+|  |  |-- functions_func_t.html
+|  |  |-- functions_func_u.html
+|  |  |-- functions_func_w.html
+|  |  |-- functions_func_z.html
+|  |  |-- functions_g.html
+|  |  |-- functions_h.html
+|  |  |-- functions_i.html
+|  |  |-- functions_k.html
+|  |  |-- functions_l.html
+|  |  |-- functions_m.html
+|  |  |-- functions_o.html
+|  |  |-- functions_p.html
+|  |  |-- functions_q.html
+|  |  |-- functions_r.html
+|  |  |-- functions_s.html
+|  |  |-- functions_t.html
+|  |  |-- functions_type.html
+|  |  |-- functions_u.html
+|  |  |-- functions_v.html
+|  |  |-- functions_vars.html
+|  |  |-- functions_w.html
+|  |  |-- functions_z.html
+|  |  |-- globals.html
+|  |  |-- globals_defs.html
+|  |  |-- globals_func.html
+|  |  |-- hierarchy.html
+|  |  |-- index.html
+|  |  |-- integer__builder_8hpp.html
+|  |  |-- integer__builder_8hpp_source.html
+|  |  |-- jquery.js
+|  |  |-- logger_8hpp.html
+|  |  |-- logger_8hpp_source.html
+|  |  |-- macro_8hpp_source.html
+|  |  |-- menu.js
+|  |  |-- menudata.js
+|  |  |-- namespacecpp__redis.html
+|  |  |-- namespacecpp__redis_1_1builders.html
+|  |  |-- namespacecpp__redis_1_1helpers.html
+|  |  |-- namespacecpp__redis_1_1network.html
+|  |  |-- namespacemembers.html
+|  |  |-- namespacemembers_func.html
+|  |  |-- namespacemembers_vars.html
+|  |  |-- namespaces.html
+|  |  |-- nav_f.png
+|  |  |-- nav_g.png
+|  |  |-- nav_h.png
+|  |  |-- open.png
+|  |  |-- redis__connection_8hpp.html
+|  |  |-- redis__connection_8hpp_source.html
+|  |  |-- reply_8hpp.html
+|  |  |-- reply_8hpp_source.html
+|  |  |-- reply__builder_8hpp.html
+|  |  |-- reply__builder_8hpp_source.html
+|  |  |-- search
+|  |  |  |-- all_0.html
+|  |  |  |-- all_0.js
+|  |  |  |-- all_1.html
+|  |  |  |-- all_1.js
+|  |  |  |-- all_10.html
+|  |  |  |-- all_10.js
+|  |  |  |-- all_11.html
+|  |  |  |-- all_11.js
+|  |  |  |-- all_12.html
+|  |  |  |-- all_12.js
+|  |  |  |-- all_13.html
+|  |  |  |-- all_13.js
+|  |  |  |-- all_14.html
+|  |  |  |-- all_14.js
+|  |  |  |-- all_15.html
+|  |  |  |-- all_15.js
+|  |  |  |-- all_16.html
+|  |  |  |-- all_16.js
+|  |  |  |-- all_17.html
+|  |  |  |-- all_17.js
+|  |  |  |-- all_18.html
+|  |  |  |-- all_18.js
+|  |  |  |-- all_2.html
+|  |  |  |-- all_2.js
+|  |  |  |-- all_3.html
+|  |  |  |-- all_3.js
+|  |  |  |-- all_4.html
+|  |  |  |-- all_4.js
+|  |  |  |-- all_5.html
+|  |  |  |-- all_5.js
+|  |  |  |-- all_6.html
+|  |  |  |-- all_6.js
+|  |  |  |-- all_7.html
+|  |  |  |-- all_7.js
+|  |  |  |-- all_8.html
+|  |  |  |-- all_8.js
+|  |  |  |-- all_9.html
+|  |  |  |-- all_9.js
+|  |  |  |-- all_a.html
+|  |  |  |-- all_a.js
+|  |  |  |-- all_b.html
+|  |  |  |-- all_b.js
+|  |  |  |-- all_c.html
+|  |  |  |-- all_c.js
+|  |  |  |-- all_d.html
+|  |  |  |-- all_d.js
+|  |  |  |-- all_e.html
+|  |  |  |-- all_e.js
+|  |  |  |-- all_f.html
+|  |  |  |-- all_f.js
+|  |  |  |-- classes_0.html
+|  |  |  |-- classes_0.js
+|  |  |  |-- classes_1.html
+|  |  |  |-- classes_1.js
+|  |  |  |-- classes_2.html
+|  |  |  |-- classes_2.js
+|  |  |  |-- classes_3.html
+|  |  |  |-- classes_3.js
+|  |  |  |-- classes_4.html
+|  |  |  |-- classes_4.js
+|  |  |  |-- classes_5.html
+|  |  |  |-- classes_5.js
+|  |  |  |-- classes_6.html
+|  |  |  |-- classes_6.js
+|  |  |  |-- classes_7.html
+|  |  |  |-- classes_7.js
+|  |  |  |-- classes_8.html
+|  |  |  |-- classes_8.js
+|  |  |  |-- classes_9.html
+|  |  |  |-- classes_9.js
+|  |  |  |-- classes_a.html
+|  |  |  |-- classes_a.js
+|  |  |  |-- close.png
+|  |  |  |-- defines_0.html
+|  |  |  |-- defines_0.js
+|  |  |  |-- enums_0.html
+|  |  |  |-- enums_0.js
+|  |  |  |-- enums_1.html
+|  |  |  |-- enums_1.js
+|  |  |  |-- enums_2.html
+|  |  |  |-- enums_2.js
+|  |  |  |-- enums_3.html
+|  |  |  |-- enums_3.js
+|  |  |  |-- enums_4.html
+|  |  |  |-- enums_4.js
+|  |  |  |-- enums_5.html
+|  |  |  |-- enums_5.js
+|  |  |  |-- enums_6.html
+|  |  |  |-- enums_6.js
+|  |  |  |-- enums_7.html
+|  |  |  |-- enums_7.js
+|  |  |  |-- enumvalues_0.html
+|  |  |  |-- enumvalues_0.js
+|  |  |  |-- enumvalues_1.html
+|  |  |  |-- enumvalues_1.js
+|  |  |  |-- enumvalues_2.html
+|  |  |  |-- enumvalues_2.js
+|  |  |  |-- enumvalues_3.html
+|  |  |  |-- enumvalues_3.js
+|  |  |  |-- enumvalues_4.html
+|  |  |  |-- enumvalues_4.js
+|  |  |  |-- enumvalues_5.html
+|  |  |  |-- enumvalues_5.js
+|  |  |  |-- enumvalues_6.html
+|  |  |  |-- enumvalues_6.js
+|  |  |  |-- enumvalues_7.html
+|  |  |  |-- enumvalues_7.js
+|  |  |  |-- enumvalues_8.html
+|  |  |  |-- enumvalues_8.js
+|  |  |  |-- enumvalues_9.html
+|  |  |  |-- enumvalues_9.js
+|  |  |  |-- enumvalues_a.html
+|  |  |  |-- enumvalues_a.js
+|  |  |  |-- enumvalues_b.html
+|  |  |  |-- enumvalues_b.js
+|  |  |  |-- enumvalues_c.html
+|  |  |  |-- enumvalues_c.js
+|  |  |  |-- files_0.html
+|  |  |  |-- files_0.js
+|  |  |  |-- files_1.html
+|  |  |  |-- files_1.js
+|  |  |  |-- files_2.html
+|  |  |  |-- files_2.js
+|  |  |  |-- files_3.html
+|  |  |  |-- files_3.js
+|  |  |  |-- files_4.html
+|  |  |  |-- files_4.js
+|  |  |  |-- files_5.html
+|  |  |  |-- files_5.js
+|  |  |  |-- files_6.html
+|  |  |  |-- files_6.js
+|  |  |  |-- files_7.html
+|  |  |  |-- files_7.js
+|  |  |  |-- files_8.html
+|  |  |  |-- files_8.js
+|  |  |  |-- files_9.html
+|  |  |  |-- files_9.js
+|  |  |  |-- functions_0.html
+|  |  |  |-- functions_0.js
+|  |  |  |-- functions_1.html
+|  |  |  |-- functions_1.js
+|  |  |  |-- functions_10.html
+|  |  |  |-- functions_10.js
+|  |  |  |-- functions_11.html
+|  |  |  |-- functions_11.js
+|  |  |  |-- functions_12.html
+|  |  |  |-- functions_12.js
+|  |  |  |-- functions_13.html
+|  |  |  |-- functions_13.js
+|  |  |  |-- functions_14.html
+|  |  |  |-- functions_14.js
+|  |  |  |-- functions_15.html
+|  |  |  |-- functions_15.js
+|  |  |  |-- functions_2.html
+|  |  |  |-- functions_2.js
+|  |  |  |-- functions_3.html
+|  |  |  |-- functions_3.js
+|  |  |  |-- functions_4.html
+|  |  |  |-- functions_4.js
+|  |  |  |-- functions_5.html
+|  |  |  |-- functions_5.js
+|  |  |  |-- functions_6.html
+|  |  |  |-- functions_6.js
+|  |  |  |-- functions_7.html
+|  |  |  |-- functions_7.js
+|  |  |  |-- functions_8.html
+|  |  |  |-- functions_8.js
+|  |  |  |-- functions_9.html
+|  |  |  |-- functions_9.js
+|  |  |  |-- functions_a.html
+|  |  |  |-- functions_a.js
+|  |  |  |-- functions_b.html
+|  |  |  |-- functions_b.js
+|  |  |  |-- functions_c.html
+|  |  |  |-- functions_c.js
+|  |  |  |-- functions_d.html
+|  |  |  |-- functions_d.js
+|  |  |  |-- functions_e.html
+|  |  |  |-- functions_e.js
+|  |  |  |-- functions_f.html
+|  |  |  |-- functions_f.js
+|  |  |  |-- mag_sel.png
+|  |  |  |-- namespaces_0.html
+|  |  |  |-- namespaces_0.js
+|  |  |  |-- nomatches.html
+|  |  |  |-- search.css
+|  |  |  |-- search.js
+|  |  |  |-- search_l.png
+|  |  |  |-- search_m.png
+|  |  |  |-- search_r.png
+|  |  |  |-- searchdata.js
+|  |  |  |-- typedefs_0.html
+|  |  |  |-- typedefs_0.js
+|  |  |  |-- typedefs_1.html
+|  |  |  |-- typedefs_1.js
+|  |  |  |-- typedefs_2.html
+|  |  |  |-- typedefs_2.js
+|  |  |  |-- typedefs_3.html
+|  |  |  |-- typedefs_3.js
+|  |  |  |-- typedefs_4.html
+|  |  |  |-- typedefs_4.js
+|  |  |  |-- typedefs_5.html
+|  |  |  |-- typedefs_5.js
+|  |  |  |-- variables_0.html
+|  |  |  |-- variables_0.js
+|  |  |  |-- variables_1.html
+|  |  |  |-- variables_1.js
+|  |  |  |-- variables_2.html
+|  |  |  |-- variables_2.js
+|  |  |  |-- variables_3.html
+|  |  |  |-- variables_3.js
+|  |  |  |-- variables_4.html
+|  |  |  |-- variables_4.js
+|  |  |  |-- variables_5.html
+|  |  |  |-- variables_5.js
+|  |  |-- sentinel_8hpp.html
+|  |  |-- sentinel_8hpp_source.html
+|  |  |-- simple__string__builder_8hpp.html
+|  |  |-- simple__string__builder_8hpp_source.html
+|  |  |-- splitbar.png
+|  |  |-- structcpp__redis_1_1client_1_1bitfield__operation-members.html
+|  |  |-- structcpp__redis_1_1client_1_1bitfield__operation.html
+|  |  |-- structcpp__redis_1_1client_1_1command__request-members.html
+|  |  |-- structcpp__redis_1_1client_1_1command__request.html
+|  |  |-- structcpp__redis_1_1helpers_1_1back-members.html
+|  |  |-- structcpp__redis_1_1helpers_1_1back.html
+|  |  |-- structcpp__redis_1_1helpers_1_1back_3_01_t_01_4-members.html
+|  |  |-- structcpp__redis_1_1helpers_1_1back_3_01_t_01_4.html
+|  |  |-- structcpp__redis_1_1helpers_1_1front-members.html
+|  |  |-- structcpp__redis_1_1helpers_1_1front.html
+|  |  |-- structcpp__redis_1_1helpers_1_1is__different__types-members.html
+|  |  |-- structcpp__redis_1_1helpers_1_1is__different__types.html
+|  |  |-- structcpp__redis_1_1helpers_1_1is__different__types_3_01_t1_01_4-members.html
+|  |  |-- structcpp__redis_1_1helpers_1_1is__different__types_3_01_t1_01_4.html
+|  |  |-- structcpp__redis_1_1helpers_1_1is__type__present-members.html
+|  |  |-- structcpp__redis_1_1helpers_1_1is__type__present.html
+|  |  |-- structcpp__redis_1_1helpers_1_1is__type__present_3_01_t1_00_01_t2_01_4-members.html
+|  |  |-- structcpp__redis_1_1helpers_1_1is__type__present_3_01_t1_00_01_t2_01_4.html
+|  |  |-- structcpp__redis_1_1network_1_1tcp__client__iface_1_1read__request-members.html
+|  |  |-- structcpp__redis_1_1network_1_1tcp__client__iface_1_1read__request.html
+|  |  |-- structcpp__redis_1_1network_1_1tcp__client__iface_1_1read__result-members.html
+|  |  |-- structcpp__redis_1_1network_1_1tcp__client__iface_1_1read__result.html
+|  |  |-- structcpp__redis_1_1network_1_1tcp__client__iface_1_1write__request-members.html
+|  |  |-- structcpp__redis_1_1network_1_1tcp__client__iface_1_1write__request.html
+|  |  |-- structcpp__redis_1_1network_1_1tcp__client__iface_1_1write__result-members.html
+|  |  |-- structcpp__redis_1_1network_1_1tcp__client__iface_1_1write__result.html
+|  |  |-- structcpp__redis_1_1subscriber_1_1callback__holder-members.html
+|  |  |-- structcpp__redis_1_1subscriber_1_1callback__holder.html
+|  |  |-- subscriber_8hpp.html
+|  |  |-- subscriber_8hpp_source.html
+|  |  |-- sync_off.png
+|  |  |-- sync_on.png
+|  |  |-- tab_a.png
+|  |  |-- tab_b.png
+|  |  |-- tab_h.png
+|  |  |-- tab_s.png
+|  |  |-- tabs.css
+|  |  |-- tcp__client_8hpp.html
+|  |  |-- tcp__client_8hpp_source.html
+|  |  |-- tcp__client__iface_8hpp.html
+|  |  |-- tcp__client__iface_8hpp_source.html
+|  |  |-- variadic__template_8hpp.html
+|  |  |-- variadic__template_8hpp_source.html
+|  |-- latex
+|  |  |-- annotated.tex
+|  |  |-- array__builder_8hpp.tex
+|  |  |-- builder__iface_8hpp.tex
+|  |  |-- builders__factory_8hpp.tex
+|  |  |-- bulk__string__builder_8hpp.tex
+|  |  |-- classcpp__redis_1_1builders_1_1array__builder.eps
+|  |  |-- classcpp__redis_1_1builders_1_1array__builder.pdf
+|  |  |-- classcpp__redis_1_1builders_1_1array__builder.tex
+|  |  |-- classcpp__redis_1_1builders_1_1builder__iface.eps
+|  |  |-- classcpp__redis_1_1builders_1_1builder__iface.pdf
+|  |  |-- classcpp__redis_1_1builders_1_1builder__iface.tex
+|  |  |-- classcpp__redis_1_1builders_1_1bulk__string__builder.eps
+|  |  |-- classcpp__redis_1_1builders_1_1bulk__string__builder.pdf
+|  |  |-- classcpp__redis_1_1builders_1_1bulk__string__builder.tex
+|  |  |-- classcpp__redis_1_1builders_1_1error__builder.eps
+|  |  |-- classcpp__redis_1_1builders_1_1error__builder.pdf
+|  |  |-- classcpp__redis_1_1builders_1_1error__builder.tex
+|  |  |-- classcpp__redis_1_1builders_1_1integer__builder.eps
+|  |  |-- classcpp__redis_1_1builders_1_1integer__builder.pdf
+|  |  |-- classcpp__redis_1_1builders_1_1integer__builder.tex
+|  |  |-- classcpp__redis_1_1builders_1_1reply__builder.tex
+|  |  |-- classcpp__redis_1_1builders_1_1simple__string__builder.eps
+|  |  |-- classcpp__redis_1_1builders_1_1simple__string__builder.pdf
+|  |  |-- classcpp__redis_1_1builders_1_1simple__string__builder.tex
+|  |  |-- classcpp__redis_1_1client.tex
+|  |  |-- classcpp__redis_1_1logger.eps
+|  |  |-- classcpp__redis_1_1logger.pdf
+|  |  |-- classcpp__redis_1_1logger.tex
+|  |  |-- classcpp__redis_1_1logger__iface.eps
+|  |  |-- classcpp__redis_1_1logger__iface.pdf
+|  |  |-- classcpp__redis_1_1logger__iface.tex
+|  |  |-- classcpp__redis_1_1network_1_1redis__connection.tex
+|  |  |-- classcpp__redis_1_1network_1_1tcp__client.eps
+|  |  |-- classcpp__redis_1_1network_1_1tcp__client.pdf
+|  |  |-- classcpp__redis_1_1network_1_1tcp__client.tex
+|  |  |-- classcpp__redis_1_1network_1_1tcp__client__iface.eps
+|  |  |-- classcpp__redis_1_1network_1_1tcp__client__iface.pdf
+|  |  |-- classcpp__redis_1_1network_1_1tcp__client__iface.tex
+|  |  |-- classcpp__redis_1_1redis__error.eps
+|  |  |-- classcpp__redis_1_1redis__error.pdf
+|  |  |-- classcpp__redis_1_1redis__error.tex
+|  |  |-- classcpp__redis_1_1reply.tex
+|  |  |-- classcpp__redis_1_1sentinel.tex
+|  |  |-- classcpp__redis_1_1sentinel_1_1sentinel__def.tex
+|  |  |-- classcpp__redis_1_1subscriber.tex
+|  |  |-- client_8hpp.tex
+|  |  |-- client_8ipp.tex
+|  |  |-- cpp_redis_logo.jpg
+|  |  |-- dir_09e761304027c904456130627fd4dcf5.tex
+|  |  |-- dir_352251206f2e216e88810b5fb29f51c8.tex
+|  |  |-- dir_385d11d1b9f28fad9d9928b9e15978bd.tex
+|  |  |-- dir_4a9a619cb35b7ba799bd8912e91a56ec.tex
+|  |  |-- dir_4c391377e6d701cd473ddfe3ca211243.tex
+|  |  |-- dir_4cd0548f4edb17fdac03175eefab51fa.tex
+|  |  |-- dir_a1e54deb92a7436074f1a80a5fcea478.tex
+|  |  |-- dir_aabee9b2b90be9a3c8dcec590ad04d13.tex
+|  |  |-- doxygen.sty
+|  |  |-- error_8hpp.tex
+|  |  |-- error__builder_8hpp.tex
+|  |  |-- files.tex
+|  |  |-- hierarchy.tex
+|  |  |-- integer__builder_8hpp.tex
+|  |  |-- logger_8hpp.tex
+|  |  |-- namespacecpp__redis.tex
+|  |  |-- namespacecpp__redis_1_1builders.tex
+|  |  |-- namespacecpp__redis_1_1helpers.tex
+|  |  |-- namespacecpp__redis_1_1network.tex
+|  |  |-- namespaces.tex
+|  |  |-- redis__connection_8hpp.tex
+|  |  |-- refman.tex
+|  |  |-- reply_8hpp.tex
+|  |  |-- reply__builder_8hpp.tex
+|  |  |-- sentinel_8hpp.tex
+|  |  |-- simple__string__builder_8hpp.tex
+|  |  |-- structcpp__redis_1_1client_1_1bitfield__operation.tex
+|  |  |-- structcpp__redis_1_1client_1_1command__request.tex
+|  |  |-- structcpp__redis_1_1helpers_1_1back.tex
+|  |  |-- structcpp__redis_1_1helpers_1_1back_3_01_t_01_4.tex
+|  |  |-- structcpp__redis_1_1helpers_1_1front.tex
+|  |  |-- structcpp__redis_1_1helpers_1_1is__different__types.tex
+|  |  |-- structcpp__redis_1_1helpers_1_1is__different__types_3_01_t1_01_4.tex
+|  |  |-- structcpp__redis_1_1helpers_1_1is__type__present.tex
+|  |  |-- structcpp__redis_1_1helpers_1_1is__type__present_3_01_t1_00_01_t2_01_4.tex
+|  |  |-- structcpp__redis_1_1network_1_1tcp__client__iface_1_1read__request.tex
+|  |  |-- structcpp__redis_1_1network_1_1tcp__client__iface_1_1read__result.tex
+|  |  |-- structcpp__redis_1_1network_1_1tcp__client__iface_1_1write__request.tex
+|  |  |-- structcpp__redis_1_1network_1_1tcp__client__iface_1_1write__result.tex
+|  |  |-- structcpp__redis_1_1subscriber_1_1callback__holder.tex
+|  |  |-- subscriber_8hpp.tex
+|  |  |-- tcp__client_8hpp.tex
+|  |  |-- tcp__client__iface_8hpp.tex
+|  |  |-- variadic__template_8hpp.tex
+|-- examples
+|  |-- CMakeLists.txt
+|  |-- cpp_redis_client.cpp
+|  |-- cpp_redis_future_client.cpp
+|  |-- cpp_redis_high_availability_client.cpp
+|  |-- cpp_redis_kill.cpp
+|  |-- cpp_redis_logger.cpp
+|  |-- cpp_redis_subscriber.cpp
+|-- includes
+|  |-- cpp_redis
+|  |  |-- builders
+|  |  |  |-- array_builder.hpp
+|  |  |  |-- builder_iface.hpp
+|  |  |  |-- builders_factory.hpp
+|  |  |  |-- bulk_string_builder.hpp
+|  |  |  |-- error_builder.hpp
+|  |  |  |-- integer_builder.hpp
+|  |  |  |-- reply_builder.hpp
+|  |  |  |-- simple_string_builder.hpp
+|  |  |-- core
+|  |  |  |-- client.hpp
+|  |  |  |-- reply.hpp
+|  |  |  |-- sentinel.hpp
+|  |  |  |-- subscriber.hpp
+|  |  |-- cpp_redis
+|  |  |-- helpers
+|  |  |  |-- variadic_template.hpp
+|  |  |-- impl
+|  |  |  |-- client.ipp
+|  |  |-- misc
+|  |  |  |-- error.hpp
+|  |  |  |-- logger.hpp
+|  |  |  |-- macro.hpp
+|  |  |-- network
+|  |  |  |-- redis_connection.hpp
+|  |  |  |-- tcp_client.hpp
+|  |  |  |-- tcp_client_iface.hpp
+|-- msvc15
+|  |-- cpp_redis.sln
+|  |-- cpp_redis.vcxproj
+|  |-- cpp_redis.vcxproj.filters
+|-- sources
+|  |-- builders
+|  |  |-- array_builder.cpp
+|  |  |-- builders_factory.cpp
+|  |  |-- bulk_string_builder.cpp
+|  |  |-- error_builder.cpp
+|  |  |-- integer_builder.cpp
+|  |  |-- reply_builder.cpp
+|  |  |-- simple_string_builder.cpp
+|  |-- core
+|  |  |-- client.cpp
+|  |  |-- reply.cpp
+|  |  |-- sentinel.cpp
+|  |  |-- subscriber.cpp
+|  |-- misc
+|  |  |-- logger.cpp
+|  |-- network
+|  |  |-- redis_connection.cpp
+|  |  |-- tcp_client.cpp
+|-- tacopie
+|-- tests
+|  |-- CMakeLists.txt
+|  |-- sources
+|  |  |-- main.cpp
+|  |  |-- spec
+|  |  |  |-- builders
+|  |  |  |  |-- array_builder_spec.cpp
+|  |  |  |  |-- builders_factory_spec.cpp
+|  |  |  |  |-- bulk_string_builder_spec.cpp
+|  |  |  |  |-- error_builder_spec.cpp
+|  |  |  |  |-- integer_builder_spec.cpp
+|  |  |  |  |-- reply_builder_spec.cpp
+|  |  |  |  |-- simple_string_builder_spec.cpp
+|  |  |  |-- redis_client_spec.cpp
+|  |  |  |-- redis_subscriber_spec.cpp
+|  |  |  |-- reply_spec.cpp

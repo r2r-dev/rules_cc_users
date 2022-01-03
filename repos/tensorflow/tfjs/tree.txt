@@ -1,0 +1,3416 @@
+|-- .bazelignore
+|-- .bazelrc
+|-- .bazelversion
+|-- .github
+|  |-- ISSUE_TEMPLATE
+|  |  |-- 00-bug-issue.md
+|  |  |-- 10-build-installation-issue.md
+|  |  |-- 20-feature-request.md
+|  |  |-- 30-other-issues.md
+|  |-- stale.yml
+|-- .gitignore
+|-- .tslint
+|  |-- noImportsFromDistRule.js
+|  |-- noImportsFromDistRule.ts
+|  |-- noImportsWithRegexRule.js
+|  |-- noImportsWithRegexRule.ts
+|-- .vscode
+|  |-- settings.json
+|  |-- tasks.json
+|-- BAZEL_MIGRATION.md
+|-- BUILD.bazel
+|-- CONTRIBUTING.md
+|-- CONTRIBUTING_MISSING_OP.md
+|-- DEVELOPMENT.md
+|-- GALLERY.md
+|-- LICENSE
+|-- README.md
+|-- WORKSPACE
+|-- cloudbuild-release.yml
+|-- cloudbuild.yml
+|-- dockers
+|  |-- release-docker
+|  |  |-- Dockerfile
+|  |-- wasm-docker
+|  |  |-- Dockerfile
+|-- e2e
+|  |-- .npmignore
+|  |-- .npmrc
+|  |-- README.md
+|  |-- benchmarks
+|  |  |-- SpecRunner.html
+|  |  |-- benchmark_util.js
+|  |  |-- benchmark_util_test.js
+|  |  |-- browserstack-benchmark
+|  |  |  |-- README.md
+|  |  |  |-- SpecRunner.html
+|  |  |  |-- app.js
+|  |  |  |-- app_node_test.js
+|  |  |  |-- app_test.js
+|  |  |  |-- benchmark_models.js
+|  |  |  |-- browser_list.json
+|  |  |  |-- index.html
+|  |  |  |-- index.js
+|  |  |  |-- index_test.js
+|  |  |  |-- karma.conf.js
+|  |  |  |-- main.css
+|  |  |  |-- package.json
+|  |  |  |-- preconfigured_browser.json
+|  |  |  |-- test_config.json
+|  |  |  |-- yarn.lock
+|  |  |-- local-benchmark
+|  |  |  |-- README.md
+|  |  |  |-- SpecRunner.html
+|  |  |  |-- index.html
+|  |  |  |-- index.js
+|  |  |  |-- index_test.js
+|  |  |  |-- main.css
+|  |  |  |-- util.js
+|  |  |-- model_config.js
+|  |-- cloudbuild.yml
+|  |-- custom_module
+|  |  |-- blazeface
+|  |  |  |-- app.js
+|  |  |  |-- app_tfjs_config.json
+|  |  |  |-- custom_tfjs_blazeface
+|  |  |  |  |-- custom_ops_for_converter.js
+|  |  |  |  |-- custom_tfjs.js
+|  |  |  |  |-- custom_tfjs_core.js
+|  |  |  |-- model.json
+|  |  |  |-- package.json
+|  |  |  |-- rollup.config.js
+|  |  |  |-- test_data.js
+|  |  |  |-- webpack.config.js
+|  |  |  |-- yarn.lock
+|  |  |-- dense_model
+|  |  |  |-- app.js
+|  |  |  |-- app_tfjs_config.json
+|  |  |  |-- custom_tfjs
+|  |  |  |  |-- custom_ops_for_converter.js
+|  |  |  |  |-- custom_tfjs.js
+|  |  |  |  |-- custom_tfjs_core.js
+|  |  |  |-- model
+|  |  |  |  |-- group1-shard1of1.bin
+|  |  |  |  |-- model.json
+|  |  |  |-- package.json
+|  |  |  |-- rollup.config.js
+|  |  |  |-- webpack.config.js
+|  |  |  |-- yarn.lock
+|  |  |-- development.md
+|  |  |-- universal_sentence_encoder
+|  |  |  |-- app.js
+|  |  |  |-- app_tfjs_config.json
+|  |  |  |-- custom_tfjs
+|  |  |  |  |-- custom_ops_for_converter.js
+|  |  |  |  |-- custom_tfjs.js
+|  |  |  |  |-- custom_tfjs_core.js
+|  |  |  |-- model.json
+|  |  |  |-- package.json
+|  |  |  |-- rollup.config.js
+|  |  |  |-- webpack.config.js
+|  |  |  |-- yarn.lock
+|  |-- integration_tests
+|  |  |-- backends_test.ts
+|  |  |-- constants.ts
+|  |  |-- convert_predict.py
+|  |  |-- convert_predict.ts
+|  |  |-- cpu_forwarding_test.ts
+|  |  |-- create_save_predict.js
+|  |  |-- create_save_predict.py
+|  |  |-- create_save_predict.ts
+|  |  |-- custom_bundle_test.ts
+|  |  |-- grad_layers_test.ts
+|  |  |-- load_predict_data
+|  |  |  |-- graph_model
+|  |  |  |  |-- model.json
+|  |  |  |  |-- model_new.json
+|  |  |  |  |-- weights.bin
+|  |  |  |-- layers_model
+|  |  |  |  |-- model.json
+|  |  |  |  |-- weights.bin
+|  |  |-- load_predict_test.ts
+|  |  |-- memory_leak_test.ts
+|  |  |-- metadata.py
+|  |  |-- metadata.ts
+|  |  |-- requirements-dev.txt
+|  |  |-- requirements-stable.txt
+|  |  |-- setup_test.ts
+|  |  |-- test_util.ts
+|  |-- karma.conf.js
+|  |-- package.json
+|  |-- script_tag_tests
+|  |  |-- tfjs-core-cpu
+|  |  |  |-- core_test.js
+|  |  |  |-- karma.conf.js
+|  |  |-- tfjs
+|  |  |  |-- karma.conf.js
+|  |  |  |-- symbols_and_basic_api_test.js
+|  |-- scripts
+|  |  |-- build-deps-ci.sh
+|  |  |-- cleanup-py-env.sh
+|  |  |-- create_save_predict.sh
+|  |  |-- local-registry.sh
+|  |  |-- publish-tfjs-ci.sh
+|  |  |-- release-e2e.sh
+|  |  |-- run-custom-builds.sh
+|  |  |-- setup-py-env.sh
+|  |  |-- test-ci.sh
+|  |  |-- test.sh
+|  |  |-- update-dependency.ts
+|  |  |-- verdaccio.yaml
+|  |-- tsconfig.json
+|  |-- tslint.json
+|  |-- yarn.lock
+|-- link-package
+|  |-- package.json
+|  |-- yarn.lock
+|-- package.json
+|-- pull_request_template.md
+|-- rollup.config.helpers.js
+|-- scripts
+|  |-- buildifier-ci.sh
+|  |-- bundle-size-util.js
+|  |-- cloud_funcs
+|  |  |-- README.md
+|  |  |-- send_email
+|  |  |  |-- .gcloudignore
+|  |  |  |-- config.json
+|  |  |  |-- index.js
+|  |  |  |-- package.json
+|  |  |  |-- yarn.lock
+|  |  |-- sync_reactnative
+|  |  |  |-- .gcloudignore
+|  |  |  |-- index.js
+|  |  |  |-- package.json
+|  |  |-- trigger_nightly
+|  |  |  |-- .gcloudignore
+|  |  |  |-- index.js
+|  |  |  |-- package.json
+|  |-- cloudbuild_general_config.yml
+|  |-- cloudbuild_tfjs_core_expected.yml
+|  |-- cloudbuild_tfjs_node_expected.yml
+|  |-- find_packages_with_diff.js
+|  |-- generate_cloudbuild.js
+|  |-- generate_cloudbuild_for_packages.js
+|  |-- generate_cloudbuild_test.js
+|  |-- make-version.js
+|  |-- package_dependencies.json
+|  |-- publish-npm.sh
+|  |-- publish-npm.ts
+|  |-- release-tfjs.ts
+|  |-- release-util.ts
+|  |-- release-website.ts
+|  |-- release.ts
+|  |-- release_notes
+|  |  |-- release_notes.ts
+|  |  |-- release_notes_test.ts
+|  |  |-- run_tests.ts
+|  |  |-- tsconfig.json
+|  |  |-- util.ts
+|  |-- run-build.sh
+|  |-- run_bazel_ci_tests.sh
+|  |-- run_flaky.js
+|  |-- run_flaky_test.js
+|  |-- run_flaky_test_helper.js
+|  |-- tag-tfjs-release.ts
+|  |-- tag-version.js
+|  |-- test-util.js
+|  |-- tsconfig.json
+|  |-- update-tfjs-lockfiles.ts
+|-- tfjs-automl
+|  |-- .npmignore
+|  |-- .vscode
+|  |  |-- settings.json
+|  |  |-- tasks.json
+|  |-- README.md
+|  |-- cloudbuild.yml
+|  |-- code_snippets
+|  |  |-- img_classification.html
+|  |  |-- object_detection.html
+|  |-- demo
+|  |  |-- img_classification
+|  |  |  |-- .babelrc
+|  |  |  |-- index.html
+|  |  |  |-- index.js
+|  |  |  |-- package.json
+|  |  |  |-- yarn.lock
+|  |  |-- object_detection
+|  |  |  |-- .babelrc
+|  |  |  |-- index.html
+|  |  |  |-- index.js
+|  |  |  |-- package.json
+|  |  |  |-- yarn.lock
+|  |-- karma.conf.js
+|  |-- package.json
+|  |-- rollup.config.js
+|  |-- scripts
+|  |  |-- build-npm.sh
+|  |  |-- test-ci.sh
+|  |-- src
+|  |  |-- img_classification.ts
+|  |  |-- img_classification_test.ts
+|  |  |-- index.ts
+|  |  |-- index_test.ts
+|  |  |-- object_detection.ts
+|  |  |-- object_detection_test.ts
+|  |  |-- test_browser.ts
+|  |  |-- test_node.ts
+|  |  |-- test_util.ts
+|  |  |-- types.ts
+|  |  |-- util.ts
+|  |  |-- util_test.ts
+|  |  |-- version.ts
+|  |-- tsconfig.json
+|  |-- tsconfig.test.json
+|  |-- tslint.json
+|  |-- yarn.lock
+|-- tfjs-backend-cpu
+|  |-- .npmignore
+|  |-- .npmrc
+|  |-- .nycrc
+|  |-- .vscode
+|  |  |-- launch.json
+|  |-- BUILD.bazel
+|  |-- README.md
+|  |-- package.json
+|  |-- rollup.config.js
+|  |-- scripts
+|  |  |-- build-npm.sh
+|  |-- src
+|  |  |-- BUILD.bazel
+|  |  |-- backend_cpu.ts
+|  |  |-- backend_cpu_test.ts
+|  |  |-- base.ts
+|  |  |-- cpu_util.ts
+|  |  |-- index.ts
+|  |  |-- kernels
+|  |  |  |-- Abs.ts
+|  |  |  |-- Acos.ts
+|  |  |  |-- Acosh.ts
+|  |  |  |-- Add.ts
+|  |  |  |-- AddN.ts
+|  |  |  |-- All.ts
+|  |  |  |-- Any.ts
+|  |  |  |-- ArgMax.ts
+|  |  |  |-- ArgMin.ts
+|  |  |  |-- Asin.ts
+|  |  |  |-- Asinh.ts
+|  |  |  |-- Atan.ts
+|  |  |  |-- Atan2.ts
+|  |  |  |-- Atanh.ts
+|  |  |  |-- AvgPool.ts
+|  |  |  |-- AvgPool3D.ts
+|  |  |  |-- AvgPool3DGrad.ts
+|  |  |  |-- AvgPoolGrad.ts
+|  |  |  |-- BatchMatMul.ts
+|  |  |  |-- BatchNorm.ts
+|  |  |  |-- BatchToSpaceND.ts
+|  |  |  |-- Bincount.ts
+|  |  |  |-- Bincount_impl.ts
+|  |  |  |-- Cast.ts
+|  |  |  |-- Ceil.ts
+|  |  |  |-- Clip.ts
+|  |  |  |-- Complex.ts
+|  |  |  |-- ComplexAbs.ts
+|  |  |  |-- Complex_test.ts
+|  |  |  |-- Concat.ts
+|  |  |  |-- Concat_impl.ts
+|  |  |  |-- Conv2D.ts
+|  |  |  |-- Conv2DBackpropFilter.ts
+|  |  |  |-- Conv2DBackpropInput.ts
+|  |  |  |-- Conv3D.ts
+|  |  |  |-- Conv3DBackpropFilterV2.ts
+|  |  |  |-- Conv3DBackpropInputV2.ts
+|  |  |  |-- Cos.ts
+|  |  |  |-- Cosh.ts
+|  |  |  |-- CropAndResize.ts
+|  |  |  |-- Cumsum.ts
+|  |  |  |-- DenseBincount.ts
+|  |  |  |-- DepthToSpace.ts
+|  |  |  |-- DepthwiseConv2dNative.ts
+|  |  |  |-- DepthwiseConv2dNativeBackpropFilter.ts
+|  |  |  |-- DepthwiseConv2dNativeBackpropInput.ts
+|  |  |  |-- Diag.ts
+|  |  |  |-- Dilation2D.ts
+|  |  |  |-- Dilation2DBackpropFilter.ts
+|  |  |  |-- Dilation2DBackpropInput.ts
+|  |  |  |-- Einsum.ts
+|  |  |  |-- Elu.ts
+|  |  |  |-- EluGrad.ts
+|  |  |  |-- Equal.ts
+|  |  |  |-- Erf.ts
+|  |  |  |-- Exp.ts
+|  |  |  |-- ExpandDims.ts
+|  |  |  |-- Expm1.ts
+|  |  |  |-- FFT.ts
+|  |  |  |-- Fill.ts
+|  |  |  |-- FlipLeftRight.ts
+|  |  |  |-- Floor.ts
+|  |  |  |-- FloorDiv.ts
+|  |  |  |-- FusedConv2D.ts
+|  |  |  |-- FusedDepthwiseConv2D.ts
+|  |  |  |-- GatherNd.ts
+|  |  |  |-- GatherNd_Impl.ts
+|  |  |  |-- GatherV2.ts
+|  |  |  |-- GatherV2_impl.ts
+|  |  |  |-- Greater.ts
+|  |  |  |-- GreaterEqual.ts
+|  |  |  |-- IFFT.ts
+|  |  |  |-- Identity.ts
+|  |  |  |-- Imag.ts
+|  |  |  |-- IsFinite.ts
+|  |  |  |-- IsInf.ts
+|  |  |  |-- IsNaN.ts
+|  |  |  |-- LRN.ts
+|  |  |  |-- LRNGrad.ts
+|  |  |  |-- LeakyRelu.ts
+|  |  |  |-- Less.ts
+|  |  |  |-- LessEqual.ts
+|  |  |  |-- LinSpace.ts
+|  |  |  |-- LinSpace_impl.ts
+|  |  |  |-- Log.ts
+|  |  |  |-- Log1p.ts
+|  |  |  |-- LogicalAnd.ts
+|  |  |  |-- LogicalNot.ts
+|  |  |  |-- LogicalOr.ts
+|  |  |  |-- Max.ts
+|  |  |  |-- MaxPool.ts
+|  |  |  |-- MaxPool3D.ts
+|  |  |  |-- MaxPool3DGrad.ts
+|  |  |  |-- MaxPoolGrad.ts
+|  |  |  |-- MaxPoolWithArgmax.ts
+|  |  |  |-- MaxPoolWithArgmax_impl.ts
+|  |  |  |-- Max_impl.ts
+|  |  |  |-- Maximum.ts
+|  |  |  |-- Mean.ts
+|  |  |  |-- Min.ts
+|  |  |  |-- Minimum.ts
+|  |  |  |-- MirrorPad.ts
+|  |  |  |-- Mod.ts
+|  |  |  |-- Multinomial.ts
+|  |  |  |-- Multiply.ts
+|  |  |  |-- Neg.ts
+|  |  |  |-- NonMaxSuppressionV3.ts
+|  |  |  |-- NonMaxSuppressionV4.ts
+|  |  |  |-- NonMaxSuppressionV5.ts
+|  |  |  |-- NotEqual.ts
+|  |  |  |-- OneHot.ts
+|  |  |  |-- OnesLike.ts
+|  |  |  |-- Pack.ts
+|  |  |  |-- PadV2.ts
+|  |  |  |-- Pow.ts
+|  |  |  |-- Prelu.ts
+|  |  |  |-- Prod.ts
+|  |  |  |-- Range.ts
+|  |  |  |-- Range_impl.ts
+|  |  |  |-- Real.ts
+|  |  |  |-- RealDiv.ts
+|  |  |  |-- Reciprocal.ts
+|  |  |  |-- Relu.ts
+|  |  |  |-- Relu6.ts
+|  |  |  |-- Reshape.ts
+|  |  |  |-- Reshape_test.ts
+|  |  |  |-- ResizeBilinear.ts
+|  |  |  |-- ResizeBilinearGrad.ts
+|  |  |  |-- ResizeNearestNeighbor.ts
+|  |  |  |-- ResizeNearestNeighborGrad.ts
+|  |  |  |-- Reverse.ts
+|  |  |  |-- RotateWithOffset.ts
+|  |  |  |-- Round.ts
+|  |  |  |-- Rsqrt.ts
+|  |  |  |-- STFT_test.ts
+|  |  |  |-- ScatterNd.ts
+|  |  |  |-- Scatter_impl.ts
+|  |  |  |-- Select.ts
+|  |  |  |-- Selu.ts
+|  |  |  |-- Sigmoid.ts
+|  |  |  |-- Sign.ts
+|  |  |  |-- Sin.ts
+|  |  |  |-- Sinh.ts
+|  |  |  |-- Slice.ts
+|  |  |  |-- Softmax.ts
+|  |  |  |-- Softplus.ts
+|  |  |  |-- SpaceToBatchND.ts
+|  |  |  |-- SparseFillEmptyRows.ts
+|  |  |  |-- SparseFillEmptyRows_impl.ts
+|  |  |  |-- SparseReshape.ts
+|  |  |  |-- SparseReshape_impl.ts
+|  |  |  |-- SparseSegmentMean.ts
+|  |  |  |-- SparseSegmentReduction_impl.ts
+|  |  |  |-- SparseSegmentSum.ts
+|  |  |  |-- SparseToDense.ts
+|  |  |  |-- SplitV.ts
+|  |  |  |-- Sqrt.ts
+|  |  |  |-- Square.ts
+|  |  |  |-- SquaredDifference.ts
+|  |  |  |-- Step.ts
+|  |  |  |-- StridedSlice.ts
+|  |  |  |-- StridedSlice_impl.ts
+|  |  |  |-- StringNGrams.ts
+|  |  |  |-- StringNGrams_impl.ts
+|  |  |  |-- StringSplit.ts
+|  |  |  |-- StringSplit_impl.ts
+|  |  |  |-- StringToHashBucketFast.ts
+|  |  |  |-- StringToHashBucketFast_impl.ts
+|  |  |  |-- Sub.ts
+|  |  |  |-- Sum.ts
+|  |  |  |-- Tan.ts
+|  |  |  |-- Tanh.ts
+|  |  |  |-- Tile.ts
+|  |  |  |-- Tile_impl.ts
+|  |  |  |-- TopK.ts
+|  |  |  |-- TopK_impl.ts
+|  |  |  |-- Transform.ts
+|  |  |  |-- Transpose.ts
+|  |  |  |-- Transpose_impl.ts
+|  |  |  |-- Unique.ts
+|  |  |  |-- Unique_impl.ts
+|  |  |  |-- Unpack.ts
+|  |  |  |-- UnsortedSegmentSum.ts
+|  |  |  |-- ZerosLike.ts
+|  |  |  |-- _FusedMatMul.ts
+|  |  |-- register_all_kernels.ts
+|  |  |-- run_tests.ts
+|  |  |-- shared.ts
+|  |  |-- utils
+|  |  |  |-- binary_impl.ts
+|  |  |  |-- binary_types.ts
+|  |  |  |-- binary_utils.ts
+|  |  |  |-- fft_utils.ts
+|  |  |  |-- fused_utils.ts
+|  |  |  |-- pool_utils.ts
+|  |  |  |-- unary_impl.ts
+|  |  |  |-- unary_types.ts
+|  |  |  |-- unary_utils.ts
+|  |  |  |-- zeros_impl.ts
+|  |  |-- version.ts
+|  |-- tsconfig.json
+|  |-- tsconfig.test.json
+|  |-- tslint.json
+|  |-- yarn.lock
+|-- tfjs-backend-nodegl
+|  |-- .vscode
+|  |  |-- settings.json
+|  |-- README.md
+|  |-- demo
+|  |  |-- README.md
+|  |  |-- dog.jpg
+|  |  |-- package.json
+|  |  |-- run_mobilenet_inference.js
+|  |  |-- yarn.lock
+|  |-- package.json
+|  |-- src
+|  |  |-- index.ts
+|  |  |-- run_tests.ts
+|  |  |-- version.ts
+|  |-- tasks.json
+|  |-- tsconfig.json
+|  |-- tslint.json
+|  |-- yarn.lock
+|-- tfjs-backend-wasm
+|  |-- .npmignore
+|  |-- .npmrc
+|  |-- .vscode
+|  |  |-- c_cpp_properties.json
+|  |  |-- settings.json
+|  |-- README.md
+|  |-- cloudbuild.yml
+|  |-- face-detector-bench.png
+|  |-- karma.conf.js
+|  |-- mobilenet-v2-bench.png
+|  |-- package.json
+|  |-- rollup.config.js
+|  |-- scripts
+|  |  |-- build-benchmark.sh
+|  |  |-- build-ci.sh
+|  |  |-- build-npm.sh
+|  |  |-- build-wasm.sh
+|  |  |-- cpplint.js
+|  |  |-- create-worker-module.js
+|  |  |-- patch-threaded-simd-module.js
+|  |  |-- patch-wechat-webassembly.js
+|  |  |-- test-bundle-size.js
+|  |  |-- test-ci.sh
+|  |-- src
+|  |  |-- backend_wasm.ts
+|  |  |-- base.ts
+|  |  |-- cc
+|  |  |  |-- BUILD
+|  |  |  |-- backend.cc
+|  |  |  |-- backend.h
+|  |  |  |-- backend_test.cc
+|  |  |  |-- batch_mat_mul_impl.cc
+|  |  |  |-- batch_mat_mul_impl.h
+|  |  |  |-- binary.cc
+|  |  |  |-- binary.h
+|  |  |  |-- build_defs.bzl
+|  |  |  |-- check_macros.h
+|  |  |  |-- clamp_impl.cc
+|  |  |  |-- clamp_impl.h
+|  |  |  |-- conv2d_impl.cc
+|  |  |  |-- conv2d_impl.h
+|  |  |  |-- interpolate_bilinear_impl.cc
+|  |  |  |-- interpolate_bilinear_impl.h
+|  |  |  |-- kernels
+|  |  |  |  |-- Abs.cc
+|  |  |  |  |-- Add.cc
+|  |  |  |  |-- AddN.cc
+|  |  |  |  |-- All.cc
+|  |  |  |  |-- Any.cc
+|  |  |  |  |-- ArgMax.cc
+|  |  |  |  |-- AvgPool.cc
+|  |  |  |  |-- AvgPool.h
+|  |  |  |  |-- AvgPool_test.cc
+|  |  |  |  |-- BatchMatMul.cc
+|  |  |  |  |-- BatchMatMul.h
+|  |  |  |  |-- BatchMatMul_test.cc
+|  |  |  |  |-- Ceil.cc
+|  |  |  |  |-- ClipByValue.cc
+|  |  |  |  |-- ClipByValue.h
+|  |  |  |  |-- ClipByValue_test.cc
+|  |  |  |  |-- Conv2D.cc
+|  |  |  |  |-- Conv2D.h
+|  |  |  |  |-- Conv2DBackpropInput.cc
+|  |  |  |  |-- Conv2D_test.cc
+|  |  |  |  |-- Cos.cc
+|  |  |  |  |-- Cosh.cc
+|  |  |  |  |-- CropAndResize.cc
+|  |  |  |  |-- Cumsum.cc
+|  |  |  |  |-- DepthToSpace.cc
+|  |  |  |  |-- DepthwiseConv2dNative.cc
+|  |  |  |  |-- DepthwiseConv2dNative.h
+|  |  |  |  |-- DepthwiseConv2dNative_test.cc
+|  |  |  |  |-- Equal.cc
+|  |  |  |  |-- Exp.cc
+|  |  |  |  |-- FlipLeftRight.cc
+|  |  |  |  |-- Floor.cc
+|  |  |  |  |-- FloorDiv.cc
+|  |  |  |  |-- FusedBatchNorm.cc
+|  |  |  |  |-- FusedConv2D.cc
+|  |  |  |  |-- FusedConv2D.h
+|  |  |  |  |-- FusedConv2D_test.cc
+|  |  |  |  |-- FusedDepthwiseConv2D.cc
+|  |  |  |  |-- FusedDepthwiseConv2D.h
+|  |  |  |  |-- FusedDepthwiseConv2D_test.cc
+|  |  |  |  |-- Gather.cc
+|  |  |  |  |-- GatherNd.cc
+|  |  |  |  |-- Greater.cc
+|  |  |  |  |-- GreaterEqual.cc
+|  |  |  |  |-- LeakyRelu.cc
+|  |  |  |  |-- LeakyRelu.h
+|  |  |  |  |-- Less.cc
+|  |  |  |  |-- LessEqual.cc
+|  |  |  |  |-- Log.cc
+|  |  |  |  |-- LogicalAnd.cc
+|  |  |  |  |-- Max.cc
+|  |  |  |  |-- MaxPool.cc
+|  |  |  |  |-- MaxPool.h
+|  |  |  |  |-- MaxPool_test.cc
+|  |  |  |  |-- Maximum.cc
+|  |  |  |  |-- Mean.cc
+|  |  |  |  |-- Min.cc
+|  |  |  |  |-- Minimum.cc
+|  |  |  |  |-- MirrorPad.cc
+|  |  |  |  |-- Multiply.cc
+|  |  |  |  |-- Neg.cc
+|  |  |  |  |-- NonMaxSuppressionV3.cc
+|  |  |  |  |-- NonMaxSuppressionV4.cc
+|  |  |  |  |-- NonMaxSuppressionV5.cc
+|  |  |  |  |-- NotEqual.cc
+|  |  |  |  |-- OneHot.cc
+|  |  |  |  |-- PadV2.cc
+|  |  |  |  |-- PadV2.h
+|  |  |  |  |-- PadV2_test.cc
+|  |  |  |  |-- Pow.cc
+|  |  |  |  |-- Prelu.cc
+|  |  |  |  |-- Prelu.h
+|  |  |  |  |-- Prelu_test.cc
+|  |  |  |  |-- Prod.cc
+|  |  |  |  |-- RealDiv.cc
+|  |  |  |  |-- Relu.cc
+|  |  |  |  |-- Relu6.cc
+|  |  |  |  |-- ResizeBilinear.cc
+|  |  |  |  |-- ResizeBilinear.h
+|  |  |  |  |-- ResizeBilinear_test.cc
+|  |  |  |  |-- Reverse.cc
+|  |  |  |  |-- RotateWithOffset.cc
+|  |  |  |  |-- Round.cc
+|  |  |  |  |-- Rsqrt.cc
+|  |  |  |  |-- ScatterNd.cc
+|  |  |  |  |-- SelectV2.cc
+|  |  |  |  |-- Sigmoid.cc
+|  |  |  |  |-- Sigmoid.h
+|  |  |  |  |-- Sigmoid_test.cc
+|  |  |  |  |-- Sin.cc
+|  |  |  |  |-- Softmax.cc
+|  |  |  |  |-- Softmax.h
+|  |  |  |  |-- Softmax_test.cc
+|  |  |  |  |-- Sqrt.cc
+|  |  |  |  |-- Square.cc
+|  |  |  |  |-- SquaredDifference.cc
+|  |  |  |  |-- Step.cc
+|  |  |  |  |-- StridedSlice.cc
+|  |  |  |  |-- Sub.cc
+|  |  |  |  |-- Sum.cc
+|  |  |  |  |-- Tan.cc
+|  |  |  |  |-- Tanh.cc
+|  |  |  |  |-- Tile.cc
+|  |  |  |  |-- TopK.cc
+|  |  |  |  |-- Transform.cc
+|  |  |  |  |-- Transpose.cc
+|  |  |  |  |-- _FusedMatMul.cc
+|  |  |  |  |-- _FusedMatMul.h
+|  |  |  |  |-- _FusedMatMul_test.cc
+|  |  |  |-- leakyrelu_impl.cc
+|  |  |  |-- leakyrelu_impl.h
+|  |  |  |-- non_max_suppression_impl.cc
+|  |  |  |-- non_max_suppression_impl.h
+|  |  |  |-- prelu_impl.cc
+|  |  |  |-- prelu_impl.h
+|  |  |  |-- sigmoid_impl.cc
+|  |  |  |-- sigmoid_impl.h
+|  |  |  |-- sin_cos_workaround.cc
+|  |  |  |-- sin_cos_workaround.h
+|  |  |  |-- transpose_impl.cc
+|  |  |  |-- transpose_impl.h
+|  |  |  |-- unary.cc
+|  |  |  |-- unary.h
+|  |  |  |-- util.cc
+|  |  |  |-- util.h
+|  |  |  |-- util_test.cc
+|  |  |-- flags_wasm.ts
+|  |  |-- index.ts
+|  |  |-- index_test.ts
+|  |  |-- kernel_utils
+|  |  |  |-- shared.ts
+|  |  |-- kernels
+|  |  |  |-- Abs.ts
+|  |  |  |-- Add.ts
+|  |  |  |-- AddN.ts
+|  |  |  |-- All.ts
+|  |  |  |-- Any.ts
+|  |  |  |-- ArgMax.ts
+|  |  |  |-- AvgPool.ts
+|  |  |  |-- BatchMatMul.ts
+|  |  |  |-- BatchToSpaceND.ts
+|  |  |  |-- Cast.ts
+|  |  |  |-- Ceil.ts
+|  |  |  |-- ClipByValue.ts
+|  |  |  |-- Concat.ts
+|  |  |  |-- Conv2D.ts
+|  |  |  |-- Conv2DBackpropInput.ts
+|  |  |  |-- Cos.ts
+|  |  |  |-- Cosh.ts
+|  |  |  |-- CropAndResize.ts
+|  |  |  |-- Cumsum.ts
+|  |  |  |-- DepthToSpace.ts
+|  |  |  |-- DepthwiseConv2dNative.ts
+|  |  |  |-- Equal.ts
+|  |  |  |-- Exp.ts
+|  |  |  |-- ExpandDims.ts
+|  |  |  |-- Fill.ts
+|  |  |  |-- FlipLeftRight.ts
+|  |  |  |-- Floor.ts
+|  |  |  |-- FloorDiv.ts
+|  |  |  |-- FusedBatchNorm.ts
+|  |  |  |-- FusedConv2D.ts
+|  |  |  |-- FusedDepthwiseConv2D.ts
+|  |  |  |-- GatherNd.ts
+|  |  |  |-- GatherV2.ts
+|  |  |  |-- Greater.ts
+|  |  |  |-- GreaterEqual.ts
+|  |  |  |-- Identity.ts
+|  |  |  |-- LeakyRelu.ts
+|  |  |  |-- Less.ts
+|  |  |  |-- LessEqual.ts
+|  |  |  |-- Log.ts
+|  |  |  |-- LogicalAnd.ts
+|  |  |  |-- Max.ts
+|  |  |  |-- MaxPool.ts
+|  |  |  |-- Maximum.ts
+|  |  |  |-- Mean.ts
+|  |  |  |-- Min.ts
+|  |  |  |-- Minimum.ts
+|  |  |  |-- MirrorPad.ts
+|  |  |  |-- Multiply.ts
+|  |  |  |-- Neg.ts
+|  |  |  |-- NonMaxSuppressionV3.ts
+|  |  |  |-- NonMaxSuppressionV4.ts
+|  |  |  |-- NonMaxSuppressionV5.ts
+|  |  |  |-- NonMaxSuppression_util.ts
+|  |  |  |-- NotEqual.ts
+|  |  |  |-- OneHot.ts
+|  |  |  |-- OnesLike.ts
+|  |  |  |-- Pack.ts
+|  |  |  |-- PadV2.ts
+|  |  |  |-- Pow.ts
+|  |  |  |-- Prelu.ts
+|  |  |  |-- Prod.ts
+|  |  |  |-- Range.ts
+|  |  |  |-- RealDiv.ts
+|  |  |  |-- Relu.ts
+|  |  |  |-- Relu6.ts
+|  |  |  |-- Reshape.ts
+|  |  |  |-- ResizeBilinear.ts
+|  |  |  |-- Reverse.ts
+|  |  |  |-- RotateWithOffset.ts
+|  |  |  |-- Round.ts
+|  |  |  |-- Rsqrt.ts
+|  |  |  |-- ScatterNd.ts
+|  |  |  |-- Select.ts
+|  |  |  |-- Sigmoid.ts
+|  |  |  |-- Sin.ts
+|  |  |  |-- Slice.ts
+|  |  |  |-- Softmax.ts
+|  |  |  |-- SpaceToBatchND.ts
+|  |  |  |-- SplitV.ts
+|  |  |  |-- Sqrt.ts
+|  |  |  |-- Square.ts
+|  |  |  |-- SquaredDifference.ts
+|  |  |  |-- Step.ts
+|  |  |  |-- StridedSlice.ts
+|  |  |  |-- Sub.ts
+|  |  |  |-- Sum.ts
+|  |  |  |-- Tan.ts
+|  |  |  |-- Tanh.ts
+|  |  |  |-- Tile.ts
+|  |  |  |-- TopK.ts
+|  |  |  |-- Transform.ts
+|  |  |  |-- Transpose.ts
+|  |  |  |-- Unpack.ts
+|  |  |  |-- ZerosLike.ts
+|  |  |  |-- _FusedMatMul.ts
+|  |  |  |-- binary_kernel.ts
+|  |  |  |-- kernel_utils.ts
+|  |  |  |-- types.ts
+|  |  |  |-- unary_kernel.ts
+|  |  |-- register_all_kernels.ts
+|  |  |-- setup_test.ts
+|  |  |-- test_node.ts
+|  |  |-- version.ts
+|  |  |-- version_test.ts
+|  |-- starter
+|  |  |-- parcel
+|  |  |  |-- .babelrc
+|  |  |  |-- README.md
+|  |  |  |-- index.html
+|  |  |  |-- index.js
+|  |  |  |-- package.json
+|  |  |  |-- yarn.lock
+|  |  |-- webpack
+|  |  |  |-- README.md
+|  |  |  |-- package.json
+|  |  |  |-- src
+|  |  |  |  |-- index.js
+|  |  |  |-- webpack.config.js
+|  |  |  |-- yarn.lock
+|  |-- tools
+|  |  |-- cpplint.py
+|  |-- tsconfig.json
+|  |-- tsconfig.test.json
+|  |-- tslint.json
+|  |-- wasm-out
+|  |  |-- tfjs-backend-wasm-threaded-simd.d.ts
+|  |  |-- tfjs-backend-wasm.d.ts
+|  |-- yarn.lock
+|-- tfjs-backend-webgl
+|  |-- .npmignore
+|  |-- .npmrc
+|  |-- README.md
+|  |-- cloudbuild.yml
+|  |-- karma.conf.js
+|  |-- package.json
+|  |-- rollup.config.js
+|  |-- scripts
+|  |  |-- build-npm.sh
+|  |  |-- test-ci.sh
+|  |  |-- tsconfig.json
+|  |-- src
+|  |  |-- addn_gpu.ts
+|  |  |-- addn_packed_gpu.ts
+|  |  |-- argminmax_gpu.ts
+|  |  |-- argminmax_packed_gpu.ts
+|  |  |-- avg_pool_backprop_gpu.ts
+|  |  |-- backend_webgl.ts
+|  |  |-- backend_webgl_test.ts
+|  |  |-- backend_webgl_test_registry.ts
+|  |  |-- base.ts
+|  |  |-- batchnorm_gpu.ts
+|  |  |-- batchnorm_packed_gpu.ts
+|  |  |-- binaryop_complex_gpu.ts
+|  |  |-- binaryop_gpu.ts
+|  |  |-- binaryop_packed_gpu.ts
+|  |  |-- canvas_util.ts
+|  |  |-- canvas_util_test.ts
+|  |  |-- clip_gpu.ts
+|  |  |-- clip_packed_gpu.ts
+|  |  |-- complex_abs_gpu.ts
+|  |  |-- concat_gpu.ts
+|  |  |-- concat_packed_gpu.ts
+|  |  |-- conv_backprop_gpu.ts
+|  |  |-- conv_backprop_gpu_depthwise.ts
+|  |  |-- conv_gpu.ts
+|  |  |-- conv_gpu_depthwise.ts
+|  |  |-- conv_packed_gpu_depthwise.ts
+|  |  |-- crop_and_resize_gpu.ts
+|  |  |-- cumsum_gpu.ts
+|  |  |-- decode_matrix_gpu.ts
+|  |  |-- decode_matrix_packed_gpu.ts
+|  |  |-- depth_to_space_gpu.ts
+|  |  |-- diag_gpu.ts
+|  |  |-- dilation_gpu.ts
+|  |  |-- encode_float_gpu.ts
+|  |  |-- encode_float_packed_gpu.ts
+|  |  |-- encode_matrix_gpu.ts
+|  |  |-- encode_matrix_packed_gpu.ts
+|  |  |-- fft_gpu.ts
+|  |  |-- fill_gpu.ts
+|  |  |-- flags_webgl.ts
+|  |  |-- flags_webgl_test.ts
+|  |  |-- flip_left_right_gpu.ts
+|  |  |-- gather_gpu.ts
+|  |  |-- gather_nd_gpu.ts
+|  |  |-- glsl_version.ts
+|  |  |-- gpgpu_context.ts
+|  |  |-- gpgpu_context_test.ts
+|  |  |-- gpgpu_math.ts
+|  |  |-- gpgpu_util.ts
+|  |  |-- gpgpu_util_test.ts
+|  |  |-- im2col_packed_gpu.ts
+|  |  |-- index.ts
+|  |  |-- kernel_utils
+|  |  |  |-- arg_min_max.ts
+|  |  |  |-- int.ts
+|  |  |  |-- kernel_funcs_utils.ts
+|  |  |  |-- reduce.ts
+|  |  |  |-- reshape.ts
+|  |  |  |-- shared.ts
+|  |  |-- kernels
+|  |  |  |-- Abs.ts
+|  |  |  |-- Acos.ts
+|  |  |  |-- Acosh.ts
+|  |  |  |-- Add.ts
+|  |  |  |-- AddN.ts
+|  |  |  |-- All.ts
+|  |  |  |-- Any.ts
+|  |  |  |-- ArgMax.ts
+|  |  |  |-- ArgMin.ts
+|  |  |  |-- Asin.ts
+|  |  |  |-- Asinh.ts
+|  |  |  |-- Atan.ts
+|  |  |  |-- Atan2.ts
+|  |  |  |-- Atanh.ts
+|  |  |  |-- AvgPool.ts
+|  |  |  |-- AvgPool3D.ts
+|  |  |  |-- AvgPool3DGrad.ts
+|  |  |  |-- AvgPoolGrad.ts
+|  |  |  |-- BatchMatMul.ts
+|  |  |  |-- BatchMatMul_impl.ts
+|  |  |  |-- BatchNorm.ts
+|  |  |  |-- BatchToSpaceND.ts
+|  |  |  |-- Bincount.ts
+|  |  |  |-- Cast.ts
+|  |  |  |-- Ceil.ts
+|  |  |  |-- ClipByValue.ts
+|  |  |  |-- Complex.ts
+|  |  |  |-- ComplexAbs.ts
+|  |  |  |-- Complex_test.ts
+|  |  |  |-- Concat.ts
+|  |  |  |-- Concat_impl.ts
+|  |  |  |-- Conv2D.ts
+|  |  |  |-- Conv2DBackpropFilter.ts
+|  |  |  |-- Conv2DBackpropInput.ts
+|  |  |  |-- Conv2D_impl.ts
+|  |  |  |-- Conv2D_test.ts
+|  |  |  |-- Conv3D.ts
+|  |  |  |-- Conv3DBackpropFilterV2.ts
+|  |  |  |-- Conv3DBackpropInputV2.ts
+|  |  |  |-- Cos.ts
+|  |  |  |-- Cosh.ts
+|  |  |  |-- CropAndResize.ts
+|  |  |  |-- Cumsum.ts
+|  |  |  |-- DenseBincount.ts
+|  |  |  |-- DepthToSpace.ts
+|  |  |  |-- DepthwiseConv2dNative.ts
+|  |  |  |-- DepthwiseConv2dNativeBackpropFilter.ts
+|  |  |  |-- DepthwiseConv2dNativeBackpropInput.ts
+|  |  |  |-- Diag.ts
+|  |  |  |-- Dilation2D.ts
+|  |  |  |-- Einsum.ts
+|  |  |  |-- Elu.ts
+|  |  |  |-- EluGrad.ts
+|  |  |  |-- Equal.ts
+|  |  |  |-- Erf.ts
+|  |  |  |-- Exp.ts
+|  |  |  |-- ExpandDims.ts
+|  |  |  |-- Expm1.ts
+|  |  |  |-- FFT.ts
+|  |  |  |-- FFT_impl.ts
+|  |  |  |-- Fill.ts
+|  |  |  |-- FlipLeftRight.ts
+|  |  |  |-- Floor.ts
+|  |  |  |-- FloorDiv.ts
+|  |  |  |-- FromPixels.ts
+|  |  |  |-- FromPixels_utils
+|  |  |  |  |-- from_pixels_gpu.ts
+|  |  |  |  |-- from_pixels_packed_gpu.ts
+|  |  |  |-- FusedConv2D.ts
+|  |  |  |-- FusedDepthwiseConv2D.ts
+|  |  |  |-- GatherNd.ts
+|  |  |  |-- GatherV2.ts
+|  |  |  |-- Greater.ts
+|  |  |  |-- GreaterEqual.ts
+|  |  |  |-- IFFT.ts
+|  |  |  |-- Identity.ts
+|  |  |  |-- Imag.ts
+|  |  |  |-- IsFinite.ts
+|  |  |  |-- IsInf.ts
+|  |  |  |-- IsNaN.ts
+|  |  |  |-- LRN.ts
+|  |  |  |-- LRNGrad.ts
+|  |  |  |-- LeakyRelu.ts
+|  |  |  |-- Less.ts
+|  |  |  |-- LessEqual.ts
+|  |  |  |-- LinSpace.ts
+|  |  |  |-- Log.ts
+|  |  |  |-- Log1p.ts
+|  |  |  |-- LogicalAnd.ts
+|  |  |  |-- LogicalNot.ts
+|  |  |  |-- LogicalOr.ts
+|  |  |  |-- Max.ts
+|  |  |  |-- MaxPool.ts
+|  |  |  |-- MaxPool3D.ts
+|  |  |  |-- MaxPool3DGrad.ts
+|  |  |  |-- MaxPoolGrad.ts
+|  |  |  |-- MaxPoolWithArgmax.ts
+|  |  |  |-- MaxPoolWithArgmax_impl.ts
+|  |  |  |-- Max_impl.ts
+|  |  |  |-- Max_test.ts
+|  |  |  |-- Maximum.ts
+|  |  |  |-- Mean.ts
+|  |  |  |-- Mean_impl.ts
+|  |  |  |-- Mean_test.ts
+|  |  |  |-- Min.ts
+|  |  |  |-- Minimum.ts
+|  |  |  |-- MirrorPad.ts
+|  |  |  |-- Mod.ts
+|  |  |  |-- Multinomial.ts
+|  |  |  |-- Multiply.ts
+|  |  |  |-- Neg.ts
+|  |  |  |-- NonMaxSuppressionV3.ts
+|  |  |  |-- NonMaxSuppressionV4.ts
+|  |  |  |-- NonMaxSuppressionV5.ts
+|  |  |  |-- NotEqual.ts
+|  |  |  |-- OneHot.ts
+|  |  |  |-- OnesLike.ts
+|  |  |  |-- Pack.ts
+|  |  |  |-- PadV2.ts
+|  |  |  |-- Pow.ts
+|  |  |  |-- Prelu.ts
+|  |  |  |-- Prod.ts
+|  |  |  |-- Range.ts
+|  |  |  |-- Real.ts
+|  |  |  |-- RealDiv.ts
+|  |  |  |-- Reciprocal.ts
+|  |  |  |-- Relu.ts
+|  |  |  |-- Relu6.ts
+|  |  |  |-- Reshape.ts
+|  |  |  |-- Reshape_test.ts
+|  |  |  |-- ResizeBilinear.ts
+|  |  |  |-- ResizeBilinearGrad.ts
+|  |  |  |-- ResizeNearestNeighbor.ts
+|  |  |  |-- ResizeNearestNeighborGrad.ts
+|  |  |  |-- Reverse.ts
+|  |  |  |-- RotateWithOffset.ts
+|  |  |  |-- Round.ts
+|  |  |  |-- Rsqrt.ts
+|  |  |  |-- STFT_test.ts
+|  |  |  |-- ScatterNd.ts
+|  |  |  |-- Select.ts
+|  |  |  |-- Selu.ts
+|  |  |  |-- Sigmoid.ts
+|  |  |  |-- Sign.ts
+|  |  |  |-- Sin.ts
+|  |  |  |-- Sinh.ts
+|  |  |  |-- Slice.ts
+|  |  |  |-- Softmax.ts
+|  |  |  |-- Softplus.ts
+|  |  |  |-- SpaceToBatchND.ts
+|  |  |  |-- SparseFillEmptyRows.ts
+|  |  |  |-- SparseReshape.ts
+|  |  |  |-- SparseSegmentMean.ts
+|  |  |  |-- SparseSegmentSum.ts
+|  |  |  |-- SparseToDense.ts
+|  |  |  |-- SplitV.ts
+|  |  |  |-- Sqrt.ts
+|  |  |  |-- Square.ts
+|  |  |  |-- SquaredDifference.ts
+|  |  |  |-- Step.ts
+|  |  |  |-- StridedSlice.ts
+|  |  |  |-- StringNGrams.ts
+|  |  |  |-- StringSplit.ts
+|  |  |  |-- StringToHashBucketFast.ts
+|  |  |  |-- Sub.ts
+|  |  |  |-- Sum.ts
+|  |  |  |-- Sum_impl.ts
+|  |  |  |-- Tan.ts
+|  |  |  |-- Tanh.ts
+|  |  |  |-- Tile.ts
+|  |  |  |-- TopK.ts
+|  |  |  |-- TopK_test.ts
+|  |  |  |-- Transform.ts
+|  |  |  |-- Transpose.ts
+|  |  |  |-- Transpose_impl.ts
+|  |  |  |-- Unique.ts
+|  |  |  |-- Unpack.ts
+|  |  |  |-- UnsortedSegmentSum.ts
+|  |  |  |-- ZerosLike.ts
+|  |  |  |-- _FusedMatMul.ts
+|  |  |-- lrn_gpu.ts
+|  |  |-- lrn_grad_gpu.ts
+|  |  |-- lrn_packed_gpu.ts
+|  |  |-- max_pool_backprop_gpu.ts
+|  |  |-- mean_gpu.ts
+|  |  |-- mirror_pad_gpu.ts
+|  |  |-- mirror_pad_packed_gpu.ts
+|  |  |-- mulmat_packed_gpu.ts
+|  |  |-- multinomial_gpu.ts
+|  |  |-- onehot_gpu.ts
+|  |  |-- pack_gpu.ts
+|  |  |-- packing_util.ts
+|  |  |-- pad_gpu.ts
+|  |  |-- pad_packed_gpu.ts
+|  |  |-- pool_gpu.ts
+|  |  |-- reduce_gpu.ts
+|  |  |-- register_all_kernels.ts
+|  |  |-- reshape_packed_gpu.ts
+|  |  |-- reshape_packed_test.ts
+|  |  |-- resize_bilinear_backprop_gpu.ts
+|  |  |-- resize_bilinear_gpu.ts
+|  |  |-- resize_bilinear_packed_gpu.ts
+|  |  |-- resize_nearest_neighbor_backprop_gpu.ts
+|  |  |-- resize_nearest_neighbor_gpu.ts
+|  |  |-- resize_nearest_neighbor_packed_gpu.ts
+|  |  |-- reverse_gpu.ts
+|  |  |-- reverse_packed_gpu.ts
+|  |  |-- rotate_gpu.ts
+|  |  |-- scatter_gpu.ts
+|  |  |-- segment_gpu.ts
+|  |  |-- select_gpu.ts
+|  |  |-- setup_test.ts
+|  |  |-- shader_compiler.ts
+|  |  |-- shader_compiler_util.ts
+|  |  |-- shader_compiler_util_test.ts
+|  |  |-- slice_gpu.ts
+|  |  |-- slice_packed_gpu.ts
+|  |  |-- strided_slice_gpu.ts
+|  |  |-- tex_util.ts
+|  |  |-- tex_util_test.ts
+|  |  |-- texture_manager.ts
+|  |  |-- tile_gpu.ts
+|  |  |-- top_k_gpu.ts
+|  |  |-- transform_gpu.ts
+|  |  |-- transpose_gpu.ts
+|  |  |-- transpose_packed_gpu.ts
+|  |  |-- unaryop_gpu.ts
+|  |  |-- unaryop_packed_gpu.ts
+|  |  |-- unpack_gpu.ts
+|  |  |-- version.ts
+|  |  |-- webgl.ts
+|  |  |-- webgl_batchnorm_test.ts
+|  |  |-- webgl_custom_op_test.ts
+|  |  |-- webgl_ops_test.ts
+|  |  |-- webgl_topixels_test.ts
+|  |  |-- webgl_types.ts
+|  |  |-- webgl_util.ts
+|  |  |-- webgl_util_test.ts
+|  |-- tsconfig.json
+|  |-- tsconfig.test.json
+|  |-- tslint.json
+|  |-- yarn.lock
+|-- tfjs-backend-webgpu
+|  |-- .npmignore
+|  |-- .npmrc
+|  |-- .vscode
+|  |  |-- settings.json
+|  |-- README.md
+|  |-- benchmarks
+|  |  |-- config.js
+|  |  |-- index.html
+|  |  |-- main.css
+|  |  |-- main.js
+|  |  |-- util.js
+|  |-- cloudbuild.yml
+|  |-- karma.conf.js
+|  |-- package.json
+|  |-- rollup.config.js
+|  |-- scripts
+|  |  |-- build-npm.sh
+|  |  |-- publish-npm.sh
+|  |  |-- test-ci.sh
+|  |-- src
+|  |  |-- backend_webgpu.ts
+|  |  |-- backend_webgpu_test.ts
+|  |  |-- benchmark_models_test.ts
+|  |  |-- benchmark_ops_test.ts
+|  |  |-- buffer_manager.ts
+|  |  |-- flags_webgpu.ts
+|  |  |-- glsl_version.ts
+|  |  |-- index.ts
+|  |  |-- kernel_utils
+|  |  |  |-- int.ts
+|  |  |  |-- kernel_funcs_utils.ts
+|  |  |  |-- reduce.ts
+|  |  |  |-- shared.ts
+|  |  |-- kernels
+|  |  |  |-- Abs.ts
+|  |  |  |-- Add.ts
+|  |  |  |-- AddN.ts
+|  |  |  |-- ArgMax.ts
+|  |  |  |-- ArgMin.ts
+|  |  |  |-- AvgPool.ts
+|  |  |  |-- BatchMatMul.ts
+|  |  |  |-- BatchMatMul_impl.ts
+|  |  |  |-- BatchToSpaceND.ts
+|  |  |  |-- Cast.ts
+|  |  |  |-- Ceil.ts
+|  |  |  |-- ClipByValue.ts
+|  |  |  |-- Complex.ts
+|  |  |  |-- Concat.ts
+|  |  |  |-- Concat_impl.ts
+|  |  |  |-- Conv2D.ts
+|  |  |  |-- Conv2DBackpropInput.ts
+|  |  |  |-- Conv2D_impl.ts
+|  |  |  |-- CropAndResize.ts
+|  |  |  |-- DepthwiseConv2dNative.ts
+|  |  |  |-- Einsum.ts
+|  |  |  |-- Elu.ts
+|  |  |  |-- Equal.ts
+|  |  |  |-- Exp.ts
+|  |  |  |-- ExpandDims.ts
+|  |  |  |-- Expm1.ts
+|  |  |  |-- Fill.ts
+|  |  |  |-- Floor.ts
+|  |  |  |-- FloorDiv.ts
+|  |  |  |-- FromPixels.ts
+|  |  |  |-- FromPixelsExternalImage.ts
+|  |  |  |-- FromPixels_utils
+|  |  |  |  |-- from_pixels_webgpu.ts
+|  |  |  |-- FusedBatchNorm.ts
+|  |  |  |-- FusedConv2D.ts
+|  |  |  |-- FusedDepthwiseConv2D.ts
+|  |  |  |-- GatherNd.ts
+|  |  |  |-- GatherV2.ts
+|  |  |  |-- Greater.ts
+|  |  |  |-- GreaterEqual.ts
+|  |  |  |-- Identity.ts
+|  |  |  |-- Imag.ts
+|  |  |  |-- Less.ts
+|  |  |  |-- LessEqual.ts
+|  |  |  |-- Log.ts
+|  |  |  |-- LogicalAnd.ts
+|  |  |  |-- Max.ts
+|  |  |  |-- MaxPool.ts
+|  |  |  |-- Maximum.ts
+|  |  |  |-- Mean.ts
+|  |  |  |-- Min.ts
+|  |  |  |-- Minimum.ts
+|  |  |  |-- MirrorPad.ts
+|  |  |  |-- Multiply.ts
+|  |  |  |-- Neg.ts
+|  |  |  |-- NonMaxSuppressionV3.ts
+|  |  |  |-- NonMaxSuppressionV5.ts
+|  |  |  |-- NotEqual.ts
+|  |  |  |-- OnesLike.ts
+|  |  |  |-- Pack.ts
+|  |  |  |-- PadV2.ts
+|  |  |  |-- Pow.ts
+|  |  |  |-- Prelu.ts
+|  |  |  |-- Prod.ts
+|  |  |  |-- Range.ts
+|  |  |  |-- Real.ts
+|  |  |  |-- RealDiv.ts
+|  |  |  |-- Relu.ts
+|  |  |  |-- Relu6.ts
+|  |  |  |-- Reshape.ts
+|  |  |  |-- ResizeBilinear.ts
+|  |  |  |-- ResizeNearestNeighbor.ts
+|  |  |  |-- Rsqrt.ts
+|  |  |  |-- Select.ts
+|  |  |  |-- Sigmoid.ts
+|  |  |  |-- Slice.ts
+|  |  |  |-- Softmax.ts
+|  |  |  |-- SpaceToBatchND.ts
+|  |  |  |-- Sqrt.ts
+|  |  |  |-- Square.ts
+|  |  |  |-- SquaredDifference.ts
+|  |  |  |-- StridedSlice.ts
+|  |  |  |-- StringNGrams.ts
+|  |  |  |-- Sub.ts
+|  |  |  |-- Sum.ts
+|  |  |  |-- Tanh.ts
+|  |  |  |-- Tile.ts
+|  |  |  |-- Transform.ts
+|  |  |  |-- Transpose.ts
+|  |  |  |-- Unpack.ts
+|  |  |  |-- ZerosLike.ts
+|  |  |  |-- _FusedMatMul.ts
+|  |  |  |-- activation_util.ts
+|  |  |  |-- addn_packed_webgpu.ts
+|  |  |  |-- argminmax_webgpu.ts
+|  |  |  |-- batchnorm_webgpu.ts
+|  |  |  |-- binary_op_complex_webgpu.ts
+|  |  |  |-- binary_op_shared_webgpu.ts
+|  |  |  |-- binary_op_util.ts
+|  |  |  |-- binary_op_vec4_webgpu.ts
+|  |  |  |-- binary_op_webgpu.ts
+|  |  |  |-- binary_ops.ts
+|  |  |  |-- clip_vec4_webgpu.ts
+|  |  |  |-- clip_webgpu.ts
+|  |  |  |-- concat_webgpu.ts
+|  |  |  |-- conv2d_mm_vec4_webgpu.ts
+|  |  |  |-- conv2d_mm_webgpu.ts
+|  |  |  |-- conv2d_naive_webgpu.ts
+|  |  |  |-- conv2d_webgpu_test.ts
+|  |  |  |-- conv_backprop_mm_webgpu.ts
+|  |  |  |-- conv_backprop_webgpu.ts
+|  |  |  |-- crop_and_resize_webgpu.ts
+|  |  |  |-- depthwise_conv2d_3x3_webgpu.ts
+|  |  |  |-- depthwise_conv2d_webgpu.ts
+|  |  |  |-- fill_webgpu.ts
+|  |  |  |-- gather_nd_webgpu.ts
+|  |  |  |-- gather_webgpu.ts
+|  |  |  |-- im2col_webgpu.ts
+|  |  |  |-- matmul_packed_vec4_webgpu.ts
+|  |  |  |-- matmul_packed_webgpu.ts
+|  |  |  |-- mirror_pad_webgpu.ts
+|  |  |  |-- pad_webgpu.ts
+|  |  |  |-- pool2d_webgpu.ts
+|  |  |  |-- pool_filtersizeone_webgpu.ts
+|  |  |  |-- reduce_webgpu.ts
+|  |  |  |-- resize_bilinear_webgpu.ts
+|  |  |  |-- resize_nearest_neighbor_webgpu.ts
+|  |  |  |-- select_webgpu.ts
+|  |  |  |-- slice_webgpu.ts
+|  |  |  |-- strided_slice_webgpu.ts
+|  |  |  |-- tile_webgpu.ts
+|  |  |  |-- transform_webgpu.ts
+|  |  |  |-- transpose_shared_webgpu.ts
+|  |  |  |-- transpose_webgpu.ts
+|  |  |  |-- unary_op_util.ts
+|  |  |  |-- unary_op_webgpu.ts
+|  |  |  |-- webgpu_program.ts
+|  |  |-- matmul_test.ts
+|  |  |-- register_all_kernels.ts
+|  |  |-- setup_test.ts
+|  |  |-- shader_preprocessor.ts
+|  |  |-- shader_preprocessor_wgsl.ts
+|  |  |-- shader_util.ts
+|  |  |-- shader_util_test.ts
+|  |  |-- test_util.ts
+|  |  |-- webgpu.ts
+|  |  |-- webgpu_util.ts
+|  |  |-- webgpu_util_test.ts
+|  |  |-- webgpu_util_wgsl.ts
+|  |-- tsconfig.json
+|  |-- tsconfig.test.json
+|  |-- tslint.json
+|  |-- yarn.lock
+|-- tfjs-converter
+|  |-- .babelrc
+|  |-- .npmignore
+|  |-- .vscode
+|  |  |-- settings.json
+|  |  |-- tasks.json
+|  |-- DEVELOPMENT.md
+|  |-- README.md
+|  |-- cloudbuild.yml
+|  |-- cloudbuild_nightly.yml
+|  |-- demo
+|  |  |-- control_flow
+|  |  |  |-- README.md
+|  |  |  |-- index.html
+|  |  |  |-- loop_model.js
+|  |  |-- mobilenet
+|  |  |  |-- README.md
+|  |  |  |-- cat.jpg
+|  |  |  |-- imagenet_classes.js
+|  |  |  |-- index.html
+|  |  |  |-- index.js
+|  |  |  |-- mobilenet.js
+|  |  |-- package.json
+|  |  |-- ssd
+|  |  |  |-- classes.js
+|  |  |  |-- image1.jpg
+|  |  |  |-- image2.jpg
+|  |  |  |-- index.html
+|  |  |  |-- index.js
+|  |  |-- yarn.lock
+|  |-- docs
+|  |  |-- supported_ops.md
+|  |-- metadata
+|  |  |-- kernel2op.json
+|  |-- package.json
+|  |-- python
+|  |  |-- .pylintrc
+|  |  |-- BUILD
+|  |  |-- MANIFEST.in
+|  |  |-- README.md
+|  |  |-- WORKSPACE
+|  |  |-- __init__.py
+|  |  |-- build-pip-package.sh
+|  |  |-- extra-requirements.txt
+|  |  |-- requirements-dev.txt
+|  |  |-- requirements.txt
+|  |  |-- run-python-tests.sh
+|  |  |-- setup.cfg
+|  |  |-- setup.py
+|  |  |-- tensorflowjs
+|  |  |  |-- BUILD
+|  |  |  |-- __init__.py
+|  |  |  |-- converters
+|  |  |  |  |-- BUILD
+|  |  |  |  |-- __init__.py
+|  |  |  |  |-- common.py
+|  |  |  |  |-- converter.py
+|  |  |  |  |-- converter_binary_test.sh
+|  |  |  |  |-- converter_test.py
+|  |  |  |  |-- fold_batch_norms.py
+|  |  |  |  |-- fold_batch_norms_test.py
+|  |  |  |  |-- fuse_depthwise_conv2d.py
+|  |  |  |  |-- fuse_depthwise_conv2d_test.py
+|  |  |  |  |-- fuse_prelu.py
+|  |  |  |  |-- fuse_prelu_test.py
+|  |  |  |  |-- generate_test_model.py
+|  |  |  |  |-- graph_rewrite_util.py
+|  |  |  |  |-- keras_h5_conversion.py
+|  |  |  |  |-- keras_h5_conversion_test.py
+|  |  |  |  |-- keras_tfjs_loader.py
+|  |  |  |  |-- keras_tfjs_loader_test.py
+|  |  |  |  |-- tf_saved_model_conversion_v2.py
+|  |  |  |  |-- tf_saved_model_conversion_v2_test.py
+|  |  |  |  |-- wizard.py
+|  |  |  |  |-- wizard_test.py
+|  |  |  |-- op_list
+|  |  |  |  |-- arithmetic.json
+|  |  |  |  |-- basic_math.json
+|  |  |  |  |-- control.json
+|  |  |  |  |-- convolution.json
+|  |  |  |  |-- creation.json
+|  |  |  |  |-- dynamic.json
+|  |  |  |  |-- evaluation.json
+|  |  |  |  |-- graph.json
+|  |  |  |  |-- hash_table.json
+|  |  |  |  |-- image.json
+|  |  |  |  |-- logical.json
+|  |  |  |  |-- matrices.json
+|  |  |  |  |-- normalization.json
+|  |  |  |  |-- reduction.json
+|  |  |  |  |-- slice_join.json
+|  |  |  |  |-- sparse.json
+|  |  |  |  |-- spectral.json
+|  |  |  |  |-- string.json
+|  |  |  |  |-- transformation.json
+|  |  |  |-- quantization.py
+|  |  |  |-- quantization_test.py
+|  |  |  |-- read_weights.py
+|  |  |  |-- read_weights_test.py
+|  |  |  |-- resource_loader.py
+|  |  |  |-- resource_loader_test.py
+|  |  |  |-- version.py
+|  |  |  |-- write_weights.py
+|  |  |  |-- write_weights_test.py
+|  |  |-- test_nightly_pip_package.py
+|  |  |-- test_pip_package.py
+|  |-- rollup.config.js
+|  |-- scripts
+|  |  |-- build-npm.sh
+|  |  |-- cloud_funcs
+|  |  |  |-- README.md
+|  |  |  |-- trigger_nightly
+|  |  |  |  |-- index.js
+|  |  |  |  |-- package.json
+|  |  |-- gen_doc.ts
+|  |  |-- gen_json.ts
+|  |  |-- kernels_to_ops.ts
+|  |  |-- tag-version
+|  |  |-- test_snippets.ts
+|  |  |-- tsconfig.json
+|  |-- src
+|  |  |-- data
+|  |  |  |-- api.proto
+|  |  |  |-- compiled_api.ts
+|  |  |  |-- types.ts
+|  |  |-- executor
+|  |  |  |-- execution_context.ts
+|  |  |  |-- execution_context_test.ts
+|  |  |  |-- graph_executor.ts
+|  |  |  |-- graph_executor_test.ts
+|  |  |  |-- graph_model.ts
+|  |  |  |-- graph_model_test.ts
+|  |  |  |-- hash_table.ts
+|  |  |  |-- model_analysis.ts
+|  |  |  |-- model_analysis_test.ts
+|  |  |  |-- resource_manager.ts
+|  |  |  |-- tensor_array.ts
+|  |  |  |-- tensor_array_test.ts
+|  |  |  |-- tensor_list.ts
+|  |  |  |-- tensor_list_test.ts
+|  |  |  |-- tensor_utils.ts
+|  |  |  |-- types.ts
+|  |  |-- index.ts
+|  |  |-- metadata_test.ts
+|  |  |-- operations
+|  |  |  |-- custom_op
+|  |  |  |  |-- node_value_impl.ts
+|  |  |  |  |-- node_value_impl_test.ts
+|  |  |  |  |-- register.ts
+|  |  |  |  |-- register_test.ts
+|  |  |  |-- executors
+|  |  |  |  |-- arithmetic_executor.ts
+|  |  |  |  |-- arithmetic_executor_test.ts
+|  |  |  |  |-- basic_math_executor.ts
+|  |  |  |  |-- basic_math_executor_test.ts
+|  |  |  |  |-- control_executor.ts
+|  |  |  |  |-- control_executor_test.ts
+|  |  |  |  |-- convolution_executor.ts
+|  |  |  |  |-- convolution_executor_test.ts
+|  |  |  |  |-- creation_executor.ts
+|  |  |  |  |-- creation_executor_test.ts
+|  |  |  |  |-- dynamic_executor.ts
+|  |  |  |  |-- dynamic_executor_test.ts
+|  |  |  |  |-- evaluation_executor.ts
+|  |  |  |  |-- evaluation_executor_test.ts
+|  |  |  |  |-- graph_executor.ts
+|  |  |  |  |-- graph_executor_test.ts
+|  |  |  |  |-- hash_table_executor.ts
+|  |  |  |  |-- hash_table_executor_test.ts
+|  |  |  |  |-- image_executor.ts
+|  |  |  |  |-- image_executor_test.ts
+|  |  |  |  |-- logical_executor.ts
+|  |  |  |  |-- logical_executor_test.ts
+|  |  |  |  |-- matrices_executor.ts
+|  |  |  |  |-- matrices_executor_test.ts
+|  |  |  |  |-- normalization_executor.ts
+|  |  |  |  |-- normalization_executor_test.ts
+|  |  |  |  |-- reduction_executor.ts
+|  |  |  |  |-- reduction_executor_test.ts
+|  |  |  |  |-- slice_join_executor.ts
+|  |  |  |  |-- slice_join_executor_test.ts
+|  |  |  |  |-- sparse_executor.ts
+|  |  |  |  |-- sparse_executor_test.ts
+|  |  |  |  |-- spectral_executor.ts
+|  |  |  |  |-- spectral_executor_test.ts
+|  |  |  |  |-- string_executor.ts
+|  |  |  |  |-- string_executor_test.ts
+|  |  |  |  |-- test_helper.ts
+|  |  |  |  |-- transformation_executor.ts
+|  |  |  |  |-- transformation_executor_test.ts
+|  |  |  |  |-- utils.ts
+|  |  |  |-- op_list
+|  |  |  |  |-- arithmetic.ts
+|  |  |  |  |-- basic_math.ts
+|  |  |  |  |-- control.ts
+|  |  |  |  |-- convolution.ts
+|  |  |  |  |-- creation.ts
+|  |  |  |  |-- dynamic.ts
+|  |  |  |  |-- evaluation.ts
+|  |  |  |  |-- graph.ts
+|  |  |  |  |-- hash_table.ts
+|  |  |  |  |-- image.ts
+|  |  |  |  |-- logical.ts
+|  |  |  |  |-- matrices.ts
+|  |  |  |  |-- normalization.ts
+|  |  |  |  |-- op_list_test.ts
+|  |  |  |  |-- reduction.ts
+|  |  |  |  |-- slice_join.ts
+|  |  |  |  |-- sparse.ts
+|  |  |  |  |-- spectral.ts
+|  |  |  |  |-- string.ts
+|  |  |  |  |-- transformation.ts
+|  |  |  |-- op_mapper_schema.ts
+|  |  |  |-- operation_executor.ts
+|  |  |  |-- operation_executor_test.ts
+|  |  |  |-- operation_mapper.ts
+|  |  |  |-- operation_mapper_test.ts
+|  |  |  |-- types.ts
+|  |  |-- run_tests.ts
+|  |  |-- version.ts
+|  |  |-- version_test.ts
+|  |-- tensorflowjs_wizard.gif
+|  |-- tools
+|  |  |-- compiled_api.d.ts
+|  |  |-- compiled_api.js
+|  |  |-- model_summary.ts
+|  |  |-- pb2json_converter.ts
+|  |  |-- tsconfig.json
+|  |-- tsconfig.json
+|  |-- tsconfig.test.json
+|  |-- tslint.json
+|  |-- yarn.lock
+|-- tfjs-core
+|  |-- .bazelrc
+|  |-- .npmignore
+|  |-- .npmrc
+|  |-- .vscode
+|  |  |-- launch.json
+|  |  |-- settings.json
+|  |  |-- tasks.json
+|  |-- BUILD.bazel
+|  |-- README.md
+|  |-- cloudbuild.yml
+|  |-- development
+|  |  |-- op_modularization.md
+|  |-- karma.conf.js
+|  |-- package.json
+|  |-- rollup.config.js
+|  |-- scripts
+|  |  |-- BUILD.bazel
+|  |  |-- build-npm.sh
+|  |  |-- cloud_funcs
+|  |  |  |-- README.md
+|  |  |-- enumerate-tests.js
+|  |  |-- test-bundle-size.js
+|  |  |-- test_snippets
+|  |  |  |-- BUILD.bazel
+|  |  |  |-- test_snippets.ts
+|  |  |  |-- util.ts
+|  |  |-- touch_modular_op_files.ts
+|  |  |-- tsconfig.json
+|  |-- src
+|  |  |-- BUILD.bazel
+|  |  |-- backends
+|  |  |  |-- backend.ts
+|  |  |  |-- backend_test.ts
+|  |  |  |-- backend_util.ts
+|  |  |  |-- complex_util.ts
+|  |  |  |-- complex_util_test.ts
+|  |  |  |-- einsum_util.ts
+|  |  |  |-- kernel_impls.ts
+|  |  |  |-- non_max_suppression_impl.ts
+|  |  |  |-- non_max_suppression_util.ts
+|  |  |  |-- non_max_suppression_util_test.ts
+|  |  |  |-- where_impl.ts
+|  |  |-- base.ts
+|  |  |-- base_side_effects.ts
+|  |  |-- browser_util.ts
+|  |  |-- browser_util_test.ts
+|  |  |-- buffer_test.ts
+|  |  |-- debug_mode_test.ts
+|  |  |-- device_util.ts
+|  |  |-- device_util_test.ts
+|  |  |-- engine.ts
+|  |  |-- engine_test.ts
+|  |  |-- environment.ts
+|  |  |-- environment_test.ts
+|  |  |-- flags.ts
+|  |  |-- flags_test.ts
+|  |  |-- global_util.ts
+|  |  |-- globals.ts
+|  |  |-- globals_test.ts
+|  |  |-- gradients.ts
+|  |  |-- gradients
+|  |  |  |-- Abs_grad.ts
+|  |  |  |-- Acos_grad.ts
+|  |  |  |-- Acosh_grad.ts
+|  |  |  |-- AddN_grad.ts
+|  |  |  |-- Add_grad.ts
+|  |  |  |-- ArgMax_grad.ts
+|  |  |  |-- ArgMin_grad.ts
+|  |  |  |-- Asin_grad.ts
+|  |  |  |-- Asinh_grad.ts
+|  |  |  |-- Atan2_grad.ts
+|  |  |  |-- Atan_grad.ts
+|  |  |  |-- Atanh_grad.ts
+|  |  |  |-- AvgPool3D_grad.ts
+|  |  |  |-- AvgPool_grad.ts
+|  |  |  |-- BatchMatMul_grad.ts
+|  |  |  |-- BatchToSpaceND_grad.ts
+|  |  |  |-- BroadcastTo_grad.ts
+|  |  |  |-- Cast_grad.ts
+|  |  |  |-- Ceil_grad.ts
+|  |  |  |-- ClipByValue_grad.ts
+|  |  |  |-- ComplexAbs_grad.ts
+|  |  |  |-- Concat_grad.ts
+|  |  |  |-- Conv2DBackpropInput_grad.ts
+|  |  |  |-- Conv2D_grad.ts
+|  |  |  |-- Conv3D_grad.ts
+|  |  |  |-- Cos_grad.ts
+|  |  |  |-- Cosh_grad.ts
+|  |  |  |-- Cumsum_grad.ts
+|  |  |  |-- DepthwiseConv2dNative_grad.ts
+|  |  |  |-- Dilation2D_grad.ts
+|  |  |  |-- Elu_grad.ts
+|  |  |  |-- Erf_grad.ts
+|  |  |  |-- Exp_grad.ts
+|  |  |  |-- ExpandDims_grad.ts
+|  |  |  |-- Expm1_grad.ts
+|  |  |  |-- FloorDiv_grad.ts
+|  |  |  |-- Floor_grad.ts
+|  |  |  |-- FusedBatchNorm_grad.ts
+|  |  |  |-- GatherV2_grad.ts
+|  |  |  |-- GreaterEqual_grad.ts
+|  |  |  |-- Identity_grad.ts
+|  |  |  |-- IsFinite_grad.ts
+|  |  |  |-- IsInf_grad.ts
+|  |  |  |-- IsNan_grad.ts
+|  |  |  |-- LRN_grad.ts
+|  |  |  |-- LeakyRelu_grad.ts
+|  |  |  |-- Log1p_grad.ts
+|  |  |  |-- LogSoftmax_grad.ts
+|  |  |  |-- Log_grad.ts
+|  |  |  |-- MaxPool3D_grad.ts
+|  |  |  |-- MaxPool_grad.ts
+|  |  |  |-- Max_grad.ts
+|  |  |  |-- Maximum_grad.ts
+|  |  |  |-- Mean_grad.ts
+|  |  |  |-- Min_grad.ts
+|  |  |  |-- Minimum_grad.ts
+|  |  |  |-- MirrorPad_grad.ts
+|  |  |  |-- Mod_grad.ts
+|  |  |  |-- Multiply_grad.ts
+|  |  |  |-- Neg_grad.ts
+|  |  |  |-- OneHot_grad.ts
+|  |  |  |-- OnesLike_grad.ts
+|  |  |  |-- Pack_grad.ts
+|  |  |  |-- PadV2_grad.ts
+|  |  |  |-- Pow_grad.ts
+|  |  |  |-- Prelu_grad.ts
+|  |  |  |-- RealDiv_grad.ts
+|  |  |  |-- Reciprocal_grad.ts
+|  |  |  |-- Relu6_grad.ts
+|  |  |  |-- Relu_grad.ts
+|  |  |  |-- Reshape_grad.ts
+|  |  |  |-- ResizeBilinear_grad.ts
+|  |  |  |-- ResizeNearestNeighbor_grad.ts
+|  |  |  |-- Reverse_grad.ts
+|  |  |  |-- Round_grad.ts
+|  |  |  |-- Rsqrt_grad.ts
+|  |  |  |-- Select_grad.ts
+|  |  |  |-- Selu_grad.ts
+|  |  |  |-- Sigmoid_grad.ts
+|  |  |  |-- Sign_grad.ts
+|  |  |  |-- Sin_grad.ts
+|  |  |  |-- Sinh_grad.ts
+|  |  |  |-- Slice_grad.ts
+|  |  |  |-- Softmax_grad.ts
+|  |  |  |-- Softplus_grad.ts
+|  |  |  |-- SpaceToBatchND_grad.ts
+|  |  |  |-- SplitV_grad.ts
+|  |  |  |-- Sqrt_grad.ts
+|  |  |  |-- Square_grad.ts
+|  |  |  |-- SquaredDifference_grad.ts
+|  |  |  |-- Step_grad.ts
+|  |  |  |-- Sub_grad.ts
+|  |  |  |-- Sum_grad.ts
+|  |  |  |-- Tan_grad.ts
+|  |  |  |-- Tanh_grad.ts
+|  |  |  |-- Tile_grad.ts
+|  |  |  |-- Transpose_grad.ts
+|  |  |  |-- Unpack_grad.ts
+|  |  |  |-- UnsortedSegmentSum_grad.ts
+|  |  |  |-- ZerosLike_grad.ts
+|  |  |  |-- min_max_grad_util.ts
+|  |  |-- gradients_test.ts
+|  |  |-- hash_util.ts
+|  |  |-- hash_util_test.ts
+|  |  |-- image_test_util.ts
+|  |  |-- index.ts
+|  |  |-- io
+|  |  |  |-- browser_files.ts
+|  |  |  |-- browser_files_test.ts
+|  |  |  |-- http.ts
+|  |  |  |-- http_test.ts
+|  |  |  |-- indexed_db.ts
+|  |  |  |-- indexed_db_test.ts
+|  |  |  |-- io.ts
+|  |  |  |-- io_utils.ts
+|  |  |  |-- io_utils_test.ts
+|  |  |  |-- local_storage.ts
+|  |  |  |-- local_storage_test.ts
+|  |  |  |-- model_management.ts
+|  |  |  |-- model_management_test.ts
+|  |  |  |-- passthrough.ts
+|  |  |  |-- passthrough_test.ts
+|  |  |  |-- progress.ts
+|  |  |  |-- progress_test.ts
+|  |  |  |-- router_registry.ts
+|  |  |  |-- router_registry_test.ts
+|  |  |  |-- types.ts
+|  |  |  |-- weights_loader.ts
+|  |  |  |-- weights_loader_test.ts
+|  |  |-- jasmine_util.ts
+|  |  |-- jasmine_util_test.ts
+|  |  |-- kernel_names.ts
+|  |  |-- kernel_registry.ts
+|  |  |-- kernel_registry_test.ts
+|  |  |-- log.ts
+|  |  |-- math.ts
+|  |  |-- model_types.ts
+|  |  |-- ops
+|  |  |  |-- abs.ts
+|  |  |  |-- abs_test.ts
+|  |  |  |-- acos.ts
+|  |  |  |-- acos_test.ts
+|  |  |  |-- acosh.ts
+|  |  |  |-- acosh_test.ts
+|  |  |  |-- add.ts
+|  |  |  |-- add_n.ts
+|  |  |  |-- add_n_test.ts
+|  |  |  |-- add_test.ts
+|  |  |  |-- all.ts
+|  |  |  |-- all_test.ts
+|  |  |  |-- any.ts
+|  |  |  |-- any_test.ts
+|  |  |  |-- arg_max.ts
+|  |  |  |-- arg_max_test.ts
+|  |  |  |-- arg_min.ts
+|  |  |  |-- arg_min_test.ts
+|  |  |  |-- arithmetic_test.ts
+|  |  |  |-- array_ops_util.ts
+|  |  |  |-- asin.ts
+|  |  |  |-- asin_test.ts
+|  |  |  |-- asinh.ts
+|  |  |  |-- asinh_test.ts
+|  |  |  |-- atan.ts
+|  |  |  |-- atan2.ts
+|  |  |  |-- atan_test.ts
+|  |  |  |-- atanh.ts
+|  |  |  |-- atanh_test.ts
+|  |  |  |-- avg_pool.ts
+|  |  |  |-- avg_pool_3d.ts
+|  |  |  |-- avg_pool_3d_grad.ts
+|  |  |  |-- avg_pool_3d_test.ts
+|  |  |  |-- avg_pool_grad.ts
+|  |  |  |-- avg_pool_test.ts
+|  |  |  |-- axis_util.ts
+|  |  |  |-- axis_util_test.ts
+|  |  |  |-- basic_lstm_cell.ts
+|  |  |  |-- basic_lstm_cell_test.ts
+|  |  |  |-- batch_to_space_nd.ts
+|  |  |  |-- batch_to_space_nd_test.ts
+|  |  |  |-- batchnorm.ts
+|  |  |  |-- batchnorm2d.ts
+|  |  |  |-- batchnorm3d.ts
+|  |  |  |-- batchnorm4d.ts
+|  |  |  |-- batchnorm_test.ts
+|  |  |  |-- batchnorm_util.ts
+|  |  |  |-- binary_ops_test.ts
+|  |  |  |-- bincount.ts
+|  |  |  |-- bincount_test.ts
+|  |  |  |-- boolean_mask.ts
+|  |  |  |-- boolean_mask_test.ts
+|  |  |  |-- broadcast_to.ts
+|  |  |  |-- broadcast_to_test.ts
+|  |  |  |-- broadcast_util.ts
+|  |  |  |-- broadcast_util_test.ts
+|  |  |  |-- browser.ts
+|  |  |  |-- buffer.ts
+|  |  |  |-- cast.ts
+|  |  |  |-- ceil.ts
+|  |  |  |-- ceil_test.ts
+|  |  |  |-- clip_by_value.ts
+|  |  |  |-- clip_by_value_test.ts
+|  |  |  |-- clone.ts
+|  |  |  |-- clone_test.ts
+|  |  |  |-- complex.ts
+|  |  |  |-- complex_ops_test.ts
+|  |  |  |-- concat.ts
+|  |  |  |-- concat_1d.ts
+|  |  |  |-- concat_2d.ts
+|  |  |  |-- concat_3d.ts
+|  |  |  |-- concat_4d.ts
+|  |  |  |-- concat_test.ts
+|  |  |  |-- concat_util.ts
+|  |  |  |-- concat_util_test.ts
+|  |  |  |-- confusion_matrix.ts
+|  |  |  |-- confusion_matrix_test.ts
+|  |  |  |-- conv1d.ts
+|  |  |  |-- conv1d_test.ts
+|  |  |  |-- conv2d.ts
+|  |  |  |-- conv2d_backprop_filter.ts
+|  |  |  |-- conv2d_backprop_input.ts
+|  |  |  |-- conv2d_separable_test.ts
+|  |  |  |-- conv2d_test.ts
+|  |  |  |-- conv2d_transpose.ts
+|  |  |  |-- conv2d_transpose_test.ts
+|  |  |  |-- conv3d.ts
+|  |  |  |-- conv3d_backprop_filter.ts
+|  |  |  |-- conv3d_backprop_input.ts
+|  |  |  |-- conv3d_test.ts
+|  |  |  |-- conv3d_transpose.ts
+|  |  |  |-- conv3d_transpose_test.ts
+|  |  |  |-- conv_util.ts
+|  |  |  |-- conv_util_test.ts
+|  |  |  |-- cos.ts
+|  |  |  |-- cos_test.ts
+|  |  |  |-- cosh.ts
+|  |  |  |-- cosh_test.ts
+|  |  |  |-- cumsum.ts
+|  |  |  |-- cumsum_test.ts
+|  |  |  |-- dense_bincount.ts
+|  |  |  |-- dense_bincount_test.ts
+|  |  |  |-- depth_to_space.ts
+|  |  |  |-- depth_to_space_test.ts
+|  |  |  |-- depthwise_conv2d.ts
+|  |  |  |-- depthwise_conv2d_native_backprop_filter.ts
+|  |  |  |-- depthwise_conv2d_native_backprop_input.ts
+|  |  |  |-- depthwise_conv2d_test.ts
+|  |  |  |-- diag.ts
+|  |  |  |-- diag_test.ts
+|  |  |  |-- dilation2d.ts
+|  |  |  |-- dilation2d_test.ts
+|  |  |  |-- div.ts
+|  |  |  |-- div_no_nan.ts
+|  |  |  |-- dot.ts
+|  |  |  |-- dropout.ts
+|  |  |  |-- dropout_test.ts
+|  |  |  |-- dropout_util.ts
+|  |  |  |-- dropout_util_test.ts
+|  |  |  |-- einsum.ts
+|  |  |  |-- einsum_test.ts
+|  |  |  |-- elu.ts
+|  |  |  |-- elu_test.ts
+|  |  |  |-- equal.ts
+|  |  |  |-- equal_test.ts
+|  |  |  |-- erf.ts
+|  |  |  |-- erf_test.ts
+|  |  |  |-- erf_util.ts
+|  |  |  |-- exp.ts
+|  |  |  |-- exp_test.ts
+|  |  |  |-- expand_dims.ts
+|  |  |  |-- expand_dims_test.ts
+|  |  |  |-- expm1.ts
+|  |  |  |-- expm1_test.ts
+|  |  |  |-- eye.ts
+|  |  |  |-- eye_test.ts
+|  |  |  |-- fill.ts
+|  |  |  |-- fill_test.ts
+|  |  |  |-- floor.ts
+|  |  |  |-- floorDiv.ts
+|  |  |  |-- floor_test.ts
+|  |  |  |-- from_pixels_async_test.ts
+|  |  |  |-- from_pixels_test.ts
+|  |  |  |-- fused
+|  |  |  |  |-- conv2d.ts
+|  |  |  |  |-- depthwise_conv2d.ts
+|  |  |  |  |-- fused_conv2d_test.ts
+|  |  |  |  |-- fused_depthwise_conv2d_test.ts
+|  |  |  |  |-- fused_mat_mul_test.ts
+|  |  |  |  |-- mat_mul.ts
+|  |  |  |-- fused_ops.ts
+|  |  |  |-- fused_types.ts
+|  |  |  |-- fused_util.ts
+|  |  |  |-- gather.ts
+|  |  |  |-- gather_nd.ts
+|  |  |  |-- gather_nd_test.ts
+|  |  |  |-- gather_nd_util.ts
+|  |  |  |-- gather_test.ts
+|  |  |  |-- greater.ts
+|  |  |  |-- greater_equal.ts
+|  |  |  |-- greater_equal_test.ts
+|  |  |  |-- greater_test.ts
+|  |  |  |-- ifft_test.ts
+|  |  |  |-- imag.ts
+|  |  |  |-- image
+|  |  |  |  |-- crop_and_resize.ts
+|  |  |  |  |-- crop_and_resize_test.ts
+|  |  |  |  |-- flip_left_right.ts
+|  |  |  |  |-- flip_left_right_test.ts
+|  |  |  |  |-- non_max_suppression.ts
+|  |  |  |  |-- non_max_suppression_async.ts
+|  |  |  |  |-- non_max_suppression_async_test.ts
+|  |  |  |  |-- non_max_suppression_padded.ts
+|  |  |  |  |-- non_max_suppression_padded_async.ts
+|  |  |  |  |-- non_max_suppression_test.ts
+|  |  |  |  |-- non_max_suppression_with_score.ts
+|  |  |  |  |-- non_max_suppression_with_score_async.ts
+|  |  |  |  |-- resize_bilinear.ts
+|  |  |  |  |-- resize_bilinear_test.ts
+|  |  |  |  |-- resize_nearest_neighbor.ts
+|  |  |  |  |-- resize_nearest_neighbor_test.ts
+|  |  |  |  |-- rotate_with_offset.ts
+|  |  |  |  |-- rotate_with_offset_test.ts
+|  |  |  |  |-- threshold.ts
+|  |  |  |  |-- threshold_test.ts
+|  |  |  |  |-- transform.ts
+|  |  |  |  |-- transform_test.ts
+|  |  |  |-- in_top_k.ts
+|  |  |  |-- in_top_k_test.ts
+|  |  |  |-- is_finite.ts
+|  |  |  |-- is_finite_test.ts
+|  |  |  |-- is_inf.ts
+|  |  |  |-- is_inf_test.ts
+|  |  |  |-- is_nan.ts
+|  |  |  |-- is_nan_test.ts
+|  |  |  |-- leaky_relu.ts
+|  |  |  |-- leaky_relu_test.ts
+|  |  |  |-- less.ts
+|  |  |  |-- less_equal.ts
+|  |  |  |-- less_equal_test.ts
+|  |  |  |-- less_test.ts
+|  |  |  |-- linalg
+|  |  |  |  |-- band_part.ts
+|  |  |  |  |-- band_part_test.ts
+|  |  |  |  |-- gram_schmidt.ts
+|  |  |  |  |-- gram_schmidt_test.ts
+|  |  |  |  |-- qr.ts
+|  |  |  |  |-- qr_test.ts
+|  |  |  |-- linspace.ts
+|  |  |  |-- linspace_test.ts
+|  |  |  |-- local_response_normalization.ts
+|  |  |  |-- local_response_normalization_backprop.ts
+|  |  |  |-- local_response_normalization_test.ts
+|  |  |  |-- log.ts
+|  |  |  |-- log1p.ts
+|  |  |  |-- log1p_test.ts
+|  |  |  |-- log_sigmoid.ts
+|  |  |  |-- log_sigmoid_test.ts
+|  |  |  |-- log_softmax.ts
+|  |  |  |-- log_softmax_test.ts
+|  |  |  |-- log_sum_exp.ts
+|  |  |  |-- log_sum_exp_test.ts
+|  |  |  |-- log_test.ts
+|  |  |  |-- logical_and.ts
+|  |  |  |-- logical_and_test.ts
+|  |  |  |-- logical_not.ts
+|  |  |  |-- logical_not_test.ts
+|  |  |  |-- logical_or.ts
+|  |  |  |-- logical_or_test.ts
+|  |  |  |-- logical_xor.ts
+|  |  |  |-- logical_xor_test.ts
+|  |  |  |-- loss_ops_utils.ts
+|  |  |  |-- losses
+|  |  |  |  |-- absolute_difference.ts
+|  |  |  |  |-- absolute_difference_test.ts
+|  |  |  |  |-- compute_weighted_loss.ts
+|  |  |  |  |-- compute_weighted_loss_test.ts
+|  |  |  |  |-- cosine_distance.ts
+|  |  |  |  |-- cosine_distance_test.ts
+|  |  |  |  |-- hinge_loss.ts
+|  |  |  |  |-- hinge_loss_test.ts
+|  |  |  |  |-- huber_loss.ts
+|  |  |  |  |-- huber_loss_test.ts
+|  |  |  |  |-- log_loss.ts
+|  |  |  |  |-- log_loss_test.ts
+|  |  |  |  |-- mean_squared_error.ts
+|  |  |  |  |-- mean_squared_error_test.ts
+|  |  |  |  |-- sigmoid_cross_entropy.ts
+|  |  |  |  |-- sigmoid_cross_entropy_test.ts
+|  |  |  |  |-- softmax_cross_entropy.ts
+|  |  |  |  |-- softmax_cross_entropy_test.ts
+|  |  |  |-- mat_mul.ts
+|  |  |  |-- mat_mul_test.ts
+|  |  |  |-- max.ts
+|  |  |  |-- max_pool.ts
+|  |  |  |-- max_pool_3d.ts
+|  |  |  |-- max_pool_3d_grad.ts
+|  |  |  |-- max_pool_3d_test.ts
+|  |  |  |-- max_pool_grad.ts
+|  |  |  |-- max_pool_test.ts
+|  |  |  |-- max_pool_with_argmax.ts
+|  |  |  |-- max_pool_with_argmax_test.ts
+|  |  |  |-- max_test.ts
+|  |  |  |-- maximum.ts
+|  |  |  |-- mean.ts
+|  |  |  |-- mean_test.ts
+|  |  |  |-- meshgrid.ts
+|  |  |  |-- meshgrid_test.ts
+|  |  |  |-- min.ts
+|  |  |  |-- min_test.ts
+|  |  |  |-- minimum.ts
+|  |  |  |-- mirror_pad.ts
+|  |  |  |-- mirror_pad_test.ts
+|  |  |  |-- mod.ts
+|  |  |  |-- moments.ts
+|  |  |  |-- moments_test.ts
+|  |  |  |-- moving_average.ts
+|  |  |  |-- moving_average_test.ts
+|  |  |  |-- mul.ts
+|  |  |  |-- multi_rnn_cell.ts
+|  |  |  |-- multi_rnn_cell_test.ts
+|  |  |  |-- multinomial.ts
+|  |  |  |-- multinomial_test.ts
+|  |  |  |-- neg.ts
+|  |  |  |-- neg_test.ts
+|  |  |  |-- nonmax_util.ts
+|  |  |  |-- norm.ts
+|  |  |  |-- norm_test.ts
+|  |  |  |-- not_equal.ts
+|  |  |  |-- not_equal_test.ts
+|  |  |  |-- one_hot.ts
+|  |  |  |-- one_hot_test.ts
+|  |  |  |-- ones.ts
+|  |  |  |-- ones_like.ts
+|  |  |  |-- ones_like_test.ts
+|  |  |  |-- ones_test.ts
+|  |  |  |-- operation.ts
+|  |  |  |-- operation_test.ts
+|  |  |  |-- ops.ts
+|  |  |  |-- ops_for_converter.ts
+|  |  |  |-- outer_product.ts
+|  |  |  |-- pad.ts
+|  |  |  |-- pad1d.ts
+|  |  |  |-- pad2d.ts
+|  |  |  |-- pad3d.ts
+|  |  |  |-- pad4d.ts
+|  |  |  |-- pad_test.ts
+|  |  |  |-- pool.ts
+|  |  |  |-- pool_test.ts
+|  |  |  |-- pow.ts
+|  |  |  |-- prelu.ts
+|  |  |  |-- print.ts
+|  |  |  |-- prod.ts
+|  |  |  |-- prod_test.ts
+|  |  |  |-- rand.ts
+|  |  |  |-- rand_test.ts
+|  |  |  |-- rand_util.ts
+|  |  |  |-- random_gamma.ts
+|  |  |  |-- random_gamma_test.ts
+|  |  |  |-- random_normal.ts
+|  |  |  |-- random_normal_test.ts
+|  |  |  |-- random_uniform.ts
+|  |  |  |-- random_uniform_test.ts
+|  |  |  |-- range.ts
+|  |  |  |-- range_test.ts
+|  |  |  |-- real.ts
+|  |  |  |-- reciprocal.ts
+|  |  |  |-- reciprocal_test.ts
+|  |  |  |-- reduce_util.ts
+|  |  |  |-- relu.ts
+|  |  |  |-- relu6.ts
+|  |  |  |-- relu6_test.ts
+|  |  |  |-- relu_test.ts
+|  |  |  |-- reshape.ts
+|  |  |  |-- reverse.ts
+|  |  |  |-- reverse_1d.ts
+|  |  |  |-- reverse_1d_test.ts
+|  |  |  |-- reverse_2d.ts
+|  |  |  |-- reverse_2d_test.ts
+|  |  |  |-- reverse_3d.ts
+|  |  |  |-- reverse_3d_test.ts
+|  |  |  |-- reverse_4d.ts
+|  |  |  |-- reverse_4d_test.ts
+|  |  |  |-- reverse_test.ts
+|  |  |  |-- rotate_util.ts
+|  |  |  |-- round.ts
+|  |  |  |-- round_test.ts
+|  |  |  |-- rsqrt.ts
+|  |  |  |-- rsqrt_test.ts
+|  |  |  |-- scalar.ts
+|  |  |  |-- scatter_nd.ts
+|  |  |  |-- scatter_nd_test.ts
+|  |  |  |-- scatter_nd_util.ts
+|  |  |  |-- segment_util.ts
+|  |  |  |-- selu.ts
+|  |  |  |-- selu_test.ts
+|  |  |  |-- selu_util.ts
+|  |  |  |-- separable_conv2d.ts
+|  |  |  |-- setdiff1d_async.ts
+|  |  |  |-- setdiff1d_async_test.ts
+|  |  |  |-- sigmoid.ts
+|  |  |  |-- sigmoid_test.ts
+|  |  |  |-- sign.ts
+|  |  |  |-- sign_test.ts
+|  |  |  |-- signal
+|  |  |  |  |-- frame.ts
+|  |  |  |  |-- frame_test.ts
+|  |  |  |  |-- hamming_window.ts
+|  |  |  |  |-- hamming_window_test.ts
+|  |  |  |  |-- hann_window.ts
+|  |  |  |  |-- hann_window_test.ts
+|  |  |  |  |-- stft.ts
+|  |  |  |  |-- stft_test.ts
+|  |  |  |-- signal_ops_util.ts
+|  |  |  |-- sin.ts
+|  |  |  |-- sin_test.ts
+|  |  |  |-- sinh.ts
+|  |  |  |-- sinh_test.ts
+|  |  |  |-- slice.ts
+|  |  |  |-- slice1d.ts
+|  |  |  |-- slice1d_test.ts
+|  |  |  |-- slice2d.ts
+|  |  |  |-- slice2d_test.ts
+|  |  |  |-- slice3d.ts
+|  |  |  |-- slice3d_test.ts
+|  |  |  |-- slice4d.ts
+|  |  |  |-- slice4d_test.ts
+|  |  |  |-- slice_test.ts
+|  |  |  |-- slice_util.ts
+|  |  |  |-- slice_util_test.ts
+|  |  |  |-- softmax.ts
+|  |  |  |-- softmax_test.ts
+|  |  |  |-- softplus.ts
+|  |  |  |-- softplus_test.ts
+|  |  |  |-- space_to_batch_nd.ts
+|  |  |  |-- space_to_batch_nd_test.ts
+|  |  |  |-- sparse
+|  |  |  |  |-- sparse_fill_empty_rows.ts
+|  |  |  |  |-- sparse_fill_empty_rows_test.ts
+|  |  |  |  |-- sparse_reshape.ts
+|  |  |  |  |-- sparse_reshape_test.ts
+|  |  |  |  |-- sparse_segment_mean.ts
+|  |  |  |  |-- sparse_segment_mean_test.ts
+|  |  |  |  |-- sparse_segment_sum.ts
+|  |  |  |  |-- sparse_segment_sum_test.ts
+|  |  |  |-- sparse_to_dense.ts
+|  |  |  |-- sparse_to_dense_test.ts
+|  |  |  |-- sparse_to_dense_util.ts
+|  |  |  |-- spectral
+|  |  |  |  |-- fft.ts
+|  |  |  |  |-- fft_test.ts
+|  |  |  |  |-- ifft.ts
+|  |  |  |  |-- irfft.ts
+|  |  |  |  |-- irfft_test.ts
+|  |  |  |  |-- rfft.ts
+|  |  |  |  |-- rfft_test.ts
+|  |  |  |-- split.ts
+|  |  |  |-- split_test.ts
+|  |  |  |-- split_util.ts
+|  |  |  |-- sqrt.ts
+|  |  |  |-- sqrt_test.ts
+|  |  |  |-- square.ts
+|  |  |  |-- square_test.ts
+|  |  |  |-- squared_difference.ts
+|  |  |  |-- squeeze.ts
+|  |  |  |-- stack.ts
+|  |  |  |-- stack_test.ts
+|  |  |  |-- step.ts
+|  |  |  |-- step_test.ts
+|  |  |  |-- strided_slice.ts
+|  |  |  |-- strided_slice_test.ts
+|  |  |  |-- string
+|  |  |  |  |-- string_n_grams.ts
+|  |  |  |  |-- string_n_grams_test.ts
+|  |  |  |  |-- string_split.ts
+|  |  |  |  |-- string_split_test.ts
+|  |  |  |  |-- string_to_hash_bucket_fast.ts
+|  |  |  |  |-- string_to_hash_bucket_fast_test.ts
+|  |  |  |-- sub.ts
+|  |  |  |-- sub_test.ts
+|  |  |  |-- sum.ts
+|  |  |  |-- sum_test.ts
+|  |  |  |-- tan.ts
+|  |  |  |-- tan_test.ts
+|  |  |  |-- tanh.ts
+|  |  |  |-- tanh_test.ts
+|  |  |  |-- tensor.ts
+|  |  |  |-- tensor1d.ts
+|  |  |  |-- tensor2d.ts
+|  |  |  |-- tensor3d.ts
+|  |  |  |-- tensor4d.ts
+|  |  |  |-- tensor5d.ts
+|  |  |  |-- tensor6d.ts
+|  |  |  |-- tensor_ops_util.ts
+|  |  |  |-- tile.ts
+|  |  |  |-- tile_test.ts
+|  |  |  |-- to_pixels_test.ts
+|  |  |  |-- topk.ts
+|  |  |  |-- topk_test.ts
+|  |  |  |-- transpose.ts
+|  |  |  |-- transpose_test.ts
+|  |  |  |-- truncated_normal.ts
+|  |  |  |-- truncated_normal_test.ts
+|  |  |  |-- unique.ts
+|  |  |  |-- unique_test.ts
+|  |  |  |-- unsorted_segment_sum.ts
+|  |  |  |-- unsorted_segment_sum_test.ts
+|  |  |  |-- unstack.ts
+|  |  |  |-- unstack_test.ts
+|  |  |  |-- variable.ts
+|  |  |  |-- where.ts
+|  |  |  |-- where_async.ts
+|  |  |  |-- where_async_test.ts
+|  |  |  |-- where_test.ts
+|  |  |  |-- zeros.ts
+|  |  |  |-- zeros_like.ts
+|  |  |  |-- zeros_like_test.ts
+|  |  |  |-- zeros_test.ts
+|  |  |-- optimizers
+|  |  |  |-- adadelta_optimizer.ts
+|  |  |  |-- adadelta_optimizer_test.ts
+|  |  |  |-- adagrad_optimizer.ts
+|  |  |  |-- adagrad_optimizer_test.ts
+|  |  |  |-- adam_optimizer.ts
+|  |  |  |-- adam_optimizer_test.ts
+|  |  |  |-- adamax_optimizer.ts
+|  |  |  |-- adamax_optimizer_test.ts
+|  |  |  |-- momentum_optimizer.ts
+|  |  |  |-- momentum_optimizer_test.ts
+|  |  |  |-- optimizer.ts
+|  |  |  |-- optimizer_constructors.ts
+|  |  |  |-- optimizer_test.ts
+|  |  |  |-- rmsprop_optimizer.ts
+|  |  |  |-- rmsprop_optimizer_test.ts
+|  |  |  |-- sgd_optimizer.ts
+|  |  |  |-- sgd_optimizer_test.ts
+|  |  |-- platforms
+|  |  |  |-- platform.ts
+|  |  |  |-- platform_browser.ts
+|  |  |  |-- platform_browser_test.ts
+|  |  |  |-- platform_node.ts
+|  |  |  |-- platform_node_test.ts
+|  |  |-- profiler.ts
+|  |  |-- profiler_test.ts
+|  |  |-- public
+|  |  |  |-- chained_ops
+|  |  |  |  |-- abs.ts
+|  |  |  |  |-- acos.ts
+|  |  |  |  |-- acosh.ts
+|  |  |  |  |-- add.ts
+|  |  |  |  |-- all.ts
+|  |  |  |  |-- any.ts
+|  |  |  |  |-- arg_max.ts
+|  |  |  |  |-- arg_min.ts
+|  |  |  |  |-- as1d.ts
+|  |  |  |  |-- as2d.ts
+|  |  |  |  |-- as3d.ts
+|  |  |  |  |-- as4d.ts
+|  |  |  |  |-- as5d.ts
+|  |  |  |  |-- as_scalar.ts
+|  |  |  |  |-- as_type.ts
+|  |  |  |  |-- asin.ts
+|  |  |  |  |-- asinh.ts
+|  |  |  |  |-- atan.ts
+|  |  |  |  |-- atan2.ts
+|  |  |  |  |-- atanh.ts
+|  |  |  |  |-- avg_pool.ts
+|  |  |  |  |-- batch_to_space_nd.ts
+|  |  |  |  |-- batchnorm.ts
+|  |  |  |  |-- broadcast_to.ts
+|  |  |  |  |-- cast.ts
+|  |  |  |  |-- ceil.ts
+|  |  |  |  |-- clip_by_value.ts
+|  |  |  |  |-- concat.ts
+|  |  |  |  |-- conv1d.ts
+|  |  |  |  |-- conv2d.ts
+|  |  |  |  |-- conv2d_transpose.ts
+|  |  |  |  |-- cos.ts
+|  |  |  |  |-- cosh.ts
+|  |  |  |  |-- cumsum.ts
+|  |  |  |  |-- depth_to_space.ts
+|  |  |  |  |-- depthwise_conv2d.ts
+|  |  |  |  |-- dilation2d.ts
+|  |  |  |  |-- div.ts
+|  |  |  |  |-- div_no_nan.ts
+|  |  |  |  |-- dot.ts
+|  |  |  |  |-- elu.ts
+|  |  |  |  |-- equal.ts
+|  |  |  |  |-- erf.ts
+|  |  |  |  |-- exp.ts
+|  |  |  |  |-- expand_dims.ts
+|  |  |  |  |-- expm1.ts
+|  |  |  |  |-- fft.ts
+|  |  |  |  |-- flatten.ts
+|  |  |  |  |-- floor.ts
+|  |  |  |  |-- floorDiv.ts
+|  |  |  |  |-- gather.ts
+|  |  |  |  |-- greater.ts
+|  |  |  |  |-- greater_equal.ts
+|  |  |  |  |-- ifft.ts
+|  |  |  |  |-- irfft.ts
+|  |  |  |  |-- is_finite.ts
+|  |  |  |  |-- is_inf.ts
+|  |  |  |  |-- is_nan.ts
+|  |  |  |  |-- leaky_relu.ts
+|  |  |  |  |-- less.ts
+|  |  |  |  |-- less_equal.ts
+|  |  |  |  |-- local_response_normalization.ts
+|  |  |  |  |-- log.ts
+|  |  |  |  |-- log1p.ts
+|  |  |  |  |-- log_sigmoid.ts
+|  |  |  |  |-- log_softmax.ts
+|  |  |  |  |-- log_sum_exp.ts
+|  |  |  |  |-- logical_and.ts
+|  |  |  |  |-- logical_not.ts
+|  |  |  |  |-- logical_or.ts
+|  |  |  |  |-- logical_xor.ts
+|  |  |  |  |-- mat_mul.ts
+|  |  |  |  |-- max.ts
+|  |  |  |  |-- max_pool.ts
+|  |  |  |  |-- maximum.ts
+|  |  |  |  |-- mean.ts
+|  |  |  |  |-- min.ts
+|  |  |  |  |-- minimum.ts
+|  |  |  |  |-- mirror_pad.ts
+|  |  |  |  |-- mod.ts
+|  |  |  |  |-- mul.ts
+|  |  |  |  |-- neg.ts
+|  |  |  |  |-- norm.ts
+|  |  |  |  |-- not_equal.ts
+|  |  |  |  |-- one_hot.ts
+|  |  |  |  |-- ones_like.ts
+|  |  |  |  |-- pad.ts
+|  |  |  |  |-- pool.ts
+|  |  |  |  |-- pow.ts
+|  |  |  |  |-- prelu.ts
+|  |  |  |  |-- prod.ts
+|  |  |  |  |-- reciprocal.ts
+|  |  |  |  |-- register_all_chained_ops.ts
+|  |  |  |  |-- register_all_chained_ops_test.ts
+|  |  |  |  |-- relu.ts
+|  |  |  |  |-- relu6.ts
+|  |  |  |  |-- reshape.ts
+|  |  |  |  |-- reshape_as.ts
+|  |  |  |  |-- resize_bilinear.ts
+|  |  |  |  |-- resize_nearest_neighbor.ts
+|  |  |  |  |-- reverse.ts
+|  |  |  |  |-- rfft.ts
+|  |  |  |  |-- round.ts
+|  |  |  |  |-- rsqrt.ts
+|  |  |  |  |-- selu.ts
+|  |  |  |  |-- separable_conv2d.ts
+|  |  |  |  |-- sigmoid.ts
+|  |  |  |  |-- sign.ts
+|  |  |  |  |-- sin.ts
+|  |  |  |  |-- sinh.ts
+|  |  |  |  |-- slice.ts
+|  |  |  |  |-- softmax.ts
+|  |  |  |  |-- softplus.ts
+|  |  |  |  |-- space_to_batch_nd.ts
+|  |  |  |  |-- split.ts
+|  |  |  |  |-- sqrt.ts
+|  |  |  |  |-- square.ts
+|  |  |  |  |-- squared_difference.ts
+|  |  |  |  |-- squeeze.ts
+|  |  |  |  |-- stack.ts
+|  |  |  |  |-- step.ts
+|  |  |  |  |-- strided_slice.ts
+|  |  |  |  |-- sub.ts
+|  |  |  |  |-- sum.ts
+|  |  |  |  |-- tan.ts
+|  |  |  |  |-- tanh.ts
+|  |  |  |  |-- tile.ts
+|  |  |  |  |-- to_bool.ts
+|  |  |  |  |-- to_float.ts
+|  |  |  |  |-- to_int.ts
+|  |  |  |  |-- topk.ts
+|  |  |  |  |-- transpose.ts
+|  |  |  |  |-- unique.ts
+|  |  |  |  |-- unsorted_segment_sum.ts
+|  |  |  |  |-- unstack.ts
+|  |  |  |  |-- where.ts
+|  |  |  |  |-- zeros_like.ts
+|  |  |-- register_all_gradients.ts
+|  |  |-- serialization.ts
+|  |  |-- serialization_test.ts
+|  |  |-- setup_test.ts
+|  |  |-- tape.ts
+|  |  |-- tape_test.ts
+|  |  |-- tensor.ts
+|  |  |-- tensor_format.ts
+|  |  |-- tensor_test.ts
+|  |  |-- tensor_types.ts
+|  |  |-- tensor_util.ts
+|  |  |-- tensor_util_env.ts
+|  |  |-- tensor_util_test.ts
+|  |  |-- test_async_backends.ts
+|  |  |-- test_node.ts
+|  |  |-- test_util.ts
+|  |  |-- test_util_test.ts
+|  |  |-- tests.ts
+|  |  |-- train.ts
+|  |  |-- types.ts
+|  |  |-- types_test.ts
+|  |  |-- util.ts
+|  |  |-- util_base.ts
+|  |  |-- util_test.ts
+|  |  |-- variable_test.ts
+|  |  |-- version.ts
+|  |  |-- version_test.ts
+|  |  |-- worker_node_test.ts
+|  |  |-- worker_test.ts
+|  |-- test.html
+|  |-- tsconfig.json
+|  |-- tsconfig.test.json
+|  |-- tslint.json
+|  |-- yarn.lock
+|-- tfjs-data
+|  |-- .npmignore
+|  |-- .nycrc
+|  |-- .vscode
+|  |  |-- settings.json
+|  |-- README.md
+|  |-- ROADMAP.md
+|  |-- cloudbuild.yml
+|  |-- demo
+|  |  |-- boston-housing
+|  |  |  |-- .babelrc
+|  |  |  |-- README.md
+|  |  |  |-- data.ts
+|  |  |  |-- index.html
+|  |  |  |-- index.ts
+|  |  |  |-- normalization.ts
+|  |  |  |-- package.json
+|  |  |  |-- stats.ts
+|  |  |  |-- tsconfig.json
+|  |  |  |-- ui.ts
+|  |  |  |-- yarn.lock
+|  |-- karma.conf.js
+|  |-- package.json
+|  |-- rollup.config.js
+|  |-- scripts
+|  |  |-- build-npm.sh
+|  |  |-- test-ci.sh
+|  |  |-- test_snippets.ts
+|  |-- src
+|  |  |-- dataset.ts
+|  |  |-- dataset_test.ts
+|  |  |-- datasets
+|  |  |  |-- csv_dataset.ts
+|  |  |  |-- csv_dataset_test.ts
+|  |  |  |-- text_line_dataset.ts
+|  |  |  |-- text_line_dataset_test.ts
+|  |  |-- datasource.ts
+|  |  |-- index.ts
+|  |  |-- iterators
+|  |  |  |-- byte_chunk_iterator.ts
+|  |  |  |-- byte_chunk_iterator_test.ts
+|  |  |  |-- chained_iterator_test.ts
+|  |  |  |-- file_chunk_iterator.ts
+|  |  |  |-- file_chunk_iterator_test.ts
+|  |  |  |-- lazy_iterator.ts
+|  |  |  |-- lazy_iterator_test.ts
+|  |  |  |-- microphone_iterator.ts
+|  |  |  |-- microphone_iterator_test.ts
+|  |  |  |-- prefetch_iterator_test.ts
+|  |  |  |-- shuffle_iterator_test.ts
+|  |  |  |-- string_iterator.ts
+|  |  |  |-- string_iterator_test.ts
+|  |  |  |-- url_chunk_iterator.ts
+|  |  |  |-- url_chunk_iterator_test.ts
+|  |  |  |-- webcam_iterator.ts
+|  |  |  |-- webcam_iterator_test.ts
+|  |  |-- readers.ts
+|  |  |-- readers_test.ts
+|  |  |-- sources
+|  |  |  |-- file_data_source.ts
+|  |  |  |-- url_data_source.ts
+|  |  |-- statistics.ts
+|  |  |-- statistics_test.ts
+|  |  |-- test_node.ts
+|  |  |-- types.ts
+|  |  |-- util
+|  |  |  |-- deep_clone.ts
+|  |  |  |-- deep_map.ts
+|  |  |  |-- deep_map_test.ts
+|  |  |  |-- growing_ring_buffer.ts
+|  |  |  |-- ring_buffer.ts
+|  |  |  |-- ring_buffer_test.ts
+|  |  |  |-- source_util.ts
+|  |  |  |-- source_util_test.ts
+|  |  |  |-- test_utils.ts
+|  |  |-- version.ts
+|  |-- tsconfig.json
+|  |-- tsconfig.test.json
+|  |-- tslint.json
+|  |-- yarn.lock
+|-- tfjs-inference
+|  |-- README.md
+|  |-- cloudbuild.yml
+|  |-- package.json
+|  |-- python
+|  |  |-- __init__.py
+|  |  |-- inference.py
+|  |  |-- inference_test.py
+|  |  |-- requirements.txt
+|  |-- scripts
+|  |  |-- run_python.sh
+|  |-- src
+|  |  |-- file_handler.ts
+|  |  |-- file_handler_test.ts
+|  |  |-- index.ts
+|  |  |-- test_node.ts
+|  |-- test_data
+|  |  |-- data.json
+|  |  |-- dtype.json
+|  |  |-- model.json
+|  |  |-- shape.json
+|  |  |-- tf_input_name.json
+|  |  |-- tf_output_name.json
+|  |  |-- weights.bin
+|  |-- tsconfig.json
+|  |-- tsconfig.test.json
+|  |-- tslint.json
+|  |-- yarn.lock
+|-- tfjs-layers
+|  |-- .npmignore
+|  |-- .vscode
+|  |  |-- settings.json
+|  |  |-- tasks.json
+|  |-- DEVELOPMENT.md
+|  |-- LICENSE
+|  |-- README.md
+|  |-- cloudbuild.yml
+|  |-- demos
+|  |  |-- README.md
+|  |-- integration_tests
+|  |  |-- benchmarks
+|  |  |  |-- .babelrc
+|  |  |  |-- .eslintrc.json
+|  |  |  |-- README.md
+|  |-- karma.conf.js
+|  |-- package.json
+|  |-- rollup.config.js
+|  |-- scripts
+|  |  |-- build-npm.sh
+|  |  |-- test-ci.sh
+|  |  |-- test_snippets.ts
+|  |  |-- tsconfig.json
+|  |-- src
+|  |  |-- activations.ts
+|  |  |-- activations_test.ts
+|  |  |-- backend
+|  |  |  |-- common.ts
+|  |  |  |-- state.ts
+|  |  |  |-- state_test.ts
+|  |  |  |-- tfjs_backend.ts
+|  |  |  |-- tfjs_backend_test.ts
+|  |  |-- base_callbacks.ts
+|  |  |-- base_callbacks_test.ts
+|  |  |-- callbacks.ts
+|  |  |-- callbacks_test.ts
+|  |  |-- common.ts
+|  |  |-- common_test.ts
+|  |  |-- constraints.ts
+|  |  |-- constraints_test.ts
+|  |  |-- engine
+|  |  |  |-- container.ts
+|  |  |  |-- container_test.ts
+|  |  |  |-- dataset_fakes.ts
+|  |  |  |-- dataset_fakes_test.ts
+|  |  |  |-- dataset_stub.ts
+|  |  |  |-- executor.ts
+|  |  |  |-- executor_test.ts
+|  |  |  |-- input_layer.ts
+|  |  |  |-- input_layer_test.ts
+|  |  |  |-- topology.ts
+|  |  |  |-- topology_test.ts
+|  |  |  |-- training.ts
+|  |  |  |-- training_dataset.ts
+|  |  |  |-- training_dataset_test.ts
+|  |  |  |-- training_tensors.ts
+|  |  |  |-- training_test.ts
+|  |  |  |-- training_utils.ts
+|  |  |  |-- training_utils_test.ts
+|  |  |  |-- training_weighted_test.ts
+|  |  |-- errors.ts
+|  |  |-- errors_test.ts
+|  |  |-- exports.ts
+|  |  |-- exports_constraints.ts
+|  |  |-- exports_initializers.ts
+|  |  |-- exports_layers.ts
+|  |  |-- exports_metrics.ts
+|  |  |-- exports_models.ts
+|  |  |-- exports_regularizers.ts
+|  |  |-- index.ts
+|  |  |-- initializers.ts
+|  |  |-- initializers_test.ts
+|  |  |-- keras_format
+|  |  |  |-- README.md
+|  |  |  |-- activation_config.ts
+|  |  |  |-- common.ts
+|  |  |  |-- constraint_config.ts
+|  |  |  |-- initializer_config.ts
+|  |  |  |-- input_config.ts
+|  |  |  |-- keras_class_names.ts
+|  |  |  |-- layers
+|  |  |  |  |-- advanced_activation_serialization.ts
+|  |  |  |  |-- convolutional_depthwise_serialization.ts
+|  |  |  |  |-- convolutional_serialization.ts
+|  |  |  |  |-- core_serialization.ts
+|  |  |  |  |-- embeddings_serialization.ts
+|  |  |  |  |-- layer_serialization.ts
+|  |  |  |  |-- merge_serialization.ts
+|  |  |  |  |-- normalization_serialization.ts
+|  |  |  |  |-- padding_serialization.ts
+|  |  |  |  |-- pooling_serialization.ts
+|  |  |  |  |-- recurrent_serialization.ts
+|  |  |  |  |-- wrappers_serialization.ts
+|  |  |  |-- loss_config.ts
+|  |  |  |-- model_serialization.ts
+|  |  |  |-- node_config.ts
+|  |  |  |-- optimizer_config.ts
+|  |  |  |-- regularizer_config.ts
+|  |  |  |-- topology_config.ts
+|  |  |  |-- training_config.ts
+|  |  |  |-- types.ts
+|  |  |  |-- utils.ts
+|  |  |-- layers
+|  |  |  |-- advanced_activation_test.ts
+|  |  |  |-- advanced_activations.ts
+|  |  |  |-- convolutional.ts
+|  |  |  |-- convolutional_depthwise.ts
+|  |  |  |-- convolutional_depthwise_test.ts
+|  |  |  |-- convolutional_recurrent.ts
+|  |  |  |-- convolutional_recurrent_test.ts
+|  |  |  |-- convolutional_test.ts
+|  |  |  |-- core.ts
+|  |  |  |-- core_test.ts
+|  |  |  |-- embeddings.ts
+|  |  |  |-- embeddings_test.ts
+|  |  |  |-- merge.ts
+|  |  |  |-- merge_test.ts
+|  |  |  |-- noise.ts
+|  |  |  |-- noise_test.ts
+|  |  |  |-- normalization.ts
+|  |  |  |-- normalization_test.ts
+|  |  |  |-- padding.ts
+|  |  |  |-- padding_test.ts
+|  |  |  |-- pooling.ts
+|  |  |  |-- pooling_test.ts
+|  |  |  |-- recurrent.ts
+|  |  |  |-- recurrent_test.ts
+|  |  |  |-- serialization.ts
+|  |  |  |-- serialization_test.ts
+|  |  |  |-- wrappers.ts
+|  |  |  |-- wrappers_test.ts
+|  |  |-- logs.ts
+|  |  |-- losses.ts
+|  |  |-- losses_test.ts
+|  |  |-- metrics.ts
+|  |  |-- metrics_test.ts
+|  |  |-- model_save_test.ts
+|  |  |-- model_summary_test.ts
+|  |  |-- models.ts
+|  |  |-- models_test.ts
+|  |  |-- optimizers.ts
+|  |  |-- optimizers_test.ts
+|  |  |-- regularizers.ts
+|  |  |-- regularizers_test.ts
+|  |  |-- setup_tests.ts
+|  |  |-- types.ts
+|  |  |-- types_test.ts
+|  |  |-- user_defined_metadata.ts
+|  |  |-- user_defined_metadata_test.ts
+|  |  |-- utils
+|  |  |  |-- conv_utils.ts
+|  |  |  |-- generic_utils.ts
+|  |  |  |-- generic_utils_test.ts
+|  |  |  |-- layer_utils.ts
+|  |  |  |-- math_utils.ts
+|  |  |  |-- math_utils_test.ts
+|  |  |  |-- serialization_utils.ts
+|  |  |  |-- serialization_utils_test.ts
+|  |  |  |-- test_utils.ts
+|  |  |  |-- types_utils.ts
+|  |  |  |-- types_utils_test.ts
+|  |  |  |-- variable_utils.ts
+|  |  |  |-- variable_utils_test.ts
+|  |  |-- variables.ts
+|  |  |-- variables_test.ts
+|  |  |-- version.ts
+|  |  |-- version_test.ts
+|  |-- tools
+|  |  |-- clang_format_ts.sh
+|  |-- tsconfig.json
+|  |-- tsconfig.test.json
+|  |-- tslint.json
+|  |-- yarn.lock
+|-- tfjs-node-gpu
+|  |-- .npmignore
+|  |-- .nycrc
+|  |-- README.md
+|  |-- cloudbuild.yml
+|  |-- package.json
+|  |-- prep-gpu-windows.bat
+|  |-- prep-gpu.sh
+|  |-- test_objects
+|  |  |-- images
+|  |  |  |-- gif_test.gif
+|  |  |  |-- image_bmp_4_channel_test.bmp
+|  |  |  |-- image_bmp_test.bmp
+|  |  |  |-- image_jpeg_test.jpeg
+|  |  |  |-- image_png_4_channel_test.png
+|  |  |  |-- image_png_test.png
+|  |  |-- saved_model
+|  |  |  |-- int64_multiply
+|  |  |  |  |-- saved_model.pb
+|  |  |  |  |-- variables
+|  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |-- variables.index
+|  |  |  |-- model_multi_output
+|  |  |  |  |-- saved_model.pb
+|  |  |  |  |-- variables
+|  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |-- variables.index
+|  |  |  |-- model_single_input_multi_output
+|  |  |  |  |-- saved_model.pb
+|  |  |  |  |-- variables
+|  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |-- variables.index
+|  |  |  |-- module_with_multiple_signatures
+|  |  |  |  |-- saved_model.pb
+|  |  |  |  |-- variables
+|  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |-- variables.index
+|  |  |  |-- times_three_float
+|  |  |  |  |-- saved_model.pb
+|  |  |  |  |-- variables
+|  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |-- variables.index
+|  |  |  |-- times_two_int
+|  |  |  |  |-- saved_model.pb
+|  |  |  |  |-- variables
+|  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |-- variables.index
+|  |  |  |-- uint8_multiply
+|  |  |  |  |-- saved_model.pb
+|  |  |  |  |-- variables
+|  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |-- variables.index
+|  |-- tsconfig.json
+|  |-- tsconfig.test.json
+|  |-- tslint.json
+|  |-- yarn.lock
+|-- tfjs-node
+|  |-- .bazelversion
+|  |-- .npmignore
+|  |-- .nycrc
+|  |-- .travis.yml
+|  |-- .vscode
+|  |  |-- c_cpp_properties.json
+|  |  |-- launch.json
+|  |  |-- settings.json
+|  |-- DEVELOPMENT.md
+|  |-- README.md
+|  |-- WINDOWS_TROUBLESHOOTING.md
+|  |-- binding.gyp
+|  |-- binding
+|  |  |-- napi_auto_ref.h
+|  |  |-- tf_auto_status.h
+|  |  |-- tf_auto_tensor.h
+|  |  |-- tfe_auto_op.h
+|  |  |-- tfjs_backend.cc
+|  |  |-- tfjs_backend.h
+|  |  |-- tfjs_binding.cc
+|  |  |-- utils.h
+|  |-- cloudbuild.yml
+|  |-- package.json
+|  |-- python
+|  |  |-- int64_model.py
+|  |  |-- unint8_model.py
+|  |-- scripts
+|  |  |-- build-and-upload-addon.sh
+|  |  |-- build-and-upload-windows-addon-gpu.bat
+|  |  |-- build-and-upload-windows-addon.bat
+|  |  |-- build-npm.sh
+|  |  |-- custom-binary.sample.json
+|  |  |-- deps-constants.js
+|  |  |-- deps-stage.js
+|  |  |-- ensure-cpu-gpu-packages-align.js
+|  |  |-- get-addon-name.js
+|  |  |-- install.js
+|  |  |-- make-version
+|  |  |-- print-full-package-host.js
+|  |  |-- publish-npm-gpu.sh
+|  |  |-- publish-npm.sh
+|  |  |-- resources.js
+|  |  |-- tag-version
+|  |  |-- tsconfig.json
+|  |-- src
+|  |  |-- callbacks.ts
+|  |  |-- callbacks_test.ts
+|  |  |-- canvas_test.ts
+|  |  |-- image.ts
+|  |  |-- image_test.ts
+|  |  |-- index.ts
+|  |  |-- index_test.ts
+|  |  |-- int64_tensors.ts
+|  |  |-- int64_tensors_test.ts
+|  |  |-- io
+|  |  |  |-- file_system.ts
+|  |  |  |-- file_system_test.ts
+|  |  |  |-- index.ts
+|  |  |  |-- io_utils.ts
+|  |  |  |-- io_utils_test.ts
+|  |  |  |-- node_http.ts
+|  |  |  |-- node_http_test.ts
+|  |  |-- kernels
+|  |  |  |-- Abs.ts
+|  |  |  |-- Acos.ts
+|  |  |  |-- Acosh.ts
+|  |  |  |-- Add.ts
+|  |  |  |-- AddN.ts
+|  |  |  |-- All.ts
+|  |  |  |-- Any.ts
+|  |  |  |-- ArgMax.ts
+|  |  |  |-- ArgMin.ts
+|  |  |  |-- Asin.ts
+|  |  |  |-- Asinh.ts
+|  |  |  |-- Atan.ts
+|  |  |  |-- Atan2.ts
+|  |  |  |-- Atanh.ts
+|  |  |  |-- AvgPool.ts
+|  |  |  |-- AvgPool3D.ts
+|  |  |  |-- AvgPool3DGrad.ts
+|  |  |  |-- AvgPoolGrad.ts
+|  |  |  |-- BatchMatMul.ts
+|  |  |  |-- BatchToSpaceND.ts
+|  |  |  |-- Bincount.ts
+|  |  |  |-- Cast.ts
+|  |  |  |-- Ceil.ts
+|  |  |  |-- ClipByValue.ts
+|  |  |  |-- Complex.ts
+|  |  |  |-- ComplexAbs.ts
+|  |  |  |-- Concat.ts
+|  |  |  |-- Conv2D.ts
+|  |  |  |-- Conv2DBackpropFilter.ts
+|  |  |  |-- Conv2DBackpropInput.ts
+|  |  |  |-- Conv3D.ts
+|  |  |  |-- Conv3DBackpropFilterV2.ts
+|  |  |  |-- Conv3DBackpropInputV2.ts
+|  |  |  |-- Cos.ts
+|  |  |  |-- Cosh.ts
+|  |  |  |-- CropAndResize.ts
+|  |  |  |-- Cumsum.ts
+|  |  |  |-- DepthToSpace.ts
+|  |  |  |-- DepthwiseConv2dNative.ts
+|  |  |  |-- DepthwiseConv2dNativeBackpropFilter.ts
+|  |  |  |-- DepthwiseConv2dNativeBackpropInput.ts
+|  |  |  |-- Diag.ts
+|  |  |  |-- Dilation2D.ts
+|  |  |  |-- Dilation2DBackpropFilter.ts
+|  |  |  |-- Dilation2DBackpropInput.ts
+|  |  |  |-- Elu.ts
+|  |  |  |-- EluGrad.ts
+|  |  |  |-- Equal.ts
+|  |  |  |-- Erf.ts
+|  |  |  |-- Exp.ts
+|  |  |  |-- ExpandDims.ts
+|  |  |  |-- Expm1.ts
+|  |  |  |-- FFT.ts
+|  |  |  |-- Fill.ts
+|  |  |  |-- FlipLeftRight.ts
+|  |  |  |-- Floor.ts
+|  |  |  |-- FloorDiv.ts
+|  |  |  |-- FusedBatchNorm.ts
+|  |  |  |-- FusedConv2D.ts
+|  |  |  |-- FusedDepthwiseConv2D.ts
+|  |  |  |-- GatherNd.ts
+|  |  |  |-- GatherV2.ts
+|  |  |  |-- Greater.ts
+|  |  |  |-- GreaterEqual.ts
+|  |  |  |-- IFFT.ts
+|  |  |  |-- Identity.ts
+|  |  |  |-- Imag.ts
+|  |  |  |-- IsFinite.ts
+|  |  |  |-- IsInf.ts
+|  |  |  |-- IsNan.ts
+|  |  |  |-- LRN.ts
+|  |  |  |-- LRNGrad.ts
+|  |  |  |-- LeakyRelu.ts
+|  |  |  |-- Less.ts
+|  |  |  |-- LessEqual.ts
+|  |  |  |-- LinSpace.ts
+|  |  |  |-- Log.ts
+|  |  |  |-- Log1p.ts
+|  |  |  |-- LogicalAnd.ts
+|  |  |  |-- LogicalNot.ts
+|  |  |  |-- LogicalOr.ts
+|  |  |  |-- Max.ts
+|  |  |  |-- MaxPool.ts
+|  |  |  |-- MaxPool3D.ts
+|  |  |  |-- MaxPool3DGrad.ts
+|  |  |  |-- MaxPoolGrad.ts
+|  |  |  |-- Maximum.ts
+|  |  |  |-- Mean.ts
+|  |  |  |-- Min.ts
+|  |  |  |-- Minimum.ts
+|  |  |  |-- MirrorPad.ts
+|  |  |  |-- Mod.ts
+|  |  |  |-- Multinomial.ts
+|  |  |  |-- Multiply.ts
+|  |  |  |-- Neg.ts
+|  |  |  |-- NonMaxSuppressionV3.ts
+|  |  |  |-- NonMaxSuppressionV4.ts
+|  |  |  |-- NonMaxSuppressionV5.ts
+|  |  |  |-- NotEqual.ts
+|  |  |  |-- OneHot.ts
+|  |  |  |-- OnesLike.ts
+|  |  |  |-- Pack.ts
+|  |  |  |-- PadV2.ts
+|  |  |  |-- Pow.ts
+|  |  |  |-- Prelu.ts
+|  |  |  |-- Prod.ts
+|  |  |  |-- Range.ts
+|  |  |  |-- Real.ts
+|  |  |  |-- RealDiv.ts
+|  |  |  |-- Reciprocal.ts
+|  |  |  |-- Relu.ts
+|  |  |  |-- Relu6.ts
+|  |  |  |-- Reshape.ts
+|  |  |  |-- ResizeBilinear.ts
+|  |  |  |-- ResizeBilinearGrad.ts
+|  |  |  |-- ResizeNearestNeighbor.ts
+|  |  |  |-- ResizeNearestNeighborGrad.ts
+|  |  |  |-- Reverse.ts
+|  |  |  |-- Round.ts
+|  |  |  |-- Rsqrt.ts
+|  |  |  |-- ScatterNd.ts
+|  |  |  |-- Select.ts
+|  |  |  |-- Selu.ts
+|  |  |  |-- Sigmoid.ts
+|  |  |  |-- Sign.ts
+|  |  |  |-- Sin.ts
+|  |  |  |-- Sinh.ts
+|  |  |  |-- Slice.ts
+|  |  |  |-- Softmax.ts
+|  |  |  |-- Softplus.ts
+|  |  |  |-- SpaceToBatchND.ts
+|  |  |  |-- SparseToDense.ts
+|  |  |  |-- SplitV.ts
+|  |  |  |-- Sqrt.ts
+|  |  |  |-- Square.ts
+|  |  |  |-- SquaredDifference.ts
+|  |  |  |-- Step.ts
+|  |  |  |-- StridedSlice.ts
+|  |  |  |-- Sub.ts
+|  |  |  |-- Sum.ts
+|  |  |  |-- Tan.ts
+|  |  |  |-- Tanh.ts
+|  |  |  |-- Tile.ts
+|  |  |  |-- TopK.ts
+|  |  |  |-- Transpose.ts
+|  |  |  |-- Unpack.ts
+|  |  |  |-- UnsortedSegmentSum.ts
+|  |  |  |-- ZerosLike.ts
+|  |  |  |-- _FusedMatMul.ts
+|  |  |-- node.ts
+|  |  |-- nodejs_kernel_backend.ts
+|  |  |-- nodejs_kernel_backend_test.ts
+|  |  |-- proto
+|  |  |  |-- api.proto
+|  |  |  |-- api_pb.js
+|  |  |-- register_all_kernels.ts
+|  |  |-- run_tests.ts
+|  |  |-- saved_model.ts
+|  |  |-- saved_model_test.ts
+|  |  |-- tensorboard.ts
+|  |  |-- tensorboard_test.ts
+|  |  |-- tfjs_binding.ts
+|  |  |-- tfjs_binding_test.ts
+|  |  |-- version.ts
+|  |-- test_objects
+|  |  |-- images
+|  |  |  |-- gif_test.gif
+|  |  |  |-- image_bmp_4_channel_test.bmp
+|  |  |  |-- image_bmp_test.bmp
+|  |  |  |-- image_jpeg_test.jpeg
+|  |  |  |-- image_png_4_channel_test.png
+|  |  |  |-- image_png_test.png
+|  |  |-- saved_model
+|  |  |  |-- int64_multiply
+|  |  |  |  |-- saved_model.pb
+|  |  |  |  |-- variables
+|  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |-- variables.index
+|  |  |  |-- model_multi_output
+|  |  |  |  |-- saved_model.pb
+|  |  |  |  |-- variables
+|  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |-- variables.index
+|  |  |  |-- model_single_input_multi_output
+|  |  |  |  |-- saved_model.pb
+|  |  |  |  |-- variables
+|  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |-- variables.index
+|  |  |  |-- module_with_multiple_signatures
+|  |  |  |  |-- saved_model.pb
+|  |  |  |  |-- variables
+|  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |-- variables.index
+|  |  |  |-- times_three_float
+|  |  |  |  |-- saved_model.pb
+|  |  |  |  |-- variables
+|  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |-- variables.index
+|  |  |  |-- times_two_int
+|  |  |  |  |-- saved_model.pb
+|  |  |  |  |-- variables
+|  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |-- variables.index
+|  |  |  |-- uint8_multiply
+|  |  |  |  |-- saved_model.pb
+|  |  |  |  |-- variables
+|  |  |  |  |  |-- variables.data-00000-of-00001
+|  |  |  |  |  |-- variables.index
+|  |-- tsconfig.json
+|  |-- tsconfig.test.json
+|  |-- tslint.json
+|  |-- yarn.lock
+|-- tfjs-react-native
+|  |-- .npmignore
+|  |-- .vscode
+|  |  |-- settings.json
+|  |-- DEVELOPMENT.md
+|  |-- README.md
+|  |-- cloudbuild.yml
+|  |-- images
+|  |  |-- rn-styletransfer_1.jpg
+|  |  |-- rn-styletransfer_2.jpg
+|  |  |-- rn-styletransfer_3.jpg
+|  |  |-- rn-styletransfer_4.jpg
+|  |-- integration_rn59
+|  |  |-- .buckconfig
+|  |  |-- .gitattributes
+|  |  |-- .gitignore
+|  |  |-- App.tsx
+|  |  |-- README.md
+|  |  |-- android
+|  |  |  |-- app
+|  |  |  |  |-- .project
+|  |  |  |  |-- .settings
+|  |  |  |  |  |-- org.eclipse.buildship.core.prefs
+|  |  |  |  |-- BUCK
+|  |  |  |  |-- build.gradle
+|  |  |  |  |-- build_defs.bzl
+|  |  |  |  |-- proguard-rules.pro
+|  |  |  |  |-- src
+|  |  |  |  |  |-- debug
+|  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |-- main
+|  |  |  |  |  |  |-- AndroidManifest.xml
+|  |  |  |  |  |  |-- java
+|  |  |  |  |  |  |  |-- com
+|  |  |  |  |  |  |  |  |-- integration_rn59
+|  |  |  |  |  |  |  |  |  |-- MainActivity.java
+|  |  |  |  |  |  |  |  |  |-- MainApplication.java
+|  |  |  |  |  |  |  |  |  |-- generated
+|  |  |  |  |  |  |  |  |  |  |-- BasePackageList.java
+|  |  |  |  |  |  |-- res
+|  |  |  |  |  |  |  |-- mipmap-hdpi
+|  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |-- ic_launcher_round.png
+|  |  |  |  |  |  |  |-- mipmap-mdpi
+|  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |-- ic_launcher_round.png
+|  |  |  |  |  |  |  |-- mipmap-xhdpi
+|  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |-- ic_launcher_round.png
+|  |  |  |  |  |  |  |-- mipmap-xxhdpi
+|  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |-- ic_launcher_round.png
+|  |  |  |  |  |  |  |-- mipmap-xxxhdpi
+|  |  |  |  |  |  |  |  |-- ic_launcher.png
+|  |  |  |  |  |  |  |  |-- ic_launcher_round.png
+|  |  |  |  |  |  |  |-- values
+|  |  |  |  |  |  |  |  |-- strings.xml
+|  |  |  |  |  |  |  |  |-- styles.xml
+|  |  |  |-- build.gradle
+|  |  |  |-- gradle.properties
+|  |  |  |-- gradle
+|  |  |  |  |-- wrapper
+|  |  |  |  |  |-- gradle-wrapper.jar
+|  |  |  |  |  |-- gradle-wrapper.properties
+|  |  |  |-- gradlew
+|  |  |  |-- gradlew.bat
+|  |  |  |-- keystores
+|  |  |  |  |-- BUCK
+|  |  |  |  |-- debug.keystore.properties
+|  |  |  |-- settings.gradle
+|  |  |-- app.json
+|  |  |-- assets
+|  |  |  |-- graph_model
+|  |  |  |  |-- group1-shard1of1.bin
+|  |  |  |  |-- model.json
+|  |  |  |-- images
+|  |  |  |  |-- catsmall.jpg
+|  |  |  |-- model
+|  |  |  |  |-- bundle_model_test.json
+|  |  |  |  |-- bundle_model_test_weights.bin
+|  |  |  |-- sharded_model
+|  |  |  |  |-- group1-shard1of2.bin
+|  |  |  |  |-- group1-shard2of2.bin
+|  |  |  |  |-- model.json
+|  |  |  |  |-- readme.md
+|  |  |-- babel.config.js
+|  |  |-- components
+|  |  |  |-- diagnostic.tsx
+|  |  |  |-- ml.ts
+|  |  |  |-- mobilenet_demo.tsx
+|  |  |  |-- run.tsx
+|  |  |  |-- tfjs_unit_test_runner.tsx
+|  |  |  |-- webcam
+|  |  |  |  |-- image_utils.ts
+|  |  |  |  |-- realtime_demo.tsx
+|  |  |  |  |-- style_transfer.ts
+|  |  |  |  |-- webcam_demo.tsx
+|  |  |-- index.js
+|  |  |-- ios
+|  |  |  |-- Podfile
+|  |  |  |-- Podfile.lock
+|  |  |  |-- integration_rn59.xcodeproj
+|  |  |  |  |-- project.pbxproj
+|  |  |  |  |-- xcshareddata
+|  |  |  |  |  |-- xcschemes
+|  |  |  |  |  |  |-- integration_rn59-tvOS.xcscheme
+|  |  |  |  |  |  |-- integration_rn59.xcscheme
+|  |  |  |-- integration_rn59.xcworkspace
+|  |  |  |  |-- contents.xcworkspacedata
+|  |  |  |  |-- xcshareddata
+|  |  |  |  |  |-- IDEWorkspaceChecks.plist
+|  |  |  |  |  |-- WorkspaceSettings.xcsettings
+|  |  |  |-- integration_rn59
+|  |  |  |  |-- AppDelegate.h
+|  |  |  |  |-- AppDelegate.m
+|  |  |  |  |-- Base.lproj
+|  |  |  |  |  |-- LaunchScreen.xib
+|  |  |  |  |-- Images.xcassets
+|  |  |  |  |  |-- AppIcon.appiconset
+|  |  |  |  |  |  |-- Contents.json
+|  |  |  |  |  |-- Contents.json
+|  |  |  |  |-- Info.plist
+|  |  |  |  |-- main.m
+|  |  |  |-- integration_rn59Tests
+|  |  |  |  |-- Info.plist
+|  |  |  |  |-- integration_rn59Tests.m
+|  |  |-- jest.config.js
+|  |  |-- metro.config.js
+|  |  |-- package.json
+|  |  |-- scripts
+|  |  |  |-- prep_tests.ts
+|  |  |  |-- test-ci.sh
+|  |  |  |-- tsconfig.json
+|  |  |-- test
+|  |  |  |-- integration_test.ts
+|  |  |-- tsconfig.json
+|  |  |-- tslint.json
+|  |  |-- wdio.conf.js
+|  |  |-- yarn.lock
+|  |-- package.json
+|  |-- rollup.config.js
+|  |-- scripts
+|  |  |-- enumerate-tests.js
+|  |  |-- update-apk.sh
+|  |-- src
+|  |  |-- async_storage_io.ts
+|  |  |-- async_storage_io_test.ts
+|  |  |-- bundle_resource_io.ts
+|  |  |-- bundle_resource_io_test.ts
+|  |  |-- camera
+|  |  |  |-- camera.ts
+|  |  |  |-- camera_stream.tsx
+|  |  |  |-- camera_test.ts
+|  |  |  |-- camera_webgl_util.ts
+|  |  |  |-- draw_texture_program_info.ts
+|  |  |  |-- resize_bilinear_program_info.ts
+|  |  |  |-- resize_nearest_neigbor_program_info.ts
+|  |  |-- decode_image.ts
+|  |  |-- decode_image_test.ts
+|  |  |-- index.ts
+|  |  |-- platform_react_native.ts
+|  |  |-- platform_react_native_test.ts
+|  |  |-- test_env_registry.ts
+|  |  |-- tests.ts
+|  |  |-- version.ts
+|  |-- tsconfig.json
+|  |-- tsconfig.test.json
+|  |-- tslint.json
+|  |-- yarn.lock
+|-- tfjs-tflite
+|  |-- .npmignore
+|  |-- .npmrc
+|  |-- README.md
+|  |-- cloudbuild.yml
+|  |-- demo
+|  |  |-- README.md
+|  |  |-- package.json
+|  |  |-- screenshot.png
+|  |  |-- src
+|  |  |  |-- cat.jpg
+|  |  |  |-- index.html
+|  |  |  |-- magic.svg
+|  |  |  |-- mountain.jpg
+|  |  |  |-- people.jpg
+|  |  |  |-- pizza.jpg
+|  |  |  |-- room.jpg
+|  |  |  |-- script.ts
+|  |  |-- tsconfig.json
+|  |  |-- yarn.lock
+|  |-- karma.conf.js
+|  |-- package.json
+|  |-- rollup.config.js
+|  |-- scripts
+|  |  |-- build-npm.sh
+|  |  |-- download-tflite-web-api.sh
+|  |  |-- publish-npm.sh
+|  |  |-- test-ci.sh
+|  |-- src
+|  |  |-- index.ts
+|  |  |-- setup_test.ts
+|  |  |-- tflite_model.ts
+|  |  |-- tflite_model_test.ts
+|  |  |-- tflite_task_library_client
+|  |  |  |-- bert_nl_classifier.ts
+|  |  |  |-- bert_qa.ts
+|  |  |  |-- common.ts
+|  |  |  |-- image_classifier.ts
+|  |  |  |-- image_segmenter.ts
+|  |  |  |-- nl_classifier.ts
+|  |  |  |-- object_detector.ts
+|  |  |-- tflite_web_api_client.d.ts
+|  |  |-- tflite_web_api_client.js
+|  |  |-- tflite_web_api_client_test.ts
+|  |  |-- types
+|  |  |  |-- bert_nl_classifier.ts
+|  |  |  |-- bert_qa.ts
+|  |  |  |-- common.ts
+|  |  |  |-- image_classifier.ts
+|  |  |  |-- image_segmenter.ts
+|  |  |  |-- nl_classifier.ts
+|  |  |  |-- object_detector.ts
+|  |  |  |-- tflite_web_api.ts
+|  |  |  |-- tflite_web_model_runner.ts
+|  |-- tsconfig.json
+|  |-- tsconfig.test.json
+|  |-- tslint.json
+|  |-- yarn.lock
+|-- tfjs-vis
+|  |-- .npmignore
+|  |-- CHANGELOG.md
+|  |-- CONTRIBUTING.md
+|  |-- LICENSE
+|  |-- README.md
+|  |-- cloudbuild.yml
+|  |-- demos
+|  |  |-- api
+|  |  |  |-- .babelrc
+|  |  |  |-- README.md
+|  |  |  |-- debug.html
+|  |  |  |-- debug.js
+|  |  |  |-- index.css
+|  |  |  |-- index.html
+|  |  |  |-- index.js
+|  |  |  |-- package.json
+|  |  |  |-- yarn.lock
+|  |  |-- mnist
+|  |  |  |-- .babelrc
+|  |  |  |-- README.md
+|  |  |  |-- data.js
+|  |  |  |-- index.html
+|  |  |  |-- index.js
+|  |  |  |-- model.js
+|  |  |  |-- package.json
+|  |  |  |-- tufte.css
+|  |  |  |-- yarn.lock
+|  |  |-- mnist_internals
+|  |  |  |-- .babelrc
+|  |  |  |-- README.md
+|  |  |  |-- data.js
+|  |  |  |-- index.html
+|  |  |  |-- index.js
+|  |  |  |-- model.js
+|  |  |  |-- package.json
+|  |  |  |-- tufte.css
+|  |  |  |-- yarn.lock
+|  |-- docs
+|  |  |-- visor-usage.png
+|  |-- integration_tests
+|  |  |-- karma.conf.js
+|  |-- karma.conf.js
+|  |-- package.json
+|  |-- scripts
+|  |  |-- build-npm.sh
+|  |  |-- deploy.sh
+|  |  |-- publish-npm.sh
+|  |  |-- tag-version.js
+|  |  |-- test-ci.sh
+|  |-- src
+|  |  |-- components
+|  |  |  |-- surface.tsx
+|  |  |  |-- tabs.tsx
+|  |  |  |-- visor.tsx
+|  |  |  |-- visor_test.tsx
+|  |  |-- index.ts
+|  |  |-- render
+|  |  |  |-- barchart.ts
+|  |  |  |-- barchart_test.ts
+|  |  |  |-- confusion_matrix.ts
+|  |  |  |-- confusion_matrix_test.ts
+|  |  |  |-- heatmap.ts
+|  |  |  |-- heatmap_test.ts
+|  |  |  |-- histogram.ts
+|  |  |  |-- histogram_test.ts
+|  |  |  |-- linechart.ts
+|  |  |  |-- linechart_test.ts
+|  |  |  |-- render_utils.ts
+|  |  |  |-- render_utils_test.ts
+|  |  |  |-- scatterplot.ts
+|  |  |  |-- scatterplot_tests.ts
+|  |  |  |-- table.ts
+|  |  |  |-- table_test.ts
+|  |  |-- setup_test.ts
+|  |  |-- show
+|  |  |  |-- history.ts
+|  |  |  |-- history_test.ts
+|  |  |  |-- model.ts
+|  |  |  |-- model_test.ts
+|  |  |  |-- quality.ts
+|  |  |  |-- quality_test.ts
+|  |  |  |-- tensor.ts
+|  |  |  |-- tensor_test.ts
+|  |  |-- types.ts
+|  |  |-- types
+|  |  |  |-- glamor-tachyons
+|  |  |  |  |-- index.d.ts
+|  |  |-- util
+|  |  |  |-- dom.ts
+|  |  |  |-- math.ts
+|  |  |  |-- math_test.ts
+|  |  |  |-- utils.ts
+|  |  |-- version.ts
+|  |  |-- visor.ts
+|  |  |-- visor_test.ts
+|  |-- test.html
+|  |-- tsconfig.json
+|  |-- tslint.json
+|  |-- webpack.config.js
+|  |-- yarn.lock
+|-- tfjs.code-workspace
+|-- tfjs
+|  |-- .npmignore
+|  |-- cloudbuild.yml
+|  |-- karma.conf.js
+|  |-- package.json
+|  |-- rollup.config.js
+|  |-- run_tools_tests.ts
+|  |-- scripts
+|  |  |-- build-npm.sh
+|  |  |-- test-ci.sh
+|  |-- src
+|  |  |-- index.ts
+|  |  |-- index_test.ts
+|  |  |-- index_with_polyfills.ts
+|  |  |-- version.ts
+|  |-- tools
+|  |  |-- custom_module
+|  |  |  |-- cli.ts
+|  |  |  |-- cli_test.ts
+|  |  |  |-- custom_module.ts
+|  |  |  |-- custom_module_test.ts
+|  |  |  |-- esm_module_provider.ts
+|  |  |  |-- esm_module_provider_test.ts
+|  |  |  |-- model_parser.ts
+|  |  |  |-- model_parser_test.ts
+|  |  |  |-- tsconfig.json
+|  |  |  |-- types.ts
+|  |  |  |-- util.ts
+|  |-- tsconfig.json
+|  |-- tsconfig.test.json
+|  |-- tslint.json
+|  |-- yarn.lock
+|-- tools
+|  |-- BUILD.bazel
+|  |-- copy_to_dist.bzl
+|  |-- defaults.bzl
+|  |-- karma_template.conf.js
+|  |-- rollup_template.config.js
+|  |-- tfjs_bundle.bzl
+|  |-- tfjs_web_test.bzl
+|  |-- ts_library_outputs.bzl
+|-- tsconfig.json
+|-- tsconfig.test.json
+|-- tsconfig_ts_library.json
+|-- tslint.json
+|-- yarn.lock
